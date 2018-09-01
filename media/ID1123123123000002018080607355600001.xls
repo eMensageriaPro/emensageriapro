@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+Recibo do R-1000 - Informações do Contribuinte<br>
+
+Gerado em <strong>06/08/2018</strong> por <strong>Administrador</strong>
+<br><br>
+Identificação<br>
+<table border="1">
+    <tr>
+        <td colspan="4">Identidade:<br>
+            <strong>ID1123123123000002018080607355600001</strong></td>
+        <td colspan="4">Versão do XML:<br>
+            <strong>Versão 1.03.02</strong></td>
+        <td colspan="4">Tipo de Ambiente:<br>
+            <strong>2 - Produção restrita</strong></td>
+    </tr>
+</table>
+<br>
+
+
+<table>
+    <tr>
+        <td colspan="6">
+            Processo de Emissão
+        </td>
+        <td colspan="6">
+            Empregador
+        </td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">Processo:<br>
+            <strong>1 - Aplicativo do contribuinte</strong>
+        </td>
+
+        <td colspan="6">Tipo de Inscrição:<br>
+            <strong>1 - CNPJ</strong>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="6">Versão:<br>
+            <strong>1.3</strong>
+        </td>
+        <td colspan="6">Número de Inscrição:<br>
+            <strong>"123123123"</strong>
+        </td>
+    </tr>
+</table>
+
+<br>
+
+<table>
+    <tr>
+        <td colspan="6">
+            Recepção
+        </td>
+        <td colspan="6">
+            Processamento
+        </td>
+    </tr>
+</table>
+<table border="1">
+    <tr>
+        <td colspan="6">Tipo de Ambiente:<br> <strong>
+            
+                -</strong></td>
+        <td colspan="6">Código:<br>
+            <strong>
+                -</strong>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="6">Data/Hora:<br> <strong>-</strong></td>
+        <td colspan="6">Descrição:<br>
+            <strong>
+                Cadastrado (Aguardando envio)</strong></td>
+    </tr>
+    <tr>
+        <td colspan="6">Versão do Aplicativo:<br> <strong>
+            -</strong></td>
+        <td colspan="6">Versão do Aplicativo:<br>
+            <strong>
+                
+                    -</strong></td>
+    </tr>
+    <tr>
+        <td colspan="6">Protocolo do Lote:<br> <strong>
+            
+                -</strong></td>
+        <td colspan="6">Data/Hora:<br>
+            <strong>-</strong>
+        </td>
+    </tr>
+</table>
+
+
+<br>
+Recibo<br>
+<table border="1">
+    <tr>
+        <td colspan="6">Número:<br>
+            <strong>
+                
+                    -</strong></td>
+        <td colspan="6">Hash:<br>
+            <strong>
+                
+                    -</strong></td>
+    </tr>
+</table>
+<br>
+Ocorrências<br>
+<table border="1">
+    <tr>
+        <td colspan="3">Tipo</td>
+        <td colspan="3">Código</td>
+        <td colspan="3">Descrição</td>
+        <td colspan="3">Localização</td>
+    </tr>
+    
+        <tr>
+            <td colspan="12">Não foram registradas ocorrências para este evento!</td>
+        </tr>
+    
+</table>
+</body>
+</html>

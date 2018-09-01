@@ -1,0 +1,328 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+    <section class="content-header">
+        <h1>Transmissor de Lote do EFD-Reinf
+            <small>Cadastrar/Editar</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+            <li><a href="#">Transmissor de Lote do EFD-Reinf</a></li>
+            <li class="active">Cadastrar/Editar</li>
+        </ol>
+    </section>{% if not for_print %}
+        <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">{% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_visualizar' %}
+                        <li {% if not tab %}class="active"{% endif %}><a
+                                href="{% url 'transmissor_lote_efdreinf_salvar' hash='{}'|json_return_page:'transmissor_lote_efdreinf_salvar'|json_return_hash:hash|json_id:transmissor_lote_efdreinf_id|json_print:0|base64_encode_me %}">Transmissor
+                            de Lote do EFD-Reinf</a></li>
+                        {% endif %}{% if transmissor_lote_efdreinf_id %}<!-- ANTES-TABS-transmissor_lote_efdreinf_ocorrencias -->
+                        {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_visualizar' %}
+                            <li {% if tab == 'transmissor_eventos_efdreinf' %}class="active"{% endif %}><a
+                                    href="{% url 'transmissor_lote_efdreinf_salvar' hash='{}'|json_return_page:'transmissor_lote_efdreinf_salvar'|json_return_hash:hash|json_id:transmissor_lote_efdreinf_id|json_print:0|json_tab:'transmissor_eventos_efdreinf'|base64_encode_me %}">Eventos</a>
+                            </li>{% endif %}
+                        {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_visualizar' %}
+                            <li {% if tab == 'transmissor_eventos_efdreinf_totalizacoes' %}class="active"{% endif %}><a
+                                    href="{% url 'transmissor_lote_efdreinf_salvar' hash='{}'|json_return_page:'transmissor_lote_efdreinf_salvar'|json_return_hash:hash|json_id:transmissor_lote_efdreinf_id|json_print:0|json_tab:'transmissor_eventos_efdreinf_totalizacoes'|base64_encode_me %}">Totalizações</a>
+                            </li>{% endif %}
+                        {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_ocorrencias_visualizar' %}
+                            <li {% if tab == 'transmissor_lote_efdreinf_ocorrencias' %}class="active"{% endif %}><a
+                                    href="{% url 'transmissor_lote_efdreinf_salvar' hash='{}'|json_id:transmissor_lote_efdreinf_id|json_print:0|json_tab:'transmissor_lote_efdreinf_ocorrencias'|base64_encode_me %}">Ocorrências
+                                do Transmissor de Lote do EFD-Reinf</a>
+                            </li>{% endif %}<!-- DEPOIS-TABS-transmissor_lote_efdreinf_ocorrencias -->{% endif %}</ul>
+                </div>
+            </div>
+        </div>{% else %}
+        <section class="invoice">{% endif %} {% if not for_print %}{% if messages %}
+    <div class="row">
+        <div class="pad margin no-print">{% for message in messages %}
+            <div class="alert alert-{{ message.tags }}"
+                 style="margin-bottom: 0!important;">{{ message }}</div>{% endfor %}</div>
+    </div>{% endif %} {% endif %} {% if not tab %}
+<div class="row">
+    <div class="col-md-12">{% if not for_print %}
+        <div class="box box-primary">
+        <div class="box-header with-border"><h3 class="box-title">Cadastrar/Editar Transmissor de Lote do EFD-Reinf</h3>
+        </div>{% else %}
+        <div class="row">{% endif %} {% if not for_print %}
+        {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_editar' or dict_permissoes|get_permissao:'transmissor_lote_efdreinf_cadastrar' %}
+            <form action="#" id="id_form_transmissor_lote_efdreinf" method="POST" content="text/html; charset=UTF-8">
+            {% csrf_token %} {% endif %} {% endif %}
+        <div class="box-body">
+            <div class="row">{% include 'forms/transmissor_lote_efdreinf.html' %}</div>
+        </div>{% if not for_print %}
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <div class="box-footer text-left"><font color="red">* Campos Obrigatórios.</font></div>
+                </div>
+                <div class="form-group col-md-8">
+                    <div class="box-footer text-right">{% if transmissor_lote_efdreinf_id %}
+                        <a href="{% url 'transmissor_lote_efdreinf_enviar' hash='{}'|json_id:transmissor_lote_efdreinf_id|json_print:0|base64_encode_me %}"><span
+                                class="btn btn-primary"><i class="fa fa-fw fa-feed"></i>&nbsp;Enviar Lote</span></a>
+                        <a href="{% url 'transmissor_lote_efdreinf_consultar' hash='{}'|json_id:transmissor_lote_efdreinf_id|json_print:0|base64_encode_me %}"><span
+                                class="btn btn-primary"><i
+                                class="fa fa-fw fa-search"></i>&nbsp;Consultar Lote</span></a>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Recibo
+                            </button>
+                            <button type="button" class="btn btn-primary dropdown-toggle"
+                                    data-toggle="dropdown"
+                                    aria-expanded="false"><span class="caret"></span><span
+                                    class="sr-only">Recibo</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="text-left"><a
+                                        href="{% url 'transmissor_lote_efdreinf_recibo' hash='{}'|json_id:transmissor_lote_efdreinf_id|json_print:1|base64_encode_me %}"
+                                        target="_blank"><i class="fa fa-code"></i>&nbsp;HTML</a>
+                                </li>
+                                <li class="text-left"><a
+                                        href="{% url 'transmissor_lote_efdreinf_recibo' hash='{}'|json_id:transmissor_lote_efdreinf_id|json_print:2|base64_encode_me %}"
+                                        target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a>
+                                </li>
+                                <li class="text-left"><a
+                                        href="{% url 'transmissor_lote_efdreinf_recibo' hash='{}'|json_id:transmissor_lote_efdreinf_id|json_print:3|base64_encode_me %}"
+                                        target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a>
+                                </li>
+                                <!--<li class="text-left"><a
+                                            href="{% url 'transmissor_lote_efdreinf_recibo' hash='{}'|json_id:transmissor_lote_efdreinf_id|json_print:4|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
+                            </ul>
+                        </div>&nbsp;
+
+                    {% endif %}
+                        {% if transmissor_lote_efdreinf_id %}
+                            {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_cadastrar' %}
+                                <a href="{% url 'transmissor_lote_efdreinf_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span
+                                        class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>
+                            {% endif %} {% endif %}
+                        {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_listar' or dict_permissoes|get_permissao:'transmissor_lote_efdreinf_listar' %}
+                            <a href="{% url 'transmissor_lote_efdreinf' hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span
+                                    class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>
+                            &nbsp;{% endif %}
+                        {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_visualizar' and transmissor_lote_efdreinf_id %}
+                            <a href="{% url 'transmissor_lote_efdreinf_salvar' hash='{}'|json_id:transmissor_lote_efdreinf_id|json_print:1|base64_encode_me %}"
+                               target="_blank"><span class="btn btn-primary"><i
+                                    class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;
+
+
+
+                        {% endif %}
+                        {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_editar' or dict_permissoes|get_permissao:'transmissor_lote_efdreinf_cadastrar' %}
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;Salvar
+                            </button>&nbsp;{% endif %}
+                        {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_apagar' and transmissor_lote_efdreinf_id %}
+                            <a href="{% url 'transmissor_lote_efdreinf_apagar' hash='{}'|json_id:transmissor_lote_efdreinf_id|json_print:0|base64_encode_me %}"><span
+                                    class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>
+                            &nbsp;{% endif %}<a class="btn btn-default" href="#" onclick="history.go(-1)"><i
+                                class="fa fa-rotate-left"></i>&nbsp;Voltar</a></div>
+                </div>
+            </div>{% endif %} {% if not for_print %}
+            {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_editar' or dict_permissoes|get_permissao:'transmissor_lote_efdreinf_cadastrar' %}
+                </form>{% endif %} {% endif %}</div><!-- TEXTO_ABAIXO_FORMULARIO --></div>
+    </div>
+</div></div>{% endif %}{% if transmissor_lote_efdreinf_id %}{% if not for_print %}<!-- ALTERAÇÕES -->
+{% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_visualizar' and tab == 'transmissor_eventos_efdreinf' %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border"><h3 class="box-title">Eventos</h3>
+                    <div class="pull-right box-tools">
+                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i
+                                class="fa fa-minus"></i></button>
+                        <button type="button" class="btn btn-default btn-sm" data-widget="remove"><i
+                                class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="pull-right box-tools"><a
+                            href="{% url 'vincular_eventos_efdreinf' hash='{}'|json_return_page:'transmissor_lote_efdreinf'|json_return_hash:hash|json_id:transmissor_lote_efdreinf_id|json_print:0|base64_encode_me %}"><span
+                            class="btn btn-info pull-right"><i class="fa fa-plus-circle"></i>Importar Eventos</span></a>
+                    </div><!-- ANTES_DAS_TABELAS_SECUNDARIAS_transmissor_lote_ocorrencias -->
+                    <table class="table table-bordered table-striped automate-data-table">
+                        <thead>
+                        <tr>
+                            <th>Evento</th>
+                            <th>Identidade</th>
+                            <th>Retorno</th>
+                            {% if not for_print %}
+                                <th width="80px">Ações</th>{% endif %}</tr>
+                        </thead>
+                        <tbody>{% for a in transmissor_eventos_efdreinf_lista %}
+                            <tr>
+                                <td>{{ a.evento }}</td>
+                                <td>{{ a.identidade }}</td>
+                                <td>
+                                    {% if a.retornos_evttotal %}
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Recibo
+                                            </button>
+                                            <button type="button" class="btn btn-primary dropdown-toggle"
+                                                    data-toggle="dropdown"
+                                                    aria-expanded="false"><span class="caret"></span><span
+                                                    class="sr-only">Recibo</span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <!--<li class="text-left"><a
+                                                        href="{% url 'r5001_evttotal_recibo' hash='{}'|json_id:a.retornos_evttotal_id|json_print:1|base64_encode_me tipo='PDF' %}"
+                                                        target="_blank"><i class="fa fa-code"></i>&nbsp;HTML</a>
+                                                </li>-->
+                                                <li class="text-left"><a
+                                                        href="{% url 'r5001_evttotal_recibo' hash='{}'|json_id:a.retornos_evttotal_id|json_print:2|base64_encode_me tipo='PDF' %}"
+                                                        target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a>
+                                                </li>
+                                                <li class="text-left"><a
+                                                        href="{% url 'r5001_evttotal_recibo' hash='{}'|json_id:a.retornos_evttotal_id|json_print:3|base64_encode_me tipo='XLS' %}"
+                                                        target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a>
+                                                </li>
+                                                <li class="text-left"><a
+                                                        href="{% url 'r5001_evttotal_recibo' hash='{}'|json_id:a.retornos_evttotal_id|json_print:4|base64_encode_me tipo='CSV' %}"
+                                                        target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>
+                                            </ul>
+                                        </div>&nbsp;
+                                    {% endif %}
+                                    {% if a.retornos_evttotalcontrib %}
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Recibo
+                                            </button>
+                                            <button type="button" class="btn btn-primary dropdown-toggle"
+                                                    data-toggle="dropdown"
+                                                    aria-expanded="false"><span class="caret"></span><span
+                                                    class="sr-only">Recibo</span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li class="text-left"><a
+                                                        href="{% url 'r5011_evttotalcontrib_recibo' hash='{}'|json_id:a.retornos_evttotalcontrib_id|json_print:1|base64_encode_me tipo='PDF'%}"
+                                                        target="_blank"><i class="fa fa-code"></i>&nbsp;HTML</a>
+                                                </li>
+                                                <li class="text-left"><a
+                                                        href="{% url 'r5011_evttotalcontrib_recibo' hash='{}'|json_id:a.retornos_evttotalcontrib_id|json_print:2|base64_encode_me tipo='PDF' %}"
+                                                        target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a>
+                                                </li>
+                                                <li class="text-left"><a
+                                                        href="{% url 'r5011_evttotalcontrib_recibo' hash='{}'|json_id:a.retornos_evttotalcontrib_id|json_print:3|base64_encode_me tipo='XLS' %}"
+                                                        target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a>
+                                                </li>
+                                                <li class="text-left"><a
+                                            href="{% url 'r5001_evttotal_recibo' hash='{}'|json_id:a.retornos_evttotalcontrib_id|json_print:4|base64_encode_me tipo='CSV' %}"
+                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>
+                                            </ul>
+                                        </div>&nbsp;
+                                    {% endif %}
+
+                                </td>
+                                {% if not for_print %}
+                                    <td>
+                                        <div>
+                                            {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_visualizar' %}
+                                                <a href="{% url a.tabela_salvar hash='{}'|json_return_page:'transmissor_lote_salvar'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me %}">
+                                                    <button class="btn btn-primary"><i class="fa fa-fw fa-edit"></i>
+                                                    </button>
+                                                </a>{% endif %}
+                                            {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_visualizar' %}
+                                                <a href="{% url 'desvincular_eventos_efdreinf' hash='{}'|json_return_page:'transmissor_lote_efdreinf_salvar'|json_return_hash:hash|json_id:a.identidade|json_print:0|base64_encode_me %}">
+                                                    <button class="btn btn-danger"><i class="fa fa-fw fa-times"></i>
+                                                    </button>
+                                                </a>{% endif %}</div>
+                                    </td>{% endif %}</tr></tbody>{% endfor %}</table>
+                </div>
+            </div>
+        </div>
+    </div>{% endif %}<!-- ALTERAÇÕES -->{% endif %} {% endif %}
+{% if transmissor_lote_efdreinf_id %}{% if not for_print %}<!-- ALTERAÇÕES -->
+{% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_visualizar' and tab == 'transmissor_eventos_efdreinf_totalizacoes' %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border"><h3 class="box-title">Totalizações</h3>
+                    <div class="pull-right box-tools">
+                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i
+                                class="fa fa-minus"></i></button>
+                        <button type="button" class="btn btn-default btn-sm" data-widget="remove"><i
+                                class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="box-body"><!-- ANTES_DAS_TABELAS_SECUNDARIAS_transmissor_lote_ocorrencias -->
+                    <table class="table table-bordered table-striped automate-data-table">
+                        <thead>
+                        <tr>
+                            <th>Evento</th>
+                            <th>Identidade</th>
+                            {% if not for_print %}
+                            <th width="80px">Ações</th>{% endif %}</tr>
+                        </thead>
+                        <tbody>{% for a in transmissor_eventos_efdreinf_totalizacoes_lista %}
+                            <tr>
+                                <td>{{ a.evento }}</td>
+                                <td>{{ a.identidade }}</td>
+                                {% if not for_print %}
+                                <td>
+                                    <div>{% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_visualizar' %}
+                                        <a href="{% url 'r5001_evttotal_verificar' hash='{}'|json_return_page:'transmissor_lote_efdreinf_salvar'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me %}">
+                                            <button class="btn btn-primary"><i class="fa fa-fw fa-edit"></i></button>
+                                        </a>{% endif %}</div>
+                                </td>{% endif %}</tr></tbody>{% endfor %}</table>
+                </div>
+            </div>
+        </div>
+    </div>{% endif %}<!-- ALTERAÇÕES -->{% endif %}
+{% endif %}{% if transmissor_lote_efdreinf_id %}<!-- begin_Ocorrências do Transmissor de Lote do EFD-Reinf -->
+{% if tab == 'transmissor_lote_efdreinf_ocorrencias' or for_print %}
+    {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_ocorrencias_visualizar' %}
+        {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_ocorrencias_editar' or dict_permissoes|get_permissao:'transmissor_lote_efdreinf_ocorrencias_cadastrar' %}
+            <script type="text/javascript">function CadastroListagem() {
+                var display = document.getElementById('cadastrar').style.display;
+                if (display == "none") {
+                    document.getElementById('cadastrar').style.display = 'block';
+                    document.getElementById('listar').style.display = 'none';
+                    document.getElementById('CadastrarBotao').style.display = 'none';
+                    document.getElementById('ListarBotao').style.display = 'block';
+                } else {
+                    document.getElementById('cadastrar').style.display = 'none';
+                    document.getElementById('listar').style.display = 'block';
+                    document.getElementById('CadastrarBotao').style.display = 'block';
+                    document.getElementById('ListarBotao').style.display = 'none';
+                }
+            }</script>{% endif %}
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header with-border"><h3 class="box-title">Ocorrências do Transmissor de Lote do
+                        EFD-Reinf</h3>
+                        <div class="pull-right box-tools">
+                            {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_ocorrencias_editar' or dict_permissoes|get_permissao:'transmissor_lote_efdreinf_ocorrencias_cadastrar' %}
+                                <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                    <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i>Cadastrar</div>
+                                    <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i>Listar</div>
+                                </button>{% endif %}</div>
+                    </div>
+                    <div class="box-body">
+                        {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_ocorrencias_cadastrar' %}<!--
+                             begin_form_transmissor_lote_efdreinf_ocorrencias -->
+                            <div id="cadastrar" style="display:none">
+                                <form id="id_form_transmissor_lote_efdreinf_ocorrencias"
+                                      action="{% url 'transmissor_lote_efdreinf_ocorrencias_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}"
+                                      method="POST">{% csrf_token %}
+                                    <div class="row">{% include 'forms/transmissor_lote_efdreinf_ocorrencias.html' %}</div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <div class="box-footer text-left"><font color="red">* Campos
+                                                Obrigatórios.</font></div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="box-footer text-right">
+                                                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>Salvar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div><!-- end_form_transmissor_lote_efdreinf_ocorrencias -->{% endif %}<div id="listar">
+                        <!-- begin_table_transmissor_lote_efdreinf_ocorrencias -->
+                        {% include 'tables/transmissor_lote_efdreinf_ocorrencias.html' %}<!-- end_table_transmissor_lote_efdreinf_ocorrencias --></div>
+                    </div>
+                </div>
+            </div>
+        </div>{% endif %} {% endif %}<!-- end_Ocorrências do Transmissor de Lote do EFD-Reinf -->{% endif %}</section>
+<!-- script --><!--- javascript -->{% endblock content %}

@@ -1,0 +1,47 @@
+{% load templatetags %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+    <tr>{% if show_fields.show_arquivo or 1 %}
+        <th>Arquivo</th>{% endif %}{% if show_fields.show_data_criacao or 1 %}
+        <th>Data de Criação</th>{% endif %}{% if show_fields.show_permite_recuperacao or 1 %}
+        <th>Permite Recuperação</th>{% endif %}{% if show_fields.show_criado_em or 0 %}
+        <th>Criado em</th>{% endif %}{% if show_fields.show_criado_por or not usuarios_id and 0 %}
+        <th>Criado por</th>{% endif %}{% if show_fields.show_modificado_em or 0 %}
+        <th>Modificado em</th>{% endif %}{% if show_fields.show_modificado_por or not usuarios_id and 0 %}
+        <th>Modificado por</th>{% endif %}{% if show_fields.show_excluido or 0 %}
+        <th>Excluido</th>{% endif %}<!-- cabeçalho de colunas especiais -->{% if not for_print %}
+        <th width="90px">Ações</th>{% endif %}</tr>
+    </thead>
+    <tbody>{% for a in arquivos_lista %}
+        <tr>{% if show_fields.show_arquivo or 1 %}
+            <td>{{ a.arquivo }}</td>{% endif %}{% if show_fields.show_data_criacao or 1 %}
+            <td><span style="display:none">{{ a.data_criacao|date:"Y-m-d" }}</span>{{ a.data_criacao|date:"d/m/Y" }}
+            </td>{% endif %}{% if show_fields.show_permite_recuperacao or 1 %}
+            <td>{{ a.get_permite_recuperacao_display }}</td>{% endif %}{% if show_fields.show_criado_em or 0 %}
+            <td>{{ a.criado_em }}</td>{% endif %}{% if show_fields.show_criado_por or not usuarios_id and 0 %}
+            <td>{{ a.criado_por }}</td>{% endif %}{% if show_fields.show_modificado_em or 0 %}
+            <td>{{ a.modificado_em }}</td>{% endif %}{% if show_fields.show_modificado_por or not usuarios_id and 0 %}
+            <td>{{ a.modificado_por }}</td>{% endif %}{% if show_fields.show_excluido or 0 %}
+            <td>{{ a.excluido }}</td>{% endif %}<!-- colunas especiais -->{% if not for_print %}
+            <td width="250px">
+                <div><!-- botões especiais -->{% if dict_permissoes|get_permissao:'arquivos_visualizar' %}
+
+
+                    {% if 'Comunicacao' in a.arquivo and 'response' in a.arquivo  %}
+                        <a href="{% url 'arquivos_reprocessar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}"><span
+                                class="btn btn-info" title="Reprocessar" style="width:120px"><i
+                                class="fa fa-fw fa-recycle"></i> Reprocessar</span></a>
+                    {% endif %}
+
+                    {% if a.permite_recuperacao %}
+                        <a href="{% url 'arquivos_recuperacao' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}"><span
+                                class="btn btn-warning" title="Recuperar" style="width:120px"><i
+                                class="fa fa-fw fa-recycle"></i> Recuperar</span></a>
+                    {% endif %}
+
+                    <a href="{% url 'arquivos_visualizacao' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}"><span
+                            class="btn btn-primary" title="Visualizar" style="width:120px"><i
+                            class="fa fa-fw fa-eye"></i> Visualizar</span></a>
+
+                {% endif %}</div>
+            </td>{% endif %}</tr>{% endfor %}</table>

@@ -1,0 +1,183 @@
+{% load templatetags %}<!-- inicio__transmissores__nome_empresa -->
+<div class="col-md-12" id="transmissores__nome_empresa__div">
+    <div class="form-group"><label id="transmissores__nome_empresa__label">Nome da Empresa*</label>
+        {% if transmissores_form.nome_empresa.errors %}
+            <div class="alert alert-error"
+                 style="margin-bottom: 0!important;width:100%">{{ transmissores_form.nome_empresa.errors }}</div>{% endif %}
+        <div class="input-group" style="width: 100%;">{{ transmissores_form.nome_empresa|addcss:'form-control' }}</div>
+    </div>
+</div><!-- fim__transmissores__nome_empresa --><!-- inicio__transmissores__cpf_cnpj -->
+<div class="col-md-6" id="transmissores__cpf_cnpj__div">
+    <div class="form-group"><label id="transmissores__cpf_cnpj__label">CPF/CNPJ*</label>
+        {% if transmissores_form.cpf_cnpj.errors %}
+            <div class="alert alert-error"
+                 style="margin-bottom: 0!important;width:100%">{{ transmissores_form.cpf_cnpj.errors }}</div>{% endif %}
+        <div class="input-group" style="width: 100%;">{{ transmissores_form.cpf_cnpj|addcss:'form-control' }}</div>
+    </div>
+</div><!-- fim__transmissores__cpf_cnpj --><!-- inicio__transmissores__tipo_inscricao -->
+<div class="col-md-6" id="transmissores__tipo_inscricao__div">
+    <div class="form-group"><label id="transmissores__tipo_inscricao__label">Tipo de Inscrição*</label>
+        {% if transmissores_form.tipo_inscricao.errors %}
+            <div class="alert alert-error"
+                 style="margin-bottom: 0!important;width:100%">{{ transmissores_form.tipo_inscricao.errors }}</div>{% endif %}
+        <div class="input-group" style="width: 100%;">
+            {% if transmissores_form.tipo_inscricao.field.widget.attrs.readonly %}
+                {% if transmissores_form.tipo_inscricao.field.widget.attrs.disabled %}
+                    {{ transmissores_form.tipo_inscricao|addcss:'form-control' }}
+                    <input id="id_tipo_inscricao" name="tipo_inscricao" type="hidden"
+                           value="{{ transmissores_form.tipo_inscricao.value }}">{% else %}
+                    {{ transmissores_form.tipo_inscricao|addcss:'form-control' }} {% endif %} {% else %}
+                {{ transmissores_form.tipo_inscricao|addcss_select2:'form-control automate-select' }} {% endif %}</div>
+    </div>
+</div><!-- fim__transmissores__tipo_inscricao --><!-- inicio__transmissores__data_abertura -->
+<div class="col-md-4" id="transmissores__data_abertura__div">
+    <div class="form-group"><label id="transmissores__data_abertura__label">Data de abertura*</label>
+        {% if transmissores_form.data_abertura.errors %}
+            <div class="alert alert-error"
+                 style="margin-bottom: 0!important;width:100%">{{ transmissores_form.data_abertura.errors }}</div>{% endif %}
+        <div class="input-group"
+             style="width: 100%;">{{ transmissores_form.data_abertura|addcss:'form-control automate-date' }}</div>
+    </div>
+</div><!-- fim__transmissores__data_abertura --><!-- inicio__transmissores__validar_eventos -->
+<div class="col-md-4" id="transmissores__validar_eventos__div">
+    <div class="form-group"><label id="transmissores__validar_eventos__label">Validar antes de enviar os
+        eventos*</label>{% if transmissores_form.validar_eventos.errors %}
+        <div class="alert alert-error"
+             style="margin-bottom: 0!important;width:100%">{{ transmissores_form.validar_eventos.errors }}</div>{% endif %}
+        <div class="input-group" style="width: 100%;">
+            {% if transmissores_form.validar_eventos.field.widget.attrs.readonly %}
+                {% if transmissores_form.validar_eventos.field.widget.attrs.disabled %}
+                    {{ transmissores_form.validar_eventos|addcss:'form-control' }}
+                    <input id="id_validar_eventos" name="validar_eventos" type="hidden"
+                           value="{{ transmissores_form.validar_eventos.value }}">{% else %}
+                    {{ transmissores_form.validar_eventos|addcss:'form-control' }} {% endif %} {% else %}
+                {{ transmissores_form.validar_eventos|addcss_select2:'form-control automate-select' }} {% endif %}</div>
+    </div>
+</div><!-- fim__transmissores__validar_eventos --><!-- inicio__transmissores__envio_automatico -->
+<div class="col-md-4" id="transmissores__envio_automatico__div">
+    <div class="form-group"><label id="transmissores__envio_automatico__label">Envio automático de eventos*</label>
+        {% if transmissores_form.envio_automatico.errors %}
+            <div class="alert alert-error"
+                 style="margin-bottom: 0!important;width:100%">{{ transmissores_form.envio_automatico.errors }}</div>{% endif %}
+        <div class="input-group" style="width: 100%;">
+            {% if transmissores_form.envio_automatico.field.widget.attrs.readonly %}
+                {% if transmissores_form.envio_automatico.field.widget.attrs.disabled %}
+                    {{ transmissores_form.envio_automatico|addcss:'form-control' }}
+                    <input id="id_envio_automatico" name="envio_automatico" type="hidden"
+                           value="{{ transmissores_form.envio_automatico.value }}">{% else %}
+                    {{ transmissores_form.envio_automatico|addcss:'form-control' }} {% endif %} {% else %}
+                {{ transmissores_form.envio_automatico|addcss_select2:'form-control automate-select' }} {% endif %}
+        </div>
+    </div>
+</div><!-- fim__transmissores__envio_automatico --><!-- inicio__transmissores__logotipo -->
+<div class="col-md-12" id="transmissores__logotipo__div">
+    <div class="form-group"><label id="transmissores__logotipo__label">Logotipo</label>
+        {% if transmissores_form.logotipo.errors %}
+            <div class="alert alert-error"
+                 style="margin-bottom: 0!important;width:100%">{{ transmissores_form.logotipo.errors }}</div>{% endif %}
+        <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-file"></i></div>
+            {{ transmissores_form.logotipo|addcss:'form-control' }}</div>
+    </div>
+</div><!-- fim__transmissores__logotipo --><!-- inicio__transmissores__endereco_completo -->
+<div class="col-md-12" id="transmissores__endereco_completo__div">
+    <div class="form-group"><label id="transmissores__endereco_completo__label">Endereço Completo*</label>
+        {% if transmissores_form.endereco_completo.errors %}
+            <div class="alert alert-error"
+                 style="margin-bottom: 0!important;width:100%">{{ transmissores_form.endereco_completo.errors }}</div>{% endif %}
+        <div class="input-group"
+             style="width: 100%;">{{ transmissores_form.endereco_completo|addcss:'form-control' }}</div>
+    </div>
+</div><!-- fim__transmissores__endereco_completo --><!-- inicio__transmissores__eSocial -->
+<div class="col-md-12" id="transmissores__eSocial__div"><h4>eSocial</h4>
+</div><!-- fim__transmissores__eSocial --><!-- inicio__transmissores__esocial_lote_min -->
+<div class="col-md-4" id="transmissores__esocial_lote_min__div">
+    <div class="form-group"><label id="transmissores__esocial_lote_min__label">Quant. mínima de eventos por
+        lote*</label>{% if transmissores_form.esocial_lote_min.errors %}
+        <div class="alert alert-error"
+             style="margin-bottom: 0!important;width:100%">{{ transmissores_form.esocial_lote_min.errors }}</div>{% endif %}
+        <div class="input-group"
+             style="width: 100%;">{{ transmissores_form.esocial_lote_min|addcss:'form-control' }}</div>
+    </div>
+</div><!-- fim__transmissores__esocial_lote_min --><!-- inicio__transmissores__esocial_lote_max -->
+<div class="col-md-4" id="transmissores__esocial_lote_max__div">
+    <div class="form-group"><label id="transmissores__esocial_lote_max__label">Quant. máxima de eventos por
+        lote*</label>{% if transmissores_form.esocial_lote_max.errors %}
+        <div class="alert alert-error"
+             style="margin-bottom: 0!important;width:100%">{{ transmissores_form.esocial_lote_max.errors }}</div>{% endif %}
+        <div class="input-group"
+             style="width: 100%;">{{ transmissores_form.esocial_lote_max|addcss:'form-control' }}</div>
+    </div>
+</div><!-- fim__transmissores__esocial_lote_max --><!-- inicio__transmissores__esocial_timeout -->
+<div class="col-md-4" id="transmissores__esocial_timeout__div">
+    <div class="form-group"><label id="transmissores__esocial_timeout__label">Timeout para envio do lote (em milissegundos)*</label>{% if transmissores_form.esocial_timeout.errors %}
+        <div class="alert alert-error"
+             style="margin-bottom: 0!important;width:100%">{{ transmissores_form.esocial_timeout.errors }}</div>{% endif %}
+        <div class="input-group"
+             style="width: 100%;">{{ transmissores_form.esocial_timeout|addcss:'form-control' }}</div>
+    </div>
+</div><!-- fim__transmissores__esocial_timeout --><!-- inicio__transmissores__esocial_intervalo -->
+<div class="col-md-6" id="transmissores__esocial_intervalo__div">
+    <div class="form-group"><label id="transmissores__esocial_intervalo__label">Intervalo de tempo entre envios
+        automáticos (em minutos)*</label>{% if transmissores_form.esocial_intervalo.errors %}
+        <div class="alert alert-error"
+             style="margin-bottom: 0!important;width:100%">{{ transmissores_form.esocial_intervalo.errors }}</div>{% endif %}
+        <div class="input-group"
+             style="width: 100%;">{{ transmissores_form.esocial_intervalo|addcss:'form-control' }}</div>
+    </div>
+</div><!-- fim__transmissores__esocial_intervalo --><!-- inicio__transmissores__esocial_tempo_prox_envio -->
+<div class="col-md-6" id="transmissores__esocial_tempo_prox_envio__div">
+    <div class="form-group"><label id="transmissores__esocial_tempo_prox_envio__label">Controle de tempo para próximo
+        envio (em minutos)</label>{% if transmissores_form.esocial_tempo_prox_envio.errors %}
+        <div class="alert alert-error"
+             style="margin-bottom: 0!important;width:100%">{{ transmissores_form.esocial_tempo_prox_envio.errors }}</div>{% endif %}
+        <div class="input-group"
+             style="width: 100%;">{{ transmissores_form.esocial_tempo_prox_envio|addcss:'form-control' }}</div>
+    </div>
+</div><!-- fim__transmissores__esocial_tempo_prox_envio --><!-- inicio__transmissores__efdreinf -->
+<div class="col-md-12" id="transmissores__efdreinf__div"><h4>EFD-Reinf</h4>
+</div><!-- fim__transmissores__efdreinf --><!-- inicio__transmissores__efdreinf_lote_min -->
+<div class="col-md-4" id="transmissores__efdreinf_lote_min__div">
+    <div class="form-group"><label id="transmissores__efdreinf_lote_min__label">Quant. mínima de eventos por
+        lote*</label>{% if transmissores_form.efdreinf_lote_min.errors %}
+        <div class="alert alert-error"
+             style="margin-bottom: 0!important;width:100%">{{ transmissores_form.efdreinf_lote_min.errors }}</div>{% endif %}
+        <div class="input-group"
+             style="width: 100%;">{{ transmissores_form.efdreinf_lote_min|addcss:'form-control' }}</div>
+    </div>
+</div><!-- fim__transmissores__efdreinf_lote_min --><!-- inicio__transmissores__efdreinf_lote_max -->
+<div class="col-md-4" id="transmissores__efdreinf_lote_max__div">
+    <div class="form-group"><label id="transmissores__efdreinf_lote_max__label">Quant. máxima de eventos por
+        lote*</label>{% if transmissores_form.efdreinf_lote_max.errors %}
+        <div class="alert alert-error"
+             style="margin-bottom: 0!important;width:100%">{{ transmissores_form.efdreinf_lote_max.errors }}</div>{% endif %}
+        <div class="input-group"
+             style="width: 100%;">{{ transmissores_form.efdreinf_lote_max|addcss:'form-control' }}</div>
+    </div>
+</div><!-- fim__transmissores__efdreinf_lote_max --><!-- inicio__transmissores__efdreinf_timeout -->
+<div class="col-md-4" id="transmissores__efdreinf_timeout__div">
+    <div class="form-group"><label id="transmissores__efdreinf_timeout__label">Timeout para envio do lote (em milissegundos)*</label>{% if transmissores_form.efdreinf_timeout.errors %}
+        <div class="alert alert-error"
+             style="margin-bottom: 0!important;width:100%">{{ transmissores_form.efdreinf_timeout.errors }}</div>{% endif %}
+        <div class="input-group"
+             style="width: 100%;">{{ transmissores_form.efdreinf_timeout|addcss:'form-control' }}</div>
+    </div>
+</div><!-- fim__transmissores__efdreinf_timeout --><!-- inicio__transmissores__efdreinf_intervalo -->
+<div class="col-md-6" id="transmissores__efdreinf_intervalo__div">
+    <div class="form-group"><label id="transmissores__efdreinf_intervalo__label">Intervalo de tempo entre envios
+        automáticos (em minutos)*</label>{% if transmissores_form.efdreinf_intervalo.errors %}
+        <div class="alert alert-error"
+             style="margin-bottom: 0!important;width:100%">{{ transmissores_form.efdreinf_intervalo.errors }}</div>{% endif %}
+        <div class="input-group"
+             style="width: 100%;">{{ transmissores_form.efdreinf_intervalo|addcss:'form-control' }}</div>
+    </div>
+</div><!-- fim__transmissores__efdreinf_intervalo --><!-- inicio__transmissores__efdreinf_tempo_prox_envio -->
+<div class="col-md-6" id="transmissores__efdreinf_tempo_prox_envio__div">
+    <div class="form-group"><label id="transmissores__efdreinf_tempo_prox_envio__label">Controle de tempo para próximo
+        envio (em minutos)</label>{% if transmissores_form.efdreinf_tempo_prox_envio.errors %}
+        <div class="alert alert-error"
+             style="margin-bottom: 0!important;width:100%">{{ transmissores_form.efdreinf_tempo_prox_envio.errors }}</div>{% endif %}
+        <div class="input-group"
+             style="width: 100%;">{{ transmissores_form.efdreinf_tempo_prox_envio|addcss:'form-control' }}</div>
+    </div>
+</div><!-- fim__transmissores__efdreinf_tempo_prox_envio -->

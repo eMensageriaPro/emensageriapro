@@ -1,0 +1,138 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+    <section class="content-header">
+        <h1>Importação de Arquivos
+            <small>Cadastrar/Editar</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+            <li><a href="#">Importação de Arquivos</a></li>
+            <li class="active">Cadastrar/Editar</li>
+        </ol>
+    </section>{% if not for_print %}
+        <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">{% if dict_permissoes|get_permissao:'importacao_arquivos_visualizar' %}
+                        <li {% if not tab %}class="active"{% endif %}><a
+                                href="{% url 'importacao_arquivos_salvar' hash='{}'|json_return_page:'importacao_arquivos_salvar'|json_return_hash:hash|json_id:importacao_arquivos_id|json_print:0|base64_encode_me %}">Importação
+                            de Arquivos</a></li>
+                        {% endif %}{% if importacao_arquivos_id %}<!-- ANTES-TABS-importacao_arquivos_eventos -->
+                        {% if dict_permissoes|get_permissao:'importacao_arquivos_eventos_visualizar' %}
+                            <li {% if tab == 'importacao_arquivos_eventos' %}class="active"{% endif %}><a
+                                    href="{% url 'importacao_arquivos_salvar' hash='{}'|json_id:importacao_arquivos_id|json_print:0|json_tab:'importacao_arquivos_eventos'|base64_encode_me %}">Mapa
+                                de Processamento</a>
+                            </li>{% endif %}<!-- DEPOIS-TABS-importacao_arquivos_eventos -->{% endif %}</ul>
+                </div>
+            </div>
+        </div>{% else %}
+        <section class="invoice">{% endif %} {% if not for_print %}{% if messages %}
+    <div class="row">
+        <div class="pad margin no-print">{% for message in messages %}
+            <div class="alert alert-{{ message.tags }}"
+                 style="margin-bottom: 0!important;">{{ message }}</div>{% endfor %}</div>
+    </div>{% endif %} {% endif %} {% if not tab %}
+    <div class="row">
+        <div class="col-md-12">{% if not for_print %}
+            <div class="box box-primary">
+            <div class="box-header with-border"><h3 class="box-title">Cadastrar/Editar Importação de Arquivos</h3>
+            </div>{% else %}
+            <div class="row">{% endif %} {% if not for_print %}
+            {% if dict_permissoes|get_permissao:'importacao_arquivos_editar' or dict_permissoes|get_permissao:'importacao_arquivos_cadastrar' %}
+                <form action="#" id="id_form_importacao_arquivos" method="POST" content="text/html; charset=UTF-8">
+                {% csrf_token %} {% endif %} {% endif %}
+            <div class="box-body">
+                <div class="row">{% include 'forms/importacao_arquivos.html' %}</div>
+            </div>{% if not for_print %}
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <div class="box-footer text-left"><font color="red">* Campos Obrigatórios.</font></div>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <div class="box-footer text-right"><!-- botões especiais -->{% if importacao_arquivos_id %}
+                            {% if dict_permissoes|get_permissao:'importacao_arquivos_cadastrar' %}
+                                <a href="{% url 'importacao_arquivos_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span
+                                        class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>
+                            {% endif %} {% endif %}
+                            {% if dict_permissoes|get_permissao:'importacao_arquivos_listar' or dict_permissoes|get_permissao:'importacao_arquivos_listar' %}
+                                <a href="{% url 'importacao_arquivos' hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span
+                                        class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>
+                                &nbsp;{% endif %}
+                            {% if dict_permissoes|get_permissao:'importacao_arquivos_visualizar' and importacao_arquivos_id %}
+                                <a href="{% url 'importacao_arquivos_salvar' hash='{}'|json_id:importacao_arquivos_id|json_print:1|base64_encode_me %}"
+                                   target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>
+                                &nbsp;{% endif %}
+                            {% if dict_permissoes|get_permissao:'importacao_arquivos_editar' or dict_permissoes|get_permissao:'importacao_arquivos_cadastrar' %}
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;Salvar
+                                </button>&nbsp;{% endif %}
+                            {% if dict_permissoes|get_permissao:'importacao_arquivos_apagar' and importacao_arquivos_id %}
+                                <a href="{% url 'importacao_arquivos_apagar' hash='{}'|json_id:importacao_arquivos_id|json_print:0|base64_encode_me %}"><span
+                                        class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>
+                                &nbsp;{% endif %}<a class="btn btn-default" href="#" onclick="history.go(-1)"><i
+                                    class="fa fa-rotate-left"></i>&nbsp;Voltar</a></div>
+                    </div>
+                </div>{% endif %} {% if not for_print %}
+                {% if dict_permissoes|get_permissao:'importacao_arquivos_editar' or dict_permissoes|get_permissao:'importacao_arquivos_cadastrar' %}
+                    </form>{% endif %} {% endif %}</div><!-- TEXTO_ABAIXO_FORMULARIO --></div>
+        </div>
+    </div></div>{% endif %}<!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+{% if importacao_arquivos_id %}<!-- begin_Mapa de Processamento -->
+    {% if tab == 'importacao_arquivos_eventos' or for_print %}
+        {% if dict_permissoes|get_permissao:'importacao_arquivos_eventos_visualizar' %}
+            {% if dict_permissoes|get_permissao:'importacao_arquivos_eventos_editar' or dict_permissoes|get_permissao:'importacao_arquivos_eventos_cadastrar' %}
+                <script type="text/javascript">function CadastroListagem() {
+                    var display = document.getElementById('cadastrar').style.display;
+                    if (display == "none") {
+                        document.getElementById('cadastrar').style.display = 'block';
+                        document.getElementById('listar').style.display = 'none';
+                        document.getElementById('CadastrarBotao').style.display = 'none';
+                        document.getElementById('ListarBotao').style.display = 'block';
+                    } else {
+                        document.getElementById('cadastrar').style.display = 'none';
+                        document.getElementById('listar').style.display = 'block';
+                        document.getElementById('CadastrarBotao').style.display = 'block';
+                        document.getElementById('ListarBotao').style.display = 'none';
+                    }
+                }</script>{% endif %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header with-border"><h3 class="box-title">Mapa de Processamento</h3>
+                            <div class="pull-right box-tools">
+                                {% if dict_permissoes|get_permissao:'importacao_arquivos_eventos_editar' or dict_permissoes|get_permissao:'importacao_arquivos_eventos_cadastrar' %}
+                                    <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i>Cadastrar</div>
+                                        <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i>Listar
+                                        </div>
+                                    </button>{% endif %}</div>
+                        </div>
+                        <div class="box-body">
+                            {% if dict_permissoes|get_permissao:'importacao_arquivos_eventos_cadastrar' %}<!--
+                                 begin_form_importacao_arquivos_eventos -->
+                                <div id="cadastrar" style="display:none">
+                                    <form id="id_form_importacao_arquivos_eventos"
+                                          action="{% url 'importacao_arquivos_eventos_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}"
+                                          method="POST">{% csrf_token %}
+                                        <div class="row">{% include 'forms/importacao_arquivos_eventos.html' %}</div>
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <div class="box-footer text-left"><font color="red">* Campos
+                                                    Obrigatórios.</font></div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <div class="box-footer text-right">
+                                                    <button type="submit" class="btn btn-primary"><i
+                                                            class="fa fa-save"></i>Salvar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div><!-- end_form_importacao_arquivos_eventos -->{% endif %}<div id="listar">
+                            <!-- begin_table_importacao_arquivos_eventos -->
+                            {% include 'tables/importacao_arquivos_eventos.html' %}<!-- end_table_importacao_arquivos_eventos --></div>
+                        </div>
+                    </div>
+                </div>
+            </div>{% endif %} {% endif %}<!-- end_Mapa de Processamento -->{% endif %}</section><!-- script -->
+<!--- javascript -->{% endblock content %}

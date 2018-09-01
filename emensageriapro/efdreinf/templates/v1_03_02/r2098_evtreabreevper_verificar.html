@@ -1,0 +1,248 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+
+{% if not for_print %}
+
+    <section class="content-header">
+      <h1>
+        R-2098 - Reabertura dos Eventos Periódicos
+        <small>Verificações</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">R-2098 - Reabertura dos Eventos Periódicos</a></li>
+        <li class="active">Verificar</li>
+      </ol>
+    </section>
+    <section class="content">
+
+        {% if messages %}
+                <div class="pad margin no-print">
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+                </div>
+        {% endif %}
+
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">R-2098 - Reabertura dos Eventos Periódicos<br>Identidade: {{ r2098_evtreabreevper.identidade }}</h3>
+              <div class="text-right">
+                <a href="{% url 'r2098_evtreabreevper_verificar' hash='{}'|json_id:r2098_evtreabreevper_id|json_print:1|base64_encode_me %}" target="_blank">
+                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
+                </a>
+
+
+
+                  <div class="btn-group">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="text-left"><a
+                                            href="{% url 'r2098_evtreabreevper_verificar' hash='{}'|json_id:r2098_evtreabreevper_id|json_print:2|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
+                                    <li class="text-left"><a
+                                            href="{% url 'r2098_evtreabreevper_verificar' hash='{}'|json_id:r2098_evtreabreevper_id|json_print:3|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
+                                    <!--<li class="text-left"><a
+                                            href="{% url 'r2098_evtreabreevper_verificar' hash='{}'|json_id:r2098_evtreabreevper_id|json_print:4|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
+                                </ul>
+                            </div>&nbsp;
+
+              </div>              
+            </div>
+            <div class="box-body">
+{% else %} 
+   <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            R-2098 - Reabertura dos Eventos Periódicos<br>Identidade: {{ r2098_evtreabreevper.identidade }}
+            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+{% endif %} 
+
+
+
+
+      <h4>Layout</h4>
+
+
+
+
+<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
+              
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtReabreEvPer</td>
+            <td bgcolor="lightgray" colspan="3">Evento de reabertura de eventos periódicos Regras de validação: REGRA_REABERTURA_VALIDA_PERIODO_APURACAO REGRA_VALIDA_CONTRIBUINTE</td>
+        </tr>
+
+    {% for r2098_evtreabreevper in r2098_evtreabreevper_lista %}
+    {% ifequal 1 1 %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
+        </tr>
+
+
+        <tr {% if r2098_evtreabreevper.perapur|validacoes_esocial_efdreinf:"r2098_evtreabreevper.perapur" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">perApur</td>
+            <td width="500px">Informar o ano/mês de referência das informações no formato AAAA-MM. Validação: Deve ser um ano/mês válido para o qual haja informações do contribuinte informadas através do evento R-1000. Não pode ser maior que o ano/mês corrente.</td>
+            <td width="200px"><b>{% if r2098_evtreabreevper.perapur or r2098_evtreabreevper.perapur == 0 %}{{ r2098_evtreabreevper.perapur }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r2098_evtreabreevper_visualizar' %}
+                <a href="{% url 'r2098_evtreabreevper_salvar'  hash='{}'|json_id:r2098_evtreabreevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r2098_evtreabreevper.tpamb|validacoes_esocial_efdreinf:"r2098_evtreabreevper.tpamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAmb</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita; Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if r2098_evtreabreevper.tpamb or r2098_evtreabreevper.tpamb == 0 %}{{ r2098_evtreabreevper.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r2098_evtreabreevper_visualizar' %}
+                <a href="{% url 'r2098_evtreabreevper_salvar'  hash='{}'|json_id:r2098_evtreabreevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r2098_evtreabreevper.procemi|validacoes_esocial_efdreinf:"r2098_evtreabreevper.procemi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">procEmi</td>
+            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do contribuinte; 2 - Aplicativo governamental. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if r2098_evtreabreevper.procemi or r2098_evtreabreevper.procemi == 0 %}{{ r2098_evtreabreevper.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r2098_evtreabreevper_visualizar' %}
+                <a href="{% url 'r2098_evtreabreevper_salvar'  hash='{}'|json_id:r2098_evtreabreevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r2098_evtreabreevper.verproc|validacoes_esocial_efdreinf:"r2098_evtreabreevper.verproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">verProc</td>
+            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
+            <td width="200px"><b>{% if r2098_evtreabreevper.verproc or r2098_evtreabreevper.verproc == 0 %}{{ r2098_evtreabreevper.verproc }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r2098_evtreabreevper_visualizar' %}
+                <a href="{% url 'r2098_evtreabreevper_salvar'  hash='{}'|json_id:r2098_evtreabreevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideContri</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte</td>
+        </tr>
+
+
+        <tr {% if r2098_evtreabreevper.tpinsc|validacoes_esocial_efdreinf:"r2098_evtreabreevper.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF) Valores Válidos: 1, 2</td>
+            <td width="200px"><b>{% if r2098_evtreabreevper.tpinsc or r2098_evtreabreevper.tpinsc == 0 %}{{ r2098_evtreabreevper.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r2098_evtreabreevper_visualizar' %}
+                <a href="{% url 'r2098_evtreabreevper_salvar'  hash='{}'|json_id:r2098_evtreabreevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r2098_evtreabreevper.nrinsc|validacoes_esocial_efdreinf:"r2098_evtreabreevper.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if r2098_evtreabreevper.nrinsc or r2098_evtreabreevper.nrinsc == 0 %}{{ r2098_evtreabreevper.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r2098_evtreabreevper_visualizar' %}
+                <a href="{% url 'r2098_evtreabreevper_salvar'  hash='{}'|json_id:r2098_evtreabreevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ {% endifequal %}{% endfor %}
+</table>
+{% if not for_print %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %} 
+
+        </div>
+      </div>
+    </section>
+{% endif %}  
+
+{% endblock content %}

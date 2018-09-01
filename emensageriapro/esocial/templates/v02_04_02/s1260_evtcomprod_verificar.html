@@ -1,0 +1,754 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+
+{% if not for_print %}
+
+    <section class="content-header">
+      <h1>
+        S-1260 - Comercialização da Produção Rural Pessoa Física
+        <small>Verificações</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">S-1260 - Comercialização da Produção Rural Pessoa Física</a></li>
+        <li class="active">Verificar</li>
+      </ol>
+    </section>
+    <section class="content">
+
+        {% if messages %}
+                <div class="pad margin no-print">
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+                </div>
+        {% endif %}
+
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">S-1260 - Comercialização da Produção Rural Pessoa Física<br>Identidade: {{ s1260_evtcomprod.identidade }}</h3>
+              <div class="text-right">
+                <a href="{% url 's1260_evtcomprod_verificar' hash='{}'|json_id:s1260_evtcomprod_id|json_print:1|base64_encode_me %}" target="_blank">
+                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
+                </a>
+
+
+
+                  <div class="btn-group">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="text-left"><a
+                                            href="{% url 's1260_evtcomprod_verificar' hash='{}'|json_id:s1260_evtcomprod_id|json_print:2|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
+                                    <li class="text-left"><a
+                                            href="{% url 's1260_evtcomprod_verificar' hash='{}'|json_id:s1260_evtcomprod_id|json_print:3|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
+                                    <!--<li class="text-left"><a
+                                            href="{% url 's1260_evtcomprod_verificar' hash='{}'|json_id:s1260_evtcomprod_id|json_print:4|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
+                                </ul>
+                            </div>&nbsp;
+
+              </div>              
+            </div>
+            <div class="box-body">
+{% else %} 
+   <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            S-1260 - Comercialização da Produção Rural Pessoa Física<br>Identidade: {{ s1260_evtcomprod.identidade }}
+            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+{% endif %} 
+
+
+
+
+      <h4>Layout</h4>
+
+
+
+
+<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
+              
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtComProd</td>
+            <td bgcolor="lightgray" colspan="3">Evento Comercialização da Produção Rural Pessoa FísicaRegras de validação: REGRA_EVENTOS_EXTEMP REGRA_EVE_FOPAG_COMERC_PROD REGRA_EVE_FOPAG_INCOMPAT_ DECTERCEIRO REGRA_EVE_FOPAG_IND_RETIFICACAO REGRA_EVE_FOPAG_INFO_COMPAT_CLASSTRIB REGRA_EVE_FOPAG_PERMITE_EXCLUSAO REGRA_EXISTE_INFO_EMPREGADOR</td>
+        </tr>
+
+    {% for s1260_evtcomprod in s1260_evtcomprod_lista %}
+    {% ifequal 1 1 %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do evento</td>
+        </tr>
+
+
+        <tr {% if s1260_evtcomprod.indretif|validacoes_esocial_efdreinf:"s1260_evtcomprod.indretif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indRetif</td>
+            <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s1260_evtcomprod.indretif or s1260_evtcomprod.indretif == 0 %}{{ s1260_evtcomprod.indretif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_evtcomprod_visualizar' %}
+                <a href="{% url 's1260_evtcomprod_salvar'  hash='{}'|json_id:s1260_evtcomprod.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_evtcomprod.nrrecibo|validacoes_esocial_efdreinf:"s1260_evtcomprod.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecibo</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2].Deve ser um recibo de entrega válido, correspondente ao arquivo que estásendo retificado.</td>
+            <td width="200px"><b>{% if s1260_evtcomprod.nrrecibo or s1260_evtcomprod.nrrecibo == 0 %}{{ s1260_evtcomprod.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_evtcomprod_visualizar' %}
+                <a href="{% url 's1260_evtcomprod_salvar'  hash='{}'|json_id:s1260_evtcomprod.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_evtcomprod.indapuracao|validacoes_esocial_efdreinf:"s1260_evtcomprod.indapuracao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indApuracao</td>
+            <td width="500px">Indicativo de período de apuração:1 - Mensal.Valores Válidos: 1</td>
+            <td width="200px"><b>{% if s1260_evtcomprod.indapuracao or s1260_evtcomprod.indapuracao == 0 %}{{ s1260_evtcomprod.indapuracao|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_evtcomprod_visualizar' %}
+                <a href="{% url 's1260_evtcomprod_salvar'  hash='{}'|json_id:s1260_evtcomprod.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_evtcomprod.perapur|validacoes_esocial_efdreinf:"s1260_evtcomprod.perapur" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">perApur</td>
+            <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência das informações. Validação: Deve ser um mês/ano válido, igual ou posterior a implementação do eSocial.</td>
+            <td width="200px"><b>{% if s1260_evtcomprod.perapur or s1260_evtcomprod.perapur == 0 %}{{ s1260_evtcomprod.perapur }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_evtcomprod_visualizar' %}
+                <a href="{% url 's1260_evtcomprod_salvar'  hash='{}'|json_id:s1260_evtcomprod.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_evtcomprod.tpamb|validacoes_esocial_efdreinf:"s1260_evtcomprod.tpamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAmb</td>
+            <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s1260_evtcomprod.tpamb or s1260_evtcomprod.tpamb == 0 %}{{ s1260_evtcomprod.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_evtcomprod_visualizar' %}
+                <a href="{% url 's1260_evtcomprod_salvar'  hash='{}'|json_id:s1260_evtcomprod.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_evtcomprod.procemi|validacoes_esocial_efdreinf:"s1260_evtcomprod.procemi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">procEmi</td>
+            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="200px"><b>{% if s1260_evtcomprod.procemi or s1260_evtcomprod.procemi == 0 %}{{ s1260_evtcomprod.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_evtcomprod_visualizar' %}
+                <a href="{% url 's1260_evtcomprod_salvar'  hash='{}'|json_id:s1260_evtcomprod.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_evtcomprod.verproc|validacoes_esocial_efdreinf:"s1260_evtcomprod.verproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">verProc</td>
+            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
+            <td width="200px"><b>{% if s1260_evtcomprod.verproc or s1260_evtcomprod.verproc == 0 %}{{ s1260_evtcomprod.verproc }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_evtcomprod_visualizar' %}
+                <a href="{% url 's1260_evtcomprod_salvar'  hash='{}'|json_id:s1260_evtcomprod.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+        </tr>
+
+
+        <tr {% if s1260_evtcomprod.tpinsc|validacoes_esocial_efdreinf:"s1260_evtcomprod.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [2] (CPF).</td>
+            <td width="200px"><b>{% if s1260_evtcomprod.tpinsc or s1260_evtcomprod.tpinsc == 0 %}{{ s1260_evtcomprod.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_evtcomprod_visualizar' %}
+                <a href="{% url 's1260_evtcomprod_salvar'  hash='{}'|json_id:s1260_evtcomprod.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_evtcomprod.nrinsc|validacoes_esocial_efdreinf:"s1260_evtcomprod.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte no CPF. Validação: Deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s1260_evtcomprod.nrinsc or s1260_evtcomprod.nrinsc == 0 %}{{ s1260_evtcomprod.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_evtcomprod_visualizar' %}
+                <a href="{% url 's1260_evtcomprod_salvar'  hash='{}'|json_id:s1260_evtcomprod.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoComProd</td>
+            <td bgcolor="lightgray" colspan="3">Informação da Comercialização de Produção</td>
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEstabel</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do estabelecimento que comercializou a produção</td>
+        </tr>
+
+
+        <tr {% if s1260_evtcomprod.nrinscestabrural|validacoes_esocial_efdreinf:"s1260_evtcomprod.nrinscestabrural" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInscEstabRural</td>
+            <td width="500px">Preencher com o número de inscrição no CAEPF do estabelecimento rural. Validação: A inscrição informada deve constar na tabela de Estabelecimentos S-1005.</td>
+            <td width="200px"><b>{% if s1260_evtcomprod.nrinscestabrural or s1260_evtcomprod.nrinscestabrural == 0 %}{{ s1260_evtcomprod.nrinscestabrural }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_evtcomprod_visualizar' %}
+                <a href="{% url 's1260_evtcomprod_salvar'  hash='{}'|json_id:s1260_evtcomprod.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">tpComerc</td>
+            <td bgcolor="lightgray" colspan="3">Registro que apresenta o valor total da comercialização por "tipo" de comercialização</td>
+        </tr>
+
+    {% for s1260_tpcomerc in s1260_tpcomerc_lista %}
+    {% ifequal s1260_tpcomerc.s1260_evtcomprod.id s1260_evtcomprod.id %}
+
+        <tr {% if s1260_tpcomerc.indcomerc|validacoes_esocial_efdreinf:"s1260_tpcomerc.indcomerc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indComerc</td>
+            <td width="500px">Indicativo de Comercialização: 2 - Comercialização da Produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por Produtor Rural Pessoa Física, inclusive por Segurado Especial ou por Pessoa Física não produtor rural; 3 - Comercialização da Produção por Prod. Rural PF/Seg. Especial - Vendas a PJ (exceto Entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a Intermediário PF; 7 - Comercialização da Produção Isenta de acordo com a Lei no 13.606/2018; 8 - Comercialização da Produção da Pessoa Física/Segurado Especial para Entidade inscrita no Programa de Aquisição de Alimentos - PAA; 9 - Comercialização da Produção no Mercado Externo. Valores Válidos: 2, 3, 7, 8, 9.</td>
+            <td width="200px"><b>{% if s1260_tpcomerc.indcomerc or s1260_tpcomerc.indcomerc == 0 %}{{ s1260_tpcomerc.indcomerc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_tpcomerc_visualizar' %}
+                <a href="{% url 's1260_tpcomerc_salvar'  hash='{}'|json_id:s1260_tpcomerc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_tpcomerc.vrtotcom|validacoes_esocial_efdreinf:"s1260_tpcomerc.vrtotcom" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrTotCom</td>
+            <td width="500px">Preencher com o valor total da comercialização.Validação: Deve ser maior que zero. Se {indComerc} for igual a [3], deve corresponder a soma do campo {vrComerc} dos registros vinculados.</td>
+            <td width="200px"><b>{% if s1260_tpcomerc.vrtotcom or s1260_tpcomerc.vrtotcom == 0 %}{{ s1260_tpcomerc.vrtotcom|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_tpcomerc_visualizar' %}
+                <a href="{% url 's1260_tpcomerc_salvar'  hash='{}'|json_id:s1260_tpcomerc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideAdquir</td>
+            <td bgcolor="lightgray" colspan="3">Identificação dos Adquirentes da Produção.</td>
+        </tr>
+
+    {% for s1260_ideadquir in s1260_ideadquir_lista %}
+    {% ifequal s1260_ideadquir.s1260_tpcomerc.id s1260_tpcomerc.id %}
+
+        <tr {% if s1260_ideadquir.tpinsc|validacoes_esocial_efdreinf:"s1260_ideadquir.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Se {indComerc} for igual a [3], deve ser igual a [1,2]. Se{indComerc} for igual a [8], deve ser igual a [1].</td>
+            <td width="200px"><b>{% if s1260_ideadquir.tpinsc or s1260_ideadquir.tpinsc == 0 %}{{ s1260_ideadquir.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_ideadquir_visualizar' %}
+                <a href="{% url 's1260_ideadquir_salvar'  hash='{}'|json_id:s1260_ideadquir.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_ideadquir.nrinsc|validacoes_esocial_efdreinf:"s1260_ideadquir.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}.Validação: A inscrição informada deve ser compatível com o {tpInsc} ediferente da inscrição do declarante.</td>
+            <td width="200px"><b>{% if s1260_ideadquir.nrinsc or s1260_ideadquir.nrinsc == 0 %}{{ s1260_ideadquir.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_ideadquir_visualizar' %}
+                <a href="{% url 's1260_ideadquir_salvar'  hash='{}'|json_id:s1260_ideadquir.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_ideadquir.vrcomerc|validacoes_esocial_efdreinf:"s1260_ideadquir.vrcomerc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrComerc</td>
+            <td width="500px">Valor bruto da comercialização da produção. Validação: Deve ser maior que zero.</td>
+            <td width="200px"><b>{% if s1260_ideadquir.vrcomerc or s1260_ideadquir.vrcomerc == 0 %}{{ s1260_ideadquir.vrcomerc|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_ideadquir_visualizar' %}
+                <a href="{% url 's1260_ideadquir_salvar'  hash='{}'|json_id:s1260_ideadquir.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">nfs</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento das notas fiscais relativas à comercialização de produção com o adquirente identificado no registro superior.</td>
+        </tr>
+
+    {% for s1260_nfs in s1260_nfs_lista %}
+    {% ifequal s1260_nfs.s1260_ideadquir.id s1260_ideadquir.id %}
+
+        <tr {% if s1260_nfs.serie|validacoes_esocial_efdreinf:"s1260_nfs.serie" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">serie</td>
+            <td width="500px">Informar o número de série da nota fiscal/fatura.</td>
+            <td width="200px"><b>{% if s1260_nfs.serie or s1260_nfs.serie == 0 %}{{ s1260_nfs.serie }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_nfs_visualizar' %}
+                <a href="{% url 's1260_nfs_salvar'  hash='{}'|json_id:s1260_nfs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_nfs.nrdocto|validacoes_esocial_efdreinf:"s1260_nfs.nrdocto" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrDocto</td>
+            <td width="500px">Número da Nota Fiscal/Fatura</td>
+            <td width="200px"><b>{% if s1260_nfs.nrdocto or s1260_nfs.nrdocto == 0 %}{{ s1260_nfs.nrdocto }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_nfs_visualizar' %}
+                <a href="{% url 's1260_nfs_salvar'  hash='{}'|json_id:s1260_nfs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_nfs.dtemisnf|validacoes_esocial_efdreinf:"s1260_nfs.dtemisnf" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtEmisNF</td>
+            <td width="500px">Data de Emissão da Nota Fiscal/FaturaValidação: O mês/ano da emissão da nota fiscal deve ser igual ao mês/ano indicado no registro de abertura do arquivo.</td>
+            <td width="200px"><b>{% if s1260_nfs.dtemisnf or s1260_nfs.dtemisnf == 0 %}{{ s1260_nfs.dtemisnf|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_nfs_visualizar' %}
+                <a href="{% url 's1260_nfs_salvar'  hash='{}'|json_id:s1260_nfs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_nfs.vlrbruto|validacoes_esocial_efdreinf:"s1260_nfs.vlrbruto" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrBruto</td>
+            <td width="500px">Preencher com o valor bruto da(s) nota(s) fiscal(is)</td>
+            <td width="200px"><b>{% if s1260_nfs.vlrbruto or s1260_nfs.vlrbruto == 0 %}{{ s1260_nfs.vlrbruto|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_nfs_visualizar' %}
+                <a href="{% url 's1260_nfs_salvar'  hash='{}'|json_id:s1260_nfs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_nfs.vrcpdescpr|validacoes_esocial_efdreinf:"s1260_nfs.vrcpdescpr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrCPDescPR</td>
+            <td width="500px">Preencher com o valor da Contribuição Previdenciária descontada pelo adquirente na comercialização de produção. Se não houver informação, preencher com 0 (zero).</td>
+            <td width="200px"><b>{% if s1260_nfs.vrcpdescpr or s1260_nfs.vrcpdescpr == 0 %}{{ s1260_nfs.vrcpdescpr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_nfs_visualizar' %}
+                <a href="{% url 's1260_nfs_salvar'  hash='{}'|json_id:s1260_nfs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_nfs.vrratdescpr|validacoes_esocial_efdreinf:"s1260_nfs.vrratdescpr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrRatDescPR</td>
+            <td width="500px">Valor da contribuição destinada ao financiamento dos benefícios concedidos em razão do grau de incidência da incapacidade laborativa decorrente dos riscos ambientais do trabalho, incidente sobre a comercialização de produção rural de produtor rural.Se não houver informação, preencher com 0 (zero).</td>
+            <td width="200px"><b>{% if s1260_nfs.vrratdescpr or s1260_nfs.vrratdescpr == 0 %}{{ s1260_nfs.vrratdescpr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_nfs_visualizar' %}
+                <a href="{% url 's1260_nfs_salvar'  hash='{}'|json_id:s1260_nfs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_nfs.vrsenardesc|validacoes_esocial_efdreinf:"s1260_nfs.vrsenardesc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSenarDesc</td>
+            <td width="500px">Valor da contribuição destinada ao SENAR, incidente sobre a comercialização de produção rural de produtor rural pessoa física/segurado especial. Se não houver informação, preencher com 0 (zero).</td>
+            <td width="200px"><b>{% if s1260_nfs.vrsenardesc or s1260_nfs.vrsenardesc == 0 %}{{ s1260_nfs.vrsenardesc|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_nfs_visualizar' %}
+                <a href="{% url 's1260_nfs_salvar'  hash='{}'|json_id:s1260_nfs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoProcJud</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Processos Judiciais com decisão/sentença favorável ao contribuinte e relativos à contribuição incidente sobre a comercialização.</td>
+        </tr>
+
+    {% for s1260_infoprocjud in s1260_infoprocjud_lista %}
+    {% ifequal s1260_infoprocjud.s1260_tpcomerc.id s1260_tpcomerc.id %}
+
+        <tr {% if s1260_infoprocjud.tpproc|validacoes_esocial_efdreinf:"s1260_infoprocjud.tpproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpProc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de processo:1 - Administrativo;2 - Judicial.Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s1260_infoprocjud.tpproc or s1260_infoprocjud.tpproc == 0 %}{{ s1260_infoprocjud.tpproc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_infoprocjud_visualizar' %}
+                <a href="{% url 's1260_infoprocjud_salvar'  hash='{}'|json_id:s1260_infoprocjud.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_infoprocjud.nrproc|validacoes_esocial_efdreinf:"s1260_infoprocjud.nrproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrProc</td>
+            <td width="500px">Informar um número de processo cadastrado através do evento S-1070, cujo{indMatProc} seja igual a [1].Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070).</td>
+            <td width="200px"><b>{% if s1260_infoprocjud.nrproc or s1260_infoprocjud.nrproc == 0 %}{{ s1260_infoprocjud.nrproc }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_infoprocjud_visualizar' %}
+                <a href="{% url 's1260_infoprocjud_salvar'  hash='{}'|json_id:s1260_infoprocjud.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_infoprocjud.codsusp|validacoes_esocial_efdreinf:"s1260_infoprocjud.codsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codSusp</td>
+            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070.</td>
+            <td width="200px"><b>{% if s1260_infoprocjud.codsusp or s1260_infoprocjud.codsusp == 0 %}{{ s1260_infoprocjud.codsusp|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_infoprocjud_visualizar' %}
+                <a href="{% url 's1260_infoprocjud_salvar'  hash='{}'|json_id:s1260_infoprocjud.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_infoprocjud.vrcpsusp|validacoes_esocial_efdreinf:"s1260_infoprocjud.vrcpsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrCPSusp</td>
+            <td width="500px">Valor da Contribuição Previdenciária com exigibilidade suspensa. Validação: Preenchimento obrigatório se {vrRatSusp} e {vrSenarSusp} não tiverem sido preenchidos.Deve ser um valor maior que zero.</td>
+            <td width="200px"><b>{% if s1260_infoprocjud.vrcpsusp or s1260_infoprocjud.vrcpsusp == 0 %}{{ s1260_infoprocjud.vrcpsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_infoprocjud_visualizar' %}
+                <a href="{% url 's1260_infoprocjud_salvar'  hash='{}'|json_id:s1260_infoprocjud.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_infoprocjud.vrratsusp|validacoes_esocial_efdreinf:"s1260_infoprocjud.vrratsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrRatSusp</td>
+            <td width="500px">Valor da contribuição para Gilrat com exigibilidade suspensa.Validação: Preenchimento obrigatório se {vrCPSusp} e {vrSenarSusp} não tiverem sido preenchidos.Deve ser um valor maior que zero.</td>
+            <td width="200px"><b>{% if s1260_infoprocjud.vrratsusp or s1260_infoprocjud.vrratsusp == 0 %}{{ s1260_infoprocjud.vrratsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_infoprocjud_visualizar' %}
+                <a href="{% url 's1260_infoprocjud_salvar'  hash='{}'|json_id:s1260_infoprocjud.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s1260_infoprocjud.vrsenarsusp|validacoes_esocial_efdreinf:"s1260_infoprocjud.vrsenarsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSenarSusp</td>
+            <td width="500px">Valor da contribuição para o Senar com exigibilidade suspensa. Validação: Preenchimento obrigatório se {vrCPSusp} e {vrRatSusp} não tiverem sido preenchidos.Deve ser um valor maior que zero.</td>
+            <td width="200px"><b>{% if s1260_infoprocjud.vrsenarsusp or s1260_infoprocjud.vrsenarsusp == 0 %}{{ s1260_infoprocjud.vrsenarsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1260_infoprocjud_visualizar' %}
+                <a href="{% url 's1260_infoprocjud_salvar'  hash='{}'|json_id:s1260_infoprocjud.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}  {% endifequal %}{% endfor %}
+</table>
+{% if not for_print %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %} 
+
+        </div>
+      </div>
+    </section>
+{% endif %}  
+
+{% endblock content %}

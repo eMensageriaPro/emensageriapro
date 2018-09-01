@@ -1,0 +1,72 @@
+{% load templatetags %}<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<font size="20px">Processamento de Arquivos</font><br>
+
+Gerado em <strong>{{ data|date:"SHORT_DATE_FORMAT" }}</strong> por <strong>{{ usuario.nome }}</strong>
+<br><br>
+
+{% for arquivo in importacao_arquivos_lista %}
+
+
+<strong><font size="14px">{{ arquivo.arquivo }}</font></strong><br>
+<table border="0.5px" cellpadding="5px" width="900px">
+    <tr>
+        <td colspan="4">Status:<br> <font
+                size="11px"><strong>{{ arquivo.get_status_display }}</strong></font></td>
+        <td colspan="4">Data/Hora de Importação:<br> <font
+                size="11px"><strong>{{ arquivo.data_hora }}</strong></font></td>
+        <td colspan="4">Importado por:<br> <font
+                size="11px"><strong>{{ arquivo.importado_por }}</strong></font></td>
+
+    </tr>
+    <tr>
+        <td colspan="3">Aguardando:<br> <font
+                size="11px"><strong>{{ arquivo.quant_aguardando }}</strong></font></td>
+        <td colspan="3">Processado:<br> <font
+                size="11px"><strong>{{ arquivo.quant_processado }}</strong></font></td>
+        <td colspan="3">Erros:<br> <font
+                size="11px"><strong>{{ arquivo.quant_erros }}</strong></font></td>
+        <td colspan="3">Total:<br> <font
+                size="11px"><strong>{{ arquivo.quant_total }}</strong></font></td>
+
+    </tr>
+</table>
+
+
+   <br>
+{% for evento in importacao_arquivos_eventos_lista %}
+{% ifequal arquivo.id evento.importacao_arquivos_id %}
+   <br>
+    <strong><font size="12px">{{ evento.arquivo }}</font></strong><br>
+<table border="0.5px" cellpadding="5px" width="900px">
+    <tr>
+        <td colspan="4">Evento:<br> <font
+                size="11px"><strong>{{ evento.evento }}</strong></font></td>
+        <td colspan="2">Versão:<br> <font
+                size="11px"><strong>{{ evento.versao }}</strong></font></td>
+        <td colspan="4">Identidade:<br> <font
+                size="11px"><strong>{{ evento.identidade_evento }}</strong></font></td>
+        <td colspan="2">Status:<br> <font
+                size="11px"><strong>{{ evento.get_status_display }}</strong></font></td>
+
+    </tr>
+    <tr>
+        <td colspan="12">Validações:<br> <font
+                size="8px"><strong>{% autoescape off %}{{ evento.validacoes }}{% endautoescape %}</strong></font></td>
+
+    </tr>
+</table>
+
+{% endifequal %}
+
+    {% endfor %}
+<br>
+
+{% endfor %}
+
+</body>
+</html>

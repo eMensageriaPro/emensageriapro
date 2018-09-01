@@ -1,0 +1,87 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}{% if not for_print %}
+    <section class="content-header">
+        <h1>Arquivos
+            <small>Listar</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+            <li><a href="#">Arquivos</a></li>
+            <li class="active">Listar</li>
+        </ol>
+    </section>
+    <section class="content">{% if messages %}
+        <div class="row">
+            <div class="pad margin no-print">{% for message in messages %}
+                <div class="alert alert-{{ message.tags }}"
+                     style="margin-bottom: 0!important;">{{ message }}</div>{% endfor %}</div>
+        </div>{% endif %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary {% if not filtrar %}collapsed-box{% endif %}">
+                    <div class="box-header with-border"><h3 class="box-title">Filtrar</h3>
+                        <div class="pull-right box-tools">
+                            <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i
+                                    class="fa fa-minus"></i></button>
+                            <!--<button type="button" class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                        </div>
+                    </div>
+                    <form action="#" method="POST" id="FormRelatorio" target="_self">{% csrf_token %}
+                        <div class="box-body">
+                            <div class="row">{% include 'filters/arquivos.html' %}</div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <div class="text-left"></div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <div class="text-right">
+                                        <button id="btnVisualizar" type="submit" class="btn btn-primary"><i
+                                                class="fa fa-filter"></i>Filtrar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header with-border"><h3 class="box-title">Listagem de Arquivos</h3>
+                        <div class="text-right">{% if dict_permissoes|get_permissao:'arquivos_cadastrar' %} {% endif %}
+                            <button id="btnImprimir" type="submit" class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body">{% include 'tables/arquivos.html' %}</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>$(document).ready(function () {
+        $('#btnVisualizar').click(function () {
+            var formAction = '{% url 'arquivos' hash='{}'|json_return_page:'arquivos'|json_id:0|json_print:0|base64_encode_me %}';
+            $('#FormRelatorio').attr('action', formAction);
+            $('#FormRelatorio').attr('target', '_self');
+            $('#FormRelatorio').submit();
+        });
+        $('#btnImprimir').click(function () {
+            var formAction = '{% url 'arquivos' hash='{}'|json_return_page:'arquivos'|json_id:0|json_print:1|base64_encode_me %}';
+            $('#FormRelatorio').attr('action', formAction);
+            $('#FormRelatorio').attr('target', '_blank');
+            $('#FormRelatorio').submit();
+        });
+    });</script>{% else %}
+    <section class="invoice">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="page-header">Arquivos
+                    <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}</small>
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 table-responsive">{% include 'tables/arquivos.html' %}</div>
+        </div>
+    </section>{% endif %} {% endblock content %}

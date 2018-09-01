@@ -1,0 +1,1983 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+
+{% if not for_print %}
+
+    <section class="content-header">
+      <h1>
+        S-5011 - Informações das contribuições sociais consolidadas por contribuinte
+        <small>Verificações</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">S-5011 - Informações das contribuições sociais consolidadas por contribuinte</a></li>
+        <li class="active">Verificar</li>
+      </ol>
+    </section>
+    <section class="content">
+
+        {% if messages %}
+                <div class="pad margin no-print">
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+                </div>
+        {% endif %}
+
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">S-5011 - Informações das contribuições sociais consolidadas por contribuinte<br>Identidade: {{ s5011_evtcs.identidade }}</h3>
+              <div class="text-right">
+                <a href="{% url 's5011_evtcs_verificar' hash='{}'|json_id:s5011_evtcs_id|json_print:1|base64_encode_me %}" target="_blank">
+                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
+                </a>
+              </div>              
+            </div>
+            <div class="box-body">
+{% else %} 
+   <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            S-5011 - Informações das contribuições sociais consolidadas por contribuinte<br>Identidade: {{ s5011_evtcs.identidade }}
+            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+{% endif %} 
+
+
+      <h4>Ocorrências</h4>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Tipo</th>
+                  <th>Código</th>
+                  <th>Descrição</th>
+                  <th>Localização</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for a in ocorrencias_lista %}
+                <tr>
+                  <td>{{ a.get_tipo_display }}</td>
+                  <td>{{ a.codigo }}</td>
+                  <td>{{ a.descricao }}</td>
+                  <td>{{ a.localizacao }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="4">Não foram registradas ocorrências para este evento!</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+
+
+
+
+      <h4>Layout</h4>
+
+
+
+
+<table class="table table-bordered">
+              
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtCS</td>
+            <td bgcolor="lightgray" colspan="3">Evento demonstrativo das Contribuições Sociais devidas à Previdência Social e a Outras Entidades e Fundos e das suas bases de cálculo.</td>
+        </tr>
+
+    {% for s5011_evtcs in s5011_evtcs_lista %}
+    {% ifequal 1 1 %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do evento de retorno</td>
+        </tr>
+
+
+        <tr {% if s5011_evtcs.indapuracao|validacoes_esocial_efdreinf:"s5011_evtcs.indapuracao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indApuracao</td>
+            <td width="500px">Indicativo de período de apuração:1 - Mensal;2 - Anual (13° salário).Evento de origem: S-1295 ou S-1299.Validação: Deve corresponder ao informado pelo empregador no evento de origem (S-1295 ou S-1299).Valores Válidos: 1, 2</td>
+            <td width="200px"><b>{% if s5011_evtcs.indapuracao or s5011_evtcs.indapuracao == 0 %}{{ s5011_evtcs.indapuracao|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_evtcs_visualizar' %}
+                <a href="{% url 's5011_evtcs_salvar'  hash='{}'|json_id:s5011_evtcs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_evtcs.perapur|validacoes_esocial_efdreinf:"s5011_evtcs.perapur" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">perApur</td>
+            <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência das informações, se{indApuracao} for igual a [1], ou apenas o ano (formato AAAA), se{indApuracao} for igual a [2]Validação: Deve ser um mês/ano ou ano válido, posterior a implementação do eSocial.</td>
+            <td width="200px"><b>{% if s5011_evtcs.perapur or s5011_evtcs.perapur == 0 %}{{ s5011_evtcs.perapur }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_evtcs_visualizar' %}
+                <a href="{% url 's5011_evtcs_salvar'  hash='{}'|json_id:s5011_evtcs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+        </tr>
+
+
+        <tr {% if s5011_evtcs.tpinsc|validacoes_esocial_efdreinf:"s5011_evtcs.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
+            <td width="200px"><b>{% if s5011_evtcs.tpinsc or s5011_evtcs.tpinsc == 0 %}{{ s5011_evtcs.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_evtcs_visualizar' %}
+                <a href="{% url 's5011_evtcs_salvar'  hash='{}'|json_id:s5011_evtcs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_evtcs.nrinsc|validacoes_esocial_efdreinf:"s5011_evtcs.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s5011_evtcs.nrinsc or s5011_evtcs.nrinsc == 0 %}{{ s5011_evtcs.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_evtcs_visualizar' %}
+                <a href="{% url 's5011_evtcs_salvar'  hash='{}'|json_id:s5011_evtcs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoCS</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas às Contribuições Sociais devidas à Previdência Social e a Outras Entidades e Fundos.</td>
+        </tr>
+
+
+        <tr {% if s5011_evtcs.nrrecarqbase|validacoes_esocial_efdreinf:"s5011_evtcs.nrrecarqbase" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecArqBase</td>
+            <td width="500px">Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador.Validação: Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem ao presente arquivo de retorno (S-1295 ou S-1299).</td>
+            <td width="200px"><b>{% if s5011_evtcs.nrrecarqbase or s5011_evtcs.nrrecarqbase == 0 %}{{ s5011_evtcs.nrrecarqbase }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_evtcs_visualizar' %}
+                <a href="{% url 's5011_evtcs_salvar'  hash='{}'|json_id:s5011_evtcs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_evtcs.indexistinfo|validacoes_esocial_efdreinf:"s5011_evtcs.indexistinfo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indExistInfo</td>
+            <td width="500px">Indicativo de existência de valores de bases e de contribuições sociais, conforme opções a seguir:1 - Há informações com apuração de contribuições sociais:2 - Há movimento porém sem apuração de contribuições sociais;3 - Não há movimento no período informado em {perApur}.</td>
+            <td width="200px"><b>{% if s5011_evtcs.indexistinfo or s5011_evtcs.indexistinfo == 0 %}{{ s5011_evtcs.indexistinfo|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_evtcs_visualizar' %}
+                <a href="{% url 's5011_evtcs_salvar'  hash='{}'|json_id:s5011_evtcs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoCPSeg</td>
+            <td bgcolor="lightgray" colspan="3">Informações de contribuição previdenciária do Segurado</td>
+        </tr>
+
+    {% for s5011_infocpseg in s5011_infocpseg_lista %}
+    {% ifequal s5011_infocpseg.s5011_evtcs.id s5011_evtcs.id %}
+
+        <tr {% if s5011_infocpseg.vrdesccp|validacoes_esocial_efdreinf:"s5011_infocpseg.vrdesccp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrDescCP</td>
+            <td width="500px">Valor total da contribuição descontada dos segurados.Origem: campo {valor}, quando {tpValor} = [21] - Valor total descontado do trabalhador para recolhimento à Previdência Social, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="200px"><b>{% if s5011_infocpseg.vrdesccp or s5011_infocpseg.vrdesccp == 0 %}{{ s5011_infocpseg.vrdesccp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infocpseg_visualizar' %}
+                <a href="{% url 's5011_infocpseg_salvar'  hash='{}'|json_id:s5011_infocpseg.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_infocpseg.vrcpseg|validacoes_esocial_efdreinf:"s5011_infocpseg.vrcpseg" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrCpSeg</td>
+            <td width="500px">Valor total calculado relativo à contribuição dos segurados.Origem: campo {vrCpSeg}, do grupo {infoCpCalc} no evento S-5001.</td>
+            <td width="200px"><b>{% if s5011_infocpseg.vrcpseg or s5011_infocpseg.vrcpseg == 0 %}{{ s5011_infocpseg.vrcpseg|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infocpseg_visualizar' %}
+                <a href="{% url 's5011_infocpseg_salvar'  hash='{}'|json_id:s5011_infocpseg.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoContrib</td>
+            <td bgcolor="lightgray" colspan="3">Informações gerais do contribuinte necessárias à apuração das contribuições sociais.</td>
+        </tr>
+
+
+        <tr {% if s5011_evtcs.classtrib|validacoes_esocial_efdreinf:"s5011_evtcs.classtrib" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">classTrib</td>
+            <td width="500px">Preencher com o código correspondente à classificação tributária do contribuinte, conforme tabela 8.Evento de origem (S-1000).</td>
+            <td width="200px"><b>{% if s5011_evtcs.classtrib or s5011_evtcs.classtrib == 0 %}{{ s5011_evtcs.classtrib }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_evtcs_visualizar' %}
+                <a href="{% url 's5011_evtcs_salvar'  hash='{}'|json_id:s5011_evtcs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoPJ</td>
+            <td bgcolor="lightgray" colspan="3">Informações complementares, exclusivas da Pessoa Jurídica.</td>
+        </tr>
+
+    {% for s5011_infopj in s5011_infopj_lista %}
+    {% ifequal s5011_infopj.s5011_evtcs.id s5011_evtcs.id %}
+
+        <tr {% if s5011_infopj.indcoop|validacoes_esocial_efdreinf:"s5011_infopj.indcoop" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indCoop</td>
+            <td width="500px">Indicativo de Cooperativa:0 - Não é cooperativa;1 - Cooperativa de Trabalho;2 - Cooperativa de Produção;3 - Outras Cooperativas. Evento de origem (S-1000) Valores Válidos: 0, 1, 2, 3.</td>
+            <td width="200px"><b>{% if s5011_infopj.indcoop or s5011_infopj.indcoop == 0 %}{{ s5011_infopj.indcoop|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infopj_visualizar' %}
+                <a href="{% url 's5011_infopj_salvar'  hash='{}'|json_id:s5011_infopj.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_infopj.indconstr|validacoes_esocial_efdreinf:"s5011_infopj.indconstr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indConstr</td>
+            <td width="500px">Indicativo de Construtora:0 - Não é Construtora;1 - Empresa Construtora. Evento de origem (S-1000) Valores Válidos: 0, 1.</td>
+            <td width="200px"><b>{% if s5011_infopj.indconstr or s5011_infopj.indconstr == 0 %}{{ s5011_infopj.indconstr|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infopj_visualizar' %}
+                <a href="{% url 's5011_infopj_salvar'  hash='{}'|json_id:s5011_infopj.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_infopj.indsubstpatr|validacoes_esocial_efdreinf:"s5011_infopj.indsubstpatr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indSubstPatr</td>
+            <td width="500px">Indicativo de substituição da contribuição previdenciária patronal:1 - Integralmente substituída;2 - Parcialmente substituída. Origem: {indSubsPatr} de S-1280. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s5011_infopj.indsubstpatr or s5011_infopj.indsubstpatr == 0 %}{{ s5011_infopj.indsubstpatr|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infopj_visualizar' %}
+                <a href="{% url 's5011_infopj_salvar'  hash='{}'|json_id:s5011_infopj.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_infopj.percredcontrib|validacoes_esocial_efdreinf:"s5011_infopj.percredcontrib" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">percRedContrib</td>
+            <td width="500px">Percentual de redução da contribuição prevista na lei 12.546/2011. Se {indSubstPatr} = 1, preencher com 0 (zero);Se {indSubstPatr} = 2, preencher com o percentual correspondente a razão entre a receita de atividades não relacionadas nos artigos 7 e 8 da Lei12.546/2011 e a receita bruta total.Não preencher nos demais casos. Evento de origem (S-1280)</td>
+            <td width="200px"><b>{% if s5011_infopj.percredcontrib or s5011_infopj.percredcontrib == 0 %}{{ s5011_infopj.percredcontrib|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infopj_visualizar' %}
+                <a href="{% url 's5011_infopj_salvar'  hash='{}'|json_id:s5011_infopj.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoAtConc</td>
+            <td bgcolor="lightgray" colspan="3">Informações prestadas por empresa enquadrada no Regime de TributaçãoSimples Nacional com tributação previdenciária substituída e não substituída.</td>
+        </tr>
+
+    {% for s5011_infoatconc in s5011_infoatconc_lista %}
+    {% ifequal s5011_infoatconc.s5011_infopj.id s5011_infopj.id %}
+
+        <tr {% if s5011_infoatconc.fatormes|validacoes_esocial_efdreinf:"s5011_infoatconc.fatormes" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">fatorMes</td>
+            <td width="500px">Informe o fator a ser utilizado para cálculo da contribuição patronal do mês dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar nº123/2006.Evento de origem (S-1280)</td>
+            <td width="200px"><b>{% if s5011_infoatconc.fatormes or s5011_infoatconc.fatormes == 0 %}{{ s5011_infoatconc.fatormes|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infoatconc_visualizar' %}
+                <a href="{% url 's5011_infoatconc_salvar'  hash='{}'|json_id:s5011_infoatconc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_infoatconc.fator13|validacoes_esocial_efdreinf:"s5011_infoatconc.fator13" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">fator13</td>
+            <td width="500px">Informe o fator a ser utilizado para cálculo da contribuição patronal do décimo terceiro dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar nº 123/2006.Evento de origem (S-1280).</td>
+            <td width="200px"><b>{% if s5011_infoatconc.fator13 or s5011_infoatconc.fator13 == 0 %}{{ s5011_infoatconc.fator13|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infoatconc_visualizar' %}
+                <a href="{% url 's5011_infoatconc_salvar'  hash='{}'|json_id:s5011_infoatconc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %} 
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEstab</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do estabelecimento ou obra de construção civil.</td>
+        </tr>
+
+    {% for s5011_ideestab in s5011_ideestab_lista %}
+    {% ifequal s5011_ideestab.s5011_evtcs.id s5011_evtcs.id %}
+
+        <tr {% if s5011_ideestab.tpinsc|validacoes_esocial_efdreinf:"s5011_ideestab.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5</td>
+            <td width="200px"><b>{% if s5011_ideestab.tpinsc or s5011_ideestab.tpinsc == 0 %}{{ s5011_ideestab.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_ideestab_visualizar' %}
+                <a href="{% url 's5011_ideestab_salvar'  hash='{}'|json_id:s5011_ideestab.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_ideestab.nrinsc|validacoes_esocial_efdreinf:"s5011_ideestab.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}.A inscrição informada segue o evento que deu origem ao presente evento (S-1250, S-1260, S-1270 e S-5001).</td>
+            <td width="200px"><b>{% if s5011_ideestab.nrinsc or s5011_ideestab.nrinsc == 0 %}{{ s5011_ideestab.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_ideestab_visualizar' %}
+                <a href="{% url 's5011_ideestab_salvar'  hash='{}'|json_id:s5011_ideestab.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoEstab</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas a cada estabelecimento, necessárias à apuração das contribuições sociais.</td>
+        </tr>
+
+    {% for s5011_infoestab in s5011_infoestab_lista %}
+    {% ifequal s5011_infoestab.s5011_ideestab.id s5011_ideestab.id %}
+
+        <tr {% if s5011_infoestab.cnaeprep|validacoes_esocial_efdreinf:"s5011_infoestab.cnaeprep" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnaePrep</td>
+            <td width="500px">Preencher com o código CNAE conforme informado em S-1005. Validação: Deve ser um número existente na tabela CNAE.</td>
+            <td width="200px"><b>{% if s5011_infoestab.cnaeprep or s5011_infoestab.cnaeprep == 0 %}{{ s5011_infoestab.cnaeprep|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infoestab_visualizar' %}
+                <a href="{% url 's5011_infoestab_salvar'  hash='{}'|json_id:s5011_infoestab.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_infoestab.aliqrat|validacoes_esocial_efdreinf:"s5011_infoestab.aliqrat" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">aliqRat</td>
+            <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade(CNAE) preponderante, conforme informado em S-1005. Validação: Deve ser igual a 1, 2 ou 3.</td>
+            <td width="200px"><b>{% if s5011_infoestab.aliqrat or s5011_infoestab.aliqrat == 0 %}{{ s5011_infoestab.aliqrat|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infoestab_visualizar' %}
+                <a href="{% url 's5011_infoestab_salvar'  hash='{}'|json_id:s5011_infoestab.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_infoestab.fap|validacoes_esocial_efdreinf:"s5011_infoestab.fap" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">fap</td>
+            <td width="500px">Fator Acidentário de Prevenção - FAP. Origem: S-1005.Validação: Deve ser um número maior ou igual a 0,5000 e menor ou igual a2,0000, de acordo com o estabelecido para a empresa pelo GovernamentalCompetente.</td>
+            <td width="200px"><b>{% if s5011_infoestab.fap or s5011_infoestab.fap == 0 %}{{ s5011_infoestab.fap|format_number_4dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infoestab_visualizar' %}
+                <a href="{% url 's5011_infoestab_salvar'  hash='{}'|json_id:s5011_infoestab.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_infoestab.aliqratajust|validacoes_esocial_efdreinf:"s5011_infoestab.aliqratajust" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">aliqRatAjust</td>
+            <td width="500px">Alíquota do RAT após ajuste pelo FAP, conforme definido em S-1005, no campo {aliqRatAjust}.Validação: Deve corresponder ao resultado da multiplicação dos campos{aliqRat} e {fap}.</td>
+            <td width="200px"><b>{% if s5011_infoestab.aliqratajust or s5011_infoestab.aliqratajust == 0 %}{{ s5011_infoestab.aliqratajust|format_number_4dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infoestab_visualizar' %}
+                <a href="{% url 's5011_infoestab_salvar'  hash='{}'|json_id:s5011_infoestab.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoComplObra</td>
+            <td bgcolor="lightgray" colspan="3">Informações complementares relativas a obras de construção civil</td>
+        </tr>
+
+    {% for s5011_infocomplobra in s5011_infocomplobra_lista %}
+    {% ifequal s5011_infocomplobra.s5011_infoestab.id s5011_infoestab.id %}
+
+        <tr {% if s5011_infocomplobra.indsubstpatrobra|validacoes_esocial_efdreinf:"s5011_infocomplobra.indsubstpatrobra" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indSubstPatrObra</td>
+            <td width="500px">Indicativo de Substituição da Contribuição Patronal de Obra de ConstruçãoCivil, conforme definido no evento S-1005, campo {indSubstPatrObra}:1 - Contribuição Patronal Substituída;2 - Contribuição Patronal Não Substituída. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s5011_infocomplobra.indsubstpatrobra or s5011_infocomplobra.indsubstpatrobra == 0 %}{{ s5011_infocomplobra.indsubstpatrobra|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infocomplobra_visualizar' %}
+                <a href="{% url 's5011_infocomplobra_salvar'  hash='{}'|json_id:s5011_infocomplobra.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideLotacao</td>
+            <td bgcolor="lightgray" colspan="3">Identificação da lotação tributária.</td>
+        </tr>
+
+    {% for s5011_idelotacao in s5011_idelotacao_lista %}
+    {% ifequal s5011_idelotacao.s5011_ideestab.id s5011_ideestab.id %}
+
+        <tr {% if s5011_idelotacao.codlotacao|validacoes_esocial_efdreinf:"s5011_idelotacao.codlotacao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codLotacao</td>
+            <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. Evento de origem (S-5001)Validação: Deve ser um código existente na tabela de LOTACOES.</td>
+            <td width="200px"><b>{% if s5011_idelotacao.codlotacao or s5011_idelotacao.codlotacao == 0 %}{{ s5011_idelotacao.codlotacao }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_idelotacao_visualizar' %}
+                <a href="{% url 's5011_idelotacao_salvar'  hash='{}'|json_id:s5011_idelotacao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_idelotacao.fpas|validacoes_esocial_efdreinf:"s5011_idelotacao.fpas" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">fpas</td>
+            <td width="500px">Preencher com o código relativo ao FPAS.Validação: Deve ser um código FPAS válido, conforme tabela 4, conforme informado pelo contribuinte em S-1020.</td>
+            <td width="200px"><b>{% if s5011_idelotacao.fpas or s5011_idelotacao.fpas == 0 %}{{ s5011_idelotacao.fpas|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_idelotacao_visualizar' %}
+                <a href="{% url 's5011_idelotacao_salvar'  hash='{}'|json_id:s5011_idelotacao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_idelotacao.codtercs|validacoes_esocial_efdreinf:"s5011_idelotacao.codtercs" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codTercs</td>
+            <td width="500px">Preencher com o código de terceiros, conforme tabela 4. Validação: Conforme informado em S-1020.</td>
+            <td width="200px"><b>{% if s5011_idelotacao.codtercs or s5011_idelotacao.codtercs == 0 %}{{ s5011_idelotacao.codtercs }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_idelotacao_visualizar' %}
+                <a href="{% url 's5011_idelotacao_salvar'  hash='{}'|json_id:s5011_idelotacao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_idelotacao.codtercssusp|validacoes_esocial_efdreinf:"s5011_idelotacao.codtercssusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codTercsSusp</td>
+            <td width="500px">Informar o código combinado dos Terceiros para os quais o recolhimento está suspenso em virtude de processos Judiciais. Exemplo: Se o contribuinte possui decisões de processos para suspensão de recolhimentos ao Sesi (0008) e ao Sebrae (0064), deve informar o código combinado das duas entidades, ou seja,0072.Validação: Deve ser um código consistente com a Tabela 4. Conforme informado em S-1020</td>
+            <td width="200px"><b>{% if s5011_idelotacao.codtercssusp or s5011_idelotacao.codtercssusp == 0 %}{{ s5011_idelotacao.codtercssusp }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_idelotacao_visualizar' %}
+                <a href="{% url 's5011_idelotacao_salvar'  hash='{}'|json_id:s5011_idelotacao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoTercSusp</td>
+            <td bgcolor="lightgray" colspan="3">Informações de suspensão de contribuições destinadas a Outras Entidades eFundos (Terceiros).</td>
+        </tr>
+
+    {% for s5011_infotercsusp in s5011_infotercsusp_lista %}
+    {% ifequal s5011_infotercsusp.s5011_idelotacao.id s5011_idelotacao.id %}
+
+        <tr {% if s5011_infotercsusp.codterc|validacoes_esocial_efdreinf:"s5011_infotercsusp.codterc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codTerc</td>
+            <td width="500px">Informar o Código de Terceiro. Origem: Campo {codTerc} do S-1020.Validação: Deve ser um código de terceiro válido e compatível com oFPAS/Terceiros informado no registro superior, conforme Tabela 4.</td>
+            <td width="200px"><b>{% if s5011_infotercsusp.codterc or s5011_infotercsusp.codterc == 0 %}{{ s5011_infotercsusp.codterc }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infotercsusp_visualizar' %}
+                <a href="{% url 's5011_infotercsusp_salvar'  hash='{}'|json_id:s5011_infotercsusp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoEmprParcial</td>
+            <td bgcolor="lightgray" colspan="3">Informação complementar destinada à identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada. A informação é preenchida exclusivamente para lotações cujo {tpLotacao} seja igual a [2].</td>
+        </tr>
+
+    {% for s5011_infoemprparcial in s5011_infoemprparcial_lista %}
+    {% ifequal s5011_infoemprparcial.s5011_idelotacao.id s5011_idelotacao.id %}
+
+        <tr {% if s5011_infoemprparcial.tpinsccontrat|validacoes_esocial_efdreinf:"s5011_infoemprparcial.tpinsccontrat" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInscContrat</td>
+            <td width="500px">Tipo de Inscrição do contratante:1 - CNPJ;2 - CPF.Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s5011_infoemprparcial.tpinsccontrat or s5011_infoemprparcial.tpinsccontrat == 0 %}{{ s5011_infoemprparcial.tpinsccontrat|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infoemprparcial_visualizar' %}
+                <a href="{% url 's5011_infoemprparcial_salvar'  hash='{}'|json_id:s5011_infoemprparcial.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_infoemprparcial.nrinsccontrat|validacoes_esocial_efdreinf:"s5011_infoemprparcial.nrinsccontrat" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInscContrat</td>
+            <td width="500px">Número de Inscrição (CNPJ/CPF) do Contrante.Validação: Deve ser um número de CNPJ ou CPF válido, conforme definido em {tpInscContrat}</td>
+            <td width="200px"><b>{% if s5011_infoemprparcial.nrinsccontrat or s5011_infoemprparcial.nrinsccontrat == 0 %}{{ s5011_infoemprparcial.nrinsccontrat }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infoemprparcial_visualizar' %}
+                <a href="{% url 's5011_infoemprparcial_salvar'  hash='{}'|json_id:s5011_infoemprparcial.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_infoemprparcial.tpinscprop|validacoes_esocial_efdreinf:"s5011_infoemprparcial.tpinscprop" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInscProp</td>
+            <td width="500px">Tipo de Inscrição do proprietário do CNO. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF) Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s5011_infoemprparcial.tpinscprop or s5011_infoemprparcial.tpinscprop == 0 %}{{ s5011_infoemprparcial.tpinscprop|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infoemprparcial_visualizar' %}
+                <a href="{% url 's5011_infoemprparcial_salvar'  hash='{}'|json_id:s5011_infoemprparcial.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_infoemprparcial.nrinscprop|validacoes_esocial_efdreinf:"s5011_infoemprparcial.nrinscprop" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInscProp</td>
+            <td width="500px">Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO. Validação: Deve ser um CNPJ ou CPF válido, conforme indicado em{tpInscProp}, e constar como responsável no cadastro do CNO</td>
+            <td width="200px"><b>{% if s5011_infoemprparcial.nrinscprop or s5011_infoemprparcial.nrinscprop == 0 %}{{ s5011_infoemprparcial.nrinscprop }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infoemprparcial_visualizar' %}
+                <a href="{% url 's5011_infoemprparcial_salvar'  hash='{}'|json_id:s5011_infoemprparcial.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">dadosOpPort</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento das informações do Operador Portuário que está sendo incluído(origem S-1080).</td>
+        </tr>
+
+    {% for s5011_dadosopport in s5011_dadosopport_lista %}
+    {% ifequal s5011_dadosopport.s5011_idelotacao.id s5011_idelotacao.id %}
+
+        <tr {% if s5011_dadosopport.cnpjopportuario|validacoes_esocial_efdreinf:"s5011_dadosopport.cnpjopportuario" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjOpPortuario</td>
+            <td width="500px">Preencher com o CNPJ do operador portuárioValidação: Deve ser um CNPJ válido, diferente do CNPJ indicado no registro de abertura</td>
+            <td width="200px"><b>{% if s5011_dadosopport.cnpjopportuario or s5011_dadosopport.cnpjopportuario == 0 %}{{ s5011_dadosopport.cnpjopportuario }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_dadosopport_visualizar' %}
+                <a href="{% url 's5011_dadosopport_salvar'  hash='{}'|json_id:s5011_dadosopport.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_dadosopport.aliqrat|validacoes_esocial_efdreinf:"s5011_dadosopport.aliqrat" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">aliqRat</td>
+            <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. A divergência só é permitida se existir o registro complementar com informações sobre o processo administrativo/judicial que permite a aplicação de alíquotas diferentes.Validação: Deve ser igual a 1, 2 ou 3, conforme informado em S-1080.</td>
+            <td width="200px"><b>{% if s5011_dadosopport.aliqrat or s5011_dadosopport.aliqrat == 0 %}{{ s5011_dadosopport.aliqrat|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_dadosopport_visualizar' %}
+                <a href="{% url 's5011_dadosopport_salvar'  hash='{}'|json_id:s5011_dadosopport.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_dadosopport.fap|validacoes_esocial_efdreinf:"s5011_dadosopport.fap" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">fap</td>
+            <td width="500px">Fator Acidentário de Prevenção - FAP.Validação: Deve ser um número maior ou igual a 0,5000 e menor ou igual a2,0000, de acordo com o estabelecido para a empresa pelo ÓrgãoGovernamental competente, conforme informado em S-1080.</td>
+            <td width="200px"><b>{% if s5011_dadosopport.fap or s5011_dadosopport.fap == 0 %}{{ s5011_dadosopport.fap|format_number_4dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_dadosopport_visualizar' %}
+                <a href="{% url 's5011_dadosopport_salvar'  hash='{}'|json_id:s5011_dadosopport.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_dadosopport.aliqratajust|validacoes_esocial_efdreinf:"s5011_dadosopport.aliqratajust" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">aliqRatAjust</td>
+            <td width="500px">Alíquota do RAT após ajuste pelo FAPValidação: Deve corresponder ao resultado da multiplicação dos campos{aliqRat} e {fap}, conforme definido em S-1080.</td>
+            <td width="200px"><b>{% if s5011_dadosopport.aliqratajust or s5011_dadosopport.aliqratajust == 0 %}{{ s5011_dadosopport.aliqratajust|format_number_4dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_dadosopport_visualizar' %}
+                <a href="{% url 's5011_dadosopport_salvar'  hash='{}'|json_id:s5011_dadosopport.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">basesRemun</td>
+            <td bgcolor="lightgray" colspan="3">Bases de cálculo da contribuição previdenciária incidente sobre remunerações, por categoria.</td>
+        </tr>
+
+    {% for s5011_basesremun in s5011_basesremun_lista %}
+    {% ifequal s5011_basesremun.s5011_idelotacao.id s5011_idelotacao.id %}
+
+        <tr {% if s5011_basesremun.indincid|validacoes_esocial_efdreinf:"s5011_basesremun.indincid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indIncid</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de incidência para fins de apuração da contribuição previdenciária: 1 - Normal; 2 - Ativ. Concomitante; 9 - Substituída ou Isenta. Validação: a) Para empresas da {classTrib} = [01,70,80] todas as bases de cálculo devem ser totalizadas com {indIncid} igual a [9];b) Para empresas com {classTrib} igual a [03], considerar a informação prestada no campo {indSimples} do evento S-5001, conforme abaixo:- Se o {indSimples} for igual a [1] (contrib. Subst. Integralmente) a base de cálculo do respectivo trabalhador deve ser totalizada com {indIncid} igual a[9];- Se o {indSimples} for igual a [2] (contrib. não Substituída) a base de cálculo do respectivo trabalhador deve ser totalizada com {indIncid} igual a [1] (normal);- Se o {indSimples} for igual a [3] (ativ. concomitante) a base de cálculo do respectivo trabalhador deve ser totalizada com {indIncid} igual a [2].c) Para empresas com {classTrib} igual a [10] (Sindicato de Avulsos NãoPortuários), as bases de cálculo dos trabalhadores avulsos da categoria [202]devem ser totalizadas com {indIncid} igual a [9]; d) Para {classTrib} igual a [22] (Segurado Especial), as bases de cálculo dos trabalhadores devem ser totalizadas com {indIncid} igual a [9], EXCETO para a categoria [104] (empregado doméstico), que deve ser totalizada com {indIncid} = [1];e) Para contribuinte com {classTrib} igual a [99] e com {indCoop} igual a [1] (cooperativa de trabalho), as remunerações dos cooperados (Categoria 731 e734) cuja lotação esteja classificada com {tpLotacao} igual a [05, 06, 07]devem ser totalizadas com {indIncid} igual a [9]; Nos demais casos, o{indIncid} deve ser igual a [1];f) Para contribuintes com {classTrib} igual a [11], as bases de cálculo dos trabalhadores devem ser totalizadas com {indIncid} igual a [9], EXCETO para as categorias de contribuinte individual, que devem ser totalizadas com{indIncid} = [1]; g) Para {tpLotação} igual a [91], todas as bases de cálculo devem ser totalizadas com {indIncid} igual a [9].</td>
+            <td width="200px"><b>{% if s5011_basesremun.indincid or s5011_basesremun.indincid == 0 %}{{ s5011_basesremun.indincid|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}
+                <a href="{% url 's5011_basesremun_salvar'  hash='{}'|json_id:s5011_basesremun.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesremun.codcateg|validacoes_esocial_efdreinf:"s5011_basesremun.codcateg" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codCateg</td>
+            <td width="500px">Preencher com o código da categoria do trabalhador, conforme definido em S-5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.codcateg or s5011_basesremun.codcateg == 0 %}{{ s5011_basesremun.codcateg|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}
+                <a href="{% url 's5011_basesremun_salvar'  hash='{}'|json_id:s5011_basesremun.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">basesCp</td>
+            <td bgcolor="lightgray" colspan="3">Valores correspondentes às bases, contribuições do segurado e deduções da contribuição previdenciária.</td>
+        </tr>
+
+
+        <tr {% if s5011_basesremun.vrbccp00|validacoes_esocial_efdreinf:"s5011_basesremun.vrbccp00" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrBcCp00</td>
+            <td width="500px">Origem dos valores apurados nesse campo:Para {codCateg} <> [104]: Somatório do campo {Valor}, quando {tpValor} = [11,15], do grupo {infoBaseCS} no evento S-5001. Para {codCateg} = [104]: Somatório do campo {Valor}, quando {tpValor} = [11,15], do grupo{infoBaseCS} no evento S-5001, limitado ao teto do salário de contribuição.OBS.: A contribuição previdenciária patronal do empregador doméstico tem como base de cálculo o somatório do salário de contribuição de cada empregado.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrbccp00 or s5011_basesremun.vrbccp00 == 0 %}{{ s5011_basesremun.vrbccp00|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}
+                <a href="{% url 's5011_basesremun_salvar'  hash='{}'|json_id:s5011_basesremun.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesremun.vrbccp15|validacoes_esocial_efdreinf:"s5011_basesremun.vrbccp15" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrBcCp15</td>
+            <td width="500px">Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição.Origem: campo {Valor}, se {tpValor} = [12,16] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrbccp15 or s5011_basesremun.vrbccp15 == 0 %}{{ s5011_basesremun.vrbccp15|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}
+                <a href="{% url 's5011_basesremun_salvar'  hash='{}'|json_id:s5011_basesremun.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesremun.vrbccp20|validacoes_esocial_efdreinf:"s5011_basesremun.vrbccp20" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrBcCp20</td>
+            <td width="500px">Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição.Origem: campo {Valor}, quando {tpValor} = [13,17] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrbccp20 or s5011_basesremun.vrbccp20 == 0 %}{{ s5011_basesremun.vrbccp20|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}
+                <a href="{% url 's5011_basesremun_salvar'  hash='{}'|json_id:s5011_basesremun.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesremun.vrbccp25|validacoes_esocial_efdreinf:"s5011_basesremun.vrbccp25" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrBcCp25</td>
+            <td width="500px">Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição.Origem: campo {Valor}, quando {tpValor} = [14,18] - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrbccp25 or s5011_basesremun.vrbccp25 == 0 %}{{ s5011_basesremun.vrbccp25|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}
+                <a href="{% url 's5011_basesremun_salvar'  hash='{}'|json_id:s5011_basesremun.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesremun.vrsuspbccp00|validacoes_esocial_efdreinf:"s5011_basesremun.vrsuspbccp00" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSuspBcCp00</td>
+            <td width="500px">Valor da BC com incidência suspensa em decorrência de decisão judicial. Origem: campo {Valor} quando {tpValor} = [91,95] - Incidência suspensa em decorrência de decisão judicial do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrsuspbccp00 or s5011_basesremun.vrsuspbccp00 == 0 %}{{ s5011_basesremun.vrsuspbccp00|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}
+                <a href="{% url 's5011_basesremun_salvar'  hash='{}'|json_id:s5011_basesremun.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesremun.vrsuspbccp15|validacoes_esocial_efdreinf:"s5011_basesremun.vrsuspbccp15" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSuspBcCp15</td>
+            <td width="500px">Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador direito a aposentadoria especial aos 15 anos de trabalho, com incidência suspensa em decorrência de decisão judicial.Origem: campo {Valor}, quando {tpValor} = [92,96] - Incidência suspensaem decorrência de decisão judicial, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrsuspbccp15 or s5011_basesremun.vrsuspbccp15 == 0 %}{{ s5011_basesremun.vrsuspbccp15|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}
+                <a href="{% url 's5011_basesremun_salvar'  hash='{}'|json_id:s5011_basesremun.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesremun.vrsuspbccp20|validacoes_esocial_efdreinf:"s5011_basesremun.vrsuspbccp20" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSuspBcCp20</td>
+            <td width="500px">Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador expectativa de aposentadoria especial aos 20 anos de trabalho, com incidência suspensa em decorrência de decisão judicial.Origem: campo {Valor}, quando {tpValor} = [93,97] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrsuspbccp20 or s5011_basesremun.vrsuspbccp20 == 0 %}{{ s5011_basesremun.vrsuspbccp20|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}
+                <a href="{% url 's5011_basesremun_salvar'  hash='{}'|json_id:s5011_basesremun.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesremun.vrsuspbccp25|validacoes_esocial_efdreinf:"s5011_basesremun.vrsuspbccp25" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSuspBcCp25</td>
+            <td width="500px">Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador direito a aposentadoria especial aos 25 anos de trabalho, com incidência suspensa em decorrência de decisão judicial.Origem: campo {Valor}, quando {tpValor} = [94,98] - Incidência suspensa em decorrência de decisão judicial, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrsuspbccp25 or s5011_basesremun.vrsuspbccp25 == 0 %}{{ s5011_basesremun.vrsuspbccp25|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}
+                <a href="{% url 's5011_basesremun_salvar'  hash='{}'|json_id:s5011_basesremun.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesremun.vrdescsest|validacoes_esocial_efdreinf:"s5011_basesremun.vrdescsest" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrDescSest</td>
+            <td width="500px">Valor total descontado do trabalhador para recolhimento ao Sest.Origem: campo {Valor}, quando {tpValor} = [22] - Valor total descontado do trabalhador para recolhimento ao Sest, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrdescsest or s5011_basesremun.vrdescsest == 0 %}{{ s5011_basesremun.vrdescsest|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}
+                <a href="{% url 's5011_basesremun_salvar'  hash='{}'|json_id:s5011_basesremun.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesremun.vrcalcsest|validacoes_esocial_efdreinf:"s5011_basesremun.vrcalcsest" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrCalcSest</td>
+            <td width="500px">Valor calculado relativo à contribuição devida pelo trabalhador para recolhimento ao Sest.Origem: campo {Valor}, quando {codCR} = [1218-02] - Valor calculado dotrabalhador para recolhimento ao Sest, do grupo {calcTerc} no evento S-5001, exceto se houver informação de processo judicial do trabalhador quando deve ser utilizado o valor apurado em {vrDescSest}.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrcalcsest or s5011_basesremun.vrcalcsest == 0 %}{{ s5011_basesremun.vrcalcsest|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}
+                <a href="{% url 's5011_basesremun_salvar'  hash='{}'|json_id:s5011_basesremun.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesremun.vrdescsenat|validacoes_esocial_efdreinf:"s5011_basesremun.vrdescsenat" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrDescSenat</td>
+            <td width="500px">Valor total descontado do trabalhador para recolhimento ao Senat.Origem: campo {Valor}, quando {tpValor} = [23] - Valor total descontado do trabalhador para recolhimento ao Senat, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrdescsenat or s5011_basesremun.vrdescsenat == 0 %}{{ s5011_basesremun.vrdescsenat|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}
+                <a href="{% url 's5011_basesremun_salvar'  hash='{}'|json_id:s5011_basesremun.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesremun.vrcalcsenat|validacoes_esocial_efdreinf:"s5011_basesremun.vrcalcsenat" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrCalcSenat</td>
+            <td width="500px">Valor calculado relativo à contribuição devida pelo trabalhador para recolhimento ao Senat.Origem: campo {Valor}, quando {codCR} = [1221-02] - Valor calculado do trabalhador para recolhimento ao Senat, do grupo {calcTerc} no evento S-5001, exceto se houver informação de processo judicial do trabalhador quando deve ser utilizado o valor apurado em {vrDescSenat}.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrcalcsenat or s5011_basesremun.vrcalcsenat == 0 %}{{ s5011_basesremun.vrcalcsenat|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}
+                <a href="{% url 's5011_basesremun_salvar'  hash='{}'|json_id:s5011_basesremun.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesremun.vrsalfam|validacoes_esocial_efdreinf:"s5011_basesremun.vrsalfam" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSalFam</td>
+            <td width="500px">Valor total do salário-família para a categoria indicada no registro superior. Origem: campo {Valor}, quando {tpValor} = [31] - Valor pago ao trabalhador a título de salário-família, do grupo {infoBaseCS} no evento S-5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrsalfam or s5011_basesremun.vrsalfam == 0 %}{{ s5011_basesremun.vrsalfam|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}
+                <a href="{% url 's5011_basesremun_salvar'  hash='{}'|json_id:s5011_basesremun.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesremun.vrsalmat|validacoes_esocial_efdreinf:"s5011_basesremun.vrsalmat" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSalMat</td>
+            <td width="500px">Valor total do salário-maternidade para a categoria indicada. Origem: campo {Valor}, quando {tpValor} = [32] - Valor pago aotrabalhador a título de salário-maternidade, do grupo {infoBaseCS} no eventoS-5001.</td>
+            <td width="200px"><b>{% if s5011_basesremun.vrsalmat or s5011_basesremun.vrsalmat == 0 %}{{ s5011_basesremun.vrsalmat|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}
+                <a href="{% url 's5011_basesremun_salvar'  hash='{}'|json_id:s5011_basesremun.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+     {% endifequal %}{% endfor %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">basesAvNPort</td>
+            <td bgcolor="lightgray" colspan="3">Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários.Informações desse grupo conforme informado pelo contribuinte em S-1270.</td>
+        </tr>
+
+    {% for s5011_basesavnport in s5011_basesavnport_lista %}
+    {% ifequal s5011_basesavnport.s5011_idelotacao.id s5011_idelotacao.id %}
+
+        <tr {% if s5011_basesavnport.vrbccp00|validacoes_esocial_efdreinf:"s5011_basesavnport.vrbccp00" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrBcCp00</td>
+            <td width="500px">Origem: {vrBcCp00} do evento S-1270.</td>
+            <td width="200px"><b>{% if s5011_basesavnport.vrbccp00 or s5011_basesavnport.vrbccp00 == 0 %}{{ s5011_basesavnport.vrbccp00|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesavnport_visualizar' %}
+                <a href="{% url 's5011_basesavnport_salvar'  hash='{}'|json_id:s5011_basesavnport.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesavnport.vrbccp15|validacoes_esocial_efdreinf:"s5011_basesavnport.vrbccp15" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrBcCp15</td>
+            <td width="500px">Origem: {vrBcCp15} do evento S-1270.</td>
+            <td width="200px"><b>{% if s5011_basesavnport.vrbccp15 or s5011_basesavnport.vrbccp15 == 0 %}{{ s5011_basesavnport.vrbccp15|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesavnport_visualizar' %}
+                <a href="{% url 's5011_basesavnport_salvar'  hash='{}'|json_id:s5011_basesavnport.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesavnport.vrbccp20|validacoes_esocial_efdreinf:"s5011_basesavnport.vrbccp20" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrBcCp20</td>
+            <td width="500px">Origem: {vrBcCp20} do evento S-1270.</td>
+            <td width="200px"><b>{% if s5011_basesavnport.vrbccp20 or s5011_basesavnport.vrbccp20 == 0 %}{{ s5011_basesavnport.vrbccp20|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesavnport_visualizar' %}
+                <a href="{% url 's5011_basesavnport_salvar'  hash='{}'|json_id:s5011_basesavnport.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesavnport.vrbccp25|validacoes_esocial_efdreinf:"s5011_basesavnport.vrbccp25" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrBcCp25</td>
+            <td width="500px">Origem: {vrBcCp25} do evento S-1270.</td>
+            <td width="200px"><b>{% if s5011_basesavnport.vrbccp25 or s5011_basesavnport.vrbccp25 == 0 %}{{ s5011_basesavnport.vrbccp25|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesavnport_visualizar' %}
+                <a href="{% url 's5011_basesavnport_salvar'  hash='{}'|json_id:s5011_basesavnport.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesavnport.vrbccp13|validacoes_esocial_efdreinf:"s5011_basesavnport.vrbccp13" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrBcCp13</td>
+            <td width="500px">Origem: {vrBcCp13} do evento S-1270.</td>
+            <td width="200px"><b>{% if s5011_basesavnport.vrbccp13 or s5011_basesavnport.vrbccp13 == 0 %}{{ s5011_basesavnport.vrbccp13|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesavnport_visualizar' %}
+                <a href="{% url 's5011_basesavnport_salvar'  hash='{}'|json_id:s5011_basesavnport.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesavnport.vrbcfgts|validacoes_esocial_efdreinf:"s5011_basesavnport.vrbcfgts" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrBcFgts</td>
+            <td width="500px">Origem: {vrBcFGTS} do evento S-1270.</td>
+            <td width="200px"><b>{% if s5011_basesavnport.vrbcfgts or s5011_basesavnport.vrbcfgts == 0 %}{{ s5011_basesavnport.vrbcfgts|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesavnport_visualizar' %}
+                <a href="{% url 's5011_basesavnport_salvar'  hash='{}'|json_id:s5011_basesavnport.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesavnport.vrdesccp|validacoes_esocial_efdreinf:"s5011_basesavnport.vrdesccp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrDescCP</td>
+            <td width="500px">Origem: {vrDescCP} do evento S-1270.</td>
+            <td width="200px"><b>{% if s5011_basesavnport.vrdesccp or s5011_basesavnport.vrdesccp == 0 %}{{ s5011_basesavnport.vrdesccp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesavnport_visualizar' %}
+                <a href="{% url 's5011_basesavnport_salvar'  hash='{}'|json_id:s5011_basesavnport.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoSubstPatrOpPort</td>
+            <td bgcolor="lightgray" colspan="3">Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) relativamente a seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.</td>
+        </tr>
+
+    {% for s5011_infosubstpatropport in s5011_infosubstpatropport_lista %}
+    {% ifequal s5011_infosubstpatropport.s5011_idelotacao.id s5011_idelotacao.id %}
+
+        <tr {% if s5011_infosubstpatropport.cnpjopportuario|validacoes_esocial_efdreinf:"s5011_infosubstpatropport.cnpjopportuario" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjOpPortuario</td>
+            <td width="500px">Preencher com o CNPJ do operador portuário. Origem: {cnpjOpPortuario} do S-1280.Validação: Deve ser um CNPJ válido, diferente do CNPJ indicado no registrode abertura</td>
+            <td width="200px"><b>{% if s5011_infosubstpatropport.cnpjopportuario or s5011_infosubstpatropport.cnpjopportuario == 0 %}{{ s5011_infosubstpatropport.cnpjopportuario }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infosubstpatropport_visualizar' %}
+                <a href="{% url 's5011_infosubstpatropport_salvar'  hash='{}'|json_id:s5011_infosubstpatropport.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">basesAquis</td>
+            <td bgcolor="lightgray" colspan="3">Informações de bases de cálculo relativas a aquisição de produção rural. Origem S-1250.</td>
+        </tr>
+
+    {% for s5011_basesaquis in s5011_basesaquis_lista %}
+    {% ifequal s5011_basesaquis.s5011_ideestab.id s5011_ideestab.id %}
+
+        <tr {% if s5011_basesaquis.indaquis|validacoes_esocial_efdreinf:"s5011_basesaquis.indaquis" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indAquis</td>
+            <td width="500px">Indicativo da Aquisição: 1 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral; 2 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por Entidade do PAA; 3 - Aquisição da produção de produtor rural pessoa jurídica por Entidade do PAA. Evento de origem (S- 1250); 4 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral - Produção Isenta (Lei 13.606/2018); 5 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por Entidade do PAA - Produção Isenta (Lei 13.606/2018); 6 - Aquisição da produção de produtor rural pessoa jurídica por Entidade do PAA - Produção Isenta (Lei 13.606/2018). Valores Válidos: 1, 2, 3, 4, 5, 6.</td>
+            <td width="200px"><b>{% if s5011_basesaquis.indaquis or s5011_basesaquis.indaquis == 0 %}{{ s5011_basesaquis.indaquis|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesaquis_visualizar' %}
+                <a href="{% url 's5011_basesaquis_salvar'  hash='{}'|json_id:s5011_basesaquis.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesaquis.vlraquis|validacoes_esocial_efdreinf:"s5011_basesaquis.vlraquis" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrAquis</td>
+            <td width="500px">Valor total da aquisição de produção rural de produtor rural. Origem: {vlrTotAquis} do S-1250.</td>
+            <td width="200px"><b>{% if s5011_basesaquis.vlraquis or s5011_basesaquis.vlraquis == 0 %}{{ s5011_basesaquis.vlraquis|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesaquis_visualizar' %}
+                <a href="{% url 's5011_basesaquis_salvar'  hash='{}'|json_id:s5011_basesaquis.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesaquis.vrcpdescpr|validacoes_esocial_efdreinf:"s5011_basesaquis.vrcpdescpr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrCPDescPR</td>
+            <td width="500px">Preencher com o valor da Contribuição Previdenciária descontada pelo adquirente de produção de produtor rural - sub-rogação.Origem: Somatório {vrCpDescPR} do S-1250.</td>
+            <td width="200px"><b>{% if s5011_basesaquis.vrcpdescpr or s5011_basesaquis.vrcpdescpr == 0 %}{{ s5011_basesaquis.vrcpdescpr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesaquis_visualizar' %}
+                <a href="{% url 's5011_basesaquis_salvar'  hash='{}'|json_id:s5011_basesaquis.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesaquis.vrcpnret|validacoes_esocial_efdreinf:"s5011_basesaquis.vrcpnret" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrCPNRet</td>
+            <td width="500px">Valor da Contribuição Previdenciária que deixou de ser retida pelo declarante em decorrência de decisão/sentença judicial.</td>
+            <td width="200px"><b>{% if s5011_basesaquis.vrcpnret or s5011_basesaquis.vrcpnret == 0 %}{{ s5011_basesaquis.vrcpnret|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesaquis_visualizar' %}
+                <a href="{% url 's5011_basesaquis_salvar'  hash='{}'|json_id:s5011_basesaquis.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesaquis.vrratnret|validacoes_esocial_efdreinf:"s5011_basesaquis.vrratnret" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrRatNRet</td>
+            <td width="500px">Valor da GILRAT, incidente sobre a aquisição de produção rural de produtor rural, cuja retenção deixou de ser efetuada em decorrência de decisão/sentença judicial.</td>
+            <td width="200px"><b>{% if s5011_basesaquis.vrratnret or s5011_basesaquis.vrratnret == 0 %}{{ s5011_basesaquis.vrratnret|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesaquis_visualizar' %}
+                <a href="{% url 's5011_basesaquis_salvar'  hash='{}'|json_id:s5011_basesaquis.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesaquis.vrsenarnret|validacoes_esocial_efdreinf:"s5011_basesaquis.vrsenarnret" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSenarNRet</td>
+            <td width="500px">Valor da contribuição destinada ao SENAR, incidente sobre a aquisição de produção rural de produtor rural pessoa física/segurado especial, e que deixou de ser retida em decorrência de decisão/sentença judicial.</td>
+            <td width="200px"><b>{% if s5011_basesaquis.vrsenarnret or s5011_basesaquis.vrsenarnret == 0 %}{{ s5011_basesaquis.vrsenarnret|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesaquis_visualizar' %}
+                <a href="{% url 's5011_basesaquis_salvar'  hash='{}'|json_id:s5011_basesaquis.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesaquis.vrcpcalcpr|validacoes_esocial_efdreinf:"s5011_basesaquis.vrcpcalcpr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrCPCalcPR</td>
+            <td width="500px">Valor calculado na contribuição previdenciária do produtor rural. Cálculo:a) Para {indAquis} = [1,2]: {vlrAquis} x 1,2%;b) Para {indAquis} = [3]: {vlrAquis} x 2,5%.</td>
+            <td width="200px"><b>{% if s5011_basesaquis.vrcpcalcpr or s5011_basesaquis.vrcpcalcpr == 0 %}{{ s5011_basesaquis.vrcpcalcpr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesaquis_visualizar' %}
+                <a href="{% url 's5011_basesaquis_salvar'  hash='{}'|json_id:s5011_basesaquis.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesaquis.vrratdescpr|validacoes_esocial_efdreinf:"s5011_basesaquis.vrratdescpr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrRatDescPR</td>
+            <td width="500px">Valor da contribuição destinada ao financiamento dos benefícios concedidos em razão do grau de incidência da incapacidade laborativa decorrente dos riscos ambientais do trabalho, incidente sobre a aquisição de produção rural de produtor rural.Evento de origem (S-1250).</td>
+            <td width="200px"><b>{% if s5011_basesaquis.vrratdescpr or s5011_basesaquis.vrratdescpr == 0 %}{{ s5011_basesaquis.vrratdescpr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesaquis_visualizar' %}
+                <a href="{% url 's5011_basesaquis_salvar'  hash='{}'|json_id:s5011_basesaquis.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesaquis.vrratcalcpr|validacoes_esocial_efdreinf:"s5011_basesaquis.vrratcalcpr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrRatCalcPR</td>
+            <td width="500px">Valor calculado do RAT devido pelo Produtor Rural. Cálculo: {vlrAquis} x aliq 0,1%.</td>
+            <td width="200px"><b>{% if s5011_basesaquis.vrratcalcpr or s5011_basesaquis.vrratcalcpr == 0 %}{{ s5011_basesaquis.vrratcalcpr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesaquis_visualizar' %}
+                <a href="{% url 's5011_basesaquis_salvar'  hash='{}'|json_id:s5011_basesaquis.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesaquis.vrsenardesc|validacoes_esocial_efdreinf:"s5011_basesaquis.vrsenardesc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSenarDesc</td>
+            <td width="500px">Valor da contribuição destinada ao SENAR, incidente sobre a aquisição de produção rural de produtor rural pessoa física/segurado especial.Origem: {vrSenarDesc} do S-1250.</td>
+            <td width="200px"><b>{% if s5011_basesaquis.vrsenardesc or s5011_basesaquis.vrsenardesc == 0 %}{{ s5011_basesaquis.vrsenardesc|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesaquis_visualizar' %}
+                <a href="{% url 's5011_basesaquis_salvar'  hash='{}'|json_id:s5011_basesaquis.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basesaquis.vrsenarcalc|validacoes_esocial_efdreinf:"s5011_basesaquis.vrsenarcalc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSenarCalc</td>
+            <td width="500px">Valor calculado da contribuição devida pelo produtor rural ao Senar. Cálculo: a) Para {indAquis} = [1, 4, 5]: {vlrAquis} x 0,2%; b) Para {indAquis} = [2, 3, 6]: Zero.</td>
+            <td width="200px"><b>{% if s5011_basesaquis.vrsenarcalc or s5011_basesaquis.vrsenarcalc == 0 %}{{ s5011_basesaquis.vrsenarcalc|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basesaquis_visualizar' %}
+                <a href="{% url 's5011_basesaquis_salvar'  hash='{}'|json_id:s5011_basesaquis.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">basesComerc</td>
+            <td bgcolor="lightgray" colspan="3">Informações de bases de cálculo relativas à comercialização da produção rural da Pessoa Física.Informações desse grupo conforme informado pelo contribuinte em S-1260.</td>
+        </tr>
+
+    {% for s5011_basescomerc in s5011_basescomerc_lista %}
+    {% ifequal s5011_basescomerc.s5011_ideestab.id s5011_ideestab.id %}
+
+        <tr {% if s5011_basescomerc.indcomerc|validacoes_esocial_efdreinf:"s5011_basescomerc.indcomerc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indComerc</td>
+            <td width="500px">Indicativo de Comercialização: 2 - Comercialização da Produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por Produtor Rural Pessoa Física, inclusive por Segurado Especial ou por Pessoa Física não produtor rural; 3 - Comercialização da Produção por Prod. Rural PF/Seg. Especial - Vendas a PJ (exceto Entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a Intermediário PF; 7 - Comercialização da Produção Isenta de acordo com a Lei no 13.606/2018; 8 - Comercialização da Produção da Pessoa Física/Segurado Especial para Entidade inscrita no Programa de Aquisição de Alimentos - PAA; 9 - Comercialização da Produção no Mercado Externo. Origem: {indComerc} do S-1260. Valores Válidos: 2, 3, 7, 8, 9.</td>
+            <td width="200px"><b>{% if s5011_basescomerc.indcomerc or s5011_basescomerc.indcomerc == 0 %}{{ s5011_basescomerc.indcomerc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basescomerc_visualizar' %}
+                <a href="{% url 's5011_basescomerc_salvar'  hash='{}'|json_id:s5011_basescomerc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basescomerc.vrbccompr|validacoes_esocial_efdreinf:"s5011_basescomerc.vrbccompr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrBcComPR</td>
+            <td width="500px">Valor da Base de Cálculo da comercialização da produção rural do Produtor Rural PF/Segurado Especial a outra PF no varejo ou a outro Produtor Rural PF/Segurado Especial ou no mercado Externo, conforme {indComerc}. Origem: {vrTotCom} do S-1260 conforme {indComerc}.</td>
+            <td width="200px"><b>{% if s5011_basescomerc.vrbccompr or s5011_basescomerc.vrbccompr == 0 %}{{ s5011_basescomerc.vrbccompr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basescomerc_visualizar' %}
+                <a href="{% url 's5011_basescomerc_salvar'  hash='{}'|json_id:s5011_basescomerc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basescomerc.vrcpsusp|validacoes_esocial_efdreinf:"s5011_basescomerc.vrcpsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrCPSusp</td>
+            <td width="500px">Valor da Contribuição Previdenciária com exigibilidade suspensa. Origem: {vrCPSusp} do S-1260.</td>
+            <td width="200px"><b>{% if s5011_basescomerc.vrcpsusp or s5011_basescomerc.vrcpsusp == 0 %}{{ s5011_basescomerc.vrcpsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basescomerc_visualizar' %}
+                <a href="{% url 's5011_basescomerc_salvar'  hash='{}'|json_id:s5011_basescomerc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basescomerc.vrratsusp|validacoes_esocial_efdreinf:"s5011_basescomerc.vrratsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrRatSusp</td>
+            <td width="500px">Valor da contribuição para Gilrat com exigibilidade suspensa. Origem: {vrRatSusp} do S-1260.</td>
+            <td width="200px"><b>{% if s5011_basescomerc.vrratsusp or s5011_basescomerc.vrratsusp == 0 %}{{ s5011_basescomerc.vrratsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basescomerc_visualizar' %}
+                <a href="{% url 's5011_basescomerc_salvar'  hash='{}'|json_id:s5011_basescomerc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_basescomerc.vrsenarsusp|validacoes_esocial_efdreinf:"s5011_basescomerc.vrsenarsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSenarSusp</td>
+            <td width="500px">Valor da contribuição para o Senar com exigibilidade suspensa. Origem: {vrSenarSusp} do S-1260.</td>
+            <td width="200px"><b>{% if s5011_basescomerc.vrsenarsusp or s5011_basescomerc.vrsenarsusp == 0 %}{{ s5011_basescomerc.vrsenarsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_basescomerc_visualizar' %}
+                <a href="{% url 's5011_basescomerc_salvar'  hash='{}'|json_id:s5011_basescomerc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoCREstab</td>
+            <td bgcolor="lightgray" colspan="3">Informações das contribuições sociais devidas à Previdência Social e OutrasEntidades e Fundos, consolidadas por estabelecimento e por código de Receita - CR.</td>
+        </tr>
+
+    {% for s5011_infocrestab in s5011_infocrestab_lista %}
+    {% ifequal s5011_infocrestab.s5011_ideestab.id s5011_ideestab.id %}
+
+        <tr {% if s5011_infocrestab.tpcr|validacoes_esocial_efdreinf:"s5011_infocrestab.tpcr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpCR</td>
+            <td width="500px">Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros), conforme legislação em vigor na competência.Validação: Deve ser um código válido, compatível com a classificaçãotributária do contribuinte e com as informações prestadas nos demais eventos.</td>
+            <td width="200px"><b>{% if s5011_infocrestab.tpcr or s5011_infocrestab.tpcr == 0 %}{{ s5011_infocrestab.tpcr|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infocrestab_visualizar' %}
+                <a href="{% url 's5011_infocrestab_salvar'  hash='{}'|json_id:s5011_infocrestab.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_infocrestab.vrcr|validacoes_esocial_efdreinf:"s5011_infocrestab.vrcr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrCR</td>
+            <td width="500px">Valor correspondente ao Código de Receita - CR apurado.Validação: Deve ser apurado de acordo com a legislação em vigor na competência.Deve ser maior que 0 (zero).</td>
+            <td width="200px"><b>{% if s5011_infocrestab.vrcr or s5011_infocrestab.vrcr == 0 %}{{ s5011_infocrestab.vrcr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infocrestab_visualizar' %}
+                <a href="{% url 's5011_infocrestab_salvar'  hash='{}'|json_id:s5011_infocrestab.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_infocrestab.vrsuspcr|validacoes_esocial_efdreinf:"s5011_infocrestab.vrsuspcr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSuspCR</td>
+            <td width="500px">Valor suspenso correspondente ao Código de Receita - CR apurado. Validação: Deve ser apurado de acordo com as informações de processos judiciais e administrativos.</td>
+            <td width="200px"><b>{% if s5011_infocrestab.vrsuspcr or s5011_infocrestab.vrsuspcr == 0 %}{{ s5011_infocrestab.vrsuspcr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infocrestab_visualizar' %}
+                <a href="{% url 's5011_infocrestab_salvar'  hash='{}'|json_id:s5011_infocrestab.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoCRContrib</td>
+            <td bgcolor="lightgray" colspan="3">Informações consolidadas das contribuições sociais devidas à PrevidênciaSocial e Outras Entidades e Fundos, por código de Receita - CR.</td>
+        </tr>
+
+    {% for s5011_infocrcontrib in s5011_infocrcontrib_lista %}
+    {% ifequal s5011_infocrcontrib.s5011_evtcs.id s5011_evtcs.id %}
+
+        <tr {% if s5011_infocrcontrib.tpcr|validacoes_esocial_efdreinf:"s5011_infocrcontrib.tpcr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpCR</td>
+            <td width="500px">Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros), conforme legislação em vigor na competência.Validação: Deve ser um código válido, compatível com a classificaçãotributária do contribuinte e com as informações prestadas nos demais eventos.</td>
+            <td width="200px"><b>{% if s5011_infocrcontrib.tpcr or s5011_infocrcontrib.tpcr == 0 %}{{ s5011_infocrcontrib.tpcr|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infocrcontrib_visualizar' %}
+                <a href="{% url 's5011_infocrcontrib_salvar'  hash='{}'|json_id:s5011_infocrcontrib.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_infocrcontrib.vrcr|validacoes_esocial_efdreinf:"s5011_infocrcontrib.vrcr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrCR</td>
+            <td width="500px">Valor correspondente ao Código de Receita - CR apurado.Validação: Deve ser apurado de acordo com a legislação em vigor na competência.Deve ser maior que 0 (zero).</td>
+            <td width="200px"><b>{% if s5011_infocrcontrib.vrcr or s5011_infocrcontrib.vrcr == 0 %}{{ s5011_infocrcontrib.vrcr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infocrcontrib_visualizar' %}
+                <a href="{% url 's5011_infocrcontrib_salvar'  hash='{}'|json_id:s5011_infocrcontrib.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5011_infocrcontrib.vrcrsusp|validacoes_esocial_efdreinf:"s5011_infocrcontrib.vrcrsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrCRSusp</td>
+            <td width="500px">Valor do tributo com exigibilidade suspensa. Se não houver informação, preencher com zero.</td>
+            <td width="200px"><b>{% if s5011_infocrcontrib.vrcrsusp or s5011_infocrcontrib.vrcrsusp == 0 %}{{ s5011_infocrcontrib.vrcrsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5011_infocrcontrib_visualizar' %}
+                <a href="{% url 's5011_infocrcontrib_salvar'  hash='{}'|json_id:s5011_infocrcontrib.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %} {% endifequal %}{% endfor %}
+</table>
+{% if not for_print %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %} 
+
+        </div>
+      </div>
+    </section>
+{% endif %}  
+
+{% endblock content %}

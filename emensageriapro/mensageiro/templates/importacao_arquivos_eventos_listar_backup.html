@@ -1,0 +1,460 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}{% if not for_print %}
+    <meta http-equiv="refresh" content="2">
+    <section class="content-header">
+        <h1>Mapa de Processamento
+            <small>Listar</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+            <li><a href="#">Mapa de Processamento</a></li>
+            <li class="active">Listar</li>
+        </ol>
+    </section>
+    <section class="content">{% if messages %}
+        <div class="row">
+            <div class="pad margin no-print">{% for message in messages %}
+                <div class="alert alert-{{ message.tags }}"
+                     style="margin-bottom: 0!important;">{{ message }}</div>{% endfor %}</div>
+        </div>{% endif %}
+
+{% comment %}
+    <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li {% if not tab %}class="active"{% endif %}>
+                            <a href="{% url 'importacao_arquivos_eventos' hash='{}'|json_return_page:'importacao_arquivos_eventos'|json_return_hash:'eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ=='|json_tab:''|json_id:0|json_print:0|base64_encode_me %}">
+                            Importação
+                        </a>
+                        </li>
+                        <li {% if tab == 'transmissao_esocial' %}class="active"{% endif %}>
+                            <a href="{% url 'importacao_arquivos_eventos' hash='{}'|json_return_page:'importacao_arquivos_eventos'|json_return_hash:'eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ=='|json_tab:'transmissao_esocial'|json_id:0|json_print:0|base64_encode_me %}">
+                            Transmissão - eSocial
+                        </a>
+                        </li>
+                        <li {% if tab == 'transmissao_efdreinf' %}class="active"{% endif %}>
+                            <a href="{% url 'importacao_arquivos_eventos' hash='{}'|json_return_page:'importacao_arquivos_eventos'|json_return_hash:'eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ=='|json_tab:'transmissao_efdreinf'|json_id:0|json_print:0|base64_encode_me %}">
+                            Transmissão - Reinf
+                        </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+{% endcomment %}
+    {% if not tab %}
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border"><h3 class="box-title">Aguardando importação</h3>
+
+                    </div>
+                    <div class="box-body">
+
+
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Nome do Arquivo</th>
+                                <th>Evento</th>
+                                <th>Versão</th>
+                                <th>Identidade do evento</th>
+                                <th>Status</th>
+                                <th>Data/Hora de Importação</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for a in importacao_arquivos_eventos_lista %}
+                                <tr>
+                                    <td>{{ a.arquivo }}</td>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.versao }}</td>
+                                    <td>{{ a.identidade_evento }}</td>
+                                    <td>{{ a.get_status_display }}</td>
+                                    <td>{{ a.data_hora }}</td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+
+                        </table>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% comment %}
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="box box-danger">
+                    <div class="box-header with-border"><h3 class="box-title">Erros de importação</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Nome do Arquivo</th>
+                                <th>Evento</th>
+                                <th>Versão</th>
+                                <th>Identidade do evento</th>
+                                <th>Status</th>
+                                <th>Data/Hora de Importação</th>
+                                {% if not for_print %}
+                                    <th width="80px">Ações</th>{% endif %}</tr>
+                            </tr>
+                            </thead>
+                            <tbody>{% for a in importacao_arquivos_eventos_erros_lista %}
+                                <tr>
+                                    <td>{{ a.arquivo }}</td>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.versao }}</td>
+                                    <td>{{ a.identidade_evento }}</td>
+                                    <td>{{ a.get_status_display }}</td>
+                                    <td>{{ a.data_hora }}</td>
+                                    <td><div>
+                                        {% if dict_permissoes|get_permissao:'transmissor_lote_esocial_visualizar' %}
+                                            <a href="#">
+                                                <button class="btn btn-warning"><i class="fa fa-fw fa-recycle"></i> Recuperar
+                                                </button>
+                                            </a>
+                                        {% endif %}
+                                    </div></td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endcomment %}
+        {% endif %}
+
+        {% comment %}
+    {% if tab == 'transmissao_esocial' %}
+
+
+        <!-- erros_validacao -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border"><h3 class="box-title">Aguardando envio</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Evento</th>
+                                <th>Identidade</th>
+                                <th>Ordem</th>
+                                {% if not for_print %}
+                                    <th width="80px">Ações</th>{% endif %}</tr>
+                            </tr>
+                            </thead>
+                            <tbody>{% for c in esocial_aguardando_envio %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>{{ a.ordem }}</td>
+                                    <td><div>
+                                        {% if dict_permissoes|get_permissao:'transmissor_lote_esocial_visualizar' %}
+                                            <a href="{% url a.tabela_salvar hash='{}'|json_return_page:'transmissor_lote_salvar'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me %}">
+                                                <button class="btn btn-success"><i class="fa fa-fw fa-check"></i> Enviar agora!
+                                                </button>
+                                            </a>
+                                        {% endif %}
+                                    </div></td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-12">
+                <div class="box box-warning">
+                    <div class="box-header with-border"><h3 class="box-title">Erros de validação</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Evento</th>
+                                <th>Identidade</th>
+                                <th>Ordem</th>
+                                {% if not for_print %}
+                                    <th width="80px">Ações</th>{% endif %}</tr>
+                            </tr>
+                            </thead>
+                            <tbody>{% for a in esocial_erros_validacao %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>{{ a.ordem }}</td>
+                                    <td><div>
+                                        {% if dict_permissoes|get_permissao:'transmissor_lote_esocial_visualizar' %}
+                                            <a href="{% url a.tabela_salvar hash='{}'|json_return_page:'transmissor_lote_salvar'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me %}">
+                                                <button class="btn btn-warning"><i class="fa fa-fw fa-edit"></i> Corrigir
+                                                </button>
+                                            </a>
+                                        {% endif %}
+                                    </div></td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border"><h3 class="box-title">Aguardando autorização de envio</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Evento</th>
+                                <th>Identidade</th>
+                                <th>Ordem</th>
+                                {% if not for_print %}
+                                    <th width="80px">Ações</th>{% endif %}</tr>
+                            </tr>
+                            </thead>
+                            <tbody>{% for a in esocial_aguardando_autorizacao %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>{{ a.ordem }}</td>
+                                    <td><div>
+                                        {% if dict_permissoes|get_permissao:'transmissor_lote_esocial_visualizar' %}
+                                            <a href="{% url a.tabela_salvar hash='{}'|json_return_page:'transmissor_lote_salvar'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me %}">
+                                                <button class="btn btn-primary"><i class="fa fa-fw fa-check"></i> Autorizar
+                                                </button>
+                                            </a>
+                                        {% endif %}
+                                    </div></td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="box box-danger">
+                    <div class="box-header with-border"><h3 class="box-title">Problemas no envio</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Evento</th>
+                                <th>Identidade</th>
+                                <th>Ordem</th>
+                                {% if not for_print %}
+                                    <th width="80px">Ações</th>{% endif %}</tr>
+                            </tr>
+                            </thead>
+                            <tbody>{% for a in esocial_erros_envio %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>{{ a.ordem }}</td>
+                                    <td><div>
+                                        {% if dict_permissoes|get_permissao:'transmissor_lote_esocial_visualizar' %}
+                                            <a href="{% url a.tabela_salvar hash='{}'|json_return_page:'transmissor_lote_salvar'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me %}">
+                                                <button class="btn btn-danger"><i class="fa fa-fw fa-check"></i> Corrigir
+                                                </button>
+                                            </a>
+                                        {% endif %}
+                                    </div></td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+     {% endif %}
+
+
+    {% if tab == 'transmissao_efdreinf' %}
+
+
+        <!-- erros_validacao -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border"><h3 class="box-title">Aguardando envio</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Evento</th>
+                                <th>Identidade</th>
+                                <th>Precedência</th>
+                                <th>Ordem</th>
+                                {% if not for_print %}
+                                    <th width="80px">Ações</th>{% endif %}</tr>
+                            </tr>
+                            </thead>
+                            <tbody>{% for a in efdreinf_aguardando_envio %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>{% if a.validacao_precedencia %}
+                                        <font class="color:green">Aguardando formação de lote</font>
+                                    {% else %}
+                                        <font class="color:red">Aguardando precedência</font>
+                                {% endif %}</td>
+                                    <td>{{ a.ordem }}</td>
+                                    <td><div>
+                                        {% if dict_permissoes|get_permissao:'transmissor_lote_esocial_visualizar' %}
+                                            <a href="{% url a.tabela_salvar hash='{}'|json_return_page:'transmissor_lote_salvar'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me %}">
+                                                <button class="btn btn-success"><i class="fa fa-fw fa-check"></i> Enviar agora!
+                                                </button>
+                                            </a>
+                                        {% endif %}
+                                    </div></td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-12">
+                <div class="box box-warning">
+                    <div class="box-header with-border"><h3 class="box-title">Erros de validação</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Evento</th>
+                                <th>Identidade</th>
+                                <th>Ordem</th>
+                                {% if not for_print %}
+                                    <th width="80px">Ações</th>{% endif %}</tr>
+                            </tr>
+                            </thead>
+                            <tbody>{% for a in efdreinf_erros_validacao %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>{{ a.ordem }}</td>
+                                    <td><div>
+                                        {% if dict_permissoes|get_permissao:'transmissor_lote_esocial_visualizar' %}
+                                            <a href="{% url a.tabela_salvar hash='{}'|json_return_page:'transmissor_lote_salvar'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me %}">
+                                                <button class="btn btn-warning"><i class="fa fa-fw fa-edit"></i> Corrigir
+                                                </button>
+                                            </a>
+                                        {% endif %}
+                                    </div></td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border"><h3 class="box-title">Aguardando autorização de envio</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Evento</th>
+                                <th>Identidade</th>
+                                <th>Ordem</th>
+                                {% if not for_print %}
+                                    <th width="80px">Ações</th>{% endif %}</tr>
+                            </tr>
+                            </thead>
+                            <tbody>{% for a in efdreinf_aguardando_autorizacao %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>{{ a.ordem }}</td>
+                                    <td><div>
+                                        {% if dict_permissoes|get_permissao:'transmissor_lote_esocial_visualizar' %}
+                                            <a href="{% url a.tabela_salvar hash='{}'|json_return_page:'transmissor_lote_salvar'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me %}">
+                                                <button class="btn btn-primary"><i class="fa fa-fw fa-check"></i> Autorizar
+                                                </button>
+                                            </a>
+                                        {% endif %}
+                                    </div></td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="box box-danger">
+                    <div class="box-header with-border"><h3 class="box-title">Problemas no envio</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Evento</th>
+                                <th>Identidade</th>
+                                <th>Ordem</th>
+                                {% if not for_print %}
+                                    <th width="80px">Ações</th>{% endif %}</tr>
+                            </tr>
+                            </thead>
+                            <tbody>{% for a in efdreinf_erros_envio %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>{{ a.ordem }}</td>
+                                    <td><div>
+                                        {% if dict_permissoes|get_permissao:'transmissor_lote_esocial_visualizar' %}
+                                            <a href="{% url a.tabela_salvar hash='{}'|json_return_page:'transmissor_lote_salvar'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me %}">
+                                                <button class="btn btn-danger"><i class="fa fa-fw fa-check"></i> Corrigir
+                                                </button>
+                                            </a>
+                                        {% endif %}
+                                    </div></td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
+     {% endif %}
+     {% endcomment %}
+
+    </section>
+    <script>$(document).ready(function () {
+        $('#btnVisualizar').click(function () {
+            var formAction = '{% url 'importacao_arquivos_eventos' hash='{}'|json_return_page:'importacao_arquivos_eventos'|json_id:0|json_print:0|base64_encode_me %}';
+            $('#FormRelatorio').attr('action', formAction);
+            $('#FormRelatorio').attr('target', '_self');
+            $('#FormRelatorio').submit();
+        });
+        $('#btnImprimir').click(function () {
+            var formAction = '{% url 'importacao_arquivos_eventos' hash='{}'|json_return_page:'importacao_arquivos_eventos'|json_id:0|json_print:1|base64_encode_me %}';
+            $('#FormRelatorio').attr('action', formAction);
+            $('#FormRelatorio').attr('target', '_blank');
+            $('#FormRelatorio').submit();
+        });
+    });</script>{% else %}
+    <section class="invoice">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="page-header">Mapa de Processamento
+                    <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}</small>
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 table-responsive">{% include 'tables/importacao_arquivos_eventos.html' %}</div>
+        </div>
+    </section>{% endif %} {% endblock content %}

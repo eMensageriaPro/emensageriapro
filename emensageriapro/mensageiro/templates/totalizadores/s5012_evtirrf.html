@@ -1,0 +1,289 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+
+{% if not for_print %}
+
+    <section class="content-header">
+      <h1>
+        S-5012 - Informações do IRRF consolidadas por contribuinte
+        <small>Verificações</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">S-5012 - Informações do IRRF consolidadas por contribuinte</a></li>
+        <li class="active">Verificar</li>
+      </ol>
+    </section>
+    <section class="content">
+
+        {% if messages %}
+                <div class="pad margin no-print">
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+                </div>
+        {% endif %}
+
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">S-5012 - Informações do IRRF consolidadas por contribuinte<br>Identidade: {{ s5012_evtirrf.identidade }}</h3>
+              <div class="text-right">
+                <a href="{% url 's5012_evtirrf_verificar' hash='{}'|json_id:s5012_evtirrf_id|json_print:1|base64_encode_me %}" target="_blank">
+                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
+                </a>
+              </div>              
+            </div>
+            <div class="box-body">
+{% else %} 
+   <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            S-5012 - Informações do IRRF consolidadas por contribuinte<br>Identidade: {{ s5012_evtirrf.identidade }}
+            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+{% endif %} 
+
+
+      <h4>Ocorrências</h4>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Tipo</th>
+                  <th>Código</th>
+                  <th>Descrição</th>
+                  <th>Localização</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for a in ocorrencias_lista %}
+                <tr>
+                  <td>{{ a.get_tipo_display }}</td>
+                  <td>{{ a.codigo }}</td>
+                  <td>{{ a.descricao }}</td>
+                  <td>{{ a.localizacao }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="4">Não foram registradas ocorrências para este evento!</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+
+
+
+
+      <h4>Layout</h4>
+
+
+
+
+<table class="table table-bordered">
+              
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtIrrf</td>
+            <td bgcolor="lightgray" colspan="3">Evento consolidado por contribuinte relativo ao Imposto de Renda Retido naFonte incidente sobre remunerações pagas a seus trabalhadores.</td>
+        </tr>
+
+    {% for s5012_evtirrf in s5012_evtirrf_lista %}
+    {% ifequal 1 1 %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do evento de retorno</td>
+        </tr>
+
+
+        <tr {% if s5012_evtirrf.perapur|validacoes_esocial_efdreinf:"s5012_evtirrf.perapur" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">perApur</td>
+            <td width="500px">Informar o mês/ano (formato AAAA-MM), ou apenas o ano (formato AAAA), de referência das informações. Validação: Deve corresponder ao informado pelo empregador no evento de origem (S-1295 ou S-1299).</td>
+            <td width="200px"><b>{% if s5012_evtirrf.perapur or s5012_evtirrf.perapur == 0 %}{{ s5012_evtirrf.perapur }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5012_evtirrf_visualizar' %}
+                <a href="{% url 's5012_evtirrf_salvar'  hash='{}'|json_id:s5012_evtirrf.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+        </tr>
+
+
+        <tr {% if s5012_evtirrf.tpinsc|validacoes_esocial_efdreinf:"s5012_evtirrf.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
+            <td width="200px"><b>{% if s5012_evtirrf.tpinsc or s5012_evtirrf.tpinsc == 0 %}{{ s5012_evtirrf.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5012_evtirrf_visualizar' %}
+                <a href="{% url 's5012_evtirrf_salvar'  hash='{}'|json_id:s5012_evtirrf.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5012_evtirrf.nrinsc|validacoes_esocial_efdreinf:"s5012_evtirrf.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s5012_evtirrf.nrinsc or s5012_evtirrf.nrinsc == 0 %}{{ s5012_evtirrf.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5012_evtirrf_visualizar' %}
+                <a href="{% url 's5012_evtirrf_salvar'  hash='{}'|json_id:s5012_evtirrf.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoIRRF</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas ao Imposto de Renda Retido na Fonte</td>
+        </tr>
+
+
+        <tr {% if s5012_evtirrf.nrrecarqbase|validacoes_esocial_efdreinf:"s5012_evtirrf.nrrecarqbase" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecArqBase</td>
+            <td width="500px">Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador.Validação: Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem ao presente arquivo de retorno (S-1295 ou S-1299)</td>
+            <td width="200px"><b>{% if s5012_evtirrf.nrrecarqbase or s5012_evtirrf.nrrecarqbase == 0 %}{{ s5012_evtirrf.nrrecarqbase }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5012_evtirrf_visualizar' %}
+                <a href="{% url 's5012_evtirrf_salvar'  hash='{}'|json_id:s5012_evtirrf.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5012_evtirrf.indexistinfo|validacoes_esocial_efdreinf:"s5012_evtirrf.indexistinfo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indExistInfo</td>
+            <td width="500px">Indicativo de existência de Imposto de Renda Retido na Fonte, conforme opções a seguir:1 - Há informações de Imposto de Renda Retido na Fonte;2 - Há movimento, porém não há informações de Imposto de Renda Retido naFonte;3 - Não há movimento no período informado em {perApur}.</td>
+            <td width="200px"><b>{% if s5012_evtirrf.indexistinfo or s5012_evtirrf.indexistinfo == 0 %}{{ s5012_evtirrf.indexistinfo|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5012_evtirrf_visualizar' %}
+                <a href="{% url 's5012_evtirrf_salvar'  hash='{}'|json_id:s5012_evtirrf.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoCRContrib</td>
+            <td bgcolor="lightgray" colspan="3">Informações consolidadas do IRRF por código de Receita - CR. Origem S-5002.</td>
+        </tr>
+
+    {% for s5012_infocrcontrib in s5012_infocrcontrib_lista %}
+    {% ifequal s5012_infocrcontrib.s5012_evtirrf.id s5012_evtirrf.id %}
+
+        <tr {% if s5012_infocrcontrib.tpcr|validacoes_esocial_efdreinf:"s5012_infocrcontrib.tpcr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpCR</td>
+            <td width="500px">Código de Receita - CR relativo ao Imposto de Renda Retido na Fonte, conforme legislação em vigor na competência.Validação: Deve ser um código válido, conforme as opções a seguir:0473-01 - IRRF - Residentes Fiscais no Exterior; 0561-07 - IRRF Mensal, 13° salário e Férias sobre Trabalho Assalariado no país ou ausente no exterior a serviço do país, exceto se contratado por Empregador Doméstico ou por Segurado Especial sujeito a recolhimentounificado;0561-08 - IRRF Mensal, 13° salário e Férias sobre Trabalho Assalariado no país ou ausente no exterior a serviço do país, Empregado Doméstico ou Trabalhador contratado por Segurado Especial sujeito a recolhimento unificado;0561-09 - IRRF 13° salário na rescisão de contrato de trabalho relativo a empregador sujeito a recolhimento unificado;0561-10 - IRRF - Empregado doméstico - 13º salário;0561-11 - IRRF - Empregado/Trabalhador Rural - Segurado Especial;0561-12 - IRRF - Empregado/Trabalhador Rural - Segurado Especial 13°salário.0561-13 - IRRF - Empregado/Trabalhador Rural - Segurado Especial 13°salário rescisório;0588-06 - IRRF sobre Rendimento do trabalho sem vínculo empregatício;0610- 01 - IRRF sobre Rendimentos relativos a prestação de serviços de transporte rodoviário internacional de carga, pagos a transportador autônomo PF residente no Paraguai;3533 - Proventos de Aposentadoria, Reserva, Reforma ou Pensão Pagos porPrevidência Pública;3562-01 - IRRF sobre Participação dos trabalhadores em Lucros ou Resultados (PLR).</td>
+            <td width="200px"><b>{% if s5012_infocrcontrib.tpcr or s5012_infocrcontrib.tpcr == 0 %}{{ s5012_infocrcontrib.tpcr|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5012_infocrcontrib_visualizar' %}
+                <a href="{% url 's5012_infocrcontrib_salvar'  hash='{}'|json_id:s5012_infocrcontrib.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s5012_infocrcontrib.vrcr|validacoes_esocial_efdreinf:"s5012_infocrcontrib.vrcr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrCR</td>
+            <td width="500px">Valor correspondente ao Código de Receita - CR apurado.Validação: Deve ser apurado de acordo com a legislação em vigor na competência.Deve ser maior que 0 (zero). Origem: S-5002.</td>
+            <td width="200px"><b>{% if s5012_infocrcontrib.vrcr or s5012_infocrcontrib.vrcr == 0 %}{{ s5012_infocrcontrib.vrcr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5012_infocrcontrib_visualizar' %}
+                <a href="{% url 's5012_infocrcontrib_salvar'  hash='{}'|json_id:s5012_infocrcontrib.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %} {% endifequal %}{% endfor %}
+</table>
+{% if not for_print %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %} 
+
+        </div>
+      </div>
+    </section>
+{% endif %}  
+
+{% endblock content %}

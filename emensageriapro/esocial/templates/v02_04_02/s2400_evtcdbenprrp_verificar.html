@@ -1,0 +1,1216 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+
+{% if not for_print %}
+
+    <section class="content-header">
+      <h1>
+        S-2400 - Cadastro de Benefícios Previdenciários - RPPS
+        <small>Verificações</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">S-2400 - Cadastro de Benefícios Previdenciários - RPPS</a></li>
+        <li class="active">Verificar</li>
+      </ol>
+    </section>
+    <section class="content">
+
+        {% if messages %}
+                <div class="pad margin no-print">
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+                </div>
+        {% endif %}
+
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">S-2400 - Cadastro de Benefícios Previdenciários - RPPS<br>Identidade: {{ s2400_evtcdbenprrp.identidade }}</h3>
+              <div class="text-right">
+                <a href="{% url 's2400_evtcdbenprrp_verificar' hash='{}'|json_id:s2400_evtcdbenprrp_id|json_print:1|base64_encode_me %}" target="_blank">
+                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
+                </a>
+
+
+
+                  <div class="btn-group">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="text-left"><a
+                                            href="{% url 's2400_evtcdbenprrp_verificar' hash='{}'|json_id:s2400_evtcdbenprrp_id|json_print:2|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
+                                    <li class="text-left"><a
+                                            href="{% url 's2400_evtcdbenprrp_verificar' hash='{}'|json_id:s2400_evtcdbenprrp_id|json_print:3|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
+                                    <!--<li class="text-left"><a
+                                            href="{% url 's2400_evtcdbenprrp_verificar' hash='{}'|json_id:s2400_evtcdbenprrp_id|json_print:4|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
+                                </ul>
+                            </div>&nbsp;
+
+              </div>              
+            </div>
+            <div class="box-body">
+{% else %} 
+   <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            S-2400 - Cadastro de Benefícios Previdenciários - RPPS<br>Identidade: {{ s2400_evtcdbenprrp.identidade }}
+            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+{% endif %} 
+
+
+
+
+      <h4>Layout</h4>
+
+
+
+
+<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
+              
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtCdBenPrRP</td>
+            <td bgcolor="lightgray" colspan="3">Evento de cadastro de benefícios previdenciários de Regimes Próprios Regras de validação: REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXISTE_INFO_EMPREGADOR REGRA_RETIFICA_MESMO_VINCULO</td>
+        </tr>
+
+    {% for s2400_evtcdbenprrp in s2400_evtcdbenprrp_lista %}
+    {% ifequal 1 1 %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
+        </tr>
+
+
+        <tr {% if s2400_evtcdbenprrp.indretif|validacoes_esocial_efdreinf:"s2400_evtcdbenprrp.indretif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indRetif</td>
+            <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2400_evtcdbenprrp.indretif or s2400_evtcdbenprrp.indretif == 0 %}{{ s2400_evtcdbenprrp.indretif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_evtcdbenprrp_visualizar' %}
+                <a href="{% url 's2400_evtcdbenprrp_salvar'  hash='{}'|json_id:s2400_evtcdbenprrp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_evtcdbenprrp.nrrecibo|validacoes_esocial_efdreinf:"s2400_evtcdbenprrp.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecibo</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2].Deve ser um recibo de entrega válido, correspondente ao arquivo que estásendo retificado.</td>
+            <td width="200px"><b>{% if s2400_evtcdbenprrp.nrrecibo or s2400_evtcdbenprrp.nrrecibo == 0 %}{{ s2400_evtcdbenprrp.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_evtcdbenprrp_visualizar' %}
+                <a href="{% url 's2400_evtcdbenprrp_salvar'  hash='{}'|json_id:s2400_evtcdbenprrp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_evtcdbenprrp.tpamb|validacoes_esocial_efdreinf:"s2400_evtcdbenprrp.tpamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAmb</td>
+            <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2400_evtcdbenprrp.tpamb or s2400_evtcdbenprrp.tpamb == 0 %}{{ s2400_evtcdbenprrp.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_evtcdbenprrp_visualizar' %}
+                <a href="{% url 's2400_evtcdbenprrp_salvar'  hash='{}'|json_id:s2400_evtcdbenprrp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_evtcdbenprrp.procemi|validacoes_esocial_efdreinf:"s2400_evtcdbenprrp.procemi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">procEmi</td>
+            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="200px"><b>{% if s2400_evtcdbenprrp.procemi or s2400_evtcdbenprrp.procemi == 0 %}{{ s2400_evtcdbenprrp.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_evtcdbenprrp_visualizar' %}
+                <a href="{% url 's2400_evtcdbenprrp_salvar'  hash='{}'|json_id:s2400_evtcdbenprrp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_evtcdbenprrp.verproc|validacoes_esocial_efdreinf:"s2400_evtcdbenprrp.verproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">verProc</td>
+            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
+            <td width="200px"><b>{% if s2400_evtcdbenprrp.verproc or s2400_evtcdbenprrp.verproc == 0 %}{{ s2400_evtcdbenprrp.verproc }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_evtcdbenprrp_visualizar' %}
+                <a href="{% url 's2400_evtcdbenprrp_salvar'  hash='{}'|json_id:s2400_evtcdbenprrp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+        </tr>
+
+
+        <tr {% if s2400_evtcdbenprrp.tpinsc|validacoes_esocial_efdreinf:"s2400_evtcdbenprrp.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) Valores Válidos: 1</td>
+            <td width="200px"><b>{% if s2400_evtcdbenprrp.tpinsc or s2400_evtcdbenprrp.tpinsc == 0 %}{{ s2400_evtcdbenprrp.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_evtcdbenprrp_visualizar' %}
+                <a href="{% url 's2400_evtcdbenprrp_salvar'  hash='{}'|json_id:s2400_evtcdbenprrp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_evtcdbenprrp.nrinsc|validacoes_esocial_efdreinf:"s2400_evtcdbenprrp.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o CNPJ apenas com a Raiz/Base de oito posições, exceto se natureza jurídica do declarante for de administração pública direta federal ([101-5], [104-0], [107-4] e [116-3]), situação em que o campo deve ser preenchidocom o CNPJ completo com 14 posições. Validação: Deve ser um número de CNPJ válido.</td>
+            <td width="200px"><b>{% if s2400_evtcdbenprrp.nrinsc or s2400_evtcdbenprrp.nrinsc == 0 %}{{ s2400_evtcdbenprrp.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_evtcdbenprrp_visualizar' %}
+                <a href="{% url 's2400_evtcdbenprrp_salvar'  hash='{}'|json_id:s2400_evtcdbenprrp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideBenef</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do beneficiário</td>
+        </tr>
+
+
+        <tr {% if s2400_evtcdbenprrp.cpfbenef|validacoes_esocial_efdreinf:"s2400_evtcdbenprrp.cpfbenef" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfBenef</td>
+            <td width="500px">Informar o CPF do beneficiário.</td>
+            <td width="200px"><b>{% if s2400_evtcdbenprrp.cpfbenef or s2400_evtcdbenprrp.cpfbenef == 0 %}{{ s2400_evtcdbenprrp.cpfbenef }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_evtcdbenprrp_visualizar' %}
+                <a href="{% url 's2400_evtcdbenprrp_salvar'  hash='{}'|json_id:s2400_evtcdbenprrp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_evtcdbenprrp.nmbenefic|validacoes_esocial_efdreinf:"s2400_evtcdbenprrp.nmbenefic" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmBenefic</td>
+            <td width="500px">Nome do Beneficiário</td>
+            <td width="200px"><b>{% if s2400_evtcdbenprrp.nmbenefic or s2400_evtcdbenprrp.nmbenefic == 0 %}{{ s2400_evtcdbenprrp.nmbenefic }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_evtcdbenprrp_visualizar' %}
+                <a href="{% url 's2400_evtcdbenprrp_salvar'  hash='{}'|json_id:s2400_evtcdbenprrp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">dadosBenef</td>
+            <td bgcolor="lightgray" colspan="3">Dados do beneficiário</td>
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">dadosNasc</td>
+            <td bgcolor="lightgray" colspan="3">Informações de nascimento do beneficiário</td>
+        </tr>
+
+
+        <tr {% if s2400_evtcdbenprrp.dtnascto|validacoes_esocial_efdreinf:"s2400_evtcdbenprrp.dtnascto" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtNascto</td>
+            <td width="500px">Preencher com a data de nascimento</td>
+            <td width="200px"><b>{% if s2400_evtcdbenprrp.dtnascto or s2400_evtcdbenprrp.dtnascto == 0 %}{{ s2400_evtcdbenprrp.dtnascto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_evtcdbenprrp_visualizar' %}
+                <a href="{% url 's2400_evtcdbenprrp_salvar'  hash='{}'|json_id:s2400_evtcdbenprrp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_evtcdbenprrp.codmunic|validacoes_esocial_efdreinf:"s2400_evtcdbenprrp.codmunic" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codMunic</td>
+            <td width="500px">Preencher com o código do município, conforme tabela do IBGEValidação: Se informado, deve ser um código existente na tabela do IBGE. Opreenchimento é obrigatório se o país do nascimento for igual a Brasil.</td>
+            <td width="200px"><b>{% if s2400_evtcdbenprrp.codmunic or s2400_evtcdbenprrp.codmunic == 0 %}{{ s2400_evtcdbenprrp.codmunic|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_evtcdbenprrp_visualizar' %}
+                <a href="{% url 's2400_evtcdbenprrp_salvar'  hash='{}'|json_id:s2400_evtcdbenprrp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_evtcdbenprrp.uf|validacoes_esocial_efdreinf:"s2400_evtcdbenprrp.uf" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">uf</td>
+            <td width="500px">Preencher com a sigla da Unidade da FederaçãoValidação: Deve ser uma UF válida.</td>
+            <td width="200px"><b>{% if s2400_evtcdbenprrp.uf or s2400_evtcdbenprrp.uf == 0 %}{{ s2400_evtcdbenprrp.uf }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_evtcdbenprrp_visualizar' %}
+                <a href="{% url 's2400_evtcdbenprrp_salvar'  hash='{}'|json_id:s2400_evtcdbenprrp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_evtcdbenprrp.paisnascto|validacoes_esocial_efdreinf:"s2400_evtcdbenprrp.paisnascto" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">paisNascto</td>
+            <td width="500px">Preencher com o código do país de nascimento do trabalhador, conforme tabela 6.Validação: Deve ser um código existente na tabela.</td>
+            <td width="200px"><b>{% if s2400_evtcdbenprrp.paisnascto or s2400_evtcdbenprrp.paisnascto == 0 %}{{ s2400_evtcdbenprrp.paisnascto }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_evtcdbenprrp_visualizar' %}
+                <a href="{% url 's2400_evtcdbenprrp_salvar'  hash='{}'|json_id:s2400_evtcdbenprrp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_evtcdbenprrp.paisnac|validacoes_esocial_efdreinf:"s2400_evtcdbenprrp.paisnac" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">paisNac</td>
+            <td width="500px">Preencher com o código do país de nacionalidade do trabalhador, conforme tabela 6.Validação: Deve ser um código existente na tabela.</td>
+            <td width="200px"><b>{% if s2400_evtcdbenprrp.paisnac or s2400_evtcdbenprrp.paisnac == 0 %}{{ s2400_evtcdbenprrp.paisnac }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_evtcdbenprrp_visualizar' %}
+                <a href="{% url 's2400_evtcdbenprrp_salvar'  hash='{}'|json_id:s2400_evtcdbenprrp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_evtcdbenprrp.nmmae|validacoes_esocial_efdreinf:"s2400_evtcdbenprrp.nmmae" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmMae</td>
+            <td width="500px">Nome da mãe</td>
+            <td width="200px"><b>{% if s2400_evtcdbenprrp.nmmae or s2400_evtcdbenprrp.nmmae == 0 %}{{ s2400_evtcdbenprrp.nmmae }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_evtcdbenprrp_visualizar' %}
+                <a href="{% url 's2400_evtcdbenprrp_salvar'  hash='{}'|json_id:s2400_evtcdbenprrp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_evtcdbenprrp.nmpai|validacoes_esocial_efdreinf:"s2400_evtcdbenprrp.nmpai" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmPai</td>
+            <td width="500px">Nome do pai do trabalhador</td>
+            <td width="200px"><b>{% if s2400_evtcdbenprrp.nmpai or s2400_evtcdbenprrp.nmpai == 0 %}{{ s2400_evtcdbenprrp.nmpai }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_evtcdbenprrp_visualizar' %}
+                <a href="{% url 's2400_evtcdbenprrp_salvar'  hash='{}'|json_id:s2400_evtcdbenprrp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">endereco</td>
+            <td bgcolor="lightgray" colspan="3">Grupo de informações do endereço do Trabalhador</td>
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">brasil</td>
+            <td bgcolor="lightgray" colspan="3">Preenchimento obrigatório para trabalhador residente no Brasil.</td>
+        </tr>
+
+    {% for s2400_brasil in s2400_brasil_lista %}
+    {% ifequal s2400_brasil.s2400_evtcdbenprrp.id s2400_evtcdbenprrp.id %}
+
+        <tr {% if s2400_brasil.tplograd|validacoes_esocial_efdreinf:"s2400_brasil.tplograd" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpLograd</td>
+            <td width="500px">Tipo de Logradouro, conforme tabela 20.Validação: Deve ser um código válido, existente na tabela 20.</td>
+            <td width="200px"><b>{% if s2400_brasil.tplograd or s2400_brasil.tplograd == 0 %}{{ s2400_brasil.tplograd }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_brasil_visualizar' %}
+                <a href="{% url 's2400_brasil_salvar'  hash='{}'|json_id:s2400_brasil.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_brasil.dsclograd|validacoes_esocial_efdreinf:"s2400_brasil.dsclograd" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscLograd</td>
+            <td width="500px">Descrição do logradouro</td>
+            <td width="200px"><b>{% if s2400_brasil.dsclograd or s2400_brasil.dsclograd == 0 %}{{ s2400_brasil.dsclograd }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_brasil_visualizar' %}
+                <a href="{% url 's2400_brasil_salvar'  hash='{}'|json_id:s2400_brasil.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_brasil.nrlograd|validacoes_esocial_efdreinf:"s2400_brasil.nrlograd" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrLograd</td>
+            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com "S/N"</td>
+            <td width="200px"><b>{% if s2400_brasil.nrlograd or s2400_brasil.nrlograd == 0 %}{{ s2400_brasil.nrlograd }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_brasil_visualizar' %}
+                <a href="{% url 's2400_brasil_salvar'  hash='{}'|json_id:s2400_brasil.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_brasil.complemento|validacoes_esocial_efdreinf:"s2400_brasil.complemento" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">complemento</td>
+            <td width="500px">Complemento do logradouro.</td>
+            <td width="200px"><b>{% if s2400_brasil.complemento or s2400_brasil.complemento == 0 %}{{ s2400_brasil.complemento }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_brasil_visualizar' %}
+                <a href="{% url 's2400_brasil_salvar'  hash='{}'|json_id:s2400_brasil.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_brasil.bairro|validacoes_esocial_efdreinf:"s2400_brasil.bairro" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">bairro</td>
+            <td width="500px">Nome do bairro/distrito</td>
+            <td width="200px"><b>{% if s2400_brasil.bairro or s2400_brasil.bairro == 0 %}{{ s2400_brasil.bairro }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_brasil_visualizar' %}
+                <a href="{% url 's2400_brasil_salvar'  hash='{}'|json_id:s2400_brasil.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_brasil.cep|validacoes_esocial_efdreinf:"s2400_brasil.cep" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cep</td>
+            <td width="500px">Código de Endereçamento Postal - CEP. Validação: Deve ser preenchido apenas com números. Deve ser um CEP válido.</td>
+            <td width="200px"><b>{% if s2400_brasil.cep or s2400_brasil.cep == 0 %}{{ s2400_brasil.cep }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_brasil_visualizar' %}
+                <a href="{% url 's2400_brasil_salvar'  hash='{}'|json_id:s2400_brasil.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_brasil.codmunic|validacoes_esocial_efdreinf:"s2400_brasil.codmunic" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codMunic</td>
+            <td width="500px">Preencher com o código do município, conforme tabela do IBGE Validação: Deve ser um código existente na tabela do IBGE.</td>
+            <td width="200px"><b>{% if s2400_brasil.codmunic or s2400_brasil.codmunic == 0 %}{{ s2400_brasil.codmunic|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_brasil_visualizar' %}
+                <a href="{% url 's2400_brasil_salvar'  hash='{}'|json_id:s2400_brasil.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_brasil.uf|validacoes_esocial_efdreinf:"s2400_brasil.uf" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">uf</td>
+            <td width="500px">Preencher com a sigla da Unidade da FederaçãoValidação: Deve ser uma UF válida.</td>
+            <td width="200px"><b>{% if s2400_brasil.uf or s2400_brasil.uf == 0 %}{{ s2400_brasil.uf }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_brasil_visualizar' %}
+                <a href="{% url 's2400_brasil_salvar'  hash='{}'|json_id:s2400_brasil.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">exterior</td>
+            <td bgcolor="lightgray" colspan="3">Preenchido em caso de trabalhador residente no exterior.</td>
+        </tr>
+
+    {% for s2400_exterior in s2400_exterior_lista %}
+    {% ifequal s2400_exterior.s2400_evtcdbenprrp.id s2400_evtcdbenprrp.id %}
+
+        <tr {% if s2400_exterior.paisresid|validacoes_esocial_efdreinf:"s2400_exterior.paisresid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">paisResid</td>
+            <td width="500px">Preencher com o código do país, conforme tabela 6. Validação: Deve ser um código existente na tabela</td>
+            <td width="200px"><b>{% if s2400_exterior.paisresid or s2400_exterior.paisresid == 0 %}{{ s2400_exterior.paisresid }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_exterior_visualizar' %}
+                <a href="{% url 's2400_exterior_salvar'  hash='{}'|json_id:s2400_exterior.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_exterior.dsclograd|validacoes_esocial_efdreinf:"s2400_exterior.dsclograd" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscLograd</td>
+            <td width="500px">Descrição do logradouro</td>
+            <td width="200px"><b>{% if s2400_exterior.dsclograd or s2400_exterior.dsclograd == 0 %}{{ s2400_exterior.dsclograd }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_exterior_visualizar' %}
+                <a href="{% url 's2400_exterior_salvar'  hash='{}'|json_id:s2400_exterior.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_exterior.nrlograd|validacoes_esocial_efdreinf:"s2400_exterior.nrlograd" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrLograd</td>
+            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com "S/N"</td>
+            <td width="200px"><b>{% if s2400_exterior.nrlograd or s2400_exterior.nrlograd == 0 %}{{ s2400_exterior.nrlograd }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_exterior_visualizar' %}
+                <a href="{% url 's2400_exterior_salvar'  hash='{}'|json_id:s2400_exterior.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_exterior.complemento|validacoes_esocial_efdreinf:"s2400_exterior.complemento" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">complemento</td>
+            <td width="500px">Complemento do logradouro.</td>
+            <td width="200px"><b>{% if s2400_exterior.complemento or s2400_exterior.complemento == 0 %}{{ s2400_exterior.complemento }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_exterior_visualizar' %}
+                <a href="{% url 's2400_exterior_salvar'  hash='{}'|json_id:s2400_exterior.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_exterior.bairro|validacoes_esocial_efdreinf:"s2400_exterior.bairro" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">bairro</td>
+            <td width="500px">Nome do bairro/distrito</td>
+            <td width="200px"><b>{% if s2400_exterior.bairro or s2400_exterior.bairro == 0 %}{{ s2400_exterior.bairro }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_exterior_visualizar' %}
+                <a href="{% url 's2400_exterior_salvar'  hash='{}'|json_id:s2400_exterior.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_exterior.nmcid|validacoes_esocial_efdreinf:"s2400_exterior.nmcid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmCid</td>
+            <td width="500px">Nome da Cidade</td>
+            <td width="200px"><b>{% if s2400_exterior.nmcid or s2400_exterior.nmcid == 0 %}{{ s2400_exterior.nmcid }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_exterior_visualizar' %}
+                <a href="{% url 's2400_exterior_salvar'  hash='{}'|json_id:s2400_exterior.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_exterior.codpostal|validacoes_esocial_efdreinf:"s2400_exterior.codpostal" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codPostal</td>
+            <td width="500px">Código de Endereçamento Postal</td>
+            <td width="200px"><b>{% if s2400_exterior.codpostal or s2400_exterior.codpostal == 0 %}{{ s2400_exterior.codpostal }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_exterior_visualizar' %}
+                <a href="{% url 's2400_exterior_salvar'  hash='{}'|json_id:s2400_exterior.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}   
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoBeneficio</td>
+            <td bgcolor="lightgray" colspan="3">Informações relacionadas ao benefício previdenciário concedido ao servidorRegras de validação: REGRA_TSV_ATIVO_NA_DTEVENTO REGRA_VINCULO_ATIVO_NA_DTEVENTO</td>
+        </tr>
+
+
+        <tr {% if s2400_evtcdbenprrp.tpplanrp|validacoes_esocial_efdreinf:"s2400_evtcdbenprrp.tpplanrp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpPlanRP</td>
+            <td width="500px">Tipo de plano de segregação da massa:1 - Plano previdenciário ou único;2 - Plano financeiro. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2400_evtcdbenprrp.tpplanrp or s2400_evtcdbenprrp.tpplanrp == 0 %}{{ s2400_evtcdbenprrp.tpplanrp|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_evtcdbenprrp_visualizar' %}
+                <a href="{% url 's2400_evtcdbenprrp_salvar'  hash='{}'|json_id:s2400_evtcdbenprrp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">iniBeneficio</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas a benefícios previdenciários - InícioValidação: Não pode ser informado se já houver informação anterior de benefícios para o beneficiário identificado em {ideBenef} e para os qual não tenha havido ainda informação de término de benefícios.</td>
+        </tr>
+
+    {% for s2400_inibeneficio in s2400_inibeneficio_lista %}
+    {% ifequal s2400_inibeneficio.s2400_evtcdbenprrp.id s2400_evtcdbenprrp.id %}
+
+        <tr {% if s2400_inibeneficio.tpbenef|validacoes_esocial_efdreinf:"s2400_inibeneficio.tpbenef" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpBenef</td>
+            <td width="500px">Tipo de benefício previdenciário, conforme tabela 25Validação: Deve ser um código existente na tabela 25</td>
+            <td width="200px"><b>{% if s2400_inibeneficio.tpbenef or s2400_inibeneficio.tpbenef == 0 %}{{ s2400_inibeneficio.tpbenef|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_inibeneficio_visualizar' %}
+                <a href="{% url 's2400_inibeneficio_salvar'  hash='{}'|json_id:s2400_inibeneficio.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_inibeneficio.nrbenefic|validacoes_esocial_efdreinf:"s2400_inibeneficio.nrbenefic" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrBenefic</td>
+            <td width="500px">Número do benefício previdenciário</td>
+            <td width="200px"><b>{% if s2400_inibeneficio.nrbenefic or s2400_inibeneficio.nrbenefic == 0 %}{{ s2400_inibeneficio.nrbenefic }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_inibeneficio_visualizar' %}
+                <a href="{% url 's2400_inibeneficio_salvar'  hash='{}'|json_id:s2400_inibeneficio.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_inibeneficio.dtinibenef|validacoes_esocial_efdreinf:"s2400_inibeneficio.dtinibenef" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtIniBenef</td>
+            <td width="500px">Data de início do benefício previdenciário</td>
+            <td width="200px"><b>{% if s2400_inibeneficio.dtinibenef or s2400_inibeneficio.dtinibenef == 0 %}{{ s2400_inibeneficio.dtinibenef|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_inibeneficio_visualizar' %}
+                <a href="{% url 's2400_inibeneficio_salvar'  hash='{}'|json_id:s2400_inibeneficio.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_inibeneficio.vrbenef|validacoes_esocial_efdreinf:"s2400_inibeneficio.vrbenef" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrBenef</td>
+            <td width="500px">Valor do benefício previdenciário</td>
+            <td width="200px"><b>{% if s2400_inibeneficio.vrbenef or s2400_inibeneficio.vrbenef == 0 %}{{ s2400_inibeneficio.vrbenef|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_inibeneficio_visualizar' %}
+                <a href="{% url 's2400_inibeneficio_salvar'  hash='{}'|json_id:s2400_inibeneficio.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoPenMorte</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas a pensão por morte</td>
+        </tr>
+
+    {% for s2400_inibeneficio_infopenmorte in s2400_inibeneficio_infopenmorte_lista %}
+    {% ifequal s2400_inibeneficio_infopenmorte.s2400_inibeneficio.id s2400_inibeneficio.id %}
+
+        <tr {% if s2400_inibeneficio_infopenmorte.idquota|validacoes_esocial_efdreinf:"s2400_inibeneficio_infopenmorte.idquota" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">idQuota</td>
+            <td width="500px">Identificação da quota do benefício</td>
+            <td width="200px"><b>{% if s2400_inibeneficio_infopenmorte.idquota or s2400_inibeneficio_infopenmorte.idquota == 0 %}{{ s2400_inibeneficio_infopenmorte.idquota }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_inibeneficio_infopenmorte_visualizar' %}
+                <a href="{% url 's2400_inibeneficio_infopenmorte_salvar'  hash='{}'|json_id:s2400_inibeneficio_infopenmorte.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_inibeneficio_infopenmorte.cpfinst|validacoes_esocial_efdreinf:"s2400_inibeneficio_infopenmorte.cpfinst" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfInst</td>
+            <td width="500px">CPF do instituidor da pensão por morte</td>
+            <td width="200px"><b>{% if s2400_inibeneficio_infopenmorte.cpfinst or s2400_inibeneficio_infopenmorte.cpfinst == 0 %}{{ s2400_inibeneficio_infopenmorte.cpfinst }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_inibeneficio_infopenmorte_visualizar' %}
+                <a href="{% url 's2400_inibeneficio_infopenmorte_salvar'  hash='{}'|json_id:s2400_inibeneficio_infopenmorte.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">altBeneficio</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas a benefícios previdenciários - Alteração. Validação: Só pode ser informado se já houver informação anterior de benefícios para o beneficiário identificado em {ideBenef} e para o qual não tenha havido ainda informação de término de benefícios.</td>
+        </tr>
+
+    {% for s2400_altbeneficio in s2400_altbeneficio_lista %}
+    {% ifequal s2400_altbeneficio.s2400_evtcdbenprrp.id s2400_evtcdbenprrp.id %}
+
+        <tr {% if s2400_altbeneficio.tpbenef|validacoes_esocial_efdreinf:"s2400_altbeneficio.tpbenef" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpBenef</td>
+            <td width="500px">Tipo de benefício previdenciário, conforme tabela 25Validação: Deve ser um código existente na tabela 25</td>
+            <td width="200px"><b>{% if s2400_altbeneficio.tpbenef or s2400_altbeneficio.tpbenef == 0 %}{{ s2400_altbeneficio.tpbenef|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_altbeneficio_visualizar' %}
+                <a href="{% url 's2400_altbeneficio_salvar'  hash='{}'|json_id:s2400_altbeneficio.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_altbeneficio.nrbenefic|validacoes_esocial_efdreinf:"s2400_altbeneficio.nrbenefic" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrBenefic</td>
+            <td width="500px">Número do benefício previdenciário</td>
+            <td width="200px"><b>{% if s2400_altbeneficio.nrbenefic or s2400_altbeneficio.nrbenefic == 0 %}{{ s2400_altbeneficio.nrbenefic }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_altbeneficio_visualizar' %}
+                <a href="{% url 's2400_altbeneficio_salvar'  hash='{}'|json_id:s2400_altbeneficio.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_altbeneficio.dtinibenef|validacoes_esocial_efdreinf:"s2400_altbeneficio.dtinibenef" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtIniBenef</td>
+            <td width="500px">Data de início do benefício previdenciário</td>
+            <td width="200px"><b>{% if s2400_altbeneficio.dtinibenef or s2400_altbeneficio.dtinibenef == 0 %}{{ s2400_altbeneficio.dtinibenef|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_altbeneficio_visualizar' %}
+                <a href="{% url 's2400_altbeneficio_salvar'  hash='{}'|json_id:s2400_altbeneficio.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_altbeneficio.vrbenef|validacoes_esocial_efdreinf:"s2400_altbeneficio.vrbenef" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrBenef</td>
+            <td width="500px">Valor do benefício previdenciário</td>
+            <td width="200px"><b>{% if s2400_altbeneficio.vrbenef or s2400_altbeneficio.vrbenef == 0 %}{{ s2400_altbeneficio.vrbenef|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_altbeneficio_visualizar' %}
+                <a href="{% url 's2400_altbeneficio_salvar'  hash='{}'|json_id:s2400_altbeneficio.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoPenMorte</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas a pensão por morte</td>
+        </tr>
+
+    {% for s2400_altbeneficio_infopenmorte in s2400_altbeneficio_infopenmorte_lista %}
+    {% ifequal s2400_altbeneficio_infopenmorte.s2400_altbeneficio.id s2400_altbeneficio.id %}
+
+        <tr {% if s2400_altbeneficio_infopenmorte.idquota|validacoes_esocial_efdreinf:"s2400_altbeneficio_infopenmorte.idquota" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">idQuota</td>
+            <td width="500px">Identificação da quota do benefício</td>
+            <td width="200px"><b>{% if s2400_altbeneficio_infopenmorte.idquota or s2400_altbeneficio_infopenmorte.idquota == 0 %}{{ s2400_altbeneficio_infopenmorte.idquota }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_altbeneficio_infopenmorte_visualizar' %}
+                <a href="{% url 's2400_altbeneficio_infopenmorte_salvar'  hash='{}'|json_id:s2400_altbeneficio_infopenmorte.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_altbeneficio_infopenmorte.cpfinst|validacoes_esocial_efdreinf:"s2400_altbeneficio_infopenmorte.cpfinst" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfInst</td>
+            <td width="500px">CPF do instituidor da pensão por morte</td>
+            <td width="200px"><b>{% if s2400_altbeneficio_infopenmorte.cpfinst or s2400_altbeneficio_infopenmorte.cpfinst == 0 %}{{ s2400_altbeneficio_infopenmorte.cpfinst }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_altbeneficio_infopenmorte_visualizar' %}
+                <a href="{% url 's2400_altbeneficio_infopenmorte_salvar'  hash='{}'|json_id:s2400_altbeneficio_infopenmorte.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">fimBeneficio</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas a benefícios previdenciários - Término. Validação: Só pode ser informado se já houver informação anterior de benefícios para o beneficiário identificado em {ideBenef} e para o qual não tenha havido ainda informação de término de benefícios.</td>
+        </tr>
+
+    {% for s2400_fimbeneficio in s2400_fimbeneficio_lista %}
+    {% ifequal s2400_fimbeneficio.s2400_evtcdbenprrp.id s2400_evtcdbenprrp.id %}
+
+        <tr {% if s2400_fimbeneficio.tpbenef|validacoes_esocial_efdreinf:"s2400_fimbeneficio.tpbenef" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpBenef</td>
+            <td width="500px">Tipo de benefício previdenciário, conforme tabela 25Validação: Deve ser um código existente na tabela 25</td>
+            <td width="200px"><b>{% if s2400_fimbeneficio.tpbenef or s2400_fimbeneficio.tpbenef == 0 %}{{ s2400_fimbeneficio.tpbenef|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_fimbeneficio_visualizar' %}
+                <a href="{% url 's2400_fimbeneficio_salvar'  hash='{}'|json_id:s2400_fimbeneficio.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_fimbeneficio.nrbenefic|validacoes_esocial_efdreinf:"s2400_fimbeneficio.nrbenefic" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrBenefic</td>
+            <td width="500px">Número do benefício previdenciário</td>
+            <td width="200px"><b>{% if s2400_fimbeneficio.nrbenefic or s2400_fimbeneficio.nrbenefic == 0 %}{{ s2400_fimbeneficio.nrbenefic }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_fimbeneficio_visualizar' %}
+                <a href="{% url 's2400_fimbeneficio_salvar'  hash='{}'|json_id:s2400_fimbeneficio.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_fimbeneficio.dtfimbenef|validacoes_esocial_efdreinf:"s2400_fimbeneficio.dtfimbenef" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtFimBenef</td>
+            <td width="500px">Data de término de todos os benefícios previdenciários devidos ao beneficiário identificado em {ideBenef}.</td>
+            <td width="200px"><b>{% if s2400_fimbeneficio.dtfimbenef or s2400_fimbeneficio.dtfimbenef == 0 %}{{ s2400_fimbeneficio.dtfimbenef|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_fimbeneficio_visualizar' %}
+                <a href="{% url 's2400_fimbeneficio_salvar'  hash='{}'|json_id:s2400_fimbeneficio.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if s2400_fimbeneficio.mtvfim|validacoes_esocial_efdreinf:"s2400_fimbeneficio.mtvfim" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">mtvFim</td>
+            <td width="500px">Motivo que originou a cessação de benefícios ao beneficiário, de acordo com as opções da tabela 26.Validação: Deve ser um valor constante da tabela 26.</td>
+            <td width="200px"><b>{% if s2400_fimbeneficio.mtvfim or s2400_fimbeneficio.mtvfim == 0 %}{{ s2400_fimbeneficio.mtvfim|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2400_fimbeneficio_visualizar' %}
+                <a href="{% url 's2400_fimbeneficio_salvar'  hash='{}'|json_id:s2400_fimbeneficio.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %} {% endifequal %}{% endfor %}
+</table>
+{% if not for_print %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %} 
+
+        </div>
+      </div>
+    </section>
+{% endif %}  
+
+{% endblock content %}

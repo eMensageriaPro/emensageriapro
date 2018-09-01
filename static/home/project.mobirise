@@ -1,0 +1,479 @@
+{
+  "settings": {
+    "currentPage": "index.html",
+    "versionFirst": "3.6.5",
+    "versionPublish": "3.6.5",
+    "name": "My Site",
+    "theme": {
+      "name": "mobirise3",
+      "title": "Mobirise 3",
+      "styling": {
+        "primaryColor": "#c0a375",
+        "secondaryColor": "#bfcecb",
+        "successColor": "#90a878",
+        "infoColor": "#7e9b9f",
+        "warningColor": "#f3c649",
+        "dangerColor": "#f28281",
+        "titleFont": "Montserrat",
+        "subtitleFont": "Lora",
+        "textFont": "Raleway",
+        "isRoundedButtons": false,
+        "isAnimatedOnScroll": true,
+        "isScrollToTopButton": false
+      }
+    },
+    "publishType": "local",
+    "publishPath": "file:///Users/marcelovasconcellos/PycharmProjects/eleitores/static/home"
+  },
+  "pages": {
+    "politicoscrm.html": {
+      "settings": {
+        "main": true,
+        "title": "Sistema de Gestão de Eleitores",
+        "meta_descr": "Sistema possui Cadastro de Eleitores, Gerenciamento de Pedidos, Envio de e-mails e SMS. Baseado no conceito de CRM (Customer Relationship Manager), proporciona ao candidato subsídios para uma gestão estratégica de campanha e ferramentas que facilitam a fidelização de eleitores.",
+        "header_custom": "",
+        "footer_custom": "",
+        "html_before": ""
+      },
+      "components": [
+        {
+          "_styles": {
+            ".hide-buttons .nav-btn": {
+              "display": "none !important"
+            },
+            ".navbar-caption": {
+              "color": "#ffffff"
+            },
+            ".navbar-toggler": {
+              "color": "#ffffff"
+            },
+            ".link, .dropdown-item": {
+              "color": "#ffffff"
+            },
+            ".link": {
+              "font-size": "0.75rem"
+            },
+            ".dropdown-item, .nav-dropdown-sm .link": {
+              "font-size": "0.812rem"
+            },
+            ".link:hover, .dropdown-item:hover, .link:focus, .dropdown-item:focus": {
+              "color": "@primaryColor"
+            },
+            ".link[aria-expanded=\"true\"], .dropdown-menu": {
+              "background": "#0e0e0e"
+            },
+            ".nav-dropdown-sm .link:focus, .nav-dropdown-sm .link:hover, .nav-dropdown-sm .dropdown-item:focus, .nav-dropdown-sm .dropdown-item:hover": {
+              "background": "#202020!important"
+            },
+            ".navbar, .nav-dropdown-sm, .nav-dropdown-sm .link[aria-expanded=\"true\"], .nav-dropdown-sm .dropdown-menu": {
+              "background": "#282828"
+            },
+            ".bg-color.transparent .link": {
+              "color": "#ffffff",
+              "transition": "none"
+            },
+            ".bg-color.transparent.opened .link": {
+              "transition": "color .2s ease-in-out"
+            },
+            ".bg-color.transparent.opened .link:hover, .bg-color.transparent.opened .link:focus": {
+              "color": "@primaryColor"
+            },
+            ".link[aria-expanded=\"true\"], .dropdown-item[aria-expanded=\"true\"]": {
+              "color": "#c0a375!important"
+            },
+            "&.mbr-navbar--stuck .mbr-navbar__section": {
+              "background": "#2c2c2c"
+            },
+            ".mbr-navbar__section": {},
+            ".mbr-navbar__hamburger": {
+              "color": "#ffffff"
+            },
+            ".close-icon::before, .close-icon::after": {
+              "background-color": "#ffffff"
+            }
+          },
+          "_name": "menu",
+          "_anchor": "menu-0",
+          "_params": {
+            "bgColor": "#282828",
+            "fontSize": 0.75,
+            "fontName": {},
+            "fontColor": "#ffffff",
+            "fontHoverColor": "@primaryColor",
+            "transparent": true,
+            "sticky": true,
+            "logo": false,
+            "showBrand": true,
+            "collapsed": true,
+            "hideButtons": false
+          },
+          "logo": {
+            "image": {
+              "active": true,
+              "src": "@THEME_PATH@/components/_images/logo.png",
+              "height": 128,
+              "alt": "Mobirise",
+              "link": "https://mobirise.com"
+            },
+            "iconFont": {
+              "class": "mbr-iconfont mbr-iconfont-menu",
+              "link": "https://mobirise.com",
+              "size": 0
+            }
+          },
+          "brand": "<a class=\"navbar-caption\" data-app-btn=\"true\" data-app-selector=\".navbar-caption\" href=\"https://mobirise.com\" data-app-placeholder=\"Type Brand Name\" data-toolbar=\"-mbrBtnMove,-mbrBtnAdd,-mbrBtnRemove,mbrColor\">PoliticoCRM</a>",
+          "items": "<li class=\"nav-item\"><a data-app-btn=\"true\" class=\"nav-link link\" href=\"https://mobirise.com/\">FUNCIONALIDADES</a></li><li class=\"nav-item\"><a data-app-btn=\"true\" class=\"nav-link link\" href=\"https://mobirise.com/\">PLANOS</a></li><li class=\"nav-item\"><a data-app-btn=\"true\" class=\"nav-link link\" href=\"https://mobirise.com/\">CONTATO</a></li><li class=\"nav-item nav-btn\"><a data-app-btn=\"true\" data-button=\"\" data-app-selector=\".btn\" class=\"nav-link btn btn-white btn-white-outline\" href=\"https://mobirise.com/\">DEMOSTRAÇÃO</a></li>"
+        },
+        {
+          "_name": "header1",
+          "_afterNavbarItem": ".mbr-section > .mbr-box__magnet",
+          "_anchor": "header1-1",
+          "_params": {
+            "parallax": true,
+            "bgImageRadio": true,
+            "showArrow": true,
+            "bgImage": "@PROJECT_PATH@/assets/images/foto-2000x1331-76.jpg",
+            "bgColor": "#a07e49",
+            "bgColorRadio": false,
+            "bgVideo": {
+              "url": "https://www.youtube.com/watch?v=uNCr7NdOJgw"
+            },
+            "bgVideoRadio": false,
+            "overlay": false,
+            "overlayOpacity": 0.5,
+            "overlayColor": "#000",
+            "contentAlign": "center",
+            "showTitle": true,
+            "showText": true,
+            "showButtons": true
+          },
+          "title": "SISTEMA DE GESTÃO DE ELEITORES",
+          "text": "Comece hoje a trabalhar na sua campanha eleitoral!<br>Cada vez mais é necessário gerenciamento, estratégia e profissionalismo atingirmos nossa meta. Para tanto, foi construído um Sistema de Gestão de Eleitores com base no conceito de CRM (Customer Relationship Manager) com o intuito de fidelizar o seu eleitor desde o primeiro contato até o dia da eleição.",
+          "buttons": "<a data-app-btn=\"true\" class=\"btn btn-lg btn-primary\" href=\"https://mobirise.com\" data-toolbar=\"-mbrBtnMove\">SAIBA MAIS</a> "
+        },
+        {
+          "_inherit": "features3",
+          "_name": "features6",
+          "_anchor": "index-features6-0",
+          "_params": {
+            "paddingTop": 2,
+            "paddingBottom": 2,
+            "bgImageRadio": false,
+            "parallax": true,
+            "bgImage": "@THEME_PATH@/components/_images/jumbotron.jpg",
+            "bgColor": "#efefef",
+            "bgColorRadio": true,
+            "bgVideo": {
+              "url": "https://www.youtube.com/watch?v=uNCr7NdOJgw"
+            },
+            "bgVideoRadio": false,
+            "overlay": false,
+            "overlayOpacity": 0.5,
+            "overlayColor": "#222",
+            "columns": 4,
+            "showImages": true,
+            "showTitles": true,
+            "showSubtitles": false,
+            "ShowTexts": true,
+            "showButtons": false
+          },
+          "media1": {
+            "iconFont": {
+              "class": "mbr-iconfont mbr-iconfont-features3",
+              "linkInNewWindow": false,
+              "name": "profile-male",
+              "family": "et-line",
+              "active": true,
+              "link": "https://mobirise.com",
+              "size": 0
+            }
+          },
+          "title1": "Cadastre de Eleitores",
+          "subtitle1": "Bootstrap 4 has been noted",
+          "caption1": "Formulário com diversas entradas de dados proporcionando um regitro completo do eleitor (pessoa física), incluíndo acompanhamentos.",
+          "button1": "<a data-app-btn=\"true\" href=\"https://mobirise.com\" class=\"btn btn-primary\" data-toolbar=\"-mbrBtnMove\">MORE</a>",
+          "media2": {
+            "iconFont": {
+              "class": "mbr-iconfont mbr-iconfont-features3",
+              "linkInNewWindow": false,
+              "name": "megaphone",
+              "family": "et-line",
+              "active": true,
+              "link": "https://mobirise.com",
+              "size": 0
+            }
+          },
+          "title2": "Envie e-mails e SMS para seus eleitores",
+          "subtitle2": "One of Bootstrap 4's big points",
+          "caption2": "Comunique-se rapidamente com seus eleitores por meio de e-mails ou SMS. Envio automaticamente e-mails e SMS nos aniversários de seus eleitores",
+          "button2": "<a data-app-btn=\"true\" href=\"https://mobirise.com\" class=\"btn btn-primary\">MORE</a>",
+          "media3": {
+            "iconFont": {
+              "class": "mbr-iconfont mbr-iconfont-features3",
+              "linkInNewWindow": false,
+              "name": "clipboard",
+              "family": "et-line",
+              "active": true,
+              "link": "https://mobirise.com",
+              "size": 0
+            }
+          },
+          "title3": "Gerencie Pedidos",
+          "subtitle3": "Google has a highly exhaustive list of fonts",
+          "caption3": "Gerencie pedidos dos seus eleitores, gerenciando o local, objeto e quantidade de eleitores que solicitaram.",
+          "button3": "<a data-app-btn=\"true\" href=\"https://mobirise.com\" class=\"btn btn-primary\">MORE</a>",
+          "media4": {
+            "iconFont": {
+              "class": "mbr-iconfont mbr-iconfont-features3",
+              "linkInNewWindow": false,
+              "name": "piechart",
+              "family": "et-line",
+              "active": true,
+              "link": "https://mobirise.com",
+              "size": 0
+            }
+          },
+          "title4": "Inteligência Política",
+          "subtitle4": "Mobirise gives you the freedom to develop",
+          "caption4": "Conheça o perfil dos seus eleitores, rapidamente e gerencie-os por meio de seus partidos, municipios e Geolocalização etc.",
+          "button4": "<a data-app-btn=\"true\" href=\"https://mobirise.com\" class=\"btn btn-primary\" data-toolbar=\"-mbrBtnMove\">MORE</a>",
+          "media5": {
+            "iconFont": {
+              "active": true,
+              "class": "mbr-iconfont mbr-iconfont-features3",
+              "name": "global",
+              "link": "https://mobirise.com",
+              "size": 0,
+              "family": "et-line"
+            }
+          },
+          "title5": "Trendy Website Blocks",
+          "subtitle5": "Choose from the large selection of blocks",
+          "caption5": "Choose from the large selection of latest pre-made blocks - jumbotrons, hero images, parallax scrolling, video backgrounds, hamburger menu, sticky header and more.",
+          "button5": "<a data-app-btn=\"true\" href=\"https://mobirise.com\" class=\"btn btn-primary\">MORE</a>",
+          "media6": {
+            "iconFont": {
+              "active": true,
+              "class": "mbr-iconfont mbr-iconfont-features3",
+              "name": "global",
+              "link": "https://mobirise.com",
+              "size": 0,
+              "family": "et-line"
+            }
+          },
+          "title6": "Host Anywhere",
+          "subtitle6": "Don't limit yourself to just one platform",
+          "caption6": "Publish your website to a local drive, FTP or host on Amazon S3, Google Drive, Github. Don't limit yourself to just one platform or service provider.",
+          "button6": "<a data-app-btn=\"true\" href=\"https://mobirise.com\" class=\"btn btn-primary\">MORE</a>"
+        },
+        {
+          "_inherit": "pricing-table1",
+          "_styles": {
+            ".mbr-plan-header, .mbr-plan-body": {
+              "background-color": "#f4f4f4"
+            },
+            "ul, .mbr-plan-title, .mbr-price-value, .mbr-price-figure, .mbr-price-term": {
+              "color": "#28262b"
+            },
+            ".mbr-plan": {
+              "border-color": "#e8e8e8"
+            },
+            ".mbr-plan .list-group-item": {
+              "border-color": "#cfcfcf"
+            },
+            ".mbr-price-term": {
+              "font-size": "20px"
+            },
+            ".mbr-price-value": {
+              "font-size": "20px"
+            },
+            ".mbr-price-figure": {
+              "font-size": "46px"
+            }
+          },
+          "_name": "pricing-table2",
+          "_anchor": "index-pricing-table2-0",
+          "_params": {
+            "paddingTop": 3,
+            "paddingBottom": 3,
+            "bgImageRadio": false,
+            "parallax": true,
+            "bgImage": "@THEME_PATH@/components/_images/jumbotron.jpg",
+            "bgColor": "#fff",
+            "bgColorRadio": true,
+            "bgVideo": {
+              "url": "https://www.youtube.com/watch?v=uNCr7NdOJgw"
+            },
+            "bgVideoRadio": false,
+            "overlay": false,
+            "overlayOpacity": 0.5,
+            "overlayColor": "#222",
+            "showTitle": true,
+            "showSubtitle": true,
+            "firstType": "",
+            "showButtons": true,
+            "secondType": "",
+            "thirdType": "bg-primary",
+            "fourthType": ""
+          },
+          "title": "PLANOS",
+          "subtitle": "Veja nossos planos e escolha o melhor plano para sua necessidade.",
+          "label1": "HOT!",
+          "title1": "PLANO <br>BÁSICO&nbsp;<br>",
+          "subtitle1": "SERVIDOR COMPARTILHADO<br>PAGAMENTO MENSAL<br>",
+          "currency1": "R$",
+          "price1": "150",
+          "period1": "MÊS",
+          "description1": "- sem desconto -<br><br>",
+          "list1": "<ul class=\"list-group list-group-flush\"><p><span style=\"font-size: 14px; line-height: 50px;\">Cadastro ilimitado<br></span><span style=\"font-size: 14px; line-height: 50px;\">(sem fotos)</span></p></ul><hr><ul class=\"list-group list-group-flush\"><p><span style=\"font-size: 0.875rem; line-height: 3.125rem;\">até 144.000 e-mails/mês</span></p></ul><ul class=\"list-group list-group-flush\"><li class=\"list-group-item\">R$ 0,10/SMS <br>(Validade: 6 meses)</li><p></p></ul><ul class=\"list-group list-group-flush\"><li class=\"list-group-item\">até 10 usuários</li></ul>",
+          "button1": "<a data-app-btn=\"true\" href=\"https://mobirise.com\" class=\"btn btn-black btn-black-outline\" data-toolbar=\"-mbrBtnMove\">COMPRAR1</a>",
+          "label2": "PROMOÇÃO!",
+          "title2": "PLANO <br>BÁSICO",
+          "subtitle2": "SERVIDOR COMPARTILHADO<br>PAGAMENTO SEMESTRAL<br>",
+          "currency2": "R$",
+          "price2": "810",
+          "period2": "SEM",
+          "description2": "10% de desconto<br>Equivalente a R$ 135,00/mês",
+          "list2": "<ul class=\"list-group list-group-flush\"><li class=\"list-group-item\">Cadastro ilimitado <br>(sem fotos)</li><li class=\"list-group-item\">até 144.000 e-mails/mês</li><li class=\"list-group-item\">R$ 0,09/SMS <br>(Validade: 6 meses)</li></ul><ul class=\"list-group list-group-flush\"><li class=\"list-group-item\">até 10 usuários</li></ul>",
+          "button2": "<a data-app-btn=\"true\" href=\"https://mobirise.com\" class=\"btn btn-black btn-black-outline\" data-toolbar=\"-mbrBtnMove\">COMPRAR2</a>",
+          "label3": "PROMOÇÃO",
+          "title3": "PLANO <br>BÁSICO",
+          "subtitle3": "SERVIDOR COMPARTILHADO<br>PAGAMENTO ANUAL",
+          "currency3": "R$",
+          "price3": "1260",
+          "period3": "ANO",
+          "description3": "30% de desconto<br>Equivalente a R$ 105,00/mês",
+          "list3": "<ul class=\"list-group list-group-flush\"><li class=\"list-group-item\">Cadastro ilimitado <br>(sem fotos)</li><li class=\"list-group-item\">até 144.000 e-mails/mês</li><li class=\"list-group-item\">R$ 0,08/SMS <br>(Validade: 6 meses)</li></ul><ul class=\"list-group list-group-flush\"><li class=\"list-group-item\">até 10 usuários</li></ul>",
+          "button3": "<a data-app-btn=\"true\" href=\"https://mobirise.com\" class=\"btn btn-black btn-black-outline\" data-toolbar=\"-mbrBtnMove\">COMPRAR3</a>",
+          "label4": "HOT!",
+          "title4": "<p>PLANO <br>AVANÇADO</p>",
+          "subtitle4": "",
+          "currency4": "",
+          "price4": "SOB<br>",
+          "period4": "CONSULTA",
+          "description4": "Orçamento de acordo <br>com sua necessidade.",
+          "list4": "<ul class=\"list-group list-group-flush\"><li class=\"list-group-item\">Cadastro Ilimitado (incluindo fotos)</li><li class=\"list-group-item\">Envio de emails ilimitado</li><li class=\"list-group-item\">R$ 0,06/SMS <br>(Validade: 6 meses)</li></ul><ul class=\"list-group list-group-flush\"><li class=\"list-group-item\">Usuário Ilimitados</li></ul>",
+          "button4": "<a data-app-btn=\"true\" href=\"https://mobirise.com\" class=\"btn btn-black btn-black-outline\" data-toolbar=\"-mbrBtnMove\">CONTATO</a>"
+        },
+        {
+          "_styles": {
+            ".mbr-section-title, .mbr-section-subtitle": {
+              "text-align": "center"
+            },
+            "SMALL": {
+              "color": "#efefef"
+            }
+          },
+          "_name": "header3",
+          "_anchor": "index-header3-0",
+          "_params": {
+            "paddingTop": "4",
+            "paddingBottom": "4",
+            "bgColor": "#c0a375",
+            "showMeta": false
+          },
+          "title": "Comece agora a fidelizar seus eleitores!",
+          "meta": "By John Smith posted July 20, 2016"
+        },
+        {
+          "_name": "form1",
+          "_styles": {
+            ".form-control-label": {
+              "color": "#232323"
+            },
+            ".mbr-section-title": {
+              "font-size": "36px"
+            }
+          },
+          "_anchor": "index-form1-0",
+          "_params": {
+            "labelsColor": "#232323",
+            "paddingTop": 3,
+            "paddingBottom": 3,
+            "bgImageRadio": false,
+            "parallax": true,
+            "bgImage": "@THEME_PATH@/components/_images/jumbotron.jpg",
+            "bgColor": "#fff",
+            "bgColorRadio": true,
+            "overlay": false,
+            "overlayOpacity": 0.5,
+            "overlayColor": "#222",
+            "showTitle": true,
+            "showSubTitle": true
+          },
+          "title": "CONTATE-NOS",
+          "subtitle": "Entre em contato conosco para iniciar agora mesmo sua campanha eleitoral.",
+          "form": {
+            "action": "marcelomdevasconcellos@gmail.com",
+            "alerts": {
+              "success": "Obrigado por entrar em contato conosco."
+            },
+            "fields": {
+              "name": {
+                "title": "Name",
+                "visible": true,
+                "customTitle": "Nome*"
+              },
+              "email": {
+                "title": "Email",
+                "visible": true,
+                "customTitle": "E-mail*"
+              },
+              "phone": {
+                "title": "Phone",
+                "visible": true,
+                "customTitle": "Telefone"
+              },
+              "message": {
+                "title": "Message",
+                "customTitle": "Mensagem"
+              }
+            }
+          },
+          "buttons": "<a data-app-btn=\"true\" type=\"submit\" class=\"btn btn-primary\" data-toolbar=\"-mbrLink,-mbrBtnAdd,-mbrBtnMove\">CONTACT US</a>"
+        },
+        {
+          "_name": "contacts2",
+          "_anchor": "index-contacts2-0",
+          "_params": {
+            "paddingTop": 3,
+            "paddingBottom": 3,
+            "bgImageRadio": false,
+            "parallax": true,
+            "bgImage": "@THEME_PATH@/components/_images/jumbotron.jpg",
+            "bgColor": "#2e2e2e",
+            "bgColorRadio": true,
+            "overlay": true,
+            "overlayOpacity": 0.8,
+            "overlayColor": "#3C3C3C",
+            "googleMap": {
+              "address": "Rua Carolina Sucupira, 1304, Aldeota, Fortaleza, Ceara, Brazil",
+              "placeId": "ChIJTXZv14RIxwcRgRT8Vmn2n5g",
+              "state": "ok",
+              "stateDetails": ""
+            }
+          },
+          "text1": "<strong>Endereço</strong><br>Rua Carolina Sucupira, 1304<br>Aldeota - Fortaleza - Ceara<br><br><br>\n<strong>Contato</strong><br>\nEmail: contato@politicocrm.com.br<br>Telefone: (85) 99618.9739",
+          "text2": ""
+        },
+        {
+          "_name": "footer1",
+          "_anchor": "footer1-2",
+          "_params": {
+            "paddingTop": 2,
+            "paddingBottom": 2,
+            "bgImageRadio": false,
+            "parallax": true,
+            "bgImage": "@THEME_PATH@/components/_images/jumbotron.jpg",
+            "bgColor": "#323232",
+            "bgColorRadio": true,
+            "overlay": true,
+            "overlayOpacity": 0.8,
+            "overlayColor": "#444444"
+          },
+          "text": "Copyright (c) 2016 Marcelo Vasconcellos."
+        }
+      ]
+    }
+  }
+}

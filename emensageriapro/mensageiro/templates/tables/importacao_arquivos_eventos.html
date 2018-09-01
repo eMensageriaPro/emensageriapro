@@ -1,0 +1,50 @@
+{% load templatetags %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+    <tr>{% if show_fields.show_importacao_arquivos or not importacao_arquivos_id and 0 %}
+        <th>Arquivo de Importação</th>{% endif %}{% if show_fields.show_arquivo or 1 %}
+        <th>Nome do Arquivo</th>{% endif %}{% if show_fields.show_evento or 1 %}
+        <th>Evento</th>{% endif %}{% if show_fields.show_versao or 0 %}
+        <th>Versão</th>{% endif %}{% if show_fields.show_identidade_evento or 1 %}
+        <th>Identidade do evento</th>{% endif %}{% if show_fields.show_identidade or 0 %}
+        <th>identidade da tabela</th>{% endif %}{% if show_fields.show_status or 1 %}
+        <th>Status</th>{% endif %}{% if show_fields.show_data_hora or 1 %}
+        <th>Data/Hora de Importação</th>{% endif %}{% if show_fields.show_validacoes or 0 %}
+        <th>Validações</th>{% endif %}{% if show_fields.show_criado_em or 0 %}
+        <th>Criado em</th>{% endif %}{% if show_fields.show_criado_por or not usuarios_id and 0 %}
+        <th>Criado por</th>{% endif %}{% if show_fields.show_modificado_em or 0 %}
+        <th>Modificado em</th>{% endif %}{% if show_fields.show_modificado_por or not usuarios_id and 0 %}
+        <th>Modificado por</th>{% endif %}{% if show_fields.show_excluido or 0 %}
+        <th>Excluido</th>{% endif %}<!-- cabeçalho de colunas especiais -->{% if not for_print %}
+        <th width="90px">Ações</th>{% endif %}</tr>
+    </thead>
+    <tbody>{% for a in importacao_arquivos_eventos_lista %}
+        <tr>{% if show_fields.show_importacao_arquivos or not importacao_arquivos_id and 0 %}
+            <td>{{ a.importacao_arquivos }}</td>{% endif %}{% if show_fields.show_arquivo or 1 %}
+            <td>{{ a.arquivo }}</td>{% endif %}{% if show_fields.show_evento or 1 %}
+            <td>{{ a.evento }}</td>{% endif %}{% if show_fields.show_versao or 0 %}
+            <td>{{ a.versao }}</td>{% endif %}{% if show_fields.show_identidade_evento or 1 %}
+            <td>{{ a.identidade_evento }}</td>{% endif %}{% if show_fields.show_identidade or 0 %}
+            <td>{{ a.identidade }}</td>{% endif %}{% if show_fields.show_status or 1 %}
+            <td>{{ a.get_status_display }}</td>{% endif %}{% if show_fields.show_data_hora or 1 %}
+            <td>{{ a.data_hora }}</td>{% endif %}{% if show_fields.show_validacoes or 0 %}
+            <td>{{ a.validacoes }}</td>{% endif %}{% if show_fields.show_criado_em or 0 %}
+            <td>{{ a.criado_em }}</td>{% endif %}{% if show_fields.show_criado_por or not usuarios_id and 0 %}
+            <td>{{ a.criado_por }}</td>{% endif %}{% if show_fields.show_modificado_em or 0 %}
+            <td>{{ a.modificado_em }}</td>{% endif %}{% if show_fields.show_modificado_por or not usuarios_id and 0 %}
+            <td>{{ a.modificado_por }}</td>{% endif %}{% if show_fields.show_excluido or 0 %}
+            <td>{{ a.excluido }}</td>{% endif %}<!-- colunas especiais -->{% if not for_print %}
+            <td>
+                <div><!-- botões especiais -->
+                    {% if dict_permissoes|get_permissao:'importacao_arquivos_eventos_visualizar' %}
+                        <a href="{% url 'importacao_arquivos_eventos_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            {% if dict_permissoes|get_permissao:'importacao_arquivos_eventos_editar' or dict_permissoes|get_permissao:'importacao_arquivos_eventos_cadastrar' %}
+                                <span class="btn btn-primary" title="Editar"><i
+                                        class="fa fa-fw fa-edit"></i></span>{% else %}
+                                <span class="btn btn-primary" title="Visualizar"><i
+                                        class="fa fa-fw fa-eye"></i></span>{% endif %}</a>{% endif %}
+                    {% if dict_permissoes|get_permissao:'importacao_arquivos_eventos_apagar' %}
+                        <a href="{% url 'importacao_arquivos_eventos_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}"><span
+                                class="btn btn-danger" title="Apagar"><i
+                                class="fa fa-fw fa-times"></i></span></a>{% endif %}</div>
+            </td>{% endif %}</tr>{% endfor %}</table>

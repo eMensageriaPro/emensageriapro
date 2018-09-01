@@ -1,0 +1,1050 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+
+{% if not for_print %}
+
+    <section class="content-header">
+      <h1>
+        R-3010 - Receita de Espetáculo Desportivo
+        <small>Verificações</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">R-3010 - Receita de Espetáculo Desportivo</a></li>
+        <li class="active">Verificar</li>
+      </ol>
+    </section>
+    <section class="content">
+
+        {% if messages %}
+                <div class="pad margin no-print">
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+                </div>
+        {% endif %}
+
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">R-3010 - Receita de Espetáculo Desportivo<br>Identidade: {{ r3010_evtespdesportivo.identidade }}</h3>
+              <div class="text-right">
+                <a href="{% url 'r3010_evtespdesportivo_verificar' hash='{}'|json_id:r3010_evtespdesportivo_id|json_print:1|base64_encode_me %}" target="_blank">
+                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
+                </a>
+
+
+
+                  <div class="btn-group">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="text-left"><a
+                                            href="{% url 'r3010_evtespdesportivo_verificar' hash='{}'|json_id:r3010_evtespdesportivo_id|json_print:2|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
+                                    <li class="text-left"><a
+                                            href="{% url 'r3010_evtespdesportivo_verificar' hash='{}'|json_id:r3010_evtespdesportivo_id|json_print:3|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
+                                    <!--<li class="text-left"><a
+                                            href="{% url 'r3010_evtespdesportivo_verificar' hash='{}'|json_id:r3010_evtespdesportivo_id|json_print:4|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
+                                </ul>
+                            </div>&nbsp;
+
+              </div>              
+            </div>
+            <div class="box-body">
+{% else %} 
+   <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            R-3010 - Receita de Espetáculo Desportivo<br>Identidade: {{ r3010_evtespdesportivo.identidade }}
+            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+{% endif %} 
+
+
+
+
+      <h4>Layout</h4>
+
+
+
+
+<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
+              
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtEspDesportivo</td>
+            <td bgcolor="lightgray" colspan="3">Evento Espetáculo Desportivo do qual participe ao menos uma equipe que mantenha equipe de futebol profissional. Regras de validação: REGRA_EVE_IND_RETIFICACAO REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</td>
+        </tr>
+
+    {% for r3010_evtespdesportivo in r3010_evtespdesportivo_lista %}
+    {% ifequal 1 1 %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
+        </tr>
+
+
+        <tr {% if r3010_evtespdesportivo.indretif|validacoes_esocial_efdreinf:"r3010_evtespdesportivo.indretif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indRetif</td>
+            <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if r3010_evtespdesportivo.indretif or r3010_evtespdesportivo.indretif == 0 %}{{ r3010_evtespdesportivo.indretif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_evtespdesportivo_visualizar' %}
+                <a href="{% url 'r3010_evtespdesportivo_salvar'  hash='{}'|json_id:r3010_evtespdesportivo.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_evtespdesportivo.nrrecibo|validacoes_esocial_efdreinf:"r3010_evtespdesportivo.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecibo</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo objeto da retificação.</td>
+            <td width="200px"><b>{% if r3010_evtespdesportivo.nrrecibo or r3010_evtespdesportivo.nrrecibo == 0 %}{{ r3010_evtespdesportivo.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_evtespdesportivo_visualizar' %}
+                <a href="{% url 'r3010_evtespdesportivo_salvar'  hash='{}'|json_id:r3010_evtespdesportivo.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_evtespdesportivo.dtapuracao|validacoes_esocial_efdreinf:"r3010_evtespdesportivo.dtapuracao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtApuracao</td>
+            <td width="500px">Informar a data de realização do espetáculo desportivo no formato AAAA- MM-DD. Validação: Deve ser uma data posterior a implementação da EFD-Reinf. Não pode ser superior à data atual.</td>
+            <td width="200px"><b>{% if r3010_evtespdesportivo.dtapuracao or r3010_evtespdesportivo.dtapuracao == 0 %}{{ r3010_evtespdesportivo.dtapuracao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_evtespdesportivo_visualizar' %}
+                <a href="{% url 'r3010_evtespdesportivo_salvar'  hash='{}'|json_id:r3010_evtespdesportivo.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_evtespdesportivo.tpamb|validacoes_esocial_efdreinf:"r3010_evtespdesportivo.tpamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAmb</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita; Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if r3010_evtespdesportivo.tpamb or r3010_evtespdesportivo.tpamb == 0 %}{{ r3010_evtespdesportivo.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_evtespdesportivo_visualizar' %}
+                <a href="{% url 'r3010_evtespdesportivo_salvar'  hash='{}'|json_id:r3010_evtespdesportivo.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_evtespdesportivo.procemi|validacoes_esocial_efdreinf:"r3010_evtespdesportivo.procemi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">procEmi</td>
+            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do contribuinte; 2 - Aplicativo governamental. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if r3010_evtespdesportivo.procemi or r3010_evtespdesportivo.procemi == 0 %}{{ r3010_evtespdesportivo.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_evtespdesportivo_visualizar' %}
+                <a href="{% url 'r3010_evtespdesportivo_salvar'  hash='{}'|json_id:r3010_evtespdesportivo.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_evtespdesportivo.verproc|validacoes_esocial_efdreinf:"r3010_evtespdesportivo.verproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">verProc</td>
+            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
+            <td width="200px"><b>{% if r3010_evtespdesportivo.verproc or r3010_evtespdesportivo.verproc == 0 %}{{ r3010_evtespdesportivo.verproc }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_evtespdesportivo_visualizar' %}
+                <a href="{% url 'r3010_evtespdesportivo_salvar'  hash='{}'|json_id:r3010_evtespdesportivo.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideContri</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação da Entidade promotora do espetáculo desportivo</td>
+        </tr>
+
+
+        <tr {% if r3010_evtespdesportivo.tpinsc|validacoes_esocial_efdreinf:"r3010_evtespdesportivo.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição do contribuinte. Validação: Deve ser igual a [1] (CNPJ).</td>
+            <td width="200px"><b>{% if r3010_evtespdesportivo.tpinsc or r3010_evtespdesportivo.tpinsc == 0 %}{{ r3010_evtespdesportivo.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_evtespdesportivo_visualizar' %}
+                <a href="{% url 'r3010_evtespdesportivo_salvar'  hash='{}'|json_id:r3010_evtespdesportivo.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_evtespdesportivo.nrinsc|validacoes_esocial_efdreinf:"r3010_evtespdesportivo.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o CNPJ apenas com a Raiz/Base de oito posições, exceto se natureza jurídica do declarante for de administração pública direta federal ([101-5], [104-0], [107-4] e [116-3]), situação em que o campo deve ser preenchido com o CNPJ completo com 14 posições. Validação: Deve ser um número de CNPJ válido.</td>
+            <td width="200px"><b>{% if r3010_evtespdesportivo.nrinsc or r3010_evtespdesportivo.nrinsc == 0 %}{{ r3010_evtespdesportivo.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_evtespdesportivo_visualizar' %}
+                <a href="{% url 'r3010_evtespdesportivo_salvar'  hash='{}'|json_id:r3010_evtespdesportivo.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEstab</td>
+            <td bgcolor="lightgray" colspan="3">Registro que identifica o estabelecimento que comercializou a produção</td>
+        </tr>
+
+    {% for r3010_ideestab in r3010_ideestab_lista %}
+    {% ifequal r3010_ideestab.r3010_evtespdesportivo.id r3010_evtespdesportivo.id %}
+
+        <tr {% if r3010_ideestab.tpinscestab|validacoes_esocial_efdreinf:"r3010_ideestab.tpinscestab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInscEstab</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição: 1 - CNPJ. Validação: Deve ser igual a [1] (CNPJ) Valores Válidos: 1</td>
+            <td width="200px"><b>{% if r3010_ideestab.tpinscestab or r3010_ideestab.tpinscestab == 0 %}{{ r3010_ideestab.tpinscestab|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_ideestab_visualizar' %}
+                <a href="{% url 'r3010_ideestab_salvar'  hash='{}'|json_id:r3010_ideestab.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_ideestab.nrinscestab|validacoes_esocial_efdreinf:"r3010_ideestab.nrinscestab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInscEstab</td>
+            <td width="500px">Informar o número de inscrição do estabelecimento do contribuinte declarante de acordo com o tipo de inscrição indicado no campo {tpInscEstab}. Validação: A inscrição informada deve ser válida e compatível com {tpInscEstab}.</td>
+            <td width="200px"><b>{% if r3010_ideestab.nrinscestab or r3010_ideestab.nrinscestab == 0 %}{{ r3010_ideestab.nrinscestab }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_ideestab_visualizar' %}
+                <a href="{% url 'r3010_ideestab_salvar'  hash='{}'|json_id:r3010_ideestab.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">boletim</td>
+            <td bgcolor="lightgray" colspan="3">Boletim do Espetáculo Desportivo</td>
+        </tr>
+
+    {% for r3010_boletim in r3010_boletim_lista %}
+    {% ifequal r3010_boletim.r3010_ideestab.id r3010_ideestab.id %}
+
+        <tr {% if r3010_boletim.nrboletim|validacoes_esocial_efdreinf:"r3010_boletim.nrboletim" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrBoletim</td>
+            <td width="500px">Número do boletim relativo ao espetáculo desportivo. Validação: Não pode haver duplicidade de registros com o mesmo {nrBoletim}</td>
+            <td width="200px"><b>{% if r3010_boletim.nrboletim or r3010_boletim.nrboletim == 0 %}{{ r3010_boletim.nrboletim }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_boletim_visualizar' %}
+                <a href="{% url 'r3010_boletim_salvar'  hash='{}'|json_id:r3010_boletim.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_boletim.tpcompeticao|validacoes_esocial_efdreinf:"r3010_boletim.tpcompeticao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpCompeticao</td>
+            <td width="500px">Tipo de Competição: 1 - Oficial; 2 - Não Oficial. Valores Válidos: 1, 2</td>
+            <td width="200px"><b>{% if r3010_boletim.tpcompeticao or r3010_boletim.tpcompeticao == 0 %}{{ r3010_boletim.tpcompeticao|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_boletim_visualizar' %}
+                <a href="{% url 'r3010_boletim_salvar'  hash='{}'|json_id:r3010_boletim.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_boletim.categevento|validacoes_esocial_efdreinf:"r3010_boletim.categevento" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">categEvento</td>
+            <td width="500px">Categoria do evento: 1 - Internacional; 2 - Interestadual; 3 - Estadual; 4 - Local; Valores Válidos: 1, 2, 3, 4</td>
+            <td width="200px"><b>{% if r3010_boletim.categevento or r3010_boletim.categevento == 0 %}{{ r3010_boletim.categevento|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_boletim_visualizar' %}
+                <a href="{% url 'r3010_boletim_salvar'  hash='{}'|json_id:r3010_boletim.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_boletim.moddesportiva|validacoes_esocial_efdreinf:"r3010_boletim.moddesportiva" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">modDesportiva</td>
+            <td width="500px">Descrição da modalidade do evento desportivo</td>
+            <td width="200px"><b>{% if r3010_boletim.moddesportiva or r3010_boletim.moddesportiva == 0 %}{{ r3010_boletim.moddesportiva }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_boletim_visualizar' %}
+                <a href="{% url 'r3010_boletim_salvar'  hash='{}'|json_id:r3010_boletim.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_boletim.nomecompeticao|validacoes_esocial_efdreinf:"r3010_boletim.nomecompeticao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nomeCompeticao</td>
+            <td width="500px">Nome da competição. (Campeonato Brasileiro, Copa do Brasil, Campeonato Estadual, entre outras)</td>
+            <td width="200px"><b>{% if r3010_boletim.nomecompeticao or r3010_boletim.nomecompeticao == 0 %}{{ r3010_boletim.nomecompeticao }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_boletim_visualizar' %}
+                <a href="{% url 'r3010_boletim_salvar'  hash='{}'|json_id:r3010_boletim.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_boletim.cnpjmandante|validacoes_esocial_efdreinf:"r3010_boletim.cnpjmandante" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjMandante</td>
+            <td width="500px">Preencher com o CNPJ do clube mandante Validação: Deve ser um CNPJ válido</td>
+            <td width="200px"><b>{% if r3010_boletim.cnpjmandante or r3010_boletim.cnpjmandante == 0 %}{{ r3010_boletim.cnpjmandante }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_boletim_visualizar' %}
+                <a href="{% url 'r3010_boletim_salvar'  hash='{}'|json_id:r3010_boletim.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_boletim.cnpjvisitante|validacoes_esocial_efdreinf:"r3010_boletim.cnpjvisitante" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjVisitante</td>
+            <td width="500px">Preencher com o número de inscrição do clube visitante no CNPJ. Não deve ser preenchido em caso de clube estrangeiro Validação: Se informado, deve ser um CNPJ válido</td>
+            <td width="200px"><b>{% if r3010_boletim.cnpjvisitante or r3010_boletim.cnpjvisitante == 0 %}{{ r3010_boletim.cnpjvisitante }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_boletim_visualizar' %}
+                <a href="{% url 'r3010_boletim_salvar'  hash='{}'|json_id:r3010_boletim.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_boletim.nomevisitante|validacoes_esocial_efdreinf:"r3010_boletim.nomevisitante" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nomeVisitante</td>
+            <td width="500px">Nome do clube visitante Validação: Preenchimento obrigatório se não preencher {cnpjVisitante}</td>
+            <td width="200px"><b>{% if r3010_boletim.nomevisitante or r3010_boletim.nomevisitante == 0 %}{{ r3010_boletim.nomevisitante }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_boletim_visualizar' %}
+                <a href="{% url 'r3010_boletim_salvar'  hash='{}'|json_id:r3010_boletim.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_boletim.pracadesportiva|validacoes_esocial_efdreinf:"r3010_boletim.pracadesportiva" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">pracaDesportiva</td>
+            <td width="500px">Praça desportiva do local do evento</td>
+            <td width="200px"><b>{% if r3010_boletim.pracadesportiva or r3010_boletim.pracadesportiva == 0 %}{{ r3010_boletim.pracadesportiva }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_boletim_visualizar' %}
+                <a href="{% url 'r3010_boletim_salvar'  hash='{}'|json_id:r3010_boletim.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_boletim.codmunic|validacoes_esocial_efdreinf:"r3010_boletim.codmunic" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codMunic</td>
+            <td width="500px">Preencher com o código do município, conforme tabela do IBGE Validação: Deve ser um código existente na tabela de municípios do IBGE.</td>
+            <td width="200px"><b>{% if r3010_boletim.codmunic or r3010_boletim.codmunic == 0 %}{{ r3010_boletim.codmunic|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_boletim_visualizar' %}
+                <a href="{% url 'r3010_boletim_salvar'  hash='{}'|json_id:r3010_boletim.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_boletim.uf|validacoes_esocial_efdreinf:"r3010_boletim.uf" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">uf</td>
+            <td width="500px">Preencher com a sigla da Unidade da Federação Validação: Deve ser uma UF válida.</td>
+            <td width="200px"><b>{% if r3010_boletim.uf or r3010_boletim.uf == 0 %}{{ r3010_boletim.uf }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_boletim_visualizar' %}
+                <a href="{% url 'r3010_boletim_salvar'  hash='{}'|json_id:r3010_boletim.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_boletim.qtdepagantes|validacoes_esocial_efdreinf:"r3010_boletim.qtdepagantes" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">qtdePagantes</td>
+            <td width="500px">Quantidade de espectadores pagantes do evento</td>
+            <td width="200px"><b>{% if r3010_boletim.qtdepagantes or r3010_boletim.qtdepagantes == 0 %}{{ r3010_boletim.qtdepagantes|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_boletim_visualizar' %}
+                <a href="{% url 'r3010_boletim_salvar'  hash='{}'|json_id:r3010_boletim.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_boletim.qtdenaopagantes|validacoes_esocial_efdreinf:"r3010_boletim.qtdenaopagantes" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">qtdeNaoPagantes</td>
+            <td width="500px">Quantidade de espectadores não pagantes do evento</td>
+            <td width="200px"><b>{% if r3010_boletim.qtdenaopagantes or r3010_boletim.qtdenaopagantes == 0 %}{{ r3010_boletim.qtdenaopagantes|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_boletim_visualizar' %}
+                <a href="{% url 'r3010_boletim_salvar'  hash='{}'|json_id:r3010_boletim.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">receitaIngressos</td>
+            <td bgcolor="lightgray" colspan="3">Receita da Venda de Ingressos</td>
+        </tr>
+
+    {% for r3010_receitaingressos in r3010_receitaingressos_lista %}
+    {% ifequal r3010_receitaingressos.r3010_boletim.id r3010_boletim.id %}
+
+        <tr {% if r3010_receitaingressos.tpingresso|validacoes_esocial_efdreinf:"r3010_receitaingressos.tpingresso" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpIngresso</td>
+            <td width="500px">Tipo de Ingresso: 1 - Arquibancada; 2 - Geral; 3 - Cadeiras; 4 - Camarote; Valores Válidos: 1,2,3,4</td>
+            <td width="200px"><b>{% if r3010_receitaingressos.tpingresso or r3010_receitaingressos.tpingresso == 0 %}{{ r3010_receitaingressos.tpingresso|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_receitaingressos_visualizar' %}
+                <a href="{% url 'r3010_receitaingressos_salvar'  hash='{}'|json_id:r3010_receitaingressos.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_receitaingressos.descingr|validacoes_esocial_efdreinf:"r3010_receitaingressos.descingr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">descIngr</td>
+            <td width="500px">Descrição do tipo de ingresso</td>
+            <td width="200px"><b>{% if r3010_receitaingressos.descingr or r3010_receitaingressos.descingr == 0 %}{{ r3010_receitaingressos.descingr }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_receitaingressos_visualizar' %}
+                <a href="{% url 'r3010_receitaingressos_salvar'  hash='{}'|json_id:r3010_receitaingressos.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_receitaingressos.qtdeingrvenda|validacoes_esocial_efdreinf:"r3010_receitaingressos.qtdeingrvenda" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">qtdeIngrVenda</td>
+            <td width="500px">Número de ingressos colocados à venda</td>
+            <td width="200px"><b>{% if r3010_receitaingressos.qtdeingrvenda or r3010_receitaingressos.qtdeingrvenda == 0 %}{{ r3010_receitaingressos.qtdeingrvenda|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_receitaingressos_visualizar' %}
+                <a href="{% url 'r3010_receitaingressos_salvar'  hash='{}'|json_id:r3010_receitaingressos.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_receitaingressos.qtdeingrvendidos|validacoes_esocial_efdreinf:"r3010_receitaingressos.qtdeingrvendidos" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">qtdeIngrVendidos</td>
+            <td width="500px">Número de ingressos vendidos Validação: Não pode ser superior ao valor informado em {qtdeIngrVenda}</td>
+            <td width="200px"><b>{% if r3010_receitaingressos.qtdeingrvendidos or r3010_receitaingressos.qtdeingrvendidos == 0 %}{{ r3010_receitaingressos.qtdeingrvendidos|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_receitaingressos_visualizar' %}
+                <a href="{% url 'r3010_receitaingressos_salvar'  hash='{}'|json_id:r3010_receitaingressos.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_receitaingressos.qtdeingrdev|validacoes_esocial_efdreinf:"r3010_receitaingressos.qtdeingrdev" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">qtdeIngrDev</td>
+            <td width="500px">Número de ingressos devolvidos Validação: Não pode ser superior ao valor informado em {qtdeIngrVenda}</td>
+            <td width="200px"><b>{% if r3010_receitaingressos.qtdeingrdev or r3010_receitaingressos.qtdeingrdev == 0 %}{{ r3010_receitaingressos.qtdeingrdev|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_receitaingressos_visualizar' %}
+                <a href="{% url 'r3010_receitaingressos_salvar'  hash='{}'|json_id:r3010_receitaingressos.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_receitaingressos.precoindiv|validacoes_esocial_efdreinf:"r3010_receitaingressos.precoindiv" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">precoIndiv</td>
+            <td width="500px">Preço individual do ingresso</td>
+            <td width="200px"><b>{% if r3010_receitaingressos.precoindiv or r3010_receitaingressos.precoindiv == 0 %}{{ r3010_receitaingressos.precoindiv|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_receitaingressos_visualizar' %}
+                <a href="{% url 'r3010_receitaingressos_salvar'  hash='{}'|json_id:r3010_receitaingressos.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_receitaingressos.vlrtotal|validacoes_esocial_efdreinf:"r3010_receitaingressos.vlrtotal" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrTotal</td>
+            <td width="500px">Valor total arrecadado Validação: Deve corresponder a {qtdeIngrVendidos} x {precoIndiv}</td>
+            <td width="200px"><b>{% if r3010_receitaingressos.vlrtotal or r3010_receitaingressos.vlrtotal == 0 %}{{ r3010_receitaingressos.vlrtotal|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_receitaingressos_visualizar' %}
+                <a href="{% url 'r3010_receitaingressos_salvar'  hash='{}'|json_id:r3010_receitaingressos.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">outrasReceitas</td>
+            <td bgcolor="lightgray" colspan="3">Outras receitas do espetáculo</td>
+        </tr>
+
+    {% for r3010_outrasreceitas in r3010_outrasreceitas_lista %}
+    {% ifequal r3010_outrasreceitas.r3010_boletim.id r3010_boletim.id %}
+
+        <tr {% if r3010_outrasreceitas.tpreceita|validacoes_esocial_efdreinf:"r3010_outrasreceitas.tpreceita" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpReceita</td>
+            <td width="500px">Tipo de receita, conforme tabela: 1 - Transmissão; 2 - Propaganda; 3 - Publicidade; 4 - Sorteio; 5 - Outros. Valores Válidos: 1, 2, 3, 4, 5</td>
+            <td width="200px"><b>{% if r3010_outrasreceitas.tpreceita or r3010_outrasreceitas.tpreceita == 0 %}{{ r3010_outrasreceitas.tpreceita|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_outrasreceitas_visualizar' %}
+                <a href="{% url 'r3010_outrasreceitas_salvar'  hash='{}'|json_id:r3010_outrasreceitas.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_outrasreceitas.vlrreceita|validacoes_esocial_efdreinf:"r3010_outrasreceitas.vlrreceita" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrReceita</td>
+            <td width="500px">Valor da receita auferida</td>
+            <td width="200px"><b>{% if r3010_outrasreceitas.vlrreceita or r3010_outrasreceitas.vlrreceita == 0 %}{{ r3010_outrasreceitas.vlrreceita|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_outrasreceitas_visualizar' %}
+                <a href="{% url 'r3010_outrasreceitas_salvar'  hash='{}'|json_id:r3010_outrasreceitas.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_outrasreceitas.descreceita|validacoes_esocial_efdreinf:"r3010_outrasreceitas.descreceita" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">descReceita</td>
+            <td width="500px">Descrição da receita</td>
+            <td width="200px"><b>{% if r3010_outrasreceitas.descreceita or r3010_outrasreceitas.descreceita == 0 %}{{ r3010_outrasreceitas.descreceita }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_outrasreceitas_visualizar' %}
+                <a href="{% url 'r3010_outrasreceitas_salvar'  hash='{}'|json_id:r3010_outrasreceitas.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">receitaTotal</td>
+            <td bgcolor="lightgray" colspan="3">Totalização da Receita</td>
+        </tr>
+
+
+        <tr {% if r3010_ideestab.vlrreceitatotal|validacoes_esocial_efdreinf:"r3010_ideestab.vlrreceitatotal" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrReceitaTotal</td>
+            <td width="500px">Valor da receita bruta total Validação: Deve corresponder a soma de {vlrTotal} de{receitaIngressos} e de {vlrReceita} de {outrasReceitas} que estejam vinculados ao mesmo estabelecimento</td>
+            <td width="200px"><b>{% if r3010_ideestab.vlrreceitatotal or r3010_ideestab.vlrreceitatotal == 0 %}{{ r3010_ideestab.vlrreceitatotal|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_ideestab_visualizar' %}
+                <a href="{% url 'r3010_ideestab_salvar'  hash='{}'|json_id:r3010_ideestab.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_ideestab.vlrcp|validacoes_esocial_efdreinf:"r3010_ideestab.vlrcp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrCP</td>
+            <td width="500px">Valor da contribuição previdenciária</td>
+            <td width="200px"><b>{% if r3010_ideestab.vlrcp or r3010_ideestab.vlrcp == 0 %}{{ r3010_ideestab.vlrcp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_ideestab_visualizar' %}
+                <a href="{% url 'r3010_ideestab_salvar'  hash='{}'|json_id:r3010_ideestab.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_ideestab.vlrcpsusptotal|validacoes_esocial_efdreinf:"r3010_ideestab.vlrcpsusptotal" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrCPSuspTotal</td>
+            <td width="500px">Valor da Contribuição Previdenciária com exigibilidade suspensa. Validação: Deve ser igual ao somatório dos valores informados no campo {vlrCPSusp} do grupo {infoProc}, desconsiderando os processos cujo {indSusp} seja igual a [92]. Não pode ser superior a {vlrCP}.</td>
+            <td width="200px"><b>{% if r3010_ideestab.vlrcpsusptotal or r3010_ideestab.vlrcpsusptotal == 0 %}{{ r3010_ideestab.vlrcpsusptotal|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_ideestab_visualizar' %}
+                <a href="{% url 'r3010_ideestab_salvar'  hash='{}'|json_id:r3010_ideestab.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_ideestab.vlrreceitaclubes|validacoes_esocial_efdreinf:"r3010_ideestab.vlrreceitaclubes" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrReceitaClubes</td>
+            <td width="500px">Valor total da receita destinada aos clubes participantes</td>
+            <td width="200px"><b>{% if r3010_ideestab.vlrreceitaclubes or r3010_ideestab.vlrreceitaclubes == 0 %}{{ r3010_ideestab.vlrreceitaclubes|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_ideestab_visualizar' %}
+                <a href="{% url 'r3010_ideestab_salvar'  hash='{}'|json_id:r3010_ideestab.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_ideestab.vlrretparc|validacoes_esocial_efdreinf:"r3010_ideestab.vlrretparc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrRetParc</td>
+            <td width="500px">Valor retido do clube para amortização do parcelamento especial da Lei 8.641/93, quando for o caso. Se não houver retenção, preencher com 0 (zero).</td>
+            <td width="200px"><b>{% if r3010_ideestab.vlrretparc or r3010_ideestab.vlrretparc == 0 %}{{ r3010_ideestab.vlrretparc|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_ideestab_visualizar' %}
+                <a href="{% url 'r3010_ideestab_salvar'  hash='{}'|json_id:r3010_ideestab.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoProc</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Processos Administrativos/Judiciais com decisão/sentença favorável ao contribuinte.</td>
+        </tr>
+
+    {% for r3010_infoproc in r3010_infoproc_lista %}
+    {% ifequal r3010_infoproc.r3010_ideestab.id r3010_ideestab.id %}
+
+        <tr {% if r3010_infoproc.tpproc|validacoes_esocial_efdreinf:"r3010_infoproc.tpproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpProc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if r3010_infoproc.tpproc or r3010_infoproc.tpproc == 0 %}{{ r3010_infoproc.tpproc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_infoproc_visualizar' %}
+                <a href="{% url 'r3010_infoproc_salvar'  hash='{}'|json_id:r3010_infoproc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_infoproc.nrproc|validacoes_esocial_efdreinf:"r3010_infoproc.nrproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrProc</td>
+            <td width="500px">Informar o número do processo administrativo/judicial. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos.</td>
+            <td width="200px"><b>{% if r3010_infoproc.nrproc or r3010_infoproc.nrproc == 0 %}{{ r3010_infoproc.nrproc }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_infoproc_visualizar' %}
+                <a href="{% url 'r3010_infoproc_salvar'  hash='{}'|json_id:r3010_infoproc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_infoproc.codsusp|validacoes_esocial_efdreinf:"r3010_infoproc.codsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codSusp</td>
+            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. Validação: Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve existir na tabela de processos (R-1070), vinculado ao número do processo informado em {nrProc}.</td>
+            <td width="200px"><b>{% if r3010_infoproc.codsusp or r3010_infoproc.codsusp == 0 %}{{ r3010_infoproc.codsusp|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_infoproc_visualizar' %}
+                <a href="{% url 'r3010_infoproc_salvar'  hash='{}'|json_id:r3010_infoproc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+
+        <tr {% if r3010_infoproc.vlrcpsusp|validacoes_esocial_efdreinf:"r3010_infoproc.vlrcpsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrCPSusp</td>
+            <td width="500px">Valor da Contribuição Previdenciária com exigibilidade suspensa.</td>
+            <td width="200px"><b>{% if r3010_infoproc.vlrcpsusp or r3010_infoproc.vlrcpsusp == 0 %}{{ r3010_infoproc.vlrcpsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r3010_infoproc_visualizar' %}
+                <a href="{% url 'r3010_infoproc_salvar'  hash='{}'|json_id:r3010_infoproc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}     {% endifequal %}{% endfor %} {% endifequal %}{% endfor %}
+</table>
+{% if not for_print %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %} 
+
+        </div>
+      </div>
+    </section>
+{% endif %}  
+
+{% endblock content %}
