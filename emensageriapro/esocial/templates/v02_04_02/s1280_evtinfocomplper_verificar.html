@@ -1,5 +1,36 @@
 {% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
 {% if not for_print %}
 
     <section class="content-header">
@@ -85,26 +116,21 @@
 
 <table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
               
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtInfoComplPer</td>
             <td bgcolor="lightgray" colspan="3">Informações Complementares aos Eventos PeriódicosRegras de validação: REGRA_EVENTOS_EXTEMP REGRA_EVE_FOPAG_IND_RETIFICACAO REGRA_EVE_FOPAG_INFO_COMPAT_CLASSTRIB REGRA_EVE_FOPAG_PERMITE_EXCLUSAO REGRA_EXISTE_INFO_EMPREGADOR</td>
         </tr>
-
     {% for s1280_evtinfocomplper in s1280_evtinfocomplper_lista %}
     {% ifequal 1 1 %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
             <td bgcolor="lightgray" colspan="3">Informações de identificação do evento</td>
         </tr>
 
-
         <tr {% if s1280_evtinfocomplper.indretif|validacoes_esocial_efdreinf:"s1280_evtinfocomplper.indretif" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indRetif</td>
             <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.indretif or s1280_evtinfocomplper.indretif == 0 %}{{ s1280_evtinfocomplper.indretif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -119,13 +145,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1280_evtinfocomplper.nrrecibo|validacoes_esocial_efdreinf:"s1280_evtinfocomplper.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrRecibo</td>
             <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2].Deve ser um recibo de entrega válido, correspondente ao arquivo que estásendo retificado.</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.nrrecibo or s1280_evtinfocomplper.nrrecibo == 0 %}{{ s1280_evtinfocomplper.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -140,13 +164,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1280_evtinfocomplper.indapuracao|validacoes_esocial_efdreinf:"s1280_evtinfocomplper.indapuracao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indApuracao</td>
             <td width="500px">Indicativo de período de apuração:1 - Mensal;2 - Anual (13° salário). Valores Válidos: 1, 2</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.indapuracao or s1280_evtinfocomplper.indapuracao == 0 %}{{ s1280_evtinfocomplper.indapuracao|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -161,13 +183,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1280_evtinfocomplper.perapur|validacoes_esocial_efdreinf:"s1280_evtinfocomplper.perapur" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">perApur</td>
             <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência das informações, se{indApuracao} for igual a [1], ou apenas o ano (formato AAAA), se{indApuracao} for igual a [2]Validação: Deve ser um mês/ano ou ano válido, igual ou posterior a implementação do eSocial.</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.perapur or s1280_evtinfocomplper.perapur == 0 %}{{ s1280_evtinfocomplper.perapur }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -182,13 +202,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1280_evtinfocomplper.tpamb|validacoes_esocial_efdreinf:"s1280_evtinfocomplper.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.tpamb or s1280_evtinfocomplper.tpamb == 0 %}{{ s1280_evtinfocomplper.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -203,13 +221,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1280_evtinfocomplper.procemi|validacoes_esocial_efdreinf:"s1280_evtinfocomplper.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.procemi or s1280_evtinfocomplper.procemi == 0 %}{{ s1280_evtinfocomplper.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -224,13 +240,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1280_evtinfocomplper.verproc|validacoes_esocial_efdreinf:"s1280_evtinfocomplper.verproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.verproc or s1280_evtinfocomplper.verproc == 0 %}{{ s1280_evtinfocomplper.verproc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -246,18 +260,15 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
             <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
         </tr>
 
-
         <tr {% if s1280_evtinfocomplper.tpinsc|validacoes_esocial_efdreinf:"s1280_evtinfocomplper.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.tpinsc or s1280_evtinfocomplper.tpinsc == 0 %}{{ s1280_evtinfocomplper.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -273,12 +284,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1280_evtinfocomplper.nrinsc|validacoes_esocial_efdreinf:"s1280_evtinfocomplper.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.nrinsc or s1280_evtinfocomplper.nrinsc == 0 %}{{ s1280_evtinfocomplper.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -294,20 +303,16 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoSubstPatr</td>
             <td bgcolor="lightgray" colspan="3">Registro preenchido exclusivamente por empresa enquadrada nos artigos 7 a9 da Lei 12.546/2011, conforme classificação tributária indicada no evento deInformações Cadastrais do Empregador.</td>
         </tr>
-
     {% for s1280_infosubstpatr in s1280_infosubstpatr_lista %}
     {% ifequal s1280_infosubstpatr.s1280_evtinfocomplper.id s1280_evtinfocomplper.id %}
-
         <tr {% if s1280_infosubstpatr.indsubstpatr|validacoes_esocial_efdreinf:"s1280_infosubstpatr.indsubstpatr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indSubstPatr</td>
             <td width="500px">Indicativo de substituição da contribuição previdenciária patronal:1 - Integralmente substituída;2 - Parcialmente substituída. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1280_infosubstpatr.indsubstpatr or s1280_infosubstpatr.indsubstpatr == 0 %}{{ s1280_infosubstpatr.indsubstpatr|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -323,12 +328,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1280_infosubstpatr.percredcontrib|validacoes_esocial_efdreinf:"s1280_infosubstpatr.percredcontrib" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">percRedContrib</td>
             <td width="500px">Percentual de redução da contribuição prevista na lei 12.546/2011. Informar ZERO se {indSubstPatr} = 1.Caso contrário, preencher com o percentual correspondente a razão entre a receita de atividades não relacionadas nos artigos 7 e 8 da Lei 12.546/2011 e areceita bruta total.Validação: Se {indSubstPatr} for igual a 1, informar 0 (zero).</td>
             <td width="200px"><b>{% if s1280_infosubstpatr.percredcontrib or s1280_infosubstpatr.percredcontrib == 0 %}{{ s1280_infosubstpatr.percredcontrib|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -344,20 +347,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoSubstPatrOpPort</td>
             <td bgcolor="lightgray" colspan="3">Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei12.546/2011.</td>
         </tr>
-
     {% for s1280_infosubstpatropport in s1280_infosubstpatropport_lista %}
     {% ifequal s1280_infosubstpatropport.s1280_evtinfocomplper.id s1280_evtinfocomplper.id %}
-
         <tr {% if s1280_infosubstpatropport.cnpjopportuario|validacoes_esocial_efdreinf:"s1280_infosubstpatropport.cnpjopportuario" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnpjOpPortuario</td>
             <td width="500px">Preencher com o CNPJ do operador portuárioValidação: Deve ser um CNPJ válido, constante na tabela de operadores portuários (S-1080).</td>
             <td width="200px"><b>{% if s1280_infosubstpatropport.cnpjopportuario or s1280_infosubstpatropport.cnpjopportuario == 0 %}{{ s1280_infosubstpatropport.cnpjopportuario }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -373,20 +372,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoAtivConcom</td>
             <td bgcolor="lightgray" colspan="3">Registro preenchido por empresa enquadrada no regime de tributação SimplesNacional com tributação previdenciária substituída e não substituída.</td>
         </tr>
-
     {% for s1280_infoativconcom in s1280_infoativconcom_lista %}
     {% ifequal s1280_infoativconcom.s1280_evtinfocomplper.id s1280_evtinfocomplper.id %}
-
         <tr {% if s1280_infoativconcom.fatormes|validacoes_esocial_efdreinf:"s1280_infoativconcom.fatormes" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fatorMes</td>
             <td width="500px">Informe o fator a ser utilizado para cálculo da contribuição patronal do mês dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar nº 123/2006.</td>
             <td width="200px"><b>{% if s1280_infoativconcom.fatormes or s1280_infoativconcom.fatormes == 0 %}{{ s1280_infoativconcom.fatormes|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -402,12 +397,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1280_infoativconcom.fator13|validacoes_esocial_efdreinf:"s1280_infoativconcom.fator13" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fator13</td>
             <td width="500px">Informe o fator a ser utilizado para cálculo da contribuição patronal do décimo terceiro dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar nº 123/2006.</td>
             <td width="200px"><b>{% if s1280_infoativconcom.fator13 or s1280_infoativconcom.fator13 == 0 %}{{ s1280_infoativconcom.fator13|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>

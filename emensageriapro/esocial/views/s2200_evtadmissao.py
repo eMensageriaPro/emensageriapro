@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -124,6 +155,7 @@ def salvar(request, hash):
         s2200_evtadmissao_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
             dict_hash['tab'] = ''
+        for_print = int(dict_hash['print'])
     except:
         usuario_id = False
         return redirect('login')
@@ -246,7 +278,7 @@ def salvar(request, hash):
         s2200_desligamento_lista = None
         if s2200_evtadmissao_id:
             s2200_evtadmissao = get_object_or_404(s2200evtAdmissao.objects.using( db_slug ), excluido = False, id = s2200_evtadmissao_id)
-
+  
             s2200_documentos_form = form_s2200_documentos(initial={ 's2200_evtadmissao': s2200_evtadmissao }, slug=db_slug)
             s2200_documentos_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_documentos_lista = s2200documentos.objects.using( db_slug ).filter(excluido = False, s2200_evtadmissao_id=s2200_evtadmissao.id).all()
@@ -338,9 +370,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2200_evtadmissao_id': int(s2200_evtadmissao_id),
             'usuario': usuario,
-
+       
             'hash': hash,
-
+  
             's2200_documentos_form': s2200_documentos_form,
             's2200_documentos_lista': s2200_documentos_lista,
             's2200_brasil_form': s2200_brasil_form,
@@ -383,7 +415,7 @@ def salvar(request, hash):
             's2200_desligamento_lista': s2200_desligamento_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -393,14 +425,44 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s2200_evtadmissao_salvar_custom_variaveis_context#
         }
-        return render(request, 's2200_evtadmissao_salvar.html', context)
+
+        if for_print in (0,1 ):
+            return render(request, 's2200_evtadmissao_salvar.html', context)
+        elif for_print == 2:
+            from wkhtmltopdf.views import PDFTemplateResponse
+            response = PDFTemplateResponse(
+                request=request,
+                template='s2200_evtadmissao_salvar.html',
+                filename="s2200_evtadmissao.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 10,
+                             'margin-bottom': 10,
+                             'margin-right': 10,
+                             'margin-left': 10,
+                             'zoom': 1,
+                             'dpi': 72,
+                             'orientation': 'Landscape',
+                             "viewport-size": "1366 x 513",
+                             'javascript-delay': 1000,
+                             'footer-center': '[page]/[topage]',
+                             "no-stop-slow-scripts": True},
+            )
+            return response
+        elif for_print == 3:
+            from django.shortcuts import render_to_response
+            response = render_to_response('s2200_evtadmissao_salvar.html', context)
+            filename = "s2200_evtadmissao.xls"
+            response['Content-Disposition'] = 'attachment; filename=' + filename
+            response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            return response
     else:
         context = {
             'usuario': usuario,
-
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -446,17 +508,17 @@ def apagar(request, hash):
                              's2200_evtadmissao', s2200_evtadmissao_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-
+   
         if request.session['retorno_pagina']== 's2200_evtadmissao_salvar':
             return redirect('s2200_evtadmissao', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-
+   
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-
+   
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -510,42 +572,42 @@ def listar(request, hash):
             'show_localtrabalho': 0,
             'show_clauassec': 0,
             'show_dtterm': 0,
-            'show_tpcontr': 0,
+            'show_tpcontr': 1,
             'show_duracao': 0,
             'show_dscsalvar': 0,
-            'show_undsalfixo': 0,
-            'show_vrsalfx': 0,
+            'show_undsalfixo': 1,
+            'show_vrsalfx': 1,
             'show_remuneracao': 0,
             'show_dtingrcarr': 0,
             'show_codcarreira': 0,
-            'show_codcateg': 0,
+            'show_codcateg': 1,
             'show_codfuncao': 0,
             'show_codcargo': 0,
             'show_infocontrato': 0,
             'show_inforegimetrab': 0,
-            'show_cadini': 0,
+            'show_cadini': 1,
             'show_nrrecinfprelim': 0,
-            'show_tpregprev': 0,
-            'show_tpregtrab': 0,
-            'show_matricula': 0,
+            'show_tpregprev': 1,
+            'show_tpregtrab': 1,
+            'show_matricula': 1,
             'show_vinculo': 0,
             'show_endereco': 0,
             'show_nmpai': 0,
             'show_nmmae': 0,
-            'show_paisnac': 0,
-            'show_paisnascto': 0,
+            'show_paisnac': 1,
+            'show_paisnascto': 1,
             'show_uf': 0,
             'show_codmunic': 0,
-            'show_dtnascto': 0,
+            'show_dtnascto': 1,
             'show_nascimento': 0,
             'show_nmsoc': 0,
             'show_indpriempr': 0,
-            'show_grauinstr': 0,
+            'show_grauinstr': 1,
             'show_estciv': 0,
-            'show_racacor': 0,
-            'show_sexo': 0,
-            'show_nmtrab': 0,
-            'show_nistrab': 0,
+            'show_racacor': 1,
+            'show_sexo': 1,
+            'show_nmtrab': 1,
+            'show_nistrab': 1,
             'show_cpftrab': 1,
             'show_trabalhador': 0,
             'show_nrinsc': 0,
@@ -555,7 +617,7 @@ def listar(request, hash):
             'show_procemi': 0,
             'show_tpamb': 0,
             'show_nrrecibo': 0,
-            'show_indretif': 0,
+            'show_indretif': 1,
             'show_ideevento': 0,
             'show_identidade': 1,
             'show_evtadmissao': 0,
@@ -713,11 +775,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 's2200_evtadmissao'
         context = {
             's2200_evtadmissao_lista': s2200_evtadmissao_lista,
-
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+       
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -727,7 +789,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-
+  
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         #return render(request, 's2200_evtadmissao_listar.html', context)
@@ -772,10 +834,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

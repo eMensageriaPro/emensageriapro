@@ -1,5 +1,36 @@
 {% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
 {% if not for_print %}
 
     <section class="content-header">
@@ -85,26 +116,21 @@
 
 <table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
               
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtTabProcesso</td>
             <td bgcolor="lightgray" colspan="3">Evento Tabela de Processos Regras de validação: REGRA_EXISTE_INFO_EMPREGADOR REGRA_PERMITE_ALT_EXCL_CODSUSPREGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_DT_FUTURA REGRA_VALIDA_PROCESSO</td>
         </tr>
-
     {% for s1070_evttabprocesso in s1070_evttabprocesso_lista %}
     {% ifequal 1 1 %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
             <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
         </tr>
 
-
         <tr {% if s1070_evttabprocesso.tpamb|validacoes_esocial_efdreinf:"s1070_evttabprocesso.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1070_evttabprocesso.tpamb or s1070_evttabprocesso.tpamb == 0 %}{{ s1070_evttabprocesso.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -119,13 +145,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_evttabprocesso.procemi|validacoes_esocial_efdreinf:"s1070_evttabprocesso.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1070_evttabprocesso.procemi or s1070_evttabprocesso.procemi == 0 %}{{ s1070_evttabprocesso.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -140,13 +164,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_evttabprocesso.verproc|validacoes_esocial_efdreinf:"s1070_evttabprocesso.verproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s1070_evttabprocesso.verproc or s1070_evttabprocesso.verproc == 0 %}{{ s1070_evttabprocesso.verproc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -162,18 +184,15 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
             <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
         </tr>
 
-
         <tr {% if s1070_evttabprocesso.tpinsc|validacoes_esocial_efdreinf:"s1070_evttabprocesso.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
             <td width="200px"><b>{% if s1070_evttabprocesso.tpinsc or s1070_evttabprocesso.tpinsc == 0 %}{{ s1070_evttabprocesso.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -188,13 +207,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_evttabprocesso.nrinsc|validacoes_esocial_efdreinf:"s1070_evttabprocesso.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s1070_evttabprocesso.nrinsc or s1070_evttabprocesso.nrinsc == 0 %}{{ s1070_evttabprocesso.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -210,32 +227,26 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoProcesso</td>
             <td bgcolor="lightgray" colspan="3">Informações do Processo</td>
         </tr>
 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">inclusao</td>
             <td bgcolor="lightgray" colspan="3">Inclusão de novas informações</td>
         </tr>
-
     {% for s1070_inclusao in s1070_inclusao_lista %}
     {% ifequal s1070_inclusao.s1070_evttabprocesso.id s1070_evttabprocesso.id %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideProcesso</td>
             <td bgcolor="lightgray" colspan="3">Informações de identificação do Processo e validade das informações que estão sendo incluídas</td>
         </tr>
 
-
         <tr {% if s1070_inclusao.tpproc|validacoes_esocial_efdreinf:"s1070_inclusao.tpproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpProc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de processo:1 - Administrativo;2 - Judicial;3 - Número de Benefício (NB) do INSS;4 - Processo FAP.Valores Válidos: 1, 2, 3, 4.</td>
             <td width="200px"><b>{% if s1070_inclusao.tpproc or s1070_inclusao.tpproc == 0 %}{{ s1070_inclusao.tpproc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -250,13 +261,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_inclusao.nrproc|validacoes_esocial_efdreinf:"s1070_inclusao.nrproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProc</td>
             <td width="500px">Informar o número do processo administrativo/judicial ou do benefício de acordo com o tipo informado em {tpProc}.Validação: Deve ser um número de processo/benefício válido e:a) Se {tpProc} = [1], deve possuir 17 (dezessete) ou 21 (vinte e um)algarismos;b) Se {tpProc} = [2], deve possuir 20 (vinte) algarismos;c) Se {tpProc} = [3], deve possuir 10 (dez) algarismos;d) Se {tpProc} = [4], deve possuir 16 (dezesseis) algarismos.</td>
             <td width="200px"><b>{% if s1070_inclusao.nrproc or s1070_inclusao.nrproc == 0 %}{{ s1070_inclusao.nrproc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -271,13 +280,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_inclusao.inivalid|validacoes_esocial_efdreinf:"s1070_inclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1070_inclusao.inivalid or s1070_inclusao.inivalid == 0 %}{{ s1070_inclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -293,12 +300,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1070_inclusao.fimvalid|validacoes_esocial_efdreinf:"s1070_inclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
             <td width="200px"><b>{% if s1070_inclusao.fimvalid or s1070_inclusao.fimvalid == 0 %}{{ s1070_inclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -314,18 +319,15 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dadosProc</td>
             <td bgcolor="lightgray" colspan="3">Dados do processo</td>
         </tr>
 
-
         <tr {% if s1070_inclusao.indautoria|validacoes_esocial_efdreinf:"s1070_inclusao.indautoria" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indAutoria</td>
             <td width="500px">Indicativo da autoria da ação judicial:1 - Próprio contribuinte;2 - Outra entidade, empresa ou empregado.Validação: Preenchimento obrigatório se {tpProc} = [2] Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1070_inclusao.indautoria or s1070_inclusao.indautoria == 0 %}{{ s1070_inclusao.indautoria|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -340,13 +342,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_inclusao.indmatproc|validacoes_esocial_efdreinf:"s1070_inclusao.indmatproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indMatProc</td>
             <td width="500px">Indicativo da matéria do processo ou alvará judicial:1 - Tributária;2 - Autorização de trabalho de menor;3 - Dispensa, ainda que parcial, de contratação de pessoa com deficiência(PCD);4 - Dispensa, ainda que parcial, de contratação de aprendiz;5 - Segurança e Saúde do Trabalho;6 - Conversão de Licença Saúde em Acidente de Trabalho;7 - FGTS ou Contribuição Social Rescisória (Lei Complementar 110/2001);8 - Contribuição sindical;99 - Outros assuntos.Validação: Se {tpProc} = [3], deve ser preenchido com [6]. Valores Válidos: 1, 2, 3, 4, 5, 6, 7, 8, 99.</td>
             <td width="200px"><b>{% if s1070_inclusao.indmatproc or s1070_inclusao.indmatproc == 0 %}{{ s1070_inclusao.indmatproc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -361,13 +361,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_inclusao.observacao|validacoes_esocial_efdreinf:"s1070_inclusao.observacao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">observacao</td>
             <td width="500px">Observações relacionadas ao processo</td>
             <td width="200px"><b>{% if s1070_inclusao.observacao or s1070_inclusao.observacao == 0 %}{{ s1070_inclusao.observacao }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -383,20 +381,16 @@
             {% endif %}
         </tr>
 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dadosProcJud</td>
             <td bgcolor="lightgray" colspan="3">Informações Complementares do Processo Judicial</td>
         </tr>
-
     {% for s1070_inclusao_dadosprocjud in s1070_inclusao_dadosprocjud_lista %}
     {% ifequal s1070_inclusao_dadosprocjud.s1070_inclusao.id s1070_inclusao.id %}
-
         <tr {% if s1070_inclusao_dadosprocjud.ufvara|validacoes_esocial_efdreinf:"s1070_inclusao_dadosprocjud.ufvara" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">ufVara</td>
             <td width="500px">Identificação da UF da Seção JudiciáriaValidação: Deve ser uma Sigla de UF válida.</td>
             <td width="200px"><b>{% if s1070_inclusao_dadosprocjud.ufvara or s1070_inclusao_dadosprocjud.ufvara == 0 %}{{ s1070_inclusao_dadosprocjud.ufvara }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -411,13 +405,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_inclusao_dadosprocjud.codmunic|validacoes_esocial_efdreinf:"s1070_inclusao_dadosprocjud.codmunic" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codMunic</td>
             <td width="500px">Preencher com o código do município, conforme tabela do IBGE Validação: Se informado, deve ser um código existente na tabela do IBGE.</td>
             <td width="200px"><b>{% if s1070_inclusao_dadosprocjud.codmunic or s1070_inclusao_dadosprocjud.codmunic == 0 %}{{ s1070_inclusao_dadosprocjud.codmunic|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -433,12 +425,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1070_inclusao_dadosprocjud.idvara|validacoes_esocial_efdreinf:"s1070_inclusao_dadosprocjud.idvara" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">idVara</td>
             <td width="500px">Código de Identificação da Vara.</td>
             <td width="200px"><b>{% if s1070_inclusao_dadosprocjud.idvara or s1070_inclusao_dadosprocjud.idvara == 0 %}{{ s1070_inclusao_dadosprocjud.idvara|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -454,20 +444,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoSusp</td>
             <td bgcolor="lightgray" colspan="3">Informações de suspensão de exigibilidade de tributos em virtude de processo administrativo ou judicial.</td>
         </tr>
-
     {% for s1070_inclusao_infosusp in s1070_inclusao_infosusp_lista %}
     {% ifequal s1070_inclusao_infosusp.s1070_inclusao.id s1070_inclusao.id %}
-
         <tr {% if s1070_inclusao_infosusp.codsusp|validacoes_esocial_efdreinf:"s1070_inclusao_infosusp.codsusp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codSusp</td>
             <td width="500px">Código do Indicativo da Suspensão, atribuído pelo empregador.</td>
             <td width="200px"><b>{% if s1070_inclusao_infosusp.codsusp or s1070_inclusao_infosusp.codsusp == 0 %}{{ s1070_inclusao_infosusp.codsusp|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -482,13 +468,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_inclusao_infosusp.indsusp|validacoes_esocial_efdreinf:"s1070_inclusao_infosusp.indsusp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indSusp</td>
             <td width="500px">Indicativo de suspensão da exigibilidade:01 - Liminar em Mandado de Segurança;02 - Depósito Judicial do Montante Integral;03 - Depósito Administrativo do Montante Integral;04 - Antecipação de Tutela;05 - Liminar em Medida Cautelar;08 - Sentença em Mandado de Segurança Favorável ao Contribuinte;09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF;10 - Acórdão do TRF Favorável ao Contribuinte;11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte;12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte;13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo;14 - Contestação Administrativa FAP;90 - Decisão Definitiva a favor do contribuinte;92 - Sem suspensão da exigibilidade. Validação: Se {tpProc} = [1], deve ser preenchido com [03, 14, 92]. Se {tpProc} = [2], deve ser preenchido com [01, 02, 04, 05, 08, 09, 10, 11, 12, 13, 90, 92]. Se {tpProc} = [4], deve ser preenchido com [14].</td>
             <td width="200px"><b>{% if s1070_inclusao_infosusp.indsusp or s1070_inclusao_infosusp.indsusp == 0 %}{{ s1070_inclusao_infosusp.indsusp }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -503,13 +487,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_inclusao_infosusp.dtdecisao|validacoes_esocial_efdreinf:"s1070_inclusao_infosusp.dtdecisao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtDecisao</td>
             <td width="500px">Data da decisão, sentença ou despacho administrativo.</td>
             <td width="200px"><b>{% if s1070_inclusao_infosusp.dtdecisao or s1070_inclusao_infosusp.dtdecisao == 0 %}{{ s1070_inclusao_infosusp.dtdecisao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -525,12 +507,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1070_inclusao_infosusp.inddeposito|validacoes_esocial_efdreinf:"s1070_inclusao_infosusp.inddeposito" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indDeposito</td>
             <td width="500px">Indicativo de Depósito do Montante Integral: S - Sim;N - Não. Validação: Se {indSusp} = [90], preencher obrigatoriamente com [N]. Se {indSusp} = [02, 03], preencher obrigatoriamente com [S].</td>
             <td width="200px"><b>{% if s1070_inclusao_infosusp.inddeposito or s1070_inclusao_infosusp.inddeposito == 0 %}{{ s1070_inclusao_infosusp.inddeposito }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -546,26 +526,21 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">alteracao</td>
             <td bgcolor="lightgray" colspan="3">Alteração de informações já existentes</td>
         </tr>
-
     {% for s1070_alteracao in s1070_alteracao_lista %}
     {% ifequal s1070_alteracao.s1070_evttabprocesso.id s1070_evttabprocesso.id %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideProcesso</td>
             <td bgcolor="lightgray" colspan="3">Grupo de informações de identificação do processo, apresentando número e período de validade do registro cujas informações serão alteradas pelos dados constantes neste evento.</td>
         </tr>
 
-
         <tr {% if s1070_alteracao.tpproc|validacoes_esocial_efdreinf:"s1070_alteracao.tpproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpProc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de processo:1 - Administrativo;2 - Judicial;3 - Número de Benefício (NB) do INSS;4 - Processo FAP.Valores Válidos: 1, 2, 3, 4.</td>
             <td width="200px"><b>{% if s1070_alteracao.tpproc or s1070_alteracao.tpproc == 0 %}{{ s1070_alteracao.tpproc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -580,13 +555,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_alteracao.nrproc|validacoes_esocial_efdreinf:"s1070_alteracao.nrproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProc</td>
             <td width="500px">Informar o número do processo administrativo/judicial ou do benefício de acordo com o tipo informado em {tpProc}.Validação: Deve ser um número de processo/benefício válido e:a) Se {tpProc} = [1], deve possuir 17 (dezessete) ou 21 (vinte e um)algarismos;b) Se {tpProc} = [2], deve possuir 20 (vinte) algarismos;c) Se {tpProc} = [3], deve possuir 10 (dez) algarismos;d) Se {tpProc} = [4], deve possuir 16 (dezesseis) algarismos.</td>
             <td width="200px"><b>{% if s1070_alteracao.nrproc or s1070_alteracao.nrproc == 0 %}{{ s1070_alteracao.nrproc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -601,13 +574,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_alteracao.inivalid|validacoes_esocial_efdreinf:"s1070_alteracao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial deimplantação do eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1070_alteracao.inivalid or s1070_alteracao.inivalid == 0 %}{{ s1070_alteracao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -623,12 +594,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1070_alteracao.fimvalid|validacoes_esocial_efdreinf:"s1070_alteracao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
             <td width="200px"><b>{% if s1070_alteracao.fimvalid or s1070_alteracao.fimvalid == 0 %}{{ s1070_alteracao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -644,18 +613,15 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dadosProc</td>
             <td bgcolor="lightgray" colspan="3">Dados do processo</td>
         </tr>
 
-
         <tr {% if s1070_alteracao.indautoria|validacoes_esocial_efdreinf:"s1070_alteracao.indautoria" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indAutoria</td>
             <td width="500px">Indicativo da autoria da ação judicial:1 - Próprio contribuinte;2 - Outra entidade, empresa ou empregado.Validação: Preenchimento obrigatório se {tpProc} = [2] Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1070_alteracao.indautoria or s1070_alteracao.indautoria == 0 %}{{ s1070_alteracao.indautoria|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -670,13 +636,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_alteracao.indmatproc|validacoes_esocial_efdreinf:"s1070_alteracao.indmatproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indMatProc</td>
             <td width="500px">Indicativo da matéria do processo ou alvará judicial:1 - Tributária;2 - Autorização de trabalho de menor;3 - Dispensa, ainda que parcial, de contratação de pessoa com deficiência(PCD);4 - Dispensa, ainda que parcial, de contratação de aprendiz;5 - Segurança e Saúde do Trabalho;6 - Conversão de Licença Saúde em Acidente de Trabalho;7 - FGTS ou Contribuição Social Rescisória (Lei Complementar 110/2001);8 - Contribuição sindical;99 - Outros assuntos.Validação: Se {tpProc} = [3], deve ser preenchido com [6]. Valores Válidos: 1, 2, 3, 4, 5, 6, 7, 8, 99.</td>
             <td width="200px"><b>{% if s1070_alteracao.indmatproc or s1070_alteracao.indmatproc == 0 %}{{ s1070_alteracao.indmatproc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -691,13 +655,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_alteracao.observacao|validacoes_esocial_efdreinf:"s1070_alteracao.observacao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">observacao</td>
             <td width="500px">Observações relacionadas ao processo</td>
             <td width="200px"><b>{% if s1070_alteracao.observacao or s1070_alteracao.observacao == 0 %}{{ s1070_alteracao.observacao }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -713,20 +675,16 @@
             {% endif %}
         </tr>
 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dadosProcJud</td>
             <td bgcolor="lightgray" colspan="3">Informações Complementares do Processo Judicial</td>
         </tr>
-
     {% for s1070_alteracao_dadosprocjud in s1070_alteracao_dadosprocjud_lista %}
     {% ifequal s1070_alteracao_dadosprocjud.s1070_alteracao.id s1070_alteracao.id %}
-
         <tr {% if s1070_alteracao_dadosprocjud.ufvara|validacoes_esocial_efdreinf:"s1070_alteracao_dadosprocjud.ufvara" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">ufVara</td>
             <td width="500px">Identificação da UF da Seção JudiciáriaValidação: Deve ser uma Sigla de UF válida.</td>
             <td width="200px"><b>{% if s1070_alteracao_dadosprocjud.ufvara or s1070_alteracao_dadosprocjud.ufvara == 0 %}{{ s1070_alteracao_dadosprocjud.ufvara }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -741,13 +699,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_alteracao_dadosprocjud.codmunic|validacoes_esocial_efdreinf:"s1070_alteracao_dadosprocjud.codmunic" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codMunic</td>
             <td width="500px">Preencher com o código do município, conforme tabela do IBGE Validação: Se informado, deve ser um código existente na tabela do IBGE.</td>
             <td width="200px"><b>{% if s1070_alteracao_dadosprocjud.codmunic or s1070_alteracao_dadosprocjud.codmunic == 0 %}{{ s1070_alteracao_dadosprocjud.codmunic|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -763,12 +719,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1070_alteracao_dadosprocjud.idvara|validacoes_esocial_efdreinf:"s1070_alteracao_dadosprocjud.idvara" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">idVara</td>
             <td width="500px">Código de Identificação da Vara.</td>
             <td width="200px"><b>{% if s1070_alteracao_dadosprocjud.idvara or s1070_alteracao_dadosprocjud.idvara == 0 %}{{ s1070_alteracao_dadosprocjud.idvara|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -784,20 +738,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoSusp</td>
             <td bgcolor="lightgray" colspan="3">Informações de suspensão de exigibilidade de tributos em virtude de processo administrativo ou judicial.</td>
         </tr>
-
     {% for s1070_alteracao_infosusp in s1070_alteracao_infosusp_lista %}
     {% ifequal s1070_alteracao_infosusp.s1070_alteracao.id s1070_alteracao.id %}
-
         <tr {% if s1070_alteracao_infosusp.codsusp|validacoes_esocial_efdreinf:"s1070_alteracao_infosusp.codsusp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codSusp</td>
             <td width="500px">Código do Indicativo da Suspensão, atribuído pelo empregador.</td>
             <td width="200px"><b>{% if s1070_alteracao_infosusp.codsusp or s1070_alteracao_infosusp.codsusp == 0 %}{{ s1070_alteracao_infosusp.codsusp|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -812,13 +762,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_alteracao_infosusp.indsusp|validacoes_esocial_efdreinf:"s1070_alteracao_infosusp.indsusp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indSusp</td>
             <td width="500px">Indicativo de suspensão da exigibilidade:01 - Liminar em Mandado de Segurança;02 - Depósito Judicial do Montante Integral;03 - Depósito Administrativo do Montante Integral;04 - Antecipação de Tutela;05 - Liminar em Medida Cautelar;08 - Sentença em Mandado de Segurança Favorável ao Contribuinte;09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF;10 - Acórdão do TRF Favorável ao Contribuinte;11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte;12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte;13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo;14 - Contestação Administrativa FAP;90 - Decisão Definitiva a favor do contribuinte;92 - Sem suspensão da exigibilidade. Validação: Se {tpProc} = [1], deve ser preenchido com [03, 14, 92]. Se {tpProc} = [2], deve ser preenchido com [01, 02, 04, 05, 08, 09, 10, 11, 12, 13, 90, 92]. Se {tpProc} = [4], deve ser preenchido com [14].</td>
             <td width="200px"><b>{% if s1070_alteracao_infosusp.indsusp or s1070_alteracao_infosusp.indsusp == 0 %}{{ s1070_alteracao_infosusp.indsusp }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -833,13 +781,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_alteracao_infosusp.dtdecisao|validacoes_esocial_efdreinf:"s1070_alteracao_infosusp.dtdecisao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtDecisao</td>
             <td width="500px">Data da decisão, sentença ou despacho administrativo.</td>
             <td width="200px"><b>{% if s1070_alteracao_infosusp.dtdecisao or s1070_alteracao_infosusp.dtdecisao == 0 %}{{ s1070_alteracao_infosusp.dtdecisao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -855,12 +801,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1070_alteracao_infosusp.inddeposito|validacoes_esocial_efdreinf:"s1070_alteracao_infosusp.inddeposito" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indDeposito</td>
             <td width="500px">Indicativo de Depósito do Montante Integral: S - Sim;N - Não. Validação: Se {indSusp} = [90], preencher obrigatoriamente com [N]. Se {indSusp} = [02, 03], preencher obrigatoriamente com [S].</td>
             <td width="200px"><b>{% if s1070_alteracao_infosusp.inddeposito or s1070_alteracao_infosusp.inddeposito == 0 %}{{ s1070_alteracao_infosusp.inddeposito }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -876,20 +820,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %} 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">novaValidade</td>
             <td bgcolor="lightgray" colspan="3">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</td>
         </tr>
-
     {% for s1070_alteracao_novavalidade in s1070_alteracao_novavalidade_lista %}
     {% ifequal s1070_alteracao_novavalidade.s1070_alteracao.id s1070_alteracao.id %}
-
         <tr {% if s1070_alteracao_novavalidade.inivalid|validacoes_esocial_efdreinf:"s1070_alteracao_novavalidade.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1070_alteracao_novavalidade.inivalid or s1070_alteracao_novavalidade.inivalid == 0 %}{{ s1070_alteracao_novavalidade.inivalid }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -905,12 +845,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1070_alteracao_novavalidade.fimvalid|validacoes_esocial_efdreinf:"s1070_alteracao_novavalidade.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
             <td width="200px"><b>{% if s1070_alteracao_novavalidade.fimvalid or s1070_alteracao_novavalidade.fimvalid == 0 %}{{ s1070_alteracao_novavalidade.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -926,26 +864,21 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">exclusao</td>
             <td bgcolor="lightgray" colspan="3">Exclusão de informações</td>
         </tr>
-
     {% for s1070_exclusao in s1070_exclusao_lista %}
     {% ifequal s1070_exclusao.s1070_evttabprocesso.id s1070_evttabprocesso.id %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideProcesso</td>
             <td bgcolor="lightgray" colspan="3">Grupo de informações que identifica o processo que será excluído.</td>
         </tr>
 
-
         <tr {% if s1070_exclusao.tpproc|validacoes_esocial_efdreinf:"s1070_exclusao.tpproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpProc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de processo:1 - Administrativo;2 - Judicial;3 - Número de Benefício (NB) do INSS;4 - Processo FAP.Valores Válidos: 1, 2, 3, 4.</td>
             <td width="200px"><b>{% if s1070_exclusao.tpproc or s1070_exclusao.tpproc == 0 %}{{ s1070_exclusao.tpproc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -960,13 +893,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_exclusao.nrproc|validacoes_esocial_efdreinf:"s1070_exclusao.nrproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProc</td>
             <td width="500px">Informar o número do processo administrativo/judicial ou do benefício de acordo com o tipo informado em {tpProc}.Validação: Deve ser um número de processo/benefício válido e:a) Se {tpProc} = [1], deve possuir 17 (dezessete) ou 21 (vinte e um)algarismos;b) Se {tpProc} = [2], deve possuir 20 (vinte) algarismos;c) Se {tpProc} = [3], deve possuir 10 (dez) algarismos;d) Se {tpProc} = [4], deve possuir 16 (dezesseis) algarismos.</td>
             <td width="200px"><b>{% if s1070_exclusao.nrproc or s1070_exclusao.nrproc == 0 %}{{ s1070_exclusao.nrproc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -981,13 +912,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1070_exclusao.inivalid|validacoes_esocial_efdreinf:"s1070_exclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1070_exclusao.inivalid or s1070_exclusao.inivalid == 0 %}{{ s1070_exclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1003,12 +932,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1070_exclusao.fimvalid|validacoes_esocial_efdreinf:"s1070_exclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
             <td width="200px"><b>{% if s1070_exclusao.fimvalid or s1070_exclusao.fimvalid == 0 %}{{ s1070_exclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>

@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -9,774 +40,6 @@ from django.apps import apps
 get_model = apps.get_model
 
 
-
-SIM_NAO = (
-    (0, u'Não'),
-    (1, u'Sim'),
-)
-
-TRANSMISSOR_STATUS = (
-    (0, u'Cadastrado'),
-    (1, u'Importado'),
-    (10, u'Assinado'),
-    (11, u'Gerado'),
-    (12, u'Retorno'),
-    (13, u'Erro - Ocorrências'),
-    (14, u'Processado'),
-    (2, u'Duplicado'),
-    (3, u'Erro na validação'),
-    (4, u'Validado'),
-    (5, u'Erro no envio'),
-    (6, u'Aguardando envio'),
-    (7, u'Enviado'),
-    (8, u'Erro na consulta'),
-    (9, u'Consultado'),
-)
-
-CODIGO_RESPOSTA = (
-    (0, u'Cadastrado'),
-    (101, u'101 - Lote Aguardando Processamento'),
-    (201, u'201 - Lote Processado com Sucesso'),
-    (202, u'202 - Lote Processado com Advertências'),
-    (301, u'301 - Erro Servidor eSocial'),
-    (401, u'401 - Lote Incorreto - Erro preenchimento'),
-    (402, u'402 - Lote Incorreto - schema Inválido'),
-    (403, u'403 - Lote Incorreto - Versão do Schema não permitida'),
-    (404, u'404 - Lote Incorreto - Erro Certificado'),
-    (405, u'405 - Lote Incorreto - Lote nulo ou vazio'),
-    (501, u'501 - Solicitação de Consulta Incorreta - Erro Preenchimento'),
-    (502, u'502 - Solicitação de Consulta Incorreta - Schema Inválido.'),
-    (503, u'503 - Solicitação de Consulta Incorreta - Versão do Schema Não Permitida.'),
-    (504, u'504 - Solicitação de Consulta Incorreta - Erro Certificado.'),
-    (505, u'505 - Solicitação de Consulta Incorreta - Consulta nula ou vazia.'),
-)
-
-TIPO_AMBIENTE = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-OPERACOES = (
-    (1, u'Incluir'),
-    (2, u'Alterar'),
-    (3, u'Excluir'),
-)
-
-OPERACOES_INSALPERIC_APOSENTESP = (
-    (1, u'Insalubridade/Periculosidade - Incluir'),
-    (2, u'Insalubridade/Periculosidade - Alterar'),
-    (3, u'Insalubridade/Periculosidade - Excluir'),
-    (4, u'Aposentadoria Especial - Incluir'),
-    (5, u'Aposentadoria Especial - Alterar'),
-    (6, u'Aposentadoria Especial - Excluir'),
-)
-
-ESOCIAL_VERSOES = (
-    ('v02_04_02', u'Versão 2.04.02'),
-)
-
-ESTADOS = (
-    ('AC', u'Acre'),
-    ('AL', u'Alagoas'),
-    ('AM', u'Amazonas'),
-    ('AP', u'Amapá'),
-    ('BA', u'Bahia'),
-    ('CE', u'Ceará'),
-    ('DF', u'Distrito Federal'),
-    ('ES', u'Espírito Santo'),
-    ('GO', u'Goiás'),
-    ('MA', u'Maranhão'),
-    ('MG', u'Minas Gerais'),
-    ('MS', u'Mato Grosso do Sul'),
-    ('MT', u'Mato Grosso'),
-    ('PA', u'Pará'),
-    ('PB', u'Paraíba'),
-    ('PE', u'Pernambuco'),
-    ('PI', u'Piauí'),
-    ('PR', u'Paraná'),
-    ('RJ', u'Rio de Janeiro'),
-    ('RN', u'Rio Grande do Norte'),
-    ('RO', u'Rondônia'),
-    ('RR', u'Roraima'),
-    ('RS', u'Rio Grande do Sul'),
-    ('SC', u'Santa Catarina'),
-    ('SE', u'Sergipe'),
-    ('SP', u'São Paulo'),
-    ('TO', u'Tocantins'),
-)
-
-CHOICES_S1040_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1000_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1000_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1000_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1005_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1005_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1005_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1010_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1010_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1010_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1020_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1020_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1020_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1030_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1030_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1030_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1035_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1035_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1035_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1040_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1040_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1050_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1050_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1050_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1060_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1060_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1060_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1070_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1070_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1070_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1080_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1080_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1080_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1200_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
-)
-
-CHOICES_S1200_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S1200_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1200_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1200_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1202_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
-)
-
-CHOICES_S1202_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S1202_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1202_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1202_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1207_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
-)
-
-CHOICES_S1207_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S1207_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1207_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1207_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1210_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-)
-
-CHOICES_S1210_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S1210_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1210_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1210_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1250_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-)
-
-CHOICES_S1250_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S1250_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1250_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1250_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1250_TPINSCADQ = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1260_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-)
-
-CHOICES_S1260_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S1260_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1260_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1260_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1270_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-)
-
-CHOICES_S1270_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S1270_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1270_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1270_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1280_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
-)
-
-CHOICES_S1280_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S1280_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1280_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1280_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1295_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
-)
-
-CHOICES_S1295_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1295_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1295_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1298_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
-)
-
-CHOICES_S1298_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1298_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1298_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1299_EVTAQPROD = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1299_EVTCOMPROD = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1299_EVTCONTRATAVNP = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1299_EVTINFOCOMPLPER = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1299_EVTPGTOS = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1299_EVTREMUN = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1299_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
-)
-
-CHOICES_S1299_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1299_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1299_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1300_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual'),
-)
-
-CHOICES_S1300_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S1300_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1300_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1300_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2190_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2190_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2190_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2200_CADINI = (
-    ('N', u'N - Não (Admissão)'),
-    ('S', u'S - Sim (Cadastramento Inicial)'),
-)
-
-CHOICES_S2200_CLAUASSEC = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2200_ESTCIV = (
-    (1, u'1 - Solteiro'),
-    (2, u'2 - Casado'),
-    (3, u'3 - Divorciado'),
-    (4, u'4 - Separado'),
-    (5, u'5 - Viúvo'),
-)
-
-CHOICES_S2200_GRAUINSTR = (
-    ('01', u'01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou'),
-    ('02', u'02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular'),
-    ('03', u'03 - 5º ano completo do Ensino Fundamental'),
-    ('04', u'04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série)'),
-    ('05', u'05 - Ensino Fundamental Completo'),
-    ('06', u'06 - Ensino Médio incompleto'),
-    ('07', u'07 - Ensino Médio completo'),
-    ('08', u'08 - Educação Superior incompleta'),
-    ('09', u'09 - Educação Superior completa'),
-    ('10', u'10 - Pós-Graduação completa'),
-    ('11', u'11 - Mestrado completo'),
-    ('12', u'12 - Doutorado completo'),
-)
-
-CHOICES_S2200_INDPRIEMPR = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2200_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
 
 CHOICES_S2200_PAISNAC = (
     ('008', u'008 - Abu Dhabi'),
@@ -1308,281 +571,6 @@ CHOICES_S2200_PAISNASCTO = (
     ('890', u'890 - Zambia'),
 )
 
-CHOICES_S2200_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2200_RACACOR = (
-    (1, u'1 - Branca'),
-    (2, u'2 - Negra'),
-    (3, u'3 - Parda (parda ou declarada como mulata, cabocla, cafuza, mameluca ou mestiça de negro com pessoa de outra cor ou raça)'),
-    (4, u'4 - Amarela (de origem japonesa, chinesa, coreana etc)'),
-    (5, u'5 - Indígena'),
-    (6, u'6 - Não informado'),
-)
-
-CHOICES_S2200_SEXO = (
-    ('F', u'F - Feminino'),
-    ('M', u'M - Masculino'),
-)
-
-CHOICES_S2200_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2200_TPCONTR = (
-    (1, u'1 - Prazo indeterminado'),
-    (2, u'2 - Prazo determinado'),
-)
-
-CHOICES_S2200_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2200_TPREGPREV = (
-    (1, u'1 - Regime Geral da Previdência Social - RGPS'),
-    (2, u'2 - Regime Próprio de Previdência Social - RPPS'),
-    (3, u'3 - Regime de Previdência Social no Exterior'),
-)
-
-CHOICES_S2200_TPREGTRAB = (
-    (1, u'1 - CLT - Consolidação das Leis de Trabalho e legislações trabalhistas específicas'),
-    (2, u'2 - Estatutário'),
-)
-
-CHOICES_S2200_UNDSALFIXO = (
-    (1, u'1 - Por Hora'),
-    (2, u'2 - Por Dia'),
-    (3, u'3 - Por Semana'),
-    (4, u'4 - Por Quinzena'),
-    (5, u'5 - Por Mês'),
-    (6, u'6 - Por Tarefa'),
-    (7, u'7 - Não aplicável - salário exclusivamente variável'),
-)
-
-CHOICES_S2205_ESTCIV = (
-    (1, u'1 - Solteiro'),
-    (2, u'2 - Casado'),
-    (3, u'3 - Divorciado'),
-    (4, u'4 - Separado'),
-    (5, u'5 - Viúvo'),
-)
-
-CHOICES_S2205_GRAUINSTR = (
-    ('01', u'01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou'),
-    ('02', u'02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular'),
-    ('03', u'03 - 5º ano completo do Ensino Fundamental'),
-    ('04', u'04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série)'),
-    ('05', u'05 - Ensino Fundamental Completo'),
-    ('06', u'06 - Ensino Médio incompleto'),
-    ('07', u'07 - Ensino Médio completo'),
-    ('08', u'08 - Educação Superior incompleta'),
-    ('09', u'09 - Educação Superior completa'),
-    ('10', u'10 - Pós-Graduação completa'),
-    ('11', u'11 - Mestrado completo'),
-    ('12', u'12 - Doutorado completo'),
-)
-
-CHOICES_S2205_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2205_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2205_RACACOR = (
-    (1, u'1 - Branca'),
-    (2, u'2 - Negra'),
-    (3, u'3 - Parda (parda ou declarada como mulata, cabocla, cafuza, mameluca ou mestiça de negro com pessoa de outra cor ou raça)'),
-    (4, u'4 - Amarela (de origem japonesa, chinesa, coreana etc)'),
-    (5, u'5 - Indígena'),
-    (6, u'6 - Não informado'),
-)
-
-CHOICES_S2205_SEXO = (
-    ('F', u'F - Feminino'),
-    ('M', u'M - Masculino'),
-)
-
-CHOICES_S2205_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2205_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2206_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2206_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2206_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2206_TPCONTR = (
-    (1, u'1 - Prazo indeterminado'),
-    (2, u'2 - Prazo determinado'),
-)
-
-CHOICES_S2206_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2206_TPREGPREV = (
-    (1, u'1 - Regime Geral da Previdência Social - RGPS'),
-    (2, u'2 - Regime Próprio de Previdência Social - RPPS'),
-    (3, u'3 - Regime de Previdência Social no Exterior'),
-)
-
-CHOICES_S2206_UNDSALFIXO = (
-    (1, u'1 - Por Hora'),
-    (2, u'2 - Por Dia'),
-    (3, u'3 - Por Semana'),
-    (4, u'4 - Por Quinzena'),
-    (5, u'5 - Por Mês'),
-    (6, u'6 - Por Tarefa'),
-    (7, u'7 - Não aplicável - salário exclusivamente variável'),
-)
-
-CHOICES_S2210_CODSITGERADORA = (
-    (200004300, u'200004300 - Impacto de pessoa contra objeto parado'),
-    (200004600, u'200004600 - Impacto de pessoa contra objeto em movimento'),
-    (200008300, u'200008300 - Impacto sofrido por pessoa de objeto que cai'),
-    (200008600, u'200008600 - Impacto sofrido por pessoa de objeto projetado'),
-    (200008900, u'200008900 - Impacto sofrido por pessoa, NIC'),
-    (200012200, u'200012200 - Queda de pessoa com diferença de nível de andaime, passagem, plataforma, etc.'),
-    (200012300, u'200012300 - Queda de pessoa com diferença de nível de escada móvel ou fixada cujos degraus'),
-    (200012400, u'200012400 - Queda de pessoa com diferença de nível de material empilhado'),
-    (200012500, u'200012500 - Queda de pessoa com diferença de nível de veículo'),
-    (200012600, u'200012600 - Queda de pessoa com diferença de nível em escada permanente'),
-    (200012700, u'200012700 - Queda de pessoa com diferença de nível em poço, escavação, abertura no piso, etc.'),
-    (200012900, u'200012900 - Queda de pessoa com diferença de nível, NIC'),
-    (200016300, u'200016300 - Queda de pessoa em mesmo nível em passagem ou superfície de sustentação'),
-    (200016600, u'200016600 - Queda de pessoa em mesmo nível sobre ou contra alguma coisa'),
-    (200016900, u'200016900 - Queda de pessoa em mesmo nível, NIC'),
-    (200020100, u'200020100 - Aprisionamento em, sobre ou entre objetos em movimento convergente'),
-    (200020300, u'200020300 - Aprisionamento em, sobre ou entre objeto parado e outro em movimento'),
-    (200020500, u'200020500 - Aprisionamento em, sobre ou entre dois ou mais objetos em movimento'),
-    (200020700, u'200020700 - Aprisionamento em, sobre ou entre desabamento ou desmoronamento'),
-    (200020900, u'200020900 - Aprisionamento em, sob ou entre, NIC'),
-    (200024300, u'200024300 - Atrito ou abrasão por encostar, pisar, ajoelhar ou sentar em objeto'),
-    (200024400, u'200024400 - Atrito ou abrasão por manusear objeto'),
-    (200024500, u'200024500 - Atrito ou abrasão por objeto em vibração'),
-    (200024600, u'200024600 - Atrito ou abrasão por corpo estranho no olho'),
-    (200024700, u'200024700 - Atrito ou abrasão por compressão repetitiva'),
-    (200024900, u'200024900 - Atrito ou abrasão, NIC'),
-    (200028300, u'200028300 - Reação do corpo a movimento involuntário'),
-    (200028600, u'200028600 - Reação do corpo a movimento voluntário'),
-    (200032200, u'200032200 - Esforço excessivo ao erguer objeto'),
-    (200032400, u'200032400 - Esforço excessivo ao empurrar ou puxar objeto'),
-    (200032600, u'200032600 - Esforço excessivo ao manejar, sacudir ou arremessar objeto'),
-    (200032900, u'200032900 - Esforço excessivo, NIC'),
-    (200036000, u'200036000 - Elétrica, exposição a energia'),
-    (200040300, u'200040300 - Temperatura muito alta, contato com objeto ou substância a'),
-    (200040600, u'200040600 - Temperatura muito baixa, contato com objeto ou substância a'),
-    (200044300, u'200044300 - Temperatura ambiente elevada, exposição a'),
-    (200044600, u'200044600 - Temperatura ambiente baixa, exposição a'),
-    (200048200, u'200048200 - Inalação de substância cáustica, tóxica ou nociva'),
-    (200048400, u'200048400 - Ingestão de substância cáustica'),
-    (200048600, u'200048600 - Absorção de substância cáustica'),
-    (200048900, u'200048900 - Inalação, ingestão ou absorção, NIC'),
-    (200052000, u'200052000 - Imersão'),
-    (200056000, u'200056000 - Radiação não ionizante, exposição a'),
-    (200060000, u'200060000 - Radiação ionizante, exposição a'),
-    (200064000, u'200064000 - Ruído, exposição a'),
-    (200068000, u'200068000 - Vibração, exposição a'),
-    (200072000, u'200072000 - Pressão ambiente, exposição a'),
-    (200072300, u'200072300 - Exposição à pressão ambiente elevada'),
-    (200072600, u'200072600 - Exposição à pressão ambiente baixa'),
-    (200076200, u'200076200 - Poluição da água, ação da (exposição à poluição da água)'),
-    (200076400, u'200076400 - Poluição do ar, ação da (exposição à poluição do ar)'),
-    (200076600, u'200076600 - Poluição do solo, ação da (exposição à poluição do solo)'),
-    (200076900, u'200076900 - Poluição, NIC, exposição a (exposição à poluição, NIC)'),
-    (200080200, u'200080200 - Ataque de ser vivo por mordedura, picada, chifrada, coice, etc.'),
-    (200080400, u'200080400 - Ataque de ser vivo com peçonha'),
-    (200080600, u'200080600 - Ataque de ser vivo com transmissão de doença'),
-    (200080900, u'200080900 - Ataque de ser vivo, NIC'),
-    (209000000, u'209000000 - Tipo, NIC'),
-    (209500000, u'209500000 - Tipo inexistente'),
-)
-
-CHOICES_S2210_INDCATOBITO = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2210_INDCOMUNPOLICIA = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2210_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2210_INICIATCAT = (
-    (1, u'1 - Iniciativa do Registrador (identificado em {ideRegistrador})'),
-    (2, u'2 - Ordem judicial'),
-    (3, u'3 - Determinação de órgão fiscalizador'),
-)
-
 CHOICES_S2210_PAIS = (
     ('008', u'008 - Abu Dhabi'),
     ('009', u'009 - Dirce'),
@@ -1846,494 +834,6 @@ CHOICES_S2210_PAIS = (
     ('875', u'875 - Wallis E Futuna, Ilhas'),
     ('888', u'888 - Congo, Republica Democratica Do'),
     ('890', u'890 - Zambia'),
-)
-
-CHOICES_S2210_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2210_TPACID = (
-    ('1.0.01', u'1.0.01 - Lesão corporal que cause a morte ou a perda ou redução, permanente ou temporária, da capacidade para o trabalho, desde que não enquadrada em nenhum dos demais códigos.'),
-    ('1.0.02', u'1.0.02 - Perturbação funcional que cause a morte ou a perda ou redução, permanente ou temporária, da capacidade para o trabalho, desde que não enquadrada em nenhum dos demais códigos.'),
-    ('2.0.01', u'2.0.01 - Doença profissional, assim entendida a produzida ou desencadeada pelo exercício do trabalho peculiar a determinada atividade e constante da respectiva relação elaborada pelo Ministério do Trabalho e Previdência Social, desde que não enquadrada em (...)'),
-    ('2.0.02', u'2.0.02 - Doença do trabalho, assim entendida a adquirida ou desencadeada em função de condições especiais em que o trabalho é realizado e com ele se relacione diretamente, constante da respectiva relação elaborada pelo Ministério do Trabalho e Previdência (...)'),
-    ('2.0.03', u'2.0.03 - Doença proveniente de contaminação acidental do empregado no exercício de sua atividade.'),
-    ('2.0.04', u'2.0.04 - Doença endêmica adquirida por segurado habitante de região em que ela se desenvolva quando resultante de exposição ou contato direto determinado pela natureza do trabalho.'),
-    ('2.0.05', u'2.0.05 - Doença profissional ou do trabalho não incluída na relação elaborada pelo Ministério do Trabalho e Previdência Social quando resultante das condições especiais em que o trabalho é executado e com ele se relaciona diretamente.'),
-    ('2.0.06', u'2.0.06 - Doença profissional ou do trabalho enquadrada na relação elaborada pelo Ministério do Trabalho e Previdência Social relativa nexo técnico epidemiológico previdenciário - NTEP.'),
-    ('3.0.01', u'3.0.01 - Acidente ligado ao trabalho que, embora não tenha sido a causa única, haja contribuído diretamente para a morte do segurado, para redução ou perda da sua capacidade para o trabalho, ou produzido lesão que exija atenção médica para a sua recuperaçã (...)'),
-    ('3.0.02', u'3.0.02 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de ato de agressão, sabotagem ou terrorismo praticado por terceiro ou companheiro de trabalho.'),
-    ('3.0.03', u'3.0.03 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de ofensa física intencional, inclusive de terceiro, por motivo de disputa relacionada ao trabalho.'),
-    ('3.0.04', u'3.0.04 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de ato de imprudência, de negligência ou de imperícia de terceiro ou de companheiro de trabalho.'),
-    ('3.0.05', u'3.0.05 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de ato de pessoa privada do uso da razão.'),
-    ('3.0.06', u'3.0.06 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de desabamento, inundação, incêndio e outros casos fortuitos ou decorrentes de força maior.'),
-    ('3.0.07', u'3.0.07 - Acidente sofrido pelo segurado ainda que fora do local e horário de trabalho na execução de ordem ou na realização de serviço sob a autoridade da empresa.'),
-    ('3.0.08', u'3.0.08 - Acidente sofrido pelo segurado ainda que fora do local e horário de trabalho na prestação espontânea de qualquer serviço à empresa para lhe evitar prejuízo ou proporcionar proveito.'),
-    ('3.0.09', u'3.0.09 - Acidente sofrido pelo segurado ainda que fora do local e horário de trabalho em viagem a serviço da empresa, inclusive para estudo quando financiada por esta dentro de seus planos para melhor capacitação da mão-de- obra, independentemente do meio (...)'),
-    ('3.0.10', u'3.0.10 - Acidente sofrido pelo segurado ainda que fora do local e horário de trabalho no percurso da residência para o local de trabalho ou deste para aquela, qualquer que seja o meio de locomoção, inclusive veículo de propriedade do segurado.'),
-    ('3.0.11', u'3.0.11 - Acidente sofrido pelo segurado nos períodos destinados a refeição ou descanso, ou por ocasião da satisfação de outras necessidades fisiológicas, no local do trabalho ou durante este.'),
-    ('4.0.01', u'4.0.01 - Suspeita de doenças profissionais ou do trabalho produzidas pelas condições especiais de trabalho, nos termos do art 169 da CLT.'),
-    ('4.0.02', u'4.0.02 - Constatação de ocorrência ou agravamento de doenças profissionais, através de exames médicos que incluam os definidos na NR 07; ou sendo verificadas alterações que revelem qualquer tipo de disfunção de órgão ou sistema biológico, através dos exame (...)'),
-    ('5.0.01', u'5.0.01 - Outros'),
-)
-
-CHOICES_S2210_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2210_TPCAT = (
-    (1, u'1 - Inicial'),
-    (2, u'2 - Reabertura'),
-    (3, u'3 - Comunicação de Óbito'),
-)
-
-CHOICES_S2210_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2210_TPLOCAL = (
-    (1, u'1 - Estabelecimento do empregador no Brasil'),
-    (2, u'2 - Estabelecimento do empregador no Exterior'),
-    (3, u'3 - Estabelecimento de terceiros onde o empregador presta serviços'),
-    (4, u'4 - Via pública'),
-    (5, u'5 - Área rural'),
-    (6, u'6 - Embarcação'),
-    (9, u'9 - Outros'),
-)
-
-CHOICES_S2210_TPREGISTRADOR = (
-    (1, u'1 - Empregador'),
-    (2, u'2 - Cooperativa'),
-    (3, u'3 - Sindicato de trabalhadores avulsos não portuários'),
-    (4, u'4 - Órgão Gestor de Mão de Obra'),
-    (5, u'5 - Empregado'),
-    (6, u'6 - Dependente do empregado'),
-    (7, u'7 - Entidade Sindical competente'),
-    (8, u'8 - Médico assistente'),
-    (9, u'9 - Autoridade Pública'),
-)
-
-CHOICES_S2220_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2220_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2220_RESASO = (
-    (1, u'1 - Apto'),
-    (2, u'2 - Inapto'),
-)
-
-CHOICES_S2220_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2220_TPASO = (
-    (0, u'0 - Admissional'),
-    (1, u'1 - Periódico, conforme planejamento do PCMSO'),
-    (2, u'2 - De retorno ao trabalho'),
-    (3, u'3 - De mudança de função'),
-    (4, u'4 - De monitoração pontual, não enquadrado nos casos anteriores'),
-    (8, u'8 - Demissional'),
-)
-
-CHOICES_S2220_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2230_CODCATEG = (
-    (101, u'101 - Empregado - Geral, inclusive o empregado público da administração direta ou indireta contratado pela CLT.'),
-    (102, u'102 - Empregado - Trabalhador Rural por Pequeno Prazo da Lei 11.718/2008'),
-    (103, u'103 - Empregado - Aprendiz'),
-    (104, u'104 - Empregado - Doméstico'),
-    (105, u'105 - Empregado - contrato a termo firmado nos termos da Lei 9601/98'),
-    (106, u'106 - Trabalhador Temporário - contrato por prazo determinado nos termos da Lei 6019/74'),
-    (111, u'111 - Empregado - contrato de trabalho intermitente'),
-    (201, u'201 - Trabalhador Avulso Portuário'),
-    (202, u'202 - Trabalhador Avulso Não Portuário'),
-    (301, u'301 - Servidor Público Titular de Cargo Efetivo, Magistrado, Ministro de Tribunal de Contas, Conselheiro de Tribunal de Contas e Membro do Ministério Público'),
-    (302, u'302 - Servidor Público Ocupante de Cargo exclusivo em comissão'),
-    (303, u'303 - Agente Político'),
-    (305, u'305 - Servidor Público indicado para conselho ou órgão deliberativo, na condição de representante do governo, órgão ou entidade da administração pública.'),
-    (306, u'306 - Servidor Público Temporário, sujeito a regime administrativo especial definido em lei própria'),
-    (307, u'307 - Militar efetivo'),
-    (308, u'308 - Conscrito'),
-    (309, u'309 - Agente Público - Outros'),
-    (401, u'401 - Dirigente Sindical - informação prestada pelo Sindicato'),
-    (410, u'410 - Trabalhador cedido - informação prestada pelo Cessionário'),
-    (701, u'701 - Contribuinte individual - Autônomo em geral, exceto se enquadrado em uma das demais categorias de contribuinte individual'),
-    (711, u'711 - Contribuinte individual - Transportador autônomo de passageiros'),
-    (712, u'712 - Contribuinte individual - Transportador autônomo de carga'),
-    (721, u'721 - Contribuinte individual - Diretor não empregado, com FGTS'),
-    (722, u'722 - Contribuinte individual - Diretor não empregado, sem FGTS'),
-    (723, u'723 - Contribuinte individual - empresários, sócios e membro de conselho de administração ou fiscal'),
-    (731, u'731 - Contribuinte individual - Cooperado que presta serviços por intermédio de Cooperativa de Trabalho'),
-    (734, u'734 - Contribuinte individual - Transportador Cooperado que presta serviços por intermédio de cooperativa de trabalho'),
-    (738, u'738 - Contribuinte individual - Cooperado filiado a Cooperativa de Produção'),
-    (741, u'741 - Contribuinte individual - Microempreendedor Individual'),
-    (751, u'751 - Contribuinte individual - magistrado classista temporário da Justiça do Trabalho ou da Justiça Eleitoral que seja aposentado de qualquer regime previdenciário'),
-    (761, u'761 - Contribuinte individual - Associado eleito para direção de Cooperativa, associação ou entidade de classe de qualquer natureza ou finalidade, bem como o síndico ou administrador eleito para exercer atividade de direção condominial, desde que recebam r (...)'),
-    (771, u'771 - Contribuinte individual - Membro de conselho tutelar, nos termos da Lei nº 8.069, de 13 de julho de 1990'),
-    (781, u'781 - Ministro de confissão religiosa ou membro de vida consagrada, de congregação ou de ordem religiosa'),
-    (901, u'901 - Estagiário'),
-    (902, u'902 - Médico Residente'),
-    (903, u'903 - Bolsista, nos termos da lei 8958/1994'),
-    (904, u'904 - Participante de curso de formação, como etapa de concurso público, sem vínculo de emprego/estatutário'),
-    (905, u'905 - Atleta não profissional em formação que receba bolsa'),
-)
-
-CHOICES_S2230_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2230_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2230_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2230_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2240_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2240_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2240_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2240_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2241_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2241_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2241_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2241_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2250_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2250_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2250_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2250_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2260_INDLOCAL = (
-    (0, u'0 - Prestação de serviços no estabelecimento informado no grupo {localTrabGeral} do S-2200 ou S-2206, quando for o caso'),
-    (1, u'1 - Prestação de serviços em apenas um local e fora do estabelecimento informado no grupo {localTrabGeral} do S-2200 ou S-2206, quando for o caso'),
-    (2, u'2 - Prestação de serviços de natureza externa ou em mais de um local'),
-)
-
-CHOICES_S2260_INDRETIF = (
-    (1, u'1 - arquivo original'),
-    (2, u'2 - arquivo de retificação'),
-)
-
-CHOICES_S2260_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2260_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2260_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2298_INDPAGTOJUIZO = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2298_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2298_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2298_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2298_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2298_TPREINT = (
-    (1, u'1 - Reintegração por Decisão Judicial'),
-    (2, u'2 - Reintegração por Anistia Legal'),
-    (3, u'3 - Reversão de Servidor Público'),
-    (4, u'4 - Recondução de Servidor Público'),
-    (5, u'5 - Reinclusão de Militar'),
-    (9, u'9 - Outros'),
-)
-
-CHOICES_S2299_INDCUMPRPARC = (
-    (0, u'0 - Cumprimento total'),
-    (1, u'1 - Cumprimento parcial em razão de obtenção de novo emprego pelo empregado'),
-    (2, u'2 - Cumprimento parcial por iniciativa do empregador'),
-    (3, u'3 - Outras hipóteses de cumprimento parcial do aviso prévio'),
-    (4, u'4 - Aviso prévio indenizado ou não exigível'),
-)
-
-CHOICES_S2299_INDPAGTOAPI = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2299_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2299_MTVDESLIG = (
-    ('01', u'01 - Rescisão com justa causa, por iniciativa do empregador'),
-    ('02', u'02 - Rescisão sem justa causa, por iniciativa do empregador'),
-    ('03', u'03 - Rescisão antecipada do contrato a termo por iniciativa do empregador'),
-    ('04', u'04 - Rescisão antecipada do contrato a termo por iniciativa do empregado'),
-    ('05', u'05 - Rescisão por culpa recíproca'),
-    ('06', u'06 - Rescisão por término do contrato a termo'),
-    ('07', u'07 - Rescisão do contrato de trabalho por iniciativa do empregado'),
-    ('08', u'08 - Rescisão do contrato de trabalho por interesse do(a) empregado(a), nas hipóteses previstas nos arts. 394 e 483, § 1º da CLT'),
-    ('09', u'09 - Rescisão por falecimento do empregador individual ou empregador doméstico por opção do empregado'),
-    ('10', u'10 - Rescisão por falecimento do empregado'),
-    ('11', u'11 - Transferência de empregado para empresa do mesmo grupo empresarial que tenha assumido os encargos trabalhistas, sem que tenha havido rescisão do contrato de trabalho'),
-    ('12', u'12 - Transferência de empregado da empresa consorciada para o consórcio que tenha assumido os encargos trabalhistas, e vice-versa, sem que tenha havido rescisão do contrato de trabalho'),
-    ('13', u'13 - Transferência de empregado de empresa ou consórcio, para outra empresa ou consórcio que tenha assumido os encargos trabalhistas por motivo de sucessão (fusão, cisão ou incorporação), sem que tenha havido rescisão do contrato de trabalho'),
-    ('14', u'14 - Rescisão do contrato de trabalho por encerramento da empresa, de seus estabelecimentos ou supressão de parte de suas atividades ou falecimento do empregador individual ou empregador doméstico sem continuação da atividade'),
-    ('15', u'15 - Demissão de Aprendizes por Desempenho Insuficiente ou Inadaptação'),
-    ('16', u'16 - Declaração de nulidade do contrato de trabalho por infringência ao inciso II do art. 37 da Constituição Federal, quando mantido o direito ao salário'),
-    ('17', u'17 - Rescisão Indireta do Contrato de Trabalho'),
-    ('18', u'18 - Aposentadoria Compulsória (somente para categorias de trabalhadores 301 a 309)'),
-    ('19', u'19 - Aposentadoria por idade (somente para categorias de trabalhadores 301 a 309)'),
-    ('20', u'20 - Aposentadoria por idade e tempo de contribuição (somente categorias 301 a 309)'),
-    ('21', u'21 - Reforma Militar (somente para categorias de trabalhadores 301 a 309)'),
-    ('22', u'22 - Reserva Militar (somente para categorias de trabalhadores 301 a 309)'),
-    ('23', u'23 - Exoneração (somente para categorias de trabalhadores 301 a 309)'),
-    ('24', u'24 - Demissão (somente para categorias de trabalhadores 301 a 309)'),
-    ('25', u'25 - Vacância para assumir outro cargo efetivo (somente para categorias de trabalhadores 301 a 309)'),
-    ('26', u'26 - Rescisão do contrato de trabalho por paralisação temporária ou definitiva da empresa, estabelecimento ou parte das atividades motivada por atos de autoridade municipal, estadual ou federal'),
-    ('27', u'27 - Rescisão por motivo de força maior'),
-    ('28', u'28 - Término da Cessão/Requisição'),
-    ('29', u'29 - Redistribuição'),
-    ('30', u'30 - Mudança de Regime Trabalhista'),
-    ('31', u'31 - Reversão de Reintegração'),
-    ('32', u'32 - Extravio de Militar'),
-    ('33', u'33 - Rescisão por acordo entre as partes (art. 484-A da CLT)'),
-    ('34', u'34 - Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar'),
-)
-
-CHOICES_S2299_PENSALIM = (
-    (0, u'0 - Não existe pensão alimentícia'),
-    (1, u'1 - Percentual de pensão alimentícia'),
-    (2, u'2 - Valor de pensão alimentícia'),
-    (3, u'3 - Percentual e valor de pensão alimentícia'),
-)
-
-CHOICES_S2299_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2299_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2299_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2300_CADINI = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2300_CODCATEG = (
-    (101, u'101 - Empregado - Geral, inclusive o empregado público da administração direta ou indireta contratado pela CLT.'),
-    (102, u'102 - Empregado - Trabalhador Rural por Pequeno Prazo da Lei 11.718/2008'),
-    (103, u'103 - Empregado - Aprendiz'),
-    (104, u'104 - Empregado - Doméstico'),
-    (105, u'105 - Empregado - contrato a termo firmado nos termos da Lei 9601/98'),
-    (106, u'106 - Trabalhador Temporário - contrato por prazo determinado nos termos da Lei 6019/74'),
-    (111, u'111 - Empregado - contrato de trabalho intermitente'),
-    (201, u'201 - Trabalhador Avulso Portuário'),
-    (202, u'202 - Trabalhador Avulso Não Portuário'),
-    (301, u'301 - Servidor Público Titular de Cargo Efetivo, Magistrado, Ministro de Tribunal de Contas, Conselheiro de Tribunal de Contas e Membro do Ministério Público'),
-    (302, u'302 - Servidor Público Ocupante de Cargo exclusivo em comissão'),
-    (303, u'303 - Agente Político'),
-    (305, u'305 - Servidor Público indicado para conselho ou órgão deliberativo, na condição de representante do governo, órgão ou entidade da administração pública.'),
-    (306, u'306 - Servidor Público Temporário, sujeito a regime administrativo especial definido em lei própria'),
-    (307, u'307 - Militar efetivo'),
-    (308, u'308 - Conscrito'),
-    (309, u'309 - Agente Público - Outros'),
-    (401, u'401 - Dirigente Sindical - informação prestada pelo Sindicato'),
-    (410, u'410 - Trabalhador cedido - informação prestada pelo Cessionário'),
-    (701, u'701 - Contribuinte individual - Autônomo em geral, exceto se enquadrado em uma das demais categorias de contribuinte individual'),
-    (711, u'711 - Contribuinte individual - Transportador autônomo de passageiros'),
-    (712, u'712 - Contribuinte individual - Transportador autônomo de carga'),
-    (721, u'721 - Contribuinte individual - Diretor não empregado, com FGTS'),
-    (722, u'722 - Contribuinte individual - Diretor não empregado, sem FGTS'),
-    (723, u'723 - Contribuinte individual - empresários, sócios e membro de conselho de administração ou fiscal'),
-    (731, u'731 - Contribuinte individual - Cooperado que presta serviços por intermédio de Cooperativa de Trabalho'),
-    (734, u'734 - Contribuinte individual - Transportador Cooperado que presta serviços por intermédio de cooperativa de trabalho'),
-    (738, u'738 - Contribuinte individual - Cooperado filiado a Cooperativa de Produção'),
-    (741, u'741 - Contribuinte individual - Microempreendedor Individual'),
-    (751, u'751 - Contribuinte individual - magistrado classista temporário da Justiça do Trabalho ou da Justiça Eleitoral que seja aposentado de qualquer regime previdenciário'),
-    (761, u'761 - Contribuinte individual - Associado eleito para direção de Cooperativa, associação ou entidade de classe de qualquer natureza ou finalidade, bem como o síndico ou administrador eleito para exercer atividade de direção condominial, desde que recebam r (...)'),
-    (771, u'771 - Contribuinte individual - Membro de conselho tutelar, nos termos da Lei nº 8.069, de 13 de julho de 1990'),
-    (781, u'781 - Ministro de confissão religiosa ou membro de vida consagrada, de congregação ou de ordem religiosa'),
-    (901, u'901 - Estagiário'),
-    (902, u'902 - Médico Residente'),
-    (903, u'903 - Bolsista, nos termos da lei 8958/1994'),
-    (904, u'904 - Participante de curso de formação, como etapa de concurso público, sem vínculo de emprego/estatutário'),
-    (905, u'905 - Atleta não profissional em formação que receba bolsa'),
-)
-
-CHOICES_S2300_ESTCIV = (
-    (1, u'1 - Solteiro'),
-    (2, u'2 - Casado'),
-    (3, u'3 - Divorciado'),
-    (4, u'4 - Separado'),
-    (5, u'5 - Viúvo'),
-)
-
-CHOICES_S2300_GRAUINSTR = (
-    ('01', u'01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou'),
-    ('02', u'02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular'),
-    ('03', u'03 - 5º ano completo do Ensino Fundamental'),
-    ('04', u'04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série)'),
-    ('05', u'05 - Ensino Fundamental Completo'),
-    ('06', u'06 - Ensino Médio incompleto'),
-    ('07', u'07 - Ensino Médio completo'),
-    ('08', u'08 - Educação Superior incompleta'),
-    ('09', u'09 - Educação Superior completa'),
-    ('10', u'10 - Pós-Graduação completa'),
-    ('11', u'11 - Mestrado completo'),
-    ('12', u'12 - Doutorado completo'),
-)
-
-CHOICES_S2300_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2300_NATATIVIDADE = (
-    (1, u'1 - Trabalho Urbano'),
-    (2, u'2 - Trabalho Rural'),
 )
 
 CHOICES_S2300_PAISNAC = (
@@ -2866,200 +1366,6 @@ CHOICES_S2300_PAISNASCTO = (
     ('890', u'890 - Zambia'),
 )
 
-CHOICES_S2300_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2300_RACACOR = (
-    (1, u'1 - Branca'),
-    (2, u'2 - Negra'),
-    (3, u'3 - Parda (parda ou declarada como mulata, cabocla, cafuza, mameluca ou mestiça de negro com pessoa de outra cor ou raça)'),
-    (4, u'4 - Amarela (de origem japonesa, chinesa, coreana etc)'),
-    (5, u'5 - Indígena'),
-    (6, u'6 - Não informado'),
-)
-
-CHOICES_S2300_SEXO = (
-    ('F', u'F - Feminino'),
-    ('M', u'M - Masculino'),
-)
-
-CHOICES_S2300_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2300_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2306_CODCATEG = (
-    (101, u'101 - Empregado - Geral, inclusive o empregado público da administração direta ou indireta contratado pela CLT.'),
-    (102, u'102 - Empregado - Trabalhador Rural por Pequeno Prazo da Lei 11.718/2008'),
-    (103, u'103 - Empregado - Aprendiz'),
-    (104, u'104 - Empregado - Doméstico'),
-    (105, u'105 - Empregado - contrato a termo firmado nos termos da Lei 9601/98'),
-    (106, u'106 - Trabalhador Temporário - contrato por prazo determinado nos termos da Lei 6019/74'),
-    (111, u'111 - Empregado - contrato de trabalho intermitente'),
-    (201, u'201 - Trabalhador Avulso Portuário'),
-    (202, u'202 - Trabalhador Avulso Não Portuário'),
-    (301, u'301 - Servidor Público Titular de Cargo Efetivo, Magistrado, Ministro de Tribunal de Contas, Conselheiro de Tribunal de Contas e Membro do Ministério Público'),
-    (302, u'302 - Servidor Público Ocupante de Cargo exclusivo em comissão'),
-    (303, u'303 - Agente Político'),
-    (305, u'305 - Servidor Público indicado para conselho ou órgão deliberativo, na condição de representante do governo, órgão ou entidade da administração pública.'),
-    (306, u'306 - Servidor Público Temporário, sujeito a regime administrativo especial definido em lei própria'),
-    (307, u'307 - Militar efetivo'),
-    (308, u'308 - Conscrito'),
-    (309, u'309 - Agente Público - Outros'),
-    (401, u'401 - Dirigente Sindical - informação prestada pelo Sindicato'),
-    (410, u'410 - Trabalhador cedido - informação prestada pelo Cessionário'),
-    (701, u'701 - Contribuinte individual - Autônomo em geral, exceto se enquadrado em uma das demais categorias de contribuinte individual'),
-    (711, u'711 - Contribuinte individual - Transportador autônomo de passageiros'),
-    (712, u'712 - Contribuinte individual - Transportador autônomo de carga'),
-    (721, u'721 - Contribuinte individual - Diretor não empregado, com FGTS'),
-    (722, u'722 - Contribuinte individual - Diretor não empregado, sem FGTS'),
-    (723, u'723 - Contribuinte individual - empresários, sócios e membro de conselho de administração ou fiscal'),
-    (731, u'731 - Contribuinte individual - Cooperado que presta serviços por intermédio de Cooperativa de Trabalho'),
-    (734, u'734 - Contribuinte individual - Transportador Cooperado que presta serviços por intermédio de cooperativa de trabalho'),
-    (738, u'738 - Contribuinte individual - Cooperado filiado a Cooperativa de Produção'),
-    (741, u'741 - Contribuinte individual - Microempreendedor Individual'),
-    (751, u'751 - Contribuinte individual - magistrado classista temporário da Justiça do Trabalho ou da Justiça Eleitoral que seja aposentado de qualquer regime previdenciário'),
-    (761, u'761 - Contribuinte individual - Associado eleito para direção de Cooperativa, associação ou entidade de classe de qualquer natureza ou finalidade, bem como o síndico ou administrador eleito para exercer atividade de direção condominial, desde que recebam r (...)'),
-    (771, u'771 - Contribuinte individual - Membro de conselho tutelar, nos termos da Lei nº 8.069, de 13 de julho de 1990'),
-    (781, u'781 - Ministro de confissão religiosa ou membro de vida consagrada, de congregação ou de ordem religiosa'),
-    (901, u'901 - Estagiário'),
-    (902, u'902 - Médico Residente'),
-    (903, u'903 - Bolsista, nos termos da lei 8958/1994'),
-    (904, u'904 - Participante de curso de formação, como etapa de concurso público, sem vínculo de emprego/estatutário'),
-    (905, u'905 - Atleta não profissional em formação que receba bolsa'),
-)
-
-CHOICES_S2306_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2306_NATATIVIDADE = (
-    (1, u'1 - Trabalho Urbano'),
-    (2, u'2 - Trabalho Rural'),
-)
-
-CHOICES_S2306_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2306_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2306_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2399_CODCATEG = (
-    (101, u'101 - Empregado - Geral, inclusive o empregado público da administração direta ou indireta contratado pela CLT.'),
-    (102, u'102 - Empregado - Trabalhador Rural por Pequeno Prazo da Lei 11.718/2008'),
-    (103, u'103 - Empregado - Aprendiz'),
-    (104, u'104 - Empregado - Doméstico'),
-    (105, u'105 - Empregado - contrato a termo firmado nos termos da Lei 9601/98'),
-    (106, u'106 - Trabalhador Temporário - contrato por prazo determinado nos termos da Lei 6019/74'),
-    (111, u'111 - Empregado - contrato de trabalho intermitente'),
-    (201, u'201 - Trabalhador Avulso Portuário'),
-    (202, u'202 - Trabalhador Avulso Não Portuário'),
-    (301, u'301 - Servidor Público Titular de Cargo Efetivo, Magistrado, Ministro de Tribunal de Contas, Conselheiro de Tribunal de Contas e Membro do Ministério Público'),
-    (302, u'302 - Servidor Público Ocupante de Cargo exclusivo em comissão'),
-    (303, u'303 - Agente Político'),
-    (305, u'305 - Servidor Público indicado para conselho ou órgão deliberativo, na condição de representante do governo, órgão ou entidade da administração pública.'),
-    (306, u'306 - Servidor Público Temporário, sujeito a regime administrativo especial definido em lei própria'),
-    (307, u'307 - Militar efetivo'),
-    (308, u'308 - Conscrito'),
-    (309, u'309 - Agente Público - Outros'),
-    (401, u'401 - Dirigente Sindical - informação prestada pelo Sindicato'),
-    (410, u'410 - Trabalhador cedido - informação prestada pelo Cessionário'),
-    (701, u'701 - Contribuinte individual - Autônomo em geral, exceto se enquadrado em uma das demais categorias de contribuinte individual'),
-    (711, u'711 - Contribuinte individual - Transportador autônomo de passageiros'),
-    (712, u'712 - Contribuinte individual - Transportador autônomo de carga'),
-    (721, u'721 - Contribuinte individual - Diretor não empregado, com FGTS'),
-    (722, u'722 - Contribuinte individual - Diretor não empregado, sem FGTS'),
-    (723, u'723 - Contribuinte individual - empresários, sócios e membro de conselho de administração ou fiscal'),
-    (731, u'731 - Contribuinte individual - Cooperado que presta serviços por intermédio de Cooperativa de Trabalho'),
-    (734, u'734 - Contribuinte individual - Transportador Cooperado que presta serviços por intermédio de cooperativa de trabalho'),
-    (738, u'738 - Contribuinte individual - Cooperado filiado a Cooperativa de Produção'),
-    (741, u'741 - Contribuinte individual - Microempreendedor Individual'),
-    (751, u'751 - Contribuinte individual - magistrado classista temporário da Justiça do Trabalho ou da Justiça Eleitoral que seja aposentado de qualquer regime previdenciário'),
-    (761, u'761 - Contribuinte individual - Associado eleito para direção de Cooperativa, associação ou entidade de classe de qualquer natureza ou finalidade, bem como o síndico ou administrador eleito para exercer atividade de direção condominial, desde que recebam r (...)'),
-    (771, u'771 - Contribuinte individual - Membro de conselho tutelar, nos termos da Lei nº 8.069, de 13 de julho de 1990'),
-    (781, u'781 - Ministro de confissão religiosa ou membro de vida consagrada, de congregação ou de ordem religiosa'),
-    (901, u'901 - Estagiário'),
-    (902, u'902 - Médico Residente'),
-    (903, u'903 - Bolsista, nos termos da lei 8958/1994'),
-    (904, u'904 - Participante de curso de formação, como etapa de concurso público, sem vínculo de emprego/estatutário'),
-    (905, u'905 - Atleta não profissional em formação que receba bolsa'),
-)
-
-CHOICES_S2399_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2399_MTVDESLIGTSV = (
-    ('01', u'01 - Exoneração do Diretor Não Empregado sem justa causa, por deliberação da assembleia, dos sócios cotistas ou da autoridade competente'),
-    ('02', u'02 - Término de Mandato do Diretor Não Empregado que não tenha sido reconduzido ao cargo'),
-    ('03', u'03 - Exoneração a pedido de Diretor Não Empregado'),
-    ('04', u'04 - Exoneração do Diretor Não Empregado por culpa recíproca ou força maior'),
-    ('05', u'05 - Morte do Diretor Não Empregado'),
-    ('06', u'06 - Exoneração do Diretor Não Empregado por falência, encerramento ou supressão de parte da empresa'),
-    ('99', u'99 - Outros'),
-)
-
-CHOICES_S2399_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2399_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2399_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2400_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
 CHOICES_S2400_PAISNAC = (
     ('008', u'008 - Abu Dhabi'),
     ('009', u'009 - Dirce'),
@@ -3590,42 +1896,66 @@ CHOICES_S2400_PAISNASCTO = (
     ('890', u'890 - Zambia'),
 )
 
-CHOICES_S2400_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2400_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2400_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2400_TPPLANRP = (
-    (1, u'1 - Plano previdenciário ou único'),
-    (2, u'2 - Plano financeiro'),
-)
-
-CHOICES_S3000_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S3000_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
+CHOICES_S2210_CODSITGERADORA = (
+    (200004300, u'200004300 - Impacto de pessoa contra objeto parado'),
+    (200004600, u'200004600 - Impacto de pessoa contra objeto em movimento'),
+    (200008300, u'200008300 - Impacto sofrido por pessoa de objeto que cai'),
+    (200008600, u'200008600 - Impacto sofrido por pessoa de objeto projetado'),
+    (200008900, u'200008900 - Impacto sofrido por pessoa, NIC'),
+    (200012200, u'200012200 - Queda de pessoa com diferença de nível de andaime, passagem, plataforma, etc.'),
+    (200012300, u'200012300 - Queda de pessoa com diferença de nível de escada móvel ou fixada cujos degraus'),
+    (200012400, u'200012400 - Queda de pessoa com diferença de nível de material empilhado'),
+    (200012500, u'200012500 - Queda de pessoa com diferença de nível de veículo'),
+    (200012600, u'200012600 - Queda de pessoa com diferença de nível em escada permanente'),
+    (200012700, u'200012700 - Queda de pessoa com diferença de nível em poço, escavação, abertura no piso, etc.'),
+    (200012900, u'200012900 - Queda de pessoa com diferença de nível, NIC'),
+    (200016300, u'200016300 - Queda de pessoa em mesmo nível em passagem ou superfície de sustentação'),
+    (200016600, u'200016600 - Queda de pessoa em mesmo nível sobre ou contra alguma coisa'),
+    (200016900, u'200016900 - Queda de pessoa em mesmo nível, NIC'),
+    (200020100, u'200020100 - Aprisionamento em, sobre ou entre objetos em movimento convergente'),
+    (200020300, u'200020300 - Aprisionamento em, sobre ou entre objeto parado e outro em movimento'),
+    (200020500, u'200020500 - Aprisionamento em, sobre ou entre dois ou mais objetos em movimento'),
+    (200020700, u'200020700 - Aprisionamento em, sobre ou entre desabamento ou desmoronamento'),
+    (200020900, u'200020900 - Aprisionamento em, sob ou entre, NIC'),
+    (200024300, u'200024300 - Atrito ou abrasão por encostar, pisar, ajoelhar ou sentar em objeto'),
+    (200024400, u'200024400 - Atrito ou abrasão por manusear objeto'),
+    (200024500, u'200024500 - Atrito ou abrasão por objeto em vibração'),
+    (200024600, u'200024600 - Atrito ou abrasão por corpo estranho no olho'),
+    (200024700, u'200024700 - Atrito ou abrasão por compressão repetitiva'),
+    (200024900, u'200024900 - Atrito ou abrasão, NIC'),
+    (200028300, u'200028300 - Reação do corpo a movimento involuntário'),
+    (200028600, u'200028600 - Reação do corpo a movimento voluntário'),
+    (200032200, u'200032200 - Esforço excessivo ao erguer objeto'),
+    (200032400, u'200032400 - Esforço excessivo ao empurrar ou puxar objeto'),
+    (200032600, u'200032600 - Esforço excessivo ao manejar, sacudir ou arremessar objeto'),
+    (200032900, u'200032900 - Esforço excessivo, NIC'),
+    (200036000, u'200036000 - Elétrica, exposição a energia'),
+    (200040300, u'200040300 - Temperatura muito alta, contato com objeto ou substância a'),
+    (200040600, u'200040600 - Temperatura muito baixa, contato com objeto ou substância a'),
+    (200044300, u'200044300 - Temperatura ambiente elevada, exposição a'),
+    (200044600, u'200044600 - Temperatura ambiente baixa, exposição a'),
+    (200048200, u'200048200 - Inalação de substância cáustica, tóxica ou nociva'),
+    (200048400, u'200048400 - Ingestão de substância cáustica'),
+    (200048600, u'200048600 - Absorção de substância cáustica'),
+    (200048900, u'200048900 - Inalação, ingestão ou absorção, NIC'),
+    (200052000, u'200052000 - Imersão'),
+    (200056000, u'200056000 - Radiação não ionizante, exposição a'),
+    (200060000, u'200060000 - Radiação ionizante, exposição a'),
+    (200064000, u'200064000 - Ruído, exposição a'),
+    (200068000, u'200068000 - Vibração, exposição a'),
+    (200072000, u'200072000 - Pressão ambiente, exposição a'),
+    (200072300, u'200072300 - Exposição à pressão ambiente elevada'),
+    (200072600, u'200072600 - Exposição à pressão ambiente baixa'),
+    (200076200, u'200076200 - Poluição da água, ação da (exposição à poluição da água)'),
+    (200076400, u'200076400 - Poluição do ar, ação da (exposição à poluição do ar)'),
+    (200076600, u'200076600 - Poluição do solo, ação da (exposição à poluição do solo)'),
+    (200076900, u'200076900 - Poluição, NIC, exposição a (exposição à poluição, NIC)'),
+    (200080200, u'200080200 - Ataque de ser vivo por mordedura, picada, chifrada, coice, etc.'),
+    (200080400, u'200080400 - Ataque de ser vivo com peçonha'),
+    (200080600, u'200080600 - Ataque de ser vivo com transmissão de doença'),
+    (200080900, u'200080900 - Ataque de ser vivo, NIC'),
+    (209000000, u'209000000 - Tipo, NIC'),
+    (209500000, u'209500000 - Tipo inexistente'),
 )
 
 CHOICES_S3000_TPEVENTO = (
@@ -3676,33 +2006,282 @@ CHOICES_S3000_TPEVENTO = (
     ('S-5012', u'S-5012 - Informações do IRRF consolidadas por Contribuinte'),
 )
 
-CHOICES_S3000_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+CHOICES_S2230_CODCATEG = (
+    (101, u'101 - Empregado - Geral, inclusive o empregado público da administração direta ou indireta contratado pela CLT.'),
+    (102, u'102 - Empregado - Trabalhador Rural por Pequeno Prazo da Lei 11.718/2008'),
+    (103, u'103 - Empregado - Aprendiz'),
+    (104, u'104 - Empregado - Doméstico'),
+    (105, u'105 - Empregado - contrato a termo firmado nos termos da Lei 9601/98'),
+    (106, u'106 - Trabalhador Temporário - contrato por prazo determinado nos termos da Lei 6019/74'),
+    (111, u'111 - Empregado - contrato de trabalho intermitente'),
+    (201, u'201 - Trabalhador Avulso Portuário'),
+    (202, u'202 - Trabalhador Avulso Não Portuário'),
+    (301, u'301 - Servidor Público Titular de Cargo Efetivo, Magistrado, Ministro de Tribunal de Contas, Conselheiro de Tribunal de Contas e Membro do Ministério Público'),
+    (302, u'302 - Servidor Público Ocupante de Cargo exclusivo em comissão'),
+    (303, u'303 - Agente Político'),
+    (305, u'305 - Servidor Público indicado para conselho ou órgão deliberativo, na condição de representante do governo, órgão ou entidade da administração pública.'),
+    (306, u'306 - Servidor Público Temporário, sujeito a regime administrativo especial definido em lei própria'),
+    (307, u'307 - Militar efetivo'),
+    (308, u'308 - Conscrito'),
+    (309, u'309 - Agente Público - Outros'),
+    (401, u'401 - Dirigente Sindical - informação prestada pelo Sindicato'),
+    (410, u'410 - Trabalhador cedido - informação prestada pelo Cessionário'),
+    (701, u'701 - Contribuinte individual - Autônomo em geral, exceto se enquadrado em uma das demais categorias de contribuinte individual'),
+    (711, u'711 - Contribuinte individual - Transportador autônomo de passageiros'),
+    (712, u'712 - Contribuinte individual - Transportador autônomo de carga'),
+    (721, u'721 - Contribuinte individual - Diretor não empregado, com FGTS'),
+    (722, u'722 - Contribuinte individual - Diretor não empregado, sem FGTS'),
+    (723, u'723 - Contribuinte individual - empresários, sócios e membro de conselho de administração ou fiscal'),
+    (731, u'731 - Contribuinte individual - Cooperado que presta serviços por intermédio de Cooperativa de Trabalho'),
+    (734, u'734 - Contribuinte individual - Transportador Cooperado que presta serviços por intermédio de cooperativa de trabalho'),
+    (738, u'738 - Contribuinte individual - Cooperado filiado a Cooperativa de Produção'),
+    (741, u'741 - Contribuinte individual - Microempreendedor Individual'),
+    (751, u'751 - Contribuinte individual - magistrado classista temporário da Justiça do Trabalho ou da Justiça Eleitoral que seja aposentado de qualquer regime previdenciário'),
+    (761, u'761 - Contribuinte individual - Associado eleito para direção de Cooperativa, associação ou entidade de classe de qualquer natureza ou finalidade, bem como o síndico ou administrador eleito para exercer atividade de direção condominial, desde que recebam r (...)'),
+    (771, u'771 - Contribuinte individual - Membro de conselho tutelar, nos termos da Lei nº 8.069, de 13 de julho de 1990'),
+    (781, u'781 - Ministro de confissão religiosa ou membro de vida consagrada, de congregação ou de ordem religiosa'),
+    (901, u'901 - Estagiário'),
+    (902, u'902 - Médico Residente'),
+    (903, u'903 - Bolsista, nos termos da lei 8958/1994'),
+    (904, u'904 - Participante de curso de formação, como etapa de concurso público, sem vínculo de emprego/estatutário'),
+    (905, u'905 - Atleta não profissional em formação que receba bolsa'),
 )
 
-CHOICES_S5001_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
+CHOICES_S2300_CODCATEG = (
+    (101, u'101 - Empregado - Geral, inclusive o empregado público da administração direta ou indireta contratado pela CLT.'),
+    (102, u'102 - Empregado - Trabalhador Rural por Pequeno Prazo da Lei 11.718/2008'),
+    (103, u'103 - Empregado - Aprendiz'),
+    (104, u'104 - Empregado - Doméstico'),
+    (105, u'105 - Empregado - contrato a termo firmado nos termos da Lei 9601/98'),
+    (106, u'106 - Trabalhador Temporário - contrato por prazo determinado nos termos da Lei 6019/74'),
+    (111, u'111 - Empregado - contrato de trabalho intermitente'),
+    (201, u'201 - Trabalhador Avulso Portuário'),
+    (202, u'202 - Trabalhador Avulso Não Portuário'),
+    (301, u'301 - Servidor Público Titular de Cargo Efetivo, Magistrado, Ministro de Tribunal de Contas, Conselheiro de Tribunal de Contas e Membro do Ministério Público'),
+    (302, u'302 - Servidor Público Ocupante de Cargo exclusivo em comissão'),
+    (303, u'303 - Agente Político'),
+    (305, u'305 - Servidor Público indicado para conselho ou órgão deliberativo, na condição de representante do governo, órgão ou entidade da administração pública.'),
+    (306, u'306 - Servidor Público Temporário, sujeito a regime administrativo especial definido em lei própria'),
+    (307, u'307 - Militar efetivo'),
+    (308, u'308 - Conscrito'),
+    (309, u'309 - Agente Público - Outros'),
+    (401, u'401 - Dirigente Sindical - informação prestada pelo Sindicato'),
+    (410, u'410 - Trabalhador cedido - informação prestada pelo Cessionário'),
+    (701, u'701 - Contribuinte individual - Autônomo em geral, exceto se enquadrado em uma das demais categorias de contribuinte individual'),
+    (711, u'711 - Contribuinte individual - Transportador autônomo de passageiros'),
+    (712, u'712 - Contribuinte individual - Transportador autônomo de carga'),
+    (721, u'721 - Contribuinte individual - Diretor não empregado, com FGTS'),
+    (722, u'722 - Contribuinte individual - Diretor não empregado, sem FGTS'),
+    (723, u'723 - Contribuinte individual - empresários, sócios e membro de conselho de administração ou fiscal'),
+    (731, u'731 - Contribuinte individual - Cooperado que presta serviços por intermédio de Cooperativa de Trabalho'),
+    (734, u'734 - Contribuinte individual - Transportador Cooperado que presta serviços por intermédio de cooperativa de trabalho'),
+    (738, u'738 - Contribuinte individual - Cooperado filiado a Cooperativa de Produção'),
+    (741, u'741 - Contribuinte individual - Microempreendedor Individual'),
+    (751, u'751 - Contribuinte individual - magistrado classista temporário da Justiça do Trabalho ou da Justiça Eleitoral que seja aposentado de qualquer regime previdenciário'),
+    (761, u'761 - Contribuinte individual - Associado eleito para direção de Cooperativa, associação ou entidade de classe de qualquer natureza ou finalidade, bem como o síndico ou administrador eleito para exercer atividade de direção condominial, desde que recebam r (...)'),
+    (771, u'771 - Contribuinte individual - Membro de conselho tutelar, nos termos da Lei nº 8.069, de 13 de julho de 1990'),
+    (781, u'781 - Ministro de confissão religiosa ou membro de vida consagrada, de congregação ou de ordem religiosa'),
+    (901, u'901 - Estagiário'),
+    (902, u'902 - Médico Residente'),
+    (903, u'903 - Bolsista, nos termos da lei 8958/1994'),
+    (904, u'904 - Participante de curso de formação, como etapa de concurso público, sem vínculo de emprego/estatutário'),
+    (905, u'905 - Atleta não profissional em formação que receba bolsa'),
 )
 
-CHOICES_S5001_TPINSC = (
+CHOICES_S2306_CODCATEG = (
+    (101, u'101 - Empregado - Geral, inclusive o empregado público da administração direta ou indireta contratado pela CLT.'),
+    (102, u'102 - Empregado - Trabalhador Rural por Pequeno Prazo da Lei 11.718/2008'),
+    (103, u'103 - Empregado - Aprendiz'),
+    (104, u'104 - Empregado - Doméstico'),
+    (105, u'105 - Empregado - contrato a termo firmado nos termos da Lei 9601/98'),
+    (106, u'106 - Trabalhador Temporário - contrato por prazo determinado nos termos da Lei 6019/74'),
+    (111, u'111 - Empregado - contrato de trabalho intermitente'),
+    (201, u'201 - Trabalhador Avulso Portuário'),
+    (202, u'202 - Trabalhador Avulso Não Portuário'),
+    (301, u'301 - Servidor Público Titular de Cargo Efetivo, Magistrado, Ministro de Tribunal de Contas, Conselheiro de Tribunal de Contas e Membro do Ministério Público'),
+    (302, u'302 - Servidor Público Ocupante de Cargo exclusivo em comissão'),
+    (303, u'303 - Agente Político'),
+    (305, u'305 - Servidor Público indicado para conselho ou órgão deliberativo, na condição de representante do governo, órgão ou entidade da administração pública.'),
+    (306, u'306 - Servidor Público Temporário, sujeito a regime administrativo especial definido em lei própria'),
+    (307, u'307 - Militar efetivo'),
+    (308, u'308 - Conscrito'),
+    (309, u'309 - Agente Público - Outros'),
+    (401, u'401 - Dirigente Sindical - informação prestada pelo Sindicato'),
+    (410, u'410 - Trabalhador cedido - informação prestada pelo Cessionário'),
+    (701, u'701 - Contribuinte individual - Autônomo em geral, exceto se enquadrado em uma das demais categorias de contribuinte individual'),
+    (711, u'711 - Contribuinte individual - Transportador autônomo de passageiros'),
+    (712, u'712 - Contribuinte individual - Transportador autônomo de carga'),
+    (721, u'721 - Contribuinte individual - Diretor não empregado, com FGTS'),
+    (722, u'722 - Contribuinte individual - Diretor não empregado, sem FGTS'),
+    (723, u'723 - Contribuinte individual - empresários, sócios e membro de conselho de administração ou fiscal'),
+    (731, u'731 - Contribuinte individual - Cooperado que presta serviços por intermédio de Cooperativa de Trabalho'),
+    (734, u'734 - Contribuinte individual - Transportador Cooperado que presta serviços por intermédio de cooperativa de trabalho'),
+    (738, u'738 - Contribuinte individual - Cooperado filiado a Cooperativa de Produção'),
+    (741, u'741 - Contribuinte individual - Microempreendedor Individual'),
+    (751, u'751 - Contribuinte individual - magistrado classista temporário da Justiça do Trabalho ou da Justiça Eleitoral que seja aposentado de qualquer regime previdenciário'),
+    (761, u'761 - Contribuinte individual - Associado eleito para direção de Cooperativa, associação ou entidade de classe de qualquer natureza ou finalidade, bem como o síndico ou administrador eleito para exercer atividade de direção condominial, desde que recebam r (...)'),
+    (771, u'771 - Contribuinte individual - Membro de conselho tutelar, nos termos da Lei nº 8.069, de 13 de julho de 1990'),
+    (781, u'781 - Ministro de confissão religiosa ou membro de vida consagrada, de congregação ou de ordem religiosa'),
+    (901, u'901 - Estagiário'),
+    (902, u'902 - Médico Residente'),
+    (903, u'903 - Bolsista, nos termos da lei 8958/1994'),
+    (904, u'904 - Participante de curso de formação, como etapa de concurso público, sem vínculo de emprego/estatutário'),
+    (905, u'905 - Atleta não profissional em formação que receba bolsa'),
+)
+
+CHOICES_S2399_CODCATEG = (
+    (101, u'101 - Empregado - Geral, inclusive o empregado público da administração direta ou indireta contratado pela CLT.'),
+    (102, u'102 - Empregado - Trabalhador Rural por Pequeno Prazo da Lei 11.718/2008'),
+    (103, u'103 - Empregado - Aprendiz'),
+    (104, u'104 - Empregado - Doméstico'),
+    (105, u'105 - Empregado - contrato a termo firmado nos termos da Lei 9601/98'),
+    (106, u'106 - Trabalhador Temporário - contrato por prazo determinado nos termos da Lei 6019/74'),
+    (111, u'111 - Empregado - contrato de trabalho intermitente'),
+    (201, u'201 - Trabalhador Avulso Portuário'),
+    (202, u'202 - Trabalhador Avulso Não Portuário'),
+    (301, u'301 - Servidor Público Titular de Cargo Efetivo, Magistrado, Ministro de Tribunal de Contas, Conselheiro de Tribunal de Contas e Membro do Ministério Público'),
+    (302, u'302 - Servidor Público Ocupante de Cargo exclusivo em comissão'),
+    (303, u'303 - Agente Político'),
+    (305, u'305 - Servidor Público indicado para conselho ou órgão deliberativo, na condição de representante do governo, órgão ou entidade da administração pública.'),
+    (306, u'306 - Servidor Público Temporário, sujeito a regime administrativo especial definido em lei própria'),
+    (307, u'307 - Militar efetivo'),
+    (308, u'308 - Conscrito'),
+    (309, u'309 - Agente Público - Outros'),
+    (401, u'401 - Dirigente Sindical - informação prestada pelo Sindicato'),
+    (410, u'410 - Trabalhador cedido - informação prestada pelo Cessionário'),
+    (701, u'701 - Contribuinte individual - Autônomo em geral, exceto se enquadrado em uma das demais categorias de contribuinte individual'),
+    (711, u'711 - Contribuinte individual - Transportador autônomo de passageiros'),
+    (712, u'712 - Contribuinte individual - Transportador autônomo de carga'),
+    (721, u'721 - Contribuinte individual - Diretor não empregado, com FGTS'),
+    (722, u'722 - Contribuinte individual - Diretor não empregado, sem FGTS'),
+    (723, u'723 - Contribuinte individual - empresários, sócios e membro de conselho de administração ou fiscal'),
+    (731, u'731 - Contribuinte individual - Cooperado que presta serviços por intermédio de Cooperativa de Trabalho'),
+    (734, u'734 - Contribuinte individual - Transportador Cooperado que presta serviços por intermédio de cooperativa de trabalho'),
+    (738, u'738 - Contribuinte individual - Cooperado filiado a Cooperativa de Produção'),
+    (741, u'741 - Contribuinte individual - Microempreendedor Individual'),
+    (751, u'751 - Contribuinte individual - magistrado classista temporário da Justiça do Trabalho ou da Justiça Eleitoral que seja aposentado de qualquer regime previdenciário'),
+    (761, u'761 - Contribuinte individual - Associado eleito para direção de Cooperativa, associação ou entidade de classe de qualquer natureza ou finalidade, bem como o síndico ou administrador eleito para exercer atividade de direção condominial, desde que recebam r (...)'),
+    (771, u'771 - Contribuinte individual - Membro de conselho tutelar, nos termos da Lei nº 8.069, de 13 de julho de 1990'),
+    (781, u'781 - Ministro de confissão religiosa ou membro de vida consagrada, de congregação ou de ordem religiosa'),
+    (901, u'901 - Estagiário'),
+    (902, u'902 - Médico Residente'),
+    (903, u'903 - Bolsista, nos termos da lei 8958/1994'),
+    (904, u'904 - Participante de curso de formação, como etapa de concurso público, sem vínculo de emprego/estatutário'),
+    (905, u'905 - Atleta não profissional em formação que receba bolsa'),
+)
+
+CHOICES_S2299_MTVDESLIG = (
+    ('01', u'01 - Rescisão com justa causa, por iniciativa do empregador'),
+    ('02', u'02 - Rescisão sem justa causa, por iniciativa do empregador'),
+    ('03', u'03 - Rescisão antecipada do contrato a termo por iniciativa do empregador'),
+    ('04', u'04 - Rescisão antecipada do contrato a termo por iniciativa do empregado'),
+    ('05', u'05 - Rescisão por culpa recíproca'),
+    ('06', u'06 - Rescisão por término do contrato a termo'),
+    ('07', u'07 - Rescisão do contrato de trabalho por iniciativa do empregado'),
+    ('08', u'08 - Rescisão do contrato de trabalho por interesse do(a) empregado(a), nas hipóteses previstas nos arts. 394 e 483, § 1º da CLT'),
+    ('09', u'09 - Rescisão por falecimento do empregador individual ou empregador doméstico por opção do empregado'),
+    ('10', u'10 - Rescisão por falecimento do empregado'),
+    ('11', u'11 - Transferência de empregado para empresa do mesmo grupo empresarial que tenha assumido os encargos trabalhistas, sem que tenha havido rescisão do contrato de trabalho'),
+    ('12', u'12 - Transferência de empregado da empresa consorciada para o consórcio que tenha assumido os encargos trabalhistas, e vice-versa, sem que tenha havido rescisão do contrato de trabalho'),
+    ('13', u'13 - Transferência de empregado de empresa ou consórcio, para outra empresa ou consórcio que tenha assumido os encargos trabalhistas por motivo de sucessão (fusão, cisão ou incorporação), sem que tenha havido rescisão do contrato de trabalho'),
+    ('14', u'14 - Rescisão do contrato de trabalho por encerramento da empresa, de seus estabelecimentos ou supressão de parte de suas atividades ou falecimento do empregador individual ou empregador doméstico sem continuação da atividade'),
+    ('15', u'15 - Demissão de Aprendizes por Desempenho Insuficiente ou Inadaptação'),
+    ('16', u'16 - Declaração de nulidade do contrato de trabalho por infringência ao inciso II do art. 37 da Constituição Federal, quando mantido o direito ao salário'),
+    ('17', u'17 - Rescisão Indireta do Contrato de Trabalho'),
+    ('18', u'18 - Aposentadoria Compulsória (somente para categorias de trabalhadores 301 a 309)'),
+    ('19', u'19 - Aposentadoria por idade (somente para categorias de trabalhadores 301 a 309)'),
+    ('20', u'20 - Aposentadoria por idade e tempo de contribuição (somente categorias 301 a 309)'),
+    ('21', u'21 - Reforma Militar (somente para categorias de trabalhadores 301 a 309)'),
+    ('22', u'22 - Reserva Militar (somente para categorias de trabalhadores 301 a 309)'),
+    ('23', u'23 - Exoneração (somente para categorias de trabalhadores 301 a 309)'),
+    ('24', u'24 - Demissão (somente para categorias de trabalhadores 301 a 309)'),
+    ('25', u'25 - Vacância para assumir outro cargo efetivo (somente para categorias de trabalhadores 301 a 309)'),
+    ('26', u'26 - Rescisão do contrato de trabalho por paralisação temporária ou definitiva da empresa, estabelecimento ou parte das atividades motivada por atos de autoridade municipal, estadual ou federal'),
+    ('27', u'27 - Rescisão por motivo de força maior'),
+    ('28', u'28 - Término da Cessão/Requisição'),
+    ('29', u'29 - Redistribuição'),
+    ('30', u'30 - Mudança de Regime Trabalhista'),
+    ('31', u'31 - Reversão de Reintegração'),
+    ('32', u'32 - Extravio de Militar'),
+    ('33', u'33 - Rescisão por acordo entre as partes (art. 484-A da CLT)'),
+    ('34', u'34 - Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar'),
+)
+
+ESTADOS = (
+    ('AC', u'Acre'),
+    ('AL', u'Alagoas'),
+    ('AM', u'Amazonas'),
+    ('AP', u'Amapá'),
+    ('BA', u'Bahia'),
+    ('CE', u'Ceará'),
+    ('DF', u'Distrito Federal'),
+    ('ES', u'Espírito Santo'),
+    ('GO', u'Goiás'),
+    ('MA', u'Maranhão'),
+    ('MG', u'Minas Gerais'),
+    ('MS', u'Mato Grosso do Sul'),
+    ('MT', u'Mato Grosso'),
+    ('PA', u'Pará'),
+    ('PB', u'Paraíba'),
+    ('PE', u'Pernambuco'),
+    ('PI', u'Piauí'),
+    ('PR', u'Paraná'),
+    ('RJ', u'Rio de Janeiro'),
+    ('RN', u'Rio Grande do Norte'),
+    ('RO', u'Rondônia'),
+    ('RR', u'Roraima'),
+    ('RS', u'Rio Grande do Sul'),
+    ('SC', u'Santa Catarina'),
+    ('SE', u'Sergipe'),
+    ('SP', u'São Paulo'),
+    ('TO', u'Tocantins'),
+)
+
+CHOICES_S2210_TPACID = (
+    ('1.0.01', u'1.0.01 - Lesão corporal que cause a morte ou a perda ou redução, permanente ou temporária, da capacidade para o trabalho, desde que não enquadrada em nenhum dos demais códigos.'),
+    ('1.0.02', u'1.0.02 - Perturbação funcional que cause a morte ou a perda ou redução, permanente ou temporária, da capacidade para o trabalho, desde que não enquadrada em nenhum dos demais códigos.'),
+    ('2.0.01', u'2.0.01 - Doença profissional, assim entendida a produzida ou desencadeada pelo exercício do trabalho peculiar a determinada atividade e constante da respectiva relação elaborada pelo Ministério do Trabalho e Previdência Social, desde que não enquadrada em (...)'),
+    ('2.0.02', u'2.0.02 - Doença do trabalho, assim entendida a adquirida ou desencadeada em função de condições especiais em que o trabalho é realizado e com ele se relacione diretamente, constante da respectiva relação elaborada pelo Ministério do Trabalho e Previdência (...)'),
+    ('2.0.03', u'2.0.03 - Doença proveniente de contaminação acidental do empregado no exercício de sua atividade.'),
+    ('2.0.04', u'2.0.04 - Doença endêmica adquirida por segurado habitante de região em que ela se desenvolva quando resultante de exposição ou contato direto determinado pela natureza do trabalho.'),
+    ('2.0.05', u'2.0.05 - Doença profissional ou do trabalho não incluída na relação elaborada pelo Ministério do Trabalho e Previdência Social quando resultante das condições especiais em que o trabalho é executado e com ele se relaciona diretamente.'),
+    ('2.0.06', u'2.0.06 - Doença profissional ou do trabalho enquadrada na relação elaborada pelo Ministério do Trabalho e Previdência Social relativa nexo técnico epidemiológico previdenciário - NTEP.'),
+    ('3.0.01', u'3.0.01 - Acidente ligado ao trabalho que, embora não tenha sido a causa única, haja contribuído diretamente para a morte do segurado, para redução ou perda da sua capacidade para o trabalho, ou produzido lesão que exija atenção médica para a sua recuperaçã (...)'),
+    ('3.0.02', u'3.0.02 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de ato de agressão, sabotagem ou terrorismo praticado por terceiro ou companheiro de trabalho.'),
+    ('3.0.03', u'3.0.03 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de ofensa física intencional, inclusive de terceiro, por motivo de disputa relacionada ao trabalho.'),
+    ('3.0.04', u'3.0.04 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de ato de imprudência, de negligência ou de imperícia de terceiro ou de companheiro de trabalho.'),
+    ('3.0.05', u'3.0.05 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de ato de pessoa privada do uso da razão.'),
+    ('3.0.06', u'3.0.06 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de desabamento, inundação, incêndio e outros casos fortuitos ou decorrentes de força maior.'),
+    ('3.0.07', u'3.0.07 - Acidente sofrido pelo segurado ainda que fora do local e horário de trabalho na execução de ordem ou na realização de serviço sob a autoridade da empresa.'),
+    ('3.0.08', u'3.0.08 - Acidente sofrido pelo segurado ainda que fora do local e horário de trabalho na prestação espontânea de qualquer serviço à empresa para lhe evitar prejuízo ou proporcionar proveito.'),
+    ('3.0.09', u'3.0.09 - Acidente sofrido pelo segurado ainda que fora do local e horário de trabalho em viagem a serviço da empresa, inclusive para estudo quando financiada por esta dentro de seus planos para melhor capacitação da mão-de- obra, independentemente do meio (...)'),
+    ('3.0.10', u'3.0.10 - Acidente sofrido pelo segurado ainda que fora do local e horário de trabalho no percurso da residência para o local de trabalho ou deste para aquela, qualquer que seja o meio de locomoção, inclusive veículo de propriedade do segurado.'),
+    ('3.0.11', u'3.0.11 - Acidente sofrido pelo segurado nos períodos destinados a refeição ou descanso, ou por ocasião da satisfação de outras necessidades fisiológicas, no local do trabalho ou durante este.'),
+    ('4.0.01', u'4.0.01 - Suspeita de doenças profissionais ou do trabalho produzidas pelas condições especiais de trabalho, nos termos do art 169 da CLT.'),
+    ('4.0.02', u'4.0.02 - Constatação de ocorrência ou agravamento de doenças profissionais, através de exames médicos que incluam os definidos na NR 07; ou sendo verificadas alterações que revelem qualquer tipo de disfunção de órgão ou sistema biológico, através dos exame (...)'),
+    ('5.0.01', u'5.0.01 - Outros'),
+)
+
+CHOICES_S2200_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
     (1, u'1 - CNPJ'),
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
     (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S5002_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
@@ -3728,15 +2307,182 @@ CHOICES_S5011_CLASSTRIB = (
     ('99', u'99 - Pessoas Jurídicas em Geral'),
 )
 
-CHOICES_S5011_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
+TRANSMISSOR_STATUS = (
+    (0, u'Cadastrado'),
+    (1, u'Importado'),
+    (10, u'Assinado'),
+    (11, u'Gerado'),
+    (12, u'Retorno'),
+    (13, u'Erro - Ocorrências'),
+    (14, u'Processado'),
+    (2, u'Duplicado'),
+    (3, u'Erro na validação'),
+    (4, u'Validado'),
+    (5, u'Erro no envio'),
+    (6, u'Aguardando envio'),
+    (7, u'Enviado'),
+    (8, u'Erro na consulta'),
+    (9, u'Consultado'),
 )
 
-CHOICES_S5011_INDEXISTINFO = (
-    (1, u'1 - Há informações com apuração de contribuições sociais'),
-    (2, u'2 - Há movimento porém sem apuração de contribuições sociais'),
-    (3, u'3 - Não há movimento no período informado em {perApur}.'),
+CODIGO_RESPOSTA = (
+    (0, u'Cadastrado'),
+    (101, u'101 - Lote Aguardando Processamento'),
+    (201, u'201 - Lote Processado com Sucesso'),
+    (202, u'202 - Lote Processado com Advertências'),
+    (301, u'301 - Erro Servidor eSocial'),
+    (401, u'401 - Lote Incorreto - Erro preenchimento'),
+    (402, u'402 - Lote Incorreto - schema Inválido'),
+    (403, u'403 - Lote Incorreto - Versão do Schema não permitida'),
+    (404, u'404 - Lote Incorreto - Erro Certificado'),
+    (405, u'405 - Lote Incorreto - Lote nulo ou vazio'),
+    (501, u'501 - Solicitação de Consulta Incorreta - Erro Preenchimento'),
+    (502, u'502 - Solicitação de Consulta Incorreta - Schema Inválido.'),
+    (503, u'503 - Solicitação de Consulta Incorreta - Versão do Schema Não Permitida.'),
+    (504, u'504 - Solicitação de Consulta Incorreta - Erro Certificado.'),
+    (505, u'505 - Solicitação de Consulta Incorreta - Consulta nula ou vazia.'),
+)
+
+CHOICES_S2200_GRAUINSTR = (
+    ('01', u'01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou'),
+    ('02', u'02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular'),
+    ('03', u'03 - 5º ano completo do Ensino Fundamental'),
+    ('04', u'04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série)'),
+    ('05', u'05 - Ensino Fundamental Completo'),
+    ('06', u'06 - Ensino Médio incompleto'),
+    ('07', u'07 - Ensino Médio completo'),
+    ('08', u'08 - Educação Superior incompleta'),
+    ('09', u'09 - Educação Superior completa'),
+    ('10', u'10 - Pós-Graduação completa'),
+    ('11', u'11 - Mestrado completo'),
+    ('12', u'12 - Doutorado completo'),
+)
+
+CHOICES_S2205_GRAUINSTR = (
+    ('01', u'01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou'),
+    ('02', u'02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular'),
+    ('03', u'03 - 5º ano completo do Ensino Fundamental'),
+    ('04', u'04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série)'),
+    ('05', u'05 - Ensino Fundamental Completo'),
+    ('06', u'06 - Ensino Médio incompleto'),
+    ('07', u'07 - Ensino Médio completo'),
+    ('08', u'08 - Educação Superior incompleta'),
+    ('09', u'09 - Educação Superior completa'),
+    ('10', u'10 - Pós-Graduação completa'),
+    ('11', u'11 - Mestrado completo'),
+    ('12', u'12 - Doutorado completo'),
+)
+
+CHOICES_S2206_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2300_GRAUINSTR = (
+    ('01', u'01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou'),
+    ('02', u'02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular'),
+    ('03', u'03 - 5º ano completo do Ensino Fundamental'),
+    ('04', u'04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série)'),
+    ('05', u'05 - Ensino Fundamental Completo'),
+    ('06', u'06 - Ensino Médio incompleto'),
+    ('07', u'07 - Ensino Médio completo'),
+    ('08', u'08 - Educação Superior incompleta'),
+    ('09', u'09 - Educação Superior completa'),
+    ('10', u'10 - Pós-Graduação completa'),
+    ('11', u'11 - Mestrado completo'),
+    ('12', u'12 - Doutorado completo'),
+)
+
+CHOICES_S2399_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2210_TPREGISTRADOR = (
+    (1, u'1 - Empregador'),
+    (2, u'2 - Cooperativa'),
+    (3, u'3 - Sindicato de trabalhadores avulsos não portuários'),
+    (4, u'4 - Órgão Gestor de Mão de Obra'),
+    (5, u'5 - Empregado'),
+    (6, u'6 - Dependente do empregado'),
+    (7, u'7 - Entidade Sindical competente'),
+    (8, u'8 - Médico assistente'),
+    (9, u'9 - Autoridade Pública'),
+)
+
+CHOICES_S1200_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1260_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1270_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2210_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S5001_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
 CHOICES_S5011_TPINSC = (
@@ -3750,10 +2496,717 @@ CHOICES_S5011_TPINSC = (
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
-CHOICES_S5012_INDEXISTINFO = (
-    (1, u'1 - Há informações de Imposto de Renda Retido na Fonte'),
-    (2, u'2 - Há movimento, porém não há informações de Imposto de Renda Retido na Fonte'),
-    (3, u'3 - Não há movimento no período informado em {perApur}.'),
+CHOICES_S2200_UNDSALFIXO = (
+    (1, u'1 - Por Hora'),
+    (2, u'2 - Por Dia'),
+    (3, u'3 - Por Semana'),
+    (4, u'4 - Por Quinzena'),
+    (5, u'5 - Por Mês'),
+    (6, u'6 - Por Tarefa'),
+    (7, u'7 - Não aplicável - salário exclusivamente variável'),
+)
+
+CHOICES_S2206_UNDSALFIXO = (
+    (1, u'1 - Por Hora'),
+    (2, u'2 - Por Dia'),
+    (3, u'3 - Por Semana'),
+    (4, u'4 - Por Quinzena'),
+    (5, u'5 - Por Mês'),
+    (6, u'6 - Por Tarefa'),
+    (7, u'7 - Não aplicável - salário exclusivamente variável'),
+)
+
+CHOICES_S2210_TPLOCAL = (
+    (1, u'1 - Estabelecimento do empregador no Brasil'),
+    (2, u'2 - Estabelecimento do empregador no Exterior'),
+    (3, u'3 - Estabelecimento de terceiros onde o empregador presta serviços'),
+    (4, u'4 - Via pública'),
+    (5, u'5 - Área rural'),
+    (6, u'6 - Embarcação'),
+    (9, u'9 - Outros'),
+)
+
+CHOICES_S2399_MTVDESLIGTSV = (
+    ('01', u'01 - Exoneração do Diretor Não Empregado sem justa causa, por deliberação da assembleia, dos sócios cotistas ou da autoridade competente'),
+    ('02', u'02 - Término de Mandato do Diretor Não Empregado que não tenha sido reconduzido ao cargo'),
+    ('03', u'03 - Exoneração a pedido de Diretor Não Empregado'),
+    ('04', u'04 - Exoneração do Diretor Não Empregado por culpa recíproca ou força maior'),
+    ('05', u'05 - Morte do Diretor Não Empregado'),
+    ('06', u'06 - Exoneração do Diretor Não Empregado por falência, encerramento ou supressão de parte da empresa'),
+    ('99', u'99 - Outros'),
+)
+
+OPERACOES_INSALPERIC_APOSENTESP = (
+    (1, u'Insalubridade/Periculosidade - Incluir'),
+    (2, u'Insalubridade/Periculosidade - Alterar'),
+    (3, u'Insalubridade/Periculosidade - Excluir'),
+    (4, u'Aposentadoria Especial - Incluir'),
+    (5, u'Aposentadoria Especial - Alterar'),
+    (6, u'Aposentadoria Especial - Excluir'),
+)
+
+CHOICES_S2200_RACACOR = (
+    (1, u'1 - Branca'),
+    (2, u'2 - Negra'),
+    (3, u'3 - Parda (parda ou declarada como mulata, cabocla, cafuza, mameluca ou mestiça de negro com pessoa de outra cor ou raça)'),
+    (4, u'4 - Amarela (de origem japonesa, chinesa, coreana etc)'),
+    (5, u'5 - Indígena'),
+    (6, u'6 - Não informado'),
+)
+
+CHOICES_S2205_RACACOR = (
+    (1, u'1 - Branca'),
+    (2, u'2 - Negra'),
+    (3, u'3 - Parda (parda ou declarada como mulata, cabocla, cafuza, mameluca ou mestiça de negro com pessoa de outra cor ou raça)'),
+    (4, u'4 - Amarela (de origem japonesa, chinesa, coreana etc)'),
+    (5, u'5 - Indígena'),
+    (6, u'6 - Não informado'),
+)
+
+CHOICES_S2220_TPASO = (
+    (0, u'0 - Admissional'),
+    (1, u'1 - Periódico, conforme planejamento do PCMSO'),
+    (2, u'2 - De retorno ao trabalho'),
+    (3, u'3 - De mudança de função'),
+    (4, u'4 - De monitoração pontual, não enquadrado nos casos anteriores'),
+    (8, u'8 - Demissional'),
+)
+
+CHOICES_S2298_TPREINT = (
+    (1, u'1 - Reintegração por Decisão Judicial'),
+    (2, u'2 - Reintegração por Anistia Legal'),
+    (3, u'3 - Reversão de Servidor Público'),
+    (4, u'4 - Recondução de Servidor Público'),
+    (5, u'5 - Reinclusão de Militar'),
+    (9, u'9 - Outros'),
+)
+
+CHOICES_S2300_RACACOR = (
+    (1, u'1 - Branca'),
+    (2, u'2 - Negra'),
+    (3, u'3 - Parda (parda ou declarada como mulata, cabocla, cafuza, mameluca ou mestiça de negro com pessoa de outra cor ou raça)'),
+    (4, u'4 - Amarela (de origem japonesa, chinesa, coreana etc)'),
+    (5, u'5 - Indígena'),
+    (6, u'6 - Não informado'),
+)
+
+CHOICES_S1000_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1005_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1010_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1020_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1030_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1035_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1040_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1050_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1060_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1070_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1080_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1200_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1202_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1207_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1210_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1250_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1260_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1270_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1280_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1295_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1298_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1299_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1300_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2190_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2200_ESTCIV = (
+    (1, u'1 - Solteiro'),
+    (2, u'2 - Casado'),
+    (3, u'3 - Divorciado'),
+    (4, u'4 - Separado'),
+    (5, u'5 - Viúvo'),
+)
+
+CHOICES_S2200_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2205_ESTCIV = (
+    (1, u'1 - Solteiro'),
+    (2, u'2 - Casado'),
+    (3, u'3 - Divorciado'),
+    (4, u'4 - Separado'),
+    (5, u'5 - Viúvo'),
+)
+
+CHOICES_S2205_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2206_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2210_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2220_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2230_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2240_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2241_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2250_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2260_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2298_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2299_INDCUMPRPARC = (
+    (0, u'0 - Cumprimento total'),
+    (1, u'1 - Cumprimento parcial em razão de obtenção de novo emprego pelo empregado'),
+    (2, u'2 - Cumprimento parcial por iniciativa do empregador'),
+    (3, u'3 - Outras hipóteses de cumprimento parcial do aviso prévio'),
+    (4, u'4 - Aviso prévio indenizado ou não exigível'),
+)
+
+CHOICES_S2299_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2300_ESTCIV = (
+    (1, u'1 - Solteiro'),
+    (2, u'2 - Casado'),
+    (3, u'3 - Divorciado'),
+    (4, u'4 - Separado'),
+    (5, u'5 - Viúvo'),
+)
+
+CHOICES_S2300_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2306_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2399_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2400_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S3000_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1000_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1005_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1010_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1020_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1030_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1035_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1040_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1050_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1060_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1070_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1080_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1202_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1207_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1210_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1250_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1250_TPINSCADQ = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1280_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1295_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1298_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1299_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1300_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2190_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2205_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2220_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2230_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2240_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2241_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2250_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2260_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2298_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2299_PENSALIM = (
+    (0, u'0 - Não existe pensão alimentícia'),
+    (1, u'1 - Percentual de pensão alimentícia'),
+    (2, u'2 - Valor de pensão alimentícia'),
+    (3, u'3 - Percentual e valor de pensão alimentícia'),
+)
+
+CHOICES_S2299_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2300_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2306_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2400_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S3000_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S5002_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
 CHOICES_S5012_TPINSC = (
@@ -3761,6 +3214,584 @@ CHOICES_S5012_TPINSC = (
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+OPERACOES = (
+    (1, u'Incluir'),
+    (2, u'Alterar'),
+    (3, u'Excluir'),
+)
+
+CHOICES_S2200_TPREGPREV = (
+    (1, u'1 - Regime Geral da Previdência Social - RGPS'),
+    (2, u'2 - Regime Próprio de Previdência Social - RPPS'),
+    (3, u'3 - Regime de Previdência Social no Exterior'),
+)
+
+CHOICES_S2206_TPREGPREV = (
+    (1, u'1 - Regime Geral da Previdência Social - RGPS'),
+    (2, u'2 - Regime Próprio de Previdência Social - RPPS'),
+    (3, u'3 - Regime de Previdência Social no Exterior'),
+)
+
+CHOICES_S2210_INICIATCAT = (
+    (1, u'1 - Iniciativa do Registrador (identificado em {ideRegistrador})'),
+    (2, u'2 - Ordem judicial'),
+    (3, u'3 - Determinação de órgão fiscalizador'),
+)
+
+CHOICES_S2210_TPCAT = (
+    (1, u'1 - Inicial'),
+    (2, u'2 - Reabertura'),
+    (3, u'3 - Comunicação de Óbito'),
+)
+
+CHOICES_S2260_INDLOCAL = (
+    (0, u'0 - Prestação de serviços no estabelecimento informado no grupo {localTrabGeral} do S-2200 ou S-2206, quando for o caso'),
+    (1, u'1 - Prestação de serviços em apenas um local e fora do estabelecimento informado no grupo {localTrabGeral} do S-2200 ou S-2206, quando for o caso'),
+    (2, u'2 - Prestação de serviços de natureza externa ou em mais de um local'),
+)
+
+CHOICES_S5011_INDEXISTINFO = (
+    (1, u'1 - Há informações com apuração de contribuições sociais'),
+    (2, u'2 - Há movimento porém sem apuração de contribuições sociais'),
+    (3, u'3 - Não há movimento no período informado em {perApur}.'),
+)
+
+CHOICES_S5012_INDEXISTINFO = (
+    (1, u'1 - Há informações de Imposto de Renda Retido na Fonte'),
+    (2, u'2 - Há movimento, porém não há informações de Imposto de Renda Retido na Fonte'),
+    (3, u'3 - Não há movimento no período informado em {perApur}.'),
+)
+
+SIM_NAO = (
+    (0, u'Não'),
+    (1, u'Sim'),
+)
+
+TIPO_AMBIENTE = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1000_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1005_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1010_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1020_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1030_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1035_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1040_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1050_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1060_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1070_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1080_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1200_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual (13° salário)'),
+)
+
+CHOICES_S1200_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S1200_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1202_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual (13° salário)'),
+)
+
+CHOICES_S1202_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S1202_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1207_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual (13° salário)'),
+)
+
+CHOICES_S1207_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S1207_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1210_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S1210_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1250_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S1250_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1260_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S1260_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1270_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S1270_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1280_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual (13° salário)'),
+)
+
+CHOICES_S1280_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S1280_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1295_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual (13° salário)'),
+)
+
+CHOICES_S1295_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1298_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual (13° salário)'),
+)
+
+CHOICES_S1298_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1299_EVTAQPROD = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1299_EVTCOMPROD = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1299_EVTCONTRATAVNP = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1299_EVTINFOCOMPLPER = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1299_EVTPGTOS = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1299_EVTREMUN = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1299_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual (13° salário)'),
+)
+
+CHOICES_S1299_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1300_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual'),
+)
+
+CHOICES_S1300_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S1300_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2190_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2200_CADINI = (
+    ('N', u'N - Não (Admissão)'),
+    ('S', u'S - Sim (Cadastramento Inicial)'),
+)
+
+CHOICES_S2200_CLAUASSEC = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2200_INDPRIEMPR = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2200_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2200_SEXO = (
+    ('F', u'F - Feminino'),
+    ('M', u'M - Masculino'),
+)
+
+CHOICES_S2200_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2200_TPCONTR = (
+    (1, u'1 - Prazo indeterminado'),
+    (2, u'2 - Prazo determinado'),
+)
+
+CHOICES_S2200_TPREGTRAB = (
+    (1, u'1 - CLT - Consolidação das Leis de Trabalho e legislações trabalhistas específicas'),
+    (2, u'2 - Estatutário'),
+)
+
+CHOICES_S2205_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2205_SEXO = (
+    ('F', u'F - Feminino'),
+    ('M', u'M - Masculino'),
+)
+
+CHOICES_S2205_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2206_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2206_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2206_TPCONTR = (
+    (1, u'1 - Prazo indeterminado'),
+    (2, u'2 - Prazo determinado'),
+)
+
+CHOICES_S2210_INDCATOBITO = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2210_INDCOMUNPOLICIA = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2210_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2210_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2220_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2220_RESASO = (
+    (1, u'1 - Apto'),
+    (2, u'2 - Inapto'),
+)
+
+CHOICES_S2220_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2230_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2230_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2240_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2240_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2241_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2241_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2250_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2250_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2260_INDRETIF = (
+    (1, u'1 - arquivo original'),
+    (2, u'2 - arquivo de retificação'),
+)
+
+CHOICES_S2260_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2298_INDPAGTOJUIZO = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2298_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2298_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2299_INDPAGTOAPI = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2299_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2299_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2300_CADINI = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2300_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2300_NATATIVIDADE = (
+    (1, u'1 - Trabalho Urbano'),
+    (2, u'2 - Trabalho Rural'),
+)
+
+CHOICES_S2300_SEXO = (
+    ('F', u'F - Feminino'),
+    ('M', u'M - Masculino'),
+)
+
+CHOICES_S2300_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2306_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2306_NATATIVIDADE = (
+    (1, u'1 - Trabalho Urbano'),
+    (2, u'2 - Trabalho Rural'),
+)
+
+CHOICES_S2306_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2399_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2399_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2400_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2400_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2400_TPPLANRP = (
+    (1, u'1 - Plano previdenciário ou único'),
+    (2, u'2 - Plano financeiro'),
+)
+
+CHOICES_S3000_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S5001_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual (13° salário)'),
+)
+
+CHOICES_S5011_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual (13° salário)'),
+)
+
+ESOCIAL_VERSOES = (
+    ('v02_04_02', u'Versão 2.04.02'),
+)
+
+CHOICES_S1210_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+)
+
+CHOICES_S1250_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+)
+
+CHOICES_S1260_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+)
+
+CHOICES_S1270_INDAPURACAO = (
+    (1, u'1 - Mensal'),
 )
 
 class s1000evtInfoEmpregador(models.Model):

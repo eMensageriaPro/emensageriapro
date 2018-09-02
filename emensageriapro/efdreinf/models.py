@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -9,11 +40,6 @@ from django.apps import apps
 get_model = apps.get_model
 
 
-
-SIM_NAO = (
-    (0, u'Não'),
-    (1, u'Sim'),
-)
 
 TRANSMISSOR_STATUS = (
     (0, u'Cadastrado'),
@@ -33,14 +59,34 @@ TRANSMISSOR_STATUS = (
     (9, u'Consultado'),
 )
 
+CHOICES_R2070_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+)
+
 OPERACOES = (
     (1, u'Incluir'),
     (2, u'Alterar'),
     (3, u'Excluir'),
 )
 
-EFDREINF_VERSOES = (
-    ('v1_03_02', u'Versão 1.03.02'),
+CHOICES_R2010_INDOBRA = (
+    (0, u'0 - Não é obra de construção civil ou não está sujeita a matrícula de obra'),
+    (1, u'1 - Obra de Construção Civil - Empreitada Total'),
+    (2, u'2 - Obra de Construção Civil - Empreitada Parcial'),
+)
+
+CHOICES_R2020_INDOBRA = (
+    (0, u'0 - Não é obra de construção civil ou não está sujeita a matrícula de obra'),
+    (1, u'1 - Obra de Construção Civil - Empreitada Total'),
+    (2, u'2 - Obra de Construção Civil - Empreitada Parcial'),
+)
+
+SIM_NAO = (
+    (0, u'Não'),
+    (1, u'Sim'),
 )
 
 CHOICES_R1000_PROCEMI = (
@@ -78,12 +124,6 @@ CHOICES_R2010_INDCPRB = (
     (1, u'1 - Contribuinte da Contribuição Previdenciária sobre a Receita Bruta (CPRB) - Retenção 3,5%'),
 )
 
-CHOICES_R2010_INDOBRA = (
-    (0, u'0 - Não é obra de construção civil ou não está sujeita a matrícula de obra'),
-    (1, u'1 - Obra de Construção Civil - Empreitada Total'),
-    (2, u'2 - Obra de Construção Civil - Empreitada Parcial'),
-)
-
 CHOICES_R2010_INDRETIF = (
     (1, u'1 - Arquivo original'),
     (2, u'2 - Arquivo de retificação'),
@@ -109,12 +149,6 @@ CHOICES_R2010_TPINSCESTAB = (
     (4, u'4 - CNO'),
 )
 
-CHOICES_R2020_INDOBRA = (
-    (0, u'0 - Não é obra de construção civil ou não está sujeita a matrícula de obra'),
-    (1, u'1 - Obra de Construção Civil - Empreitada Total'),
-    (2, u'2 - Obra de Construção Civil - Empreitada Parcial'),
-)
-
 CHOICES_R2020_INDRETIF = (
     (1, u'1 - Arquivo original'),
     (2, u'2 - Arquivo de retificação'),
@@ -133,10 +167,6 @@ CHOICES_R2020_TPAMB = (
 CHOICES_R2020_TPINSC = (
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
-)
-
-CHOICES_R2020_TPINSCESTABPREST = (
-    (1, u'1 - CNPJ'),
 )
 
 CHOICES_R2020_TPINSCTOMADOR = (
@@ -164,10 +194,6 @@ CHOICES_R2030_TPINSC = (
     (2, u'2 - CPF'),
 )
 
-CHOICES_R2030_TPINSCESTAB = (
-    (1, u'1 - CNPJ'),
-)
-
 CHOICES_R2040_INDRETIF = (
     (1, u'1 - Arquivo original'),
     (2, u'2 - Arquivo de retificação'),
@@ -188,10 +214,6 @@ CHOICES_R2040_TPINSC = (
     (2, u'2 - CPF'),
 )
 
-CHOICES_R2040_TPINSCESTAB = (
-    (1, u'1 - CNPJ'),
-)
-
 CHOICES_R2050_INDRETIF = (
     (1, u'1 - Arquivo original'),
     (2, u'2 - Arquivo de retificação'),
@@ -210,10 +232,6 @@ CHOICES_R2050_TPAMB = (
 CHOICES_R2050_TPINSC = (
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
-)
-
-CHOICES_R2050_TPINSCESTAB = (
-    (1, u'1 - CNPJ'),
 )
 
 CHOICES_R2060_INDRETIF = (
@@ -254,13 +272,6 @@ CHOICES_R2070_PROCEMI = (
 CHOICES_R2070_TPAMB = (
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita'),
-)
-
-CHOICES_R2070_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
 )
 
 CHOICES_R2070_TPINSCBENEF = (
@@ -376,6 +387,26 @@ CHOICES_R9000_TPAMB = (
 CHOICES_R9000_TPINSC = (
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
+)
+
+EFDREINF_VERSOES = (
+    ('v1_03_02', u'Versão 1.03.02'),
+)
+
+CHOICES_R2020_TPINSCESTABPREST = (
+    (1, u'1 - CNPJ'),
+)
+
+CHOICES_R2030_TPINSCESTAB = (
+    (1, u'1 - CNPJ'),
+)
+
+CHOICES_R2040_TPINSCESTAB = (
+    (1, u'1 - CNPJ'),
+)
+
+CHOICES_R2050_TPINSCESTAB = (
+    (1, u'1 - CNPJ'),
 )
 
 class r1000evtInfoContri(models.Model):
@@ -995,9 +1026,9 @@ class r5001evtTotal(models.Model):
 
 class r5011evtTotalContrib(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
+    identidade = models.CharField(max_length=36, blank=True, null=True)
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
-    identidade = models.CharField(max_length=36, blank=True, null=True)
     perapur = models.CharField(max_length=10)
     tpinsc = models.IntegerField(choices=CHOICES_R5011_TPINSC)
     nrinsc = models.CharField(max_length=14)
@@ -1017,10 +1048,10 @@ class r5011evtTotalContrib(models.Model):
     excluido = models.BooleanField(blank=True)
     retornos_evttotal = models.ForeignKey('r5001evtTotal',
         related_name='%(class)s_retornos_evttotal', blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    validacoes = models.TextField(blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    validacoes = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
         related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)

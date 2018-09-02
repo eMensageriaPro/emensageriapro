@@ -4,7 +4,38 @@ from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.conf.urls.static import static
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 urlpatterns = patterns('',
     # Examples:
@@ -54,9 +85,9 @@ url(r'^visualizacao-de-arquivos/(?P<hash>.*)/$',
         'emensageriapro.mensageiro.views.arquivos_recuperacao.arquivos_visualizacao',
         name='arquivos_visualizacao'),
 
-url(r'^mapa-processamento-eventos-efdreinf/(?P<hash>.*)/$',
-        'emensageriapro.mensageiro.views.mapa_processamento_efdreinf.listar',
-        name='mapa_processamento_efdreinf'),
+url(r'^mapa-processamento/(?P<hash>.*)/$',
+        'emensageriapro.mensageiro.views.mapa_processamento.listar',
+        name='mapa_processamento'),
 
 url(r'^transmissor-eventos-efdreinf/vincular/(?P<hash>.+)/$',
         'emensageriapro.mensageiro.views.transmissor_efdreinf.vincular_eventos_efdreinf',
@@ -99,12 +130,12 @@ url(r'^processar-arquivos/$',
         'emensageriapro.mensageiro.views.processar_arquivos.scripts_processar_arquivos',
         name='scripts_processar_arquivos'),
 
-url(r'^processar-arquivos-imprimir/(?P<hash>.*)/$',
+url(r'^importacoes-imprimir/(?P<hash>.*)/$',
         'emensageriapro.mensageiro.views.processar_arquivos.imprimir',
         name='processar_arquivos_imprimir'),
         
 
-url(r'^processar-salvar-arquivos/(?P<hash>.*)/$',
+url(r'^processar-arquivos-salvar/(?P<hash>.*)/$',
         'emensageriapro.mensageiro.views.processar_arquivos.scripts_salvar_arquivos',
         name='scripts_salvar_arquivos'),
 
@@ -119,6 +150,10 @@ url(r'^transmissao-automatica/$',
 url(r'^relatorios/imprimir/(?P<hash>.*)/$',
         'emensageriapro.mensageiro.views.relatorios_imprimir.imprimir',
         name='relatorios_imprimir'),
+
+url(r'^importacoes/listar/(?P<hash>.*)/$', 
+        'emensageriapro.mensageiro.views.importacoes.listar', 
+        name='importacoes'),
 
 
 
@@ -216,6 +251,10 @@ url(r'^auditoria/apagar/(?P<hash>.*)/$',
 
 
 urlpatterns += patterns('',
+
+
+
+
 
 
 url(r'^relatorios/listar/(?P<hash>.*)/$', 
@@ -356,6 +395,10 @@ url(r'^naturezas-rubricas/salvar/(?P<hash>.*)/$',
         'emensageriapro.tabelas.views.naturezas_rubricas.salvar', 
         name='naturezas_rubricas_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^codigo-aliquotas-fpas-terceiros/apagar/(?P<hash>.*)/$', 
@@ -392,10 +435,6 @@ url(r'^inscricoes-tipos/salvar/(?P<hash>.*)/$',
         'emensageriapro.tabelas.views.inscricoes_tipos.salvar', 
         name='inscricoes_tipos_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^paises/apagar/(?P<hash>.*)/$', 
@@ -540,6 +579,10 @@ url(r'^partes-corpo-atingidas/salvar/(?P<hash>.*)/$',
         'emensageriapro.tabelas.views.partes_corpo_atingidas.salvar', 
         name='partes_corpo_atingidas_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^agentes-causadores-acidentes-trabalho/apagar/(?P<hash>.*)/$', 
@@ -576,10 +619,6 @@ url(r'^agentes-causadores-doencas-profissionais/salvar/(?P<hash>.*)/$',
         'emensageriapro.tabelas.views.agentes_causadores_doencas_profissionais.salvar', 
         name='agentes_causadores_doencas_profissionais_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^acidentes-situacoes-geradoras/apagar/(?P<hash>.*)/$', 
@@ -724,6 +763,10 @@ url(r'^fatores-risco/salvar/(?P<hash>.*)/$',
         'emensageriapro.tabelas.views.fatores_risco.salvar', 
         name='fatores_risco_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^codificacoes-acidente-trabalho/apagar/(?P<hash>.*)/$', 
@@ -760,10 +803,6 @@ url(r'^beneficios-previdenciarios-tipos/salvar/(?P<hash>.*)/$',
         'emensageriapro.tabelas.views.beneficios_previdenciarios_tipos.salvar', 
         name='beneficios_previdenciarios_tipos_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^beneficios-previdenciarios-cessacao-motivos/apagar/(?P<hash>.*)/$', 
@@ -908,6 +947,10 @@ url(r'^rendimentos-beneficiarios-exterior/salvar/(?P<hash>.*)/$',
         'emensageriapro.tabelas.views.rendimentos_beneficiarios_exterior.salvar', 
         name='rendimentos_beneficiarios_exterior_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^rendimentos-beneficiarios-exterior-tributacao/apagar/(?P<hash>.*)/$', 
@@ -944,10 +987,6 @@ url(r'^informacoes-beneficiarios-exterior/salvar/(?P<hash>.*)/$',
         'emensageriapro.tabelas.views.informacoes_beneficiarios_exterior.salvar', 
         name='informacoes_beneficiarios_exterior_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^classificacao-servicos-prestados/apagar/(?P<hash>.*)/$', 
@@ -1080,6 +1119,10 @@ url(r'^importacao-arquivos/apagar/(?P<hash>.*)/$',
         'emensageriapro.mensageiro.views.importacao_arquivos.apagar', 
         name='importacao_arquivos_apagar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^importacao-arquivos-eventos/listar/(?P<hash>.*)/$', 
@@ -1108,10 +1151,6 @@ url(r'^transmissor-lote-esocial/apagar/(?P<hash>.*)/$',
         'emensageriapro.mensageiro.views.transmissor_lote_esocial.apagar', 
         name='transmissor_lote_esocial_apagar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^transmissor-lote-esocial-ocorrencias/listar/(?P<hash>.*)/$', 
@@ -1224,6 +1263,10 @@ url(r'^retornos-eventos-intervalos/apagar/(?P<hash>.*)/$',
         'emensageriapro.mensageiro.views.retornos_eventos_intervalos.apagar', 
         name='retornos_eventos_intervalos_apagar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1000-evtinfoempregador/apagar/(?P<hash>.*)/$', 
@@ -1338,10 +1381,6 @@ url(r'^scripts/gerar-identidade/s1005-evttabestab/(?P<chave>.*)/(?P<evento_id>\d
         'emensageriapro.esocial.views.s1005_evttabestab.gerar_identidade', 
         name='s1005_evttabestab_gerar_identidade'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1010-evttabrubrica/apagar/(?P<hash>.*)/$', 
@@ -1798,6 +1837,10 @@ url(r'^scripts/gerar-identidade/s1070-evttabprocesso/(?P<chave>.*)/(?P<evento_id
         'emensageriapro.esocial.views.s1070_evttabprocesso.gerar_identidade', 
         name='s1070_evttabprocesso_gerar_identidade'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1080-evttaboperport/apagar/(?P<hash>.*)/$', 
@@ -1912,10 +1955,6 @@ url(r'^scripts/gerar-identidade/s1200-evtremun/(?P<chave>.*)/(?P<evento_id>\d+)/
         'emensageriapro.esocial.views.s1200_evtremun.gerar_identidade', 
         name='s1200_evtremun_gerar_identidade'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1202-evtrmnrpps/apagar/(?P<hash>.*)/$', 
@@ -2372,6 +2411,10 @@ url(r'^scripts/gerar-identidade/s1295-evttotconting/(?P<chave>.*)/(?P<evento_id>
         'emensageriapro.esocial.views.s1295_evttotconting.gerar_identidade', 
         name='s1295_evttotconting_gerar_identidade'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1298-evtreabreevper/apagar/(?P<hash>.*)/$', 
@@ -2486,10 +2529,6 @@ url(r'^scripts/gerar-identidade/s1299-evtfechaevper/(?P<chave>.*)/(?P<evento_id>
         'emensageriapro.esocial.views.s1299_evtfechaevper.gerar_identidade', 
         name='s1299_evtfechaevper_gerar_identidade'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1300-evtcontrsindpatr/apagar/(?P<hash>.*)/$', 
@@ -2946,6 +2985,10 @@ url(r'^scripts/gerar-identidade/s2230-evtafasttemp/(?P<chave>.*)/(?P<evento_id>\
         'emensageriapro.esocial.views.s2230_evtafasttemp.gerar_identidade', 
         name='s2230_evtafasttemp_gerar_identidade'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2240-evtexprisco/apagar/(?P<hash>.*)/$', 
@@ -3060,10 +3103,6 @@ url(r'^scripts/gerar-identidade/s2241-evtinsapo/(?P<chave>.*)/(?P<evento_id>\d+)
         'emensageriapro.esocial.views.s2241_evtinsapo.gerar_identidade', 
         name='s2241_evtinsapo_gerar_identidade'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2250-evtavprevio/apagar/(?P<hash>.*)/$', 
@@ -3520,6 +3559,10 @@ url(r'^scripts/gerar-identidade/s2400-evtcdbenprrp/(?P<chave>.*)/(?P<evento_id>\
         'emensageriapro.esocial.views.s2400_evtcdbenprrp.gerar_identidade', 
         name='s2400_evtcdbenprrp_gerar_identidade'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s3000-evtexclusao/apagar/(?P<hash>.*)/$', 
@@ -3634,10 +3677,6 @@ url(r'^scripts/gerar-identidade/s5001-evtbasestrab/(?P<chave>.*)/(?P<evento_id>\
         'emensageriapro.esocial.views.s5001_evtbasestrab.gerar_identidade', 
         name='s5001_evtbasestrab_gerar_identidade'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s5002-evtirrfbenef/apagar/(?P<hash>.*)/$', 
@@ -4094,6 +4133,10 @@ url(r'^scripts/gerar-identidade/r2030-evtassocdesprec/(?P<chave>.*)/(?P<evento_i
         'emensageriapro.efdreinf.views.r2030_evtassocdesprec.gerar_identidade', 
         name='r2030_evtassocdesprec_gerar_identidade'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^r2040-evtassocdesprep/apagar/(?P<hash>.*)/$', 
@@ -4208,10 +4251,6 @@ url(r'^scripts/gerar-identidade/r2050-evtcomprod/(?P<chave>.*)/(?P<evento_id>\d+
         'emensageriapro.efdreinf.views.r2050_evtcomprod.gerar_identidade', 
         name='r2050_evtcomprod_gerar_identidade'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^r2060-evtcprb/apagar/(?P<hash>.*)/$', 
@@ -4668,6 +4707,10 @@ url(r'^scripts/gerar-identidade/r9000-evtexclusao/(?P<chave>.*)/(?P<evento_id>\d
         'emensageriapro.efdreinf.views.r9000_evtexclusao.gerar_identidade', 
         name='r9000_evtexclusao_gerar_identidade'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1000-inclusao/apagar/(?P<hash>.*)/$', 
@@ -4696,10 +4739,6 @@ url(r'^s1000-inclusao-dadosisencao/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1000.views.s1000_inclusao_dadosisencao.salvar', 
         name='s1000_inclusao_dadosisencao_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1000-inclusao-infoop/apagar/(?P<hash>.*)/$', 
@@ -4812,6 +4851,10 @@ url(r'^s1000-alteracao/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1000.views.s1000_alteracao.salvar', 
         name='s1000_alteracao_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1000-alteracao-dadosisencao/apagar/(?P<hash>.*)/$', 
@@ -4840,10 +4883,6 @@ url(r'^s1000-alteracao-infoop/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1000.views.s1000_alteracao_infoop.salvar', 
         name='s1000_alteracao_infoop_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1000-alteracao-infoefr/apagar/(?P<hash>.*)/$', 
@@ -4956,6 +4995,10 @@ url(r'^s1000-exclusao/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1000.views.s1000_exclusao.salvar', 
         name='s1000_exclusao_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1005-inclusao/apagar/(?P<hash>.*)/$', 
@@ -4984,10 +5027,6 @@ url(r'^s1005-inclusao-procadmjudrat/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1005.views.s1005_inclusao_procadmjudrat.salvar', 
         name='s1005_inclusao_procadmjudrat_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1005-inclusao-procadmjudfap/apagar/(?P<hash>.*)/$', 
@@ -5100,6 +5139,10 @@ url(r'^s1005-alteracao-procadmjudfap/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1005.views.s1005_alteracao_procadmjudfap.salvar', 
         name='s1005_alteracao_procadmjudfap_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1005-alteracao-infocaepf/apagar/(?P<hash>.*)/$', 
@@ -5128,10 +5171,6 @@ url(r'^s1005-alteracao-infoobra/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1005.views.s1005_alteracao_infoobra.salvar', 
         name='s1005_alteracao_infoobra_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1005-alteracao-infoenteduc/apagar/(?P<hash>.*)/$', 
@@ -5244,6 +5283,10 @@ url(r'^s1010-inclusao-ideprocessofgts/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1010.views.s1010_inclusao_ideprocessofgts.salvar', 
         name='s1010_inclusao_ideprocessofgts_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1010-inclusao-ideprocessosind/apagar/(?P<hash>.*)/$', 
@@ -5272,10 +5315,6 @@ url(r'^s1010-alteracao/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1010.views.s1010_alteracao.salvar', 
         name='s1010_alteracao_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1010-alteracao-ideprocessocp/apagar/(?P<hash>.*)/$', 
@@ -5388,6 +5427,10 @@ url(r'^s1020-inclusao-infoprocjudterceiros/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1020.views.s1020_inclusao_infoprocjudterceiros.salvar', 
         name='s1020_inclusao_infoprocjudterceiros_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1020-inclusao-procjudterceiro/apagar/(?P<hash>.*)/$', 
@@ -5416,10 +5459,6 @@ url(r'^s1020-inclusao-infoemprparcial/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1020.views.s1020_inclusao_infoemprparcial.salvar', 
         name='s1020_inclusao_infoemprparcial_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1020-alteracao/apagar/(?P<hash>.*)/$', 
@@ -5532,6 +5571,10 @@ url(r'^s1030-inclusao-cargopublico/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1030.views.s1030_inclusao_cargopublico.salvar', 
         name='s1030_inclusao_cargopublico_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1030-alteracao/apagar/(?P<hash>.*)/$', 
@@ -5560,10 +5603,6 @@ url(r'^s1030-alteracao-cargopublico/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1030.views.s1030_alteracao_cargopublico.salvar', 
         name='s1030_alteracao_cargopublico_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1030-alteracao-novavalidade/apagar/(?P<hash>.*)/$', 
@@ -5676,6 +5715,10 @@ url(r'^s1040-alteracao/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1040.views.s1040_alteracao.salvar', 
         name='s1040_alteracao_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1040-alteracao-novavalidade/apagar/(?P<hash>.*)/$', 
@@ -5704,10 +5747,6 @@ url(r'^s1040-exclusao/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1040.views.s1040_exclusao.salvar', 
         name='s1040_exclusao_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1050-inclusao/apagar/(?P<hash>.*)/$', 
@@ -5820,6 +5859,10 @@ url(r'^s1060-inclusao-fatorrisco/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1060.views.s1060_inclusao_fatorrisco.salvar', 
         name='s1060_inclusao_fatorrisco_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1060-alteracao/apagar/(?P<hash>.*)/$', 
@@ -5848,10 +5891,6 @@ url(r'^s1060-alteracao-fatorrisco/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1060.views.s1060_alteracao_fatorrisco.salvar', 
         name='s1060_alteracao_fatorrisco_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1060-alteracao-novavalidade/apagar/(?P<hash>.*)/$', 
@@ -5964,6 +6003,10 @@ url(r'^s1070-alteracao-infosusp/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1070.views.s1070_alteracao_infosusp.salvar', 
         name='s1070_alteracao_infosusp_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1070-alteracao-novavalidade/apagar/(?P<hash>.*)/$', 
@@ -5992,10 +6035,6 @@ url(r'^s1070-exclusao/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1070.views.s1070_exclusao.salvar', 
         name='s1070_exclusao_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1080-inclusao/apagar/(?P<hash>.*)/$', 
@@ -6108,6 +6147,10 @@ url(r'^s1200-sucessaovinc/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1200.views.s1200_sucessaovinc.salvar', 
         name='s1200_sucessaovinc_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1200-procjudtrab/apagar/(?P<hash>.*)/$', 
@@ -6136,10 +6179,6 @@ url(r'^s1200-infointerm/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1200.views.s1200_infointerm.salvar', 
         name='s1200_infointerm_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1200-dmdev/apagar/(?P<hash>.*)/$', 
@@ -6252,6 +6291,10 @@ url(r'^s1200-infoperapur-detplano/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1200.views.s1200_infoperapur_detplano.salvar', 
         name='s1200_infoperapur_detplano_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1200-infoperapur-infoagnocivo/apagar/(?P<hash>.*)/$', 
@@ -6280,10 +6323,6 @@ url(r'^s1200-infoperapur-infotrabinterm/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1200.views.s1200_infoperapur_infotrabinterm.salvar', 
         name='s1200_infoperapur_infotrabinterm_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1200-infoperant/apagar/(?P<hash>.*)/$', 
@@ -6396,6 +6435,10 @@ url(r'^s1200-infoperant-infotrabinterm/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1200.views.s1200_infoperant_infotrabinterm.salvar', 
         name='s1200_infoperant_infotrabinterm_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1200-infoperant-infocomplcont/apagar/(?P<hash>.*)/$', 
@@ -6424,10 +6467,6 @@ url(r'^s1202-procjudtrab/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1202.views.s1202_procjudtrab.salvar', 
         name='s1202_procjudtrab_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1202-dmdev/apagar/(?P<hash>.*)/$', 
@@ -6540,6 +6579,10 @@ url(r'^s1202-infoperapur-detplano/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1202.views.s1202_infoperapur_detplano.salvar', 
         name='s1202_infoperapur_detplano_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1202-infoperant/apagar/(?P<hash>.*)/$', 
@@ -6568,10 +6611,6 @@ url(r'^s1202-infoperant-ideadc/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1202.views.s1202_infoperant_ideadc.salvar', 
         name='s1202_infoperant_ideadc_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1202-infoperant-ideperiodo/apagar/(?P<hash>.*)/$', 
@@ -6684,6 +6723,10 @@ url(r'^s1210-infopgto/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1210.views.s1210_infopgto.salvar', 
         name='s1210_infopgto_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1210-detpgtofl/apagar/(?P<hash>.*)/$', 
@@ -6712,10 +6755,6 @@ url(r'^s1210-detpgtofl-retpgtotot/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1210.views.s1210_detpgtofl_retpgtotot.salvar', 
         name='s1210_detpgtofl_retpgtotot_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1210-detpgtofl-penalim/apagar/(?P<hash>.*)/$', 
@@ -6828,6 +6867,10 @@ url(r'^s1210-detpgtofer-penalim/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1210.views.s1210_detpgtofer_penalim.salvar', 
         name='s1210_detpgtofer_penalim_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1210-detpgtoant/apagar/(?P<hash>.*)/$', 
@@ -6856,10 +6899,6 @@ url(r'^s1210-detpgtoant-infopgtoant/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1210.views.s1210_detpgtoant_infopgtoant.salvar', 
         name='s1210_detpgtoant_infopgtoant_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1210-idepgtoext/apagar/(?P<hash>.*)/$', 
@@ -6972,6 +7011,10 @@ url(r'^s1260-nfs/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1260.views.s1260_nfs.salvar', 
         name='s1260_nfs_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1260-infoprocjud/apagar/(?P<hash>.*)/$', 
@@ -7000,10 +7043,6 @@ url(r'^s1270-remunavnp/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1270.views.s1270_remunavnp.salvar', 
         name='s1270_remunavnp_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1280-infosubstpatr/apagar/(?P<hash>.*)/$', 
@@ -7116,6 +7155,10 @@ url(r'^s2200-ctps/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2200.views.s2200_ctps.salvar', 
         name='s2200_ctps_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2200-ric/apagar/(?P<hash>.*)/$', 
@@ -7144,10 +7187,6 @@ url(r'^s2200-rg/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2200.views.s2200_rg.salvar', 
         name='s2200_rg_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2200-rne/apagar/(?P<hash>.*)/$', 
@@ -7260,6 +7299,10 @@ url(r'^s2200-dependente/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2200.views.s2200_dependente.salvar', 
         name='s2200_dependente_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2200-aposentadoria/apagar/(?P<hash>.*)/$', 
@@ -7288,10 +7331,6 @@ url(r'^s2200-contato/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2200.views.s2200_contato.salvar', 
         name='s2200_contato_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2200-infoceletista/apagar/(?P<hash>.*)/$', 
@@ -7404,6 +7443,10 @@ url(r'^s2200-localtrabgeral/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2200.views.s2200_localtrabgeral.salvar', 
         name='s2200_localtrabgeral_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2200-localtrabdom/apagar/(?P<hash>.*)/$', 
@@ -7432,10 +7475,6 @@ url(r'^s2200-horcontratual/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2200.views.s2200_horcontratual.salvar', 
         name='s2200_horcontratual_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2200-horario/apagar/(?P<hash>.*)/$', 
@@ -7548,6 +7587,10 @@ url(r'^s2200-desligamento/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2200.views.s2200_desligamento.salvar', 
         name='s2200_desligamento_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2205-documentos/apagar/(?P<hash>.*)/$', 
@@ -7576,10 +7619,6 @@ url(r'^s2205-ctps/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2205.views.s2205_ctps.salvar', 
         name='s2205_ctps_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2205-ric/apagar/(?P<hash>.*)/$', 
@@ -7692,6 +7731,10 @@ url(r'^s2205-trabestrangeiro/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2205.views.s2205_trabestrangeiro.salvar', 
         name='s2205_trabestrangeiro_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2205-infodeficiencia/apagar/(?P<hash>.*)/$', 
@@ -7720,10 +7763,6 @@ url(r'^s2205-dependente/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2205.views.s2205_dependente.salvar', 
         name='s2205_dependente_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2205-aposentadoria/apagar/(?P<hash>.*)/$', 
@@ -7836,6 +7875,10 @@ url(r'^s2206-localtrabdom/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2206.views.s2206_localtrabdom.salvar', 
         name='s2206_localtrabdom_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2206-horcontratual/apagar/(?P<hash>.*)/$', 
@@ -7864,10 +7907,6 @@ url(r'^s2206-horario/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2206.views.s2206_horario.salvar', 
         name='s2206_horario_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2206-filiacaosindical/apagar/(?P<hash>.*)/$', 
@@ -7980,6 +8019,10 @@ url(r'^s2210-catorigem/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2210.views.s2210_catorigem.salvar', 
         name='s2210_catorigem_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2220-exame/apagar/(?P<hash>.*)/$', 
@@ -8008,10 +8051,6 @@ url(r'^s2230-iniafastamento/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2230.views.s2230_iniafastamento.salvar', 
         name='s2230_iniafastamento_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2230-infoatestado/apagar/(?P<hash>.*)/$', 
@@ -8124,6 +8163,10 @@ url(r'^s2240-iniexprisco-infoamb/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2240.views.s2240_iniexprisco_infoamb.salvar', 
         name='s2240_iniexprisco_infoamb_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2240-iniexprisco-fatrisco/apagar/(?P<hash>.*)/$', 
@@ -8152,10 +8195,6 @@ url(r'^s2240-iniexprisco-epc/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2240.views.s2240_iniexprisco_epc.salvar', 
         name='s2240_iniexprisco_epc_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2240-iniexprisco-epi/apagar/(?P<hash>.*)/$', 
@@ -8268,6 +8307,10 @@ url(r'^s2240-fimexprisco-infoamb/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2240.views.s2240_fimexprisco_infoamb.salvar', 
         name='s2240_fimexprisco_infoamb_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2240-fimexprisco-respreg/apagar/(?P<hash>.*)/$', 
@@ -8296,10 +8339,6 @@ url(r'^s2241-insalperic/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2241.views.s2241_insalperic.salvar', 
         name='s2241_insalperic_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2241-iniinsalperic/apagar/(?P<hash>.*)/$', 
@@ -8412,6 +8451,10 @@ url(r'^s2241-fiminsalperic-infoamb/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2241.views.s2241_fiminsalperic_infoamb.salvar', 
         name='s2241_fiminsalperic_infoamb_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2241-aposentesp/apagar/(?P<hash>.*)/$', 
@@ -8440,10 +8483,6 @@ url(r'^s2241-iniaposentesp/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2241.views.s2241_iniaposentesp.salvar', 
         name='s2241_iniaposentesp_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2241-iniaposentesp-infoamb/apagar/(?P<hash>.*)/$', 
@@ -8556,6 +8595,10 @@ url(r'^s2250-detavprevio/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2250.views.s2250_detavprevio.salvar', 
         name='s2250_detavprevio_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2250-cancavprevio/apagar/(?P<hash>.*)/$', 
@@ -8584,10 +8627,6 @@ url(r'^s2260-localtrabinterm/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2260.views.s2260_localtrabinterm.salvar', 
         name='s2260_localtrabinterm_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2299-observacoes/apagar/(?P<hash>.*)/$', 
@@ -8700,6 +8739,10 @@ url(r'^s2299-infoperapur-detverbas/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2299.views.s2299_infoperapur_detverbas.salvar', 
         name='s2299_infoperapur_detverbas_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2299-infoperapur-infosaudecolet/apagar/(?P<hash>.*)/$', 
@@ -8728,10 +8771,6 @@ url(r'^s2299-infoperapur-detoper/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2299.views.s2299_infoperapur_detoper.salvar', 
         name='s2299_infoperapur_detoper_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2299-infoperapur-detplano/apagar/(?P<hash>.*)/$', 
@@ -8844,6 +8883,10 @@ url(r'^s2299-infoperant-detverbas/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2299.views.s2299_infoperant_detverbas.salvar', 
         name='s2299_infoperant_detverbas_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2299-infoperant-infoagnocivo/apagar/(?P<hash>.*)/$', 
@@ -8872,10 +8915,6 @@ url(r'^s2299-infoperant-infosimples/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2299.views.s2299_infoperant_infosimples.salvar', 
         name='s2299_infoperant_infosimples_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2299-infotrabinterm/apagar/(?P<hash>.*)/$', 
@@ -8988,6 +9027,10 @@ url(r'^s2300-documentos/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2300.views.s2300_documentos.salvar', 
         name='s2300_documentos_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2300-ctps/apagar/(?P<hash>.*)/$', 
@@ -9016,10 +9059,6 @@ url(r'^s2300-ric/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2300.views.s2300_ric.salvar', 
         name='s2300_ric_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2300-rg/apagar/(?P<hash>.*)/$', 
@@ -9132,6 +9171,10 @@ url(r'^s2300-infodeficiencia/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2300.views.s2300_infodeficiencia.salvar', 
         name='s2300_infodeficiencia_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2300-dependente/apagar/(?P<hash>.*)/$', 
@@ -9160,10 +9203,6 @@ url(r'^s2300-contato/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2300.views.s2300_contato.salvar', 
         name='s2300_contato_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2300-infocomplementares/apagar/(?P<hash>.*)/$', 
@@ -9276,6 +9315,10 @@ url(r'^s2300-ageintegracao/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2300.views.s2300_ageintegracao.salvar', 
         name='s2300_ageintegracao_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2300-supervisorestagio/apagar/(?P<hash>.*)/$', 
@@ -9304,10 +9347,6 @@ url(r'^s2300-afastamento/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2300.views.s2300_afastamento.salvar', 
         name='s2300_afastamento_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2300-termino/apagar/(?P<hash>.*)/$', 
@@ -9420,6 +9459,10 @@ url(r'^s2399-verbasresc/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2399.views.s2399_verbasresc.salvar', 
         name='s2399_verbasresc_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2399-dmdev/apagar/(?P<hash>.*)/$', 
@@ -9448,10 +9491,6 @@ url(r'^s2399-ideestablot/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2399.views.s2399_ideestablot.salvar', 
         name='s2399_ideestablot_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2399-detverbas/apagar/(?P<hash>.*)/$', 
@@ -9564,6 +9603,10 @@ url(r'^s2399-infomv/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2399.views.s2399_infomv.salvar', 
         name='s2399_infomv_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2399-remunoutrempr/apagar/(?P<hash>.*)/$', 
@@ -9592,10 +9635,6 @@ url(r'^s2399-quarentena/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2399.views.s2399_quarentena.salvar', 
         name='s2399_quarentena_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2400-brasil/apagar/(?P<hash>.*)/$', 
@@ -9708,6 +9747,10 @@ url(r'^s3000-idetrabalhador/salvar/(?P<hash>.*)/$',
         'emensageriapro.s3000.views.s3000_idetrabalhador.salvar', 
         name='s3000_idetrabalhador_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s3000-idefolhapagto/apagar/(?P<hash>.*)/$', 
@@ -9736,10 +9779,6 @@ url(r'^s5001-procjudtrab/salvar/(?P<hash>.*)/$',
         'emensageriapro.s5001.views.s5001_procjudtrab.salvar', 
         name='s5001_procjudtrab_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s5001-infocpcalc/apagar/(?P<hash>.*)/$', 
@@ -9852,6 +9891,10 @@ url(r'^s5002-infoirrf/salvar/(?P<hash>.*)/$',
         'emensageriapro.s5002.views.s5002_infoirrf.salvar', 
         name='s5002_infoirrf_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s5002-basesirrf/apagar/(?P<hash>.*)/$', 
@@ -9880,10 +9923,6 @@ url(r'^s5002-irrf/salvar/(?P<hash>.*)/$',
         'emensageriapro.s5002.views.s5002_irrf.salvar', 
         name='s5002_irrf_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s5002-idepgtoext/apagar/(?P<hash>.*)/$', 
@@ -9996,6 +10035,10 @@ url(r'^s5011-idelotacao/salvar/(?P<hash>.*)/$',
         'emensageriapro.s5011.views.s5011_idelotacao.salvar', 
         name='s5011_idelotacao_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s5011-infotercsusp/apagar/(?P<hash>.*)/$', 
@@ -10024,10 +10067,6 @@ url(r'^s5011-infoemprparcial/salvar/(?P<hash>.*)/$',
         'emensageriapro.s5011.views.s5011_infoemprparcial.salvar', 
         name='s5011_infoemprparcial_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s5011-dadosopport/apagar/(?P<hash>.*)/$', 
@@ -10140,6 +10179,10 @@ url(r'^s5011-infocrcontrib/salvar/(?P<hash>.*)/$',
         'emensageriapro.s5011.views.s5011_infocrcontrib.salvar', 
         name='s5011_infocrcontrib_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s5012-infocrcontrib/apagar/(?P<hash>.*)/$', 
@@ -10168,10 +10211,6 @@ url(r'^r1000-inclusao/salvar/(?P<hash>.*)/$',
         'emensageriapro.r1000.views.r1000_inclusao.salvar', 
         name='r1000_inclusao_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^r1000-inclusao-softhouse/apagar/(?P<hash>.*)/$', 
@@ -10284,6 +10323,10 @@ url(r'^r1070-inclusao/salvar/(?P<hash>.*)/$',
         'emensageriapro.r1070.views.r1070_inclusao.salvar', 
         name='r1070_inclusao_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^r1070-inclusao-infosusp/apagar/(?P<hash>.*)/$', 
@@ -10312,10 +10355,6 @@ url(r'^r1070-inclusao-dadosprocjud/salvar/(?P<hash>.*)/$',
         'emensageriapro.r1070.views.r1070_inclusao_dadosprocjud.salvar', 
         name='r1070_inclusao_dadosprocjud_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^r1070-alteracao/apagar/(?P<hash>.*)/$', 
@@ -10428,6 +10467,10 @@ url(r'^r2010-infoprocretpr/salvar/(?P<hash>.*)/$',
         'emensageriapro.r2010.views.r2010_infoprocretpr.salvar', 
         name='r2010_infoprocretpr_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^r2010-infoprocretad/apagar/(?P<hash>.*)/$', 
@@ -10456,10 +10499,6 @@ url(r'^r2020-nfs/salvar/(?P<hash>.*)/$',
         'emensageriapro.r2020.views.r2020_nfs.salvar', 
         name='r2020_nfs_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^r2020-infotpserv/apagar/(?P<hash>.*)/$', 
@@ -10572,6 +10611,10 @@ url(r'^r2040-inforecurso/salvar/(?P<hash>.*)/$',
         'emensageriapro.r2040.views.r2040_inforecurso.salvar', 
         name='r2040_inforecurso_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^r2040-infoproc/apagar/(?P<hash>.*)/$', 
@@ -10600,10 +10643,6 @@ url(r'^r2050-tipocom/salvar/(?P<hash>.*)/$',
         'emensageriapro.r2050.views.r2050_tipocom.salvar', 
         name='r2050_tipocom_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^r2050-infoproc/apagar/(?P<hash>.*)/$', 
@@ -10716,6 +10755,10 @@ url(r'^r2070-pgtoresidbr/salvar/(?P<hash>.*)/$',
         'emensageriapro.r2070.views.r2070_pgtoresidbr.salvar', 
         name='r2070_pgtoresidbr_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^r2070-pgtopf/apagar/(?P<hash>.*)/$', 
@@ -10744,10 +10787,6 @@ url(r'^r2070-detdeducao/salvar/(?P<hash>.*)/$',
         'emensageriapro.r2070.views.r2070_detdeducao.salvar', 
         name='r2070_detdeducao_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^r2070-rendisento/apagar/(?P<hash>.*)/$', 
@@ -10860,6 +10899,10 @@ url(r'^r2070-infoprocjud-despprocjud/salvar/(?P<hash>.*)/$',
         'emensageriapro.r2070.views.r2070_infoprocjud_despprocjud.salvar', 
         name='r2070_infoprocjud_despprocjud_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^r2070-infoprocjud-ideadvogado/apagar/(?P<hash>.*)/$', 
@@ -10888,10 +10931,6 @@ url(r'^r2070-infoprocjud-origemrecursos/salvar/(?P<hash>.*)/$',
         'emensageriapro.r2070.views.r2070_infoprocjud_origemrecursos.salvar', 
         name='r2070_infoprocjud_origemrecursos_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^r2070-depjudicial/apagar/(?P<hash>.*)/$', 
@@ -11004,6 +11043,10 @@ url(r'^r2099-iderespinf/salvar/(?P<hash>.*)/$',
         'emensageriapro.r2099.views.r2099_iderespinf.salvar', 
         name='r2099_iderespinf_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^r3010-ideestab/apagar/(?P<hash>.*)/$', 
@@ -11032,10 +11075,6 @@ url(r'^r3010-boletim/salvar/(?P<hash>.*)/$',
         'emensageriapro.r3010.views.r3010_boletim.salvar', 
         name='r3010_boletim_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^r3010-receitaingressos/apagar/(?P<hash>.*)/$', 
@@ -11148,6 +11187,10 @@ url(r'^r5001-rprest/salvar/(?P<hash>.*)/$',
         'emensageriapro.r5001.views.r5001_rprest.salvar', 
         name='r5001_rprest_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^r5001-rrecrepad/apagar/(?P<hash>.*)/$', 
@@ -11176,10 +11219,6 @@ url(r'^r5001-rcoml/salvar/(?P<hash>.*)/$',
         'emensageriapro.r5001.views.r5001_rcoml.salvar', 
         name='r5001_rcoml_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^r5001-rcprb/apagar/(?P<hash>.*)/$', 
@@ -11292,6 +11331,10 @@ url(r'^r5011-rrecrepad/salvar/(?P<hash>.*)/$',
         'emensageriapro.r5011.views.r5011_rrecrepad.salvar', 
         name='r5011_rrecrepad_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^r5011-rcoml/apagar/(?P<hash>.*)/$', 
@@ -11320,10 +11363,6 @@ url(r'^r5011-rcprb/salvar/(?P<hash>.*)/$',
         'emensageriapro.r5011.views.r5011_rcprb.salvar', 
         name='r5011_rcprb_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 

@@ -1,5 +1,36 @@
 {% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
 {% if not for_print %}
 
     <section class="content-header">
@@ -85,26 +116,21 @@
 
 <table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
               
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtTabHorTur</td>
             <td bgcolor="lightgray" colspan="3">Evento Tabela de Horários/Turnos de Trabalho Regras de validação: REGRA_EXISTE_INFO_EMPREGADORREGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_DT_FUTURA</td>
         </tr>
-
     {% for s1050_evttabhortur in s1050_evttabhortur_lista %}
     {% ifequal 1 1 %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
             <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
         </tr>
 
-
         <tr {% if s1050_evttabhortur.tpamb|validacoes_esocial_efdreinf:"s1050_evttabhortur.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1050_evttabhortur.tpamb or s1050_evttabhortur.tpamb == 0 %}{{ s1050_evttabhortur.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -119,13 +145,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1050_evttabhortur.procemi|validacoes_esocial_efdreinf:"s1050_evttabhortur.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1050_evttabhortur.procemi or s1050_evttabhortur.procemi == 0 %}{{ s1050_evttabhortur.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -140,13 +164,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1050_evttabhortur.verproc|validacoes_esocial_efdreinf:"s1050_evttabhortur.verproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s1050_evttabhortur.verproc or s1050_evttabhortur.verproc == 0 %}{{ s1050_evttabhortur.verproc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -162,18 +184,15 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
             <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
         </tr>
 
-
         <tr {% if s1050_evttabhortur.tpinsc|validacoes_esocial_efdreinf:"s1050_evttabhortur.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
             <td width="200px"><b>{% if s1050_evttabhortur.tpinsc or s1050_evttabhortur.tpinsc == 0 %}{{ s1050_evttabhortur.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -188,13 +207,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1050_evttabhortur.nrinsc|validacoes_esocial_efdreinf:"s1050_evttabhortur.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s1050_evttabhortur.nrinsc or s1050_evttabhortur.nrinsc == 0 %}{{ s1050_evttabhortur.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -210,32 +227,26 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoHorContratual</td>
             <td bgcolor="lightgray" colspan="3">Registro de identificação da operação (inclusão, alteração ou exclusão) e das informações do horário contratual.</td>
         </tr>
 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">inclusao</td>
             <td bgcolor="lightgray" colspan="3">Inclusão de novas informações</td>
         </tr>
-
     {% for s1050_inclusao in s1050_inclusao_lista %}
     {% ifequal s1050_inclusao.s1050_evttabhortur.id s1050_evttabhortur.id %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideHorContratual</td>
             <td bgcolor="lightgray" colspan="3">Grupo de informações de identificação do horário contratual, apresentando o código e período de validade do registro cujas informações estão sendo incluídas.</td>
         </tr>
 
-
         <tr {% if s1050_inclusao.codhorcontrat|validacoes_esocial_efdreinf:"s1050_inclusao.codhorcontrat" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codHorContrat</td>
             <td width="500px">Preencher com o código atribuído pela empresa para o Horário Contratual.</td>
             <td width="200px"><b>{% if s1050_inclusao.codhorcontrat or s1050_inclusao.codhorcontrat == 0 %}{{ s1050_inclusao.codhorcontrat }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -250,13 +261,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1050_inclusao.inivalid|validacoes_esocial_efdreinf:"s1050_inclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial deimplantação do eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1050_inclusao.inivalid or s1050_inclusao.inivalid == 0 %}{{ s1050_inclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -272,12 +281,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1050_inclusao.fimvalid|validacoes_esocial_efdreinf:"s1050_inclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
             <td width="200px"><b>{% if s1050_inclusao.fimvalid or s1050_inclusao.fimvalid == 0 %}{{ s1050_inclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -293,18 +300,15 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dadosHorContratual</td>
             <td bgcolor="lightgray" colspan="3">Detalhamento das informações do horário contratual que está sendo incluído.</td>
         </tr>
 
-
         <tr {% if s1050_inclusao.hrentr|validacoes_esocial_efdreinf:"s1050_inclusao.hrentr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">hrEntr</td>
             <td width="500px">Informar hora da entrada, no formato HHMMValidação: Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, e deve ser menor ou igual a 59.</td>
             <td width="200px"><b>{% if s1050_inclusao.hrentr or s1050_inclusao.hrentr == 0 %}{{ s1050_inclusao.hrentr }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -319,13 +323,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1050_inclusao.hrsaida|validacoes_esocial_efdreinf:"s1050_inclusao.hrsaida" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">hrSaida</td>
             <td width="500px">Informar hora da saída, no formato HHMMValidação: Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, e deve ser menor ou igual a 59.</td>
             <td width="200px"><b>{% if s1050_inclusao.hrsaida or s1050_inclusao.hrsaida == 0 %}{{ s1050_inclusao.hrsaida }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -340,13 +342,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1050_inclusao.durjornada|validacoes_esocial_efdreinf:"s1050_inclusao.durjornada" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">durJornada</td>
             <td width="500px">Preencher com o tempo de duração da jornada, em minutos. Devem ser consideradas as horas reduzidas noturnas, se houver.</td>
             <td width="200px"><b>{% if s1050_inclusao.durjornada or s1050_inclusao.durjornada == 0 %}{{ s1050_inclusao.durjornada|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -361,13 +361,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1050_inclusao.perhorflexivel|validacoes_esocial_efdreinf:"s1050_inclusao.perhorflexivel" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">perHorFlexivel</td>
             <td width="500px">Indicar se é permitida a flexibilidade: S - Sim;N - Não.Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s1050_inclusao.perhorflexivel or s1050_inclusao.perhorflexivel == 0 %}{{ s1050_inclusao.perhorflexivel }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -383,20 +381,16 @@
             {% endif %}
         </tr>
 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">horarioIntervalo</td>
             <td bgcolor="lightgray" colspan="3">Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo.</td>
         </tr>
-
     {% for s1050_inclusao_horariointervalo in s1050_inclusao_horariointervalo_lista %}
     {% ifequal s1050_inclusao_horariointervalo.s1050_inclusao.id s1050_inclusao.id %}
-
         <tr {% if s1050_inclusao_horariointervalo.tpinterv|validacoes_esocial_efdreinf:"s1050_inclusao_horariointervalo.tpinterv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInterv</td>
             <td width="500px">Tipo de Intervalo da Jornada:1 - Intervalo em Horário Fixo;2 - Intervalo em Horário Variável. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1050_inclusao_horariointervalo.tpinterv or s1050_inclusao_horariointervalo.tpinterv == 0 %}{{ s1050_inclusao_horariointervalo.tpinterv|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -411,13 +405,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1050_inclusao_horariointervalo.durinterv|validacoes_esocial_efdreinf:"s1050_inclusao_horariointervalo.durinterv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">durInterv</td>
             <td width="500px">Preencher com o tempo de duração do intervalo, em minutos.</td>
             <td width="200px"><b>{% if s1050_inclusao_horariointervalo.durinterv or s1050_inclusao_horariointervalo.durinterv == 0 %}{{ s1050_inclusao_horariointervalo.durinterv|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -432,13 +424,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1050_inclusao_horariointervalo.iniinterv|validacoes_esocial_efdreinf:"s1050_inclusao_horariointervalo.iniinterv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniInterv</td>
             <td width="500px">informar a hora de início do intervalo, no formato HHMMValidação: Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, e deve ser menor ou igual a 59. Somente deve ser informado se {tpInterv}=1.</td>
             <td width="200px"><b>{% if s1050_inclusao_horariointervalo.iniinterv or s1050_inclusao_horariointervalo.iniinterv == 0 %}{{ s1050_inclusao_horariointervalo.iniinterv }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -454,12 +444,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1050_inclusao_horariointervalo.terminterv|validacoes_esocial_efdreinf:"s1050_inclusao_horariointervalo.terminterv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">termInterv</td>
             <td width="500px">Informar a hora de termino do intervalo, no formato HHMMValidação: Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, e deve ser menor ou igual a 59. Somente deve ser informado se {tpInterv}=1.</td>
             <td width="200px"><b>{% if s1050_inclusao_horariointervalo.terminterv or s1050_inclusao_horariointervalo.terminterv == 0 %}{{ s1050_inclusao_horariointervalo.terminterv }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -475,26 +463,21 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">alteracao</td>
             <td bgcolor="lightgray" colspan="3">Alteração de informações já existentes</td>
         </tr>
-
     {% for s1050_alteracao in s1050_alteracao_lista %}
     {% ifequal s1050_alteracao.s1050_evttabhortur.id s1050_evttabhortur.id %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideHorContratual</td>
             <td bgcolor="lightgray" colspan="3">Grupo de informações de identificação do horário contratual, apresentando código e período de validade do registro cujas informações serão alteradas pelos dados constantes neste evento.</td>
         </tr>
 
-
         <tr {% if s1050_alteracao.codhorcontrat|validacoes_esocial_efdreinf:"s1050_alteracao.codhorcontrat" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codHorContrat</td>
             <td width="500px">Preencher com o código atribuído pela empresa para o Horário Contratual.</td>
             <td width="200px"><b>{% if s1050_alteracao.codhorcontrat or s1050_alteracao.codhorcontrat == 0 %}{{ s1050_alteracao.codhorcontrat }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -509,13 +492,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1050_alteracao.inivalid|validacoes_esocial_efdreinf:"s1050_alteracao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial deimplantação do eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1050_alteracao.inivalid or s1050_alteracao.inivalid == 0 %}{{ s1050_alteracao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -531,12 +512,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1050_alteracao.fimvalid|validacoes_esocial_efdreinf:"s1050_alteracao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser umperíodo igual ou posterior a {iniValid}</td>
             <td width="200px"><b>{% if s1050_alteracao.fimvalid or s1050_alteracao.fimvalid == 0 %}{{ s1050_alteracao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -552,18 +531,15 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dadosHorContratual</td>
             <td bgcolor="lightgray" colspan="3">Informações do horário contratual</td>
         </tr>
 
-
         <tr {% if s1050_alteracao.hrentr|validacoes_esocial_efdreinf:"s1050_alteracao.hrentr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">hrEntr</td>
             <td width="500px">Informar hora da entrada, no formato HHMMValidação: Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, e deve ser menor ou igual a 59.</td>
             <td width="200px"><b>{% if s1050_alteracao.hrentr or s1050_alteracao.hrentr == 0 %}{{ s1050_alteracao.hrentr }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -578,13 +554,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1050_alteracao.hrsaida|validacoes_esocial_efdreinf:"s1050_alteracao.hrsaida" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">hrSaida</td>
             <td width="500px">Informar hora da saída, no formato HHMMValidação: Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, e deve ser menor ou igual a 59.</td>
             <td width="200px"><b>{% if s1050_alteracao.hrsaida or s1050_alteracao.hrsaida == 0 %}{{ s1050_alteracao.hrsaida }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -599,13 +573,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1050_alteracao.durjornada|validacoes_esocial_efdreinf:"s1050_alteracao.durjornada" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">durJornada</td>
             <td width="500px">Preencher com o tempo de duração da jornada, em minutos. Devem ser consideradas as horas reduzidas noturnas, se houver.</td>
             <td width="200px"><b>{% if s1050_alteracao.durjornada or s1050_alteracao.durjornada == 0 %}{{ s1050_alteracao.durjornada|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -620,13 +592,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1050_alteracao.perhorflexivel|validacoes_esocial_efdreinf:"s1050_alteracao.perhorflexivel" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">perHorFlexivel</td>
             <td width="500px">Indicar se é permitida a flexibilidade: S - Sim;N - Não.Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s1050_alteracao.perhorflexivel or s1050_alteracao.perhorflexivel == 0 %}{{ s1050_alteracao.perhorflexivel }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -642,20 +612,16 @@
             {% endif %}
         </tr>
 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">horarioIntervalo</td>
             <td bgcolor="lightgray" colspan="3">Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo.</td>
         </tr>
-
     {% for s1050_alteracao_horariointervalo in s1050_alteracao_horariointervalo_lista %}
     {% ifequal s1050_alteracao_horariointervalo.s1050_alteracao.id s1050_alteracao.id %}
-
         <tr {% if s1050_alteracao_horariointervalo.tpinterv|validacoes_esocial_efdreinf:"s1050_alteracao_horariointervalo.tpinterv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInterv</td>
             <td width="500px">Tipo de Intervalo da Jornada:1 - Intervalo em Horário Fixo;2 - Intervalo em Horário Variável. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1050_alteracao_horariointervalo.tpinterv or s1050_alteracao_horariointervalo.tpinterv == 0 %}{{ s1050_alteracao_horariointervalo.tpinterv|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -670,13 +636,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1050_alteracao_horariointervalo.durinterv|validacoes_esocial_efdreinf:"s1050_alteracao_horariointervalo.durinterv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">durInterv</td>
             <td width="500px">Preencher com o tempo de duração do intervalo, em minutos.</td>
             <td width="200px"><b>{% if s1050_alteracao_horariointervalo.durinterv or s1050_alteracao_horariointervalo.durinterv == 0 %}{{ s1050_alteracao_horariointervalo.durinterv|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -691,13 +655,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1050_alteracao_horariointervalo.iniinterv|validacoes_esocial_efdreinf:"s1050_alteracao_horariointervalo.iniinterv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniInterv</td>
             <td width="500px">informar a hora de início do intervalo, no formato HHMMValidação: Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, e deve ser menor ou igual a 59. Somente deve ser informado se {tpInterv}=1.</td>
             <td width="200px"><b>{% if s1050_alteracao_horariointervalo.iniinterv or s1050_alteracao_horariointervalo.iniinterv == 0 %}{{ s1050_alteracao_horariointervalo.iniinterv }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -713,12 +675,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1050_alteracao_horariointervalo.terminterv|validacoes_esocial_efdreinf:"s1050_alteracao_horariointervalo.terminterv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">termInterv</td>
             <td width="500px">Informar a hora de termino do intervalo, no formato HHMMValidação: Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, e deve ser menor ou igual a 59. Somente deve ser informado se {tpInterv}=1.</td>
             <td width="200px"><b>{% if s1050_alteracao_horariointervalo.terminterv or s1050_alteracao_horariointervalo.terminterv == 0 %}{{ s1050_alteracao_horariointervalo.terminterv }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -734,20 +694,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %} 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">novaValidade</td>
             <td bgcolor="lightgray" colspan="3">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</td>
         </tr>
-
     {% for s1050_alteracao_novavalidade in s1050_alteracao_novavalidade_lista %}
     {% ifequal s1050_alteracao_novavalidade.s1050_alteracao.id s1050_alteracao.id %}
-
         <tr {% if s1050_alteracao_novavalidade.inivalid|validacoes_esocial_efdreinf:"s1050_alteracao_novavalidade.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1050_alteracao_novavalidade.inivalid or s1050_alteracao_novavalidade.inivalid == 0 %}{{ s1050_alteracao_novavalidade.inivalid }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -763,12 +719,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1050_alteracao_novavalidade.fimvalid|validacoes_esocial_efdreinf:"s1050_alteracao_novavalidade.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
             <td width="200px"><b>{% if s1050_alteracao_novavalidade.fimvalid or s1050_alteracao_novavalidade.fimvalid == 0 %}{{ s1050_alteracao_novavalidade.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -784,26 +738,21 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">exclusao</td>
             <td bgcolor="lightgray" colspan="3">Exclusão de informações</td>
         </tr>
-
     {% for s1050_exclusao in s1050_exclusao_lista %}
     {% ifequal s1050_exclusao.s1050_evttabhortur.id s1050_evttabhortur.id %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideHorContratual</td>
             <td bgcolor="lightgray" colspan="3">Grupo de informações que identifica o horário contratual que será excluído.</td>
         </tr>
 
-
         <tr {% if s1050_exclusao.codhorcontrat|validacoes_esocial_efdreinf:"s1050_exclusao.codhorcontrat" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codHorContrat</td>
             <td width="500px">Preencher com o código atribuído pela empresa para o Horário Contratual.</td>
             <td width="200px"><b>{% if s1050_exclusao.codhorcontrat or s1050_exclusao.codhorcontrat == 0 %}{{ s1050_exclusao.codhorcontrat }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -818,13 +767,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1050_exclusao.inivalid|validacoes_esocial_efdreinf:"s1050_exclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1050_exclusao.inivalid or s1050_exclusao.inivalid == 0 %}{{ s1050_exclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -840,12 +787,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1050_exclusao.fimvalid|validacoes_esocial_efdreinf:"s1050_exclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser umperíodo igual ou posterior a {iniValid}</td>
             <td width="200px"><b>{% if s1050_exclusao.fimvalid or s1050_exclusao.fimvalid == 0 %}{{ s1050_exclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>

@@ -138,6 +138,7 @@ def arquivos_reprocessar(request, hash):
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.funcoes_importacao import importar_arquivo
     import os
+    texto = ''
     if not os.path.isfile(BASE_DIR + '/' + arquivos.arquivo):
         texto = ler_arquivo(arquivos.arquivo)
         return redirect('arquivos', hash=request.session['retorno_hash'])

@@ -1,5 +1,36 @@
 {% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
 {% if not for_print %}
 
     <section class="content-header">
@@ -85,26 +116,21 @@
 
 <table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
               
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtTSVInicio</td>
             <td bgcolor="lightgray" colspan="3">Evento Trabalhador Sem Vínculo de Emprego/Estatutário - InícioRegras de validação: REGRA_COMPATIB_CATEG_EVENTO REGRA_EVENTOS_EXTEMP REGRA_EVETRAB_VALIDA_OPCAO_FGTS REGRA_EXCLUI_EVENTO_TSV_INICIO REGRA_EXISTE_INFO_EMPREGADOR REGRA_TSV_COMPATIBILIDADE_CLASSTRIB_CATEGORIA REGRA_TSV_RETIFICA_EVENTO_INICIO REGRA_TSV_VERIFICA_DUPLICIDADE REGRA_VALIDA_EMPREGADOR REGRA_VALIDA_TRABALHADOR_BASE_CNIS REGRA_VALIDA_TRABALHADOR_BASE_CPF</td>
         </tr>
-
     {% for s2300_evttsvinicio in s2300_evttsvinicio_lista %}
     {% ifequal 1 1 %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
             <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
         </tr>
 
-
         <tr {% if s2300_evttsvinicio.indretif|validacoes_esocial_efdreinf:"s2300_evttsvinicio.indretif" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indRetif</td>
             <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.indretif or s2300_evttsvinicio.indretif == 0 %}{{ s2300_evttsvinicio.indretif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -119,13 +145,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.nrrecibo|validacoes_esocial_efdreinf:"s2300_evttsvinicio.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrRecibo</td>
             <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2].Deve ser um recibo de entrega válido, correspondente ao arquivo que estásendo retificado.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.nrrecibo or s2300_evttsvinicio.nrrecibo == 0 %}{{ s2300_evttsvinicio.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -140,13 +164,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.tpamb|validacoes_esocial_efdreinf:"s2300_evttsvinicio.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.tpamb or s2300_evttsvinicio.tpamb == 0 %}{{ s2300_evttsvinicio.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -161,13 +183,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.procemi|validacoes_esocial_efdreinf:"s2300_evttsvinicio.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.procemi or s2300_evttsvinicio.procemi == 0 %}{{ s2300_evttsvinicio.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -182,13 +202,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.verproc|validacoes_esocial_efdreinf:"s2300_evttsvinicio.verproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.verproc or s2300_evttsvinicio.verproc == 0 %}{{ s2300_evttsvinicio.verproc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -204,18 +222,15 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
             <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
         </tr>
 
-
         <tr {% if s2300_evttsvinicio.tpinsc|validacoes_esocial_efdreinf:"s2300_evttsvinicio.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.tpinsc or s2300_evttsvinicio.tpinsc == 0 %}{{ s2300_evttsvinicio.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -231,12 +246,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s2300_evttsvinicio.nrinsc|validacoes_esocial_efdreinf:"s2300_evttsvinicio.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica deadministração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido.Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.nrinsc or s2300_evttsvinicio.nrinsc == 0 %}{{ s2300_evttsvinicio.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -252,18 +265,15 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">trabalhador</td>
             <td bgcolor="lightgray" colspan="3">Grupo de Informações do Trabalhador</td>
         </tr>
 
-
         <tr {% if s2300_evttsvinicio.cpftrab|validacoes_esocial_efdreinf:"s2300_evttsvinicio.cpftrab" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cpfTrab</td>
             <td width="500px">Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.cpftrab or s2300_evttsvinicio.cpftrab == 0 %}{{ s2300_evttsvinicio.cpftrab }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -278,13 +288,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.nistrab|validacoes_esocial_efdreinf:"s2300_evttsvinicio.nistrab" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nisTrab</td>
             <td width="500px">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT.Validação: O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904].</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.nistrab or s2300_evttsvinicio.nistrab == 0 %}{{ s2300_evttsvinicio.nistrab }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -299,13 +307,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.nmtrab|validacoes_esocial_efdreinf:"s2300_evttsvinicio.nmtrab" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nmTrab</td>
             <td width="500px">Nome do Trabalhador</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.nmtrab or s2300_evttsvinicio.nmtrab == 0 %}{{ s2300_evttsvinicio.nmtrab }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -320,13 +326,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.sexo|validacoes_esocial_efdreinf:"s2300_evttsvinicio.sexo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">sexo</td>
             <td width="500px">Sexo do Trabalhador: M - Masculino;F - Feminino.Valores Válidos: M, F.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.sexo or s2300_evttsvinicio.sexo == 0 %}{{ s2300_evttsvinicio.sexo }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -341,13 +345,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.racacor|validacoes_esocial_efdreinf:"s2300_evttsvinicio.racacor" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">racaCor</td>
             <td width="500px">Raça e cor do trabalhador, conforme opções abaixo:1 - Branca;2 - Preta;3 - Parda;4 - Amarela;5 - Indígena;6 - Não informado.Valores Válidos: 1, 2, 3, 4, 5, 6.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.racacor or s2300_evttsvinicio.racacor == 0 %}{{ s2300_evttsvinicio.racacor|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -362,13 +364,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.estciv|validacoes_esocial_efdreinf:"s2300_evttsvinicio.estciv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">estCiv</td>
             <td width="500px">Estado civil do trabalhador, conforme opções abaixo:1 - Solteiro;2 - Casado;3 - Divorciado;4 - Separado;5 - Viúvo.Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.estciv or s2300_evttsvinicio.estciv == 0 %}{{ s2300_evttsvinicio.estciv|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -383,13 +383,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.grauinstr|validacoes_esocial_efdreinf:"s2300_evttsvinicio.grauinstr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">grauInstr</td>
             <td width="500px">Grau de instrução do trabalhador, conforme opções abaixo:01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou;02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular;03 - 5º ano completo do Ensino Fundamental;04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série);05 - Ensino Fundamental Completo;06 - Ensino Médio incompleto;07 - Ensino Médio completo;08 - Educação Superior incompleta;09 - Educação Superior completa;10 - Pós-Graduação completa;11 - Mestrado completo;12 - Doutorado completo.Valores Válidos: 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.grauinstr or s2300_evttsvinicio.grauinstr == 0 %}{{ s2300_evttsvinicio.grauinstr }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -404,13 +402,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.nmsoc|validacoes_esocial_efdreinf:"s2300_evttsvinicio.nmsoc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nmSoc</td>
             <td width="500px">Nome social para travesti ou transexual.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.nmsoc or s2300_evttsvinicio.nmsoc == 0 %}{{ s2300_evttsvinicio.nmsoc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -425,19 +421,16 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">nascimento</td>
             <td bgcolor="lightgray" colspan="3">Grupo de informações do nascimento do trabalhador</td>
         </tr>
 
-
         <tr {% if s2300_evttsvinicio.dtnascto|validacoes_esocial_efdreinf:"s2300_evttsvinicio.dtnascto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtNascto</td>
             <td width="500px">Preencher com a data de nascimento</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.dtnascto or s2300_evttsvinicio.dtnascto == 0 %}{{ s2300_evttsvinicio.dtnascto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -452,13 +445,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.codmunic|validacoes_esocial_efdreinf:"s2300_evttsvinicio.codmunic" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codMunic</td>
             <td width="500px">Preencher com o código do município, conforme tabela do IBGEValidação: Se informado, deve ser um código existente na tabela do IBGE. Opreenchimento é obrigatório se o país do nascimento for igual a Brasil.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.codmunic or s2300_evttsvinicio.codmunic == 0 %}{{ s2300_evttsvinicio.codmunic|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -473,13 +464,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.uf|validacoes_esocial_efdreinf:"s2300_evttsvinicio.uf" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">uf</td>
             <td width="500px">Preencher com a sigla da Unidade da FederaçãoValidação: Deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.uf or s2300_evttsvinicio.uf == 0 %}{{ s2300_evttsvinicio.uf }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -494,13 +483,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.paisnascto|validacoes_esocial_efdreinf:"s2300_evttsvinicio.paisnascto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">paisNascto</td>
             <td width="500px">Preencher com o código do país de nascimento do trabalhador, conforme tabela 6.Validação: Deve ser um código existente na tabela.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.paisnascto or s2300_evttsvinicio.paisnascto == 0 %}{{ s2300_evttsvinicio.paisnascto }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -515,13 +502,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.paisnac|validacoes_esocial_efdreinf:"s2300_evttsvinicio.paisnac" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">paisNac</td>
             <td width="500px">Preencher com o código do país de nacionalidade do trabalhador, conforme tabela 6.Validação: Deve ser um código existente na tabela.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.paisnac or s2300_evttsvinicio.paisnac == 0 %}{{ s2300_evttsvinicio.paisnac }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -536,13 +521,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.nmmae|validacoes_esocial_efdreinf:"s2300_evttsvinicio.nmmae" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nmMae</td>
             <td width="500px">Nome da mãe</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.nmmae or s2300_evttsvinicio.nmmae == 0 %}{{ s2300_evttsvinicio.nmmae }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -558,12 +541,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s2300_evttsvinicio.nmpai|validacoes_esocial_efdreinf:"s2300_evttsvinicio.nmpai" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nmPai</td>
             <td width="500px">Nome do pai do trabalhador</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.nmpai or s2300_evttsvinicio.nmpai == 0 %}{{ s2300_evttsvinicio.nmpai }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -579,28 +560,22 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">documentos</td>
             <td bgcolor="lightgray" colspan="3">Informações dos documentos pessoais do trabalhador</td>
         </tr>
-
     {% for s2300_documentos in s2300_documentos_lista %}
     {% ifequal s2300_documentos.s2300_evttsvinicio.id s2300_evttsvinicio.id %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">CTPS</td>
             <td bgcolor="lightgray" colspan="3">Informações da Carteira de Trabalho e Previdência Social</td>
         </tr>
-
     {% for s2300_ctps in s2300_ctps_lista %}
     {% ifequal s2300_ctps.s2300_documentos.id s2300_documentos.id %}
-
         <tr {% if s2300_ctps.nrctps|validacoes_esocial_efdreinf:"s2300_ctps.nrctps" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrCtps</td>
             <td width="500px">CTPS</td>
             <td width="200px"><b>{% if s2300_ctps.nrctps or s2300_ctps.nrctps == 0 %}{{ s2300_ctps.nrctps }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -615,13 +590,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_ctps.seriectps|validacoes_esocial_efdreinf:"s2300_ctps.seriectps" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">serieCtps</td>
             <td width="500px">Número de série da CTPS.</td>
             <td width="200px"><b>{% if s2300_ctps.seriectps or s2300_ctps.seriectps == 0 %}{{ s2300_ctps.seriectps }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -636,13 +609,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_ctps.ufctps|validacoes_esocial_efdreinf:"s2300_ctps.ufctps" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">ufCtps</td>
             <td width="500px">UF da expedição da CTPS. Validação: Deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2300_ctps.ufctps or s2300_ctps.ufctps == 0 %}{{ s2300_ctps.ufctps }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -658,20 +629,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">RIC</td>
             <td bgcolor="lightgray" colspan="3">Informações do Documento Nacional de Identidade - DNI (Registro deIdentificação Civil - RIC)</td>
         </tr>
-
     {% for s2300_ric in s2300_ric_lista %}
     {% ifequal s2300_ric.s2300_documentos.id s2300_documentos.id %}
-
         <tr {% if s2300_ric.nrric|validacoes_esocial_efdreinf:"s2300_ric.nrric" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrRic</td>
             <td width="500px">Número do Documento Nacional de Identidade - DNI.</td>
             <td width="200px"><b>{% if s2300_ric.nrric or s2300_ric.nrric == 0 %}{{ s2300_ric.nrric }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -686,13 +653,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_ric.orgaoemissor|validacoes_esocial_efdreinf:"s2300_ric.orgaoemissor" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">orgaoEmissor</td>
             <td width="500px">Órgão e UF de emissão</td>
             <td width="200px"><b>{% if s2300_ric.orgaoemissor or s2300_ric.orgaoemissor == 0 %}{{ s2300_ric.orgaoemissor }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -707,13 +672,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_ric.dtexped|validacoes_esocial_efdreinf:"s2300_ric.dtexped" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtExped</td>
             <td width="500px">Data da expedição do documento</td>
             <td width="200px"><b>{% if s2300_ric.dtexped or s2300_ric.dtexped == 0 %}{{ s2300_ric.dtexped|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -729,20 +692,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">RG</td>
             <td bgcolor="lightgray" colspan="3">Informações do Registro Geral (RG)</td>
         </tr>
-
     {% for s2300_rg in s2300_rg_lista %}
     {% ifequal s2300_rg.s2300_documentos.id s2300_documentos.id %}
-
         <tr {% if s2300_rg.nrrg|validacoes_esocial_efdreinf:"s2300_rg.nrrg" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrRg</td>
             <td width="500px">RG</td>
             <td width="200px"><b>{% if s2300_rg.nrrg or s2300_rg.nrrg == 0 %}{{ s2300_rg.nrrg }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -757,13 +716,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_rg.orgaoemissor|validacoes_esocial_efdreinf:"s2300_rg.orgaoemissor" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">orgaoEmissor</td>
             <td width="500px">Órgão e UF de emissão</td>
             <td width="200px"><b>{% if s2300_rg.orgaoemissor or s2300_rg.orgaoemissor == 0 %}{{ s2300_rg.orgaoemissor }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -778,13 +735,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_rg.dtexped|validacoes_esocial_efdreinf:"s2300_rg.dtexped" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtExped</td>
             <td width="500px">Data da expedição do documento</td>
             <td width="200px"><b>{% if s2300_rg.dtexped or s2300_rg.dtexped == 0 %}{{ s2300_rg.dtexped|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -800,20 +755,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">RNE</td>
             <td bgcolor="lightgray" colspan="3">Informações do Registro Nacional de Estrangeiro</td>
         </tr>
-
     {% for s2300_rne in s2300_rne_lista %}
     {% ifequal s2300_rne.s2300_documentos.id s2300_documentos.id %}
-
         <tr {% if s2300_rne.nrrne|validacoes_esocial_efdreinf:"s2300_rne.nrrne" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrRne</td>
             <td width="500px">Número de inscrição no Registro Nacional de Estrangeiros</td>
             <td width="200px"><b>{% if s2300_rne.nrrne or s2300_rne.nrrne == 0 %}{{ s2300_rne.nrrne }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -828,13 +779,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_rne.orgaoemissor|validacoes_esocial_efdreinf:"s2300_rne.orgaoemissor" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">orgaoEmissor</td>
             <td width="500px">Órgão e UF de emissão</td>
             <td width="200px"><b>{% if s2300_rne.orgaoemissor or s2300_rne.orgaoemissor == 0 %}{{ s2300_rne.orgaoemissor }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -849,13 +798,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_rne.dtexped|validacoes_esocial_efdreinf:"s2300_rne.dtexped" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtExped</td>
             <td width="500px">Data da expedição do documento</td>
             <td width="200px"><b>{% if s2300_rne.dtexped or s2300_rne.dtexped == 0 %}{{ s2300_rne.dtexped|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -871,20 +818,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">OC</td>
             <td bgcolor="lightgray" colspan="3">Informações do número de registro em Órgão de Classe (OC)</td>
         </tr>
-
     {% for s2300_oc in s2300_oc_lista %}
     {% ifequal s2300_oc.s2300_documentos.id s2300_documentos.id %}
-
         <tr {% if s2300_oc.nroc|validacoes_esocial_efdreinf:"s2300_oc.nroc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrOc</td>
             <td width="500px">Número de Inscrição no órgão de classe</td>
             <td width="200px"><b>{% if s2300_oc.nroc or s2300_oc.nroc == 0 %}{{ s2300_oc.nroc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -899,13 +842,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_oc.orgaoemissor|validacoes_esocial_efdreinf:"s2300_oc.orgaoemissor" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">orgaoEmissor</td>
             <td width="500px">Órgão e UF de emissão</td>
             <td width="200px"><b>{% if s2300_oc.orgaoemissor or s2300_oc.orgaoemissor == 0 %}{{ s2300_oc.orgaoemissor }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -920,13 +861,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_oc.dtexped|validacoes_esocial_efdreinf:"s2300_oc.dtexped" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtExped</td>
             <td width="500px">Data da expedição do documento</td>
             <td width="200px"><b>{% if s2300_oc.dtexped or s2300_oc.dtexped == 0 %}{{ s2300_oc.dtexped|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -942,12 +881,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s2300_oc.dtvalid|validacoes_esocial_efdreinf:"s2300_oc.dtvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtValid</td>
             <td width="500px">Preencher com a data de validade.Validação: Deve ser posterior a data de expedição ({dtExped}), se esta for informada.</td>
             <td width="200px"><b>{% if s2300_oc.dtvalid or s2300_oc.dtvalid == 0 %}{{ s2300_oc.dtvalid|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -963,20 +900,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">CNH</td>
             <td bgcolor="lightgray" colspan="3">Informações da Carteira Nacional de Habilitação (CNH)</td>
         </tr>
-
     {% for s2300_cnh in s2300_cnh_lista %}
     {% ifequal s2300_cnh.s2300_documentos.id s2300_documentos.id %}
-
         <tr {% if s2300_cnh.nrregcnh|validacoes_esocial_efdreinf:"s2300_cnh.nrregcnh" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrRegCnh</td>
             <td width="500px">Número do Registro da Carteira Nacional de Habilitação - CNH</td>
             <td width="200px"><b>{% if s2300_cnh.nrregcnh or s2300_cnh.nrregcnh == 0 %}{{ s2300_cnh.nrregcnh }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -991,13 +924,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_cnh.dtexped|validacoes_esocial_efdreinf:"s2300_cnh.dtexped" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtExped</td>
             <td width="500px">Data da expedição do documento</td>
             <td width="200px"><b>{% if s2300_cnh.dtexped or s2300_cnh.dtexped == 0 %}{{ s2300_cnh.dtexped|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1012,13 +943,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_cnh.ufcnh|validacoes_esocial_efdreinf:"s2300_cnh.ufcnh" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">ufCnh</td>
             <td width="500px">Estado da Federação emissor da CNH Validação: Deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2300_cnh.ufcnh or s2300_cnh.ufcnh == 0 %}{{ s2300_cnh.ufcnh }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1033,13 +962,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_cnh.dtvalid|validacoes_esocial_efdreinf:"s2300_cnh.dtvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtValid</td>
             <td width="500px">Preencher com a data de validade.Validação: Deve ser posterior a data de expedição ({dtExped}), se esta for informada.</td>
             <td width="200px"><b>{% if s2300_cnh.dtvalid or s2300_cnh.dtvalid == 0 %}{{ s2300_cnh.dtvalid|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1054,13 +981,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_cnh.dtprihab|validacoes_esocial_efdreinf:"s2300_cnh.dtprihab" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtPriHab</td>
             <td width="500px">Data da primeira habilitação</td>
             <td width="200px"><b>{% if s2300_cnh.dtprihab or s2300_cnh.dtprihab == 0 %}{{ s2300_cnh.dtprihab|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1076,12 +1001,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s2300_cnh.categoriacnh|validacoes_esocial_efdreinf:"s2300_cnh.categoriacnh" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">categoriaCnh</td>
             <td width="500px">Categoria da CNHValores Válidos: A, B, C, D, E, AB, AC, AD, AE</td>
             <td width="200px"><b>{% if s2300_cnh.categoriacnh or s2300_cnh.categoriacnh == 0 %}{{ s2300_cnh.categoriacnh }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1097,26 +1020,21 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">endereco</td>
             <td bgcolor="lightgray" colspan="3">Grupo de informações do endereço do Trabalhador</td>
         </tr>
 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">brasil</td>
             <td bgcolor="lightgray" colspan="3">Preenchimento obrigatório para trabalhador residente no Brasil.</td>
         </tr>
-
     {% for s2300_brasil in s2300_brasil_lista %}
     {% ifequal s2300_brasil.s2300_evttsvinicio.id s2300_evttsvinicio.id %}
-
         <tr {% if s2300_brasil.tplograd|validacoes_esocial_efdreinf:"s2300_brasil.tplograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpLograd</td>
             <td width="500px">Tipo de Logradouro, conforme tabela 20.Validação: Deve ser um código válido, existente na tabela 20.</td>
             <td width="200px"><b>{% if s2300_brasil.tplograd or s2300_brasil.tplograd == 0 %}{{ s2300_brasil.tplograd }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1131,13 +1049,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_brasil.dsclograd|validacoes_esocial_efdreinf:"s2300_brasil.dsclograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dscLograd</td>
             <td width="500px">Descrição do logradouro</td>
             <td width="200px"><b>{% if s2300_brasil.dsclograd or s2300_brasil.dsclograd == 0 %}{{ s2300_brasil.dsclograd }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1152,13 +1068,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_brasil.nrlograd|validacoes_esocial_efdreinf:"s2300_brasil.nrlograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrLograd</td>
             <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com "S/N"</td>
             <td width="200px"><b>{% if s2300_brasil.nrlograd or s2300_brasil.nrlograd == 0 %}{{ s2300_brasil.nrlograd }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1173,13 +1087,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_brasil.complemento|validacoes_esocial_efdreinf:"s2300_brasil.complemento" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">complemento</td>
             <td width="500px">Complemento do logradouro.</td>
             <td width="200px"><b>{% if s2300_brasil.complemento or s2300_brasil.complemento == 0 %}{{ s2300_brasil.complemento }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1194,13 +1106,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_brasil.bairro|validacoes_esocial_efdreinf:"s2300_brasil.bairro" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">bairro</td>
             <td width="500px">Nome do bairro/distrito</td>
             <td width="200px"><b>{% if s2300_brasil.bairro or s2300_brasil.bairro == 0 %}{{ s2300_brasil.bairro }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1215,13 +1125,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_brasil.cep|validacoes_esocial_efdreinf:"s2300_brasil.cep" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cep</td>
             <td width="500px">Código de Endereçamento Postal - CEP.Validação: Deve ser preenchido apenas com números. Deve ser um CEP válido.</td>
             <td width="200px"><b>{% if s2300_brasil.cep or s2300_brasil.cep == 0 %}{{ s2300_brasil.cep }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1236,13 +1144,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_brasil.codmunic|validacoes_esocial_efdreinf:"s2300_brasil.codmunic" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codMunic</td>
             <td width="500px">Preencher com o código do município, conforme tabela do IBGE Validação: Deve ser um código existente na tabela do IBGE.</td>
             <td width="200px"><b>{% if s2300_brasil.codmunic or s2300_brasil.codmunic == 0 %}{{ s2300_brasil.codmunic|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1257,13 +1163,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_brasil.uf|validacoes_esocial_efdreinf:"s2300_brasil.uf" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">uf</td>
             <td width="500px">Preencher com a sigla da Unidade da FederaçãoValidação: Deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2300_brasil.uf or s2300_brasil.uf == 0 %}{{ s2300_brasil.uf }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1279,20 +1183,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">exterior</td>
             <td bgcolor="lightgray" colspan="3">Preenchido em caso de trabalhador residente no exterior.</td>
         </tr>
-
     {% for s2300_exterior in s2300_exterior_lista %}
     {% ifequal s2300_exterior.s2300_evttsvinicio.id s2300_evttsvinicio.id %}
-
         <tr {% if s2300_exterior.paisresid|validacoes_esocial_efdreinf:"s2300_exterior.paisresid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">paisResid</td>
             <td width="500px">Preencher com o código do país, conforme tabela 6. Validação: Deve ser um código existente na tabela</td>
             <td width="200px"><b>{% if s2300_exterior.paisresid or s2300_exterior.paisresid == 0 %}{{ s2300_exterior.paisresid }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1307,13 +1207,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_exterior.dsclograd|validacoes_esocial_efdreinf:"s2300_exterior.dsclograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dscLograd</td>
             <td width="500px">Descrição do logradouro</td>
             <td width="200px"><b>{% if s2300_exterior.dsclograd or s2300_exterior.dsclograd == 0 %}{{ s2300_exterior.dsclograd }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1328,13 +1226,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_exterior.nrlograd|validacoes_esocial_efdreinf:"s2300_exterior.nrlograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrLograd</td>
             <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com "S/N"</td>
             <td width="200px"><b>{% if s2300_exterior.nrlograd or s2300_exterior.nrlograd == 0 %}{{ s2300_exterior.nrlograd }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1349,13 +1245,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_exterior.complemento|validacoes_esocial_efdreinf:"s2300_exterior.complemento" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">complemento</td>
             <td width="500px">Complemento do logradouro.</td>
             <td width="200px"><b>{% if s2300_exterior.complemento or s2300_exterior.complemento == 0 %}{{ s2300_exterior.complemento }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1370,13 +1264,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_exterior.bairro|validacoes_esocial_efdreinf:"s2300_exterior.bairro" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">bairro</td>
             <td width="500px">Nome do bairro/distrito</td>
             <td width="200px"><b>{% if s2300_exterior.bairro or s2300_exterior.bairro == 0 %}{{ s2300_exterior.bairro }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1391,13 +1283,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_exterior.nmcid|validacoes_esocial_efdreinf:"s2300_exterior.nmcid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nmCid</td>
             <td width="500px">Nome da Cidade</td>
             <td width="200px"><b>{% if s2300_exterior.nmcid or s2300_exterior.nmcid == 0 %}{{ s2300_exterior.nmcid }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1412,13 +1302,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_exterior.codpostal|validacoes_esocial_efdreinf:"s2300_exterior.codpostal" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codPostal</td>
             <td width="500px">Código de Endereçamento Postal</td>
             <td width="200px"><b>{% if s2300_exterior.codpostal or s2300_exterior.codpostal == 0 %}{{ s2300_exterior.codpostal }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1434,20 +1322,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %} 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">trabEstrangeiro</td>
             <td bgcolor="lightgray" colspan="3">Grupo de informações do Trabalhador Estrangeiro</td>
         </tr>
-
     {% for s2300_trabestrangeiro in s2300_trabestrangeiro_lista %}
     {% ifequal s2300_trabestrangeiro.s2300_evttsvinicio.id s2300_evttsvinicio.id %}
-
         <tr {% if s2300_trabestrangeiro.dtchegada|validacoes_esocial_efdreinf:"s2300_trabestrangeiro.dtchegada" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtChegada</td>
             <td width="500px">Data de chegada do trabalhador ao Brasil, em caso de estrangeiro. Validação: Preenchimento obrigatório se {classTrabEstrang} <> [6].</td>
             <td width="200px"><b>{% if s2300_trabestrangeiro.dtchegada or s2300_trabestrangeiro.dtchegada == 0 %}{{ s2300_trabestrangeiro.dtchegada|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1462,13 +1346,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_trabestrangeiro.classtrabestrang|validacoes_esocial_efdreinf:"s2300_trabestrangeiro.classtrabestrang" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">classTrabEstrang</td>
             <td width="500px">Classificação da condição de ingresso do trabalhador estrangeiro no Brasil:1 - Visto permanente;2 - Visto temporário;3 - Asilado;4 - Refugiado;5 - Solicitante de Refúgio;6 - Residente fora do Brasil;7 - Deficiente físico e com mais de 51 anos;8 - Com residência provisória e anistiado, em situação irregular;9 - Permanência no Brasil em razão de filhos ou cônjuge brasileiros;10 - Beneficiado pelo acordo entre países do Mercosul;11 - Dependente de agente diplomático e/ou consular de países que mantém convênio de reciprocidade para o exercício de atividade remunerada no Brasil;12 - Beneficiado pelo Tratado de Amizade, Cooperação e Consulta entre aRepública Federativa do Brasil e a República Portuguesa. Valores Válidos: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12.</td>
             <td width="200px"><b>{% if s2300_trabestrangeiro.classtrabestrang or s2300_trabestrangeiro.classtrabestrang == 0 %}{{ s2300_trabestrangeiro.classtrabestrang|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1483,13 +1365,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_trabestrangeiro.casadobr|validacoes_esocial_efdreinf:"s2300_trabestrangeiro.casadobr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">casadoBr</td>
             <td width="500px">Casado com brasileiro(a): S - Sim;N - Não.Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s2300_trabestrangeiro.casadobr or s2300_trabestrangeiro.casadobr == 0 %}{{ s2300_trabestrangeiro.casadobr }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1504,13 +1384,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_trabestrangeiro.filhosbr|validacoes_esocial_efdreinf:"s2300_trabestrangeiro.filhosbr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">filhosBr</td>
             <td width="500px">Indicar se o trabalhador estrangeiro tem filhos brasileiros: S - Sim;N - Não.Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s2300_trabestrangeiro.filhosbr or s2300_trabestrangeiro.filhosbr == 0 %}{{ s2300_trabestrangeiro.filhosbr }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1526,20 +1404,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoDeficiencia</td>
             <td bgcolor="lightgray" colspan="3">Pessoa com Deficiência</td>
         </tr>
-
     {% for s2300_infodeficiencia in s2300_infodeficiencia_lista %}
     {% ifequal s2300_infodeficiencia.s2300_evttsvinicio.id s2300_evttsvinicio.id %}
-
         <tr {% if s2300_infodeficiencia.deffisica|validacoes_esocial_efdreinf:"s2300_infodeficiencia.deffisica" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">defFisica</td>
             <td width="500px">Deficiência Física: S - Sim;N - Não. Valores Válidos: S, N</td>
             <td width="200px"><b>{% if s2300_infodeficiencia.deffisica or s2300_infodeficiencia.deffisica == 0 %}{{ s2300_infodeficiencia.deffisica }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1554,13 +1428,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infodeficiencia.defvisual|validacoes_esocial_efdreinf:"s2300_infodeficiencia.defvisual" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">defVisual</td>
             <td width="500px">Deficiência visual: S - Sim;N - Não.Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s2300_infodeficiencia.defvisual or s2300_infodeficiencia.defvisual == 0 %}{{ s2300_infodeficiencia.defvisual }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1575,13 +1447,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infodeficiencia.defauditiva|validacoes_esocial_efdreinf:"s2300_infodeficiencia.defauditiva" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">defAuditiva</td>
             <td width="500px">Deficiência auditiva: S - Sim;N - Não.Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s2300_infodeficiencia.defauditiva or s2300_infodeficiencia.defauditiva == 0 %}{{ s2300_infodeficiencia.defauditiva }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1596,13 +1466,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infodeficiencia.defmental|validacoes_esocial_efdreinf:"s2300_infodeficiencia.defmental" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">defMental</td>
             <td width="500px">Deficiência Mental: S - Sim;N - Não.Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s2300_infodeficiencia.defmental or s2300_infodeficiencia.defmental == 0 %}{{ s2300_infodeficiencia.defmental }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1617,13 +1485,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infodeficiencia.defintelectual|validacoes_esocial_efdreinf:"s2300_infodeficiencia.defintelectual" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">defIntelectual</td>
             <td width="500px">Deficiência Intelectual: S - Sim;N - Não.Valores Válidos: S, N</td>
             <td width="200px"><b>{% if s2300_infodeficiencia.defintelectual or s2300_infodeficiencia.defintelectual == 0 %}{{ s2300_infodeficiencia.defintelectual }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1638,13 +1504,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infodeficiencia.reabreadap|validacoes_esocial_efdreinf:"s2300_infodeficiencia.reabreadap" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">reabReadap</td>
             <td width="500px">Informar se o trabalhador é reabilitado (empregado) ou readaptado (servidor público/militar). Reabilitado: estando o empregado incapacitado parcial ou totalmente para o trabalho, cumpriu Programa de Reabilitação Profissional noINSS, recebendo certificado, sendo proporcionado os meios indicados paraparticipar do mercado de trabalho. Readaptado: o servidor está investido em cargo de atribuições e responsabilidades compatíveis com a limitação que tenha sofrido em sua capacidade física ou mental verificada em inspeção médica:S - Sim; N - Não.Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s2300_infodeficiencia.reabreadap or s2300_infodeficiencia.reabreadap == 0 %}{{ s2300_infodeficiencia.reabreadap }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1659,13 +1523,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infodeficiencia.observacao|validacoes_esocial_efdreinf:"s2300_infodeficiencia.observacao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">observacao</td>
             <td width="500px">Observações</td>
             <td width="200px"><b>{% if s2300_infodeficiencia.observacao or s2300_infodeficiencia.observacao == 0 %}{{ s2300_infodeficiencia.observacao }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1681,20 +1543,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dependente</td>
             <td bgcolor="lightgray" colspan="3">Informações dos dependentes</td>
         </tr>
-
     {% for s2300_dependente in s2300_dependente_lista %}
     {% ifequal s2300_dependente.s2300_evttsvinicio.id s2300_evttsvinicio.id %}
-
         <tr {% if s2300_dependente.tpdep|validacoes_esocial_efdreinf:"s2300_dependente.tpdep" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpDep</td>
             <td width="500px">Tipo de dependente conforme tabela 07.Validação: Deve ser um código existente na tabela 07.</td>
             <td width="200px"><b>{% if s2300_dependente.tpdep or s2300_dependente.tpdep == 0 %}{{ s2300_dependente.tpdep }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1709,13 +1567,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_dependente.nmdep|validacoes_esocial_efdreinf:"s2300_dependente.nmdep" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nmDep</td>
             <td width="500px">Nome do dependente</td>
             <td width="200px"><b>{% if s2300_dependente.nmdep or s2300_dependente.nmdep == 0 %}{{ s2300_dependente.nmdep }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1730,13 +1586,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_dependente.dtnascto|validacoes_esocial_efdreinf:"s2300_dependente.dtnascto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtNascto</td>
             <td width="500px">Preencher com a data de nascimentoValidação: Deve ser maior que 01/01/1900 e menor que a data atual</td>
             <td width="200px"><b>{% if s2300_dependente.dtnascto or s2300_dependente.dtnascto == 0 %}{{ s2300_dependente.dtnascto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1751,13 +1605,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_dependente.cpfdep|validacoes_esocial_efdreinf:"s2300_dependente.cpfdep" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cpfDep</td>
             <td width="500px">Número de Inscrição no CPFValidação: Deve ser um número de CPF válido, observando o que segue: a) O preenchimento é obrigatório para maior ou igual a 12 (doze) anos e {depIRRF} = [S]; b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPFinformado em {ideEmpregador};c) Não pode haver mais de um dependente com um mesmo número do CPF.</td>
             <td width="200px"><b>{% if s2300_dependente.cpfdep or s2300_dependente.cpfdep == 0 %}{{ s2300_dependente.cpfdep }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1772,13 +1624,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_dependente.depirrf|validacoes_esocial_efdreinf:"s2300_dependente.depirrf" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">depIRRF</td>
             <td width="500px">Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda:S - Sim; N - Não.Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s2300_dependente.depirrf or s2300_dependente.depirrf == 0 %}{{ s2300_dependente.depirrf }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1793,13 +1643,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_dependente.depsf|validacoes_esocial_efdreinf:"s2300_dependente.depsf" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">depSF</td>
             <td width="500px">Informar se é dependente para fins de recebimento do benefício de salário- família:S - SimN - Não.Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s2300_dependente.depsf or s2300_dependente.depsf == 0 %}{{ s2300_dependente.depsf }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1815,12 +1663,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s2300_dependente.inctrab|validacoes_esocial_efdreinf:"s2300_dependente.inctrab" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">incTrab</td>
             <td width="500px">Informar se o dependente tem incapacidade física ou mental para o trabalho: S - Sim;N - Não.Valores Válidos: S, N</td>
             <td width="200px"><b>{% if s2300_dependente.inctrab or s2300_dependente.inctrab == 0 %}{{ s2300_dependente.inctrab }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1836,20 +1682,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">contato</td>
             <td bgcolor="lightgray" colspan="3">Informações de Contato</td>
         </tr>
-
     {% for s2300_contato in s2300_contato_lista %}
     {% ifequal s2300_contato.s2300_evttsvinicio.id s2300_evttsvinicio.id %}
-
         <tr {% if s2300_contato.foneprinc|validacoes_esocial_efdreinf:"s2300_contato.foneprinc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fonePrinc</td>
             <td width="500px">Número de telefone do trabalhador, com DDD.Validação: Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if s2300_contato.foneprinc or s2300_contato.foneprinc == 0 %}{{ s2300_contato.foneprinc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1864,13 +1706,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_contato.fonealternat|validacoes_esocial_efdreinf:"s2300_contato.fonealternat" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">foneAlternat</td>
             <td width="500px">Número de telefone alternativo do trabalhador, com DDD.Validação: Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if s2300_contato.fonealternat or s2300_contato.fonealternat == 0 %}{{ s2300_contato.fonealternat }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1885,13 +1725,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_contato.emailprinc|validacoes_esocial_efdreinf:"s2300_contato.emailprinc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">emailPrinc</td>
             <td width="500px">Endereço eletrônico.Validação: O e-mail deve ser possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do@ e não pode estar no início ou no final do e-mail.</td>
             <td width="200px"><b>{% if s2300_contato.emailprinc or s2300_contato.emailprinc == 0 %}{{ s2300_contato.emailprinc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1907,12 +1745,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s2300_contato.emailalternat|validacoes_esocial_efdreinf:"s2300_contato.emailalternat" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">emailAlternat</td>
             <td width="500px">Endereço eletrônico alternativoValidação: O e-mail deve ser possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do@ e não pode estar no início ou no final do e-mail.</td>
             <td width="200px"><b>{% if s2300_contato.emailalternat or s2300_contato.emailalternat == 0 %}{{ s2300_contato.emailalternat }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1928,18 +1764,15 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %} 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoTSVInicio</td>
             <td bgcolor="lightgray" colspan="3">Trabalhador Sem Vínculo - Início</td>
         </tr>
 
-
         <tr {% if s2300_evttsvinicio.cadini|validacoes_esocial_efdreinf:"s2300_evttsvinicio.cadini" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cadIni</td>
             <td width="500px">Indicar se o evento se refere a cadastramento inicial (o ingresso do trabalhador no empregador declarante é anterior à data de início da obrigatoriedade de envio de seus eventos não periódicos) ou se refere a um início de TSVE (o ingresso do trabalhador no empregador declarante é igual ou posterior à datade início da obrigatoriedade de envio de seus eventos não periódicos): S - Sim (Cadastramento Inicial);N - Não (Início de TSVE).Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.cadini or s2300_evttsvinicio.cadini == 0 %}{{ s2300_evttsvinicio.cadini }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1954,13 +1787,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.codcateg|validacoes_esocial_efdreinf:"s2300_evttsvinicio.codcateg" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codCateg</td>
             <td width="500px">Preencher com o código da categoria do trabalhador, conforme Tabela 1Validação: Deve existir na Tabela de Categorias de Trabalhadores (tabela 1)</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.codcateg or s2300_evttsvinicio.codcateg == 0 %}{{ s2300_evttsvinicio.codcateg|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1975,13 +1806,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.dtinicio|validacoes_esocial_efdreinf:"s2300_evttsvinicio.dtinicio" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtInicio</td>
             <td width="500px">Data de início, que pode ser:a) Para o Cooperado, a data de ingresso na cooperativa;b) Para o Diretor Não Empregado, a data de posse no cargo;c) Para o Dirigente Sindical, a data de início do mandato no sindicato;d) Para o Estagiário, a data de início do estágio;e) Para o trabalhador avulso, a data de ingresso no ogmo ou no Sindicato;f) Para os demais trabalhadores, a data de início das atividades no empregador. Validação: Devem ser observadas as seguintes regras:a) Deve ser posterior à data de nascimento do trabalhador;.b) Se {cadIni} = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial;c) Se {cadIni} = [N], deve ser igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.dtinicio or s2300_evttsvinicio.dtinicio == 0 %}{{ s2300_evttsvinicio.dtinicio|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1996,13 +1825,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_evttsvinicio.natatividade|validacoes_esocial_efdreinf:"s2300_evttsvinicio.natatividade" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">natAtividade</td>
             <td width="500px">Natureza da atividade, conforme opções abaixo:1 - Trabalho Urbano;2 - Trabalho Rural.Validação: Preenchimento obrigatório para as categorias de avulso, cooperado e dirigente sindical. Não deve ser preenchido para as categorias Diretor não empregado, servidor público indicado a conselho, membro de conselho tutelar e estagiário.Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.natatividade or s2300_evttsvinicio.natatividade == 0 %}{{ s2300_evttsvinicio.natatividade|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2018,28 +1845,22 @@
             {% endif %}
         </tr>
 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoComplementares</td>
             <td bgcolor="lightgray" colspan="3">Registro onde são fornecidas informações complementares, preenchidas conforme a categoria do trabalhador sem vínculo.</td>
         </tr>
-
     {% for s2300_infocomplementares in s2300_infocomplementares_lista %}
     {% ifequal s2300_infocomplementares.s2300_evttsvinicio.id s2300_evttsvinicio.id %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">cargoFuncao</td>
             <td bgcolor="lightgray" colspan="3">Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo.</td>
         </tr>
-
     {% for s2300_cargofuncao in s2300_cargofuncao_lista %}
     {% ifequal s2300_cargofuncao.s2300_infocomplementares.id s2300_infocomplementares.id %}
-
         <tr {% if s2300_cargofuncao.codcargo|validacoes_esocial_efdreinf:"s2300_cargofuncao.codcargo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codCargo</td>
             <td width="500px">Preencher com o código do cargo.Validação: Deve ser um cargo existente na Tabela de Cargos e EmpregosPúblicos - S-1030.</td>
             <td width="200px"><b>{% if s2300_cargofuncao.codcargo or s2300_cargofuncao.codcargo == 0 %}{{ s2300_cargofuncao.codcargo }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2054,13 +1875,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_cargofuncao.codfuncao|validacoes_esocial_efdreinf:"s2300_cargofuncao.codfuncao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codFuncao</td>
             <td width="500px">Preencher com o código da função, se utilizado pelo empregador. Validação: Se informada, deve ser uma função existente na Tabela de Funções/Cargos em Comissão - S-1040.</td>
             <td width="200px"><b>{% if s2300_cargofuncao.codfuncao or s2300_cargofuncao.codfuncao == 0 %}{{ s2300_cargofuncao.codfuncao }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2076,20 +1895,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">remuneracao</td>
             <td bgcolor="lightgray" colspan="3">Informações da remuneração e periodicidade de pagamento</td>
         </tr>
-
     {% for s2300_remuneracao in s2300_remuneracao_lista %}
     {% ifequal s2300_remuneracao.s2300_infocomplementares.id s2300_infocomplementares.id %}
-
         <tr {% if s2300_remuneracao.vrsalfx|validacoes_esocial_efdreinf:"s2300_remuneracao.vrsalfx" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrSalFx</td>
             <td width="500px">Salário base do trabalhador, correspondente à parte fixa da remuneração. Validação: Se {undSalFixo} for igual a [7], preencher com 0 (zero).</td>
             <td width="200px"><b>{% if s2300_remuneracao.vrsalfx or s2300_remuneracao.vrsalfx == 0 %}{{ s2300_remuneracao.vrsalfx|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2104,13 +1919,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_remuneracao.undsalfixo|validacoes_esocial_efdreinf:"s2300_remuneracao.undsalfixo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">undSalFixo</td>
             <td width="500px">Unidade de pagamento da parte fixa da remuneração, conforme opções abaixo:1 - Por Hora;2 - Por Dia;3 - Por Semana;4 - Por Quinzena;5 - Por Mês;6 - Por Tarefa;7 - Não aplicável - salário exclusivamente variável. Valores Válidos: 1, 2, 3, 4, 5, 6, 7.</td>
             <td width="200px"><b>{% if s2300_remuneracao.undsalfixo or s2300_remuneracao.undsalfixo == 0 %}{{ s2300_remuneracao.undsalfixo|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2125,13 +1938,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_remuneracao.dscsalvar|validacoes_esocial_efdreinf:"s2300_remuneracao.dscsalvar" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dscSalVar</td>
             <td width="500px">Descrição do salário por tarefa ou variável e como este é calculado. Ex.: Comissões pagas no percentual de 10% sobre as vendas.Validação: Preenchimento obrigatório se {undSalFixo} for igual a [6, 7].</td>
             <td width="200px"><b>{% if s2300_remuneracao.dscsalvar or s2300_remuneracao.dscsalvar == 0 %}{{ s2300_remuneracao.dscsalvar }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2147,20 +1958,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">fgts</td>
             <td bgcolor="lightgray" colspan="3">Informações relativas ao FGTS</td>
         </tr>
-
     {% for s2300_fgts in s2300_fgts_lista %}
     {% ifequal s2300_fgts.s2300_infocomplementares.id s2300_infocomplementares.id %}
-
         <tr {% if s2300_fgts.opcfgts|validacoes_esocial_efdreinf:"s2300_fgts.opcfgts" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">opcFGTS</td>
             <td width="500px">Opção pelo FGTS:1 - Optante;2 - Não Optante.Validação: Para trabalhador admitido após 04/10/1988, o campo deve ser preenchido com [1] (Optante).Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s2300_fgts.opcfgts or s2300_fgts.opcfgts == 0 %}{{ s2300_fgts.opcfgts|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2175,13 +1982,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_fgts.dtopcfgts|validacoes_esocial_efdreinf:"s2300_fgts.dtopcfgts" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtOpcFGTS</td>
             <td width="500px">Informar a data de opção do trabalhador pelo FGTS.Validação: Preenchimento obrigatório em caso de trabalhador optante peloFGTS.</td>
             <td width="200px"><b>{% if s2300_fgts.dtopcfgts or s2300_fgts.dtopcfgts == 0 %}{{ s2300_fgts.dtopcfgts|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2197,20 +2002,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoDirigenteSindical</td>
             <td bgcolor="lightgray" colspan="3">Empresa de Origem do Dirigente Sindical</td>
         </tr>
-
     {% for s2300_infodirigentesindical in s2300_infodirigentesindical_lista %}
     {% ifequal s2300_infodirigentesindical.s2300_infocomplementares.id s2300_infocomplementares.id %}
-
         <tr {% if s2300_infodirigentesindical.categorig|validacoes_esocial_efdreinf:"s2300_infodirigentesindical.categorig" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">categOrig</td>
             <td width="500px">Preencher com o código correspondente à categoria de origem do dirigente sindicalValidação: Deve ser uma categoria diferente de "Dirigente Sindical"</td>
             <td width="200px"><b>{% if s2300_infodirigentesindical.categorig or s2300_infodirigentesindical.categorig == 0 %}{{ s2300_infodirigentesindical.categorig|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2225,13 +2026,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infodirigentesindical.cnpjorigem|validacoes_esocial_efdreinf:"s2300_infodirigentesindical.cnpjorigem" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnpjOrigem</td>
             <td width="500px">Preencher com o CNPJ da empresa de origem do dirigente sindical. Validação: O preenchimento é obrigatório se a categoria de origem do trabalhador corresponder a "empregado" ou "avulso".</td>
             <td width="200px"><b>{% if s2300_infodirigentesindical.cnpjorigem or s2300_infodirigentesindical.cnpjorigem == 0 %}{{ s2300_infodirigentesindical.cnpjorigem }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2246,13 +2045,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infodirigentesindical.dtadmorig|validacoes_esocial_efdreinf:"s2300_infodirigentesindical.dtadmorig" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtAdmOrig</td>
             <td width="500px">Preencher com a data de admissão ou data de início do dirigente sindical na empresa de origem.Validação: O preenchimento é obrigatório se a categoria de origem do trabalhador corresponder a "empregado" ou "avulso".</td>
             <td width="200px"><b>{% if s2300_infodirigentesindical.dtadmorig or s2300_infodirigentesindical.dtadmorig == 0 %}{{ s2300_infodirigentesindical.dtadmorig|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2267,13 +2064,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infodirigentesindical.matricorig|validacoes_esocial_efdreinf:"s2300_infodirigentesindical.matricorig" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">matricOrig</td>
             <td width="500px">Preencher com a matrícula do trabalhador na empresa de origem.Validação: Preenchimento obrigatório se a categoria de origem do trabalhador corresponder a "empregado".</td>
             <td width="200px"><b>{% if s2300_infodirigentesindical.matricorig or s2300_infodirigentesindical.matricorig == 0 %}{{ s2300_infodirigentesindical.matricorig }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2289,20 +2084,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoTrabCedido</td>
             <td bgcolor="lightgray" colspan="3">Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.</td>
         </tr>
-
     {% for s2300_infotrabcedido in s2300_infotrabcedido_lista %}
     {% ifequal s2300_infotrabcedido.s2300_infocomplementares.id s2300_infocomplementares.id %}
-
         <tr {% if s2300_infotrabcedido.categorig|validacoes_esocial_efdreinf:"s2300_infotrabcedido.categorig" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">categOrig</td>
             <td width="500px">Preencher com o código correspondente à categoria de origem do trabalhador cedido.</td>
             <td width="200px"><b>{% if s2300_infotrabcedido.categorig or s2300_infotrabcedido.categorig == 0 %}{{ s2300_infotrabcedido.categorig|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2317,13 +2108,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infotrabcedido.cnpjcednt|validacoes_esocial_efdreinf:"s2300_infotrabcedido.cnpjcednt" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnpjCednt</td>
             <td width="500px">Informar o CNPJ da empresa cedente.Validação: Deve ser um CNPJ válido, com raiz diferente da empresa declarante.Regra de validação: REGRA_VALIDA_CNPJ</td>
             <td width="200px"><b>{% if s2300_infotrabcedido.cnpjcednt or s2300_infotrabcedido.cnpjcednt == 0 %}{{ s2300_infotrabcedido.cnpjcednt }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2338,13 +2127,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infotrabcedido.matricced|validacoes_esocial_efdreinf:"s2300_infotrabcedido.matricced" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">matricCed</td>
             <td width="500px">Preencher com a matrícula do trabalhador no empregador de origem(Cedente).</td>
             <td width="200px"><b>{% if s2300_infotrabcedido.matricced or s2300_infotrabcedido.matricced == 0 %}{{ s2300_infotrabcedido.matricced }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2359,13 +2146,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infotrabcedido.dtadmced|validacoes_esocial_efdreinf:"s2300_infotrabcedido.dtadmced" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtAdmCed</td>
             <td width="500px">Preencher com a data de admissão do trabalhador no empregador de origem(Cedente).Validação: Deve ser uma data anterior a data de início informada no evento</td>
             <td width="200px"><b>{% if s2300_infotrabcedido.dtadmced or s2300_infotrabcedido.dtadmced == 0 %}{{ s2300_infotrabcedido.dtadmced|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2380,13 +2165,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infotrabcedido.tpregtrab|validacoes_esocial_efdreinf:"s2300_infotrabcedido.tpregtrab" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpRegTrab</td>
             <td width="500px">Tipo de regime trabalhista1 - CLT - Consolidação das Leis de Trabalho e legislações trabalhistas específicas;2 - Estatutário.Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s2300_infotrabcedido.tpregtrab or s2300_infotrabcedido.tpregtrab == 0 %}{{ s2300_infotrabcedido.tpregtrab|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2401,13 +2184,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infotrabcedido.tpregprev|validacoes_esocial_efdreinf:"s2300_infotrabcedido.tpregprev" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpRegPrev</td>
             <td width="500px">Tipo de regime previdenciário conforme opções abaixo:1 - Regime Geral da Previdência Social - RGPS;2 - Regime Próprio de Previdência Social - RPPS;3 - Regime de Previdência Social no Exterior. Valores Válidos: 1, 2, 3.</td>
             <td width="200px"><b>{% if s2300_infotrabcedido.tpregprev or s2300_infotrabcedido.tpregprev == 0 %}{{ s2300_infotrabcedido.tpregprev|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2423,12 +2204,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s2300_infotrabcedido.infonus|validacoes_esocial_efdreinf:"s2300_infotrabcedido.infonus" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">infOnus</td>
             <td width="500px">Ônus da cessão/requisição:1 - Ônus do Cedente;2 - Ônus do Cessionário;3 - Ônus do Cedente e Cessionário. Valores Válidos: 1, 2, 3.</td>
             <td width="200px"><b>{% if s2300_infotrabcedido.infonus or s2300_infotrabcedido.infonus == 0 %}{{ s2300_infotrabcedido.infonus|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2444,20 +2223,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoEstagiario</td>
             <td bgcolor="lightgray" colspan="3">Informações relativas ao estagiário</td>
         </tr>
-
     {% for s2300_infoestagiario in s2300_infoestagiario_lista %}
     {% ifequal s2300_infoestagiario.s2300_infocomplementares.id s2300_infocomplementares.id %}
-
         <tr {% if s2300_infoestagiario.natestagio|validacoes_esocial_efdreinf:"s2300_infoestagiario.natestagio" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">natEstagio</td>
             <td width="500px">Natureza do Estágio: O - Obrigatório;N - Não Obrigatório. Valores Válidos: O, N.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.natestagio or s2300_infoestagiario.natestagio == 0 %}{{ s2300_infoestagiario.natestagio }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2472,13 +2247,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infoestagiario.nivestagio|validacoes_esocial_efdreinf:"s2300_infoestagiario.nivestagio" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nivEstagio</td>
             <td width="500px">Informar o nível do estágio:1 - Fundamental;2 - Médio;3 - Formação Profissional;4 - Superior;8 - Especial;9 - Mãe social. (Lei 7644, de 1987). Valores Válidos: 1, 2, 3, 4, 8, 9.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.nivestagio or s2300_infoestagiario.nivestagio == 0 %}{{ s2300_infoestagiario.nivestagio|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2493,13 +2266,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infoestagiario.areaatuacao|validacoes_esocial_efdreinf:"s2300_infoestagiario.areaatuacao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">areaAtuacao</td>
             <td width="500px">Área de atuação do estagiário.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.areaatuacao or s2300_infoestagiario.areaatuacao == 0 %}{{ s2300_infoestagiario.areaatuacao }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2514,13 +2285,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infoestagiario.nrapol|validacoes_esocial_efdreinf:"s2300_infoestagiario.nrapol" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrApol</td>
             <td width="500px">Nr. Apólice de Seguro.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.nrapol or s2300_infoestagiario.nrapol == 0 %}{{ s2300_infoestagiario.nrapol }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2535,13 +2304,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infoestagiario.vlrbolsa|validacoes_esocial_efdreinf:"s2300_infoestagiario.vlrbolsa" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrBolsa</td>
             <td width="500px">Preencher com o valor da bolsa, se o estágio for remunerado.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.vlrbolsa or s2300_infoestagiario.vlrbolsa == 0 %}{{ s2300_infoestagiario.vlrbolsa|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2556,13 +2323,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infoestagiario.dtprevterm|validacoes_esocial_efdreinf:"s2300_infoestagiario.dtprevterm" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtPrevTerm</td>
             <td width="500px">Data prevista para o término do estágio.Validação: Deve ser uma data posterior à data de início do estágio.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.dtprevterm or s2300_infoestagiario.dtprevterm == 0 %}{{ s2300_infoestagiario.dtprevterm|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2577,19 +2342,16 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">instEnsino</td>
             <td bgcolor="lightgray" colspan="3">Instituição de Ensino</td>
         </tr>
 
-
         <tr {% if s2300_infoestagiario.cnpjinstensino|validacoes_esocial_efdreinf:"s2300_infoestagiario.cnpjinstensino" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnpjInstEnsino</td>
             <td width="500px">Preencher com o cnpj da instituição de ensino. Deve ser preenchido apenas se a instituição de ensino for brasileira.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.cnpjinstensino or s2300_infoestagiario.cnpjinstensino == 0 %}{{ s2300_infoestagiario.cnpjinstensino }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2604,13 +2366,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infoestagiario.nmrazao|validacoes_esocial_efdreinf:"s2300_infoestagiario.nmrazao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nmRazao</td>
             <td width="500px">Informar a razão social</td>
             <td width="200px"><b>{% if s2300_infoestagiario.nmrazao or s2300_infoestagiario.nmrazao == 0 %}{{ s2300_infoestagiario.nmrazao }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2625,13 +2385,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infoestagiario.dsclograd|validacoes_esocial_efdreinf:"s2300_infoestagiario.dsclograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dscLograd</td>
             <td width="500px">Descrição do logradouro</td>
             <td width="200px"><b>{% if s2300_infoestagiario.dsclograd or s2300_infoestagiario.dsclograd == 0 %}{{ s2300_infoestagiario.dsclograd }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2646,13 +2404,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infoestagiario.nrlograd|validacoes_esocial_efdreinf:"s2300_infoestagiario.nrlograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrLograd</td>
             <td width="500px">Número do logradouro.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.nrlograd or s2300_infoestagiario.nrlograd == 0 %}{{ s2300_infoestagiario.nrlograd }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2667,13 +2423,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infoestagiario.bairro|validacoes_esocial_efdreinf:"s2300_infoestagiario.bairro" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">bairro</td>
             <td width="500px">Nome do bairro/distrito</td>
             <td width="200px"><b>{% if s2300_infoestagiario.bairro or s2300_infoestagiario.bairro == 0 %}{{ s2300_infoestagiario.bairro }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2688,13 +2442,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infoestagiario.cep|validacoes_esocial_efdreinf:"s2300_infoestagiario.cep" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cep</td>
             <td width="500px">Código de Endereçamento Postal - CEP.Validação: Deve ser preenchido apenas com números. Deve ser um CEP válido.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.cep or s2300_infoestagiario.cep == 0 %}{{ s2300_infoestagiario.cep }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2709,13 +2461,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_infoestagiario.codmunic|validacoes_esocial_efdreinf:"s2300_infoestagiario.codmunic" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codMunic</td>
             <td width="500px">Preencher com o código do município, conforme tabela do IBGE Validação: Se informado, deve ser um código existente na tabela do IBGE.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.codmunic or s2300_infoestagiario.codmunic == 0 %}{{ s2300_infoestagiario.codmunic|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2731,12 +2481,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s2300_infoestagiario.uf|validacoes_esocial_efdreinf:"s2300_infoestagiario.uf" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">uf</td>
             <td width="500px">Preencher com a sigla da Unidade da FederaçãoValidação: Deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.uf or s2300_infoestagiario.uf == 0 %}{{ s2300_infoestagiario.uf }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2752,20 +2500,16 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ageIntegracao</td>
             <td bgcolor="lightgray" colspan="3">Agente de Integração</td>
         </tr>
-
     {% for s2300_ageintegracao in s2300_ageintegracao_lista %}
     {% ifequal s2300_ageintegracao.s2300_infoestagiario.id s2300_infoestagiario.id %}
-
         <tr {% if s2300_ageintegracao.cnpjagntinteg|validacoes_esocial_efdreinf:"s2300_ageintegracao.cnpjagntinteg" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnpjAgntInteg</td>
             <td width="500px">CNPJ do agente de integração. Validação: Deve ser um CNPJ válido. Regra de validação: REGRA_VALIDA_CNPJ</td>
             <td width="200px"><b>{% if s2300_ageintegracao.cnpjagntinteg or s2300_ageintegracao.cnpjagntinteg == 0 %}{{ s2300_ageintegracao.cnpjagntinteg }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2780,13 +2524,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_ageintegracao.nmrazao|validacoes_esocial_efdreinf:"s2300_ageintegracao.nmrazao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nmRazao</td>
             <td width="500px">Informar a razão social</td>
             <td width="200px"><b>{% if s2300_ageintegracao.nmrazao or s2300_ageintegracao.nmrazao == 0 %}{{ s2300_ageintegracao.nmrazao }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2801,13 +2543,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_ageintegracao.dsclograd|validacoes_esocial_efdreinf:"s2300_ageintegracao.dsclograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dscLograd</td>
             <td width="500px">Descrição do logradouro</td>
             <td width="200px"><b>{% if s2300_ageintegracao.dsclograd or s2300_ageintegracao.dsclograd == 0 %}{{ s2300_ageintegracao.dsclograd }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2822,13 +2562,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_ageintegracao.nrlograd|validacoes_esocial_efdreinf:"s2300_ageintegracao.nrlograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrLograd</td>
             <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com "S/N"</td>
             <td width="200px"><b>{% if s2300_ageintegracao.nrlograd or s2300_ageintegracao.nrlograd == 0 %}{{ s2300_ageintegracao.nrlograd }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2843,13 +2581,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_ageintegracao.bairro|validacoes_esocial_efdreinf:"s2300_ageintegracao.bairro" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">bairro</td>
             <td width="500px">Nome do bairro/distrito</td>
             <td width="200px"><b>{% if s2300_ageintegracao.bairro or s2300_ageintegracao.bairro == 0 %}{{ s2300_ageintegracao.bairro }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2864,13 +2600,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_ageintegracao.cep|validacoes_esocial_efdreinf:"s2300_ageintegracao.cep" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cep</td>
             <td width="500px">Código de Endereçamento Postal - CEP.Validação: Deve ser preenchido apenas com números. Deve ser um CEP válido.</td>
             <td width="200px"><b>{% if s2300_ageintegracao.cep or s2300_ageintegracao.cep == 0 %}{{ s2300_ageintegracao.cep }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2885,13 +2619,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2300_ageintegracao.codmunic|validacoes_esocial_efdreinf:"s2300_ageintegracao.codmunic" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codMunic</td>
             <td width="500px">Preencher com o código do município, conforme tabela do IBGE Validação: Se informado, deve ser um código existente na tabela do IBGE.</td>
             <td width="200px"><b>{% if s2300_ageintegracao.codmunic or s2300_ageintegracao.codmunic == 0 %}{{ s2300_ageintegracao.codmunic|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2907,12 +2639,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s2300_ageintegracao.uf|validacoes_esocial_efdreinf:"s2300_ageintegracao.uf" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">uf</td>
             <td width="500px">Preencher com a sigla da Unidade da FederaçãoValidação: Deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2300_ageintegracao.uf or s2300_ageintegracao.uf == 0 %}{{ s2300_ageintegracao.uf }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2928,20 +2658,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">supervisorEstagio</td>
             <td bgcolor="lightgray" colspan="3">Supervisor do Estágio</td>
         </tr>
-
     {% for s2300_supervisorestagio in s2300_supervisorestagio_lista %}
     {% ifequal s2300_supervisorestagio.s2300_infoestagiario.id s2300_infoestagiario.id %}
-
         <tr {% if s2300_supervisorestagio.cpfsupervisor|validacoes_esocial_efdreinf:"s2300_supervisorestagio.cpfsupervisor" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cpfSupervisor</td>
             <td width="500px">CPF do responsável pela supervisão do estagiárioValidação: Deve ser um CPF válido</td>
             <td width="200px"><b>{% if s2300_supervisorestagio.cpfsupervisor or s2300_supervisorestagio.cpfsupervisor == 0 %}{{ s2300_supervisorestagio.cpfsupervisor }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2957,12 +2683,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s2300_supervisorestagio.nmsuperv|validacoes_esocial_efdreinf:"s2300_supervisorestagio.nmsuperv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nmSuperv</td>
             <td width="500px">Nome do Supervisor do Estágio</td>
             <td width="200px"><b>{% if s2300_supervisorestagio.nmsuperv or s2300_supervisorestagio.nmsuperv == 0 %}{{ s2300_supervisorestagio.nmsuperv }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -2978,20 +2702,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">afastamento</td>
             <td bgcolor="lightgray" colspan="3">Informações de afastamento do TSVE. Preenchimento exclusivo em caso de trabalhador que permaneça afastado na data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial.</td>
         </tr>
-
     {% for s2300_afastamento in s2300_afastamento_lista %}
     {% ifequal s2300_afastamento.s2300_evttsvinicio.id s2300_evttsvinicio.id %}
-
         <tr {% if s2300_afastamento.dtiniafast|validacoes_esocial_efdreinf:"s2300_afastamento.dtiniafast" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtIniAfast</td>
             <td width="500px">Data de início do afastamentoValidação: Devem ser observadas as seguintes regras:a) Deve ser igual ou posterior à data de início do TSVE;b) Deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador.</td>
             <td width="200px"><b>{% if s2300_afastamento.dtiniafast or s2300_afastamento.dtiniafast == 0 %}{{ s2300_afastamento.dtiniafast|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -3007,12 +2727,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s2300_afastamento.codmotafast|validacoes_esocial_efdreinf:"s2300_afastamento.codmotafast" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codMotAfast</td>
             <td width="500px">Preencher com o código do motivo de afastamento temporário, conforme tabela 18.Validação: Deve ser um código existente na tabela 18.</td>
             <td width="200px"><b>{% if s2300_afastamento.codmotafast or s2300_afastamento.codmotafast == 0 %}{{ s2300_afastamento.codmotafast }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -3028,20 +2746,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">termino</td>
             <td bgcolor="lightgray" colspan="3">Informações de término do TSVE.Registro preenchido exclusivamente caso seja necessário enviar cadastramento inicial referente a trabalhador com data de término anterior ao início dos eventos não periódicos para o empregador no eSocial (ex: envio para pagamento de retiradas em meses posteriores à data de término e sob vigência dos eventos periódicos para o empregador no eSocial).</td>
         </tr>
-
     {% for s2300_termino in s2300_termino_lista %}
     {% ifequal s2300_termino.s2300_evttsvinicio.id s2300_evttsvinicio.id %}
-
         <tr {% if s2300_termino.dtterm|validacoes_esocial_efdreinf:"s2300_termino.dtterm" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtTerm</td>
             <td width="500px">Preencher com a data do término.Validação: Devem ser observadas as seguintes regras:a) Deve ser igual ou posterior à data de início do TSVE;b) Deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador.</td>
             <td width="200px"><b>{% if s2300_termino.dtterm or s2300_termino.dtterm == 0 %}{{ s2300_termino.dtterm|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>

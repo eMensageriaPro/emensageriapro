@@ -1,5 +1,36 @@
 {% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
 {% if not for_print %}
 
     <section class="content-header">
@@ -85,26 +116,21 @@
 
 <table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
               
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtAdmPrelim</td>
             <td bgcolor="lightgray" colspan="3">Evento Admissão do Trabalhador - Registro PreliminarRegras de validação: REGRA_EVENTOS_EXTEMP REGRA_EXCLUSAO_ADMISSAO_PRELIMINAR REGRA_EXISTE_INFO_EMPREGADOR REGRA_RETIFICACAO_NAO_PERMITIDA REGRA_VALIDA_ADMISSAO_PRELIMINAR REGRA_VALIDA_EMPREGADOR</td>
         </tr>
-
     {% for s2190_evtadmprelim in s2190_evtadmprelim_lista %}
     {% ifequal 1 1 %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
             <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
         </tr>
 
-
         <tr {% if s2190_evtadmprelim.tpamb|validacoes_esocial_efdreinf:"s2190_evtadmprelim.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s2190_evtadmprelim.tpamb or s2190_evtadmprelim.tpamb == 0 %}{{ s2190_evtadmprelim.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -119,13 +145,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2190_evtadmprelim.procemi|validacoes_esocial_efdreinf:"s2190_evtadmprelim.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2190_evtadmprelim.procemi or s2190_evtadmprelim.procemi == 0 %}{{ s2190_evtadmprelim.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -140,13 +164,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2190_evtadmprelim.verproc|validacoes_esocial_efdreinf:"s2190_evtadmprelim.verproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s2190_evtadmprelim.verproc or s2190_evtadmprelim.verproc == 0 %}{{ s2190_evtadmprelim.verproc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -162,18 +184,15 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
             <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
         </tr>
 
-
         <tr {% if s2190_evtadmprelim.tpinsc|validacoes_esocial_efdreinf:"s2190_evtadmprelim.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
             <td width="200px"><b>{% if s2190_evtadmprelim.tpinsc or s2190_evtadmprelim.tpinsc == 0 %}{{ s2190_evtadmprelim.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -189,12 +208,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s2190_evtadmprelim.nrinsc|validacoes_esocial_efdreinf:"s2190_evtadmprelim.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2190_evtadmprelim.nrinsc or s2190_evtadmprelim.nrinsc == 0 %}{{ s2190_evtadmprelim.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -210,18 +227,15 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoRegPrelim</td>
             <td bgcolor="lightgray" colspan="3">Informações do Registro Preliminar do Trabalhador</td>
         </tr>
 
-
         <tr {% if s2190_evtadmprelim.cpftrab|validacoes_esocial_efdreinf:"s2190_evtadmprelim.cpftrab" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cpfTrab</td>
             <td width="500px">Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2190_evtadmprelim.cpftrab or s2190_evtadmprelim.cpftrab == 0 %}{{ s2190_evtadmprelim.cpftrab }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -236,13 +250,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2190_evtadmprelim.dtnascto|validacoes_esocial_efdreinf:"s2190_evtadmprelim.dtnascto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtNascto</td>
             <td width="500px">Preencher com a data de nascimento</td>
             <td width="200px"><b>{% if s2190_evtadmprelim.dtnascto or s2190_evtadmprelim.dtnascto == 0 %}{{ s2190_evtadmprelim.dtnascto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -258,12 +270,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s2190_evtadmprelim.dtadm|validacoes_esocial_efdreinf:"s2190_evtadmprelim.dtadm" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtAdm</td>
             <td width="500px">Preencher com a data de admissão do trabalhador.Validação: Deve ser posterior à data de nascimento do trabalhador e igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador.</td>
             <td width="200px"><b>{% if s2190_evtadmprelim.dtadm or s2190_evtadmprelim.dtadm == 0 %}{{ s2190_evtadmprelim.dtadm|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>

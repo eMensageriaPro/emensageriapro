@@ -1,5 +1,36 @@
 {% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
 {% if not for_print %}
 
     <section class="content-header">
@@ -85,26 +116,21 @@
 
 <table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
               
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtInsApo</td>
             <td bgcolor="lightgray" colspan="3">Insalubridade, periculosidade e aposentadoria especial Regras de validação: REGRA_DUPLICIDADE_EVENTO_INS REGRA_EVENTOS_EXTEMP REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXCLUI_EVENTO_CDT_INICIO REGRA_EXISTE_CAT_OBITO_ANTERIOR REGRA_EXISTE_INFO_COND_AMB REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXTEMP_REINTEGRACAO REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_TRABALHADOR_BASE_CNIS</td>
         </tr>
-
     {% for s2241_evtinsapo in s2241_evtinsapo_lista %}
     {% ifequal 1 1 %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
             <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
         </tr>
 
-
         <tr {% if s2241_evtinsapo.indretif|validacoes_esocial_efdreinf:"s2241_evtinsapo.indretif" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indRetif</td>
             <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s2241_evtinsapo.indretif or s2241_evtinsapo.indretif == 0 %}{{ s2241_evtinsapo.indretif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -119,13 +145,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2241_evtinsapo.nrrecibo|validacoes_esocial_efdreinf:"s2241_evtinsapo.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrRecibo</td>
             <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2].Deve ser um recibo de entrega válido, correspondente ao arquivo que estásendo retificado.</td>
             <td width="200px"><b>{% if s2241_evtinsapo.nrrecibo or s2241_evtinsapo.nrrecibo == 0 %}{{ s2241_evtinsapo.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -140,13 +164,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2241_evtinsapo.tpamb|validacoes_esocial_efdreinf:"s2241_evtinsapo.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s2241_evtinsapo.tpamb or s2241_evtinsapo.tpamb == 0 %}{{ s2241_evtinsapo.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -161,13 +183,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2241_evtinsapo.procemi|validacoes_esocial_efdreinf:"s2241_evtinsapo.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2241_evtinsapo.procemi or s2241_evtinsapo.procemi == 0 %}{{ s2241_evtinsapo.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -182,13 +202,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2241_evtinsapo.verproc|validacoes_esocial_efdreinf:"s2241_evtinsapo.verproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s2241_evtinsapo.verproc or s2241_evtinsapo.verproc == 0 %}{{ s2241_evtinsapo.verproc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -204,18 +222,15 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
             <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
         </tr>
 
-
         <tr {% if s2241_evtinsapo.tpinsc|validacoes_esocial_efdreinf:"s2241_evtinsapo.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
             <td width="200px"><b>{% if s2241_evtinsapo.tpinsc or s2241_evtinsapo.tpinsc == 0 %}{{ s2241_evtinsapo.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -230,13 +245,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2241_evtinsapo.nrinsc|validacoes_esocial_efdreinf:"s2241_evtinsapo.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido.Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2241_evtinsapo.nrinsc or s2241_evtinsapo.nrinsc == 0 %}{{ s2241_evtinsapo.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -252,18 +265,15 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideVinculo</td>
             <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador e do Vínculo. Aplicar uma das seguintes regras, de acordo com a categoria do trabalhador.Regras de validação: REGRA_TSV_ATIVO_NA_DTEVENTOREGRA_VINCULO_ATIVO_NA_DTEVENTO</td>
         </tr>
 
-
         <tr {% if s2241_evtinsapo.cpftrab|validacoes_esocial_efdreinf:"s2241_evtinsapo.cpftrab" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cpfTrab</td>
             <td width="500px">Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2241_evtinsapo.cpftrab or s2241_evtinsapo.cpftrab == 0 %}{{ s2241_evtinsapo.cpftrab }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -278,13 +288,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s2241_evtinsapo.nistrab|validacoes_esocial_efdreinf:"s2241_evtinsapo.nistrab" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nisTrab</td>
             <td width="500px">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT.Validação: O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904].</td>
             <td width="200px"><b>{% if s2241_evtinsapo.nistrab or s2241_evtinsapo.nistrab == 0 %}{{ s2241_evtinsapo.nistrab }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -300,12 +308,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s2241_evtinsapo.matricula|validacoes_esocial_efdreinf:"s2241_evtinsapo.matricula" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">matricula</td>
             <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.Validação: A matrícula deve corresponder à informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista ativo.A informação é obrigatória apenas para trabalhadores das categorias"empregados" e "agentes públicos".</td>
             <td width="200px"><b>{% if s2241_evtinsapo.matricula or s2241_evtinsapo.matricula == 0 %}{{ s2241_evtinsapo.matricula }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -321,28 +327,22 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">insalPeric</td>
             <td bgcolor="lightgray" colspan="3">Informações sobre o ambiente de trabalho insalubre/periculoso.</td>
         </tr>
-
     {% for s2241_insalperic in s2241_insalperic_lista %}
     {% ifequal s2241_insalperic.s2241_evtinsapo.id s2241_evtinsapo.id %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">iniInsalPeric</td>
             <td bgcolor="lightgray" colspan="3">Condições do ambiente de trabalho insalubre/periculoso - Início</td>
         </tr>
-
     {% for s2241_iniinsalperic in s2241_iniinsalperic_lista %}
     {% ifequal s2241_iniinsalperic.s2241_insalperic.id s2241_insalperic.id %}
-
         <tr {% if s2241_iniinsalperic.dtinicondicao|validacoes_esocial_efdreinf:"s2241_iniinsalperic.dtinicondicao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtIniCondicao</td>
             <td width="500px">Informar a data em que o trabalhador iniciou as atividades no ambiente de trabalho e na condição de exposição ao(s) fator(es) de risco ou a data de início de vigência do eSocial para o empregador, a que for mais recente.Validação: Deve ser uma data igual ou posterior à data de admissão do vínculoa que se refere. Não pode ser anterior à data de início de vigência do eSocial para o empregador.</td>
             <td width="200px"><b>{% if s2241_iniinsalperic.dtinicondicao or s2241_iniinsalperic.dtinicondicao == 0 %}{{ s2241_iniinsalperic.dtinicondicao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -358,20 +358,16 @@
             {% endif %}
         </tr>
 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoAmb</td>
             <td bgcolor="lightgray" colspan="3">Detalhamento dos ambientes de trabalho em que o trabalhador desempenha atividades insalubres/periculosa.</td>
         </tr>
-
     {% for s2241_iniinsalperic_infoamb in s2241_iniinsalperic_infoamb_lista %}
     {% ifequal s2241_iniinsalperic_infoamb.s2241_iniinsalperic.id s2241_iniinsalperic.id %}
-
         <tr {% if s2241_iniinsalperic_infoamb.codamb|validacoes_esocial_efdreinf:"s2241_iniinsalperic_infoamb.codamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codAmb</td>
             <td width="500px">Informar o código do ambiente de trabalho constante da tabela S-1060 no qual o trabalhador desempenha atividades com exposição aos fatores de risco. Validação: Deve ser um código existente na tabela S-1060.</td>
             <td width="200px"><b>{% if s2241_iniinsalperic_infoamb.codamb or s2241_iniinsalperic_infoamb.codamb == 0 %}{{ s2241_iniinsalperic_infoamb.codamb }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -387,20 +383,16 @@
             {% endif %}
         </tr>
 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">fatRisco</td>
             <td bgcolor="lightgray" colspan="3">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</td>
         </tr>
-
     {% for s2241_iniinsalperic_fatrisco in s2241_iniinsalperic_fatrisco_lista %}
     {% ifequal s2241_iniinsalperic_fatrisco.s2241_iniinsalperic_infoamb.id s2241_iniinsalperic_infoamb.id %}
-
         <tr {% if s2241_iniinsalperic_fatrisco.codfatris|validacoes_esocial_efdreinf:"s2241_iniinsalperic_fatrisco.codfatris" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codFatRis</td>
             <td width="500px">Informar o código do fator de risco, conforme tabela 23. Validação: Deve ser um código existente na tabela 23.Deve existir na tabela S-1060 para o código de ambiente informado no campo{codAmb}.</td>
             <td width="200px"><b>{% if s2241_iniinsalperic_fatrisco.codfatris or s2241_iniinsalperic_fatrisco.codfatris == 0 %}{{ s2241_iniinsalperic_fatrisco.codfatris }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -416,20 +408,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">altInsalPeric</td>
             <td bgcolor="lightgray" colspan="3">Condições do ambiente de trabalho insalubre/periculoso - AlteraçãoRegra de validação: REGRA_EXISTE_EVENTO_INICIO_INS</td>
         </tr>
-
     {% for s2241_altinsalperic in s2241_altinsalperic_lista %}
     {% ifequal s2241_altinsalperic.s2241_insalperic.id s2241_insalperic.id %}
-
         <tr {% if s2241_altinsalperic.dtaltcondicao|validacoes_esocial_efdreinf:"s2241_altinsalperic.dtaltcondicao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtAltCondicao</td>
             <td width="500px">Informar a data em que ocorreu alteração na condição de exposição ao(s) fator(es) de risco para o trabalhador. A data informada deve ser igual ou posterior à data de início na condição de exposição que se pretende alterar. Validação: Deve ser uma data igual ou posterior à data de início das atividades exercidas pelo trabalhador, sujeitas ao(s) fator(es) de risco.</td>
             <td width="200px"><b>{% if s2241_altinsalperic.dtaltcondicao or s2241_altinsalperic.dtaltcondicao == 0 %}{{ s2241_altinsalperic.dtaltcondicao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -445,20 +433,16 @@
             {% endif %}
         </tr>
 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoamb</td>
             <td bgcolor="lightgray" colspan="3">Informações sobre as condições de trabalho insalubre/periculoso.</td>
         </tr>
-
     {% for s2241_altinsalperic_infoamb in s2241_altinsalperic_infoamb_lista %}
     {% ifequal s2241_altinsalperic_infoamb.s2241_altinsalperic.id s2241_altinsalperic.id %}
-
         <tr {% if s2241_altinsalperic_infoamb.codamb|validacoes_esocial_efdreinf:"s2241_altinsalperic_infoamb.codamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codAmb</td>
             <td width="500px">Informar o código do ambiente de trabalho constante da tabela S-1060 no qual o trabalhador desempenha atividades com exposição aos fatores de risco. Validação: Deve ser um código existente na tabela S-1060.</td>
             <td width="200px"><b>{% if s2241_altinsalperic_infoamb.codamb or s2241_altinsalperic_infoamb.codamb == 0 %}{{ s2241_altinsalperic_infoamb.codamb }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -474,20 +458,16 @@
             {% endif %}
         </tr>
 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">fatRisco</td>
             <td bgcolor="lightgray" colspan="3">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</td>
         </tr>
-
     {% for s2241_altinsalperic_fatrisco in s2241_altinsalperic_fatrisco_lista %}
     {% ifequal s2241_altinsalperic_fatrisco.s2241_altinsalperic_infoamb.id s2241_altinsalperic_infoamb.id %}
-
         <tr {% if s2241_altinsalperic_fatrisco.codfatris|validacoes_esocial_efdreinf:"s2241_altinsalperic_fatrisco.codfatris" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codFatRis</td>
             <td width="500px">Informar o código do fator de risco, conforme tabela 23. Validação: Deve ser um código existente na tabela 23.Deve existir na tabela S-1060 para o código de ambiente informado no campo{codAmb}.</td>
             <td width="200px"><b>{% if s2241_altinsalperic_fatrisco.codfatris or s2241_altinsalperic_fatrisco.codfatris == 0 %}{{ s2241_altinsalperic_fatrisco.codfatris }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -503,20 +483,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">fimInsalPeric</td>
             <td bgcolor="lightgray" colspan="3">Condições do ambiente de trabalho insalubre/periculoso - Fim Regra de validação: REGRA_EXISTE_EVENTO_INICIO_INS</td>
         </tr>
-
     {% for s2241_fiminsalperic in s2241_fiminsalperic_lista %}
     {% ifequal s2241_fiminsalperic.s2241_insalperic.id s2241_insalperic.id %}
-
         <tr {% if s2241_fiminsalperic.dtfimcondicao|validacoes_esocial_efdreinf:"s2241_fiminsalperic.dtfimcondicao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtFimCondicao</td>
             <td width="500px">Informar a data até a qual o trabalhador esteve sujeito às condições do ambiente de trabalho insalubre/periculoso indicadas nos registros de início e/ou alteração encaminhados anteriormente.Validação: Deve ser uma data igual ou posterior a data de início da condiçãoinsalubre ou, quando também existir evento de "alteração" da condição, a data deve ser posterior a data de alteração indicada no último evento recebido.</td>
             <td width="200px"><b>{% if s2241_fiminsalperic.dtfimcondicao or s2241_fiminsalperic.dtfimcondicao == 0 %}{{ s2241_fiminsalperic.dtfimcondicao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -532,20 +508,16 @@
             {% endif %}
         </tr>
 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoAmb</td>
             <td bgcolor="lightgray" colspan="3">Detalha o ambiente de trabalho em que o trabalhador desempenha atividade insalubre/periculosa</td>
         </tr>
-
     {% for s2241_fiminsalperic_infoamb in s2241_fiminsalperic_infoamb_lista %}
     {% ifequal s2241_fiminsalperic_infoamb.s2241_fiminsalperic.id s2241_fiminsalperic.id %}
-
         <tr {% if s2241_fiminsalperic_infoamb.codamb|validacoes_esocial_efdreinf:"s2241_fiminsalperic_infoamb.codamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codAmb</td>
             <td width="500px">Preencher com o código atribuído pela empresa ao Ambiente de Trabalho</td>
             <td width="200px"><b>{% if s2241_fiminsalperic_infoamb.codamb or s2241_fiminsalperic_infoamb.codamb == 0 %}{{ s2241_fiminsalperic_infoamb.codamb }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -561,28 +533,22 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">aposentEsp</td>
             <td bgcolor="lightgray" colspan="3">Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.</td>
         </tr>
-
     {% for s2241_aposentesp in s2241_aposentesp_lista %}
     {% ifequal s2241_aposentesp.s2241_evtinsapo.id s2241_evtinsapo.id %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">iniAposentEsp</td>
             <td bgcolor="lightgray" colspan="3">Condições do ambiente de trabalho que ensejam aposentadoria especial - Início</td>
         </tr>
-
     {% for s2241_iniaposentesp in s2241_iniaposentesp_lista %}
     {% ifequal s2241_iniaposentesp.s2241_aposentesp.id s2241_aposentesp.id %}
-
         <tr {% if s2241_iniaposentesp.dtinicondicao|validacoes_esocial_efdreinf:"s2241_iniaposentesp.dtinicondicao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtIniCondicao</td>
             <td width="500px">Informar a data em que o trabalhador iniciou as atividades no ambiente de trabalho e na condição de exposição ao(s) fator(es) de risco ou a data de início de vigência do eSocial para o empregador, a que for mais recente.Validação: Deve ser uma data igual ou posterior à data de admissão do vínculoa que se refere. Não pode ser anterior à data de início de vigência do eSocial para o empregador.</td>
             <td width="200px"><b>{% if s2241_iniaposentesp.dtinicondicao or s2241_iniaposentesp.dtinicondicao == 0 %}{{ s2241_iniaposentesp.dtinicondicao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -598,20 +564,16 @@
             {% endif %}
         </tr>
 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoAmb</td>
             <td bgcolor="lightgray" colspan="3">Informações relativas ao ambiente de trabalho</td>
         </tr>
-
     {% for s2241_iniaposentesp_infoamb in s2241_iniaposentesp_infoamb_lista %}
     {% ifequal s2241_iniaposentesp_infoamb.s2241_iniaposentesp.id s2241_iniaposentesp.id %}
-
         <tr {% if s2241_iniaposentesp_infoamb.codamb|validacoes_esocial_efdreinf:"s2241_iniaposentesp_infoamb.codamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codAmb</td>
             <td width="500px">Informar o código do ambiente de trabalho constante da tabela S-1060 no qual o trabalhador desempenha atividades com exposição aos fatores de risco. Validação: Deve ser um código existente na tabela S-1060.</td>
             <td width="200px"><b>{% if s2241_iniaposentesp_infoamb.codamb or s2241_iniaposentesp_infoamb.codamb == 0 %}{{ s2241_iniaposentesp_infoamb.codamb }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -627,20 +589,16 @@
             {% endif %}
         </tr>
 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">fatRisco</td>
             <td bgcolor="lightgray" colspan="3">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</td>
         </tr>
-
     {% for s2241_iniaposentesp_fatrisco in s2241_iniaposentesp_fatrisco_lista %}
     {% ifequal s2241_iniaposentesp_fatrisco.s2241_iniaposentesp_infoamb.id s2241_iniaposentesp_infoamb.id %}
-
         <tr {% if s2241_iniaposentesp_fatrisco.codfatris|validacoes_esocial_efdreinf:"s2241_iniaposentesp_fatrisco.codfatris" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codFatRis</td>
             <td width="500px">Informar o código do fator de risco, conforme tabela 23. Validação: Deve ser um código existente na tabela 23.Deve existir na tabela S-1060 para o código de ambiente informado no campo {codAmb}.</td>
             <td width="200px"><b>{% if s2241_iniaposentesp_fatrisco.codfatris or s2241_iniaposentesp_fatrisco.codfatris == 0 %}{{ s2241_iniaposentesp_fatrisco.codfatris }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -656,20 +614,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">altAposentEsp</td>
             <td bgcolor="lightgray" colspan="3">Condições do ambiente de trabalho que ensejam aposentadoria especial - AlteraçãoRegra de validação: REGRA_EXISTE_EVENTO_INICIO_INS</td>
         </tr>
-
     {% for s2241_altaposentesp in s2241_altaposentesp_lista %}
     {% ifequal s2241_altaposentesp.s2241_aposentesp.id s2241_aposentesp.id %}
-
         <tr {% if s2241_altaposentesp.dtaltcondicao|validacoes_esocial_efdreinf:"s2241_altaposentesp.dtaltcondicao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtAltCondicao</td>
             <td width="500px">Informar a data em que ocorreu alteração na condição de exposição ao(s) fator(es) de risco para o trabalhador. A data informada deve ser igual ou posterior à data de início na condição de exposição que se pretende alterar. Validação: Deve ser uma data igual ou posterior à data de início das atividades exercidas pelo trabalhador, sujeitas ao(s) fator(es) de risco.</td>
             <td width="200px"><b>{% if s2241_altaposentesp.dtaltcondicao or s2241_altaposentesp.dtaltcondicao == 0 %}{{ s2241_altaposentesp.dtaltcondicao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -685,20 +639,16 @@
             {% endif %}
         </tr>
 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoamb</td>
             <td bgcolor="lightgray" colspan="3">Informações relativas ao ambiente de trabalho</td>
         </tr>
-
     {% for s2241_altaposentesp_infoamb in s2241_altaposentesp_infoamb_lista %}
     {% ifequal s2241_altaposentesp_infoamb.s2241_altaposentesp.id s2241_altaposentesp.id %}
-
         <tr {% if s2241_altaposentesp_infoamb.codamb|validacoes_esocial_efdreinf:"s2241_altaposentesp_infoamb.codamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codAmb</td>
             <td width="500px">Informar o código do ambiente de trabalho constante da tabela S-1060 no qual o trabalhador desempenha atividades com exposição aos fatores de risco. Validação: Deve ser um código existente na tabela S-1060.</td>
             <td width="200px"><b>{% if s2241_altaposentesp_infoamb.codamb or s2241_altaposentesp_infoamb.codamb == 0 %}{{ s2241_altaposentesp_infoamb.codamb }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -714,20 +664,16 @@
             {% endif %}
         </tr>
 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">fatRisco</td>
             <td bgcolor="lightgray" colspan="3">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</td>
         </tr>
-
     {% for s2241_altaposentesp_fatrisco in s2241_altaposentesp_fatrisco_lista %}
     {% ifequal s2241_altaposentesp_fatrisco.s2241_altaposentesp_infoamb.id s2241_altaposentesp_infoamb.id %}
-
         <tr {% if s2241_altaposentesp_fatrisco.codfatris|validacoes_esocial_efdreinf:"s2241_altaposentesp_fatrisco.codfatris" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codFatRis</td>
             <td width="500px">Informar o código do fator de risco, conforme tabela 23. Validação: Deve ser um código existente na tabela 23.Deve existir na tabela S-1060 para o código de ambiente informado no campo{codAmb}.</td>
             <td width="200px"><b>{% if s2241_altaposentesp_fatrisco.codfatris or s2241_altaposentesp_fatrisco.codfatris == 0 %}{{ s2241_altaposentesp_fatrisco.codfatris }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -743,20 +689,16 @@
             {% endif %}
         </tr>
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">fimAposentEsp</td>
             <td bgcolor="lightgray" colspan="3">Condições do ambiente de trabalho que ensejam aposentadoria especial - TérminoRegra de validação: REGRA_EXISTE_EVENTO_INICIO_INS</td>
         </tr>
-
     {% for s2241_fimaposentesp in s2241_fimaposentesp_lista %}
     {% ifequal s2241_fimaposentesp.s2241_aposentesp.id s2241_aposentesp.id %}
-
         <tr {% if s2241_fimaposentesp.dtfimcondicao|validacoes_esocial_efdreinf:"s2241_fimaposentesp.dtfimcondicao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtFimCondicao</td>
             <td width="500px">Informar a data até a qual o trabalhador esteve sujeito às condições do ambiente de trabalho indicadas nos eventos de início e/ou alteração encaminhados anteriormente.Validação: Deve ser uma data igual ou posterior a data de início da condiçãode trabalho que enseja aposentadoria especial ao trabalhador ou, quando também existir evento de "alteração" da condição, a data deve ser posterior a data de alteração indicada no último evento recebido.</td>
             <td width="200px"><b>{% if s2241_fimaposentesp.dtfimcondicao or s2241_fimaposentesp.dtfimcondicao == 0 %}{{ s2241_fimaposentesp.dtfimcondicao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -772,20 +714,16 @@
             {% endif %}
         </tr>
 
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoAmb</td>
             <td bgcolor="lightgray" colspan="3">Informações relativas ao ambiente de trabalho</td>
         </tr>
-
     {% for s2241_fimaposentesp_infoamb in s2241_fimaposentesp_infoamb_lista %}
     {% ifequal s2241_fimaposentesp_infoamb.s2241_fimaposentesp.id s2241_fimaposentesp.id %}
-
         <tr {% if s2241_fimaposentesp_infoamb.codamb|validacoes_esocial_efdreinf:"s2241_fimaposentesp_infoamb.codamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codAmb</td>
             <td width="500px">Informar o código do ambiente de trabalho cadastrado anteriormente no qual o trabalhador estava desempenhando atividade sujeita a aposentadoria especial. Validação: Deve ser um código de ambiente {codAmb} que representa um ambiente informado anteriormente, no qual o trabalhador estava exposto ao fator de risco sujeito a aposentadoria especial.</td>
             <td width="200px"><b>{% if s2241_fimaposentesp_infoamb.codamb or s2241_fimaposentesp_infoamb.codamb == 0 %}{{ s2241_fimaposentesp_infoamb.codamb }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>

@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -9,103 +40,6 @@ from django.apps import apps
 get_model = apps.get_model
 
 
-
-CHOICES_S1210_DETPGTOANT_TPBCIRRF = (
-    ('11', u'11 - Remuneração Mensal'),
-    ('12', u'12 - 13o Salário'),
-    ('13', u'13 - Férias'),
-    ('14', u'14 - PLR'),
-    ('15', u'15 - Rendimentos Recebidos Acumuladamente - RRA'),
-    ('31', u'31 - Retenções do IRRF efetuadas sobre: Remuneração mensal'),
-    ('32', u'32 - Retenções do IRRF efetuadas sobre: 13o Salário'),
-    ('33', u'33 - Retenções do IRRF efetuadas sobre: Férias'),
-    ('34', u'34 - Retenções do IRRF efetuadas sobre: PLR'),
-    ('35', u'35 - Retenções do IRRF efetuadas sobre: RRA'),
-    ('41', u'41 - Deduções da base de cálculo do IRRF: Previdência Social Oficial - PSO - Remuner. Mensal'),
-    ('42', u'42 - Deduções da base de cálculo do IRRF: PSO - 13° salário'),
-    ('43', u'43 - Deduções da base de cálculo do IRRF: PSO - Férias'),
-    ('44', u'44 - Deduções da base de cálculo do IRRF: PSO - RRA'),
-    ('46', u'46 - Deduções da base de cálculo do IRRF: Previdência Privada - salário mensal'),
-    ('47', u'47 - Deduções da base de cálculo do IRRF: Previdência Privada - 13° salário'),
-    ('51', u'51 - Deduções da base de cálculo do IRRF: Pensão Alimentícia - Remuneração Mensal'),
-    ('52', u'52 - Deduções da base de cálculo do IRRF: Pensão Alimentícia - 13° salário'),
-    ('53', u'53 - Deduções da base de cálculo do IRRF: Pensão Alimentícia - Férias'),
-    ('54', u'54 - Deduções da base de cálculo do IRRF: Pensão Alimentícia - PLR'),
-    ('55', u'55 - Deduções da base de cálculo do IRRF: Pensão Alimentícia - RRA'),
-    ('61', u'61 - Deduções da base de cálculo do IRRF: Fundo de Aposentadoria Programada Individual - FAPI - Remuneração Mensal'),
-    ('62', u'62 - Deduções da base de cálculo do IRRF: Fundo de Aposentadoria Programada Individual - FAPI - 13° salário'),
-    ('63', u'63 - Deduções da base de cálculo do IRRF: Fundação de Previdência Complementar do Servidor Público - Funpresp - Remuneração Mensal'),
-    ('64', u'64 - Deduções da base de cálculo do IRRF: Fundação de Previdência Complementar do Servidor Público - Funpresp - 13° salário'),
-    ('70', u'70 - Isenções do IRRF: Parcela Isenta 65 anos - Remuneração Mensal'),
-    ('71', u'71 - Isenções do IRRF: Parcela Isenta 65 anos - 13° salário'),
-    ('72', u'72 - Isenções do IRRF: Diárias'),
-    ('73', u'73 - Isenções do IRRF: Ajuda de Custo'),
-    ('74', u'74 - Isenções do IRRF: Indenização e rescisão de contrato, inclusive a título de PDV e acidentes de trabalho'),
-    ('75', u'75 - Isenções do IRRF: Abono pecuniário'),
-    ('76', u'76 - Isenções do IRRF: Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - Remuneração Mensal'),
-    ('77', u'77 - Isenções do IRRF: Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - 13° salário'),
-    ('78', u'78 - Isenções do IRRF: Valores pagos a titular ou sócio de microempresa ou empresa de pequeno porte, exceto pró-labore e alugueis'),
-    ('79', u'79 - Isenções do IRRF: Outras isenções (o nome da rubrica deve ser claro para identificação da natureza dos valores)'),
-    ('81', u'81 - Demandas Judiciais: Depósito Judicial'),
-    ('82', u'82 - Demandas Judiciais: Compensação Judicial do ano calendário'),
-    ('83', u'83 - Demandas Judiciais: Compensação Judicial de anos anteriores'),
-    ('91', u'91 - Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre: Remuneração Mensal'),
-    ('92', u'92 - Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre: 13o Salário'),
-    ('93', u'93 - Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre: Férias'),
-    ('94', u'94 - Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre: PLR'),
-    ('95', u'95 - Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre: RRA'),
-)
-
-CHOICES_S1210_DETPGTOBENPR_INDPGTOTT = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1210_DETPGTOFER_CODCATEG = (
-    (101, u'101 - Empregado - Geral, inclusive o empregado público da administração direta ou indireta contratado pela CLT.'),
-    (102, u'102 - Empregado - Trabalhador Rural por Pequeno Prazo da Lei 11.718/2008'),
-    (103, u'103 - Empregado - Aprendiz'),
-    (104, u'104 - Empregado - Doméstico'),
-    (105, u'105 - Empregado - contrato a termo firmado nos termos da Lei 9601/98'),
-    (106, u'106 - Trabalhador Temporário - contrato por prazo determinado nos termos da Lei 6019/74'),
-    (111, u'111 - Empregado - contrato de trabalho intermitente'),
-    (201, u'201 - Trabalhador Avulso Portuário'),
-    (202, u'202 - Trabalhador Avulso Não Portuário'),
-    (301, u'301 - Servidor Público Titular de Cargo Efetivo, Magistrado, Ministro de Tribunal de Contas, Conselheiro de Tribunal de Contas e Membro do Ministério Público'),
-    (302, u'302 - Servidor Público Ocupante de Cargo exclusivo em comissão'),
-    (303, u'303 - Agente Político'),
-    (305, u'305 - Servidor Público indicado para conselho ou órgão deliberativo, na condição de representante do governo, órgão ou entidade da administração pública.'),
-    (306, u'306 - Servidor Público Temporário, sujeito a regime administrativo especial definido em lei própria'),
-    (307, u'307 - Militar efetivo'),
-    (308, u'308 - Conscrito'),
-    (309, u'309 - Agente Público - Outros'),
-    (401, u'401 - Dirigente Sindical - informação prestada pelo Sindicato'),
-    (410, u'410 - Trabalhador cedido - informação prestada pelo Cessionário'),
-    (701, u'701 - Contribuinte individual - Autônomo em geral, exceto se enquadrado em uma das demais categorias de contribuinte individual'),
-    (711, u'711 - Contribuinte individual - Transportador autônomo de passageiros'),
-    (712, u'712 - Contribuinte individual - Transportador autônomo de carga'),
-    (721, u'721 - Contribuinte individual - Diretor não empregado, com FGTS'),
-    (722, u'722 - Contribuinte individual - Diretor não empregado, sem FGTS'),
-    (723, u'723 - Contribuinte individual - empresários, sócios e membro de conselho de administração ou fiscal'),
-    (731, u'731 - Contribuinte individual - Cooperado que presta serviços por intermédio de Cooperativa de Trabalho'),
-    (734, u'734 - Contribuinte individual - Transportador Cooperado que presta serviços por intermédio de cooperativa de trabalho'),
-    (738, u'738 - Contribuinte individual - Cooperado filiado a Cooperativa de Produção'),
-    (741, u'741 - Contribuinte individual - Microempreendedor Individual'),
-    (751, u'751 - Contribuinte individual - magistrado classista temporário da Justiça do Trabalho ou da Justiça Eleitoral que seja aposentado de qualquer regime previdenciário'),
-    (761, u'761 - Contribuinte individual - Associado eleito para direção de Cooperativa, associação ou entidade de classe de qualquer natureza ou finalidade, bem como o síndico ou administrador eleito para exercer atividade de direção condominial, desde que recebam r (...)'),
-    (771, u'771 - Contribuinte individual - Membro de conselho tutelar, nos termos da Lei nº 8.069, de 13 de julho de 1990'),
-    (781, u'781 - Ministro de confissão religiosa ou membro de vida consagrada, de congregação ou de ordem religiosa'),
-    (901, u'901 - Estagiário'),
-    (902, u'902 - Médico Residente'),
-    (903, u'903 - Bolsista, nos termos da lei 8958/1994'),
-    (904, u'904 - Participante de curso de formação, como etapa de concurso público, sem vínculo de emprego/estatutário'),
-    (905, u'905 - Atleta não profissional em formação que receba bolsa'),
-)
-
-CHOICES_S1210_DETPGTOFL_INDPGTOTT = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
 
 CHOICES_S1210_IDEPGTOEXT_CODPAIS = (
     ('008', u'008 - Abu Dhabi'),
@@ -372,15 +306,91 @@ CHOICES_S1210_IDEPGTOEXT_CODPAIS = (
     ('890', u'890 - Zambia'),
 )
 
-CHOICES_S1210_IDEPGTOEXT_INDNIF = (
-    (1, u'1 - Beneficiário com NIF'),
-    (2, u'2 - Beneficiário dispensado do NIF'),
-    (3, u'3 - País não exige NIF'),
+CHOICES_S1210_DETPGTOANT_TPBCIRRF = (
+    ('11', u'11 - Remuneração Mensal'),
+    ('12', u'12 - 13o Salário'),
+    ('13', u'13 - Férias'),
+    ('14', u'14 - PLR'),
+    ('15', u'15 - Rendimentos Recebidos Acumuladamente - RRA'),
+    ('31', u'31 - Retenções do IRRF efetuadas sobre: Remuneração mensal'),
+    ('32', u'32 - Retenções do IRRF efetuadas sobre: 13o Salário'),
+    ('33', u'33 - Retenções do IRRF efetuadas sobre: Férias'),
+    ('34', u'34 - Retenções do IRRF efetuadas sobre: PLR'),
+    ('35', u'35 - Retenções do IRRF efetuadas sobre: RRA'),
+    ('41', u'41 - Deduções da base de cálculo do IRRF: Previdência Social Oficial - PSO - Remuner. Mensal'),
+    ('42', u'42 - Deduções da base de cálculo do IRRF: PSO - 13° salário'),
+    ('43', u'43 - Deduções da base de cálculo do IRRF: PSO - Férias'),
+    ('44', u'44 - Deduções da base de cálculo do IRRF: PSO - RRA'),
+    ('46', u'46 - Deduções da base de cálculo do IRRF: Previdência Privada - salário mensal'),
+    ('47', u'47 - Deduções da base de cálculo do IRRF: Previdência Privada - 13° salário'),
+    ('51', u'51 - Deduções da base de cálculo do IRRF: Pensão Alimentícia - Remuneração Mensal'),
+    ('52', u'52 - Deduções da base de cálculo do IRRF: Pensão Alimentícia - 13° salário'),
+    ('53', u'53 - Deduções da base de cálculo do IRRF: Pensão Alimentícia - Férias'),
+    ('54', u'54 - Deduções da base de cálculo do IRRF: Pensão Alimentícia - PLR'),
+    ('55', u'55 - Deduções da base de cálculo do IRRF: Pensão Alimentícia - RRA'),
+    ('61', u'61 - Deduções da base de cálculo do IRRF: Fundo de Aposentadoria Programada Individual - FAPI - Remuneração Mensal'),
+    ('62', u'62 - Deduções da base de cálculo do IRRF: Fundo de Aposentadoria Programada Individual - FAPI - 13° salário'),
+    ('63', u'63 - Deduções da base de cálculo do IRRF: Fundação de Previdência Complementar do Servidor Público - Funpresp - Remuneração Mensal'),
+    ('64', u'64 - Deduções da base de cálculo do IRRF: Fundação de Previdência Complementar do Servidor Público - Funpresp - 13° salário'),
+    ('70', u'70 - Isenções do IRRF: Parcela Isenta 65 anos - Remuneração Mensal'),
+    ('71', u'71 - Isenções do IRRF: Parcela Isenta 65 anos - 13° salário'),
+    ('72', u'72 - Isenções do IRRF: Diárias'),
+    ('73', u'73 - Isenções do IRRF: Ajuda de Custo'),
+    ('74', u'74 - Isenções do IRRF: Indenização e rescisão de contrato, inclusive a título de PDV e acidentes de trabalho'),
+    ('75', u'75 - Isenções do IRRF: Abono pecuniário'),
+    ('76', u'76 - Isenções do IRRF: Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - Remuneração Mensal'),
+    ('77', u'77 - Isenções do IRRF: Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - 13° salário'),
+    ('78', u'78 - Isenções do IRRF: Valores pagos a titular ou sócio de microempresa ou empresa de pequeno porte, exceto pró-labore e alugueis'),
+    ('79', u'79 - Isenções do IRRF: Outras isenções (o nome da rubrica deve ser claro para identificação da natureza dos valores)'),
+    ('81', u'81 - Demandas Judiciais: Depósito Judicial'),
+    ('82', u'82 - Demandas Judiciais: Compensação Judicial do ano calendário'),
+    ('83', u'83 - Demandas Judiciais: Compensação Judicial de anos anteriores'),
+    ('91', u'91 - Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre: Remuneração Mensal'),
+    ('92', u'92 - Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre: 13o Salário'),
+    ('93', u'93 - Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre: Férias'),
+    ('94', u'94 - Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre: PLR'),
+    ('95', u'95 - Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre: RRA'),
 )
 
-CHOICES_S1210_INDRESBR = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
+CHOICES_S1210_DETPGTOFER_CODCATEG = (
+    (101, u'101 - Empregado - Geral, inclusive o empregado público da administração direta ou indireta contratado pela CLT.'),
+    (102, u'102 - Empregado - Trabalhador Rural por Pequeno Prazo da Lei 11.718/2008'),
+    (103, u'103 - Empregado - Aprendiz'),
+    (104, u'104 - Empregado - Doméstico'),
+    (105, u'105 - Empregado - contrato a termo firmado nos termos da Lei 9601/98'),
+    (106, u'106 - Trabalhador Temporário - contrato por prazo determinado nos termos da Lei 6019/74'),
+    (111, u'111 - Empregado - contrato de trabalho intermitente'),
+    (201, u'201 - Trabalhador Avulso Portuário'),
+    (202, u'202 - Trabalhador Avulso Não Portuário'),
+    (301, u'301 - Servidor Público Titular de Cargo Efetivo, Magistrado, Ministro de Tribunal de Contas, Conselheiro de Tribunal de Contas e Membro do Ministério Público'),
+    (302, u'302 - Servidor Público Ocupante de Cargo exclusivo em comissão'),
+    (303, u'303 - Agente Político'),
+    (305, u'305 - Servidor Público indicado para conselho ou órgão deliberativo, na condição de representante do governo, órgão ou entidade da administração pública.'),
+    (306, u'306 - Servidor Público Temporário, sujeito a regime administrativo especial definido em lei própria'),
+    (307, u'307 - Militar efetivo'),
+    (308, u'308 - Conscrito'),
+    (309, u'309 - Agente Público - Outros'),
+    (401, u'401 - Dirigente Sindical - informação prestada pelo Sindicato'),
+    (410, u'410 - Trabalhador cedido - informação prestada pelo Cessionário'),
+    (701, u'701 - Contribuinte individual - Autônomo em geral, exceto se enquadrado em uma das demais categorias de contribuinte individual'),
+    (711, u'711 - Contribuinte individual - Transportador autônomo de passageiros'),
+    (712, u'712 - Contribuinte individual - Transportador autônomo de carga'),
+    (721, u'721 - Contribuinte individual - Diretor não empregado, com FGTS'),
+    (722, u'722 - Contribuinte individual - Diretor não empregado, sem FGTS'),
+    (723, u'723 - Contribuinte individual - empresários, sócios e membro de conselho de administração ou fiscal'),
+    (731, u'731 - Contribuinte individual - Cooperado que presta serviços por intermédio de Cooperativa de Trabalho'),
+    (734, u'734 - Contribuinte individual - Transportador Cooperado que presta serviços por intermédio de cooperativa de trabalho'),
+    (738, u'738 - Contribuinte individual - Cooperado filiado a Cooperativa de Produção'),
+    (741, u'741 - Contribuinte individual - Microempreendedor Individual'),
+    (751, u'751 - Contribuinte individual - magistrado classista temporário da Justiça do Trabalho ou da Justiça Eleitoral que seja aposentado de qualquer regime previdenciário'),
+    (761, u'761 - Contribuinte individual - Associado eleito para direção de Cooperativa, associação ou entidade de classe de qualquer natureza ou finalidade, bem como o síndico ou administrador eleito para exercer atividade de direção condominial, desde que recebam r (...)'),
+    (771, u'771 - Contribuinte individual - Membro de conselho tutelar, nos termos da Lei nº 8.069, de 13 de julho de 1990'),
+    (781, u'781 - Ministro de confissão religiosa ou membro de vida consagrada, de congregação ou de ordem religiosa'),
+    (901, u'901 - Estagiário'),
+    (902, u'902 - Médico Residente'),
+    (903, u'903 - Bolsista, nos termos da lei 8958/1994'),
+    (904, u'904 - Participante de curso de formação, como etapa de concurso público, sem vínculo de emprego/estatutário'),
+    (905, u'905 - Atleta não profissional em formação que receba bolsa'),
 )
 
 CHOICES_S1210_TPPGTO = (
@@ -391,6 +401,27 @@ CHOICES_S1210_TPPGTO = (
     (6, u'6 - Pagamento de Benefícios Previdenciários, conforme apurado em {dmDev} do S-1207'),
     (7, u'7 - Recibo de férias'),
     (9, u'9 - Pagamento relativo a competências anteriores ao início de obrigatoriedade dos eventos periódicos para o contribuinte'),
+)
+
+CHOICES_S1210_IDEPGTOEXT_INDNIF = (
+    (1, u'1 - Beneficiário com NIF'),
+    (2, u'2 - Beneficiário dispensado do NIF'),
+    (3, u'3 - País não exige NIF'),
+)
+
+CHOICES_S1210_DETPGTOBENPR_INDPGTOTT = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1210_DETPGTOFL_INDPGTOTT = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1210_INDRESBR = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
 )
 
 class s1210deps(models.Model):

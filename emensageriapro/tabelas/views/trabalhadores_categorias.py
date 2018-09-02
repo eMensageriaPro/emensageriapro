@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -50,10 +81,10 @@ def apagar(request, hash):
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-
+   
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-
+   
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -61,117 +92,6 @@ def apagar(request, hash):
         'hash': hash,
     }
     return render(request, 'trabalhadores_categorias_apagar.html', context)
-
-def salvar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.session['usuario_id']
-        dict_hash = get_hash_url( hash )
-        trabalhadores_categorias_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='trabalhadores_categorias')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-    if trabalhadores_categorias_id:
-        trabalhadores_categorias = get_object_or_404(TrabalhadoresCategorias.objects.using( db_slug ), excluido = False, id = trabalhadores_categorias_id)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    if permissao.permite_visualizar:
-        mensagem = None
-        if trabalhadores_categorias_id:
-            trabalhadores_categorias_form = form_trabalhadores_categorias(request.POST or None, instance = trabalhadores_categorias, slug = db_slug)
-        else:
-            trabalhadores_categorias_form = form_trabalhadores_categorias(request.POST or None, slug = db_slug, initial={})
-        if request.method == 'POST':
-            if trabalhadores_categorias_form.is_valid():
-                dados = trabalhadores_categorias_form.cleaned_data
-                if trabalhadores_categorias_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #trabalhadores_categorias_campos_multiple_passo1
-                    TrabalhadoresCategorias.objects.using(db_slug).filter(id=trabalhadores_categorias_id).update(**dados)
-                    obj = TrabalhadoresCategorias.objects.using(db_slug).get(id=trabalhadores_categorias_id)
-                    #trabalhadores_categorias_editar_custom
-                    #trabalhadores_categorias_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
-                else:
-
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #trabalhadores_categorias_cadastrar_campos_multiple_passo1
-                    obj = TrabalhadoresCategorias(**dados)
-                    obj.save(using = db_slug)
-                    #trabalhadores_categorias_cadastrar_custom
-                    #trabalhadores_categorias_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
-                if request.session['retorno_pagina'] not in ('trabalhadores_categorias_apagar', 'trabalhadores_categorias_salvar', 'trabalhadores_categorias'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-                if trabalhadores_categorias_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('trabalhadores_categorias_salvar', hash=url_hash)
-            else:
-                messages.error(request, 'Erro ao salvar!')
-        trabalhadores_categorias_form = disabled_form_fields(trabalhadores_categorias_form, permissao.permite_editar)
-        #trabalhadores_categorias_campos_multiple_passo3
-
-        for field in trabalhadores_categorias_form.fields.keys():
-            trabalhadores_categorias_form.fields[field].widget.attrs['ng-model'] = 'trabalhadores_categorias_'+field
-        if int(dict_hash['print']):
-            trabalhadores_categorias_form = disabled_form_for_print(trabalhadores_categorias_form)
-        #[VARIAVEIS_SECUNDARIAS_VAZIAS]
-        if trabalhadores_categorias_id:
-            trabalhadores_categorias = get_object_or_404(TrabalhadoresCategorias.objects.using( db_slug ), excluido = False, id = trabalhadores_categorias_id)
-            pass
-        else:
-            trabalhadores_categorias = None
-        #trabalhadores_categorias_salvar_custom_variaveis#
-        tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-        if dict_hash['tab'] or 'trabalhadores_categorias' in request.session['retorno_pagina']:
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'trabalhadores_categorias_salvar'
-        context = {
-            'trabalhadores_categorias': trabalhadores_categorias,
-            'trabalhadores_categorias_form': trabalhadores_categorias_form,
-            'mensagem': mensagem,
-            'trabalhadores_categorias_id': int(trabalhadores_categorias_id),
-            'usuario': usuario,
-
-            'hash': hash,
-            #[VARIAVEIS_SECUNDARIAS]
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-
-            'permissao': permissao,
-            'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
-            'for_print': int(dict_hash['print']),
-            'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
-            #trabalhadores_categorias_salvar_custom_variaveis_context#
-        }
-        return render(request, 'trabalhadores_categorias_salvar.html', context)
-    else:
-        context = {
-            'usuario': usuario,
-
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-
-            'permissao': permissao,
-            'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
-        }
-        return render(request, 'permissao_negada.html', context)
 
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
@@ -276,11 +196,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 'trabalhadores_categorias'
         context = {
             'trabalhadores_categorias_lista': trabalhadores_categorias_lista,
-
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+       
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -290,7 +210,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-
+   
         }
         if for_print in (0,1):
             return render(request, 'trabalhadores_categorias_listar.html', context)
@@ -333,10 +253,152 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
+       
+            'permissao': permissao,
+            'data': datetime.datetime.now(),
+            'pagina': pagina,
+            'dict_permissoes': dict_permissoes,
+        }
+        return render(request, 'permissao_negada.html', context)
 
+def salvar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.session['usuario_id']
+        dict_hash = get_hash_url( hash )
+        trabalhadores_categorias_id = int(dict_hash['id'])
+        if 'tab' not in dict_hash.keys():
+            dict_hash['tab'] = ''
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='trabalhadores_categorias')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+    if trabalhadores_categorias_id:
+        trabalhadores_categorias = get_object_or_404(TrabalhadoresCategorias.objects.using( db_slug ), excluido = False, id = trabalhadores_categorias_id)
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    if permissao.permite_visualizar:
+        mensagem = None
+        if trabalhadores_categorias_id:
+            trabalhadores_categorias_form = form_trabalhadores_categorias(request.POST or None, instance = trabalhadores_categorias, slug = db_slug)
+        else:
+            trabalhadores_categorias_form = form_trabalhadores_categorias(request.POST or None, slug = db_slug, initial={})
+        if request.method == 'POST':
+            if trabalhadores_categorias_form.is_valid():
+                dados = trabalhadores_categorias_form.cleaned_data
+                if trabalhadores_categorias_id:
+                    dados['modificado_por_id'] = usuario_id
+                    dados['modificado_em'] = datetime.datetime.now()
+                    #trabalhadores_categorias_campos_multiple_passo1
+                    TrabalhadoresCategorias.objects.using(db_slug).filter(id=trabalhadores_categorias_id).update(**dados)
+                    obj = TrabalhadoresCategorias.objects.using(db_slug).get(id=trabalhadores_categorias_id)
+                    #trabalhadores_categorias_editar_custom
+                    #trabalhadores_categorias_campos_multiple_passo2
+                    messages.success(request, 'Alterado com sucesso!')
+                else:
+
+                    dados['criado_por_id'] = usuario_id
+                    dados['criado_em'] = datetime.datetime.now()
+                    dados['excluido'] = False
+                    #trabalhadores_categorias_cadastrar_campos_multiple_passo1
+                    obj = TrabalhadoresCategorias(**dados)
+                    obj.save(using = db_slug)
+                    #trabalhadores_categorias_cadastrar_custom
+                    #trabalhadores_categorias_cadastrar_campos_multiple_passo2
+                    messages.success(request, 'Cadastrado com sucesso!')
+                if request.session['retorno_pagina'] not in ('trabalhadores_categorias_apagar', 'trabalhadores_categorias_salvar', 'trabalhadores_categorias'):
+                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if trabalhadores_categorias_id != obj.id:
+                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
+                    return redirect('trabalhadores_categorias_salvar', hash=url_hash)
+            else:
+                messages.error(request, 'Erro ao salvar!')
+        trabalhadores_categorias_form = disabled_form_fields(trabalhadores_categorias_form, permissao.permite_editar)
+        #trabalhadores_categorias_campos_multiple_passo3
+
+        for field in trabalhadores_categorias_form.fields.keys():
+            trabalhadores_categorias_form.fields[field].widget.attrs['ng-model'] = 'trabalhadores_categorias_'+field
+        if int(dict_hash['print']):
+            trabalhadores_categorias_form = disabled_form_for_print(trabalhadores_categorias_form)
+        #[VARIAVEIS_SECUNDARIAS_VAZIAS]
+        if trabalhadores_categorias_id:
+            trabalhadores_categorias = get_object_or_404(TrabalhadoresCategorias.objects.using( db_slug ), excluido = False, id = trabalhadores_categorias_id)
+            pass
+        else:
+            trabalhadores_categorias = None
+        #trabalhadores_categorias_salvar_custom_variaveis#
+        tabelas_secundarias = []
+        #[FUNCOES_ESPECIAIS_SALVAR]
+        if dict_hash['tab'] or 'trabalhadores_categorias' in request.session['retorno_pagina']:
+            request.session["retorno_hash"] = hash
+            request.session["retorno_pagina"] = 'trabalhadores_categorias_salvar'
+        context = {
+            'trabalhadores_categorias': trabalhadores_categorias,
+            'trabalhadores_categorias_form': trabalhadores_categorias_form,
+            'mensagem': mensagem,
+            'trabalhadores_categorias_id': int(trabalhadores_categorias_id),
+            'usuario': usuario,
+       
+            'hash': hash,
+            #[VARIAVEIS_SECUNDARIAS]
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+       
+            'permissao': permissao,
+            'data': datetime.datetime.now(),
+            'pagina': pagina,
+            'dict_permissoes': dict_permissoes,
+            'for_print': int(dict_hash['print']),
+            'tabelas_secundarias': tabelas_secundarias,
+            'tab': dict_hash['tab'],
+            #trabalhadores_categorias_salvar_custom_variaveis_context#
+        }
+        if for_print in (0,1 ):
+            return render(request, 'trabalhadores_categorias_salvar.html', context)
+        elif for_print == 2:
+            from wkhtmltopdf.views import PDFTemplateResponse
+            response = PDFTemplateResponse(
+                request=request,
+                template='trabalhadores_categorias_salvar.html',
+                filename="trabalhadores_categorias.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 10,
+                             'margin-bottom': 10,
+                             'margin-right': 10,
+                             'margin-left': 10,
+                             'zoom': 1,
+                             'dpi': 72,
+                             'orientation': 'Landscape',
+                             "viewport-size": "1366 x 513",
+                             'javascript-delay': 1000,
+                             'footer-center': '[page]/[topage]',
+                             "no-stop-slow-scripts": True},
+            )
+            return response
+        elif for_print == 3:
+            from django.shortcuts import render_to_response
+            response = render_to_response('trabalhadores_categorias_salvar.html', context)
+            filename = "trabalhadores_categorias.xls"
+            response['Content-Disposition'] = 'attachment; filename=' + filename
+            response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            return response
+
+    else:
+        context = {
+            'usuario': usuario,
+       
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

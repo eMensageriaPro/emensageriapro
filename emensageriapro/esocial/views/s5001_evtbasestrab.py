@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -90,6 +121,7 @@ def salvar(request, hash):
         s5001_evtbasestrab_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
             dict_hash['tab'] = ''
+        for_print = int(dict_hash['print'])
     except:
         usuario_id = False
         return redirect('login')
@@ -178,7 +210,7 @@ def salvar(request, hash):
         s5001_infocp_lista = None
         if s5001_evtbasestrab_id:
             s5001_evtbasestrab = get_object_or_404(s5001evtBasesTrab.objects.using( db_slug ), excluido = False, id = s5001_evtbasestrab_id)
-
+  
             s5001_procjudtrab_form = form_s5001_procjudtrab(initial={ 's5001_evtbasestrab': s5001_evtbasestrab }, slug=db_slug)
             s5001_procjudtrab_form.fields['s5001_evtbasestrab'].widget.attrs['readonly'] = True
             s5001_procjudtrab_lista = s5001procJudTrab.objects.using( db_slug ).filter(excluido = False, s5001_evtbasestrab_id=s5001_evtbasestrab.id).all()
@@ -219,9 +251,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's5001_evtbasestrab_id': int(s5001_evtbasestrab_id),
             'usuario': usuario,
-
+       
             'hash': hash,
-
+  
             's5001_procjudtrab_form': s5001_procjudtrab_form,
             's5001_procjudtrab_lista': s5001_procjudtrab_lista,
             's5001_infocpcalc_form': s5001_infocpcalc_form,
@@ -230,7 +262,7 @@ def salvar(request, hash):
             's5001_infocp_lista': s5001_infocp_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -240,14 +272,44 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s5001_evtbasestrab_salvar_custom_variaveis_context#
         }
-        return render(request, 's5001_evtbasestrab_salvar.html', context)
+
+        if for_print in (0,1 ):
+            return render(request, 's5001_evtbasestrab_salvar.html', context)
+        elif for_print == 2:
+            from wkhtmltopdf.views import PDFTemplateResponse
+            response = PDFTemplateResponse(
+                request=request,
+                template='s5001_evtbasestrab_salvar.html',
+                filename="s5001_evtbasestrab.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 10,
+                             'margin-bottom': 10,
+                             'margin-right': 10,
+                             'margin-left': 10,
+                             'zoom': 1,
+                             'dpi': 72,
+                             'orientation': 'Landscape',
+                             "viewport-size": "1366 x 513",
+                             'javascript-delay': 1000,
+                             'footer-center': '[page]/[topage]',
+                             "no-stop-slow-scripts": True},
+            )
+            return response
+        elif for_print == 3:
+            from django.shortcuts import render_to_response
+            response = render_to_response('s5001_evtbasestrab_salvar.html', context)
+            filename = "s5001_evtbasestrab.xls"
+            response['Content-Disposition'] = 'attachment; filename=' + filename
+            response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            return response
     else:
         context = {
             'usuario': usuario,
-
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -293,17 +355,17 @@ def apagar(request, hash):
                              's5001_evtbasestrab', s5001_evtbasestrab_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-
+   
         if request.session['retorno_pagina']== 's5001_evtbasestrab_salvar':
             return redirect('s5001_evtbasestrab', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-
+   
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-
+   
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -437,11 +499,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 's5001_evtbasestrab'
         context = {
             's5001_evtbasestrab_lista': s5001_evtbasestrab_lista,
-
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+       
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -451,7 +513,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-
+  
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         #return render(request, 's5001_evtbasestrab_listar.html', context)
@@ -496,10 +558,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

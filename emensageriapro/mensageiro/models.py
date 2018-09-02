@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -9,29 +40,6 @@ from django.apps import apps
 get_model = apps.get_model
 
 
-
-SIM_NAO = (
-    (0, u'Não'),
-    (1, u'Sim'),
-)
-
-EVENTOS_OCORRENCIAS_TIPO_EFDREINF = (
-    (1, u'1 - Aviso'),
-    (2, u'2 - Erro'),
-)
-
-CODIGO_STATUS_EFDREINF = (
-    (0, u'0 - Sucesso'),
-    (1, u'1 - Erro'),
-    (2, u'2 - Em Processamento'),
-)
-
-TIPO_INSCRICAO = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
 
 TRANSMISSOR_STATUS = (
     (0, u'Cadastrado'),
@@ -49,19 +57,6 @@ TRANSMISSOR_STATUS = (
     (7, u'Enviado'),
     (8, u'Erro na consulta'),
     (9, u'Consultado'),
-)
-
-IMPORTACAO_STATUS = (
-    (0, u'Aguardando'),
-    (1, u'Sucesso'),
-    (2, u'Erro'),
-    (3, u'Arquivo inválido!'),
-    (4, u'Validado'),
-    (5, u'ID do evento já está cadastrada em nossa base'),
-    (6, u'Processado'),
-    (7, u'Processando'),
-    (8, u'Processado com erros'),
-    (9, u'Versão incompatível'),
 )
 
 CODIGO_RESPOSTA = (
@@ -82,42 +77,17 @@ CODIGO_RESPOSTA = (
     (505, u'505 - Solicitação de Consulta Incorreta - Consulta nula ou vazia.'),
 )
 
-TIPO_OCORRENCIA = (
-    (1, u'1 - Erro'),
-    (2, u'2 - Advertência'),
-)
-
-TIPO_AMBIENTE = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-EVENTOS_OCORRENCIAS_TIPO = (
-    (1, u'1 - Erro'),
-    (2, u'2 - Advertência'),
-)
-
-EVENTOS_GRUPOS = (
-    (1, u'1 - Eventos de Tabelas'),
-    (2, u'2 - Eventos Não Periódicos'),
-    (3, u'3 - Eventos Periódicos'),
-)
-
-CHOICES_S1000_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1050_INCLUSAO_PERHORFLEXIVEL = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1050_INCLUSAO_TPINTERV = (
-    (1, u'1 - Intervalo em Horário Fixo'),
-    (2, u'2 - Intervalo em Horário Variável'),
+IMPORTACAO_STATUS = (
+    (0, u'Aguardando!'),
+    (1, u'Sucesso!'),
+    (2, u'Erro!'),
+    (3, u'Arquivo inválido!'),
+    (4, u'Validado'),
+    (5, u'ID do evento já está cadastrada em nossa base'),
+    (6, u'Processado'),
+    (7, u'Processando'),
+    (8, u'Processado com erros'),
+    (9, u'Versão incompatível'),
 )
 
 CHOICES_S2200_DIA = (
@@ -131,9 +101,28 @@ CHOICES_S2200_DIA = (
     (8, u'8 - Dia variável'),
 )
 
-CHOICES_S2200_INFOCOTA = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
+CHOICES_S2200_UNDSALFIXO = (
+    (1, u'1 - Por Hora'),
+    (2, u'2 - Por Dia'),
+    (3, u'3 - Por Semana'),
+    (4, u'4 - Por Quinzena'),
+    (5, u'5 - Por Mês'),
+    (6, u'6 - Por Tarefa'),
+    (7, u'7 - Não aplicável - salário exclusivamente variável'),
+)
+
+TIPO_INSCRICAO = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1000_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
 CHOICES_S2200_TMPPARC = (
@@ -141,11 +130,6 @@ CHOICES_S2200_TMPPARC = (
     (1, u'1 - Limitado a 25 horas semanais'),
     (2, u'2 - Limitado a 30 horas semanais'),
     (3, u'3 - Limitado a 26 horas semanais'),
-)
-
-CHOICES_S2200_TPCONTR = (
-    (1, u'1 - Prazo indeterminado'),
-    (2, u'2 - Prazo determinado'),
 )
 
 CHOICES_S2200_TPJORNADA = (
@@ -162,14 +146,61 @@ CHOICES_S2200_TPREGJOR = (
     (4, u'4 - Teletrabalho, previsto no Inciso III do Art. 62 da CLT'),
 )
 
-CHOICES_S2200_UNDSALFIXO = (
-    (1, u'1 - Por Hora'),
-    (2, u'2 - Por Dia'),
-    (3, u'3 - Por Semana'),
-    (4, u'4 - Por Quinzena'),
-    (5, u'5 - Por Mês'),
-    (6, u'6 - Por Tarefa'),
-    (7, u'7 - Não aplicável - salário exclusivamente variável'),
+CODIGO_STATUS_EFDREINF = (
+    (0, u'0 - Sucesso'),
+    (1, u'1 - Erro'),
+    (2, u'2 - Em Processamento'),
+)
+
+EVENTOS_GRUPOS = (
+    (1, u'1 - Eventos de Tabelas'),
+    (2, u'2 - Eventos Não Periódicos'),
+    (3, u'3 - Eventos Periódicos'),
+)
+
+SIM_NAO = (
+    (0, u'Não'),
+    (1, u'Sim'),
+)
+
+EVENTOS_OCORRENCIAS_TIPO_EFDREINF = (
+    (1, u'1 - Aviso'),
+    (2, u'2 - Erro'),
+)
+
+TIPO_OCORRENCIA = (
+    (1, u'1 - Erro'),
+    (2, u'2 - Advertência'),
+)
+
+TIPO_AMBIENTE = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+EVENTOS_OCORRENCIAS_TIPO = (
+    (1, u'1 - Erro'),
+    (2, u'2 - Advertência'),
+)
+
+CHOICES_S1050_INCLUSAO_PERHORFLEXIVEL = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1050_INCLUSAO_TPINTERV = (
+    (1, u'1 - Intervalo em Horário Fixo'),
+    (2, u'2 - Intervalo em Horário Variável'),
+)
+
+CHOICES_S2200_INFOCOTA = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2200_TPCONTR = (
+    (1, u'1 - Prazo indeterminado'),
+    (2, u'2 - Prazo determinado'),
 )
 
 class Arquivos(models.Model):
@@ -441,14 +472,14 @@ class TransmissorLote(models.Model):
     endereco_completo = models.TextField()
     esocial_lote_min = models.IntegerField()
     esocial_lote_max = models.IntegerField()
-    esocial_timeout = models.IntegerField()
+    esocial_timeout = models.DecimalField(max_digits=15, decimal_places=2)
     esocial_intervalo = models.IntegerField()
     esocial_tempo_prox_envio = models.IntegerField(blank=True, null=True)
     esocial_certificado = models.FileField(blank=True, null=True)
     esocial_senha = models.CharField(max_length=20, blank=True, null=True)
     efdreinf_lote_min = models.IntegerField()
     efdreinf_lote_max = models.IntegerField()
-    efdreinf_timeout = models.IntegerField()
+    efdreinf_timeout = models.DecimalField(max_digits=15, decimal_places=2)
     efdreinf_intervalo = models.IntegerField()
     efdreinf_tempo_prox_envio = models.IntegerField(blank=True, null=True)
     efdreinf_certificado = models.FileField(blank=True, null=True)

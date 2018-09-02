@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -40,7 +71,51 @@ ESTADOS = (
     ('TO', u'Tocantins'),
 )
 
+CHOICES_R1070_ALTERACAO_INDSUSP = (
+    ('1', u'01 - Liminar em Mandado de Segurança'),
+    ('10', u'10 - Acórdão do TRF Favorável ao Contribuinte'),
+    ('11', u'11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte'),
+    ('12', u'12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte'),
+    ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
+    ('2', u'02 - Depósito Judicial do Montante Integral'),
+    ('3', u'03 - Depósito Administrativo do Montante Integral'),
+    ('4', u'04 - Antecipação de Tutela'),
+    ('5', u'05 - Liminar em Medida Cautelar'),
+    ('8', u'08 - Sentença em Mandado de Segurança Favorável ao Contribuinte'),
+    ('9', u'09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF'),
+    ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
+    ('92', u'92 - Sem suspensão da exigibilidade'),
+)
+
+CHOICES_R1070_INCLUSAO_INDSUSP = (
+    ('1', u'01 - Liminar em Mandado de Segurança'),
+    ('10', u'10 - Acórdão do TRF Favorável ao Contribuinte'),
+    ('11', u'11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte'),
+    ('12', u'12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte'),
+    ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
+    ('2', u'02 - Depósito Judicial do Montante Integral'),
+    ('3', u'03 - Depósito Administrativo do Montante Integral'),
+    ('4', u'04 - Antecipação de Tutela'),
+    ('5', u'05 - Liminar em Medida Cautelar'),
+    ('8', u'08 - Sentença em Mandado de Segurança Favorável ao Contribuinte'),
+    ('9', u'09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF'),
+    ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
+    ('92', u'92 - Sem suspensão da exigibilidade'),
+)
+
 PERIODOS = (
+    ('2017-01', u'Janeiro/2017'),
+    ('2017-02', u'Fevereiro/2017'),
+    ('2017-03', u'Março/2017'),
+    ('2017-04', u'Abril/2017'),
+    ('2017-05', u'Maio/2017'),
+    ('2017-06', u'Junho/2017'),
+    ('2017-07', u'Julho/2017'),
+    ('2017-08', u'Agosto/2017'),
+    ('2017-09', u'Setembro/2017'),
+    ('2017-10', u'Outubro/2017'),
+    ('2017-11', u'Novembro/2017'),
+    ('2017-12', u'Dezembro/2017'),
     ('2018-01', u'Janeiro/2018'),
     ('2018-02', u'Fevereiro/2018'),
     ('2018-03', u'Março/2018'),
@@ -65,22 +140,6 @@ CHOICES_R1070_ALTERACAO_INDDEPOSITO = (
     ('S', u'S - Sim'),
 )
 
-CHOICES_R1070_ALTERACAO_INDSUSP = (
-    ('1', u'01 - Liminar em Mandado de Segurança'),
-    ('10', u'10 - Acórdão do TRF Favorável ao Contribuinte'),
-    ('11', u'11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte'),
-    ('12', u'12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte'),
-    ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
-    ('2', u'02 - Depósito Judicial do Montante Integral'),
-    ('3', u'03 - Depósito Administrativo do Montante Integral'),
-    ('4', u'04 - Antecipação de Tutela'),
-    ('5', u'05 - Liminar em Medida Cautelar'),
-    ('8', u'08 - Sentença em Mandado de Segurança Favorável ao Contribuinte'),
-    ('9', u'09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF'),
-    ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
-    ('92', u'92 - Sem suspensão da exigibilidade'),
-)
-
 CHOICES_R1070_ALTERACAO_TPPROC = (
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial'),
@@ -99,22 +158,6 @@ CHOICES_R1070_INCLUSAO_INDAUTORIA = (
 CHOICES_R1070_INCLUSAO_INDDEPOSITO = (
     ('N', u'N - Não'),
     ('S', u'S - Sim'),
-)
-
-CHOICES_R1070_INCLUSAO_INDSUSP = (
-    ('1', u'01 - Liminar em Mandado de Segurança'),
-    ('10', u'10 - Acórdão do TRF Favorável ao Contribuinte'),
-    ('11', u'11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte'),
-    ('12', u'12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte'),
-    ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
-    ('2', u'02 - Depósito Judicial do Montante Integral'),
-    ('3', u'03 - Depósito Administrativo do Montante Integral'),
-    ('4', u'04 - Antecipação de Tutela'),
-    ('5', u'05 - Liminar em Medida Cautelar'),
-    ('8', u'08 - Sentença em Mandado de Segurança Favorável ao Contribuinte'),
-    ('9', u'09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF'),
-    ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
-    ('92', u'92 - Sem suspensão da exigibilidade'),
 )
 
 CHOICES_R1070_INCLUSAO_TPPROC = (

@@ -1,5 +1,36 @@
 {% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
 {% if not for_print %}
 
     <section class="content-header">
@@ -85,26 +116,21 @@
 
 <table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
               
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtTotConting</td>
             <td bgcolor="lightgray" colspan="3">Solicitação contingencial de totalização de bases de cálculo/contribuiçõesRegra de validação: REGRA_TOTALIZ_CONTING</td>
         </tr>
-
     {% for s1295_evttotconting in s1295_evttotconting_lista %}
     {% ifequal 1 1 %}
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
             <td bgcolor="lightgray" colspan="3">Informações de identificação do evento</td>
         </tr>
 
-
         <tr {% if s1295_evttotconting.indapuracao|validacoes_esocial_efdreinf:"s1295_evttotconting.indapuracao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indApuracao</td>
             <td width="500px">Indicativo de período de apuração:1 - Mensal;2 - Anual (13° salário). Valores Válidos: 1, 2</td>
             <td width="200px"><b>{% if s1295_evttotconting.indapuracao or s1295_evttotconting.indapuracao == 0 %}{{ s1295_evttotconting.indapuracao|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -119,13 +145,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1295_evttotconting.perapur|validacoes_esocial_efdreinf:"s1295_evttotconting.perapur" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">perApur</td>
             <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência das informações, se{indApuracao} for igual a [1], ou apenas o ano (formato AAAA), se{indApuracao} for igual a [2]Validação: Deve ser um mês/ano ou ano válido, igual ou posterior àimplementação do eSocial.</td>
             <td width="200px"><b>{% if s1295_evttotconting.perapur or s1295_evttotconting.perapur == 0 %}{{ s1295_evttotconting.perapur }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -140,13 +164,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1295_evttotconting.tpamb|validacoes_esocial_efdreinf:"s1295_evttotconting.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1295_evttotconting.tpamb or s1295_evttotconting.tpamb == 0 %}{{ s1295_evttotconting.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -161,13 +183,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1295_evttotconting.procemi|validacoes_esocial_efdreinf:"s1295_evttotconting.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1295_evttotconting.procemi or s1295_evttotconting.procemi == 0 %}{{ s1295_evttotconting.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -182,13 +202,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1295_evttotconting.verproc|validacoes_esocial_efdreinf:"s1295_evttotconting.verproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s1295_evttotconting.verproc or s1295_evttotconting.verproc == 0 %}{{ s1295_evttotconting.verproc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -204,18 +222,15 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
             <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
         </tr>
 
-
         <tr {% if s1295_evttotconting.tpinsc|validacoes_esocial_efdreinf:"s1295_evttotconting.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
             <td width="200px"><b>{% if s1295_evttotconting.tpinsc or s1295_evttotconting.tpinsc == 0 %}{{ s1295_evttotconting.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -231,12 +246,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1295_evttotconting.nrinsc|validacoes_esocial_efdreinf:"s1295_evttotconting.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido.Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s1295_evttotconting.nrinsc or s1295_evttotconting.nrinsc == 0 %}{{ s1295_evttotconting.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -252,20 +265,16 @@
             {% endif %}
         </tr>
  
-
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideRespInf</td>
             <td bgcolor="lightgray" colspan="3">Responsável pelas informações</td>
         </tr>
-
     {% for s1295_iderespinf in s1295_iderespinf_lista %}
     {% ifequal s1295_iderespinf.s1295_evttotconting.id s1295_evttotconting.id %}
-
         <tr {% if s1295_iderespinf.nmresp|validacoes_esocial_efdreinf:"s1295_iderespinf.nmresp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nmResp</td>
             <td width="500px">Nome do responsável pelas informações.</td>
             <td width="200px"><b>{% if s1295_iderespinf.nmresp or s1295_iderespinf.nmresp == 0 %}{{ s1295_iderespinf.nmresp }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -280,13 +289,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1295_iderespinf.cpfresp|validacoes_esocial_efdreinf:"s1295_iderespinf.cpfresp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cpfResp</td>
             <td width="500px">Preencher com o CPF do responsávelValidação: Deve ser um número de CPF válido.</td>
             <td width="200px"><b>{% if s1295_iderespinf.cpfresp or s1295_iderespinf.cpfresp == 0 %}{{ s1295_iderespinf.cpfresp }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -301,13 +308,11 @@
             </td>
             {% endif %}
         </tr>
-
 
         <tr {% if s1295_iderespinf.telefone|validacoes_esocial_efdreinf:"s1295_iderespinf.telefone" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">telefone</td>
             <td width="500px">Informar o número do telefone, com DDD.Validação: Deve conter apenas números, com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if s1295_iderespinf.telefone or s1295_iderespinf.telefone == 0 %}{{ s1295_iderespinf.telefone }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -323,12 +328,10 @@
             {% endif %}
         </tr>
 
-
         <tr {% if s1295_iderespinf.email|validacoes_esocial_efdreinf:"s1295_iderespinf.email" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">email</td>
             <td width="500px">Endereço eletrônicoValidação: O e-mail deve possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do@ e não pode estar no fim do e-mail.</td>
             <td width="200px"><b>{% if s1295_iderespinf.email or s1295_iderespinf.email == 0 %}{{ s1295_iderespinf.email }}{% else %}(vazio){% endif %}</b></td>
-
             {% if not for_print %}
             <td width="40px">
               <div>

@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -50,10 +81,10 @@ def apagar(request, hash):
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-
+   
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-
+   
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -61,117 +92,6 @@ def apagar(request, hash):
         'hash': hash,
     }
     return render(request, 'afastamentos_motivos_apagar.html', context)
-
-def salvar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.session['usuario_id']
-        dict_hash = get_hash_url( hash )
-        afastamentos_motivos_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='afastamentos_motivos')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-    if afastamentos_motivos_id:
-        afastamentos_motivos = get_object_or_404(AfastamentosMotivos.objects.using( db_slug ), excluido = False, id = afastamentos_motivos_id)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    if permissao.permite_visualizar:
-        mensagem = None
-        if afastamentos_motivos_id:
-            afastamentos_motivos_form = form_afastamentos_motivos(request.POST or None, instance = afastamentos_motivos, slug = db_slug)
-        else:
-            afastamentos_motivos_form = form_afastamentos_motivos(request.POST or None, slug = db_slug, initial={})
-        if request.method == 'POST':
-            if afastamentos_motivos_form.is_valid():
-                dados = afastamentos_motivos_form.cleaned_data
-                if afastamentos_motivos_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #afastamentos_motivos_campos_multiple_passo1
-                    AfastamentosMotivos.objects.using(db_slug).filter(id=afastamentos_motivos_id).update(**dados)
-                    obj = AfastamentosMotivos.objects.using(db_slug).get(id=afastamentos_motivos_id)
-                    #afastamentos_motivos_editar_custom
-                    #afastamentos_motivos_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
-                else:
-
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #afastamentos_motivos_cadastrar_campos_multiple_passo1
-                    obj = AfastamentosMotivos(**dados)
-                    obj.save(using = db_slug)
-                    #afastamentos_motivos_cadastrar_custom
-                    #afastamentos_motivos_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
-                if request.session['retorno_pagina'] not in ('afastamentos_motivos_apagar', 'afastamentos_motivos_salvar', 'afastamentos_motivos'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-                if afastamentos_motivos_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('afastamentos_motivos_salvar', hash=url_hash)
-            else:
-                messages.error(request, 'Erro ao salvar!')
-        afastamentos_motivos_form = disabled_form_fields(afastamentos_motivos_form, permissao.permite_editar)
-        #afastamentos_motivos_campos_multiple_passo3
-
-        for field in afastamentos_motivos_form.fields.keys():
-            afastamentos_motivos_form.fields[field].widget.attrs['ng-model'] = 'afastamentos_motivos_'+field
-        if int(dict_hash['print']):
-            afastamentos_motivos_form = disabled_form_for_print(afastamentos_motivos_form)
-        #[VARIAVEIS_SECUNDARIAS_VAZIAS]
-        if afastamentos_motivos_id:
-            afastamentos_motivos = get_object_or_404(AfastamentosMotivos.objects.using( db_slug ), excluido = False, id = afastamentos_motivos_id)
-            pass
-        else:
-            afastamentos_motivos = None
-        #afastamentos_motivos_salvar_custom_variaveis#
-        tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-        if dict_hash['tab'] or 'afastamentos_motivos' in request.session['retorno_pagina']:
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'afastamentos_motivos_salvar'
-        context = {
-            'afastamentos_motivos': afastamentos_motivos,
-            'afastamentos_motivos_form': afastamentos_motivos_form,
-            'mensagem': mensagem,
-            'afastamentos_motivos_id': int(afastamentos_motivos_id),
-            'usuario': usuario,
-
-            'hash': hash,
-            #[VARIAVEIS_SECUNDARIAS]
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-
-            'permissao': permissao,
-            'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
-            'for_print': int(dict_hash['print']),
-            'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
-            #afastamentos_motivos_salvar_custom_variaveis_context#
-        }
-        return render(request, 'afastamentos_motivos_salvar.html', context)
-    else:
-        context = {
-            'usuario': usuario,
-
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-
-            'permissao': permissao,
-            'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
-        }
-        return render(request, 'permissao_negada.html', context)
 
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
@@ -279,11 +199,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 'afastamentos_motivos'
         context = {
             'afastamentos_motivos_lista': afastamentos_motivos_lista,
-
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+       
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -293,7 +213,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-
+   
         }
         if for_print in (0,1):
             return render(request, 'afastamentos_motivos_listar.html', context)
@@ -336,10 +256,152 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
+       
+            'permissao': permissao,
+            'data': datetime.datetime.now(),
+            'pagina': pagina,
+            'dict_permissoes': dict_permissoes,
+        }
+        return render(request, 'permissao_negada.html', context)
 
+def salvar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.session['usuario_id']
+        dict_hash = get_hash_url( hash )
+        afastamentos_motivos_id = int(dict_hash['id'])
+        if 'tab' not in dict_hash.keys():
+            dict_hash['tab'] = ''
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='afastamentos_motivos')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+    if afastamentos_motivos_id:
+        afastamentos_motivos = get_object_or_404(AfastamentosMotivos.objects.using( db_slug ), excluido = False, id = afastamentos_motivos_id)
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    if permissao.permite_visualizar:
+        mensagem = None
+        if afastamentos_motivos_id:
+            afastamentos_motivos_form = form_afastamentos_motivos(request.POST or None, instance = afastamentos_motivos, slug = db_slug)
+        else:
+            afastamentos_motivos_form = form_afastamentos_motivos(request.POST or None, slug = db_slug, initial={})
+        if request.method == 'POST':
+            if afastamentos_motivos_form.is_valid():
+                dados = afastamentos_motivos_form.cleaned_data
+                if afastamentos_motivos_id:
+                    dados['modificado_por_id'] = usuario_id
+                    dados['modificado_em'] = datetime.datetime.now()
+                    #afastamentos_motivos_campos_multiple_passo1
+                    AfastamentosMotivos.objects.using(db_slug).filter(id=afastamentos_motivos_id).update(**dados)
+                    obj = AfastamentosMotivos.objects.using(db_slug).get(id=afastamentos_motivos_id)
+                    #afastamentos_motivos_editar_custom
+                    #afastamentos_motivos_campos_multiple_passo2
+                    messages.success(request, 'Alterado com sucesso!')
+                else:
+
+                    dados['criado_por_id'] = usuario_id
+                    dados['criado_em'] = datetime.datetime.now()
+                    dados['excluido'] = False
+                    #afastamentos_motivos_cadastrar_campos_multiple_passo1
+                    obj = AfastamentosMotivos(**dados)
+                    obj.save(using = db_slug)
+                    #afastamentos_motivos_cadastrar_custom
+                    #afastamentos_motivos_cadastrar_campos_multiple_passo2
+                    messages.success(request, 'Cadastrado com sucesso!')
+                if request.session['retorno_pagina'] not in ('afastamentos_motivos_apagar', 'afastamentos_motivos_salvar', 'afastamentos_motivos'):
+                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if afastamentos_motivos_id != obj.id:
+                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
+                    return redirect('afastamentos_motivos_salvar', hash=url_hash)
+            else:
+                messages.error(request, 'Erro ao salvar!')
+        afastamentos_motivos_form = disabled_form_fields(afastamentos_motivos_form, permissao.permite_editar)
+        #afastamentos_motivos_campos_multiple_passo3
+
+        for field in afastamentos_motivos_form.fields.keys():
+            afastamentos_motivos_form.fields[field].widget.attrs['ng-model'] = 'afastamentos_motivos_'+field
+        if int(dict_hash['print']):
+            afastamentos_motivos_form = disabled_form_for_print(afastamentos_motivos_form)
+        #[VARIAVEIS_SECUNDARIAS_VAZIAS]
+        if afastamentos_motivos_id:
+            afastamentos_motivos = get_object_or_404(AfastamentosMotivos.objects.using( db_slug ), excluido = False, id = afastamentos_motivos_id)
+            pass
+        else:
+            afastamentos_motivos = None
+        #afastamentos_motivos_salvar_custom_variaveis#
+        tabelas_secundarias = []
+        #[FUNCOES_ESPECIAIS_SALVAR]
+        if dict_hash['tab'] or 'afastamentos_motivos' in request.session['retorno_pagina']:
+            request.session["retorno_hash"] = hash
+            request.session["retorno_pagina"] = 'afastamentos_motivos_salvar'
+        context = {
+            'afastamentos_motivos': afastamentos_motivos,
+            'afastamentos_motivos_form': afastamentos_motivos_form,
+            'mensagem': mensagem,
+            'afastamentos_motivos_id': int(afastamentos_motivos_id),
+            'usuario': usuario,
+       
+            'hash': hash,
+            #[VARIAVEIS_SECUNDARIAS]
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+       
+            'permissao': permissao,
+            'data': datetime.datetime.now(),
+            'pagina': pagina,
+            'dict_permissoes': dict_permissoes,
+            'for_print': int(dict_hash['print']),
+            'tabelas_secundarias': tabelas_secundarias,
+            'tab': dict_hash['tab'],
+            #afastamentos_motivos_salvar_custom_variaveis_context#
+        }
+        if for_print in (0,1 ):
+            return render(request, 'afastamentos_motivos_salvar.html', context)
+        elif for_print == 2:
+            from wkhtmltopdf.views import PDFTemplateResponse
+            response = PDFTemplateResponse(
+                request=request,
+                template='afastamentos_motivos_salvar.html',
+                filename="afastamentos_motivos.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 10,
+                             'margin-bottom': 10,
+                             'margin-right': 10,
+                             'margin-left': 10,
+                             'zoom': 1,
+                             'dpi': 72,
+                             'orientation': 'Landscape',
+                             "viewport-size": "1366 x 513",
+                             'javascript-delay': 1000,
+                             'footer-center': '[page]/[topage]',
+                             "no-stop-slow-scripts": True},
+            )
+            return response
+        elif for_print == 3:
+            from django.shortcuts import render_to_response
+            response = render_to_response('afastamentos_motivos_salvar.html', context)
+            filename = "afastamentos_motivos.xls"
+            response['Content-Disposition'] = 'attachment; filename=' + filename
+            response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            return response
+
+    else:
+        context = {
+            'usuario': usuario,
+       
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

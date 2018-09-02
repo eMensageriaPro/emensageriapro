@@ -4,6 +4,39 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
+
 import datetime
 from django.contrib import messages
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -18,7 +51,7 @@ from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes,
 
 #IMPORTACOES
 
-config = True
+
 
 
 def enviar(request, hash):
@@ -34,10 +67,11 @@ def enviar(request, hash):
     usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
     pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='transmissor_lote_efdreinf')
     transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf.objects.using(db_slug), excluido=False, id=transmissor_lote_efdreinf_id)
-    if config:
-        a = send_xml(request, transmissor_lote_efdreinf_id, 'RecepcaoLoteReinf')
+    a = send_xml(request, transmissor_lote_efdreinf_id, 'RecepcaoLoteReinf')
+    if 'HTTP/1.1 200 OK' in a:
+        messages.success(request, 'Lote enviado com sucesso!')
     else:
-        messages.error(request, 'Configure o certificado digital para o envio de eventos!')
+        messages.error(request, 'Erro no envio do Lote de Eventos! %s' % a)
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
 
@@ -54,10 +88,11 @@ def consultar(request, hash):
     usuario = get_object_or_404(Usuarios.objects.using(db_slug), excluido=False, id=usuario_id)
     pagina = ConfigPaginas.objects.using(db_slug).get(excluido=False, endereco='transmissor_lote_efdreinf')
     transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf.objects.using(db_slug), excluido=False, id=transmissor_lote_efdreinf_id)
-    if config:
-        a = send_xml(request, transmissor_lote_efdreinf_id, 'ConsultasReinf')
+    a = send_xml(request, transmissor_lote_efdreinf_id, 'ConsultasReinf')
+    if 'HTTP/1.1 200 OK' in a:
+        messages.success(request, 'Lote consultado com sucesso!')
     else:
-        messages.error(request, 'Configure o certificado digital para a consulta de eventoss!')
+        messages.error(request, 'Erro na consulta do Lote de Eventos! %s' % a)
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
 
@@ -103,41 +138,7 @@ def recibo(request, hash):
         #'transmissor_eventos_lista': transmissor_eventos_lista,
         #'transmissor_ocorrencias_lista': transmissor_ocorrencias_lista,
     }
-    if for_print in (0, 1):
-        return render(request, 'transmissor_lote_efdreinf_recibo.html', context)
-    elif for_print == 2:
-        from wkhtmltopdf.views import PDFTemplateResponse
-        response = PDFTemplateResponse(
-            request=request,
-            template='transmissor_lote_efdreinf_recibo.html',
-            filename="transmissor_lote_efdreinf_recibo.pdf",
-            context=context,
-            show_content_in_browser=True,
-            cmd_options={'margin-top': 10,
-                         'margin-bottom': 10,
-                         'margin-right': 10,
-                         'margin-left': 10,
-                         "zoom": 1,
-                         "viewport-size": "1366 x 513",
-                         'javascript-delay': 1000,
-                         'footer-center': '[page]/[topage]',
-                         "no-stop-slow-scripts": True},
-        )
-        return response
-    elif for_print == 3:
-        from django.shortcuts import render_to_response
-        response = render_to_response('transmissor_lote_efdreinf_recibo.html', context)
-        filename = "transmissor_lote_efdreinf_recibo.xls"
-        response['Content-Disposition'] = 'attachment; filename=' + filename
-        response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-        return response
-    elif for_print == 4:
-        from django.shortcuts import render_to_response
-        response = render_to_response('transmissor_lote_efdreinf_recibo_csv.html', context)
-        filename = "transmissor_lote_efdreinf_recibo.csv"
-        response['Content-Disposition'] = 'attachment; filename=' + filename
-        response['Content-Type'] = 'text/csv; charset=UTF-8'
-        return response
+    return render(request, 'transmissor_lote_efdreinf_recibo.html', context)
 
 
 
