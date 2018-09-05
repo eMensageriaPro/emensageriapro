@@ -1,0 +1,1186 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
+{% if not for_print %}
+
+    <section class="content-header">
+      <h1>
+        S-2210 - Comunicação de Acidente de Trabalho
+        <small>Verificações</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">S-2210 - Comunicação de Acidente de Trabalho</a></li>
+        <li class="active">Verificar</li>
+      </ol>
+    </section>
+    <section class="content">
+
+        {% if messages %}
+                <div class="pad margin no-print">
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+                </div>
+        {% endif %}
+
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">S-2210 - Comunicação de Acidente de Trabalho<br>Identidade: {{ s2210_evtcat.identidade }}</h3>
+              <div class="text-right">
+                <a href="{% url 's2210_evtcat_verificar' hash='{}'|json_id:s2210_evtcat_id|json_print:1|base64_encode_me %}" target="_blank">
+                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
+                </a>
+
+
+
+                  <div class="btn-group">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="text-left"><a
+                                            href="{% url 's2210_evtcat_verificar' hash='{}'|json_id:s2210_evtcat_id|json_print:2|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
+                                    <li class="text-left"><a
+                                            href="{% url 's2210_evtcat_verificar' hash='{}'|json_id:s2210_evtcat_id|json_print:3|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
+                                    <!--<li class="text-left"><a
+                                            href="{% url 's2210_evtcat_verificar' hash='{}'|json_id:s2210_evtcat_id|json_print:4|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
+                                </ul>
+                            </div>&nbsp;
+
+              </div>              
+            </div>
+            <div class="box-body">
+{% else %} 
+   <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            S-2210 - Comunicação de Acidente de Trabalho<br>Identidade: {{ s2210_evtcat.identidade }}
+            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+{% endif %} 
+
+
+
+
+      <h4>Layout</h4>
+
+
+
+
+<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
+              
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtCAT</td>
+            <td bgcolor="lightgray" colspan="3">Evento Comunicação de Acidente de Trabalho Regras de validação: REGRA_CAT_IDENTIFICACAO_TRABALHADOR REGRA_EVENTOS_EXTEMP REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXCLUI_EVENTO_CAT REGRA_EXISTE_CAT_OBITO_ANTERIOR REGRA_EXISTE_CAT_ORIGEM REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXTEMP_REINTEGRACAO REGRA_RETIFICA_DT_ACIDENTE REGRA_VALIDA_TRABALHADOR_BASE_CNIS</td>
+        </tr>
+    {% for s2210_evtcat in s2210_evtcat_lista %}
+    {% ifequal 1 1 %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
+        </tr>
+
+        <tr {% if s2210_evtcat.indretif|validacoes_esocial_efdreinf:"s2210_evtcat.indretif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indRetif</td>
+            <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2210_evtcat.indretif or s2210_evtcat.indretif == 0 %}{{ s2210_evtcat.indretif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.nrrecibo|validacoes_esocial_efdreinf:"s2210_evtcat.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecibo</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2].Deve ser um recibo de entrega válido, correspondente ao arquivo que estásendo retificado.</td>
+            <td width="200px"><b>{% if s2210_evtcat.nrrecibo or s2210_evtcat.nrrecibo == 0 %}{{ s2210_evtcat.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.tpamb|validacoes_esocial_efdreinf:"s2210_evtcat.tpamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAmb</td>
+            <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2210_evtcat.tpamb or s2210_evtcat.tpamb == 0 %}{{ s2210_evtcat.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.procemi|validacoes_esocial_efdreinf:"s2210_evtcat.procemi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">procEmi</td>
+            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="200px"><b>{% if s2210_evtcat.procemi or s2210_evtcat.procemi == 0 %}{{ s2210_evtcat.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.verproc|validacoes_esocial_efdreinf:"s2210_evtcat.verproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">verProc</td>
+            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
+            <td width="200px"><b>{% if s2210_evtcat.verproc or s2210_evtcat.verproc == 0 %}{{ s2210_evtcat.verproc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideRegistrador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do registrador da CAT</td>
+        </tr>
+
+        <tr {% if s2210_evtcat.tpregistrador|validacoes_esocial_efdreinf:"s2210_evtcat.tpregistrador" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpRegistrador</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de registrador da CAT:1 - Empregador;2 - Cooperativa;3 - Sindicato de trabalhadores avulsos não portuários;4 - Órgão Gestor de Mão de Obra;5 - Empregado;6 - Dependente do empregado;7 - Entidade Sindical competente;8 - Médico assistente;9 - Autoridade Pública.Valores Válidos: 1, 2, 3, 4, 5, 6, 7, 8, 9.</td>
+            <td width="200px"><b>{% if s2210_evtcat.tpregistrador or s2210_evtcat.tpregistrador == 0 %}{{ s2210_evtcat.tpregistrador|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.tpinsc|validacoes_esocial_efdreinf:"s2210_evtcat.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Só preencher se {tpRegistrador} <> 1. Deve ser igual a [1] (CNPJ)ou [2] (CPF).Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2210_evtcat.tpinsc or s2210_evtcat.tpinsc == 0 %}{{ s2210_evtcat.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.nrinsc|validacoes_esocial_efdreinf:"s2210_evtcat.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do registrador, de acordo com o tipo de inscrição indicado no campo {tpInsc}.Validação: Só preencher se {tpRegistrador} <> 1. Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser umCPF válido.</td>
+            <td width="200px"><b>{% if s2210_evtcat.nrinsc or s2210_evtcat.nrinsc == 0 %}{{ s2210_evtcat.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+        </tr>
+
+        <tr {% if s2210_evtcat.tpinsc|validacoes_esocial_efdreinf:"s2210_evtcat.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
+            <td width="200px"><b>{% if s2210_evtcat.tpinsc or s2210_evtcat.tpinsc == 0 %}{{ s2210_evtcat.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.nrinsc|validacoes_esocial_efdreinf:"s2210_evtcat.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2210_evtcat.nrinsc or s2210_evtcat.nrinsc == 0 %}{{ s2210_evtcat.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideTrabalhador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador</td>
+        </tr>
+
+        <tr {% if s2210_evtcat.cpftrab|validacoes_esocial_efdreinf:"s2210_evtcat.cpftrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfTrab</td>
+            <td width="500px">Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2210_evtcat.cpftrab or s2210_evtcat.cpftrab == 0 %}{{ s2210_evtcat.cpftrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.nistrab|validacoes_esocial_efdreinf:"s2210_evtcat.nistrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nisTrab</td>
+            <td width="500px">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT.Validação: O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904].</td>
+            <td width="200px"><b>{% if s2210_evtcat.nistrab or s2210_evtcat.nistrab == 0 %}{{ s2210_evtcat.nistrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">cat</td>
+            <td bgcolor="lightgray" colspan="3">Comunicação de Acidente de Trabalho.</td>
+        </tr>
+
+        <tr {% if s2210_evtcat.dtacid|validacoes_esocial_efdreinf:"s2210_evtcat.dtacid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtAcid</td>
+            <td width="500px">Data do AcidenteValidação: Deve ser uma data igual ou posterior a data de admissão do trabalhador e igual ou inferior à data atual.</td>
+            <td width="200px"><b>{% if s2210_evtcat.dtacid or s2210_evtcat.dtacid == 0 %}{{ s2210_evtcat.dtacid|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.tpacid|validacoes_esocial_efdreinf:"s2210_evtcat.tpacid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAcid</td>
+            <td width="500px">Tipo de Acidente de Trabalho, conforme tabela 24. Preencher com os números e pontos.Validação: Dever ser um código da tabela 24.</td>
+            <td width="200px"><b>{% if s2210_evtcat.tpacid or s2210_evtcat.tpacid == 0 %}{{ s2210_evtcat.tpacid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.hracid|validacoes_esocial_efdreinf:"s2210_evtcat.hracid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">hrAcid</td>
+            <td width="500px">Hora do Acidente, no formato HHMM</td>
+            <td width="200px"><b>{% if s2210_evtcat.hracid or s2210_evtcat.hracid == 0 %}{{ s2210_evtcat.hracid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.hrstrabantesacid|validacoes_esocial_efdreinf:"s2210_evtcat.hrstrabantesacid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">hrsTrabAntesAcid</td>
+            <td width="500px">Horas trabalhadas antes da ocorrência do acidente, no formato HHMM Validação: Deve ser um valor entre 00:00 e 23:59.</td>
+            <td width="200px"><b>{% if s2210_evtcat.hrstrabantesacid or s2210_evtcat.hrstrabantesacid == 0 %}{{ s2210_evtcat.hrstrabantesacid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.tpcat|validacoes_esocial_efdreinf:"s2210_evtcat.tpcat" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpCat</td>
+            <td width="500px">Tipo de CAT, conforme opções abaixo:1 - Inicial; 2 - Reabertura;3 - Comunicação de Óbito. Valores Válidos: 1, 2, 3.</td>
+            <td width="200px"><b>{% if s2210_evtcat.tpcat or s2210_evtcat.tpcat == 0 %}{{ s2210_evtcat.tpcat|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.indcatobito|validacoes_esocial_efdreinf:"s2210_evtcat.indcatobito" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indCatObito</td>
+            <td width="500px">Houve Óbito? S - Sim;N - Não.Validação: Se o {tpCat} for igual a [3], o campo deverá sempre ser preenchido com "S".Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2210_evtcat.indcatobito or s2210_evtcat.indcatobito == 0 %}{{ s2210_evtcat.indcatobito }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.dtobito|validacoes_esocial_efdreinf:"s2210_evtcat.dtobito" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtObito</td>
+            <td width="500px">Data do óbito.Validação: Deve ser uma data igual ou posterior a {dtAcid}. Preenchimento obrigatório se {indCatObito} = [S].</td>
+            <td width="200px"><b>{% if s2210_evtcat.dtobito or s2210_evtcat.dtobito == 0 %}{{ s2210_evtcat.dtobito|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.indcomunpolicia|validacoes_esocial_efdreinf:"s2210_evtcat.indcomunpolicia" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indComunPolicia</td>
+            <td width="500px">Houve comunicação à autoridade policial: S - Sim;N - Não.Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2210_evtcat.indcomunpolicia or s2210_evtcat.indcomunpolicia == 0 %}{{ s2210_evtcat.indcomunpolicia }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.codsitgeradora|validacoes_esocial_efdreinf:"s2210_evtcat.codsitgeradora" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codSitGeradora</td>
+            <td width="500px">Preencher com o código da situação geradora do acidente, conforme tabela 16.</td>
+            <td width="200px"><b>{% if s2210_evtcat.codsitgeradora or s2210_evtcat.codsitgeradora == 0 %}{{ s2210_evtcat.codsitgeradora|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.iniciatcat|validacoes_esocial_efdreinf:"s2210_evtcat.iniciatcat" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">iniciatCAT</td>
+            <td width="500px">A CAT foi emitida por:1 - Iniciativa do Registrador (identificado em {ideRegistrador});2 - Ordem judicial;3 - Determinação de órgão fiscalizador.Validação: Se {tpRegistrador} <> [1] deve ser preenchido obrigatoriamente com [1].Valores Válidos: 1, 2, 3</td>
+            <td width="200px"><b>{% if s2210_evtcat.iniciatcat or s2210_evtcat.iniciatcat == 0 %}{{ s2210_evtcat.iniciatcat|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.observacao|validacoes_esocial_efdreinf:"s2210_evtcat.observacao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">observacao</td>
+            <td width="500px">Observação</td>
+            <td width="200px"><b>{% if s2210_evtcat.observacao or s2210_evtcat.observacao == 0 %}{{ s2210_evtcat.observacao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">localAcidente</td>
+            <td bgcolor="lightgray" colspan="3">Local do Acidente</td>
+        </tr>
+
+        <tr {% if s2210_evtcat.tplocal|validacoes_esocial_efdreinf:"s2210_evtcat.tplocal" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpLocal</td>
+            <td width="500px">Tipo de Local do acidente:1 - Estabelecimento do empregador no Brasil;2 - Estabelecimento do empregador no Exterior;3 - Estabelecimento de terceiros onde o empregador presta serviços;4 - Via pública;5 - Área rural;6 - Embarcação;9 - Outros.Valores Válidos: 1, 2, 3, 4, 5, 6, 9.</td>
+            <td width="200px"><b>{% if s2210_evtcat.tplocal or s2210_evtcat.tplocal == 0 %}{{ s2210_evtcat.tplocal|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.dsclocal|validacoes_esocial_efdreinf:"s2210_evtcat.dsclocal" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscLocal</td>
+            <td width="500px">Especificação do local do acidente (pátio, rampa de acesso, posto de trabalho, etc.)</td>
+            <td width="200px"><b>{% if s2210_evtcat.dsclocal or s2210_evtcat.dsclocal == 0 %}{{ s2210_evtcat.dsclocal }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.dsclograd|validacoes_esocial_efdreinf:"s2210_evtcat.dsclograd" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscLograd</td>
+            <td width="500px">Descrição do logradouro</td>
+            <td width="200px"><b>{% if s2210_evtcat.dsclograd or s2210_evtcat.dsclograd == 0 %}{{ s2210_evtcat.dsclograd }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.nrlograd|validacoes_esocial_efdreinf:"s2210_evtcat.nrlograd" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrLograd</td>
+            <td width="500px">Número do logradouro.</td>
+            <td width="200px"><b>{% if s2210_evtcat.nrlograd or s2210_evtcat.nrlograd == 0 %}{{ s2210_evtcat.nrlograd }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.codmunic|validacoes_esocial_efdreinf:"s2210_evtcat.codmunic" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codMunic</td>
+            <td width="500px">Preencher com o código do município, conforme tabela do IBGE Validação: Se informado, deve ser um código existente na tabela do IBGE.</td>
+            <td width="200px"><b>{% if s2210_evtcat.codmunic or s2210_evtcat.codmunic == 0 %}{{ s2210_evtcat.codmunic|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.uf|validacoes_esocial_efdreinf:"s2210_evtcat.uf" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">uf</td>
+            <td width="500px">Preencher com a sigla da Unidade da FederaçãoValidação: Deve ser uma UF válida.</td>
+            <td width="200px"><b>{% if s2210_evtcat.uf or s2210_evtcat.uf == 0 %}{{ s2210_evtcat.uf }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.cnpjlocalacid|validacoes_esocial_efdreinf:"s2210_evtcat.cnpjlocalacid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjLocalAcid</td>
+            <td width="500px">Deve ser preenchido com o CNPJ do local onde ocorreu o acidente ou a doença ocupacional. Se ocorrer em empresa onde o empregador presta serviços deve ser um CNPJ pertencente à contratante dos serviços.Validação: O preenchimento é obrigatório se {tpRegistrador}=[1], {tpLocal}= [1,3] e {tpInsc} do grupo {ideEmpregador} = [1]. Observar:a) Se {tpLocal} = [1] deve ser um CNPJ válido informado através do eventoS-1005;b) Se {tpLocal} = [3] deve ser diferente dos estabelecimentos informados através do evento S-1005 .</td>
+            <td width="200px"><b>{% if s2210_evtcat.cnpjlocalacid or s2210_evtcat.cnpjlocalacid == 0 %}{{ s2210_evtcat.cnpjlocalacid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.pais|validacoes_esocial_efdreinf:"s2210_evtcat.pais" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">pais</td>
+            <td width="500px">Preencher com o código do país, conforme tabela 06.Validação: Deve ser um código de país válido, existente na tabela 06. Preenchimento obrigatório se {tpLocal} = [2].</td>
+            <td width="200px"><b>{% if s2210_evtcat.pais or s2210_evtcat.pais == 0 %}{{ s2210_evtcat.pais }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_evtcat.codpostal|validacoes_esocial_efdreinf:"s2210_evtcat.codpostal" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codPostal</td>
+            <td width="500px">Código de Endereçamento PostalValidação: Só preencher se {tpLocal} = [2].</td>
+            <td width="200px"><b>{% if s2210_evtcat.codpostal or s2210_evtcat.codpostal == 0 %}{{ s2210_evtcat.codpostal }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                <a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">parteAtingida</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.</td>
+        </tr>
+    {% for s2210_parteatingida in s2210_parteatingida_lista %}
+    {% ifequal s2210_parteatingida.s2210_evtcat.id s2210_evtcat.id %}
+        <tr {% if s2210_parteatingida.codparteating|validacoes_esocial_efdreinf:"s2210_parteatingida.codparteating" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codParteAting</td>
+            <td width="500px">Preencher com o código correspondente a parte atingida, conforme tabela 13</td>
+            <td width="200px"><b>{% if s2210_parteatingida.codparteating or s2210_parteatingida.codparteating == 0 %}{{ s2210_parteatingida.codparteating|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_parteatingida_visualizar' %}
+                <a href="{% url 's2210_parteatingida_salvar'  hash='{}'|json_id:s2210_parteatingida.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_parteatingida.lateralidade|validacoes_esocial_efdreinf:"s2210_parteatingida.lateralidade" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">lateralidade</td>
+            <td width="500px">Preencher com:0 - Não aplicável;1 - Esquerda;2 - Direita;3 - Ambas.Nos casos de órgãos bilaterais, ou seja, que se situam dos lados do corpo, assinalar o lado (direito ou esquerdo). Exemplo: no caso do órgão atingido ser uma perna, apontar qual foi a atingida, se a perna direita, se a perna esquerda, ou se ambas. Se o órgão atingido é único, como por exemplo, a cabeça, assinalar este campo como não aplicável.Valores Válidos: 0, 1, 2, 3.</td>
+            <td width="200px"><b>{% if s2210_parteatingida.lateralidade or s2210_parteatingida.lateralidade == 0 %}{{ s2210_parteatingida.lateralidade|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_parteatingida_visualizar' %}
+                <a href="{% url 's2210_parteatingida_salvar'  hash='{}'|json_id:s2210_parteatingida.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">agenteCausador</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento do(s) agente(s) causador(es) do acidente de trabalho.</td>
+        </tr>
+    {% for s2210_agentecausador in s2210_agentecausador_lista %}
+    {% ifequal s2210_agentecausador.s2210_evtcat.id s2210_evtcat.id %}
+        <tr {% if s2210_agentecausador.codagntcausador|validacoes_esocial_efdreinf:"s2210_agentecausador.codagntcausador" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codAgntCausador</td>
+            <td width="500px">Preencher com o código correspondente ao agente causador do acidente, conforme tabelas 14 ou 15Validação: Deve ser um código válido, existente em uma das tabelas 14 ou 15</td>
+            <td width="200px"><b>{% if s2210_agentecausador.codagntcausador or s2210_agentecausador.codagntcausador == 0 %}{{ s2210_agentecausador.codagntcausador|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_agentecausador_visualizar' %}
+                <a href="{% url 's2210_agentecausador_salvar'  hash='{}'|json_id:s2210_agentecausador.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">atestado</td>
+            <td bgcolor="lightgray" colspan="3">Atestado Médico</td>
+        </tr>
+    {% for s2210_atestado in s2210_atestado_lista %}
+    {% ifequal s2210_atestado.s2210_evtcat.id s2210_evtcat.id %}
+        <tr {% if s2210_atestado.codcnes|validacoes_esocial_efdreinf:"s2210_atestado.codcnes" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codCNES</td>
+            <td width="500px">Código da unidade de atendimento médico no Cadastro Nacional deEstabelecimento de Saúde.</td>
+            <td width="200px"><b>{% if s2210_atestado.codcnes or s2210_atestado.codcnes == 0 %}{{ s2210_atestado.codcnes }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_atestado_visualizar' %}
+                <a href="{% url 's2210_atestado_salvar'  hash='{}'|json_id:s2210_atestado.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_atestado.dtatendimento|validacoes_esocial_efdreinf:"s2210_atestado.dtatendimento" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtAtendimento</td>
+            <td width="500px">Data do atendimentoValidação: Deve ser uma data válida</td>
+            <td width="200px"><b>{% if s2210_atestado.dtatendimento or s2210_atestado.dtatendimento == 0 %}{{ s2210_atestado.dtatendimento|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_atestado_visualizar' %}
+                <a href="{% url 's2210_atestado_salvar'  hash='{}'|json_id:s2210_atestado.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_atestado.hratendimento|validacoes_esocial_efdreinf:"s2210_atestado.hratendimento" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">hrAtendimento</td>
+            <td width="500px">Hora do atendimentoValidação: Deve ser uma hora válida.</td>
+            <td width="200px"><b>{% if s2210_atestado.hratendimento or s2210_atestado.hratendimento == 0 %}{{ s2210_atestado.hratendimento }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_atestado_visualizar' %}
+                <a href="{% url 's2210_atestado_salvar'  hash='{}'|json_id:s2210_atestado.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_atestado.indinternacao|validacoes_esocial_efdreinf:"s2210_atestado.indinternacao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indInternacao</td>
+            <td width="500px">Indicativo de Internação: S - Sim;N - Não.Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2210_atestado.indinternacao or s2210_atestado.indinternacao == 0 %}{{ s2210_atestado.indinternacao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_atestado_visualizar' %}
+                <a href="{% url 's2210_atestado_salvar'  hash='{}'|json_id:s2210_atestado.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_atestado.durtrat|validacoes_esocial_efdreinf:"s2210_atestado.durtrat" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">durTrat</td>
+            <td width="500px">Duração estimada do tratamento, em dias.</td>
+            <td width="200px"><b>{% if s2210_atestado.durtrat or s2210_atestado.durtrat == 0 %}{{ s2210_atestado.durtrat|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_atestado_visualizar' %}
+                <a href="{% url 's2210_atestado_salvar'  hash='{}'|json_id:s2210_atestado.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_atestado.indafast|validacoes_esocial_efdreinf:"s2210_atestado.indafast" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indAfast</td>
+            <td width="500px">Indicativo do afastamento: S - Sim;N - Não.Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2210_atestado.indafast or s2210_atestado.indafast == 0 %}{{ s2210_atestado.indafast }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_atestado_visualizar' %}
+                <a href="{% url 's2210_atestado_salvar'  hash='{}'|json_id:s2210_atestado.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_atestado.dsclesao|validacoes_esocial_efdreinf:"s2210_atestado.dsclesao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscLesao</td>
+            <td width="500px">Preencher com a descrição da natureza da lesão, conforme tabela 17. Validação: Se informado, deve ser um código existente na tabela 17.</td>
+            <td width="200px"><b>{% if s2210_atestado.dsclesao or s2210_atestado.dsclesao == 0 %}{{ s2210_atestado.dsclesao|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_atestado_visualizar' %}
+                <a href="{% url 's2210_atestado_salvar'  hash='{}'|json_id:s2210_atestado.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_atestado.dsccomplesao|validacoes_esocial_efdreinf:"s2210_atestado.dsccomplesao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscCompLesao</td>
+            <td width="500px">Descrição complementar da lesão</td>
+            <td width="200px"><b>{% if s2210_atestado.dsccomplesao or s2210_atestado.dsccomplesao == 0 %}{{ s2210_atestado.dsccomplesao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_atestado_visualizar' %}
+                <a href="{% url 's2210_atestado_salvar'  hash='{}'|json_id:s2210_atestado.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_atestado.diagprovavel|validacoes_esocial_efdreinf:"s2210_atestado.diagprovavel" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">diagProvavel</td>
+            <td width="500px">Diagnóstico Provável</td>
+            <td width="200px"><b>{% if s2210_atestado.diagprovavel or s2210_atestado.diagprovavel == 0 %}{{ s2210_atestado.diagprovavel }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_atestado_visualizar' %}
+                <a href="{% url 's2210_atestado_salvar'  hash='{}'|json_id:s2210_atestado.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_atestado.codcid|validacoes_esocial_efdreinf:"s2210_atestado.codcid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codCID</td>
+            <td width="500px">Informar o código na tabela de Classificação Internacional de Doenças - CID. Validação: Deve ser preenchido com caracteres alfanuméricos conforme opções constantes na tabela CID.</td>
+            <td width="200px"><b>{% if s2210_atestado.codcid or s2210_atestado.codcid == 0 %}{{ s2210_atestado.codcid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_atestado_visualizar' %}
+                <a href="{% url 's2210_atestado_salvar'  hash='{}'|json_id:s2210_atestado.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_atestado.observacao|validacoes_esocial_efdreinf:"s2210_atestado.observacao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">observacao</td>
+            <td width="500px">Observação</td>
+            <td width="200px"><b>{% if s2210_atestado.observacao or s2210_atestado.observacao == 0 %}{{ s2210_atestado.observacao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_atestado_visualizar' %}
+                <a href="{% url 's2210_atestado_salvar'  hash='{}'|json_id:s2210_atestado.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">emitente</td>
+            <td bgcolor="lightgray" colspan="3">Médico/Dentista que emitiu o atestado</td>
+        </tr>
+
+        <tr {% if s2210_atestado.nmemit|validacoes_esocial_efdreinf:"s2210_atestado.nmemit" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmEmit</td>
+            <td width="500px">Nome do médico/dentista que emitiu o atestado.</td>
+            <td width="200px"><b>{% if s2210_atestado.nmemit or s2210_atestado.nmemit == 0 %}{{ s2210_atestado.nmemit }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_atestado_visualizar' %}
+                <a href="{% url 's2210_atestado_salvar'  hash='{}'|json_id:s2210_atestado.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_atestado.ideoc|validacoes_esocial_efdreinf:"s2210_atestado.ideoc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">ideOC</td>
+            <td width="500px">Órgão de classe:1 - Conselho Regional de Medicina (CRM);2 - Conselho Regional de Odontologia (CRO);3 - Registro do Ministério da Saúde (RMS). Valores Válidos: 1, 2, 3.</td>
+            <td width="200px"><b>{% if s2210_atestado.ideoc or s2210_atestado.ideoc == 0 %}{{ s2210_atestado.ideoc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_atestado_visualizar' %}
+                <a href="{% url 's2210_atestado_salvar'  hash='{}'|json_id:s2210_atestado.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_atestado.nroc|validacoes_esocial_efdreinf:"s2210_atestado.nroc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrOc</td>
+            <td width="500px">Número de Inscrição no órgão de classe</td>
+            <td width="200px"><b>{% if s2210_atestado.nroc or s2210_atestado.nroc == 0 %}{{ s2210_atestado.nroc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_atestado_visualizar' %}
+                <a href="{% url 's2210_atestado_salvar'  hash='{}'|json_id:s2210_atestado.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_atestado.ufoc|validacoes_esocial_efdreinf:"s2210_atestado.ufoc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">ufOC</td>
+            <td width="500px">Sigla da UF do órgão de classe.</td>
+            <td width="200px"><b>{% if s2210_atestado.ufoc or s2210_atestado.ufoc == 0 %}{{ s2210_atestado.ufoc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_atestado_visualizar' %}
+                <a href="{% url 's2210_atestado_salvar'  hash='{}'|json_id:s2210_atestado.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+     {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">catOrigem</td>
+            <td bgcolor="lightgray" colspan="3">Registro obrigatório que indica a CAT de origem, preenchido quando tratar-se de CAT de reabertura ou de comunicação de óbito.</td>
+        </tr>
+    {% for s2210_catorigem in s2210_catorigem_lista %}
+    {% ifequal s2210_catorigem.s2210_evtcat.id s2210_evtcat.id %}
+        <tr {% if s2210_catorigem.dtcatorig|validacoes_esocial_efdreinf:"s2210_catorigem.dtcatorig" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtCatOrig</td>
+            <td width="500px">Informar a data da CAT de origem</td>
+            <td width="200px"><b>{% if s2210_catorigem.dtcatorig or s2210_catorigem.dtcatorig == 0 %}{{ s2210_catorigem.dtcatorig|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_catorigem_visualizar' %}
+                <a href="{% url 's2210_catorigem_salvar'  hash='{}'|json_id:s2210_catorigem.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2210_catorigem.nrcatorig|validacoes_esocial_efdreinf:"s2210_catorigem.nrcatorig" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrCatOrig</td>
+            <td width="500px">Informar o número da CAT de origem, quando tratar-se de CAT de reabertura ou de comunicação de óbito.Validação: Preenchimento obrigatório se {dtCatOrig} seja igual ou posteriorao início de vigência do eSocial para o contribuinte.Se informado, deve corresponder ao número do recibo do arquivo relativo à CAT informada anteriormente, pertencente ao mesmo trabalhador.</td>
+            <td width="200px"><b>{% if s2210_catorigem.nrcatorig or s2210_catorigem.nrcatorig == 0 %}{{ s2210_catorigem.nrcatorig }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2210_catorigem_visualizar' %}
+                <a href="{% url 's2210_catorigem_salvar'  hash='{}'|json_id:s2210_catorigem.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %} {% endifequal %}{% endfor %}
+</table>
+{% if not for_print %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %} 
+
+        </div>
+      </div>
+    </section>
+{% endif %}  
+
+{% endblock content %}

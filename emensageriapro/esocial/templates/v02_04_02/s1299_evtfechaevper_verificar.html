@@ -1,0 +1,502 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
+{% if not for_print %}
+
+    <section class="content-header">
+      <h1>
+        S-1299 - Fechamento dos Eventos Periódicos
+        <small>Verificações</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">S-1299 - Fechamento dos Eventos Periódicos</a></li>
+        <li class="active">Verificar</li>
+      </ol>
+    </section>
+    <section class="content">
+
+        {% if messages %}
+                <div class="pad margin no-print">
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+                </div>
+        {% endif %}
+
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">S-1299 - Fechamento dos Eventos Periódicos<br>Identidade: {{ s1299_evtfechaevper.identidade }}</h3>
+              <div class="text-right">
+                <a href="{% url 's1299_evtfechaevper_verificar' hash='{}'|json_id:s1299_evtfechaevper_id|json_print:1|base64_encode_me %}" target="_blank">
+                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
+                </a>
+
+
+
+                  <div class="btn-group">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="text-left"><a
+                                            href="{% url 's1299_evtfechaevper_verificar' hash='{}'|json_id:s1299_evtfechaevper_id|json_print:2|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
+                                    <li class="text-left"><a
+                                            href="{% url 's1299_evtfechaevper_verificar' hash='{}'|json_id:s1299_evtfechaevper_id|json_print:3|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
+                                    <!--<li class="text-left"><a
+                                            href="{% url 's1299_evtfechaevper_verificar' hash='{}'|json_id:s1299_evtfechaevper_id|json_print:4|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
+                                </ul>
+                            </div>&nbsp;
+
+              </div>              
+            </div>
+            <div class="box-body">
+{% else %} 
+   <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            S-1299 - Fechamento dos Eventos Periódicos<br>Identidade: {{ s1299_evtfechaevper.identidade }}
+            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+{% endif %} 
+
+
+
+
+      <h4>Layout</h4>
+
+
+
+
+<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
+              
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtFechaEvPer</td>
+            <td bgcolor="lightgray" colspan="3">Evento de Fechamento Regras de validação: REGRA_EXISTE_INFO_EMPREGADOR REGRA_TABESTAB_VALIDA_GILRAT REGRA_VALIDA_EMPREGADOR REGRA_VALIDA_FAP REGRA_VALIDA_FECHAMENTO_FOPAG</td>
+        </tr>
+    {% for s1299_evtfechaevper in s1299_evtfechaevper_lista %}
+    {% ifequal 1 1 %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do evento</td>
+        </tr>
+
+        <tr {% if s1299_evtfechaevper.indapuracao|validacoes_esocial_efdreinf:"s1299_evtfechaevper.indapuracao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indApuracao</td>
+            <td width="500px">Indicativo de período de apuração:1 - Mensal;2 - Anual (13° salário). Valores Válidos: 1, 2</td>
+            <td width="200px"><b>{% if s1299_evtfechaevper.indapuracao or s1299_evtfechaevper.indapuracao == 0 %}{{ s1299_evtfechaevper.indapuracao|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1299_evtfechaevper_visualizar' %}
+                <a href="{% url 's1299_evtfechaevper_salvar'  hash='{}'|json_id:s1299_evtfechaevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1299_evtfechaevper.perapur|validacoes_esocial_efdreinf:"s1299_evtfechaevper.perapur" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">perApur</td>
+            <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência das informações, se{indApuracao} for igual a [1], ou apenas o ano (formato AAAA), se{indApuracao} for igual a [2]Validação: Deve ser um mês/ano ou ano válido, igual ou posterior àimplementação do eSocial.</td>
+            <td width="200px"><b>{% if s1299_evtfechaevper.perapur or s1299_evtfechaevper.perapur == 0 %}{{ s1299_evtfechaevper.perapur }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1299_evtfechaevper_visualizar' %}
+                <a href="{% url 's1299_evtfechaevper_salvar'  hash='{}'|json_id:s1299_evtfechaevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1299_evtfechaevper.tpamb|validacoes_esocial_efdreinf:"s1299_evtfechaevper.tpamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAmb</td>
+            <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s1299_evtfechaevper.tpamb or s1299_evtfechaevper.tpamb == 0 %}{{ s1299_evtfechaevper.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1299_evtfechaevper_visualizar' %}
+                <a href="{% url 's1299_evtfechaevper_salvar'  hash='{}'|json_id:s1299_evtfechaevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1299_evtfechaevper.procemi|validacoes_esocial_efdreinf:"s1299_evtfechaevper.procemi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">procEmi</td>
+            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="200px"><b>{% if s1299_evtfechaevper.procemi or s1299_evtfechaevper.procemi == 0 %}{{ s1299_evtfechaevper.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1299_evtfechaevper_visualizar' %}
+                <a href="{% url 's1299_evtfechaevper_salvar'  hash='{}'|json_id:s1299_evtfechaevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1299_evtfechaevper.verproc|validacoes_esocial_efdreinf:"s1299_evtfechaevper.verproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">verProc</td>
+            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
+            <td width="200px"><b>{% if s1299_evtfechaevper.verproc or s1299_evtfechaevper.verproc == 0 %}{{ s1299_evtfechaevper.verproc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1299_evtfechaevper_visualizar' %}
+                <a href="{% url 's1299_evtfechaevper_salvar'  hash='{}'|json_id:s1299_evtfechaevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+        </tr>
+
+        <tr {% if s1299_evtfechaevper.tpinsc|validacoes_esocial_efdreinf:"s1299_evtfechaevper.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5 Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
+            <td width="200px"><b>{% if s1299_evtfechaevper.tpinsc or s1299_evtfechaevper.tpinsc == 0 %}{{ s1299_evtfechaevper.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1299_evtfechaevper_visualizar' %}
+                <a href="{% url 's1299_evtfechaevper_salvar'  hash='{}'|json_id:s1299_evtfechaevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1299_evtfechaevper.nrinsc|validacoes_esocial_efdreinf:"s1299_evtfechaevper.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido.Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s1299_evtfechaevper.nrinsc or s1299_evtfechaevper.nrinsc == 0 %}{{ s1299_evtfechaevper.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1299_evtfechaevper_visualizar' %}
+                <a href="{% url 's1299_evtfechaevper_salvar'  hash='{}'|json_id:s1299_evtfechaevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideRespInf</td>
+            <td bgcolor="lightgray" colspan="3">Responsável pelas informações</td>
+        </tr>
+    {% for s1299_iderespinf in s1299_iderespinf_lista %}
+    {% ifequal s1299_iderespinf.s1299_evtfechaevper.id s1299_evtfechaevper.id %}
+        <tr {% if s1299_iderespinf.nmresp|validacoes_esocial_efdreinf:"s1299_iderespinf.nmresp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmResp</td>
+            <td width="500px">Nome do responsável pelas informações.</td>
+            <td width="200px"><b>{% if s1299_iderespinf.nmresp or s1299_iderespinf.nmresp == 0 %}{{ s1299_iderespinf.nmresp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1299_iderespinf_visualizar' %}
+                <a href="{% url 's1299_iderespinf_salvar'  hash='{}'|json_id:s1299_iderespinf.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1299_iderespinf.cpfresp|validacoes_esocial_efdreinf:"s1299_iderespinf.cpfresp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfResp</td>
+            <td width="500px">Preencher com o CPF do responsávelValidação: Deve ser um número de CPF válido.</td>
+            <td width="200px"><b>{% if s1299_iderespinf.cpfresp or s1299_iderespinf.cpfresp == 0 %}{{ s1299_iderespinf.cpfresp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1299_iderespinf_visualizar' %}
+                <a href="{% url 's1299_iderespinf_salvar'  hash='{}'|json_id:s1299_iderespinf.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1299_iderespinf.telefone|validacoes_esocial_efdreinf:"s1299_iderespinf.telefone" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">telefone</td>
+            <td width="500px">Informar o número do telefone, com DDD.Validação: Deve conter apenas números, com o mínimo de dez dígitos.</td>
+            <td width="200px"><b>{% if s1299_iderespinf.telefone or s1299_iderespinf.telefone == 0 %}{{ s1299_iderespinf.telefone }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1299_iderespinf_visualizar' %}
+                <a href="{% url 's1299_iderespinf_salvar'  hash='{}'|json_id:s1299_iderespinf.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1299_iderespinf.email|validacoes_esocial_efdreinf:"s1299_iderespinf.email" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">email</td>
+            <td width="500px">Endereço eletrônicoValidação: O e-mail deve possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do@ e não pode estar no fim do e-mail.</td>
+            <td width="200px"><b>{% if s1299_iderespinf.email or s1299_iderespinf.email == 0 %}{{ s1299_iderespinf.email }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1299_iderespinf_visualizar' %}
+                <a href="{% url 's1299_iderespinf_salvar'  hash='{}'|json_id:s1299_iderespinf.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoFech</td>
+            <td bgcolor="lightgray" colspan="3">Informações do Fechamento</td>
+        </tr>
+
+        <tr {% if s1299_evtfechaevper.evtremun|validacoes_esocial_efdreinf:"s1299_evtfechaevper.evtremun" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">evtRemun</td>
+            <td width="500px">Possui informações relativas remuneração de trabalhadores no período de apuração?S - Sim; N - Não.Validação: Se for igual a [S], deve existir evento de remuneração (S-1200, S-2299 ou S-2399) enviado para o período de apuração. Caso contrário, não deve existir evento de remuneração para o período de apuração.Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s1299_evtfechaevper.evtremun or s1299_evtfechaevper.evtremun == 0 %}{{ s1299_evtfechaevper.evtremun }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1299_evtfechaevper_visualizar' %}
+                <a href="{% url 's1299_evtfechaevper_salvar'  hash='{}'|json_id:s1299_evtfechaevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1299_evtfechaevper.evtpgtos|validacoes_esocial_efdreinf:"s1299_evtfechaevper.evtpgtos" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">evtPgtos</td>
+            <td width="500px">Possui informações de pagamento de rendimentos do trabalho no período de apuração?Validação: Se for igual a [S], deve existir o evento S-1210 enviado para o período de apuração. Caso contrário, não deve existir o evento.Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s1299_evtfechaevper.evtpgtos or s1299_evtfechaevper.evtpgtos == 0 %}{{ s1299_evtfechaevper.evtpgtos }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1299_evtfechaevper_visualizar' %}
+                <a href="{% url 's1299_evtfechaevper_salvar'  hash='{}'|json_id:s1299_evtfechaevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1299_evtfechaevper.evtaqprod|validacoes_esocial_efdreinf:"s1299_evtfechaevper.evtaqprod" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">evtAqProd</td>
+            <td width="500px">Possui informações sobre a aquisição de produto rural de pessoas físicas? S - Sim;N - Não.Validação: Se for igual a [S], deve existir o evento S-1250 para o período de apuração. Caso contrário, não deve existir o evento.Valores Válidos: S, N</td>
+            <td width="200px"><b>{% if s1299_evtfechaevper.evtaqprod or s1299_evtfechaevper.evtaqprod == 0 %}{{ s1299_evtfechaevper.evtaqprod }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1299_evtfechaevper_visualizar' %}
+                <a href="{% url 's1299_evtfechaevper_salvar'  hash='{}'|json_id:s1299_evtfechaevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1299_evtfechaevper.evtcomprod|validacoes_esocial_efdreinf:"s1299_evtfechaevper.evtcomprod" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">evtComProd</td>
+            <td width="500px">Possui informações de comercialização de produção? S - Sim;N - Não.Validação: Se for igual a [S], deve existir o evento S-1260 no período de apuração. Caso contrário, não deve existir o eventoValores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s1299_evtfechaevper.evtcomprod or s1299_evtfechaevper.evtcomprod == 0 %}{{ s1299_evtfechaevper.evtcomprod }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1299_evtfechaevper_visualizar' %}
+                <a href="{% url 's1299_evtfechaevper_salvar'  hash='{}'|json_id:s1299_evtfechaevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1299_evtfechaevper.evtcontratavnp|validacoes_esocial_efdreinf:"s1299_evtfechaevper.evtcontratavnp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">evtContratAvNP</td>
+            <td width="500px">Contratou, por intermédio de sindicato, serviços de trabalhadores avulsos não portuários?S - Sim;N - Não.Validação: Se for igual a [S], deve existir evento transmitido para o período de apuração, relativo a "contratação de avulsos não portuários" (S-1270). Caso contrário o evento não deve existir.Valores Válidos: S, N</td>
+            <td width="200px"><b>{% if s1299_evtfechaevper.evtcontratavnp or s1299_evtfechaevper.evtcontratavnp == 0 %}{{ s1299_evtfechaevper.evtcontratavnp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1299_evtfechaevper_visualizar' %}
+                <a href="{% url 's1299_evtfechaevper_salvar'  hash='{}'|json_id:s1299_evtfechaevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1299_evtfechaevper.evtinfocomplper|validacoes_esocial_efdreinf:"s1299_evtfechaevper.evtinfocomplper" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">evtInfoComplPer</td>
+            <td width="500px">Possui informações de desoneração de folha de pagamento ou, sendo empresa enquadrada no Simples, possui informações sobre a receita obtida em atividades cuja contribuição previdenciária incidente sobre a folha de pagamento é concomitantemente substituída e também não substituída? Validação: Se for igual a [S], deve existir o evento S-1280 para o mesmo período de apuração. Caso contrário, não deve existir o evento.Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s1299_evtfechaevper.evtinfocomplper or s1299_evtfechaevper.evtinfocomplper == 0 %}{{ s1299_evtfechaevper.evtinfocomplper }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1299_evtfechaevper_visualizar' %}
+                <a href="{% url 's1299_evtfechaevper_salvar'  hash='{}'|json_id:s1299_evtfechaevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1299_evtfechaevper.compsemmovto|validacoes_esocial_efdreinf:"s1299_evtfechaevper.compsemmovto" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">compSemMovto</td>
+            <td width="500px">Informar a primeira competência a partir da qual não houve movimento, cuja situação perdura até a competência atual.Validação: Preenchimento obrigatório se todos os campos a seguir mencionados forem preenchidos com [N]: {evtRemun}, {evtPgtos},{evtAqProd}, {evtComProd}, {evtContratAvNP}, {evtInfoComplPer}.</td>
+            <td width="200px"><b>{% if s1299_evtfechaevper.compsemmovto or s1299_evtfechaevper.compsemmovto == 0 %}{{ s1299_evtfechaevper.compsemmovto }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1299_evtfechaevper_visualizar' %}
+                <a href="{% url 's1299_evtfechaevper_salvar'  hash='{}'|json_id:s1299_evtfechaevper.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ {% endifequal %}{% endfor %}
+</table>
+{% if not for_print %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %} 
+
+        </div>
+      </div>
+    </section>
+{% endif %}  
+
+{% endblock content %}

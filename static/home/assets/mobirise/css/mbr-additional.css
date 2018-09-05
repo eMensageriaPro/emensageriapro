@@ -1,0 +1,112 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(https://fonts.googleapis.com/css?family=Lora:400,700);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,300,700);
+
+
+
+#menu-0 .hide-buttons .nav-btn {
+  display: none !important;
+}
+#menu-0 .navbar-caption {
+  color: #ffffff;
+}
+#menu-0 .navbar-toggler {
+  color: #ffffff;
+}
+#menu-0 .link,
+#menu-0 .dropdown-item {
+  color: #ffffff;
+}
+#menu-0 .link {
+  font-size: 0.75rem;
+}
+#menu-0 .dropdown-item,
+#menu-0 .nav-dropdown-sm .link {
+  font-size: 0.812rem;
+}
+#menu-0 .link:hover,
+#menu-0 .dropdown-item:hover,
+#menu-0 .link:focus,
+#menu-0 .dropdown-item:focus {
+  color: #c0a375;
+}
+#menu-0 .link[aria-expanded="true"],
+#menu-0 .dropdown-menu {
+  background: #0e0e0e;
+}
+#menu-0 .nav-dropdown-sm .link:focus,
+#menu-0 .nav-dropdown-sm .link:hover,
+#menu-0 .nav-dropdown-sm .dropdown-item:focus,
+#menu-0 .nav-dropdown-sm .dropdown-item:hover {
+  background: #202020!important;
+}
+#menu-0 .navbar,
+#menu-0 .nav-dropdown-sm,
+#menu-0 .nav-dropdown-sm .link[aria-expanded="true"],
+#menu-0 .nav-dropdown-sm .dropdown-menu {
+  background: #282828;
+}
+#menu-0 .bg-color.transparent .link {
+  color: #ffffff;
+  transition: none;
+}
+#menu-0 .bg-color.transparent.opened .link {
+  transition: color 0.2s ease-in-out;
+}
+#menu-0 .bg-color.transparent.opened .link:hover,
+#menu-0 .bg-color.transparent.opened .link:focus {
+  color: #c0a375;
+}
+#menu-0 .link[aria-expanded="true"],
+#menu-0 .dropdown-item[aria-expanded="true"] {
+  color: #c0a375!important;
+}
+#menu-0.mbr-navbar--stuck .mbr-navbar__section {
+  background: #2c2c2c;
+}
+#menu-0 .mbr-navbar__hamburger {
+  color: #ffffff;
+}
+#menu-0 .close-icon::before,
+#menu-0 .close-icon::after {
+  background-color: #ffffff;
+}
+#index-pricing-table2-0 .mbr-plan-header,
+#index-pricing-table2-0 .mbr-plan-body {
+  background-color: #f4f4f4;
+}
+#index-pricing-table2-0 ul,
+#index-pricing-table2-0 .mbr-plan-title,
+#index-pricing-table2-0 .mbr-price-value,
+#index-pricing-table2-0 .mbr-price-figure,
+#index-pricing-table2-0 .mbr-price-term {
+  color: #28262b;
+}
+#index-pricing-table2-0 .mbr-plan {
+  border-color: #e8e8e8;
+}
+#index-pricing-table2-0 .mbr-plan .list-group-item {
+  border-color: #cfcfcf;
+}
+#index-pricing-table2-0 .mbr-price-term {
+  font-size: 20px;
+}
+#index-pricing-table2-0 .mbr-price-value {
+  font-size: 20px;
+}
+#index-pricing-table2-0 .mbr-price-figure {
+  font-size: 46px;
+}
+#index-header3-0 .mbr-section-title,
+#index-header3-0 .mbr-section-subtitle {
+  text-align: center;
+}
+#index-header3-0 SMALL {
+  color: #efefef;
+}
+#index-form1-0 .form-control-label {
+  color: #232323;
+}
+#index-form1-0 .mbr-section-title {
+  font-size: 36px;
+}

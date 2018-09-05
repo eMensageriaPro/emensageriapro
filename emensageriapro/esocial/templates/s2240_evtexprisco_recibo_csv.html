@@ -1,0 +1,153 @@
+{% load templatetags %}
+"Recibo do S-2240 - Condições Ambientais do Trabalho - Fatores de Risco"
+"Gerado em {{ data|date:"SHORT_DATE_FORMAT" }} por {{ usuario.nome }}"
+
+"Identificação"
+
+"Identidade";"{{ s2240_evtexprisco.identidade }}"
+"Versão do XML";"{{ s2240_evtexprisco.get_versao_display }}"
+"Tipo de Ambiente";"{{ s2240_evtexprisco.get_tpamb_display }}"
+
+"Processo de Emissão"
+"Processo";"{{ s2240_evtexprisco.get_procemi_display }}"
+"Versão";"{{ s2240_evtexprisco.verproc }}"
+
+"Empregador"
+"Tipo de Inscrição";"{{ s2240_evtexprisco.get_tpinsc_display }}"
+"Número de Inscrição";"{{ s2240_evtexprisco.nrinsc }}"
+
+"Recepção"
+"Tipo de Ambiente";"{% if retorno.tp_amb %}{{ retorno.get_recepcao_tp_amb_display }}{% else %}-{% endif %}"
+"Data/Hora";"{% if retorno.recepcao_data_hora %}{{ retorno.recepcao_data_hora }}{% else %}-{% endif %}"
+"Versão do Aplicativo";"{% if retorno.recepcao_versao_app %}{{ retorno.recepcao_versao_app }}{% else %}-{% endif %}"
+"Protocolo do Lote";"{% if retorno.recepcao_protocolo_envio_lote %}{{ retorno.recepcao_protocolo_envio_lote }}{% else %}-{% endif %}"
+
+"Processamento"
+"Código";"{% if retorno.processamento_codigo_resposta %}{{ retorno.processamento_codigo_resposta }}{% else %}-{% endif %}"
+"Descrição";"{% if retorno.processamento_descricao_resposta %}{{ retorno.processamento_descricao_resposta }}{% else %}-{% endif %}"
+"Versão do Aplicativo";"{% if retorno.processamento_versao_app_processamento %}{{ retorno.processamento_versao_app_processamento }}{% else %}-{% endif %}"
+"Data/Hora";"{% if retorno.processamento_data_hora %}{{ retorno.processamento_data_hora }}{% else %}-{% endif %}"
+
+"Recibo"
+"Número";"{% if retorno.recibo_numero %}{{ retorno.recibo_numero }}{% else %}-{% endif %}"
+"Hash";"{% if retorno.recibo_hash %}{{ retorno.recibo_hash }}{% else %}-{% endif %}"
+
+
+{% if retorno.cpftrab or retorno.nistrab or retorno.nmtrab %}
+"Trabalhador"
+"CPF:";"{% if retorno.cpftrab %}{{ retorno.cpftrab }}{% else %}-{% endif %}"
+"NIS:";"{% if retorno.nistrab %}{{ retorno.nistrab }}{% else %}-{% endif %}"
+"Nome:";{% if retorno.nmtrab %}{{ retorno.nmtrab }}{% else %}-{% endif %}"
+{% endif %}
+
+{% if retorno.infocota %}
+"Deficiência"
+"Informação de Cota:";"{% if retorno.infocota %}{{ retorno.get_infocota_display }}{% else %}-{% endif %}"
+{% endif %}
+
+
+{% if retorno.matricula %}
+"Vínculo"
+"Matricula:";"{% if retorno.matricula %}{{ retorno.matricula }}{% else %}-{% endif %}"
+{% endif %}
+
+
+{% if retorno.dtadm or retorno.tpregjor or retorno.dtbase or retorno.cnpjsindcategprof  %}
+"Informação de Celetista"
+"Data de Admissão:";"{% if retorno.matricula %}{{ retorno.dtadm }}{% else %}-{% endif %}"
+"Tipo de Regime de Jornada:";"{% if retorno.tpregjor %}{{ retorno.get_tpregjor_display }}{% else %}-{% endif %}"
+"Data Base:";"{% if retorno.dtbase %}{{ retorno.dtbase }}{% else %}-{% endif %}"
+"CNPJ Sindicato:";"{% if retorno.cnpjsindcategprof %}{{ retorno.cnpjsindcategprof }}{% else %}-{% endif %}"
+{% endif %}
+
+
+{% if retorno.dtposse or retorno.dtexercicio %}
+"Informação de Estatutário"
+"Data de Posse:";"{% if retorno.dtposse %}{{ retorno.dtposse }}{% else %}-{% endif %}"
+"Data de Exercício:";"{% if retorno.dtexercicio %}{{ retorno.dtexercicio }}{% else %}-{% endif %}"
+{% endif %}
+
+
+{% if retorno.codcargo or retorno.nmcargo or retorno.codcbocargo  %}
+"Informação de Cargos"
+"Código:";"{% if retorno.codcargo %}{{ retorno.codcargo }}{% else %}-{% endif %}"
+"Nome:";"{% if retorno.nmcargo %}{{ retorno.nmcargo }}{% else %}-{% endif %}"
+"CBO:";"{% if retorno.codcbocargo %}{{ retorno.codcbocargo }}{% else %}-{% endif %}"
+{% endif %}
+
+
+{% if retorno.codfuncao or retorno.dscfuncao or retorno.codcbofuncao  %}
+"Informação de Funções"
+"Código:";"{% if retorno.codfuncao %}{{ retorno.codfuncao }}{% else %}-{% endif %}"
+"Descrição:";"{% if retorno.dscfuncao %}{{ retorno.dscfuncao }}{% else %}-{% endif %}"
+"CBO:";"{% if retorno.codcbofuncao %}{{ retorno.codcbofuncao }}{% else %}-{% endif %}"
+{% endif %}
+
+
+{% if retorno.codcateg %}
+"Categoria"
+"Código:";"{% if retorno.codcateg %}{{ retorno.codcateg }}{% else %}-{% endif %}"
+{% endif %}
+
+
+{% if retorno.vrsalfx or retorno.undsalfixo or retorno.dscsalvar  %}
+"Remuneração"
+"Valor do Salário Fixo:";"{% if retorno.vrsalfx %}{{ retorno.vrsalfx }}{% else %}-{% endif %}"
+"Unidade do Salário Fixo:";"{% if retorno.undsalfixo %}{{ retorno.get_undsalfixo_display }}{% else %}-{% endif %}"
+"Descrição do salário variável:";"{% if retorno.dscsalvar %}{{ retorno.dscsalvar }}{% else %}-{% endif %}"
+{% endif %}
+
+
+{% if retorno.tpcontr or retorno.dtterm or retorno.clauasseg  %}
+"Duração"
+"Tipo de Contrato:";"{% if retorno.tpcontr %}{{ retorno.get_tpcontr_display }}{% else %}-{% endif %}"
+"Data de Término:";"{% if retorno.dtterm %}{{ retorno.dtterm }}{% else %}-{% endif %}"
+"Clausula Asseguratória:";"{% if retorno.clauasseg %}{{ retorno.clauasseg }}{% else %}-{% endif %}"
+{% endif %}
+
+
+{% if retorno.local_tpinsc or retorno.local_nrinsc or retorno.local_cnae or retorno.local_cnae %}
+"Local de Trabalho Geral"
+"Tipo de Inscrição:";"{% if retorno.local_tpinsc %}{{ retorno.get_local_tpinsc_display }}{% else %}-{% endif %}"
+"Número de Inscrição:";"{% if retorno.local_nrinsc %}{{ retorno.local_nrinsc }}{% else %}-{% endif %}"
+"CNAE:";"{% if retorno.local_cnae %}{{ retorno.local_cnae }}{% else %}-{% endif %}"
+{% endif %}
+
+
+{% if retorno.qtdhrssem or retorno.tpjornada or retorno.dsctpjorn or retorno.tmpparc %}
+"Horários Contratuais"
+"Quant. de horas semanais:";"{% if retorno.qtdhrssem %}{{ retorno.qtdhrssem }}{% else %}-{% endif %}"
+"Tipo de jornada:";"{% if retorno.tpjornada %}{{ retorno.get_tpjornada_display }}{% else %}-{% endif %}"
+"Descrição do tipo de jornada:";"{% if retorno.dsctpjorn %}{{ retorno.dsctpjorn }}{% else %}-{% endif %}"
+"Contrato em tempo parcial:";"{% if retorno.tmpparc %}{{ retorno.get_tmpparc_display }}{% else %}-{% endif %}"
+{% endif %}
+
+
+{% if retorno_horarios %}
+"Horários de Trabalho"
+{% for h in retorno_horarios %}
+"Dia:";"{% if retorno.dia %}{{ retorno.get_dia_display }}{% else %}-{% endif %}"
+"Código do Horário Contratual:";"{% if retorno.codhorcontrat %}{{ retorno.codhorcontrat }}{% else %}-{% endif %}"
+"Hora de Entrada:";"{% if retorno.hrentr %}{{ retorno.hrentr }}{% else %}-{% endif %}"
+"Hora de Saída:";"{% if retorno.hrsaida %}{{ retorno.hrsaida }}{% else %}-{% endif %}"
+"Duração da jornada (min):";"{% if retorno.durjornada %}{{ retorno.durjornada }}{% else %}-{% endif %}"
+"Horário Flexivel:";"{% if retorno.perhorflexivel %}{{ retorno.get_perhorflexivel_display }}{% else %}-{% endif %}"
+
+{% for i in retorno_intervalos %}
+{% ifequal i.retornos_eventos_horarios_id h.id %}
+"Tipo de intervalo da jornada:";"{% if retorno.tpinterv %}{{ retorno.get_tpinterv_display }}{% else %}-{% endif %}"
+"Duração do intervalo (min):";"{% if retorno.durinterv %}{{ retorno.durinterv }}{% else %}-{% endif %}"
+"Hora de início:";"{% if retorno.iniinterv %}{{ retorno.iniinterv }}{% else %}-{% endif %}"
+"Hora de término:";"{% if retorno.terminterv %}{{ retorno.terminterv }}{% else %}-{% endif %}"
+{% endifequal %}
+{% endfor %}
+{% endfor %}
+{% endif %}
+
+"Ocorrências"
+"Tipo";"Código";"Descrição";"Localização"
+{% for a in retorno_ocorrencias %}
+"{{ a.get_tipo_display }}";"{{ a.codigo }}";"{{ a.descricao }}";"{{ a.localizacao }}"
+{% empty %}
+"Não foram registradas ocorrências para este evento!"
+{% endfor %}

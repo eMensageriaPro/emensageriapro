@@ -1,0 +1,755 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
+{% if not for_print %}
+
+    <section class="content-header">
+      <h1>
+        S-2220 - Monitoramento da Saúde do Trabalhador
+        <small>Verificações</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">S-2220 - Monitoramento da Saúde do Trabalhador</a></li>
+        <li class="active">Verificar</li>
+      </ol>
+    </section>
+    <section class="content">
+
+        {% if messages %}
+                <div class="pad margin no-print">
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+                </div>
+        {% endif %}
+
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">S-2220 - Monitoramento da Saúde do Trabalhador<br>Identidade: {{ s2220_evtmonit.identidade }}</h3>
+              <div class="text-right">
+                <a href="{% url 's2220_evtmonit_verificar' hash='{}'|json_id:s2220_evtmonit_id|json_print:1|base64_encode_me %}" target="_blank">
+                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
+                </a>
+
+
+
+                  <div class="btn-group">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="text-left"><a
+                                            href="{% url 's2220_evtmonit_verificar' hash='{}'|json_id:s2220_evtmonit_id|json_print:2|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
+                                    <li class="text-left"><a
+                                            href="{% url 's2220_evtmonit_verificar' hash='{}'|json_id:s2220_evtmonit_id|json_print:3|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
+                                    <!--<li class="text-left"><a
+                                            href="{% url 's2220_evtmonit_verificar' hash='{}'|json_id:s2220_evtmonit_id|json_print:4|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
+                                </ul>
+                            </div>&nbsp;
+
+              </div>              
+            </div>
+            <div class="box-body">
+{% else %} 
+   <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            S-2220 - Monitoramento da Saúde do Trabalhador<br>Identidade: {{ s2220_evtmonit.identidade }}
+            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+{% endif %} 
+
+
+
+
+      <h4>Layout</h4>
+
+
+
+
+<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
+              
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtMonit</td>
+            <td bgcolor="lightgray" colspan="3">Evento Monitoramento da Saúde do Trabalhador Regras de validação: REGRA_EVENTOS_EXTEMPREGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXISTE_CAT_OBITO_ANTERIOR REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXTEMP_REINTEGRACAO REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_TRABALHADOR_BASE_CNIS</td>
+        </tr>
+    {% for s2220_evtmonit in s2220_evtmonit_lista %}
+    {% ifequal 1 1 %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
+        </tr>
+
+        <tr {% if s2220_evtmonit.indretif|validacoes_esocial_efdreinf:"s2220_evtmonit.indretif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indRetif</td>
+            <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2220_evtmonit.indretif or s2220_evtmonit.indretif == 0 %}{{ s2220_evtmonit.indretif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_evtmonit_visualizar' %}
+                <a href="{% url 's2220_evtmonit_salvar'  hash='{}'|json_id:s2220_evtmonit.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_evtmonit.nrrecibo|validacoes_esocial_efdreinf:"s2220_evtmonit.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecibo</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2].Deve ser um recibo de entrega válido, correspondente ao arquivo que estásendo retificado.</td>
+            <td width="200px"><b>{% if s2220_evtmonit.nrrecibo or s2220_evtmonit.nrrecibo == 0 %}{{ s2220_evtmonit.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_evtmonit_visualizar' %}
+                <a href="{% url 's2220_evtmonit_salvar'  hash='{}'|json_id:s2220_evtmonit.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_evtmonit.tpamb|validacoes_esocial_efdreinf:"s2220_evtmonit.tpamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAmb</td>
+            <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2220_evtmonit.tpamb or s2220_evtmonit.tpamb == 0 %}{{ s2220_evtmonit.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_evtmonit_visualizar' %}
+                <a href="{% url 's2220_evtmonit_salvar'  hash='{}'|json_id:s2220_evtmonit.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_evtmonit.procemi|validacoes_esocial_efdreinf:"s2220_evtmonit.procemi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">procEmi</td>
+            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="200px"><b>{% if s2220_evtmonit.procemi or s2220_evtmonit.procemi == 0 %}{{ s2220_evtmonit.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_evtmonit_visualizar' %}
+                <a href="{% url 's2220_evtmonit_salvar'  hash='{}'|json_id:s2220_evtmonit.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_evtmonit.verproc|validacoes_esocial_efdreinf:"s2220_evtmonit.verproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">verProc</td>
+            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
+            <td width="200px"><b>{% if s2220_evtmonit.verproc or s2220_evtmonit.verproc == 0 %}{{ s2220_evtmonit.verproc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_evtmonit_visualizar' %}
+                <a href="{% url 's2220_evtmonit_salvar'  hash='{}'|json_id:s2220_evtmonit.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+        </tr>
+
+        <tr {% if s2220_evtmonit.tpinsc|validacoes_esocial_efdreinf:"s2220_evtmonit.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
+            <td width="200px"><b>{% if s2220_evtmonit.tpinsc or s2220_evtmonit.tpinsc == 0 %}{{ s2220_evtmonit.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_evtmonit_visualizar' %}
+                <a href="{% url 's2220_evtmonit_salvar'  hash='{}'|json_id:s2220_evtmonit.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_evtmonit.nrinsc|validacoes_esocial_efdreinf:"s2220_evtmonit.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido.Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2220_evtmonit.nrinsc or s2220_evtmonit.nrinsc == 0 %}{{ s2220_evtmonit.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_evtmonit_visualizar' %}
+                <a href="{% url 's2220_evtmonit_salvar'  hash='{}'|json_id:s2220_evtmonit.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideVinculo</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador e do Vínculo.</td>
+        </tr>
+
+        <tr {% if s2220_evtmonit.cpftrab|validacoes_esocial_efdreinf:"s2220_evtmonit.cpftrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfTrab</td>
+            <td width="500px">Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2220_evtmonit.cpftrab or s2220_evtmonit.cpftrab == 0 %}{{ s2220_evtmonit.cpftrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_evtmonit_visualizar' %}
+                <a href="{% url 's2220_evtmonit_salvar'  hash='{}'|json_id:s2220_evtmonit.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_evtmonit.nistrab|validacoes_esocial_efdreinf:"s2220_evtmonit.nistrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nisTrab</td>
+            <td width="500px">Preencher com o Número de Identificação Social - NIS, o qual pode ser oPIS, PASEP ou NIT.Validação: O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904].</td>
+            <td width="200px"><b>{% if s2220_evtmonit.nistrab or s2220_evtmonit.nistrab == 0 %}{{ s2220_evtmonit.nistrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_evtmonit_visualizar' %}
+                <a href="{% url 's2220_evtmonit_salvar'  hash='{}'|json_id:s2220_evtmonit.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_evtmonit.matricula|validacoes_esocial_efdreinf:"s2220_evtmonit.matricula" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">matricula</td>
+            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.Validação: A matrícula deve corresponder à informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista.Se o trabalhador não está sujeito a esse evento (S-2200), a matrícula não deveser informada, porém, o trabalhador deve ter sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300.</td>
+            <td width="200px"><b>{% if s2220_evtmonit.matricula or s2220_evtmonit.matricula == 0 %}{{ s2220_evtmonit.matricula }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_evtmonit_visualizar' %}
+                <a href="{% url 's2220_evtmonit_salvar'  hash='{}'|json_id:s2220_evtmonit.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">aso</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento das informações do ASO</td>
+        </tr>
+
+        <tr {% if s2220_evtmonit.dtaso|validacoes_esocial_efdreinf:"s2220_evtmonit.dtaso" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtAso</td>
+            <td width="500px">Data do Atestado de Saúde Ocupacional.</td>
+            <td width="200px"><b>{% if s2220_evtmonit.dtaso or s2220_evtmonit.dtaso == 0 %}{{ s2220_evtmonit.dtaso|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_evtmonit_visualizar' %}
+                <a href="{% url 's2220_evtmonit_salvar'  hash='{}'|json_id:s2220_evtmonit.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_evtmonit.tpaso|validacoes_esocial_efdreinf:"s2220_evtmonit.tpaso" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAso</td>
+            <td width="500px">Tipo de Atestado de Saúde Ocupacional emitido, conforme opções abaixo:0 - Admissional;1 - Periódico, conforme planejamento do PCMSO;2 - De retorno ao trabalho;3 - De mudança de função;4 - De monitoração pontual, não enquadrado nos casos anteriores;8 - Demissional.Valores Válidos: 0, 1, 2, 3, 4, 8.</td>
+            <td width="200px"><b>{% if s2220_evtmonit.tpaso or s2220_evtmonit.tpaso == 0 %}{{ s2220_evtmonit.tpaso|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_evtmonit_visualizar' %}
+                <a href="{% url 's2220_evtmonit_salvar'  hash='{}'|json_id:s2220_evtmonit.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_evtmonit.resaso|validacoes_esocial_efdreinf:"s2220_evtmonit.resaso" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">resAso</td>
+            <td width="500px">Resultado do ASO, conforme opções abaixo:1 - Apto;2 - Inapto.Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2220_evtmonit.resaso or s2220_evtmonit.resaso == 0 %}{{ s2220_evtmonit.resaso|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_evtmonit_visualizar' %}
+                <a href="{% url 's2220_evtmonit_salvar'  hash='{}'|json_id:s2220_evtmonit.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">exame</td>
+            <td bgcolor="lightgray" colspan="3">Registro que detalha os exames complementares porventura realizados pelo trabalhador em virtude do determinado no Quadro II da NR 07 do MTE, além de outros solicitados pelo médico e os referentes ao ASO. O não preenchimento siginifica a não realização de exames complementares.</td>
+        </tr>
+    {% for s2220_exame in s2220_exame_lista %}
+    {% ifequal s2220_exame.s2220_evtmonit.id s2220_evtmonit.id %}
+        <tr {% if s2220_exame.dtexm|validacoes_esocial_efdreinf:"s2220_exame.dtexm" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtExm</td>
+            <td width="500px">Data do exame realizado.Validação: Deve ser uma data igual ou anterior à data do ASO informada em{dtAso}.</td>
+            <td width="200px"><b>{% if s2220_exame.dtexm or s2220_exame.dtexm == 0 %}{{ s2220_exame.dtexm|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_exame_visualizar' %}
+                <a href="{% url 's2220_exame_salvar'  hash='{}'|json_id:s2220_exame.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_exame.procrealizado|validacoes_esocial_efdreinf:"s2220_exame.procrealizado" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">procRealizado</td>
+            <td width="500px">Código do procedimento médico terapêutico ou diagnóstico constante daTabela de Terminologia Unificada em Saúde Suplementar (TUSS).Se o procedimento realizado não consta na tabela TUSS, não preencher. Validação: Deve ser preenchido com um número de 8 posições.</td>
+            <td width="200px"><b>{% if s2220_exame.procrealizado or s2220_exame.procrealizado == 0 %}{{ s2220_exame.procrealizado|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_exame_visualizar' %}
+                <a href="{% url 's2220_exame_salvar'  hash='{}'|json_id:s2220_exame.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_exame.obsproc|validacoes_esocial_efdreinf:"s2220_exame.obsproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">obsProc</td>
+            <td width="500px">Observação sobre o procedimento médico terapêutico ou diagnóstico realizado.Validação: Preenchimento obrigatório se {procRealizado} não forpreenchido.</td>
+            <td width="200px"><b>{% if s2220_exame.obsproc or s2220_exame.obsproc == 0 %}{{ s2220_exame.obsproc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_exame_visualizar' %}
+                <a href="{% url 's2220_exame_salvar'  hash='{}'|json_id:s2220_exame.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_exame.interprexm|validacoes_esocial_efdreinf:"s2220_exame.interprexm" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">interprExm</td>
+            <td width="500px">Preencher com o código, de acordo com quadro I da NR07, a saber:1 - EE;2 - SC;3 - SC+. Valores Válidos: 1, 2, 3.</td>
+            <td width="200px"><b>{% if s2220_exame.interprexm or s2220_exame.interprexm == 0 %}{{ s2220_exame.interprexm|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_exame_visualizar' %}
+                <a href="{% url 's2220_exame_salvar'  hash='{}'|json_id:s2220_exame.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_exame.ordexame|validacoes_esocial_efdreinf:"s2220_exame.ordexame" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">ordExame</td>
+            <td width="500px">Ordem do Exame:1 - Referencial;2 - Sequencial. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2220_exame.ordexame or s2220_exame.ordexame == 0 %}{{ s2220_exame.ordexame|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_exame_visualizar' %}
+                <a href="{% url 's2220_exame_salvar'  hash='{}'|json_id:s2220_exame.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_exame.dtinimonit|validacoes_esocial_efdreinf:"s2220_exame.dtinimonit" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtIniMonit</td>
+            <td width="500px">Data de início da monitoraçãoValidação: Deve ser uma data válida, posterior a data de admissão do trabalhador.</td>
+            <td width="200px"><b>{% if s2220_exame.dtinimonit or s2220_exame.dtinimonit == 0 %}{{ s2220_exame.dtinimonit|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_exame_visualizar' %}
+                <a href="{% url 's2220_exame_salvar'  hash='{}'|json_id:s2220_exame.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_exame.dtfimmonit|validacoes_esocial_efdreinf:"s2220_exame.dtfimmonit" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtFimMonit</td>
+            <td width="500px">Data final da monitoração.Validação: Deve ser uma data posterior a data inicial da monitoração</td>
+            <td width="200px"><b>{% if s2220_exame.dtfimmonit or s2220_exame.dtfimmonit == 0 %}{{ s2220_exame.dtfimmonit|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_exame_visualizar' %}
+                <a href="{% url 's2220_exame_salvar'  hash='{}'|json_id:s2220_exame.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_exame.indresult|validacoes_esocial_efdreinf:"s2220_exame.indresult" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indResult</td>
+            <td width="500px">Indicação dos Resultados:1 - Normal;2 - Alterado;3 - Estável;4 - Agravamento.Valores Válidos: 1, 2, 3, 4.</td>
+            <td width="200px"><b>{% if s2220_exame.indresult or s2220_exame.indresult == 0 %}{{ s2220_exame.indresult|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_exame_visualizar' %}
+                <a href="{% url 's2220_exame_salvar'  hash='{}'|json_id:s2220_exame.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">respMonit</td>
+            <td bgcolor="lightgray" colspan="3">Registro onde são prestadas as informações sobre o profissional responsável pela monitoração biológica em atendimento aos requisitos das NR-07 e NR-09 do MTE.</td>
+        </tr>
+
+        <tr {% if s2220_exame.nisresp|validacoes_esocial_efdreinf:"s2220_exame.nisresp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nisResp</td>
+            <td width="500px">NIS do responsável pela monitoraçãoValidação: Deve ser um NIS válido.</td>
+            <td width="200px"><b>{% if s2220_exame.nisresp or s2220_exame.nisresp == 0 %}{{ s2220_exame.nisresp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_exame_visualizar' %}
+                <a href="{% url 's2220_exame_salvar'  hash='{}'|json_id:s2220_exame.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_exame.nrconsclasse|validacoes_esocial_efdreinf:"s2220_exame.nrconsclasse" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrConsClasse</td>
+            <td width="500px">Número de inscrição do médico ou enfermeiro do trabalho</td>
+            <td width="200px"><b>{% if s2220_exame.nrconsclasse or s2220_exame.nrconsclasse == 0 %}{{ s2220_exame.nrconsclasse }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_exame_visualizar' %}
+                <a href="{% url 's2220_exame_salvar'  hash='{}'|json_id:s2220_exame.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_exame.ufconsclasse|validacoes_esocial_efdreinf:"s2220_exame.ufconsclasse" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">ufConsClasse</td>
+            <td width="500px">Preencher com a sigla da UF de expedição do CRM/COREN. Validação: Deve ser uma UF válida.</td>
+            <td width="200px"><b>{% if s2220_exame.ufconsclasse or s2220_exame.ufconsclasse == 0 %}{{ s2220_exame.ufconsclasse }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_exame_visualizar' %}
+                <a href="{% url 's2220_exame_salvar'  hash='{}'|json_id:s2220_exame.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+     {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideServSaude</td>
+            <td bgcolor="lightgray" colspan="3">Serviço de Saúde responsável</td>
+        </tr>
+
+        <tr {% if s2220_evtmonit.codcnes|validacoes_esocial_efdreinf:"s2220_evtmonit.codcnes" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codCNES</td>
+            <td width="500px">Código da unidade de atendimento médico no Cadastro Nacional deEstabelecimento de Saúde.</td>
+            <td width="200px"><b>{% if s2220_evtmonit.codcnes or s2220_evtmonit.codcnes == 0 %}{{ s2220_evtmonit.codcnes }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_evtmonit_visualizar' %}
+                <a href="{% url 's2220_evtmonit_salvar'  hash='{}'|json_id:s2220_evtmonit.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_evtmonit.frmctt|validacoes_esocial_efdreinf:"s2220_evtmonit.frmctt" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">frmCtt</td>
+            <td width="500px">Forma de contato</td>
+            <td width="200px"><b>{% if s2220_evtmonit.frmctt or s2220_evtmonit.frmctt == 0 %}{{ s2220_evtmonit.frmctt }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_evtmonit_visualizar' %}
+                <a href="{% url 's2220_evtmonit_salvar'  hash='{}'|json_id:s2220_evtmonit.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2220_evtmonit.email|validacoes_esocial_efdreinf:"s2220_evtmonit.email" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">email</td>
+            <td width="500px">Endereço eletrônicoValidação: O e-mail deve possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do@ e não pode estar no fim do e-mail.</td>
+            <td width="200px"><b>{% if s2220_evtmonit.email or s2220_evtmonit.email == 0 %}{{ s2220_evtmonit.email }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_evtmonit_visualizar' %}
+                <a href="{% url 's2220_evtmonit_salvar'  hash='{}'|json_id:s2220_evtmonit.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">medico</td>
+            <td bgcolor="lightgray" colspan="3">Médico responsável</td>
+        </tr>
+
+        <tr {% if s2220_evtmonit.nmmed|validacoes_esocial_efdreinf:"s2220_evtmonit.nmmed" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmMed</td>
+            <td width="500px">Preencher com o nome do médico encarregado do exame médico, não necessariamente o médico coordenador do PCMSO.</td>
+            <td width="200px"><b>{% if s2220_evtmonit.nmmed or s2220_evtmonit.nmmed == 0 %}{{ s2220_evtmonit.nmmed }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2220_evtmonit_visualizar' %}
+                <a href="{% url 's2220_evtmonit_salvar'  hash='{}'|json_id:s2220_evtmonit.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">crm</td>
+            <td bgcolor="lightgray" colspan="3">CRM</td>
+        </tr>
+
+        <tr {% if .nrcrm|validacoes_esocial_efdreinf:".nrcrm" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrCRM</td>
+            <td width="500px">Número de inscrição do médico encarregado do exame no Conselho Regional de Medicina.</td>
+            <td width="200px"><b>{% if .nrcrm or .nrcrm == 0 %}{{ .nrcrm }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'_visualizar' %}
+                <a href="{% url '_salvar'  hash='{}'|json_id:.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if .ufcrm|validacoes_esocial_efdreinf:".ufcrm" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">ufCRM</td>
+            <td width="500px">Preencher com a sigla da UF de expedição do CRM. Validação: Deve ser uma UF válida.</td>
+            <td width="200px"><b>{% if .ufcrm or .ufcrm == 0 %}{{ .ufcrm }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'_visualizar' %}
+                <a href="{% url '_salvar'  hash='{}'|json_id:.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+</table>
+{% if not for_print %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %} 
+
+        </div>
+      </div>
+    </section>
+{% endif %}  
+
+{% endblock content %}

@@ -1,0 +1,2086 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
+{% if not for_print %}
+
+    <section class="content-header">
+      <h1>
+        S-1000 - Informações do Empregador/Contribuinte/Órgão Público
+        <small>Verificações</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">S-1000 - Informações do Empregador/Contribuinte/Órgão Público</a></li>
+        <li class="active">Verificar</li>
+      </ol>
+    </section>
+    <section class="content">
+
+        {% if messages %}
+                <div class="pad margin no-print">
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+                </div>
+        {% endif %}
+
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">S-1000 - Informações do Empregador/Contribuinte/Órgão Público<br>Identidade: {{ s1000_evtinfoempregador.identidade }}</h3>
+              <div class="text-right">
+                <a href="{% url 's1000_evtinfoempregador_verificar' hash='{}'|json_id:s1000_evtinfoempregador_id|json_print:1|base64_encode_me %}" target="_blank">
+                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
+                </a>
+
+
+
+                  <div class="btn-group">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="text-left"><a
+                                            href="{% url 's1000_evtinfoempregador_verificar' hash='{}'|json_id:s1000_evtinfoempregador_id|json_print:2|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
+                                    <li class="text-left"><a
+                                            href="{% url 's1000_evtinfoempregador_verificar' hash='{}'|json_id:s1000_evtinfoempregador_id|json_print:3|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
+                                    <!--<li class="text-left"><a
+                                            href="{% url 's1000_evtinfoempregador_verificar' hash='{}'|json_id:s1000_evtinfoempregador_id|json_print:4|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
+                                </ul>
+                            </div>&nbsp;
+
+              </div>              
+            </div>
+            <div class="box-body">
+{% else %} 
+   <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            S-1000 - Informações do Empregador/Contribuinte/Órgão Público<br>Identidade: {{ s1000_evtinfoempregador.identidade }}
+            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+{% endif %} 
+
+
+
+
+      <h4>Layout</h4>
+
+
+
+
+<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
+              
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtInfoEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Evento de informações do empregador Regras de validação: REGRA_INFO_EMP_PERIODO_CONFLITANTE REGRA_INFO_EMP_VALIDA_CLASSTRIB_BASE_ALCANTARA REGRA_INFO_EMP_VALIDA_DTINICIAL REGRA_INFO_EMP_VALIDA_RAIZ_CNPJ REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_DT_FUTURA REGRA_VALIDA_EMPREGADOR</td>
+        </tr>
+    {% for s1000_evtinfoempregador in s1000_evtinfoempregador_lista %}
+    {% ifequal 1 1 %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
+        </tr>
+
+        <tr {% if s1000_evtinfoempregador.tpamb|validacoes_esocial_efdreinf:"s1000_evtinfoempregador.tpamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAmb</td>
+            <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s1000_evtinfoempregador.tpamb or s1000_evtinfoempregador.tpamb == 0 %}{{ s1000_evtinfoempregador.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_evtinfoempregador_visualizar' %}
+                <a href="{% url 's1000_evtinfoempregador_salvar'  hash='{}'|json_id:s1000_evtinfoempregador.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_evtinfoempregador.procemi|validacoes_esocial_efdreinf:"s1000_evtinfoempregador.procemi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">procEmi</td>
+            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="200px"><b>{% if s1000_evtinfoempregador.procemi or s1000_evtinfoempregador.procemi == 0 %}{{ s1000_evtinfoempregador.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_evtinfoempregador_visualizar' %}
+                <a href="{% url 's1000_evtinfoempregador_salvar'  hash='{}'|json_id:s1000_evtinfoempregador.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_evtinfoempregador.verproc|validacoes_esocial_efdreinf:"s1000_evtinfoempregador.verproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">verProc</td>
+            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
+            <td width="200px"><b>{% if s1000_evtinfoempregador.verproc or s1000_evtinfoempregador.verproc == 0 %}{{ s1000_evtinfoempregador.verproc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_evtinfoempregador_visualizar' %}
+                <a href="{% url 's1000_evtinfoempregador_salvar'  hash='{}'|json_id:s1000_evtinfoempregador.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+        </tr>
+
+        <tr {% if s1000_evtinfoempregador.tpinsc|validacoes_esocial_efdreinf:"s1000_evtinfoempregador.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
+            <td width="200px"><b>{% if s1000_evtinfoempregador.tpinsc or s1000_evtinfoempregador.tpinsc == 0 %}{{ s1000_evtinfoempregador.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_evtinfoempregador_visualizar' %}
+                <a href="{% url 's1000_evtinfoempregador_salvar'  hash='{}'|json_id:s1000_evtinfoempregador.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_evtinfoempregador.nrinsc|validacoes_esocial_efdreinf:"s1000_evtinfoempregador.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s1000_evtinfoempregador.nrinsc or s1000_evtinfoempregador.nrinsc == 0 %}{{ s1000_evtinfoempregador.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_evtinfoempregador_visualizar' %}
+                <a href="{% url 's1000_evtinfoempregador_salvar'  hash='{}'|json_id:s1000_evtinfoempregador.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Identificação da operação (inclusão, alteração ou exclusão) e das respectivas informações do empregador.</td>
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">inclusao</td>
+            <td bgcolor="lightgray" colspan="3">Inclusão de novas informações</td>
+        </tr>
+    {% for s1000_inclusao in s1000_inclusao_lista %}
+    {% ifequal s1000_inclusao.s1000_evtinfoempregador.id s1000_evtinfoempregador.id %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">idePeriodo</td>
+            <td bgcolor="lightgray" colspan="3">Período de validade das informações incluídas</td>
+        </tr>
+
+        <tr {% if s1000_inclusao.inivalid|validacoes_esocial_efdreinf:"s1000_inclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">iniValid</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
+            <td width="200px"><b>{% if s1000_inclusao.inivalid or s1000_inclusao.inivalid == 0 %}{{ s1000_inclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %}
+                <a href="{% url 's1000_inclusao_salvar'  hash='{}'|json_id:s1000_inclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao.fimvalid|validacoes_esocial_efdreinf:"s1000_inclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">fimValid</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
+            <td width="200px"><b>{% if s1000_inclusao.fimvalid or s1000_inclusao.fimvalid == 0 %}{{ s1000_inclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %}
+                <a href="{% url 's1000_inclusao_salvar'  hash='{}'|json_id:s1000_inclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoCadastro</td>
+            <td bgcolor="lightgray" colspan="3">Informações do empregador</td>
+        </tr>
+
+        <tr {% if s1000_inclusao.nmrazao|validacoes_esocial_efdreinf:"s1000_inclusao.nmrazao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmRazao</td>
+            <td width="500px">Informar o nome do contribuinte, no caso de pessoa física, ou a razão social, no caso de pessoa jurídica ou órgão público.</td>
+            <td width="200px"><b>{% if s1000_inclusao.nmrazao or s1000_inclusao.nmrazao == 0 %}{{ s1000_inclusao.nmrazao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %}
+                <a href="{% url 's1000_inclusao_salvar'  hash='{}'|json_id:s1000_inclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao.classtrib|validacoes_esocial_efdreinf:"s1000_inclusao.classtrib" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">classTrib</td>
+            <td width="500px">Preencher com o código correspondente à classificação tributária do contribuinte, conforme tabela 8.Validação: Deve ser um dos códigos existentes na tabela. Os códigos [21] e[22] somente podem ser utilizados se {tpInsc} for igual a [2]. Para os demais códigos, {tpInsc} deve ser igual a [1].</td>
+            <td width="200px"><b>{% if s1000_inclusao.classtrib or s1000_inclusao.classtrib == 0 %}{{ s1000_inclusao.classtrib }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %}
+                <a href="{% url 's1000_inclusao_salvar'  hash='{}'|json_id:s1000_inclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao.natjurid|validacoes_esocial_efdreinf:"s1000_inclusao.natjurid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">natJurid</td>
+            <td width="500px">Preencher com o código da Natureza Jurídica do Contribuinte, conforme tabela 21.Validação: O preenchimento do campo é obrigatório e exclusivo para empregador PJ e administração pública. Neste caso, deve ser um código existente na tabela 21 e compatível com a informação constante no CNPJ. Se{classtrib} = [85], o número da {natJurid} deve iniciar por 1 (exemplo: 101-5,112-0, etc.).</td>
+            <td width="200px"><b>{% if s1000_inclusao.natjurid or s1000_inclusao.natjurid == 0 %}{{ s1000_inclusao.natjurid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %}
+                <a href="{% url 's1000_inclusao_salvar'  hash='{}'|json_id:s1000_inclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao.indcoop|validacoes_esocial_efdreinf:"s1000_inclusao.indcoop" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indCoop</td>
+            <td width="500px">Indicativo de Cooperativa:0 - Não é cooperativa;1 - Cooperativa de Trabalho;2 - Cooperativa de Produção;3 - Outras Cooperativas.Validação: O preenchimento do campo é exclusivo e obrigatório para PJ. Somente pode ser diferente de ZERO se {natJurid} for igual a [2143] e{classTrib} for igual a [06, 07, 13, 99]. Para {classTrib} igual a [06,07] o campo deverá ser preenchido apenas com [0,2]. Valores Válidos: 0, 1, 2, 3.</td>
+            <td width="200px"><b>{% if s1000_inclusao.indcoop or s1000_inclusao.indcoop == 0 %}{{ s1000_inclusao.indcoop|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %}
+                <a href="{% url 's1000_inclusao_salvar'  hash='{}'|json_id:s1000_inclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao.indconstr|validacoes_esocial_efdreinf:"s1000_inclusao.indconstr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indConstr</td>
+            <td width="500px">Indicativo de Construtora:0 - Não é Construtora;1 - Empresa Construtora.Validação: O preenchimento do campo é exclusivo e obrigatório para PJ. Valores Válidos: 0, 1.</td>
+            <td width="200px"><b>{% if s1000_inclusao.indconstr or s1000_inclusao.indconstr == 0 %}{{ s1000_inclusao.indconstr|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %}
+                <a href="{% url 's1000_inclusao_salvar'  hash='{}'|json_id:s1000_inclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao.inddesfolha|validacoes_esocial_efdreinf:"s1000_inclusao.inddesfolha" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indDesFolha</td>
+            <td width="500px">Indicativo de Desoneração da Folha:0 - Não Aplicável;1 - Empresa enquadrada nos art. 7º a 9º da Lei 12.546/2011.Validação: Pode ser igual a [1] apenas se a classificação tributária for igual a[02,03,99]. Nos demais casos, deve ser igual a [0]. Valores Válidos: 0, 1.</td>
+            <td width="200px"><b>{% if s1000_inclusao.inddesfolha or s1000_inclusao.inddesfolha == 0 %}{{ s1000_inclusao.inddesfolha|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %}
+                <a href="{% url 's1000_inclusao_salvar'  hash='{}'|json_id:s1000_inclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao.indoptregeletron|validacoes_esocial_efdreinf:"s1000_inclusao.indoptregeletron" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indOptRegEletron</td>
+            <td width="500px">Indica se houve opção pelo registro eletrônico de empregados:0 - Não optou pelo registro eletrônico de empregados;1 - Optou pelo registro eletrônico de empregados. Valores Válidos: 0, 1.</td>
+            <td width="200px"><b>{% if s1000_inclusao.indoptregeletron or s1000_inclusao.indoptregeletron == 0 %}{{ s1000_inclusao.indoptregeletron|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %}
+                <a href="{% url 's1000_inclusao_salvar'  hash='{}'|json_id:s1000_inclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao.indented|validacoes_esocial_efdreinf:"s1000_inclusao.indented" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indEntEd</td>
+            <td width="500px">Indicativo de entidade educativa sem fins lucrativos que tenha por objetivo a assistência ao adolescente e à educação profissional (art. 430, inciso II, CLT) ou de entidade de prática desportiva filiada ao Sistema Nacional do Desporto ou a Sistema de Desporto de Estado, do Distrito Federal ou de Município (art.430, inciso III, CLT):N - Não; S - Sim.Validação: O preenchimento é exclusivo e obrigatório para Pessoa Jurídica.Valores Válidos: S,N.</td>
+            <td width="200px"><b>{% if s1000_inclusao.indented or s1000_inclusao.indented == 0 %}{{ s1000_inclusao.indented }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %}
+                <a href="{% url 's1000_inclusao_salvar'  hash='{}'|json_id:s1000_inclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao.indett|validacoes_esocial_efdreinf:"s1000_inclusao.indett" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indEtt</td>
+            <td width="500px">Indicativo de Empresa de Trabalho Temporário (Lei n° 6.019/1974), com registro no Ministério do Trabalho:N - Não é Empresa de Trabalho Temporário;S - Empresa de Trabalho Temporário. Valores Válidos: S,N.</td>
+            <td width="200px"><b>{% if s1000_inclusao.indett or s1000_inclusao.indett == 0 %}{{ s1000_inclusao.indett }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %}
+                <a href="{% url 's1000_inclusao_salvar'  hash='{}'|json_id:s1000_inclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao.nrregett|validacoes_esocial_efdreinf:"s1000_inclusao.nrregett" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRegEtt</td>
+            <td width="500px">Número do registro da Empresa de Trabalho Temporário no Ministério doTrabalho.Validação: Informação obrigatória se {indEtt} = [S]. Não pode ser informado nos demais casos.Se informado, deve conter apenas números.</td>
+            <td width="200px"><b>{% if s1000_inclusao.nrregett or s1000_inclusao.nrregett == 0 %}{{ s1000_inclusao.nrregett }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %}
+                <a href="{% url 's1000_inclusao_salvar'  hash='{}'|json_id:s1000_inclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">dadosIsencao</td>
+            <td bgcolor="lightgray" colspan="3">Informações Complementares - Empresas Isentas - Dados da Isenção</td>
+        </tr>
+    {% for s1000_inclusao_dadosisencao in s1000_inclusao_dadosisencao_lista %}
+    {% ifequal s1000_inclusao_dadosisencao.s1000_inclusao.id s1000_inclusao.id %}
+        <tr {% if s1000_inclusao_dadosisencao.ideminlei|validacoes_esocial_efdreinf:"s1000_inclusao_dadosisencao.ideminlei" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">ideMinLei</td>
+            <td width="500px">Sigla e nome do Ministério ou Lei que concedeu o Certificado</td>
+            <td width="200px"><b>{% if s1000_inclusao_dadosisencao.ideminlei or s1000_inclusao_dadosisencao.ideminlei == 0 %}{{ s1000_inclusao_dadosisencao.ideminlei }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_dadosisencao_visualizar' %}
+                <a href="{% url 's1000_inclusao_dadosisencao_salvar'  hash='{}'|json_id:s1000_inclusao_dadosisencao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao_dadosisencao.nrcertif|validacoes_esocial_efdreinf:"s1000_inclusao_dadosisencao.nrcertif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrCertif</td>
+            <td width="500px">Número do Certificado de Entidade Beneficente de Assistência Social, número da portaria de concessão do Certificado, ou, no caso de concessão através de Lei específica, o número da Lei.</td>
+            <td width="200px"><b>{% if s1000_inclusao_dadosisencao.nrcertif or s1000_inclusao_dadosisencao.nrcertif == 0 %}{{ s1000_inclusao_dadosisencao.nrcertif }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_dadosisencao_visualizar' %}
+                <a href="{% url 's1000_inclusao_dadosisencao_salvar'  hash='{}'|json_id:s1000_inclusao_dadosisencao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao_dadosisencao.dtemiscertif|validacoes_esocial_efdreinf:"s1000_inclusao_dadosisencao.dtemiscertif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtEmisCertif</td>
+            <td width="500px">Data de Emissão do Certificado/publicação da Lei</td>
+            <td width="200px"><b>{% if s1000_inclusao_dadosisencao.dtemiscertif or s1000_inclusao_dadosisencao.dtemiscertif == 0 %}{{ s1000_inclusao_dadosisencao.dtemiscertif|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_dadosisencao_visualizar' %}
+                <a href="{% url 's1000_inclusao_dadosisencao_salvar'  hash='{}'|json_id:s1000_inclusao_dadosisencao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao_dadosisencao.dtvenccertif|validacoes_esocial_efdreinf:"s1000_inclusao_dadosisencao.dtvenccertif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtVencCertif</td>
+            <td width="500px">Data de Vencimento do CertificadoValidação: Não pode ser anterior a {dtEmisCertif}</td>
+            <td width="200px"><b>{% if s1000_inclusao_dadosisencao.dtvenccertif or s1000_inclusao_dadosisencao.dtvenccertif == 0 %}{{ s1000_inclusao_dadosisencao.dtvenccertif|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_dadosisencao_visualizar' %}
+                <a href="{% url 's1000_inclusao_dadosisencao_salvar'  hash='{}'|json_id:s1000_inclusao_dadosisencao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao_dadosisencao.nrprotrenov|validacoes_esocial_efdreinf:"s1000_inclusao_dadosisencao.nrprotrenov" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrProtRenov</td>
+            <td width="500px">Protocolo pedido renovação</td>
+            <td width="200px"><b>{% if s1000_inclusao_dadosisencao.nrprotrenov or s1000_inclusao_dadosisencao.nrprotrenov == 0 %}{{ s1000_inclusao_dadosisencao.nrprotrenov }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_dadosisencao_visualizar' %}
+                <a href="{% url 's1000_inclusao_dadosisencao_salvar'  hash='{}'|json_id:s1000_inclusao_dadosisencao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao_dadosisencao.dtprotrenov|validacoes_esocial_efdreinf:"s1000_inclusao_dadosisencao.dtprotrenov" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtProtRenov</td>
+            <td width="500px">Data do protocolo de renovação</td>
+            <td width="200px"><b>{% if s1000_inclusao_dadosisencao.dtprotrenov or s1000_inclusao_dadosisencao.dtprotrenov == 0 %}{{ s1000_inclusao_dadosisencao.dtprotrenov|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_dadosisencao_visualizar' %}
+                <a href="{% url 's1000_inclusao_dadosisencao_salvar'  hash='{}'|json_id:s1000_inclusao_dadosisencao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao_dadosisencao.dtdou|validacoes_esocial_efdreinf:"s1000_inclusao_dadosisencao.dtdou" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtDou</td>
+            <td width="500px">Preencher com a data de publicação no Diário Oficial da União</td>
+            <td width="200px"><b>{% if s1000_inclusao_dadosisencao.dtdou or s1000_inclusao_dadosisencao.dtdou == 0 %}{{ s1000_inclusao_dadosisencao.dtdou|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_dadosisencao_visualizar' %}
+                <a href="{% url 's1000_inclusao_dadosisencao_salvar'  hash='{}'|json_id:s1000_inclusao_dadosisencao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao_dadosisencao.pagdou|validacoes_esocial_efdreinf:"s1000_inclusao_dadosisencao.pagdou" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">pagDou</td>
+            <td width="500px">Preencher com o número da página no DOU referente à publicação do documento de concessão do certificado.</td>
+            <td width="200px"><b>{% if s1000_inclusao_dadosisencao.pagdou or s1000_inclusao_dadosisencao.pagdou == 0 %}{{ s1000_inclusao_dadosisencao.pagdou|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_dadosisencao_visualizar' %}
+                <a href="{% url 's1000_inclusao_dadosisencao_salvar'  hash='{}'|json_id:s1000_inclusao_dadosisencao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">contato</td>
+            <td bgcolor="lightgray" colspan="3">Informações de contato</td>
+        </tr>
+
+        <tr {% if s1000_inclusao.nmctt|validacoes_esocial_efdreinf:"s1000_inclusao.nmctt" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmCtt</td>
+            <td width="500px">Nome do contato na empresa. Pessoa responsável por ser o contato do empregador com os órgãos gestores do eSocial</td>
+            <td width="200px"><b>{% if s1000_inclusao.nmctt or s1000_inclusao.nmctt == 0 %}{{ s1000_inclusao.nmctt }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %}
+                <a href="{% url 's1000_inclusao_salvar'  hash='{}'|json_id:s1000_inclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao.cpfctt|validacoes_esocial_efdreinf:"s1000_inclusao.cpfctt" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfCtt</td>
+            <td width="500px">Preencher com o número do CPF do contato.Validação: A inscrição é validada na base de dados do CPF da RFB.</td>
+            <td width="200px"><b>{% if s1000_inclusao.cpfctt or s1000_inclusao.cpfctt == 0 %}{{ s1000_inclusao.cpfctt }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %}
+                <a href="{% url 's1000_inclusao_salvar'  hash='{}'|json_id:s1000_inclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao.fonefixo|validacoes_esocial_efdreinf:"s1000_inclusao.fonefixo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">foneFixo</td>
+            <td width="500px">Informar o número do telefone, com DDD.Validação: O preenchimento é obrigatório se o campo {foneCel} não for preenchido. Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
+            <td width="200px"><b>{% if s1000_inclusao.fonefixo or s1000_inclusao.fonefixo == 0 %}{{ s1000_inclusao.fonefixo }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %}
+                <a href="{% url 's1000_inclusao_salvar'  hash='{}'|json_id:s1000_inclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao.fonecel|validacoes_esocial_efdreinf:"s1000_inclusao.fonecel" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">foneCel</td>
+            <td width="500px">Telefone celular, com DDDValidação: Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
+            <td width="200px"><b>{% if s1000_inclusao.fonecel or s1000_inclusao.fonecel == 0 %}{{ s1000_inclusao.fonecel }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %}
+                <a href="{% url 's1000_inclusao_salvar'  hash='{}'|json_id:s1000_inclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao.email|validacoes_esocial_efdreinf:"s1000_inclusao.email" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">email</td>
+            <td width="500px">Endereço eletrônicoValidação: O e-mail deve possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do@ e não pode estar no fim do e-mail.</td>
+            <td width="200px"><b>{% if s1000_inclusao.email or s1000_inclusao.email == 0 %}{{ s1000_inclusao.email }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %}
+                <a href="{% url 's1000_inclusao_salvar'  hash='{}'|json_id:s1000_inclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoOP</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas a Órgãos Públicos</td>
+        </tr>
+    {% for s1000_inclusao_infoop in s1000_inclusao_infoop_lista %}
+    {% ifequal s1000_inclusao_infoop.s1000_inclusao.id s1000_inclusao.id %}
+        <tr {% if s1000_inclusao_infoop.nrsiafi|validacoes_esocial_efdreinf:"s1000_inclusao_infoop.nrsiafi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrSiafi</td>
+            <td width="500px">Preencher com o número SIAFI - Sistema Integrado de AdministraçãoFinanceira, caso seja órgão público usuário do sistema.</td>
+            <td width="200px"><b>{% if s1000_inclusao_infoop.nrsiafi or s1000_inclusao_infoop.nrsiafi == 0 %}{{ s1000_inclusao_infoop.nrsiafi }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_infoop_visualizar' %}
+                <a href="{% url 's1000_inclusao_infoop_salvar'  hash='{}'|json_id:s1000_inclusao_infoop.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoEFR</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas a Ente Federativo Responsável - EFR</td>
+        </tr>
+    {% for s1000_inclusao_infoefr in s1000_inclusao_infoefr_lista %}
+    {% ifequal s1000_inclusao_infoefr.s1000_inclusao_infoop.id s1000_inclusao_infoop.id %}
+        <tr {% if s1000_inclusao_infoefr.ideefr|validacoes_esocial_efdreinf:"s1000_inclusao_infoefr.ideefr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">ideEFR</td>
+            <td width="500px">Informar se o Órgão Público é o Ente Federativo Responsável - EFR ou se é uma unidade administrativa autônoma vinculada a um EFR; S - É EFR;N - Não é EFR.Validação: Essa informação é validada no cadastro do CNPJ na RFB. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s1000_inclusao_infoefr.ideefr or s1000_inclusao_infoefr.ideefr == 0 %}{{ s1000_inclusao_infoefr.ideefr }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_infoefr_visualizar' %}
+                <a href="{% url 's1000_inclusao_infoefr_salvar'  hash='{}'|json_id:s1000_inclusao_infoefr.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao_infoefr.cnpjefr|validacoes_esocial_efdreinf:"s1000_inclusao_infoefr.cnpjefr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjEFR</td>
+            <td width="500px">CNPJ do Ente Federativo Responsável - EFRValidação: Preenchimento obrigatório se {ideEFR} = [N]. Informação validada no cadastro do CNPJ da RFB.</td>
+            <td width="200px"><b>{% if s1000_inclusao_infoefr.cnpjefr or s1000_inclusao_infoefr.cnpjefr == 0 %}{{ s1000_inclusao_infoefr.cnpjefr }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_infoefr_visualizar' %}
+                <a href="{% url 's1000_inclusao_infoefr_salvar'  hash='{}'|json_id:s1000_inclusao_infoefr.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoEnte</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas ao ente federativo estadual, distrital ou municipal</td>
+        </tr>
+    {% for s1000_inclusao_infoente in s1000_inclusao_infoente_lista %}
+    {% ifequal s1000_inclusao_infoente.s1000_inclusao_infoop.id s1000_inclusao_infoop.id %}
+        <tr {% if s1000_inclusao_infoente.nmente|validacoes_esocial_efdreinf:"s1000_inclusao_infoente.nmente" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmEnte</td>
+            <td width="500px">Nome do Ente Federativo ao qual o órgão está vinculado</td>
+            <td width="200px"><b>{% if s1000_inclusao_infoente.nmente or s1000_inclusao_infoente.nmente == 0 %}{{ s1000_inclusao_infoente.nmente }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_infoente_visualizar' %}
+                <a href="{% url 's1000_inclusao_infoente_salvar'  hash='{}'|json_id:s1000_inclusao_infoente.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao_infoente.uf|validacoes_esocial_efdreinf:"s1000_inclusao_infoente.uf" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">uf</td>
+            <td width="500px">Preencher com a sigla da Unidade da FederaçãoValidação: Deve ser uma UF válida.</td>
+            <td width="200px"><b>{% if s1000_inclusao_infoente.uf or s1000_inclusao_infoente.uf == 0 %}{{ s1000_inclusao_infoente.uf }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_infoente_visualizar' %}
+                <a href="{% url 's1000_inclusao_infoente_salvar'  hash='{}'|json_id:s1000_inclusao_infoente.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao_infoente.codmunic|validacoes_esocial_efdreinf:"s1000_inclusao_infoente.codmunic" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codMunic</td>
+            <td width="500px">Preencher com o código do município, conforme tabela do IBGE Validação: Se informado, deve ser um código existente na tabela do IBGE.</td>
+            <td width="200px"><b>{% if s1000_inclusao_infoente.codmunic or s1000_inclusao_infoente.codmunic == 0 %}{{ s1000_inclusao_infoente.codmunic|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_infoente_visualizar' %}
+                <a href="{% url 's1000_inclusao_infoente_salvar'  hash='{}'|json_id:s1000_inclusao_infoente.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao_infoente.indrpps|validacoes_esocial_efdreinf:"s1000_inclusao_infoente.indrpps" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indRPPS</td>
+            <td width="500px">Informar se o ente público possui Regime Próprio de Previdência Social - RPPS.S - Sim; N - Não.Valores Válidos: S, N</td>
+            <td width="200px"><b>{% if s1000_inclusao_infoente.indrpps or s1000_inclusao_infoente.indrpps == 0 %}{{ s1000_inclusao_infoente.indrpps }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_infoente_visualizar' %}
+                <a href="{% url 's1000_inclusao_infoente_salvar'  hash='{}'|json_id:s1000_inclusao_infoente.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao_infoente.subteto|validacoes_esocial_efdreinf:"s1000_inclusao_infoente.subteto" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">subteto</td>
+            <td width="500px">Preencher com o poder a que se refere o subteto:1 - Executivo;2 - Judiciário;3 - Legislativo;9 - Todos os poderes. Valores Válidos: 1, 2, 3, 9.</td>
+            <td width="200px"><b>{% if s1000_inclusao_infoente.subteto or s1000_inclusao_infoente.subteto == 0 %}{{ s1000_inclusao_infoente.subteto|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_infoente_visualizar' %}
+                <a href="{% url 's1000_inclusao_infoente_salvar'  hash='{}'|json_id:s1000_inclusao_infoente.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao_infoente.vrsubteto|validacoes_esocial_efdreinf:"s1000_inclusao_infoente.vrsubteto" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSubteto</td>
+            <td width="500px">Preencher com o valor do subteto do Ente Federativo.</td>
+            <td width="200px"><b>{% if s1000_inclusao_infoente.vrsubteto or s1000_inclusao_infoente.vrsubteto == 0 %}{{ s1000_inclusao_infoente.vrsubteto|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_infoente_visualizar' %}
+                <a href="{% url 's1000_inclusao_infoente_salvar'  hash='{}'|json_id:s1000_inclusao_infoente.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoOrgInternacional</td>
+            <td bgcolor="lightgray" colspan="3">Informações exclusivas de organismos internacionais e outras instituições extraterritoriais</td>
+        </tr>
+    {% for s1000_inclusao_infoorginternacional in s1000_inclusao_infoorginternacional_lista %}
+    {% ifequal s1000_inclusao_infoorginternacional.s1000_inclusao.id s1000_inclusao.id %}
+        <tr {% if s1000_inclusao_infoorginternacional.indacordoisenmulta|validacoes_esocial_efdreinf:"s1000_inclusao_infoorginternacional.indacordoisenmulta" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indAcordoIsenMulta</td>
+            <td width="500px">Indicativo da existência de acordo internacional para isenção de multa:0 - Sem acordo;1 - Com acordo. Valores Válidos: 0, 1.</td>
+            <td width="200px"><b>{% if s1000_inclusao_infoorginternacional.indacordoisenmulta or s1000_inclusao_infoorginternacional.indacordoisenmulta == 0 %}{{ s1000_inclusao_infoorginternacional.indacordoisenmulta|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_infoorginternacional_visualizar' %}
+                <a href="{% url 's1000_inclusao_infoorginternacional_salvar'  hash='{}'|json_id:s1000_inclusao_infoorginternacional.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">softwareHouse</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas ao desenvolvedor do software que gerou o arquivo xml.</td>
+        </tr>
+    {% for s1000_inclusao_softwarehouse in s1000_inclusao_softwarehouse_lista %}
+    {% ifequal s1000_inclusao_softwarehouse.s1000_inclusao.id s1000_inclusao.id %}
+        <tr {% if s1000_inclusao_softwarehouse.cnpjsofthouse|validacoes_esocial_efdreinf:"s1000_inclusao_softwarehouse.cnpjsofthouse" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjSoftHouse</td>
+            <td width="500px">CNPJ da empresa desenvolvedora do software. Se o software foi desenvolvido pelo próprio empregador, informar o CNPJ do estabelecimento do empregador responsável pelo desenvolvimento.Regra de validação: REGRA_VALIDA_CNPJ</td>
+            <td width="200px"><b>{% if s1000_inclusao_softwarehouse.cnpjsofthouse or s1000_inclusao_softwarehouse.cnpjsofthouse == 0 %}{{ s1000_inclusao_softwarehouse.cnpjsofthouse }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_softwarehouse_visualizar' %}
+                <a href="{% url 's1000_inclusao_softwarehouse_salvar'  hash='{}'|json_id:s1000_inclusao_softwarehouse.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao_softwarehouse.nmrazao|validacoes_esocial_efdreinf:"s1000_inclusao_softwarehouse.nmrazao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmRazao</td>
+            <td width="500px">Informar a razão social, no caso de pessoa jurídica ou órgão público.</td>
+            <td width="200px"><b>{% if s1000_inclusao_softwarehouse.nmrazao or s1000_inclusao_softwarehouse.nmrazao == 0 %}{{ s1000_inclusao_softwarehouse.nmrazao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_softwarehouse_visualizar' %}
+                <a href="{% url 's1000_inclusao_softwarehouse_salvar'  hash='{}'|json_id:s1000_inclusao_softwarehouse.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao_softwarehouse.nmcont|validacoes_esocial_efdreinf:"s1000_inclusao_softwarehouse.nmcont" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmCont</td>
+            <td width="500px">Nome do contato na empresa.</td>
+            <td width="200px"><b>{% if s1000_inclusao_softwarehouse.nmcont or s1000_inclusao_softwarehouse.nmcont == 0 %}{{ s1000_inclusao_softwarehouse.nmcont }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_softwarehouse_visualizar' %}
+                <a href="{% url 's1000_inclusao_softwarehouse_salvar'  hash='{}'|json_id:s1000_inclusao_softwarehouse.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao_softwarehouse.telefone|validacoes_esocial_efdreinf:"s1000_inclusao_softwarehouse.telefone" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">telefone</td>
+            <td width="500px">Informar o número do telefone, com DDD.Validação: Deve conter apenas números, com o mínimo de dez dígitos.</td>
+            <td width="200px"><b>{% if s1000_inclusao_softwarehouse.telefone or s1000_inclusao_softwarehouse.telefone == 0 %}{{ s1000_inclusao_softwarehouse.telefone }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_softwarehouse_visualizar' %}
+                <a href="{% url 's1000_inclusao_softwarehouse_salvar'  hash='{}'|json_id:s1000_inclusao_softwarehouse.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_inclusao_softwarehouse.email|validacoes_esocial_efdreinf:"s1000_inclusao_softwarehouse.email" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">email</td>
+            <td width="500px">Endereço eletrônicoValidação: O e-mail deve possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do@ e não pode estar no fim do e-mail.</td>
+            <td width="200px"><b>{% if s1000_inclusao_softwarehouse.email or s1000_inclusao_softwarehouse.email == 0 %}{{ s1000_inclusao_softwarehouse.email }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_softwarehouse_visualizar' %}
+                <a href="{% url 's1000_inclusao_softwarehouse_salvar'  hash='{}'|json_id:s1000_inclusao_softwarehouse.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoComplementares</td>
+            <td bgcolor="lightgray" colspan="3">Informações complementares sobre o declarante</td>
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">situacaoPJ</td>
+            <td bgcolor="lightgray" colspan="3">Informações Complementares - Pessoa Jurídica</td>
+        </tr>
+    {% for s1000_inclusao_situacaopj in s1000_inclusao_situacaopj_lista %}
+    {% ifequal s1000_inclusao_situacaopj.s1000_inclusao.id s1000_inclusao.id %}
+        <tr {% if s1000_inclusao_situacaopj.indsitpj|validacoes_esocial_efdreinf:"s1000_inclusao_situacaopj.indsitpj" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indSitPJ</td>
+            <td width="500px">Indicativo da Situação da Pessoa Jurídica:0 - Situação Normal;1 - Extinção;2 - Fusão;3 - Cisão;4 - Incorporação.Valores Válidos: 0, 1, 2, 3, 4</td>
+            <td width="200px"><b>{% if s1000_inclusao_situacaopj.indsitpj or s1000_inclusao_situacaopj.indsitpj == 0 %}{{ s1000_inclusao_situacaopj.indsitpj|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_situacaopj_visualizar' %}
+                <a href="{% url 's1000_inclusao_situacaopj_salvar'  hash='{}'|json_id:s1000_inclusao_situacaopj.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">situacaoPF</td>
+            <td bgcolor="lightgray" colspan="3">Informações Complementares - Pessoa Física</td>
+        </tr>
+    {% for s1000_inclusao_situacaopf in s1000_inclusao_situacaopf_lista %}
+    {% ifequal s1000_inclusao_situacaopf.s1000_inclusao.id s1000_inclusao.id %}
+        <tr {% if s1000_inclusao_situacaopf.indsitpf|validacoes_esocial_efdreinf:"s1000_inclusao_situacaopf.indsitpf" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indSitPF</td>
+            <td width="500px">Indicativo da Situação da Pessoa Física:0 - Situação Normal;1 - Encerramento de espólio;2 - Saída do país em caráter permanente. Valores Válidos: 0, 1, 2</td>
+            <td width="200px"><b>{% if s1000_inclusao_situacaopf.indsitpf or s1000_inclusao_situacaopf.indsitpf == 0 %}{{ s1000_inclusao_situacaopf.indsitpf|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_inclusao_situacaopf_visualizar' %}
+                <a href="{% url 's1000_inclusao_situacaopf_salvar'  hash='{}'|json_id:s1000_inclusao_situacaopf.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}      {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">alteracao</td>
+            <td bgcolor="lightgray" colspan="3">Alteração das informações</td>
+        </tr>
+    {% for s1000_alteracao in s1000_alteracao_lista %}
+    {% ifequal s1000_alteracao.s1000_evtinfoempregador.id s1000_evtinfoempregador.id %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">idePeriodo</td>
+            <td bgcolor="lightgray" colspan="3">Período de validade das informações alteradas</td>
+        </tr>
+
+        <tr {% if s1000_alteracao.inivalid|validacoes_esocial_efdreinf:"s1000_alteracao.inivalid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">iniValid</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
+            <td width="200px"><b>{% if s1000_alteracao.inivalid or s1000_alteracao.inivalid == 0 %}{{ s1000_alteracao.inivalid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %}
+                <a href="{% url 's1000_alteracao_salvar'  hash='{}'|json_id:s1000_alteracao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao.fimvalid|validacoes_esocial_efdreinf:"s1000_alteracao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">fimValid</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
+            <td width="200px"><b>{% if s1000_alteracao.fimvalid or s1000_alteracao.fimvalid == 0 %}{{ s1000_alteracao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %}
+                <a href="{% url 's1000_alteracao_salvar'  hash='{}'|json_id:s1000_alteracao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoCadastro</td>
+            <td bgcolor="lightgray" colspan="3">Informações do empregador</td>
+        </tr>
+
+        <tr {% if s1000_alteracao.nmrazao|validacoes_esocial_efdreinf:"s1000_alteracao.nmrazao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmRazao</td>
+            <td width="500px">Informar o nome do contribuinte, no caso de pessoa física, ou a razão social, no caso de pessoa jurídica ou órgão público.</td>
+            <td width="200px"><b>{% if s1000_alteracao.nmrazao or s1000_alteracao.nmrazao == 0 %}{{ s1000_alteracao.nmrazao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %}
+                <a href="{% url 's1000_alteracao_salvar'  hash='{}'|json_id:s1000_alteracao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao.classtrib|validacoes_esocial_efdreinf:"s1000_alteracao.classtrib" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">classTrib</td>
+            <td width="500px">Preencher com o código correspondente à classificação tributária do contribuinte, conforme tabela 8.Validação: Deve ser um dos códigos existentes na tabela. Os códigos [21] e[22] somente podem ser utilizados se {tpInsc} for igual a [2]. Para os demais códigos, {tpInsc} deve ser igual a [1].</td>
+            <td width="200px"><b>{% if s1000_alteracao.classtrib or s1000_alteracao.classtrib == 0 %}{{ s1000_alteracao.classtrib }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %}
+                <a href="{% url 's1000_alteracao_salvar'  hash='{}'|json_id:s1000_alteracao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao.natjurid|validacoes_esocial_efdreinf:"s1000_alteracao.natjurid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">natJurid</td>
+            <td width="500px">Preencher com o código da Natureza Jurídica do Contribuinte, conforme tabela 21.Validação: O preenchimento do campo é obrigatório e exclusivo para empregador PJ e administração pública. Neste caso, deve ser um código existente na tabela 21 e compatível com a informação constante no CNPJ. Se{classtrib} = [85], o número da {natJurid} deve iniciar por 1 (exemplo: 101-5,112-0, etc.).</td>
+            <td width="200px"><b>{% if s1000_alteracao.natjurid or s1000_alteracao.natjurid == 0 %}{{ s1000_alteracao.natjurid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %}
+                <a href="{% url 's1000_alteracao_salvar'  hash='{}'|json_id:s1000_alteracao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao.indcoop|validacoes_esocial_efdreinf:"s1000_alteracao.indcoop" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indCoop</td>
+            <td width="500px">Indicativo de Cooperativa:0 - Não é cooperativa;1 - Cooperativa de Trabalho;2 - Cooperativa de Produção;3 - Outras Cooperativas.Validação: O preenchimento do campo é exclusivo e obrigatório para PJ. Somente pode ser diferente de ZERO se {natJurid} for igual a [2143] e{classTrib} for igual a [06, 07, 13, 99]. Para {classTrib} igual a [06,07] o campo deverá ser preenchido apenas com [0,2].Valores Válidos: 0, 1, 2, 3.</td>
+            <td width="200px"><b>{% if s1000_alteracao.indcoop or s1000_alteracao.indcoop == 0 %}{{ s1000_alteracao.indcoop|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %}
+                <a href="{% url 's1000_alteracao_salvar'  hash='{}'|json_id:s1000_alteracao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao.indconstr|validacoes_esocial_efdreinf:"s1000_alteracao.indconstr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indConstr</td>
+            <td width="500px">Indicativo de Construtora:0 - Não é Construtora;1 - Empresa Construtora.Validação: O preenchimento do campo é exclusivo e obrigatório para PJ. Valores Válidos: 0, 1.</td>
+            <td width="200px"><b>{% if s1000_alteracao.indconstr or s1000_alteracao.indconstr == 0 %}{{ s1000_alteracao.indconstr|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %}
+                <a href="{% url 's1000_alteracao_salvar'  hash='{}'|json_id:s1000_alteracao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao.inddesfolha|validacoes_esocial_efdreinf:"s1000_alteracao.inddesfolha" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indDesFolha</td>
+            <td width="500px">Indicativo de Desoneração da Folha:0 - Não Aplicável;1 - Empresa enquadrada nos art. 7º a 9º da Lei 12.546/2011.Validação: Pode ser igual a [1] apenas se a classificação tributária for igual a[02,03,99]. Nos demais casos, deve ser igual a [0]. Valores Válidos: 0, 1.</td>
+            <td width="200px"><b>{% if s1000_alteracao.inddesfolha or s1000_alteracao.inddesfolha == 0 %}{{ s1000_alteracao.inddesfolha|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %}
+                <a href="{% url 's1000_alteracao_salvar'  hash='{}'|json_id:s1000_alteracao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao.indoptregeletron|validacoes_esocial_efdreinf:"s1000_alteracao.indoptregeletron" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indOptRegEletron</td>
+            <td width="500px">Indica se houve opção pelo registro eletrônico de empregados:0 - Não optou pelo registro eletrônico de empregados;1 - Optou pelo registro eletrônico de empregados. Valores Válidos: 0, 1.</td>
+            <td width="200px"><b>{% if s1000_alteracao.indoptregeletron or s1000_alteracao.indoptregeletron == 0 %}{{ s1000_alteracao.indoptregeletron|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %}
+                <a href="{% url 's1000_alteracao_salvar'  hash='{}'|json_id:s1000_alteracao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao.indented|validacoes_esocial_efdreinf:"s1000_alteracao.indented" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indEntEd</td>
+            <td width="500px">Indicativo de entidade educativa sem fins lucrativos que tenha por objetivo a assistência ao adolescente e à educação profissional (art. 430, inciso II, CLT) ou de entidade de prática desportiva filiada ao Sistema Nacional do Desporto ou a Sistema de Desporto de Estado, do Distrito Federal ou de Município (art.430, inciso III, CLT): N - Não;S - Sim.Validação: O preenchimento é exclusivo e obrigatório para Pessoa Jurídica. Valores Válidos: S,N.</td>
+            <td width="200px"><b>{% if s1000_alteracao.indented or s1000_alteracao.indented == 0 %}{{ s1000_alteracao.indented }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %}
+                <a href="{% url 's1000_alteracao_salvar'  hash='{}'|json_id:s1000_alteracao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao.indett|validacoes_esocial_efdreinf:"s1000_alteracao.indett" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indEtt</td>
+            <td width="500px">Indicativo de Empresa de Trabalho Temporário (Lei n° 6.019/1974), com registro no Ministério do Trabalho:N - Não é Empresa de Trabalho Temporário;S - Empresa de Trabalho Temporário. Valores Válidos: S,N.</td>
+            <td width="200px"><b>{% if s1000_alteracao.indett or s1000_alteracao.indett == 0 %}{{ s1000_alteracao.indett }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %}
+                <a href="{% url 's1000_alteracao_salvar'  hash='{}'|json_id:s1000_alteracao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao.nrregett|validacoes_esocial_efdreinf:"s1000_alteracao.nrregett" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRegEtt</td>
+            <td width="500px">Número do registro da Empresa de Trabalho Temporário no Ministério doTrabalho.Validação: Informação obrigatória se {indEtt} = [S]. Não pode ser informado nos demais casos.Se informado, deve conter apenas números.</td>
+            <td width="200px"><b>{% if s1000_alteracao.nrregett or s1000_alteracao.nrregett == 0 %}{{ s1000_alteracao.nrregett }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %}
+                <a href="{% url 's1000_alteracao_salvar'  hash='{}'|json_id:s1000_alteracao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">dadosIsencao</td>
+            <td bgcolor="lightgray" colspan="3">Informações Complementares - Empresas Isentas - Dados da Isenção</td>
+        </tr>
+    {% for s1000_alteracao_dadosisencao in s1000_alteracao_dadosisencao_lista %}
+    {% ifequal s1000_alteracao_dadosisencao.s1000_alteracao.id s1000_alteracao.id %}
+        <tr {% if s1000_alteracao_dadosisencao.ideminlei|validacoes_esocial_efdreinf:"s1000_alteracao_dadosisencao.ideminlei" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">ideMinLei</td>
+            <td width="500px">Sigla e nome do Ministério ou Lei que concedeu o Certificado</td>
+            <td width="200px"><b>{% if s1000_alteracao_dadosisencao.ideminlei or s1000_alteracao_dadosisencao.ideminlei == 0 %}{{ s1000_alteracao_dadosisencao.ideminlei }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_dadosisencao_visualizar' %}
+                <a href="{% url 's1000_alteracao_dadosisencao_salvar'  hash='{}'|json_id:s1000_alteracao_dadosisencao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao_dadosisencao.nrcertif|validacoes_esocial_efdreinf:"s1000_alteracao_dadosisencao.nrcertif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrCertif</td>
+            <td width="500px">Número do Certificado de Entidade Beneficente de Assistência Social, número da portaria de concessão do Certificado, ou, no caso de concessão através de Lei específica, o número da Lei.</td>
+            <td width="200px"><b>{% if s1000_alteracao_dadosisencao.nrcertif or s1000_alteracao_dadosisencao.nrcertif == 0 %}{{ s1000_alteracao_dadosisencao.nrcertif }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_dadosisencao_visualizar' %}
+                <a href="{% url 's1000_alteracao_dadosisencao_salvar'  hash='{}'|json_id:s1000_alteracao_dadosisencao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao_dadosisencao.dtemiscertif|validacoes_esocial_efdreinf:"s1000_alteracao_dadosisencao.dtemiscertif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtEmisCertif</td>
+            <td width="500px">Data de Emissão do Certificado/publicação da Lei</td>
+            <td width="200px"><b>{% if s1000_alteracao_dadosisencao.dtemiscertif or s1000_alteracao_dadosisencao.dtemiscertif == 0 %}{{ s1000_alteracao_dadosisencao.dtemiscertif|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_dadosisencao_visualizar' %}
+                <a href="{% url 's1000_alteracao_dadosisencao_salvar'  hash='{}'|json_id:s1000_alteracao_dadosisencao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao_dadosisencao.dtvenccertif|validacoes_esocial_efdreinf:"s1000_alteracao_dadosisencao.dtvenccertif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtVencCertif</td>
+            <td width="500px">Data de Vencimento do CertificadoValidação: Não pode ser anterior a {dtEmisCertif}</td>
+            <td width="200px"><b>{% if s1000_alteracao_dadosisencao.dtvenccertif or s1000_alteracao_dadosisencao.dtvenccertif == 0 %}{{ s1000_alteracao_dadosisencao.dtvenccertif|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_dadosisencao_visualizar' %}
+                <a href="{% url 's1000_alteracao_dadosisencao_salvar'  hash='{}'|json_id:s1000_alteracao_dadosisencao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao_dadosisencao.nrprotrenov|validacoes_esocial_efdreinf:"s1000_alteracao_dadosisencao.nrprotrenov" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrProtRenov</td>
+            <td width="500px">Protocolo pedido renovação</td>
+            <td width="200px"><b>{% if s1000_alteracao_dadosisencao.nrprotrenov or s1000_alteracao_dadosisencao.nrprotrenov == 0 %}{{ s1000_alteracao_dadosisencao.nrprotrenov }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_dadosisencao_visualizar' %}
+                <a href="{% url 's1000_alteracao_dadosisencao_salvar'  hash='{}'|json_id:s1000_alteracao_dadosisencao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao_dadosisencao.dtprotrenov|validacoes_esocial_efdreinf:"s1000_alteracao_dadosisencao.dtprotrenov" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtProtRenov</td>
+            <td width="500px">Data do protocolo de renovação</td>
+            <td width="200px"><b>{% if s1000_alteracao_dadosisencao.dtprotrenov or s1000_alteracao_dadosisencao.dtprotrenov == 0 %}{{ s1000_alteracao_dadosisencao.dtprotrenov|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_dadosisencao_visualizar' %}
+                <a href="{% url 's1000_alteracao_dadosisencao_salvar'  hash='{}'|json_id:s1000_alteracao_dadosisencao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao_dadosisencao.dtdou|validacoes_esocial_efdreinf:"s1000_alteracao_dadosisencao.dtdou" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtDou</td>
+            <td width="500px">Preencher com a data de publicação no Diário Oficial da União</td>
+            <td width="200px"><b>{% if s1000_alteracao_dadosisencao.dtdou or s1000_alteracao_dadosisencao.dtdou == 0 %}{{ s1000_alteracao_dadosisencao.dtdou|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_dadosisencao_visualizar' %}
+                <a href="{% url 's1000_alteracao_dadosisencao_salvar'  hash='{}'|json_id:s1000_alteracao_dadosisencao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao_dadosisencao.pagdou|validacoes_esocial_efdreinf:"s1000_alteracao_dadosisencao.pagdou" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">pagDou</td>
+            <td width="500px">Preencher com o número da página no DOU referente à publicação do documento de concessão do certificado.</td>
+            <td width="200px"><b>{% if s1000_alteracao_dadosisencao.pagdou or s1000_alteracao_dadosisencao.pagdou == 0 %}{{ s1000_alteracao_dadosisencao.pagdou|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_dadosisencao_visualizar' %}
+                <a href="{% url 's1000_alteracao_dadosisencao_salvar'  hash='{}'|json_id:s1000_alteracao_dadosisencao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">contato</td>
+            <td bgcolor="lightgray" colspan="3">Informações de contato</td>
+        </tr>
+
+        <tr {% if s1000_alteracao.nmctt|validacoes_esocial_efdreinf:"s1000_alteracao.nmctt" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmCtt</td>
+            <td width="500px">Nome do contato na empresa. Pessoa responsável por ser o contato do empregador com os órgãos gestores do eSocial</td>
+            <td width="200px"><b>{% if s1000_alteracao.nmctt or s1000_alteracao.nmctt == 0 %}{{ s1000_alteracao.nmctt }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %}
+                <a href="{% url 's1000_alteracao_salvar'  hash='{}'|json_id:s1000_alteracao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao.cpfctt|validacoes_esocial_efdreinf:"s1000_alteracao.cpfctt" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfCtt</td>
+            <td width="500px">Preencher com o número do CPF do contato.Validação: A inscrição é validada na base de dados do CPF da RFB.</td>
+            <td width="200px"><b>{% if s1000_alteracao.cpfctt or s1000_alteracao.cpfctt == 0 %}{{ s1000_alteracao.cpfctt }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %}
+                <a href="{% url 's1000_alteracao_salvar'  hash='{}'|json_id:s1000_alteracao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao.fonefixo|validacoes_esocial_efdreinf:"s1000_alteracao.fonefixo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">foneFixo</td>
+            <td width="500px">Informar o número do telefone, com DDD.Validação: O preenchimento é obrigatório se o campo {foneCel} não for preenchido. Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
+            <td width="200px"><b>{% if s1000_alteracao.fonefixo or s1000_alteracao.fonefixo == 0 %}{{ s1000_alteracao.fonefixo }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %}
+                <a href="{% url 's1000_alteracao_salvar'  hash='{}'|json_id:s1000_alteracao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao.fonecel|validacoes_esocial_efdreinf:"s1000_alteracao.fonecel" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">foneCel</td>
+            <td width="500px">Telefone celular, com DDDValidação: Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
+            <td width="200px"><b>{% if s1000_alteracao.fonecel or s1000_alteracao.fonecel == 0 %}{{ s1000_alteracao.fonecel }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %}
+                <a href="{% url 's1000_alteracao_salvar'  hash='{}'|json_id:s1000_alteracao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao.email|validacoes_esocial_efdreinf:"s1000_alteracao.email" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">email</td>
+            <td width="500px">Endereço eletrônicoValidação: O e-mail deve possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do@ e não pode estar no fim do e-mail.</td>
+            <td width="200px"><b>{% if s1000_alteracao.email or s1000_alteracao.email == 0 %}{{ s1000_alteracao.email }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %}
+                <a href="{% url 's1000_alteracao_salvar'  hash='{}'|json_id:s1000_alteracao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoOP</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas a Órgãos Públicos</td>
+        </tr>
+    {% for s1000_alteracao_infoop in s1000_alteracao_infoop_lista %}
+    {% ifequal s1000_alteracao_infoop.s1000_alteracao.id s1000_alteracao.id %}
+        <tr {% if s1000_alteracao_infoop.nrsiafi|validacoes_esocial_efdreinf:"s1000_alteracao_infoop.nrsiafi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrSiafi</td>
+            <td width="500px">Preencher com o número SIAFI - Sistema Integrado de AdministraçãoFinanceira, caso seja órgão público usuário do sistema.</td>
+            <td width="200px"><b>{% if s1000_alteracao_infoop.nrsiafi or s1000_alteracao_infoop.nrsiafi == 0 %}{{ s1000_alteracao_infoop.nrsiafi }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_infoop_visualizar' %}
+                <a href="{% url 's1000_alteracao_infoop_salvar'  hash='{}'|json_id:s1000_alteracao_infoop.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoEFR</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas a Ente Federativo Responsável - EFR</td>
+        </tr>
+    {% for s1000_alteracao_infoefr in s1000_alteracao_infoefr_lista %}
+    {% ifequal s1000_alteracao_infoefr.s1000_alteracao_infoop.id s1000_alteracao_infoop.id %}
+        <tr {% if s1000_alteracao_infoefr.ideefr|validacoes_esocial_efdreinf:"s1000_alteracao_infoefr.ideefr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">ideEFR</td>
+            <td width="500px">Informar se o Órgão Público é o Ente Federativo Responsável - EFR ou se é uma unidade administrativa autônoma vinculada a um EFR; S - É EFR;N - Não é EFR.Validação: Essa informação é validada no cadastro do CNPJ na RFB. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s1000_alteracao_infoefr.ideefr or s1000_alteracao_infoefr.ideefr == 0 %}{{ s1000_alteracao_infoefr.ideefr }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_infoefr_visualizar' %}
+                <a href="{% url 's1000_alteracao_infoefr_salvar'  hash='{}'|json_id:s1000_alteracao_infoefr.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao_infoefr.cnpjefr|validacoes_esocial_efdreinf:"s1000_alteracao_infoefr.cnpjefr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjEFR</td>
+            <td width="500px">CNPJ do Ente Federativo Responsável - EFRValidação: Preenchimento obrigatório se {ideEFR} = [N]. Informação validada no cadastro do CNPJ da RFB.</td>
+            <td width="200px"><b>{% if s1000_alteracao_infoefr.cnpjefr or s1000_alteracao_infoefr.cnpjefr == 0 %}{{ s1000_alteracao_infoefr.cnpjefr }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_infoefr_visualizar' %}
+                <a href="{% url 's1000_alteracao_infoefr_salvar'  hash='{}'|json_id:s1000_alteracao_infoefr.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoEnte</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas ao ente federativo estadual, distrital ou municipal</td>
+        </tr>
+    {% for s1000_alteracao_infoente in s1000_alteracao_infoente_lista %}
+    {% ifequal s1000_alteracao_infoente.s1000_alteracao_infoop.id s1000_alteracao_infoop.id %}
+        <tr {% if s1000_alteracao_infoente.nmente|validacoes_esocial_efdreinf:"s1000_alteracao_infoente.nmente" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmEnte</td>
+            <td width="500px">Nome do Ente Federativo ao qual o órgão está vinculado</td>
+            <td width="200px"><b>{% if s1000_alteracao_infoente.nmente or s1000_alteracao_infoente.nmente == 0 %}{{ s1000_alteracao_infoente.nmente }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_infoente_visualizar' %}
+                <a href="{% url 's1000_alteracao_infoente_salvar'  hash='{}'|json_id:s1000_alteracao_infoente.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao_infoente.uf|validacoes_esocial_efdreinf:"s1000_alteracao_infoente.uf" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">uf</td>
+            <td width="500px">Preencher com a sigla da Unidade da FederaçãoValidação: Deve ser uma UF válida.</td>
+            <td width="200px"><b>{% if s1000_alteracao_infoente.uf or s1000_alteracao_infoente.uf == 0 %}{{ s1000_alteracao_infoente.uf }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_infoente_visualizar' %}
+                <a href="{% url 's1000_alteracao_infoente_salvar'  hash='{}'|json_id:s1000_alteracao_infoente.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao_infoente.codmunic|validacoes_esocial_efdreinf:"s1000_alteracao_infoente.codmunic" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codMunic</td>
+            <td width="500px">Preencher com o código do município, conforme tabela do IBGE Validação: Se informado, deve ser um código existente na tabela do IBGE.</td>
+            <td width="200px"><b>{% if s1000_alteracao_infoente.codmunic or s1000_alteracao_infoente.codmunic == 0 %}{{ s1000_alteracao_infoente.codmunic|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_infoente_visualizar' %}
+                <a href="{% url 's1000_alteracao_infoente_salvar'  hash='{}'|json_id:s1000_alteracao_infoente.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao_infoente.indrpps|validacoes_esocial_efdreinf:"s1000_alteracao_infoente.indrpps" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indRPPS</td>
+            <td width="500px">Informar se o ente público possui Regime Próprio de Previdência Social - RPPS.S - Sim; N - Não.Valores Válidos: S, N</td>
+            <td width="200px"><b>{% if s1000_alteracao_infoente.indrpps or s1000_alteracao_infoente.indrpps == 0 %}{{ s1000_alteracao_infoente.indrpps }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_infoente_visualizar' %}
+                <a href="{% url 's1000_alteracao_infoente_salvar'  hash='{}'|json_id:s1000_alteracao_infoente.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao_infoente.subteto|validacoes_esocial_efdreinf:"s1000_alteracao_infoente.subteto" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">subteto</td>
+            <td width="500px">Preencher com o poder a que se refere o subteto:1 - Executivo;2 - Judiciário;3 - Legislativo;9 - Todos os poderes. Valores Válidos: 1, 2, 3, 9.</td>
+            <td width="200px"><b>{% if s1000_alteracao_infoente.subteto or s1000_alteracao_infoente.subteto == 0 %}{{ s1000_alteracao_infoente.subteto|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_infoente_visualizar' %}
+                <a href="{% url 's1000_alteracao_infoente_salvar'  hash='{}'|json_id:s1000_alteracao_infoente.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao_infoente.vrsubteto|validacoes_esocial_efdreinf:"s1000_alteracao_infoente.vrsubteto" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSubteto</td>
+            <td width="500px">Preencher com o valor do subteto do Ente Federativo.</td>
+            <td width="200px"><b>{% if s1000_alteracao_infoente.vrsubteto or s1000_alteracao_infoente.vrsubteto == 0 %}{{ s1000_alteracao_infoente.vrsubteto|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_infoente_visualizar' %}
+                <a href="{% url 's1000_alteracao_infoente_salvar'  hash='{}'|json_id:s1000_alteracao_infoente.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoOrgInternacional</td>
+            <td bgcolor="lightgray" colspan="3">Informações exclusivas de organismos internacionais e outras instituições extraterritoriais</td>
+        </tr>
+    {% for s1000_alteracao_infoorginternacional in s1000_alteracao_infoorginternacional_lista %}
+    {% ifequal s1000_alteracao_infoorginternacional.s1000_alteracao.id s1000_alteracao.id %}
+        <tr {% if s1000_alteracao_infoorginternacional.indacordoisenmulta|validacoes_esocial_efdreinf:"s1000_alteracao_infoorginternacional.indacordoisenmulta" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indAcordoIsenMulta</td>
+            <td width="500px">Indicativo da existência de acordo internacional para isenção de multa:0 - Sem acordo;1 - Com acordo. Valores Válidos: 0, 1.</td>
+            <td width="200px"><b>{% if s1000_alteracao_infoorginternacional.indacordoisenmulta or s1000_alteracao_infoorginternacional.indacordoisenmulta == 0 %}{{ s1000_alteracao_infoorginternacional.indacordoisenmulta|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_infoorginternacional_visualizar' %}
+                <a href="{% url 's1000_alteracao_infoorginternacional_salvar'  hash='{}'|json_id:s1000_alteracao_infoorginternacional.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">softwareHouse</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas ao desenvolvedor do software que gerou o arquivo xml.</td>
+        </tr>
+    {% for s1000_alteracao_softwarehouse in s1000_alteracao_softwarehouse_lista %}
+    {% ifequal s1000_alteracao_softwarehouse.s1000_alteracao.id s1000_alteracao.id %}
+        <tr {% if s1000_alteracao_softwarehouse.cnpjsofthouse|validacoes_esocial_efdreinf:"s1000_alteracao_softwarehouse.cnpjsofthouse" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjSoftHouse</td>
+            <td width="500px">CNPJ da empresa desenvolvedora do software. Se o software foi desenvolvido pelo próprio empregador, informar o CNPJ do estabelecimento do empregador responsável pelo desenvolvimento.Regra de validação:REGRA_VALIDA_CNPJ</td>
+            <td width="200px"><b>{% if s1000_alteracao_softwarehouse.cnpjsofthouse or s1000_alteracao_softwarehouse.cnpjsofthouse == 0 %}{{ s1000_alteracao_softwarehouse.cnpjsofthouse }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_softwarehouse_visualizar' %}
+                <a href="{% url 's1000_alteracao_softwarehouse_salvar'  hash='{}'|json_id:s1000_alteracao_softwarehouse.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao_softwarehouse.nmrazao|validacoes_esocial_efdreinf:"s1000_alteracao_softwarehouse.nmrazao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmRazao</td>
+            <td width="500px">Informar a razão social, no caso de pessoa jurídica ou órgão público.</td>
+            <td width="200px"><b>{% if s1000_alteracao_softwarehouse.nmrazao or s1000_alteracao_softwarehouse.nmrazao == 0 %}{{ s1000_alteracao_softwarehouse.nmrazao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_softwarehouse_visualizar' %}
+                <a href="{% url 's1000_alteracao_softwarehouse_salvar'  hash='{}'|json_id:s1000_alteracao_softwarehouse.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao_softwarehouse.nmcont|validacoes_esocial_efdreinf:"s1000_alteracao_softwarehouse.nmcont" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmCont</td>
+            <td width="500px">Nome do contato na empresa.</td>
+            <td width="200px"><b>{% if s1000_alteracao_softwarehouse.nmcont or s1000_alteracao_softwarehouse.nmcont == 0 %}{{ s1000_alteracao_softwarehouse.nmcont }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_softwarehouse_visualizar' %}
+                <a href="{% url 's1000_alteracao_softwarehouse_salvar'  hash='{}'|json_id:s1000_alteracao_softwarehouse.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao_softwarehouse.telefone|validacoes_esocial_efdreinf:"s1000_alteracao_softwarehouse.telefone" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">telefone</td>
+            <td width="500px">Informar o número do telefone, com DDD.Validação: Deve conter apenas números, com o mínimo de dez dígitos.</td>
+            <td width="200px"><b>{% if s1000_alteracao_softwarehouse.telefone or s1000_alteracao_softwarehouse.telefone == 0 %}{{ s1000_alteracao_softwarehouse.telefone }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_softwarehouse_visualizar' %}
+                <a href="{% url 's1000_alteracao_softwarehouse_salvar'  hash='{}'|json_id:s1000_alteracao_softwarehouse.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao_softwarehouse.email|validacoes_esocial_efdreinf:"s1000_alteracao_softwarehouse.email" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">email</td>
+            <td width="500px">Endereço eletrônicoValidação: O e-mail deve possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do@ e não pode estar no fim do e-mail.</td>
+            <td width="200px"><b>{% if s1000_alteracao_softwarehouse.email or s1000_alteracao_softwarehouse.email == 0 %}{{ s1000_alteracao_softwarehouse.email }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_softwarehouse_visualizar' %}
+                <a href="{% url 's1000_alteracao_softwarehouse_salvar'  hash='{}'|json_id:s1000_alteracao_softwarehouse.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoComplementares</td>
+            <td bgcolor="lightgray" colspan="3">Informações complementares sobre o declarante</td>
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">situacaoPJ</td>
+            <td bgcolor="lightgray" colspan="3">Informações Complementares - Pessoa Jurídica</td>
+        </tr>
+    {% for s1000_alteracao_situacaopj in s1000_alteracao_situacaopj_lista %}
+    {% ifequal s1000_alteracao_situacaopj.s1000_alteracao.id s1000_alteracao.id %}
+        <tr {% if s1000_alteracao_situacaopj.indsitpj|validacoes_esocial_efdreinf:"s1000_alteracao_situacaopj.indsitpj" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indSitPJ</td>
+            <td width="500px">Indicativo da Situação da Pessoa Jurídica:0 - Situação Normal;1 - Extinção;2 - Fusão;3 - Cisão;4 - Incorporação.Valores Válidos: 0, 1, 2, 3, 4</td>
+            <td width="200px"><b>{% if s1000_alteracao_situacaopj.indsitpj or s1000_alteracao_situacaopj.indsitpj == 0 %}{{ s1000_alteracao_situacaopj.indsitpj|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_situacaopj_visualizar' %}
+                <a href="{% url 's1000_alteracao_situacaopj_salvar'  hash='{}'|json_id:s1000_alteracao_situacaopj.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">situacaoPF</td>
+            <td bgcolor="lightgray" colspan="3">Informações Complementares - Pessoa Física</td>
+        </tr>
+    {% for s1000_alteracao_situacaopf in s1000_alteracao_situacaopf_lista %}
+    {% ifequal s1000_alteracao_situacaopf.s1000_alteracao.id s1000_alteracao.id %}
+        <tr {% if s1000_alteracao_situacaopf.indsitpf|validacoes_esocial_efdreinf:"s1000_alteracao_situacaopf.indsitpf" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indSitPF</td>
+            <td width="500px">Indicativo da Situação da Pessoa Física:0 - Situação Normal;1 - Encerramento de espólio;2 - Saída do país em caráter permanente. Valores Válidos: 0, 1, 2</td>
+            <td width="200px"><b>{% if s1000_alteracao_situacaopf.indsitpf or s1000_alteracao_situacaopf.indsitpf == 0 %}{{ s1000_alteracao_situacaopf.indsitpf|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_situacaopf_visualizar' %}
+                <a href="{% url 's1000_alteracao_situacaopf_salvar'  hash='{}'|json_id:s1000_alteracao_situacaopf.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}  
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">novaValidade</td>
+            <td bgcolor="lightgray" colspan="3">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</td>
+        </tr>
+    {% for s1000_alteracao_novavalidade in s1000_alteracao_novavalidade_lista %}
+    {% ifequal s1000_alteracao_novavalidade.s1000_alteracao.id s1000_alteracao.id %}
+        <tr {% if s1000_alteracao_novavalidade.inivalid|validacoes_esocial_efdreinf:"s1000_alteracao_novavalidade.inivalid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">iniValid</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial deimplantação do eSocial, no formato AAAA-MM.</td>
+            <td width="200px"><b>{% if s1000_alteracao_novavalidade.inivalid or s1000_alteracao_novavalidade.inivalid == 0 %}{{ s1000_alteracao_novavalidade.inivalid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_novavalidade_visualizar' %}
+                <a href="{% url 's1000_alteracao_novavalidade_salvar'  hash='{}'|json_id:s1000_alteracao_novavalidade.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_alteracao_novavalidade.fimvalid|validacoes_esocial_efdreinf:"s1000_alteracao_novavalidade.fimvalid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">fimValid</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser um períodoigual ou posterior a {iniValid}</td>
+            <td width="200px"><b>{% if s1000_alteracao_novavalidade.fimvalid or s1000_alteracao_novavalidade.fimvalid == 0 %}{{ s1000_alteracao_novavalidade.fimvalid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_alteracao_novavalidade_visualizar' %}
+                <a href="{% url 's1000_alteracao_novavalidade_salvar'  hash='{}'|json_id:s1000_alteracao_novavalidade.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">exclusao</td>
+            <td bgcolor="lightgray" colspan="3">Exclusão das informações</td>
+        </tr>
+    {% for s1000_exclusao in s1000_exclusao_lista %}
+    {% ifequal s1000_exclusao.s1000_evtinfoempregador.id s1000_evtinfoempregador.id %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">idePeriodo</td>
+            <td bgcolor="lightgray" colspan="3">Informação destinada a localizar corretamente as informações já existentes e que serão objeto de exclusão através deste evento.</td>
+        </tr>
+
+        <tr {% if s1000_exclusao.inivalid|validacoes_esocial_efdreinf:"s1000_exclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">iniValid</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial deimplantação do eSocial, no formato AAAA-MM.</td>
+            <td width="200px"><b>{% if s1000_exclusao.inivalid or s1000_exclusao.inivalid == 0 %}{{ s1000_exclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_exclusao_visualizar' %}
+                <a href="{% url 's1000_exclusao_salvar'  hash='{}'|json_id:s1000_exclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1000_exclusao.fimvalid|validacoes_esocial_efdreinf:"s1000_exclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">fimValid</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
+            <td width="200px"><b>{% if s1000_exclusao.fimvalid or s1000_exclusao.fimvalid == 0 %}{{ s1000_exclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s1000_exclusao_visualizar' %}
+                <a href="{% url 's1000_exclusao_salvar'  hash='{}'|json_id:s1000_exclusao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+     {% endifequal %}{% endfor %} {% endifequal %}{% endfor %}
+</table>
+{% if not for_print %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %} 
+
+        </div>
+      </div>
+    </section>
+{% endif %}  
+
+{% endblock content %}
