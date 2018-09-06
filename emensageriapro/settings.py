@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 """
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    eMensageria - Sistema de Gerenciamento de Eventos do eSocial <www.emensageria.com.br>
     Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
     This program is free software: you can redistribute it and/or modify
@@ -27,15 +27,15 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
         Este programa é software livre: você pode redistribuí-lo e / ou modificar
         sob os termos da licença GNU Affero General Public License como
         publicado pela Free Software Foundation, seja versão 3 do
         Licença, ou (a seu critério) qualquer versão posterior.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
 
         Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
@@ -45,17 +45,30 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import psycopg2
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from emensageriapro.versao import versao
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+import environ
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+# reading .env file
+environ.Env.read_env()
 
+# False if not in os.environ
+DEBUG = env('DEBUG')
+
+# Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
+SECRET_KEY = env('SECRET_KEY')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '2w0qr9j#u2e=q081@sk)^-t3g9p5+k0+k9-b=yx4*aw!j=dsm$'
+
+
+TEMPLATE_DEBUG = DEBUG
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
@@ -147,6 +160,7 @@ INSTALLED_APPS = (
     'emensageriapro.s5011',
     'emensageriapro.s5012',
 
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -186,75 +200,59 @@ USE_L10N = True
 
 USE_TZ = False
 
-#STATIC_URL = '/static/'
-
-STATIC_URL = 'http://static.emensageria.com.br/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-#STATICFILES_DIR = (
+STATIC_URL = 'http://static.emensageria.com.br/'
+# STATICFILES_DIR = (
 #    os.path.join(BASE_DIR, 'static'),
-#)
+# )
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Configurações de Versão do Aplicativo - NÂO ALTERAR
+# Configurações de Versão do Aplicativo
 
-VERSAO_EMENSAGERIA = versao['versao']
-VERSAO_MODELO = versao['versao_esocial']
+VERSAO_EMENSAGERIA = '1.0'
+VERSAO_MODELO = "v02_04_02" # apagar
+VERSAO_LAYOUT_ESOCIAL = "v02_04_02"
+VERSAO_LAYOUT_EFDREINF = "v1_03_02"
 
-#coding:utf-8
-
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 
 # Hosts permitidos em Produção (obrigatório caso o DEBUG = False)
-
 ALLOWED_HOSTS = [
-    'www.emensageria.com.br',
-    'www.municipios.adm.br',
+    env('ALLOWED_HOSTS'),
 ]
 
 # Configuração do Banco de Dados
 
 
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'emensageriapro',
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    },
+    # read os.environ['DATABASE_URL'] and raises ImproperlyConfigured exception if not found
+    'default': env.db(),
 }
 
 # E-mail Config
 
-EMAIL_HOST = 'smtp.xxx.com.br'
-EMAIL_HOST_USER = 'xxxx@xxx.com.br'
-EMAIL_HOST_PASSWORD = 'xxxxx'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-SERVER_EMAIL = 'xxx@xxx.com.br'
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_USE_TLS = env('EMAIL_USE_TLS')
+SERVER_EMAIL = env('SERVER_EMAIL')
 
 
 # Configurações de Certificado
 
-CERT_HOST = 'certificados/xxx.pfx'
-CERT_PASS = 'xxx'
-CERT_PEM_FILE = 'certificados/cert.pem'
-KEY_PEM_FILE = 'certificados/key.pem'
-CA_CERT_PEM_FILE = 'certificados/acserproacfv5.crt'
+CERT_HOST = env('CERT_HOST')
+CERT_PASS = env('CERT_PASS')
+CERT_PEM_FILE = env('CERT_PEM_FILE')
+KEY_PEM_FILE = env('KEY_PEM_FILE')
+CA_CERT_PEM_FILE = env('CA_CERT_PEM_FILE')
 
 # Configurações Específicas do eSocial
 
-TP_AMB = 2 # 1-Produção; 2-Produção Restrita
-FORCE_PRODUCAO_RESTRITA = True
+TP_AMB = env('TP_AMB')
+FORCE_PRODUCAO_RESTRITA = env('FORCE_PRODUCAO_RESTRITA')
 
 # Chave para ter acesso a função de enviar e consultar eventos pela URL
 
-PASS_SCRIPT = '123456'
+PASS_SCRIPT = env('PASS_SCRIPT')
