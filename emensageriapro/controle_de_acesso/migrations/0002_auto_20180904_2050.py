@@ -22,7 +22,7 @@ INSERT INTO config_perfis (id, titulo, permissoes, modulos_permitidos, paginas_p
         
 
 INSERT INTO usuarios (id, usuario, senha, nome, email, criado_em, modificado_em, excluido, config_perfis_id, criado_por_id, modificado_por_id) 
-VALUES (1, 'admin', 'c15fd166327bd2b0c76da2650889386da467f76da67bb993efaf0704a5a3fce1b98d1b1d3a5cc527bca2494c', 
+VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc358acb7acccce58ffa8b953b12b5a7702bd42dae441c1ad85057fa70b', 
 'Administrador', 'examplo@email.com', now(), now(), false, 1, 1, 1);
         
         """),
