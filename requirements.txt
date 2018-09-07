@@ -7,3 +7,4 @@ signxml==2.5.2
 xhtml2pdf==0.2.2
 django-wkhtmltopdf==3.2.0
 goslate==1.5.1
+django-environ==0.4.5
