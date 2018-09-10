@@ -33,8 +33,9 @@
 
 """
 
+from emensageriapro.settings import CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE
 CERT = True
-CERT_HOST = 'certificados/xxxx.pfx'
-CERT_PASS = 'xxxxx'
-CERT_PEM_FILE = 'certificados/cert.pem'
-KEY_PEM_FILE = 'certificados/key.pem'
+# CERT_HOST = 'certificados/xxxx.pfx'
+# CERT_PASS = 'xxxxx'
+# CERT_PEM_FILE = 'certificados/cert.pem'
+# KEY_PEM_FILE = 'certificados/key.pem'
