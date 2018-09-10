@@ -2,3 +2,5 @@
 *.pyc
 .env
 certificados/*.pfx
+certificados/*.pem
+arquivos/
