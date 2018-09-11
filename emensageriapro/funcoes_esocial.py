@@ -291,14 +291,14 @@ def send_xml(request, transmissor_id, service):
     from emensageriapro.settings import FORCE_PRODUCAO_RESTRITA, TP_AMB, CA_CERT_PEM_FILE, CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE
     from emensageriapro.certificado import CERT
     CERT_HOST = BASE_DIR + '/' + CERT_HOST
-    if int(TP_AMB) == 1: # Produção
+    if TP_AMB == '1': # Produção
         if service == 'WsEnviarLoteEventos':
             URL_WS = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/ServicoEnviarLoteEventos/EnviarLoteEventos"
         elif service == 'WsConsultarLoteEventos':
             URL_WS = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_1_0/ServicoConsultarLoteEventos/ConsultarLoteEventos"
-    else: # Produção-Restrita
+    elif TP_AMB == '2': # Produção-Restrita
         if service == 'WsEnviarLoteEventos':
             URL_WS = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/ServicoEnviarLoteEventos/EnviarLoteEventos"
