@@ -288,18 +288,17 @@ def send_xml(request, transmissor_id, service):
     data_atual = str(datetime.now()).replace(':','-').replace(' ','-').replace('.','-')
     criar_diretorio_arquivos()
     import os
-    #from emensageriapro.settings import CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE, CA_CERT_PEM_FILE, FORCE_PRODUCAO_RESTRITA, TP_AMB
     from emensageriapro.settings import FORCE_PRODUCAO_RESTRITA, TP_AMB, CA_CERT_PEM_FILE, CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE
     from emensageriapro.certificado import CERT
     CERT_HOST = BASE_DIR + '/' + CERT_HOST
-    if TP_AMB == '1': # Produção
+    if int(TP_AMB) == 1: # Produção
         if service == 'WsEnviarLoteEventos':
             URL = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/ServicoEnviarLoteEventos/EnviarLoteEventos"
         elif service == 'WsConsultarLoteEventos':
             URL = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_1_0/ServicoConsultarLoteEventos/ConsultarLoteEventos"
-    elif TP_AMB == '2': # Produção-Restrita
+    elif int(TP_AMB) == 2: # Produção-Restrita
         if service == 'WsEnviarLoteEventos':
             URL = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/ServicoEnviarLoteEventos/EnviarLoteEventos"
@@ -327,8 +326,8 @@ SELECT te.empregador_tpinsc, te.empregador_nrinsc,
     transmissor_dados['esocial_timeout'] = tra[0][6]
     transmissor_dados['esocial_certificado'] = BASE_DIR + 'uploads/'+tra[0][7]
     transmissor_dados['esocial_senha'] = tra[0][8]
-    CERT_PEM_FILE = BASE_DIR+'/certificados/cert.pem'
-    KEY_PEM_FILE = BASE_DIR+'/certificados/key.pem'
+    CERT_PEM_FILE = BASE_DIR + '/' + CERT_PEM_FILE
+    KEY_PEM_FILE = BASE_DIR + '/' + KEY_PEM_FILE
     if not os.path.isfile(CERT_PEM_FILE):
         create_pem_files(CERT_HOST,
                          CERT_PASS,
