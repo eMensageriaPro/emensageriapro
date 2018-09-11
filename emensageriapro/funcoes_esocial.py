@@ -292,18 +292,18 @@ def send_xml(request, transmissor_id, service):
     from emensageriapro.certificado import CERT
     CERT_HOST = BASE_DIR + '/' + CERT_HOST
     if int(TP_AMB) == 1: # Produção
-        if str(service) == 'WsEnviarLoteEventos':
-            URL = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc"
+        if service == 'WsEnviarLoteEventos':
+            URL_WS = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/ServicoEnviarLoteEventos/EnviarLoteEventos"
-        elif str(service) == 'WsConsultarLoteEventos':
-            URL = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc"
+        elif service == 'WsConsultarLoteEventos':
+            URL_WS = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_1_0/ServicoConsultarLoteEventos/ConsultarLoteEventos"
     else: # Produção-Restrita
-        if str(service) == 'WsEnviarLoteEventos':
-            URL = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc"
+        if service == 'WsEnviarLoteEventos':
+            URL_WS = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/ServicoEnviarLoteEventos/EnviarLoteEventos"
-        elif str(service) == 'WsConsultarLoteEventos':
-            URL = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc"
+        elif service == 'WsConsultarLoteEventos':
+            URL_WS = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_1_0/ServicoConsultarLoteEventos/ConsultarLoteEventos"
     dados = {}
     name = get_transmissor_name(transmissor_id)
@@ -341,7 +341,7 @@ def send_xml(request, transmissor_id, service):
     dados['request_completo'] = '%s/arquivos/Comunicacao/%s/request/%s_%s.xml' % (BASE_DIR, service, name, data_atual)
     dados['response_completo'] = '%s/arquivos/Comunicacao/%s/response/%s_%s.xml' % (BASE_DIR, service, name, data_atual)
     dados['service'] = service
-    dados['url'] = URL
+    dados['url'] = URL_WS
     dados['cert'] = CERT_PEM_FILE
     dados['cacert'] = '%s/certificados/webservicesproducaorestritaesocialgovbr.crt' % BASE_DIR
     dados['key'] = KEY_PEM_FILE
