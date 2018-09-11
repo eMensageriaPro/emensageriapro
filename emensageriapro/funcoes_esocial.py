@@ -292,17 +292,17 @@ def send_xml(request, transmissor_id, service):
     from emensageriapro.certificado import CERT
     CERT_HOST = BASE_DIR + '/' + CERT_HOST
     if int(TP_AMB) == 1: # Produção
-        if service == 'WsEnviarLoteEventos':
+        if str(service) == 'WsEnviarLoteEventos':
             URL = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/ServicoEnviarLoteEventos/EnviarLoteEventos"
-        elif service == 'WsConsultarLoteEventos':
+        elif str(service) == 'WsConsultarLoteEventos':
             URL = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_1_0/ServicoConsultarLoteEventos/ConsultarLoteEventos"
     else: # Produção-Restrita
-        if service == 'WsEnviarLoteEventos':
+        if str(service) == 'WsEnviarLoteEventos':
             URL = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/ServicoEnviarLoteEventos/EnviarLoteEventos"
-        elif service == 'WsConsultarLoteEventos':
+        elif str(service) == 'WsConsultarLoteEventos':
             URL = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_1_0/ServicoConsultarLoteEventos/ConsultarLoteEventos"
     dados = {}
