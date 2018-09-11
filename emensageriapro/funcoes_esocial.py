@@ -298,7 +298,7 @@ def send_xml(request, transmissor_id, service):
         elif service == 'WsConsultarLoteEventos':
             URL = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_1_0/ServicoConsultarLoteEventos/ConsultarLoteEventos"
-    elif int(TP_AMB) == 2: # Produção-Restrita
+    else: # Produção-Restrita
         if service == 'WsEnviarLoteEventos':
             URL = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/ServicoEnviarLoteEventos/EnviarLoteEventos"
@@ -309,13 +309,13 @@ def send_xml(request, transmissor_id, service):
     name = get_transmissor_name(transmissor_id)
     transmissor_dados = {}
     tra = executar_sql("""
-SELECT te.empregador_tpinsc, te.empregador_nrinsc,
-           t.tipo_inscricao, t.cpf_cnpj, 
-           t.esocial_lote_min, t.esocial_lote_max, 
-           t.esocial_timeout, t.esocial_certificado, t.esocial_senha
-      FROM public.transmissor_lote_esocial te
-      JOIN public.transmissores t ON t.id = te.transmissor_id
-     WHERE te.id=%s;
+        SELECT te.empregador_tpinsc, te.empregador_nrinsc,
+                   t.tipo_inscricao, t.cpf_cnpj, 
+                   t.esocial_lote_min, t.esocial_lote_max, 
+                   t.esocial_timeout, t.esocial_certificado, t.esocial_senha
+              FROM public.transmissor_lote_esocial te
+              JOIN public.transmissores t ON t.id = te.transmissor_id
+             WHERE te.id=%s;
     """ % transmissor_id, True)
     transmissor_dados['empregador_tpinsc'] = tra[0][0]
     transmissor_dados['empregador_nrinsc'] = tra[0][1]
