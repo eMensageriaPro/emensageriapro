@@ -81,10 +81,10 @@ def apagar(request, hash):
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-   
+        
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-   
+        
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -130,6 +130,8 @@ def listar(request, hash):
             'show_efdreinf_timeout': 0,
             'show_efdreinf_lote_max': 0,
             'show_efdreinf_lote_min': 0,
+            'show_contribuinte_nrinsc': 1,
+            'show_contribuinte_tpinsc': 1,
             'show_efdreinf': 0,
             'show_esocial_pasta': 0,
             'show_esocial_senha': 0,
@@ -139,15 +141,19 @@ def listar(request, hash):
             'show_esocial_timeout': 0,
             'show_esocial_lote_max': 0,
             'show_esocial_lote_min': 0,
+            'show_empregador_nrinsc': 1,
+            'show_empregador_tpinsc': 1,
             'show_eSocial': 0,
             'show_endereco_completo': 0,
             'show_logotipo': 0,
             'show_envio_automatico': 0,
             'show_validar_eventos': 0,
             'show_data_abertura': 0,
-            'show_tipo_inscricao': 1,
-            'show_cpf_cnpj': 1,
-            'show_nome_empresa': 1, }
+            'show_nome_empresa': 1,
+            'show_empregador_dados': 0,
+            'show_transmissor_nrinsc': 1,
+            'show_transmissor_tpinsc': 1,
+            'show_transmissor_dados': 0, }
         post = False
         #ANTES-POST-LISTAGEM
         if request.method == 'POST':
@@ -158,21 +164,27 @@ def listar(request, hash):
                 'efdreinf_timeout': 'efdreinf_timeout',
                 'efdreinf_lote_max': 'efdreinf_lote_max',
                 'efdreinf_lote_min': 'efdreinf_lote_min',
+                'contribuinte_nrinsc': 'contribuinte_nrinsc',
+                'contribuinte_tpinsc__icontains': 'contribuinte_tpinsc__icontains',
                 'efdreinf': 'efdreinf',
                 'esocial_tempo_prox_envio': 'esocial_tempo_prox_envio',
                 'esocial_intervalo': 'esocial_intervalo',
                 'esocial_timeout': 'esocial_timeout',
                 'esocial_lote_max': 'esocial_lote_max',
                 'esocial_lote_min': 'esocial_lote_min',
+                'empregador_nrinsc': 'empregador_nrinsc',
+                'empregador_tpinsc__icontains': 'empregador_tpinsc__icontains',
                 'eSocial': 'eSocial',
                 'endereco_completo__icontains': 'endereco_completo__icontains',
                 'logotipo': 'logotipo',
                 'envio_automatico': 'envio_automatico',
                 'validar_eventos': 'validar_eventos',
                 'data_abertura__range': 'data_abertura__range',
-                'tipo_inscricao': 'tipo_inscricao',
-                'cpf_cnpj__icontains': 'cpf_cnpj__icontains',
-                'nome_empresa__icontains': 'nome_empresa__icontains',}
+                'nome_empresa__icontains': 'nome_empresa__icontains',
+                'empregador_dados': 'empregador_dados',
+                'transmissor_nrinsc__icontains': 'transmissor_nrinsc__icontains',
+                'transmissor_tpinsc': 'transmissor_tpinsc',
+                'transmissor_dados': 'transmissor_dados',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
@@ -184,21 +196,27 @@ def listar(request, hash):
                 'efdreinf_timeout': 'efdreinf_timeout',
                 'efdreinf_lote_max': 'efdreinf_lote_max',
                 'efdreinf_lote_min': 'efdreinf_lote_min',
+                'contribuinte_nrinsc': 'contribuinte_nrinsc',
+                'contribuinte_tpinsc__icontains': 'contribuinte_tpinsc__icontains',
                 'efdreinf': 'efdreinf',
                 'esocial_tempo_prox_envio': 'esocial_tempo_prox_envio',
                 'esocial_intervalo': 'esocial_intervalo',
                 'esocial_timeout': 'esocial_timeout',
                 'esocial_lote_max': 'esocial_lote_max',
                 'esocial_lote_min': 'esocial_lote_min',
+                'empregador_nrinsc': 'empregador_nrinsc',
+                'empregador_tpinsc__icontains': 'empregador_tpinsc__icontains',
                 'eSocial': 'eSocial',
                 'endereco_completo__icontains': 'endereco_completo__icontains',
                 'logotipo': 'logotipo',
                 'envio_automatico': 'envio_automatico',
                 'validar_eventos': 'validar_eventos',
                 'data_abertura__range': 'data_abertura__range',
-                'tipo_inscricao': 'tipo_inscricao',
-                'cpf_cnpj__icontains': 'cpf_cnpj__icontains',
-                'nome_empresa__icontains': 'nome_empresa__icontains',}
+                'nome_empresa__icontains': 'nome_empresa__icontains',
+                'empregador_dados': 'empregador_dados',
+                'transmissor_nrinsc__icontains': 'transmissor_nrinsc__icontains',
+                'transmissor_tpinsc': 'transmissor_tpinsc',
+                'transmissor_dados': 'transmissor_dados',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)
@@ -207,17 +225,17 @@ def listar(request, hash):
             filtrar = True
             transmissores_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+    
         #transmissores_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'transmissores'
         context = {
             'transmissores_lista': transmissores_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -227,7 +245,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-   
+        
         }
         if for_print in (0,1):
             return render(request, 'transmissores_listar.html', context)
@@ -270,10 +288,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -383,12 +401,12 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'transmissores_id': int(transmissores_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
             #[VARIAVEIS_SECUNDARIAS]
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -432,10 +450,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

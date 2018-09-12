@@ -81,10 +81,10 @@ def apagar(request, hash):
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-   
+        
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-   
+        
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -154,18 +154,18 @@ def listar(request, hash):
             filtrar = True
             transmissor_lote_efdreinf_ocorrencias_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+   
         transmissor_lote_efdreinf_lista = TransmissorLoteEfdreinf.objects.using( db_slug ).filter(excluido = False).all()
         #transmissor_lote_efdreinf_ocorrencias_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'transmissor_lote_efdreinf_ocorrencias'
         context = {
             'transmissor_lote_efdreinf_ocorrencias_lista': transmissor_lote_efdreinf_ocorrencias_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -175,7 +175,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-  
+       
             'transmissor_lote_efdreinf_lista': transmissor_lote_efdreinf_lista,
         }
         if for_print in (0,1):
@@ -219,10 +219,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -312,12 +312,12 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'transmissor_lote_efdreinf_ocorrencias_id': int(transmissor_lote_efdreinf_ocorrencias_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
             #[VARIAVEIS_SECUNDARIAS]
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -361,10 +361,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

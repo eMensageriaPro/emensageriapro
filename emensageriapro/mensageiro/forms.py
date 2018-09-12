@@ -539,6 +539,10 @@ class form_transmissores(forms.ModelForm):
         
         self.fields['efdreinf_lote_min'].widget.attrs['required'] = True
         
+        self.fields['contribuinte_nrinsc'].widget.attrs['required'] = True
+        
+        self.fields['contribuinte_tpinsc'].widget.attrs['required'] = True
+        
         self.fields['esocial_tempo_prox_envio'].widget.attrs['readonly'] = True
         
         self.fields['esocial_intervalo'].widget.attrs['required'] = True
@@ -549,6 +553,10 @@ class form_transmissores(forms.ModelForm):
         
         self.fields['esocial_lote_min'].widget.attrs['required'] = True
         
+        self.fields['empregador_nrinsc'].widget.attrs['required'] = True
+        
+        self.fields['empregador_tpinsc'].widget.attrs['required'] = True
+        
         self.fields['endereco_completo'].widget.attrs['required'] = True
         
         self.fields['envio_automatico'].widget.attrs['required'] = True
@@ -557,11 +565,11 @@ class form_transmissores(forms.ModelForm):
         
         self.fields['data_abertura'].widget.attrs['required'] = True
         
-        self.fields['tipo_inscricao'].widget.attrs['required'] = True
-        
-        self.fields['cpf_cnpj'].widget.attrs['required'] = True
-        
         self.fields['nome_empresa'].widget.attrs['required'] = True
+        
+        self.fields['transmissor_nrinsc'].widget.attrs['required'] = True
+        
+        self.fields['transmissor_tpinsc'].widget.attrs['required'] = True
 
     class Meta:
         model = TransmissorLote

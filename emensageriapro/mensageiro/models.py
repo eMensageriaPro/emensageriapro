@@ -461,10 +461,14 @@ class RetornosEventosOcorrencias(models.Model):
 
 class TransmissorLote(models.Model):
     nome_empresa = models.CharField(max_length=200, unique=True)
+    contribuinte_tpinsc = models.CharField(max_length=20)
+    transmissor_nrinsc = models.CharField(max_length=20)
     efdreinf_pasta = models.CharField(max_length=200, blank=True, null=True)
-    cpf_cnpj = models.CharField(max_length=20)
     esocial_pasta = models.CharField(max_length=200, blank=True, null=True)
-    tipo_inscricao = models.IntegerField(choices=TIPO_INSCRICAO)
+    empregador_tpinsc = models.CharField(max_length=20)
+    transmissor_tpinsc = models.IntegerField(choices=TIPO_INSCRICAO)
+    contribuinte_nrinsc = models.IntegerField(choices=TIPO_INSCRICAO)
+    empregador_nrinsc = models.IntegerField(choices=TIPO_INSCRICAO)
     data_abertura = models.DateField()
     validar_eventos = models.IntegerField(choices=SIM_NAO)
     envio_automatico = models.IntegerField(choices=SIM_NAO)
@@ -492,7 +496,7 @@ class TransmissorLote(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.nome_empresa) + ' - ' + unicode(self.cpf_cnpj)
+        return unicode(self.nome_empresa) + ' - ' + unicode(self.contribuinte_tpinsc) + ' - ' + unicode(self.transmissor_nrinsc) + ' - ' + unicode(self.empregador_tpinsc)
     #transmissores_custom#
     #transmissores_custom#
     class Meta:
