@@ -261,17 +261,17 @@ def send_xml(request, transmissor_id, service):
     criar_diretorio_arquivos()
     from datetime import datetime
     import os
-    from emensageriapro.settings import CERT_PEM_FILE, KEY_PEM_FILE, CA_CERT_PEM_FILE, FORCE_PRODUCAO_RESTRITA, TP_AMB
-    from emensageriapro.certificado import CERT, CERT_HOST, CERT_PASS
+    from emensageriapro.settings import CERT_PEM_FILE, KEY_PEM_FILE, CA_CERT_PEM_FILE, FORCE_PRODUCAO_RESTRITA, TP_AMB, CERT_HOST, CERT_PASS
+    from emensageriapro.certificado import CERT
     CERT_HOST = BASE_DIR + '/' + CERT_HOST
-    if TP_AMB == 1: # Produção
+    if TP_AMB == '1': # Produção
         if service == 'RecepcaoLoteReinf':
             URL = "https://preprodefdreinf.receita.fazenda.gov.br/WsREINF/RecepcaoLoteReinf.svc"
             ACTION = "http://sped.fazenda.gov.br/RecepcaoLoteReinf/ReceberLoteEventos"
         elif service == 'ConsultasReinf':
             URL = "https://preprodefdreinf.receita.fazenda.gov.br/WsREINF/ConsultasReinf.svc"
             ACTION = "http://sped.fazenda.gov.br/ConsultasReinf/ConsultaInformacoesConsolidadas"
-    elif TP_AMB == 2: # Produção-Restrita
+    elif TP_AMB == '2': # Produção-Restrita
         if service == 'RecepcaoLoteReinf':
             URL = "https://preprodefdreinf.receita.fazenda.gov.br/WsREINF/RecepcaoLoteReinf.svc"
             ACTION = "http://sped.fazenda.gov.br/RecepcaoLoteReinf/ReceberLoteEventos"
@@ -298,8 +298,8 @@ def send_xml(request, transmissor_id, service):
     dados['efdreinf_timeout'] = tra[0][6]
     dados['efdreinf_certificado'] = 'uploads/'+tra[0][7]
     dados['efdreinf_senha'] = tra[0][8]
-    CERT_PEM_FILE = BASE_DIR+'/certificados/cert.pem'
-    KEY_PEM_FILE = BASE_DIR+'/certificados/key.pem'
+    CERT_PEM_FILE = BASE_DIR+'/'+ CERT_PEM_FILE
+    KEY_PEM_FILE = BASE_DIR+'/'+ KEY_PEM_FILE
     if not os.path.isfile(CERT_PEM_FILE):
         create_pem_files(CERT_HOST,
                          CERT_PASS,
@@ -315,7 +315,7 @@ def send_xml(request, transmissor_id, service):
     dados['service'] = service
     dados['url'] = URL
     dados['cert'] = CERT_PEM_FILE
-    dados['cacert'] = '%s/certificados/webservicesproducaorestritaesocialgovbr.crt' % BASE_DIR
+    dados['cacert'] = '%s/%s' % (BASE_DIR, CA_CERT_PEM_FILE)
     dados['key'] = KEY_PEM_FILE
     dados['action'] = ACTION
     dados['timeout'] = dados['efdreinf_timeout']
