@@ -84,19 +84,6 @@ def listar_ids(objeto):
         lista.append(a.id)
     return lista
 
-
-def get_json(slug_conta):
-    import json
-    try:
-        texto = ler_arquivo('/home/emensageriapro/apps_wsgi/emensageriapro/emensageriapro/' + slug_conta + '.json')
-    except:
-        texto = ler_arquivo('emensageriapro/' + slug_conta + '.json')
-    try:
-        data = json.loads(texto)
-        retorno = objectview(data['contas'][0])
-    except:
-        retorno = None
-    return retorno
     
 
 def get_json(slug_conta):
