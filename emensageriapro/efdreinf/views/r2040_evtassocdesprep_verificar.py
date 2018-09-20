@@ -45,6 +45,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -82,6 +83,7 @@ def txt_xml(texto):
 
 
 
+@login_required
 def verificar(request, hash, slug=0):
     for_print = 0
     if slug:
@@ -94,7 +96,7 @@ def verificar(request, hash, slug=0):
         db_slug = 'default'
         conta = None
     try: 
-        usuario_id = request.session['usuario_id']   
+        usuario_id = request.user.id   
         dict_hash = get_hash_url( hash )
         r2040_evtassocdesprep_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
@@ -189,6 +191,7 @@ def verificar(request, hash, slug=0):
 
 
 
+
 def gerar_xml_r2040(r2040_evtassocdesprep_id, db_slug):
     from django.template.loader import get_template
     if r2040_evtassocdesprep_id:
@@ -214,12 +217,10 @@ def gerar_xml_r2040(r2040_evtassocdesprep_id, db_slug):
         return xml
         
 
-CERT_HOST = 'certificados/Kmee.pfx'
-CERT_PASS = '58462273'
-CERT_PEM_FILE = 'certificados/cert.pem'
-KEY_PEM_FILE = 'certificados/key.pem'
-CA_CERT_PEM_FILE = 'certificados/acserproacfv5.crt'
 
+
+
+@login_required
 def recibo(request, hash, tipo, slug=0):
     from emensageriapro.efdreinf.models import r5001evtTotal, r5011evtTotalContrib
     from emensageriapro.r5001.models import r5001regOcorrs, r5001infoTotal, r5001RTom, \
@@ -238,7 +239,7 @@ def recibo(request, hash, tipo, slug=0):
         db_slug = 'default'
         conta = None
     try: 
-        usuario_id = request.session['usuario_id']   
+        usuario_id = request.user.id   
         dict_hash = get_hash_url( hash )
         r2040_evtassocdesprep_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
@@ -441,6 +442,7 @@ def recibo(request, hash, tipo, slug=0):
 
 
 
+
 def gerar_xml_assinado(r2040_evtassocdesprep_id, db_slug):
     import os
     from datetime import datetime 
@@ -467,6 +469,8 @@ def gerar_xml_assinado(r2040_evtassocdesprep_id, db_slug):
     return xml_assinado
 
 
+
+@login_required
 def gerar_xml(request, hash, slug=0):
     import os
     from datetime import datetime 
@@ -500,7 +504,7 @@ def gerar_xml(request, hash, slug=0):
         return render(request, 'permissao_negada.html', context)
 
 
-
+@login_required
 def duplicar(request, hash):
     from emensageriapro.settings import BASE_DIR
     db_slug = 'default'
@@ -523,7 +527,7 @@ def duplicar(request, hash):
         r2040evtAssocDespRep.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
         messages.success(request, 'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
         url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['identidade'] )
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (dent, r2040_evtassocdesprep.identidade), 
             'r2040_evtassocdesprep', dados['identidade'], usuario_id, 1)
         return redirect('r2040_evtassocdesprep_salvar', hash=url_hash)
@@ -532,6 +536,7 @@ def duplicar(request, hash):
 
 
 
+@login_required
 def criar_alteracao(request, hash):
     from emensageriapro.settings import BASE_DIR
     db_slug = 'default'
@@ -551,7 +556,7 @@ def criar_alteracao(request, hash):
         from emensageriapro.efdreinf.views.r2040_evtassocdesprep import identidade_evento
         dent = identidade_evento(dados['identidade'], db_slug)
         r2040evtAssocDespRep.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         gravar_auditoria(u'{}', u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (dent, r2040_evtassocdesprep.identidade), 
             'r2040_evtassocdesprep', dados['identidade'], usuario_id, 1)
         messages.success(request, 'Evento de alteração criado com sucesso!')
@@ -562,7 +567,7 @@ def criar_alteracao(request, hash):
 
 
 
-
+@login_required
 def criar_exclusao(request, hash):
     from emensageriapro.settings import BASE_DIR
     db_slug = 'default'
@@ -583,7 +588,7 @@ def criar_exclusao(request, hash):
         from emensageriapro.efdreinf.views.r2040_evtassocdesprep import identidade_evento
         dent = identidade_evento(dados['identidade'], db_slug)
         r2040evtAssocDespRep.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         gravar_auditoria(u'{}', u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (dent, r2040_evtassocdesprep.identidade), 
             'r2040_evtassocdesprep', dados['identidade'], usuario_id, 1)
         messages.success(request, 'Evento de exclusão criado com sucesso!')
@@ -595,7 +600,7 @@ def criar_exclusao(request, hash):
 
 
 
-
+@login_required
 def alterar_identidade(request, hash):
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
@@ -607,7 +612,7 @@ def alterar_identidade(request, hash):
             from emensageriapro.efdreinf.views.r2040_evtassocdesprep import identidade_evento
             dent = identidade_evento(r2040_evtassocdesprep_id, db_slug)
             messages.success(request, 'Identidade do evento alterada com sucesso!')
-            usuario_id = request.session['usuario_id'] 
+            usuario_id = request.user.id 
             gravar_auditoria(u'{}', u'{"funcao": "Identidade do evento foi alterada"}', 
             'r2040_evtassocdesprep', r2040_evtassocdesprep_id, usuario_id, 1)
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % r2040_evtassocdesprep_id )
@@ -621,6 +626,7 @@ def alterar_identidade(request, hash):
 
 
 
+@login_required
 def abrir_evento_para_edicao(request, hash):
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.funcoes_efdreinf import gravar_nome_arquivo
@@ -640,7 +646,7 @@ def abrir_evento_para_edicao(request, hash):
                 gravar_nome_arquivo('/arquivos/Eventos/r2040_evtassocdesprep/%s_backup_%s.xml' % (r2040_evtassocdesprep.identidade, data_hora_atual), 
                     1)
             messages.success(request, 'Evento aberto para edição!')
-            usuario_id = request.session['usuario_id'] 
+            usuario_id = request.user.id 
             gravar_auditoria(u'{}', u'{"funcao": "Evento aberto para edição"}', 
             'r2040_evtassocdesprep', r2040_evtassocdesprep_id, usuario_id, 1)
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % r2040_evtassocdesprep_id )
@@ -659,6 +665,7 @@ def abrir_evento_para_edicao(request, hash):
 
 
 
+@login_required
 def validar_evento_funcao(r2040_evtassocdesprep_id, db_slug):
     from emensageriapro.padrao import executar_sql
     from emensageriapro.funcoes_importacao import get_versao_evento
@@ -716,6 +723,7 @@ def validar_evento_funcao(r2040_evtassocdesprep_id, db_slug):
 
 
 
+@login_required
 def validar_evento(request, hash):
     from emensageriapro.funcoes_validacoes import VERSAO_ATUAL
     db_slug = 'default'

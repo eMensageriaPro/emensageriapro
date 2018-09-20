@@ -42,6 +42,48 @@ urlpatterns = patterns('',
 
 
 
+url(r'^s2410-infopenmorte/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2410.views.s2410_infopenmorte.apagar', 
+        name='s2410_infopenmorte_apagar'),
+
+url(r'^s2410-infopenmorte/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2410.views.s2410_infopenmorte.listar', 
+        name='s2410_infopenmorte'),
+
+url(r'^s2410-infopenmorte/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2410.views.s2410_infopenmorte.salvar', 
+        name='s2410_infopenmorte_salvar'),
+
+
+
+url(r'^s2410-instpenmorte/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2410.views.s2410_instpenmorte.apagar', 
+        name='s2410_instpenmorte_apagar'),
+
+url(r'^s2410-instpenmorte/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2410.views.s2410_instpenmorte.listar', 
+        name='s2410_instpenmorte'),
+
+url(r'^s2410-instpenmorte/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2410.views.s2410_instpenmorte.salvar', 
+        name='s2410_instpenmorte_salvar'),
+
+
+
+url(r'^s2410-homologtc/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2410.views.s2410_homologtc.apagar', 
+        name='s2410_homologtc_apagar'),
+
+url(r'^s2410-homologtc/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2410.views.s2410_homologtc.listar', 
+        name='s2410_homologtc'),
+
+url(r'^s2410-homologtc/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2410.views.s2410_homologtc.salvar', 
+        name='s2410_homologtc_salvar'),
+
+
+
 
 
 )

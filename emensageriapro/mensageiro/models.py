@@ -41,6 +41,29 @@ get_model = apps.get_model
 
 
 
+SIM_NAO = (
+    (0, u'Não'),
+    (1, u'Sim'),
+)
+
+TIPO_INSCRICAO = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+EVENTOS_OCORRENCIAS_TIPO_EFDREINF = (
+    (1, u'1 - Aviso'),
+    (2, u'2 - Erro'),
+)
+
+CODIGO_STATUS_EFDREINF = (
+    (0, u'0 - Sucesso'),
+    (1, u'1 - Erro'),
+    (2, u'2 - Em Processamento'),
+)
+
 TRANSMISSOR_STATUS = (
     (0, u'Cadastrado'),
     (1, u'Importado'),
@@ -57,6 +80,19 @@ TRANSMISSOR_STATUS = (
     (7, u'Enviado'),
     (8, u'Erro na consulta'),
     (9, u'Consultado'),
+)
+
+IMPORTACAO_STATUS = (
+    (0, u'Aguardando!'),
+    (1, u'Sucesso!'),
+    (2, u'Erro!'),
+    (3, u'Arquivo inválido!'),
+    (4, u'Validado'),
+    (5, u'ID do evento já está cadastrada em nossa base'),
+    (6, u'Processado'),
+    (7, u'Processando'),
+    (8, u'Processado com erros'),
+    (9, u'Versão incompatível'),
 )
 
 CODIGO_RESPOSTA = (
@@ -77,17 +113,42 @@ CODIGO_RESPOSTA = (
     (505, u'505 - Solicitação de Consulta Incorreta - Consulta nula ou vazia.'),
 )
 
-IMPORTACAO_STATUS = (
-    (0, u'Aguardando!'),
-    (1, u'Sucesso!'),
-    (2, u'Erro!'),
-    (3, u'Arquivo inválido!'),
-    (4, u'Validado'),
-    (5, u'ID do evento já está cadastrada em nossa base'),
-    (6, u'Processado'),
-    (7, u'Processando'),
-    (8, u'Processado com erros'),
-    (9, u'Versão incompatível'),
+TIPO_OCORRENCIA = (
+    (1, u'1 - Erro'),
+    (2, u'2 - Advertência'),
+)
+
+TIPO_AMBIENTE = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+EVENTOS_OCORRENCIAS_TIPO = (
+    (1, u'1 - Erro'),
+    (2, u'2 - Advertência'),
+)
+
+EVENTOS_GRUPOS = (
+    (1, u'1 - Eventos de Tabelas'),
+    (2, u'2 - Eventos Não Periódicos'),
+    (3, u'3 - Eventos Periódicos'),
+)
+
+CHOICES_S1000_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1050_INCLUSAO_PERHORFLEXIVEL = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1050_INCLUSAO_TPINTERV = (
+    (1, u'1 - Intervalo em Horário Fixo'),
+    (2, u'2 - Intervalo em Horário Variável'),
 )
 
 CHOICES_S2200_DIA = (
@@ -101,28 +162,9 @@ CHOICES_S2200_DIA = (
     (8, u'8 - Dia variável'),
 )
 
-CHOICES_S2200_UNDSALFIXO = (
-    (1, u'1 - Por Hora'),
-    (2, u'2 - Por Dia'),
-    (3, u'3 - Por Semana'),
-    (4, u'4 - Por Quinzena'),
-    (5, u'5 - Por Mês'),
-    (6, u'6 - Por Tarefa'),
-    (7, u'7 - Não aplicável - salário exclusivamente variável'),
-)
-
-TIPO_INSCRICAO = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1000_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+CHOICES_S2200_INFOCOTA = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
 )
 
 CHOICES_S2200_TMPPARC = (
@@ -130,6 +172,11 @@ CHOICES_S2200_TMPPARC = (
     (1, u'1 - Limitado a 25 horas semanais'),
     (2, u'2 - Limitado a 30 horas semanais'),
     (3, u'3 - Limitado a 26 horas semanais'),
+)
+
+CHOICES_S2200_TPCONTR = (
+    (1, u'1 - Prazo indeterminado'),
+    (2, u'2 - Prazo determinado'),
 )
 
 CHOICES_S2200_TPJORNADA = (
@@ -146,61 +193,14 @@ CHOICES_S2200_TPREGJOR = (
     (4, u'4 - Teletrabalho, previsto no Inciso III do Art. 62 da CLT'),
 )
 
-CODIGO_STATUS_EFDREINF = (
-    (0, u'0 - Sucesso'),
-    (1, u'1 - Erro'),
-    (2, u'2 - Em Processamento'),
-)
-
-EVENTOS_GRUPOS = (
-    (1, u'1 - Eventos de Tabelas'),
-    (2, u'2 - Eventos Não Periódicos'),
-    (3, u'3 - Eventos Periódicos'),
-)
-
-SIM_NAO = (
-    (0, u'Não'),
-    (1, u'Sim'),
-)
-
-EVENTOS_OCORRENCIAS_TIPO_EFDREINF = (
-    (1, u'1 - Aviso'),
-    (2, u'2 - Erro'),
-)
-
-TIPO_OCORRENCIA = (
-    (1, u'1 - Erro'),
-    (2, u'2 - Advertência'),
-)
-
-TIPO_AMBIENTE = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-EVENTOS_OCORRENCIAS_TIPO = (
-    (1, u'1 - Erro'),
-    (2, u'2 - Advertência'),
-)
-
-CHOICES_S1050_INCLUSAO_PERHORFLEXIVEL = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1050_INCLUSAO_TPINTERV = (
-    (1, u'1 - Intervalo em Horário Fixo'),
-    (2, u'2 - Intervalo em Horário Variável'),
-)
-
-CHOICES_S2200_INFOCOTA = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2200_TPCONTR = (
-    (1, u'1 - Prazo indeterminado'),
-    (2, u'2 - Prazo determinado'),
+CHOICES_S2200_UNDSALFIXO = (
+    (1, u'1 - Por Hora'),
+    (2, u'2 - Por Dia'),
+    (3, u'3 - Por Semana'),
+    (4, u'4 - Por Quinzena'),
+    (5, u'5 - Por Mês'),
+    (6, u'6 - Por Tarefa'),
+    (7, u'7 - Não aplicável - salário exclusivamente variável'),
 )
 
 class Arquivos(models.Model):
@@ -460,20 +460,16 @@ class RetornosEventosOcorrencias(models.Model):
 
 
 class TransmissorLote(models.Model):
-    nome_empresa = models.CharField(max_length=200, unique=True)
-    contribuinte_tpinsc = models.CharField(max_length=20)
-    transmissor_nrinsc = models.CharField(max_length=20)
-    efdreinf_pasta = models.CharField(max_length=200, blank=True, null=True)
-    esocial_pasta = models.CharField(max_length=200, blank=True, null=True)
-    empregador_tpinsc = models.CharField(max_length=20)
     transmissor_tpinsc = models.IntegerField(choices=TIPO_INSCRICAO)
-    contribuinte_nrinsc = models.IntegerField(choices=TIPO_INSCRICAO)
-    empregador_nrinsc = models.IntegerField(choices=TIPO_INSCRICAO)
+    transmissor_nrinsc = models.CharField(max_length=20)
+    nome_empresa = models.CharField(max_length=200, unique=True)
     data_abertura = models.DateField()
     validar_eventos = models.IntegerField(choices=SIM_NAO)
     envio_automatico = models.IntegerField(choices=SIM_NAO)
     logotipo = models.FileField(blank=True, null=True)
     endereco_completo = models.TextField()
+    empregador_tpinsc = models.CharField(max_length=20)
+    empregador_nrinsc = models.IntegerField(choices=TIPO_INSCRICAO)
     esocial_lote_min = models.IntegerField()
     esocial_lote_max = models.IntegerField()
     esocial_timeout = models.DecimalField(max_digits=15, decimal_places=2)
@@ -481,6 +477,9 @@ class TransmissorLote(models.Model):
     esocial_tempo_prox_envio = models.IntegerField(blank=True, null=True)
     esocial_certificado = models.FileField(blank=True, null=True)
     esocial_senha = models.CharField(max_length=20, blank=True, null=True)
+    esocial_pasta = models.CharField(max_length=200, blank=True, null=True)
+    contribuinte_tpinsc = models.CharField(max_length=20)
+    contribuinte_nrinsc = models.IntegerField(choices=TIPO_INSCRICAO)
     efdreinf_lote_min = models.IntegerField()
     efdreinf_lote_max = models.IntegerField()
     efdreinf_timeout = models.DecimalField(max_digits=15, decimal_places=2)
@@ -488,6 +487,7 @@ class TransmissorLote(models.Model):
     efdreinf_tempo_prox_envio = models.IntegerField(blank=True, null=True)
     efdreinf_certificado = models.FileField(blank=True, null=True)
     efdreinf_senha = models.CharField(max_length=20, blank=True, null=True)
+    efdreinf_pasta = models.CharField(max_length=200, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -496,7 +496,7 @@ class TransmissorLote(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.nome_empresa) + ' - ' + unicode(self.contribuinte_tpinsc) + ' - ' + unicode(self.transmissor_nrinsc) + ' - ' + unicode(self.empregador_tpinsc)
+        return unicode(self.transmissor_nrinsc) + ' - ' + unicode(self.nome_empresa) + ' - ' + unicode(self.empregador_tpinsc) + ' - ' + unicode(self.contribuinte_tpinsc)
     #transmissores_custom#
     #transmissores_custom#
     class Meta:

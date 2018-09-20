@@ -68,6 +68,35 @@ PERIODOS = (
     ('2018-12', u'Dezembro/2018'),
 )
 
+CHOICES_S1005_ALTERACAO_ALIQRAT = (
+    (1, u'1 - 1'),
+    (2, u'2 - 2'),
+    (3, u'3 - 3'),
+)
+
+CHOICES_S1005_ALTERACAO_CONTAPR = (
+    (0, u'0 - Dispensado de acordo com a lei'),
+    (1, u'1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial'),
+    (2, u'2 - Obrigado'),
+)
+
+CHOICES_S1005_ALTERACAO_CONTENTED = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1005_ALTERACAO_CONTPCD = (
+    (0, u'0 - Dispensado de acordo com a lei'),
+    (1, u'1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial'),
+    (2, u'2 - Com exigibilidade suspensa, mesmo que parcialmente em virtude de Termo de Compromisso firmado com o Ministério do Trabalho'),
+    (9, u'9 - Obrigado'),
+)
+
+CHOICES_S1005_ALTERACAO_INDSUBSTPATROBRA = (
+    (1, u'1 - Contribuição Patronal Substituída'),
+    (2, u'2 - Contribuição Patronal Não Substituída'),
+)
+
 CHOICES_S1005_ALTERACAO_REGPT = (
     (0, u'0 - Não utiliza'),
     (1, u'1 - Manual'),
@@ -78,21 +107,10 @@ CHOICES_S1005_ALTERACAO_REGPT = (
     (6, u'6 - Eletrônico - outros'),
 )
 
-CHOICES_S1005_INCLUSAO_REGPT = (
-    (0, u'0 - Não utiliza'),
-    (1, u'1 - Manual'),
-    (2, u'2 - Mecânico'),
-    (3, u'3 - Eletrônico (portaria MTE 1.510/2009)'),
-    (4, u'4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011)'),
-    (5, u'5 - Eletrônico alternativo ( art. 2° da Portaria MTE 373/2011)'),
-    (6, u'6 - Eletrônico - outros'),
-)
-
-CHOICES_S1005_ALTERACAO_CONTPCD = (
-    (0, u'0 - Dispensado de acordo com a lei'),
-    (1, u'1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial'),
-    (2, u'2 - Com exigibilidade suspensa, mesmo que parcialmente em virtude de Termo de Compromisso firmado com o Ministério do Trabalho'),
-    (9, u'9 - Obrigado'),
+CHOICES_S1005_ALTERACAO_TPCAEPF = (
+    (1, u'1 - Contribuinte Individual'),
+    (2, u'2 - Produtor Rural'),
+    (3, u'3 - Segurado Especial'),
 )
 
 CHOICES_S1005_ALTERACAO_TPINSC = (
@@ -116,11 +134,49 @@ CHOICES_S1005_EXCLUSAO_TPINSC = (
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
+CHOICES_S1005_INCLUSAO_ALIQRAT = (
+    (1, u'1 - 1'),
+    (2, u'2 - 2'),
+    (3, u'3 - 3'),
+)
+
+CHOICES_S1005_INCLUSAO_CONTAPR = (
+    (0, u'0 - Dispensado de acordo com a lei'),
+    (1, u'1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial'),
+    (2, u'2 - Obrigado'),
+)
+
+CHOICES_S1005_INCLUSAO_CONTENTED = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
 CHOICES_S1005_INCLUSAO_CONTPCD = (
     (0, u'0 - Dispensado de acordo com a lei'),
     (1, u'1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial'),
     (2, u'2 - Com exigibilidade suspensa, mesmo que parcialmente em virtude de Termo de Compromisso firmado com o Ministério do Trabalho'),
     (9, u'9 - Obrigado'),
+)
+
+CHOICES_S1005_INCLUSAO_INDSUBSTPATROBRA = (
+    (1, u'1 - Contribuição Patronal Substituída'),
+    (2, u'2 - Contribuição Patronal Não Substituída'),
+)
+
+CHOICES_S1005_INCLUSAO_REGPT = (
+    (0, u'0 - Não utiliza'),
+    (1, u'1 - Manual'),
+    (2, u'2 - Mecânico'),
+    (3, u'3 - Eletrônico (portaria MTE 1.510/2009)'),
+    (4, u'4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011)'),
+    (5, u'5 - Eletrônico alternativo ( art. 2° da Portaria MTE 373/2011)'),
+    (6, u'6 - Eletrônico - outros'),
+)
+
+CHOICES_S1005_INCLUSAO_TPCAEPF = (
+    (1, u'1 - Contribuinte Individual'),
+    (2, u'2 - Produtor Rural'),
+    (3, u'3 - Segurado Especial'),
 )
 
 CHOICES_S1005_INCLUSAO_TPINSC = (
@@ -137,66 +193,9 @@ CHOICES_S1005_INCLUSAO_TPPROC = (
     (2, u'2 - Judicial'),
 )
 
-CHOICES_S1005_ALTERACAO_ALIQRAT = (
-    (1, u'1 - 1'),
-    (2, u'2 - 2'),
-    (3, u'3 - 3'),
-)
-
-CHOICES_S1005_ALTERACAO_CONTAPR = (
-    (0, u'0 - Dispensado de acordo com a lei'),
-    (1, u'1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial'),
-    (2, u'2 - Obrigado'),
-)
-
-CHOICES_S1005_ALTERACAO_TPCAEPF = (
-    (1, u'1 - Contribuinte Individual'),
-    (2, u'2 - Produtor Rural'),
-    (3, u'3 - Segurado Especial'),
-)
-
-CHOICES_S1005_INCLUSAO_ALIQRAT = (
-    (1, u'1 - 1'),
-    (2, u'2 - 2'),
-    (3, u'3 - 3'),
-)
-
-CHOICES_S1005_INCLUSAO_CONTAPR = (
-    (0, u'0 - Dispensado de acordo com a lei'),
-    (1, u'1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial'),
-    (2, u'2 - Obrigado'),
-)
-
-CHOICES_S1005_INCLUSAO_TPCAEPF = (
-    (1, u'1 - Contribuinte Individual'),
-    (2, u'2 - Produtor Rural'),
-    (3, u'3 - Segurado Especial'),
-)
-
-CHOICES_S1005_ALTERACAO_CONTENTED = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1005_ALTERACAO_INDSUBSTPATROBRA = (
-    (1, u'1 - Contribuição Patronal Substituída'),
-    (2, u'2 - Contribuição Patronal Não Substituída'),
-)
-
-CHOICES_S1005_INCLUSAO_CONTENTED = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1005_INCLUSAO_INDSUBSTPATROBRA = (
-    (1, u'1 - Contribuição Patronal Substituída'),
-    (2, u'2 - Contribuição Patronal Não Substituída'),
-)
-
 class s1005alteracao(models.Model):
     s1005_evttabestab = models.OneToOneField('esocial.s1005evtTabEstab',
         related_name='%(class)s_s1005_evttabestab')
-    def evento(self): return self.s1005_evttabestab.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_TPINSC)
     nrinsc = models.CharField(max_length=15)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
@@ -229,7 +228,6 @@ class s1005alteracao(models.Model):
 class s1005alteracaoinfoCaepf(models.Model):
     s1005_alteracao = models.OneToOneField('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
-    def evento(self): return self.s1005_alteracao.evento()
     tpcaepf = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_TPCAEPF)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -251,7 +249,6 @@ class s1005alteracaoinfoCaepf(models.Model):
 class s1005alteracaoinfoEntEduc(models.Model):
     s1005_alteracao = models.ForeignKey('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
-    def evento(self): return self.s1005_alteracao.evento()
     nrinsc = models.CharField(max_length=15)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -273,7 +270,6 @@ class s1005alteracaoinfoEntEduc(models.Model):
 class s1005alteracaoinfoObra(models.Model):
     s1005_alteracao = models.OneToOneField('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
-    def evento(self): return self.s1005_alteracao.evento()
     indsubstpatrobra = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_INDSUBSTPATROBRA)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -295,7 +291,6 @@ class s1005alteracaoinfoObra(models.Model):
 class s1005alteracaoinfoPCD(models.Model):
     s1005_alteracao = models.OneToOneField('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
-    def evento(self): return self.s1005_alteracao.evento()
     contpcd = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_CONTPCD)
     nrprocjud = models.CharField(max_length=20, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -315,10 +310,31 @@ class s1005alteracaoinfoPCD(models.Model):
         ordering = ['s1005_alteracao', 'contpcd', 'nrprocjud']
 
 
+class s1005alteracaoinfoSST(models.Model):
+    s1005_alteracao = models.ForeignKey('s1005alteracao',
+        related_name='%(class)s_s1005_alteracao')
+    progsst = models.CharField(max_length=4)
+    dtiniprog = models.DateField()
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.s1005_alteracao) + ' - ' + unicode(self.progsst) + ' - ' + unicode(self.dtiniprog)
+    #s1005_alteracao_infosst_custom#
+    #s1005_alteracao_infosst_custom#
+    class Meta:
+        db_table = r's1005_alteracao_infosst'
+        managed = True
+        ordering = ['s1005_alteracao', 'progsst', 'dtiniprog']
+
+
 class s1005alteracaonovaValidade(models.Model):
     s1005_alteracao = models.OneToOneField('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
-    def evento(self): return self.s1005_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -341,7 +357,6 @@ class s1005alteracaonovaValidade(models.Model):
 class s1005alteracaoprocAdmJudFap(models.Model):
     s1005_alteracao = models.OneToOneField('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
-    def evento(self): return self.s1005_alteracao.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()
@@ -365,7 +380,6 @@ class s1005alteracaoprocAdmJudFap(models.Model):
 class s1005alteracaoprocAdmJudRat(models.Model):
     s1005_alteracao = models.OneToOneField('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
-    def evento(self): return self.s1005_alteracao.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()
@@ -389,7 +403,6 @@ class s1005alteracaoprocAdmJudRat(models.Model):
 class s1005exclusao(models.Model):
     s1005_evttabestab = models.OneToOneField('esocial.s1005evtTabEstab',
         related_name='%(class)s_s1005_evttabestab')
-    def evento(self): return self.s1005_evttabestab.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S1005_EXCLUSAO_TPINSC)
     nrinsc = models.CharField(max_length=15)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
@@ -414,7 +427,6 @@ class s1005exclusao(models.Model):
 class s1005inclusao(models.Model):
     s1005_evttabestab = models.OneToOneField('esocial.s1005evtTabEstab',
         related_name='%(class)s_s1005_evttabestab')
-    def evento(self): return self.s1005_evttabestab.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_TPINSC)
     nrinsc = models.CharField(max_length=15)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
@@ -447,7 +459,6 @@ class s1005inclusao(models.Model):
 class s1005inclusaoinfoCaepf(models.Model):
     s1005_inclusao = models.OneToOneField('s1005inclusao',
         related_name='%(class)s_s1005_inclusao')
-    def evento(self): return self.s1005_inclusao.evento()
     tpcaepf = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_TPCAEPF)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -469,7 +480,6 @@ class s1005inclusaoinfoCaepf(models.Model):
 class s1005inclusaoinfoEntEduc(models.Model):
     s1005_inclusao = models.ForeignKey('s1005inclusao',
         related_name='%(class)s_s1005_inclusao')
-    def evento(self): return self.s1005_inclusao.evento()
     nrinsc = models.CharField(max_length=15)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -491,7 +501,6 @@ class s1005inclusaoinfoEntEduc(models.Model):
 class s1005inclusaoinfoObra(models.Model):
     s1005_inclusao = models.OneToOneField('s1005inclusao',
         related_name='%(class)s_s1005_inclusao')
-    def evento(self): return self.s1005_inclusao.evento()
     indsubstpatrobra = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_INDSUBSTPATROBRA)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -513,7 +522,6 @@ class s1005inclusaoinfoObra(models.Model):
 class s1005inclusaoinfoPCD(models.Model):
     s1005_inclusao = models.OneToOneField('s1005inclusao',
         related_name='%(class)s_s1005_inclusao')
-    def evento(self): return self.s1005_inclusao.evento()
     contpcd = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_CONTPCD)
     nrprocjud = models.CharField(max_length=20, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -533,10 +541,31 @@ class s1005inclusaoinfoPCD(models.Model):
         ordering = ['s1005_inclusao', 'contpcd', 'nrprocjud']
 
 
+class s1005inclusaoinfoSST(models.Model):
+    s1005_inclusao = models.ForeignKey('s1005inclusao',
+        related_name='%(class)s_s1005_inclusao')
+    progsst = models.CharField(max_length=4)
+    dtiniprog = models.DateField()
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.s1005_inclusao) + ' - ' + unicode(self.progsst) + ' - ' + unicode(self.dtiniprog)
+    #s1005_inclusao_infosst_custom#
+    #s1005_inclusao_infosst_custom#
+    class Meta:
+        db_table = r's1005_inclusao_infosst'
+        managed = True
+        ordering = ['s1005_inclusao', 'progsst', 'dtiniprog']
+
+
 class s1005inclusaoprocAdmJudFap(models.Model):
     s1005_inclusao = models.OneToOneField('s1005inclusao',
         related_name='%(class)s_s1005_inclusao')
-    def evento(self): return self.s1005_inclusao.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()
@@ -560,7 +589,6 @@ class s1005inclusaoprocAdmJudFap(models.Model):
 class s1005inclusaoprocAdmJudRat(models.Model):
     s1005_inclusao = models.OneToOneField('s1005inclusao',
         related_name='%(class)s_s1005_inclusao')
-    def evento(self): return self.s1005_inclusao.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()

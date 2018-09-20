@@ -502,6 +502,20 @@ url(r'^s2200-desligamento/salvar/(?P<hash>.*)/$',
 
 
 
+url(r'^s2200-cessao/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2200.views.s2200_cessao.apagar', 
+        name='s2200_cessao_apagar'),
+
+url(r'^s2200-cessao/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2200.views.s2200_cessao.listar', 
+        name='s2200_cessao'),
+
+url(r'^s2200-cessao/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2200.views.s2200_cessao.salvar', 
+        name='s2200_cessao_salvar'),
+
+
+
 
 
 )

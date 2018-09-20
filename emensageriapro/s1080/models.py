@@ -83,7 +83,6 @@ CHOICES_S1080_INCLUSAO_ALIQRAT = (
 class s1080alteracao(models.Model):
     s1080_evttaboperport = models.OneToOneField('esocial.s1080evtTabOperPort',
         related_name='%(class)s_s1080_evttaboperport')
-    def evento(self): return self.s1080_evttaboperport.evento()
     cnpjopportuario = models.CharField(max_length=14)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
@@ -110,7 +109,6 @@ class s1080alteracao(models.Model):
 class s1080alteracaonovaValidade(models.Model):
     s1080_alteracao = models.OneToOneField('s1080alteracao',
         related_name='%(class)s_s1080_alteracao')
-    def evento(self): return self.s1080_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -133,7 +131,6 @@ class s1080alteracaonovaValidade(models.Model):
 class s1080exclusao(models.Model):
     s1080_evttaboperport = models.OneToOneField('esocial.s1080evtTabOperPort',
         related_name='%(class)s_s1080_evttaboperport')
-    def evento(self): return self.s1080_evttaboperport.evento()
     cnpjopportuario = models.CharField(max_length=14)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
@@ -157,7 +154,6 @@ class s1080exclusao(models.Model):
 class s1080inclusao(models.Model):
     s1080_evttaboperport = models.OneToOneField('esocial.s1080evtTabOperPort',
         related_name='%(class)s_s1080_evttaboperport')
-    def evento(self): return self.s1080_evttaboperport.evento()
     cnpjopportuario = models.CharField(max_length=14)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)

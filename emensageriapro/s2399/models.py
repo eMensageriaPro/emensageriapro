@@ -41,19 +41,23 @@ get_model = apps.get_model
 
 
 
-CHOICES_S2399_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+CHOICES_S2399_GRAUEXP = (
+    (1, u'1 - Não ensejador de aposentadoria especial'),
+    (2, u'2 - Ensejador de Aposentadoria Especial - FAE15_12% (15 anos de contribuição e alíquota de 12%)'),
+    (3, u'3 - Ensejador de Aposentadoria Especial - FAE20_09% (20 anos de contribuição e alíquota de 9%)'),
+    (4, u'4 - Ensejador de Aposentadoria Especial - FAE25_06% (25 anos de contribuição e alíquota de 6%)'),
+)
+
+CHOICES_S2399_INDMV = (
+    (1, u'1 - O declarante aplica a alíquota de desconto do segurado sobre a remuneração por ele informada (o percentual da alíquota será obtido considerando a remuneração total do trabalhador)'),
+    (2, u'2 - O declarante aplica a alíquota de desconto do segurado sobre a diferença entre o limite máximo do salário de contribuição e a remuneração de outra(s) empresa(s) para as quais o trabalhador informou que houve o desconto'),
+    (3, u'3 - O declarante não realiza desconto do segurado, uma vez que houve desconto sobre o limite máximo de salário de contribuição em outra(s) empresa(s)'),
+)
+
+CHOICES_S2399_INDSIMPLES = (
+    (1, u'1 - Contribuição Substituída Integralmente'),
+    (2, u'2 - Contribuição não substituída'),
+    (3, u'3 - Contribuição não substituída concomitante com contribuição substituída'),
 )
 
 CHOICES_S2399_TPDEP = (
@@ -70,36 +74,31 @@ CHOICES_S2399_TPDEP = (
     ('99', u'99 - Agregado/Outros'),
 )
 
-CHOICES_S2399_GRAUEXP = (
-    (1, u'1 - Não ensejador de aposentadoria especial'),
-    (2, u'2 - Ensejador de Aposentadoria Especial - FAE15_12% (15 anos de contribuição e alíquota de 12%)'),
-    (3, u'3 - Ensejador de Aposentadoria Especial - FAE20_09% (20 anos de contribuição e alíquota de 9%)'),
-    (4, u'4 - Ensejador de Aposentadoria Especial - FAE25_06% (25 anos de contribuição e alíquota de 6%)'),
+CHOICES_S2399_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
 CHOICES_S2399_TPTRIB = (
     (2, u'2 - Contribuições sociais do trabalhador'),
     (3, u'3 - FGTS'),
-    (4, u'4 - IRRF'),
     (4, u'4 - Contribuição sindical'),
-)
-
-CHOICES_S2399_INDMV = (
-    (1, u'1 - O declarante aplica a alíquota de desconto do segurado sobre a remuneração por ele informada (o percentual da alíquota será obtido considerando a remuneração total do trabalhador)'),
-    (2, u'2 - O declarante aplica a alíquota de desconto do segurado sobre a diferença entre o limite máximo do salário de contribuição e a remuneração de outra(s) empresa(s) para as quais o trabalhador informou que houve o desconto'),
-    (3, u'3 - O declarante não realiza desconto do segurado, uma vez que houve desconto sobre o limite máximo de salário de contribuição em outra(s) empresa(s)'),
-)
-
-CHOICES_S2399_INDSIMPLES = (
-    (1, u'1 - Contribuição Substituída Integralmente'),
-    (2, u'2 - Contribuição não substituída'),
-    (3, u'3 - Contribuição não substituída concomitante com contribuição substituída'),
+    (4, u'4 - IRRF'),
 )
 
 class s2399detOper(models.Model):
     s2399_infosaudecolet = models.ForeignKey('s2399infoSaudeColet',
         related_name='%(class)s_s2399_infosaudecolet')
-    def evento(self): return self.s2399_infosaudecolet.evento()
     cnpjoper = models.CharField(max_length=14)
     regans = models.CharField(max_length=6)
     vrpgtit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -123,7 +122,6 @@ class s2399detOper(models.Model):
 class s2399detPlano(models.Model):
     s2399_detoper = models.ForeignKey('s2399detOper',
         related_name='%(class)s_s2399_detoper')
-    def evento(self): return self.s2399_detoper.evento()
     tpdep = models.CharField(choices=CHOICES_S2399_TPDEP, max_length=2)
     cpfdep = models.CharField(max_length=11, blank=True, null=True)
     nmdep = models.CharField(max_length=70)
@@ -149,7 +147,6 @@ class s2399detPlano(models.Model):
 class s2399detVerbas(models.Model):
     s2399_ideestablot = models.ForeignKey('s2399ideEstabLot',
         related_name='%(class)s_s2399_ideestablot')
-    def evento(self): return self.s2399_ideestablot.evento()
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
     qtdrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=6, blank=True, null=True)
@@ -176,7 +173,6 @@ class s2399detVerbas(models.Model):
 class s2399dmDev(models.Model):
     s2399_verbasresc = models.ForeignKey('s2399verbasResc',
         related_name='%(class)s_s2399_verbasresc')
-    def evento(self): return self.s2399_verbasresc.evento()
     idedmdev = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -198,7 +194,6 @@ class s2399dmDev(models.Model):
 class s2399ideEstabLot(models.Model):
     s2399_dmdev = models.ForeignKey('s2399dmDev',
         related_name='%(class)s_s2399_dmdev')
-    def evento(self): return self.s2399_dmdev.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S2399_TPINSC)
     nrinsc = models.CharField(max_length=15)
     codlotacao = models.CharField(max_length=30)
@@ -222,7 +217,6 @@ class s2399ideEstabLot(models.Model):
 class s2399infoAgNocivo(models.Model):
     s2399_ideestablot = models.OneToOneField('s2399ideEstabLot',
         related_name='%(class)s_s2399_ideestablot')
-    def evento(self): return self.s2399_ideestablot.evento()
     grauexp = models.IntegerField(choices=CHOICES_S2399_GRAUEXP)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -244,7 +238,6 @@ class s2399infoAgNocivo(models.Model):
 class s2399infoMV(models.Model):
     s2399_verbasresc = models.OneToOneField('s2399verbasResc',
         related_name='%(class)s_s2399_verbasresc')
-    def evento(self): return self.s2399_verbasresc.evento()
     indmv = models.IntegerField(choices=CHOICES_S2399_INDMV)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -266,7 +259,6 @@ class s2399infoMV(models.Model):
 class s2399infoSaudeColet(models.Model):
     s2399_ideestablot = models.OneToOneField('s2399ideEstabLot',
         related_name='%(class)s_s2399_ideestablot')
-    def evento(self): return self.s2399_ideestablot.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -287,7 +279,6 @@ class s2399infoSaudeColet(models.Model):
 class s2399infoSimples(models.Model):
     s2399_ideestablot = models.OneToOneField('s2399ideEstabLot',
         related_name='%(class)s_s2399_ideestablot')
-    def evento(self): return self.s2399_ideestablot.evento()
     indsimples = models.IntegerField(choices=CHOICES_S2399_INDSIMPLES)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -309,7 +300,6 @@ class s2399infoSimples(models.Model):
 class s2399procJudTrab(models.Model):
     s2399_verbasresc = models.ForeignKey('s2399verbasResc',
         related_name='%(class)s_s2399_verbasresc')
-    def evento(self): return self.s2399_verbasresc.evento()
     tptrib = models.IntegerField(choices=CHOICES_S2399_TPTRIB)
     nrprocjud = models.CharField(max_length=20)
     codsusp = models.IntegerField(blank=True, null=True)
@@ -333,7 +323,6 @@ class s2399procJudTrab(models.Model):
 class s2399quarentena(models.Model):
     s2399_evttsvtermino = models.OneToOneField('esocial.s2399evtTSVTermino',
         related_name='%(class)s_s2399_evttsvtermino')
-    def evento(self): return self.s2399_evttsvtermino.evento()
     dtfimquar = models.DateField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -355,10 +344,9 @@ class s2399quarentena(models.Model):
 class s2399remunOutrEmpr(models.Model):
     s2399_infomv = models.ForeignKey('s2399infoMV',
         related_name='%(class)s_s2399_infomv')
-    def evento(self): return self.s2399_infomv.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S2399_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    codcateg = models.IntegerField()
+    codcateg = models.TextField(max_length=3)
     vlrremunoe = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -380,7 +368,6 @@ class s2399remunOutrEmpr(models.Model):
 class s2399verbasResc(models.Model):
     s2399_evttsvtermino = models.OneToOneField('esocial.s2399evtTSVTermino',
         related_name='%(class)s_s2399_evttsvtermino')
-    def evento(self): return self.s2399_evttsvtermino.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)

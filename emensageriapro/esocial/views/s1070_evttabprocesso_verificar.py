@@ -45,6 +45,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -82,11 +83,12 @@ def txt_xml(texto):
 
 
 
+@login_required
 def verificar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s1070_evttabprocesso_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
@@ -227,12 +229,12 @@ def gerar_xml_s1070(s1070_evttabprocesso_id, db_slug):
    
 
 
-
+@login_required
 def recibo(request, hash, tipo):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s1070_evttabprocesso_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
@@ -347,6 +349,8 @@ def gerar_xml_assinado(s1070_evttabprocesso_id, db_slug):
     return xml_assinado
 
 
+
+@login_required
 def gerar_xml(request, hash):
     import os
     from datetime import datetime
@@ -373,6 +377,7 @@ def gerar_xml(request, hash):
 
 
 
+@login_required
 def duplicar(request, hash):
     from emensageriapro.settings import BASE_DIR
     db_slug = 'default'
@@ -404,6 +409,7 @@ def duplicar(request, hash):
 
 
 
+@login_required
 def criar_alteracao(request, hash):
     from emensageriapro.settings import BASE_DIR
     db_slug = 'default'
@@ -435,6 +441,7 @@ def criar_alteracao(request, hash):
 
 
 
+@login_required
 def criar_exclusao(request, hash):
     from emensageriapro.settings import BASE_DIR
     db_slug = 'default'
@@ -467,7 +474,7 @@ def criar_exclusao(request, hash):
 
 
 
-
+@login_required
 def alterar_identidade(request, hash):
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
@@ -493,6 +500,7 @@ def alterar_identidade(request, hash):
 
 
 
+@login_required
 def abrir_evento_para_edicao(request, hash):
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.funcoes_esocial import gravar_nome_arquivo
@@ -588,6 +596,7 @@ def validar_evento_funcao(s1070_evttabprocesso_id, db_slug):
 
 
 
+@login_required
 def validar_evento(request, hash):
     from emensageriapro.funcoes_validacoes import VERSAO_ATUAL
     db_slug = 'default'

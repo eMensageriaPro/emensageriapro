@@ -41,45 +41,15 @@ get_model = apps.get_model
 
 
 
-CHOICES_R2070_TPISENCAO = (
-    (1, u'1 - Parcela Isenta 65 anos'),
-    (10, u'10 - Bolsa de estudo recebida por médico-residente'),
-    (11, u'11 - Complementação de aposentadoria, correspondente às contribuições efetuadas no período de 01/01/1989 a 31/12/1995'),
-    (2, u'2 - Diária e Ajuda de Custo'),
-    (3, u'3 - Indenização e rescisão de contrato, inclusive a título de PDV'),
-    (4, u'4 - Abono pecuniário'),
-    (5, u'5 - Outros (especificar)'),
-    (6, u'6 - Lucros e dividendos pagos a partir de 1996'),
-    (7, u'7 - Valores pagos a titular ou sócio de microempresa ou empresa de pequeno porte, exceto pró-labore e alugueis'),
-    (8, u'8 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço'),
-    (9, u'9 - Benefícios indiretos e/ou reembolso de despesas recebidas por voluntário da copa do mundo ou da copa das confederações'),
-)
-
-CHOICES_R2070_INDTPDEDUCAO = (
-    (1, u'1 - Previdência Oficial'),
-    (2, u'2 - Previdência Privada'),
-    (3, u'3 - Fapi'),
-    (4, u'4 - Funpresp'),
-    (5, u'5 - Pensão Alimentícia'),
-    (6, u'6 - Dependentes'),
-)
-
-CHOICES_R2070_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
+CHOICES_R2070_INDDECTERCEIRO = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
 )
 
 CHOICES_R2070_INDNIF = (
     (1, u'1 - Beneficiário com NIF'),
     (2, u'2 - Beneficiário dispensado do NIF'),
     (3, u'3 - País não exige NIF'),
-)
-
-CHOICES_R2070_INDDECTERCEIRO = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
 )
 
 CHOICES_R2070_INDPERREFERENCIA = (
@@ -90,6 +60,15 @@ CHOICES_R2070_INDPERREFERENCIA = (
 CHOICES_R2070_INDSUSPEXIG = (
     ('N', u'N - Não'),
     ('S', u'S - Sim'),
+)
+
+CHOICES_R2070_INDTPDEDUCAO = (
+    (1, u'1 - Previdência Oficial'),
+    (2, u'2 - Previdência Privada'),
+    (3, u'3 - Fapi'),
+    (4, u'4 - Funpresp'),
+    (5, u'5 - Pensão Alimentícia'),
+    (6, u'6 - Dependentes'),
 )
 
 CHOICES_R2070_INFOPROCJUD_INDORIGEMRECURSOS = (
@@ -120,6 +99,27 @@ CHOICES_R2070_PGTOPJ_INDORIGEMRECURSOS = (
 CHOICES_R2070_PGTOPJ_TPINSCADVOGADO = (
     (1, u'1 - Pessoa Jurídica'),
     (2, u'2 - Pessoa Física'),
+)
+
+CHOICES_R2070_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+)
+
+CHOICES_R2070_TPISENCAO = (
+    (1, u'1 - Parcela Isenta 65 anos'),
+    (10, u'10 - Bolsa de estudo recebida por médico-residente'),
+    (11, u'11 - Complementação de aposentadoria, correspondente às contribuições efetuadas no período de 01/01/1989 a 31/12/1995'),
+    (2, u'2 - Diária e Ajuda de Custo'),
+    (3, u'3 - Indenização e rescisão de contrato, inclusive a título de PDV'),
+    (4, u'4 - Abono pecuniário'),
+    (5, u'5 - Outros (especificar)'),
+    (6, u'6 - Lucros e dividendos pagos a partir de 1996'),
+    (7, u'7 - Valores pagos a titular ou sócio de microempresa ou empresa de pequeno porte, exceto pró-labore e alugueis'),
+    (8, u'8 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço'),
+    (9, u'9 - Benefícios indiretos e/ou reembolso de despesas recebidas por voluntário da copa do mundo ou da copa das confederações'),
 )
 
 class r2070compJud(models.Model):
@@ -429,7 +429,7 @@ class r2070infoResidExt(models.Model):
     r2070_evtpgtosdivs = models.OneToOneField('efdreinf.r2070evtPgtosDivs',
         related_name='%(class)s_r2070_evtpgtosdivs')
     def evento(self): return self.r2070_evtpgtosdivs.evento()
-    paisresid = models.CharField(max_length=3)
+    paisresid = models.TextField(max_length=3)
     dsclograd = models.CharField(max_length=80)
     nrlograd = models.CharField(max_length=10, blank=True, null=True)
     complem = models.CharField(max_length=30, blank=True, null=True)

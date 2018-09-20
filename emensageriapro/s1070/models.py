@@ -71,40 +71,6 @@ ESTADOS = (
     ('TO', u'Tocantins'),
 )
 
-CHOICES_S1070_ALTERACAO_INDSUSP = (
-    ('01', u'01 - Liminar em Mandado de Segurança'),
-    ('02', u'02 - Depósito Judicial do Montante Integral'),
-    ('03', u'03 - Depósito Administrativo do Montante Integral'),
-    ('04', u'04 - Antecipação de Tutela'),
-    ('05', u'05 - Liminar em Medida Cautelar'),
-    ('08', u'08 - Sentença em Mandado de Segurança Favorável ao Contribuinte'),
-    ('09', u'09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF'),
-    ('10', u'10 - Acórdão do TRF Favorável ao Contribuinte'),
-    ('11', u'11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte'),
-    ('12', u'12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte'),
-    ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
-    ('14', u'14 - Contestação Administrativa FAP'),
-    ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
-    ('92', u'92 - Sem suspensão da exigibilidade'),
-)
-
-CHOICES_S1070_INCLUSAO_INDSUSP = (
-    ('01', u'01 - Liminar em Mandado de Segurança'),
-    ('02', u'02 - Depósito Judicial do Montante Integral'),
-    ('03', u'03 - Depósito Administrativo do Montante Integral'),
-    ('04', u'04 - Antecipação de Tutela'),
-    ('05', u'05 - Liminar em Medida Cautelar'),
-    ('08', u'08 - Sentença em Mandado de Segurança Favorável ao Contribuinte'),
-    ('09', u'09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF'),
-    ('10', u'10 - Acórdão do TRF Favorável ao Contribuinte'),
-    ('11', u'11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte'),
-    ('12', u'12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte'),
-    ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
-    ('14', u'14 - Contestação Administrativa FAP'),
-    ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
-    ('92', u'92 - Sem suspensão da exigibilidade'),
-)
-
 PERIODOS = (
     ('2017-01', u'Janeiro/2017'),
     ('2017-02', u'Fevereiro/2017'),
@@ -132,6 +98,16 @@ PERIODOS = (
     ('2018-12', u'Dezembro/2018'),
 )
 
+CHOICES_S1070_ALTERACAO_INDAUTORIA = (
+    (1, u'1 - Próprio contribuinte'),
+    (2, u'2 - Outra entidade, empresa ou empregado'),
+)
+
+CHOICES_S1070_ALTERACAO_INDDEPOSITO = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
 CHOICES_S1070_ALTERACAO_INDMATPROC = (
     (1, u'1 - Tributária'),
     (2, u'2 - Autorização de trabalho de menor'),
@@ -144,16 +120,21 @@ CHOICES_S1070_ALTERACAO_INDMATPROC = (
     (99, u'99 - Outros assuntos'),
 )
 
-CHOICES_S1070_INCLUSAO_INDMATPROC = (
-    (1, u'1 - Tributária'),
-    (2, u'2 - Autorização de trabalho de menor'),
-    (3, u'3 - Dispensa, ainda que parcial, de contratação de pessoa com deficiência (PCD)'),
-    (4, u'4 - Dispensa, ainda que parcial, de contratação de aprendiz'),
-    (5, u'5 - Segurança e Saúde do Trabalho'),
-    (6, u'6 - Conversão de Licença Saúde em Acidente de Trabalho'),
-    (7, u'7 - FGTS'),
-    (8, u'8 - Contribuição sindical'),
-    (99, u'99 - Outros assuntos'),
+CHOICES_S1070_ALTERACAO_INDSUSP = (
+    ('01', u'01 - Liminar em Mandado de Segurança'),
+    ('02', u'02 - Depósito Judicial do Montante Integral'),
+    ('03', u'03 - Depósito Administrativo do Montante Integral'),
+    ('04', u'04 - Antecipação de Tutela'),
+    ('05', u'05 - Liminar em Medida Cautelar'),
+    ('08', u'08 - Sentença em Mandado de Segurança Favorável ao Contribuinte'),
+    ('09', u'09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF'),
+    ('10', u'10 - Acórdão do TRF Favorável ao Contribuinte'),
+    ('11', u'11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte'),
+    ('12', u'12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte'),
+    ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
+    ('14', u'14 - Contestação Administrativa FAP'),
+    ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
+    ('92', u'92 - Sem suspensão da exigibilidade'),
 )
 
 CHOICES_S1070_ALTERACAO_TPPROC = (
@@ -168,22 +149,6 @@ CHOICES_S1070_EXCLUSAO_TPPROC = (
     (3, u'3 - Número de Benefício (NB) do INSS'),
 )
 
-CHOICES_S1070_INCLUSAO_TPPROC = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
-    (3, u'3 - Número de Benefício (NB) do INSS'),
-)
-
-CHOICES_S1070_ALTERACAO_INDAUTORIA = (
-    (1, u'1 - Próprio contribuinte'),
-    (2, u'2 - Outra entidade, empresa ou empregado'),
-)
-
-CHOICES_S1070_ALTERACAO_INDDEPOSITO = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
 CHOICES_S1070_INCLUSAO_INDAUTORIA = (
     (1, u'1 - Próprio contribuinte'),
     (2, u'2 - Outra entidade, empresa ou empregado'),
@@ -194,10 +159,44 @@ CHOICES_S1070_INCLUSAO_INDDEPOSITO = (
     ('S', u'S - Sim'),
 )
 
+CHOICES_S1070_INCLUSAO_INDMATPROC = (
+    (1, u'1 - Tributária'),
+    (2, u'2 - Autorização de trabalho de menor'),
+    (3, u'3 - Dispensa, ainda que parcial, de contratação de pessoa com deficiência (PCD)'),
+    (4, u'4 - Dispensa, ainda que parcial, de contratação de aprendiz'),
+    (5, u'5 - Segurança e Saúde do Trabalho'),
+    (6, u'6 - Conversão de Licença Saúde em Acidente de Trabalho'),
+    (7, u'7 - FGTS'),
+    (8, u'8 - Contribuição sindical'),
+    (99, u'99 - Outros assuntos'),
+)
+
+CHOICES_S1070_INCLUSAO_INDSUSP = (
+    ('01', u'01 - Liminar em Mandado de Segurança'),
+    ('02', u'02 - Depósito Judicial do Montante Integral'),
+    ('03', u'03 - Depósito Administrativo do Montante Integral'),
+    ('04', u'04 - Antecipação de Tutela'),
+    ('05', u'05 - Liminar em Medida Cautelar'),
+    ('08', u'08 - Sentença em Mandado de Segurança Favorável ao Contribuinte'),
+    ('09', u'09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF'),
+    ('10', u'10 - Acórdão do TRF Favorável ao Contribuinte'),
+    ('11', u'11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte'),
+    ('12', u'12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte'),
+    ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
+    ('14', u'14 - Contestação Administrativa FAP'),
+    ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
+    ('92', u'92 - Sem suspensão da exigibilidade'),
+)
+
+CHOICES_S1070_INCLUSAO_TPPROC = (
+    (1, u'1 - Administrativo'),
+    (2, u'2 - Judicial'),
+    (3, u'3 - Número de Benefício (NB) do INSS'),
+)
+
 class s1070alteracao(models.Model):
     s1070_evttabprocesso = models.OneToOneField('esocial.s1070evtTabProcesso',
         related_name='%(class)s_s1070_evttabprocesso')
-    def evento(self): return self.s1070_evttabprocesso.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1070_ALTERACAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
@@ -225,7 +224,6 @@ class s1070alteracao(models.Model):
 class s1070alteracaodadosProcJud(models.Model):
     s1070_alteracao = models.OneToOneField('s1070alteracao',
         related_name='%(class)s_s1070_alteracao')
-    def evento(self): return self.s1070_alteracao.evento()
     ufvara = models.CharField(choices=ESTADOS, max_length=2)
     codmunic = models.TextField(max_length=7)
     idvara = models.IntegerField()
@@ -249,7 +247,6 @@ class s1070alteracaodadosProcJud(models.Model):
 class s1070alteracaoinfoSusp(models.Model):
     s1070_alteracao = models.ForeignKey('s1070alteracao',
         related_name='%(class)s_s1070_alteracao')
-    def evento(self): return self.s1070_alteracao.evento()
     codsusp = models.IntegerField()
     indsusp = models.CharField(choices=CHOICES_S1070_ALTERACAO_INDSUSP, max_length=2)
     dtdecisao = models.DateField()
@@ -274,7 +271,6 @@ class s1070alteracaoinfoSusp(models.Model):
 class s1070alteracaonovaValidade(models.Model):
     s1070_alteracao = models.OneToOneField('s1070alteracao',
         related_name='%(class)s_s1070_alteracao')
-    def evento(self): return self.s1070_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -297,7 +293,6 @@ class s1070alteracaonovaValidade(models.Model):
 class s1070exclusao(models.Model):
     s1070_evttabprocesso = models.OneToOneField('esocial.s1070evtTabProcesso',
         related_name='%(class)s_s1070_evttabprocesso')
-    def evento(self): return self.s1070_evttabprocesso.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1070_EXCLUSAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
@@ -322,7 +317,6 @@ class s1070exclusao(models.Model):
 class s1070inclusao(models.Model):
     s1070_evttabprocesso = models.OneToOneField('esocial.s1070evtTabProcesso',
         related_name='%(class)s_s1070_evttabprocesso')
-    def evento(self): return self.s1070_evttabprocesso.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1070_INCLUSAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
@@ -350,7 +344,6 @@ class s1070inclusao(models.Model):
 class s1070inclusaodadosProcJud(models.Model):
     s1070_inclusao = models.OneToOneField('s1070inclusao',
         related_name='%(class)s_s1070_inclusao')
-    def evento(self): return self.s1070_inclusao.evento()
     ufvara = models.CharField(choices=ESTADOS, max_length=2)
     codmunic = models.TextField(max_length=7)
     idvara = models.IntegerField()
@@ -374,7 +367,6 @@ class s1070inclusaodadosProcJud(models.Model):
 class s1070inclusaoinfoSusp(models.Model):
     s1070_inclusao = models.ForeignKey('s1070inclusao',
         related_name='%(class)s_s1070_inclusao')
-    def evento(self): return self.s1070_inclusao.evento()
     codsusp = models.IntegerField()
     indsusp = models.CharField(choices=CHOICES_S1070_INCLUSAO_INDSUSP, max_length=2)
     dtdecisao = models.DateField()

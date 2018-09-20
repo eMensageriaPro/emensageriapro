@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -86,12 +87,18 @@ from emensageriapro.esocial.models import s2299evtDeslig
 from emensageriapro.esocial.models import s2300evtTSVInicio
 from emensageriapro.esocial.models import s2306evtTSVAltContr
 from emensageriapro.esocial.models import s2399evtTSVTermino
-from emensageriapro.esocial.models import s2400evtCdBenPrRP
+from emensageriapro.esocial.models import s2400evtCdBenefIn
 from emensageriapro.esocial.models import s3000evtExclusao
 from emensageriapro.esocial.models import s5001evtBasesTrab
 from emensageriapro.esocial.models import s5002evtIrrfBenef
 from emensageriapro.esocial.models import s5011evtCS
 from emensageriapro.esocial.models import s5012evtIrrf
+from emensageriapro.esocial.models import s1065evtTabEquipamento
+from emensageriapro.esocial.models import s2245evtTreiCap
+from emensageriapro.esocial.models import s2405evtCdBenefAlt
+from emensageriapro.esocial.models import s2410evtCdBenIn
+from emensageriapro.esocial.models import s2416evtCdBenAlt
+from emensageriapro.esocial.models import s2420evtCdBenTerm
 from emensageriapro.esocial.forms import form_s1000_evtinfoempregador
 from emensageriapro.esocial.forms import form_s1005_evttabestab
 from emensageriapro.esocial.forms import form_s1010_evttabrubrica
@@ -131,63 +138,28 @@ from emensageriapro.esocial.forms import form_s2299_evtdeslig
 from emensageriapro.esocial.forms import form_s2300_evttsvinicio
 from emensageriapro.esocial.forms import form_s2306_evttsvaltcontr
 from emensageriapro.esocial.forms import form_s2399_evttsvtermino
-from emensageriapro.esocial.forms import form_s2400_evtcdbenprrp
+from emensageriapro.esocial.forms import form_s2400_evtcdbenefin
 from emensageriapro.esocial.forms import form_s3000_evtexclusao
 from emensageriapro.esocial.forms import form_s5001_evtbasestrab
 from emensageriapro.esocial.forms import form_s5002_evtirrfbenef
 from emensageriapro.esocial.forms import form_s5011_evtcs
 from emensageriapro.esocial.forms import form_s5012_evtirrf
+from emensageriapro.esocial.forms import form_s1065_evttabequipamento
+from emensageriapro.esocial.forms import form_s2245_evttreicap
+from emensageriapro.esocial.forms import form_s2405_evtcdbenefalt
+from emensageriapro.esocial.forms import form_s2410_evtcdbenin
+from emensageriapro.esocial.forms import form_s2416_evtcdbenalt
+from emensageriapro.esocial.forms import form_s2420_evtcdbenterm
 
 #IMPORTACOES
 
 
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.session['usuario_id']
-        dict_hash = get_hash_url( hash )
-        retornos_eventos_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='retornos_eventos')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    retornos_eventos = get_object_or_404(RetornosEventos.objects.using( db_slug ), excluido = False, id = retornos_eventos_id)
-    if request.method == 'POST':
-        RetornosEventos.objects.using( db_slug ).filter(id = retornos_eventos_id).update(excluido = True)
-        #retornos_eventos_apagar_custom
-        #retornos_eventos_apagar_custom
-        messages.success(request, 'Apagado com sucesso!')
-        if request.session['retorno_pagina']== 'retornos_eventos_salvar':
-            return redirect('retornos_eventos', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-        
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-        
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 'retornos_eventos_apagar.html', context)
-
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']
@@ -420,18 +392,18 @@ def listar(request, hash):
             filtrar = True
             retornos_eventos_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-   
+
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #retornos_eventos_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'retornos_eventos'
         context = {
             'retornos_eventos_lista': retornos_eventos_lista,
-            
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -441,7 +413,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-       
+  
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         if for_print in (0,1):
@@ -485,10 +457,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -496,10 +468,11 @@ def listar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         retornos_eventos_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
@@ -560,12 +533,12 @@ def salvar(request, hash):
             retornos_eventos_form.fields[field].widget.attrs['ng-model'] = 'retornos_eventos_'+field
         if int(dict_hash['print']):
             retornos_eventos_form = disabled_form_for_print(retornos_eventos_form)
-   
+
         retornos_eventos_ocorrencias_form = None
         retornos_eventos_ocorrencias_lista = None
         if retornos_eventos_id:
             retornos_eventos = get_object_or_404(RetornosEventos.objects.using( db_slug ), excluido = False, id = retornos_eventos_id)
-       
+  
             retornos_eventos_ocorrencias_form = form_retornos_eventos_ocorrencias(initial={ 'retornos_eventos': retornos_eventos }, slug=db_slug)
             retornos_eventos_ocorrencias_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             retornos_eventos_ocorrencias_lista = RetornosEventosOcorrencias.objects.using( db_slug ).filter(excluido = False, retornos_eventos_id=retornos_eventos.id).all()
@@ -583,14 +556,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'retornos_eventos_id': int(retornos_eventos_id),
             'usuario': usuario,
-            
-            'hash': hash,
        
+            'hash': hash,
+  
             'retornos_eventos_ocorrencias_form': retornos_eventos_ocorrencias_form,
             'retornos_eventos_ocorrencias_lista': retornos_eventos_ocorrencias_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -634,14 +607,57 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
+
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        retornos_eventos_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='retornos_eventos')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    retornos_eventos = get_object_or_404(RetornosEventos.objects.using( db_slug ), excluido = False, id = retornos_eventos_id)
+    if request.method == 'POST':
+        RetornosEventos.objects.using( db_slug ).filter(id = retornos_eventos_id).update(excluido = True)
+        #retornos_eventos_apagar_custom
+        #retornos_eventos_apagar_custom
+        messages.success(request, 'Apagado com sucesso!')
+        if request.session['retorno_pagina']== 'retornos_eventos_salvar':
+            return redirect('retornos_eventos', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 'retornos_eventos_apagar.html', context)
 

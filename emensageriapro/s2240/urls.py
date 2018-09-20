@@ -70,6 +70,20 @@ url(r'^s2240-iniexprisco-infoamb/salvar/(?P<hash>.*)/$',
 
 
 
+url(r'^s2240-iniexprisco-ativpericinsal/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2240.views.s2240_iniexprisco_ativpericinsal.apagar', 
+        name='s2240_iniexprisco_ativpericinsal_apagar'),
+
+url(r'^s2240-iniexprisco-ativpericinsal/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2240.views.s2240_iniexprisco_ativpericinsal.listar', 
+        name='s2240_iniexprisco_ativpericinsal'),
+
+url(r'^s2240-iniexprisco-ativpericinsal/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2240.views.s2240_iniexprisco_ativpericinsal.salvar', 
+        name='s2240_iniexprisco_ativpericinsal_salvar'),
+
+
+
 url(r'^s2240-iniexprisco-fatrisco/apagar/(?P<hash>.*)/$', 
         'emensageriapro.s2240.views.s2240_iniexprisco_fatrisco.apagar', 
         name='s2240_iniexprisco_fatrisco_apagar'),
@@ -112,6 +126,34 @@ url(r'^s2240-iniexprisco-epi/salvar/(?P<hash>.*)/$',
 
 
 
+url(r'^s2240-iniexprisco-respreg/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2240.views.s2240_iniexprisco_respreg.apagar', 
+        name='s2240_iniexprisco_respreg_apagar'),
+
+url(r'^s2240-iniexprisco-respreg/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2240.views.s2240_iniexprisco_respreg.listar', 
+        name='s2240_iniexprisco_respreg'),
+
+url(r'^s2240-iniexprisco-respreg/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2240.views.s2240_iniexprisco_respreg.salvar', 
+        name='s2240_iniexprisco_respreg_salvar'),
+
+
+
+url(r'^s2240-iniexprisco-obs/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2240.views.s2240_iniexprisco_obs.apagar', 
+        name='s2240_iniexprisco_obs_apagar'),
+
+url(r'^s2240-iniexprisco-obs/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2240.views.s2240_iniexprisco_obs.listar', 
+        name='s2240_iniexprisco_obs'),
+
+url(r'^s2240-iniexprisco-obs/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2240.views.s2240_iniexprisco_obs.salvar', 
+        name='s2240_iniexprisco_obs_salvar'),
+
+
+
 url(r'^s2240-altexprisco/apagar/(?P<hash>.*)/$', 
         'emensageriapro.s2240.views.s2240_altexprisco.apagar', 
         name='s2240_altexprisco_apagar'),
@@ -138,6 +180,10 @@ url(r'^s2240-altexprisco-infoamb/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2240.views.s2240_altexprisco_infoamb.salvar', 
         name='s2240_altexprisco_infoamb_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2240-altexprisco-fatrisco/apagar/(?P<hash>.*)/$', 
@@ -180,10 +226,6 @@ url(r'^s2240-altexprisco-epi/salvar/(?P<hash>.*)/$',
         'emensageriapro.s2240.views.s2240_altexprisco_epi.salvar', 
         name='s2240_altexprisco_epi_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2240-fimexprisco/apagar/(?P<hash>.*)/$', 

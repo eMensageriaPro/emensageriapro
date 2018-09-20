@@ -42,6 +42,62 @@ urlpatterns = patterns('',
 
 
 
+url(r'^s1065-inclusao/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1065.views.s1065_inclusao.apagar', 
+        name='s1065_inclusao_apagar'),
+
+url(r'^s1065-inclusao/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1065.views.s1065_inclusao.listar', 
+        name='s1065_inclusao'),
+
+url(r'^s1065-inclusao/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1065.views.s1065_inclusao.salvar', 
+        name='s1065_inclusao_salvar'),
+
+
+
+url(r'^s1065-alteracao/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1065.views.s1065_alteracao.apagar', 
+        name='s1065_alteracao_apagar'),
+
+url(r'^s1065-alteracao/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1065.views.s1065_alteracao.listar', 
+        name='s1065_alteracao'),
+
+url(r'^s1065-alteracao/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1065.views.s1065_alteracao.salvar', 
+        name='s1065_alteracao_salvar'),
+
+
+
+url(r'^s1065-alteracao-novavalidade/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1065.views.s1065_alteracao_novavalidade.apagar', 
+        name='s1065_alteracao_novavalidade_apagar'),
+
+url(r'^s1065-alteracao-novavalidade/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1065.views.s1065_alteracao_novavalidade.listar', 
+        name='s1065_alteracao_novavalidade'),
+
+url(r'^s1065-alteracao-novavalidade/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1065.views.s1065_alteracao_novavalidade.salvar', 
+        name='s1065_alteracao_novavalidade_salvar'),
+
+
+
+url(r'^s1065-exclusao/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1065.views.s1065_exclusao.apagar', 
+        name='s1065_exclusao_apagar'),
+
+url(r'^s1065-exclusao/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1065.views.s1065_exclusao.listar', 
+        name='s1065_exclusao'),
+
+url(r'^s1065-exclusao/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1065.views.s1065_exclusao.salvar', 
+        name='s1065_exclusao_salvar'),
+
+
+
 
 
 )

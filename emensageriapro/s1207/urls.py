@@ -42,6 +42,20 @@ urlpatterns = patterns('',
 
 
 
+url(r'^s1207-procjudtrab/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_procjudtrab.apagar', 
+        name='s1207_procjudtrab_apagar'),
+
+url(r'^s1207-procjudtrab/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_procjudtrab.listar', 
+        name='s1207_procjudtrab'),
+
+url(r'^s1207-procjudtrab/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_procjudtrab.salvar', 
+        name='s1207_procjudtrab_salvar'),
+
+
+
 url(r'^s1207-dmdev/apagar/(?P<hash>.*)/$', 
         'emensageriapro.s1207.views.s1207_dmdev.apagar', 
         name='s1207_dmdev_apagar'),
@@ -67,6 +81,150 @@ url(r'^s1207-itens/listar/(?P<hash>.*)/$',
 url(r'^s1207-itens/salvar/(?P<hash>.*)/$', 
         'emensageriapro.s1207.views.s1207_itens.salvar', 
         name='s1207_itens_salvar'),
+
+
+
+url(r'^s1207-infoperapur/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperapur.apagar', 
+        name='s1207_infoperapur_apagar'),
+
+url(r'^s1207-infoperapur/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperapur.listar', 
+        name='s1207_infoperapur'),
+
+url(r'^s1207-infoperapur/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperapur.salvar', 
+        name='s1207_infoperapur_salvar'),
+
+
+
+url(r'^s1207-infoperapur-ideestab/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperapur_ideestab.apagar', 
+        name='s1207_infoperapur_ideestab_apagar'),
+
+url(r'^s1207-infoperapur-ideestab/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperapur_ideestab.listar', 
+        name='s1207_infoperapur_ideestab'),
+
+url(r'^s1207-infoperapur-ideestab/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperapur_ideestab.salvar', 
+        name='s1207_infoperapur_ideestab_salvar'),
+
+
+
+url(r'^s1207-infoperapur-remunperapur/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperapur_remunperapur.apagar', 
+        name='s1207_infoperapur_remunperapur_apagar'),
+
+url(r'^s1207-infoperapur-remunperapur/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperapur_remunperapur.listar', 
+        name='s1207_infoperapur_remunperapur'),
+
+url(r'^s1207-infoperapur-remunperapur/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperapur_remunperapur.salvar', 
+        name='s1207_infoperapur_remunperapur_salvar'),
+
+
+
+url(r'^s1207-infoperapur-itensremun/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperapur_itensremun.apagar', 
+        name='s1207_infoperapur_itensremun_apagar'),
+
+url(r'^s1207-infoperapur-itensremun/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperapur_itensremun.listar', 
+        name='s1207_infoperapur_itensremun'),
+
+url(r'^s1207-infoperapur-itensremun/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperapur_itensremun.salvar', 
+        name='s1207_infoperapur_itensremun_salvar'),
+
+
+
+url(r'^s1207-infoperant/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperant.apagar', 
+        name='s1207_infoperant_apagar'),
+
+url(r'^s1207-infoperant/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperant.listar', 
+        name='s1207_infoperant'),
+
+url(r'^s1207-infoperant/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperant.salvar', 
+        name='s1207_infoperant_salvar'),
+
+
+
+url(r'^s1207-infoperant-ideadc/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperant_ideadc.apagar', 
+        name='s1207_infoperant_ideadc_apagar'),
+
+url(r'^s1207-infoperant-ideadc/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperant_ideadc.listar', 
+        name='s1207_infoperant_ideadc'),
+
+url(r'^s1207-infoperant-ideadc/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperant_ideadc.salvar', 
+        name='s1207_infoperant_ideadc_salvar'),
+
+
+
+url(r'^s1207-infoperant-ideperiodo/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperant_ideperiodo.apagar', 
+        name='s1207_infoperant_ideperiodo_apagar'),
+
+url(r'^s1207-infoperant-ideperiodo/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperant_ideperiodo.listar', 
+        name='s1207_infoperant_ideperiodo'),
+
+url(r'^s1207-infoperant-ideperiodo/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperant_ideperiodo.salvar', 
+        name='s1207_infoperant_ideperiodo_salvar'),
+
+)
+
+
+urlpatterns += patterns('',
+
+
+url(r'^s1207-infoperant-ideestab/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperant_ideestab.apagar', 
+        name='s1207_infoperant_ideestab_apagar'),
+
+url(r'^s1207-infoperant-ideestab/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperant_ideestab.listar', 
+        name='s1207_infoperant_ideestab'),
+
+url(r'^s1207-infoperant-ideestab/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperant_ideestab.salvar', 
+        name='s1207_infoperant_ideestab_salvar'),
+
+
+
+url(r'^s1207-infoperant-remunperant/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperant_remunperant.apagar', 
+        name='s1207_infoperant_remunperant_apagar'),
+
+url(r'^s1207-infoperant-remunperant/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperant_remunperant.listar', 
+        name='s1207_infoperant_remunperant'),
+
+url(r'^s1207-infoperant-remunperant/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperant_remunperant.salvar', 
+        name='s1207_infoperant_remunperant_salvar'),
+
+
+
+url(r'^s1207-infoperant-itensremun/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperant_itensremun.apagar', 
+        name='s1207_infoperant_itensremun_apagar'),
+
+url(r'^s1207-infoperant-itensremun/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperant_itensremun.listar', 
+        name='s1207_infoperant_itensremun'),
+
+url(r'^s1207-infoperant-itensremun/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1207.views.s1207_infoperant_itensremun.salvar', 
+        name='s1207_infoperant_itensremun_salvar'),
 
 
 

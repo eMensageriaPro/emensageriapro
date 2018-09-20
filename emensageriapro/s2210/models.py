@@ -41,6 +41,36 @@ get_model = apps.get_model
 
 
 
+ESTADOS = (
+    ('AC', u'Acre'),
+    ('AL', u'Alagoas'),
+    ('AM', u'Amazonas'),
+    ('AP', u'Amapá'),
+    ('BA', u'Bahia'),
+    ('CE', u'Ceará'),
+    ('DF', u'Distrito Federal'),
+    ('ES', u'Espírito Santo'),
+    ('GO', u'Goiás'),
+    ('MA', u'Maranhão'),
+    ('MG', u'Minas Gerais'),
+    ('MS', u'Mato Grosso do Sul'),
+    ('MT', u'Mato Grosso'),
+    ('PA', u'Pará'),
+    ('PB', u'Paraíba'),
+    ('PE', u'Pernambuco'),
+    ('PI', u'Piauí'),
+    ('PR', u'Paraná'),
+    ('RJ', u'Rio de Janeiro'),
+    ('RN', u'Rio Grande do Norte'),
+    ('RO', u'Rondônia'),
+    ('RR', u'Roraima'),
+    ('RS', u'Rio Grande do Sul'),
+    ('SC', u'Santa Catarina'),
+    ('SE', u'Sergipe'),
+    ('SP', u'São Paulo'),
+    ('TO', u'Tocantins'),
+)
+
 CHOICES_S2210_CODAGNTCAUSADOR = (
     (302010200, u'302010200 - Rua e estrada - superfície utilizada para sustentar pessoas'),
     (302010250, u'302010250 - Calçada ou caminho para pedestre - superfície utilizada para sustentar pessoas'),
@@ -220,7 +250,7 @@ CHOICES_S2210_CODAGNTCAUSADOR = (
     (305024500, u'305024500 - Couro cru ou curtido - produto animal'),
     (305024700, u'305024700 - Osso - produto animal'),
     (305024900, u'305024900 - Produto animal, NIC'),
-    ('305028000 - Madeira (toro, madeira serrada, pranchão, poste, barrote, ripa e produto de madeira)', u'305028000 - Madeira (toro, madeira serrada, pranchão, poste, barrote, ripa e produto de madeira)'),
+    (305028000, u'305028000 - Madeira (toro, madeira serrada, pranchão, poste, barrote, ripa e produto de madeira)'),
     (305032000, u'305032000 - Produto mineral metálico - produto de mineração em bruto ou beneficiado, como minério e concentrado de minério'),
     (305032500, u'305032500 - Metal - inclui liga ferrosa e não ferrosa, tubo, placa, perfil, trilho, vergalhão, arame, porca, rebite, prego, etc. inclui metal fundido, lingote e sucata de fundição, exceto minério'),
     (305036000, u'305036000 - Produto mineral não metálico - produto de mineração, escavação, desbarrancamento, etc., como detrito, argila, areia, cascalho, pedra, etc.'),
@@ -372,43 +402,6 @@ CHOICES_S2210_DSCLESAO = (
     (706090000, u'706090000 - Outras lesões, NIC'),
 )
 
-ESTADOS = (
-    ('AC', u'Acre'),
-    ('AL', u'Alagoas'),
-    ('AM', u'Amazonas'),
-    ('AP', u'Amapá'),
-    ('BA', u'Bahia'),
-    ('CE', u'Ceará'),
-    ('DF', u'Distrito Federal'),
-    ('ES', u'Espírito Santo'),
-    ('GO', u'Goiás'),
-    ('MA', u'Maranhão'),
-    ('MG', u'Minas Gerais'),
-    ('MS', u'Mato Grosso do Sul'),
-    ('MT', u'Mato Grosso'),
-    ('PA', u'Pará'),
-    ('PB', u'Paraíba'),
-    ('PE', u'Pernambuco'),
-    ('PI', u'Piauí'),
-    ('PR', u'Paraná'),
-    ('RJ', u'Rio de Janeiro'),
-    ('RN', u'Rio Grande do Norte'),
-    ('RO', u'Rondônia'),
-    ('RR', u'Roraima'),
-    ('RS', u'Rio Grande do Sul'),
-    ('SC', u'Santa Catarina'),
-    ('SE', u'Sergipe'),
-    ('SP', u'São Paulo'),
-    ('TO', u'Tocantins'),
-)
-
-CHOICES_S2210_LATERALIDADE = (
-    (0, u'0 - Não aplicável'),
-    (1, u'1 - Esquerda'),
-    (2, u'2 - Direita'),
-    (3, u'3 - Ambas'),
-)
-
 CHOICES_S2210_IDEOC = (
     (1, u'1 - Conselho Regional de Medicina (CRM)'),
     (2, u'2 - Conselho Regional de Odontologia (CRO)'),
@@ -425,10 +418,16 @@ CHOICES_S2210_INDINTERNACAO = (
     ('S', u'S - Sim'),
 )
 
+CHOICES_S2210_LATERALIDADE = (
+    (0, u'0 - Não aplicável'),
+    (1, u'1 - Esquerda'),
+    (2, u'2 - Direita'),
+    (3, u'3 - Ambas'),
+)
+
 class s2210agenteCausador(models.Model):
     s2210_evtcat = models.ForeignKey('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat')
-    def evento(self): return self.s2210_evtcat.evento()
     codagntcausador = models.IntegerField(choices=CHOICES_S2210_CODAGNTCAUSADOR)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -450,7 +449,6 @@ class s2210agenteCausador(models.Model):
 class s2210atestado(models.Model):
     s2210_evtcat = models.OneToOneField('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat')
-    def evento(self): return self.s2210_evtcat.evento()
     codcnes = models.CharField(max_length=7, blank=True, null=True)
     dtatendimento = models.DateField()
     hratendimento = models.CharField(max_length=4)
@@ -486,7 +484,6 @@ class s2210atestado(models.Model):
 class s2210catOrigem(models.Model):
     s2210_evtcat = models.OneToOneField('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat')
-    def evento(self): return self.s2210_evtcat.evento()
     dtcatorig = models.DateField()
     nrcatorig = models.CharField(max_length=40, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -506,10 +503,29 @@ class s2210catOrigem(models.Model):
         ordering = ['s2210_evtcat', 'dtcatorig', 'nrcatorig']
 
 
+class s2210ideLocalAcid(models.Model):
+    s2210_evtcat = models.OneToOneField('esocial.s2210evtCAT',
+        related_name='%(class)s_s2210_evtcat')
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.s2210_evtcat)
+    #s2210_idelocalacid_custom#
+    #s2210_idelocalacid_custom#
+    class Meta:
+        db_table = r's2210_idelocalacid'
+        managed = True
+        ordering = ['s2210_evtcat']
+
+
 class s2210parteAtingida(models.Model):
     s2210_evtcat = models.ForeignKey('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat')
-    def evento(self): return self.s2210_evtcat.evento()
     codparteating = models.IntegerField(choices=CHOICES_S2210_CODPARTEATING)
     lateralidade = models.IntegerField(choices=CHOICES_S2210_LATERALIDADE)
     criado_em = models.DateTimeField(blank=True)

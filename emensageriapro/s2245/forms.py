@@ -1,6 +1,8 @@
 # coding: utf-8
 from django import forms
 from emensageriapro.s2245.models import * 
+from emensageriapro.controle_de_acesso.models import Usuarios 
+from emensageriapro.esocial.models import s2245evtTreiCap 
 
 
 __author__ = 'marcelovasconcellos'
@@ -40,4 +42,34 @@ __author__ = 'marcelovasconcellos'
 
 #custom_forms#
 
+
+
+class form_s2245_ideprofresp(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2245_ideprofresp,self ).__init__(*args,**kwargs)
+        
+        self.fields['codcbo'].widget.attrs['required'] = True
+        
+        self.fields['formprof'].widget.attrs['required'] = True
+        
+        self.fields['tpprof'].widget.attrs['required'] = True
+        
+        self.fields['nmprof'].widget.attrs['required'] = True
+        
+        self.fields['cpfprof'].widget.attrs['required'] = True
+        self.fields['s2245_evttreicap'].queryset = s2245evtTreiCap.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s2245_evttreicap'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s2245ideProfResp
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
 

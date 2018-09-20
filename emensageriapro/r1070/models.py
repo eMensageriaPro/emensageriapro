@@ -71,38 +71,6 @@ ESTADOS = (
     ('TO', u'Tocantins'),
 )
 
-CHOICES_R1070_ALTERACAO_INDSUSP = (
-    ('1', u'01 - Liminar em Mandado de Segurança'),
-    ('10', u'10 - Acórdão do TRF Favorável ao Contribuinte'),
-    ('11', u'11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte'),
-    ('12', u'12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte'),
-    ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
-    ('2', u'02 - Depósito Judicial do Montante Integral'),
-    ('3', u'03 - Depósito Administrativo do Montante Integral'),
-    ('4', u'04 - Antecipação de Tutela'),
-    ('5', u'05 - Liminar em Medida Cautelar'),
-    ('8', u'08 - Sentença em Mandado de Segurança Favorável ao Contribuinte'),
-    ('9', u'09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF'),
-    ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
-    ('92', u'92 - Sem suspensão da exigibilidade'),
-)
-
-CHOICES_R1070_INCLUSAO_INDSUSP = (
-    ('1', u'01 - Liminar em Mandado de Segurança'),
-    ('10', u'10 - Acórdão do TRF Favorável ao Contribuinte'),
-    ('11', u'11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte'),
-    ('12', u'12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte'),
-    ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
-    ('2', u'02 - Depósito Judicial do Montante Integral'),
-    ('3', u'03 - Depósito Administrativo do Montante Integral'),
-    ('4', u'04 - Antecipação de Tutela'),
-    ('5', u'05 - Liminar em Medida Cautelar'),
-    ('8', u'08 - Sentença em Mandado de Segurança Favorável ao Contribuinte'),
-    ('9', u'09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF'),
-    ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
-    ('92', u'92 - Sem suspensão da exigibilidade'),
-)
-
 PERIODOS = (
     ('2017-01', u'Janeiro/2017'),
     ('2017-02', u'Fevereiro/2017'),
@@ -140,6 +108,22 @@ CHOICES_R1070_ALTERACAO_INDDEPOSITO = (
     ('S', u'S - Sim'),
 )
 
+CHOICES_R1070_ALTERACAO_INDSUSP = (
+    ('01', u'01 - Liminar em Mandado de Segurança'),
+    ('02', u'02 - Depósito Judicial do Montante Integral'),
+    ('03', u'03 - Depósito Administrativo do Montante Integral'),
+    ('04', u'04 - Antecipação de Tutela'),
+    ('05', u'05 - Liminar em Medida Cautelar'),
+    ('08', u'08 - Sentença em Mandado de Segurança Favorável ao Contribuinte'),
+    ('09', u'09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF'),
+    ('10', u'10 - Acórdão do TRF Favorável ao Contribuinte'),
+    ('11', u'11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte'),
+    ('12', u'12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte'),
+    ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
+    ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
+    ('92', u'92 - Sem suspensão da exigibilidade'),
+)
+
 CHOICES_R1070_ALTERACAO_TPPROC = (
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial'),
@@ -158,6 +142,22 @@ CHOICES_R1070_INCLUSAO_INDAUTORIA = (
 CHOICES_R1070_INCLUSAO_INDDEPOSITO = (
     ('N', u'N - Não'),
     ('S', u'S - Sim'),
+)
+
+CHOICES_R1070_INCLUSAO_INDSUSP = (
+    ('01', u'01 - Liminar em Mandado de Segurança'),
+    ('02', u'02 - Depósito Judicial do Montante Integral'),
+    ('03', u'03 - Depósito Administrativo do Montante Integral'),
+    ('04', u'04 - Antecipação de Tutela'),
+    ('05', u'05 - Liminar em Medida Cautelar'),
+    ('08', u'08 - Sentença em Mandado de Segurança Favorável ao Contribuinte'),
+    ('09', u'09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF'),
+    ('10', u'10 - Acórdão do TRF Favorável ao Contribuinte'),
+    ('11', u'11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte'),
+    ('12', u'12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte'),
+    ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
+    ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
+    ('92', u'92 - Sem suspensão da exigibilidade'),
 )
 
 CHOICES_R1070_INCLUSAO_TPPROC = (

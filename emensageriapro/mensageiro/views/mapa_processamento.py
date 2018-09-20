@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -51,11 +52,12 @@ import base64
 #IMPORTACOES
 
 
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']

@@ -44,7 +44,6 @@ get_model = apps.get_model
 class s1295ideRespInf(models.Model):
     s1295_evttotconting = models.OneToOneField('esocial.s1295evtTotConting',
         related_name='%(class)s_s1295_evttotconting')
-    def evento(self): return self.s1295_evttotconting.evento()
     nmresp = models.CharField(max_length=70)
     cpfresp = models.CharField(max_length=11)
     telefone = models.CharField(max_length=13)

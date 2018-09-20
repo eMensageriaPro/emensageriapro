@@ -42,6 +42,20 @@ urlpatterns = patterns('',
 
 
 
+url(r'^s2400-endereco/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2400.views.s2400_endereco.apagar', 
+        name='s2400_endereco_apagar'),
+
+url(r'^s2400-endereco/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2400.views.s2400_endereco.listar', 
+        name='s2400_endereco'),
+
+url(r'^s2400-endereco/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2400.views.s2400_endereco.salvar', 
+        name='s2400_endereco_salvar'),
+
+
+
 url(r'^s2400-brasil/apagar/(?P<hash>.*)/$', 
         'emensageriapro.s2400.views.s2400_brasil.apagar', 
         name='s2400_brasil_apagar'),
@@ -70,73 +84,17 @@ url(r'^s2400-exterior/salvar/(?P<hash>.*)/$',
 
 
 
-url(r'^s2400-inibeneficio/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_inibeneficio.apagar', 
-        name='s2400_inibeneficio_apagar'),
+url(r'^s2400-dependente/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2400.views.s2400_dependente.apagar', 
+        name='s2400_dependente_apagar'),
 
-url(r'^s2400-inibeneficio/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_inibeneficio.listar', 
-        name='s2400_inibeneficio'),
+url(r'^s2400-dependente/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2400.views.s2400_dependente.listar', 
+        name='s2400_dependente'),
 
-url(r'^s2400-inibeneficio/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_inibeneficio.salvar', 
-        name='s2400_inibeneficio_salvar'),
-
-
-
-url(r'^s2400-inibeneficio-infopenmorte/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_inibeneficio_infopenmorte.apagar', 
-        name='s2400_inibeneficio_infopenmorte_apagar'),
-
-url(r'^s2400-inibeneficio-infopenmorte/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_inibeneficio_infopenmorte.listar', 
-        name='s2400_inibeneficio_infopenmorte'),
-
-url(r'^s2400-inibeneficio-infopenmorte/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_inibeneficio_infopenmorte.salvar', 
-        name='s2400_inibeneficio_infopenmorte_salvar'),
-
-
-
-url(r'^s2400-altbeneficio/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_altbeneficio.apagar', 
-        name='s2400_altbeneficio_apagar'),
-
-url(r'^s2400-altbeneficio/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_altbeneficio.listar', 
-        name='s2400_altbeneficio'),
-
-url(r'^s2400-altbeneficio/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_altbeneficio.salvar', 
-        name='s2400_altbeneficio_salvar'),
-
-
-
-url(r'^s2400-altbeneficio-infopenmorte/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_altbeneficio_infopenmorte.apagar', 
-        name='s2400_altbeneficio_infopenmorte_apagar'),
-
-url(r'^s2400-altbeneficio-infopenmorte/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_altbeneficio_infopenmorte.listar', 
-        name='s2400_altbeneficio_infopenmorte'),
-
-url(r'^s2400-altbeneficio-infopenmorte/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_altbeneficio_infopenmorte.salvar', 
-        name='s2400_altbeneficio_infopenmorte_salvar'),
-
-
-
-url(r'^s2400-fimbeneficio/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_fimbeneficio.apagar', 
-        name='s2400_fimbeneficio_apagar'),
-
-url(r'^s2400-fimbeneficio/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_fimbeneficio.listar', 
-        name='s2400_fimbeneficio'),
-
-url(r'^s2400-fimbeneficio/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_fimbeneficio.salvar', 
-        name='s2400_fimbeneficio_salvar'),
+url(r'^s2400-dependente/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2400.views.s2400_dependente.salvar', 
+        name='s2400_dependente_salvar'),
 
 
 

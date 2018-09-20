@@ -49,7 +49,6 @@ CHOICES_S1280_INDSUBSTPATR = (
 class s1280infoAtivConcom(models.Model):
     s1280_evtinfocomplper = models.OneToOneField('esocial.s1280evtInfoComplPer',
         related_name='%(class)s_s1280_evtinfocomplper')
-    def evento(self): return self.s1280_evtinfocomplper.evento()
     fatormes = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
     fator13 = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
     criado_em = models.DateTimeField(blank=True)
@@ -72,7 +71,6 @@ class s1280infoAtivConcom(models.Model):
 class s1280infoSubstPatr(models.Model):
     s1280_evtinfocomplper = models.OneToOneField('esocial.s1280evtInfoComplPer',
         related_name='%(class)s_s1280_evtinfocomplper')
-    def evento(self): return self.s1280_evtinfocomplper.evento()
     indsubstpatr = models.IntegerField(choices=CHOICES_S1280_INDSUBSTPATR)
     percredcontrib = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
     criado_em = models.DateTimeField(blank=True)
@@ -95,7 +93,6 @@ class s1280infoSubstPatr(models.Model):
 class s1280infoSubstPatrOpPort(models.Model):
     s1280_evtinfocomplper = models.ForeignKey('esocial.s1280evtInfoComplPer',
         related_name='%(class)s_s1280_evtinfocomplper')
-    def evento(self): return self.s1280_evtinfocomplper.evento()
     cnpjopportuario = models.CharField(max_length=14)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',

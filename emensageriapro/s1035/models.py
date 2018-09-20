@@ -83,7 +83,6 @@ CHOICES_S1035_INCLUSAO_SITCARR = (
 class s1035alteracao(models.Model):
     s1035_evttabcarreira = models.OneToOneField('esocial.s1035evtTabCarreira',
         related_name='%(class)s_s1035_evttabcarreira')
-    def evento(self): return self.s1035_evttabcarreira.evento()
     codcarreira = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
@@ -111,7 +110,6 @@ class s1035alteracao(models.Model):
 class s1035alteracaonovaValidade(models.Model):
     s1035_alteracao = models.OneToOneField('s1035alteracao',
         related_name='%(class)s_s1035_alteracao')
-    def evento(self): return self.s1035_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -134,7 +132,6 @@ class s1035alteracaonovaValidade(models.Model):
 class s1035exclusao(models.Model):
     s1035_evttabcarreira = models.OneToOneField('esocial.s1035evtTabCarreira',
         related_name='%(class)s_s1035_evttabcarreira')
-    def evento(self): return self.s1035_evttabcarreira.evento()
     codcarreira = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
@@ -158,7 +155,6 @@ class s1035exclusao(models.Model):
 class s1035inclusao(models.Model):
     s1035_evttabcarreira = models.OneToOneField('esocial.s1035evtTabCarreira',
         related_name='%(class)s_s1035_evttabcarreira')
-    def evento(self): return self.s1035_evttabcarreira.evento()
     codcarreira = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)

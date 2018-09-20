@@ -41,40 +41,6 @@ get_model = apps.get_model
 
 
 
-CHOICES_S1020_ALTERACAO_TPLOTACAO = (
-    ('01', u'01 - Classificação da atividade econômica exercida pela Pessoa Jurídica para fins de atribuição de código FPAS, inclusive obras de construção civil própria, exceto: a) empreitada parcial ou sub-empreitada de obra de construção civil (utilizar opção 02); b) (...)'),
-    ('02', u'02 - Obra de Construção Civil - Empreitada Parcial ou Sub- empreitada'),
-    ('03', u'03 - Pessoa Física Tomadora de Serviços prestados mediante cessão de mão de obra, exceto contratante de cooperativa'),
-    ('04', u'04 - Pessoa Jurídica Tomadora de Serviços prestados mediante cessão de mão de obra, exceto contratante de cooperativa, nos termos da lei 8.212/1991'),
-    ('05', u'05 - Pessoa Jurídica Tomadora de Serviços prestados por cooperados por intermédio de cooperativa de trabalho, exceto aqueles prestados a entidade beneficente/isenta'),
-    ('06', u'06 - Entidade beneficente/isenta Tomadora de Serviços prestados por cooperados por intermédio de cooperativa de trabalho'),
-    ('07', u'07 - Pessoa Física tomadora de Serviços prestados por Cooperados por intermédio de Cooperativa de Trabalho'),
-    ('08', u'08 - Operador Portuário tomador de serviços de trabalhadores avulsos'),
-    ('09', u'09 - Contratante de trabalhadores avulsos não portuários por intermédio de Sindicato'),
-    ('10', u'10 - Embarcação inscrita no Registro Especial Brasileiro - REB'),
-    ('21', u'21 - Classificação da atividade econômica ou obra própria de construção civil da Pessoa Física'),
-    ('24', u'24 - Empregador Doméstico'),
-    ('90', u'90 - Atividades desenvolvidas no exterior por trabalhador vinculado ao Regime Geral de Previdência Social (expatriados)'),
-    ('91', u'91 - Atividades desenvolvidas por trabalhador estrangeiro vinculado a Regime de Previdência Social Estrangeiro'),
-)
-
-CHOICES_S1020_INCLUSAO_TPLOTACAO = (
-    ('01', u'01 - Classificação da atividade econômica exercida pela Pessoa Jurídica para fins de atribuição de código FPAS, inclusive obras de construção civil própria, exceto: a) empreitada parcial ou sub-empreitada de obra de construção civil (utilizar opção 02); b) (...)'),
-    ('02', u'02 - Obra de Construção Civil - Empreitada Parcial ou Sub- empreitada'),
-    ('03', u'03 - Pessoa Física Tomadora de Serviços prestados mediante cessão de mão de obra, exceto contratante de cooperativa'),
-    ('04', u'04 - Pessoa Jurídica Tomadora de Serviços prestados mediante cessão de mão de obra, exceto contratante de cooperativa, nos termos da lei 8.212/1991'),
-    ('05', u'05 - Pessoa Jurídica Tomadora de Serviços prestados por cooperados por intermédio de cooperativa de trabalho, exceto aqueles prestados a entidade beneficente/isenta'),
-    ('06', u'06 - Entidade beneficente/isenta Tomadora de Serviços prestados por cooperados por intermédio de cooperativa de trabalho'),
-    ('07', u'07 - Pessoa Física tomadora de Serviços prestados por Cooperados por intermédio de Cooperativa de Trabalho'),
-    ('08', u'08 - Operador Portuário tomador de serviços de trabalhadores avulsos'),
-    ('09', u'09 - Contratante de trabalhadores avulsos não portuários por intermédio de Sindicato'),
-    ('10', u'10 - Embarcação inscrita no Registro Especial Brasileiro - REB'),
-    ('21', u'21 - Classificação da atividade econômica ou obra própria de construção civil da Pessoa Física'),
-    ('24', u'24 - Empregador Doméstico'),
-    ('90', u'90 - Atividades desenvolvidas no exterior por trabalhador vinculado ao Regime Geral de Previdência Social (expatriados)'),
-    ('91', u'91 - Atividades desenvolvidas por trabalhador estrangeiro vinculado a Regime de Previdência Social Estrangeiro'),
-)
-
 PERIODOS = (
     ('2017-01', u'Janeiro/2017'),
     ('2017-02', u'Fevereiro/2017'),
@@ -123,6 +89,23 @@ CHOICES_S1020_ALTERACAO_TPINSCPROP = (
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
+CHOICES_S1020_ALTERACAO_TPLOTACAO = (
+    ('01', u'01 - Classificação da atividade econômica exercida pela Pessoa Jurídica para fins de atribuição de código FPAS, inclusive obras de construção civil própria, exceto: a) empreitada parcial ou sub-empreitada de obra de construção civil (utilizar opção 02); b) (...)'),
+    ('02', u'02 - Obra de Construção Civil - Empreitada Parcial ou Sub- empreitada'),
+    ('03', u'03 - Pessoa Física Tomadora de Serviços prestados mediante cessão de mão de obra, exceto contratante de cooperativa'),
+    ('04', u'04 - Pessoa Jurídica Tomadora de Serviços prestados mediante cessão de mão de obra, exceto contratante de cooperativa, nos termos da lei 8.212/1991'),
+    ('05', u'05 - Pessoa Jurídica Tomadora de Serviços prestados por cooperados por intermédio de cooperativa de trabalho, exceto aqueles prestados a entidade beneficente/isenta'),
+    ('06', u'06 - Entidade beneficente/isenta Tomadora de Serviços prestados por cooperados por intermédio de cooperativa de trabalho'),
+    ('07', u'07 - Pessoa Física tomadora de Serviços prestados por Cooperados por intermédio de Cooperativa de Trabalho'),
+    ('08', u'08 - Operador Portuário tomador de serviços de trabalhadores avulsos'),
+    ('09', u'09 - Contratante de trabalhadores avulsos não portuários por intermédio de Sindicato'),
+    ('10', u'10 - Embarcação inscrita no Registro Especial Brasileiro - REB'),
+    ('21', u'21 - Classificação da atividade econômica ou obra própria de construção civil da Pessoa Física'),
+    ('24', u'24 - Empregador Doméstico'),
+    ('90', u'90 - Atividades desenvolvidas no exterior por trabalhador vinculado ao Regime Geral de Previdência Social (expatriados)'),
+    ('91', u'91 - Atividades desenvolvidas por trabalhador estrangeiro vinculado a Regime de Previdência Social Estrangeiro'),
+)
+
 CHOICES_S1020_INCLUSAO_TPINSC = (
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
@@ -144,10 +127,26 @@ CHOICES_S1020_INCLUSAO_TPINSCPROP = (
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
+CHOICES_S1020_INCLUSAO_TPLOTACAO = (
+    ('01', u'01 - Classificação da atividade econômica exercida pela Pessoa Jurídica para fins de atribuição de código FPAS, inclusive obras de construção civil própria, exceto: a) empreitada parcial ou sub-empreitada de obra de construção civil (utilizar opção 02); b) (...)'),
+    ('02', u'02 - Obra de Construção Civil - Empreitada Parcial ou Sub- empreitada'),
+    ('03', u'03 - Pessoa Física Tomadora de Serviços prestados mediante cessão de mão de obra, exceto contratante de cooperativa'),
+    ('04', u'04 - Pessoa Jurídica Tomadora de Serviços prestados mediante cessão de mão de obra, exceto contratante de cooperativa, nos termos da lei 8.212/1991'),
+    ('05', u'05 - Pessoa Jurídica Tomadora de Serviços prestados por cooperados por intermédio de cooperativa de trabalho, exceto aqueles prestados a entidade beneficente/isenta'),
+    ('06', u'06 - Entidade beneficente/isenta Tomadora de Serviços prestados por cooperados por intermédio de cooperativa de trabalho'),
+    ('07', u'07 - Pessoa Física tomadora de Serviços prestados por Cooperados por intermédio de Cooperativa de Trabalho'),
+    ('08', u'08 - Operador Portuário tomador de serviços de trabalhadores avulsos'),
+    ('09', u'09 - Contratante de trabalhadores avulsos não portuários por intermédio de Sindicato'),
+    ('10', u'10 - Embarcação inscrita no Registro Especial Brasileiro - REB'),
+    ('21', u'21 - Classificação da atividade econômica ou obra própria de construção civil da Pessoa Física'),
+    ('24', u'24 - Empregador Doméstico'),
+    ('90', u'90 - Atividades desenvolvidas no exterior por trabalhador vinculado ao Regime Geral de Previdência Social (expatriados)'),
+    ('91', u'91 - Atividades desenvolvidas por trabalhador estrangeiro vinculado a Regime de Previdência Social Estrangeiro'),
+)
+
 class s1020alteracao(models.Model):
     s1020_evttablotacao = models.OneToOneField('esocial.s1020evtTabLotacao',
         related_name='%(class)s_s1020_evttablotacao')
-    def evento(self): return self.s1020_evttablotacao.evento()
     codlotacao = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
@@ -177,7 +176,6 @@ class s1020alteracao(models.Model):
 class s1020alteracaoinfoEmprParcial(models.Model):
     s1020_alteracao = models.OneToOneField('s1020alteracao',
         related_name='%(class)s_s1020_alteracao')
-    def evento(self): return self.s1020_alteracao.evento()
     tpinsccontrat = models.IntegerField(choices=CHOICES_S1020_ALTERACAO_TPINSCCONTRAT)
     nrinsccontrat = models.CharField(max_length=14)
     tpinscprop = models.IntegerField(choices=CHOICES_S1020_ALTERACAO_TPINSCPROP)
@@ -202,7 +200,6 @@ class s1020alteracaoinfoEmprParcial(models.Model):
 class s1020alteracaoinfoProcJudTerceiros(models.Model):
     s1020_alteracao = models.OneToOneField('s1020alteracao',
         related_name='%(class)s_s1020_alteracao')
-    def evento(self): return self.s1020_alteracao.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -223,7 +220,6 @@ class s1020alteracaoinfoProcJudTerceiros(models.Model):
 class s1020alteracaonovaValidade(models.Model):
     s1020_alteracao = models.OneToOneField('s1020alteracao',
         related_name='%(class)s_s1020_alteracao')
-    def evento(self): return self.s1020_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -246,7 +242,6 @@ class s1020alteracaonovaValidade(models.Model):
 class s1020alteracaoprocJudTerceiro(models.Model):
     s1020_alteracao_infoprocjudterceiros = models.ForeignKey('s1020alteracaoinfoProcJudTerceiros',
         related_name='%(class)s_s1020_alteracao_infoprocjudterceiros')
-    def evento(self): return self.s1020_alteracao_infoprocjudterceiros.evento()
     codterc = models.CharField(max_length=4)
     nrprocjud = models.CharField(max_length=20)
     codsusp = models.IntegerField()
@@ -270,7 +265,6 @@ class s1020alteracaoprocJudTerceiro(models.Model):
 class s1020exclusao(models.Model):
     s1020_evttablotacao = models.OneToOneField('esocial.s1020evtTabLotacao',
         related_name='%(class)s_s1020_evttablotacao')
-    def evento(self): return self.s1020_evttablotacao.evento()
     codlotacao = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
@@ -294,7 +288,6 @@ class s1020exclusao(models.Model):
 class s1020inclusao(models.Model):
     s1020_evttablotacao = models.OneToOneField('esocial.s1020evtTabLotacao',
         related_name='%(class)s_s1020_evttablotacao')
-    def evento(self): return self.s1020_evttablotacao.evento()
     codlotacao = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
@@ -324,7 +317,6 @@ class s1020inclusao(models.Model):
 class s1020inclusaoinfoEmprParcial(models.Model):
     s1020_inclusao = models.OneToOneField('s1020inclusao',
         related_name='%(class)s_s1020_inclusao')
-    def evento(self): return self.s1020_inclusao.evento()
     tpinsccontrat = models.IntegerField(choices=CHOICES_S1020_INCLUSAO_TPINSCCONTRAT)
     nrinsccontrat = models.CharField(max_length=14)
     tpinscprop = models.IntegerField(choices=CHOICES_S1020_INCLUSAO_TPINSCPROP)
@@ -349,7 +341,6 @@ class s1020inclusaoinfoEmprParcial(models.Model):
 class s1020inclusaoinfoProcJudTerceiros(models.Model):
     s1020_inclusao = models.OneToOneField('s1020inclusao',
         related_name='%(class)s_s1020_inclusao')
-    def evento(self): return self.s1020_inclusao.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -370,7 +361,6 @@ class s1020inclusaoinfoProcJudTerceiros(models.Model):
 class s1020inclusaoprocJudTerceiro(models.Model):
     s1020_inclusao_infoprocjudterceiros = models.ForeignKey('s1020inclusaoinfoProcJudTerceiros',
         related_name='%(class)s_s1020_inclusao_infoprocjudterceiros')
-    def evento(self): return self.s1020_inclusao_infoprocjudterceiros.evento()
     codterc = models.CharField(max_length=4)
     nrprocjud = models.CharField(max_length=20)
     codsusp = models.IntegerField()

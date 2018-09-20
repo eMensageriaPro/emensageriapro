@@ -60,7 +60,6 @@ CHOICES_S1250_TPINSCPROD = (
 class s1250ideProdutor(models.Model):
     s1250_tpaquis = models.ForeignKey('s1250tpAquis',
         related_name='%(class)s_s1250_tpaquis')
-    def evento(self): return self.s1250_tpaquis.evento()
     tpinscprod = models.IntegerField(choices=CHOICES_S1250_TPINSCPROD)
     nrinscprod = models.CharField(max_length=14)
     vlrbruto = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -87,7 +86,6 @@ class s1250ideProdutor(models.Model):
 class s1250infoProcJud(models.Model):
     s1250_ideprodutor = models.ForeignKey('s1250ideProdutor',
         related_name='%(class)s_s1250_ideprodutor')
-    def evento(self): return self.s1250_ideprodutor.evento()
     nrprocjud = models.CharField(max_length=20)
     codsusp = models.IntegerField()
     vrcpnret = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -113,7 +111,6 @@ class s1250infoProcJud(models.Model):
 class s1250nfs(models.Model):
     s1250_ideprodutor = models.ForeignKey('s1250ideProdutor',
         related_name='%(class)s_s1250_ideprodutor')
-    def evento(self): return self.s1250_ideprodutor.evento()
     serie = models.CharField(max_length=5, blank=True, null=True)
     nrdocto = models.CharField(max_length=20)
     dtemisnf = models.DateField()
@@ -141,7 +138,6 @@ class s1250nfs(models.Model):
 class s1250tpAquis(models.Model):
     s1250_evtaqprod = models.ForeignKey('esocial.s1250evtAqProd',
         related_name='%(class)s_s1250_evtaqprod')
-    def evento(self): return self.s1250_evtaqprod.evento()
     indaquis = models.IntegerField(choices=CHOICES_S1250_INDAQUIS)
     vlrtotaquis = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     criado_em = models.DateTimeField(blank=True)

@@ -41,6 +41,11 @@ get_model = apps.get_model
 
 
 
+SIM_NAO = (
+    (0, u'Não'),
+    (1, u'Sim'),
+)
+
 TRANSMISSOR_STATUS = (
     (0, u'Cadastrado'),
     (1, u'Importado'),
@@ -59,34 +64,14 @@ TRANSMISSOR_STATUS = (
     (9, u'Consultado'),
 )
 
-CHOICES_R2070_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-)
-
 OPERACOES = (
     (1, u'Incluir'),
     (2, u'Alterar'),
     (3, u'Excluir'),
 )
 
-CHOICES_R2010_INDOBRA = (
-    (0, u'0 - Não é obra de construção civil ou não está sujeita a matrícula de obra'),
-    (1, u'1 - Obra de Construção Civil - Empreitada Total'),
-    (2, u'2 - Obra de Construção Civil - Empreitada Parcial'),
-)
-
-CHOICES_R2020_INDOBRA = (
-    (0, u'0 - Não é obra de construção civil ou não está sujeita a matrícula de obra'),
-    (1, u'1 - Obra de Construção Civil - Empreitada Total'),
-    (2, u'2 - Obra de Construção Civil - Empreitada Parcial'),
-)
-
-SIM_NAO = (
-    (0, u'Não'),
-    (1, u'Sim'),
+EFDREINF_VERSOES = (
+    ('v1_03_02', u'Versão 1.03.02'),
 )
 
 CHOICES_R1000_PROCEMI = (
@@ -124,6 +109,12 @@ CHOICES_R2010_INDCPRB = (
     (1, u'1 - Contribuinte da Contribuição Previdenciária sobre a Receita Bruta (CPRB) - Retenção 3,5%'),
 )
 
+CHOICES_R2010_INDOBRA = (
+    (0, u'0 - Não é obra de construção civil ou não está sujeita a matrícula de obra'),
+    (1, u'1 - Obra de Construção Civil - Empreitada Total'),
+    (2, u'2 - Obra de Construção Civil - Empreitada Parcial'),
+)
+
 CHOICES_R2010_INDRETIF = (
     (1, u'1 - Arquivo original'),
     (2, u'2 - Arquivo de retificação'),
@@ -149,6 +140,12 @@ CHOICES_R2010_TPINSCESTAB = (
     (4, u'4 - CNO'),
 )
 
+CHOICES_R2020_INDOBRA = (
+    (0, u'0 - Não é obra de construção civil ou não está sujeita a matrícula de obra'),
+    (1, u'1 - Obra de Construção Civil - Empreitada Total'),
+    (2, u'2 - Obra de Construção Civil - Empreitada Parcial'),
+)
+
 CHOICES_R2020_INDRETIF = (
     (1, u'1 - Arquivo original'),
     (2, u'2 - Arquivo de retificação'),
@@ -167,6 +164,10 @@ CHOICES_R2020_TPAMB = (
 CHOICES_R2020_TPINSC = (
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
+)
+
+CHOICES_R2020_TPINSCESTABPREST = (
+    (1, u'1 - CNPJ'),
 )
 
 CHOICES_R2020_TPINSCTOMADOR = (
@@ -194,6 +195,10 @@ CHOICES_R2030_TPINSC = (
     (2, u'2 - CPF'),
 )
 
+CHOICES_R2030_TPINSCESTAB = (
+    (1, u'1 - CNPJ'),
+)
+
 CHOICES_R2040_INDRETIF = (
     (1, u'1 - Arquivo original'),
     (2, u'2 - Arquivo de retificação'),
@@ -214,6 +219,10 @@ CHOICES_R2040_TPINSC = (
     (2, u'2 - CPF'),
 )
 
+CHOICES_R2040_TPINSCESTAB = (
+    (1, u'1 - CNPJ'),
+)
+
 CHOICES_R2050_INDRETIF = (
     (1, u'1 - Arquivo original'),
     (2, u'2 - Arquivo de retificação'),
@@ -232,6 +241,10 @@ CHOICES_R2050_TPAMB = (
 CHOICES_R2050_TPINSC = (
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
+)
+
+CHOICES_R2050_TPINSCESTAB = (
+    (1, u'1 - CNPJ'),
 )
 
 CHOICES_R2060_INDRETIF = (
@@ -272,6 +285,13 @@ CHOICES_R2070_PROCEMI = (
 CHOICES_R2070_TPAMB = (
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita'),
+)
+
+CHOICES_R2070_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
 )
 
 CHOICES_R2070_TPINSCBENEF = (
@@ -387,26 +407,6 @@ CHOICES_R9000_TPAMB = (
 CHOICES_R9000_TPINSC = (
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
-)
-
-EFDREINF_VERSOES = (
-    ('v1_03_02', u'Versão 1.03.02'),
-)
-
-CHOICES_R2020_TPINSCESTABPREST = (
-    (1, u'1 - CNPJ'),
-)
-
-CHOICES_R2030_TPINSCESTAB = (
-    (1, u'1 - CNPJ'),
-)
-
-CHOICES_R2040_TPINSCESTAB = (
-    (1, u'1 - CNPJ'),
-)
-
-CHOICES_R2050_TPINSCESTAB = (
-    (1, u'1 - CNPJ'),
 )
 
 class r1000evtInfoContri(models.Model):
@@ -1026,9 +1026,9 @@ class r5001evtTotal(models.Model):
 
 class r5011evtTotalContrib(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
-    identidade = models.CharField(max_length=36, blank=True, null=True)
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
     perapur = models.CharField(max_length=10)
     tpinsc = models.IntegerField(choices=CHOICES_R5011_TPINSC)
     nrinsc = models.CharField(max_length=14)

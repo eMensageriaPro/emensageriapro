@@ -3,6 +3,7 @@ from django import forms
 from emensageriapro.s2260.models import * 
 from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.tabelas.models import Municipios 
+from emensageriapro.tabelas.models import eSocialLogradourosTipos 
 from emensageriapro.esocial.models import s2260evtConvInterm 
 
 

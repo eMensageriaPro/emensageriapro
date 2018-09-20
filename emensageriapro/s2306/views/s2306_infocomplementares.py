@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -51,10 +52,11 @@ import base64
 #IMPORTACOES
 
 
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2306_infocomplementares_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
@@ -141,6 +143,8 @@ def salvar(request, hash):
         s2306_cargofuncao_lista = None
         s2306_remuneracao_form = None
         s2306_remuneracao_lista = None
+        s2306_infotrabcedido_form = None
+        s2306_infotrabcedido_lista = None
         s2306_infoestagiario_form = None
         s2306_infoestagiario_lista = None
         if s2306_infocomplementares_id:
@@ -152,6 +156,9 @@ def salvar(request, hash):
             s2306_remuneracao_form = form_s2306_remuneracao(initial={ 's2306_infocomplementares': s2306_infocomplementares }, slug=db_slug)
             s2306_remuneracao_form.fields['s2306_infocomplementares'].widget.attrs['readonly'] = True
             s2306_remuneracao_lista = s2306remuneracao.objects.using( db_slug ).filter(excluido = False, s2306_infocomplementares_id=s2306_infocomplementares.id).all()
+            s2306_infotrabcedido_form = form_s2306_infotrabcedido(initial={ 's2306_infocomplementares': s2306_infocomplementares }, slug=db_slug)
+            s2306_infotrabcedido_form.fields['s2306_infocomplementares'].widget.attrs['readonly'] = True
+            s2306_infotrabcedido_lista = s2306infoTrabCedido.objects.using( db_slug ).filter(excluido = False, s2306_infocomplementares_id=s2306_infocomplementares.id).all()
             s2306_infoestagiario_form = form_s2306_infoestagiario(initial={ 's2306_infocomplementares': s2306_infocomplementares }, slug=db_slug)
             s2306_infoestagiario_form.fields['s2306_infocomplementares'].widget.attrs['readonly'] = True
             s2306_infoestagiario_lista = s2306infoEstagiario.objects.using( db_slug ).filter(excluido = False, s2306_infocomplementares_id=s2306_infocomplementares.id).all()
@@ -182,6 +189,8 @@ def salvar(request, hash):
             's2306_cargofuncao_lista': s2306_cargofuncao_lista,
             's2306_remuneracao_form': s2306_remuneracao_form,
             's2306_remuneracao_lista': s2306_remuneracao_lista,
+            's2306_infotrabcedido_form': s2306_infotrabcedido_form,
+            's2306_infotrabcedido_lista': s2306_infotrabcedido_lista,
             's2306_infoestagiario_form': s2306_infoestagiario_form,
             's2306_infoestagiario_lista': s2306_infoestagiario_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
@@ -241,10 +250,11 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
 def apagar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2306_infocomplementares_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
@@ -312,11 +322,13 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
+
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']

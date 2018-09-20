@@ -41,45 +41,18 @@ get_model = apps.get_model
 
 
 
-CHOICES_S1202_INFOPERANT_CODCATEG = (
-    (101, u'101 - Empregado - Geral, inclusive o empregado público da administração direta ou indireta contratado pela CLT.'),
-    (102, u'102 - Empregado - Trabalhador Rural por Pequeno Prazo da Lei 11.718/2008'),
-    (103, u'103 - Empregado - Aprendiz'),
-    (104, u'104 - Empregado - Doméstico'),
-    (105, u'105 - Empregado - contrato a termo firmado nos termos da Lei 9601/98'),
-    (106, u'106 - Trabalhador Temporário - contrato por prazo determinado nos termos da Lei 6019/74'),
-    (111, u'111 - Empregado - contrato de trabalho intermitente'),
-    (201, u'201 - Trabalhador Avulso Portuário'),
-    (202, u'202 - Trabalhador Avulso Não Portuário'),
-    (301, u'301 - Servidor Público Titular de Cargo Efetivo, Magistrado, Ministro de Tribunal de Contas, Conselheiro de Tribunal de Contas e Membro do Ministério Público'),
-    (302, u'302 - Servidor Público Ocupante de Cargo exclusivo em comissão'),
-    (303, u'303 - Agente Político'),
-    (305, u'305 - Servidor Público indicado para conselho ou órgão deliberativo, na condição de representante do governo, órgão ou entidade da administração pública.'),
-    (306, u'306 - Servidor Público Temporário, sujeito a regime administrativo especial definido em lei própria'),
-    (307, u'307 - Militar efetivo'),
-    (308, u'308 - Conscrito'),
-    (309, u'309 - Agente Público - Outros'),
-    (401, u'401 - Dirigente Sindical - informação prestada pelo Sindicato'),
-    (410, u'410 - Trabalhador cedido - informação prestada pelo Cessionário'),
-    (701, u'701 - Contribuinte individual - Autônomo em geral, exceto se enquadrado em uma das demais categorias de contribuinte individual'),
-    (711, u'711 - Contribuinte individual - Transportador autônomo de passageiros'),
-    (712, u'712 - Contribuinte individual - Transportador autônomo de carga'),
-    (721, u'721 - Contribuinte individual - Diretor não empregado, com FGTS'),
-    (722, u'722 - Contribuinte individual - Diretor não empregado, sem FGTS'),
-    (723, u'723 - Contribuinte individual - empresários, sócios e membro de conselho de administração ou fiscal'),
-    (731, u'731 - Contribuinte individual - Cooperado que presta serviços por intermédio de Cooperativa de Trabalho'),
-    (734, u'734 - Contribuinte individual - Transportador Cooperado que presta serviços por intermédio de cooperativa de trabalho'),
-    (738, u'738 - Contribuinte individual - Cooperado filiado a Cooperativa de Produção'),
-    (741, u'741 - Contribuinte individual - Microempreendedor Individual'),
-    (751, u'751 - Contribuinte individual - magistrado classista temporário da Justiça do Trabalho ou da Justiça Eleitoral que seja aposentado de qualquer regime previdenciário'),
-    (761, u'761 - Contribuinte individual - Associado eleito para direção de Cooperativa, associação ou entidade de classe de qualquer natureza ou finalidade, bem como o síndico ou administrador eleito para exercer atividade de direção condominial, desde que recebam r (...)'),
-    (771, u'771 - Contribuinte individual - Membro de conselho tutelar, nos termos da Lei nº 8.069, de 13 de julho de 1990'),
-    (781, u'781 - Ministro de confissão religiosa ou membro de vida consagrada, de congregação ou de ordem religiosa'),
-    (901, u'901 - Estagiário'),
-    (902, u'902 - Médico Residente'),
-    (903, u'903 - Bolsista, nos termos da lei 8958/1994'),
-    (904, u'904 - Participante de curso de formação, como etapa de concurso público, sem vínculo de emprego/estatutário'),
-    (905, u'905 - Atleta não profissional em formação que receba bolsa'),
+CHOICES_S1202_INFOPERANT_TPACCONV = (
+    ('B', u'B - Legislação federal, estadual, municipal ou distrital'),
+    ('F', u'F - Outras verbas de natureza salarial ou não salarial devidas após o desligamento'),
+    ('G', u'G - Decisão administrativa'),
+    ('H', u'H - Decisão judicial'),
+)
+
+CHOICES_S1202_INFOPERANT_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
 CHOICES_S1202_INFOPERAPUR_TPDEP = (
@@ -96,13 +69,6 @@ CHOICES_S1202_INFOPERAPUR_TPDEP = (
     ('99', u'99 - Agregado/Outros'),
 )
 
-CHOICES_S1202_INFOPERANT_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
 CHOICES_S1202_INFOPERAPUR_TPINSC = (
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
@@ -111,8 +77,8 @@ CHOICES_S1202_INFOPERAPUR_TPINSC = (
 )
 
 CHOICES_S1202_TPTRIB = (
-    (2, u'2 - IRRF'),
     (2, u'2 - Contribuições sociais do trabalhador'),
+    (2, u'2 - IRRF'),
     (3, u'3 - FGTS'),
     (4, u'4 - Contribuição sindical'),
 )
@@ -120,8 +86,8 @@ CHOICES_S1202_TPTRIB = (
 class s1202dmDev(models.Model):
     s1202_evtrmnrpps = models.ForeignKey('esocial.s1202evtRmnRPPS',
         related_name='%(class)s_s1202_evtrmnrpps')
-    def evento(self): return self.s1202_evtrmnrpps.evento()
     idedmdev = models.CharField(max_length=30)
+    codcateg = models.TextField(max_length=3)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -130,19 +96,18 @@ class s1202dmDev(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1202_evtrmnrpps) + ' - ' + unicode(self.idedmdev)
+        return unicode(self.s1202_evtrmnrpps) + ' - ' + unicode(self.idedmdev) + ' - ' + unicode(self.codcateg)
     #s1202_dmdev_custom#
     #s1202_dmdev_custom#
     class Meta:
         db_table = r's1202_dmdev'
         managed = True
-        ordering = ['s1202_evtrmnrpps', 'idedmdev']
+        ordering = ['s1202_evtrmnrpps', 'idedmdev', 'codcateg']
 
 
 class s1202infoPerAnt(models.Model):
     s1202_dmdev = models.OneToOneField('s1202dmDev',
         related_name='%(class)s_s1202_dmdev')
-    def evento(self): return self.s1202_dmdev.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -163,10 +128,14 @@ class s1202infoPerAnt(models.Model):
 class s1202infoPerAntideADC(models.Model):
     s1202_infoperant = models.ForeignKey('s1202infoPerAnt',
         related_name='%(class)s_s1202_infoperant')
-    def evento(self): return self.s1202_infoperant.evento()
     dtlei = models.DateField()
     nrlei = models.CharField(max_length=12)
     dtef = models.DateField(blank=True, null=True)
+    dtacconv = models.DateField(blank=True, null=True)
+    tpacconv = models.CharField(choices=CHOICES_S1202_INFOPERANT_TPACCONV, max_length=1)
+    compacconv = models.CharField(max_length=7, blank=True, null=True)
+    dtefacconv = models.DateField(blank=True, null=True)
+    dsc = models.CharField(max_length=255)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -175,19 +144,18 @@ class s1202infoPerAntideADC(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1202_infoperant) + ' - ' + unicode(self.dtlei) + ' - ' + unicode(self.nrlei) + ' - ' + unicode(self.dtef)
+        return unicode(self.s1202_infoperant) + ' - ' + unicode(self.dtlei) + ' - ' + unicode(self.nrlei) + ' - ' + unicode(self.dtef) + ' - ' + unicode(self.dtacconv) + ' - ' + unicode(self.tpacconv) + ' - ' + unicode(self.compacconv) + ' - ' + unicode(self.dtefacconv) + ' - ' + unicode(self.dsc)
     #s1202_infoperant_ideadc_custom#
     #s1202_infoperant_ideadc_custom#
     class Meta:
         db_table = r's1202_infoperant_ideadc'
         managed = True
-        ordering = ['s1202_infoperant', 'dtlei', 'nrlei', 'dtef']
+        ordering = ['s1202_infoperant', 'dtlei', 'nrlei', 'dtef', 'dtacconv', 'tpacconv', 'compacconv', 'dtefacconv', 'dsc']
 
 
 class s1202infoPerAntideEstab(models.Model):
     s1202_infoperant_ideperiodo = models.ForeignKey('s1202infoPerAntidePeriodo',
         related_name='%(class)s_s1202_infoperant_ideperiodo')
-    def evento(self): return self.s1202_infoperant_ideperiodo.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S1202_INFOPERANT_TPINSC)
     nrinsc = models.CharField(max_length=15)
     criado_em = models.DateTimeField(blank=True)
@@ -210,7 +178,6 @@ class s1202infoPerAntideEstab(models.Model):
 class s1202infoPerAntidePeriodo(models.Model):
     s1202_infoperant_ideadc = models.ForeignKey('s1202infoPerAntideADC',
         related_name='%(class)s_s1202_infoperant_ideadc')
-    def evento(self): return self.s1202_infoperant_ideadc.evento()
     perref = models.CharField(max_length=7)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -232,7 +199,6 @@ class s1202infoPerAntidePeriodo(models.Model):
 class s1202infoPerAntitensRemun(models.Model):
     s1202_infoperant_remunperant = models.ForeignKey('s1202infoPerAntremunPerAnt',
         related_name='%(class)s_s1202_infoperant_remunperant')
-    def evento(self): return self.s1202_infoperant_remunperant.evento()
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
     qtdrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=6, blank=True, null=True)
@@ -259,9 +225,8 @@ class s1202infoPerAntitensRemun(models.Model):
 class s1202infoPerAntremunPerAnt(models.Model):
     s1202_infoperant_ideestab = models.ForeignKey('s1202infoPerAntideEstab',
         related_name='%(class)s_s1202_infoperant_ideestab')
-    def evento(self): return self.s1202_infoperant_ideestab.evento()
     matricula = models.CharField(max_length=30, blank=True, null=True)
-    codcateg = models.IntegerField(choices=CHOICES_S1202_INFOPERANT_CODCATEG)
+    codcateg = models.TextField(max_length=3)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -282,7 +247,6 @@ class s1202infoPerAntremunPerAnt(models.Model):
 class s1202infoPerApur(models.Model):
     s1202_dmdev = models.OneToOneField('s1202dmDev',
         related_name='%(class)s_s1202_dmdev')
-    def evento(self): return self.s1202_dmdev.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -303,7 +267,6 @@ class s1202infoPerApur(models.Model):
 class s1202infoPerApurdetOper(models.Model):
     s1202_infoperapur_infosaudecolet = models.ForeignKey('s1202infoPerApurinfoSaudeColet',
         related_name='%(class)s_s1202_infoperapur_infosaudecolet')
-    def evento(self): return self.s1202_infoperapur_infosaudecolet.evento()
     cnpjoper = models.CharField(max_length=14)
     regans = models.CharField(max_length=6)
     vrpgtit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -327,7 +290,6 @@ class s1202infoPerApurdetOper(models.Model):
 class s1202infoPerApurdetPlano(models.Model):
     s1202_infoperapur_detoper = models.ForeignKey('s1202infoPerApurdetOper',
         related_name='%(class)s_s1202_infoperapur_detoper')
-    def evento(self): return self.s1202_infoperapur_detoper.evento()
     tpdep = models.CharField(choices=CHOICES_S1202_INFOPERAPUR_TPDEP, max_length=2)
     cpfdep = models.CharField(max_length=11, blank=True, null=True)
     nmdep = models.CharField(max_length=70)
@@ -353,7 +315,6 @@ class s1202infoPerApurdetPlano(models.Model):
 class s1202infoPerApurideEstab(models.Model):
     s1202_infoperapur = models.ForeignKey('s1202infoPerApur',
         related_name='%(class)s_s1202_infoperapur')
-    def evento(self): return self.s1202_infoperapur.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S1202_INFOPERAPUR_TPINSC)
     nrinsc = models.CharField(max_length=15)
     criado_em = models.DateTimeField(blank=True)
@@ -376,7 +337,6 @@ class s1202infoPerApurideEstab(models.Model):
 class s1202infoPerApurinfoSaudeColet(models.Model):
     s1202_infoperapur_remunperapur = models.OneToOneField('s1202infoPerApurremunPerApur',
         related_name='%(class)s_s1202_infoperapur_remunperapur')
-    def evento(self): return self.s1202_infoperapur_remunperapur.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -397,7 +357,6 @@ class s1202infoPerApurinfoSaudeColet(models.Model):
 class s1202infoPerApuritensRemun(models.Model):
     s1202_infoperapur_remunperapur = models.ForeignKey('s1202infoPerApurremunPerApur',
         related_name='%(class)s_s1202_infoperapur_remunperapur')
-    def evento(self): return self.s1202_infoperapur_remunperapur.evento()
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
     qtdrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=6, blank=True, null=True)
@@ -424,9 +383,8 @@ class s1202infoPerApuritensRemun(models.Model):
 class s1202infoPerApurremunPerApur(models.Model):
     s1202_infoperapur_ideestab = models.ForeignKey('s1202infoPerApurideEstab',
         related_name='%(class)s_s1202_infoperapur_ideestab')
-    def evento(self): return self.s1202_infoperapur_ideestab.evento()
     matricula = models.CharField(max_length=30, blank=True, null=True)
-    codcateg = models.IntegerField()
+    codcateg = models.TextField(max_length=3)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -447,7 +405,6 @@ class s1202infoPerApurremunPerApur(models.Model):
 class s1202procJudTrab(models.Model):
     s1202_evtrmnrpps = models.ForeignKey('esocial.s1202evtRmnRPPS',
         related_name='%(class)s_s1202_evtrmnrpps')
-    def evento(self): return self.s1202_evtrmnrpps.evento()
     tptrib = models.IntegerField(choices=CHOICES_S1202_TPTRIB)
     nrprocjud = models.CharField(max_length=20)
     codsusp = models.IntegerField(blank=True, null=True)

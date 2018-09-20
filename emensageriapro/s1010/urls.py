@@ -112,6 +112,20 @@ url(r'^s1010-inclusao-ideprocessosind/salvar/(?P<hash>.*)/$',
 
 
 
+url(r'^s1010-inclusao-ideprocessocprp/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1010.views.s1010_inclusao_ideprocessocprp.apagar', 
+        name='s1010_inclusao_ideprocessocprp_apagar'),
+
+url(r'^s1010-inclusao-ideprocessocprp/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1010.views.s1010_inclusao_ideprocessocprp.listar', 
+        name='s1010_inclusao_ideprocessocprp'),
+
+url(r'^s1010-inclusao-ideprocessocprp/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1010.views.s1010_inclusao_ideprocessocprp.salvar', 
+        name='s1010_inclusao_ideprocessocprp_salvar'),
+
+
+
 url(r'^s1010-alteracao/apagar/(?P<hash>.*)/$', 
         'emensageriapro.s1010.views.s1010_alteracao.apagar', 
         name='s1010_alteracao_apagar'),
@@ -166,6 +180,10 @@ url(r'^s1010-alteracao-ideprocessofgts/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1010.views.s1010_alteracao_ideprocessofgts.salvar', 
         name='s1010_alteracao_ideprocessofgts_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1010-alteracao-ideprocessosind/apagar/(?P<hash>.*)/$', 
@@ -180,10 +198,20 @@ url(r'^s1010-alteracao-ideprocessosind/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1010.views.s1010_alteracao_ideprocessosind.salvar', 
         name='s1010_alteracao_ideprocessosind_salvar'),
 
-)
 
 
-urlpatterns += patterns('',
+url(r'^s1010-alteracao-ideprocessocprp/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1010.views.s1010_alteracao_ideprocessocprp.apagar', 
+        name='s1010_alteracao_ideprocessocprp_apagar'),
+
+url(r'^s1010-alteracao-ideprocessocprp/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1010.views.s1010_alteracao_ideprocessocprp.listar', 
+        name='s1010_alteracao_ideprocessocprp'),
+
+url(r'^s1010-alteracao-ideprocessocprp/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1010.views.s1010_alteracao_ideprocessocprp.salvar', 
+        name='s1010_alteracao_ideprocessocprp_salvar'),
+
 
 
 url(r'^s1010-alteracao-novavalidade/apagar/(?P<hash>.*)/$', 

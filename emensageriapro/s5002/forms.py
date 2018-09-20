@@ -2,6 +2,8 @@
 from django import forms
 from emensageriapro.s5002.models import * 
 from emensageriapro.controle_de_acesso.models import Usuarios 
+from emensageriapro.tabelas.models import eSocialTrabalhadoresCategorias 
+from emensageriapro.tabelas.models import eSocialPaises 
 from emensageriapro.esocial.models import s5002evtIrrfBenef 
 
 

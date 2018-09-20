@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -51,10 +52,11 @@ import base64
 #IMPORTACOES
 
 
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2206_infoestatutario_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
@@ -220,10 +222,11 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
 def apagar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2206_infoestatutario_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
@@ -291,11 +294,13 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
+
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']
@@ -321,12 +326,18 @@ def listar(request, hash):
             'show_modificado_em': 0,
             'show_criado_por': 0,
             'show_criado_em': 0,
+            'show_indparcremun': 0,
+            'show_indabonoperm': 0,
+            'show_indtetorgps': 0,
             'show_tpplanrp': 1,
             'show_s2206_evtaltcontratual': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
+                'indparcremun__icontains': 'indparcremun__icontains',
+                'indabonoperm__icontains': 'indabonoperm__icontains',
+                'indtetorgps__icontains': 'indtetorgps__icontains',
                 'tpplanrp': 'tpplanrp',
                 's2206_evtaltcontratual': 's2206_evtaltcontratual',}
             for a in dict_fields:
@@ -335,6 +346,9 @@ def listar(request, hash):
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
+                'indparcremun__icontains': 'indparcremun__icontains',
+                'indabonoperm__icontains': 'indabonoperm__icontains',
+                'indtetorgps__icontains': 'indtetorgps__icontains',
                 'tpplanrp': 'tpplanrp',
                 's2206_evtaltcontratual': 's2206_evtaltcontratual',}
                 for a in dict_fields:

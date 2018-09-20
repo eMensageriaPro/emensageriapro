@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -124,11 +125,12 @@ def gerar_identidade(request, chave, evento_id):
     return HttpResponse(mensagem)
 
 
+@login_required
 def salvar(request, hash):
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_MODELO, TP_AMB
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2206_evtaltcontratual_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
@@ -371,63 +373,6 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.session['usuario_id']
-        dict_hash = get_hash_url( hash )
-        s2206_evtaltcontratual_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2206_evtaltcontratual')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-    s2206_evtaltcontratual = get_object_or_404(s2206evtAltContratual.objects.using( db_slug ), excluido = False, id = s2206_evtaltcontratual_id)
-
-    if s2206_evtaltcontratual_id:
-        if s2206_evtaltcontratual.status != 0:
-            dict_permissoes['s2206_evtaltcontratual_apagar'] = 0
-            dict_permissoes['s2206_evtaltcontratual_editar'] = 0
-
-    if request.method == 'POST':
-        if s2206_evtaltcontratual.status == 0:
-            import json
-            from django.forms.models import model_to_dict
-            situacao_anterior = json.dumps(model_to_dict(s2206_evtaltcontratual), indent=4, sort_keys=True, default=str)
-            s2206evtAltContratual.objects.using( db_slug ).filter(id = s2206_evtaltcontratual_id).delete()
-            #s2206_evtaltcontratual_apagar_custom
-            #s2206_evtaltcontratual_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
-            gravar_auditoria(situacao_anterior,
-                             '',
-                             's2206_evtaltcontratual', s2206_evtaltcontratual_id, usuario_id, 3)
-        else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
-        if request.session['retorno_pagina']== 's2206_evtaltcontratual_salvar':
-            return redirect('s2206_evtaltcontratual', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 's2206_evtaltcontratual_apagar.html', context)
-
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse
@@ -441,11 +386,12 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']
@@ -539,7 +485,7 @@ def listar(request, hash):
                 'remuneracao': 'remuneracao',
                 'dtingrcarr__range': 'dtingrcarr__range',
                 'codcarreira__icontains': 'codcarreira__icontains',
-                'codcateg': 'codcateg',
+                'codcateg__icontains': 'codcateg__icontains',
                 'codfuncao__icontains': 'codfuncao__icontains',
                 'codcargo__icontains': 'codcargo__icontains',
                 'infocontrato': 'infocontrato',
@@ -584,7 +530,7 @@ def listar(request, hash):
                 'remuneracao': 'remuneracao',
                 'dtingrcarr__range': 'dtingrcarr__range',
                 'codcarreira__icontains': 'codcarreira__icontains',
-                'codcateg': 'codcateg',
+                'codcateg__icontains': 'codcateg__icontains',
                 'codfuncao__icontains': 'codfuncao__icontains',
                 'codcargo__icontains': 'codcargo__icontains',
                 'infocontrato': 'infocontrato',
@@ -697,4 +643,62 @@ def listar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
+
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        s2206_evtaltcontratual_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2206_evtaltcontratual')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    s2206_evtaltcontratual = get_object_or_404(s2206evtAltContratual.objects.using( db_slug ), excluido = False, id = s2206_evtaltcontratual_id)
+
+    if s2206_evtaltcontratual_id:
+        if s2206_evtaltcontratual.status != 0:
+            dict_permissoes['s2206_evtaltcontratual_apagar'] = 0
+            dict_permissoes['s2206_evtaltcontratual_editar'] = 0
+
+    if request.method == 'POST':
+        if s2206_evtaltcontratual.status == 0:
+            import json
+            from django.forms.models import model_to_dict
+            situacao_anterior = json.dumps(model_to_dict(s2206_evtaltcontratual), indent=4, sort_keys=True, default=str)
+            s2206evtAltContratual.objects.using( db_slug ).filter(id = s2206_evtaltcontratual_id).delete()
+            #s2206_evtaltcontratual_apagar_custom
+            #s2206_evtaltcontratual_apagar_custom
+            messages.success(request, 'Apagado com sucesso!')
+            gravar_auditoria(situacao_anterior,
+                             '',
+                             's2206_evtaltcontratual', s2206_evtaltcontratual_id, usuario_id, 3)
+        else:
+            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+   
+        if request.session['retorno_pagina']== 's2206_evtaltcontratual_salvar':
+            return redirect('s2206_evtaltcontratual', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 's2206_evtaltcontratual_apagar.html', context)
 

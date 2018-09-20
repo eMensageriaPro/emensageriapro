@@ -91,7 +91,6 @@ CHOICES_S1050_INCLUSAO_TPINTERV = (
 class s1050alteracao(models.Model):
     s1050_evttabhortur = models.OneToOneField('esocial.s1050evtTabHorTur',
         related_name='%(class)s_s1050_evttabhortur')
-    def evento(self): return self.s1050_evttabhortur.evento()
     codhorcontrat = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
@@ -119,7 +118,6 @@ class s1050alteracao(models.Model):
 class s1050alteracaohorarioIntervalo(models.Model):
     s1050_alteracao = models.ForeignKey('s1050alteracao',
         related_name='%(class)s_s1050_alteracao')
-    def evento(self): return self.s1050_alteracao.evento()
     tpinterv = models.IntegerField(choices=CHOICES_S1050_ALTERACAO_TPINTERV)
     durinterv = models.IntegerField()
     iniinterv = models.CharField(max_length=4, blank=True, null=True)
@@ -144,7 +142,6 @@ class s1050alteracaohorarioIntervalo(models.Model):
 class s1050alteracaonovaValidade(models.Model):
     s1050_alteracao = models.OneToOneField('s1050alteracao',
         related_name='%(class)s_s1050_alteracao')
-    def evento(self): return self.s1050_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -167,7 +164,6 @@ class s1050alteracaonovaValidade(models.Model):
 class s1050exclusao(models.Model):
     s1050_evttabhortur = models.OneToOneField('esocial.s1050evtTabHorTur',
         related_name='%(class)s_s1050_evttabhortur')
-    def evento(self): return self.s1050_evttabhortur.evento()
     codhorcontrat = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
@@ -191,7 +187,6 @@ class s1050exclusao(models.Model):
 class s1050inclusao(models.Model):
     s1050_evttabhortur = models.OneToOneField('esocial.s1050evtTabHorTur',
         related_name='%(class)s_s1050_evttabhortur')
-    def evento(self): return self.s1050_evttabhortur.evento()
     codhorcontrat = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
@@ -219,7 +214,6 @@ class s1050inclusao(models.Model):
 class s1050inclusaohorarioIntervalo(models.Model):
     s1050_inclusao = models.ForeignKey('s1050inclusao',
         related_name='%(class)s_s1050_inclusao')
-    def evento(self): return self.s1050_inclusao.evento()
     tpinterv = models.IntegerField(choices=CHOICES_S1050_INCLUSAO_TPINTERV)
     durinterv = models.IntegerField()
     iniinterv = models.CharField(max_length=4, blank=True, null=True)

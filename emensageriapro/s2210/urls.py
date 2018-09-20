@@ -42,6 +42,20 @@ urlpatterns = patterns('',
 
 
 
+url(r'^s2210-idelocalacid/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2210.views.s2210_idelocalacid.apagar', 
+        name='s2210_idelocalacid_apagar'),
+
+url(r'^s2210-idelocalacid/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2210.views.s2210_idelocalacid.listar', 
+        name='s2210_idelocalacid'),
+
+url(r'^s2210-idelocalacid/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2210.views.s2210_idelocalacid.salvar', 
+        name='s2210_idelocalacid_salvar'),
+
+
+
 url(r'^s2210-parteatingida/apagar/(?P<hash>.*)/$', 
         'emensageriapro.s2210.views.s2210_parteatingida.apagar', 
         name='s2210_parteatingida_apagar'),

@@ -41,4 +41,35 @@ get_model = apps.get_model
 
 
 
+CHOICES_S2245_TPPROF = (
+    (1, u'1 - Profissional empregado do declarante'),
+    (2, u'2 - Profissional sem vínculo de emprego/estatutário com o declarante'),
+)
+
+class s2245ideProfResp(models.Model):
+    s2245_evttreicap = models.ForeignKey('esocial.s2245evtTreiCap',
+        related_name='%(class)s_s2245_evttreicap')
+    cpfprof = models.CharField(max_length=11)
+    nmprof = models.CharField(max_length=70)
+    tpprof = models.IntegerField(choices=CHOICES_S2245_TPPROF)
+    matricula = models.CharField(max_length=30, blank=True, null=True)
+    formprof = models.CharField(max_length=255)
+    codcbo = models.CharField(max_length=6)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.s2245_evttreicap) + ' - ' + unicode(self.cpfprof) + ' - ' + unicode(self.nmprof) + ' - ' + unicode(self.tpprof) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.formprof) + ' - ' + unicode(self.codcbo)
+    #s2245_ideprofresp_custom#
+    #s2245_ideprofresp_custom#
+    class Meta:
+        db_table = r's2245_ideprofresp'
+        managed = True
+        ordering = ['s2245_evttreicap', 'cpfprof', 'nmprof', 'tpprof', 'matricula', 'formprof', 'codcbo']
+
+
 #VIEWS_MODELS

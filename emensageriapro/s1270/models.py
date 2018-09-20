@@ -55,7 +55,6 @@ CHOICES_S1270_TPINSC = (
 class s1270remunAvNP(models.Model):
     s1270_evtcontratavnp = models.ForeignKey('esocial.s1270evtContratAvNP',
         related_name='%(class)s_s1270_evtcontratavnp')
-    def evento(self): return self.s1270_evtcontratavnp.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S1270_TPINSC)
     nrinsc = models.CharField(max_length=15)
     codlotacao = models.CharField(max_length=30)

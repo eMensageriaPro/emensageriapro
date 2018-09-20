@@ -41,6 +41,36 @@ get_model = apps.get_model
 
 
 
+ESTADOS = (
+    ('AC', u'Acre'),
+    ('AL', u'Alagoas'),
+    ('AM', u'Amazonas'),
+    ('AP', u'Amapá'),
+    ('BA', u'Bahia'),
+    ('CE', u'Ceará'),
+    ('DF', u'Distrito Federal'),
+    ('ES', u'Espírito Santo'),
+    ('GO', u'Goiás'),
+    ('MA', u'Maranhão'),
+    ('MG', u'Minas Gerais'),
+    ('MS', u'Mato Grosso do Sul'),
+    ('MT', u'Mato Grosso'),
+    ('PA', u'Pará'),
+    ('PB', u'Paraíba'),
+    ('PE', u'Pernambuco'),
+    ('PI', u'Piauí'),
+    ('PR', u'Paraná'),
+    ('RJ', u'Rio de Janeiro'),
+    ('RN', u'Rio Grande do Norte'),
+    ('RO', u'Rondônia'),
+    ('RR', u'Roraima'),
+    ('RS', u'Rio Grande do Sul'),
+    ('SC', u'Santa Catarina'),
+    ('SE', u'Sergipe'),
+    ('SP', u'São Paulo'),
+    ('TO', u'Tocantins'),
+)
+
 CHOICES_S2230_CODMOTAFAST = (
     ('01', u'01 - Acidente/Doença do trabalho'),
     ('03', u'03 - Acidente/Doença não relacionada ao trabalho'),
@@ -74,40 +104,15 @@ CHOICES_S2230_CODMOTAFAST = (
     ('34', u'34 - Inatividade do trabalhador avulso (portuário ou não portuário) por período superior a 90 dias'),
 )
 
-ESTADOS = (
-    ('AC', u'Acre'),
-    ('AL', u'Alagoas'),
-    ('AM', u'Amazonas'),
-    ('AP', u'Amapá'),
-    ('BA', u'Bahia'),
-    ('CE', u'Ceará'),
-    ('DF', u'Distrito Federal'),
-    ('ES', u'Espírito Santo'),
-    ('GO', u'Goiás'),
-    ('MA', u'Maranhão'),
-    ('MG', u'Minas Gerais'),
-    ('MS', u'Mato Grosso do Sul'),
-    ('MT', u'Mato Grosso'),
-    ('PA', u'Pará'),
-    ('PB', u'Paraíba'),
-    ('PE', u'Pernambuco'),
-    ('PI', u'Piauí'),
-    ('PR', u'Paraná'),
-    ('RJ', u'Rio de Janeiro'),
-    ('RN', u'Rio Grande do Norte'),
-    ('RO', u'Rondônia'),
-    ('RR', u'Roraima'),
-    ('RS', u'Rio Grande do Sul'),
-    ('SC', u'Santa Catarina'),
-    ('SE', u'Sergipe'),
-    ('SP', u'São Paulo'),
-    ('TO', u'Tocantins'),
-)
-
 CHOICES_S2230_IDEOC = (
     (1, u'1 - Conselho Regional de Medicina (CRM)'),
     (2, u'2 - Conselho Regional de Odontologia (CRO)'),
     (3, u'3 - Registro do Ministério da Saúde (RMS)'),
+)
+
+CHOICES_S2230_INFOMESMOMTV = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
 )
 
 CHOICES_S2230_INFONUS = (
@@ -140,15 +145,9 @@ CHOICES_S2230_TPPROC = (
     (3, u'3 - Número de Benefício (NB) do INSS'),
 )
 
-CHOICES_S2230_INFOMESMOMTV = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
 class s2230emitente(models.Model):
     s2230_infoatestado = models.OneToOneField('s2230infoAtestado',
         related_name='%(class)s_s2230_infoatestado')
-    def evento(self): return self.s2230_infoatestado.evento()
     nmemit = models.CharField(max_length=70)
     ideoc = models.IntegerField(choices=CHOICES_S2230_IDEOC)
     nroc = models.CharField(max_length=14)
@@ -173,7 +172,6 @@ class s2230emitente(models.Model):
 class s2230fimAfastamento(models.Model):
     s2230_evtafasttemp = models.OneToOneField('esocial.s2230evtAfastTemp',
         related_name='%(class)s_s2230_evtafasttemp')
-    def evento(self): return self.s2230_evtafasttemp.evento()
     dttermafast = models.DateField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -195,7 +193,6 @@ class s2230fimAfastamento(models.Model):
 class s2230infoAtestado(models.Model):
     s2230_iniafastamento = models.ForeignKey('s2230iniAfastamento',
         related_name='%(class)s_s2230_iniafastamento')
-    def evento(self): return self.s2230_iniafastamento.evento()
     codcid = models.CharField(max_length=4, blank=True, null=True)
     qtddiasafast = models.IntegerField()
     criado_em = models.DateTimeField(blank=True)
@@ -218,7 +215,6 @@ class s2230infoAtestado(models.Model):
 class s2230infoCessao(models.Model):
     s2230_iniafastamento = models.OneToOneField('s2230iniAfastamento',
         related_name='%(class)s_s2230_iniafastamento')
-    def evento(self): return self.s2230_iniafastamento.evento()
     cnpjcess = models.CharField(max_length=14)
     infonus = models.IntegerField(choices=CHOICES_S2230_INFONUS)
     criado_em = models.DateTimeField(blank=True)
@@ -241,7 +237,6 @@ class s2230infoCessao(models.Model):
 class s2230infoMandSind(models.Model):
     s2230_iniafastamento = models.OneToOneField('s2230iniAfastamento',
         related_name='%(class)s_s2230_iniafastamento')
-    def evento(self): return self.s2230_iniafastamento.evento()
     cnpjsind = models.CharField(max_length=14)
     infonusremun = models.IntegerField(choices=CHOICES_S2230_INFONUSREMUN)
     criado_em = models.DateTimeField(blank=True)
@@ -264,7 +259,6 @@ class s2230infoMandSind(models.Model):
 class s2230infoRetif(models.Model):
     s2230_evtafasttemp = models.OneToOneField('esocial.s2230evtAfastTemp',
         related_name='%(class)s_s2230_evtafasttemp')
-    def evento(self): return self.s2230_evtafasttemp.evento()
     origretif = models.IntegerField(choices=CHOICES_S2230_ORIGRETIF)
     tpproc = models.IntegerField(choices=CHOICES_S2230_TPPROC, blank=True, null=True)
     nrproc = models.CharField(max_length=21, blank=True, null=True)
@@ -288,7 +282,6 @@ class s2230infoRetif(models.Model):
 class s2230iniAfastamento(models.Model):
     s2230_evtafasttemp = models.OneToOneField('esocial.s2230evtAfastTemp',
         related_name='%(class)s_s2230_evtafasttemp')
-    def evento(self): return self.s2230_evtafasttemp.evento()
     dtiniafast = models.DateField()
     codmotafast = models.CharField(choices=CHOICES_S2230_CODMOTAFAST, max_length=2)
     infomesmomtv = models.CharField(choices=CHOICES_S2230_INFOMESMOMTV, max_length=1, blank=True, null=True)

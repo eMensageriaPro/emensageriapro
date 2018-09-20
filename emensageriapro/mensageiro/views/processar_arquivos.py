@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -50,6 +51,8 @@ import base64
 from emensageriapro.padrao import executar_sql
 from emensageriapro.funcoes_esocial import gravar_nome_arquivo
 
+
+@login_required
 def atualizar_arquivo_tabela(tabela, tabela_id, arquivo, arquivo_id):
     executar_sql("""
         UPDATE public.%s
@@ -61,6 +64,7 @@ def atualizar_arquivo_tabela(tabela, tabela_id, arquivo, arquivo_id):
         WHERE id=%s""" % (tabela, tabela_id, arquivo_id), False)
 
 
+@login_required
 def atualizar_importador():
     executar_sql("""UPDATE public.importacao_arquivos e SET
                     quant_total = (
@@ -88,7 +92,7 @@ def atualizar_importador():
                     """, False)
 
 
-
+@login_required
 def validar_arquivo(arquivo, request, lang=None):
     from emensageriapro.funcoes_validacoes import validar_schema
     from django.contrib import messages
@@ -212,6 +216,7 @@ def scripts_processar_arquivos(request):
 
 
 
+@login_required
 def scripts_salvar_arquivos(request, hash):
     # tipos: 1-pdf; 2-xls, 3-csv
     for_print = 0
@@ -306,12 +311,13 @@ def render_to_pdf(template_src, context_dict={}):
     return None
 
 
+@login_required
 def imprimir(request, hash):
     # tipos: 1-pdf; 2-xls, 3-csv
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url(hash)
         # retorno_pagina = dict_hash['retorno_pagina']
         # retorno_hash = dict_hash['retorno_hash']

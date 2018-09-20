@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -51,10 +52,11 @@ import base64
 #IMPORTACOES
 
 
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2299_infoperant_ideestablot_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
@@ -137,24 +139,24 @@ def salvar(request, hash):
         if int(dict_hash['print']):
             s2299_infoperant_ideestablot_form = disabled_form_for_print(s2299_infoperant_ideestablot_form)
 
-        s2299_infoperant_infosimples_form = None
-        s2299_infoperant_infosimples_lista = None
         s2299_infoperant_detverbas_form = None
         s2299_infoperant_detverbas_lista = None
         s2299_infoperant_infoagnocivo_form = None
         s2299_infoperant_infoagnocivo_lista = None
+        s2299_infoperant_infosimples_form = None
+        s2299_infoperant_infosimples_lista = None
         if s2299_infoperant_ideestablot_id:
             s2299_infoperant_ideestablot = get_object_or_404(s2299infoPerAntideEstabLot.objects.using( db_slug ), excluido = False, id = s2299_infoperant_ideestablot_id)
   
-            s2299_infoperant_infosimples_form = form_s2299_infoperant_infosimples(initial={ 's2299_infoperant_ideestablot': s2299_infoperant_ideestablot }, slug=db_slug)
-            s2299_infoperant_infosimples_form.fields['s2299_infoperant_ideestablot'].widget.attrs['readonly'] = True
-            s2299_infoperant_infosimples_lista = s2299infoPerAntinfoSimples.objects.using( db_slug ).filter(excluido = False, s2299_infoperant_ideestablot_id=s2299_infoperant_ideestablot.id).all()
             s2299_infoperant_detverbas_form = form_s2299_infoperant_detverbas(initial={ 's2299_infoperant_ideestablot': s2299_infoperant_ideestablot }, slug=db_slug)
             s2299_infoperant_detverbas_form.fields['s2299_infoperant_ideestablot'].widget.attrs['readonly'] = True
             s2299_infoperant_detverbas_lista = s2299infoPerAntdetVerbas.objects.using( db_slug ).filter(excluido = False, s2299_infoperant_ideestablot_id=s2299_infoperant_ideestablot.id).all()
             s2299_infoperant_infoagnocivo_form = form_s2299_infoperant_infoagnocivo(initial={ 's2299_infoperant_ideestablot': s2299_infoperant_ideestablot }, slug=db_slug)
             s2299_infoperant_infoagnocivo_form.fields['s2299_infoperant_ideestablot'].widget.attrs['readonly'] = True
             s2299_infoperant_infoagnocivo_lista = s2299infoPerAntinfoAgNocivo.objects.using( db_slug ).filter(excluido = False, s2299_infoperant_ideestablot_id=s2299_infoperant_ideestablot.id).all()
+            s2299_infoperant_infosimples_form = form_s2299_infoperant_infosimples(initial={ 's2299_infoperant_ideestablot': s2299_infoperant_ideestablot }, slug=db_slug)
+            s2299_infoperant_infosimples_form.fields['s2299_infoperant_ideestablot'].widget.attrs['readonly'] = True
+            s2299_infoperant_infosimples_lista = s2299infoPerAntinfoSimples.objects.using( db_slug ).filter(excluido = False, s2299_infoperant_ideestablot_id=s2299_infoperant_ideestablot.id).all()
         else:
             s2299_infoperant_ideestablot = None
         #s2299_infoperant_ideestablot_salvar_custom_variaveis#
@@ -178,12 +180,12 @@ def salvar(request, hash):
        
             'hash': hash,
   
-            's2299_infoperant_infosimples_form': s2299_infoperant_infosimples_form,
-            's2299_infoperant_infosimples_lista': s2299_infoperant_infosimples_lista,
             's2299_infoperant_detverbas_form': s2299_infoperant_detverbas_form,
             's2299_infoperant_detverbas_lista': s2299_infoperant_detverbas_lista,
             's2299_infoperant_infoagnocivo_form': s2299_infoperant_infoagnocivo_form,
             's2299_infoperant_infoagnocivo_lista': s2299_infoperant_infoagnocivo_lista,
+            's2299_infoperant_infosimples_form': s2299_infoperant_infosimples_form,
+            's2299_infoperant_infosimples_lista': s2299_infoperant_infosimples_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
@@ -241,10 +243,11 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
 def apagar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2299_infoperant_ideestablot_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
@@ -312,11 +315,13 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
+
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']
@@ -373,6 +378,7 @@ def listar(request, hash):
             s2299_infoperant_ideestablot_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
+        s2299_infoperant_ideperiodo_lista = s2299infoPerAntidePeriodo.objects.using( db_slug ).filter(excluido = False).all()
         #s2299_infoperant_ideestablot_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2299_infoperant_ideestablot'
@@ -392,7 +398,8 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-   
+  
+            's2299_infoperant_ideperiodo_lista': s2299_infoperant_ideperiodo_lista,
         }
         if for_print in (0,1):
             return render(request, 's2299_infoperant_ideestablot_listar.html', context)

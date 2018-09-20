@@ -41,1859 +41,977 @@ get_model = apps.get_model
 
 
 
-CHOICES_S2200_PAISNAC = (
-    ('008', u'008 - Abu Dhabi'),
-    ('009', u'009 - Dirce'),
-    ('013', u'013 - Afeganistao'),
-    ('017', u'017 - Albania, Republica Da'),
-    ('020', u'020 - Alboran-Perejil,Ilhas'),
-    ('023', u'023 - Alemanha'),
-    ('025', u'025 - Alemanha, Republica Democratica'),
-    ('031', u'031 - Burkina Faso'),
-    ('037', u'037 - Andorra'),
-    ('040', u'040 - Angola'),
-    ('041', u'041 - Anguilla'),
-    ('043', u'043 - Antigua E Barbuda'),
-    ('047', u'047 - Antilhas Holandesas'),
-    ('053', u'053 - Arabia Saudita'),
-    ('059', u'059 - Argelia'),
-    ('063', u'063 - Argentina'),
-    ('064', u'064 - Armenia, Republica Da'),
-    ('065', u'065 - Aruba'),
-    ('069', u'069 - Australia'),
-    ('072', u'072 - Austria'),
-    ('073', u'073 - Azerbaijao, Republica Do'),
-    ('077', u'077 - Bahamas, Ilhas'),
-    ('080', u'080 - Bahrein, Ilhas'),
-    ('081', u'081 - Bangladesh'),
-    ('083', u'083 - Barbados'),
-    ('085', u'085 - Belarus, Republica Da'),
-    ('087', u'087 - Belgica'),
-    ('088', u'088 - Belize'),
-    ('090', u'090 - Bermudas'),
-    ('093', u'093 - Mianmar (BIRMANIA)'),
-    ('097', u'097 - Bolivia, Estado Plurinacional Da'),
-    ('098', u'098 - Bosnia-Herzegovina (REPUBLICA Da)'),
-    ('100', u'100 - Int.Z.F.Manaus'),
-    ('101', u'101 - Botsuana'),
-    ('105', u'105 - Brasil'),
-    ('106', u'106 - Fretado P/Brasil'),
-    ('108', u'108 - Brunei'),
-    ('111', u'111 - Bulgaria, Republica Da'),
-    ('115', u'115 - Burundi'),
-    ('119', u'119 - Butao'),
-    ('127', u'127 - Cabo Verde, Republica De'),
-    ('131', u'131 - Cachemira'),
-    ('137', u'137 - Cayman, Ilhas'),
-    ('141', u'141 - Camboja'),
-    ('145', u'145 - Camaroes'),
-    ('149', u'149 - Canada'),
-    ('150', u'150 - Jersey, Ilha Do Canal'),
-    ('151', u'151 - Canarias, Ilhas'),
-    ('152', u'152 - Canal,Ilhas'),
-    ('153', u'153 - Cazaquistao, Republica Do'),
-    ('154', u'154 - Catar'),
-    ('158', u'158 - Chile'),
-    ('160', u'160 - China, Republica Popular'),
-    ('161', u'161 - Formosa (TAIWAN)'),
-    ('163', u'163 - Chipre'),
-    ('165', u'165 - Cocos(Keeling),Ilhas'),
-    ('169', u'169 - Colombia'),
-    ('173', u'173 - Comores, Ilhas'),
-    ('177', u'177 - Congo'),
-    ('183', u'183 - Cook, Ilhas'),
-    ('187', u'187 - Coreia (DO Norte), Rep.Pop.Democratica'),
-    ('190', u'190 - Coreia (DO Sul), Republica Da'),
-    ('193', u'193 - Costa Do Marfim'),
-    ('195', u'195 - Croacia (REPUBLICA Da)'),
-    ('196', u'196 - Costa Rica'),
-    ('198', u'198 - Coveite'),
-    ('199', u'199 - Cuba'),
-    ('229', u'229 - Benin'),
-    ('232', u'232 - Dinamarca'),
-    ('235', u'235 - Dominica,Ilha'),
-    ('237', u'237 - Dubai'),
-    ('239', u'239 - Equador'),
-    ('240', u'240 - Egito'),
-    ('243', u'243 - Eritreia'),
-    ('244', u'244 - Emirados Arabes Unidos'),
-    ('245', u'245 - Espanha'),
-    ('246', u'246 - Eslovenia, Republica Da'),
-    ('247', u'247 - Eslovaca, Republica'),
-    ('249', u'249 - Estados Unidos'),
-    ('251', u'251 - Estonia, Republica Da'),
-    ('253', u'253 - Etiopia'),
-    ('255', u'255 - Falkland (ILHAS Malvinas)'),
-    ('259', u'259 - Feroe, Ilhas'),
-    ('263', u'263 - Fezzan'),
-    ('267', u'267 - Filipinas'),
-    ('271', u'271 - Finlandia'),
-    ('275', u'275 - Franca'),
-    ('281', u'281 - Gabao'),
-    ('285', u'285 - Gambia'),
-    ('289', u'289 - Gana'),
-    ('291', u'291 - Georgia, Republica Da'),
-    ('293', u'293 - Gibraltar'),
-    ('297', u'297 - Granada'),
-    ('301', u'301 - Grecia'),
-    ('305', u'305 - Groenlandia'),
-    ('309', u'309 - Guadalupe'),
-    ('313', u'313 - Guam'),
-    ('317', u'317 - Guatemala'),
-    ('325', u'325 - Guiana Francesa'),
-    ('329', u'329 - Guine'),
-    ('331', u'331 - Guine-Equatorial'),
-    ('334', u'334 - Guine-Bissau'),
-    ('337', u'337 - Guiana'),
-    ('341', u'341 - Haiti'),
-    ('345', u'345 - Honduras'),
-    ('351', u'351 - Hong Kong'),
-    ('355', u'355 - Hungria, Republica Da'),
-    ('357', u'357 - Iemen'),
-    ('358', u'358 - Iemem Do Sul'),
-    ('359', u'359 - Man, Ilha De'),
-    ('361', u'361 - India'),
-    ('365', u'365 - Indonesia'),
-    ('367', u'367 - Inglaterra'),
-    ('369', u'369 - Iraque'),
-    ('372', u'372 - Ira, Republica Islamica Do'),
-    ('375', u'375 - Irlanda'),
-    ('379', u'379 - Islandia'),
-    ('383', u'383 - Israel'),
-    ('386', u'386 - Italia'),
-    ('388', u'388 - Servia E Montenegro'),
-    ('391', u'391 - Jamaica'),
-    ('395', u'395 - Jammu'),
-    ('396', u'396 - Johnston, Ilhas'),
-    ('399', u'399 - Japao'),
-    ('403', u'403 - Jordania'),
-    ('411', u'411 - Kiribati'),
-    ('420', u'420 - Laos, Rep.Pop.Democr.Do'),
-    ('423', u'423 - Lebuan,Ilhas'),
-    ('426', u'426 - Lesoto'),
-    ('427', u'427 - Letonia, Republica Da'),
-    ('431', u'431 - Libano'),
-    ('434', u'434 - Liberia'),
-    ('438', u'438 - Libia'),
-    ('440', u'440 - Liechtenstein'),
-    ('442', u'442 - Lituania, Republica Da'),
-    ('445', u'445 - Luxemburgo'),
-    ('447', u'447 - Macau'),
-    ('449', u'449 - Macedonia, Ant.Rep.Iugoslava'),
-    ('450', u'450 - Madagascar'),
-    ('452', u'452 - Ilha Da Madeira'),
-    ('455', u'455 - Malasia'),
-    ('458', u'458 - Malavi'),
-    ('461', u'461 - Maldivas'),
-    ('464', u'464 - Mali'),
-    ('467', u'467 - Malta'),
-    ('472', u'472 - Marianas Do Norte'),
-    ('474', u'474 - Marrocos'),
-    ('476', u'476 - Marshall,Ilhas'),
-    ('477', u'477 - Martinica'),
-    ('485', u'485 - Mauricio'),
-    ('488', u'488 - Mauritania'),
-    ('490', u'490 - Midway, Ilhas'),
-    ('493', u'493 - Mexico'),
-    ('494', u'494 - Moldavia, Republica Da'),
-    ('495', u'495 - Monaco'),
-    ('497', u'497 - Mongolia'),
-    ('499', u'499 - Micronesia'),
-    ('501', u'501 - Montserrat,Ilhas'),
-    ('505', u'505 - Mocambique'),
-    ('507', u'507 - Namibia'),
-    ('508', u'508 - Nauru'),
-    ('511', u'511 - Christmas,Ilha (NAVIDAD)'),
-    ('517', u'517 - Nepal'),
-    ('521', u'521 - Nicaragua'),
-    ('525', u'525 - Niger'),
-    ('528', u'528 - Nigeria'),
-    ('531', u'531 - Niue,Ilha'),
-    ('535', u'535 - Norfolk,Ilha'),
-    ('538', u'538 - Noruega'),
-    ('542', u'542 - Nova Caledonia'),
-    ('545', u'545 - Papua Nova Guine'),
-    ('548', u'548 - Nova Zelandia'),
-    ('551', u'551 - Vanuatu'),
-    ('556', u'556 - Oma'),
-    ('563', u'563 - Pacifico,Ilhas Do (ADMINISTRACAO Dos Eua)'),
-    ('566', u'566 - Pacifico,Ilhas Do (POSSESSAO Dos Eua)'),
-    ('569', u'569 - Pacifico,Ilhas Do (TERRITORIO Em Fideicomisso Dos'),
-    ('573', u'573 - Paises Baixos (HOLANDA)'),
-    ('575', u'575 - Palau'),
-    ('576', u'576 - Paquistao'),
-    ('578', u'578 - Palestina'),
-    ('580', u'580 - Panama'),
-    ('583', u'583 - Papua Nova Guiné'),
-    ('586', u'586 - Paraguai'),
-    ('589', u'589 - Peru'),
-    ('593', u'593 - Pitcairn,Ilha'),
-    ('599', u'599 - Polinesia Francesa'),
-    ('603', u'603 - Polonia, Republica Da'),
-    ('607', u'607 - Portugal'),
-    ('611', u'611 - Porto Rico'),
-    ('623', u'623 - Quenia'),
-    ('625', u'625 - Quirguiz, Republica'),
-    ('628', u'628 - Reino Unido'),
-    ('640', u'640 - Republica Centro-Africana'),
-    ('647', u'647 - Republica Dominicana'),
-    ('660', u'660 - Reuniao, Ilha'),
-    ('665', u'665 - Zimbabue'),
-    ('670', u'670 - Romenia'),
-    ('675', u'675 - Ruanda'),
-    ('676', u'676 - Russia, Federacao Da'),
-    ('677', u'677 - Salomao, Ilhas'),
-    ('678', u'678 - Saint Kitts E Nevis'),
-    ('685', u'685 - Saara Ocidental'),
-    ('687', u'687 - El Salvador'),
-    ('690', u'690 - Samoa'),
-    ('691', u'691 - Samoa Americana'),
-    ('695', u'695 - Sao Cristovao E Neves,Ilhas'),
-    ('697', u'697 - San Marino'),
-    ('700', u'700 - Sao Pedro E Miquelon'),
-    ('705', u'705 - Sao Vicente E Granadinas'),
-    ('710', u'710 - Santa Helena'),
-    ('715', u'715 - Santa Lucia'),
-    ('720', u'720 - Sao Tome E Principe, Ilhas'),
-    ('728', u'728 - Senegal'),
-    ('731', u'731 - Seychelles'),
-    ('735', u'735 - Serra Leoa'),
-    ('738', u'738 - Sikkim'),
-    ('741', u'741 - Cingapura'),
-    ('744', u'744 - Siria, Republica Arabe Da'),
-    ('748', u'748 - Somalia'),
-    ('750', u'750 - Sri Lanka'),
-    ('754', u'754 - Suazilandia'),
-    ('756', u'756 - Africa Do Sul'),
-    ('759', u'759 - Sudao'),
-    ('764', u'764 - Suecia'),
-    ('767', u'767 - Suica'),
-    ('770', u'770 - Suriname'),
-    ('772', u'772 - Tadjiquistao, Republica Do'),
-    ('776', u'776 - Tailandia'),
-    ('780', u'780 - Tanzania, Rep.Unida Da'),
-    ('782', u'782 - Territorio Brit.Oc.Indico'),
-    ('783', u'783 - Djibuti'),
-    ('785', u'785 - Territorio da Alta Comissao do Pacifico Ocidental'),
-    ('788', u'788 - Chade'),
-    ('790', u'790 - Tchecoslovaquia'),
-    ('791', u'791 - Tcheca, Republica'),
-    ('795', u'795 - Timor Leste'),
-    ('800', u'800 - Togo'),
-    ('805', u'805 - Toquelau,Ilhas'),
-    ('810', u'810 - Tonga'),
-    ('815', u'815 - Trinidad E Tobago'),
-    ('820', u'820 - Tunisia'),
-    ('823', u'823 - Turcas E Caicos,Ilhas'),
-    ('824', u'824 - Turcomenistao, Republica Do'),
-    ('827', u'827 - Turquia'),
-    ('828', u'828 - Tuvalu'),
-    ('831', u'831 - Ucrania'),
-    ('833', u'833 - Uganda'),
-    ('840', u'840 - Uniao Das Republicas Socialistas Sovieticas'),
-    ('845', u'845 - Uruguai'),
-    ('847', u'847 - Uzbequistao, Republica Do'),
-    ('848', u'848 - Vaticano, Est.Da Cidade Do'),
-    ('850', u'850 - Venezuela'),
-    ('855', u'855 - Vietname Norte'),
-    ('858', u'858 - Vietna'),
-    ('863', u'863 - Virgens,Ilhas (BRITANICAS)'),
-    ('866', u'866 - Virgens,Ilhas (E.U.A.)'),
-    ('870', u'870 - Fiji'),
-    ('873', u'873 - Wake, Ilha'),
-    ('875', u'875 - Wallis E Futuna, Ilhas'),
-    ('888', u'888 - Congo, Republica Democratica Do'),
-    ('890', u'890 - Zambia'),
+SIM_NAO = (
+    (0, u'Não'),
+    (1, u'Sim'),
 )
 
-CHOICES_S2200_PAISNASCTO = (
-    ('008', u'008 - Abu Dhabi'),
-    ('009', u'009 - Dirce'),
-    ('013', u'013 - Afeganistao'),
-    ('017', u'017 - Albania, Republica Da'),
-    ('020', u'020 - Alboran-Perejil,Ilhas'),
-    ('023', u'023 - Alemanha'),
-    ('025', u'025 - Alemanha, Republica Democratica'),
-    ('031', u'031 - Burkina Faso'),
-    ('037', u'037 - Andorra'),
-    ('040', u'040 - Angola'),
-    ('041', u'041 - Anguilla'),
-    ('043', u'043 - Antigua E Barbuda'),
-    ('047', u'047 - Antilhas Holandesas'),
-    ('053', u'053 - Arabia Saudita'),
-    ('059', u'059 - Argelia'),
-    ('063', u'063 - Argentina'),
-    ('064', u'064 - Armenia, Republica Da'),
-    ('065', u'065 - Aruba'),
-    ('069', u'069 - Australia'),
-    ('072', u'072 - Austria'),
-    ('073', u'073 - Azerbaijao, Republica Do'),
-    ('077', u'077 - Bahamas, Ilhas'),
-    ('080', u'080 - Bahrein, Ilhas'),
-    ('081', u'081 - Bangladesh'),
-    ('083', u'083 - Barbados'),
-    ('085', u'085 - Belarus, Republica Da'),
-    ('087', u'087 - Belgica'),
-    ('088', u'088 - Belize'),
-    ('090', u'090 - Bermudas'),
-    ('093', u'093 - Mianmar (BIRMANIA)'),
-    ('097', u'097 - Bolivia, Estado Plurinacional Da'),
-    ('098', u'098 - Bosnia-Herzegovina (REPUBLICA Da)'),
-    ('100', u'100 - Int.Z.F.Manaus'),
-    ('101', u'101 - Botsuana'),
-    ('105', u'105 - Brasil'),
-    ('106', u'106 - Fretado P/Brasil'),
-    ('108', u'108 - Brunei'),
-    ('111', u'111 - Bulgaria, Republica Da'),
-    ('115', u'115 - Burundi'),
-    ('119', u'119 - Butao'),
-    ('127', u'127 - Cabo Verde, Republica De'),
-    ('131', u'131 - Cachemira'),
-    ('137', u'137 - Cayman, Ilhas'),
-    ('141', u'141 - Camboja'),
-    ('145', u'145 - Camaroes'),
-    ('149', u'149 - Canada'),
-    ('150', u'150 - Jersey, Ilha Do Canal'),
-    ('151', u'151 - Canarias, Ilhas'),
-    ('152', u'152 - Canal,Ilhas'),
-    ('153', u'153 - Cazaquistao, Republica Do'),
-    ('154', u'154 - Catar'),
-    ('158', u'158 - Chile'),
-    ('160', u'160 - China, Republica Popular'),
-    ('161', u'161 - Formosa (TAIWAN)'),
-    ('163', u'163 - Chipre'),
-    ('165', u'165 - Cocos(Keeling),Ilhas'),
-    ('169', u'169 - Colombia'),
-    ('173', u'173 - Comores, Ilhas'),
-    ('177', u'177 - Congo'),
-    ('183', u'183 - Cook, Ilhas'),
-    ('187', u'187 - Coreia (DO Norte), Rep.Pop.Democratica'),
-    ('190', u'190 - Coreia (DO Sul), Republica Da'),
-    ('193', u'193 - Costa Do Marfim'),
-    ('195', u'195 - Croacia (REPUBLICA Da)'),
-    ('196', u'196 - Costa Rica'),
-    ('198', u'198 - Coveite'),
-    ('199', u'199 - Cuba'),
-    ('229', u'229 - Benin'),
-    ('232', u'232 - Dinamarca'),
-    ('235', u'235 - Dominica,Ilha'),
-    ('237', u'237 - Dubai'),
-    ('239', u'239 - Equador'),
-    ('240', u'240 - Egito'),
-    ('243', u'243 - Eritreia'),
-    ('244', u'244 - Emirados Arabes Unidos'),
-    ('245', u'245 - Espanha'),
-    ('246', u'246 - Eslovenia, Republica Da'),
-    ('247', u'247 - Eslovaca, Republica'),
-    ('249', u'249 - Estados Unidos'),
-    ('251', u'251 - Estonia, Republica Da'),
-    ('253', u'253 - Etiopia'),
-    ('255', u'255 - Falkland (ILHAS Malvinas)'),
-    ('259', u'259 - Feroe, Ilhas'),
-    ('263', u'263 - Fezzan'),
-    ('267', u'267 - Filipinas'),
-    ('271', u'271 - Finlandia'),
-    ('275', u'275 - Franca'),
-    ('281', u'281 - Gabao'),
-    ('285', u'285 - Gambia'),
-    ('289', u'289 - Gana'),
-    ('291', u'291 - Georgia, Republica Da'),
-    ('293', u'293 - Gibraltar'),
-    ('297', u'297 - Granada'),
-    ('301', u'301 - Grecia'),
-    ('305', u'305 - Groenlandia'),
-    ('309', u'309 - Guadalupe'),
-    ('313', u'313 - Guam'),
-    ('317', u'317 - Guatemala'),
-    ('325', u'325 - Guiana Francesa'),
-    ('329', u'329 - Guine'),
-    ('331', u'331 - Guine-Equatorial'),
-    ('334', u'334 - Guine-Bissau'),
-    ('337', u'337 - Guiana'),
-    ('341', u'341 - Haiti'),
-    ('345', u'345 - Honduras'),
-    ('351', u'351 - Hong Kong'),
-    ('355', u'355 - Hungria, Republica Da'),
-    ('357', u'357 - Iemen'),
-    ('358', u'358 - Iemem Do Sul'),
-    ('359', u'359 - Man, Ilha De'),
-    ('361', u'361 - India'),
-    ('365', u'365 - Indonesia'),
-    ('367', u'367 - Inglaterra'),
-    ('369', u'369 - Iraque'),
-    ('372', u'372 - Ira, Republica Islamica Do'),
-    ('375', u'375 - Irlanda'),
-    ('379', u'379 - Islandia'),
-    ('383', u'383 - Israel'),
-    ('386', u'386 - Italia'),
-    ('388', u'388 - Servia E Montenegro'),
-    ('391', u'391 - Jamaica'),
-    ('395', u'395 - Jammu'),
-    ('396', u'396 - Johnston, Ilhas'),
-    ('399', u'399 - Japao'),
-    ('403', u'403 - Jordania'),
-    ('411', u'411 - Kiribati'),
-    ('420', u'420 - Laos, Rep.Pop.Democr.Do'),
-    ('423', u'423 - Lebuan,Ilhas'),
-    ('426', u'426 - Lesoto'),
-    ('427', u'427 - Letonia, Republica Da'),
-    ('431', u'431 - Libano'),
-    ('434', u'434 - Liberia'),
-    ('438', u'438 - Libia'),
-    ('440', u'440 - Liechtenstein'),
-    ('442', u'442 - Lituania, Republica Da'),
-    ('445', u'445 - Luxemburgo'),
-    ('447', u'447 - Macau'),
-    ('449', u'449 - Macedonia, Ant.Rep.Iugoslava'),
-    ('450', u'450 - Madagascar'),
-    ('452', u'452 - Ilha Da Madeira'),
-    ('455', u'455 - Malasia'),
-    ('458', u'458 - Malavi'),
-    ('461', u'461 - Maldivas'),
-    ('464', u'464 - Mali'),
-    ('467', u'467 - Malta'),
-    ('472', u'472 - Marianas Do Norte'),
-    ('474', u'474 - Marrocos'),
-    ('476', u'476 - Marshall,Ilhas'),
-    ('477', u'477 - Martinica'),
-    ('485', u'485 - Mauricio'),
-    ('488', u'488 - Mauritania'),
-    ('490', u'490 - Midway, Ilhas'),
-    ('493', u'493 - Mexico'),
-    ('494', u'494 - Moldavia, Republica Da'),
-    ('495', u'495 - Monaco'),
-    ('497', u'497 - Mongolia'),
-    ('499', u'499 - Micronesia'),
-    ('501', u'501 - Montserrat,Ilhas'),
-    ('505', u'505 - Mocambique'),
-    ('507', u'507 - Namibia'),
-    ('508', u'508 - Nauru'),
-    ('511', u'511 - Christmas,Ilha (NAVIDAD)'),
-    ('517', u'517 - Nepal'),
-    ('521', u'521 - Nicaragua'),
-    ('525', u'525 - Niger'),
-    ('528', u'528 - Nigeria'),
-    ('531', u'531 - Niue,Ilha'),
-    ('535', u'535 - Norfolk,Ilha'),
-    ('538', u'538 - Noruega'),
-    ('542', u'542 - Nova Caledonia'),
-    ('545', u'545 - Papua Nova Guine'),
-    ('548', u'548 - Nova Zelandia'),
-    ('551', u'551 - Vanuatu'),
-    ('556', u'556 - Oma'),
-    ('563', u'563 - Pacifico,Ilhas Do (ADMINISTRACAO Dos Eua)'),
-    ('566', u'566 - Pacifico,Ilhas Do (POSSESSAO Dos Eua)'),
-    ('569', u'569 - Pacifico,Ilhas Do (TERRITORIO Em Fideicomisso Dos'),
-    ('573', u'573 - Paises Baixos (HOLANDA)'),
-    ('575', u'575 - Palau'),
-    ('576', u'576 - Paquistao'),
-    ('578', u'578 - Palestina'),
-    ('580', u'580 - Panama'),
-    ('583', u'583 - Papua Nova Guiné'),
-    ('586', u'586 - Paraguai'),
-    ('589', u'589 - Peru'),
-    ('593', u'593 - Pitcairn,Ilha'),
-    ('599', u'599 - Polinesia Francesa'),
-    ('603', u'603 - Polonia, Republica Da'),
-    ('607', u'607 - Portugal'),
-    ('611', u'611 - Porto Rico'),
-    ('623', u'623 - Quenia'),
-    ('625', u'625 - Quirguiz, Republica'),
-    ('628', u'628 - Reino Unido'),
-    ('640', u'640 - Republica Centro-Africana'),
-    ('647', u'647 - Republica Dominicana'),
-    ('660', u'660 - Reuniao, Ilha'),
-    ('665', u'665 - Zimbabue'),
-    ('670', u'670 - Romenia'),
-    ('675', u'675 - Ruanda'),
-    ('676', u'676 - Russia, Federacao Da'),
-    ('677', u'677 - Salomao, Ilhas'),
-    ('678', u'678 - Saint Kitts E Nevis'),
-    ('685', u'685 - Saara Ocidental'),
-    ('687', u'687 - El Salvador'),
-    ('690', u'690 - Samoa'),
-    ('691', u'691 - Samoa Americana'),
-    ('695', u'695 - Sao Cristovao E Neves,Ilhas'),
-    ('697', u'697 - San Marino'),
-    ('700', u'700 - Sao Pedro E Miquelon'),
-    ('705', u'705 - Sao Vicente E Granadinas'),
-    ('710', u'710 - Santa Helena'),
-    ('715', u'715 - Santa Lucia'),
-    ('720', u'720 - Sao Tome E Principe, Ilhas'),
-    ('728', u'728 - Senegal'),
-    ('731', u'731 - Seychelles'),
-    ('735', u'735 - Serra Leoa'),
-    ('738', u'738 - Sikkim'),
-    ('741', u'741 - Cingapura'),
-    ('744', u'744 - Siria, Republica Arabe Da'),
-    ('748', u'748 - Somalia'),
-    ('750', u'750 - Sri Lanka'),
-    ('754', u'754 - Suazilandia'),
-    ('756', u'756 - Africa Do Sul'),
-    ('759', u'759 - Sudao'),
-    ('764', u'764 - Suecia'),
-    ('767', u'767 - Suica'),
-    ('770', u'770 - Suriname'),
-    ('772', u'772 - Tadjiquistao, Republica Do'),
-    ('776', u'776 - Tailandia'),
-    ('780', u'780 - Tanzania, Rep.Unida Da'),
-    ('782', u'782 - Territorio Brit.Oc.Indico'),
-    ('783', u'783 - Djibuti'),
-    ('785', u'785 - Territorio da Alta Comissao do Pacifico Ocidental'),
-    ('788', u'788 - Chade'),
-    ('790', u'790 - Tchecoslovaquia'),
-    ('791', u'791 - Tcheca, Republica'),
-    ('795', u'795 - Timor Leste'),
-    ('800', u'800 - Togo'),
-    ('805', u'805 - Toquelau,Ilhas'),
-    ('810', u'810 - Tonga'),
-    ('815', u'815 - Trinidad E Tobago'),
-    ('820', u'820 - Tunisia'),
-    ('823', u'823 - Turcas E Caicos,Ilhas'),
-    ('824', u'824 - Turcomenistao, Republica Do'),
-    ('827', u'827 - Turquia'),
-    ('828', u'828 - Tuvalu'),
-    ('831', u'831 - Ucrania'),
-    ('833', u'833 - Uganda'),
-    ('840', u'840 - Uniao Das Republicas Socialistas Sovieticas'),
-    ('845', u'845 - Uruguai'),
-    ('847', u'847 - Uzbequistao, Republica Do'),
-    ('848', u'848 - Vaticano, Est.Da Cidade Do'),
-    ('850', u'850 - Venezuela'),
-    ('855', u'855 - Vietname Norte'),
-    ('858', u'858 - Vietna'),
-    ('863', u'863 - Virgens,Ilhas (BRITANICAS)'),
-    ('866', u'866 - Virgens,Ilhas (E.U.A.)'),
-    ('870', u'870 - Fiji'),
-    ('873', u'873 - Wake, Ilha'),
-    ('875', u'875 - Wallis E Futuna, Ilhas'),
-    ('888', u'888 - Congo, Republica Democratica Do'),
-    ('890', u'890 - Zambia'),
+TRANSMISSOR_STATUS = (
+    (0, u'Cadastrado'),
+    (1, u'Importado'),
+    (10, u'Assinado'),
+    (11, u'Gerado'),
+    (12, u'Retorno'),
+    (13, u'Erro - Ocorrências'),
+    (14, u'Processado'),
+    (2, u'Duplicado'),
+    (3, u'Erro na validação'),
+    (4, u'Validado'),
+    (5, u'Erro no envio'),
+    (6, u'Aguardando envio'),
+    (7, u'Enviado'),
+    (8, u'Erro na consulta'),
+    (9, u'Consultado'),
 )
 
-CHOICES_S2210_PAIS = (
-    ('008', u'008 - Abu Dhabi'),
-    ('009', u'009 - Dirce'),
-    ('013', u'013 - Afeganistao'),
-    ('017', u'017 - Albania, Republica Da'),
-    ('020', u'020 - Alboran-Perejil,Ilhas'),
-    ('023', u'023 - Alemanha'),
-    ('025', u'025 - Alemanha, Republica Democratica'),
-    ('031', u'031 - Burkina Faso'),
-    ('037', u'037 - Andorra'),
-    ('040', u'040 - Angola'),
-    ('041', u'041 - Anguilla'),
-    ('043', u'043 - Antigua E Barbuda'),
-    ('047', u'047 - Antilhas Holandesas'),
-    ('053', u'053 - Arabia Saudita'),
-    ('059', u'059 - Argelia'),
-    ('063', u'063 - Argentina'),
-    ('064', u'064 - Armenia, Republica Da'),
-    ('065', u'065 - Aruba'),
-    ('069', u'069 - Australia'),
-    ('072', u'072 - Austria'),
-    ('073', u'073 - Azerbaijao, Republica Do'),
-    ('077', u'077 - Bahamas, Ilhas'),
-    ('080', u'080 - Bahrein, Ilhas'),
-    ('081', u'081 - Bangladesh'),
-    ('083', u'083 - Barbados'),
-    ('085', u'085 - Belarus, Republica Da'),
-    ('087', u'087 - Belgica'),
-    ('088', u'088 - Belize'),
-    ('090', u'090 - Bermudas'),
-    ('093', u'093 - Mianmar (BIRMANIA)'),
-    ('097', u'097 - Bolivia, Estado Plurinacional Da'),
-    ('098', u'098 - Bosnia-Herzegovina (REPUBLICA Da)'),
-    ('100', u'100 - Int.Z.F.Manaus'),
-    ('101', u'101 - Botsuana'),
-    ('105', u'105 - Brasil'),
-    ('106', u'106 - Fretado P/Brasil'),
-    ('108', u'108 - Brunei'),
-    ('111', u'111 - Bulgaria, Republica Da'),
-    ('115', u'115 - Burundi'),
-    ('119', u'119 - Butao'),
-    ('127', u'127 - Cabo Verde, Republica De'),
-    ('131', u'131 - Cachemira'),
-    ('137', u'137 - Cayman, Ilhas'),
-    ('141', u'141 - Camboja'),
-    ('145', u'145 - Camaroes'),
-    ('149', u'149 - Canada'),
-    ('150', u'150 - Jersey, Ilha Do Canal'),
-    ('151', u'151 - Canarias, Ilhas'),
-    ('152', u'152 - Canal,Ilhas'),
-    ('153', u'153 - Cazaquistao, Republica Do'),
-    ('154', u'154 - Catar'),
-    ('158', u'158 - Chile'),
-    ('160', u'160 - China, Republica Popular'),
-    ('161', u'161 - Formosa (TAIWAN)'),
-    ('163', u'163 - Chipre'),
-    ('165', u'165 - Cocos(Keeling),Ilhas'),
-    ('169', u'169 - Colombia'),
-    ('173', u'173 - Comores, Ilhas'),
-    ('177', u'177 - Congo'),
-    ('183', u'183 - Cook, Ilhas'),
-    ('187', u'187 - Coreia (DO Norte), Rep.Pop.Democratica'),
-    ('190', u'190 - Coreia (DO Sul), Republica Da'),
-    ('193', u'193 - Costa Do Marfim'),
-    ('195', u'195 - Croacia (REPUBLICA Da)'),
-    ('196', u'196 - Costa Rica'),
-    ('198', u'198 - Coveite'),
-    ('199', u'199 - Cuba'),
-    ('229', u'229 - Benin'),
-    ('232', u'232 - Dinamarca'),
-    ('235', u'235 - Dominica,Ilha'),
-    ('237', u'237 - Dubai'),
-    ('239', u'239 - Equador'),
-    ('240', u'240 - Egito'),
-    ('243', u'243 - Eritreia'),
-    ('244', u'244 - Emirados Arabes Unidos'),
-    ('245', u'245 - Espanha'),
-    ('246', u'246 - Eslovenia, Republica Da'),
-    ('247', u'247 - Eslovaca, Republica'),
-    ('249', u'249 - Estados Unidos'),
-    ('251', u'251 - Estonia, Republica Da'),
-    ('253', u'253 - Etiopia'),
-    ('255', u'255 - Falkland (ILHAS Malvinas)'),
-    ('259', u'259 - Feroe, Ilhas'),
-    ('263', u'263 - Fezzan'),
-    ('267', u'267 - Filipinas'),
-    ('271', u'271 - Finlandia'),
-    ('275', u'275 - Franca'),
-    ('281', u'281 - Gabao'),
-    ('285', u'285 - Gambia'),
-    ('289', u'289 - Gana'),
-    ('291', u'291 - Georgia, Republica Da'),
-    ('293', u'293 - Gibraltar'),
-    ('297', u'297 - Granada'),
-    ('301', u'301 - Grecia'),
-    ('305', u'305 - Groenlandia'),
-    ('309', u'309 - Guadalupe'),
-    ('313', u'313 - Guam'),
-    ('317', u'317 - Guatemala'),
-    ('325', u'325 - Guiana Francesa'),
-    ('329', u'329 - Guine'),
-    ('331', u'331 - Guine-Equatorial'),
-    ('334', u'334 - Guine-Bissau'),
-    ('337', u'337 - Guiana'),
-    ('341', u'341 - Haiti'),
-    ('345', u'345 - Honduras'),
-    ('351', u'351 - Hong Kong'),
-    ('355', u'355 - Hungria, Republica Da'),
-    ('357', u'357 - Iemen'),
-    ('358', u'358 - Iemem Do Sul'),
-    ('359', u'359 - Man, Ilha De'),
-    ('361', u'361 - India'),
-    ('365', u'365 - Indonesia'),
-    ('367', u'367 - Inglaterra'),
-    ('369', u'369 - Iraque'),
-    ('372', u'372 - Ira, Republica Islamica Do'),
-    ('375', u'375 - Irlanda'),
-    ('379', u'379 - Islandia'),
-    ('383', u'383 - Israel'),
-    ('386', u'386 - Italia'),
-    ('388', u'388 - Servia E Montenegro'),
-    ('391', u'391 - Jamaica'),
-    ('395', u'395 - Jammu'),
-    ('396', u'396 - Johnston, Ilhas'),
-    ('399', u'399 - Japao'),
-    ('403', u'403 - Jordania'),
-    ('411', u'411 - Kiribati'),
-    ('420', u'420 - Laos, Rep.Pop.Democr.Do'),
-    ('423', u'423 - Lebuan,Ilhas'),
-    ('426', u'426 - Lesoto'),
-    ('427', u'427 - Letonia, Republica Da'),
-    ('431', u'431 - Libano'),
-    ('434', u'434 - Liberia'),
-    ('438', u'438 - Libia'),
-    ('440', u'440 - Liechtenstein'),
-    ('442', u'442 - Lituania, Republica Da'),
-    ('445', u'445 - Luxemburgo'),
-    ('447', u'447 - Macau'),
-    ('449', u'449 - Macedonia, Ant.Rep.Iugoslava'),
-    ('450', u'450 - Madagascar'),
-    ('452', u'452 - Ilha Da Madeira'),
-    ('455', u'455 - Malasia'),
-    ('458', u'458 - Malavi'),
-    ('461', u'461 - Maldivas'),
-    ('464', u'464 - Mali'),
-    ('467', u'467 - Malta'),
-    ('472', u'472 - Marianas Do Norte'),
-    ('474', u'474 - Marrocos'),
-    ('476', u'476 - Marshall,Ilhas'),
-    ('477', u'477 - Martinica'),
-    ('485', u'485 - Mauricio'),
-    ('488', u'488 - Mauritania'),
-    ('490', u'490 - Midway, Ilhas'),
-    ('493', u'493 - Mexico'),
-    ('494', u'494 - Moldavia, Republica Da'),
-    ('495', u'495 - Monaco'),
-    ('497', u'497 - Mongolia'),
-    ('499', u'499 - Micronesia'),
-    ('501', u'501 - Montserrat,Ilhas'),
-    ('505', u'505 - Mocambique'),
-    ('507', u'507 - Namibia'),
-    ('508', u'508 - Nauru'),
-    ('511', u'511 - Christmas,Ilha (NAVIDAD)'),
-    ('517', u'517 - Nepal'),
-    ('521', u'521 - Nicaragua'),
-    ('525', u'525 - Niger'),
-    ('528', u'528 - Nigeria'),
-    ('531', u'531 - Niue,Ilha'),
-    ('535', u'535 - Norfolk,Ilha'),
-    ('538', u'538 - Noruega'),
-    ('542', u'542 - Nova Caledonia'),
-    ('545', u'545 - Papua Nova Guine'),
-    ('548', u'548 - Nova Zelandia'),
-    ('551', u'551 - Vanuatu'),
-    ('556', u'556 - Oma'),
-    ('563', u'563 - Pacifico,Ilhas Do (ADMINISTRACAO Dos Eua)'),
-    ('566', u'566 - Pacifico,Ilhas Do (POSSESSAO Dos Eua)'),
-    ('569', u'569 - Pacifico,Ilhas Do (TERRITORIO Em Fideicomisso Dos'),
-    ('573', u'573 - Paises Baixos (HOLANDA)'),
-    ('575', u'575 - Palau'),
-    ('576', u'576 - Paquistao'),
-    ('578', u'578 - Palestina'),
-    ('580', u'580 - Panama'),
-    ('583', u'583 - Papua Nova Guiné'),
-    ('586', u'586 - Paraguai'),
-    ('589', u'589 - Peru'),
-    ('593', u'593 - Pitcairn,Ilha'),
-    ('599', u'599 - Polinesia Francesa'),
-    ('603', u'603 - Polonia, Republica Da'),
-    ('607', u'607 - Portugal'),
-    ('611', u'611 - Porto Rico'),
-    ('623', u'623 - Quenia'),
-    ('625', u'625 - Quirguiz, Republica'),
-    ('628', u'628 - Reino Unido'),
-    ('640', u'640 - Republica Centro-Africana'),
-    ('647', u'647 - Republica Dominicana'),
-    ('660', u'660 - Reuniao, Ilha'),
-    ('665', u'665 - Zimbabue'),
-    ('670', u'670 - Romenia'),
-    ('675', u'675 - Ruanda'),
-    ('676', u'676 - Russia, Federacao Da'),
-    ('677', u'677 - Salomao, Ilhas'),
-    ('678', u'678 - Saint Kitts E Nevis'),
-    ('685', u'685 - Saara Ocidental'),
-    ('687', u'687 - El Salvador'),
-    ('690', u'690 - Samoa'),
-    ('691', u'691 - Samoa Americana'),
-    ('695', u'695 - Sao Cristovao E Neves,Ilhas'),
-    ('697', u'697 - San Marino'),
-    ('700', u'700 - Sao Pedro E Miquelon'),
-    ('705', u'705 - Sao Vicente E Granadinas'),
-    ('710', u'710 - Santa Helena'),
-    ('715', u'715 - Santa Lucia'),
-    ('720', u'720 - Sao Tome E Principe, Ilhas'),
-    ('728', u'728 - Senegal'),
-    ('731', u'731 - Seychelles'),
-    ('735', u'735 - Serra Leoa'),
-    ('738', u'738 - Sikkim'),
-    ('741', u'741 - Cingapura'),
-    ('744', u'744 - Siria, Republica Arabe Da'),
-    ('748', u'748 - Somalia'),
-    ('750', u'750 - Sri Lanka'),
-    ('754', u'754 - Suazilandia'),
-    ('756', u'756 - Africa Do Sul'),
-    ('759', u'759 - Sudao'),
-    ('764', u'764 - Suecia'),
-    ('767', u'767 - Suica'),
-    ('770', u'770 - Suriname'),
-    ('772', u'772 - Tadjiquistao, Republica Do'),
-    ('776', u'776 - Tailandia'),
-    ('780', u'780 - Tanzania, Rep.Unida Da'),
-    ('782', u'782 - Territorio Brit.Oc.Indico'),
-    ('783', u'783 - Djibuti'),
-    ('785', u'785 - Territorio da Alta Comissao do Pacifico Ocidental'),
-    ('788', u'788 - Chade'),
-    ('790', u'790 - Tchecoslovaquia'),
-    ('791', u'791 - Tcheca, Republica'),
-    ('795', u'795 - Timor Leste'),
-    ('800', u'800 - Togo'),
-    ('805', u'805 - Toquelau,Ilhas'),
-    ('810', u'810 - Tonga'),
-    ('815', u'815 - Trinidad E Tobago'),
-    ('820', u'820 - Tunisia'),
-    ('823', u'823 - Turcas E Caicos,Ilhas'),
-    ('824', u'824 - Turcomenistao, Republica Do'),
-    ('827', u'827 - Turquia'),
-    ('828', u'828 - Tuvalu'),
-    ('831', u'831 - Ucrania'),
-    ('833', u'833 - Uganda'),
-    ('840', u'840 - Uniao Das Republicas Socialistas Sovieticas'),
-    ('845', u'845 - Uruguai'),
-    ('847', u'847 - Uzbequistao, Republica Do'),
-    ('848', u'848 - Vaticano, Est.Da Cidade Do'),
-    ('850', u'850 - Venezuela'),
-    ('855', u'855 - Vietname Norte'),
-    ('858', u'858 - Vietna'),
-    ('863', u'863 - Virgens,Ilhas (BRITANICAS)'),
-    ('866', u'866 - Virgens,Ilhas (E.U.A.)'),
-    ('870', u'870 - Fiji'),
-    ('873', u'873 - Wake, Ilha'),
-    ('875', u'875 - Wallis E Futuna, Ilhas'),
-    ('888', u'888 - Congo, Republica Democratica Do'),
-    ('890', u'890 - Zambia'),
+CODIGO_RESPOSTA = (
+    (0, u'Cadastrado'),
+    (101, u'101 - Lote Aguardando Processamento'),
+    (201, u'201 - Lote Processado com Sucesso'),
+    (202, u'202 - Lote Processado com Advertências'),
+    (301, u'301 - Erro Servidor eSocial'),
+    (401, u'401 - Lote Incorreto - Erro preenchimento'),
+    (402, u'402 - Lote Incorreto - schema Inválido'),
+    (403, u'403 - Lote Incorreto - Versão do Schema não permitida'),
+    (404, u'404 - Lote Incorreto - Erro Certificado'),
+    (405, u'405 - Lote Incorreto - Lote nulo ou vazio'),
+    (501, u'501 - Solicitação de Consulta Incorreta - Erro Preenchimento'),
+    (502, u'502 - Solicitação de Consulta Incorreta - Schema Inválido.'),
+    (503, u'503 - Solicitação de Consulta Incorreta - Versão do Schema Não Permitida.'),
+    (504, u'504 - Solicitação de Consulta Incorreta - Erro Certificado.'),
+    (505, u'505 - Solicitação de Consulta Incorreta - Consulta nula ou vazia.'),
 )
 
-CHOICES_S2300_PAISNAC = (
-    ('008', u'008 - Abu Dhabi'),
-    ('009', u'009 - Dirce'),
-    ('013', u'013 - Afeganistao'),
-    ('017', u'017 - Albania, Republica Da'),
-    ('020', u'020 - Alboran-Perejil,Ilhas'),
-    ('023', u'023 - Alemanha'),
-    ('025', u'025 - Alemanha, Republica Democratica'),
-    ('031', u'031 - Burkina Faso'),
-    ('037', u'037 - Andorra'),
-    ('040', u'040 - Angola'),
-    ('041', u'041 - Anguilla'),
-    ('043', u'043 - Antigua E Barbuda'),
-    ('047', u'047 - Antilhas Holandesas'),
-    ('053', u'053 - Arabia Saudita'),
-    ('059', u'059 - Argelia'),
-    ('063', u'063 - Argentina'),
-    ('064', u'064 - Armenia, Republica Da'),
-    ('065', u'065 - Aruba'),
-    ('069', u'069 - Australia'),
-    ('072', u'072 - Austria'),
-    ('073', u'073 - Azerbaijao, Republica Do'),
-    ('077', u'077 - Bahamas, Ilhas'),
-    ('080', u'080 - Bahrein, Ilhas'),
-    ('081', u'081 - Bangladesh'),
-    ('083', u'083 - Barbados'),
-    ('085', u'085 - Belarus, Republica Da'),
-    ('087', u'087 - Belgica'),
-    ('088', u'088 - Belize'),
-    ('090', u'090 - Bermudas'),
-    ('093', u'093 - Mianmar (BIRMANIA)'),
-    ('097', u'097 - Bolivia, Estado Plurinacional Da'),
-    ('098', u'098 - Bosnia-Herzegovina (REPUBLICA Da)'),
-    ('100', u'100 - Int.Z.F.Manaus'),
-    ('101', u'101 - Botsuana'),
-    ('105', u'105 - Brasil'),
-    ('106', u'106 - Fretado P/Brasil'),
-    ('108', u'108 - Brunei'),
-    ('111', u'111 - Bulgaria, Republica Da'),
-    ('115', u'115 - Burundi'),
-    ('119', u'119 - Butao'),
-    ('127', u'127 - Cabo Verde, Republica De'),
-    ('131', u'131 - Cachemira'),
-    ('137', u'137 - Cayman, Ilhas'),
-    ('141', u'141 - Camboja'),
-    ('145', u'145 - Camaroes'),
-    ('149', u'149 - Canada'),
-    ('150', u'150 - Jersey, Ilha Do Canal'),
-    ('151', u'151 - Canarias, Ilhas'),
-    ('152', u'152 - Canal,Ilhas'),
-    ('153', u'153 - Cazaquistao, Republica Do'),
-    ('154', u'154 - Catar'),
-    ('158', u'158 - Chile'),
-    ('160', u'160 - China, Republica Popular'),
-    ('161', u'161 - Formosa (TAIWAN)'),
-    ('163', u'163 - Chipre'),
-    ('165', u'165 - Cocos(Keeling),Ilhas'),
-    ('169', u'169 - Colombia'),
-    ('173', u'173 - Comores, Ilhas'),
-    ('177', u'177 - Congo'),
-    ('183', u'183 - Cook, Ilhas'),
-    ('187', u'187 - Coreia (DO Norte), Rep.Pop.Democratica'),
-    ('190', u'190 - Coreia (DO Sul), Republica Da'),
-    ('193', u'193 - Costa Do Marfim'),
-    ('195', u'195 - Croacia (REPUBLICA Da)'),
-    ('196', u'196 - Costa Rica'),
-    ('198', u'198 - Coveite'),
-    ('199', u'199 - Cuba'),
-    ('229', u'229 - Benin'),
-    ('232', u'232 - Dinamarca'),
-    ('235', u'235 - Dominica,Ilha'),
-    ('237', u'237 - Dubai'),
-    ('239', u'239 - Equador'),
-    ('240', u'240 - Egito'),
-    ('243', u'243 - Eritreia'),
-    ('244', u'244 - Emirados Arabes Unidos'),
-    ('245', u'245 - Espanha'),
-    ('246', u'246 - Eslovenia, Republica Da'),
-    ('247', u'247 - Eslovaca, Republica'),
-    ('249', u'249 - Estados Unidos'),
-    ('251', u'251 - Estonia, Republica Da'),
-    ('253', u'253 - Etiopia'),
-    ('255', u'255 - Falkland (ILHAS Malvinas)'),
-    ('259', u'259 - Feroe, Ilhas'),
-    ('263', u'263 - Fezzan'),
-    ('267', u'267 - Filipinas'),
-    ('271', u'271 - Finlandia'),
-    ('275', u'275 - Franca'),
-    ('281', u'281 - Gabao'),
-    ('285', u'285 - Gambia'),
-    ('289', u'289 - Gana'),
-    ('291', u'291 - Georgia, Republica Da'),
-    ('293', u'293 - Gibraltar'),
-    ('297', u'297 - Granada'),
-    ('301', u'301 - Grecia'),
-    ('305', u'305 - Groenlandia'),
-    ('309', u'309 - Guadalupe'),
-    ('313', u'313 - Guam'),
-    ('317', u'317 - Guatemala'),
-    ('325', u'325 - Guiana Francesa'),
-    ('329', u'329 - Guine'),
-    ('331', u'331 - Guine-Equatorial'),
-    ('334', u'334 - Guine-Bissau'),
-    ('337', u'337 - Guiana'),
-    ('341', u'341 - Haiti'),
-    ('345', u'345 - Honduras'),
-    ('351', u'351 - Hong Kong'),
-    ('355', u'355 - Hungria, Republica Da'),
-    ('357', u'357 - Iemen'),
-    ('358', u'358 - Iemem Do Sul'),
-    ('359', u'359 - Man, Ilha De'),
-    ('361', u'361 - India'),
-    ('365', u'365 - Indonesia'),
-    ('367', u'367 - Inglaterra'),
-    ('369', u'369 - Iraque'),
-    ('372', u'372 - Ira, Republica Islamica Do'),
-    ('375', u'375 - Irlanda'),
-    ('379', u'379 - Islandia'),
-    ('383', u'383 - Israel'),
-    ('386', u'386 - Italia'),
-    ('388', u'388 - Servia E Montenegro'),
-    ('391', u'391 - Jamaica'),
-    ('395', u'395 - Jammu'),
-    ('396', u'396 - Johnston, Ilhas'),
-    ('399', u'399 - Japao'),
-    ('403', u'403 - Jordania'),
-    ('411', u'411 - Kiribati'),
-    ('420', u'420 - Laos, Rep.Pop.Democr.Do'),
-    ('423', u'423 - Lebuan,Ilhas'),
-    ('426', u'426 - Lesoto'),
-    ('427', u'427 - Letonia, Republica Da'),
-    ('431', u'431 - Libano'),
-    ('434', u'434 - Liberia'),
-    ('438', u'438 - Libia'),
-    ('440', u'440 - Liechtenstein'),
-    ('442', u'442 - Lituania, Republica Da'),
-    ('445', u'445 - Luxemburgo'),
-    ('447', u'447 - Macau'),
-    ('449', u'449 - Macedonia, Ant.Rep.Iugoslava'),
-    ('450', u'450 - Madagascar'),
-    ('452', u'452 - Ilha Da Madeira'),
-    ('455', u'455 - Malasia'),
-    ('458', u'458 - Malavi'),
-    ('461', u'461 - Maldivas'),
-    ('464', u'464 - Mali'),
-    ('467', u'467 - Malta'),
-    ('472', u'472 - Marianas Do Norte'),
-    ('474', u'474 - Marrocos'),
-    ('476', u'476 - Marshall,Ilhas'),
-    ('477', u'477 - Martinica'),
-    ('485', u'485 - Mauricio'),
-    ('488', u'488 - Mauritania'),
-    ('490', u'490 - Midway, Ilhas'),
-    ('493', u'493 - Mexico'),
-    ('494', u'494 - Moldavia, Republica Da'),
-    ('495', u'495 - Monaco'),
-    ('497', u'497 - Mongolia'),
-    ('499', u'499 - Micronesia'),
-    ('501', u'501 - Montserrat,Ilhas'),
-    ('505', u'505 - Mocambique'),
-    ('507', u'507 - Namibia'),
-    ('508', u'508 - Nauru'),
-    ('511', u'511 - Christmas,Ilha (NAVIDAD)'),
-    ('517', u'517 - Nepal'),
-    ('521', u'521 - Nicaragua'),
-    ('525', u'525 - Niger'),
-    ('528', u'528 - Nigeria'),
-    ('531', u'531 - Niue,Ilha'),
-    ('535', u'535 - Norfolk,Ilha'),
-    ('538', u'538 - Noruega'),
-    ('542', u'542 - Nova Caledonia'),
-    ('545', u'545 - Papua Nova Guine'),
-    ('548', u'548 - Nova Zelandia'),
-    ('551', u'551 - Vanuatu'),
-    ('556', u'556 - Oma'),
-    ('563', u'563 - Pacifico,Ilhas Do (ADMINISTRACAO Dos Eua)'),
-    ('566', u'566 - Pacifico,Ilhas Do (POSSESSAO Dos Eua)'),
-    ('569', u'569 - Pacifico,Ilhas Do (TERRITORIO Em Fideicomisso Dos'),
-    ('573', u'573 - Paises Baixos (HOLANDA)'),
-    ('575', u'575 - Palau'),
-    ('576', u'576 - Paquistao'),
-    ('578', u'578 - Palestina'),
-    ('580', u'580 - Panama'),
-    ('583', u'583 - Papua Nova Guiné'),
-    ('586', u'586 - Paraguai'),
-    ('589', u'589 - Peru'),
-    ('593', u'593 - Pitcairn,Ilha'),
-    ('599', u'599 - Polinesia Francesa'),
-    ('603', u'603 - Polonia, Republica Da'),
-    ('607', u'607 - Portugal'),
-    ('611', u'611 - Porto Rico'),
-    ('623', u'623 - Quenia'),
-    ('625', u'625 - Quirguiz, Republica'),
-    ('628', u'628 - Reino Unido'),
-    ('640', u'640 - Republica Centro-Africana'),
-    ('647', u'647 - Republica Dominicana'),
-    ('660', u'660 - Reuniao, Ilha'),
-    ('665', u'665 - Zimbabue'),
-    ('670', u'670 - Romenia'),
-    ('675', u'675 - Ruanda'),
-    ('676', u'676 - Russia, Federacao Da'),
-    ('677', u'677 - Salomao, Ilhas'),
-    ('678', u'678 - Saint Kitts E Nevis'),
-    ('685', u'685 - Saara Ocidental'),
-    ('687', u'687 - El Salvador'),
-    ('690', u'690 - Samoa'),
-    ('691', u'691 - Samoa Americana'),
-    ('695', u'695 - Sao Cristovao E Neves,Ilhas'),
-    ('697', u'697 - San Marino'),
-    ('700', u'700 - Sao Pedro E Miquelon'),
-    ('705', u'705 - Sao Vicente E Granadinas'),
-    ('710', u'710 - Santa Helena'),
-    ('715', u'715 - Santa Lucia'),
-    ('720', u'720 - Sao Tome E Principe, Ilhas'),
-    ('728', u'728 - Senegal'),
-    ('731', u'731 - Seychelles'),
-    ('735', u'735 - Serra Leoa'),
-    ('738', u'738 - Sikkim'),
-    ('741', u'741 - Cingapura'),
-    ('744', u'744 - Siria, Republica Arabe Da'),
-    ('748', u'748 - Somalia'),
-    ('750', u'750 - Sri Lanka'),
-    ('754', u'754 - Suazilandia'),
-    ('756', u'756 - Africa Do Sul'),
-    ('759', u'759 - Sudao'),
-    ('764', u'764 - Suecia'),
-    ('767', u'767 - Suica'),
-    ('770', u'770 - Suriname'),
-    ('772', u'772 - Tadjiquistao, Republica Do'),
-    ('776', u'776 - Tailandia'),
-    ('780', u'780 - Tanzania, Rep.Unida Da'),
-    ('782', u'782 - Territorio Brit.Oc.Indico'),
-    ('783', u'783 - Djibuti'),
-    ('785', u'785 - Territorio da Alta Comissao do Pacifico Ocidental'),
-    ('788', u'788 - Chade'),
-    ('790', u'790 - Tchecoslovaquia'),
-    ('791', u'791 - Tcheca, Republica'),
-    ('795', u'795 - Timor Leste'),
-    ('800', u'800 - Togo'),
-    ('805', u'805 - Toquelau,Ilhas'),
-    ('810', u'810 - Tonga'),
-    ('815', u'815 - Trinidad E Tobago'),
-    ('820', u'820 - Tunisia'),
-    ('823', u'823 - Turcas E Caicos,Ilhas'),
-    ('824', u'824 - Turcomenistao, Republica Do'),
-    ('827', u'827 - Turquia'),
-    ('828', u'828 - Tuvalu'),
-    ('831', u'831 - Ucrania'),
-    ('833', u'833 - Uganda'),
-    ('840', u'840 - Uniao Das Republicas Socialistas Sovieticas'),
-    ('845', u'845 - Uruguai'),
-    ('847', u'847 - Uzbequistao, Republica Do'),
-    ('848', u'848 - Vaticano, Est.Da Cidade Do'),
-    ('850', u'850 - Venezuela'),
-    ('855', u'855 - Vietname Norte'),
-    ('858', u'858 - Vietna'),
-    ('863', u'863 - Virgens,Ilhas (BRITANICAS)'),
-    ('866', u'866 - Virgens,Ilhas (E.U.A.)'),
-    ('870', u'870 - Fiji'),
-    ('873', u'873 - Wake, Ilha'),
-    ('875', u'875 - Wallis E Futuna, Ilhas'),
-    ('888', u'888 - Congo, Republica Democratica Do'),
-    ('890', u'890 - Zambia'),
+TIPO_AMBIENTE = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
 )
 
-CHOICES_S2300_PAISNASCTO = (
-    ('008', u'008 - Abu Dhabi'),
-    ('009', u'009 - Dirce'),
-    ('013', u'013 - Afeganistao'),
-    ('017', u'017 - Albania, Republica Da'),
-    ('020', u'020 - Alboran-Perejil,Ilhas'),
-    ('023', u'023 - Alemanha'),
-    ('025', u'025 - Alemanha, Republica Democratica'),
-    ('031', u'031 - Burkina Faso'),
-    ('037', u'037 - Andorra'),
-    ('040', u'040 - Angola'),
-    ('041', u'041 - Anguilla'),
-    ('043', u'043 - Antigua E Barbuda'),
-    ('047', u'047 - Antilhas Holandesas'),
-    ('053', u'053 - Arabia Saudita'),
-    ('059', u'059 - Argelia'),
-    ('063', u'063 - Argentina'),
-    ('064', u'064 - Armenia, Republica Da'),
-    ('065', u'065 - Aruba'),
-    ('069', u'069 - Australia'),
-    ('072', u'072 - Austria'),
-    ('073', u'073 - Azerbaijao, Republica Do'),
-    ('077', u'077 - Bahamas, Ilhas'),
-    ('080', u'080 - Bahrein, Ilhas'),
-    ('081', u'081 - Bangladesh'),
-    ('083', u'083 - Barbados'),
-    ('085', u'085 - Belarus, Republica Da'),
-    ('087', u'087 - Belgica'),
-    ('088', u'088 - Belize'),
-    ('090', u'090 - Bermudas'),
-    ('093', u'093 - Mianmar (BIRMANIA)'),
-    ('097', u'097 - Bolivia, Estado Plurinacional Da'),
-    ('098', u'098 - Bosnia-Herzegovina (REPUBLICA Da)'),
-    ('100', u'100 - Int.Z.F.Manaus'),
-    ('101', u'101 - Botsuana'),
-    ('105', u'105 - Brasil'),
-    ('106', u'106 - Fretado P/Brasil'),
-    ('108', u'108 - Brunei'),
-    ('111', u'111 - Bulgaria, Republica Da'),
-    ('115', u'115 - Burundi'),
-    ('119', u'119 - Butao'),
-    ('127', u'127 - Cabo Verde, Republica De'),
-    ('131', u'131 - Cachemira'),
-    ('137', u'137 - Cayman, Ilhas'),
-    ('141', u'141 - Camboja'),
-    ('145', u'145 - Camaroes'),
-    ('149', u'149 - Canada'),
-    ('150', u'150 - Jersey, Ilha Do Canal'),
-    ('151', u'151 - Canarias, Ilhas'),
-    ('152', u'152 - Canal,Ilhas'),
-    ('153', u'153 - Cazaquistao, Republica Do'),
-    ('154', u'154 - Catar'),
-    ('158', u'158 - Chile'),
-    ('160', u'160 - China, Republica Popular'),
-    ('161', u'161 - Formosa (TAIWAN)'),
-    ('163', u'163 - Chipre'),
-    ('165', u'165 - Cocos(Keeling),Ilhas'),
-    ('169', u'169 - Colombia'),
-    ('173', u'173 - Comores, Ilhas'),
-    ('177', u'177 - Congo'),
-    ('183', u'183 - Cook, Ilhas'),
-    ('187', u'187 - Coreia (DO Norte), Rep.Pop.Democratica'),
-    ('190', u'190 - Coreia (DO Sul), Republica Da'),
-    ('193', u'193 - Costa Do Marfim'),
-    ('195', u'195 - Croacia (REPUBLICA Da)'),
-    ('196', u'196 - Costa Rica'),
-    ('198', u'198 - Coveite'),
-    ('199', u'199 - Cuba'),
-    ('229', u'229 - Benin'),
-    ('232', u'232 - Dinamarca'),
-    ('235', u'235 - Dominica,Ilha'),
-    ('237', u'237 - Dubai'),
-    ('239', u'239 - Equador'),
-    ('240', u'240 - Egito'),
-    ('243', u'243 - Eritreia'),
-    ('244', u'244 - Emirados Arabes Unidos'),
-    ('245', u'245 - Espanha'),
-    ('246', u'246 - Eslovenia, Republica Da'),
-    ('247', u'247 - Eslovaca, Republica'),
-    ('249', u'249 - Estados Unidos'),
-    ('251', u'251 - Estonia, Republica Da'),
-    ('253', u'253 - Etiopia'),
-    ('255', u'255 - Falkland (ILHAS Malvinas)'),
-    ('259', u'259 - Feroe, Ilhas'),
-    ('263', u'263 - Fezzan'),
-    ('267', u'267 - Filipinas'),
-    ('271', u'271 - Finlandia'),
-    ('275', u'275 - Franca'),
-    ('281', u'281 - Gabao'),
-    ('285', u'285 - Gambia'),
-    ('289', u'289 - Gana'),
-    ('291', u'291 - Georgia, Republica Da'),
-    ('293', u'293 - Gibraltar'),
-    ('297', u'297 - Granada'),
-    ('301', u'301 - Grecia'),
-    ('305', u'305 - Groenlandia'),
-    ('309', u'309 - Guadalupe'),
-    ('313', u'313 - Guam'),
-    ('317', u'317 - Guatemala'),
-    ('325', u'325 - Guiana Francesa'),
-    ('329', u'329 - Guine'),
-    ('331', u'331 - Guine-Equatorial'),
-    ('334', u'334 - Guine-Bissau'),
-    ('337', u'337 - Guiana'),
-    ('341', u'341 - Haiti'),
-    ('345', u'345 - Honduras'),
-    ('351', u'351 - Hong Kong'),
-    ('355', u'355 - Hungria, Republica Da'),
-    ('357', u'357 - Iemen'),
-    ('358', u'358 - Iemem Do Sul'),
-    ('359', u'359 - Man, Ilha De'),
-    ('361', u'361 - India'),
-    ('365', u'365 - Indonesia'),
-    ('367', u'367 - Inglaterra'),
-    ('369', u'369 - Iraque'),
-    ('372', u'372 - Ira, Republica Islamica Do'),
-    ('375', u'375 - Irlanda'),
-    ('379', u'379 - Islandia'),
-    ('383', u'383 - Israel'),
-    ('386', u'386 - Italia'),
-    ('388', u'388 - Servia E Montenegro'),
-    ('391', u'391 - Jamaica'),
-    ('395', u'395 - Jammu'),
-    ('396', u'396 - Johnston, Ilhas'),
-    ('399', u'399 - Japao'),
-    ('403', u'403 - Jordania'),
-    ('411', u'411 - Kiribati'),
-    ('420', u'420 - Laos, Rep.Pop.Democr.Do'),
-    ('423', u'423 - Lebuan,Ilhas'),
-    ('426', u'426 - Lesoto'),
-    ('427', u'427 - Letonia, Republica Da'),
-    ('431', u'431 - Libano'),
-    ('434', u'434 - Liberia'),
-    ('438', u'438 - Libia'),
-    ('440', u'440 - Liechtenstein'),
-    ('442', u'442 - Lituania, Republica Da'),
-    ('445', u'445 - Luxemburgo'),
-    ('447', u'447 - Macau'),
-    ('449', u'449 - Macedonia, Ant.Rep.Iugoslava'),
-    ('450', u'450 - Madagascar'),
-    ('452', u'452 - Ilha Da Madeira'),
-    ('455', u'455 - Malasia'),
-    ('458', u'458 - Malavi'),
-    ('461', u'461 - Maldivas'),
-    ('464', u'464 - Mali'),
-    ('467', u'467 - Malta'),
-    ('472', u'472 - Marianas Do Norte'),
-    ('474', u'474 - Marrocos'),
-    ('476', u'476 - Marshall,Ilhas'),
-    ('477', u'477 - Martinica'),
-    ('485', u'485 - Mauricio'),
-    ('488', u'488 - Mauritania'),
-    ('490', u'490 - Midway, Ilhas'),
-    ('493', u'493 - Mexico'),
-    ('494', u'494 - Moldavia, Republica Da'),
-    ('495', u'495 - Monaco'),
-    ('497', u'497 - Mongolia'),
-    ('499', u'499 - Micronesia'),
-    ('501', u'501 - Montserrat,Ilhas'),
-    ('505', u'505 - Mocambique'),
-    ('507', u'507 - Namibia'),
-    ('508', u'508 - Nauru'),
-    ('511', u'511 - Christmas,Ilha (NAVIDAD)'),
-    ('517', u'517 - Nepal'),
-    ('521', u'521 - Nicaragua'),
-    ('525', u'525 - Niger'),
-    ('528', u'528 - Nigeria'),
-    ('531', u'531 - Niue,Ilha'),
-    ('535', u'535 - Norfolk,Ilha'),
-    ('538', u'538 - Noruega'),
-    ('542', u'542 - Nova Caledonia'),
-    ('545', u'545 - Papua Nova Guine'),
-    ('548', u'548 - Nova Zelandia'),
-    ('551', u'551 - Vanuatu'),
-    ('556', u'556 - Oma'),
-    ('563', u'563 - Pacifico,Ilhas Do (ADMINISTRACAO Dos Eua)'),
-    ('566', u'566 - Pacifico,Ilhas Do (POSSESSAO Dos Eua)'),
-    ('569', u'569 - Pacifico,Ilhas Do (TERRITORIO Em Fideicomisso Dos'),
-    ('573', u'573 - Paises Baixos (HOLANDA)'),
-    ('575', u'575 - Palau'),
-    ('576', u'576 - Paquistao'),
-    ('578', u'578 - Palestina'),
-    ('580', u'580 - Panama'),
-    ('583', u'583 - Papua Nova Guiné'),
-    ('586', u'586 - Paraguai'),
-    ('589', u'589 - Peru'),
-    ('593', u'593 - Pitcairn,Ilha'),
-    ('599', u'599 - Polinesia Francesa'),
-    ('603', u'603 - Polonia, Republica Da'),
-    ('607', u'607 - Portugal'),
-    ('611', u'611 - Porto Rico'),
-    ('623', u'623 - Quenia'),
-    ('625', u'625 - Quirguiz, Republica'),
-    ('628', u'628 - Reino Unido'),
-    ('640', u'640 - Republica Centro-Africana'),
-    ('647', u'647 - Republica Dominicana'),
-    ('660', u'660 - Reuniao, Ilha'),
-    ('665', u'665 - Zimbabue'),
-    ('670', u'670 - Romenia'),
-    ('675', u'675 - Ruanda'),
-    ('676', u'676 - Russia, Federacao Da'),
-    ('677', u'677 - Salomao, Ilhas'),
-    ('678', u'678 - Saint Kitts E Nevis'),
-    ('685', u'685 - Saara Ocidental'),
-    ('687', u'687 - El Salvador'),
-    ('690', u'690 - Samoa'),
-    ('691', u'691 - Samoa Americana'),
-    ('695', u'695 - Sao Cristovao E Neves,Ilhas'),
-    ('697', u'697 - San Marino'),
-    ('700', u'700 - Sao Pedro E Miquelon'),
-    ('705', u'705 - Sao Vicente E Granadinas'),
-    ('710', u'710 - Santa Helena'),
-    ('715', u'715 - Santa Lucia'),
-    ('720', u'720 - Sao Tome E Principe, Ilhas'),
-    ('728', u'728 - Senegal'),
-    ('731', u'731 - Seychelles'),
-    ('735', u'735 - Serra Leoa'),
-    ('738', u'738 - Sikkim'),
-    ('741', u'741 - Cingapura'),
-    ('744', u'744 - Siria, Republica Arabe Da'),
-    ('748', u'748 - Somalia'),
-    ('750', u'750 - Sri Lanka'),
-    ('754', u'754 - Suazilandia'),
-    ('756', u'756 - Africa Do Sul'),
-    ('759', u'759 - Sudao'),
-    ('764', u'764 - Suecia'),
-    ('767', u'767 - Suica'),
-    ('770', u'770 - Suriname'),
-    ('772', u'772 - Tadjiquistao, Republica Do'),
-    ('776', u'776 - Tailandia'),
-    ('780', u'780 - Tanzania, Rep.Unida Da'),
-    ('782', u'782 - Territorio Brit.Oc.Indico'),
-    ('783', u'783 - Djibuti'),
-    ('785', u'785 - Territorio da Alta Comissao do Pacifico Ocidental'),
-    ('788', u'788 - Chade'),
-    ('790', u'790 - Tchecoslovaquia'),
-    ('791', u'791 - Tcheca, Republica'),
-    ('795', u'795 - Timor Leste'),
-    ('800', u'800 - Togo'),
-    ('805', u'805 - Toquelau,Ilhas'),
-    ('810', u'810 - Tonga'),
-    ('815', u'815 - Trinidad E Tobago'),
-    ('820', u'820 - Tunisia'),
-    ('823', u'823 - Turcas E Caicos,Ilhas'),
-    ('824', u'824 - Turcomenistao, Republica Do'),
-    ('827', u'827 - Turquia'),
-    ('828', u'828 - Tuvalu'),
-    ('831', u'831 - Ucrania'),
-    ('833', u'833 - Uganda'),
-    ('840', u'840 - Uniao Das Republicas Socialistas Sovieticas'),
-    ('845', u'845 - Uruguai'),
-    ('847', u'847 - Uzbequistao, Republica Do'),
-    ('848', u'848 - Vaticano, Est.Da Cidade Do'),
-    ('850', u'850 - Venezuela'),
-    ('855', u'855 - Vietname Norte'),
-    ('858', u'858 - Vietna'),
-    ('863', u'863 - Virgens,Ilhas (BRITANICAS)'),
-    ('866', u'866 - Virgens,Ilhas (E.U.A.)'),
-    ('870', u'870 - Fiji'),
-    ('873', u'873 - Wake, Ilha'),
-    ('875', u'875 - Wallis E Futuna, Ilhas'),
-    ('888', u'888 - Congo, Republica Democratica Do'),
-    ('890', u'890 - Zambia'),
+OPERACOES = (
+    (1, u'Incluir'),
+    (2, u'Alterar'),
+    (3, u'Excluir'),
 )
 
-CHOICES_S2400_PAISNAC = (
-    ('008', u'008 - Abu Dhabi'),
-    ('009', u'009 - Dirce'),
-    ('013', u'013 - Afeganistao'),
-    ('017', u'017 - Albania, Republica Da'),
-    ('020', u'020 - Alboran-Perejil,Ilhas'),
-    ('023', u'023 - Alemanha'),
-    ('025', u'025 - Alemanha, Republica Democratica'),
-    ('031', u'031 - Burkina Faso'),
-    ('037', u'037 - Andorra'),
-    ('040', u'040 - Angola'),
-    ('041', u'041 - Anguilla'),
-    ('043', u'043 - Antigua E Barbuda'),
-    ('047', u'047 - Antilhas Holandesas'),
-    ('053', u'053 - Arabia Saudita'),
-    ('059', u'059 - Argelia'),
-    ('063', u'063 - Argentina'),
-    ('064', u'064 - Armenia, Republica Da'),
-    ('065', u'065 - Aruba'),
-    ('069', u'069 - Australia'),
-    ('072', u'072 - Austria'),
-    ('073', u'073 - Azerbaijao, Republica Do'),
-    ('077', u'077 - Bahamas, Ilhas'),
-    ('080', u'080 - Bahrein, Ilhas'),
-    ('081', u'081 - Bangladesh'),
-    ('083', u'083 - Barbados'),
-    ('085', u'085 - Belarus, Republica Da'),
-    ('087', u'087 - Belgica'),
-    ('088', u'088 - Belize'),
-    ('090', u'090 - Bermudas'),
-    ('093', u'093 - Mianmar (BIRMANIA)'),
-    ('097', u'097 - Bolivia, Estado Plurinacional Da'),
-    ('098', u'098 - Bosnia-Herzegovina (REPUBLICA Da)'),
-    ('100', u'100 - Int.Z.F.Manaus'),
-    ('101', u'101 - Botsuana'),
-    ('105', u'105 - Brasil'),
-    ('106', u'106 - Fretado P/Brasil'),
-    ('108', u'108 - Brunei'),
-    ('111', u'111 - Bulgaria, Republica Da'),
-    ('115', u'115 - Burundi'),
-    ('119', u'119 - Butao'),
-    ('127', u'127 - Cabo Verde, Republica De'),
-    ('131', u'131 - Cachemira'),
-    ('137', u'137 - Cayman, Ilhas'),
-    ('141', u'141 - Camboja'),
-    ('145', u'145 - Camaroes'),
-    ('149', u'149 - Canada'),
-    ('150', u'150 - Jersey, Ilha Do Canal'),
-    ('151', u'151 - Canarias, Ilhas'),
-    ('152', u'152 - Canal,Ilhas'),
-    ('153', u'153 - Cazaquistao, Republica Do'),
-    ('154', u'154 - Catar'),
-    ('158', u'158 - Chile'),
-    ('160', u'160 - China, Republica Popular'),
-    ('161', u'161 - Formosa (TAIWAN)'),
-    ('163', u'163 - Chipre'),
-    ('165', u'165 - Cocos(Keeling),Ilhas'),
-    ('169', u'169 - Colombia'),
-    ('173', u'173 - Comores, Ilhas'),
-    ('177', u'177 - Congo'),
-    ('183', u'183 - Cook, Ilhas'),
-    ('187', u'187 - Coreia (DO Norte), Rep.Pop.Democratica'),
-    ('190', u'190 - Coreia (DO Sul), Republica Da'),
-    ('193', u'193 - Costa Do Marfim'),
-    ('195', u'195 - Croacia (REPUBLICA Da)'),
-    ('196', u'196 - Costa Rica'),
-    ('198', u'198 - Coveite'),
-    ('199', u'199 - Cuba'),
-    ('229', u'229 - Benin'),
-    ('232', u'232 - Dinamarca'),
-    ('235', u'235 - Dominica,Ilha'),
-    ('237', u'237 - Dubai'),
-    ('239', u'239 - Equador'),
-    ('240', u'240 - Egito'),
-    ('243', u'243 - Eritreia'),
-    ('244', u'244 - Emirados Arabes Unidos'),
-    ('245', u'245 - Espanha'),
-    ('246', u'246 - Eslovenia, Republica Da'),
-    ('247', u'247 - Eslovaca, Republica'),
-    ('249', u'249 - Estados Unidos'),
-    ('251', u'251 - Estonia, Republica Da'),
-    ('253', u'253 - Etiopia'),
-    ('255', u'255 - Falkland (ILHAS Malvinas)'),
-    ('259', u'259 - Feroe, Ilhas'),
-    ('263', u'263 - Fezzan'),
-    ('267', u'267 - Filipinas'),
-    ('271', u'271 - Finlandia'),
-    ('275', u'275 - Franca'),
-    ('281', u'281 - Gabao'),
-    ('285', u'285 - Gambia'),
-    ('289', u'289 - Gana'),
-    ('291', u'291 - Georgia, Republica Da'),
-    ('293', u'293 - Gibraltar'),
-    ('297', u'297 - Granada'),
-    ('301', u'301 - Grecia'),
-    ('305', u'305 - Groenlandia'),
-    ('309', u'309 - Guadalupe'),
-    ('313', u'313 - Guam'),
-    ('317', u'317 - Guatemala'),
-    ('325', u'325 - Guiana Francesa'),
-    ('329', u'329 - Guine'),
-    ('331', u'331 - Guine-Equatorial'),
-    ('334', u'334 - Guine-Bissau'),
-    ('337', u'337 - Guiana'),
-    ('341', u'341 - Haiti'),
-    ('345', u'345 - Honduras'),
-    ('351', u'351 - Hong Kong'),
-    ('355', u'355 - Hungria, Republica Da'),
-    ('357', u'357 - Iemen'),
-    ('358', u'358 - Iemem Do Sul'),
-    ('359', u'359 - Man, Ilha De'),
-    ('361', u'361 - India'),
-    ('365', u'365 - Indonesia'),
-    ('367', u'367 - Inglaterra'),
-    ('369', u'369 - Iraque'),
-    ('372', u'372 - Ira, Republica Islamica Do'),
-    ('375', u'375 - Irlanda'),
-    ('379', u'379 - Islandia'),
-    ('383', u'383 - Israel'),
-    ('386', u'386 - Italia'),
-    ('388', u'388 - Servia E Montenegro'),
-    ('391', u'391 - Jamaica'),
-    ('395', u'395 - Jammu'),
-    ('396', u'396 - Johnston, Ilhas'),
-    ('399', u'399 - Japao'),
-    ('403', u'403 - Jordania'),
-    ('411', u'411 - Kiribati'),
-    ('420', u'420 - Laos, Rep.Pop.Democr.Do'),
-    ('423', u'423 - Lebuan,Ilhas'),
-    ('426', u'426 - Lesoto'),
-    ('427', u'427 - Letonia, Republica Da'),
-    ('431', u'431 - Libano'),
-    ('434', u'434 - Liberia'),
-    ('438', u'438 - Libia'),
-    ('440', u'440 - Liechtenstein'),
-    ('442', u'442 - Lituania, Republica Da'),
-    ('445', u'445 - Luxemburgo'),
-    ('447', u'447 - Macau'),
-    ('449', u'449 - Macedonia, Ant.Rep.Iugoslava'),
-    ('450', u'450 - Madagascar'),
-    ('452', u'452 - Ilha Da Madeira'),
-    ('455', u'455 - Malasia'),
-    ('458', u'458 - Malavi'),
-    ('461', u'461 - Maldivas'),
-    ('464', u'464 - Mali'),
-    ('467', u'467 - Malta'),
-    ('472', u'472 - Marianas Do Norte'),
-    ('474', u'474 - Marrocos'),
-    ('476', u'476 - Marshall,Ilhas'),
-    ('477', u'477 - Martinica'),
-    ('485', u'485 - Mauricio'),
-    ('488', u'488 - Mauritania'),
-    ('490', u'490 - Midway, Ilhas'),
-    ('493', u'493 - Mexico'),
-    ('494', u'494 - Moldavia, Republica Da'),
-    ('495', u'495 - Monaco'),
-    ('497', u'497 - Mongolia'),
-    ('499', u'499 - Micronesia'),
-    ('501', u'501 - Montserrat,Ilhas'),
-    ('505', u'505 - Mocambique'),
-    ('507', u'507 - Namibia'),
-    ('508', u'508 - Nauru'),
-    ('511', u'511 - Christmas,Ilha (NAVIDAD)'),
-    ('517', u'517 - Nepal'),
-    ('521', u'521 - Nicaragua'),
-    ('525', u'525 - Niger'),
-    ('528', u'528 - Nigeria'),
-    ('531', u'531 - Niue,Ilha'),
-    ('535', u'535 - Norfolk,Ilha'),
-    ('538', u'538 - Noruega'),
-    ('542', u'542 - Nova Caledonia'),
-    ('545', u'545 - Papua Nova Guine'),
-    ('548', u'548 - Nova Zelandia'),
-    ('551', u'551 - Vanuatu'),
-    ('556', u'556 - Oma'),
-    ('563', u'563 - Pacifico,Ilhas Do (ADMINISTRACAO Dos Eua)'),
-    ('566', u'566 - Pacifico,Ilhas Do (POSSESSAO Dos Eua)'),
-    ('569', u'569 - Pacifico,Ilhas Do (TERRITORIO Em Fideicomisso Dos'),
-    ('573', u'573 - Paises Baixos (HOLANDA)'),
-    ('575', u'575 - Palau'),
-    ('576', u'576 - Paquistao'),
-    ('578', u'578 - Palestina'),
-    ('580', u'580 - Panama'),
-    ('583', u'583 - Papua Nova Guiné'),
-    ('586', u'586 - Paraguai'),
-    ('589', u'589 - Peru'),
-    ('593', u'593 - Pitcairn,Ilha'),
-    ('599', u'599 - Polinesia Francesa'),
-    ('603', u'603 - Polonia, Republica Da'),
-    ('607', u'607 - Portugal'),
-    ('611', u'611 - Porto Rico'),
-    ('623', u'623 - Quenia'),
-    ('625', u'625 - Quirguiz, Republica'),
-    ('628', u'628 - Reino Unido'),
-    ('640', u'640 - Republica Centro-Africana'),
-    ('647', u'647 - Republica Dominicana'),
-    ('660', u'660 - Reuniao, Ilha'),
-    ('665', u'665 - Zimbabue'),
-    ('670', u'670 - Romenia'),
-    ('675', u'675 - Ruanda'),
-    ('676', u'676 - Russia, Federacao Da'),
-    ('677', u'677 - Salomao, Ilhas'),
-    ('678', u'678 - Saint Kitts E Nevis'),
-    ('685', u'685 - Saara Ocidental'),
-    ('687', u'687 - El Salvador'),
-    ('690', u'690 - Samoa'),
-    ('691', u'691 - Samoa Americana'),
-    ('695', u'695 - Sao Cristovao E Neves,Ilhas'),
-    ('697', u'697 - San Marino'),
-    ('700', u'700 - Sao Pedro E Miquelon'),
-    ('705', u'705 - Sao Vicente E Granadinas'),
-    ('710', u'710 - Santa Helena'),
-    ('715', u'715 - Santa Lucia'),
-    ('720', u'720 - Sao Tome E Principe, Ilhas'),
-    ('728', u'728 - Senegal'),
-    ('731', u'731 - Seychelles'),
-    ('735', u'735 - Serra Leoa'),
-    ('738', u'738 - Sikkim'),
-    ('741', u'741 - Cingapura'),
-    ('744', u'744 - Siria, Republica Arabe Da'),
-    ('748', u'748 - Somalia'),
-    ('750', u'750 - Sri Lanka'),
-    ('754', u'754 - Suazilandia'),
-    ('756', u'756 - Africa Do Sul'),
-    ('759', u'759 - Sudao'),
-    ('764', u'764 - Suecia'),
-    ('767', u'767 - Suica'),
-    ('770', u'770 - Suriname'),
-    ('772', u'772 - Tadjiquistao, Republica Do'),
-    ('776', u'776 - Tailandia'),
-    ('780', u'780 - Tanzania, Rep.Unida Da'),
-    ('782', u'782 - Territorio Brit.Oc.Indico'),
-    ('783', u'783 - Djibuti'),
-    ('785', u'785 - Territorio da Alta Comissao do Pacifico Ocidental'),
-    ('788', u'788 - Chade'),
-    ('790', u'790 - Tchecoslovaquia'),
-    ('791', u'791 - Tcheca, Republica'),
-    ('795', u'795 - Timor Leste'),
-    ('800', u'800 - Togo'),
-    ('805', u'805 - Toquelau,Ilhas'),
-    ('810', u'810 - Tonga'),
-    ('815', u'815 - Trinidad E Tobago'),
-    ('820', u'820 - Tunisia'),
-    ('823', u'823 - Turcas E Caicos,Ilhas'),
-    ('824', u'824 - Turcomenistao, Republica Do'),
-    ('827', u'827 - Turquia'),
-    ('828', u'828 - Tuvalu'),
-    ('831', u'831 - Ucrania'),
-    ('833', u'833 - Uganda'),
-    ('840', u'840 - Uniao Das Republicas Socialistas Sovieticas'),
-    ('845', u'845 - Uruguai'),
-    ('847', u'847 - Uzbequistao, Republica Do'),
-    ('848', u'848 - Vaticano, Est.Da Cidade Do'),
-    ('850', u'850 - Venezuela'),
-    ('855', u'855 - Vietname Norte'),
-    ('858', u'858 - Vietna'),
-    ('863', u'863 - Virgens,Ilhas (BRITANICAS)'),
-    ('866', u'866 - Virgens,Ilhas (E.U.A.)'),
-    ('870', u'870 - Fiji'),
-    ('873', u'873 - Wake, Ilha'),
-    ('875', u'875 - Wallis E Futuna, Ilhas'),
-    ('888', u'888 - Congo, Republica Democratica Do'),
-    ('890', u'890 - Zambia'),
+OPERACOES_INSALPERIC_APOSENTESP = (
+    (1, u'Insalubridade/Periculosidade - Incluir'),
+    (2, u'Insalubridade/Periculosidade - Alterar'),
+    (3, u'Insalubridade/Periculosidade - Excluir'),
+    (4, u'Aposentadoria Especial - Incluir'),
+    (5, u'Aposentadoria Especial - Alterar'),
+    (6, u'Aposentadoria Especial - Excluir'),
 )
 
-CHOICES_S2400_PAISNASCTO = (
-    ('008', u'008 - Abu Dhabi'),
-    ('009', u'009 - Dirce'),
-    ('013', u'013 - Afeganistao'),
-    ('017', u'017 - Albania, Republica Da'),
-    ('020', u'020 - Alboran-Perejil,Ilhas'),
-    ('023', u'023 - Alemanha'),
-    ('025', u'025 - Alemanha, Republica Democratica'),
-    ('031', u'031 - Burkina Faso'),
-    ('037', u'037 - Andorra'),
-    ('040', u'040 - Angola'),
-    ('041', u'041 - Anguilla'),
-    ('043', u'043 - Antigua E Barbuda'),
-    ('047', u'047 - Antilhas Holandesas'),
-    ('053', u'053 - Arabia Saudita'),
-    ('059', u'059 - Argelia'),
-    ('063', u'063 - Argentina'),
-    ('064', u'064 - Armenia, Republica Da'),
-    ('065', u'065 - Aruba'),
-    ('069', u'069 - Australia'),
-    ('072', u'072 - Austria'),
-    ('073', u'073 - Azerbaijao, Republica Do'),
-    ('077', u'077 - Bahamas, Ilhas'),
-    ('080', u'080 - Bahrein, Ilhas'),
-    ('081', u'081 - Bangladesh'),
-    ('083', u'083 - Barbados'),
-    ('085', u'085 - Belarus, Republica Da'),
-    ('087', u'087 - Belgica'),
-    ('088', u'088 - Belize'),
-    ('090', u'090 - Bermudas'),
-    ('093', u'093 - Mianmar (BIRMANIA)'),
-    ('097', u'097 - Bolivia, Estado Plurinacional Da'),
-    ('098', u'098 - Bosnia-Herzegovina (REPUBLICA Da)'),
-    ('100', u'100 - Int.Z.F.Manaus'),
-    ('101', u'101 - Botsuana'),
-    ('105', u'105 - Brasil'),
-    ('106', u'106 - Fretado P/Brasil'),
-    ('108', u'108 - Brunei'),
-    ('111', u'111 - Bulgaria, Republica Da'),
-    ('115', u'115 - Burundi'),
-    ('119', u'119 - Butao'),
-    ('127', u'127 - Cabo Verde, Republica De'),
-    ('131', u'131 - Cachemira'),
-    ('137', u'137 - Cayman, Ilhas'),
-    ('141', u'141 - Camboja'),
-    ('145', u'145 - Camaroes'),
-    ('149', u'149 - Canada'),
-    ('150', u'150 - Jersey, Ilha Do Canal'),
-    ('151', u'151 - Canarias, Ilhas'),
-    ('152', u'152 - Canal,Ilhas'),
-    ('153', u'153 - Cazaquistao, Republica Do'),
-    ('154', u'154 - Catar'),
-    ('158', u'158 - Chile'),
-    ('160', u'160 - China, Republica Popular'),
-    ('161', u'161 - Formosa (TAIWAN)'),
-    ('163', u'163 - Chipre'),
-    ('165', u'165 - Cocos(Keeling),Ilhas'),
-    ('169', u'169 - Colombia'),
-    ('173', u'173 - Comores, Ilhas'),
-    ('177', u'177 - Congo'),
-    ('183', u'183 - Cook, Ilhas'),
-    ('187', u'187 - Coreia (DO Norte), Rep.Pop.Democratica'),
-    ('190', u'190 - Coreia (DO Sul), Republica Da'),
-    ('193', u'193 - Costa Do Marfim'),
-    ('195', u'195 - Croacia (REPUBLICA Da)'),
-    ('196', u'196 - Costa Rica'),
-    ('198', u'198 - Coveite'),
-    ('199', u'199 - Cuba'),
-    ('229', u'229 - Benin'),
-    ('232', u'232 - Dinamarca'),
-    ('235', u'235 - Dominica,Ilha'),
-    ('237', u'237 - Dubai'),
-    ('239', u'239 - Equador'),
-    ('240', u'240 - Egito'),
-    ('243', u'243 - Eritreia'),
-    ('244', u'244 - Emirados Arabes Unidos'),
-    ('245', u'245 - Espanha'),
-    ('246', u'246 - Eslovenia, Republica Da'),
-    ('247', u'247 - Eslovaca, Republica'),
-    ('249', u'249 - Estados Unidos'),
-    ('251', u'251 - Estonia, Republica Da'),
-    ('253', u'253 - Etiopia'),
-    ('255', u'255 - Falkland (ILHAS Malvinas)'),
-    ('259', u'259 - Feroe, Ilhas'),
-    ('263', u'263 - Fezzan'),
-    ('267', u'267 - Filipinas'),
-    ('271', u'271 - Finlandia'),
-    ('275', u'275 - Franca'),
-    ('281', u'281 - Gabao'),
-    ('285', u'285 - Gambia'),
-    ('289', u'289 - Gana'),
-    ('291', u'291 - Georgia, Republica Da'),
-    ('293', u'293 - Gibraltar'),
-    ('297', u'297 - Granada'),
-    ('301', u'301 - Grecia'),
-    ('305', u'305 - Groenlandia'),
-    ('309', u'309 - Guadalupe'),
-    ('313', u'313 - Guam'),
-    ('317', u'317 - Guatemala'),
-    ('325', u'325 - Guiana Francesa'),
-    ('329', u'329 - Guine'),
-    ('331', u'331 - Guine-Equatorial'),
-    ('334', u'334 - Guine-Bissau'),
-    ('337', u'337 - Guiana'),
-    ('341', u'341 - Haiti'),
-    ('345', u'345 - Honduras'),
-    ('351', u'351 - Hong Kong'),
-    ('355', u'355 - Hungria, Republica Da'),
-    ('357', u'357 - Iemen'),
-    ('358', u'358 - Iemem Do Sul'),
-    ('359', u'359 - Man, Ilha De'),
-    ('361', u'361 - India'),
-    ('365', u'365 - Indonesia'),
-    ('367', u'367 - Inglaterra'),
-    ('369', u'369 - Iraque'),
-    ('372', u'372 - Ira, Republica Islamica Do'),
-    ('375', u'375 - Irlanda'),
-    ('379', u'379 - Islandia'),
-    ('383', u'383 - Israel'),
-    ('386', u'386 - Italia'),
-    ('388', u'388 - Servia E Montenegro'),
-    ('391', u'391 - Jamaica'),
-    ('395', u'395 - Jammu'),
-    ('396', u'396 - Johnston, Ilhas'),
-    ('399', u'399 - Japao'),
-    ('403', u'403 - Jordania'),
-    ('411', u'411 - Kiribati'),
-    ('420', u'420 - Laos, Rep.Pop.Democr.Do'),
-    ('423', u'423 - Lebuan,Ilhas'),
-    ('426', u'426 - Lesoto'),
-    ('427', u'427 - Letonia, Republica Da'),
-    ('431', u'431 - Libano'),
-    ('434', u'434 - Liberia'),
-    ('438', u'438 - Libia'),
-    ('440', u'440 - Liechtenstein'),
-    ('442', u'442 - Lituania, Republica Da'),
-    ('445', u'445 - Luxemburgo'),
-    ('447', u'447 - Macau'),
-    ('449', u'449 - Macedonia, Ant.Rep.Iugoslava'),
-    ('450', u'450 - Madagascar'),
-    ('452', u'452 - Ilha Da Madeira'),
-    ('455', u'455 - Malasia'),
-    ('458', u'458 - Malavi'),
-    ('461', u'461 - Maldivas'),
-    ('464', u'464 - Mali'),
-    ('467', u'467 - Malta'),
-    ('472', u'472 - Marianas Do Norte'),
-    ('474', u'474 - Marrocos'),
-    ('476', u'476 - Marshall,Ilhas'),
-    ('477', u'477 - Martinica'),
-    ('485', u'485 - Mauricio'),
-    ('488', u'488 - Mauritania'),
-    ('490', u'490 - Midway, Ilhas'),
-    ('493', u'493 - Mexico'),
-    ('494', u'494 - Moldavia, Republica Da'),
-    ('495', u'495 - Monaco'),
-    ('497', u'497 - Mongolia'),
-    ('499', u'499 - Micronesia'),
-    ('501', u'501 - Montserrat,Ilhas'),
-    ('505', u'505 - Mocambique'),
-    ('507', u'507 - Namibia'),
-    ('508', u'508 - Nauru'),
-    ('511', u'511 - Christmas,Ilha (NAVIDAD)'),
-    ('517', u'517 - Nepal'),
-    ('521', u'521 - Nicaragua'),
-    ('525', u'525 - Niger'),
-    ('528', u'528 - Nigeria'),
-    ('531', u'531 - Niue,Ilha'),
-    ('535', u'535 - Norfolk,Ilha'),
-    ('538', u'538 - Noruega'),
-    ('542', u'542 - Nova Caledonia'),
-    ('545', u'545 - Papua Nova Guine'),
-    ('548', u'548 - Nova Zelandia'),
-    ('551', u'551 - Vanuatu'),
-    ('556', u'556 - Oma'),
-    ('563', u'563 - Pacifico,Ilhas Do (ADMINISTRACAO Dos Eua)'),
-    ('566', u'566 - Pacifico,Ilhas Do (POSSESSAO Dos Eua)'),
-    ('569', u'569 - Pacifico,Ilhas Do (TERRITORIO Em Fideicomisso Dos'),
-    ('573', u'573 - Paises Baixos (HOLANDA)'),
-    ('575', u'575 - Palau'),
-    ('576', u'576 - Paquistao'),
-    ('578', u'578 - Palestina'),
-    ('580', u'580 - Panama'),
-    ('583', u'583 - Papua Nova Guiné'),
-    ('586', u'586 - Paraguai'),
-    ('589', u'589 - Peru'),
-    ('593', u'593 - Pitcairn,Ilha'),
-    ('599', u'599 - Polinesia Francesa'),
-    ('603', u'603 - Polonia, Republica Da'),
-    ('607', u'607 - Portugal'),
-    ('611', u'611 - Porto Rico'),
-    ('623', u'623 - Quenia'),
-    ('625', u'625 - Quirguiz, Republica'),
-    ('628', u'628 - Reino Unido'),
-    ('640', u'640 - Republica Centro-Africana'),
-    ('647', u'647 - Republica Dominicana'),
-    ('660', u'660 - Reuniao, Ilha'),
-    ('665', u'665 - Zimbabue'),
-    ('670', u'670 - Romenia'),
-    ('675', u'675 - Ruanda'),
-    ('676', u'676 - Russia, Federacao Da'),
-    ('677', u'677 - Salomao, Ilhas'),
-    ('678', u'678 - Saint Kitts E Nevis'),
-    ('685', u'685 - Saara Ocidental'),
-    ('687', u'687 - El Salvador'),
-    ('690', u'690 - Samoa'),
-    ('691', u'691 - Samoa Americana'),
-    ('695', u'695 - Sao Cristovao E Neves,Ilhas'),
-    ('697', u'697 - San Marino'),
-    ('700', u'700 - Sao Pedro E Miquelon'),
-    ('705', u'705 - Sao Vicente E Granadinas'),
-    ('710', u'710 - Santa Helena'),
-    ('715', u'715 - Santa Lucia'),
-    ('720', u'720 - Sao Tome E Principe, Ilhas'),
-    ('728', u'728 - Senegal'),
-    ('731', u'731 - Seychelles'),
-    ('735', u'735 - Serra Leoa'),
-    ('738', u'738 - Sikkim'),
-    ('741', u'741 - Cingapura'),
-    ('744', u'744 - Siria, Republica Arabe Da'),
-    ('748', u'748 - Somalia'),
-    ('750', u'750 - Sri Lanka'),
-    ('754', u'754 - Suazilandia'),
-    ('756', u'756 - Africa Do Sul'),
-    ('759', u'759 - Sudao'),
-    ('764', u'764 - Suecia'),
-    ('767', u'767 - Suica'),
-    ('770', u'770 - Suriname'),
-    ('772', u'772 - Tadjiquistao, Republica Do'),
-    ('776', u'776 - Tailandia'),
-    ('780', u'780 - Tanzania, Rep.Unida Da'),
-    ('782', u'782 - Territorio Brit.Oc.Indico'),
-    ('783', u'783 - Djibuti'),
-    ('785', u'785 - Territorio da Alta Comissao do Pacifico Ocidental'),
-    ('788', u'788 - Chade'),
-    ('790', u'790 - Tchecoslovaquia'),
-    ('791', u'791 - Tcheca, Republica'),
-    ('795', u'795 - Timor Leste'),
-    ('800', u'800 - Togo'),
-    ('805', u'805 - Toquelau,Ilhas'),
-    ('810', u'810 - Tonga'),
-    ('815', u'815 - Trinidad E Tobago'),
-    ('820', u'820 - Tunisia'),
-    ('823', u'823 - Turcas E Caicos,Ilhas'),
-    ('824', u'824 - Turcomenistao, Republica Do'),
-    ('827', u'827 - Turquia'),
-    ('828', u'828 - Tuvalu'),
-    ('831', u'831 - Ucrania'),
-    ('833', u'833 - Uganda'),
-    ('840', u'840 - Uniao Das Republicas Socialistas Sovieticas'),
-    ('845', u'845 - Uruguai'),
-    ('847', u'847 - Uzbequistao, Republica Do'),
-    ('848', u'848 - Vaticano, Est.Da Cidade Do'),
-    ('850', u'850 - Venezuela'),
-    ('855', u'855 - Vietname Norte'),
-    ('858', u'858 - Vietna'),
-    ('863', u'863 - Virgens,Ilhas (BRITANICAS)'),
-    ('866', u'866 - Virgens,Ilhas (E.U.A.)'),
-    ('870', u'870 - Fiji'),
-    ('873', u'873 - Wake, Ilha'),
-    ('875', u'875 - Wallis E Futuna, Ilhas'),
-    ('888', u'888 - Congo, Republica Democratica Do'),
-    ('890', u'890 - Zambia'),
+ESOCIAL_VERSOES = (
+    ('v02_04_02', u'Versão 2.04.02'),
+)
+
+ESTADOS = (
+    ('AC', u'Acre'),
+    ('AL', u'Alagoas'),
+    ('AM', u'Amazonas'),
+    ('AP', u'Amapá'),
+    ('BA', u'Bahia'),
+    ('CE', u'Ceará'),
+    ('DF', u'Distrito Federal'),
+    ('ES', u'Espírito Santo'),
+    ('GO', u'Goiás'),
+    ('MA', u'Maranhão'),
+    ('MG', u'Minas Gerais'),
+    ('MS', u'Mato Grosso do Sul'),
+    ('MT', u'Mato Grosso'),
+    ('PA', u'Pará'),
+    ('PB', u'Paraíba'),
+    ('PE', u'Pernambuco'),
+    ('PI', u'Piauí'),
+    ('PR', u'Paraná'),
+    ('RJ', u'Rio de Janeiro'),
+    ('RN', u'Rio Grande do Norte'),
+    ('RO', u'Rondônia'),
+    ('RR', u'Roraima'),
+    ('RS', u'Rio Grande do Sul'),
+    ('SC', u'Santa Catarina'),
+    ('SE', u'Sergipe'),
+    ('SP', u'São Paulo'),
+    ('TO', u'Tocantins'),
+)
+
+CHOICES_S1000_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1000_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1000_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1005_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1005_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1005_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1010_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1010_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1010_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1020_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1020_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1020_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1030_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1030_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1030_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1035_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1035_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1035_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1040_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1040_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1040_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1050_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1050_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1050_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1060_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1060_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1060_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1065_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual (MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial.'),
+)
+
+CHOICES_S1065_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1070_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1070_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1070_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1080_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1080_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1080_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1200_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual (13° salário)'),
+)
+
+CHOICES_S1200_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S1200_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1200_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1200_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1202_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual (13° salário)'),
+)
+
+CHOICES_S1202_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S1202_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1202_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1202_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1207_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual (13° salário)'),
+)
+
+CHOICES_S1207_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S1207_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1207_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1207_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1210_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+)
+
+CHOICES_S1210_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S1210_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1210_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1210_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1250_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+)
+
+CHOICES_S1250_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S1250_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1250_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1250_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1250_TPINSCADQ = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1260_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+)
+
+CHOICES_S1260_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S1260_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1260_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1260_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1270_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+)
+
+CHOICES_S1270_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S1270_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1270_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1270_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1280_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual (13° salário)'),
+)
+
+CHOICES_S1280_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S1280_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1280_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1280_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1295_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual (13° salário)'),
+)
+
+CHOICES_S1295_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1295_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1295_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1298_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual (13° salário)'),
+)
+
+CHOICES_S1298_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1298_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1298_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1299_EVTAQPROD = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1299_EVTCOMPROD = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1299_EVTCONTRATAVNP = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1299_EVTINFOCOMPLPER = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1299_EVTPGTOS = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1299_EVTREMUN = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1299_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual (13° salário)'),
+)
+
+CHOICES_S1299_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1299_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1299_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1300_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual'),
+)
+
+CHOICES_S1300_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S1300_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S1300_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S1300_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2190_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2190_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2190_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2200_CADINI = (
+    ('N', u'N - Não (Admissão)'),
+    ('S', u'S - Sim (Cadastramento Inicial)'),
+)
+
+CHOICES_S2200_CLAUASSEC = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2200_ESTCIV = (
+    (1, u'1 - Solteiro'),
+    (2, u'2 - Casado'),
+    (3, u'3 - Divorciado'),
+    (4, u'4 - Separado'),
+    (5, u'5 - Viúvo'),
+)
+
+CHOICES_S2200_GRAUINSTR = (
+    ('01', u'01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou'),
+    ('02', u'02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular'),
+    ('03', u'03 - 5º ano completo do Ensino Fundamental'),
+    ('04', u'04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série)'),
+    ('05', u'05 - Ensino Fundamental Completo'),
+    ('06', u'06 - Ensino Médio incompleto'),
+    ('07', u'07 - Ensino Médio completo'),
+    ('08', u'08 - Educação Superior incompleta'),
+    ('09', u'09 - Educação Superior completa'),
+    ('10', u'10 - Pós-Graduação completa'),
+    ('11', u'11 - Mestrado completo'),
+    ('12', u'12 - Doutorado completo'),
+)
+
+CHOICES_S2200_INDPRIEMPR = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2200_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2200_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2200_RACACOR = (
+    (1, u'1 - Branca'),
+    (2, u'2 - Negra'),
+    (3, u'3 - Parda (parda ou declarada como mulata, cabocla, cafuza, mameluca ou mestiça de negro com pessoa de outra cor ou raça)'),
+    (4, u'4 - Amarela (de origem japonesa, chinesa, coreana etc)'),
+    (5, u'5 - Indígena'),
+    (6, u'6 - Não informado'),
+)
+
+CHOICES_S2200_SEXO = (
+    ('F', u'F - Feminino'),
+    ('M', u'M - Masculino'),
+)
+
+CHOICES_S2200_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2200_TPCONTR = (
+    (1, u'1 - Prazo indeterminado'),
+    (2, u'2 - Prazo determinado'),
+)
+
+CHOICES_S2200_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2200_TPREGPREV = (
+    (1, u'1 - Regime Geral da Previdência Social - RGPS'),
+    (2, u'2 - Regime Próprio de Previdência Social - RPPS'),
+    (3, u'3 - Regime de Previdência Social no Exterior'),
+)
+
+CHOICES_S2200_TPREGTRAB = (
+    (1, u'1 - CLT - Consolidação das Leis de Trabalho e legislações trabalhistas específicas'),
+    (2, u'2 - Estatutário'),
+)
+
+CHOICES_S2200_UNDSALFIXO = (
+    (1, u'1 - Por Hora'),
+    (2, u'2 - Por Dia'),
+    (3, u'3 - Por Semana'),
+    (4, u'4 - Por Quinzena'),
+    (5, u'5 - Por Mês'),
+    (6, u'6 - Por Tarefa'),
+    (7, u'7 - Não aplicável - salário exclusivamente variável'),
+)
+
+CHOICES_S2205_ESTCIV = (
+    (1, u'1 - Solteiro'),
+    (2, u'2 - Casado'),
+    (3, u'3 - Divorciado'),
+    (4, u'4 - Separado'),
+    (5, u'5 - Viúvo'),
+)
+
+CHOICES_S2205_GRAUINSTR = (
+    ('01', u'01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou'),
+    ('02', u'02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular'),
+    ('03', u'03 - 5º ano completo do Ensino Fundamental'),
+    ('04', u'04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série)'),
+    ('05', u'05 - Ensino Fundamental Completo'),
+    ('06', u'06 - Ensino Médio incompleto'),
+    ('07', u'07 - Ensino Médio completo'),
+    ('08', u'08 - Educação Superior incompleta'),
+    ('09', u'09 - Educação Superior completa'),
+    ('10', u'10 - Pós-Graduação completa'),
+    ('11', u'11 - Mestrado completo'),
+    ('12', u'12 - Doutorado completo'),
+)
+
+CHOICES_S2205_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2205_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2205_RACACOR = (
+    (1, u'1 - Branca'),
+    (2, u'2 - Negra'),
+    (3, u'3 - Parda (parda ou declarada como mulata, cabocla, cafuza, mameluca ou mestiça de negro com pessoa de outra cor ou raça)'),
+    (4, u'4 - Amarela (de origem japonesa, chinesa, coreana etc)'),
+    (5, u'5 - Indígena'),
+    (6, u'6 - Não informado'),
+)
+
+CHOICES_S2205_SEXO = (
+    ('F', u'F - Feminino'),
+    ('M', u'M - Masculino'),
+)
+
+CHOICES_S2205_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2205_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2206_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2206_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2206_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2206_TPCONTR = (
+    (1, u'1 - Prazo indeterminado'),
+    (2, u'2 - Prazo determinado'),
+)
+
+CHOICES_S2206_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2206_TPREGPREV = (
+    (1, u'1 - Regime Geral da Previdência Social - RGPS'),
+    (2, u'2 - Regime Próprio de Previdência Social - RPPS'),
+    (3, u'3 - Regime de Previdência Social no Exterior'),
+)
+
+CHOICES_S2206_UNDSALFIXO = (
+    (1, u'1 - Por Hora'),
+    (2, u'2 - Por Dia'),
+    (3, u'3 - Por Semana'),
+    (4, u'4 - Por Quinzena'),
+    (5, u'5 - Por Mês'),
+    (6, u'6 - Por Tarefa'),
+    (7, u'7 - Não aplicável - salário exclusivamente variável'),
 )
 
 CHOICES_S2210_CODSITGERADORA = (
@@ -1958,6 +1076,807 @@ CHOICES_S2210_CODSITGERADORA = (
     (209500000, u'209500000 - Tipo inexistente'),
 )
 
+CHOICES_S2210_INDCATOBITO = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2210_INDCOMUNPOLICIA = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2210_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2210_INICIATCAT = (
+    (1, u'1 - Iniciativa do Registrador (identificado em {ideRegistrador})'),
+    (2, u'2 - Ordem judicial'),
+    (3, u'3 - Determinação de órgão fiscalizador'),
+)
+
+CHOICES_S2210_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2210_TPACID = (
+    ('1.0.01', u'1.0.01 - Lesão corporal que cause a morte ou a perda ou redução, permanente ou temporária, da capacidade para o trabalho, desde que não enquadrada em nenhum dos demais códigos.'),
+    ('1.0.02', u'1.0.02 - Perturbação funcional que cause a morte ou a perda ou redução, permanente ou temporária, da capacidade para o trabalho, desde que não enquadrada em nenhum dos demais códigos.'),
+    ('2.0.01', u'2.0.01 - Doença profissional, assim entendida a produzida ou desencadeada pelo exercício do trabalho peculiar a determinada atividade e constante da respectiva relação elaborada pelo Ministério do Trabalho e Previdência Social, desde que não enquadrada em (...)'),
+    ('2.0.02', u'2.0.02 - Doença do trabalho, assim entendida a adquirida ou desencadeada em função de condições especiais em que o trabalho é realizado e com ele se relacione diretamente, constante da respectiva relação elaborada pelo Ministério do Trabalho e Previdência (...)'),
+    ('2.0.03', u'2.0.03 - Doença proveniente de contaminação acidental do empregado no exercício de sua atividade.'),
+    ('2.0.04', u'2.0.04 - Doença endêmica adquirida por segurado habitante de região em que ela se desenvolva quando resultante de exposição ou contato direto determinado pela natureza do trabalho.'),
+    ('2.0.05', u'2.0.05 - Doença profissional ou do trabalho não incluída na relação elaborada pelo Ministério do Trabalho e Previdência Social quando resultante das condições especiais em que o trabalho é executado e com ele se relaciona diretamente.'),
+    ('2.0.06', u'2.0.06 - Doença profissional ou do trabalho enquadrada na relação elaborada pelo Ministério do Trabalho e Previdência Social relativa nexo técnico epidemiológico previdenciário - NTEP.'),
+    ('3.0.01', u'3.0.01 - Acidente ligado ao trabalho que, embora não tenha sido a causa única, haja contribuído diretamente para a morte do segurado, para redução ou perda da sua capacidade para o trabalho, ou produzido lesão que exija atenção médica para a sua recuperaçã (...)'),
+    ('3.0.02', u'3.0.02 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de ato de agressão, sabotagem ou terrorismo praticado por terceiro ou companheiro de trabalho.'),
+    ('3.0.03', u'3.0.03 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de ofensa física intencional, inclusive de terceiro, por motivo de disputa relacionada ao trabalho.'),
+    ('3.0.04', u'3.0.04 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de ato de imprudência, de negligência ou de imperícia de terceiro ou de companheiro de trabalho.'),
+    ('3.0.05', u'3.0.05 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de ato de pessoa privada do uso da razão.'),
+    ('3.0.06', u'3.0.06 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de desabamento, inundação, incêndio e outros casos fortuitos ou decorrentes de força maior.'),
+    ('3.0.07', u'3.0.07 - Acidente sofrido pelo segurado ainda que fora do local e horário de trabalho na execução de ordem ou na realização de serviço sob a autoridade da empresa.'),
+    ('3.0.08', u'3.0.08 - Acidente sofrido pelo segurado ainda que fora do local e horário de trabalho na prestação espontânea de qualquer serviço à empresa para lhe evitar prejuízo ou proporcionar proveito.'),
+    ('3.0.09', u'3.0.09 - Acidente sofrido pelo segurado ainda que fora do local e horário de trabalho em viagem a serviço da empresa, inclusive para estudo quando financiada por esta dentro de seus planos para melhor capacitação da mão-de- obra, independentemente do meio (...)'),
+    ('3.0.10', u'3.0.10 - Acidente sofrido pelo segurado ainda que fora do local e horário de trabalho no percurso da residência para o local de trabalho ou deste para aquela, qualquer que seja o meio de locomoção, inclusive veículo de propriedade do segurado.'),
+    ('3.0.11', u'3.0.11 - Acidente sofrido pelo segurado nos períodos destinados a refeição ou descanso, ou por ocasião da satisfação de outras necessidades fisiológicas, no local do trabalho ou durante este.'),
+    ('4.0.01', u'4.0.01 - Suspeita de doenças profissionais ou do trabalho produzidas pelas condições especiais de trabalho, nos termos do art 169 da CLT.'),
+    ('4.0.02', u'4.0.02 - Constatação de ocorrência ou agravamento de doenças profissionais, através de exames médicos que incluam os definidos na NR 07; ou sendo verificadas alterações que revelem qualquer tipo de disfunção de órgão ou sistema biológico, através dos exame (...)'),
+    ('5.0.01', u'5.0.01 - Outros'),
+)
+
+CHOICES_S2210_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2210_TPCAT = (
+    (1, u'1 - Inicial'),
+    (2, u'2 - Reabertura'),
+    (3, u'3 - Comunicação de Óbito'),
+)
+
+CHOICES_S2210_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2210_TPLOCAL = (
+    (1, u'1 - Estabelecimento do empregador no Brasil'),
+    (2, u'2 - Estabelecimento do empregador no Exterior'),
+    (3, u'3 - Estabelecimento de terceiros onde o empregador presta serviços'),
+    (4, u'4 - Via pública'),
+    (5, u'5 - Área rural'),
+    (6, u'6 - Embarcação'),
+    (9, u'9 - Outros'),
+)
+
+CHOICES_S2210_TPREGISTRADOR = (
+    (1, u'1 - Empregador'),
+    (2, u'2 - Cooperativa'),
+    (3, u'3 - Sindicato de trabalhadores avulsos não portuários'),
+    (4, u'4 - Órgão Gestor de Mão de Obra'),
+    (5, u'5 - Empregado'),
+    (6, u'6 - Dependente do empregado'),
+    (7, u'7 - Entidade Sindical competente'),
+    (8, u'8 - Médico assistente'),
+    (9, u'9 - Autoridade Pública'),
+)
+
+CHOICES_S2220_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2220_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2220_RESASO = (
+    (1, u'1 - Apto'),
+    (2, u'2 - Inapto'),
+)
+
+CHOICES_S2220_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2220_TPASO = (
+    (0, u'0 - Admissional'),
+    (1, u'1 - Periódico, conforme planejamento do PCMSO'),
+    (2, u'2 - De retorno ao trabalho'),
+    (3, u'3 - De mudança de função'),
+    (4, u'4 - De monitoração pontual, não enquadrado nos casos anteriores'),
+    (8, u'8 - Demissional'),
+)
+
+CHOICES_S2220_TPEXAME = (
+    (0, u'0 - Exame médico ocupacional'),
+    (1, u'1 - Exame toxicológico do motorista profissional'),
+)
+
+CHOICES_S2220_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2230_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2230_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2230_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2230_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2231_INDRETIF = (
+    (1, u'1 - Arquivo original'),
+    (2, u'2 - Arquivo de retificação'),
+)
+
+CHOICES_S2231_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual (MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2231_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2240_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2240_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2240_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2240_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2241_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2241_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2241_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2241_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2245_INDRETIF = (
+    (1, u'1 - Arquivo original'),
+    (2, u'2 - Arquivo de retificação'),
+)
+
+CHOICES_S2245_MODTREICAP = (
+    (1, u'1 - Presencial'),
+    (2, u'2 - Educação a Distância (EaD)'),
+    (3, u'3 - Mista'),
+)
+
+CHOICES_S2245_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual (MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2245_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2245_TPTREICAP = (
+    (1, u'1 - Inicial'),
+    (2, u'2 - Periódico'),
+    (3, u'3 - Reciclagem'),
+    (4, u'4 - Eventual'),
+    (5, u'5 - Outros'),
+)
+
+CHOICES_S2250_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2250_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2250_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2250_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2260_INDLOCAL = (
+    (0, u'0 - Prestação de serviços no estabelecimento informado no grupo {localTrabGeral} do S-2200 ou S-2206, quando for o caso'),
+    (1, u'1 - Prestação de serviços em apenas um local e fora do estabelecimento informado no grupo {localTrabGeral} do S-2200 ou S-2206, quando for o caso'),
+    (2, u'2 - Prestação de serviços de natureza externa ou em mais de um local'),
+)
+
+CHOICES_S2260_INDRETIF = (
+    (1, u'1 - arquivo original'),
+    (2, u'2 - arquivo de retificação'),
+)
+
+CHOICES_S2260_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2260_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2260_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2298_INDPAGTOJUIZO = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2298_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2298_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2298_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2298_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2298_TPREINT = (
+    (1, u'1 - Reintegração por Decisão Judicial'),
+    (2, u'2 - Reintegração por Anistia Legal'),
+    (3, u'3 - Reversão de Servidor Público'),
+    (4, u'4 - Recondução de Servidor Público'),
+    (5, u'5 - Reinclusão de Militar'),
+    (9, u'9 - Outros'),
+)
+
+CHOICES_S2299_INDCUMPRPARC = (
+    (0, u'0 - Cumprimento total'),
+    (1, u'1 - Cumprimento parcial em razão de obtenção de novo emprego pelo empregado'),
+    (2, u'2 - Cumprimento parcial por iniciativa do empregador'),
+    (3, u'3 - Outras hipóteses de cumprimento parcial do aviso prévio'),
+    (4, u'4 - Aviso prévio indenizado ou não exigível'),
+)
+
+CHOICES_S2299_INDPAGTOAPI = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2299_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2299_MTVDESLIG = (
+    ('01', u'01 - Rescisão com justa causa, por iniciativa do empregador'),
+    ('02', u'02 - Rescisão sem justa causa, por iniciativa do empregador'),
+    ('03', u'03 - Rescisão antecipada do contrato a termo por iniciativa do empregador'),
+    ('04', u'04 - Rescisão antecipada do contrato a termo por iniciativa do empregado'),
+    ('05', u'05 - Rescisão por culpa recíproca'),
+    ('06', u'06 - Rescisão por término do contrato a termo'),
+    ('07', u'07 - Rescisão do contrato de trabalho por iniciativa do empregado'),
+    ('08', u'08 - Rescisão do contrato de trabalho por interesse do(a) empregado(a), nas hipóteses previstas nos arts. 394 e 483, § 1º da CLT'),
+    ('09', u'09 - Rescisão por falecimento do empregador individual ou empregador doméstico por opção do empregado'),
+    ('10', u'10 - Rescisão por falecimento do empregado'),
+    ('11', u'11 - Transferência de empregado para empresa do mesmo grupo empresarial que tenha assumido os encargos trabalhistas, sem que tenha havido rescisão do contrato de trabalho'),
+    ('12', u'12 - Transferência de empregado da empresa consorciada para o consórcio que tenha assumido os encargos trabalhistas, e vice-versa, sem que tenha havido rescisão do contrato de trabalho'),
+    ('13', u'13 - Transferência de empregado de empresa ou consórcio, para outra empresa ou consórcio que tenha assumido os encargos trabalhistas por motivo de sucessão (fusão, cisão ou incorporação), sem que tenha havido rescisão do contrato de trabalho'),
+    ('14', u'14 - Rescisão do contrato de trabalho por encerramento da empresa, de seus estabelecimentos ou supressão de parte de suas atividades ou falecimento do empregador individual ou empregador doméstico sem continuação da atividade'),
+    ('15', u'15 - Demissão de Aprendizes por Desempenho Insuficiente ou Inadaptação'),
+    ('16', u'16 - Declaração de nulidade do contrato de trabalho por infringência ao inciso II do art. 37 da Constituição Federal, quando mantido o direito ao salário'),
+    ('17', u'17 - Rescisão Indireta do Contrato de Trabalho'),
+    ('18', u'18 - Aposentadoria Compulsória (somente para categorias de trabalhadores 301 a 309)'),
+    ('19', u'19 - Aposentadoria por idade (somente para categorias de trabalhadores 301 a 309)'),
+    ('20', u'20 - Aposentadoria por idade e tempo de contribuição (somente categorias 301 a 309)'),
+    ('21', u'21 - Reforma Militar (somente para categorias de trabalhadores 301 a 309)'),
+    ('22', u'22 - Reserva Militar (somente para categorias de trabalhadores 301 a 309)'),
+    ('23', u'23 - Exoneração (somente para categorias de trabalhadores 301 a 309)'),
+    ('24', u'24 - Demissão (somente para categorias de trabalhadores 301 a 309)'),
+    ('25', u'25 - Vacância para assumir outro cargo efetivo (somente para categorias de trabalhadores 301 a 309)'),
+    ('26', u'26 - Rescisão do contrato de trabalho por paralisação temporária ou definitiva da empresa, estabelecimento ou parte das atividades motivada por atos de autoridade municipal, estadual ou federal'),
+    ('27', u'27 - Rescisão por motivo de força maior'),
+    ('28', u'28 - Término da Cessão/Requisição'),
+    ('29', u'29 - Redistribuição'),
+    ('30', u'30 - Mudança de Regime Trabalhista'),
+    ('31', u'31 - Reversão de Reintegração'),
+    ('32', u'32 - Extravio de Militar'),
+    ('33', u'33 - Rescisão por acordo entre as partes (art. 484-A da CLT)'),
+    ('34', u'34 - Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar'),
+)
+
+CHOICES_S2299_PENSALIM = (
+    (0, u'0 - Não existe pensão alimentícia'),
+    (1, u'1 - Percentual de pensão alimentícia'),
+    (2, u'2 - Valor de pensão alimentícia'),
+    (3, u'3 - Percentual e valor de pensão alimentícia'),
+)
+
+CHOICES_S2299_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2299_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2299_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2300_CADINI = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2300_ESTCIV = (
+    (1, u'1 - Solteiro'),
+    (2, u'2 - Casado'),
+    (3, u'3 - Divorciado'),
+    (4, u'4 - Separado'),
+    (5, u'5 - Viúvo'),
+)
+
+CHOICES_S2300_GRAUINSTR = (
+    ('01', u'01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou'),
+    ('02', u'02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular'),
+    ('03', u'03 - 5º ano completo do Ensino Fundamental'),
+    ('04', u'04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série)'),
+    ('05', u'05 - Ensino Fundamental Completo'),
+    ('06', u'06 - Ensino Médio incompleto'),
+    ('07', u'07 - Ensino Médio completo'),
+    ('08', u'08 - Educação Superior incompleta'),
+    ('09', u'09 - Educação Superior completa'),
+    ('10', u'10 - Pós-Graduação completa'),
+    ('11', u'11 - Mestrado completo'),
+    ('12', u'12 - Doutorado completo'),
+)
+
+CHOICES_S2300_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2300_NATATIVIDADE = (
+    (1, u'1 - Trabalho Urbano'),
+    (2, u'2 - Trabalho Rural'),
+)
+
+CHOICES_S2300_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2300_RACACOR = (
+    (1, u'1 - Branca'),
+    (2, u'2 - Negra'),
+    (3, u'3 - Parda (parda ou declarada como mulata, cabocla, cafuza, mameluca ou mestiça de negro com pessoa de outra cor ou raça)'),
+    (4, u'4 - Amarela (de origem japonesa, chinesa, coreana etc)'),
+    (5, u'5 - Indígena'),
+    (6, u'6 - Não informado'),
+)
+
+CHOICES_S2300_SEXO = (
+    ('F', u'F - Feminino'),
+    ('M', u'M - Masculino'),
+)
+
+CHOICES_S2300_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2300_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2306_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2306_NATATIVIDADE = (
+    (1, u'1 - Trabalho Urbano'),
+    (2, u'2 - Trabalho Rural'),
+)
+
+CHOICES_S2306_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2306_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2306_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2399_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2399_MTVDESLIGTSV = (
+    ('01', u'01 - Exoneração do Diretor Não Empregado sem justa causa, por deliberação da assembleia, dos sócios cotistas ou da autoridade competente'),
+    ('02', u'02 - Término de Mandato do Diretor Não Empregado que não tenha sido reconduzido ao cargo'),
+    ('03', u'03 - Exoneração a pedido de Diretor Não Empregado'),
+    ('04', u'04 - Exoneração do Diretor Não Empregado por culpa recíproca ou força maior'),
+    ('05', u'05 - Morte do Diretor Não Empregado'),
+    ('06', u'06 - Exoneração do Diretor Não Empregado por falência, encerramento ou supressão de parte da empresa'),
+    ('99', u'99 - Outros'),
+)
+
+CHOICES_S2399_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2399_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2399_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2400_ESTCIV = (
+    (1, u'1 - Solteiro'),
+    (2, u'2 - Casado'),
+    (3, u'3 - Divorciado'),
+    (4, u'4 - Separado'),
+    (5, u'5 - Viúvo'),
+)
+
+CHOICES_S2400_INCFISMEN = (
+    ('N', u'N - Não'),
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2400_INDRETIF = (
+    (1, u'1 - Arquivo original'),
+    (2, u'2 - Arquivo de retificação'),
+)
+
+CHOICES_S2400_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual (MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2400_RACACOR = (
+    (1, u'1 - Branca'),
+    (2, u'2 - Preta'),
+    (3, u'3 - Parda'),
+    (4, u'4 - Amarela'),
+    (5, u'5 - Indígena'),
+    (6, u'6 - Não informado'),
+)
+
+CHOICES_S2400_SEXO = (
+    ('F', u'F - Feminino'),
+    ('M', u'M - Masculino'),
+)
+
+CHOICES_S2400_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2400_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2405_ESTCIV = (
+    (1, u'1 - Solteiro'),
+    (2, u'2 - Casado'),
+    (3, u'3 - Divorciado'),
+    (4, u'4 - Separado'),
+    (5, u'5 - Viúvo'),
+)
+
+CHOICES_S2405_INCFISMEN = (
+    ('N', u'N - Não'),
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2405_INDRETIF = (
+    (1, u'1 - Arquivo original'),
+    (2, u'2 - Arquivo de retificação'),
+)
+
+CHOICES_S2405_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual (MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2405_RACACOR = (
+    (1, u'1 - Branca'),
+    (2, u'2 - Preta'),
+    (3, u'3 - Parda'),
+    (4, u'4 - Amarela'),
+    (5, u'5 - Indígena'),
+    (6, u'6 - Não informado'),
+)
+
+CHOICES_S2405_SEXO = (
+    ('F', u'F - Feminino'),
+    ('M', u'M - Masculino'),
+)
+
+CHOICES_S2405_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2410_CADINI = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2410_INDDECJUD = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2410_INDHOMOLOGTC = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2410_INDRETIF = (
+    (1, u'1 - Arquivo original'),
+    (2, u'2 - Arquivo de retificação'),
+)
+
+CHOICES_S2410_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual (MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2410_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2410_TPPLANRP = (
+    (0, u'0 - Sem segregação da massa'),
+    (1, u'1 - Fundo em capitalização'),
+    (2, u'2 - Fundo em repartição'),
+    (3, u'3 - Mantido pelo Tesouro'),
+)
+
+CHOICES_S2416_INDDECJUD = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2416_INDHOMOLOGTC = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2416_INDRETIF = (
+    (1, u'1 - Arquivo original'),
+    (2, u'2 - Arquivo de retificação'),
+)
+
+CHOICES_S2416_INDSUSPENSAO = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2416_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual (MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2416_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2416_TPPLANRP = (
+    (0, u'0 - Sem segregação da massa'),
+    (1, u'1 - Fundo em capitalização'),
+    (2, u'2 - Fundo em repartição'),
+    (3, u'3 - Mantido pelo Tesouro'),
+)
+
+CHOICES_S2420_INDRETIF = (
+    (1, u'1 - Arquivo original'),
+    (2, u'2 - Arquivo de retificação'),
+)
+
+CHOICES_S2420_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual (MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2420_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S3000_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S3000_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
 CHOICES_S3000_TPEVENTO = (
     ('S-1000', u'S-1000 - Informações do Empregador/Contribuinte/Órgão Público'),
     ('S-1005', u'S-1005 - Tabela de Estabelecimentos, Obras de Construção Civil ou Unidades de Órgãos Públicos'),
@@ -2006,282 +1925,33 @@ CHOICES_S3000_TPEVENTO = (
     ('S-5012', u'S-5012 - Informações do IRRF consolidadas por Contribuinte'),
 )
 
-CHOICES_S2230_CODCATEG = (
-    (101, u'101 - Empregado - Geral, inclusive o empregado público da administração direta ou indireta contratado pela CLT.'),
-    (102, u'102 - Empregado - Trabalhador Rural por Pequeno Prazo da Lei 11.718/2008'),
-    (103, u'103 - Empregado - Aprendiz'),
-    (104, u'104 - Empregado - Doméstico'),
-    (105, u'105 - Empregado - contrato a termo firmado nos termos da Lei 9601/98'),
-    (106, u'106 - Trabalhador Temporário - contrato por prazo determinado nos termos da Lei 6019/74'),
-    (111, u'111 - Empregado - contrato de trabalho intermitente'),
-    (201, u'201 - Trabalhador Avulso Portuário'),
-    (202, u'202 - Trabalhador Avulso Não Portuário'),
-    (301, u'301 - Servidor Público Titular de Cargo Efetivo, Magistrado, Ministro de Tribunal de Contas, Conselheiro de Tribunal de Contas e Membro do Ministério Público'),
-    (302, u'302 - Servidor Público Ocupante de Cargo exclusivo em comissão'),
-    (303, u'303 - Agente Político'),
-    (305, u'305 - Servidor Público indicado para conselho ou órgão deliberativo, na condição de representante do governo, órgão ou entidade da administração pública.'),
-    (306, u'306 - Servidor Público Temporário, sujeito a regime administrativo especial definido em lei própria'),
-    (307, u'307 - Militar efetivo'),
-    (308, u'308 - Conscrito'),
-    (309, u'309 - Agente Público - Outros'),
-    (401, u'401 - Dirigente Sindical - informação prestada pelo Sindicato'),
-    (410, u'410 - Trabalhador cedido - informação prestada pelo Cessionário'),
-    (701, u'701 - Contribuinte individual - Autônomo em geral, exceto se enquadrado em uma das demais categorias de contribuinte individual'),
-    (711, u'711 - Contribuinte individual - Transportador autônomo de passageiros'),
-    (712, u'712 - Contribuinte individual - Transportador autônomo de carga'),
-    (721, u'721 - Contribuinte individual - Diretor não empregado, com FGTS'),
-    (722, u'722 - Contribuinte individual - Diretor não empregado, sem FGTS'),
-    (723, u'723 - Contribuinte individual - empresários, sócios e membro de conselho de administração ou fiscal'),
-    (731, u'731 - Contribuinte individual - Cooperado que presta serviços por intermédio de Cooperativa de Trabalho'),
-    (734, u'734 - Contribuinte individual - Transportador Cooperado que presta serviços por intermédio de cooperativa de trabalho'),
-    (738, u'738 - Contribuinte individual - Cooperado filiado a Cooperativa de Produção'),
-    (741, u'741 - Contribuinte individual - Microempreendedor Individual'),
-    (751, u'751 - Contribuinte individual - magistrado classista temporário da Justiça do Trabalho ou da Justiça Eleitoral que seja aposentado de qualquer regime previdenciário'),
-    (761, u'761 - Contribuinte individual - Associado eleito para direção de Cooperativa, associação ou entidade de classe de qualquer natureza ou finalidade, bem como o síndico ou administrador eleito para exercer atividade de direção condominial, desde que recebam r (...)'),
-    (771, u'771 - Contribuinte individual - Membro de conselho tutelar, nos termos da Lei nº 8.069, de 13 de julho de 1990'),
-    (781, u'781 - Ministro de confissão religiosa ou membro de vida consagrada, de congregação ou de ordem religiosa'),
-    (901, u'901 - Estagiário'),
-    (902, u'902 - Médico Residente'),
-    (903, u'903 - Bolsista, nos termos da lei 8958/1994'),
-    (904, u'904 - Participante de curso de formação, como etapa de concurso público, sem vínculo de emprego/estatutário'),
-    (905, u'905 - Atleta não profissional em formação que receba bolsa'),
-)
-
-CHOICES_S2300_CODCATEG = (
-    (101, u'101 - Empregado - Geral, inclusive o empregado público da administração direta ou indireta contratado pela CLT.'),
-    (102, u'102 - Empregado - Trabalhador Rural por Pequeno Prazo da Lei 11.718/2008'),
-    (103, u'103 - Empregado - Aprendiz'),
-    (104, u'104 - Empregado - Doméstico'),
-    (105, u'105 - Empregado - contrato a termo firmado nos termos da Lei 9601/98'),
-    (106, u'106 - Trabalhador Temporário - contrato por prazo determinado nos termos da Lei 6019/74'),
-    (111, u'111 - Empregado - contrato de trabalho intermitente'),
-    (201, u'201 - Trabalhador Avulso Portuário'),
-    (202, u'202 - Trabalhador Avulso Não Portuário'),
-    (301, u'301 - Servidor Público Titular de Cargo Efetivo, Magistrado, Ministro de Tribunal de Contas, Conselheiro de Tribunal de Contas e Membro do Ministério Público'),
-    (302, u'302 - Servidor Público Ocupante de Cargo exclusivo em comissão'),
-    (303, u'303 - Agente Político'),
-    (305, u'305 - Servidor Público indicado para conselho ou órgão deliberativo, na condição de representante do governo, órgão ou entidade da administração pública.'),
-    (306, u'306 - Servidor Público Temporário, sujeito a regime administrativo especial definido em lei própria'),
-    (307, u'307 - Militar efetivo'),
-    (308, u'308 - Conscrito'),
-    (309, u'309 - Agente Público - Outros'),
-    (401, u'401 - Dirigente Sindical - informação prestada pelo Sindicato'),
-    (410, u'410 - Trabalhador cedido - informação prestada pelo Cessionário'),
-    (701, u'701 - Contribuinte individual - Autônomo em geral, exceto se enquadrado em uma das demais categorias de contribuinte individual'),
-    (711, u'711 - Contribuinte individual - Transportador autônomo de passageiros'),
-    (712, u'712 - Contribuinte individual - Transportador autônomo de carga'),
-    (721, u'721 - Contribuinte individual - Diretor não empregado, com FGTS'),
-    (722, u'722 - Contribuinte individual - Diretor não empregado, sem FGTS'),
-    (723, u'723 - Contribuinte individual - empresários, sócios e membro de conselho de administração ou fiscal'),
-    (731, u'731 - Contribuinte individual - Cooperado que presta serviços por intermédio de Cooperativa de Trabalho'),
-    (734, u'734 - Contribuinte individual - Transportador Cooperado que presta serviços por intermédio de cooperativa de trabalho'),
-    (738, u'738 - Contribuinte individual - Cooperado filiado a Cooperativa de Produção'),
-    (741, u'741 - Contribuinte individual - Microempreendedor Individual'),
-    (751, u'751 - Contribuinte individual - magistrado classista temporário da Justiça do Trabalho ou da Justiça Eleitoral que seja aposentado de qualquer regime previdenciário'),
-    (761, u'761 - Contribuinte individual - Associado eleito para direção de Cooperativa, associação ou entidade de classe de qualquer natureza ou finalidade, bem como o síndico ou administrador eleito para exercer atividade de direção condominial, desde que recebam r (...)'),
-    (771, u'771 - Contribuinte individual - Membro de conselho tutelar, nos termos da Lei nº 8.069, de 13 de julho de 1990'),
-    (781, u'781 - Ministro de confissão religiosa ou membro de vida consagrada, de congregação ou de ordem religiosa'),
-    (901, u'901 - Estagiário'),
-    (902, u'902 - Médico Residente'),
-    (903, u'903 - Bolsista, nos termos da lei 8958/1994'),
-    (904, u'904 - Participante de curso de formação, como etapa de concurso público, sem vínculo de emprego/estatutário'),
-    (905, u'905 - Atleta não profissional em formação que receba bolsa'),
-)
-
-CHOICES_S2306_CODCATEG = (
-    (101, u'101 - Empregado - Geral, inclusive o empregado público da administração direta ou indireta contratado pela CLT.'),
-    (102, u'102 - Empregado - Trabalhador Rural por Pequeno Prazo da Lei 11.718/2008'),
-    (103, u'103 - Empregado - Aprendiz'),
-    (104, u'104 - Empregado - Doméstico'),
-    (105, u'105 - Empregado - contrato a termo firmado nos termos da Lei 9601/98'),
-    (106, u'106 - Trabalhador Temporário - contrato por prazo determinado nos termos da Lei 6019/74'),
-    (111, u'111 - Empregado - contrato de trabalho intermitente'),
-    (201, u'201 - Trabalhador Avulso Portuário'),
-    (202, u'202 - Trabalhador Avulso Não Portuário'),
-    (301, u'301 - Servidor Público Titular de Cargo Efetivo, Magistrado, Ministro de Tribunal de Contas, Conselheiro de Tribunal de Contas e Membro do Ministério Público'),
-    (302, u'302 - Servidor Público Ocupante de Cargo exclusivo em comissão'),
-    (303, u'303 - Agente Político'),
-    (305, u'305 - Servidor Público indicado para conselho ou órgão deliberativo, na condição de representante do governo, órgão ou entidade da administração pública.'),
-    (306, u'306 - Servidor Público Temporário, sujeito a regime administrativo especial definido em lei própria'),
-    (307, u'307 - Militar efetivo'),
-    (308, u'308 - Conscrito'),
-    (309, u'309 - Agente Público - Outros'),
-    (401, u'401 - Dirigente Sindical - informação prestada pelo Sindicato'),
-    (410, u'410 - Trabalhador cedido - informação prestada pelo Cessionário'),
-    (701, u'701 - Contribuinte individual - Autônomo em geral, exceto se enquadrado em uma das demais categorias de contribuinte individual'),
-    (711, u'711 - Contribuinte individual - Transportador autônomo de passageiros'),
-    (712, u'712 - Contribuinte individual - Transportador autônomo de carga'),
-    (721, u'721 - Contribuinte individual - Diretor não empregado, com FGTS'),
-    (722, u'722 - Contribuinte individual - Diretor não empregado, sem FGTS'),
-    (723, u'723 - Contribuinte individual - empresários, sócios e membro de conselho de administração ou fiscal'),
-    (731, u'731 - Contribuinte individual - Cooperado que presta serviços por intermédio de Cooperativa de Trabalho'),
-    (734, u'734 - Contribuinte individual - Transportador Cooperado que presta serviços por intermédio de cooperativa de trabalho'),
-    (738, u'738 - Contribuinte individual - Cooperado filiado a Cooperativa de Produção'),
-    (741, u'741 - Contribuinte individual - Microempreendedor Individual'),
-    (751, u'751 - Contribuinte individual - magistrado classista temporário da Justiça do Trabalho ou da Justiça Eleitoral que seja aposentado de qualquer regime previdenciário'),
-    (761, u'761 - Contribuinte individual - Associado eleito para direção de Cooperativa, associação ou entidade de classe de qualquer natureza ou finalidade, bem como o síndico ou administrador eleito para exercer atividade de direção condominial, desde que recebam r (...)'),
-    (771, u'771 - Contribuinte individual - Membro de conselho tutelar, nos termos da Lei nº 8.069, de 13 de julho de 1990'),
-    (781, u'781 - Ministro de confissão religiosa ou membro de vida consagrada, de congregação ou de ordem religiosa'),
-    (901, u'901 - Estagiário'),
-    (902, u'902 - Médico Residente'),
-    (903, u'903 - Bolsista, nos termos da lei 8958/1994'),
-    (904, u'904 - Participante de curso de formação, como etapa de concurso público, sem vínculo de emprego/estatutário'),
-    (905, u'905 - Atleta não profissional em formação que receba bolsa'),
-)
-
-CHOICES_S2399_CODCATEG = (
-    (101, u'101 - Empregado - Geral, inclusive o empregado público da administração direta ou indireta contratado pela CLT.'),
-    (102, u'102 - Empregado - Trabalhador Rural por Pequeno Prazo da Lei 11.718/2008'),
-    (103, u'103 - Empregado - Aprendiz'),
-    (104, u'104 - Empregado - Doméstico'),
-    (105, u'105 - Empregado - contrato a termo firmado nos termos da Lei 9601/98'),
-    (106, u'106 - Trabalhador Temporário - contrato por prazo determinado nos termos da Lei 6019/74'),
-    (111, u'111 - Empregado - contrato de trabalho intermitente'),
-    (201, u'201 - Trabalhador Avulso Portuário'),
-    (202, u'202 - Trabalhador Avulso Não Portuário'),
-    (301, u'301 - Servidor Público Titular de Cargo Efetivo, Magistrado, Ministro de Tribunal de Contas, Conselheiro de Tribunal de Contas e Membro do Ministério Público'),
-    (302, u'302 - Servidor Público Ocupante de Cargo exclusivo em comissão'),
-    (303, u'303 - Agente Político'),
-    (305, u'305 - Servidor Público indicado para conselho ou órgão deliberativo, na condição de representante do governo, órgão ou entidade da administração pública.'),
-    (306, u'306 - Servidor Público Temporário, sujeito a regime administrativo especial definido em lei própria'),
-    (307, u'307 - Militar efetivo'),
-    (308, u'308 - Conscrito'),
-    (309, u'309 - Agente Público - Outros'),
-    (401, u'401 - Dirigente Sindical - informação prestada pelo Sindicato'),
-    (410, u'410 - Trabalhador cedido - informação prestada pelo Cessionário'),
-    (701, u'701 - Contribuinte individual - Autônomo em geral, exceto se enquadrado em uma das demais categorias de contribuinte individual'),
-    (711, u'711 - Contribuinte individual - Transportador autônomo de passageiros'),
-    (712, u'712 - Contribuinte individual - Transportador autônomo de carga'),
-    (721, u'721 - Contribuinte individual - Diretor não empregado, com FGTS'),
-    (722, u'722 - Contribuinte individual - Diretor não empregado, sem FGTS'),
-    (723, u'723 - Contribuinte individual - empresários, sócios e membro de conselho de administração ou fiscal'),
-    (731, u'731 - Contribuinte individual - Cooperado que presta serviços por intermédio de Cooperativa de Trabalho'),
-    (734, u'734 - Contribuinte individual - Transportador Cooperado que presta serviços por intermédio de cooperativa de trabalho'),
-    (738, u'738 - Contribuinte individual - Cooperado filiado a Cooperativa de Produção'),
-    (741, u'741 - Contribuinte individual - Microempreendedor Individual'),
-    (751, u'751 - Contribuinte individual - magistrado classista temporário da Justiça do Trabalho ou da Justiça Eleitoral que seja aposentado de qualquer regime previdenciário'),
-    (761, u'761 - Contribuinte individual - Associado eleito para direção de Cooperativa, associação ou entidade de classe de qualquer natureza ou finalidade, bem como o síndico ou administrador eleito para exercer atividade de direção condominial, desde que recebam r (...)'),
-    (771, u'771 - Contribuinte individual - Membro de conselho tutelar, nos termos da Lei nº 8.069, de 13 de julho de 1990'),
-    (781, u'781 - Ministro de confissão religiosa ou membro de vida consagrada, de congregação ou de ordem religiosa'),
-    (901, u'901 - Estagiário'),
-    (902, u'902 - Médico Residente'),
-    (903, u'903 - Bolsista, nos termos da lei 8958/1994'),
-    (904, u'904 - Participante de curso de formação, como etapa de concurso público, sem vínculo de emprego/estatutário'),
-    (905, u'905 - Atleta não profissional em formação que receba bolsa'),
-)
-
-CHOICES_S2299_MTVDESLIG = (
-    ('01', u'01 - Rescisão com justa causa, por iniciativa do empregador'),
-    ('02', u'02 - Rescisão sem justa causa, por iniciativa do empregador'),
-    ('03', u'03 - Rescisão antecipada do contrato a termo por iniciativa do empregador'),
-    ('04', u'04 - Rescisão antecipada do contrato a termo por iniciativa do empregado'),
-    ('05', u'05 - Rescisão por culpa recíproca'),
-    ('06', u'06 - Rescisão por término do contrato a termo'),
-    ('07', u'07 - Rescisão do contrato de trabalho por iniciativa do empregado'),
-    ('08', u'08 - Rescisão do contrato de trabalho por interesse do(a) empregado(a), nas hipóteses previstas nos arts. 394 e 483, § 1º da CLT'),
-    ('09', u'09 - Rescisão por falecimento do empregador individual ou empregador doméstico por opção do empregado'),
-    ('10', u'10 - Rescisão por falecimento do empregado'),
-    ('11', u'11 - Transferência de empregado para empresa do mesmo grupo empresarial que tenha assumido os encargos trabalhistas, sem que tenha havido rescisão do contrato de trabalho'),
-    ('12', u'12 - Transferência de empregado da empresa consorciada para o consórcio que tenha assumido os encargos trabalhistas, e vice-versa, sem que tenha havido rescisão do contrato de trabalho'),
-    ('13', u'13 - Transferência de empregado de empresa ou consórcio, para outra empresa ou consórcio que tenha assumido os encargos trabalhistas por motivo de sucessão (fusão, cisão ou incorporação), sem que tenha havido rescisão do contrato de trabalho'),
-    ('14', u'14 - Rescisão do contrato de trabalho por encerramento da empresa, de seus estabelecimentos ou supressão de parte de suas atividades ou falecimento do empregador individual ou empregador doméstico sem continuação da atividade'),
-    ('15', u'15 - Demissão de Aprendizes por Desempenho Insuficiente ou Inadaptação'),
-    ('16', u'16 - Declaração de nulidade do contrato de trabalho por infringência ao inciso II do art. 37 da Constituição Federal, quando mantido o direito ao salário'),
-    ('17', u'17 - Rescisão Indireta do Contrato de Trabalho'),
-    ('18', u'18 - Aposentadoria Compulsória (somente para categorias de trabalhadores 301 a 309)'),
-    ('19', u'19 - Aposentadoria por idade (somente para categorias de trabalhadores 301 a 309)'),
-    ('20', u'20 - Aposentadoria por idade e tempo de contribuição (somente categorias 301 a 309)'),
-    ('21', u'21 - Reforma Militar (somente para categorias de trabalhadores 301 a 309)'),
-    ('22', u'22 - Reserva Militar (somente para categorias de trabalhadores 301 a 309)'),
-    ('23', u'23 - Exoneração (somente para categorias de trabalhadores 301 a 309)'),
-    ('24', u'24 - Demissão (somente para categorias de trabalhadores 301 a 309)'),
-    ('25', u'25 - Vacância para assumir outro cargo efetivo (somente para categorias de trabalhadores 301 a 309)'),
-    ('26', u'26 - Rescisão do contrato de trabalho por paralisação temporária ou definitiva da empresa, estabelecimento ou parte das atividades motivada por atos de autoridade municipal, estadual ou federal'),
-    ('27', u'27 - Rescisão por motivo de força maior'),
-    ('28', u'28 - Término da Cessão/Requisição'),
-    ('29', u'29 - Redistribuição'),
-    ('30', u'30 - Mudança de Regime Trabalhista'),
-    ('31', u'31 - Reversão de Reintegração'),
-    ('32', u'32 - Extravio de Militar'),
-    ('33', u'33 - Rescisão por acordo entre as partes (art. 484-A da CLT)'),
-    ('34', u'34 - Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar'),
-)
-
-ESTADOS = (
-    ('AC', u'Acre'),
-    ('AL', u'Alagoas'),
-    ('AM', u'Amazonas'),
-    ('AP', u'Amapá'),
-    ('BA', u'Bahia'),
-    ('CE', u'Ceará'),
-    ('DF', u'Distrito Federal'),
-    ('ES', u'Espírito Santo'),
-    ('GO', u'Goiás'),
-    ('MA', u'Maranhão'),
-    ('MG', u'Minas Gerais'),
-    ('MS', u'Mato Grosso do Sul'),
-    ('MT', u'Mato Grosso'),
-    ('PA', u'Pará'),
-    ('PB', u'Paraíba'),
-    ('PE', u'Pernambuco'),
-    ('PI', u'Piauí'),
-    ('PR', u'Paraná'),
-    ('RJ', u'Rio de Janeiro'),
-    ('RN', u'Rio Grande do Norte'),
-    ('RO', u'Rondônia'),
-    ('RR', u'Roraima'),
-    ('RS', u'Rio Grande do Sul'),
-    ('SC', u'Santa Catarina'),
-    ('SE', u'Sergipe'),
-    ('SP', u'São Paulo'),
-    ('TO', u'Tocantins'),
-)
-
-CHOICES_S2210_TPACID = (
-    ('1.0.01', u'1.0.01 - Lesão corporal que cause a morte ou a perda ou redução, permanente ou temporária, da capacidade para o trabalho, desde que não enquadrada em nenhum dos demais códigos.'),
-    ('1.0.02', u'1.0.02 - Perturbação funcional que cause a morte ou a perda ou redução, permanente ou temporária, da capacidade para o trabalho, desde que não enquadrada em nenhum dos demais códigos.'),
-    ('2.0.01', u'2.0.01 - Doença profissional, assim entendida a produzida ou desencadeada pelo exercício do trabalho peculiar a determinada atividade e constante da respectiva relação elaborada pelo Ministério do Trabalho e Previdência Social, desde que não enquadrada em (...)'),
-    ('2.0.02', u'2.0.02 - Doença do trabalho, assim entendida a adquirida ou desencadeada em função de condições especiais em que o trabalho é realizado e com ele se relacione diretamente, constante da respectiva relação elaborada pelo Ministério do Trabalho e Previdência (...)'),
-    ('2.0.03', u'2.0.03 - Doença proveniente de contaminação acidental do empregado no exercício de sua atividade.'),
-    ('2.0.04', u'2.0.04 - Doença endêmica adquirida por segurado habitante de região em que ela se desenvolva quando resultante de exposição ou contato direto determinado pela natureza do trabalho.'),
-    ('2.0.05', u'2.0.05 - Doença profissional ou do trabalho não incluída na relação elaborada pelo Ministério do Trabalho e Previdência Social quando resultante das condições especiais em que o trabalho é executado e com ele se relaciona diretamente.'),
-    ('2.0.06', u'2.0.06 - Doença profissional ou do trabalho enquadrada na relação elaborada pelo Ministério do Trabalho e Previdência Social relativa nexo técnico epidemiológico previdenciário - NTEP.'),
-    ('3.0.01', u'3.0.01 - Acidente ligado ao trabalho que, embora não tenha sido a causa única, haja contribuído diretamente para a morte do segurado, para redução ou perda da sua capacidade para o trabalho, ou produzido lesão que exija atenção médica para a sua recuperaçã (...)'),
-    ('3.0.02', u'3.0.02 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de ato de agressão, sabotagem ou terrorismo praticado por terceiro ou companheiro de trabalho.'),
-    ('3.0.03', u'3.0.03 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de ofensa física intencional, inclusive de terceiro, por motivo de disputa relacionada ao trabalho.'),
-    ('3.0.04', u'3.0.04 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de ato de imprudência, de negligência ou de imperícia de terceiro ou de companheiro de trabalho.'),
-    ('3.0.05', u'3.0.05 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de ato de pessoa privada do uso da razão.'),
-    ('3.0.06', u'3.0.06 - Acidente sofrido pelo segurado no local e no horário do trabalho, em consequência de desabamento, inundação, incêndio e outros casos fortuitos ou decorrentes de força maior.'),
-    ('3.0.07', u'3.0.07 - Acidente sofrido pelo segurado ainda que fora do local e horário de trabalho na execução de ordem ou na realização de serviço sob a autoridade da empresa.'),
-    ('3.0.08', u'3.0.08 - Acidente sofrido pelo segurado ainda que fora do local e horário de trabalho na prestação espontânea de qualquer serviço à empresa para lhe evitar prejuízo ou proporcionar proveito.'),
-    ('3.0.09', u'3.0.09 - Acidente sofrido pelo segurado ainda que fora do local e horário de trabalho em viagem a serviço da empresa, inclusive para estudo quando financiada por esta dentro de seus planos para melhor capacitação da mão-de- obra, independentemente do meio (...)'),
-    ('3.0.10', u'3.0.10 - Acidente sofrido pelo segurado ainda que fora do local e horário de trabalho no percurso da residência para o local de trabalho ou deste para aquela, qualquer que seja o meio de locomoção, inclusive veículo de propriedade do segurado.'),
-    ('3.0.11', u'3.0.11 - Acidente sofrido pelo segurado nos períodos destinados a refeição ou descanso, ou por ocasião da satisfação de outras necessidades fisiológicas, no local do trabalho ou durante este.'),
-    ('4.0.01', u'4.0.01 - Suspeita de doenças profissionais ou do trabalho produzidas pelas condições especiais de trabalho, nos termos do art 169 da CLT.'),
-    ('4.0.02', u'4.0.02 - Constatação de ocorrência ou agravamento de doenças profissionais, através de exames médicos que incluam os definidos na NR 07; ou sendo verificadas alterações que revelem qualquer tipo de disfunção de órgão ou sistema biológico, através dos exame (...)'),
-    ('5.0.01', u'5.0.01 - Outros'),
-)
-
-CHOICES_S2200_TPINSC = (
+CHOICES_S3000_TPINSC = (
     (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S5001_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual (13° salário)'),
+)
+
+CHOICES_S5001_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S5002_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
@@ -2307,182 +1977,15 @@ CHOICES_S5011_CLASSTRIB = (
     ('99', u'99 - Pessoas Jurídicas em Geral'),
 )
 
-TRANSMISSOR_STATUS = (
-    (0, u'Cadastrado'),
-    (1, u'Importado'),
-    (10, u'Assinado'),
-    (11, u'Gerado'),
-    (12, u'Retorno'),
-    (13, u'Erro - Ocorrências'),
-    (14, u'Processado'),
-    (2, u'Duplicado'),
-    (3, u'Erro na validação'),
-    (4, u'Validado'),
-    (5, u'Erro no envio'),
-    (6, u'Aguardando envio'),
-    (7, u'Enviado'),
-    (8, u'Erro na consulta'),
-    (9, u'Consultado'),
+CHOICES_S5011_INDAPURACAO = (
+    (1, u'1 - Mensal'),
+    (2, u'2 - Anual (13° salário)'),
 )
 
-CODIGO_RESPOSTA = (
-    (0, u'Cadastrado'),
-    (101, u'101 - Lote Aguardando Processamento'),
-    (201, u'201 - Lote Processado com Sucesso'),
-    (202, u'202 - Lote Processado com Advertências'),
-    (301, u'301 - Erro Servidor eSocial'),
-    (401, u'401 - Lote Incorreto - Erro preenchimento'),
-    (402, u'402 - Lote Incorreto - schema Inválido'),
-    (403, u'403 - Lote Incorreto - Versão do Schema não permitida'),
-    (404, u'404 - Lote Incorreto - Erro Certificado'),
-    (405, u'405 - Lote Incorreto - Lote nulo ou vazio'),
-    (501, u'501 - Solicitação de Consulta Incorreta - Erro Preenchimento'),
-    (502, u'502 - Solicitação de Consulta Incorreta - Schema Inválido.'),
-    (503, u'503 - Solicitação de Consulta Incorreta - Versão do Schema Não Permitida.'),
-    (504, u'504 - Solicitação de Consulta Incorreta - Erro Certificado.'),
-    (505, u'505 - Solicitação de Consulta Incorreta - Consulta nula ou vazia.'),
-)
-
-CHOICES_S2200_GRAUINSTR = (
-    ('01', u'01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou'),
-    ('02', u'02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular'),
-    ('03', u'03 - 5º ano completo do Ensino Fundamental'),
-    ('04', u'04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série)'),
-    ('05', u'05 - Ensino Fundamental Completo'),
-    ('06', u'06 - Ensino Médio incompleto'),
-    ('07', u'07 - Ensino Médio completo'),
-    ('08', u'08 - Educação Superior incompleta'),
-    ('09', u'09 - Educação Superior completa'),
-    ('10', u'10 - Pós-Graduação completa'),
-    ('11', u'11 - Mestrado completo'),
-    ('12', u'12 - Doutorado completo'),
-)
-
-CHOICES_S2205_GRAUINSTR = (
-    ('01', u'01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou'),
-    ('02', u'02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular'),
-    ('03', u'03 - 5º ano completo do Ensino Fundamental'),
-    ('04', u'04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série)'),
-    ('05', u'05 - Ensino Fundamental Completo'),
-    ('06', u'06 - Ensino Médio incompleto'),
-    ('07', u'07 - Ensino Médio completo'),
-    ('08', u'08 - Educação Superior incompleta'),
-    ('09', u'09 - Educação Superior completa'),
-    ('10', u'10 - Pós-Graduação completa'),
-    ('11', u'11 - Mestrado completo'),
-    ('12', u'12 - Doutorado completo'),
-)
-
-CHOICES_S2206_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2300_GRAUINSTR = (
-    ('01', u'01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou'),
-    ('02', u'02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular'),
-    ('03', u'03 - 5º ano completo do Ensino Fundamental'),
-    ('04', u'04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série)'),
-    ('05', u'05 - Ensino Fundamental Completo'),
-    ('06', u'06 - Ensino Médio incompleto'),
-    ('07', u'07 - Ensino Médio completo'),
-    ('08', u'08 - Educação Superior incompleta'),
-    ('09', u'09 - Educação Superior completa'),
-    ('10', u'10 - Pós-Graduação completa'),
-    ('11', u'11 - Mestrado completo'),
-    ('12', u'12 - Doutorado completo'),
-)
-
-CHOICES_S2399_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2210_TPREGISTRADOR = (
-    (1, u'1 - Empregador'),
-    (2, u'2 - Cooperativa'),
-    (3, u'3 - Sindicato de trabalhadores avulsos não portuários'),
-    (4, u'4 - Órgão Gestor de Mão de Obra'),
-    (5, u'5 - Empregado'),
-    (6, u'6 - Dependente do empregado'),
-    (7, u'7 - Entidade Sindical competente'),
-    (8, u'8 - Médico assistente'),
-    (9, u'9 - Autoridade Pública'),
-)
-
-CHOICES_S1200_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1260_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1270_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2210_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S5001_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+CHOICES_S5011_INDEXISTINFO = (
+    (1, u'1 - Há informações com apuração de contribuições sociais'),
+    (2, u'2 - Há movimento porém sem apuração de contribuições sociais'),
+    (3, u'3 - Não há movimento no período informado em {perApur}.'),
 )
 
 CHOICES_S5011_TPINSC = (
@@ -2496,717 +1999,10 @@ CHOICES_S5011_TPINSC = (
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
-CHOICES_S2200_UNDSALFIXO = (
-    (1, u'1 - Por Hora'),
-    (2, u'2 - Por Dia'),
-    (3, u'3 - Por Semana'),
-    (4, u'4 - Por Quinzena'),
-    (5, u'5 - Por Mês'),
-    (6, u'6 - Por Tarefa'),
-    (7, u'7 - Não aplicável - salário exclusivamente variável'),
-)
-
-CHOICES_S2206_UNDSALFIXO = (
-    (1, u'1 - Por Hora'),
-    (2, u'2 - Por Dia'),
-    (3, u'3 - Por Semana'),
-    (4, u'4 - Por Quinzena'),
-    (5, u'5 - Por Mês'),
-    (6, u'6 - Por Tarefa'),
-    (7, u'7 - Não aplicável - salário exclusivamente variável'),
-)
-
-CHOICES_S2210_TPLOCAL = (
-    (1, u'1 - Estabelecimento do empregador no Brasil'),
-    (2, u'2 - Estabelecimento do empregador no Exterior'),
-    (3, u'3 - Estabelecimento de terceiros onde o empregador presta serviços'),
-    (4, u'4 - Via pública'),
-    (5, u'5 - Área rural'),
-    (6, u'6 - Embarcação'),
-    (9, u'9 - Outros'),
-)
-
-CHOICES_S2399_MTVDESLIGTSV = (
-    ('01', u'01 - Exoneração do Diretor Não Empregado sem justa causa, por deliberação da assembleia, dos sócios cotistas ou da autoridade competente'),
-    ('02', u'02 - Término de Mandato do Diretor Não Empregado que não tenha sido reconduzido ao cargo'),
-    ('03', u'03 - Exoneração a pedido de Diretor Não Empregado'),
-    ('04', u'04 - Exoneração do Diretor Não Empregado por culpa recíproca ou força maior'),
-    ('05', u'05 - Morte do Diretor Não Empregado'),
-    ('06', u'06 - Exoneração do Diretor Não Empregado por falência, encerramento ou supressão de parte da empresa'),
-    ('99', u'99 - Outros'),
-)
-
-OPERACOES_INSALPERIC_APOSENTESP = (
-    (1, u'Insalubridade/Periculosidade - Incluir'),
-    (2, u'Insalubridade/Periculosidade - Alterar'),
-    (3, u'Insalubridade/Periculosidade - Excluir'),
-    (4, u'Aposentadoria Especial - Incluir'),
-    (5, u'Aposentadoria Especial - Alterar'),
-    (6, u'Aposentadoria Especial - Excluir'),
-)
-
-CHOICES_S2200_RACACOR = (
-    (1, u'1 - Branca'),
-    (2, u'2 - Negra'),
-    (3, u'3 - Parda (parda ou declarada como mulata, cabocla, cafuza, mameluca ou mestiça de negro com pessoa de outra cor ou raça)'),
-    (4, u'4 - Amarela (de origem japonesa, chinesa, coreana etc)'),
-    (5, u'5 - Indígena'),
-    (6, u'6 - Não informado'),
-)
-
-CHOICES_S2205_RACACOR = (
-    (1, u'1 - Branca'),
-    (2, u'2 - Negra'),
-    (3, u'3 - Parda (parda ou declarada como mulata, cabocla, cafuza, mameluca ou mestiça de negro com pessoa de outra cor ou raça)'),
-    (4, u'4 - Amarela (de origem japonesa, chinesa, coreana etc)'),
-    (5, u'5 - Indígena'),
-    (6, u'6 - Não informado'),
-)
-
-CHOICES_S2220_TPASO = (
-    (0, u'0 - Admissional'),
-    (1, u'1 - Periódico, conforme planejamento do PCMSO'),
-    (2, u'2 - De retorno ao trabalho'),
-    (3, u'3 - De mudança de função'),
-    (4, u'4 - De monitoração pontual, não enquadrado nos casos anteriores'),
-    (8, u'8 - Demissional'),
-)
-
-CHOICES_S2298_TPREINT = (
-    (1, u'1 - Reintegração por Decisão Judicial'),
-    (2, u'2 - Reintegração por Anistia Legal'),
-    (3, u'3 - Reversão de Servidor Público'),
-    (4, u'4 - Recondução de Servidor Público'),
-    (5, u'5 - Reinclusão de Militar'),
-    (9, u'9 - Outros'),
-)
-
-CHOICES_S2300_RACACOR = (
-    (1, u'1 - Branca'),
-    (2, u'2 - Negra'),
-    (3, u'3 - Parda (parda ou declarada como mulata, cabocla, cafuza, mameluca ou mestiça de negro com pessoa de outra cor ou raça)'),
-    (4, u'4 - Amarela (de origem japonesa, chinesa, coreana etc)'),
-    (5, u'5 - Indígena'),
-    (6, u'6 - Não informado'),
-)
-
-CHOICES_S1000_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1005_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1010_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1020_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1030_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1035_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1040_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1050_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1060_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1070_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1080_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1200_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1202_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1207_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1210_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1250_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1260_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1270_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1280_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1295_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1298_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1299_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1300_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2190_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2200_ESTCIV = (
-    (1, u'1 - Solteiro'),
-    (2, u'2 - Casado'),
-    (3, u'3 - Divorciado'),
-    (4, u'4 - Separado'),
-    (5, u'5 - Viúvo'),
-)
-
-CHOICES_S2200_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2205_ESTCIV = (
-    (1, u'1 - Solteiro'),
-    (2, u'2 - Casado'),
-    (3, u'3 - Divorciado'),
-    (4, u'4 - Separado'),
-    (5, u'5 - Viúvo'),
-)
-
-CHOICES_S2205_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2206_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2210_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2220_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2230_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2240_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2241_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2250_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2260_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2298_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2299_INDCUMPRPARC = (
-    (0, u'0 - Cumprimento total'),
-    (1, u'1 - Cumprimento parcial em razão de obtenção de novo emprego pelo empregado'),
-    (2, u'2 - Cumprimento parcial por iniciativa do empregador'),
-    (3, u'3 - Outras hipóteses de cumprimento parcial do aviso prévio'),
-    (4, u'4 - Aviso prévio indenizado ou não exigível'),
-)
-
-CHOICES_S2299_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2300_ESTCIV = (
-    (1, u'1 - Solteiro'),
-    (2, u'2 - Casado'),
-    (3, u'3 - Divorciado'),
-    (4, u'4 - Separado'),
-    (5, u'5 - Viúvo'),
-)
-
-CHOICES_S2300_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2306_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2399_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S2400_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S3000_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial'),
-)
-
-CHOICES_S1000_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1005_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1010_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1020_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1030_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1035_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1040_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1050_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1060_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1070_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1080_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1202_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1207_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1210_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1250_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1250_TPINSCADQ = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1280_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1295_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1298_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1299_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1300_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2190_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2205_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2220_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2230_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2240_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2241_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2250_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2260_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2298_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2299_PENSALIM = (
-    (0, u'0 - Não existe pensão alimentícia'),
-    (1, u'1 - Percentual de pensão alimentícia'),
-    (2, u'2 - Valor de pensão alimentícia'),
-    (3, u'3 - Percentual e valor de pensão alimentícia'),
-)
-
-CHOICES_S2299_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2300_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2306_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S2400_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S3000_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S5002_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+CHOICES_S5012_INDEXISTINFO = (
+    (1, u'1 - Há informações de Imposto de Renda Retido na Fonte'),
+    (2, u'2 - Há movimento, porém não há informações de Imposto de Renda Retido na Fonte'),
+    (3, u'3 - Não há movimento no período informado em {perApur}.'),
 )
 
 CHOICES_S5012_TPINSC = (
@@ -3214,584 +2010,6 @@ CHOICES_S5012_TPINSC = (
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-OPERACOES = (
-    (1, u'Incluir'),
-    (2, u'Alterar'),
-    (3, u'Excluir'),
-)
-
-CHOICES_S2200_TPREGPREV = (
-    (1, u'1 - Regime Geral da Previdência Social - RGPS'),
-    (2, u'2 - Regime Próprio de Previdência Social - RPPS'),
-    (3, u'3 - Regime de Previdência Social no Exterior'),
-)
-
-CHOICES_S2206_TPREGPREV = (
-    (1, u'1 - Regime Geral da Previdência Social - RGPS'),
-    (2, u'2 - Regime Próprio de Previdência Social - RPPS'),
-    (3, u'3 - Regime de Previdência Social no Exterior'),
-)
-
-CHOICES_S2210_INICIATCAT = (
-    (1, u'1 - Iniciativa do Registrador (identificado em {ideRegistrador})'),
-    (2, u'2 - Ordem judicial'),
-    (3, u'3 - Determinação de órgão fiscalizador'),
-)
-
-CHOICES_S2210_TPCAT = (
-    (1, u'1 - Inicial'),
-    (2, u'2 - Reabertura'),
-    (3, u'3 - Comunicação de Óbito'),
-)
-
-CHOICES_S2260_INDLOCAL = (
-    (0, u'0 - Prestação de serviços no estabelecimento informado no grupo {localTrabGeral} do S-2200 ou S-2206, quando for o caso'),
-    (1, u'1 - Prestação de serviços em apenas um local e fora do estabelecimento informado no grupo {localTrabGeral} do S-2200 ou S-2206, quando for o caso'),
-    (2, u'2 - Prestação de serviços de natureza externa ou em mais de um local'),
-)
-
-CHOICES_S5011_INDEXISTINFO = (
-    (1, u'1 - Há informações com apuração de contribuições sociais'),
-    (2, u'2 - Há movimento porém sem apuração de contribuições sociais'),
-    (3, u'3 - Não há movimento no período informado em {perApur}.'),
-)
-
-CHOICES_S5012_INDEXISTINFO = (
-    (1, u'1 - Há informações de Imposto de Renda Retido na Fonte'),
-    (2, u'2 - Há movimento, porém não há informações de Imposto de Renda Retido na Fonte'),
-    (3, u'3 - Não há movimento no período informado em {perApur}.'),
-)
-
-SIM_NAO = (
-    (0, u'Não'),
-    (1, u'Sim'),
-)
-
-TIPO_AMBIENTE = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1000_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1005_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1010_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1020_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1030_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1035_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1040_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1050_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1060_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1070_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1080_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1200_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
-)
-
-CHOICES_S1200_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S1200_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1202_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
-)
-
-CHOICES_S1202_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S1202_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1207_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
-)
-
-CHOICES_S1207_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S1207_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1210_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S1210_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1250_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S1250_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1260_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S1260_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1270_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S1270_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1280_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
-)
-
-CHOICES_S1280_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S1280_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1295_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
-)
-
-CHOICES_S1295_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1298_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
-)
-
-CHOICES_S1298_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1299_EVTAQPROD = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1299_EVTCOMPROD = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1299_EVTCONTRATAVNP = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1299_EVTINFOCOMPLPER = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1299_EVTPGTOS = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1299_EVTREMUN = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1299_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
-)
-
-CHOICES_S1299_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S1300_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual'),
-)
-
-CHOICES_S1300_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S1300_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2190_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2200_CADINI = (
-    ('N', u'N - Não (Admissão)'),
-    ('S', u'S - Sim (Cadastramento Inicial)'),
-)
-
-CHOICES_S2200_CLAUASSEC = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2200_INDPRIEMPR = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2200_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2200_SEXO = (
-    ('F', u'F - Feminino'),
-    ('M', u'M - Masculino'),
-)
-
-CHOICES_S2200_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2200_TPCONTR = (
-    (1, u'1 - Prazo indeterminado'),
-    (2, u'2 - Prazo determinado'),
-)
-
-CHOICES_S2200_TPREGTRAB = (
-    (1, u'1 - CLT - Consolidação das Leis de Trabalho e legislações trabalhistas específicas'),
-    (2, u'2 - Estatutário'),
-)
-
-CHOICES_S2205_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2205_SEXO = (
-    ('F', u'F - Feminino'),
-    ('M', u'M - Masculino'),
-)
-
-CHOICES_S2205_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2206_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2206_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2206_TPCONTR = (
-    (1, u'1 - Prazo indeterminado'),
-    (2, u'2 - Prazo determinado'),
-)
-
-CHOICES_S2210_INDCATOBITO = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2210_INDCOMUNPOLICIA = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2210_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2210_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2220_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2220_RESASO = (
-    (1, u'1 - Apto'),
-    (2, u'2 - Inapto'),
-)
-
-CHOICES_S2220_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2230_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2230_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2240_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2240_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2241_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2241_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2250_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2250_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2260_INDRETIF = (
-    (1, u'1 - arquivo original'),
-    (2, u'2 - arquivo de retificação'),
-)
-
-CHOICES_S2260_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2298_INDPAGTOJUIZO = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2298_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2298_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2299_INDPAGTOAPI = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2299_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2299_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2300_CADINI = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2300_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2300_NATATIVIDADE = (
-    (1, u'1 - Trabalho Urbano'),
-    (2, u'2 - Trabalho Rural'),
-)
-
-CHOICES_S2300_SEXO = (
-    ('F', u'F - Feminino'),
-    ('M', u'M - Masculino'),
-)
-
-CHOICES_S2300_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2306_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2306_NATATIVIDADE = (
-    (1, u'1 - Trabalho Urbano'),
-    (2, u'2 - Trabalho Rural'),
-)
-
-CHOICES_S2306_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2399_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2399_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2400_INDRETIF = (
-    (1, u'1 - para arquivo original'),
-    (2, u'2 - para arquivo de retificação'),
-)
-
-CHOICES_S2400_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S2400_TPPLANRP = (
-    (1, u'1 - Plano previdenciário ou único'),
-    (2, u'2 - Plano financeiro'),
-)
-
-CHOICES_S3000_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_S5001_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
-)
-
-CHOICES_S5011_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
-)
-
-ESOCIAL_VERSOES = (
-    ('v02_04_02', u'Versão 2.04.02'),
-)
-
-CHOICES_S1210_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-)
-
-CHOICES_S1250_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-)
-
-CHOICES_S1260_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-)
-
-CHOICES_S1270_INDAPURACAO = (
-    (1, u'1 - Mensal'),
 )
 
 class s1000evtInfoEmpregador(models.Model):
@@ -4217,6 +2435,53 @@ class s1060evtTabAmbiente(models.Model):
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
 
+class s1065evtTabEquipamento(models.Model):
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    tpamb = models.IntegerField(choices=CHOICES_S1065_TPAMB)
+    procemi = models.IntegerField(choices=CHOICES_S1065_PROCEMI, default=1)
+    verproc = models.CharField(max_length=20)
+    tpinsc = models.IntegerField()
+    nrinsc = models.CharField(max_length=15)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    validacoes = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    operacao = models.IntegerField(choices=OPERACOES)
+    def __unicode__(self):
+        return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
+    #s1065_evttabequipamento_custom#
+    #s1065_evttabequipamento_custom#
+    def evento(self): return self.__dict__
+    class Meta:
+        db_table = r's1065_evttabequipamento'
+        managed = True
+        ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
+
+
 class s1070evtTabProcesso(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -4266,9 +2531,9 @@ class s1070evtTabProcesso(models.Model):
 
 class s1080evtTabOperPort(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
-    identidade = models.CharField(max_length=36, blank=True, null=True)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1080_TPAMB)
     procemi = models.IntegerField(choices=CHOICES_S1080_PROCEMI, default=1)
     verproc = models.CharField(max_length=20)
@@ -4995,8 +3260,8 @@ class s2200evtAdmissao(models.Model):
     dtnascto = models.DateField()
     codmunic = models.TextField(max_length=7, blank=True, null=True)
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
-    paisnascto = models.CharField(choices=CHOICES_S2200_PAISNASCTO, max_length=3)
-    paisnac = models.CharField(choices=CHOICES_S2200_PAISNAC, max_length=3)
+    paisnascto = models.TextField(max_length=3)
+    paisnac = models.TextField(max_length=3)
     nmmae = models.CharField(max_length=70, blank=True, null=True)
     nmpai = models.CharField(max_length=70, blank=True, null=True)
     matricula = models.CharField(max_length=30)
@@ -5005,8 +3270,9 @@ class s2200evtAdmissao(models.Model):
     nrrecinfprelim = models.CharField(max_length=40, blank=True, null=True)
     cadini = models.CharField(choices=CHOICES_S2200_CADINI, max_length=1)
     codcargo = models.CharField(max_length=30, blank=True, null=True)
+    dtingrcargo = models.DateField(blank=True, null=True)
     codfuncao = models.CharField(max_length=30, blank=True, null=True)
-    codcateg = models.IntegerField()
+    codcateg = models.TextField(max_length=3)
     codcarreira = models.CharField(max_length=30, blank=True, null=True)
     dtingrcarr = models.DateField(blank=True, null=True)
     vrsalfx = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -5041,14 +3307,14 @@ class s2200evtAdmissao(models.Model):
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.nmtrab) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.estciv) + ' - ' + unicode(self.grauinstr) + ' - ' + unicode(self.indpriempr) + ' - ' + unicode(self.nmsoc) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.paisnascto) + ' - ' + unicode(self.paisnac) + ' - ' + unicode(self.nmmae) + ' - ' + unicode(self.nmpai) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.tpregtrab) + ' - ' + unicode(self.tpregprev) + ' - ' + unicode(self.nrrecinfprelim) + ' - ' + unicode(self.cadini) + ' - ' + unicode(self.codcargo) + ' - ' + unicode(self.codfuncao) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.codcarreira) + ' - ' + unicode(self.dtingrcarr) + ' - ' + unicode(self.vrsalfx) + ' - ' + unicode(self.undsalfixo) + ' - ' + unicode(self.dscsalvar) + ' - ' + unicode(self.tpcontr) + ' - ' + unicode(self.dtterm) + ' - ' + unicode(self.clauassec)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.nmtrab) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.estciv) + ' - ' + unicode(self.grauinstr) + ' - ' + unicode(self.indpriempr) + ' - ' + unicode(self.nmsoc) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.paisnascto) + ' - ' + unicode(self.paisnac) + ' - ' + unicode(self.nmmae) + ' - ' + unicode(self.nmpai) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.tpregtrab) + ' - ' + unicode(self.tpregprev) + ' - ' + unicode(self.nrrecinfprelim) + ' - ' + unicode(self.cadini) + ' - ' + unicode(self.codcargo) + ' - ' + unicode(self.dtingrcargo) + ' - ' + unicode(self.codfuncao) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.codcarreira) + ' - ' + unicode(self.dtingrcarr) + ' - ' + unicode(self.vrsalfx) + ' - ' + unicode(self.undsalfixo) + ' - ' + unicode(self.dscsalvar) + ' - ' + unicode(self.tpcontr) + ' - ' + unicode(self.dtterm) + ' - ' + unicode(self.clauassec)
     #s2200_evtadmissao_custom#
     #s2200_evtadmissao_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2200_evtadmissao'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'nmtrab', 'sexo', 'racacor', 'estciv', 'grauinstr', 'indpriempr', 'nmsoc', 'dtnascto', 'codmunic', 'uf', 'paisnascto', 'paisnac', 'nmmae', 'nmpai', 'matricula', 'tpregtrab', 'tpregprev', 'nrrecinfprelim', 'cadini', 'codcargo', 'codfuncao', 'codcateg', 'codcarreira', 'dtingrcarr', 'vrsalfx', 'undsalfixo', 'dscsalvar', 'tpcontr', 'dtterm', 'clauassec']
+        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'nmtrab', 'sexo', 'racacor', 'estciv', 'grauinstr', 'indpriempr', 'nmsoc', 'dtnascto', 'codmunic', 'uf', 'paisnascto', 'paisnac', 'nmmae', 'nmpai', 'matricula', 'tpregtrab', 'tpregprev', 'nrrecinfprelim', 'cadini', 'codcargo', 'dtingrcargo', 'codfuncao', 'codcateg', 'codcarreira', 'dtingrcarr', 'vrsalfx', 'undsalfixo', 'dscsalvar', 'tpcontr', 'dtterm', 'clauassec']
 
 
 class s2205evtAltCadastral(models.Model):
@@ -5075,8 +3341,8 @@ class s2205evtAltCadastral(models.Model):
     dtnascto = models.DateField()
     codmunic = models.TextField(max_length=7, blank=True, null=True)
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
-    paisnascto = models.CharField(max_length=3)
-    paisnac = models.CharField(max_length=3)
+    paisnascto = models.TextField(max_length=3)
+    paisnac = models.TextField(max_length=3)
     nmmae = models.CharField(max_length=70, blank=True, null=True)
     nmpai = models.CharField(max_length=70, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -5136,7 +3402,7 @@ class s2206evtAltContratual(models.Model):
     tpregprev = models.IntegerField(choices=CHOICES_S2206_TPREGPREV)
     codcargo = models.CharField(max_length=30, blank=True, null=True)
     codfuncao = models.CharField(max_length=30, blank=True, null=True)
-    codcateg = models.IntegerField()
+    codcateg = models.TextField(max_length=3)
     codcarreira = models.CharField(max_length=30, blank=True, null=True)
     dtingrcarr = models.DateField(blank=True, null=True)
     vrsalfx = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -5197,6 +3463,8 @@ class s2210evtCAT(models.Model):
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
+    matricula = models.CharField(max_length=30, blank=True, null=True)
+    codcateg = models.TextField(max_length=3, blank=True, null=True)
     dtacid = models.DateField()
     tpacid = models.CharField(choices=CHOICES_S2210_TPACID, max_length=6)
     hracid = models.CharField(max_length=4)
@@ -5210,13 +3478,19 @@ class s2210evtCAT(models.Model):
     observacao = models.CharField(max_length=255, blank=True, null=True)
     tplocal = models.IntegerField(choices=CHOICES_S2210_TPLOCAL)
     dsclocal = models.CharField(max_length=80, blank=True, null=True)
+    codamb = models.CharField(max_length=30, blank=True, null=True)
     dsclograd = models.CharField(max_length=100, blank=True, null=True)
     nrlograd = models.CharField(max_length=10, blank=True, null=True)
+    complemento = models.CharField(max_length=30, blank=True, null=True)
+    bairro = models.CharField(max_length=60, blank=True, null=True)
+    cep = models.CharField(max_length=8, blank=True, null=True)
     codmunic = models.TextField(max_length=7, blank=True, null=True)
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
     cnpjlocalacid = models.CharField(max_length=14, blank=True, null=True)
-    pais = models.CharField(choices=CHOICES_S2210_PAIS, max_length=3, blank=True, null=True)
+    pais = models.TextField(max_length=3, blank=True, null=True)
     codpostal = models.CharField(max_length=12, blank=True, null=True)
+    tpinsc = models.IntegerField()
+    nrinsc = models.CharField(max_length=15)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -5243,21 +3517,21 @@ class s2210evtCAT(models.Model):
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpregistrador) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.dtacid) + ' - ' + unicode(self.tpacid) + ' - ' + unicode(self.hracid) + ' - ' + unicode(self.hrstrabantesacid) + ' - ' + unicode(self.tpcat) + ' - ' + unicode(self.indcatobito) + ' - ' + unicode(self.dtobito) + ' - ' + unicode(self.indcomunpolicia) + ' - ' + unicode(self.codsitgeradora) + ' - ' + unicode(self.iniciatcat) + ' - ' + unicode(self.observacao) + ' - ' + unicode(self.tplocal) + ' - ' + unicode(self.dsclocal) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.cnpjlocalacid) + ' - ' + unicode(self.pais) + ' - ' + unicode(self.codpostal)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpregistrador) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtacid) + ' - ' + unicode(self.tpacid) + ' - ' + unicode(self.hracid) + ' - ' + unicode(self.hrstrabantesacid) + ' - ' + unicode(self.tpcat) + ' - ' + unicode(self.indcatobito) + ' - ' + unicode(self.dtobito) + ' - ' + unicode(self.indcomunpolicia) + ' - ' + unicode(self.codsitgeradora) + ' - ' + unicode(self.iniciatcat) + ' - ' + unicode(self.observacao) + ' - ' + unicode(self.tplocal) + ' - ' + unicode(self.dsclocal) + ' - ' + unicode(self.codamb) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.complemento) + ' - ' + unicode(self.bairro) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.cnpjlocalacid) + ' - ' + unicode(self.pais) + ' - ' + unicode(self.codpostal) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s2210_evtcat_custom#
     #s2210_evtcat_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2210_evtcat'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpregistrador', 'tpinsc', 'nrinsc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'dtacid', 'tpacid', 'hracid', 'hrstrabantesacid', 'tpcat', 'indcatobito', 'dtobito', 'indcomunpolicia', 'codsitgeradora', 'iniciatcat', 'observacao', 'tplocal', 'dsclocal', 'dsclograd', 'nrlograd', 'codmunic', 'uf', 'cnpjlocalacid', 'pais', 'codpostal']
+        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpregistrador', 'tpinsc', 'nrinsc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'dtacid', 'tpacid', 'hracid', 'hrstrabantesacid', 'tpcat', 'indcatobito', 'dtobito', 'indcomunpolicia', 'codsitgeradora', 'iniciatcat', 'observacao', 'tplocal', 'dsclocal', 'codamb', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'cep', 'codmunic', 'uf', 'cnpjlocalacid', 'pais', 'codpostal', 'tpinsc', 'nrinsc']
 
 
 class s2220evtMonit(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
-    identidade = models.CharField(max_length=36, blank=True, null=True)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2220_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2220_TPAMB)
@@ -5268,9 +3542,16 @@ class s2220evtMonit(models.Model):
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
     matricula = models.CharField(max_length=30, blank=True, null=True)
+    codcateg = models.TextField(max_length=3, blank=True, null=True)
+    tpexame = models.IntegerField(choices=CHOICES_S2220_TPEXAME)
     dtaso = models.DateField()
     tpaso = models.IntegerField(choices=CHOICES_S2220_TPASO)
     resaso = models.IntegerField(choices=CHOICES_S2220_RESASO)
+    cpfmed = models.CharField(max_length=11)
+    nismed = models.CharField(max_length=11)
+    nmmed = models.CharField(max_length=70)
+    nrcrm = models.CharField(max_length=8)
+    ufcrm = models.CharField(choices=ESTADOS, max_length=2)
     codcnes = models.CharField(max_length=7, blank=True, null=True)
     frmctt = models.CharField(max_length=100)
     email = models.CharField(max_length=60, blank=True, null=True)
@@ -5301,14 +3582,14 @@ class s2220evtMonit(models.Model):
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.dtaso) + ' - ' + unicode(self.tpaso) + ' - ' + unicode(self.resaso) + ' - ' + unicode(self.codcnes) + ' - ' + unicode(self.frmctt) + ' - ' + unicode(self.email) + ' - ' + unicode(self.nmmed)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.tpexame) + ' - ' + unicode(self.dtaso) + ' - ' + unicode(self.tpaso) + ' - ' + unicode(self.resaso) + ' - ' + unicode(self.cpfmed) + ' - ' + unicode(self.nismed) + ' - ' + unicode(self.nmmed) + ' - ' + unicode(self.nrcrm) + ' - ' + unicode(self.ufcrm) + ' - ' + unicode(self.codcnes) + ' - ' + unicode(self.frmctt) + ' - ' + unicode(self.email) + ' - ' + unicode(self.nmmed)
     #s2220_evtmonit_custom#
     #s2220_evtmonit_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2220_evtmonit'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'dtaso', 'tpaso', 'resaso', 'codcnes', 'frmctt', 'email', 'nmmed']
+        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'tpexame', 'dtaso', 'tpaso', 'resaso', 'cpfmed', 'nismed', 'nmmed', 'nrcrm', 'ufcrm', 'codcnes', 'frmctt', 'email', 'nmmed']
 
 
 class s2230evtAfastTemp(models.Model):
@@ -5326,7 +3607,7 @@ class s2230evtAfastTemp(models.Model):
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
     matricula = models.CharField(max_length=30, blank=True, null=True)
-    codcateg = models.IntegerField(choices=CHOICES_S2230_CODCATEG, blank=True, null=True)
+    codcateg = models.TextField(max_length=3, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -5363,6 +3644,36 @@ class s2230evtAfastTemp(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg']
 
 
+class s2231evtCessao(models.Model):
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    indretif = models.IntegerField(choices=CHOICES_S2231_INDRETIF)
+    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
+    tpamb = models.IntegerField(choices=CHOICES_S2231_TPAMB)
+    procemi = models.IntegerField(choices=CHOICES_S2231_PROCEMI, default=1)
+    verproc = models.CharField(max_length=20)
+    tpinsc = models.IntegerField()
+    nrinsc = models.CharField(max_length=15)
+    cpftrab = models.CharField(max_length=11)
+    nistrab = models.CharField(max_length=11)
+    matricula = models.CharField(max_length=30)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula)
+    #s2231_evtcessao_custom#
+    #s2231_evtcessao_custom#
+    def evento(self): return self.__dict__
+    class Meta:
+        db_table = r's2231_evtcessao'
+        managed = True
+        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula']
+
+
 class s2240evtExpRisco(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -5378,6 +3689,7 @@ class s2240evtExpRisco(models.Model):
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
     matricula = models.CharField(max_length=30, blank=True, null=True)
+    codcateg = models.TextField(max_length=3, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -5405,14 +3717,14 @@ class s2240evtExpRisco(models.Model):
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg)
     #s2240_evtexprisco_custom#
     #s2240_evtexprisco_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2240_evtexprisco'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula']
+        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg']
 
 
 class s2241evtInsApo(models.Model):
@@ -5465,6 +3777,65 @@ class s2241evtInsApo(models.Model):
         db_table = r's2241_evtinsapo'
         managed = True
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula']
+
+
+class s2245evtTreiCap(models.Model):
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    indretif = models.IntegerField(choices=CHOICES_S2245_INDRETIF)
+    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
+    tpamb = models.IntegerField(choices=CHOICES_S2245_TPAMB)
+    procemi = models.IntegerField(choices=CHOICES_S2245_PROCEMI, default=1)
+    verproc = models.CharField(max_length=20)
+    tpinsc = models.IntegerField()
+    nrinsc = models.CharField(max_length=15)
+    cpftrab = models.CharField(max_length=11)
+    nistrab = models.CharField(max_length=11, blank=True, null=True)
+    matricula = models.CharField(max_length=30, blank=True, null=True)
+    codcateg = models.TextField(max_length=3, blank=True, null=True)
+    codtreicap = models.CharField(max_length=4)
+    dttreicap = models.DateField()
+    durtreicap = models.DecimalField(max_digits=15, decimal_places=2, max_length=6)
+    modtreicap = models.IntegerField(choices=CHOICES_S2245_MODTREICAP)
+    tptreicap = models.IntegerField(choices=CHOICES_S2245_TPTREICAP)
+    observacao = models.CharField(max_length=999, blank=True, null=True)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    validacoes = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    operacao = models.IntegerField(choices=OPERACOES_INSALPERIC_APOSENTESP)
+    def __unicode__(self):
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.codtreicap) + ' - ' + unicode(self.dttreicap) + ' - ' + unicode(self.durtreicap) + ' - ' + unicode(self.modtreicap) + ' - ' + unicode(self.tptreicap) + ' - ' + unicode(self.observacao)
+    #s2245_evttreicap_custom#
+    #s2245_evttreicap_custom#
+    def evento(self): return self.__dict__
+    class Meta:
+        db_table = r's2245_evttreicap'
+        managed = True
+        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'codtreicap', 'dttreicap', 'durtreicap', 'modtreicap', 'tptreicap', 'observacao']
 
 
 class s2250evtAvPrevio(models.Model):
@@ -5718,12 +4089,12 @@ class s2300evtTSVInicio(models.Model):
     dtnascto = models.DateField()
     codmunic = models.TextField(max_length=7, blank=True, null=True)
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
-    paisnascto = models.CharField(choices=CHOICES_S2300_PAISNASCTO, max_length=3)
-    paisnac = models.CharField(choices=CHOICES_S2300_PAISNAC, max_length=3)
+    paisnascto = models.TextField(max_length=3)
+    paisnac = models.TextField(max_length=3)
     nmmae = models.CharField(max_length=70, blank=True, null=True)
     nmpai = models.CharField(max_length=70, blank=True, null=True)
     cadini = models.CharField(choices=CHOICES_S2300_CADINI, max_length=1)
-    codcateg = models.IntegerField(choices=CHOICES_S2300_CODCATEG)
+    codcateg = models.TextField(max_length=3)
     dtinicio = models.DateField()
     natatividade = models.IntegerField(choices=CHOICES_S2300_NATATIVIDADE, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -5776,7 +4147,7 @@ class s2306evtTSVAltContr(models.Model):
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
-    codcateg = models.IntegerField(choices=CHOICES_S2306_CODCATEG)
+    codcateg = models.TextField(max_length=3)
     dtalteracao = models.DateField()
     natatividade = models.IntegerField(choices=CHOICES_S2306_NATATIVIDADE, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -5829,7 +4200,7 @@ class s2399evtTSVTermino(models.Model):
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
-    codcateg = models.IntegerField(choices=CHOICES_S2399_CODCATEG)
+    codcateg = models.TextField(max_length=3)
     dtterm = models.DateField()
     mtvdesligtsv = models.CharField(choices=CHOICES_S2399_MTVDESLIGTSV, max_length=2, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -5868,7 +4239,7 @@ class s2399evtTSVTermino(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'codcateg', 'dtterm', 'mtvdesligtsv']
 
 
-class s2400evtCdBenPrRP(models.Model):
+class s2400evtCdBenefIn(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     identidade = models.CharField(max_length=36, blank=True, null=True)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -5881,15 +4252,198 @@ class s2400evtCdBenPrRP(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S2400_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpfbenef = models.CharField(max_length=11)
+    nisbenef = models.CharField(max_length=11, blank=True, null=True)
     nmbenefic = models.CharField(max_length=70)
+    dtinicio = models.DateField()
+    sexo = models.CharField(choices=CHOICES_S2400_SEXO, max_length=1)
+    racacor = models.IntegerField(choices=CHOICES_S2400_RACACOR)
+    estciv = models.IntegerField(choices=CHOICES_S2400_ESTCIV, blank=True, null=True)
+    incfismen = models.CharField(choices=CHOICES_S2400_INCFISMEN, max_length=1)
+    dtincfismen = models.DateField(max_length=1, blank=True, null=True)
     dtnascto = models.DateField()
     codmunic = models.TextField(max_length=7, blank=True, null=True)
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
-    paisnascto = models.CharField(choices=CHOICES_S2400_PAISNASCTO, max_length=3)
-    paisnac = models.CharField(choices=CHOICES_S2400_PAISNAC, max_length=3)
+    paisnascto = models.TextField(max_length=3, blank=True, null=True)
+    paisnac = models.TextField(max_length=3)
     nmmae = models.CharField(max_length=70, blank=True, null=True)
     nmpai = models.CharField(max_length=70, blank=True, null=True)
-    tpplanrp = models.IntegerField(choices=CHOICES_S2400_TPPLANRP)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    validacoes = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    def __unicode__(self):
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nisbenef) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.dtinicio) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.estciv) + ' - ' + unicode(self.incfismen) + ' - ' + unicode(self.dtincfismen) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.paisnascto) + ' - ' + unicode(self.paisnac) + ' - ' + unicode(self.nmmae) + ' - ' + unicode(self.nmpai)
+    #s2400_evtcdbenefin_custom#
+    #s2400_evtcdbenefin_custom#
+    def evento(self): return self.__dict__
+    class Meta:
+        db_table = r's2400_evtcdbenefin'
+        managed = True
+        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'nisbenef', 'nmbenefic', 'dtinicio', 'sexo', 'racacor', 'estciv', 'incfismen', 'dtincfismen', 'dtnascto', 'codmunic', 'uf', 'paisnascto', 'paisnac', 'nmmae', 'nmpai']
+
+
+class s2405evtCdBenefAlt(models.Model):
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    indretif = models.IntegerField(choices=CHOICES_S2405_INDRETIF)
+    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
+    tpamb = models.IntegerField(choices=CHOICES_S2405_TPAMB)
+    procemi = models.IntegerField(choices=CHOICES_S2405_PROCEMI, default=1)
+    verproc = models.CharField(max_length=20)
+    tpinsc = models.IntegerField()
+    nrinsc = models.CharField(max_length=15)
+    cpfbenef = models.CharField(max_length=11)
+    dtalteracao = models.DateField()
+    nisbenef = models.CharField(max_length=11, blank=True, null=True)
+    nmbenefic = models.CharField(max_length=70)
+    sexo = models.CharField(choices=CHOICES_S2405_SEXO, max_length=1)
+    racacor = models.IntegerField(choices=CHOICES_S2405_RACACOR)
+    estciv = models.IntegerField(choices=CHOICES_S2405_ESTCIV, blank=True, null=True)
+    incfismen = models.CharField(choices=CHOICES_S2405_INCFISMEN, max_length=1)
+    dtincfismen = models.DateField(max_length=1, blank=True, null=True)
+    paisnac = models.TextField(max_length=3)
+    nmmae = models.CharField(max_length=70, blank=True, null=True)
+    nmpai = models.CharField(max_length=70, blank=True, null=True)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    validacoes = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    def __unicode__(self):
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.dtalteracao) + ' - ' + unicode(self.nisbenef) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.estciv) + ' - ' + unicode(self.incfismen) + ' - ' + unicode(self.dtincfismen) + ' - ' + unicode(self.paisnac) + ' - ' + unicode(self.nmmae) + ' - ' + unicode(self.nmpai)
+    #s2405_evtcdbenefalt_custom#
+    #s2405_evtcdbenefalt_custom#
+    def evento(self): return self.__dict__
+    class Meta:
+        db_table = r's2405_evtcdbenefalt'
+        managed = True
+        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'dtalteracao', 'nisbenef', 'nmbenefic', 'sexo', 'racacor', 'estciv', 'incfismen', 'dtincfismen', 'paisnac', 'nmmae', 'nmpai']
+
+
+class s2410evtCdBenIn(models.Model):
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    indretif = models.IntegerField(choices=CHOICES_S2410_INDRETIF)
+    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
+    tpamb = models.IntegerField(choices=CHOICES_S2410_TPAMB)
+    procemi = models.IntegerField(choices=CHOICES_S2410_PROCEMI, default=1)
+    verproc = models.CharField(max_length=20)
+    tpinsc = models.IntegerField()
+    nrinsc = models.CharField(max_length=15)
+    cpfbenef = models.CharField(max_length=11)
+    matricula = models.CharField(max_length=30, blank=True, null=True)
+    cnpjorigem = models.CharField(max_length=14, blank=True, null=True)
+    cadini = models.CharField(choices=CHOICES_S2410_CADINI, max_length=1)
+    nrbeneficio = models.CharField(max_length=20)
+    dtinibeneficio = models.DateField()
+    tpbeneficio = models.CharField(max_length=4)
+    vrbeneficio = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+    tpplanrp = models.IntegerField(choices=CHOICES_S2410_TPPLANRP)
+    dsc = models.CharField(max_length=255, blank=True, null=True)
+    inddecjud = models.CharField(choices=CHOICES_S2410_INDDECJUD, max_length=1)
+    indhomologtc = models.CharField(choices=CHOICES_S2410_INDHOMOLOGTC, max_length=1)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    validacoes = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    def __unicode__(self):
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.cnpjorigem) + ' - ' + unicode(self.cadini) + ' - ' + unicode(self.nrbeneficio) + ' - ' + unicode(self.dtinibeneficio) + ' - ' + unicode(self.tpbeneficio) + ' - ' + unicode(self.vrbeneficio) + ' - ' + unicode(self.tpplanrp) + ' - ' + unicode(self.dsc) + ' - ' + unicode(self.inddecjud) + ' - ' + unicode(self.indhomologtc)
+    #s2410_evtcdbenin_custom#
+    #s2410_evtcdbenin_custom#
+    def evento(self): return self.__dict__
+    class Meta:
+        db_table = r's2410_evtcdbenin'
+        managed = True
+        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'matricula', 'cnpjorigem', 'cadini', 'nrbeneficio', 'dtinibeneficio', 'tpbeneficio', 'vrbeneficio', 'tpplanrp', 'dsc', 'inddecjud', 'indhomologtc']
+
+
+class s2416evtCdBenAlt(models.Model):
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    indretif = models.IntegerField(choices=CHOICES_S2416_INDRETIF)
+    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
+    tpamb = models.IntegerField(choices=CHOICES_S2416_TPAMB)
+    procemi = models.IntegerField(choices=CHOICES_S2416_PROCEMI, default=1)
+    verproc = models.CharField(max_length=20)
+    tpinsc = models.IntegerField()
+    nrinsc = models.CharField(max_length=15)
+    cpfbenef = models.CharField(max_length=11)
+    nrbeneficio = models.CharField(max_length=20)
+    dtaltbeneficio = models.DateField()
+    tpbeneficio = models.CharField(max_length=4)
+    tpplanrp = models.IntegerField(choices=CHOICES_S2416_TPPLANRP)
+    dsc = models.CharField(max_length=255, blank=True, null=True)
+    inddecjud = models.CharField(choices=CHOICES_S2416_INDDECJUD, max_length=1)
+    indhomologtc = models.CharField(choices=CHOICES_S2416_INDHOMOLOGTC, max_length=1)
+    indsuspensao = models.CharField(choices=CHOICES_S2416_INDSUSPENSAO, max_length=1)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -5917,14 +4471,67 @@ class s2400evtCdBenPrRP(models.Model):
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.paisnascto) + ' - ' + unicode(self.paisnac) + ' - ' + unicode(self.nmmae) + ' - ' + unicode(self.nmpai) + ' - ' + unicode(self.tpplanrp)
-    #s2400_evtcdbenprrp_custom#
-    #s2400_evtcdbenprrp_custom#
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nrbeneficio) + ' - ' + unicode(self.dtaltbeneficio) + ' - ' + unicode(self.tpbeneficio) + ' - ' + unicode(self.tpplanrp) + ' - ' + unicode(self.dsc) + ' - ' + unicode(self.inddecjud) + ' - ' + unicode(self.indhomologtc) + ' - ' + unicode(self.indsuspensao)
+    #s2416_evtcdbenalt_custom#
+    #s2416_evtcdbenalt_custom#
     def evento(self): return self.__dict__
     class Meta:
-        db_table = r's2400_evtcdbenprrp'
+        db_table = r's2416_evtcdbenalt'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'nmbenefic', 'dtnascto', 'codmunic', 'uf', 'paisnascto', 'paisnac', 'nmmae', 'nmpai', 'tpplanrp']
+        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'nrbeneficio', 'dtaltbeneficio', 'tpbeneficio', 'tpplanrp', 'dsc', 'inddecjud', 'indhomologtc', 'indsuspensao']
+
+
+class s2420evtCdBenTerm(models.Model):
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    indretif = models.IntegerField(choices=CHOICES_S2420_INDRETIF)
+    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
+    tpamb = models.IntegerField(choices=CHOICES_S2420_TPAMB)
+    procemi = models.IntegerField(choices=CHOICES_S2420_PROCEMI, default=1)
+    verproc = models.CharField(max_length=20)
+    tpinsc = models.IntegerField()
+    nrinsc = models.CharField(max_length=15)
+    cpfbenef = models.CharField(max_length=11)
+    nrbeneficio = models.CharField(max_length=20)
+    dttermbeneficio = models.DateField()
+    mtvtermino = models.CharField(max_length=2)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    validacoes = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    operacao = models.IntegerField(choices=OPERACOES)
+    def __unicode__(self):
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nrbeneficio) + ' - ' + unicode(self.dttermbeneficio) + ' - ' + unicode(self.mtvtermino)
+    #s2420_evtcdbenterm_custom#
+    #s2420_evtcdbenterm_custom#
+    def evento(self): return self.__dict__
+    class Meta:
+        db_table = r's2420_evtcdbenterm'
+        managed = True
+        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'nrbeneficio', 'dttermbeneficio', 'mtvtermino']
 
 
 class s3000evtExclusao(models.Model):

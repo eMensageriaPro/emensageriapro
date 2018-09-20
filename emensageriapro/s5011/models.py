@@ -41,17 +41,6 @@ get_model = apps.get_model
 
 
 
-CHOICES_S5011_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
 CHOICES_S5011_ALIQRAT = (
     (1, u'1 - 1'),
     (1, u'1 - 1'),
@@ -78,11 +67,43 @@ CHOICES_S5011_INDCOMERC = (
     (9, u'9 - Comercialização da Produção no Mercado Externo'),
 )
 
+CHOICES_S5011_INDCONSTR = (
+    (0, u'0 - Não é Construtora'),
+    (1, u'1 - Empresa Construtora'),
+)
+
 CHOICES_S5011_INDCOOP = (
     (0, u'0 - Não é cooperativa'),
     (1, u'1 - Cooperativa de Trabalho'),
     (2, u'2 - Cooperativa de Produção'),
     (3, u'3 - Outras Cooperativas'),
+)
+
+CHOICES_S5011_INDINCID = (
+    (1, u'1 - Normal'),
+    (2, u'2 - Ativ. Concomitante'),
+    (9, u'9 - Substituída ou Isenta'),
+)
+
+CHOICES_S5011_INDSUBSTPATR = (
+    (1, u'1 - Integralmente substituída'),
+    (2, u'2 - Parcialmente substituída'),
+)
+
+CHOICES_S5011_INDSUBSTPATROBRA = (
+    (1, u'1 - Contribuição Patronal Substituída'),
+    (2, u'2 - Contribuição Patronal Não Substituída'),
+)
+
+CHOICES_S5011_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
 CHOICES_S5011_TPINSCCONTRAT = (
@@ -99,31 +120,9 @@ CHOICES_S5011_TPINSCPROP = (
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
-CHOICES_S5011_INDINCID = (
-    (1, u'1 - Normal'),
-    (2, u'2 - Ativ. Concomitante'),
-    (9, u'9 - Substituída ou Isenta'),
-)
-
-CHOICES_S5011_INDCONSTR = (
-    (0, u'0 - Não é Construtora'),
-    (1, u'1 - Empresa Construtora'),
-)
-
-CHOICES_S5011_INDSUBSTPATR = (
-    (1, u'1 - Integralmente substituída'),
-    (2, u'2 - Parcialmente substituída'),
-)
-
-CHOICES_S5011_INDSUBSTPATROBRA = (
-    (1, u'1 - Contribuição Patronal Substituída'),
-    (2, u'2 - Contribuição Patronal Não Substituída'),
-)
-
 class s5011basesAquis(models.Model):
     s5011_ideestab = models.ForeignKey('s5011ideEstab',
         related_name='%(class)s_s5011_ideestab')
-    def evento(self): return self.s5011_ideestab.evento()
     indaquis = models.IntegerField(choices=CHOICES_S5011_INDAQUIS)
     vlraquis = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrcpdescpr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -155,7 +154,6 @@ class s5011basesAquis(models.Model):
 class s5011basesAvNPort(models.Model):
     s5011_idelotacao = models.OneToOneField('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
-    def evento(self): return self.s5011_idelotacao.evento()
     vrbccp00 = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrbccp15 = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrbccp20 = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -183,7 +181,6 @@ class s5011basesAvNPort(models.Model):
 class s5011basesComerc(models.Model):
     s5011_ideestab = models.ForeignKey('s5011ideEstab',
         related_name='%(class)s_s5011_ideestab')
-    def evento(self): return self.s5011_ideestab.evento()
     indcomerc = models.IntegerField(choices=CHOICES_S5011_INDCOMERC)
     vrbccompr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrcpsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
@@ -209,9 +206,8 @@ class s5011basesComerc(models.Model):
 class s5011basesRemun(models.Model):
     s5011_idelotacao = models.ForeignKey('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
-    def evento(self): return self.s5011_idelotacao.evento()
     indincid = models.IntegerField(choices=CHOICES_S5011_INDINCID)
-    codcateg = models.IntegerField()
+    codcateg = models.TextField(max_length=3)
     vrbccp00 = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrbccp15 = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrbccp20 = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -246,7 +242,6 @@ class s5011basesRemun(models.Model):
 class s5011dadosOpPort(models.Model):
     s5011_idelotacao = models.OneToOneField('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
-    def evento(self): return self.s5011_idelotacao.evento()
     cnpjopportuario = models.CharField(max_length=14)
     aliqrat = models.IntegerField(choices=CHOICES_S5011_ALIQRAT)
     fap = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
@@ -271,7 +266,6 @@ class s5011dadosOpPort(models.Model):
 class s5011ideEstab(models.Model):
     s5011_evtcs = models.ForeignKey('esocial.s5011evtCS',
         related_name='%(class)s_s5011_evtcs')
-    def evento(self): return self.s5011_evtcs.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S5011_TPINSC)
     nrinsc = models.CharField(max_length=15)
     criado_em = models.DateTimeField(blank=True)
@@ -294,7 +288,6 @@ class s5011ideEstab(models.Model):
 class s5011ideLotacao(models.Model):
     s5011_ideestab = models.ForeignKey('s5011ideEstab',
         related_name='%(class)s_s5011_ideestab')
-    def evento(self): return self.s5011_ideestab.evento()
     codlotacao = models.CharField(max_length=30)
     fpas = models.IntegerField()
     codtercs = models.CharField(max_length=4)
@@ -319,7 +312,6 @@ class s5011ideLotacao(models.Model):
 class s5011infoAtConc(models.Model):
     s5011_infopj = models.OneToOneField('s5011infoPJ',
         related_name='%(class)s_s5011_infopj')
-    def evento(self): return self.s5011_infopj.evento()
     fatormes = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
     fator13 = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
     criado_em = models.DateTimeField(blank=True)
@@ -342,7 +334,6 @@ class s5011infoAtConc(models.Model):
 class s5011infoCPSeg(models.Model):
     s5011_evtcs = models.OneToOneField('esocial.s5011evtCS',
         related_name='%(class)s_s5011_evtcs')
-    def evento(self): return self.s5011_evtcs.evento()
     vrdesccp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrcpseg = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     criado_em = models.DateTimeField(blank=True)
@@ -365,7 +356,6 @@ class s5011infoCPSeg(models.Model):
 class s5011infoCRContrib(models.Model):
     s5011_evtcs = models.ForeignKey('esocial.s5011evtCS',
         related_name='%(class)s_s5011_evtcs')
-    def evento(self): return self.s5011_evtcs.evento()
     tpcr = models.IntegerField()
     vrcr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrcrsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -389,7 +379,6 @@ class s5011infoCRContrib(models.Model):
 class s5011infoCREstab(models.Model):
     s5011_ideestab = models.ForeignKey('s5011ideEstab',
         related_name='%(class)s_s5011_ideestab')
-    def evento(self): return self.s5011_ideestab.evento()
     tpcr = models.IntegerField()
     vrcr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrsuspcr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -413,7 +402,6 @@ class s5011infoCREstab(models.Model):
 class s5011infoComplObra(models.Model):
     s5011_infoestab = models.OneToOneField('s5011infoEstab',
         related_name='%(class)s_s5011_infoestab')
-    def evento(self): return self.s5011_infoestab.evento()
     indsubstpatrobra = models.IntegerField(choices=CHOICES_S5011_INDSUBSTPATROBRA)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -435,7 +423,6 @@ class s5011infoComplObra(models.Model):
 class s5011infoEmprParcial(models.Model):
     s5011_idelotacao = models.OneToOneField('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
-    def evento(self): return self.s5011_idelotacao.evento()
     tpinsccontrat = models.IntegerField(choices=CHOICES_S5011_TPINSCCONTRAT)
     nrinsccontrat = models.CharField(max_length=14)
     tpinscprop = models.IntegerField(choices=CHOICES_S5011_TPINSCPROP)
@@ -460,7 +447,6 @@ class s5011infoEmprParcial(models.Model):
 class s5011infoEstab(models.Model):
     s5011_ideestab = models.OneToOneField('s5011ideEstab',
         related_name='%(class)s_s5011_ideestab')
-    def evento(self): return self.s5011_ideestab.evento()
     cnaeprep = models.IntegerField()
     aliqrat = models.IntegerField(choices=CHOICES_S5011_ALIQRAT)
     fap = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
@@ -485,7 +471,6 @@ class s5011infoEstab(models.Model):
 class s5011infoPJ(models.Model):
     s5011_evtcs = models.OneToOneField('esocial.s5011evtCS',
         related_name='%(class)s_s5011_evtcs')
-    def evento(self): return self.s5011_evtcs.evento()
     indcoop = models.IntegerField(choices=CHOICES_S5011_INDCOOP, blank=True, null=True)
     indconstr = models.IntegerField(choices=CHOICES_S5011_INDCONSTR)
     indsubstpatr = models.IntegerField(choices=CHOICES_S5011_INDSUBSTPATR, blank=True, null=True)
@@ -510,7 +495,6 @@ class s5011infoPJ(models.Model):
 class s5011infoSubstPatrOpPort(models.Model):
     s5011_idelotacao = models.ForeignKey('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
-    def evento(self): return self.s5011_idelotacao.evento()
     cnpjopportuario = models.CharField(max_length=14)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -532,7 +516,6 @@ class s5011infoSubstPatrOpPort(models.Model):
 class s5011infoTercSusp(models.Model):
     s5011_idelotacao = models.ForeignKey('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
-    def evento(self): return self.s5011_idelotacao.evento()
     codterc = models.CharField(max_length=4)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',

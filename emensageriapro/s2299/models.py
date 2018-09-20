@@ -41,18 +41,17 @@ get_model = apps.get_model
 
 
 
-CHOICES_S2299_INFOPERAPUR_TPDEP = (
-    ('01', u'01 - Cônjuge'),
-    ('02', u'02 - Companheiro(a) com o(a) qual tenha filho ou viva há mais de 5 (cinco) anos ou possua Declaração de União Estável'),
-    ('03', u'03 - Filho(a) ou enteado(a)'),
-    ('04', u'04 - Filho(a) ou enteado(a), universitário(a) ou cursando escola técnica de 2º grau'),
-    ('06', u'06 - Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, do(a) qual detenha a guarda judicial'),
-    ('07', u'07 - Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, universitário(a) ou cursando escola técnica de 2° grau, do(a) qual detenha a guarda judicial'),
-    ('09', u'09 - Pais, avós e bisavós'),
-    ('10', u'10 - Menor pobre do qual detenha a guarda judicial'),
-    ('11', u'11 - A pessoa absolutamente incapaz, da qual seja tutor ou curador'),
-    ('12', u'12 - Ex-cônjuge'),
-    ('99', u'99 - Agregado/Outros'),
+CHOICES_S2299_INFOPERANT_GRAUEXP = (
+    (1, u'1 - Não ensejador de aposentadoria especial'),
+    (2, u'2 - Ensejador de Aposentadoria Especial - FAE15_12% (15 anos de contribuição e alíquota de 12%)'),
+    (3, u'3 - Ensejador de Aposentadoria Especial - FAE20_09% (20 anos de contribuição e alíquota de 9%)'),
+    (4, u'4 - Ensejador de Aposentadoria Especial - FAE25_06% (25 anos de contribuição e alíquota de 6%)'),
+)
+
+CHOICES_S2299_INFOPERANT_INDSIMPLES = (
+    (1, u'1 - Contribuição Substituída Integralmente'),
+    (2, u'2 - Contribuição não substituída'),
+    (3, u'3 - Contribuição não substituída concomitante com contribuição substituída'),
 )
 
 CHOICES_S2299_INFOPERANT_TPACCONV = (
@@ -61,13 +60,6 @@ CHOICES_S2299_INFOPERANT_TPACCONV = (
     ('C', u'C - Convenção Coletiva de Trabalho'),
     ('D', u'D - Sentença Normativa - Dissídio'),
     ('E', u'E - Conversão de Licença Saúde em Acidente de Trabalho'),
-)
-
-CHOICES_S2299_INFOPERANT_GRAUEXP = (
-    (1, u'1 - Não ensejador de aposentadoria especial'),
-    (2, u'2 - Ensejador de Aposentadoria Especial - FAE15_12% (15 anos de contribuição e alíquota de 12%)'),
-    (3, u'3 - Ensejador de Aposentadoria Especial - FAE20_09% (20 anos de contribuição e alíquota de 9%)'),
-    (4, u'4 - Ensejador de Aposentadoria Especial - FAE25_06% (25 anos de contribuição e alíquota de 6%)'),
 )
 
 CHOICES_S2299_INFOPERANT_TPINSC = (
@@ -84,11 +76,37 @@ CHOICES_S2299_INFOPERAPUR_GRAUEXP = (
     (4, u'4 - Ensejador de Aposentadoria Especial - FAE25_06% (25 anos de contribuição e alíquota de 6%)'),
 )
 
+CHOICES_S2299_INFOPERAPUR_INDSIMPLES = (
+    (1, u'1 - Contribuição Substituída Integralmente'),
+    (2, u'2 - Contribuição não substituída'),
+    (3, u'3 - Contribuição não substituída concomitante com contribuição substituída'),
+)
+
+CHOICES_S2299_INFOPERAPUR_TPDEP = (
+    ('01', u'01 - Cônjuge'),
+    ('02', u'02 - Companheiro(a) com o(a) qual tenha filho ou viva há mais de 5 (cinco) anos ou possua Declaração de União Estável'),
+    ('03', u'03 - Filho(a) ou enteado(a)'),
+    ('04', u'04 - Filho(a) ou enteado(a), universitário(a) ou cursando escola técnica de 2º grau'),
+    ('06', u'06 - Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, do(a) qual detenha a guarda judicial'),
+    ('07', u'07 - Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, universitário(a) ou cursando escola técnica de 2° grau, do(a) qual detenha a guarda judicial'),
+    ('09', u'09 - Pais, avós e bisavós'),
+    ('10', u'10 - Menor pobre do qual detenha a guarda judicial'),
+    ('11', u'11 - A pessoa absolutamente incapaz, da qual seja tutor ou curador'),
+    ('12', u'12 - Ex-cônjuge'),
+    ('99', u'99 - Agregado/Outros'),
+)
+
 CHOICES_S2299_INFOPERAPUR_TPINSC = (
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2299_INFOTRABINTERM_INDMV = (
+    (1, u'1 - O declarante aplica a alíquota de desconto do segurado sobre a remuneração por ele informada (o percentual da alíquota será obtido considerando a remuneração total do trabalhador)'),
+    (2, u'2 - O declarante aplica a alíquota de desconto do segurado sobre a diferença entre o limite máximo do salário de contribuição e a remuneração de outra(s) empresa(s) para as quais o trabalhador informou que houve o desconto'),
+    (3, u'3 - O declarante não realiza desconto do segurado, uma vez que houve desconto sobre o limite máximo de salário de contribuição em outra(s) empresa(s)'),
 )
 
 CHOICES_S2299_INFOTRABINTERM_TPINSC = (
@@ -100,33 +118,14 @@ CHOICES_S2299_INFOTRABINTERM_TPINSC = (
 
 CHOICES_S2299_INFOTRABINTERM_TPTRIB = (
     (2, u'2 - Contribuições sociais do trabalhador'),
-    (3, u'3 - IRRF'),
     (3, u'3 - FGTS'),
+    (3, u'3 - IRRF'),
     (4, u'4 - Contribuição sindical'),
-)
-
-CHOICES_S2299_INFOPERANT_INDSIMPLES = (
-    (1, u'1 - Contribuição Substituída Integralmente'),
-    (2, u'2 - Contribuição não substituída'),
-    (3, u'3 - Contribuição não substituída concomitante com contribuição substituída'),
-)
-
-CHOICES_S2299_INFOPERAPUR_INDSIMPLES = (
-    (1, u'1 - Contribuição Substituída Integralmente'),
-    (2, u'2 - Contribuição não substituída'),
-    (3, u'3 - Contribuição não substituída concomitante com contribuição substituída'),
-)
-
-CHOICES_S2299_INFOTRABINTERM_INDMV = (
-    (1, u'1 - O declarante aplica a alíquota de desconto do segurado sobre a remuneração por ele informada (o percentual da alíquota será obtido considerando a remuneração total do trabalhador)'),
-    (2, u'2 - O declarante aplica a alíquota de desconto do segurado sobre a diferença entre o limite máximo do salário de contribuição e a remuneração de outra(s) empresa(s) para as quais o trabalhador informou que houve o desconto'),
-    (3, u'3 - O declarante não realiza desconto do segurado, uma vez que houve desconto sobre o limite máximo de salário de contribuição em outra(s) empresa(s)'),
 )
 
 class s2299dmDev(models.Model):
     s2299_verbasresc = models.ForeignKey('s2299verbasResc',
         related_name='%(class)s_s2299_verbasresc')
-    def evento(self): return self.s2299_verbasresc.evento()
     idedmdev = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -148,7 +147,6 @@ class s2299dmDev(models.Model):
 class s2299infoPerAnt(models.Model):
     s2299_dmdev = models.OneToOneField('s2299dmDev',
         related_name='%(class)s_s2299_dmdev')
-    def evento(self): return self.s2299_dmdev.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -169,7 +167,6 @@ class s2299infoPerAnt(models.Model):
 class s2299infoPerAntdetVerbas(models.Model):
     s2299_infoperant_ideestablot = models.ForeignKey('s2299infoPerAntideEstabLot',
         related_name='%(class)s_s2299_infoperant_ideestablot')
-    def evento(self): return self.s2299_infoperant_ideestablot.evento()
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
     qtdrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=6, blank=True, null=True)
@@ -196,7 +193,6 @@ class s2299infoPerAntdetVerbas(models.Model):
 class s2299infoPerAntideADC(models.Model):
     s2299_infoperant = models.ForeignKey('s2299infoPerAnt',
         related_name='%(class)s_s2299_infoperant')
-    def evento(self): return self.s2299_infoperant.evento()
     dtacconv = models.DateField()
     tpacconv = models.CharField(choices=CHOICES_S2299_INFOPERANT_TPACCONV, max_length=1)
     compacconv = models.CharField(max_length=7, blank=True, null=True)
@@ -222,7 +218,6 @@ class s2299infoPerAntideADC(models.Model):
 class s2299infoPerAntideEstabLot(models.Model):
     s2299_infoperant_ideperiodo = models.ForeignKey('s2299infoPerAntidePeriodo',
         related_name='%(class)s_s2299_infoperant_ideperiodo')
-    def evento(self): return self.s2299_infoperant_ideperiodo.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S2299_INFOPERANT_TPINSC)
     nrinsc = models.CharField(max_length=15)
     codlotacao = models.CharField(max_length=30)
@@ -246,7 +241,6 @@ class s2299infoPerAntideEstabLot(models.Model):
 class s2299infoPerAntidePeriodo(models.Model):
     s2299_infoperant_ideadc = models.ForeignKey('s2299infoPerAntideADC',
         related_name='%(class)s_s2299_infoperant_ideadc')
-    def evento(self): return self.s2299_infoperant_ideadc.evento()
     perref = models.CharField(max_length=7)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -268,7 +262,6 @@ class s2299infoPerAntidePeriodo(models.Model):
 class s2299infoPerAntinfoAgNocivo(models.Model):
     s2299_infoperant_ideestablot = models.OneToOneField('s2299infoPerAntideEstabLot',
         related_name='%(class)s_s2299_infoperant_ideestablot')
-    def evento(self): return self.s2299_infoperant_ideestablot.evento()
     grauexp = models.IntegerField(choices=CHOICES_S2299_INFOPERANT_GRAUEXP)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -290,7 +283,6 @@ class s2299infoPerAntinfoAgNocivo(models.Model):
 class s2299infoPerAntinfoSimples(models.Model):
     s2299_infoperant_ideestablot = models.OneToOneField('s2299infoPerAntideEstabLot',
         related_name='%(class)s_s2299_infoperant_ideestablot')
-    def evento(self): return self.s2299_infoperant_ideestablot.evento()
     indsimples = models.IntegerField(choices=CHOICES_S2299_INFOPERANT_INDSIMPLES)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -312,7 +304,6 @@ class s2299infoPerAntinfoSimples(models.Model):
 class s2299infoPerApur(models.Model):
     s2299_dmdev = models.OneToOneField('s2299dmDev',
         related_name='%(class)s_s2299_dmdev')
-    def evento(self): return self.s2299_dmdev.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -333,7 +324,6 @@ class s2299infoPerApur(models.Model):
 class s2299infoPerApurdetOper(models.Model):
     s2299_infoperapur_infosaudecolet = models.ForeignKey('s2299infoPerApurinfoSaudeColet',
         related_name='%(class)s_s2299_infoperapur_infosaudecolet')
-    def evento(self): return self.s2299_infoperapur_infosaudecolet.evento()
     cnpjoper = models.CharField(max_length=14)
     regans = models.CharField(max_length=6)
     vrpgtit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -357,7 +347,6 @@ class s2299infoPerApurdetOper(models.Model):
 class s2299infoPerApurdetPlano(models.Model):
     s2299_infoperapur_detoper = models.ForeignKey('s2299infoPerApurdetOper',
         related_name='%(class)s_s2299_infoperapur_detoper')
-    def evento(self): return self.s2299_infoperapur_detoper.evento()
     tpdep = models.CharField(choices=CHOICES_S2299_INFOPERAPUR_TPDEP, max_length=2)
     cpfdep = models.CharField(max_length=11, blank=True, null=True)
     nmdep = models.CharField(max_length=70)
@@ -383,7 +372,6 @@ class s2299infoPerApurdetPlano(models.Model):
 class s2299infoPerApurdetVerbas(models.Model):
     s2299_infoperapur_ideestablot = models.ForeignKey('s2299infoPerApurideEstabLot',
         related_name='%(class)s_s2299_infoperapur_ideestablot')
-    def evento(self): return self.s2299_infoperapur_ideestablot.evento()
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
     qtdrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=6, blank=True, null=True)
@@ -410,7 +398,6 @@ class s2299infoPerApurdetVerbas(models.Model):
 class s2299infoPerApurideEstabLot(models.Model):
     s2299_infoperapur = models.ForeignKey('s2299infoPerApur',
         related_name='%(class)s_s2299_infoperapur')
-    def evento(self): return self.s2299_infoperapur.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S2299_INFOPERAPUR_TPINSC)
     nrinsc = models.CharField(max_length=15)
     codlotacao = models.CharField(max_length=30)
@@ -434,7 +421,6 @@ class s2299infoPerApurideEstabLot(models.Model):
 class s2299infoPerApurinfoAgNocivo(models.Model):
     s2299_infoperapur_ideestablot = models.OneToOneField('s2299infoPerApurideEstabLot',
         related_name='%(class)s_s2299_infoperapur_ideestablot')
-    def evento(self): return self.s2299_infoperapur_ideestablot.evento()
     grauexp = models.IntegerField(choices=CHOICES_S2299_INFOPERAPUR_GRAUEXP)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -456,7 +442,6 @@ class s2299infoPerApurinfoAgNocivo(models.Model):
 class s2299infoPerApurinfoSaudeColet(models.Model):
     s2299_infoperapur_ideestablot = models.OneToOneField('s2299infoPerApurideEstabLot',
         related_name='%(class)s_s2299_infoperapur_ideestablot')
-    def evento(self): return self.s2299_infoperapur_ideestablot.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -477,7 +462,6 @@ class s2299infoPerApurinfoSaudeColet(models.Model):
 class s2299infoPerApurinfoSimples(models.Model):
     s2299_infoperapur_ideestablot = models.OneToOneField('s2299infoPerApurideEstabLot',
         related_name='%(class)s_s2299_infoperapur_ideestablot')
-    def evento(self): return self.s2299_infoperapur_ideestablot.evento()
     indsimples = models.IntegerField(choices=CHOICES_S2299_INFOPERAPUR_INDSIMPLES)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -499,7 +483,6 @@ class s2299infoPerApurinfoSimples(models.Model):
 class s2299infoTrabInterm(models.Model):
     s2299_dmdev = models.ForeignKey('s2299dmDev',
         related_name='%(class)s_s2299_dmdev')
-    def evento(self): return self.s2299_dmdev.evento()
     codconv = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -521,7 +504,6 @@ class s2299infoTrabInterm(models.Model):
 class s2299infoTrabIntermconsigFGTS(models.Model):
     s2299_evtdeslig = models.ForeignKey('esocial.s2299evtDeslig',
         related_name='%(class)s_s2299_evtdeslig')
-    def evento(self): return self.s2299_evtdeslig.evento()
     insconsig = models.CharField(max_length=5)
     nrcontr = models.CharField(max_length=40)
     criado_em = models.DateTimeField(blank=True)
@@ -544,7 +526,6 @@ class s2299infoTrabIntermconsigFGTS(models.Model):
 class s2299infoTrabInterminfoMV(models.Model):
     s2299_verbasresc = models.OneToOneField('s2299verbasResc',
         related_name='%(class)s_s2299_verbasresc')
-    def evento(self): return self.s2299_verbasresc.evento()
     indmv = models.IntegerField(choices=CHOICES_S2299_INFOTRABINTERM_INDMV)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -566,7 +547,6 @@ class s2299infoTrabInterminfoMV(models.Model):
 class s2299infoTrabIntermprocCS(models.Model):
     s2299_verbasresc = models.OneToOneField('s2299verbasResc',
         related_name='%(class)s_s2299_verbasresc')
-    def evento(self): return self.s2299_verbasresc.evento()
     nrprocjud = models.CharField(max_length=20)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -588,7 +568,6 @@ class s2299infoTrabIntermprocCS(models.Model):
 class s2299infoTrabIntermprocJudTrab(models.Model):
     s2299_verbasresc = models.ForeignKey('s2299verbasResc',
         related_name='%(class)s_s2299_verbasresc')
-    def evento(self): return self.s2299_verbasresc.evento()
     tptrib = models.IntegerField(choices=CHOICES_S2299_INFOTRABINTERM_TPTRIB)
     nrprocjud = models.CharField(max_length=20)
     codsusp = models.IntegerField(blank=True, null=True)
@@ -612,7 +591,6 @@ class s2299infoTrabIntermprocJudTrab(models.Model):
 class s2299infoTrabIntermquarentena(models.Model):
     s2299_evtdeslig = models.OneToOneField('esocial.s2299evtDeslig',
         related_name='%(class)s_s2299_evtdeslig')
-    def evento(self): return self.s2299_evtdeslig.evento()
     dtfimquar = models.DateField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -634,10 +612,9 @@ class s2299infoTrabIntermquarentena(models.Model):
 class s2299infoTrabIntermremunOutrEmpr(models.Model):
     s2299_infotrabinterm_infomv = models.ForeignKey('s2299infoTrabInterminfoMV',
         related_name='%(class)s_s2299_infotrabinterm_infomv')
-    def evento(self): return self.s2299_infotrabinterm_infomv.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S2299_INFOTRABINTERM_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    codcateg = models.IntegerField()
+    codcateg = models.TextField(max_length=3)
     vlrremunoe = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -659,7 +636,6 @@ class s2299infoTrabIntermremunOutrEmpr(models.Model):
 class s2299observacoes(models.Model):
     s2299_evtdeslig = models.ForeignKey('esocial.s2299evtDeslig',
         related_name='%(class)s_s2299_evtdeslig')
-    def evento(self): return self.s2299_evtdeslig.evento()
     observacao = models.CharField(max_length=255)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -681,7 +657,6 @@ class s2299observacoes(models.Model):
 class s2299sucessaoVinc(models.Model):
     s2299_evtdeslig = models.OneToOneField('esocial.s2299evtDeslig',
         related_name='%(class)s_s2299_evtdeslig')
-    def evento(self): return self.s2299_evtdeslig.evento()
     cnpjsucessora = models.CharField(max_length=14)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -703,7 +678,6 @@ class s2299sucessaoVinc(models.Model):
 class s2299transfTit(models.Model):
     s2299_evtdeslig = models.OneToOneField('esocial.s2299evtDeslig',
         related_name='%(class)s_s2299_evtdeslig')
-    def evento(self): return self.s2299_evtdeslig.evento()
     cpfsubstituto = models.CharField(max_length=11)
     dtnascto = models.DateField()
     criado_em = models.DateTimeField(blank=True)
@@ -726,7 +700,6 @@ class s2299transfTit(models.Model):
 class s2299verbasResc(models.Model):
     s2299_evtdeslig = models.OneToOneField('esocial.s2299evtDeslig',
         related_name='%(class)s_s2299_evtdeslig')
-    def evento(self): return self.s2299_evtdeslig.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)

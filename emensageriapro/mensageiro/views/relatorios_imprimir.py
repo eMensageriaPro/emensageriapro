@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -48,6 +49,8 @@ from emensageriapro.mensageiro.models import *
 from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
 import base64
 
+
+@login_required
 def imprimir(request, hash):
     for_print = 0
     if slug:
@@ -60,7 +63,7 @@ def imprimir(request, hash):
         db_slug = 'default'
         conta = None
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url(hash)
         relatorios_id = int(dict_hash['id'])
         for_print = 1
@@ -90,11 +93,11 @@ def imprimir(request, hash):
             listagem += listagem_temp
         context = {
             'relatorio': relatorio,
-            
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -108,10 +111,10 @@ def imprimir(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

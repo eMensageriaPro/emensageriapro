@@ -49,7 +49,6 @@ CHOICES_S3000_INDAPURACAO = (
 class s3000ideFolhaPagto(models.Model):
     s3000_evtexclusao = models.OneToOneField('esocial.s3000evtExclusao',
         related_name='%(class)s_s3000_evtexclusao')
-    def evento(self): return self.s3000_evtexclusao.evento()
     indapuracao = models.IntegerField(choices=CHOICES_S3000_INDAPURACAO)
     perapur = models.CharField(max_length=7)
     criado_em = models.DateTimeField(blank=True)
@@ -72,7 +71,6 @@ class s3000ideFolhaPagto(models.Model):
 class s3000ideTrabalhador(models.Model):
     s3000_evtexclusao = models.OneToOneField('esocial.s3000evtExclusao',
         related_name='%(class)s_s3000_evtexclusao')
-    def evento(self): return self.s3000_evtexclusao.evento()
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)

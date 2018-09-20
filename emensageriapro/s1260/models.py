@@ -41,6 +41,14 @@ get_model = apps.get_model
 
 
 
+CHOICES_S1260_INDCOMERC = (
+    (2, u'2 - Comercialização da Produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por Produtor Rural Pessoa Física, inclusive por Segurado Especial ou por Pessoa Física não produtor rural'),
+    (3, u'3 - Comercialização da Produção por Prod. Rural PF/Seg. Especia - Vendas a PJ (exceto Entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a Intermediário PF'),
+    (7, u'7 - Comercialização da Produção Isenta de acordo com a Lei no 13.606/2018'),
+    (8, u'8 - Comercialização da Produção da Pessoa Física/Segurado Especial para Entidade inscrita no Programa de Aquisição de Alimentos - PAA'),
+    (9, u'9 - Comercialização da Produção no Mercado Externo'),
+)
+
 CHOICES_S1260_TPINSC = (
     (1, u'1 - CNPJ'),
     (1, u'1 - CNPJ'),
@@ -52,14 +60,6 @@ CHOICES_S1260_TPINSC = (
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
-CHOICES_S1260_INDCOMERC = (
-    (2, u'2 - Comercialização da Produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por Produtor Rural Pessoa Física, inclusive por Segurado Especial ou por Pessoa Física não produtor rural'),
-    (3, u'3 - Comercialização da Produção por Prod. Rural PF/Seg. Especia - Vendas a PJ (exceto Entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a Intermediário PF'),
-    (7, u'7 - Comercialização da Produção Isenta de acordo com a Lei no 13.606/2018'),
-    (8, u'8 - Comercialização da Produção da Pessoa Física/Segurado Especial para Entidade inscrita no Programa de Aquisição de Alimentos - PAA'),
-    (9, u'9 - Comercialização da Produção no Mercado Externo'),
-)
-
 CHOICES_S1260_TPPROC = (
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial'),
@@ -68,7 +68,6 @@ CHOICES_S1260_TPPROC = (
 class s1260ideAdquir(models.Model):
     s1260_tpcomerc = models.ForeignKey('s1260tpComerc',
         related_name='%(class)s_s1260_tpcomerc')
-    def evento(self): return self.s1260_tpcomerc.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S1260_TPINSC)
     nrinsc = models.CharField(max_length=15)
     vrcomerc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -92,7 +91,6 @@ class s1260ideAdquir(models.Model):
 class s1260infoProcJud(models.Model):
     s1260_tpcomerc = models.ForeignKey('s1260tpComerc',
         related_name='%(class)s_s1260_tpcomerc')
-    def evento(self): return self.s1260_tpcomerc.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1260_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()
@@ -119,7 +117,6 @@ class s1260infoProcJud(models.Model):
 class s1260nfs(models.Model):
     s1260_ideadquir = models.ForeignKey('s1260ideAdquir',
         related_name='%(class)s_s1260_ideadquir')
-    def evento(self): return self.s1260_ideadquir.evento()
     serie = models.CharField(max_length=5, blank=True, null=True)
     nrdocto = models.CharField(max_length=20)
     dtemisnf = models.DateField()
@@ -147,7 +144,6 @@ class s1260nfs(models.Model):
 class s1260tpComerc(models.Model):
     s1260_evtcomprod = models.ForeignKey('esocial.s1260evtComProd',
         related_name='%(class)s_s1260_evtcomprod')
-    def evento(self): return self.s1260_evtcomprod.evento()
     indcomerc = models.IntegerField(choices=CHOICES_S1260_INDCOMERC)
     vrtotcom = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     criado_em = models.DateTimeField(blank=True)

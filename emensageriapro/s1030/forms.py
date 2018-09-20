@@ -98,6 +98,10 @@ class form_s1030_alteracao_cargopublico(forms.ModelForm):
         
         self.fields['sitcargo'].widget.attrs['required'] = True
         
+        self.fields['dtlei'].widget.attrs['required'] = True
+        
+        self.fields['nrlei'].widget.attrs['required'] = True
+        
         self.fields['dedicexcl'].widget.attrs['required'] = True
         
         self.fields['contagemesp'].widget.attrs['required'] = True
@@ -153,6 +157,10 @@ class form_s1030_inclusao_cargopublico(forms.ModelForm):
         super (form_s1030_inclusao_cargopublico,self ).__init__(*args,**kwargs)
         
         self.fields['sitcargo'].widget.attrs['required'] = True
+        
+        self.fields['dtlei'].widget.attrs['required'] = True
+        
+        self.fields['nrlei'].widget.attrs['required'] = True
         
         self.fields['dedicexcl'].widget.attrs['required'] = True
         

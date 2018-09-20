@@ -140,6 +140,20 @@ url(r'^s1005-inclusao-infopcd/salvar/(?P<hash>.*)/$',
 
 
 
+url(r'^s1005-inclusao-infosst/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1005.views.s1005_inclusao_infosst.apagar', 
+        name='s1005_inclusao_infosst_apagar'),
+
+url(r'^s1005-inclusao-infosst/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1005.views.s1005_inclusao_infosst.listar', 
+        name='s1005_inclusao_infosst'),
+
+url(r'^s1005-inclusao-infosst/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1005.views.s1005_inclusao_infosst.salvar', 
+        name='s1005_inclusao_infosst_salvar'),
+
+
+
 url(r'^s1005-alteracao/apagar/(?P<hash>.*)/$', 
         'emensageriapro.s1005.views.s1005_alteracao.apagar', 
         name='s1005_alteracao_apagar'),
@@ -166,6 +180,10 @@ url(r'^s1005-alteracao-procadmjudrat/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1005.views.s1005_alteracao_procadmjudrat.salvar', 
         name='s1005_alteracao_procadmjudrat_salvar'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1005-alteracao-procadmjudfap/apagar/(?P<hash>.*)/$', 
@@ -180,10 +198,6 @@ url(r'^s1005-alteracao-procadmjudfap/salvar/(?P<hash>.*)/$',
         'emensageriapro.s1005.views.s1005_alteracao_procadmjudfap.salvar', 
         name='s1005_alteracao_procadmjudfap_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1005-alteracao-infocaepf/apagar/(?P<hash>.*)/$', 
@@ -253,6 +267,20 @@ url(r'^s1005-alteracao-novavalidade/listar/(?P<hash>.*)/$',
 url(r'^s1005-alteracao-novavalidade/salvar/(?P<hash>.*)/$', 
         'emensageriapro.s1005.views.s1005_alteracao_novavalidade.salvar', 
         name='s1005_alteracao_novavalidade_salvar'),
+
+
+
+url(r'^s1005-alteracao-infosst/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s1005.views.s1005_alteracao_infosst.apagar', 
+        name='s1005_alteracao_infosst_apagar'),
+
+url(r'^s1005-alteracao-infosst/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s1005.views.s1005_alteracao_infosst.listar', 
+        name='s1005_alteracao_infosst'),
+
+url(r'^s1005-alteracao-infosst/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s1005.views.s1005_alteracao_infosst.salvar', 
+        name='s1005_alteracao_infosst_salvar'),
 
 
 

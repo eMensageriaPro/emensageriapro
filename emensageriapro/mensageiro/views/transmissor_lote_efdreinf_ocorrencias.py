@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -51,53 +52,12 @@ import base64
 #IMPORTACOES
 
 
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.session['usuario_id']
-        dict_hash = get_hash_url( hash )
-        transmissor_lote_efdreinf_ocorrencias_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='transmissor_lote_efdreinf_ocorrencias')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    transmissor_lote_efdreinf_ocorrencias = get_object_or_404(TransmissorLoteEfdreinfOcorrencias.objects.using( db_slug ), excluido = False, id = transmissor_lote_efdreinf_ocorrencias_id)
-    if request.method == 'POST':
-        TransmissorLoteEfdreinfOcorrencias.objects.using( db_slug ).filter(id = transmissor_lote_efdreinf_ocorrencias_id).update(excluido = True)
-        #transmissor_lote_efdreinf_ocorrencias_apagar_custom
-        #transmissor_lote_efdreinf_ocorrencias_apagar_custom
-        messages.success(request, 'Apagado com sucesso!')
-        if request.session['retorno_pagina']== 'transmissor_lote_efdreinf_ocorrencias_salvar':
-            return redirect('transmissor_lote_efdreinf_ocorrencias', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-        
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-        
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 'transmissor_lote_efdreinf_ocorrencias_apagar.html', context)
-
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']
@@ -154,18 +114,18 @@ def listar(request, hash):
             filtrar = True
             transmissor_lote_efdreinf_ocorrencias_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-   
+
         transmissor_lote_efdreinf_lista = TransmissorLoteEfdreinf.objects.using( db_slug ).filter(excluido = False).all()
         #transmissor_lote_efdreinf_ocorrencias_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'transmissor_lote_efdreinf_ocorrencias'
         context = {
             'transmissor_lote_efdreinf_ocorrencias_lista': transmissor_lote_efdreinf_ocorrencias_lista,
-            
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -175,7 +135,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-       
+  
             'transmissor_lote_efdreinf_lista': transmissor_lote_efdreinf_lista,
         }
         if for_print in (0,1):
@@ -219,10 +179,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -230,10 +190,11 @@ def listar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         transmissor_lote_efdreinf_ocorrencias_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
@@ -312,12 +273,12 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'transmissor_lote_efdreinf_ocorrencias_id': int(transmissor_lote_efdreinf_ocorrencias_id),
             'usuario': usuario,
-            
+       
             'hash': hash,
             #[VARIAVEIS_SECUNDARIAS]
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -361,14 +322,57 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
+
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        transmissor_lote_efdreinf_ocorrencias_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='transmissor_lote_efdreinf_ocorrencias')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    transmissor_lote_efdreinf_ocorrencias = get_object_or_404(TransmissorLoteEfdreinfOcorrencias.objects.using( db_slug ), excluido = False, id = transmissor_lote_efdreinf_ocorrencias_id)
+    if request.method == 'POST':
+        TransmissorLoteEfdreinfOcorrencias.objects.using( db_slug ).filter(id = transmissor_lote_efdreinf_ocorrencias_id).update(excluido = True)
+        #transmissor_lote_efdreinf_ocorrencias_apagar_custom
+        #transmissor_lote_efdreinf_ocorrencias_apagar_custom
+        messages.success(request, 'Apagado com sucesso!')
+        if request.session['retorno_pagina']== 'transmissor_lote_efdreinf_ocorrencias_salvar':
+            return redirect('transmissor_lote_efdreinf_ocorrencias', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 'transmissor_lote_efdreinf_ocorrencias_apagar.html', context)
 

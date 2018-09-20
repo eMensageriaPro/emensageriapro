@@ -44,7 +44,6 @@ get_model = apps.get_model
 class s1299ideRespInf(models.Model):
     s1299_evtfechaevper = models.OneToOneField('esocial.s1299evtFechaEvPer',
         related_name='%(class)s_s1299_evtfechaevper')
-    def evento(self): return self.s1299_evtfechaevper.evento()
     nmresp = models.CharField(max_length=70)
     cpfresp = models.CharField(max_length=11)
     telefone = models.CharField(max_length=13)

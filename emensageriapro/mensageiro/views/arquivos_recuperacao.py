@@ -2,6 +2,7 @@
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -11,6 +12,8 @@ from emensageriapro.mensageiro.models import *
 from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
 import base64
 from emensageriapro.padrao import executar_sql
+
+
 
 def atualizar_versao():
     executar_sql("""
@@ -78,10 +81,11 @@ def atualizar_versao():
 
 
 
+@login_required
 def arquivos_recuperacao(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         arquivos_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
@@ -114,12 +118,12 @@ def arquivos_recuperacao(request, hash):
 
 
 
-
+@login_required
 def arquivos_reprocessar(request, hash):
     import os
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         arquivos_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
@@ -168,11 +172,11 @@ def arquivos_reprocessar(request, hash):
 
 
 
-
+@login_required
 def arquivos_visualizacao(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         arquivos_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])

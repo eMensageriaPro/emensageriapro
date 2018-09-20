@@ -42,6 +42,20 @@ urlpatterns = patterns('',
 
 
 
+url(r'^s2220-exmedocup/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2220.views.s2220_exmedocup.apagar', 
+        name='s2220_exmedocup_apagar'),
+
+url(r'^s2220-exmedocup/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2220.views.s2220_exmedocup.listar', 
+        name='s2220_exmedocup'),
+
+url(r'^s2220-exmedocup/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2220.views.s2220_exmedocup.salvar', 
+        name='s2220_exmedocup_salvar'),
+
+
+
 url(r'^s2220-exame/apagar/(?P<hash>.*)/$', 
         'emensageriapro.s2220.views.s2220_exame.apagar', 
         name='s2220_exame_apagar'),
@@ -53,6 +67,20 @@ url(r'^s2220-exame/listar/(?P<hash>.*)/$',
 url(r'^s2220-exame/salvar/(?P<hash>.*)/$', 
         'emensageriapro.s2220.views.s2220_exame.salvar', 
         name='s2220_exame_salvar'),
+
+
+
+url(r'^s2220-toxicologico/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2220.views.s2220_toxicologico.apagar', 
+        name='s2220_toxicologico_apagar'),
+
+url(r'^s2220-toxicologico/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2220.views.s2220_toxicologico.listar', 
+        name='s2220_toxicologico'),
+
+url(r'^s2220-toxicologico/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2220.views.s2220_toxicologico.salvar', 
+        name='s2220_toxicologico_salvar'),
 
 
 

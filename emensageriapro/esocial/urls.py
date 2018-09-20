@@ -555,6 +555,67 @@ url(r'^scripts/gerar-identidade/s1060-evttabambiente/(?P<chave>.*)/(?P<evento_id
 
 
 
+url(r'^s1065-evttabequipamento/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s1065_evttabequipamento.apagar', 
+        name='s1065_evttabequipamento_apagar'),
+
+url(r'^s1065-evttabequipamento/listar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s1065_evttabequipamento.listar', 
+        name='s1065_evttabequipamento'),
+        
+url(r'^s1065-evttabequipamento/verificar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s1065_evttabequipamento_verificar.verificar', 
+        name='s1065_evttabequipamento_verificar'),
+        
+url(r'^s1065-evttabequipamento/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+        'emensageriapro.esocial.views.s1065_evttabequipamento_verificar.recibo', 
+        name='s1065_evttabequipamento_recibo'),
+        
+        
+url(r'^s1065-evttabequipamento/duplicar/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s1065_evttabequipamento_verificar.duplicar',
+        name='s1065_evttabequipamento_duplicar'),
+
+url(r'^s1065-evttabequipamento/criar-alteracao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s1065_evttabequipamento_verificar.criar_alteracao',
+        name='s1065_evttabequipamento_criar_alteracao'),
+
+url(r'^s1065-evttabequipamento/criar-exclusao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s1065_evttabequipamento_verificar.criar_exclusao',
+        name='s1065_evttabequipamento_criar_exclusao'),
+        
+url(r'^s1065-evttabequipamento/xml/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s1065_evttabequipamento_verificar.gerar_xml', 
+                name='s1065_evttabequipamento_xml'),
+                
+
+url(r'^s1065-evttabequipamento/alterar-identidade/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s1065_evttabequipamento_verificar.alterar_identidade',
+        name='s1065_evttabequipamento_alterar_identidade'),
+
+url(r'^s1065-evttabequipamento/abrir-evento-para-edicao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s1065_evttabequipamento_verificar.abrir_evento_para_edicao',
+        name='s1065_evttabequipamento_abrir_evento_para_edicao'),
+
+url(r'^s1065-evttabequipamento/validar-evento/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s1065_evttabequipamento_verificar.validar_evento',
+        name='s1065_evttabequipamento_validar_evento'),
+
+url(r'^s1065-evttabequipamento/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s1065_evttabequipamento.salvar', 
+        name='s1065_evttabequipamento_salvar'),
+        
+
+url(r'^scripts/gerar-identidade/s1065-evttabequipamento/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+        'emensageriapro.esocial.views.s1065_evttabequipamento.gerar_identidade', 
+        name='s1065_evttabequipamento_gerar_identidade'),
+
+)
+
+
+urlpatterns += patterns('',
+
+
 url(r'^s1070-evttabprocesso/apagar/(?P<hash>.*)/$', 
         'emensageriapro.esocial.views.s1070_evttabprocesso.apagar', 
         name='s1070_evttabprocesso_apagar'),
@@ -610,10 +671,6 @@ url(r'^scripts/gerar-identidade/s1070-evttabprocesso/(?P<chave>.*)/(?P<evento_id
         'emensageriapro.esocial.views.s1070_evttabprocesso.gerar_identidade', 
         name='s1070_evttabprocesso_gerar_identidade'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1080-evttaboperport/apagar/(?P<hash>.*)/$', 
@@ -1127,6 +1184,10 @@ url(r'^scripts/gerar-identidade/s1280-evtinfocomplper/(?P<chave>.*)/(?P<evento_i
         'emensageriapro.esocial.views.s1280_evtinfocomplper.gerar_identidade', 
         name='s1280_evtinfocomplper_gerar_identidade'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s1295-evttotconting/apagar/(?P<hash>.*)/$', 
@@ -1184,10 +1245,6 @@ url(r'^scripts/gerar-identidade/s1295-evttotconting/(?P<chave>.*)/(?P<evento_id>
         'emensageriapro.esocial.views.s1295_evttotconting.gerar_identidade', 
         name='s1295_evttotconting_gerar_identidade'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1298-evtreabreevper/apagar/(?P<hash>.*)/$', 
@@ -1701,6 +1758,10 @@ url(r'^scripts/gerar-identidade/s2220-evtmonit/(?P<chave>.*)/(?P<evento_id>\d+)/
         'emensageriapro.esocial.views.s2220_evtmonit.gerar_identidade', 
         name='s2220_evtmonit_gerar_identidade'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2230-evtafasttemp/apagar/(?P<hash>.*)/$', 
@@ -1758,10 +1819,63 @@ url(r'^scripts/gerar-identidade/s2230-evtafasttemp/(?P<chave>.*)/(?P<evento_id>\
         'emensageriapro.esocial.views.s2230_evtafasttemp.gerar_identidade', 
         name='s2230_evtafasttemp_gerar_identidade'),
 
-)
 
 
-urlpatterns += patterns('',
+url(r'^s2231-evtcessao/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2231_evtcessao.apagar', 
+        name='s2231_evtcessao_apagar'),
+
+url(r'^s2231-evtcessao/listar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2231_evtcessao.listar', 
+        name='s2231_evtcessao'),
+        
+url(r'^s2231-evtcessao/verificar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2231_evtcessao_verificar.verificar', 
+        name='s2231_evtcessao_verificar'),
+        
+url(r'^s2231-evtcessao/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+        'emensageriapro.esocial.views.s2231_evtcessao_verificar.recibo', 
+        name='s2231_evtcessao_recibo'),
+        
+        
+url(r'^s2231-evtcessao/duplicar/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2231_evtcessao_verificar.duplicar',
+        name='s2231_evtcessao_duplicar'),
+
+url(r'^s2231-evtcessao/criar-alteracao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2231_evtcessao_verificar.criar_alteracao',
+        name='s2231_evtcessao_criar_alteracao'),
+
+url(r'^s2231-evtcessao/criar-exclusao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2231_evtcessao_verificar.criar_exclusao',
+        name='s2231_evtcessao_criar_exclusao'),
+        
+url(r'^s2231-evtcessao/xml/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2231_evtcessao_verificar.gerar_xml', 
+                name='s2231_evtcessao_xml'),
+                
+
+url(r'^s2231-evtcessao/alterar-identidade/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2231_evtcessao_verificar.alterar_identidade',
+        name='s2231_evtcessao_alterar_identidade'),
+
+url(r'^s2231-evtcessao/abrir-evento-para-edicao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2231_evtcessao_verificar.abrir_evento_para_edicao',
+        name='s2231_evtcessao_abrir_evento_para_edicao'),
+
+url(r'^s2231-evtcessao/validar-evento/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2231_evtcessao_verificar.validar_evento',
+        name='s2231_evtcessao_validar_evento'),
+
+url(r'^s2231-evtcessao/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2231_evtcessao.salvar', 
+        name='s2231_evtcessao_salvar'),
+        
+
+url(r'^scripts/gerar-identidade/s2231-evtcessao/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+        'emensageriapro.esocial.views.s2231_evtcessao.gerar_identidade', 
+        name='s2231_evtcessao_gerar_identidade'),
+
 
 
 url(r'^s2240-evtexprisco/apagar/(?P<hash>.*)/$', 
@@ -1875,6 +1989,63 @@ url(r'^s2241-evtinsapo/salvar/(?P<hash>.*)/$',
 url(r'^scripts/gerar-identidade/s2241-evtinsapo/(?P<chave>.*)/(?P<evento_id>\d+)/$',
         'emensageriapro.esocial.views.s2241_evtinsapo.gerar_identidade', 
         name='s2241_evtinsapo_gerar_identidade'),
+
+
+
+url(r'^s2245-evttreicap/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2245_evttreicap.apagar', 
+        name='s2245_evttreicap_apagar'),
+
+url(r'^s2245-evttreicap/listar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2245_evttreicap.listar', 
+        name='s2245_evttreicap'),
+        
+url(r'^s2245-evttreicap/verificar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2245_evttreicap_verificar.verificar', 
+        name='s2245_evttreicap_verificar'),
+        
+url(r'^s2245-evttreicap/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+        'emensageriapro.esocial.views.s2245_evttreicap_verificar.recibo', 
+        name='s2245_evttreicap_recibo'),
+        
+        
+url(r'^s2245-evttreicap/duplicar/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2245_evttreicap_verificar.duplicar',
+        name='s2245_evttreicap_duplicar'),
+
+url(r'^s2245-evttreicap/criar-alteracao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2245_evttreicap_verificar.criar_alteracao',
+        name='s2245_evttreicap_criar_alteracao'),
+
+url(r'^s2245-evttreicap/criar-exclusao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2245_evttreicap_verificar.criar_exclusao',
+        name='s2245_evttreicap_criar_exclusao'),
+        
+url(r'^s2245-evttreicap/xml/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2245_evttreicap_verificar.gerar_xml', 
+                name='s2245_evttreicap_xml'),
+                
+
+url(r'^s2245-evttreicap/alterar-identidade/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2245_evttreicap_verificar.alterar_identidade',
+        name='s2245_evttreicap_alterar_identidade'),
+
+url(r'^s2245-evttreicap/abrir-evento-para-edicao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2245_evttreicap_verificar.abrir_evento_para_edicao',
+        name='s2245_evttreicap_abrir_evento_para_edicao'),
+
+url(r'^s2245-evttreicap/validar-evento/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2245_evttreicap_verificar.validar_evento',
+        name='s2245_evttreicap_validar_evento'),
+
+url(r'^s2245-evttreicap/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2245_evttreicap.salvar', 
+        name='s2245_evttreicap_salvar'),
+        
+
+url(r'^scripts/gerar-identidade/s2245-evttreicap/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+        'emensageriapro.esocial.views.s2245_evttreicap.gerar_identidade', 
+        name='s2245_evttreicap_gerar_identidade'),
 
 
 
@@ -2161,6 +2332,10 @@ url(r'^scripts/gerar-identidade/s2300-evttsvinicio/(?P<chave>.*)/(?P<evento_id>\
         'emensageriapro.esocial.views.s2300_evttsvinicio.gerar_identidade', 
         name='s2300_evttsvinicio_gerar_identidade'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s2306-evttsvaltcontr/apagar/(?P<hash>.*)/$', 
@@ -2277,65 +2452,289 @@ url(r'^scripts/gerar-identidade/s2399-evttsvtermino/(?P<chave>.*)/(?P<evento_id>
 
 
 
-url(r'^s2400-evtcdbenprrp/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.esocial.views.s2400_evtcdbenprrp.apagar', 
-        name='s2400_evtcdbenprrp_apagar'),
+url(r'^s2400-evtcdbenefin/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2400_evtcdbenefin.apagar', 
+        name='s2400_evtcdbenefin_apagar'),
 
-url(r'^s2400-evtcdbenprrp/listar/(?P<hash>.*)/$', 
-        'emensageriapro.esocial.views.s2400_evtcdbenprrp.listar', 
-        name='s2400_evtcdbenprrp'),
+url(r'^s2400-evtcdbenefin/listar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2400_evtcdbenefin.listar', 
+        name='s2400_evtcdbenefin'),
         
-url(r'^s2400-evtcdbenprrp/verificar/(?P<hash>.*)/$', 
-        'emensageriapro.esocial.views.s2400_evtcdbenprrp_verificar.verificar', 
-        name='s2400_evtcdbenprrp_verificar'),
+url(r'^s2400-evtcdbenefin/verificar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2400_evtcdbenefin_verificar.verificar', 
+        name='s2400_evtcdbenefin_verificar'),
         
-url(r'^s2400-evtcdbenprrp/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
-        'emensageriapro.esocial.views.s2400_evtcdbenprrp_verificar.recibo', 
-        name='s2400_evtcdbenprrp_recibo'),
+url(r'^s2400-evtcdbenefin/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+        'emensageriapro.esocial.views.s2400_evtcdbenefin_verificar.recibo', 
+        name='s2400_evtcdbenefin_recibo'),
         
         
-url(r'^s2400-evtcdbenprrp/duplicar/(?P<hash>.*)/$',
-        'emensageriapro.esocial.views.s2400_evtcdbenprrp_verificar.duplicar',
-        name='s2400_evtcdbenprrp_duplicar'),
+url(r'^s2400-evtcdbenefin/duplicar/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2400_evtcdbenefin_verificar.duplicar',
+        name='s2400_evtcdbenefin_duplicar'),
 
-url(r'^s2400-evtcdbenprrp/criar-alteracao/(?P<hash>.*)/$',
-        'emensageriapro.esocial.views.s2400_evtcdbenprrp_verificar.criar_alteracao',
-        name='s2400_evtcdbenprrp_criar_alteracao'),
+url(r'^s2400-evtcdbenefin/criar-alteracao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2400_evtcdbenefin_verificar.criar_alteracao',
+        name='s2400_evtcdbenefin_criar_alteracao'),
 
-url(r'^s2400-evtcdbenprrp/criar-exclusao/(?P<hash>.*)/$',
-        'emensageriapro.esocial.views.s2400_evtcdbenprrp_verificar.criar_exclusao',
-        name='s2400_evtcdbenprrp_criar_exclusao'),
+url(r'^s2400-evtcdbenefin/criar-exclusao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2400_evtcdbenefin_verificar.criar_exclusao',
+        name='s2400_evtcdbenefin_criar_exclusao'),
         
-url(r'^s2400-evtcdbenprrp/xml/(?P<hash>.*)/$', 
-        'emensageriapro.esocial.views.s2400_evtcdbenprrp_verificar.gerar_xml', 
-                name='s2400_evtcdbenprrp_xml'),
+url(r'^s2400-evtcdbenefin/xml/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2400_evtcdbenefin_verificar.gerar_xml', 
+                name='s2400_evtcdbenefin_xml'),
                 
 
-url(r'^s2400-evtcdbenprrp/alterar-identidade/(?P<hash>.*)/$',
-        'emensageriapro.esocial.views.s2400_evtcdbenprrp_verificar.alterar_identidade',
-        name='s2400_evtcdbenprrp_alterar_identidade'),
+url(r'^s2400-evtcdbenefin/alterar-identidade/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2400_evtcdbenefin_verificar.alterar_identidade',
+        name='s2400_evtcdbenefin_alterar_identidade'),
 
-url(r'^s2400-evtcdbenprrp/abrir-evento-para-edicao/(?P<hash>.*)/$',
-        'emensageriapro.esocial.views.s2400_evtcdbenprrp_verificar.abrir_evento_para_edicao',
-        name='s2400_evtcdbenprrp_abrir_evento_para_edicao'),
+url(r'^s2400-evtcdbenefin/abrir-evento-para-edicao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2400_evtcdbenefin_verificar.abrir_evento_para_edicao',
+        name='s2400_evtcdbenefin_abrir_evento_para_edicao'),
 
-url(r'^s2400-evtcdbenprrp/validar-evento/(?P<hash>.*)/$',
-        'emensageriapro.esocial.views.s2400_evtcdbenprrp_verificar.validar_evento',
-        name='s2400_evtcdbenprrp_validar_evento'),
+url(r'^s2400-evtcdbenefin/validar-evento/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2400_evtcdbenefin_verificar.validar_evento',
+        name='s2400_evtcdbenefin_validar_evento'),
 
-url(r'^s2400-evtcdbenprrp/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.esocial.views.s2400_evtcdbenprrp.salvar', 
-        name='s2400_evtcdbenprrp_salvar'),
+url(r'^s2400-evtcdbenefin/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2400_evtcdbenefin.salvar', 
+        name='s2400_evtcdbenefin_salvar'),
         
 
-url(r'^scripts/gerar-identidade/s2400-evtcdbenprrp/(?P<chave>.*)/(?P<evento_id>\d+)/$',
-        'emensageriapro.esocial.views.s2400_evtcdbenprrp.gerar_identidade', 
-        name='s2400_evtcdbenprrp_gerar_identidade'),
-
-)
+url(r'^scripts/gerar-identidade/s2400-evtcdbenefin/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+        'emensageriapro.esocial.views.s2400_evtcdbenefin.gerar_identidade', 
+        name='s2400_evtcdbenefin_gerar_identidade'),
 
 
-urlpatterns += patterns('',
+
+url(r'^s2405-evtcdbenefalt/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2405_evtcdbenefalt.apagar', 
+        name='s2405_evtcdbenefalt_apagar'),
+
+url(r'^s2405-evtcdbenefalt/listar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2405_evtcdbenefalt.listar', 
+        name='s2405_evtcdbenefalt'),
+        
+url(r'^s2405-evtcdbenefalt/verificar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2405_evtcdbenefalt_verificar.verificar', 
+        name='s2405_evtcdbenefalt_verificar'),
+        
+url(r'^s2405-evtcdbenefalt/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+        'emensageriapro.esocial.views.s2405_evtcdbenefalt_verificar.recibo', 
+        name='s2405_evtcdbenefalt_recibo'),
+        
+        
+url(r'^s2405-evtcdbenefalt/duplicar/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2405_evtcdbenefalt_verificar.duplicar',
+        name='s2405_evtcdbenefalt_duplicar'),
+
+url(r'^s2405-evtcdbenefalt/criar-alteracao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2405_evtcdbenefalt_verificar.criar_alteracao',
+        name='s2405_evtcdbenefalt_criar_alteracao'),
+
+url(r'^s2405-evtcdbenefalt/criar-exclusao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2405_evtcdbenefalt_verificar.criar_exclusao',
+        name='s2405_evtcdbenefalt_criar_exclusao'),
+        
+url(r'^s2405-evtcdbenefalt/xml/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2405_evtcdbenefalt_verificar.gerar_xml', 
+                name='s2405_evtcdbenefalt_xml'),
+                
+
+url(r'^s2405-evtcdbenefalt/alterar-identidade/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2405_evtcdbenefalt_verificar.alterar_identidade',
+        name='s2405_evtcdbenefalt_alterar_identidade'),
+
+url(r'^s2405-evtcdbenefalt/abrir-evento-para-edicao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2405_evtcdbenefalt_verificar.abrir_evento_para_edicao',
+        name='s2405_evtcdbenefalt_abrir_evento_para_edicao'),
+
+url(r'^s2405-evtcdbenefalt/validar-evento/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2405_evtcdbenefalt_verificar.validar_evento',
+        name='s2405_evtcdbenefalt_validar_evento'),
+
+url(r'^s2405-evtcdbenefalt/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2405_evtcdbenefalt.salvar', 
+        name='s2405_evtcdbenefalt_salvar'),
+        
+
+url(r'^scripts/gerar-identidade/s2405-evtcdbenefalt/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+        'emensageriapro.esocial.views.s2405_evtcdbenefalt.gerar_identidade', 
+        name='s2405_evtcdbenefalt_gerar_identidade'),
+
+
+
+url(r'^s2410-evtcdbenin/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2410_evtcdbenin.apagar', 
+        name='s2410_evtcdbenin_apagar'),
+
+url(r'^s2410-evtcdbenin/listar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2410_evtcdbenin.listar', 
+        name='s2410_evtcdbenin'),
+        
+url(r'^s2410-evtcdbenin/verificar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2410_evtcdbenin_verificar.verificar', 
+        name='s2410_evtcdbenin_verificar'),
+        
+url(r'^s2410-evtcdbenin/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+        'emensageriapro.esocial.views.s2410_evtcdbenin_verificar.recibo', 
+        name='s2410_evtcdbenin_recibo'),
+        
+        
+url(r'^s2410-evtcdbenin/duplicar/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2410_evtcdbenin_verificar.duplicar',
+        name='s2410_evtcdbenin_duplicar'),
+
+url(r'^s2410-evtcdbenin/criar-alteracao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2410_evtcdbenin_verificar.criar_alteracao',
+        name='s2410_evtcdbenin_criar_alteracao'),
+
+url(r'^s2410-evtcdbenin/criar-exclusao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2410_evtcdbenin_verificar.criar_exclusao',
+        name='s2410_evtcdbenin_criar_exclusao'),
+        
+url(r'^s2410-evtcdbenin/xml/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2410_evtcdbenin_verificar.gerar_xml', 
+                name='s2410_evtcdbenin_xml'),
+                
+
+url(r'^s2410-evtcdbenin/alterar-identidade/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2410_evtcdbenin_verificar.alterar_identidade',
+        name='s2410_evtcdbenin_alterar_identidade'),
+
+url(r'^s2410-evtcdbenin/abrir-evento-para-edicao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2410_evtcdbenin_verificar.abrir_evento_para_edicao',
+        name='s2410_evtcdbenin_abrir_evento_para_edicao'),
+
+url(r'^s2410-evtcdbenin/validar-evento/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2410_evtcdbenin_verificar.validar_evento',
+        name='s2410_evtcdbenin_validar_evento'),
+
+url(r'^s2410-evtcdbenin/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2410_evtcdbenin.salvar', 
+        name='s2410_evtcdbenin_salvar'),
+        
+
+url(r'^scripts/gerar-identidade/s2410-evtcdbenin/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+        'emensageriapro.esocial.views.s2410_evtcdbenin.gerar_identidade', 
+        name='s2410_evtcdbenin_gerar_identidade'),
+
+
+
+url(r'^s2416-evtcdbenalt/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2416_evtcdbenalt.apagar', 
+        name='s2416_evtcdbenalt_apagar'),
+
+url(r'^s2416-evtcdbenalt/listar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2416_evtcdbenalt.listar', 
+        name='s2416_evtcdbenalt'),
+        
+url(r'^s2416-evtcdbenalt/verificar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2416_evtcdbenalt_verificar.verificar', 
+        name='s2416_evtcdbenalt_verificar'),
+        
+url(r'^s2416-evtcdbenalt/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+        'emensageriapro.esocial.views.s2416_evtcdbenalt_verificar.recibo', 
+        name='s2416_evtcdbenalt_recibo'),
+        
+        
+url(r'^s2416-evtcdbenalt/duplicar/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2416_evtcdbenalt_verificar.duplicar',
+        name='s2416_evtcdbenalt_duplicar'),
+
+url(r'^s2416-evtcdbenalt/criar-alteracao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2416_evtcdbenalt_verificar.criar_alteracao',
+        name='s2416_evtcdbenalt_criar_alteracao'),
+
+url(r'^s2416-evtcdbenalt/criar-exclusao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2416_evtcdbenalt_verificar.criar_exclusao',
+        name='s2416_evtcdbenalt_criar_exclusao'),
+        
+url(r'^s2416-evtcdbenalt/xml/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2416_evtcdbenalt_verificar.gerar_xml', 
+                name='s2416_evtcdbenalt_xml'),
+                
+
+url(r'^s2416-evtcdbenalt/alterar-identidade/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2416_evtcdbenalt_verificar.alterar_identidade',
+        name='s2416_evtcdbenalt_alterar_identidade'),
+
+url(r'^s2416-evtcdbenalt/abrir-evento-para-edicao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2416_evtcdbenalt_verificar.abrir_evento_para_edicao',
+        name='s2416_evtcdbenalt_abrir_evento_para_edicao'),
+
+url(r'^s2416-evtcdbenalt/validar-evento/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2416_evtcdbenalt_verificar.validar_evento',
+        name='s2416_evtcdbenalt_validar_evento'),
+
+url(r'^s2416-evtcdbenalt/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2416_evtcdbenalt.salvar', 
+        name='s2416_evtcdbenalt_salvar'),
+        
+
+url(r'^scripts/gerar-identidade/s2416-evtcdbenalt/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+        'emensageriapro.esocial.views.s2416_evtcdbenalt.gerar_identidade', 
+        name='s2416_evtcdbenalt_gerar_identidade'),
+
+
+
+url(r'^s2420-evtcdbenterm/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2420_evtcdbenterm.apagar', 
+        name='s2420_evtcdbenterm_apagar'),
+
+url(r'^s2420-evtcdbenterm/listar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2420_evtcdbenterm.listar', 
+        name='s2420_evtcdbenterm'),
+        
+url(r'^s2420-evtcdbenterm/verificar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2420_evtcdbenterm_verificar.verificar', 
+        name='s2420_evtcdbenterm_verificar'),
+        
+url(r'^s2420-evtcdbenterm/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+        'emensageriapro.esocial.views.s2420_evtcdbenterm_verificar.recibo', 
+        name='s2420_evtcdbenterm_recibo'),
+        
+        
+url(r'^s2420-evtcdbenterm/duplicar/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2420_evtcdbenterm_verificar.duplicar',
+        name='s2420_evtcdbenterm_duplicar'),
+
+url(r'^s2420-evtcdbenterm/criar-alteracao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2420_evtcdbenterm_verificar.criar_alteracao',
+        name='s2420_evtcdbenterm_criar_alteracao'),
+
+url(r'^s2420-evtcdbenterm/criar-exclusao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2420_evtcdbenterm_verificar.criar_exclusao',
+        name='s2420_evtcdbenterm_criar_exclusao'),
+        
+url(r'^s2420-evtcdbenterm/xml/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2420_evtcdbenterm_verificar.gerar_xml', 
+                name='s2420_evtcdbenterm_xml'),
+                
+
+url(r'^s2420-evtcdbenterm/alterar-identidade/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2420_evtcdbenterm_verificar.alterar_identidade',
+        name='s2420_evtcdbenterm_alterar_identidade'),
+
+url(r'^s2420-evtcdbenterm/abrir-evento-para-edicao/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2420_evtcdbenterm_verificar.abrir_evento_para_edicao',
+        name='s2420_evtcdbenterm_abrir_evento_para_edicao'),
+
+url(r'^s2420-evtcdbenterm/validar-evento/(?P<hash>.*)/$',
+        'emensageriapro.esocial.views.s2420_evtcdbenterm_verificar.validar_evento',
+        name='s2420_evtcdbenterm_validar_evento'),
+
+url(r'^s2420-evtcdbenterm/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.esocial.views.s2420_evtcdbenterm.salvar', 
+        name='s2420_evtcdbenterm_salvar'),
+        
+
+url(r'^scripts/gerar-identidade/s2420-evtcdbenterm/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+        'emensageriapro.esocial.views.s2420_evtcdbenterm.gerar_identidade', 
+        name='s2420_evtcdbenterm_gerar_identidade'),
+
 
 
 url(r'^s3000-evtexclusao/apagar/(?P<hash>.*)/$', 
@@ -2507,6 +2906,10 @@ url(r'^scripts/gerar-identidade/s5002-evtirrfbenef/(?P<chave>.*)/(?P<evento_id>\
         'emensageriapro.esocial.views.s5002_evtirrfbenef.gerar_identidade', 
         name='s5002_evtirrfbenef_gerar_identidade'),
 
+)
+
+
+urlpatterns += patterns('',
 
 
 url(r'^s5011-evtcs/apagar/(?P<hash>.*)/$', 

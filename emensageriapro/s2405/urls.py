@@ -42,6 +42,62 @@ urlpatterns = patterns('',
 
 
 
+url(r'^s2405-endereco/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2405.views.s2405_endereco.apagar', 
+        name='s2405_endereco_apagar'),
+
+url(r'^s2405-endereco/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2405.views.s2405_endereco.listar', 
+        name='s2405_endereco'),
+
+url(r'^s2405-endereco/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2405.views.s2405_endereco.salvar', 
+        name='s2405_endereco_salvar'),
+
+
+
+url(r'^s2405-brasil/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2405.views.s2405_brasil.apagar', 
+        name='s2405_brasil_apagar'),
+
+url(r'^s2405-brasil/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2405.views.s2405_brasil.listar', 
+        name='s2405_brasil'),
+
+url(r'^s2405-brasil/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2405.views.s2405_brasil.salvar', 
+        name='s2405_brasil_salvar'),
+
+
+
+url(r'^s2405-exterior/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2405.views.s2405_exterior.apagar', 
+        name='s2405_exterior_apagar'),
+
+url(r'^s2405-exterior/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2405.views.s2405_exterior.listar', 
+        name='s2405_exterior'),
+
+url(r'^s2405-exterior/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2405.views.s2405_exterior.salvar', 
+        name='s2405_exterior_salvar'),
+
+
+
+url(r'^s2405-dependente/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2405.views.s2405_dependente.apagar', 
+        name='s2405_dependente_apagar'),
+
+url(r'^s2405-dependente/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2405.views.s2405_dependente.listar', 
+        name='s2405_dependente'),
+
+url(r'^s2405-dependente/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2405.views.s2405_dependente.salvar', 
+        name='s2405_dependente_salvar'),
+
+
+
 
 
 )

@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -51,10 +52,11 @@ import base64
 #IMPORTACOES
 
 
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2300_infocomplementares_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
@@ -137,14 +139,14 @@ def salvar(request, hash):
         if int(dict_hash['print']):
             s2300_infocomplementares_form = disabled_form_for_print(s2300_infocomplementares_form)
 
+        s2300_infodirigentesindical_form = None
+        s2300_infodirigentesindical_lista = None
         s2300_cargofuncao_form = None
         s2300_cargofuncao_lista = None
         s2300_remuneracao_form = None
         s2300_remuneracao_lista = None
         s2300_fgts_form = None
         s2300_fgts_lista = None
-        s2300_infodirigentesindical_form = None
-        s2300_infodirigentesindical_lista = None
         s2300_infotrabcedido_form = None
         s2300_infotrabcedido_lista = None
         s2300_infoestagiario_form = None
@@ -152,6 +154,9 @@ def salvar(request, hash):
         if s2300_infocomplementares_id:
             s2300_infocomplementares = get_object_or_404(s2300infoComplementares.objects.using( db_slug ), excluido = False, id = s2300_infocomplementares_id)
   
+            s2300_infodirigentesindical_form = form_s2300_infodirigentesindical(initial={ 's2300_infocomplementares': s2300_infocomplementares }, slug=db_slug)
+            s2300_infodirigentesindical_form.fields['s2300_infocomplementares'].widget.attrs['readonly'] = True
+            s2300_infodirigentesindical_lista = s2300infoDirigenteSindical.objects.using( db_slug ).filter(excluido = False, s2300_infocomplementares_id=s2300_infocomplementares.id).all()
             s2300_cargofuncao_form = form_s2300_cargofuncao(initial={ 's2300_infocomplementares': s2300_infocomplementares }, slug=db_slug)
             s2300_cargofuncao_form.fields['s2300_infocomplementares'].widget.attrs['readonly'] = True
             s2300_cargofuncao_lista = s2300cargoFuncao.objects.using( db_slug ).filter(excluido = False, s2300_infocomplementares_id=s2300_infocomplementares.id).all()
@@ -161,9 +166,6 @@ def salvar(request, hash):
             s2300_fgts_form = form_s2300_fgts(initial={ 's2300_infocomplementares': s2300_infocomplementares }, slug=db_slug)
             s2300_fgts_form.fields['s2300_infocomplementares'].widget.attrs['readonly'] = True
             s2300_fgts_lista = s2300fgts.objects.using( db_slug ).filter(excluido = False, s2300_infocomplementares_id=s2300_infocomplementares.id).all()
-            s2300_infodirigentesindical_form = form_s2300_infodirigentesindical(initial={ 's2300_infocomplementares': s2300_infocomplementares }, slug=db_slug)
-            s2300_infodirigentesindical_form.fields['s2300_infocomplementares'].widget.attrs['readonly'] = True
-            s2300_infodirigentesindical_lista = s2300infoDirigenteSindical.objects.using( db_slug ).filter(excluido = False, s2300_infocomplementares_id=s2300_infocomplementares.id).all()
             s2300_infotrabcedido_form = form_s2300_infotrabcedido(initial={ 's2300_infocomplementares': s2300_infocomplementares }, slug=db_slug)
             s2300_infotrabcedido_form.fields['s2300_infocomplementares'].widget.attrs['readonly'] = True
             s2300_infotrabcedido_lista = s2300infoTrabCedido.objects.using( db_slug ).filter(excluido = False, s2300_infocomplementares_id=s2300_infocomplementares.id).all()
@@ -193,14 +195,14 @@ def salvar(request, hash):
        
             'hash': hash,
   
+            's2300_infodirigentesindical_form': s2300_infodirigentesindical_form,
+            's2300_infodirigentesindical_lista': s2300_infodirigentesindical_lista,
             's2300_cargofuncao_form': s2300_cargofuncao_form,
             's2300_cargofuncao_lista': s2300_cargofuncao_lista,
             's2300_remuneracao_form': s2300_remuneracao_form,
             's2300_remuneracao_lista': s2300_remuneracao_lista,
             's2300_fgts_form': s2300_fgts_form,
             's2300_fgts_lista': s2300_fgts_lista,
-            's2300_infodirigentesindical_form': s2300_infodirigentesindical_form,
-            's2300_infodirigentesindical_lista': s2300_infodirigentesindical_lista,
             's2300_infotrabcedido_form': s2300_infotrabcedido_form,
             's2300_infotrabcedido_lista': s2300_infotrabcedido_lista,
             's2300_infoestagiario_form': s2300_infoestagiario_form,
@@ -262,10 +264,11 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
 def apagar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2300_infocomplementares_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
@@ -333,11 +336,13 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
+
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']

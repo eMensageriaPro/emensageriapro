@@ -41,6 +41,12 @@ get_model = apps.get_model
 
 
 
+CHOICES_S1207_INFOPERANT_TPACCONV = (
+    ('B', u'B - Legislação federal, estadual, municipal ou distrital'),
+    ('G', u'G - Decisão administrativa'),
+    ('H', u'H - Decisão judicial'),
+)
+
 CHOICES_S1207_TPBENEF = (
     (1, u'1 - Aposentadoria Voluntária por Idade e Tempo de Contribuição - Proventos Integrais: Art. 40, § 1º, III “a” da CF, Redação EC 20/98'),
     (10, u'10 - Aposentadoria Compulsória Proporcional calculada pela média - Art. 40, § 1º Inciso II da CF, Redação EC 41/03, c/c LC 152/2015'),
@@ -58,8 +64,8 @@ CHOICES_S1207_TPBENEF = (
     (21, u'21 - Aposentadoria Voluntária - Regra de Transição do Art. 2º, da EC 41/03 - Proventos pela Média reduzida - Geral (Implementação até 31/12/2005)'),
     (22, u'22 - Aposentadoria Voluntária - Regra de Transição do Art. 6º, da EC41/03: Proventos Integrais correspondentes á ultima remuneração do cargo - Geral'),
     (23, u'23 - Aposentadoria Voluntária Professor Educação infantil, ensino fundamental e médioRegra de Transição do Art. 6º, da EC41/03: Proventos Integrais correspondentes à última remuneração do cargo'),
-    (24, u'24 - Aposentadoria Voluntária por Idade - Proventos Proporcionais calculados sobre a última remuneração do cargo: Art. 40, § 1º, Inciso III, alínea "b'),
-    (25, u'25 - Aposentadoria Voluntária por Idade - Proventos pela Média proporcionais - Art. 40, § 1º, Inciso III, alínea "b'),
+    (24, u'24 - Aposentadoria Voluntária por Idade - Proventos Proporcionais calculados sobre a última remuneração do cargo: Art. 40, § 1º, Inciso III, alínea "b" CF, Redação EC 20/98'),
+    (25, u'25 - Aposentadoria Voluntária por Idade - Proventos pela Média proporcionais - Art. 40, § 1º, Inciso III, alínea "b" CF, Redação EC 41/03'),
     (26, u'26 - Aposentadoria Voluntária por Idade e por Tempo de Contribuição - Proventos pela Média: Art. 40, § 1º, Inciso III, aliena "a", CF, Redação EC 41/03'),
     (27, u'27 - Aposentadoria Voluntária por Tempo de Contribuição - Especial do professor de q/q nível de ensino - Art. 40, III, alínea b, da CF- Red. Original até EC 20/1998'),
     (28, u'28 - Aposentadoria Voluntária por idade e Tempo de Contribuição - Especial do professor ed. infantil, ensino fundamental e médio - Art. 40, § 1º, Inciso III, alínea a, c/c § 5º da CF red. da EC 20/1998 )'),
@@ -97,10 +103,14 @@ CHOICES_S1207_TPBENEF = (
     (99, u'99 - Outros Benefícios previdenciários concedidos antes do início de vigência do eSocial'),
 )
 
+CHOICES_S1207_TPTRIB = (
+    (1, u'1 - IRRF'),
+    (5, u'5 - Contribuição para o RPPS/regime militar'),
+)
+
 class s1207dmDev(models.Model):
     s1207_evtbenprrp = models.ForeignKey('esocial.s1207evtBenPrRP',
         related_name='%(class)s_s1207_evtbenprrp')
-    def evento(self): return self.s1207_evtbenprrp.evento()
     tpbenef = models.IntegerField(choices=CHOICES_S1207_TPBENEF)
     nrbenefic = models.CharField(max_length=20)
     idedmdev = models.CharField(max_length=30)
@@ -121,10 +131,231 @@ class s1207dmDev(models.Model):
         ordering = ['s1207_evtbenprrp', 'tpbenef', 'nrbenefic', 'idedmdev']
 
 
+class s1207infoPerAnt(models.Model):
+    s1207_dmdev = models.OneToOneField('s1207dmDev',
+        related_name='%(class)s_s1207_dmdev')
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.s1207_dmdev)
+    #s1207_infoperant_custom#
+    #s1207_infoperant_custom#
+    class Meta:
+        db_table = r's1207_infoperant'
+        managed = True
+        ordering = ['s1207_dmdev']
+
+
+class s1207infoPerAntideADC(models.Model):
+    s1207_infoperant = models.ForeignKey('s1207infoPerAnt',
+        related_name='%(class)s_s1207_infoperant')
+    dtacconv = models.DateField(blank=True, null=True)
+    tpacconv = models.CharField(choices=CHOICES_S1207_INFOPERANT_TPACCONV, max_length=1)
+    compacconv = models.CharField(max_length=7, blank=True, null=True)
+    dtefacconv = models.DateField(blank=True, null=True)
+    dsc = models.CharField(max_length=255)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.s1207_infoperant) + ' - ' + unicode(self.dtacconv) + ' - ' + unicode(self.tpacconv) + ' - ' + unicode(self.compacconv) + ' - ' + unicode(self.dtefacconv) + ' - ' + unicode(self.dsc)
+    #s1207_infoperant_ideadc_custom#
+    #s1207_infoperant_ideadc_custom#
+    class Meta:
+        db_table = r's1207_infoperant_ideadc'
+        managed = True
+        ordering = ['s1207_infoperant', 'dtacconv', 'tpacconv', 'compacconv', 'dtefacconv', 'dsc']
+
+
+class s1207infoPerAntideEstab(models.Model):
+    s1207_infoperant_ideperiodo = models.ForeignKey('s1207infoPerAntidePeriodo',
+        related_name='%(class)s_s1207_infoperant_ideperiodo')
+    tpinsc = models.IntegerField()
+    nrinsc = models.CharField(max_length=15)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.s1207_infoperant_ideperiodo) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
+    #s1207_infoperant_ideestab_custom#
+    #s1207_infoperant_ideestab_custom#
+    class Meta:
+        db_table = r's1207_infoperant_ideestab'
+        managed = True
+        ordering = ['s1207_infoperant_ideperiodo', 'tpinsc', 'nrinsc']
+
+
+class s1207infoPerAntidePeriodo(models.Model):
+    s1207_infoperant_ideadc = models.ForeignKey('s1207infoPerAntideADC',
+        related_name='%(class)s_s1207_infoperant_ideadc')
+    perref = models.CharField(max_length=7)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.s1207_infoperant_ideadc) + ' - ' + unicode(self.perref)
+    #s1207_infoperant_ideperiodo_custom#
+    #s1207_infoperant_ideperiodo_custom#
+    class Meta:
+        db_table = r's1207_infoperant_ideperiodo'
+        managed = True
+        ordering = ['s1207_infoperant_ideadc', 'perref']
+
+
+class s1207infoPerAntitensRemun(models.Model):
+    s1207_infoperant_remunperant = models.ForeignKey('s1207infoPerAntremunPerAnt',
+        related_name='%(class)s_s1207_infoperant_remunperant')
+    codrubr = models.CharField(max_length=30)
+    idetabrubr = models.CharField(max_length=8)
+    qtdrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=6, blank=True, null=True)
+    fatorrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=5, blank=True, null=True)
+    vrunit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
+    vrrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.s1207_infoperant_remunperant) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.qtdrubr) + ' - ' + unicode(self.fatorrubr) + ' - ' + unicode(self.vrunit) + ' - ' + unicode(self.vrrubr)
+    #s1207_infoperant_itensremun_custom#
+    #s1207_infoperant_itensremun_custom#
+    class Meta:
+        db_table = r's1207_infoperant_itensremun'
+        managed = True
+        ordering = ['s1207_infoperant_remunperant', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
+
+
+class s1207infoPerAntremunPerAnt(models.Model):
+    s1207_infoperant_ideestab = models.ForeignKey('s1207infoPerAntideEstab',
+        related_name='%(class)s_s1207_infoperant_ideestab')
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.s1207_infoperant_ideestab)
+    #s1207_infoperant_remunperant_custom#
+    #s1207_infoperant_remunperant_custom#
+    class Meta:
+        db_table = r's1207_infoperant_remunperant'
+        managed = True
+        ordering = ['s1207_infoperant_ideestab']
+
+
+class s1207infoPerApur(models.Model):
+    s1207_dmdev = models.OneToOneField('s1207dmDev',
+        related_name='%(class)s_s1207_dmdev')
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.s1207_dmdev)
+    #s1207_infoperapur_custom#
+    #s1207_infoperapur_custom#
+    class Meta:
+        db_table = r's1207_infoperapur'
+        managed = True
+        ordering = ['s1207_dmdev']
+
+
+class s1207infoPerApurideEstab(models.Model):
+    s1207_infoperapur = models.ForeignKey('s1207infoPerApur',
+        related_name='%(class)s_s1207_infoperapur')
+    tpinsc = models.IntegerField()
+    nrinsc = models.CharField(max_length=15)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.s1207_infoperapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
+    #s1207_infoperapur_ideestab_custom#
+    #s1207_infoperapur_ideestab_custom#
+    class Meta:
+        db_table = r's1207_infoperapur_ideestab'
+        managed = True
+        ordering = ['s1207_infoperapur', 'tpinsc', 'nrinsc']
+
+
+class s1207infoPerApuritensRemun(models.Model):
+    s1207_infoperapur_remunperapur = models.ForeignKey('s1207infoPerApurremunPerApur',
+        related_name='%(class)s_s1207_infoperapur_remunperapur')
+    codrubr = models.CharField(max_length=30)
+    idetabrubr = models.CharField(max_length=8)
+    qtdrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=6, blank=True, null=True)
+    fatorrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=5, blank=True, null=True)
+    vrunit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
+    vrrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.s1207_infoperapur_remunperapur) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.qtdrubr) + ' - ' + unicode(self.fatorrubr) + ' - ' + unicode(self.vrunit) + ' - ' + unicode(self.vrrubr)
+    #s1207_infoperapur_itensremun_custom#
+    #s1207_infoperapur_itensremun_custom#
+    class Meta:
+        db_table = r's1207_infoperapur_itensremun'
+        managed = True
+        ordering = ['s1207_infoperapur_remunperapur', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
+
+
+class s1207infoPerApurremunPerApur(models.Model):
+    s1207_infoperapur_ideestab = models.ForeignKey('s1207infoPerApurideEstab',
+        related_name='%(class)s_s1207_infoperapur_ideestab')
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.s1207_infoperapur_ideestab)
+    #s1207_infoperapur_remunperapur_custom#
+    #s1207_infoperapur_remunperapur_custom#
+    class Meta:
+        db_table = r's1207_infoperapur_remunperapur'
+        managed = True
+        ordering = ['s1207_infoperapur_ideestab']
+
+
 class s1207itens(models.Model):
     s1207_dmdev = models.ForeignKey('s1207dmDev',
         related_name='%(class)s_s1207_dmdev')
-    def evento(self): return self.s1207_dmdev.evento()
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -143,6 +374,29 @@ class s1207itens(models.Model):
         db_table = r's1207_itens'
         managed = True
         ordering = ['s1207_dmdev', 'codrubr', 'idetabrubr', 'vrrubr']
+
+
+class s1207procJudTrab(models.Model):
+    s1207_evtbenprrp = models.ForeignKey('esocial.s1207evtBenPrRP',
+        related_name='%(class)s_s1207_evtbenprrp')
+    tptrib = models.IntegerField(choices=CHOICES_S1207_TPTRIB)
+    nrprocjud = models.CharField(max_length=20)
+    codsusp = models.IntegerField(blank=True, null=True)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.s1207_evtbenprrp) + ' - ' + unicode(self.tptrib) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.codsusp)
+    #s1207_procjudtrab_custom#
+    #s1207_procjudtrab_custom#
+    class Meta:
+        db_table = r's1207_procjudtrab'
+        managed = True
+        ordering = ['s1207_evtbenprrp', 'tptrib', 'nrprocjud', 'codsusp']
 
 
 #VIEWS_MODELS

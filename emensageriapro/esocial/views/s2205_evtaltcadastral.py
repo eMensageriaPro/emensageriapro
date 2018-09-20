@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -47,20 +48,20 @@ from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
 import base64
-from emensageriapro.s2205.models import s2205trabEstrangeiro
-from emensageriapro.s2205.models import s2205dependente
 from emensageriapro.s2205.models import s2205documentos
 from emensageriapro.s2205.models import s2205brasil
 from emensageriapro.s2205.models import s2205exterior
+from emensageriapro.s2205.models import s2205trabEstrangeiro
 from emensageriapro.s2205.models import s2205infoDeficiencia
+from emensageriapro.s2205.models import s2205dependente
 from emensageriapro.s2205.models import s2205aposentadoria
 from emensageriapro.s2205.models import s2205contato
-from emensageriapro.s2205.forms import form_s2205_trabestrangeiro
-from emensageriapro.s2205.forms import form_s2205_dependente
 from emensageriapro.s2205.forms import form_s2205_documentos
 from emensageriapro.s2205.forms import form_s2205_brasil
 from emensageriapro.s2205.forms import form_s2205_exterior
+from emensageriapro.s2205.forms import form_s2205_trabestrangeiro
 from emensageriapro.s2205.forms import form_s2205_infodeficiencia
+from emensageriapro.s2205.forms import form_s2205_dependente
 from emensageriapro.s2205.forms import form_s2205_aposentadoria
 from emensageriapro.s2205.forms import form_s2205_contato
 
@@ -122,11 +123,12 @@ def gerar_identidade(request, chave, evento_id):
     return HttpResponse(mensagem)
 
 
+@login_required
 def salvar(request, hash):
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_MODELO, TP_AMB
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2205_evtaltcadastral_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
@@ -212,18 +214,18 @@ def salvar(request, hash):
         if int(dict_hash['print']):
             s2205_evtaltcadastral_form = disabled_form_for_print(s2205_evtaltcadastral_form)
 
-        s2205_trabestrangeiro_form = None
-        s2205_trabestrangeiro_lista = None
-        s2205_dependente_form = None
-        s2205_dependente_lista = None
         s2205_documentos_form = None
         s2205_documentos_lista = None
         s2205_brasil_form = None
         s2205_brasil_lista = None
         s2205_exterior_form = None
         s2205_exterior_lista = None
+        s2205_trabestrangeiro_form = None
+        s2205_trabestrangeiro_lista = None
         s2205_infodeficiencia_form = None
         s2205_infodeficiencia_lista = None
+        s2205_dependente_form = None
+        s2205_dependente_lista = None
         s2205_aposentadoria_form = None
         s2205_aposentadoria_lista = None
         s2205_contato_form = None
@@ -231,12 +233,6 @@ def salvar(request, hash):
         if s2205_evtaltcadastral_id:
             s2205_evtaltcadastral = get_object_or_404(s2205evtAltCadastral.objects.using( db_slug ), excluido = False, id = s2205_evtaltcadastral_id)
   
-            s2205_trabestrangeiro_form = form_s2205_trabestrangeiro(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
-            s2205_trabestrangeiro_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
-            s2205_trabestrangeiro_lista = s2205trabEstrangeiro.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
-            s2205_dependente_form = form_s2205_dependente(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
-            s2205_dependente_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
-            s2205_dependente_lista = s2205dependente.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
             s2205_documentos_form = form_s2205_documentos(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
             s2205_documentos_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
             s2205_documentos_lista = s2205documentos.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
@@ -246,9 +242,15 @@ def salvar(request, hash):
             s2205_exterior_form = form_s2205_exterior(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
             s2205_exterior_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
             s2205_exterior_lista = s2205exterior.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
+            s2205_trabestrangeiro_form = form_s2205_trabestrangeiro(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
+            s2205_trabestrangeiro_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
+            s2205_trabestrangeiro_lista = s2205trabEstrangeiro.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
             s2205_infodeficiencia_form = form_s2205_infodeficiencia(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
             s2205_infodeficiencia_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
             s2205_infodeficiencia_lista = s2205infoDeficiencia.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
+            s2205_dependente_form = form_s2205_dependente(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
+            s2205_dependente_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
+            s2205_dependente_lista = s2205dependente.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
             s2205_aposentadoria_form = form_s2205_aposentadoria(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
             s2205_aposentadoria_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
             s2205_aposentadoria_lista = s2205aposentadoria.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
@@ -289,18 +291,18 @@ def salvar(request, hash):
        
             'hash': hash,
   
-            's2205_trabestrangeiro_form': s2205_trabestrangeiro_form,
-            's2205_trabestrangeiro_lista': s2205_trabestrangeiro_lista,
-            's2205_dependente_form': s2205_dependente_form,
-            's2205_dependente_lista': s2205_dependente_lista,
             's2205_documentos_form': s2205_documentos_form,
             's2205_documentos_lista': s2205_documentos_lista,
             's2205_brasil_form': s2205_brasil_form,
             's2205_brasil_lista': s2205_brasil_lista,
             's2205_exterior_form': s2205_exterior_form,
             's2205_exterior_lista': s2205_exterior_lista,
+            's2205_trabestrangeiro_form': s2205_trabestrangeiro_form,
+            's2205_trabestrangeiro_lista': s2205_trabestrangeiro_lista,
             's2205_infodeficiencia_form': s2205_infodeficiencia_form,
             's2205_infodeficiencia_lista': s2205_infodeficiencia_lista,
+            's2205_dependente_form': s2205_dependente_form,
+            's2205_dependente_lista': s2205_dependente_lista,
             's2205_aposentadoria_form': s2205_aposentadoria_form,
             's2205_aposentadoria_lista': s2205_aposentadoria_lista,
             's2205_contato_form': s2205_contato_form,
@@ -362,63 +364,6 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.session['usuario_id']
-        dict_hash = get_hash_url( hash )
-        s2205_evtaltcadastral_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2205_evtaltcadastral')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-    s2205_evtaltcadastral = get_object_or_404(s2205evtAltCadastral.objects.using( db_slug ), excluido = False, id = s2205_evtaltcadastral_id)
-
-    if s2205_evtaltcadastral_id:
-        if s2205_evtaltcadastral.status != 0:
-            dict_permissoes['s2205_evtaltcadastral_apagar'] = 0
-            dict_permissoes['s2205_evtaltcadastral_editar'] = 0
-
-    if request.method == 'POST':
-        if s2205_evtaltcadastral.status == 0:
-            import json
-            from django.forms.models import model_to_dict
-            situacao_anterior = json.dumps(model_to_dict(s2205_evtaltcadastral), indent=4, sort_keys=True, default=str)
-            s2205evtAltCadastral.objects.using( db_slug ).filter(id = s2205_evtaltcadastral_id).delete()
-            #s2205_evtaltcadastral_apagar_custom
-            #s2205_evtaltcadastral_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
-            gravar_auditoria(situacao_anterior,
-                             '',
-                             's2205_evtaltcadastral', s2205_evtaltcadastral_id, usuario_id, 3)
-        else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
-        if request.session['retorno_pagina']== 's2205_evtaltcadastral_salvar':
-            return redirect('s2205_evtaltcadastral', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 's2205_evtaltcadastral_apagar.html', context)
-
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse
@@ -432,11 +377,12 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']
@@ -676,4 +622,62 @@ def listar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
+
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        s2205_evtaltcadastral_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2205_evtaltcadastral')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    s2205_evtaltcadastral = get_object_or_404(s2205evtAltCadastral.objects.using( db_slug ), excluido = False, id = s2205_evtaltcadastral_id)
+
+    if s2205_evtaltcadastral_id:
+        if s2205_evtaltcadastral.status != 0:
+            dict_permissoes['s2205_evtaltcadastral_apagar'] = 0
+            dict_permissoes['s2205_evtaltcadastral_editar'] = 0
+
+    if request.method == 'POST':
+        if s2205_evtaltcadastral.status == 0:
+            import json
+            from django.forms.models import model_to_dict
+            situacao_anterior = json.dumps(model_to_dict(s2205_evtaltcadastral), indent=4, sort_keys=True, default=str)
+            s2205evtAltCadastral.objects.using( db_slug ).filter(id = s2205_evtaltcadastral_id).delete()
+            #s2205_evtaltcadastral_apagar_custom
+            #s2205_evtaltcadastral_apagar_custom
+            messages.success(request, 'Apagado com sucesso!')
+            gravar_auditoria(situacao_anterior,
+                             '',
+                             's2205_evtaltcadastral', s2205_evtaltcadastral_id, usuario_id, 3)
+        else:
+            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+   
+        if request.session['retorno_pagina']== 's2205_evtaltcadastral_salvar':
+            return redirect('s2205_evtaltcadastral', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 's2205_evtaltcadastral_apagar.html', context)
 

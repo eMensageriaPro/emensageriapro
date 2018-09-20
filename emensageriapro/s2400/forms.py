@@ -3,7 +3,9 @@ from django import forms
 from emensageriapro.s2400.models import * 
 from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.tabelas.models import Municipios 
-from emensageriapro.esocial.models import s2400evtCdBenPrRP 
+from emensageriapro.tabelas.models import eSocialPaises 
+from emensageriapro.tabelas.models import eSocialLogradourosTipos 
+from emensageriapro.esocial.models import s2400evtCdBenefIn 
 
 
 __author__ = 'marcelovasconcellos'
@@ -45,130 +47,30 @@ __author__ = 'marcelovasconcellos'
 
 
 
-class form_s2400_fimbeneficio(forms.ModelForm):
+class form_s2400_dependente(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s2400_fimbeneficio,self ).__init__(*args,**kwargs)
+        super (form_s2400_dependente,self ).__init__(*args,**kwargs)
         
-        self.fields['mtvfim'].widget.attrs['required'] = True
+        self.fields['depfinsprev'].widget.attrs['required'] = True
         
-        self.fields['dtfimbenef'].widget.attrs['required'] = True
+        self.fields['incfismen'].widget.attrs['required'] = True
         
-        self.fields['nrbenefic'].widget.attrs['required'] = True
+        self.fields['depirrf'].widget.attrs['required'] = True
         
-        self.fields['tpbenef'].widget.attrs['required'] = True
+        self.fields['sexodep'].widget.attrs['required'] = True
         
-        self.fields['s2400_evtcdbenprrp'].widget.attrs['required'] = True
+        self.fields['dtnascto'].widget.attrs['required'] = True
+        
+        self.fields['nmdep'].widget.attrs['required'] = True
+        
+        self.fields['tpdep'].widget.attrs['required'] = True
+        self.fields['s2400_evtcdbenefin'].queryset = s2400evtCdBenefIn.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s2400_evtcdbenefin'].widget.attrs['required'] = True
 
     class Meta:
-        model = s2400fimBeneficio
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s2400_altbeneficio_infopenmorte(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2400_altbeneficio_infopenmorte,self ).__init__(*args,**kwargs)
-        
-        self.fields['cpfinst'].widget.attrs['required'] = True
-        
-        self.fields['idquota'].widget.attrs['required'] = True
-        
-        self.fields['s2400_altbeneficio'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2400altBeneficioinfoPenMorte
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s2400_altbeneficio(forms.ModelForm):
-    vrbenef = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2400_altbeneficio,self ).__init__(*args,**kwargs)
-        
-        self.fields['vrbenef'].widget.attrs['required'] = True
-        
-        self.fields['dtinibenef'].widget.attrs['required'] = True
-        
-        self.fields['nrbenefic'].widget.attrs['required'] = True
-        
-        self.fields['tpbenef'].widget.attrs['required'] = True
-        
-        self.fields['s2400_evtcdbenprrp'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2400altBeneficio
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s2400_inibeneficio_infopenmorte(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2400_inibeneficio_infopenmorte,self ).__init__(*args,**kwargs)
-        
-        self.fields['cpfinst'].widget.attrs['required'] = True
-        
-        self.fields['idquota'].widget.attrs['required'] = True
-        
-        self.fields['s2400_inibeneficio'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2400iniBeneficioinfoPenMorte
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s2400_inibeneficio(forms.ModelForm):
-    vrbenef = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2400_inibeneficio,self ).__init__(*args,**kwargs)
-        
-        self.fields['vrbenef'].widget.attrs['required'] = True
-        
-        self.fields['dtinibenef'].widget.attrs['required'] = True
-        
-        self.fields['nrbenefic'].widget.attrs['required'] = True
-        
-        self.fields['tpbenef'].widget.attrs['required'] = True
-        
-        self.fields['s2400_evtcdbenprrp'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2400iniBeneficio
+        model = s2400dependente
         exclude = [ 
             'excluido',
             'modificado_por',
@@ -193,7 +95,7 @@ class form_s2400_exterior(forms.ModelForm):
         
         self.fields['paisresid'].widget.attrs['required'] = True
         
-        self.fields['s2400_evtcdbenprrp'].widget.attrs['required'] = True
+        self.fields['s2400_endereco'].widget.attrs['required'] = True
 
     class Meta:
         model = s2400exterior
@@ -225,10 +127,30 @@ class form_s2400_brasil(forms.ModelForm):
         
         self.fields['tplograd'].widget.attrs['required'] = True
         
-        self.fields['s2400_evtcdbenprrp'].widget.attrs['required'] = True
+        self.fields['s2400_endereco'].widget.attrs['required'] = True
 
     class Meta:
         model = s2400brasil
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s2400_endereco(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2400_endereco,self ).__init__(*args,**kwargs)
+        
+        self.fields['s2400_evtcdbenefin'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s2400endereco
         exclude = [ 
             'excluido',
             'modificado_por',

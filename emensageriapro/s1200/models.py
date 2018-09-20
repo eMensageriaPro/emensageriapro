@@ -41,108 +41,28 @@ get_model = apps.get_model
 
 
 
-CHOICES_S1200_CODCATEG = (
-    (101, u'101 - Empregado - Geral, inclusive o empregado público da administração direta ou indireta contratado pela CLT.'),
-    (101, u'101 - Empregado - Geral, inclusive o empregado público da administração direta ou indireta contratado pela CLT.'),
-    (102, u'102 - Empregado - Trabalhador Rural por Pequeno Prazo da Lei 11.718/2008'),
-    (102, u'102 - Empregado - Trabalhador Rural por Pequeno Prazo da Lei 11.718/2008'),
-    (103, u'103 - Empregado - Aprendiz'),
-    (103, u'103 - Empregado - Aprendiz'),
-    (104, u'104 - Empregado - Doméstico'),
-    (104, u'104 - Empregado - Doméstico'),
-    (105, u'105 - Empregado - contrato a termo firmado nos termos da Lei 9601/98'),
-    (105, u'105 - Empregado - contrato a termo firmado nos termos da Lei 9601/98'),
-    (106, u'106 - Trabalhador Temporário - contrato por prazo determinado nos termos da Lei 6019/74'),
-    (106, u'106 - Trabalhador Temporário - contrato por prazo determinado nos termos da Lei 6019/74'),
-    (111, u'111 - Empregado - contrato de trabalho intermitente'),
-    (111, u'111 - Empregado - contrato de trabalho intermitente'),
-    (201, u'201 - Trabalhador Avulso Portuário'),
-    (201, u'201 - Trabalhador Avulso Portuário'),
-    (202, u'202 - Trabalhador Avulso Não Portuário'),
-    (202, u'202 - Trabalhador Avulso Não Portuário'),
-    (301, u'301 - Servidor Público Titular de Cargo Efetivo, Magistrado, Ministro de Tribunal de Contas, Conselheiro de Tribunal de Contas e Membro do Ministério Público'),
-    (301, u'301 - Servidor Público Titular de Cargo Efetivo, Magistrado, Ministro de Tribunal de Contas, Conselheiro de Tribunal de Contas e Membro do Ministério Público'),
-    (302, u'302 - Servidor Público Ocupante de Cargo exclusivo em comissão'),
-    (302, u'302 - Servidor Público Ocupante de Cargo exclusivo em comissão'),
-    (303, u'303 - Agente Político'),
-    (303, u'303 - Agente Político'),
-    (305, u'305 - Servidor Público indicado para conselho ou órgão deliberativo, na condição de representante do governo, órgão ou entidade da administração pública.'),
-    (305, u'305 - Servidor Público indicado para conselho ou órgão deliberativo, na condição de representante do governo, órgão ou entidade da administração pública.'),
-    (306, u'306 - Servidor Público Temporário, sujeito a regime administrativo especial definido em lei própria'),
-    (306, u'306 - Servidor Público Temporário, sujeito a regime administrativo especial definido em lei própria'),
-    (307, u'307 - Militar efetivo'),
-    (307, u'307 - Militar efetivo'),
-    (308, u'308 - Conscrito'),
-    (308, u'308 - Conscrito'),
-    (309, u'309 - Agente Público - Outros'),
-    (309, u'309 - Agente Público - Outros'),
-    (401, u'401 - Dirigente Sindical - informação prestada pelo Sindicato'),
-    (401, u'401 - Dirigente Sindical - informação prestada pelo Sindicato'),
-    (410, u'410 - Trabalhador cedido - informação prestada pelo Cessionário'),
-    (410, u'410 - Trabalhador cedido - informação prestada pelo Cessionário'),
-    (701, u'701 - Contribuinte individual - Autônomo em geral, exceto se enquadrado em uma das demais categorias de contribuinte individual'),
-    (701, u'701 - Contribuinte individual - Autônomo em geral, exceto se enquadrado em uma das demais categorias de contribuinte individual'),
-    (711, u'711 - Contribuinte individual - Transportador autônomo de passageiros'),
-    (711, u'711 - Contribuinte individual - Transportador autônomo de passageiros'),
-    (712, u'712 - Contribuinte individual - Transportador autônomo de carga'),
-    (712, u'712 - Contribuinte individual - Transportador autônomo de carga'),
-    (721, u'721 - Contribuinte individual - Diretor não empregado, com FGTS'),
-    (721, u'721 - Contribuinte individual - Diretor não empregado, com FGTS'),
-    (722, u'722 - Contribuinte individual - Diretor não empregado, sem FGTS'),
-    (722, u'722 - Contribuinte individual - Diretor não empregado, sem FGTS'),
-    (723, u'723 - Contribuinte individual - empresários, sócios e membro de conselho de administração ou fiscal'),
-    (723, u'723 - Contribuinte individual - empresários, sócios e membro de conselho de administração ou fiscal'),
-    (731, u'731 - Contribuinte individual - Cooperado que presta serviços por intermédio de Cooperativa de Trabalho'),
-    (731, u'731 - Contribuinte individual - Cooperado que presta serviços por intermédio de Cooperativa de Trabalho'),
-    (734, u'734 - Contribuinte individual - Transportador Cooperado que presta serviços por intermédio de cooperativa de trabalho'),
-    (734, u'734 - Contribuinte individual - Transportador Cooperado que presta serviços por intermédio de cooperativa de trabalho'),
-    (738, u'738 - Contribuinte individual - Cooperado filiado a Cooperativa de Produção'),
-    (738, u'738 - Contribuinte individual - Cooperado filiado a Cooperativa de Produção'),
-    (741, u'741 - Contribuinte individual - Microempreendedor Individual'),
-    (741, u'741 - Contribuinte individual - Microempreendedor Individual'),
-    (751, u'751 - Contribuinte individual - magistrado classista temporário da Justiça do Trabalho ou da Justiça Eleitoral que seja aposentado de qualquer regime previdenciário'),
-    (751, u'751 - Contribuinte individual - magistrado classista temporário da Justiça do Trabalho ou da Justiça Eleitoral que seja aposentado de qualquer regime previdenciário'),
-    (761, u'761 - Contribuinte individual - Associado eleito para direção de Cooperativa, associação ou entidade de classe de qualquer natureza ou finalidade, bem como o síndico ou administrador eleito para exercer atividade de direção condominial, desde que recebam r (...)'),
-    (761, u'761 - Contribuinte individual - Associado eleito para direção de Cooperativa, associação ou entidade de classe de qualquer natureza ou finalidade, bem como o síndico ou administrador eleito para exercer atividade de direção condominial, desde que recebam r (...)'),
-    (771, u'771 - Contribuinte individual - Membro de conselho tutelar, nos termos da Lei nº 8.069, de 13 de julho de 1990'),
-    (771, u'771 - Contribuinte individual - Membro de conselho tutelar, nos termos da Lei nº 8.069, de 13 de julho de 1990'),
-    (781, u'781 - Ministro de confissão religiosa ou membro de vida consagrada, de congregação ou de ordem religiosa'),
-    (781, u'781 - Ministro de confissão religiosa ou membro de vida consagrada, de congregação ou de ordem religiosa'),
-    (901, u'901 - Estagiário'),
-    (901, u'901 - Estagiário'),
-    (902, u'902 - Médico Residente'),
-    (902, u'902 - Médico Residente'),
-    (903, u'903 - Bolsista, nos termos da lei 8958/1994'),
-    (903, u'903 - Bolsista, nos termos da lei 8958/1994'),
-    (904, u'904 - Participante de curso de formação, como etapa de concurso público, sem vínculo de emprego/estatutário'),
-    (904, u'904 - Participante de curso de formação, como etapa de concurso público, sem vínculo de emprego/estatutário'),
-    (905, u'905 - Atleta não profissional em formação que receba bolsa'),
-    (905, u'905 - Atleta não profissional em formação que receba bolsa'),
+CHOICES_S1200_INDMV = (
+    (1, u'1 - O declarante aplica a alíquota de desconto do segurado sobre a remuneração por ele informada (o percentual da alíquota será obtido considerando a remuneração total do trabalhador)'),
+    (2, u'2 - O declarante aplica a alíquota de desconto do segurado sobre a diferença entre o limite máximo do salário de contribuição e a remuneração de outra(s) empresa(s) para as quais o trabalhador informou que houve o desconto'),
+    (3, u'3 - O declarante não realiza desconto do segurado, uma vez que houve desconto sobre o limite máximo de salário de contribuição em outra(s) empresa(s)'),
 )
 
-CHOICES_S1200_INFOPERAPUR_TPDEP = (
-    ('01', u'01 - Cônjuge'),
-    ('02', u'02 - Companheiro(a) com o(a) qual tenha filho ou viva há mais de 5 (cinco) anos ou possua Declaração de União Estável'),
-    ('03', u'03 - Filho(a) ou enteado(a)'),
-    ('04', u'04 - Filho(a) ou enteado(a), universitário(a) ou cursando escola técnica de 2º grau'),
-    ('06', u'06 - Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, do(a) qual detenha a guarda judicial'),
-    ('07', u'07 - Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, universitário(a) ou cursando escola técnica de 2° grau, do(a) qual detenha a guarda judicial'),
-    ('09', u'09 - Pais, avós e bisavós'),
-    ('10', u'10 - Menor pobre do qual detenha a guarda judicial'),
-    ('11', u'11 - A pessoa absolutamente incapaz, da qual seja tutor ou curador'),
-    ('12', u'12 - Ex-cônjuge'),
-    ('99', u'99 - Agregado/Outros'),
+CHOICES_S1200_INFOPERANT_GRAUEXP = (
+    (1, u'1 - Não ensejador de aposentadoria especial'),
+    (2, u'2 - Ensejador de Aposentadoria Especial - FAE15_12% (15 anos de contribuição e alíquota de 12%)'),
+    (3, u'3 - Ensejador de Aposentadoria Especial - FAE20_09% (20 anos de contribuição e alíquota de 9%)'),
+    (4, u'4 - Ensejador de Aposentadoria Especial - FAE25_06% (25 anos de contribuição e alíquota de 6%)'),
 )
 
-CHOICES_S1200_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+CHOICES_S1200_INFOPERANT_INDSIMPLES = (
+    (1, u'1 - Contribuição Substituída Integralmente'),
+    (2, u'2 - Contribuição não substituída'),
+    (3, u'3 - Contribuição não substituída concomitante com contribuição substituída'),
+)
+
+CHOICES_S1200_INFOPERANT_REMUNSUC = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
 )
 
 CHOICES_S1200_INFOPERANT_TPACCONV = (
@@ -151,13 +71,6 @@ CHOICES_S1200_INFOPERANT_TPACCONV = (
     ('C', u'C - Convenção Coletiva de Trabalho'),
     ('D', u'D - Sentença Normativa - Dissídio'),
     ('E', u'E - Conversão de Licença Saúde em Acidente de Trabalho'),
-)
-
-CHOICES_S1200_INFOPERANT_GRAUEXP = (
-    (1, u'1 - Não ensejador de aposentadoria especial'),
-    (2, u'2 - Ensejador de Aposentadoria Especial - FAE15_12% (15 anos de contribuição e alíquota de 12%)'),
-    (3, u'3 - Ensejador de Aposentadoria Especial - FAE20_09% (20 anos de contribuição e alíquota de 9%)'),
-    (4, u'4 - Ensejador de Aposentadoria Especial - FAE25_06% (25 anos de contribuição e alíquota de 6%)'),
 )
 
 CHOICES_S1200_INFOPERANT_TPINSC = (
@@ -174,10 +87,41 @@ CHOICES_S1200_INFOPERAPUR_GRAUEXP = (
     (4, u'4 - Ensejador de Aposentadoria Especial - FAE25_06% (25 anos de contribuição e alíquota de 6%)'),
 )
 
+CHOICES_S1200_INFOPERAPUR_INDSIMPLES = (
+    (1, u'1 - Contribuição Substituída Integralmente'),
+    (2, u'2 - Contribuição não substituída'),
+    (3, u'3 - Contribuição não substituída concomitante com contribuição substituída'),
+)
+
+CHOICES_S1200_INFOPERAPUR_TPDEP = (
+    ('01', u'01 - Cônjuge'),
+    ('02', u'02 - Companheiro(a) com o(a) qual tenha filho ou viva há mais de 5 (cinco) anos ou possua Declaração de União Estável'),
+    ('03', u'03 - Filho(a) ou enteado(a)'),
+    ('04', u'04 - Filho(a) ou enteado(a), universitário(a) ou cursando escola técnica de 2º grau'),
+    ('06', u'06 - Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, do(a) qual detenha a guarda judicial'),
+    ('07', u'07 - Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, universitário(a) ou cursando escola técnica de 2° grau, do(a) qual detenha a guarda judicial'),
+    ('09', u'09 - Pais, avós e bisavós'),
+    ('10', u'10 - Menor pobre do qual detenha a guarda judicial'),
+    ('11', u'11 - A pessoa absolutamente incapaz, da qual seja tutor ou curador'),
+    ('12', u'12 - Ex-cônjuge'),
+    ('99', u'99 - Agregado/Outros'),
+)
+
 CHOICES_S1200_INFOPERAPUR_TPINSC = (
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1200_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
@@ -188,35 +132,11 @@ CHOICES_S1200_TPTRIB = (
     (4, u'4 - Contribuição sindical'),
 )
 
-CHOICES_S1200_INDMV = (
-    (1, u'1 - O declarante aplica a alíquota de desconto do segurado sobre a remuneração por ele informada (o percentual da alíquota será obtido considerando a remuneração total do trabalhador)'),
-    (2, u'2 - O declarante aplica a alíquota de desconto do segurado sobre a diferença entre o limite máximo do salário de contribuição e a remuneração de outra(s) empresa(s) para as quais o trabalhador informou que houve o desconto'),
-    (3, u'3 - O declarante não realiza desconto do segurado, uma vez que houve desconto sobre o limite máximo de salário de contribuição em outra(s) empresa(s)'),
-)
-
-CHOICES_S1200_INFOPERANT_INDSIMPLES = (
-    (1, u'1 - Contribuição Substituída Integralmente'),
-    (2, u'2 - Contribuição não substituída'),
-    (3, u'3 - Contribuição não substituída concomitante com contribuição substituída'),
-)
-
-CHOICES_S1200_INFOPERAPUR_INDSIMPLES = (
-    (1, u'1 - Contribuição Substituída Integralmente'),
-    (2, u'2 - Contribuição não substituída'),
-    (3, u'3 - Contribuição não substituída concomitante com contribuição substituída'),
-)
-
-CHOICES_S1200_INFOPERANT_REMUNSUC = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
 class s1200dmDev(models.Model):
     s1200_evtremun = models.ForeignKey('esocial.s1200evtRemun',
         related_name='%(class)s_s1200_evtremun')
-    def evento(self): return self.s1200_evtremun.evento()
     idedmdev = models.CharField(max_length=30)
-    codcateg = models.IntegerField(choices=CHOICES_S1200_CODCATEG)
+    codcateg = models.TextField(max_length=3)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -237,7 +157,6 @@ class s1200dmDev(models.Model):
 class s1200infoComplem(models.Model):
     s1200_evtremun = models.OneToOneField('esocial.s1200evtRemun',
         related_name='%(class)s_s1200_evtremun')
-    def evento(self): return self.s1200_evtremun.evento()
     nmtrab = models.CharField(max_length=70)
     dtnascto = models.DateField()
     criado_em = models.DateTimeField(blank=True)
@@ -260,7 +179,6 @@ class s1200infoComplem(models.Model):
 class s1200infoInterm(models.Model):
     s1200_evtremun = models.OneToOneField('esocial.s1200evtRemun',
         related_name='%(class)s_s1200_evtremun')
-    def evento(self): return self.s1200_evtremun.evento()
     qtddiasinterm = models.IntegerField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -282,7 +200,6 @@ class s1200infoInterm(models.Model):
 class s1200infoMV(models.Model):
     s1200_evtremun = models.OneToOneField('esocial.s1200evtRemun',
         related_name='%(class)s_s1200_evtremun')
-    def evento(self): return self.s1200_evtremun.evento()
     indmv = models.IntegerField(choices=CHOICES_S1200_INDMV)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -304,7 +221,6 @@ class s1200infoMV(models.Model):
 class s1200infoPerAnt(models.Model):
     s1200_dmdev = models.OneToOneField('s1200dmDev',
         related_name='%(class)s_s1200_dmdev')
-    def evento(self): return self.s1200_dmdev.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -325,7 +241,6 @@ class s1200infoPerAnt(models.Model):
 class s1200infoPerAntideADC(models.Model):
     s1200_infoperant = models.ForeignKey('s1200infoPerAnt',
         related_name='%(class)s_s1200_infoperant')
-    def evento(self): return self.s1200_infoperant.evento()
     dtacconv = models.DateField(blank=True, null=True)
     tpacconv = models.CharField(choices=CHOICES_S1200_INFOPERANT_TPACCONV, max_length=1)
     compacconv = models.CharField(max_length=7, blank=True, null=True)
@@ -352,7 +267,6 @@ class s1200infoPerAntideADC(models.Model):
 class s1200infoPerAntideEstabLot(models.Model):
     s1200_infoperant_ideperiodo = models.ForeignKey('s1200infoPerAntidePeriodo',
         related_name='%(class)s_s1200_infoperant_ideperiodo')
-    def evento(self): return self.s1200_infoperant_ideperiodo.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S1200_INFOPERANT_TPINSC)
     nrinsc = models.CharField(max_length=15)
     codlotacao = models.CharField(max_length=30)
@@ -376,7 +290,6 @@ class s1200infoPerAntideEstabLot(models.Model):
 class s1200infoPerAntidePeriodo(models.Model):
     s1200_infoperant_ideadc = models.ForeignKey('s1200infoPerAntideADC',
         related_name='%(class)s_s1200_infoperant_ideadc')
-    def evento(self): return self.s1200_infoperant_ideadc.evento()
     perref = models.CharField(max_length=7)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -398,7 +311,6 @@ class s1200infoPerAntidePeriodo(models.Model):
 class s1200infoPerAntinfoAgNocivo(models.Model):
     s1200_infoperant_remunperant = models.OneToOneField('s1200infoPerAntremunPerAnt',
         related_name='%(class)s_s1200_infoperant_remunperant')
-    def evento(self): return self.s1200_infoperant_remunperant.evento()
     grauexp = models.IntegerField(choices=CHOICES_S1200_INFOPERANT_GRAUEXP)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -420,7 +332,6 @@ class s1200infoPerAntinfoAgNocivo(models.Model):
 class s1200infoPerAntinfoComplCont(models.Model):
     s1200_dmdev = models.OneToOneField('s1200dmDev',
         related_name='%(class)s_s1200_dmdev')
-    def evento(self): return self.s1200_dmdev.evento()
     codcbo = models.CharField(max_length=6)
     natatividade = models.IntegerField(blank=True, null=True)
     qtddiastrab = models.IntegerField(blank=True, null=True)
@@ -444,7 +355,6 @@ class s1200infoPerAntinfoComplCont(models.Model):
 class s1200infoPerAntinfoTrabInterm(models.Model):
     s1200_infoperant_remunperant = models.ForeignKey('s1200infoPerAntremunPerAnt',
         related_name='%(class)s_s1200_infoperant_remunperant')
-    def evento(self): return self.s1200_infoperant_remunperant.evento()
     codconv = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -466,7 +376,6 @@ class s1200infoPerAntinfoTrabInterm(models.Model):
 class s1200infoPerAntitensRemun(models.Model):
     s1200_infoperant_remunperant = models.ForeignKey('s1200infoPerAntremunPerAnt',
         related_name='%(class)s_s1200_infoperant_remunperant')
-    def evento(self): return self.s1200_infoperant_remunperant.evento()
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
     qtdrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=6, blank=True, null=True)
@@ -493,7 +402,6 @@ class s1200infoPerAntitensRemun(models.Model):
 class s1200infoPerAntremunPerAnt(models.Model):
     s1200_infoperant_ideestablot = models.ForeignKey('s1200infoPerAntideEstabLot',
         related_name='%(class)s_s1200_infoperant_ideestablot')
-    def evento(self): return self.s1200_infoperant_ideestablot.evento()
     matricula = models.CharField(max_length=30, blank=True, null=True)
     indsimples = models.IntegerField(choices=CHOICES_S1200_INFOPERANT_INDSIMPLES, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -516,7 +424,6 @@ class s1200infoPerAntremunPerAnt(models.Model):
 class s1200infoPerApur(models.Model):
     s1200_dmdev = models.OneToOneField('s1200dmDev',
         related_name='%(class)s_s1200_dmdev')
-    def evento(self): return self.s1200_dmdev.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -537,7 +444,6 @@ class s1200infoPerApur(models.Model):
 class s1200infoPerApurdetOper(models.Model):
     s1200_infoperapur_infosaudecolet = models.ForeignKey('s1200infoPerApurinfoSaudeColet',
         related_name='%(class)s_s1200_infoperapur_infosaudecolet')
-    def evento(self): return self.s1200_infoperapur_infosaudecolet.evento()
     cnpjoper = models.CharField(max_length=14)
     regans = models.CharField(max_length=6)
     vrpgtit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -561,7 +467,6 @@ class s1200infoPerApurdetOper(models.Model):
 class s1200infoPerApurdetPlano(models.Model):
     s1200_infoperapur_detoper = models.ForeignKey('s1200infoPerApurdetOper',
         related_name='%(class)s_s1200_infoperapur_detoper')
-    def evento(self): return self.s1200_infoperapur_detoper.evento()
     tpdep = models.CharField(choices=CHOICES_S1200_INFOPERAPUR_TPDEP, max_length=2)
     cpfdep = models.CharField(max_length=11, blank=True, null=True)
     nmdep = models.CharField(max_length=70)
@@ -587,7 +492,6 @@ class s1200infoPerApurdetPlano(models.Model):
 class s1200infoPerApurideEstabLot(models.Model):
     s1200_infoperapur = models.ForeignKey('s1200infoPerApur',
         related_name='%(class)s_s1200_infoperapur')
-    def evento(self): return self.s1200_infoperapur.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S1200_INFOPERAPUR_TPINSC)
     nrinsc = models.CharField(max_length=15)
     codlotacao = models.CharField(max_length=30)
@@ -612,7 +516,6 @@ class s1200infoPerApurideEstabLot(models.Model):
 class s1200infoPerApurinfoAgNocivo(models.Model):
     s1200_infoperapur_remunperapur = models.OneToOneField('s1200infoPerApurremunPerApur',
         related_name='%(class)s_s1200_infoperapur_remunperapur')
-    def evento(self): return self.s1200_infoperapur_remunperapur.evento()
     grauexp = models.IntegerField(choices=CHOICES_S1200_INFOPERAPUR_GRAUEXP)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -634,7 +537,6 @@ class s1200infoPerApurinfoAgNocivo(models.Model):
 class s1200infoPerApurinfoSaudeColet(models.Model):
     s1200_infoperapur_remunperapur = models.OneToOneField('s1200infoPerApurremunPerApur',
         related_name='%(class)s_s1200_infoperapur_remunperapur')
-    def evento(self): return self.s1200_infoperapur_remunperapur.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -655,7 +557,6 @@ class s1200infoPerApurinfoSaudeColet(models.Model):
 class s1200infoPerApurinfoTrabInterm(models.Model):
     s1200_infoperapur_remunperapur = models.ForeignKey('s1200infoPerApurremunPerApur',
         related_name='%(class)s_s1200_infoperapur_remunperapur')
-    def evento(self): return self.s1200_infoperapur_remunperapur.evento()
     codconv = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -677,7 +578,6 @@ class s1200infoPerApurinfoTrabInterm(models.Model):
 class s1200infoPerApuritensRemun(models.Model):
     s1200_infoperapur_remunperapur = models.ForeignKey('s1200infoPerApurremunPerApur',
         related_name='%(class)s_s1200_infoperapur_remunperapur')
-    def evento(self): return self.s1200_infoperapur_remunperapur.evento()
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
     qtdrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=6, blank=True, null=True)
@@ -704,7 +604,6 @@ class s1200infoPerApuritensRemun(models.Model):
 class s1200infoPerApurremunPerApur(models.Model):
     s1200_infoperapur_ideestablot = models.ForeignKey('s1200infoPerApurideEstabLot',
         related_name='%(class)s_s1200_infoperapur_ideestablot')
-    def evento(self): return self.s1200_infoperapur_ideestablot.evento()
     matricula = models.CharField(max_length=30, blank=True, null=True)
     indsimples = models.IntegerField(choices=CHOICES_S1200_INFOPERAPUR_INDSIMPLES, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -727,7 +626,6 @@ class s1200infoPerApurremunPerApur(models.Model):
 class s1200procJudTrab(models.Model):
     s1200_evtremun = models.ForeignKey('esocial.s1200evtRemun',
         related_name='%(class)s_s1200_evtremun')
-    def evento(self): return self.s1200_evtremun.evento()
     tptrib = models.IntegerField(choices=CHOICES_S1200_TPTRIB)
     nrprocjud = models.CharField(max_length=20)
     codsusp = models.IntegerField(blank=True, null=True)
@@ -751,10 +649,9 @@ class s1200procJudTrab(models.Model):
 class s1200remunOutrEmpr(models.Model):
     s1200_infomv = models.ForeignKey('s1200infoMV',
         related_name='%(class)s_s1200_infomv')
-    def evento(self): return self.s1200_infomv.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S1200_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    codcateg = models.IntegerField(choices=CHOICES_S1200_CODCATEG)
+    codcateg = models.TextField(max_length=3)
     vlrremunoe = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -776,7 +673,6 @@ class s1200remunOutrEmpr(models.Model):
 class s1200sucessaoVinc(models.Model):
     s1200_infocomplem = models.OneToOneField('s1200infoComplem',
         related_name='%(class)s_s1200_infocomplem')
-    def evento(self): return self.s1200_infocomplem.evento()
     cnpjempregant = models.CharField(max_length=14)
     matricant = models.CharField(max_length=30, blank=True, null=True)
     dtadm = models.DateField()

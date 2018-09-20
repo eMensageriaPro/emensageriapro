@@ -51,7 +51,6 @@ CHOICES_S1300_TPCONTRIBSIND = (
 class s1300contribSind(models.Model):
     s1300_evtcontrsindpatr = models.ForeignKey('esocial.s1300evtContrSindPatr',
         related_name='%(class)s_s1300_evtcontrsindpatr')
-    def evento(self): return self.s1300_evtcontrsindpatr.evento()
     cnpjsindic = models.CharField(max_length=14)
     tpcontribsind = models.IntegerField(choices=CHOICES_S1300_TPCONTRIBSIND)
     vlrcontribsind = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)

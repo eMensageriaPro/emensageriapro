@@ -149,3 +149,23 @@ class form_s2210_parteatingida(forms.ModelForm):
  
         ]
 
+
+class form_s2210_idelocalacid(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2210_idelocalacid,self ).__init__(*args,**kwargs)
+        
+        self.fields['s2210_evtcat'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s2210ideLocalAcid
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+

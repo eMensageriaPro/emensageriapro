@@ -58,7 +58,6 @@ CHOICES_S2250_TPAVPREVIO = (
 class s2250cancAvPrevio(models.Model):
     s2250_evtavprevio = models.OneToOneField('esocial.s2250evtAvPrevio',
         related_name='%(class)s_s2250_evtavprevio')
-    def evento(self): return self.s2250_evtavprevio.evento()
     dtcancavprv = models.DateField()
     observacao = models.CharField(max_length=255, blank=True, null=True)
     mtvcancavprevio = models.IntegerField(choices=CHOICES_S2250_MTVCANCAVPREVIO)
@@ -82,7 +81,6 @@ class s2250cancAvPrevio(models.Model):
 class s2250detAvPrevio(models.Model):
     s2250_evtavprevio = models.OneToOneField('esocial.s2250evtAvPrevio',
         related_name='%(class)s_s2250_evtavprevio')
-    def evento(self): return self.s2250_evtavprevio.evento()
     dtavprv = models.DateField()
     dtprevdeslig = models.DateField()
     tpavprevio = models.IntegerField(choices=CHOICES_S2250_TPAVPREVIO)

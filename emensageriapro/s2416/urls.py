@@ -42,6 +42,48 @@ urlpatterns = patterns('',
 
 
 
+url(r'^s2416-infopenmorte/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2416.views.s2416_infopenmorte.apagar', 
+        name='s2416_infopenmorte_apagar'),
+
+url(r'^s2416-infopenmorte/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2416.views.s2416_infopenmorte.listar', 
+        name='s2416_infopenmorte'),
+
+url(r'^s2416-infopenmorte/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2416.views.s2416_infopenmorte.salvar', 
+        name='s2416_infopenmorte_salvar'),
+
+
+
+url(r'^s2416-homologtc/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2416.views.s2416_homologtc.apagar', 
+        name='s2416_homologtc_apagar'),
+
+url(r'^s2416-homologtc/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2416.views.s2416_homologtc.listar', 
+        name='s2416_homologtc'),
+
+url(r'^s2416-homologtc/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2416.views.s2416_homologtc.salvar', 
+        name='s2416_homologtc_salvar'),
+
+
+
+url(r'^s2416-suspensao/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2416.views.s2416_suspensao.apagar', 
+        name='s2416_suspensao_apagar'),
+
+url(r'^s2416-suspensao/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2416.views.s2416_suspensao.listar', 
+        name='s2416_suspensao'),
+
+url(r'^s2416-suspensao/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2416.views.s2416_suspensao.salvar', 
+        name='s2416_suspensao_salvar'),
+
+
+
 
 
 )

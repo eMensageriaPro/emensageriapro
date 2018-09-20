@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -51,10 +52,11 @@ import base64
 #IMPORTACOES
 
 
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s1210_infopgto_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
@@ -137,22 +139,19 @@ def salvar(request, hash):
         if int(dict_hash['print']):
             s1210_infopgto_form = disabled_form_for_print(s1210_infopgto_form)
 
-        s1210_detpgtoant_form = None
-        s1210_detpgtoant_lista = None
         s1210_detpgtofl_form = None
         s1210_detpgtofl_lista = None
         s1210_detpgtobenpr_form = None
         s1210_detpgtobenpr_lista = None
         s1210_detpgtofer_form = None
         s1210_detpgtofer_lista = None
+        s1210_detpgtoant_form = None
+        s1210_detpgtoant_lista = None
         s1210_idepgtoext_form = None
         s1210_idepgtoext_lista = None
         if s1210_infopgto_id:
             s1210_infopgto = get_object_or_404(s1210infoPgto.objects.using( db_slug ), excluido = False, id = s1210_infopgto_id)
   
-            s1210_detpgtoant_form = form_s1210_detpgtoant(initial={ 's1210_infopgto': s1210_infopgto }, slug=db_slug)
-            s1210_detpgtoant_form.fields['s1210_infopgto'].widget.attrs['readonly'] = True
-            s1210_detpgtoant_lista = s1210detPgtoAnt.objects.using( db_slug ).filter(excluido = False, s1210_infopgto_id=s1210_infopgto.id).all()
             s1210_detpgtofl_form = form_s1210_detpgtofl(initial={ 's1210_infopgto': s1210_infopgto }, slug=db_slug)
             s1210_detpgtofl_form.fields['s1210_infopgto'].widget.attrs['readonly'] = True
             s1210_detpgtofl_lista = s1210detPgtoFl.objects.using( db_slug ).filter(excluido = False, s1210_infopgto_id=s1210_infopgto.id).all()
@@ -162,6 +161,9 @@ def salvar(request, hash):
             s1210_detpgtofer_form = form_s1210_detpgtofer(initial={ 's1210_infopgto': s1210_infopgto }, slug=db_slug)
             s1210_detpgtofer_form.fields['s1210_infopgto'].widget.attrs['readonly'] = True
             s1210_detpgtofer_lista = s1210detPgtoFer.objects.using( db_slug ).filter(excluido = False, s1210_infopgto_id=s1210_infopgto.id).all()
+            s1210_detpgtoant_form = form_s1210_detpgtoant(initial={ 's1210_infopgto': s1210_infopgto }, slug=db_slug)
+            s1210_detpgtoant_form.fields['s1210_infopgto'].widget.attrs['readonly'] = True
+            s1210_detpgtoant_lista = s1210detPgtoAnt.objects.using( db_slug ).filter(excluido = False, s1210_infopgto_id=s1210_infopgto.id).all()
             s1210_idepgtoext_form = form_s1210_idepgtoext(initial={ 's1210_infopgto': s1210_infopgto }, slug=db_slug)
             s1210_idepgtoext_form.fields['s1210_infopgto'].widget.attrs['readonly'] = True
             s1210_idepgtoext_lista = s1210idePgtoExt.objects.using( db_slug ).filter(excluido = False, s1210_infopgto_id=s1210_infopgto.id).all()
@@ -188,14 +190,14 @@ def salvar(request, hash):
        
             'hash': hash,
   
-            's1210_detpgtoant_form': s1210_detpgtoant_form,
-            's1210_detpgtoant_lista': s1210_detpgtoant_lista,
             's1210_detpgtofl_form': s1210_detpgtofl_form,
             's1210_detpgtofl_lista': s1210_detpgtofl_lista,
             's1210_detpgtobenpr_form': s1210_detpgtobenpr_form,
             's1210_detpgtobenpr_lista': s1210_detpgtobenpr_lista,
             's1210_detpgtofer_form': s1210_detpgtofer_form,
             's1210_detpgtofer_lista': s1210_detpgtofer_lista,
+            's1210_detpgtoant_form': s1210_detpgtoant_form,
+            's1210_detpgtoant_lista': s1210_detpgtoant_lista,
             's1210_idepgtoext_form': s1210_idepgtoext_form,
             's1210_idepgtoext_lista': s1210_idepgtoext_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
@@ -255,10 +257,11 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
 def apagar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s1210_infopgto_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
@@ -326,11 +329,13 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
+
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']
@@ -387,6 +392,7 @@ def listar(request, hash):
             s1210_infopgto_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
+        s1210_evtpgtos_lista = s1210evtPgtos.objects.using( db_slug ).filter(excluido = False).all()
         #s1210_infopgto_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1210_infopgto'
@@ -406,7 +412,8 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-   
+  
+            's1210_evtpgtos_lista': s1210_evtpgtos_lista,
         }
         if for_print in (0,1):
             return render(request, 's1210_infopgto_listar.html', context)

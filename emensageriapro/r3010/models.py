@@ -71,19 +71,16 @@ ESTADOS = (
     ('TO', u'Tocantins'),
 )
 
-CHOICES_R3010_TPRECEITA = (
-    (1, u'1 - Transmissão'),
-    (2, u'2 - Propaganda'),
-    (3, u'3 - Publicidade'),
-    (4, u'4 - Sorteio'),
-    (5, u'5 - Outros'),
-)
-
 CHOICES_R3010_CATEGEVENTO = (
     (1, u'1 - Internacional'),
     (2, u'2 - Interestadual'),
     (3, u'3 - Estadual'),
     (4, u'4 - Local'),
+)
+
+CHOICES_R3010_TPCOMPETICAO = (
+    (1, u'1 - Oficial'),
+    (2, u'2 - Não Oficial'),
 )
 
 CHOICES_R3010_TPINGRESSO = (
@@ -93,9 +90,8 @@ CHOICES_R3010_TPINGRESSO = (
     (4, u'4 - Camarote'),
 )
 
-CHOICES_R3010_TPCOMPETICAO = (
-    (1, u'1 - Oficial'),
-    (2, u'2 - Não Oficial'),
+CHOICES_R3010_TPINSCESTAB = (
+    (1, u'1 - CNPJ'),
 )
 
 CHOICES_R3010_TPPROC = (
@@ -103,8 +99,12 @@ CHOICES_R3010_TPPROC = (
     (2, u'2 - Judicial'),
 )
 
-CHOICES_R3010_TPINSCESTAB = (
-    (1, u'1 - CNPJ'),
+CHOICES_R3010_TPRECEITA = (
+    (1, u'1 - Transmissão'),
+    (2, u'2 - Propaganda'),
+    (3, u'3 - Publicidade'),
+    (4, u'4 - Sorteio'),
+    (5, u'5 - Outros'),
 )
 
 class r3010boletim(models.Model):

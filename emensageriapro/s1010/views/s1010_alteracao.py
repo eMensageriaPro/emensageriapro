@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -51,10 +52,11 @@ import base64
 #IMPORTACOES
 
 
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s1010_alteracao_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
@@ -145,6 +147,8 @@ def salvar(request, hash):
         s1010_alteracao_ideprocessofgts_lista = None
         s1010_alteracao_ideprocessosind_form = None
         s1010_alteracao_ideprocessosind_lista = None
+        s1010_alteracao_ideprocessocprp_form = None
+        s1010_alteracao_ideprocessocprp_lista = None
         s1010_alteracao_novavalidade_form = None
         s1010_alteracao_novavalidade_lista = None
         if s1010_alteracao_id:
@@ -162,6 +166,9 @@ def salvar(request, hash):
             s1010_alteracao_ideprocessosind_form = form_s1010_alteracao_ideprocessosind(initial={ 's1010_alteracao': s1010_alteracao }, slug=db_slug)
             s1010_alteracao_ideprocessosind_form.fields['s1010_alteracao'].widget.attrs['readonly'] = True
             s1010_alteracao_ideprocessosind_lista = s1010alteracaoideProcessoSIND.objects.using( db_slug ).filter(excluido = False, s1010_alteracao_id=s1010_alteracao.id).all()
+            s1010_alteracao_ideprocessocprp_form = form_s1010_alteracao_ideprocessocprp(initial={ 's1010_alteracao': s1010_alteracao }, slug=db_slug)
+            s1010_alteracao_ideprocessocprp_form.fields['s1010_alteracao'].widget.attrs['readonly'] = True
+            s1010_alteracao_ideprocessocprp_lista = s1010alteracaoideProcessoCPRP.objects.using( db_slug ).filter(excluido = False, s1010_alteracao_id=s1010_alteracao.id).all()
             s1010_alteracao_novavalidade_form = form_s1010_alteracao_novavalidade(initial={ 's1010_alteracao': s1010_alteracao }, slug=db_slug)
             s1010_alteracao_novavalidade_form.fields['s1010_alteracao'].widget.attrs['readonly'] = True
             s1010_alteracao_novavalidade_lista = s1010alteracaonovaValidade.objects.using( db_slug ).filter(excluido = False, s1010_alteracao_id=s1010_alteracao.id).all()
@@ -196,6 +203,8 @@ def salvar(request, hash):
             's1010_alteracao_ideprocessofgts_lista': s1010_alteracao_ideprocessofgts_lista,
             's1010_alteracao_ideprocessosind_form': s1010_alteracao_ideprocessosind_form,
             's1010_alteracao_ideprocessosind_lista': s1010_alteracao_ideprocessosind_lista,
+            's1010_alteracao_ideprocessocprp_form': s1010_alteracao_ideprocessocprp_form,
+            's1010_alteracao_ideprocessocprp_lista': s1010_alteracao_ideprocessocprp_lista,
             's1010_alteracao_novavalidade_form': s1010_alteracao_novavalidade_form,
             's1010_alteracao_novavalidade_lista': s1010_alteracao_novavalidade_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
@@ -255,10 +264,11 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
 def apagar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s1010_alteracao_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
@@ -326,11 +336,13 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
+
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']
@@ -357,6 +369,8 @@ def listar(request, hash):
             'show_criado_por': 0,
             'show_criado_em': 0,
             'show_observacao': 0,
+            'show_tetoremun': 0,
+            'show_codinccprp': 0,
             'show_codincsind': 1,
             'show_codincfgts': 1,
             'show_codincirrf': 1,
@@ -376,12 +390,14 @@ def listar(request, hash):
             post = True
             dict_fields = {
                 'observacao__icontains': 'observacao__icontains',
+                'tetoremun__icontains': 'tetoremun__icontains',
+                'codinccprp__icontains': 'codinccprp__icontains',
                 'codincsind__icontains': 'codincsind__icontains',
                 'codincfgts__icontains': 'codincfgts__icontains',
                 'codincirrf__icontains': 'codincirrf__icontains',
                 'codinccp__icontains': 'codinccp__icontains',
                 'tprubr': 'tprubr',
-                'natrubr': 'natrubr',
+                'natrubr__icontains': 'natrubr__icontains',
                 'dscrubr__icontains': 'dscrubr__icontains',
                 'dadosrubrica': 'dadosrubrica',
                 'fimvalid__icontains': 'fimvalid__icontains',
@@ -397,12 +413,14 @@ def listar(request, hash):
             if request.method == 'POST':
                 dict_fields = {
                 'observacao__icontains': 'observacao__icontains',
+                'tetoremun__icontains': 'tetoremun__icontains',
+                'codinccprp__icontains': 'codinccprp__icontains',
                 'codincsind__icontains': 'codincsind__icontains',
                 'codincfgts__icontains': 'codincfgts__icontains',
                 'codincirrf__icontains': 'codincirrf__icontains',
                 'codinccp__icontains': 'codinccp__icontains',
                 'tprubr': 'tprubr',
-                'natrubr': 'natrubr',
+                'natrubr__icontains': 'natrubr__icontains',
                 'dscrubr__icontains': 'dscrubr__icontains',
                 'dadosrubrica': 'dadosrubrica',
                 'fimvalid__icontains': 'fimvalid__icontains',

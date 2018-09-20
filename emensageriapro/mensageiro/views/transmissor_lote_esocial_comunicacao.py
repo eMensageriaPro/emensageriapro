@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -53,11 +54,11 @@ from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes,
 
 
 
-
+@login_required
 def enviar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         transmissor_lote_esocial_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
@@ -71,10 +72,11 @@ def enviar(request, hash):
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
 
+@login_required
 def consultar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url(hash)
         transmissor_lote_esocial_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])

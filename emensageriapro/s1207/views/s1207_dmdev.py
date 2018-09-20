@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -51,10 +52,11 @@ import base64
 #IMPORTACOES
 
 
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s1207_dmdev_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
@@ -139,12 +141,22 @@ def salvar(request, hash):
 
         s1207_itens_form = None
         s1207_itens_lista = None
+        s1207_infoperapur_form = None
+        s1207_infoperapur_lista = None
+        s1207_infoperant_form = None
+        s1207_infoperant_lista = None
         if s1207_dmdev_id:
             s1207_dmdev = get_object_or_404(s1207dmDev.objects.using( db_slug ), excluido = False, id = s1207_dmdev_id)
   
             s1207_itens_form = form_s1207_itens(initial={ 's1207_dmdev': s1207_dmdev }, slug=db_slug)
             s1207_itens_form.fields['s1207_dmdev'].widget.attrs['readonly'] = True
             s1207_itens_lista = s1207itens.objects.using( db_slug ).filter(excluido = False, s1207_dmdev_id=s1207_dmdev.id).all()
+            s1207_infoperapur_form = form_s1207_infoperapur(initial={ 's1207_dmdev': s1207_dmdev }, slug=db_slug)
+            s1207_infoperapur_form.fields['s1207_dmdev'].widget.attrs['readonly'] = True
+            s1207_infoperapur_lista = s1207infoPerApur.objects.using( db_slug ).filter(excluido = False, s1207_dmdev_id=s1207_dmdev.id).all()
+            s1207_infoperant_form = form_s1207_infoperant(initial={ 's1207_dmdev': s1207_dmdev }, slug=db_slug)
+            s1207_infoperant_form.fields['s1207_dmdev'].widget.attrs['readonly'] = True
+            s1207_infoperant_lista = s1207infoPerAnt.objects.using( db_slug ).filter(excluido = False, s1207_dmdev_id=s1207_dmdev.id).all()
         else:
             s1207_dmdev = None
         #s1207_dmdev_salvar_custom_variaveis#
@@ -170,6 +182,10 @@ def salvar(request, hash):
   
             's1207_itens_form': s1207_itens_form,
             's1207_itens_lista': s1207_itens_lista,
+            's1207_infoperapur_form': s1207_infoperapur_form,
+            's1207_infoperapur_lista': s1207_infoperapur_lista,
+            's1207_infoperant_form': s1207_infoperant_form,
+            's1207_infoperant_lista': s1207_infoperant_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
@@ -227,10 +243,11 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
 def apagar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s1207_dmdev_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
@@ -298,11 +315,13 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
+
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']
@@ -359,6 +378,7 @@ def listar(request, hash):
             s1207_dmdev_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
+        s1207_evtbenprrp_lista = s1207evtBenPrRP.objects.using( db_slug ).filter(excluido = False).all()
         #s1207_dmdev_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1207_dmdev'
@@ -378,7 +398,8 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-   
+  
+            's1207_evtbenprrp_lista': s1207_evtbenprrp_lista,
         }
         if for_print in (0,1):
             return render(request, 's1207_dmdev_listar.html', context)

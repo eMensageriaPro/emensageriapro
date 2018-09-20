@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -47,6 +48,7 @@ from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
 import base64
+from emensageriapro.s2200.models import s2200infoCeletista
 from emensageriapro.s2200.models import s2200documentos
 from emensageriapro.s2200.models import s2200brasil
 from emensageriapro.s2200.models import s2200exterior
@@ -55,7 +57,6 @@ from emensageriapro.s2200.models import s2200infoDeficiencia
 from emensageriapro.s2200.models import s2200dependente
 from emensageriapro.s2200.models import s2200aposentadoria
 from emensageriapro.s2200.models import s2200contato
-from emensageriapro.s2200.models import s2200infoCeletista
 from emensageriapro.s2200.models import s2200infoEstatutario
 from emensageriapro.s2200.models import s2200localTrabGeral
 from emensageriapro.s2200.models import s2200localTrabDom
@@ -67,6 +68,8 @@ from emensageriapro.s2200.models import s2200sucessaoVinc
 from emensageriapro.s2200.models import s2200transfDom
 from emensageriapro.s2200.models import s2200afastamento
 from emensageriapro.s2200.models import s2200desligamento
+from emensageriapro.s2200.models import s2200cessao
+from emensageriapro.s2200.forms import form_s2200_infoceletista
 from emensageriapro.s2200.forms import form_s2200_documentos
 from emensageriapro.s2200.forms import form_s2200_brasil
 from emensageriapro.s2200.forms import form_s2200_exterior
@@ -75,7 +78,6 @@ from emensageriapro.s2200.forms import form_s2200_infodeficiencia
 from emensageriapro.s2200.forms import form_s2200_dependente
 from emensageriapro.s2200.forms import form_s2200_aposentadoria
 from emensageriapro.s2200.forms import form_s2200_contato
-from emensageriapro.s2200.forms import form_s2200_infoceletista
 from emensageriapro.s2200.forms import form_s2200_infoestatutario
 from emensageriapro.s2200.forms import form_s2200_localtrabgeral
 from emensageriapro.s2200.forms import form_s2200_localtrabdom
@@ -87,6 +89,7 @@ from emensageriapro.s2200.forms import form_s2200_sucessaovinc
 from emensageriapro.s2200.forms import form_s2200_transfdom
 from emensageriapro.s2200.forms import form_s2200_afastamento
 from emensageriapro.s2200.forms import form_s2200_desligamento
+from emensageriapro.s2200.forms import form_s2200_cessao
 
 #IMPORTACOES
 
@@ -146,11 +149,12 @@ def gerar_identidade(request, chave, evento_id):
     return HttpResponse(mensagem)
 
 
+@login_required
 def salvar(request, hash):
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_MODELO, TP_AMB
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2200_evtadmissao_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
@@ -236,6 +240,8 @@ def salvar(request, hash):
         if int(dict_hash['print']):
             s2200_evtadmissao_form = disabled_form_for_print(s2200_evtadmissao_form)
 
+        s2200_infoceletista_form = None
+        s2200_infoceletista_lista = None
         s2200_documentos_form = None
         s2200_documentos_lista = None
         s2200_brasil_form = None
@@ -252,8 +258,6 @@ def salvar(request, hash):
         s2200_aposentadoria_lista = None
         s2200_contato_form = None
         s2200_contato_lista = None
-        s2200_infoceletista_form = None
-        s2200_infoceletista_lista = None
         s2200_infoestatutario_form = None
         s2200_infoestatutario_lista = None
         s2200_localtrabgeral_form = None
@@ -276,9 +280,14 @@ def salvar(request, hash):
         s2200_afastamento_lista = None
         s2200_desligamento_form = None
         s2200_desligamento_lista = None
+        s2200_cessao_form = None
+        s2200_cessao_lista = None
         if s2200_evtadmissao_id:
             s2200_evtadmissao = get_object_or_404(s2200evtAdmissao.objects.using( db_slug ), excluido = False, id = s2200_evtadmissao_id)
   
+            s2200_infoceletista_form = form_s2200_infoceletista(initial={ 's2200_evtadmissao': s2200_evtadmissao }, slug=db_slug)
+            s2200_infoceletista_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
+            s2200_infoceletista_lista = s2200infoCeletista.objects.using( db_slug ).filter(excluido = False, s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_documentos_form = form_s2200_documentos(initial={ 's2200_evtadmissao': s2200_evtadmissao }, slug=db_slug)
             s2200_documentos_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_documentos_lista = s2200documentos.objects.using( db_slug ).filter(excluido = False, s2200_evtadmissao_id=s2200_evtadmissao.id).all()
@@ -303,9 +312,6 @@ def salvar(request, hash):
             s2200_contato_form = form_s2200_contato(initial={ 's2200_evtadmissao': s2200_evtadmissao }, slug=db_slug)
             s2200_contato_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_contato_lista = s2200contato.objects.using( db_slug ).filter(excluido = False, s2200_evtadmissao_id=s2200_evtadmissao.id).all()
-            s2200_infoceletista_form = form_s2200_infoceletista(initial={ 's2200_evtadmissao': s2200_evtadmissao }, slug=db_slug)
-            s2200_infoceletista_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
-            s2200_infoceletista_lista = s2200infoCeletista.objects.using( db_slug ).filter(excluido = False, s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_infoestatutario_form = form_s2200_infoestatutario(initial={ 's2200_evtadmissao': s2200_evtadmissao }, slug=db_slug)
             s2200_infoestatutario_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_infoestatutario_lista = s2200infoEstatutario.objects.using( db_slug ).filter(excluido = False, s2200_evtadmissao_id=s2200_evtadmissao.id).all()
@@ -339,6 +345,9 @@ def salvar(request, hash):
             s2200_desligamento_form = form_s2200_desligamento(initial={ 's2200_evtadmissao': s2200_evtadmissao }, slug=db_slug)
             s2200_desligamento_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_desligamento_lista = s2200desligamento.objects.using( db_slug ).filter(excluido = False, s2200_evtadmissao_id=s2200_evtadmissao.id).all()
+            s2200_cessao_form = form_s2200_cessao(initial={ 's2200_evtadmissao': s2200_evtadmissao }, slug=db_slug)
+            s2200_cessao_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
+            s2200_cessao_lista = s2200cessao.objects.using( db_slug ).filter(excluido = False, s2200_evtadmissao_id=s2200_evtadmissao.id).all()
         else:
             s2200_evtadmissao = None
         #s2200_evtadmissao_salvar_custom_variaveis#
@@ -373,6 +382,8 @@ def salvar(request, hash):
        
             'hash': hash,
   
+            's2200_infoceletista_form': s2200_infoceletista_form,
+            's2200_infoceletista_lista': s2200_infoceletista_lista,
             's2200_documentos_form': s2200_documentos_form,
             's2200_documentos_lista': s2200_documentos_lista,
             's2200_brasil_form': s2200_brasil_form,
@@ -389,8 +400,6 @@ def salvar(request, hash):
             's2200_aposentadoria_lista': s2200_aposentadoria_lista,
             's2200_contato_form': s2200_contato_form,
             's2200_contato_lista': s2200_contato_lista,
-            's2200_infoceletista_form': s2200_infoceletista_form,
-            's2200_infoceletista_lista': s2200_infoceletista_lista,
             's2200_infoestatutario_form': s2200_infoestatutario_form,
             's2200_infoestatutario_lista': s2200_infoestatutario_lista,
             's2200_localtrabgeral_form': s2200_localtrabgeral_form,
@@ -413,6 +422,8 @@ def salvar(request, hash):
             's2200_afastamento_lista': s2200_afastamento_lista,
             's2200_desligamento_form': s2200_desligamento_form,
             's2200_desligamento_lista': s2200_desligamento_lista,
+            's2200_cessao_form': s2200_cessao_form,
+            's2200_cessao_lista': s2200_cessao_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
@@ -470,63 +481,6 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.session['usuario_id']
-        dict_hash = get_hash_url( hash )
-        s2200_evtadmissao_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2200_evtadmissao')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-    s2200_evtadmissao = get_object_or_404(s2200evtAdmissao.objects.using( db_slug ), excluido = False, id = s2200_evtadmissao_id)
-
-    if s2200_evtadmissao_id:
-        if s2200_evtadmissao.status != 0:
-            dict_permissoes['s2200_evtadmissao_apagar'] = 0
-            dict_permissoes['s2200_evtadmissao_editar'] = 0
-
-    if request.method == 'POST':
-        if s2200_evtadmissao.status == 0:
-            import json
-            from django.forms.models import model_to_dict
-            situacao_anterior = json.dumps(model_to_dict(s2200_evtadmissao), indent=4, sort_keys=True, default=str)
-            s2200evtAdmissao.objects.using( db_slug ).filter(id = s2200_evtadmissao_id).delete()
-            #s2200_evtadmissao_apagar_custom
-            #s2200_evtadmissao_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
-            gravar_auditoria(situacao_anterior,
-                             '',
-                             's2200_evtadmissao', s2200_evtadmissao_id, usuario_id, 3)
-        else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
-        if request.session['retorno_pagina']== 's2200_evtadmissao_salvar':
-            return redirect('s2200_evtadmissao', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 's2200_evtadmissao_apagar.html', context)
-
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse
@@ -540,11 +494,12 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']
@@ -582,6 +537,7 @@ def listar(request, hash):
             'show_codcarreira': 0,
             'show_codcateg': 1,
             'show_codfuncao': 0,
+            'show_dtingrcargo': 0,
             'show_codcargo': 0,
             'show_infocontrato': 0,
             'show_inforegimetrab': 0,
@@ -655,8 +611,9 @@ def listar(request, hash):
                 'remuneracao': 'remuneracao',
                 'dtingrcarr__range': 'dtingrcarr__range',
                 'codcarreira__icontains': 'codcarreira__icontains',
-                'codcateg': 'codcateg',
+                'codcateg__icontains': 'codcateg__icontains',
                 'codfuncao__icontains': 'codfuncao__icontains',
+                'dtingrcargo__range': 'dtingrcargo__range',
                 'codcargo__icontains': 'codcargo__icontains',
                 'infocontrato': 'infocontrato',
                 'inforegimetrab': 'inforegimetrab',
@@ -716,8 +673,9 @@ def listar(request, hash):
                 'remuneracao': 'remuneracao',
                 'dtingrcarr__range': 'dtingrcarr__range',
                 'codcarreira__icontains': 'codcarreira__icontains',
-                'codcateg': 'codcateg',
+                'codcateg__icontains': 'codcateg__icontains',
                 'codfuncao__icontains': 'codfuncao__icontains',
+                'dtingrcargo__range': 'dtingrcargo__range',
                 'codcargo__icontains': 'codcargo__icontains',
                 'infocontrato': 'infocontrato',
                 'inforegimetrab': 'inforegimetrab',
@@ -844,4 +802,62 @@ def listar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
+
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        s2200_evtadmissao_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2200_evtadmissao')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    s2200_evtadmissao = get_object_or_404(s2200evtAdmissao.objects.using( db_slug ), excluido = False, id = s2200_evtadmissao_id)
+
+    if s2200_evtadmissao_id:
+        if s2200_evtadmissao.status != 0:
+            dict_permissoes['s2200_evtadmissao_apagar'] = 0
+            dict_permissoes['s2200_evtadmissao_editar'] = 0
+
+    if request.method == 'POST':
+        if s2200_evtadmissao.status == 0:
+            import json
+            from django.forms.models import model_to_dict
+            situacao_anterior = json.dumps(model_to_dict(s2200_evtadmissao), indent=4, sort_keys=True, default=str)
+            s2200evtAdmissao.objects.using( db_slug ).filter(id = s2200_evtadmissao_id).delete()
+            #s2200_evtadmissao_apagar_custom
+            #s2200_evtadmissao_apagar_custom
+            messages.success(request, 'Apagado com sucesso!')
+            gravar_auditoria(situacao_anterior,
+                             '',
+                             's2200_evtadmissao', s2200_evtadmissao_id, usuario_id, 3)
+        else:
+            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+   
+        if request.session['retorno_pagina']== 's2200_evtadmissao_salvar':
+            return redirect('s2200_evtadmissao', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 's2200_evtadmissao_apagar.html', context)
 

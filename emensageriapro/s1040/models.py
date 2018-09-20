@@ -71,7 +71,6 @@ PERIODOS = (
 class s1040alteracao(models.Model):
     s1040_evttabfuncao = models.OneToOneField('esocial.s1040evtTabFuncao',
         related_name='%(class)s_s1040_evttabfuncao')
-    def evento(self): return self.s1040_evttabfuncao.evento()
     codfuncao = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
@@ -97,7 +96,6 @@ class s1040alteracao(models.Model):
 class s1040alteracaonovaValidade(models.Model):
     s1040_alteracao = models.OneToOneField('s1040alteracao',
         related_name='%(class)s_s1040_alteracao')
-    def evento(self): return self.s1040_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -120,7 +118,6 @@ class s1040alteracaonovaValidade(models.Model):
 class s1040exclusao(models.Model):
     s1040_evttabfuncao = models.OneToOneField('esocial.s1040evtTabFuncao',
         related_name='%(class)s_s1040_evttabfuncao')
-    def evento(self): return self.s1040_evttabfuncao.evento()
     codfuncao = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
@@ -144,7 +141,6 @@ class s1040exclusao(models.Model):
 class s1040inclusao(models.Model):
     s1040_evttabfuncao = models.OneToOneField('esocial.s1040evtTabFuncao',
         related_name='%(class)s_s1040_evttabfuncao')
-    def evento(self): return self.s1040_evttabfuncao.evento()
     codfuncao = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)

@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -51,10 +52,11 @@ import base64
 #IMPORTACOES
 
 
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2240_iniexprisco_infoamb_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
@@ -137,11 +139,16 @@ def salvar(request, hash):
         if int(dict_hash['print']):
             s2240_iniexprisco_infoamb_form = disabled_form_for_print(s2240_iniexprisco_infoamb_form)
 
+        s2240_iniexprisco_ativpericinsal_form = None
+        s2240_iniexprisco_ativpericinsal_lista = None
         s2240_iniexprisco_fatrisco_form = None
         s2240_iniexprisco_fatrisco_lista = None
         if s2240_iniexprisco_infoamb_id:
             s2240_iniexprisco_infoamb = get_object_or_404(s2240iniExpRiscoinfoAmb.objects.using( db_slug ), excluido = False, id = s2240_iniexprisco_infoamb_id)
   
+            s2240_iniexprisco_ativpericinsal_form = form_s2240_iniexprisco_ativpericinsal(initial={ 's2240_iniexprisco_infoamb': s2240_iniexprisco_infoamb }, slug=db_slug)
+            s2240_iniexprisco_ativpericinsal_form.fields['s2240_iniexprisco_infoamb'].widget.attrs['readonly'] = True
+            s2240_iniexprisco_ativpericinsal_lista = s2240iniExpRiscoativPericInsal.objects.using( db_slug ).filter(excluido = False, s2240_iniexprisco_infoamb_id=s2240_iniexprisco_infoamb.id).all()
             s2240_iniexprisco_fatrisco_form = form_s2240_iniexprisco_fatrisco(initial={ 's2240_iniexprisco_infoamb': s2240_iniexprisco_infoamb }, slug=db_slug)
             s2240_iniexprisco_fatrisco_form.fields['s2240_iniexprisco_infoamb'].widget.attrs['readonly'] = True
             s2240_iniexprisco_fatrisco_lista = s2240iniExpRiscofatRisco.objects.using( db_slug ).filter(excluido = False, s2240_iniexprisco_infoamb_id=s2240_iniexprisco_infoamb.id).all()
@@ -168,6 +175,8 @@ def salvar(request, hash):
        
             'hash': hash,
   
+            's2240_iniexprisco_ativpericinsal_form': s2240_iniexprisco_ativpericinsal_form,
+            's2240_iniexprisco_ativpericinsal_lista': s2240_iniexprisco_ativpericinsal_lista,
             's2240_iniexprisco_fatrisco_form': s2240_iniexprisco_fatrisco_form,
             's2240_iniexprisco_fatrisco_lista': s2240_iniexprisco_fatrisco_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
@@ -227,10 +236,11 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
 def apagar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2240_iniexprisco_infoamb_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
@@ -298,11 +308,13 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
+
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']
@@ -359,6 +371,7 @@ def listar(request, hash):
             s2240_iniexprisco_infoamb_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
+        s2240_iniexprisco_lista = s2240iniExpRisco.objects.using( db_slug ).filter(excluido = False).all()
         #s2240_iniexprisco_infoamb_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2240_iniexprisco_infoamb'
@@ -378,7 +391,8 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-   
+  
+            's2240_iniexprisco_lista': s2240_iniexprisco_lista,
         }
         if for_print in (0,1):
             return render(request, 's2240_iniexprisco_infoamb_listar.html', context)

@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -51,10 +52,11 @@ import base64
 #IMPORTACOES
 
 
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s5011_idelotacao_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
@@ -262,10 +264,11 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
 def apagar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s5011_idelotacao_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
@@ -333,11 +336,13 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
+
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']
@@ -397,6 +402,7 @@ def listar(request, hash):
             s5011_idelotacao_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
+        s5011_ideestab_lista = s5011ideEstab.objects.using( db_slug ).filter(excluido = False).all()
         #s5011_idelotacao_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's5011_idelotacao'
@@ -416,7 +422,8 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-   
+  
+            's5011_ideestab_lista': s5011_ideestab_lista,
         }
         if for_print in (0,1):
             return render(request, 's5011_idelotacao_listar.html', context)

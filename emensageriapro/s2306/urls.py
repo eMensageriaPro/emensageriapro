@@ -84,6 +84,20 @@ url(r'^s2306-remuneracao/salvar/(?P<hash>.*)/$',
 
 
 
+url(r'^s2306-infotrabcedido/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2306.views.s2306_infotrabcedido.apagar', 
+        name='s2306_infotrabcedido_apagar'),
+
+url(r'^s2306-infotrabcedido/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2306.views.s2306_infotrabcedido.listar', 
+        name='s2306_infotrabcedido'),
+
+url(r'^s2306-infotrabcedido/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2306.views.s2306_infotrabcedido.salvar', 
+        name='s2306_infotrabcedido_salvar'),
+
+
+
 url(r'^s2306-infoestagiario/apagar/(?P<hash>.*)/$', 
         'emensageriapro.s2306.views.s2306_infoestagiario.apagar', 
         name='s2306_infoestagiario_apagar'),

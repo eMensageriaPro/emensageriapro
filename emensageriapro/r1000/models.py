@@ -68,22 +68,6 @@ PERIODOS = (
     ('2018-12', u'Dezembro/2018'),
 )
 
-CHOICES_R1000_ALTERACAO_INDSITPJ = (
-    (0, u'0 - Situação Normal'),
-    (1, u'1 - Extinção'),
-    (2, u'2 - Fusão'),
-    (3, u'3 - Cisão'),
-    (4, u'4 - Incorporação'),
-)
-
-CHOICES_R1000_INCLUSAO_INDSITPJ = (
-    (0, u'0 - Situação Normal'),
-    (1, u'1 - Extinção'),
-    (2, u'2 - Fusão'),
-    (3, u'3 - Cisão'),
-    (4, u'4 - Incorporação'),
-)
-
 CHOICES_R1000_ALTERACAO_IDEEFR = (
     ('N', u'N - Não é EFR'),
     ('S', u'S - É EFR'),
@@ -104,6 +88,14 @@ CHOICES_R1000_ALTERACAO_INDESCRITURACAO = (
     (1, u'1 - Empresa obrigada à ECD'),
 )
 
+CHOICES_R1000_ALTERACAO_INDSITPJ = (
+    (0, u'0 - Situação Normal'),
+    (1, u'1 - Extinção'),
+    (2, u'2 - Fusão'),
+    (3, u'3 - Cisão'),
+    (4, u'4 - Incorporação'),
+)
+
 CHOICES_R1000_INCLUSAO_IDEEFR = (
     ('N', u'N - Não é EFR'),
     ('S', u'S - É EFR'),
@@ -122,6 +114,14 @@ CHOICES_R1000_INCLUSAO_INDDESONERACAO = (
 CHOICES_R1000_INCLUSAO_INDESCRITURACAO = (
     (0, u'0 - Empresa Não obrigada à ECD'),
     (1, u'1 - Empresa obrigada à ECD'),
+)
+
+CHOICES_R1000_INCLUSAO_INDSITPJ = (
+    (0, u'0 - Situação Normal'),
+    (1, u'1 - Extinção'),
+    (2, u'2 - Fusão'),
+    (3, u'3 - Cisão'),
+    (4, u'4 - Incorporação'),
 )
 
 class r1000alteracao(models.Model):

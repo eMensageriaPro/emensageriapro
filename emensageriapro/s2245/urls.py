@@ -42,6 +42,20 @@ urlpatterns = patterns('',
 
 
 
+url(r'^s2245-ideprofresp/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2245.views.s2245_ideprofresp.apagar', 
+        name='s2245_ideprofresp_apagar'),
+
+url(r'^s2245-ideprofresp/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2245.views.s2245_ideprofresp.listar', 
+        name='s2245_ideprofresp'),
+
+url(r'^s2245-ideprofresp/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2245.views.s2245_ideprofresp.salvar', 
+        name='s2245_ideprofresp_salvar'),
+
+
+
 
 
 )

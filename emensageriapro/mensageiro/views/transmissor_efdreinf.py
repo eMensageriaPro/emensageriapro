@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -49,10 +50,11 @@ from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes,
 import base64
 
 
+@login_required
 def desvincular_eventos_efdreinf(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         evento_identidade = dict_hash['id']
         if 'tab' not in dict_hash.keys():
@@ -71,10 +73,11 @@ def desvincular_eventos_efdreinf(request, hash):
     return redirect('transmissor_lote_efdreinf_salvar', hash=dict_hash['return_hash'])
 
 
+@login_required
 def vincular_eventos_efdreinf(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         transmissor_lote_efdreinf_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():

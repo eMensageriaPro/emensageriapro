@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -47,8 +48,12 @@ from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
 import base64
+from emensageriapro.s2220.models import s2220exMedOcup
 from emensageriapro.s2220.models import s2220exame
+from emensageriapro.s2220.models import s2220toxicologico
+from emensageriapro.s2220.forms import form_s2220_exmedocup
 from emensageriapro.s2220.forms import form_s2220_exame
+from emensageriapro.s2220.forms import form_s2220_toxicologico
 
 #IMPORTACOES
 
@@ -108,11 +113,12 @@ def gerar_identidade(request, chave, evento_id):
     return HttpResponse(mensagem)
 
 
+@login_required
 def salvar(request, hash):
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_MODELO, TP_AMB
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2220_evtmonit_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
@@ -198,14 +204,24 @@ def salvar(request, hash):
         if int(dict_hash['print']):
             s2220_evtmonit_form = disabled_form_for_print(s2220_evtmonit_form)
 
+        s2220_exmedocup_form = None
+        s2220_exmedocup_lista = None
         s2220_exame_form = None
         s2220_exame_lista = None
+        s2220_toxicologico_form = None
+        s2220_toxicologico_lista = None
         if s2220_evtmonit_id:
             s2220_evtmonit = get_object_or_404(s2220evtMonit.objects.using( db_slug ), excluido = False, id = s2220_evtmonit_id)
   
+            s2220_exmedocup_form = form_s2220_exmedocup(initial={ 's2220_evtmonit': s2220_evtmonit }, slug=db_slug)
+            s2220_exmedocup_form.fields['s2220_evtmonit'].widget.attrs['readonly'] = True
+            s2220_exmedocup_lista = s2220exMedOcup.objects.using( db_slug ).filter(excluido = False, s2220_evtmonit_id=s2220_evtmonit.id).all()
             s2220_exame_form = form_s2220_exame(initial={ 's2220_evtmonit': s2220_evtmonit }, slug=db_slug)
             s2220_exame_form.fields['s2220_evtmonit'].widget.attrs['readonly'] = True
             s2220_exame_lista = s2220exame.objects.using( db_slug ).filter(excluido = False, s2220_evtmonit_id=s2220_evtmonit.id).all()
+            s2220_toxicologico_form = form_s2220_toxicologico(initial={ 's2220_evtmonit': s2220_evtmonit }, slug=db_slug)
+            s2220_toxicologico_form.fields['s2220_evtmonit'].widget.attrs['readonly'] = True
+            s2220_toxicologico_lista = s2220toxicologico.objects.using( db_slug ).filter(excluido = False, s2220_evtmonit_id=s2220_evtmonit.id).all()
         else:
             s2220_evtmonit = None
         #s2220_evtmonit_salvar_custom_variaveis#
@@ -240,8 +256,12 @@ def salvar(request, hash):
        
             'hash': hash,
   
+            's2220_exmedocup_form': s2220_exmedocup_form,
+            's2220_exmedocup_lista': s2220_exmedocup_lista,
             's2220_exame_form': s2220_exame_form,
             's2220_exame_lista': s2220_exame_lista,
+            's2220_toxicologico_form': s2220_toxicologico_form,
+            's2220_toxicologico_lista': s2220_toxicologico_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
@@ -299,63 +319,6 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.session['usuario_id']
-        dict_hash = get_hash_url( hash )
-        s2220_evtmonit_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2220_evtmonit')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-    s2220_evtmonit = get_object_or_404(s2220evtMonit.objects.using( db_slug ), excluido = False, id = s2220_evtmonit_id)
-
-    if s2220_evtmonit_id:
-        if s2220_evtmonit.status != 0:
-            dict_permissoes['s2220_evtmonit_apagar'] = 0
-            dict_permissoes['s2220_evtmonit_editar'] = 0
-
-    if request.method == 'POST':
-        if s2220_evtmonit.status == 0:
-            import json
-            from django.forms.models import model_to_dict
-            situacao_anterior = json.dumps(model_to_dict(s2220_evtmonit), indent=4, sort_keys=True, default=str)
-            s2220evtMonit.objects.using( db_slug ).filter(id = s2220_evtmonit_id).delete()
-            #s2220_evtmonit_apagar_custom
-            #s2220_evtmonit_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
-            gravar_auditoria(situacao_anterior,
-                             '',
-                             's2220_evtmonit', s2220_evtmonit_id, usuario_id, 3)
-        else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
-        if request.session['retorno_pagina']== 's2220_evtmonit_salvar':
-            return redirect('s2220_evtmonit', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 's2220_evtmonit_apagar.html', context)
-
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse
@@ -369,11 +332,12 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']
@@ -405,10 +369,19 @@ def listar(request, hash):
             'show_frmctt': 1,
             'show_codcnes': 0,
             'show_ideservsaude': 0,
+            'show_ufcrm': 1,
+            'show_nrcrm': 1,
+            'show_nmmed': 1,
+            'show_nismed': 1,
+            'show_cpfmed': 1,
+            'show_medico': 0,
             'show_resaso': 1,
             'show_tpaso': 1,
             'show_dtaso': 1,
             'show_aso': 0,
+            'show_tpexame': 1,
+            'show_monit': 0,
+            'show_codcateg': 0,
             'show_matricula': 0,
             'show_nistrab': 0,
             'show_cpftrab': 1,
@@ -454,10 +427,19 @@ def listar(request, hash):
                 'frmctt__icontains': 'frmctt__icontains',
                 'codcnes__icontains': 'codcnes__icontains',
                 'ideservsaude': 'ideservsaude',
+                'ufcrm__icontains': 'ufcrm__icontains',
+                'nrcrm__icontains': 'nrcrm__icontains',
+                'nmmed__icontains': 'nmmed__icontains',
+                'nismed__icontains': 'nismed__icontains',
+                'cpfmed__icontains': 'cpfmed__icontains',
+                'medico': 'medico',
                 'resaso': 'resaso',
                 'tpaso': 'tpaso',
                 'dtaso__range': 'dtaso__range',
                 'aso': 'aso',
+                'tpexame': 'tpexame',
+                'monit': 'monit',
+                'codcateg__icontains': 'codcateg__icontains',
                 'matricula__icontains': 'matricula__icontains',
                 'nistrab__icontains': 'nistrab__icontains',
                 'cpftrab__icontains': 'cpftrab__icontains',
@@ -489,10 +471,19 @@ def listar(request, hash):
                 'frmctt__icontains': 'frmctt__icontains',
                 'codcnes__icontains': 'codcnes__icontains',
                 'ideservsaude': 'ideservsaude',
+                'ufcrm__icontains': 'ufcrm__icontains',
+                'nrcrm__icontains': 'nrcrm__icontains',
+                'nmmed__icontains': 'nmmed__icontains',
+                'nismed__icontains': 'nismed__icontains',
+                'cpfmed__icontains': 'cpfmed__icontains',
+                'medico': 'medico',
                 'resaso': 'resaso',
                 'tpaso': 'tpaso',
                 'dtaso__range': 'dtaso__range',
                 'aso': 'aso',
+                'tpexame': 'tpexame',
+                'monit': 'monit',
+                'codcateg__icontains': 'codcateg__icontains',
                 'matricula__icontains': 'matricula__icontains',
                 'nistrab__icontains': 'nistrab__icontains',
                 'cpftrab__icontains': 'cpftrab__icontains',
@@ -595,4 +586,62 @@ def listar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
+
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        s2220_evtmonit_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2220_evtmonit')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    s2220_evtmonit = get_object_or_404(s2220evtMonit.objects.using( db_slug ), excluido = False, id = s2220_evtmonit_id)
+
+    if s2220_evtmonit_id:
+        if s2220_evtmonit.status != 0:
+            dict_permissoes['s2220_evtmonit_apagar'] = 0
+            dict_permissoes['s2220_evtmonit_editar'] = 0
+
+    if request.method == 'POST':
+        if s2220_evtmonit.status == 0:
+            import json
+            from django.forms.models import model_to_dict
+            situacao_anterior = json.dumps(model_to_dict(s2220_evtmonit), indent=4, sort_keys=True, default=str)
+            s2220evtMonit.objects.using( db_slug ).filter(id = s2220_evtmonit_id).delete()
+            #s2220_evtmonit_apagar_custom
+            #s2220_evtmonit_apagar_custom
+            messages.success(request, 'Apagado com sucesso!')
+            gravar_auditoria(situacao_anterior,
+                             '',
+                             's2220_evtmonit', s2220_evtmonit_id, usuario_id, 3)
+        else:
+            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+   
+        if request.session['retorno_pagina']== 's2220_evtmonit_salvar':
+            return redirect('s2220_evtmonit', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 's2220_evtmonit_apagar.html', context)
 

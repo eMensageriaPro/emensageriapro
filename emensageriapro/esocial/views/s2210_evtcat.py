@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -47,10 +48,12 @@ from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
 import base64
+from emensageriapro.s2210.models import s2210ideLocalAcid
 from emensageriapro.s2210.models import s2210parteAtingida
 from emensageriapro.s2210.models import s2210agenteCausador
 from emensageriapro.s2210.models import s2210atestado
 from emensageriapro.s2210.models import s2210catOrigem
+from emensageriapro.s2210.forms import form_s2210_idelocalacid
 from emensageriapro.s2210.forms import form_s2210_parteatingida
 from emensageriapro.s2210.forms import form_s2210_agentecausador
 from emensageriapro.s2210.forms import form_s2210_atestado
@@ -114,11 +117,12 @@ def gerar_identidade(request, chave, evento_id):
     return HttpResponse(mensagem)
 
 
+@login_required
 def salvar(request, hash):
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_MODELO, TP_AMB
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2210_evtcat_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
@@ -204,6 +208,8 @@ def salvar(request, hash):
         if int(dict_hash['print']):
             s2210_evtcat_form = disabled_form_for_print(s2210_evtcat_form)
 
+        s2210_idelocalacid_form = None
+        s2210_idelocalacid_lista = None
         s2210_parteatingida_form = None
         s2210_parteatingida_lista = None
         s2210_agentecausador_form = None
@@ -215,6 +221,9 @@ def salvar(request, hash):
         if s2210_evtcat_id:
             s2210_evtcat = get_object_or_404(s2210evtCAT.objects.using( db_slug ), excluido = False, id = s2210_evtcat_id)
   
+            s2210_idelocalacid_form = form_s2210_idelocalacid(initial={ 's2210_evtcat': s2210_evtcat }, slug=db_slug)
+            s2210_idelocalacid_form.fields['s2210_evtcat'].widget.attrs['readonly'] = True
+            s2210_idelocalacid_lista = s2210ideLocalAcid.objects.using( db_slug ).filter(excluido = False, s2210_evtcat_id=s2210_evtcat.id).all()
             s2210_parteatingida_form = form_s2210_parteatingida(initial={ 's2210_evtcat': s2210_evtcat }, slug=db_slug)
             s2210_parteatingida_form.fields['s2210_evtcat'].widget.attrs['readonly'] = True
             s2210_parteatingida_lista = s2210parteAtingida.objects.using( db_slug ).filter(excluido = False, s2210_evtcat_id=s2210_evtcat.id).all()
@@ -261,6 +270,8 @@ def salvar(request, hash):
        
             'hash': hash,
   
+            's2210_idelocalacid_form': s2210_idelocalacid_form,
+            's2210_idelocalacid_lista': s2210_idelocalacid_lista,
             's2210_parteatingida_form': s2210_parteatingida_form,
             's2210_parteatingida_lista': s2210_parteatingida_lista,
             's2210_agentecausador_form': s2210_agentecausador_form,
@@ -326,63 +337,6 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.session['usuario_id']
-        dict_hash = get_hash_url( hash )
-        s2210_evtcat_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2210_evtcat')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-    s2210_evtcat = get_object_or_404(s2210evtCAT.objects.using( db_slug ), excluido = False, id = s2210_evtcat_id)
-
-    if s2210_evtcat_id:
-        if s2210_evtcat.status != 0:
-            dict_permissoes['s2210_evtcat_apagar'] = 0
-            dict_permissoes['s2210_evtcat_editar'] = 0
-
-    if request.method == 'POST':
-        if s2210_evtcat.status == 0:
-            import json
-            from django.forms.models import model_to_dict
-            situacao_anterior = json.dumps(model_to_dict(s2210_evtcat), indent=4, sort_keys=True, default=str)
-            s2210evtCAT.objects.using( db_slug ).filter(id = s2210_evtcat_id).delete()
-            #s2210_evtcat_apagar_custom
-            #s2210_evtcat_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
-            gravar_auditoria(situacao_anterior,
-                             '',
-                             's2210_evtcat', s2210_evtcat_id, usuario_id, 3)
-        else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
-        if request.session['retorno_pagina']== 's2210_evtcat_salvar':
-            return redirect('s2210_evtcat', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 's2210_evtcat_apagar.html', context)
-
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse
@@ -396,11 +350,12 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']
@@ -425,13 +380,19 @@ def listar(request, hash):
             'show_modificado_em': 0,
             'show_criado_por': 0,
             'show_criado_em': 0,
+            'show_nrinsc': 0,
+            'show_tpinsc': 0,
             'show_codpostal': 0,
             'show_pais': 0,
             'show_cnpjlocalacid': 0,
             'show_uf': 0,
             'show_codmunic': 0,
+            'show_cep': 0,
+            'show_bairro': 0,
+            'show_complemento': 0,
             'show_nrlograd': 0,
             'show_dsclograd': 0,
+            'show_codamb': 0,
             'show_dsclocal': 0,
             'show_tplocal': 1,
             'show_localacidente': 0,
@@ -447,6 +408,8 @@ def listar(request, hash):
             'show_tpacid': 1,
             'show_dtacid': 1,
             'show_cat': 0,
+            'show_codcateg': 0,
+            'show_matricula': 0,
             'show_nistrab': 0,
             'show_cpftrab': 1,
             'show_idetrabalhador': 0,
@@ -488,13 +451,19 @@ def listar(request, hash):
         if request.method == 'POST':
             post = True
             dict_fields = {
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'tpinsc': 'tpinsc',
                 'codpostal__icontains': 'codpostal__icontains',
                 'pais__icontains': 'pais__icontains',
                 'cnpjlocalacid__icontains': 'cnpjlocalacid__icontains',
                 'uf__icontains': 'uf__icontains',
                 'codmunic__icontains': 'codmunic__icontains',
+                'cep__icontains': 'cep__icontains',
+                'bairro__icontains': 'bairro__icontains',
+                'complemento__icontains': 'complemento__icontains',
                 'nrlograd__icontains': 'nrlograd__icontains',
                 'dsclograd__icontains': 'dsclograd__icontains',
+                'codamb__icontains': 'codamb__icontains',
                 'dsclocal__icontains': 'dsclocal__icontains',
                 'tplocal': 'tplocal',
                 'localacidente': 'localacidente',
@@ -510,6 +479,8 @@ def listar(request, hash):
                 'tpacid__icontains': 'tpacid__icontains',
                 'dtacid__range': 'dtacid__range',
                 'cat': 'cat',
+                'codcateg__icontains': 'codcateg__icontains',
+                'matricula__icontains': 'matricula__icontains',
                 'nistrab__icontains': 'nistrab__icontains',
                 'cpftrab__icontains': 'cpftrab__icontains',
                 'idetrabalhador': 'idetrabalhador',
@@ -537,13 +508,19 @@ def listar(request, hash):
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'tpinsc': 'tpinsc',
                 'codpostal__icontains': 'codpostal__icontains',
                 'pais__icontains': 'pais__icontains',
                 'cnpjlocalacid__icontains': 'cnpjlocalacid__icontains',
                 'uf__icontains': 'uf__icontains',
                 'codmunic__icontains': 'codmunic__icontains',
+                'cep__icontains': 'cep__icontains',
+                'bairro__icontains': 'bairro__icontains',
+                'complemento__icontains': 'complemento__icontains',
                 'nrlograd__icontains': 'nrlograd__icontains',
                 'dsclograd__icontains': 'dsclograd__icontains',
+                'codamb__icontains': 'codamb__icontains',
                 'dsclocal__icontains': 'dsclocal__icontains',
                 'tplocal': 'tplocal',
                 'localacidente': 'localacidente',
@@ -559,6 +536,8 @@ def listar(request, hash):
                 'tpacid__icontains': 'tpacid__icontains',
                 'dtacid__range': 'dtacid__range',
                 'cat': 'cat',
+                'codcateg__icontains': 'codcateg__icontains',
+                'matricula__icontains': 'matricula__icontains',
                 'nistrab__icontains': 'nistrab__icontains',
                 'cpftrab__icontains': 'cpftrab__icontains',
                 'idetrabalhador': 'idetrabalhador',
@@ -664,4 +643,62 @@ def listar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
+
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        s2210_evtcat_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2210_evtcat')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    s2210_evtcat = get_object_or_404(s2210evtCAT.objects.using( db_slug ), excluido = False, id = s2210_evtcat_id)
+
+    if s2210_evtcat_id:
+        if s2210_evtcat.status != 0:
+            dict_permissoes['s2210_evtcat_apagar'] = 0
+            dict_permissoes['s2210_evtcat_editar'] = 0
+
+    if request.method == 'POST':
+        if s2210_evtcat.status == 0:
+            import json
+            from django.forms.models import model_to_dict
+            situacao_anterior = json.dumps(model_to_dict(s2210_evtcat), indent=4, sort_keys=True, default=str)
+            s2210evtCAT.objects.using( db_slug ).filter(id = s2210_evtcat_id).delete()
+            #s2210_evtcat_apagar_custom
+            #s2210_evtcat_apagar_custom
+            messages.success(request, 'Apagado com sucesso!')
+            gravar_auditoria(situacao_anterior,
+                             '',
+                             's2210_evtcat', s2210_evtcat_id, usuario_id, 3)
+        else:
+            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+   
+        if request.session['retorno_pagina']== 's2210_evtcat_salvar':
+            return redirect('s2210_evtcat', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 's2210_evtcat_apagar.html', context)
 

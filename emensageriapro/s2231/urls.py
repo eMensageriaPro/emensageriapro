@@ -42,6 +42,34 @@ urlpatterns = patterns('',
 
 
 
+url(r'^s2231-inicessao/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2231.views.s2231_inicessao.apagar', 
+        name='s2231_inicessao_apagar'),
+
+url(r'^s2231-inicessao/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2231.views.s2231_inicessao.listar', 
+        name='s2231_inicessao'),
+
+url(r'^s2231-inicessao/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2231.views.s2231_inicessao.salvar', 
+        name='s2231_inicessao_salvar'),
+
+
+
+url(r'^s2231-fimcessao/apagar/(?P<hash>.*)/$', 
+        'emensageriapro.s2231.views.s2231_fimcessao.apagar', 
+        name='s2231_fimcessao_apagar'),
+
+url(r'^s2231-fimcessao/listar/(?P<hash>.*)/$', 
+        'emensageriapro.s2231.views.s2231_fimcessao.listar', 
+        name='s2231_fimcessao'),
+
+url(r'^s2231-fimcessao/salvar/(?P<hash>.*)/$', 
+        'emensageriapro.s2231.views.s2231_fimcessao.salvar', 
+        name='s2231_fimcessao_salvar'),
+
+
+
 
 
 )
