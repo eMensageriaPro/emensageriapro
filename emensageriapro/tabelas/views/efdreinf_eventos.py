@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -51,10 +52,11 @@ import base64
 #IMPORTACOES
 
 
+@login_required
 def apagar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         efdreinf_eventos_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
@@ -106,6 +108,8 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
+
+@login_required
 def json_search(request, search):
     from django.http import JsonResponse
     import operator
@@ -134,11 +138,12 @@ def json_search(request, search):
     return JsonResponse(dicionario)
 
 
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']
@@ -261,10 +266,11 @@ def listar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         efdreinf_eventos_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
