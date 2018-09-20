@@ -86,9 +86,11 @@ class form_usuarios(forms.ModelForm):
         
         self.fields['email'].widget.attrs['required'] = True
         
-        self.fields['nome'].widget.attrs['required'] = True
+        self.fields['last_name'].widget.attrs['required'] = True
         
-        self.fields['usuario'].widget.attrs['required'] = True
+        self.fields['first_name'].widget.attrs['required'] = True
+        
+        self.fields['username'].widget.attrs['required'] = True
 
     class Meta:
         model = Usuarios
@@ -98,7 +100,12 @@ class form_usuarios(forms.ModelForm):
             'modificado_em',
             'criado_por',
             'criado_em',
-            'senha',
+            'date_joined',
+            'last_login',
+            'is_active',
+            'is_staff',
+            'is_superuser',
+            'password',
  
         ]
 

@@ -1,5 +1,5 @@
-<!-- eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->
 {% load templatetags %}
+<!-- eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->
 <html>
 <head>
     <meta charset="utf-8">
@@ -26,15 +26,18 @@
         <p style="font-size:16px">Versão: {{ versao_emensageria }} -<a href="http://www.emensageria.com.br/">www.emensageria.com.br</a>
         </p></div><!-- /.login-logo -->
     <div class="login-box-body"><p class="login-box-msg">Acesse o sistema</p>{% if messages %}
-        <div class="pad margin no-print">{% for message in messages %}
-            <div class="alert alert-{{ message.tags }}"
-                 style="margin-bottom: 0!important;">{{ message }}</div>{% endfor %}</div>{% endif %}
+        <div class="pad margin no-print">{% if form.errors %}
+            <div class="alert alert-error"
+                 style="margin-bottom: 0!important;">Seu nome de usuário e senha não correspondem. Por favor, tente novamente.</div>{% endif %}</div>{% endif %}
         <form action="#" method="post">{% csrf_token %}
-            <div class="form-group has-feedback"><input type="text" class="form-control" placeholder="Nome do Usuário"
-                                                        name="usuario"/><span
+            <div class="form-group has-feedback">
+ {{ form.username|addcss:"form-control" }}
+                <span
                     class="glyphicon glyphicon-user form-control-feedback"></span></div>
-            <div class="form-group has-feedback"><input type="password" class="form-control" placeholder="Senha"
-                                                        name="senha"/><span
+            <div class="form-group has-feedback">
+
+ {{ form.password|addcss:"form-control" }}
+                <span
                     class="glyphicon glyphicon-lock form-control-feedback"></span></div>
             <div class="row">
                 <div class="col-xs-8">
@@ -43,6 +46,7 @@
                 </div>
                 <div class="col-xs-4">
                     <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
+                    <input type="hidden" name="next" value="{{ next }}">
                 </div>
             </div>
         </form>
@@ -58,3 +62,46 @@
         increaseArea: '20%' // optional }); });</script>
 </body>
 </html>
+
+{% comment %}
+
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+</table>
+
+<input type="submit" value="login">
+<input type="hidden" name="next" value="{{ next }}">
+</form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
+{% endbl{% comment %}ock %}
+
+{% endcomment %}

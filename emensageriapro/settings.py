@@ -70,18 +70,19 @@ SECRET_KEY = env('SECRET_KEY')
 
 TEMPLATE_DEBUG = DEBUG
 
-PASSWORD_HASHERS = [
-    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-    'django.contrib.auth.hashers.BCryptPasswordHasher',
-    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
-    'django.contrib.auth.hashers.Argon2PasswordHasher',
-]
+# PASSWORD_HASHERS = [
+#     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+#     'django.contrib.auth.hashers.BCryptPasswordHasher',
+#     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+#     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+#     'django.contrib.auth.hashers.Argon2PasswordHasher',
+# ]
 
 # Application definition
 
 INSTALLED_APPS = (
     'django.contrib.auth',
+    'django.contrib.auth.hashers',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -248,6 +249,9 @@ CERT_PEM_FILE = env('CERT_PEM_FILE')
 KEY_PEM_FILE = env('KEY_PEM_FILE')
 CA_CERT_PEM_FILE = env('CA_CERT_PEM_FILE')
 
+LINK_WEBSITE = env('LINK_WEBSITE')
+EMAIL_RECUPERACAO_SENHA = env('EMAIL_RECUPERACAO_SENHA')
+
 # Configurações Específicas do eSocial
 
 TP_AMB = env('TP_AMB')
@@ -256,3 +260,5 @@ FORCE_PRODUCAO_RESTRITA = env('FORCE_PRODUCAO_RESTRITA')
 # Chave para ter acesso a função de enviar e consultar eventos pela URL
 
 PASS_SCRIPT = env('PASS_SCRIPT')
+
+LOGIN_REDIRECT_URL = '/mensageiro/transmissor-lote-esocial/listar/eyJyZXR1cm5fcGFnZSI6ICJ0cmFuc21pc3Nvcl9sb3RlIiwgInJldHVybl9oYXNoIjogImUzMD0iLCAiaWQiOiAiMCIsICJwcmludCI6ICIwIn0=/'

@@ -176,7 +176,6 @@ class ConfigPermissoes(models.Model):
         managed = True
         ordering = ['config_perfis', 'config_paginas']
 
-
 from django.contrib.auth.models import User
 class Usuarios(User):
     # username = models.CharField(max_length=20)
@@ -199,13 +198,13 @@ class Usuarios(User):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.first_name) + ' - ' + unicode(self.last_name)
+        return unicode(self.first_name) + ' - ' + unicode(self.last_name) + ' - ' + unicode(self.email) + ' - ' + unicode(self.is_superuser) + ' - ' + unicode(self.is_staff) + ' - ' + unicode(self.is_active) + ' - ' + unicode(self.last_login) + ' - ' + unicode(self.date_joined)
     #usuarios_custom#
     #usuarios_custom#
     class Meta:
         db_table = r'usuarios'
         managed = True
-        ordering = ['first_name', 'last_name']
+        ordering = ['first_name', 'last_name', 'email', 'is_superuser', 'is_staff', 'is_active', 'last_login', 'date_joined']
 
 
 #VIEWS_MODELS

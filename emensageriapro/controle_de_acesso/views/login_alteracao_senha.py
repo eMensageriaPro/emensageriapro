@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count

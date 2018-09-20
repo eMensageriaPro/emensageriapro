@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
@@ -51,53 +52,12 @@ import base64
 #IMPORTACOES
 
 
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.session['usuario_id']
-        dict_hash = get_hash_url( hash )
-        config_paginas_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='config_paginas')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    config_paginas = get_object_or_404(ConfigPaginas.objects.using( db_slug ), excluido = False, id = config_paginas_id)
-    if request.method == 'POST':
-        ConfigPaginas.objects.using( db_slug ).filter(id = config_paginas_id).update(excluido = True)
-        #config_paginas_apagar_custom
-        #config_paginas_apagar_custom
-        messages.success(request, 'Apagado com sucesso!')
-        if request.session['retorno_pagina']== 'config_paginas_salvar':
-            return redirect('config_paginas', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 'config_paginas_apagar.html', context)
-
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']
@@ -235,10 +195,11 @@ def listar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         config_paginas_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
@@ -383,4 +344,47 @@ def salvar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
+
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        config_paginas_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='config_paginas')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    config_paginas = get_object_or_404(ConfigPaginas.objects.using( db_slug ), excluido = False, id = config_paginas_id)
+    if request.method == 'POST':
+        ConfigPaginas.objects.using( db_slug ).filter(id = config_paginas_id).update(excluido = True)
+        #config_paginas_apagar_custom
+        #config_paginas_apagar_custom
+        messages.success(request, 'Apagado com sucesso!')
+        if request.session['retorno_pagina']== 'config_paginas_salvar':
+            return redirect('config_paginas', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 'config_paginas_apagar.html', context)
 

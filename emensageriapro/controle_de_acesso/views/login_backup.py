@@ -131,6 +131,7 @@ def criar_permissoes(db_slug):
 
 
 def login(request):
+    from django.contrib.auth import authenticate
     db_slug = 'default'
     try:
         del request.session['usuario_id']
@@ -148,24 +149,16 @@ def login(request):
     if request.POST:
         nome_usuario = request.POST.get('usuario')
         senha = request.POST.get('senha')
-        try:
-            usuario = Usuarios.objects.using(db_slug).get(usuario=nome_usuario, excluido=False)
-        except:
-            usuario = False
-        if nome_usuario and usuario:
-            hash_senha = make_password(senha)
-            senha_db = usuario.senha
-            if senha_db == hash_senha and senha != '':
-                request.session["nome_usuario"] = usuario.usuario
-                request.session["usuario_id"] = usuario.id
-                messages.success(request, 'Seja bem vindo!')
-                criar_permissoes(db_slug)
-                salvar_modulos_paginas_permitidas(db_slug)
-                return redirect('transmissor_lote_esocial',  hash='eyJyZXR1cm5fcGFnZSI6ICJ0cmFuc21pc3Nvcl9sb3RlIiwgInJldHVybl9oYXNoIjogImUzMD0iLCAiaWQiOiAiMCIsICJwcmludCI6ICIwIn0=')
-            else:
-                messages.error(request, 'Senha incorreta!')
-        elif not usuario:
-            messages.error(request, 'Usuário inexistente!')
+        user = authenticate(username=nome_usuario, password=senha)
+        if user is not None:
+            messages.success(request, 'Seja bem vindo!')
+            criar_permissoes(db_slug)
+            salvar_modulos_paginas_permitidas(db_slug)
+            return redirect('transmissor_lote_esocial',
+                            hash='eyJyZXR1cm5fcGFnZSI6ICJ0cmFuc21pc3Nvcl9sb3RlIiwgInJldHVybl9oYXNoIjogImUzMD0iLCAiaWQiOiAiMCIsICJwcmludCI6ICIwIn0=')
+        else:
+            messages.error(request, 'Senha incorreta!')
+
     try:
         versao_atual = json_to_dict( urllib.urlopen('http://www.emensageria.com.br/versao.php').read() )
     except:
