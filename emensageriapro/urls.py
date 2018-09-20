@@ -8,6 +8,10 @@ from django.conf.urls.static import static
 
 urlpatterns = patterns('',
     # Examples:
+    url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^$', 
+        'django.contrib.auth.views.login',
+        name='home'),
 
 
     url(r'^', include('emensageriapro.controle_de_acesso.urls')),
