@@ -11,6 +11,17 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunSQL("""
+        
+
+INSERT INTO auth_user (id, password, last_login, is_superuser, 
+username, first_name, last_name, email, is_staff, is_active, date_joined) 
+VALUES (1, 'pbkdf2_sha256$20000$KzjN6s7JgWzT$N212Wj4ATRC0TzfS0dtq0C6Z3ZrW4gzOeA9xqi3+dCM=', 
+now(), true, 'admin', 'admin', 'admin', 'contato@emensageria.com.br', 
+true, true, now());
+
+	     
+        """),
         migrations.AlterModelOptions(
             name='usuarios',
             options={'ordering': ['first_name', 'last_name', 'email', 'is_superuser', 'is_staff', 'is_active', 'last_login', 'date_joined'], 'managed': True},
