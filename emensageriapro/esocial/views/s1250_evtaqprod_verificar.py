@@ -384,7 +384,7 @@ def duplicar(request, hash):
         s1250evtAqProd.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
         messages.success(request, 'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
         url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['identidade'] )
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (dent, s1250_evtaqprod.identidade),
             's1250_evtaqprod', dados['identidade'], usuario_id, 1)
         return redirect('s1250_evtaqprod_salvar', hash=url_hash)
@@ -413,7 +413,7 @@ def criar_alteracao(request, hash):
         from emensageriapro.esocial.views.s1250_evtaqprod import identidade_evento
         dent = identidade_evento(dados['identidade'], db_slug)
         s1250evtAqProd.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         gravar_auditoria(u'{}', u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (dent, s1250_evtaqprod.identidade),
             's1250_evtaqprod', dados['identidade'], usuario_id, 1)
         messages.success(request, 'Evento de alteração criado com sucesso!')
@@ -446,7 +446,7 @@ def criar_exclusao(request, hash):
         from emensageriapro.esocial.views.s1250_evtaqprod import identidade_evento
         dent = identidade_evento(dados['identidade'], db_slug)
         s1250evtAqProd.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         gravar_auditoria(u'{}', u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (dent, s1250_evtaqprod.identidade),
             's1250_evtaqprod', dados['identidade'], usuario_id, 1)
         messages.success(request, 'Evento de exclusão criado com sucesso!')
@@ -471,7 +471,7 @@ def alterar_identidade(request, hash):
             dent = identidade_evento(s1250_evtaqprod_id, db_slug)
             messages.success(request, 'Identidade do evento alterada com sucesso!')
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s1250_evtaqprod_id )
-            usuario_id = request.session['usuario_id']
+            usuario_id = request.user.id
             gravar_auditoria(u'{}', u'{"funcao": "Identidade do evento foi alterada"}',
             's1250_evtaqprod', s1250_evtaqprod_id, usuario_id, 1)
             return redirect('s1250_evtaqprod_salvar', hash=url_hash)
@@ -504,7 +504,7 @@ def abrir_evento_para_edicao(request, hash):
                 gravar_nome_arquivo('/arquivos/Eventos/s1250_evtaqprod/%s_backup_%s.xml' % (s1250_evtaqprod.identidade, data_hora_atual),
                     1)
             messages.success(request, 'Evento aberto para edição!')
-            usuario_id = request.session['usuario_id']
+            usuario_id = request.user.id
             gravar_auditoria(u'{}', u'{"funcao": "Evento aberto para edição"}',
             's1250_evtaqprod', s1250_evtaqprod_id, usuario_id, 1)
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s1250_evtaqprod_id )

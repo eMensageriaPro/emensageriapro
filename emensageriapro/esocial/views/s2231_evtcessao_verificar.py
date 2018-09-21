@@ -115,11 +115,11 @@ def verificar(request, hash):
             's2231_evtcessao_lista': s2231_evtcessao_lista,
             's2231_evtcessao_id': s2231_evtcessao_id,
             's2231_evtcessao': s2231_evtcessao,
-  
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-  
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -168,10 +168,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-  
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-  
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -254,11 +254,11 @@ def recibo(request, hash, tipo):
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
 
-  
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-  
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -286,10 +286,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-  
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-  
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -345,8 +345,8 @@ def gerar_xml(request, hash):
         return HttpResponse(xml_assinado, content_type='text/xml')
     else:
         context = {
-  
-  
+
+
             'data': datetime.datetime.now(),
         }
         return render(request, 'permissao_negada.html', context)
