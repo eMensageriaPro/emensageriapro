@@ -224,7 +224,7 @@ def validar_precedencia(tipo, tabela, tabela_id):
         s1300evtContrSindPatr, s2190evtAdmPrelim, s2200evtAdmissao, s2205evtAltCadastral, \
         s2206evtAltContratual, s2210evtCAT, s2220evtMonit, s2230evtAfastTemp, s2240evtExpRisco, \
         s2241evtInsApo, s2250evtAvPrevio, s2260evtConvInterm, s2298evtReintegr, s2299evtDeslig, \
-        s2300evtTSVInicio, s2306evtTSVAltContr, s2399evtTSVTermino, s2400evtCdBenPrRP, s3000evtExclusao, \
+        s2300evtTSVInicio, s2306evtTSVAltContr, s2399evtTSVTermino, s2400evtCdBenefIn, s3000evtExclusao, \
         s5001evtBasesTrab, s5002evtIrrfBenef, s5011evtCS, s5012evtIrrf
     from emensageriapro.efdreinf.models import r1000evtInfoContri, r1070evtTabProcesso, r2010evtServTom, \
         r2020evtServPrest, r2030evtAssocDespRec, r2040evtAssocDespRep, r2050evtComProd, \
@@ -541,9 +541,9 @@ def validar_precedencia(tipo, tabela, tabela_id):
             quant = 0 * quant
 
 
-    elif (tabela == 's2400_evtcdbenprrp'):
+    elif (tabela == 's2400_evtcdbenefin'):
 
-        a = s2400evtCdBenPrRP.objects.using(db_slug).filter(id=tabela_id).all()
+        a = s2400evtCdBenefIn.objects.using(db_slug).filter(id=tabela_id).all()
         b = s1000evtInfoEmpregador.objects.using(db_slug).filter(nrinsc=a.nrinsc, status__in=[14])
         c = len(b)
         if not c:
