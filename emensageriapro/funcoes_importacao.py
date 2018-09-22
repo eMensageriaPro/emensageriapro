@@ -146,7 +146,7 @@ def importar_arquivo(arquivo, request, validar=0):
             from emensageriapro.esocial.xml_imports.v02_04_02.s2300_evttsvinicio import read_s2300_evttsvinicio
             from emensageriapro.esocial.xml_imports.v02_04_02.s2306_evttsvaltcontr import read_s2306_evttsvaltcontr
             from emensageriapro.esocial.xml_imports.v02_04_02.s2399_evttsvtermino import read_s2399_evttsvtermino
-            from emensageriapro.esocial.xml_imports.v02_04_02.s2400_evtcdbenprrp import read_s2400_evtcdbenprrp
+            from emensageriapro.esocial.xml_imports.v02_04_02.s2400_evtcdbenefin import read_s2400_evtcdbenefin
             from emensageriapro.esocial.xml_imports.v02_04_02.s3000_evtexclusao import read_s3000_evtexclusao
             from emensageriapro.esocial.xml_imports.v02_04_02.s5001_evtbasestrab import read_s5001_evtbasestrab
             from emensageriapro.esocial.xml_imports.v02_04_02.s5002_evtirrfbenef import read_s5002_evtirrfbenef
@@ -310,8 +310,8 @@ def importar_arquivo(arquivo, request, validar=0):
                 if dados: dados = atualizar_tabela('s2399_evttsvtermino', dados, arquivo)
 
             elif ('evtCdBenPrRP' in xml) and ('eSocial' in xml):
-                dados = read_s2400_evtcdbenprrp(dados, arquivo, validar)
-                if dados: dados = atualizar_tabela('s2400_evtcdbenprrp', dados, arquivo)
+                dados = read_s2400_evtcdbenefin(dados, arquivo, validar)
+                if dados: dados = atualizar_tabela('s2400_evtcdbenefin', dados, arquivo)
 
             elif ('evtExclusao' in xml) and ('eSocial' in xml):
                 dados = read_s3000_evtexclusao(dados, arquivo, validar)

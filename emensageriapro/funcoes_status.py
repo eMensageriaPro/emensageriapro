@@ -350,14 +350,14 @@ def atualizar_status_esocial():
         FROM public.retornos_eventos AS b WHERE a.retornos_eventos_id = b.id;UPDATE public.s2399_evttsvtermino SET status=5 WHERE processamento_codigo_resposta IN (301,401,402,403,404,405,501,502,503,504,505);
       UPDATE public.s2399_evttsvtermino SET status=14 WHERE processamento_codigo_resposta IN (201,202);
       UPDATE public.s2399_evttsvtermino SET ocorrencias=Null WHERE retornos_eventos_id NOT IN (SELECT retornos_eventos_id FROM retornos_eventos_ocorrencias);
-      UPDATE public.s2400_evtcdbenprrp AS a
+      UPDATE public.s2400_evtcdbenefin AS a
          SET recepcao_tp_amb=b.recepcao_tp_amb, recepcao_data_hora=b.recepcao_data_hora, recepcao_versao_app=b.recepcao_versao_app, 
              recepcao_protocolo_envio_lote=b.recepcao_protocolo_envio_lote, processamento_codigo_resposta=b.processamento_codigo_resposta, 
              processamento_descricao_resposta=b.processamento_descricao_resposta, processamento_versao_app_processamento=b.processamento_versao_app_processamento, 
              processamento_data_hora=b.processamento_data_hora, recibo_numero=b.recibo_numero, recibo_hash=b.recibo_hash
-        FROM public.retornos_eventos AS b WHERE a.retornos_eventos_id = b.id;UPDATE public.s2400_evtcdbenprrp SET status=5 WHERE processamento_codigo_resposta IN (301,401,402,403,404,405,501,502,503,504,505);
-      UPDATE public.s2400_evtcdbenprrp SET status=14 WHERE processamento_codigo_resposta IN (201,202);
-      UPDATE public.s2400_evtcdbenprrp SET ocorrencias=Null WHERE retornos_eventos_id NOT IN (SELECT retornos_eventos_id FROM retornos_eventos_ocorrencias);
+        FROM public.retornos_eventos AS b WHERE a.retornos_eventos_id = b.id;UPDATE public.s2400_evtcdbenefin SET status=5 WHERE processamento_codigo_resposta IN (301,401,402,403,404,405,501,502,503,504,505);
+      UPDATE public.s2400_evtcdbenefin SET status=14 WHERE processamento_codigo_resposta IN (201,202);
+      UPDATE public.s2400_evtcdbenefin SET ocorrencias=Null WHERE retornos_eventos_id NOT IN (SELECT retornos_eventos_id FROM retornos_eventos_ocorrencias);
       UPDATE public.s3000_evtexclusao AS a
          SET recepcao_tp_amb=b.recepcao_tp_amb, recepcao_data_hora=b.recepcao_data_hora, recepcao_versao_app=b.recepcao_versao_app, 
              recepcao_protocolo_envio_lote=b.recepcao_protocolo_envio_lote, processamento_codigo_resposta=b.processamento_codigo_resposta, 
