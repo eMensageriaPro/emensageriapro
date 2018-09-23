@@ -1,8 +1,15 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.r2010.views import r2010_nfs as r2010_nfs_views
+from emensageriapro.r2010.views import r2010_infotpserv as r2010_infotpserv_views
+from emensageriapro.r2010.views import r2010_infoprocretpr as r2010_infoprocretpr_views
+from emensageriapro.r2010.views import r2010_infoprocretad as r2010_infoprocretad_views
+
+
 
 """
 
@@ -37,67 +44,66 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^r2010-nfs/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2010.views.r2010_nfs.apagar', 
+        r2010_nfs_views.apagar, 
         name='r2010_nfs_apagar'),
 
 url(r'^r2010-nfs/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2010.views.r2010_nfs.listar', 
+        r2010_nfs_views.listar, 
         name='r2010_nfs'),
 
 url(r'^r2010-nfs/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2010.views.r2010_nfs.salvar', 
+        r2010_nfs_views.salvar, 
         name='r2010_nfs_salvar'),
 
 
 
 url(r'^r2010-infotpserv/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2010.views.r2010_infotpserv.apagar', 
+        r2010_infotpserv_views.apagar, 
         name='r2010_infotpserv_apagar'),
 
 url(r'^r2010-infotpserv/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2010.views.r2010_infotpserv.listar', 
+        r2010_infotpserv_views.listar, 
         name='r2010_infotpserv'),
 
 url(r'^r2010-infotpserv/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2010.views.r2010_infotpserv.salvar', 
+        r2010_infotpserv_views.salvar, 
         name='r2010_infotpserv_salvar'),
 
 
 
 url(r'^r2010-infoprocretpr/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2010.views.r2010_infoprocretpr.apagar', 
+        r2010_infoprocretpr_views.apagar, 
         name='r2010_infoprocretpr_apagar'),
 
 url(r'^r2010-infoprocretpr/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2010.views.r2010_infoprocretpr.listar', 
+        r2010_infoprocretpr_views.listar, 
         name='r2010_infoprocretpr'),
 
 url(r'^r2010-infoprocretpr/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2010.views.r2010_infoprocretpr.salvar', 
+        r2010_infoprocretpr_views.salvar, 
         name='r2010_infoprocretpr_salvar'),
 
 
 
 url(r'^r2010-infoprocretad/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2010.views.r2010_infoprocretad.apagar', 
+        r2010_infoprocretad_views.apagar, 
         name='r2010_infoprocretad_apagar'),
 
 url(r'^r2010-infoprocretad/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2010.views.r2010_infoprocretad.listar', 
+        r2010_infoprocretad_views.listar, 
         name='r2010_infoprocretad'),
 
 url(r'^r2010-infoprocretad/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2010.views.r2010_infoprocretad.salvar', 
+        r2010_infoprocretad_views.salvar, 
         name='r2010_infoprocretad_salvar'),
 
 
 
 
 
-)
+]

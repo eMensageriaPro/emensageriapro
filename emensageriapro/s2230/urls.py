@@ -1,8 +1,18 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s2230.views import s2230_iniafastamento as s2230_iniafastamento_views
+from emensageriapro.s2230.views import s2230_infoatestado as s2230_infoatestado_views
+from emensageriapro.s2230.views import s2230_emitente as s2230_emitente_views
+from emensageriapro.s2230.views import s2230_infocessao as s2230_infocessao_views
+from emensageriapro.s2230.views import s2230_infomandsind as s2230_infomandsind_views
+from emensageriapro.s2230.views import s2230_inforetif as s2230_inforetif_views
+from emensageriapro.s2230.views import s2230_fimafastamento as s2230_fimafastamento_views
+
+
 
 """
 
@@ -37,109 +47,108 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s2230-iniafastamento/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_iniafastamento.apagar', 
+        s2230_iniafastamento_views.apagar, 
         name='s2230_iniafastamento_apagar'),
 
 url(r'^s2230-iniafastamento/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_iniafastamento.listar', 
+        s2230_iniafastamento_views.listar, 
         name='s2230_iniafastamento'),
 
 url(r'^s2230-iniafastamento/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_iniafastamento.salvar', 
+        s2230_iniafastamento_views.salvar, 
         name='s2230_iniafastamento_salvar'),
 
 
 
 url(r'^s2230-infoatestado/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_infoatestado.apagar', 
+        s2230_infoatestado_views.apagar, 
         name='s2230_infoatestado_apagar'),
 
 url(r'^s2230-infoatestado/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_infoatestado.listar', 
+        s2230_infoatestado_views.listar, 
         name='s2230_infoatestado'),
 
 url(r'^s2230-infoatestado/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_infoatestado.salvar', 
+        s2230_infoatestado_views.salvar, 
         name='s2230_infoatestado_salvar'),
 
 
 
 url(r'^s2230-emitente/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_emitente.apagar', 
+        s2230_emitente_views.apagar, 
         name='s2230_emitente_apagar'),
 
 url(r'^s2230-emitente/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_emitente.listar', 
+        s2230_emitente_views.listar, 
         name='s2230_emitente'),
 
 url(r'^s2230-emitente/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_emitente.salvar', 
+        s2230_emitente_views.salvar, 
         name='s2230_emitente_salvar'),
 
 
 
 url(r'^s2230-infocessao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_infocessao.apagar', 
+        s2230_infocessao_views.apagar, 
         name='s2230_infocessao_apagar'),
 
 url(r'^s2230-infocessao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_infocessao.listar', 
+        s2230_infocessao_views.listar, 
         name='s2230_infocessao'),
 
 url(r'^s2230-infocessao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_infocessao.salvar', 
+        s2230_infocessao_views.salvar, 
         name='s2230_infocessao_salvar'),
 
 
 
 url(r'^s2230-infomandsind/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_infomandsind.apagar', 
+        s2230_infomandsind_views.apagar, 
         name='s2230_infomandsind_apagar'),
 
 url(r'^s2230-infomandsind/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_infomandsind.listar', 
+        s2230_infomandsind_views.listar, 
         name='s2230_infomandsind'),
 
 url(r'^s2230-infomandsind/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_infomandsind.salvar', 
+        s2230_infomandsind_views.salvar, 
         name='s2230_infomandsind_salvar'),
 
 
 
 url(r'^s2230-inforetif/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_inforetif.apagar', 
+        s2230_inforetif_views.apagar, 
         name='s2230_inforetif_apagar'),
 
 url(r'^s2230-inforetif/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_inforetif.listar', 
+        s2230_inforetif_views.listar, 
         name='s2230_inforetif'),
 
 url(r'^s2230-inforetif/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_inforetif.salvar', 
+        s2230_inforetif_views.salvar, 
         name='s2230_inforetif_salvar'),
 
 
 
 url(r'^s2230-fimafastamento/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_fimafastamento.apagar', 
+        s2230_fimafastamento_views.apagar, 
         name='s2230_fimafastamento_apagar'),
 
 url(r'^s2230-fimafastamento/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_fimafastamento.listar', 
+        s2230_fimafastamento_views.listar, 
         name='s2230_fimafastamento'),
 
 url(r'^s2230-fimafastamento/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2230.views.s2230_fimafastamento.salvar', 
+        s2230_fimafastamento_views.salvar, 
         name='s2230_fimafastamento_salvar'),
 
 
 
 
 
-)
+]

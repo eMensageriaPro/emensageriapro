@@ -1,8 +1,55 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.tabelas.views import municipios as municipios_views
+from emensageriapro.tabelas.views import cbo as cbo_views
+from emensageriapro.tabelas.views import cid as cid_views
+from emensageriapro.tabelas.views import cnae as cnae_views
+from emensageriapro.tabelas.views import esocial_trabalhadores_categorias as esocial_trabalhadores_categorias_views
+from emensageriapro.tabelas.views import esocial_financiamentos_aposentadorias_especiais as esocial_financiamentos_aposentadorias_especiais_views
+from emensageriapro.tabelas.views import esocial_naturezas_rubricas as esocial_naturezas_rubricas_views
+from emensageriapro.tabelas.views import esocial_codigo_aliquotas_fpas_terceiros as esocial_codigo_aliquotas_fpas_terceiros_views
+from emensageriapro.tabelas.views import esocial_inscricoes_tipos as esocial_inscricoes_tipos_views
+from emensageriapro.tabelas.views import esocial_paises as esocial_paises_views
+from emensageriapro.tabelas.views import esocial_dependentes_tipos as esocial_dependentes_tipos_views
+from emensageriapro.tabelas.views import esocial_classificacoes_tributarias as esocial_classificacoes_tributarias_views
+from emensageriapro.tabelas.views import esocial_arquivos_esocial_tipos as esocial_arquivos_esocial_tipos_views
+from emensageriapro.tabelas.views import esocial_lotacoes_tributarias_tipos as esocial_lotacoes_tributarias_tipos_views
+from emensageriapro.tabelas.views import esocial_compatibilidades_categorias_classificacoes_lotacoes as esocial_compatibilidades_categorias_classificacoes_lotacoes_views
+from emensageriapro.tabelas.views import esocial_compatibilidades_lotacoes_classificacoes as esocial_compatibilidades_lotacoes_classificacoes_views
+from emensageriapro.tabelas.views import esocial_partes_corpo_atingidas as esocial_partes_corpo_atingidas_views
+from emensageriapro.tabelas.views import esocial_agentes_causadores_acidentes_trabalho as esocial_agentes_causadores_acidentes_trabalho_views
+from emensageriapro.tabelas.views import esocial_agentes_causadores_doencas_profissionais as esocial_agentes_causadores_doencas_profissionais_views
+from emensageriapro.tabelas.views import esocial_acidentes_situacoes_geradoras as esocial_acidentes_situacoes_geradoras_views
+from emensageriapro.tabelas.views import esocial_naturezas_lesoes as esocial_naturezas_lesoes_views
+from emensageriapro.tabelas.views import esocial_afastamentos_motivos as esocial_afastamentos_motivos_views
+from emensageriapro.tabelas.views import esocial_desligamentos_motivos as esocial_desligamentos_motivos_views
+from emensageriapro.tabelas.views import esocial_logradouros_tipos as esocial_logradouros_tipos_views
+from emensageriapro.tabelas.views import esocial_naturezas_juridicas as esocial_naturezas_juridicas_views
+from emensageriapro.tabelas.views import esocial_compatibilidades_fpas_classificacoes_tributarias as esocial_compatibilidades_fpas_classificacoes_tributarias_views
+from emensageriapro.tabelas.views import esocial_fatores_risco as esocial_fatores_risco_views
+from emensageriapro.tabelas.views import esocial_codificacoes_acidente_trabalho as esocial_codificacoes_acidente_trabalho_views
+from emensageriapro.tabelas.views import esocial_beneficios_previdenciarios_tipos as esocial_beneficios_previdenciarios_tipos_views
+from emensageriapro.tabelas.views import esocial_beneficios_previdenciarios_cessacao_motivos as esocial_beneficios_previdenciarios_cessacao_motivos_views
+from emensageriapro.tabelas.views import esocial_procedimentos_diagnosticos as esocial_procedimentos_diagnosticos_views
+from emensageriapro.tabelas.views import esocial_atividades_periculosas_insalubres_especiais as esocial_atividades_periculosas_insalubres_especiais_views
+from emensageriapro.tabelas.views import esocial_treinamentos_capacitacoes_exercicios_simulados as esocial_treinamentos_capacitacoes_exercicios_simulados_views
+from emensageriapro.tabelas.views import esocial_programas_planos_documentos as esocial_programas_planos_documentos_views
+from emensageriapro.tabelas.views import efdreinf_pagamentos_codigos as efdreinf_pagamentos_codigos_views
+from emensageriapro.tabelas.views import efdreinf_regras_pagamentos_codigos as efdreinf_regras_pagamentos_codigos_views
+from emensageriapro.tabelas.views import efdreinf_rendimentos_beneficiarios_exterior as efdreinf_rendimentos_beneficiarios_exterior_views
+from emensageriapro.tabelas.views import efdreinf_rendimentos_beneficiarios_exterior_tributacao as efdreinf_rendimentos_beneficiarios_exterior_tributacao_views
+from emensageriapro.tabelas.views import efdreinf_informacoes_beneficiarios_exterior as efdreinf_informacoes_beneficiarios_exterior_views
+from emensageriapro.tabelas.views import efdreinf_classificacao_servicos_prestados as efdreinf_classificacao_servicos_prestados_views
+from emensageriapro.tabelas.views import efdreinf_paises as efdreinf_paises_views
+from emensageriapro.tabelas.views import efdreinf_classificacao_tributaria as efdreinf_classificacao_tributaria_views
+from emensageriapro.tabelas.views import efdreinf_codigos_atividades_produtos_servicos_cprb as efdreinf_codigos_atividades_produtos_servicos_cprb_views
+from emensageriapro.tabelas.views import efdreinf_eventos as efdreinf_eventos_views
+
+
 
 """
 
@@ -37,819 +84,846 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^municipios/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.municipios.apagar', 
+        municipios_views.apagar, 
         name='municipios_apagar'),
 
 url(r'^municipios/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.municipios.listar', 
+        municipios_views.listar, 
         name='municipios'),
         
         
     url(r'^municipios/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.municipios.json_search', name='municipios_json_search'),
+    municipios_views.json_search, 
+        name='municipios_json_search'),
 
 url(r'^municipios/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.municipios.salvar', 
+        municipios_views.salvar, 
         name='municipios_salvar'),
 
 
 
 url(r'^cbo/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.cbo.apagar', 
+        cbo_views.apagar, 
         name='cbo_apagar'),
 
 url(r'^cbo/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.cbo.listar', 
+        cbo_views.listar, 
         name='cbo'),
         
         
     url(r'^cbo/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.cbo.json_search', name='cbo_json_search'),
+    cbo_views.json_search, 
+        name='cbo_json_search'),
 
 url(r'^cbo/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.cbo.salvar', 
+        cbo_views.salvar, 
         name='cbo_salvar'),
 
 
 
 url(r'^cid/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.cid.apagar', 
+        cid_views.apagar, 
         name='cid_apagar'),
 
 url(r'^cid/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.cid.listar', 
+        cid_views.listar, 
         name='cid'),
         
         
     url(r'^cid/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.cid.json_search', name='cid_json_search'),
+    cid_views.json_search, 
+        name='cid_json_search'),
 
 url(r'^cid/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.cid.salvar', 
+        cid_views.salvar, 
         name='cid_salvar'),
 
 
 
 url(r'^cnae/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.cnae.apagar', 
+        cnae_views.apagar, 
         name='cnae_apagar'),
 
 url(r'^cnae/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.cnae.listar', 
+        cnae_views.listar, 
         name='cnae'),
         
         
     url(r'^cnae/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.cnae.json_search', name='cnae_json_search'),
+    cnae_views.json_search, 
+        name='cnae_json_search'),
 
 url(r'^cnae/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.cnae.salvar', 
+        cnae_views.salvar, 
         name='cnae_salvar'),
 
 
 
 url(r'^esocial-trabalhadores-categorias/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_trabalhadores_categorias.apagar', 
+        esocial_trabalhadores_categorias_views.apagar, 
         name='esocial_trabalhadores_categorias_apagar'),
 
 url(r'^esocial-trabalhadores-categorias/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_trabalhadores_categorias.listar', 
+        esocial_trabalhadores_categorias_views.listar, 
         name='esocial_trabalhadores_categorias'),
         
         
     url(r'^esocial-trabalhadores-categorias/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_trabalhadores_categorias.json_search', name='esocial_trabalhadores_categorias_json_search'),
+    esocial_trabalhadores_categorias_views.json_search, 
+        name='esocial_trabalhadores_categorias_json_search'),
 
 url(r'^esocial-trabalhadores-categorias/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_trabalhadores_categorias.salvar', 
+        esocial_trabalhadores_categorias_views.salvar, 
         name='esocial_trabalhadores_categorias_salvar'),
 
 
 
 url(r'^esocial-financiamentos-aposentadorias-especiais/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_financiamentos_aposentadorias_especiais.apagar', 
+        esocial_financiamentos_aposentadorias_especiais_views.apagar, 
         name='esocial_financiamentos_aposentadorias_especiais_apagar'),
 
 url(r'^esocial-financiamentos-aposentadorias-especiais/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_financiamentos_aposentadorias_especiais.listar', 
+        esocial_financiamentos_aposentadorias_especiais_views.listar, 
         name='esocial_financiamentos_aposentadorias_especiais'),
         
         
     url(r'^esocial-financiamentos-aposentadorias-especiais/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_financiamentos_aposentadorias_especiais.json_search', name='esocial_financiamentos_aposentadorias_especiais_json_search'),
+    esocial_financiamentos_aposentadorias_especiais_views.json_search, 
+        name='esocial_financiamentos_aposentadorias_especiais_json_search'),
 
 url(r'^esocial-financiamentos-aposentadorias-especiais/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_financiamentos_aposentadorias_especiais.salvar', 
+        esocial_financiamentos_aposentadorias_especiais_views.salvar, 
         name='esocial_financiamentos_aposentadorias_especiais_salvar'),
 
 
 
 url(r'^esocial-naturezas-rubricas/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_naturezas_rubricas.apagar', 
+        esocial_naturezas_rubricas_views.apagar, 
         name='esocial_naturezas_rubricas_apagar'),
 
 url(r'^esocial-naturezas-rubricas/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_naturezas_rubricas.listar', 
+        esocial_naturezas_rubricas_views.listar, 
         name='esocial_naturezas_rubricas'),
         
         
     url(r'^esocial-naturezas-rubricas/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_naturezas_rubricas.json_search', name='esocial_naturezas_rubricas_json_search'),
+    esocial_naturezas_rubricas_views.json_search, 
+        name='esocial_naturezas_rubricas_json_search'),
 
 url(r'^esocial-naturezas-rubricas/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_naturezas_rubricas.salvar', 
+        esocial_naturezas_rubricas_views.salvar, 
         name='esocial_naturezas_rubricas_salvar'),
 
 
 
 url(r'^esocial-codigo-aliquotas-fpas-terceiros/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_codigo_aliquotas_fpas_terceiros.apagar', 
+        esocial_codigo_aliquotas_fpas_terceiros_views.apagar, 
         name='esocial_codigo_aliquotas_fpas_terceiros_apagar'),
 
 url(r'^esocial-codigo-aliquotas-fpas-terceiros/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_codigo_aliquotas_fpas_terceiros.listar', 
+        esocial_codigo_aliquotas_fpas_terceiros_views.listar, 
         name='esocial_codigo_aliquotas_fpas_terceiros'),
         
         
     url(r'^esocial-codigo-aliquotas-fpas-terceiros/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_codigo_aliquotas_fpas_terceiros.json_search', name='esocial_codigo_aliquotas_fpas_terceiros_json_search'),
+    esocial_codigo_aliquotas_fpas_terceiros_views.json_search, 
+        name='esocial_codigo_aliquotas_fpas_terceiros_json_search'),
 
 url(r'^esocial-codigo-aliquotas-fpas-terceiros/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_codigo_aliquotas_fpas_terceiros.salvar', 
+        esocial_codigo_aliquotas_fpas_terceiros_views.salvar, 
         name='esocial_codigo_aliquotas_fpas_terceiros_salvar'),
 
 
 
 url(r'^esocial-inscricoes-tipos/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_inscricoes_tipos.apagar', 
+        esocial_inscricoes_tipos_views.apagar, 
         name='esocial_inscricoes_tipos_apagar'),
 
 url(r'^esocial-inscricoes-tipos/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_inscricoes_tipos.listar', 
+        esocial_inscricoes_tipos_views.listar, 
         name='esocial_inscricoes_tipos'),
         
         
     url(r'^esocial-inscricoes-tipos/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_inscricoes_tipos.json_search', name='esocial_inscricoes_tipos_json_search'),
+    esocial_inscricoes_tipos_views.json_search, 
+        name='esocial_inscricoes_tipos_json_search'),
 
 url(r'^esocial-inscricoes-tipos/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_inscricoes_tipos.salvar', 
+        esocial_inscricoes_tipos_views.salvar, 
         name='esocial_inscricoes_tipos_salvar'),
 
 
 
 url(r'^esocial-paises/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_paises.apagar', 
+        esocial_paises_views.apagar, 
         name='esocial_paises_apagar'),
 
 url(r'^esocial-paises/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_paises.listar', 
+        esocial_paises_views.listar, 
         name='esocial_paises'),
         
         
     url(r'^esocial-paises/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_paises.json_search', name='esocial_paises_json_search'),
+    esocial_paises_views.json_search, 
+        name='esocial_paises_json_search'),
 
 url(r'^esocial-paises/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_paises.salvar', 
+        esocial_paises_views.salvar, 
         name='esocial_paises_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^esocial-dependentes-tipos/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_dependentes_tipos.apagar', 
+        esocial_dependentes_tipos_views.apagar, 
         name='esocial_dependentes_tipos_apagar'),
 
 url(r'^esocial-dependentes-tipos/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_dependentes_tipos.listar', 
+        esocial_dependentes_tipos_views.listar, 
         name='esocial_dependentes_tipos'),
         
         
     url(r'^esocial-dependentes-tipos/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_dependentes_tipos.json_search', name='esocial_dependentes_tipos_json_search'),
+    esocial_dependentes_tipos_views.json_search, 
+        name='esocial_dependentes_tipos_json_search'),
 
 url(r'^esocial-dependentes-tipos/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_dependentes_tipos.salvar', 
+        esocial_dependentes_tipos_views.salvar, 
         name='esocial_dependentes_tipos_salvar'),
 
 
 
 url(r'^esocial-classificacoes-tributarias/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_classificacoes_tributarias.apagar', 
+        esocial_classificacoes_tributarias_views.apagar, 
         name='esocial_classificacoes_tributarias_apagar'),
 
 url(r'^esocial-classificacoes-tributarias/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_classificacoes_tributarias.listar', 
+        esocial_classificacoes_tributarias_views.listar, 
         name='esocial_classificacoes_tributarias'),
         
         
     url(r'^esocial-classificacoes-tributarias/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_classificacoes_tributarias.json_search', name='esocial_classificacoes_tributarias_json_search'),
+    esocial_classificacoes_tributarias_views.json_search, 
+        name='esocial_classificacoes_tributarias_json_search'),
 
 url(r'^esocial-classificacoes-tributarias/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_classificacoes_tributarias.salvar', 
+        esocial_classificacoes_tributarias_views.salvar, 
         name='esocial_classificacoes_tributarias_salvar'),
 
 
 
 url(r'^esocial-arquivos-esocial-tipos/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_arquivos_esocial_tipos.apagar', 
+        esocial_arquivos_esocial_tipos_views.apagar, 
         name='esocial_arquivos_esocial_tipos_apagar'),
 
 url(r'^esocial-arquivos-esocial-tipos/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_arquivos_esocial_tipos.listar', 
+        esocial_arquivos_esocial_tipos_views.listar, 
         name='esocial_arquivos_esocial_tipos'),
         
         
     url(r'^esocial-arquivos-esocial-tipos/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_arquivos_esocial_tipos.json_search', name='esocial_arquivos_esocial_tipos_json_search'),
+    esocial_arquivos_esocial_tipos_views.json_search, 
+        name='esocial_arquivos_esocial_tipos_json_search'),
 
 url(r'^esocial-arquivos-esocial-tipos/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_arquivos_esocial_tipos.salvar', 
+        esocial_arquivos_esocial_tipos_views.salvar, 
         name='esocial_arquivos_esocial_tipos_salvar'),
 
 
 
 url(r'^esocial-lotacoes-tributarias-tipos/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_lotacoes_tributarias_tipos.apagar', 
+        esocial_lotacoes_tributarias_tipos_views.apagar, 
         name='esocial_lotacoes_tributarias_tipos_apagar'),
 
 url(r'^esocial-lotacoes-tributarias-tipos/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_lotacoes_tributarias_tipos.listar', 
+        esocial_lotacoes_tributarias_tipos_views.listar, 
         name='esocial_lotacoes_tributarias_tipos'),
         
         
     url(r'^esocial-lotacoes-tributarias-tipos/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_lotacoes_tributarias_tipos.json_search', name='esocial_lotacoes_tributarias_tipos_json_search'),
+    esocial_lotacoes_tributarias_tipos_views.json_search, 
+        name='esocial_lotacoes_tributarias_tipos_json_search'),
 
 url(r'^esocial-lotacoes-tributarias-tipos/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_lotacoes_tributarias_tipos.salvar', 
+        esocial_lotacoes_tributarias_tipos_views.salvar, 
         name='esocial_lotacoes_tributarias_tipos_salvar'),
 
 
 
 url(r'^esocial-compatibilidades-categorias-classificacoes-lotacoes/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_compatibilidades_categorias_classificacoes_lotacoes.apagar', 
+        esocial_compatibilidades_categorias_classificacoes_lotacoes_views.apagar, 
         name='esocial_compatibilidades_categorias_classificacoes_lotacoes_apagar'),
 
 url(r'^esocial-compatibilidades-categorias-classificacoes-lotacoes/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_compatibilidades_categorias_classificacoes_lotacoes.listar', 
+        esocial_compatibilidades_categorias_classificacoes_lotacoes_views.listar, 
         name='esocial_compatibilidades_categorias_classificacoes_lotacoes'),
         
         
     url(r'^esocial-compatibilidades-categorias-classificacoes-lotacoes/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_compatibilidades_categorias_classificacoes_lotacoes.json_search', name='esocial_compatibilidades_categorias_classificacoes_lotacoes_json_search'),
+    esocial_compatibilidades_categorias_classificacoes_lotacoes_views.json_search, 
+        name='esocial_compatibilidades_categorias_classificacoes_lotacoes_json_search'),
 
 url(r'^esocial-compatibilidades-categorias-classificacoes-lotacoes/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_compatibilidades_categorias_classificacoes_lotacoes.salvar', 
+        esocial_compatibilidades_categorias_classificacoes_lotacoes_views.salvar, 
         name='esocial_compatibilidades_categorias_classificacoes_lotacoes_salvar'),
 
 
 
 url(r'^esocial-compatibilidades-lotacoes-classificacoes/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_compatibilidades_lotacoes_classificacoes.apagar', 
+        esocial_compatibilidades_lotacoes_classificacoes_views.apagar, 
         name='esocial_compatibilidades_lotacoes_classificacoes_apagar'),
 
 url(r'^esocial-compatibilidades-lotacoes-classificacoes/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_compatibilidades_lotacoes_classificacoes.listar', 
+        esocial_compatibilidades_lotacoes_classificacoes_views.listar, 
         name='esocial_compatibilidades_lotacoes_classificacoes'),
         
         
     url(r'^esocial-compatibilidades-lotacoes-classificacoes/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_compatibilidades_lotacoes_classificacoes.json_search', name='esocial_compatibilidades_lotacoes_classificacoes_json_search'),
+    esocial_compatibilidades_lotacoes_classificacoes_views.json_search, 
+        name='esocial_compatibilidades_lotacoes_classificacoes_json_search'),
 
 url(r'^esocial-compatibilidades-lotacoes-classificacoes/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_compatibilidades_lotacoes_classificacoes.salvar', 
+        esocial_compatibilidades_lotacoes_classificacoes_views.salvar, 
         name='esocial_compatibilidades_lotacoes_classificacoes_salvar'),
 
 
 
 url(r'^esocial-partes-corpo-atingidas/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_partes_corpo_atingidas.apagar', 
+        esocial_partes_corpo_atingidas_views.apagar, 
         name='esocial_partes_corpo_atingidas_apagar'),
 
 url(r'^esocial-partes-corpo-atingidas/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_partes_corpo_atingidas.listar', 
+        esocial_partes_corpo_atingidas_views.listar, 
         name='esocial_partes_corpo_atingidas'),
         
         
     url(r'^esocial-partes-corpo-atingidas/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_partes_corpo_atingidas.json_search', name='esocial_partes_corpo_atingidas_json_search'),
+    esocial_partes_corpo_atingidas_views.json_search, 
+        name='esocial_partes_corpo_atingidas_json_search'),
 
 url(r'^esocial-partes-corpo-atingidas/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_partes_corpo_atingidas.salvar', 
+        esocial_partes_corpo_atingidas_views.salvar, 
         name='esocial_partes_corpo_atingidas_salvar'),
 
 
 
 url(r'^esocial-agentes-causadores-acidentes-trabalho/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_agentes_causadores_acidentes_trabalho.apagar', 
+        esocial_agentes_causadores_acidentes_trabalho_views.apagar, 
         name='esocial_agentes_causadores_acidentes_trabalho_apagar'),
 
 url(r'^esocial-agentes-causadores-acidentes-trabalho/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_agentes_causadores_acidentes_trabalho.listar', 
+        esocial_agentes_causadores_acidentes_trabalho_views.listar, 
         name='esocial_agentes_causadores_acidentes_trabalho'),
         
         
     url(r'^esocial-agentes-causadores-acidentes-trabalho/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_agentes_causadores_acidentes_trabalho.json_search', name='esocial_agentes_causadores_acidentes_trabalho_json_search'),
+    esocial_agentes_causadores_acidentes_trabalho_views.json_search, 
+        name='esocial_agentes_causadores_acidentes_trabalho_json_search'),
 
 url(r'^esocial-agentes-causadores-acidentes-trabalho/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_agentes_causadores_acidentes_trabalho.salvar', 
+        esocial_agentes_causadores_acidentes_trabalho_views.salvar, 
         name='esocial_agentes_causadores_acidentes_trabalho_salvar'),
 
 
 
 url(r'^esocial-agentes-causadores-doencas-profissionais/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_agentes_causadores_doencas_profissionais.apagar', 
+        esocial_agentes_causadores_doencas_profissionais_views.apagar, 
         name='esocial_agentes_causadores_doencas_profissionais_apagar'),
 
 url(r'^esocial-agentes-causadores-doencas-profissionais/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_agentes_causadores_doencas_profissionais.listar', 
+        esocial_agentes_causadores_doencas_profissionais_views.listar, 
         name='esocial_agentes_causadores_doencas_profissionais'),
         
         
     url(r'^esocial-agentes-causadores-doencas-profissionais/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_agentes_causadores_doencas_profissionais.json_search', name='esocial_agentes_causadores_doencas_profissionais_json_search'),
+    esocial_agentes_causadores_doencas_profissionais_views.json_search, 
+        name='esocial_agentes_causadores_doencas_profissionais_json_search'),
 
 url(r'^esocial-agentes-causadores-doencas-profissionais/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_agentes_causadores_doencas_profissionais.salvar', 
+        esocial_agentes_causadores_doencas_profissionais_views.salvar, 
         name='esocial_agentes_causadores_doencas_profissionais_salvar'),
 
 
 
 url(r'^esocial-acidentes-situacoes-geradoras/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_acidentes_situacoes_geradoras.apagar', 
+        esocial_acidentes_situacoes_geradoras_views.apagar, 
         name='esocial_acidentes_situacoes_geradoras_apagar'),
 
 url(r'^esocial-acidentes-situacoes-geradoras/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_acidentes_situacoes_geradoras.listar', 
+        esocial_acidentes_situacoes_geradoras_views.listar, 
         name='esocial_acidentes_situacoes_geradoras'),
         
         
     url(r'^esocial-acidentes-situacoes-geradoras/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_acidentes_situacoes_geradoras.json_search', name='esocial_acidentes_situacoes_geradoras_json_search'),
+    esocial_acidentes_situacoes_geradoras_views.json_search, 
+        name='esocial_acidentes_situacoes_geradoras_json_search'),
 
 url(r'^esocial-acidentes-situacoes-geradoras/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_acidentes_situacoes_geradoras.salvar', 
+        esocial_acidentes_situacoes_geradoras_views.salvar, 
         name='esocial_acidentes_situacoes_geradoras_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^esocial-naturezas-lesoes/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_naturezas_lesoes.apagar', 
+        esocial_naturezas_lesoes_views.apagar, 
         name='esocial_naturezas_lesoes_apagar'),
 
 url(r'^esocial-naturezas-lesoes/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_naturezas_lesoes.listar', 
+        esocial_naturezas_lesoes_views.listar, 
         name='esocial_naturezas_lesoes'),
         
         
     url(r'^esocial-naturezas-lesoes/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_naturezas_lesoes.json_search', name='esocial_naturezas_lesoes_json_search'),
+    esocial_naturezas_lesoes_views.json_search, 
+        name='esocial_naturezas_lesoes_json_search'),
 
 url(r'^esocial-naturezas-lesoes/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_naturezas_lesoes.salvar', 
+        esocial_naturezas_lesoes_views.salvar, 
         name='esocial_naturezas_lesoes_salvar'),
 
 
 
 url(r'^esocial-afastamentos-motivos/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_afastamentos_motivos.apagar', 
+        esocial_afastamentos_motivos_views.apagar, 
         name='esocial_afastamentos_motivos_apagar'),
 
 url(r'^esocial-afastamentos-motivos/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_afastamentos_motivos.listar', 
+        esocial_afastamentos_motivos_views.listar, 
         name='esocial_afastamentos_motivos'),
         
         
     url(r'^esocial-afastamentos-motivos/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_afastamentos_motivos.json_search', name='esocial_afastamentos_motivos_json_search'),
+    esocial_afastamentos_motivos_views.json_search, 
+        name='esocial_afastamentos_motivos_json_search'),
 
 url(r'^esocial-afastamentos-motivos/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_afastamentos_motivos.salvar', 
+        esocial_afastamentos_motivos_views.salvar, 
         name='esocial_afastamentos_motivos_salvar'),
 
 
 
 url(r'^esocial-desligamentos-motivos/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_desligamentos_motivos.apagar', 
+        esocial_desligamentos_motivos_views.apagar, 
         name='esocial_desligamentos_motivos_apagar'),
 
 url(r'^esocial-desligamentos-motivos/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_desligamentos_motivos.listar', 
+        esocial_desligamentos_motivos_views.listar, 
         name='esocial_desligamentos_motivos'),
         
         
     url(r'^esocial-desligamentos-motivos/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_desligamentos_motivos.json_search', name='esocial_desligamentos_motivos_json_search'),
+    esocial_desligamentos_motivos_views.json_search, 
+        name='esocial_desligamentos_motivos_json_search'),
 
 url(r'^esocial-desligamentos-motivos/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_desligamentos_motivos.salvar', 
+        esocial_desligamentos_motivos_views.salvar, 
         name='esocial_desligamentos_motivos_salvar'),
 
 
 
 url(r'^esocial-logradouros-tipos/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_logradouros_tipos.apagar', 
+        esocial_logradouros_tipos_views.apagar, 
         name='esocial_logradouros_tipos_apagar'),
 
 url(r'^esocial-logradouros-tipos/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_logradouros_tipos.listar', 
+        esocial_logradouros_tipos_views.listar, 
         name='esocial_logradouros_tipos'),
         
         
     url(r'^esocial-logradouros-tipos/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_logradouros_tipos.json_search', name='esocial_logradouros_tipos_json_search'),
+    esocial_logradouros_tipos_views.json_search, 
+        name='esocial_logradouros_tipos_json_search'),
 
 url(r'^esocial-logradouros-tipos/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_logradouros_tipos.salvar', 
+        esocial_logradouros_tipos_views.salvar, 
         name='esocial_logradouros_tipos_salvar'),
 
 
 
 url(r'^esocial-naturezas-juridicas/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_naturezas_juridicas.apagar', 
+        esocial_naturezas_juridicas_views.apagar, 
         name='esocial_naturezas_juridicas_apagar'),
 
 url(r'^esocial-naturezas-juridicas/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_naturezas_juridicas.listar', 
+        esocial_naturezas_juridicas_views.listar, 
         name='esocial_naturezas_juridicas'),
         
         
     url(r'^esocial-naturezas-juridicas/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_naturezas_juridicas.json_search', name='esocial_naturezas_juridicas_json_search'),
+    esocial_naturezas_juridicas_views.json_search, 
+        name='esocial_naturezas_juridicas_json_search'),
 
 url(r'^esocial-naturezas-juridicas/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_naturezas_juridicas.salvar', 
+        esocial_naturezas_juridicas_views.salvar, 
         name='esocial_naturezas_juridicas_salvar'),
 
 
 
 url(r'^esocial-compatibilidades-fpas-classificacoes-tributarias/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_compatibilidades_fpas_classificacoes_tributarias.apagar', 
+        esocial_compatibilidades_fpas_classificacoes_tributarias_views.apagar, 
         name='esocial_compatibilidades_fpas_classificacoes_tributarias_apagar'),
 
 url(r'^esocial-compatibilidades-fpas-classificacoes-tributarias/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_compatibilidades_fpas_classificacoes_tributarias.listar', 
+        esocial_compatibilidades_fpas_classificacoes_tributarias_views.listar, 
         name='esocial_compatibilidades_fpas_classificacoes_tributarias'),
         
         
     url(r'^esocial-compatibilidades-fpas-classificacoes-tributarias/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_compatibilidades_fpas_classificacoes_tributarias.json_search', name='esocial_compatibilidades_fpas_classificacoes_tributarias_json_search'),
+    esocial_compatibilidades_fpas_classificacoes_tributarias_views.json_search, 
+        name='esocial_compatibilidades_fpas_classificacoes_tributarias_json_search'),
 
 url(r'^esocial-compatibilidades-fpas-classificacoes-tributarias/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_compatibilidades_fpas_classificacoes_tributarias.salvar', 
+        esocial_compatibilidades_fpas_classificacoes_tributarias_views.salvar, 
         name='esocial_compatibilidades_fpas_classificacoes_tributarias_salvar'),
 
 
 
 url(r'^esocial-fatores-risco/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_fatores_risco.apagar', 
+        esocial_fatores_risco_views.apagar, 
         name='esocial_fatores_risco_apagar'),
 
 url(r'^esocial-fatores-risco/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_fatores_risco.listar', 
+        esocial_fatores_risco_views.listar, 
         name='esocial_fatores_risco'),
         
         
     url(r'^esocial-fatores-risco/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_fatores_risco.json_search', name='esocial_fatores_risco_json_search'),
+    esocial_fatores_risco_views.json_search, 
+        name='esocial_fatores_risco_json_search'),
 
 url(r'^esocial-fatores-risco/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_fatores_risco.salvar', 
+        esocial_fatores_risco_views.salvar, 
         name='esocial_fatores_risco_salvar'),
 
 
 
 url(r'^esocial-codificacoes-acidente-trabalho/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_codificacoes_acidente_trabalho.apagar', 
+        esocial_codificacoes_acidente_trabalho_views.apagar, 
         name='esocial_codificacoes_acidente_trabalho_apagar'),
 
 url(r'^esocial-codificacoes-acidente-trabalho/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_codificacoes_acidente_trabalho.listar', 
+        esocial_codificacoes_acidente_trabalho_views.listar, 
         name='esocial_codificacoes_acidente_trabalho'),
         
         
     url(r'^esocial-codificacoes-acidente-trabalho/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_codificacoes_acidente_trabalho.json_search', name='esocial_codificacoes_acidente_trabalho_json_search'),
+    esocial_codificacoes_acidente_trabalho_views.json_search, 
+        name='esocial_codificacoes_acidente_trabalho_json_search'),
 
 url(r'^esocial-codificacoes-acidente-trabalho/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_codificacoes_acidente_trabalho.salvar', 
+        esocial_codificacoes_acidente_trabalho_views.salvar, 
         name='esocial_codificacoes_acidente_trabalho_salvar'),
 
 
 
 url(r'^esocial-beneficios-previdenciarios-tipos/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_beneficios_previdenciarios_tipos.apagar', 
+        esocial_beneficios_previdenciarios_tipos_views.apagar, 
         name='esocial_beneficios_previdenciarios_tipos_apagar'),
 
 url(r'^esocial-beneficios-previdenciarios-tipos/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_beneficios_previdenciarios_tipos.listar', 
+        esocial_beneficios_previdenciarios_tipos_views.listar, 
         name='esocial_beneficios_previdenciarios_tipos'),
         
         
     url(r'^esocial-beneficios-previdenciarios-tipos/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_beneficios_previdenciarios_tipos.json_search', name='esocial_beneficios_previdenciarios_tipos_json_search'),
+    esocial_beneficios_previdenciarios_tipos_views.json_search, 
+        name='esocial_beneficios_previdenciarios_tipos_json_search'),
 
 url(r'^esocial-beneficios-previdenciarios-tipos/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_beneficios_previdenciarios_tipos.salvar', 
+        esocial_beneficios_previdenciarios_tipos_views.salvar, 
         name='esocial_beneficios_previdenciarios_tipos_salvar'),
 
 
 
 url(r'^esocial-beneficios-previdenciarios-cessacao-motivos/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_beneficios_previdenciarios_cessacao_motivos.apagar', 
+        esocial_beneficios_previdenciarios_cessacao_motivos_views.apagar, 
         name='esocial_beneficios_previdenciarios_cessacao_motivos_apagar'),
 
 url(r'^esocial-beneficios-previdenciarios-cessacao-motivos/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_beneficios_previdenciarios_cessacao_motivos.listar', 
+        esocial_beneficios_previdenciarios_cessacao_motivos_views.listar, 
         name='esocial_beneficios_previdenciarios_cessacao_motivos'),
         
         
     url(r'^esocial-beneficios-previdenciarios-cessacao-motivos/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_beneficios_previdenciarios_cessacao_motivos.json_search', name='esocial_beneficios_previdenciarios_cessacao_motivos_json_search'),
+    esocial_beneficios_previdenciarios_cessacao_motivos_views.json_search, 
+        name='esocial_beneficios_previdenciarios_cessacao_motivos_json_search'),
 
 url(r'^esocial-beneficios-previdenciarios-cessacao-motivos/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_beneficios_previdenciarios_cessacao_motivos.salvar', 
+        esocial_beneficios_previdenciarios_cessacao_motivos_views.salvar, 
         name='esocial_beneficios_previdenciarios_cessacao_motivos_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^esocial-procedimentos-diagnosticos/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_procedimentos_diagnosticos.apagar', 
+        esocial_procedimentos_diagnosticos_views.apagar, 
         name='esocial_procedimentos_diagnosticos_apagar'),
 
 url(r'^esocial-procedimentos-diagnosticos/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_procedimentos_diagnosticos.listar', 
+        esocial_procedimentos_diagnosticos_views.listar, 
         name='esocial_procedimentos_diagnosticos'),
         
         
     url(r'^esocial-procedimentos-diagnosticos/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_procedimentos_diagnosticos.json_search', name='esocial_procedimentos_diagnosticos_json_search'),
+    esocial_procedimentos_diagnosticos_views.json_search, 
+        name='esocial_procedimentos_diagnosticos_json_search'),
 
 url(r'^esocial-procedimentos-diagnosticos/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_procedimentos_diagnosticos.salvar', 
+        esocial_procedimentos_diagnosticos_views.salvar, 
         name='esocial_procedimentos_diagnosticos_salvar'),
 
 
 
 url(r'^esocial-atividades-periculosas-insalubres-especiais/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_atividades_periculosas_insalubres_especiais.apagar', 
+        esocial_atividades_periculosas_insalubres_especiais_views.apagar, 
         name='esocial_atividades_periculosas_insalubres_especiais_apagar'),
 
 url(r'^esocial-atividades-periculosas-insalubres-especiais/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_atividades_periculosas_insalubres_especiais.listar', 
+        esocial_atividades_periculosas_insalubres_especiais_views.listar, 
         name='esocial_atividades_periculosas_insalubres_especiais'),
         
         
     url(r'^esocial-atividades-periculosas-insalubres-especiais/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_atividades_periculosas_insalubres_especiais.json_search', name='esocial_atividades_periculosas_insalubres_especiais_json_search'),
+    esocial_atividades_periculosas_insalubres_especiais_views.json_search, 
+        name='esocial_atividades_periculosas_insalubres_especiais_json_search'),
 
 url(r'^esocial-atividades-periculosas-insalubres-especiais/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_atividades_periculosas_insalubres_especiais.salvar', 
+        esocial_atividades_periculosas_insalubres_especiais_views.salvar, 
         name='esocial_atividades_periculosas_insalubres_especiais_salvar'),
 
 
 
 url(r'^esocial-treinamentos-capacitacoes-exercicios-simulados/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_treinamentos_capacitacoes_exercicios_simulados.apagar', 
+        esocial_treinamentos_capacitacoes_exercicios_simulados_views.apagar, 
         name='esocial_treinamentos_capacitacoes_exercicios_simulados_apagar'),
 
 url(r'^esocial-treinamentos-capacitacoes-exercicios-simulados/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_treinamentos_capacitacoes_exercicios_simulados.listar', 
+        esocial_treinamentos_capacitacoes_exercicios_simulados_views.listar, 
         name='esocial_treinamentos_capacitacoes_exercicios_simulados'),
         
         
     url(r'^esocial-treinamentos-capacitacoes-exercicios-simulados/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_treinamentos_capacitacoes_exercicios_simulados.json_search', name='esocial_treinamentos_capacitacoes_exercicios_simulados_json_search'),
+    esocial_treinamentos_capacitacoes_exercicios_simulados_views.json_search, 
+        name='esocial_treinamentos_capacitacoes_exercicios_simulados_json_search'),
 
 url(r'^esocial-treinamentos-capacitacoes-exercicios-simulados/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_treinamentos_capacitacoes_exercicios_simulados.salvar', 
+        esocial_treinamentos_capacitacoes_exercicios_simulados_views.salvar, 
         name='esocial_treinamentos_capacitacoes_exercicios_simulados_salvar'),
 
 
 
 url(r'^esocial-programas-planos-documentos/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_programas_planos_documentos.apagar', 
+        esocial_programas_planos_documentos_views.apagar, 
         name='esocial_programas_planos_documentos_apagar'),
 
 url(r'^esocial-programas-planos-documentos/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_programas_planos_documentos.listar', 
+        esocial_programas_planos_documentos_views.listar, 
         name='esocial_programas_planos_documentos'),
         
         
     url(r'^esocial-programas-planos-documentos/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.esocial_programas_planos_documentos.json_search', name='esocial_programas_planos_documentos_json_search'),
+    esocial_programas_planos_documentos_views.json_search, 
+        name='esocial_programas_planos_documentos_json_search'),
 
 url(r'^esocial-programas-planos-documentos/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.esocial_programas_planos_documentos.salvar', 
+        esocial_programas_planos_documentos_views.salvar, 
         name='esocial_programas_planos_documentos_salvar'),
 
 
 
 url(r'^efdreinf-pagamentos-codigos/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_pagamentos_codigos.apagar', 
+        efdreinf_pagamentos_codigos_views.apagar, 
         name='efdreinf_pagamentos_codigos_apagar'),
 
 url(r'^efdreinf-pagamentos-codigos/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_pagamentos_codigos.listar', 
+        efdreinf_pagamentos_codigos_views.listar, 
         name='efdreinf_pagamentos_codigos'),
         
         
     url(r'^efdreinf-pagamentos-codigos/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.efdreinf_pagamentos_codigos.json_search', name='efdreinf_pagamentos_codigos_json_search'),
+    efdreinf_pagamentos_codigos_views.json_search, 
+        name='efdreinf_pagamentos_codigos_json_search'),
 
 url(r'^efdreinf-pagamentos-codigos/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_pagamentos_codigos.salvar', 
+        efdreinf_pagamentos_codigos_views.salvar, 
         name='efdreinf_pagamentos_codigos_salvar'),
 
 
 
 url(r'^efdreinf-regras-pagamentos-codigos/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_regras_pagamentos_codigos.apagar', 
+        efdreinf_regras_pagamentos_codigos_views.apagar, 
         name='efdreinf_regras_pagamentos_codigos_apagar'),
 
 url(r'^efdreinf-regras-pagamentos-codigos/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_regras_pagamentos_codigos.listar', 
+        efdreinf_regras_pagamentos_codigos_views.listar, 
         name='efdreinf_regras_pagamentos_codigos'),
         
         
     url(r'^efdreinf-regras-pagamentos-codigos/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.efdreinf_regras_pagamentos_codigos.json_search', name='efdreinf_regras_pagamentos_codigos_json_search'),
+    efdreinf_regras_pagamentos_codigos_views.json_search, 
+        name='efdreinf_regras_pagamentos_codigos_json_search'),
 
 url(r'^efdreinf-regras-pagamentos-codigos/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_regras_pagamentos_codigos.salvar', 
+        efdreinf_regras_pagamentos_codigos_views.salvar, 
         name='efdreinf_regras_pagamentos_codigos_salvar'),
 
 
 
 url(r'^efdreinf-rendimentos-beneficiarios-exterior/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_rendimentos_beneficiarios_exterior.apagar', 
+        efdreinf_rendimentos_beneficiarios_exterior_views.apagar, 
         name='efdreinf_rendimentos_beneficiarios_exterior_apagar'),
 
 url(r'^efdreinf-rendimentos-beneficiarios-exterior/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_rendimentos_beneficiarios_exterior.listar', 
+        efdreinf_rendimentos_beneficiarios_exterior_views.listar, 
         name='efdreinf_rendimentos_beneficiarios_exterior'),
         
         
     url(r'^efdreinf-rendimentos-beneficiarios-exterior/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.efdreinf_rendimentos_beneficiarios_exterior.json_search', name='efdreinf_rendimentos_beneficiarios_exterior_json_search'),
+    efdreinf_rendimentos_beneficiarios_exterior_views.json_search, 
+        name='efdreinf_rendimentos_beneficiarios_exterior_json_search'),
 
 url(r'^efdreinf-rendimentos-beneficiarios-exterior/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_rendimentos_beneficiarios_exterior.salvar', 
+        efdreinf_rendimentos_beneficiarios_exterior_views.salvar, 
         name='efdreinf_rendimentos_beneficiarios_exterior_salvar'),
 
 
 
 url(r'^efdreinf-rendimentos-beneficiarios-exterior-tributacao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_rendimentos_beneficiarios_exterior_tributacao.apagar', 
+        efdreinf_rendimentos_beneficiarios_exterior_tributacao_views.apagar, 
         name='efdreinf_rendimentos_beneficiarios_exterior_tributacao_apagar'),
 
 url(r'^efdreinf-rendimentos-beneficiarios-exterior-tributacao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_rendimentos_beneficiarios_exterior_tributacao.listar', 
+        efdreinf_rendimentos_beneficiarios_exterior_tributacao_views.listar, 
         name='efdreinf_rendimentos_beneficiarios_exterior_tributacao'),
         
         
     url(r'^efdreinf-rendimentos-beneficiarios-exterior-tributacao/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.efdreinf_rendimentos_beneficiarios_exterior_tributacao.json_search', name='efdreinf_rendimentos_beneficiarios_exterior_tributacao_json_search'),
+    efdreinf_rendimentos_beneficiarios_exterior_tributacao_views.json_search, 
+        name='efdreinf_rendimentos_beneficiarios_exterior_tributacao_json_search'),
 
 url(r'^efdreinf-rendimentos-beneficiarios-exterior-tributacao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_rendimentos_beneficiarios_exterior_tributacao.salvar', 
+        efdreinf_rendimentos_beneficiarios_exterior_tributacao_views.salvar, 
         name='efdreinf_rendimentos_beneficiarios_exterior_tributacao_salvar'),
 
 
 
 url(r'^efdreinf-informacoes-beneficiarios-exterior/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_informacoes_beneficiarios_exterior.apagar', 
+        efdreinf_informacoes_beneficiarios_exterior_views.apagar, 
         name='efdreinf_informacoes_beneficiarios_exterior_apagar'),
 
 url(r'^efdreinf-informacoes-beneficiarios-exterior/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_informacoes_beneficiarios_exterior.listar', 
+        efdreinf_informacoes_beneficiarios_exterior_views.listar, 
         name='efdreinf_informacoes_beneficiarios_exterior'),
         
         
     url(r'^efdreinf-informacoes-beneficiarios-exterior/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.efdreinf_informacoes_beneficiarios_exterior.json_search', name='efdreinf_informacoes_beneficiarios_exterior_json_search'),
+    efdreinf_informacoes_beneficiarios_exterior_views.json_search, 
+        name='efdreinf_informacoes_beneficiarios_exterior_json_search'),
 
 url(r'^efdreinf-informacoes-beneficiarios-exterior/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_informacoes_beneficiarios_exterior.salvar', 
+        efdreinf_informacoes_beneficiarios_exterior_views.salvar, 
         name='efdreinf_informacoes_beneficiarios_exterior_salvar'),
 
 
 
 url(r'^efdreinf-classificacao-servicos-prestados/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_classificacao_servicos_prestados.apagar', 
+        efdreinf_classificacao_servicos_prestados_views.apagar, 
         name='efdreinf_classificacao_servicos_prestados_apagar'),
 
 url(r'^efdreinf-classificacao-servicos-prestados/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_classificacao_servicos_prestados.listar', 
+        efdreinf_classificacao_servicos_prestados_views.listar, 
         name='efdreinf_classificacao_servicos_prestados'),
         
         
     url(r'^efdreinf-classificacao-servicos-prestados/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.efdreinf_classificacao_servicos_prestados.json_search', name='efdreinf_classificacao_servicos_prestados_json_search'),
+    efdreinf_classificacao_servicos_prestados_views.json_search, 
+        name='efdreinf_classificacao_servicos_prestados_json_search'),
 
 url(r'^efdreinf-classificacao-servicos-prestados/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_classificacao_servicos_prestados.salvar', 
+        efdreinf_classificacao_servicos_prestados_views.salvar, 
         name='efdreinf_classificacao_servicos_prestados_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^efdreinf-paises/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_paises.apagar', 
+        efdreinf_paises_views.apagar, 
         name='efdreinf_paises_apagar'),
 
 url(r'^efdreinf-paises/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_paises.listar', 
+        efdreinf_paises_views.listar, 
         name='efdreinf_paises'),
         
         
     url(r'^efdreinf-paises/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.efdreinf_paises.json_search', name='efdreinf_paises_json_search'),
+    efdreinf_paises_views.json_search, 
+        name='efdreinf_paises_json_search'),
 
 url(r'^efdreinf-paises/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_paises.salvar', 
+        efdreinf_paises_views.salvar, 
         name='efdreinf_paises_salvar'),
 
 
 
 url(r'^efdreinf-classificacao-tributaria/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_classificacao_tributaria.apagar', 
+        efdreinf_classificacao_tributaria_views.apagar, 
         name='efdreinf_classificacao_tributaria_apagar'),
 
 url(r'^efdreinf-classificacao-tributaria/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_classificacao_tributaria.listar', 
+        efdreinf_classificacao_tributaria_views.listar, 
         name='efdreinf_classificacao_tributaria'),
         
         
     url(r'^efdreinf-classificacao-tributaria/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.efdreinf_classificacao_tributaria.json_search', name='efdreinf_classificacao_tributaria_json_search'),
+    efdreinf_classificacao_tributaria_views.json_search, 
+        name='efdreinf_classificacao_tributaria_json_search'),
 
 url(r'^efdreinf-classificacao-tributaria/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_classificacao_tributaria.salvar', 
+        efdreinf_classificacao_tributaria_views.salvar, 
         name='efdreinf_classificacao_tributaria_salvar'),
 
 
 
 url(r'^efdreinf-codigos-atividades-produtos-servicos-cprb/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_codigos_atividades_produtos_servicos_cprb.apagar', 
+        efdreinf_codigos_atividades_produtos_servicos_cprb_views.apagar, 
         name='efdreinf_codigos_atividades_produtos_servicos_cprb_apagar'),
 
 url(r'^efdreinf-codigos-atividades-produtos-servicos-cprb/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_codigos_atividades_produtos_servicos_cprb.listar', 
+        efdreinf_codigos_atividades_produtos_servicos_cprb_views.listar, 
         name='efdreinf_codigos_atividades_produtos_servicos_cprb'),
         
         
     url(r'^efdreinf-codigos-atividades-produtos-servicos-cprb/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.efdreinf_codigos_atividades_produtos_servicos_cprb.json_search', name='efdreinf_codigos_atividades_produtos_servicos_cprb_json_search'),
+    efdreinf_codigos_atividades_produtos_servicos_cprb_views.json_search, 
+        name='efdreinf_codigos_atividades_produtos_servicos_cprb_json_search'),
 
 url(r'^efdreinf-codigos-atividades-produtos-servicos-cprb/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_codigos_atividades_produtos_servicos_cprb.salvar', 
+        efdreinf_codigos_atividades_produtos_servicos_cprb_views.salvar, 
         name='efdreinf_codigos_atividades_produtos_servicos_cprb_salvar'),
 
 
 
 url(r'^efdreinf-eventos/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_eventos.apagar', 
+        efdreinf_eventos_views.apagar, 
         name='efdreinf_eventos_apagar'),
 
 url(r'^efdreinf-eventos/listar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_eventos.listar', 
+        efdreinf_eventos_views.listar, 
         name='efdreinf_eventos'),
         
         
     url(r'^efdreinf-eventos/json-search/(?P<search>[\w ]+)/$', 
-    'emensageriapro.tabelas.views.efdreinf_eventos.json_search', name='efdreinf_eventos_json_search'),
+    efdreinf_eventos_views.json_search, 
+        name='efdreinf_eventos_json_search'),
 
 url(r'^efdreinf-eventos/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.tabelas.views.efdreinf_eventos.salvar', 
+        efdreinf_eventos_views.salvar, 
         name='efdreinf_eventos_salvar'),
 
 
 
 
 
-)
+]

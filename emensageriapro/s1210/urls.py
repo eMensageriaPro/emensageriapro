@@ -1,8 +1,26 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s1210.views import s1210_deps as s1210_deps_views
+from emensageriapro.s1210.views import s1210_infopgto as s1210_infopgto_views
+from emensageriapro.s1210.views import s1210_detpgtofl as s1210_detpgtofl_views
+from emensageriapro.s1210.views import s1210_detpgtofl_retpgtotot as s1210_detpgtofl_retpgtotot_views
+from emensageriapro.s1210.views import s1210_detpgtofl_penalim as s1210_detpgtofl_penalim_views
+from emensageriapro.s1210.views import s1210_detpgtofl_infopgtoparc as s1210_detpgtofl_infopgtoparc_views
+from emensageriapro.s1210.views import s1210_detpgtobenpr as s1210_detpgtobenpr_views
+from emensageriapro.s1210.views import s1210_detpgtobenpr_retpgtotot as s1210_detpgtobenpr_retpgtotot_views
+from emensageriapro.s1210.views import s1210_detpgtobenpr_infopgtoparc as s1210_detpgtobenpr_infopgtoparc_views
+from emensageriapro.s1210.views import s1210_detpgtofer as s1210_detpgtofer_views
+from emensageriapro.s1210.views import s1210_detpgtofer_detrubrfer as s1210_detpgtofer_detrubrfer_views
+from emensageriapro.s1210.views import s1210_detpgtofer_penalim as s1210_detpgtofer_penalim_views
+from emensageriapro.s1210.views import s1210_detpgtoant as s1210_detpgtoant_views
+from emensageriapro.s1210.views import s1210_detpgtoant_infopgtoant as s1210_detpgtoant_infopgtoant_views
+from emensageriapro.s1210.views import s1210_idepgtoext as s1210_idepgtoext_views
+
+
 
 """
 
@@ -37,225 +55,220 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s1210-deps/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_deps.apagar', 
+        s1210_deps_views.apagar, 
         name='s1210_deps_apagar'),
 
 url(r'^s1210-deps/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_deps.listar', 
+        s1210_deps_views.listar, 
         name='s1210_deps'),
 
 url(r'^s1210-deps/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_deps.salvar', 
+        s1210_deps_views.salvar, 
         name='s1210_deps_salvar'),
 
 
 
 url(r'^s1210-infopgto/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_infopgto.apagar', 
+        s1210_infopgto_views.apagar, 
         name='s1210_infopgto_apagar'),
 
 url(r'^s1210-infopgto/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_infopgto.listar', 
+        s1210_infopgto_views.listar, 
         name='s1210_infopgto'),
 
 url(r'^s1210-infopgto/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_infopgto.salvar', 
+        s1210_infopgto_views.salvar, 
         name='s1210_infopgto_salvar'),
 
 
 
 url(r'^s1210-detpgtofl/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofl.apagar', 
+        s1210_detpgtofl_views.apagar, 
         name='s1210_detpgtofl_apagar'),
 
 url(r'^s1210-detpgtofl/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofl.listar', 
+        s1210_detpgtofl_views.listar, 
         name='s1210_detpgtofl'),
 
 url(r'^s1210-detpgtofl/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofl.salvar', 
+        s1210_detpgtofl_views.salvar, 
         name='s1210_detpgtofl_salvar'),
 
 
 
 url(r'^s1210-detpgtofl-retpgtotot/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofl_retpgtotot.apagar', 
+        s1210_detpgtofl_retpgtotot_views.apagar, 
         name='s1210_detpgtofl_retpgtotot_apagar'),
 
 url(r'^s1210-detpgtofl-retpgtotot/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofl_retpgtotot.listar', 
+        s1210_detpgtofl_retpgtotot_views.listar, 
         name='s1210_detpgtofl_retpgtotot'),
 
 url(r'^s1210-detpgtofl-retpgtotot/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofl_retpgtotot.salvar', 
+        s1210_detpgtofl_retpgtotot_views.salvar, 
         name='s1210_detpgtofl_retpgtotot_salvar'),
 
 
 
 url(r'^s1210-detpgtofl-penalim/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofl_penalim.apagar', 
+        s1210_detpgtofl_penalim_views.apagar, 
         name='s1210_detpgtofl_penalim_apagar'),
 
 url(r'^s1210-detpgtofl-penalim/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofl_penalim.listar', 
+        s1210_detpgtofl_penalim_views.listar, 
         name='s1210_detpgtofl_penalim'),
 
 url(r'^s1210-detpgtofl-penalim/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofl_penalim.salvar', 
+        s1210_detpgtofl_penalim_views.salvar, 
         name='s1210_detpgtofl_penalim_salvar'),
 
 
 
 url(r'^s1210-detpgtofl-infopgtoparc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofl_infopgtoparc.apagar', 
+        s1210_detpgtofl_infopgtoparc_views.apagar, 
         name='s1210_detpgtofl_infopgtoparc_apagar'),
 
 url(r'^s1210-detpgtofl-infopgtoparc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofl_infopgtoparc.listar', 
+        s1210_detpgtofl_infopgtoparc_views.listar, 
         name='s1210_detpgtofl_infopgtoparc'),
 
 url(r'^s1210-detpgtofl-infopgtoparc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofl_infopgtoparc.salvar', 
+        s1210_detpgtofl_infopgtoparc_views.salvar, 
         name='s1210_detpgtofl_infopgtoparc_salvar'),
 
 
 
 url(r'^s1210-detpgtobenpr/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtobenpr.apagar', 
+        s1210_detpgtobenpr_views.apagar, 
         name='s1210_detpgtobenpr_apagar'),
 
 url(r'^s1210-detpgtobenpr/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtobenpr.listar', 
+        s1210_detpgtobenpr_views.listar, 
         name='s1210_detpgtobenpr'),
 
 url(r'^s1210-detpgtobenpr/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtobenpr.salvar', 
+        s1210_detpgtobenpr_views.salvar, 
         name='s1210_detpgtobenpr_salvar'),
 
 
 
 url(r'^s1210-detpgtobenpr-retpgtotot/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtobenpr_retpgtotot.apagar', 
+        s1210_detpgtobenpr_retpgtotot_views.apagar, 
         name='s1210_detpgtobenpr_retpgtotot_apagar'),
 
 url(r'^s1210-detpgtobenpr-retpgtotot/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtobenpr_retpgtotot.listar', 
+        s1210_detpgtobenpr_retpgtotot_views.listar, 
         name='s1210_detpgtobenpr_retpgtotot'),
 
 url(r'^s1210-detpgtobenpr-retpgtotot/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtobenpr_retpgtotot.salvar', 
+        s1210_detpgtobenpr_retpgtotot_views.salvar, 
         name='s1210_detpgtobenpr_retpgtotot_salvar'),
 
 
 
 url(r'^s1210-detpgtobenpr-infopgtoparc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtobenpr_infopgtoparc.apagar', 
+        s1210_detpgtobenpr_infopgtoparc_views.apagar, 
         name='s1210_detpgtobenpr_infopgtoparc_apagar'),
 
 url(r'^s1210-detpgtobenpr-infopgtoparc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtobenpr_infopgtoparc.listar', 
+        s1210_detpgtobenpr_infopgtoparc_views.listar, 
         name='s1210_detpgtobenpr_infopgtoparc'),
 
 url(r'^s1210-detpgtobenpr-infopgtoparc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtobenpr_infopgtoparc.salvar', 
+        s1210_detpgtobenpr_infopgtoparc_views.salvar, 
         name='s1210_detpgtobenpr_infopgtoparc_salvar'),
 
 
 
 url(r'^s1210-detpgtofer/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofer.apagar', 
+        s1210_detpgtofer_views.apagar, 
         name='s1210_detpgtofer_apagar'),
 
 url(r'^s1210-detpgtofer/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofer.listar', 
+        s1210_detpgtofer_views.listar, 
         name='s1210_detpgtofer'),
 
 url(r'^s1210-detpgtofer/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofer.salvar', 
+        s1210_detpgtofer_views.salvar, 
         name='s1210_detpgtofer_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1210-detpgtofer-detrubrfer/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofer_detrubrfer.apagar', 
+        s1210_detpgtofer_detrubrfer_views.apagar, 
         name='s1210_detpgtofer_detrubrfer_apagar'),
 
 url(r'^s1210-detpgtofer-detrubrfer/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofer_detrubrfer.listar', 
+        s1210_detpgtofer_detrubrfer_views.listar, 
         name='s1210_detpgtofer_detrubrfer'),
 
 url(r'^s1210-detpgtofer-detrubrfer/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofer_detrubrfer.salvar', 
+        s1210_detpgtofer_detrubrfer_views.salvar, 
         name='s1210_detpgtofer_detrubrfer_salvar'),
 
 
 
 url(r'^s1210-detpgtofer-penalim/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofer_penalim.apagar', 
+        s1210_detpgtofer_penalim_views.apagar, 
         name='s1210_detpgtofer_penalim_apagar'),
 
 url(r'^s1210-detpgtofer-penalim/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofer_penalim.listar', 
+        s1210_detpgtofer_penalim_views.listar, 
         name='s1210_detpgtofer_penalim'),
 
 url(r'^s1210-detpgtofer-penalim/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtofer_penalim.salvar', 
+        s1210_detpgtofer_penalim_views.salvar, 
         name='s1210_detpgtofer_penalim_salvar'),
 
 
 
 url(r'^s1210-detpgtoant/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtoant.apagar', 
+        s1210_detpgtoant_views.apagar, 
         name='s1210_detpgtoant_apagar'),
 
 url(r'^s1210-detpgtoant/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtoant.listar', 
+        s1210_detpgtoant_views.listar, 
         name='s1210_detpgtoant'),
 
 url(r'^s1210-detpgtoant/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtoant.salvar', 
+        s1210_detpgtoant_views.salvar, 
         name='s1210_detpgtoant_salvar'),
 
 
 
 url(r'^s1210-detpgtoant-infopgtoant/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtoant_infopgtoant.apagar', 
+        s1210_detpgtoant_infopgtoant_views.apagar, 
         name='s1210_detpgtoant_infopgtoant_apagar'),
 
 url(r'^s1210-detpgtoant-infopgtoant/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtoant_infopgtoant.listar', 
+        s1210_detpgtoant_infopgtoant_views.listar, 
         name='s1210_detpgtoant_infopgtoant'),
 
 url(r'^s1210-detpgtoant-infopgtoant/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_detpgtoant_infopgtoant.salvar', 
+        s1210_detpgtoant_infopgtoant_views.salvar, 
         name='s1210_detpgtoant_infopgtoant_salvar'),
 
 
 
 url(r'^s1210-idepgtoext/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_idepgtoext.apagar', 
+        s1210_idepgtoext_views.apagar, 
         name='s1210_idepgtoext_apagar'),
 
 url(r'^s1210-idepgtoext/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_idepgtoext.listar', 
+        s1210_idepgtoext_views.listar, 
         name='s1210_idepgtoext'),
 
 url(r'^s1210-idepgtoext/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1210.views.s1210_idepgtoext.salvar', 
+        s1210_idepgtoext_views.salvar, 
         name='s1210_idepgtoext_salvar'),
 
 
 
 
 
-)
+]

@@ -466,6 +466,7 @@ class TransmissorLote(models.Model):
     data_abertura = models.DateField()
     validar_eventos = models.IntegerField(choices=SIM_NAO)
     envio_automatico = models.IntegerField(choices=SIM_NAO)
+    verificar_predecessao = models.IntegerField(choices=SIM_NAO)
     logotipo = models.FileField(blank=True, null=True)
     endereco_completo = models.TextField()
     empregador_tpinsc = models.CharField(max_length=20)
@@ -650,6 +651,19 @@ class TransmissorEventosEsocial(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
+
+    def tabela_verificar(self):
+        return self.tabela + '_verificar'
+
+    def tabela_recibo(self):
+        return self.tabela + '_recibo'
+
+    def tabela_duplicar(self):
+        return self.tabela + '_duplicar'
+
+    def tabela_xml(self):
+        return self.tabela + '_xml'
+        
     class Meta:
         db_table = r'transmissor_eventos_esocial'
         managed = False
@@ -682,6 +696,19 @@ class TransmissorEventosEfdreinf(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
+
+    def tabela_verificar(self):
+        return self.tabela + '_verificar'
+
+    def tabela_recibo(self):
+        return self.tabela + '_recibo'
+
+    def tabela_duplicar(self):
+        return self.tabela + '_duplicar'
+
+    def tabela_xml(self):
+        return self.tabela + '_xml'
+
     class Meta:
         db_table = r'transmissor_eventos_efdreinf'
         managed = False
@@ -715,6 +742,19 @@ class TransmissorEventosEsocialTotalizacoes(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
+
+    def tabela_verificar(self):
+        return self.tabela + '_verificar'
+
+    def tabela_recibo(self):
+        return self.tabela + '_recibo'
+
+    def tabela_duplicar(self):
+        return self.tabela + '_duplicar'
+
+    def tabela_xml(self):
+        return self.tabela + '_xml'
+
     class Meta:
         db_table = r'transmissor_eventos_esocial_totalizacoes'
         managed = False
@@ -747,6 +787,19 @@ class TransmissorEventosEfdreinfTotalizacoes(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
+
+    def tabela_verificar(self):
+        return self.tabela + '_verificar'
+
+    def tabela_recibo(self):
+        return self.tabela + '_recibo'
+
+    def tabela_duplicar(self):
+        return self.tabela + '_duplicar'
+
+    def tabela_xml(self):
+        return self.tabela + '_xml'
+
     class Meta:
         db_table = r'transmissor_eventos_efdreinf_totalizacoes'
         managed = False

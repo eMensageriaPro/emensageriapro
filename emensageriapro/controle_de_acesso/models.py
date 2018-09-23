@@ -179,16 +179,18 @@ class ConfigPermissoes(models.Model):
 
 from django.contrib.auth.models import User
 class Usuarios(User):
-    # username = models.CharField(max_length=20)
-    # password = models.CharField(max_length=300, blank=True, default='asdkl1231')
-    # first_name = models.CharField(max_length=60)
-    # last_name = models.CharField(max_length=60)
-    # email = models.EmailField(max_length=60)
-    # is_superuser = models.BooleanField()
-    # is_staff = models.BooleanField()
-    # is_active = models.BooleanField()
-    # last_login = models.DateTimeField()
-    # date_joined = models.DateField()
+    """
+    username = models.CharField(max_length=20)
+    password = models.CharField(max_length=300, blank=True, default='asdkl1231')
+    first_name = models.CharField(max_length=60)
+    last_name = models.CharField(max_length=60)
+    email = models.EmailField(max_length=60)
+    is_superuser = models.BooleanField()
+    is_staff = models.BooleanField()
+    is_active = models.BooleanField()
+    last_login = models.DateTimeField()
+    date_joined = models.DateField()
+    """
     config_perfis = models.ForeignKey('ConfigPerfis',
         related_name='%(class)s_config_perfis')
     criado_em = models.DateTimeField(blank=True)

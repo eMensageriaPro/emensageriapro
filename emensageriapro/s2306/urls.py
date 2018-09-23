@@ -1,8 +1,18 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s2306.views import s2306_infocomplementares as s2306_infocomplementares_views
+from emensageriapro.s2306.views import s2306_cargofuncao as s2306_cargofuncao_views
+from emensageriapro.s2306.views import s2306_remuneracao as s2306_remuneracao_views
+from emensageriapro.s2306.views import s2306_infotrabcedido as s2306_infotrabcedido_views
+from emensageriapro.s2306.views import s2306_infoestagiario as s2306_infoestagiario_views
+from emensageriapro.s2306.views import s2306_ageintegracao as s2306_ageintegracao_views
+from emensageriapro.s2306.views import s2306_supervisorestagio as s2306_supervisorestagio_views
+
+
 
 """
 
@@ -37,109 +47,108 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s2306-infocomplementares/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_infocomplementares.apagar', 
+        s2306_infocomplementares_views.apagar, 
         name='s2306_infocomplementares_apagar'),
 
 url(r'^s2306-infocomplementares/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_infocomplementares.listar', 
+        s2306_infocomplementares_views.listar, 
         name='s2306_infocomplementares'),
 
 url(r'^s2306-infocomplementares/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_infocomplementares.salvar', 
+        s2306_infocomplementares_views.salvar, 
         name='s2306_infocomplementares_salvar'),
 
 
 
 url(r'^s2306-cargofuncao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_cargofuncao.apagar', 
+        s2306_cargofuncao_views.apagar, 
         name='s2306_cargofuncao_apagar'),
 
 url(r'^s2306-cargofuncao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_cargofuncao.listar', 
+        s2306_cargofuncao_views.listar, 
         name='s2306_cargofuncao'),
 
 url(r'^s2306-cargofuncao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_cargofuncao.salvar', 
+        s2306_cargofuncao_views.salvar, 
         name='s2306_cargofuncao_salvar'),
 
 
 
 url(r'^s2306-remuneracao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_remuneracao.apagar', 
+        s2306_remuneracao_views.apagar, 
         name='s2306_remuneracao_apagar'),
 
 url(r'^s2306-remuneracao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_remuneracao.listar', 
+        s2306_remuneracao_views.listar, 
         name='s2306_remuneracao'),
 
 url(r'^s2306-remuneracao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_remuneracao.salvar', 
+        s2306_remuneracao_views.salvar, 
         name='s2306_remuneracao_salvar'),
 
 
 
 url(r'^s2306-infotrabcedido/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_infotrabcedido.apagar', 
+        s2306_infotrabcedido_views.apagar, 
         name='s2306_infotrabcedido_apagar'),
 
 url(r'^s2306-infotrabcedido/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_infotrabcedido.listar', 
+        s2306_infotrabcedido_views.listar, 
         name='s2306_infotrabcedido'),
 
 url(r'^s2306-infotrabcedido/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_infotrabcedido.salvar', 
+        s2306_infotrabcedido_views.salvar, 
         name='s2306_infotrabcedido_salvar'),
 
 
 
 url(r'^s2306-infoestagiario/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_infoestagiario.apagar', 
+        s2306_infoestagiario_views.apagar, 
         name='s2306_infoestagiario_apagar'),
 
 url(r'^s2306-infoestagiario/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_infoestagiario.listar', 
+        s2306_infoestagiario_views.listar, 
         name='s2306_infoestagiario'),
 
 url(r'^s2306-infoestagiario/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_infoestagiario.salvar', 
+        s2306_infoestagiario_views.salvar, 
         name='s2306_infoestagiario_salvar'),
 
 
 
 url(r'^s2306-ageintegracao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_ageintegracao.apagar', 
+        s2306_ageintegracao_views.apagar, 
         name='s2306_ageintegracao_apagar'),
 
 url(r'^s2306-ageintegracao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_ageintegracao.listar', 
+        s2306_ageintegracao_views.listar, 
         name='s2306_ageintegracao'),
 
 url(r'^s2306-ageintegracao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_ageintegracao.salvar', 
+        s2306_ageintegracao_views.salvar, 
         name='s2306_ageintegracao_salvar'),
 
 
 
 url(r'^s2306-supervisorestagio/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_supervisorestagio.apagar', 
+        s2306_supervisorestagio_views.apagar, 
         name='s2306_supervisorestagio_apagar'),
 
 url(r'^s2306-supervisorestagio/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_supervisorestagio.listar', 
+        s2306_supervisorestagio_views.listar, 
         name='s2306_supervisorestagio'),
 
 url(r'^s2306-supervisorestagio/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2306.views.s2306_supervisorestagio.salvar', 
+        s2306_supervisorestagio_views.salvar, 
         name='s2306_supervisorestagio_salvar'),
 
 
 
 
 
-)
+]

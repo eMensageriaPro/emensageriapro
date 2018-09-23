@@ -1,8 +1,15 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s2405.views import s2405_endereco as s2405_endereco_views
+from emensageriapro.s2405.views import s2405_brasil as s2405_brasil_views
+from emensageriapro.s2405.views import s2405_exterior as s2405_exterior_views
+from emensageriapro.s2405.views import s2405_dependente as s2405_dependente_views
+
+
 
 """
 
@@ -37,67 +44,66 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s2405-endereco/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2405.views.s2405_endereco.apagar', 
+        s2405_endereco_views.apagar, 
         name='s2405_endereco_apagar'),
 
 url(r'^s2405-endereco/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2405.views.s2405_endereco.listar', 
+        s2405_endereco_views.listar, 
         name='s2405_endereco'),
 
 url(r'^s2405-endereco/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2405.views.s2405_endereco.salvar', 
+        s2405_endereco_views.salvar, 
         name='s2405_endereco_salvar'),
 
 
 
 url(r'^s2405-brasil/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2405.views.s2405_brasil.apagar', 
+        s2405_brasil_views.apagar, 
         name='s2405_brasil_apagar'),
 
 url(r'^s2405-brasil/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2405.views.s2405_brasil.listar', 
+        s2405_brasil_views.listar, 
         name='s2405_brasil'),
 
 url(r'^s2405-brasil/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2405.views.s2405_brasil.salvar', 
+        s2405_brasil_views.salvar, 
         name='s2405_brasil_salvar'),
 
 
 
 url(r'^s2405-exterior/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2405.views.s2405_exterior.apagar', 
+        s2405_exterior_views.apagar, 
         name='s2405_exterior_apagar'),
 
 url(r'^s2405-exterior/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2405.views.s2405_exterior.listar', 
+        s2405_exterior_views.listar, 
         name='s2405_exterior'),
 
 url(r'^s2405-exterior/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2405.views.s2405_exterior.salvar', 
+        s2405_exterior_views.salvar, 
         name='s2405_exterior_salvar'),
 
 
 
 url(r'^s2405-dependente/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2405.views.s2405_dependente.apagar', 
+        s2405_dependente_views.apagar, 
         name='s2405_dependente_apagar'),
 
 url(r'^s2405-dependente/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2405.views.s2405_dependente.listar', 
+        s2405_dependente_views.listar, 
         name='s2405_dependente'),
 
 url(r'^s2405-dependente/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2405.views.s2405_dependente.salvar', 
+        s2405_dependente_views.salvar, 
         name='s2405_dependente_salvar'),
 
 
 
 
 
-)
+]

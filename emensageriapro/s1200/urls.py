@@ -1,8 +1,36 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s1200.views import s1200_infomv as s1200_infomv_views
+from emensageriapro.s1200.views import s1200_remunoutrempr as s1200_remunoutrempr_views
+from emensageriapro.s1200.views import s1200_infocomplem as s1200_infocomplem_views
+from emensageriapro.s1200.views import s1200_sucessaovinc as s1200_sucessaovinc_views
+from emensageriapro.s1200.views import s1200_procjudtrab as s1200_procjudtrab_views
+from emensageriapro.s1200.views import s1200_infointerm as s1200_infointerm_views
+from emensageriapro.s1200.views import s1200_dmdev as s1200_dmdev_views
+from emensageriapro.s1200.views import s1200_infoperapur as s1200_infoperapur_views
+from emensageriapro.s1200.views import s1200_infoperapur_ideestablot as s1200_infoperapur_ideestablot_views
+from emensageriapro.s1200.views import s1200_infoperapur_remunperapur as s1200_infoperapur_remunperapur_views
+from emensageriapro.s1200.views import s1200_infoperapur_itensremun as s1200_infoperapur_itensremun_views
+from emensageriapro.s1200.views import s1200_infoperapur_infosaudecolet as s1200_infoperapur_infosaudecolet_views
+from emensageriapro.s1200.views import s1200_infoperapur_detoper as s1200_infoperapur_detoper_views
+from emensageriapro.s1200.views import s1200_infoperapur_detplano as s1200_infoperapur_detplano_views
+from emensageriapro.s1200.views import s1200_infoperapur_infoagnocivo as s1200_infoperapur_infoagnocivo_views
+from emensageriapro.s1200.views import s1200_infoperapur_infotrabinterm as s1200_infoperapur_infotrabinterm_views
+from emensageriapro.s1200.views import s1200_infoperant as s1200_infoperant_views
+from emensageriapro.s1200.views import s1200_infoperant_ideadc as s1200_infoperant_ideadc_views
+from emensageriapro.s1200.views import s1200_infoperant_ideperiodo as s1200_infoperant_ideperiodo_views
+from emensageriapro.s1200.views import s1200_infoperant_ideestablot as s1200_infoperant_ideestablot_views
+from emensageriapro.s1200.views import s1200_infoperant_remunperant as s1200_infoperant_remunperant_views
+from emensageriapro.s1200.views import s1200_infoperant_itensremun as s1200_infoperant_itensremun_views
+from emensageriapro.s1200.views import s1200_infoperant_infoagnocivo as s1200_infoperant_infoagnocivo_views
+from emensageriapro.s1200.views import s1200_infoperant_infotrabinterm as s1200_infoperant_infotrabinterm_views
+from emensageriapro.s1200.views import s1200_infoperant_infocomplcont as s1200_infoperant_infocomplcont_views
+
+
 
 """
 
@@ -37,369 +65,360 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s1200-infomv/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infomv.apagar', 
+        s1200_infomv_views.apagar, 
         name='s1200_infomv_apagar'),
 
 url(r'^s1200-infomv/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infomv.listar', 
+        s1200_infomv_views.listar, 
         name='s1200_infomv'),
 
 url(r'^s1200-infomv/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infomv.salvar', 
+        s1200_infomv_views.salvar, 
         name='s1200_infomv_salvar'),
 
 
 
 url(r'^s1200-remunoutrempr/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_remunoutrempr.apagar', 
+        s1200_remunoutrempr_views.apagar, 
         name='s1200_remunoutrempr_apagar'),
 
 url(r'^s1200-remunoutrempr/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_remunoutrempr.listar', 
+        s1200_remunoutrempr_views.listar, 
         name='s1200_remunoutrempr'),
 
 url(r'^s1200-remunoutrempr/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_remunoutrempr.salvar', 
+        s1200_remunoutrempr_views.salvar, 
         name='s1200_remunoutrempr_salvar'),
 
 
 
 url(r'^s1200-infocomplem/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infocomplem.apagar', 
+        s1200_infocomplem_views.apagar, 
         name='s1200_infocomplem_apagar'),
 
 url(r'^s1200-infocomplem/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infocomplem.listar', 
+        s1200_infocomplem_views.listar, 
         name='s1200_infocomplem'),
 
 url(r'^s1200-infocomplem/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infocomplem.salvar', 
+        s1200_infocomplem_views.salvar, 
         name='s1200_infocomplem_salvar'),
 
 
 
 url(r'^s1200-sucessaovinc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_sucessaovinc.apagar', 
+        s1200_sucessaovinc_views.apagar, 
         name='s1200_sucessaovinc_apagar'),
 
 url(r'^s1200-sucessaovinc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_sucessaovinc.listar', 
+        s1200_sucessaovinc_views.listar, 
         name='s1200_sucessaovinc'),
 
 url(r'^s1200-sucessaovinc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_sucessaovinc.salvar', 
+        s1200_sucessaovinc_views.salvar, 
         name='s1200_sucessaovinc_salvar'),
 
 
 
 url(r'^s1200-procjudtrab/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_procjudtrab.apagar', 
+        s1200_procjudtrab_views.apagar, 
         name='s1200_procjudtrab_apagar'),
 
 url(r'^s1200-procjudtrab/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_procjudtrab.listar', 
+        s1200_procjudtrab_views.listar, 
         name='s1200_procjudtrab'),
 
 url(r'^s1200-procjudtrab/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_procjudtrab.salvar', 
+        s1200_procjudtrab_views.salvar, 
         name='s1200_procjudtrab_salvar'),
 
 
 
 url(r'^s1200-infointerm/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infointerm.apagar', 
+        s1200_infointerm_views.apagar, 
         name='s1200_infointerm_apagar'),
 
 url(r'^s1200-infointerm/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infointerm.listar', 
+        s1200_infointerm_views.listar, 
         name='s1200_infointerm'),
 
 url(r'^s1200-infointerm/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infointerm.salvar', 
+        s1200_infointerm_views.salvar, 
         name='s1200_infointerm_salvar'),
 
 
 
 url(r'^s1200-dmdev/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_dmdev.apagar', 
+        s1200_dmdev_views.apagar, 
         name='s1200_dmdev_apagar'),
 
 url(r'^s1200-dmdev/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_dmdev.listar', 
+        s1200_dmdev_views.listar, 
         name='s1200_dmdev'),
 
 url(r'^s1200-dmdev/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_dmdev.salvar', 
+        s1200_dmdev_views.salvar, 
         name='s1200_dmdev_salvar'),
 
 
 
 url(r'^s1200-infoperapur/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur.apagar', 
+        s1200_infoperapur_views.apagar, 
         name='s1200_infoperapur_apagar'),
 
 url(r'^s1200-infoperapur/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur.listar', 
+        s1200_infoperapur_views.listar, 
         name='s1200_infoperapur'),
 
 url(r'^s1200-infoperapur/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur.salvar', 
+        s1200_infoperapur_views.salvar, 
         name='s1200_infoperapur_salvar'),
 
 
 
 url(r'^s1200-infoperapur-ideestablot/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_ideestablot.apagar', 
+        s1200_infoperapur_ideestablot_views.apagar, 
         name='s1200_infoperapur_ideestablot_apagar'),
 
 url(r'^s1200-infoperapur-ideestablot/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_ideestablot.listar', 
+        s1200_infoperapur_ideestablot_views.listar, 
         name='s1200_infoperapur_ideestablot'),
 
 url(r'^s1200-infoperapur-ideestablot/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_ideestablot.salvar', 
+        s1200_infoperapur_ideestablot_views.salvar, 
         name='s1200_infoperapur_ideestablot_salvar'),
 
 
 
 url(r'^s1200-infoperapur-remunperapur/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_remunperapur.apagar', 
+        s1200_infoperapur_remunperapur_views.apagar, 
         name='s1200_infoperapur_remunperapur_apagar'),
 
 url(r'^s1200-infoperapur-remunperapur/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_remunperapur.listar', 
+        s1200_infoperapur_remunperapur_views.listar, 
         name='s1200_infoperapur_remunperapur'),
 
 url(r'^s1200-infoperapur-remunperapur/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_remunperapur.salvar', 
+        s1200_infoperapur_remunperapur_views.salvar, 
         name='s1200_infoperapur_remunperapur_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1200-infoperapur-itensremun/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_itensremun.apagar', 
+        s1200_infoperapur_itensremun_views.apagar, 
         name='s1200_infoperapur_itensremun_apagar'),
 
 url(r'^s1200-infoperapur-itensremun/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_itensremun.listar', 
+        s1200_infoperapur_itensremun_views.listar, 
         name='s1200_infoperapur_itensremun'),
 
 url(r'^s1200-infoperapur-itensremun/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_itensremun.salvar', 
+        s1200_infoperapur_itensremun_views.salvar, 
         name='s1200_infoperapur_itensremun_salvar'),
 
 
 
 url(r'^s1200-infoperapur-infosaudecolet/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_infosaudecolet.apagar', 
+        s1200_infoperapur_infosaudecolet_views.apagar, 
         name='s1200_infoperapur_infosaudecolet_apagar'),
 
 url(r'^s1200-infoperapur-infosaudecolet/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_infosaudecolet.listar', 
+        s1200_infoperapur_infosaudecolet_views.listar, 
         name='s1200_infoperapur_infosaudecolet'),
 
 url(r'^s1200-infoperapur-infosaudecolet/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_infosaudecolet.salvar', 
+        s1200_infoperapur_infosaudecolet_views.salvar, 
         name='s1200_infoperapur_infosaudecolet_salvar'),
 
 
 
 url(r'^s1200-infoperapur-detoper/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_detoper.apagar', 
+        s1200_infoperapur_detoper_views.apagar, 
         name='s1200_infoperapur_detoper_apagar'),
 
 url(r'^s1200-infoperapur-detoper/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_detoper.listar', 
+        s1200_infoperapur_detoper_views.listar, 
         name='s1200_infoperapur_detoper'),
 
 url(r'^s1200-infoperapur-detoper/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_detoper.salvar', 
+        s1200_infoperapur_detoper_views.salvar, 
         name='s1200_infoperapur_detoper_salvar'),
 
 
 
 url(r'^s1200-infoperapur-detplano/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_detplano.apagar', 
+        s1200_infoperapur_detplano_views.apagar, 
         name='s1200_infoperapur_detplano_apagar'),
 
 url(r'^s1200-infoperapur-detplano/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_detplano.listar', 
+        s1200_infoperapur_detplano_views.listar, 
         name='s1200_infoperapur_detplano'),
 
 url(r'^s1200-infoperapur-detplano/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_detplano.salvar', 
+        s1200_infoperapur_detplano_views.salvar, 
         name='s1200_infoperapur_detplano_salvar'),
 
 
 
 url(r'^s1200-infoperapur-infoagnocivo/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_infoagnocivo.apagar', 
+        s1200_infoperapur_infoagnocivo_views.apagar, 
         name='s1200_infoperapur_infoagnocivo_apagar'),
 
 url(r'^s1200-infoperapur-infoagnocivo/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_infoagnocivo.listar', 
+        s1200_infoperapur_infoagnocivo_views.listar, 
         name='s1200_infoperapur_infoagnocivo'),
 
 url(r'^s1200-infoperapur-infoagnocivo/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_infoagnocivo.salvar', 
+        s1200_infoperapur_infoagnocivo_views.salvar, 
         name='s1200_infoperapur_infoagnocivo_salvar'),
 
 
 
 url(r'^s1200-infoperapur-infotrabinterm/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_infotrabinterm.apagar', 
+        s1200_infoperapur_infotrabinterm_views.apagar, 
         name='s1200_infoperapur_infotrabinterm_apagar'),
 
 url(r'^s1200-infoperapur-infotrabinterm/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_infotrabinterm.listar', 
+        s1200_infoperapur_infotrabinterm_views.listar, 
         name='s1200_infoperapur_infotrabinterm'),
 
 url(r'^s1200-infoperapur-infotrabinterm/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperapur_infotrabinterm.salvar', 
+        s1200_infoperapur_infotrabinterm_views.salvar, 
         name='s1200_infoperapur_infotrabinterm_salvar'),
 
 
 
 url(r'^s1200-infoperant/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant.apagar', 
+        s1200_infoperant_views.apagar, 
         name='s1200_infoperant_apagar'),
 
 url(r'^s1200-infoperant/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant.listar', 
+        s1200_infoperant_views.listar, 
         name='s1200_infoperant'),
 
 url(r'^s1200-infoperant/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant.salvar', 
+        s1200_infoperant_views.salvar, 
         name='s1200_infoperant_salvar'),
 
 
 
 url(r'^s1200-infoperant-ideadc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_ideadc.apagar', 
+        s1200_infoperant_ideadc_views.apagar, 
         name='s1200_infoperant_ideadc_apagar'),
 
 url(r'^s1200-infoperant-ideadc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_ideadc.listar', 
+        s1200_infoperant_ideadc_views.listar, 
         name='s1200_infoperant_ideadc'),
 
 url(r'^s1200-infoperant-ideadc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_ideadc.salvar', 
+        s1200_infoperant_ideadc_views.salvar, 
         name='s1200_infoperant_ideadc_salvar'),
 
 
 
 url(r'^s1200-infoperant-ideperiodo/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_ideperiodo.apagar', 
+        s1200_infoperant_ideperiodo_views.apagar, 
         name='s1200_infoperant_ideperiodo_apagar'),
 
 url(r'^s1200-infoperant-ideperiodo/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_ideperiodo.listar', 
+        s1200_infoperant_ideperiodo_views.listar, 
         name='s1200_infoperant_ideperiodo'),
 
 url(r'^s1200-infoperant-ideperiodo/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_ideperiodo.salvar', 
+        s1200_infoperant_ideperiodo_views.salvar, 
         name='s1200_infoperant_ideperiodo_salvar'),
 
 
 
 url(r'^s1200-infoperant-ideestablot/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_ideestablot.apagar', 
+        s1200_infoperant_ideestablot_views.apagar, 
         name='s1200_infoperant_ideestablot_apagar'),
 
 url(r'^s1200-infoperant-ideestablot/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_ideestablot.listar', 
+        s1200_infoperant_ideestablot_views.listar, 
         name='s1200_infoperant_ideestablot'),
 
 url(r'^s1200-infoperant-ideestablot/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_ideestablot.salvar', 
+        s1200_infoperant_ideestablot_views.salvar, 
         name='s1200_infoperant_ideestablot_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1200-infoperant-remunperant/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_remunperant.apagar', 
+        s1200_infoperant_remunperant_views.apagar, 
         name='s1200_infoperant_remunperant_apagar'),
 
 url(r'^s1200-infoperant-remunperant/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_remunperant.listar', 
+        s1200_infoperant_remunperant_views.listar, 
         name='s1200_infoperant_remunperant'),
 
 url(r'^s1200-infoperant-remunperant/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_remunperant.salvar', 
+        s1200_infoperant_remunperant_views.salvar, 
         name='s1200_infoperant_remunperant_salvar'),
 
 
 
 url(r'^s1200-infoperant-itensremun/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_itensremun.apagar', 
+        s1200_infoperant_itensremun_views.apagar, 
         name='s1200_infoperant_itensremun_apagar'),
 
 url(r'^s1200-infoperant-itensremun/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_itensremun.listar', 
+        s1200_infoperant_itensremun_views.listar, 
         name='s1200_infoperant_itensremun'),
 
 url(r'^s1200-infoperant-itensremun/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_itensremun.salvar', 
+        s1200_infoperant_itensremun_views.salvar, 
         name='s1200_infoperant_itensremun_salvar'),
 
 
 
 url(r'^s1200-infoperant-infoagnocivo/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_infoagnocivo.apagar', 
+        s1200_infoperant_infoagnocivo_views.apagar, 
         name='s1200_infoperant_infoagnocivo_apagar'),
 
 url(r'^s1200-infoperant-infoagnocivo/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_infoagnocivo.listar', 
+        s1200_infoperant_infoagnocivo_views.listar, 
         name='s1200_infoperant_infoagnocivo'),
 
 url(r'^s1200-infoperant-infoagnocivo/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_infoagnocivo.salvar', 
+        s1200_infoperant_infoagnocivo_views.salvar, 
         name='s1200_infoperant_infoagnocivo_salvar'),
 
 
 
 url(r'^s1200-infoperant-infotrabinterm/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_infotrabinterm.apagar', 
+        s1200_infoperant_infotrabinterm_views.apagar, 
         name='s1200_infoperant_infotrabinterm_apagar'),
 
 url(r'^s1200-infoperant-infotrabinterm/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_infotrabinterm.listar', 
+        s1200_infoperant_infotrabinterm_views.listar, 
         name='s1200_infoperant_infotrabinterm'),
 
 url(r'^s1200-infoperant-infotrabinterm/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_infotrabinterm.salvar', 
+        s1200_infoperant_infotrabinterm_views.salvar, 
         name='s1200_infoperant_infotrabinterm_salvar'),
 
 
 
 url(r'^s1200-infoperant-infocomplcont/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_infocomplcont.apagar', 
+        s1200_infoperant_infocomplcont_views.apagar, 
         name='s1200_infoperant_infocomplcont_apagar'),
 
 url(r'^s1200-infoperant-infocomplcont/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_infocomplcont.listar', 
+        s1200_infoperant_infocomplcont_views.listar, 
         name='s1200_infoperant_infocomplcont'),
 
 url(r'^s1200-infoperant-infocomplcont/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1200.views.s1200_infoperant_infocomplcont.salvar', 
+        s1200_infoperant_infocomplcont_views.salvar, 
         name='s1200_infoperant_infocomplcont_salvar'),
 
 
 
 
 
-)
+]

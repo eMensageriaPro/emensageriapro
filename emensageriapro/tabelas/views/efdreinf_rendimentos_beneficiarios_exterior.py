@@ -52,49 +52,6 @@ import base64
 #IMPORTACOES
 
 
-@login_required
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        efdreinf_rendimentos_beneficiarios_exterior_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='efdreinf_rendimentos_beneficiarios_exterior')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    efdreinf_rendimentos_beneficiarios_exterior = get_object_or_404(EFDReinfRendimentosBeneficiariosExterior.objects.using( db_slug ), excluido = False, id = efdreinf_rendimentos_beneficiarios_exterior_id)
-    if request.method == 'POST':
-        EFDReinfRendimentosBeneficiariosExterior.objects.using( db_slug ).filter(id = efdreinf_rendimentos_beneficiarios_exterior_id).update(excluido = True)
-        #efdreinf_rendimentos_beneficiarios_exterior_apagar_custom
-        #efdreinf_rendimentos_beneficiarios_exterior_apagar_custom
-        messages.success(request, 'Apagado com sucesso!')
-        if request.session['retorno_pagina']== 'efdreinf_rendimentos_beneficiarios_exterior_salvar':
-            return redirect('efdreinf_rendimentos_beneficiarios_exterior', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 'efdreinf_rendimentos_beneficiarios_exterior_apagar.html', context)
-
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse
@@ -265,6 +222,49 @@ def listar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
+
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        efdreinf_rendimentos_beneficiarios_exterior_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='efdreinf_rendimentos_beneficiarios_exterior')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    efdreinf_rendimentos_beneficiarios_exterior = get_object_or_404(EFDReinfRendimentosBeneficiariosExterior.objects.using( db_slug ), excluido = False, id = efdreinf_rendimentos_beneficiarios_exterior_id)
+    if request.method == 'POST':
+        EFDReinfRendimentosBeneficiariosExterior.objects.using( db_slug ).filter(id = efdreinf_rendimentos_beneficiarios_exterior_id).update(excluido = True)
+        #efdreinf_rendimentos_beneficiarios_exterior_apagar_custom
+        #efdreinf_rendimentos_beneficiarios_exterior_apagar_custom
+        messages.success(request, 'Apagado com sucesso!')
+        if request.session['retorno_pagina']== 'efdreinf_rendimentos_beneficiarios_exterior_salvar':
+            return redirect('efdreinf_rendimentos_beneficiarios_exterior', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 'efdreinf_rendimentos_beneficiarios_exterior_apagar.html', context)
 
 @login_required
 def salvar(request, hash):

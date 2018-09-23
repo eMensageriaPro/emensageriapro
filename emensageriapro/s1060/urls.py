@@ -1,8 +1,17 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s1060.views import s1060_inclusao as s1060_inclusao_views
+from emensageriapro.s1060.views import s1060_inclusao_fatorrisco as s1060_inclusao_fatorrisco_views
+from emensageriapro.s1060.views import s1060_alteracao as s1060_alteracao_views
+from emensageriapro.s1060.views import s1060_alteracao_fatorrisco as s1060_alteracao_fatorrisco_views
+from emensageriapro.s1060.views import s1060_alteracao_novavalidade as s1060_alteracao_novavalidade_views
+from emensageriapro.s1060.views import s1060_exclusao as s1060_exclusao_views
+
+
 
 """
 
@@ -37,95 +46,94 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s1060-inclusao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1060.views.s1060_inclusao.apagar', 
+        s1060_inclusao_views.apagar, 
         name='s1060_inclusao_apagar'),
 
 url(r'^s1060-inclusao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1060.views.s1060_inclusao.listar', 
+        s1060_inclusao_views.listar, 
         name='s1060_inclusao'),
 
 url(r'^s1060-inclusao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1060.views.s1060_inclusao.salvar', 
+        s1060_inclusao_views.salvar, 
         name='s1060_inclusao_salvar'),
 
 
 
 url(r'^s1060-inclusao-fatorrisco/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1060.views.s1060_inclusao_fatorrisco.apagar', 
+        s1060_inclusao_fatorrisco_views.apagar, 
         name='s1060_inclusao_fatorrisco_apagar'),
 
 url(r'^s1060-inclusao-fatorrisco/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1060.views.s1060_inclusao_fatorrisco.listar', 
+        s1060_inclusao_fatorrisco_views.listar, 
         name='s1060_inclusao_fatorrisco'),
 
 url(r'^s1060-inclusao-fatorrisco/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1060.views.s1060_inclusao_fatorrisco.salvar', 
+        s1060_inclusao_fatorrisco_views.salvar, 
         name='s1060_inclusao_fatorrisco_salvar'),
 
 
 
 url(r'^s1060-alteracao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1060.views.s1060_alteracao.apagar', 
+        s1060_alteracao_views.apagar, 
         name='s1060_alteracao_apagar'),
 
 url(r'^s1060-alteracao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1060.views.s1060_alteracao.listar', 
+        s1060_alteracao_views.listar, 
         name='s1060_alteracao'),
 
 url(r'^s1060-alteracao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1060.views.s1060_alteracao.salvar', 
+        s1060_alteracao_views.salvar, 
         name='s1060_alteracao_salvar'),
 
 
 
 url(r'^s1060-alteracao-fatorrisco/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1060.views.s1060_alteracao_fatorrisco.apagar', 
+        s1060_alteracao_fatorrisco_views.apagar, 
         name='s1060_alteracao_fatorrisco_apagar'),
 
 url(r'^s1060-alteracao-fatorrisco/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1060.views.s1060_alteracao_fatorrisco.listar', 
+        s1060_alteracao_fatorrisco_views.listar, 
         name='s1060_alteracao_fatorrisco'),
 
 url(r'^s1060-alteracao-fatorrisco/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1060.views.s1060_alteracao_fatorrisco.salvar', 
+        s1060_alteracao_fatorrisco_views.salvar, 
         name='s1060_alteracao_fatorrisco_salvar'),
 
 
 
 url(r'^s1060-alteracao-novavalidade/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1060.views.s1060_alteracao_novavalidade.apagar', 
+        s1060_alteracao_novavalidade_views.apagar, 
         name='s1060_alteracao_novavalidade_apagar'),
 
 url(r'^s1060-alteracao-novavalidade/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1060.views.s1060_alteracao_novavalidade.listar', 
+        s1060_alteracao_novavalidade_views.listar, 
         name='s1060_alteracao_novavalidade'),
 
 url(r'^s1060-alteracao-novavalidade/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1060.views.s1060_alteracao_novavalidade.salvar', 
+        s1060_alteracao_novavalidade_views.salvar, 
         name='s1060_alteracao_novavalidade_salvar'),
 
 
 
 url(r'^s1060-exclusao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1060.views.s1060_exclusao.apagar', 
+        s1060_exclusao_views.apagar, 
         name='s1060_exclusao_apagar'),
 
 url(r'^s1060-exclusao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1060.views.s1060_exclusao.listar', 
+        s1060_exclusao_views.listar, 
         name='s1060_exclusao'),
 
 url(r'^s1060-exclusao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1060.views.s1060_exclusao.salvar', 
+        s1060_exclusao_views.salvar, 
         name='s1060_exclusao_salvar'),
 
 
 
 
 
-)
+]

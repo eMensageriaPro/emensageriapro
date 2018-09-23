@@ -1,8 +1,12 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.r2099.views import r2099_iderespinf as r2099_iderespinf_views
+
+
 
 """
 
@@ -37,25 +41,24 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^r2099-iderespinf/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2099.views.r2099_iderespinf.apagar', 
+        r2099_iderespinf_views.apagar, 
         name='r2099_iderespinf_apagar'),
 
 url(r'^r2099-iderespinf/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2099.views.r2099_iderespinf.listar', 
+        r2099_iderespinf_views.listar, 
         name='r2099_iderespinf'),
 
 url(r'^r2099-iderespinf/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2099.views.r2099_iderespinf.salvar', 
+        r2099_iderespinf_views.salvar, 
         name='r2099_iderespinf_salvar'),
 
 
 
 
 
-)
+]

@@ -1,8 +1,14 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s2416.views import s2416_infopenmorte as s2416_infopenmorte_views
+from emensageriapro.s2416.views import s2416_homologtc as s2416_homologtc_views
+from emensageriapro.s2416.views import s2416_suspensao as s2416_suspensao_views
+
+
 
 """
 
@@ -37,53 +43,52 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s2416-infopenmorte/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2416.views.s2416_infopenmorte.apagar', 
+        s2416_infopenmorte_views.apagar, 
         name='s2416_infopenmorte_apagar'),
 
 url(r'^s2416-infopenmorte/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2416.views.s2416_infopenmorte.listar', 
+        s2416_infopenmorte_views.listar, 
         name='s2416_infopenmorte'),
 
 url(r'^s2416-infopenmorte/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2416.views.s2416_infopenmorte.salvar', 
+        s2416_infopenmorte_views.salvar, 
         name='s2416_infopenmorte_salvar'),
 
 
 
 url(r'^s2416-homologtc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2416.views.s2416_homologtc.apagar', 
+        s2416_homologtc_views.apagar, 
         name='s2416_homologtc_apagar'),
 
 url(r'^s2416-homologtc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2416.views.s2416_homologtc.listar', 
+        s2416_homologtc_views.listar, 
         name='s2416_homologtc'),
 
 url(r'^s2416-homologtc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2416.views.s2416_homologtc.salvar', 
+        s2416_homologtc_views.salvar, 
         name='s2416_homologtc_salvar'),
 
 
 
 url(r'^s2416-suspensao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2416.views.s2416_suspensao.apagar', 
+        s2416_suspensao_views.apagar, 
         name='s2416_suspensao_apagar'),
 
 url(r'^s2416-suspensao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2416.views.s2416_suspensao.listar', 
+        s2416_suspensao_views.listar, 
         name='s2416_suspensao'),
 
 url(r'^s2416-suspensao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2416.views.s2416_suspensao.salvar', 
+        s2416_suspensao_views.salvar, 
         name='s2416_suspensao_salvar'),
 
 
 
 
 
-)
+]

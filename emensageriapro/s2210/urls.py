@@ -1,8 +1,16 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s2210.views import s2210_idelocalacid as s2210_idelocalacid_views
+from emensageriapro.s2210.views import s2210_parteatingida as s2210_parteatingida_views
+from emensageriapro.s2210.views import s2210_agentecausador as s2210_agentecausador_views
+from emensageriapro.s2210.views import s2210_atestado as s2210_atestado_views
+from emensageriapro.s2210.views import s2210_catorigem as s2210_catorigem_views
+
+
 
 """
 
@@ -37,81 +45,80 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s2210-idelocalacid/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2210.views.s2210_idelocalacid.apagar', 
+        s2210_idelocalacid_views.apagar, 
         name='s2210_idelocalacid_apagar'),
 
 url(r'^s2210-idelocalacid/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2210.views.s2210_idelocalacid.listar', 
+        s2210_idelocalacid_views.listar, 
         name='s2210_idelocalacid'),
 
 url(r'^s2210-idelocalacid/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2210.views.s2210_idelocalacid.salvar', 
+        s2210_idelocalacid_views.salvar, 
         name='s2210_idelocalacid_salvar'),
 
 
 
 url(r'^s2210-parteatingida/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2210.views.s2210_parteatingida.apagar', 
+        s2210_parteatingida_views.apagar, 
         name='s2210_parteatingida_apagar'),
 
 url(r'^s2210-parteatingida/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2210.views.s2210_parteatingida.listar', 
+        s2210_parteatingida_views.listar, 
         name='s2210_parteatingida'),
 
 url(r'^s2210-parteatingida/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2210.views.s2210_parteatingida.salvar', 
+        s2210_parteatingida_views.salvar, 
         name='s2210_parteatingida_salvar'),
 
 
 
 url(r'^s2210-agentecausador/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2210.views.s2210_agentecausador.apagar', 
+        s2210_agentecausador_views.apagar, 
         name='s2210_agentecausador_apagar'),
 
 url(r'^s2210-agentecausador/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2210.views.s2210_agentecausador.listar', 
+        s2210_agentecausador_views.listar, 
         name='s2210_agentecausador'),
 
 url(r'^s2210-agentecausador/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2210.views.s2210_agentecausador.salvar', 
+        s2210_agentecausador_views.salvar, 
         name='s2210_agentecausador_salvar'),
 
 
 
 url(r'^s2210-atestado/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2210.views.s2210_atestado.apagar', 
+        s2210_atestado_views.apagar, 
         name='s2210_atestado_apagar'),
 
 url(r'^s2210-atestado/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2210.views.s2210_atestado.listar', 
+        s2210_atestado_views.listar, 
         name='s2210_atestado'),
 
 url(r'^s2210-atestado/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2210.views.s2210_atestado.salvar', 
+        s2210_atestado_views.salvar, 
         name='s2210_atestado_salvar'),
 
 
 
 url(r'^s2210-catorigem/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2210.views.s2210_catorigem.apagar', 
+        s2210_catorigem_views.apagar, 
         name='s2210_catorigem_apagar'),
 
 url(r'^s2210-catorigem/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2210.views.s2210_catorigem.listar', 
+        s2210_catorigem_views.listar, 
         name='s2210_catorigem'),
 
 url(r'^s2210-catorigem/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2210.views.s2210_catorigem.salvar', 
+        s2210_catorigem_views.salvar, 
         name='s2210_catorigem_salvar'),
 
 
 
 
 
-)
+]

@@ -1,16 +1,19 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
+from django.conf.urls.static import serve
 
 #LICENCA
 
-urlpatterns = patterns('',
+urlpatterns = [
     # Examples:
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^$', 
-        'django.contrib.auth.views.login',
+        auth_views.login,
         name='home'),
 
 
@@ -87,6 +90,8 @@ urlpatterns = patterns('',
     url(r'^tabelas/', include('emensageriapro.tabelas.urls')),
     url(r'^esocial/', include('emensageriapro.esocial.urls')),
 
+
 #URLS
 
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

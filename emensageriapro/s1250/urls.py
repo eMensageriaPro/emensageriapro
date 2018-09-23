@@ -1,8 +1,15 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s1250.views import s1250_tpaquis as s1250_tpaquis_views
+from emensageriapro.s1250.views import s1250_ideprodutor as s1250_ideprodutor_views
+from emensageriapro.s1250.views import s1250_nfs as s1250_nfs_views
+from emensageriapro.s1250.views import s1250_infoprocjud as s1250_infoprocjud_views
+
+
 
 """
 
@@ -37,67 +44,66 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s1250-tpaquis/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1250.views.s1250_tpaquis.apagar', 
+        s1250_tpaquis_views.apagar, 
         name='s1250_tpaquis_apagar'),
 
 url(r'^s1250-tpaquis/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1250.views.s1250_tpaquis.listar', 
+        s1250_tpaquis_views.listar, 
         name='s1250_tpaquis'),
 
 url(r'^s1250-tpaquis/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1250.views.s1250_tpaquis.salvar', 
+        s1250_tpaquis_views.salvar, 
         name='s1250_tpaquis_salvar'),
 
 
 
 url(r'^s1250-ideprodutor/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1250.views.s1250_ideprodutor.apagar', 
+        s1250_ideprodutor_views.apagar, 
         name='s1250_ideprodutor_apagar'),
 
 url(r'^s1250-ideprodutor/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1250.views.s1250_ideprodutor.listar', 
+        s1250_ideprodutor_views.listar, 
         name='s1250_ideprodutor'),
 
 url(r'^s1250-ideprodutor/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1250.views.s1250_ideprodutor.salvar', 
+        s1250_ideprodutor_views.salvar, 
         name='s1250_ideprodutor_salvar'),
 
 
 
 url(r'^s1250-nfs/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1250.views.s1250_nfs.apagar', 
+        s1250_nfs_views.apagar, 
         name='s1250_nfs_apagar'),
 
 url(r'^s1250-nfs/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1250.views.s1250_nfs.listar', 
+        s1250_nfs_views.listar, 
         name='s1250_nfs'),
 
 url(r'^s1250-nfs/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1250.views.s1250_nfs.salvar', 
+        s1250_nfs_views.salvar, 
         name='s1250_nfs_salvar'),
 
 
 
 url(r'^s1250-infoprocjud/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1250.views.s1250_infoprocjud.apagar', 
+        s1250_infoprocjud_views.apagar, 
         name='s1250_infoprocjud_apagar'),
 
 url(r'^s1250-infoprocjud/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1250.views.s1250_infoprocjud.listar', 
+        s1250_infoprocjud_views.listar, 
         name='s1250_infoprocjud'),
 
 url(r'^s1250-infoprocjud/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1250.views.s1250_infoprocjud.salvar', 
+        s1250_infoprocjud_views.salvar, 
         name='s1250_infoprocjud_salvar'),
 
 
 
 
 
-)
+]

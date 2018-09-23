@@ -1,8 +1,23 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s2206.views import s2206_infoceletista as s2206_infoceletista_views
+from emensageriapro.s2206.views import s2206_trabtemp as s2206_trabtemp_views
+from emensageriapro.s2206.views import s2206_aprend as s2206_aprend_views
+from emensageriapro.s2206.views import s2206_infoestatutario as s2206_infoestatutario_views
+from emensageriapro.s2206.views import s2206_localtrabgeral as s2206_localtrabgeral_views
+from emensageriapro.s2206.views import s2206_localtrabdom as s2206_localtrabdom_views
+from emensageriapro.s2206.views import s2206_horcontratual as s2206_horcontratual_views
+from emensageriapro.s2206.views import s2206_horario as s2206_horario_views
+from emensageriapro.s2206.views import s2206_filiacaosindical as s2206_filiacaosindical_views
+from emensageriapro.s2206.views import s2206_alvarajudicial as s2206_alvarajudicial_views
+from emensageriapro.s2206.views import s2206_observacoes as s2206_observacoes_views
+from emensageriapro.s2206.views import s2206_servpubl as s2206_servpubl_views
+
+
 
 """
 
@@ -37,183 +52,178 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s2206-infoceletista/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_infoceletista.apagar', 
+        s2206_infoceletista_views.apagar, 
         name='s2206_infoceletista_apagar'),
 
 url(r'^s2206-infoceletista/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_infoceletista.listar', 
+        s2206_infoceletista_views.listar, 
         name='s2206_infoceletista'),
 
 url(r'^s2206-infoceletista/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_infoceletista.salvar', 
+        s2206_infoceletista_views.salvar, 
         name='s2206_infoceletista_salvar'),
 
 
 
 url(r'^s2206-trabtemp/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_trabtemp.apagar', 
+        s2206_trabtemp_views.apagar, 
         name='s2206_trabtemp_apagar'),
 
 url(r'^s2206-trabtemp/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_trabtemp.listar', 
+        s2206_trabtemp_views.listar, 
         name='s2206_trabtemp'),
 
 url(r'^s2206-trabtemp/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_trabtemp.salvar', 
+        s2206_trabtemp_views.salvar, 
         name='s2206_trabtemp_salvar'),
 
 
 
 url(r'^s2206-aprend/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_aprend.apagar', 
+        s2206_aprend_views.apagar, 
         name='s2206_aprend_apagar'),
 
 url(r'^s2206-aprend/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_aprend.listar', 
+        s2206_aprend_views.listar, 
         name='s2206_aprend'),
 
 url(r'^s2206-aprend/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_aprend.salvar', 
+        s2206_aprend_views.salvar, 
         name='s2206_aprend_salvar'),
 
 
 
 url(r'^s2206-infoestatutario/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_infoestatutario.apagar', 
+        s2206_infoestatutario_views.apagar, 
         name='s2206_infoestatutario_apagar'),
 
 url(r'^s2206-infoestatutario/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_infoestatutario.listar', 
+        s2206_infoestatutario_views.listar, 
         name='s2206_infoestatutario'),
 
 url(r'^s2206-infoestatutario/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_infoestatutario.salvar', 
+        s2206_infoestatutario_views.salvar, 
         name='s2206_infoestatutario_salvar'),
 
 
 
 url(r'^s2206-localtrabgeral/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_localtrabgeral.apagar', 
+        s2206_localtrabgeral_views.apagar, 
         name='s2206_localtrabgeral_apagar'),
 
 url(r'^s2206-localtrabgeral/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_localtrabgeral.listar', 
+        s2206_localtrabgeral_views.listar, 
         name='s2206_localtrabgeral'),
 
 url(r'^s2206-localtrabgeral/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_localtrabgeral.salvar', 
+        s2206_localtrabgeral_views.salvar, 
         name='s2206_localtrabgeral_salvar'),
 
 
 
 url(r'^s2206-localtrabdom/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_localtrabdom.apagar', 
+        s2206_localtrabdom_views.apagar, 
         name='s2206_localtrabdom_apagar'),
 
 url(r'^s2206-localtrabdom/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_localtrabdom.listar', 
+        s2206_localtrabdom_views.listar, 
         name='s2206_localtrabdom'),
 
 url(r'^s2206-localtrabdom/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_localtrabdom.salvar', 
+        s2206_localtrabdom_views.salvar, 
         name='s2206_localtrabdom_salvar'),
 
 
 
 url(r'^s2206-horcontratual/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_horcontratual.apagar', 
+        s2206_horcontratual_views.apagar, 
         name='s2206_horcontratual_apagar'),
 
 url(r'^s2206-horcontratual/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_horcontratual.listar', 
+        s2206_horcontratual_views.listar, 
         name='s2206_horcontratual'),
 
 url(r'^s2206-horcontratual/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_horcontratual.salvar', 
+        s2206_horcontratual_views.salvar, 
         name='s2206_horcontratual_salvar'),
 
 
 
 url(r'^s2206-horario/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_horario.apagar', 
+        s2206_horario_views.apagar, 
         name='s2206_horario_apagar'),
 
 url(r'^s2206-horario/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_horario.listar', 
+        s2206_horario_views.listar, 
         name='s2206_horario'),
 
 url(r'^s2206-horario/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_horario.salvar', 
+        s2206_horario_views.salvar, 
         name='s2206_horario_salvar'),
 
 
 
 url(r'^s2206-filiacaosindical/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_filiacaosindical.apagar', 
+        s2206_filiacaosindical_views.apagar, 
         name='s2206_filiacaosindical_apagar'),
 
 url(r'^s2206-filiacaosindical/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_filiacaosindical.listar', 
+        s2206_filiacaosindical_views.listar, 
         name='s2206_filiacaosindical'),
 
 url(r'^s2206-filiacaosindical/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_filiacaosindical.salvar', 
+        s2206_filiacaosindical_views.salvar, 
         name='s2206_filiacaosindical_salvar'),
 
 
 
 url(r'^s2206-alvarajudicial/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_alvarajudicial.apagar', 
+        s2206_alvarajudicial_views.apagar, 
         name='s2206_alvarajudicial_apagar'),
 
 url(r'^s2206-alvarajudicial/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_alvarajudicial.listar', 
+        s2206_alvarajudicial_views.listar, 
         name='s2206_alvarajudicial'),
 
 url(r'^s2206-alvarajudicial/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_alvarajudicial.salvar', 
+        s2206_alvarajudicial_views.salvar, 
         name='s2206_alvarajudicial_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2206-observacoes/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_observacoes.apagar', 
+        s2206_observacoes_views.apagar, 
         name='s2206_observacoes_apagar'),
 
 url(r'^s2206-observacoes/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_observacoes.listar', 
+        s2206_observacoes_views.listar, 
         name='s2206_observacoes'),
 
 url(r'^s2206-observacoes/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_observacoes.salvar', 
+        s2206_observacoes_views.salvar, 
         name='s2206_observacoes_salvar'),
 
 
 
 url(r'^s2206-servpubl/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_servpubl.apagar', 
+        s2206_servpubl_views.apagar, 
         name='s2206_servpubl_apagar'),
 
 url(r'^s2206-servpubl/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_servpubl.listar', 
+        s2206_servpubl_views.listar, 
         name='s2206_servpubl'),
 
 url(r'^s2206-servpubl/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2206.views.s2206_servpubl.salvar', 
+        s2206_servpubl_views.salvar, 
         name='s2206_servpubl_salvar'),
 
 
 
 
 
-)
+]

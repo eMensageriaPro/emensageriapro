@@ -1,8 +1,14 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s1280.views import s1280_infosubstpatr as s1280_infosubstpatr_views
+from emensageriapro.s1280.views import s1280_infosubstpatropport as s1280_infosubstpatropport_views
+from emensageriapro.s1280.views import s1280_infoativconcom as s1280_infoativconcom_views
+
+
 
 """
 
@@ -37,53 +43,52 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s1280-infosubstpatr/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1280.views.s1280_infosubstpatr.apagar', 
+        s1280_infosubstpatr_views.apagar, 
         name='s1280_infosubstpatr_apagar'),
 
 url(r'^s1280-infosubstpatr/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1280.views.s1280_infosubstpatr.listar', 
+        s1280_infosubstpatr_views.listar, 
         name='s1280_infosubstpatr'),
 
 url(r'^s1280-infosubstpatr/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1280.views.s1280_infosubstpatr.salvar', 
+        s1280_infosubstpatr_views.salvar, 
         name='s1280_infosubstpatr_salvar'),
 
 
 
 url(r'^s1280-infosubstpatropport/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1280.views.s1280_infosubstpatropport.apagar', 
+        s1280_infosubstpatropport_views.apagar, 
         name='s1280_infosubstpatropport_apagar'),
 
 url(r'^s1280-infosubstpatropport/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1280.views.s1280_infosubstpatropport.listar', 
+        s1280_infosubstpatropport_views.listar, 
         name='s1280_infosubstpatropport'),
 
 url(r'^s1280-infosubstpatropport/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1280.views.s1280_infosubstpatropport.salvar', 
+        s1280_infosubstpatropport_views.salvar, 
         name='s1280_infosubstpatropport_salvar'),
 
 
 
 url(r'^s1280-infoativconcom/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1280.views.s1280_infoativconcom.apagar', 
+        s1280_infoativconcom_views.apagar, 
         name='s1280_infoativconcom_apagar'),
 
 url(r'^s1280-infoativconcom/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1280.views.s1280_infoativconcom.listar', 
+        s1280_infoativconcom_views.listar, 
         name='s1280_infoativconcom'),
 
 url(r'^s1280-infoativconcom/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1280.views.s1280_infoativconcom.salvar', 
+        s1280_infoativconcom_views.salvar, 
         name='s1280_infoativconcom_salvar'),
 
 
 
 
 
-)
+]

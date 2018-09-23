@@ -1,8 +1,19 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.r1070.views import r1070_inclusao as r1070_inclusao_views
+from emensageriapro.r1070.views import r1070_inclusao_infosusp as r1070_inclusao_infosusp_views
+from emensageriapro.r1070.views import r1070_inclusao_dadosprocjud as r1070_inclusao_dadosprocjud_views
+from emensageriapro.r1070.views import r1070_alteracao as r1070_alteracao_views
+from emensageriapro.r1070.views import r1070_alteracao_infosusp as r1070_alteracao_infosusp_views
+from emensageriapro.r1070.views import r1070_alteracao_dadosprocjud as r1070_alteracao_dadosprocjud_views
+from emensageriapro.r1070.views import r1070_alteracao_novavalidade as r1070_alteracao_novavalidade_views
+from emensageriapro.r1070.views import r1070_exclusao as r1070_exclusao_views
+
+
 
 """
 
@@ -37,123 +48,122 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^r1070-inclusao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_inclusao.apagar', 
+        r1070_inclusao_views.apagar, 
         name='r1070_inclusao_apagar'),
 
 url(r'^r1070-inclusao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_inclusao.listar', 
+        r1070_inclusao_views.listar, 
         name='r1070_inclusao'),
 
 url(r'^r1070-inclusao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_inclusao.salvar', 
+        r1070_inclusao_views.salvar, 
         name='r1070_inclusao_salvar'),
 
 
 
 url(r'^r1070-inclusao-infosusp/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_inclusao_infosusp.apagar', 
+        r1070_inclusao_infosusp_views.apagar, 
         name='r1070_inclusao_infosusp_apagar'),
 
 url(r'^r1070-inclusao-infosusp/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_inclusao_infosusp.listar', 
+        r1070_inclusao_infosusp_views.listar, 
         name='r1070_inclusao_infosusp'),
 
 url(r'^r1070-inclusao-infosusp/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_inclusao_infosusp.salvar', 
+        r1070_inclusao_infosusp_views.salvar, 
         name='r1070_inclusao_infosusp_salvar'),
 
 
 
 url(r'^r1070-inclusao-dadosprocjud/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_inclusao_dadosprocjud.apagar', 
+        r1070_inclusao_dadosprocjud_views.apagar, 
         name='r1070_inclusao_dadosprocjud_apagar'),
 
 url(r'^r1070-inclusao-dadosprocjud/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_inclusao_dadosprocjud.listar', 
+        r1070_inclusao_dadosprocjud_views.listar, 
         name='r1070_inclusao_dadosprocjud'),
 
 url(r'^r1070-inclusao-dadosprocjud/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_inclusao_dadosprocjud.salvar', 
+        r1070_inclusao_dadosprocjud_views.salvar, 
         name='r1070_inclusao_dadosprocjud_salvar'),
 
 
 
 url(r'^r1070-alteracao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_alteracao.apagar', 
+        r1070_alteracao_views.apagar, 
         name='r1070_alteracao_apagar'),
 
 url(r'^r1070-alteracao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_alteracao.listar', 
+        r1070_alteracao_views.listar, 
         name='r1070_alteracao'),
 
 url(r'^r1070-alteracao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_alteracao.salvar', 
+        r1070_alteracao_views.salvar, 
         name='r1070_alteracao_salvar'),
 
 
 
 url(r'^r1070-alteracao-infosusp/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_alteracao_infosusp.apagar', 
+        r1070_alteracao_infosusp_views.apagar, 
         name='r1070_alteracao_infosusp_apagar'),
 
 url(r'^r1070-alteracao-infosusp/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_alteracao_infosusp.listar', 
+        r1070_alteracao_infosusp_views.listar, 
         name='r1070_alteracao_infosusp'),
 
 url(r'^r1070-alteracao-infosusp/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_alteracao_infosusp.salvar', 
+        r1070_alteracao_infosusp_views.salvar, 
         name='r1070_alteracao_infosusp_salvar'),
 
 
 
 url(r'^r1070-alteracao-dadosprocjud/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_alteracao_dadosprocjud.apagar', 
+        r1070_alteracao_dadosprocjud_views.apagar, 
         name='r1070_alteracao_dadosprocjud_apagar'),
 
 url(r'^r1070-alteracao-dadosprocjud/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_alteracao_dadosprocjud.listar', 
+        r1070_alteracao_dadosprocjud_views.listar, 
         name='r1070_alteracao_dadosprocjud'),
 
 url(r'^r1070-alteracao-dadosprocjud/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_alteracao_dadosprocjud.salvar', 
+        r1070_alteracao_dadosprocjud_views.salvar, 
         name='r1070_alteracao_dadosprocjud_salvar'),
 
 
 
 url(r'^r1070-alteracao-novavalidade/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_alteracao_novavalidade.apagar', 
+        r1070_alteracao_novavalidade_views.apagar, 
         name='r1070_alteracao_novavalidade_apagar'),
 
 url(r'^r1070-alteracao-novavalidade/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_alteracao_novavalidade.listar', 
+        r1070_alteracao_novavalidade_views.listar, 
         name='r1070_alteracao_novavalidade'),
 
 url(r'^r1070-alteracao-novavalidade/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_alteracao_novavalidade.salvar', 
+        r1070_alteracao_novavalidade_views.salvar, 
         name='r1070_alteracao_novavalidade_salvar'),
 
 
 
 url(r'^r1070-exclusao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_exclusao.apagar', 
+        r1070_exclusao_views.apagar, 
         name='r1070_exclusao_apagar'),
 
 url(r'^r1070-exclusao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_exclusao.listar', 
+        r1070_exclusao_views.listar, 
         name='r1070_exclusao'),
 
 url(r'^r1070-exclusao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r1070.views.r1070_exclusao.salvar', 
+        r1070_exclusao_views.salvar, 
         name='r1070_exclusao_salvar'),
 
 
 
 
 
-)
+]

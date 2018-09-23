@@ -1,8 +1,15 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.r2020.views import r2020_nfs as r2020_nfs_views
+from emensageriapro.r2020.views import r2020_infotpserv as r2020_infotpserv_views
+from emensageriapro.r2020.views import r2020_infoprocretpr as r2020_infoprocretpr_views
+from emensageriapro.r2020.views import r2020_infoprocretad as r2020_infoprocretad_views
+
+
 
 """
 
@@ -37,67 +44,66 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^r2020-nfs/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2020.views.r2020_nfs.apagar', 
+        r2020_nfs_views.apagar, 
         name='r2020_nfs_apagar'),
 
 url(r'^r2020-nfs/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2020.views.r2020_nfs.listar', 
+        r2020_nfs_views.listar, 
         name='r2020_nfs'),
 
 url(r'^r2020-nfs/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2020.views.r2020_nfs.salvar', 
+        r2020_nfs_views.salvar, 
         name='r2020_nfs_salvar'),
 
 
 
 url(r'^r2020-infotpserv/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2020.views.r2020_infotpserv.apagar', 
+        r2020_infotpserv_views.apagar, 
         name='r2020_infotpserv_apagar'),
 
 url(r'^r2020-infotpserv/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2020.views.r2020_infotpserv.listar', 
+        r2020_infotpserv_views.listar, 
         name='r2020_infotpserv'),
 
 url(r'^r2020-infotpserv/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2020.views.r2020_infotpserv.salvar', 
+        r2020_infotpserv_views.salvar, 
         name='r2020_infotpserv_salvar'),
 
 
 
 url(r'^r2020-infoprocretpr/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2020.views.r2020_infoprocretpr.apagar', 
+        r2020_infoprocretpr_views.apagar, 
         name='r2020_infoprocretpr_apagar'),
 
 url(r'^r2020-infoprocretpr/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2020.views.r2020_infoprocretpr.listar', 
+        r2020_infoprocretpr_views.listar, 
         name='r2020_infoprocretpr'),
 
 url(r'^r2020-infoprocretpr/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2020.views.r2020_infoprocretpr.salvar', 
+        r2020_infoprocretpr_views.salvar, 
         name='r2020_infoprocretpr_salvar'),
 
 
 
 url(r'^r2020-infoprocretad/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2020.views.r2020_infoprocretad.apagar', 
+        r2020_infoprocretad_views.apagar, 
         name='r2020_infoprocretad_apagar'),
 
 url(r'^r2020-infoprocretad/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2020.views.r2020_infoprocretad.listar', 
+        r2020_infoprocretad_views.listar, 
         name='r2020_infoprocretad'),
 
 url(r'^r2020-infoprocretad/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2020.views.r2020_infoprocretad.salvar', 
+        r2020_infoprocretad_views.salvar, 
         name='r2020_infoprocretad_salvar'),
 
 
 
 
 
-)
+]

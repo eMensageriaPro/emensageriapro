@@ -1,8 +1,16 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.r3010.views import r3010_ideestab as r3010_ideestab_views
+from emensageriapro.r3010.views import r3010_boletim as r3010_boletim_views
+from emensageriapro.r3010.views import r3010_receitaingressos as r3010_receitaingressos_views
+from emensageriapro.r3010.views import r3010_outrasreceitas as r3010_outrasreceitas_views
+from emensageriapro.r3010.views import r3010_infoproc as r3010_infoproc_views
+
+
 
 """
 
@@ -37,81 +45,80 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^r3010-ideestab/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r3010.views.r3010_ideestab.apagar', 
+        r3010_ideestab_views.apagar, 
         name='r3010_ideestab_apagar'),
 
 url(r'^r3010-ideestab/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r3010.views.r3010_ideestab.listar', 
+        r3010_ideestab_views.listar, 
         name='r3010_ideestab'),
 
 url(r'^r3010-ideestab/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r3010.views.r3010_ideestab.salvar', 
+        r3010_ideestab_views.salvar, 
         name='r3010_ideestab_salvar'),
 
 
 
 url(r'^r3010-boletim/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r3010.views.r3010_boletim.apagar', 
+        r3010_boletim_views.apagar, 
         name='r3010_boletim_apagar'),
 
 url(r'^r3010-boletim/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r3010.views.r3010_boletim.listar', 
+        r3010_boletim_views.listar, 
         name='r3010_boletim'),
 
 url(r'^r3010-boletim/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r3010.views.r3010_boletim.salvar', 
+        r3010_boletim_views.salvar, 
         name='r3010_boletim_salvar'),
 
 
 
 url(r'^r3010-receitaingressos/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r3010.views.r3010_receitaingressos.apagar', 
+        r3010_receitaingressos_views.apagar, 
         name='r3010_receitaingressos_apagar'),
 
 url(r'^r3010-receitaingressos/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r3010.views.r3010_receitaingressos.listar', 
+        r3010_receitaingressos_views.listar, 
         name='r3010_receitaingressos'),
 
 url(r'^r3010-receitaingressos/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r3010.views.r3010_receitaingressos.salvar', 
+        r3010_receitaingressos_views.salvar, 
         name='r3010_receitaingressos_salvar'),
 
 
 
 url(r'^r3010-outrasreceitas/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r3010.views.r3010_outrasreceitas.apagar', 
+        r3010_outrasreceitas_views.apagar, 
         name='r3010_outrasreceitas_apagar'),
 
 url(r'^r3010-outrasreceitas/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r3010.views.r3010_outrasreceitas.listar', 
+        r3010_outrasreceitas_views.listar, 
         name='r3010_outrasreceitas'),
 
 url(r'^r3010-outrasreceitas/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r3010.views.r3010_outrasreceitas.salvar', 
+        r3010_outrasreceitas_views.salvar, 
         name='r3010_outrasreceitas_salvar'),
 
 
 
 url(r'^r3010-infoproc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r3010.views.r3010_infoproc.apagar', 
+        r3010_infoproc_views.apagar, 
         name='r3010_infoproc_apagar'),
 
 url(r'^r3010-infoproc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r3010.views.r3010_infoproc.listar', 
+        r3010_infoproc_views.listar, 
         name='r3010_infoproc'),
 
 url(r'^r3010-infoproc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r3010.views.r3010_infoproc.salvar', 
+        r3010_infoproc_views.salvar, 
         name='r3010_infoproc_salvar'),
 
 
 
 
 
-)
+]

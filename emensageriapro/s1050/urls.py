@@ -1,8 +1,17 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s1050.views import s1050_inclusao as s1050_inclusao_views
+from emensageriapro.s1050.views import s1050_inclusao_horariointervalo as s1050_inclusao_horariointervalo_views
+from emensageriapro.s1050.views import s1050_alteracao as s1050_alteracao_views
+from emensageriapro.s1050.views import s1050_alteracao_horariointervalo as s1050_alteracao_horariointervalo_views
+from emensageriapro.s1050.views import s1050_alteracao_novavalidade as s1050_alteracao_novavalidade_views
+from emensageriapro.s1050.views import s1050_exclusao as s1050_exclusao_views
+
+
 
 """
 
@@ -37,95 +46,94 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s1050-inclusao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1050.views.s1050_inclusao.apagar', 
+        s1050_inclusao_views.apagar, 
         name='s1050_inclusao_apagar'),
 
 url(r'^s1050-inclusao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1050.views.s1050_inclusao.listar', 
+        s1050_inclusao_views.listar, 
         name='s1050_inclusao'),
 
 url(r'^s1050-inclusao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1050.views.s1050_inclusao.salvar', 
+        s1050_inclusao_views.salvar, 
         name='s1050_inclusao_salvar'),
 
 
 
 url(r'^s1050-inclusao-horariointervalo/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1050.views.s1050_inclusao_horariointervalo.apagar', 
+        s1050_inclusao_horariointervalo_views.apagar, 
         name='s1050_inclusao_horariointervalo_apagar'),
 
 url(r'^s1050-inclusao-horariointervalo/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1050.views.s1050_inclusao_horariointervalo.listar', 
+        s1050_inclusao_horariointervalo_views.listar, 
         name='s1050_inclusao_horariointervalo'),
 
 url(r'^s1050-inclusao-horariointervalo/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1050.views.s1050_inclusao_horariointervalo.salvar', 
+        s1050_inclusao_horariointervalo_views.salvar, 
         name='s1050_inclusao_horariointervalo_salvar'),
 
 
 
 url(r'^s1050-alteracao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1050.views.s1050_alteracao.apagar', 
+        s1050_alteracao_views.apagar, 
         name='s1050_alteracao_apagar'),
 
 url(r'^s1050-alteracao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1050.views.s1050_alteracao.listar', 
+        s1050_alteracao_views.listar, 
         name='s1050_alteracao'),
 
 url(r'^s1050-alteracao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1050.views.s1050_alteracao.salvar', 
+        s1050_alteracao_views.salvar, 
         name='s1050_alteracao_salvar'),
 
 
 
 url(r'^s1050-alteracao-horariointervalo/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1050.views.s1050_alteracao_horariointervalo.apagar', 
+        s1050_alteracao_horariointervalo_views.apagar, 
         name='s1050_alteracao_horariointervalo_apagar'),
 
 url(r'^s1050-alteracao-horariointervalo/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1050.views.s1050_alteracao_horariointervalo.listar', 
+        s1050_alteracao_horariointervalo_views.listar, 
         name='s1050_alteracao_horariointervalo'),
 
 url(r'^s1050-alteracao-horariointervalo/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1050.views.s1050_alteracao_horariointervalo.salvar', 
+        s1050_alteracao_horariointervalo_views.salvar, 
         name='s1050_alteracao_horariointervalo_salvar'),
 
 
 
 url(r'^s1050-alteracao-novavalidade/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1050.views.s1050_alteracao_novavalidade.apagar', 
+        s1050_alteracao_novavalidade_views.apagar, 
         name='s1050_alteracao_novavalidade_apagar'),
 
 url(r'^s1050-alteracao-novavalidade/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1050.views.s1050_alteracao_novavalidade.listar', 
+        s1050_alteracao_novavalidade_views.listar, 
         name='s1050_alteracao_novavalidade'),
 
 url(r'^s1050-alteracao-novavalidade/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1050.views.s1050_alteracao_novavalidade.salvar', 
+        s1050_alteracao_novavalidade_views.salvar, 
         name='s1050_alteracao_novavalidade_salvar'),
 
 
 
 url(r'^s1050-exclusao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1050.views.s1050_exclusao.apagar', 
+        s1050_exclusao_views.apagar, 
         name='s1050_exclusao_apagar'),
 
 url(r'^s1050-exclusao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1050.views.s1050_exclusao.listar', 
+        s1050_exclusao_views.listar, 
         name='s1050_exclusao'),
 
 url(r'^s1050-exclusao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1050.views.s1050_exclusao.salvar', 
+        s1050_exclusao_views.salvar, 
         name='s1050_exclusao_salvar'),
 
 
 
 
 
-)
+]

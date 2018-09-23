@@ -1,8 +1,14 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s2410.views import s2410_infopenmorte as s2410_infopenmorte_views
+from emensageriapro.s2410.views import s2410_instpenmorte as s2410_instpenmorte_views
+from emensageriapro.s2410.views import s2410_homologtc as s2410_homologtc_views
+
+
 
 """
 
@@ -37,53 +43,52 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s2410-infopenmorte/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2410.views.s2410_infopenmorte.apagar', 
+        s2410_infopenmorte_views.apagar, 
         name='s2410_infopenmorte_apagar'),
 
 url(r'^s2410-infopenmorte/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2410.views.s2410_infopenmorte.listar', 
+        s2410_infopenmorte_views.listar, 
         name='s2410_infopenmorte'),
 
 url(r'^s2410-infopenmorte/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2410.views.s2410_infopenmorte.salvar', 
+        s2410_infopenmorte_views.salvar, 
         name='s2410_infopenmorte_salvar'),
 
 
 
 url(r'^s2410-instpenmorte/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2410.views.s2410_instpenmorte.apagar', 
+        s2410_instpenmorte_views.apagar, 
         name='s2410_instpenmorte_apagar'),
 
 url(r'^s2410-instpenmorte/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2410.views.s2410_instpenmorte.listar', 
+        s2410_instpenmorte_views.listar, 
         name='s2410_instpenmorte'),
 
 url(r'^s2410-instpenmorte/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2410.views.s2410_instpenmorte.salvar', 
+        s2410_instpenmorte_views.salvar, 
         name='s2410_instpenmorte_salvar'),
 
 
 
 url(r'^s2410-homologtc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2410.views.s2410_homologtc.apagar', 
+        s2410_homologtc_views.apagar, 
         name='s2410_homologtc_apagar'),
 
 url(r'^s2410-homologtc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2410.views.s2410_homologtc.listar', 
+        s2410_homologtc_views.listar, 
         name='s2410_homologtc'),
 
 url(r'^s2410-homologtc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2410.views.s2410_homologtc.salvar', 
+        s2410_homologtc_views.salvar, 
         name='s2410_homologtc_salvar'),
 
 
 
 
 
-)
+]

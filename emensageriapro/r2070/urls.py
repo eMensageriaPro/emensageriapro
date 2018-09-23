@@ -1,8 +1,34 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.r2070.views import r2070_inforesidext as r2070_inforesidext_views
+from emensageriapro.r2070.views import r2070_infomolestia as r2070_infomolestia_views
+from emensageriapro.r2070.views import r2070_ideestab as r2070_ideestab_views
+from emensageriapro.r2070.views import r2070_pgtoresidbr as r2070_pgtoresidbr_views
+from emensageriapro.r2070.views import r2070_pgtopf as r2070_pgtopf_views
+from emensageriapro.r2070.views import r2070_detdeducao as r2070_detdeducao_views
+from emensageriapro.r2070.views import r2070_rendisento as r2070_rendisento_views
+from emensageriapro.r2070.views import r2070_detcompet as r2070_detcompet_views
+from emensageriapro.r2070.views import r2070_compjud as r2070_compjud_views
+from emensageriapro.r2070.views import r2070_inforra as r2070_inforra_views
+from emensageriapro.r2070.views import r2070_inforra_despprocjud as r2070_inforra_despprocjud_views
+from emensageriapro.r2070.views import r2070_inforra_ideadvogado as r2070_inforra_ideadvogado_views
+from emensageriapro.r2070.views import r2070_infoprocjud as r2070_infoprocjud_views
+from emensageriapro.r2070.views import r2070_infoprocjud_despprocjud as r2070_infoprocjud_despprocjud_views
+from emensageriapro.r2070.views import r2070_infoprocjud_ideadvogado as r2070_infoprocjud_ideadvogado_views
+from emensageriapro.r2070.views import r2070_infoprocjud_origemrecursos as r2070_infoprocjud_origemrecursos_views
+from emensageriapro.r2070.views import r2070_depjudicial as r2070_depjudicial_views
+from emensageriapro.r2070.views import r2070_pgtopj as r2070_pgtopj_views
+from emensageriapro.r2070.views import r2070_pgtopj_infoprocjud as r2070_pgtopj_infoprocjud_views
+from emensageriapro.r2070.views import r2070_pgtopj_despprocjud as r2070_pgtopj_despprocjud_views
+from emensageriapro.r2070.views import r2070_pgtopj_ideadvogado as r2070_pgtopj_ideadvogado_views
+from emensageriapro.r2070.views import r2070_pgtopj_origemrecursos as r2070_pgtopj_origemrecursos_views
+from emensageriapro.r2070.views import r2070_pgtoresidext as r2070_pgtoresidext_views
+
+
 
 """
 
@@ -37,341 +63,332 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^r2070-inforesidext/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_inforesidext.apagar', 
+        r2070_inforesidext_views.apagar, 
         name='r2070_inforesidext_apagar'),
 
 url(r'^r2070-inforesidext/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_inforesidext.listar', 
+        r2070_inforesidext_views.listar, 
         name='r2070_inforesidext'),
 
 url(r'^r2070-inforesidext/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_inforesidext.salvar', 
+        r2070_inforesidext_views.salvar, 
         name='r2070_inforesidext_salvar'),
 
 
 
 url(r'^r2070-infomolestia/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_infomolestia.apagar', 
+        r2070_infomolestia_views.apagar, 
         name='r2070_infomolestia_apagar'),
 
 url(r'^r2070-infomolestia/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_infomolestia.listar', 
+        r2070_infomolestia_views.listar, 
         name='r2070_infomolestia'),
 
 url(r'^r2070-infomolestia/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_infomolestia.salvar', 
+        r2070_infomolestia_views.salvar, 
         name='r2070_infomolestia_salvar'),
 
 
 
 url(r'^r2070-ideestab/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_ideestab.apagar', 
+        r2070_ideestab_views.apagar, 
         name='r2070_ideestab_apagar'),
 
 url(r'^r2070-ideestab/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_ideestab.listar', 
+        r2070_ideestab_views.listar, 
         name='r2070_ideestab'),
 
 url(r'^r2070-ideestab/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_ideestab.salvar', 
+        r2070_ideestab_views.salvar, 
         name='r2070_ideestab_salvar'),
 
 
 
 url(r'^r2070-pgtoresidbr/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtoresidbr.apagar', 
+        r2070_pgtoresidbr_views.apagar, 
         name='r2070_pgtoresidbr_apagar'),
 
 url(r'^r2070-pgtoresidbr/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtoresidbr.listar', 
+        r2070_pgtoresidbr_views.listar, 
         name='r2070_pgtoresidbr'),
 
 url(r'^r2070-pgtoresidbr/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtoresidbr.salvar', 
+        r2070_pgtoresidbr_views.salvar, 
         name='r2070_pgtoresidbr_salvar'),
 
 
 
 url(r'^r2070-pgtopf/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtopf.apagar', 
+        r2070_pgtopf_views.apagar, 
         name='r2070_pgtopf_apagar'),
 
 url(r'^r2070-pgtopf/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtopf.listar', 
+        r2070_pgtopf_views.listar, 
         name='r2070_pgtopf'),
 
 url(r'^r2070-pgtopf/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtopf.salvar', 
+        r2070_pgtopf_views.salvar, 
         name='r2070_pgtopf_salvar'),
 
 
 
 url(r'^r2070-detdeducao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_detdeducao.apagar', 
+        r2070_detdeducao_views.apagar, 
         name='r2070_detdeducao_apagar'),
 
 url(r'^r2070-detdeducao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_detdeducao.listar', 
+        r2070_detdeducao_views.listar, 
         name='r2070_detdeducao'),
 
 url(r'^r2070-detdeducao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_detdeducao.salvar', 
+        r2070_detdeducao_views.salvar, 
         name='r2070_detdeducao_salvar'),
 
 
 
 url(r'^r2070-rendisento/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_rendisento.apagar', 
+        r2070_rendisento_views.apagar, 
         name='r2070_rendisento_apagar'),
 
 url(r'^r2070-rendisento/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_rendisento.listar', 
+        r2070_rendisento_views.listar, 
         name='r2070_rendisento'),
 
 url(r'^r2070-rendisento/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_rendisento.salvar', 
+        r2070_rendisento_views.salvar, 
         name='r2070_rendisento_salvar'),
 
 
 
 url(r'^r2070-detcompet/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_detcompet.apagar', 
+        r2070_detcompet_views.apagar, 
         name='r2070_detcompet_apagar'),
 
 url(r'^r2070-detcompet/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_detcompet.listar', 
+        r2070_detcompet_views.listar, 
         name='r2070_detcompet'),
 
 url(r'^r2070-detcompet/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_detcompet.salvar', 
+        r2070_detcompet_views.salvar, 
         name='r2070_detcompet_salvar'),
 
 
 
 url(r'^r2070-compjud/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_compjud.apagar', 
+        r2070_compjud_views.apagar, 
         name='r2070_compjud_apagar'),
 
 url(r'^r2070-compjud/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_compjud.listar', 
+        r2070_compjud_views.listar, 
         name='r2070_compjud'),
 
 url(r'^r2070-compjud/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_compjud.salvar', 
+        r2070_compjud_views.salvar, 
         name='r2070_compjud_salvar'),
 
 
 
 url(r'^r2070-inforra/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_inforra.apagar', 
+        r2070_inforra_views.apagar, 
         name='r2070_inforra_apagar'),
 
 url(r'^r2070-inforra/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_inforra.listar', 
+        r2070_inforra_views.listar, 
         name='r2070_inforra'),
 
 url(r'^r2070-inforra/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_inforra.salvar', 
+        r2070_inforra_views.salvar, 
         name='r2070_inforra_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^r2070-inforra-despprocjud/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_inforra_despprocjud.apagar', 
+        r2070_inforra_despprocjud_views.apagar, 
         name='r2070_inforra_despprocjud_apagar'),
 
 url(r'^r2070-inforra-despprocjud/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_inforra_despprocjud.listar', 
+        r2070_inforra_despprocjud_views.listar, 
         name='r2070_inforra_despprocjud'),
 
 url(r'^r2070-inforra-despprocjud/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_inforra_despprocjud.salvar', 
+        r2070_inforra_despprocjud_views.salvar, 
         name='r2070_inforra_despprocjud_salvar'),
 
 
 
 url(r'^r2070-inforra-ideadvogado/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_inforra_ideadvogado.apagar', 
+        r2070_inforra_ideadvogado_views.apagar, 
         name='r2070_inforra_ideadvogado_apagar'),
 
 url(r'^r2070-inforra-ideadvogado/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_inforra_ideadvogado.listar', 
+        r2070_inforra_ideadvogado_views.listar, 
         name='r2070_inforra_ideadvogado'),
 
 url(r'^r2070-inforra-ideadvogado/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_inforra_ideadvogado.salvar', 
+        r2070_inforra_ideadvogado_views.salvar, 
         name='r2070_inforra_ideadvogado_salvar'),
 
 
 
 url(r'^r2070-infoprocjud/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_infoprocjud.apagar', 
+        r2070_infoprocjud_views.apagar, 
         name='r2070_infoprocjud_apagar'),
 
 url(r'^r2070-infoprocjud/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_infoprocjud.listar', 
+        r2070_infoprocjud_views.listar, 
         name='r2070_infoprocjud'),
 
 url(r'^r2070-infoprocjud/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_infoprocjud.salvar', 
+        r2070_infoprocjud_views.salvar, 
         name='r2070_infoprocjud_salvar'),
 
 
 
 url(r'^r2070-infoprocjud-despprocjud/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_infoprocjud_despprocjud.apagar', 
+        r2070_infoprocjud_despprocjud_views.apagar, 
         name='r2070_infoprocjud_despprocjud_apagar'),
 
 url(r'^r2070-infoprocjud-despprocjud/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_infoprocjud_despprocjud.listar', 
+        r2070_infoprocjud_despprocjud_views.listar, 
         name='r2070_infoprocjud_despprocjud'),
 
 url(r'^r2070-infoprocjud-despprocjud/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_infoprocjud_despprocjud.salvar', 
+        r2070_infoprocjud_despprocjud_views.salvar, 
         name='r2070_infoprocjud_despprocjud_salvar'),
 
 
 
 url(r'^r2070-infoprocjud-ideadvogado/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_infoprocjud_ideadvogado.apagar', 
+        r2070_infoprocjud_ideadvogado_views.apagar, 
         name='r2070_infoprocjud_ideadvogado_apagar'),
 
 url(r'^r2070-infoprocjud-ideadvogado/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_infoprocjud_ideadvogado.listar', 
+        r2070_infoprocjud_ideadvogado_views.listar, 
         name='r2070_infoprocjud_ideadvogado'),
 
 url(r'^r2070-infoprocjud-ideadvogado/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_infoprocjud_ideadvogado.salvar', 
+        r2070_infoprocjud_ideadvogado_views.salvar, 
         name='r2070_infoprocjud_ideadvogado_salvar'),
 
 
 
 url(r'^r2070-infoprocjud-origemrecursos/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_infoprocjud_origemrecursos.apagar', 
+        r2070_infoprocjud_origemrecursos_views.apagar, 
         name='r2070_infoprocjud_origemrecursos_apagar'),
 
 url(r'^r2070-infoprocjud-origemrecursos/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_infoprocjud_origemrecursos.listar', 
+        r2070_infoprocjud_origemrecursos_views.listar, 
         name='r2070_infoprocjud_origemrecursos'),
 
 url(r'^r2070-infoprocjud-origemrecursos/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_infoprocjud_origemrecursos.salvar', 
+        r2070_infoprocjud_origemrecursos_views.salvar, 
         name='r2070_infoprocjud_origemrecursos_salvar'),
 
 
 
 url(r'^r2070-depjudicial/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_depjudicial.apagar', 
+        r2070_depjudicial_views.apagar, 
         name='r2070_depjudicial_apagar'),
 
 url(r'^r2070-depjudicial/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_depjudicial.listar', 
+        r2070_depjudicial_views.listar, 
         name='r2070_depjudicial'),
 
 url(r'^r2070-depjudicial/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_depjudicial.salvar', 
+        r2070_depjudicial_views.salvar, 
         name='r2070_depjudicial_salvar'),
 
 
 
 url(r'^r2070-pgtopj/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtopj.apagar', 
+        r2070_pgtopj_views.apagar, 
         name='r2070_pgtopj_apagar'),
 
 url(r'^r2070-pgtopj/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtopj.listar', 
+        r2070_pgtopj_views.listar, 
         name='r2070_pgtopj'),
 
 url(r'^r2070-pgtopj/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtopj.salvar', 
+        r2070_pgtopj_views.salvar, 
         name='r2070_pgtopj_salvar'),
 
 
 
 url(r'^r2070-pgtopj-infoprocjud/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtopj_infoprocjud.apagar', 
+        r2070_pgtopj_infoprocjud_views.apagar, 
         name='r2070_pgtopj_infoprocjud_apagar'),
 
 url(r'^r2070-pgtopj-infoprocjud/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtopj_infoprocjud.listar', 
+        r2070_pgtopj_infoprocjud_views.listar, 
         name='r2070_pgtopj_infoprocjud'),
 
 url(r'^r2070-pgtopj-infoprocjud/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtopj_infoprocjud.salvar', 
+        r2070_pgtopj_infoprocjud_views.salvar, 
         name='r2070_pgtopj_infoprocjud_salvar'),
 
 
 
 url(r'^r2070-pgtopj-despprocjud/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtopj_despprocjud.apagar', 
+        r2070_pgtopj_despprocjud_views.apagar, 
         name='r2070_pgtopj_despprocjud_apagar'),
 
 url(r'^r2070-pgtopj-despprocjud/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtopj_despprocjud.listar', 
+        r2070_pgtopj_despprocjud_views.listar, 
         name='r2070_pgtopj_despprocjud'),
 
 url(r'^r2070-pgtopj-despprocjud/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtopj_despprocjud.salvar', 
+        r2070_pgtopj_despprocjud_views.salvar, 
         name='r2070_pgtopj_despprocjud_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^r2070-pgtopj-ideadvogado/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtopj_ideadvogado.apagar', 
+        r2070_pgtopj_ideadvogado_views.apagar, 
         name='r2070_pgtopj_ideadvogado_apagar'),
 
 url(r'^r2070-pgtopj-ideadvogado/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtopj_ideadvogado.listar', 
+        r2070_pgtopj_ideadvogado_views.listar, 
         name='r2070_pgtopj_ideadvogado'),
 
 url(r'^r2070-pgtopj-ideadvogado/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtopj_ideadvogado.salvar', 
+        r2070_pgtopj_ideadvogado_views.salvar, 
         name='r2070_pgtopj_ideadvogado_salvar'),
 
 
 
 url(r'^r2070-pgtopj-origemrecursos/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtopj_origemrecursos.apagar', 
+        r2070_pgtopj_origemrecursos_views.apagar, 
         name='r2070_pgtopj_origemrecursos_apagar'),
 
 url(r'^r2070-pgtopj-origemrecursos/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtopj_origemrecursos.listar', 
+        r2070_pgtopj_origemrecursos_views.listar, 
         name='r2070_pgtopj_origemrecursos'),
 
 url(r'^r2070-pgtopj-origemrecursos/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtopj_origemrecursos.salvar', 
+        r2070_pgtopj_origemrecursos_views.salvar, 
         name='r2070_pgtopj_origemrecursos_salvar'),
 
 
 
 url(r'^r2070-pgtoresidext/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtoresidext.apagar', 
+        r2070_pgtoresidext_views.apagar, 
         name='r2070_pgtoresidext_apagar'),
 
 url(r'^r2070-pgtoresidext/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtoresidext.listar', 
+        r2070_pgtoresidext_views.listar, 
         name='r2070_pgtoresidext'),
 
 url(r'^r2070-pgtoresidext/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2070.views.r2070_pgtoresidext.salvar', 
+        r2070_pgtoresidext_views.salvar, 
         name='r2070_pgtoresidext_salvar'),
 
 
 
 
 
-)
+]

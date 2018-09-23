@@ -1,8 +1,15 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s2400.views import s2400_endereco as s2400_endereco_views
+from emensageriapro.s2400.views import s2400_brasil as s2400_brasil_views
+from emensageriapro.s2400.views import s2400_exterior as s2400_exterior_views
+from emensageriapro.s2400.views import s2400_dependente as s2400_dependente_views
+
+
 
 """
 
@@ -37,67 +44,66 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s2400-endereco/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_endereco.apagar', 
+        s2400_endereco_views.apagar, 
         name='s2400_endereco_apagar'),
 
 url(r'^s2400-endereco/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_endereco.listar', 
+        s2400_endereco_views.listar, 
         name='s2400_endereco'),
 
 url(r'^s2400-endereco/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_endereco.salvar', 
+        s2400_endereco_views.salvar, 
         name='s2400_endereco_salvar'),
 
 
 
 url(r'^s2400-brasil/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_brasil.apagar', 
+        s2400_brasil_views.apagar, 
         name='s2400_brasil_apagar'),
 
 url(r'^s2400-brasil/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_brasil.listar', 
+        s2400_brasil_views.listar, 
         name='s2400_brasil'),
 
 url(r'^s2400-brasil/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_brasil.salvar', 
+        s2400_brasil_views.salvar, 
         name='s2400_brasil_salvar'),
 
 
 
 url(r'^s2400-exterior/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_exterior.apagar', 
+        s2400_exterior_views.apagar, 
         name='s2400_exterior_apagar'),
 
 url(r'^s2400-exterior/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_exterior.listar', 
+        s2400_exterior_views.listar, 
         name='s2400_exterior'),
 
 url(r'^s2400-exterior/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_exterior.salvar', 
+        s2400_exterior_views.salvar, 
         name='s2400_exterior_salvar'),
 
 
 
 url(r'^s2400-dependente/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_dependente.apagar', 
+        s2400_dependente_views.apagar, 
         name='s2400_dependente_apagar'),
 
 url(r'^s2400-dependente/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_dependente.listar', 
+        s2400_dependente_views.listar, 
         name='s2400_dependente'),
 
 url(r'^s2400-dependente/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2400.views.s2400_dependente.salvar', 
+        s2400_dependente_views.salvar, 
         name='s2400_dependente_salvar'),
 
 
 
 
 
-)
+]

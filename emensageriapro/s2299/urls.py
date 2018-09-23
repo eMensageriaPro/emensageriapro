@@ -1,8 +1,38 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s2299.views import s2299_observacoes as s2299_observacoes_views
+from emensageriapro.s2299.views import s2299_sucessaovinc as s2299_sucessaovinc_views
+from emensageriapro.s2299.views import s2299_transftit as s2299_transftit_views
+from emensageriapro.s2299.views import s2299_verbasresc as s2299_verbasresc_views
+from emensageriapro.s2299.views import s2299_dmdev as s2299_dmdev_views
+from emensageriapro.s2299.views import s2299_infoperapur as s2299_infoperapur_views
+from emensageriapro.s2299.views import s2299_infoperapur_ideestablot as s2299_infoperapur_ideestablot_views
+from emensageriapro.s2299.views import s2299_infoperapur_detverbas as s2299_infoperapur_detverbas_views
+from emensageriapro.s2299.views import s2299_infoperapur_infosaudecolet as s2299_infoperapur_infosaudecolet_views
+from emensageriapro.s2299.views import s2299_infoperapur_detoper as s2299_infoperapur_detoper_views
+from emensageriapro.s2299.views import s2299_infoperapur_detplano as s2299_infoperapur_detplano_views
+from emensageriapro.s2299.views import s2299_infoperapur_infoagnocivo as s2299_infoperapur_infoagnocivo_views
+from emensageriapro.s2299.views import s2299_infoperapur_infosimples as s2299_infoperapur_infosimples_views
+from emensageriapro.s2299.views import s2299_infoperant as s2299_infoperant_views
+from emensageriapro.s2299.views import s2299_infoperant_ideadc as s2299_infoperant_ideadc_views
+from emensageriapro.s2299.views import s2299_infoperant_ideperiodo as s2299_infoperant_ideperiodo_views
+from emensageriapro.s2299.views import s2299_infoperant_ideestablot as s2299_infoperant_ideestablot_views
+from emensageriapro.s2299.views import s2299_infoperant_detverbas as s2299_infoperant_detverbas_views
+from emensageriapro.s2299.views import s2299_infoperant_infoagnocivo as s2299_infoperant_infoagnocivo_views
+from emensageriapro.s2299.views import s2299_infoperant_infosimples as s2299_infoperant_infosimples_views
+from emensageriapro.s2299.views import s2299_infotrabinterm as s2299_infotrabinterm_views
+from emensageriapro.s2299.views import s2299_infotrabinterm_procjudtrab as s2299_infotrabinterm_procjudtrab_views
+from emensageriapro.s2299.views import s2299_infotrabinterm_infomv as s2299_infotrabinterm_infomv_views
+from emensageriapro.s2299.views import s2299_infotrabinterm_remunoutrempr as s2299_infotrabinterm_remunoutrempr_views
+from emensageriapro.s2299.views import s2299_infotrabinterm_proccs as s2299_infotrabinterm_proccs_views
+from emensageriapro.s2299.views import s2299_infotrabinterm_quarentena as s2299_infotrabinterm_quarentena_views
+from emensageriapro.s2299.views import s2299_infotrabinterm_consigfgts as s2299_infotrabinterm_consigfgts_views
+
+
 
 """
 
@@ -37,397 +67,388 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s2299-observacoes/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_observacoes.apagar', 
+        s2299_observacoes_views.apagar, 
         name='s2299_observacoes_apagar'),
 
 url(r'^s2299-observacoes/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_observacoes.listar', 
+        s2299_observacoes_views.listar, 
         name='s2299_observacoes'),
 
 url(r'^s2299-observacoes/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_observacoes.salvar', 
+        s2299_observacoes_views.salvar, 
         name='s2299_observacoes_salvar'),
 
 
 
 url(r'^s2299-sucessaovinc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_sucessaovinc.apagar', 
+        s2299_sucessaovinc_views.apagar, 
         name='s2299_sucessaovinc_apagar'),
 
 url(r'^s2299-sucessaovinc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_sucessaovinc.listar', 
+        s2299_sucessaovinc_views.listar, 
         name='s2299_sucessaovinc'),
 
 url(r'^s2299-sucessaovinc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_sucessaovinc.salvar', 
+        s2299_sucessaovinc_views.salvar, 
         name='s2299_sucessaovinc_salvar'),
 
 
 
 url(r'^s2299-transftit/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_transftit.apagar', 
+        s2299_transftit_views.apagar, 
         name='s2299_transftit_apagar'),
 
 url(r'^s2299-transftit/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_transftit.listar', 
+        s2299_transftit_views.listar, 
         name='s2299_transftit'),
 
 url(r'^s2299-transftit/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_transftit.salvar', 
+        s2299_transftit_views.salvar, 
         name='s2299_transftit_salvar'),
 
 
 
 url(r'^s2299-verbasresc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_verbasresc.apagar', 
+        s2299_verbasresc_views.apagar, 
         name='s2299_verbasresc_apagar'),
 
 url(r'^s2299-verbasresc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_verbasresc.listar', 
+        s2299_verbasresc_views.listar, 
         name='s2299_verbasresc'),
 
 url(r'^s2299-verbasresc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_verbasresc.salvar', 
+        s2299_verbasresc_views.salvar, 
         name='s2299_verbasresc_salvar'),
 
 
 
 url(r'^s2299-dmdev/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_dmdev.apagar', 
+        s2299_dmdev_views.apagar, 
         name='s2299_dmdev_apagar'),
 
 url(r'^s2299-dmdev/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_dmdev.listar', 
+        s2299_dmdev_views.listar, 
         name='s2299_dmdev'),
 
 url(r'^s2299-dmdev/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_dmdev.salvar', 
+        s2299_dmdev_views.salvar, 
         name='s2299_dmdev_salvar'),
 
 
 
 url(r'^s2299-infoperapur/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur.apagar', 
+        s2299_infoperapur_views.apagar, 
         name='s2299_infoperapur_apagar'),
 
 url(r'^s2299-infoperapur/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur.listar', 
+        s2299_infoperapur_views.listar, 
         name='s2299_infoperapur'),
 
 url(r'^s2299-infoperapur/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur.salvar', 
+        s2299_infoperapur_views.salvar, 
         name='s2299_infoperapur_salvar'),
 
 
 
 url(r'^s2299-infoperapur-ideestablot/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_ideestablot.apagar', 
+        s2299_infoperapur_ideestablot_views.apagar, 
         name='s2299_infoperapur_ideestablot_apagar'),
 
 url(r'^s2299-infoperapur-ideestablot/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_ideestablot.listar', 
+        s2299_infoperapur_ideestablot_views.listar, 
         name='s2299_infoperapur_ideestablot'),
 
 url(r'^s2299-infoperapur-ideestablot/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_ideestablot.salvar', 
+        s2299_infoperapur_ideestablot_views.salvar, 
         name='s2299_infoperapur_ideestablot_salvar'),
 
 
 
 url(r'^s2299-infoperapur-detverbas/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_detverbas.apagar', 
+        s2299_infoperapur_detverbas_views.apagar, 
         name='s2299_infoperapur_detverbas_apagar'),
 
 url(r'^s2299-infoperapur-detverbas/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_detverbas.listar', 
+        s2299_infoperapur_detverbas_views.listar, 
         name='s2299_infoperapur_detverbas'),
 
 url(r'^s2299-infoperapur-detverbas/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_detverbas.salvar', 
+        s2299_infoperapur_detverbas_views.salvar, 
         name='s2299_infoperapur_detverbas_salvar'),
 
 
 
 url(r'^s2299-infoperapur-infosaudecolet/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_infosaudecolet.apagar', 
+        s2299_infoperapur_infosaudecolet_views.apagar, 
         name='s2299_infoperapur_infosaudecolet_apagar'),
 
 url(r'^s2299-infoperapur-infosaudecolet/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_infosaudecolet.listar', 
+        s2299_infoperapur_infosaudecolet_views.listar, 
         name='s2299_infoperapur_infosaudecolet'),
 
 url(r'^s2299-infoperapur-infosaudecolet/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_infosaudecolet.salvar', 
+        s2299_infoperapur_infosaudecolet_views.salvar, 
         name='s2299_infoperapur_infosaudecolet_salvar'),
 
 
 
 url(r'^s2299-infoperapur-detoper/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_detoper.apagar', 
+        s2299_infoperapur_detoper_views.apagar, 
         name='s2299_infoperapur_detoper_apagar'),
 
 url(r'^s2299-infoperapur-detoper/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_detoper.listar', 
+        s2299_infoperapur_detoper_views.listar, 
         name='s2299_infoperapur_detoper'),
 
 url(r'^s2299-infoperapur-detoper/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_detoper.salvar', 
+        s2299_infoperapur_detoper_views.salvar, 
         name='s2299_infoperapur_detoper_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2299-infoperapur-detplano/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_detplano.apagar', 
+        s2299_infoperapur_detplano_views.apagar, 
         name='s2299_infoperapur_detplano_apagar'),
 
 url(r'^s2299-infoperapur-detplano/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_detplano.listar', 
+        s2299_infoperapur_detplano_views.listar, 
         name='s2299_infoperapur_detplano'),
 
 url(r'^s2299-infoperapur-detplano/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_detplano.salvar', 
+        s2299_infoperapur_detplano_views.salvar, 
         name='s2299_infoperapur_detplano_salvar'),
 
 
 
 url(r'^s2299-infoperapur-infoagnocivo/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_infoagnocivo.apagar', 
+        s2299_infoperapur_infoagnocivo_views.apagar, 
         name='s2299_infoperapur_infoagnocivo_apagar'),
 
 url(r'^s2299-infoperapur-infoagnocivo/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_infoagnocivo.listar', 
+        s2299_infoperapur_infoagnocivo_views.listar, 
         name='s2299_infoperapur_infoagnocivo'),
 
 url(r'^s2299-infoperapur-infoagnocivo/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_infoagnocivo.salvar', 
+        s2299_infoperapur_infoagnocivo_views.salvar, 
         name='s2299_infoperapur_infoagnocivo_salvar'),
 
 
 
 url(r'^s2299-infoperapur-infosimples/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_infosimples.apagar', 
+        s2299_infoperapur_infosimples_views.apagar, 
         name='s2299_infoperapur_infosimples_apagar'),
 
 url(r'^s2299-infoperapur-infosimples/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_infosimples.listar', 
+        s2299_infoperapur_infosimples_views.listar, 
         name='s2299_infoperapur_infosimples'),
 
 url(r'^s2299-infoperapur-infosimples/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperapur_infosimples.salvar', 
+        s2299_infoperapur_infosimples_views.salvar, 
         name='s2299_infoperapur_infosimples_salvar'),
 
 
 
 url(r'^s2299-infoperant/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant.apagar', 
+        s2299_infoperant_views.apagar, 
         name='s2299_infoperant_apagar'),
 
 url(r'^s2299-infoperant/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant.listar', 
+        s2299_infoperant_views.listar, 
         name='s2299_infoperant'),
 
 url(r'^s2299-infoperant/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant.salvar', 
+        s2299_infoperant_views.salvar, 
         name='s2299_infoperant_salvar'),
 
 
 
 url(r'^s2299-infoperant-ideadc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant_ideadc.apagar', 
+        s2299_infoperant_ideadc_views.apagar, 
         name='s2299_infoperant_ideadc_apagar'),
 
 url(r'^s2299-infoperant-ideadc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant_ideadc.listar', 
+        s2299_infoperant_ideadc_views.listar, 
         name='s2299_infoperant_ideadc'),
 
 url(r'^s2299-infoperant-ideadc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant_ideadc.salvar', 
+        s2299_infoperant_ideadc_views.salvar, 
         name='s2299_infoperant_ideadc_salvar'),
 
 
 
 url(r'^s2299-infoperant-ideperiodo/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant_ideperiodo.apagar', 
+        s2299_infoperant_ideperiodo_views.apagar, 
         name='s2299_infoperant_ideperiodo_apagar'),
 
 url(r'^s2299-infoperant-ideperiodo/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant_ideperiodo.listar', 
+        s2299_infoperant_ideperiodo_views.listar, 
         name='s2299_infoperant_ideperiodo'),
 
 url(r'^s2299-infoperant-ideperiodo/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant_ideperiodo.salvar', 
+        s2299_infoperant_ideperiodo_views.salvar, 
         name='s2299_infoperant_ideperiodo_salvar'),
 
 
 
 url(r'^s2299-infoperant-ideestablot/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant_ideestablot.apagar', 
+        s2299_infoperant_ideestablot_views.apagar, 
         name='s2299_infoperant_ideestablot_apagar'),
 
 url(r'^s2299-infoperant-ideestablot/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant_ideestablot.listar', 
+        s2299_infoperant_ideestablot_views.listar, 
         name='s2299_infoperant_ideestablot'),
 
 url(r'^s2299-infoperant-ideestablot/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant_ideestablot.salvar', 
+        s2299_infoperant_ideestablot_views.salvar, 
         name='s2299_infoperant_ideestablot_salvar'),
 
 
 
 url(r'^s2299-infoperant-detverbas/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant_detverbas.apagar', 
+        s2299_infoperant_detverbas_views.apagar, 
         name='s2299_infoperant_detverbas_apagar'),
 
 url(r'^s2299-infoperant-detverbas/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant_detverbas.listar', 
+        s2299_infoperant_detverbas_views.listar, 
         name='s2299_infoperant_detverbas'),
 
 url(r'^s2299-infoperant-detverbas/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant_detverbas.salvar', 
+        s2299_infoperant_detverbas_views.salvar, 
         name='s2299_infoperant_detverbas_salvar'),
 
 
 
 url(r'^s2299-infoperant-infoagnocivo/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant_infoagnocivo.apagar', 
+        s2299_infoperant_infoagnocivo_views.apagar, 
         name='s2299_infoperant_infoagnocivo_apagar'),
 
 url(r'^s2299-infoperant-infoagnocivo/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant_infoagnocivo.listar', 
+        s2299_infoperant_infoagnocivo_views.listar, 
         name='s2299_infoperant_infoagnocivo'),
 
 url(r'^s2299-infoperant-infoagnocivo/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant_infoagnocivo.salvar', 
+        s2299_infoperant_infoagnocivo_views.salvar, 
         name='s2299_infoperant_infoagnocivo_salvar'),
 
 
 
 url(r'^s2299-infoperant-infosimples/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant_infosimples.apagar', 
+        s2299_infoperant_infosimples_views.apagar, 
         name='s2299_infoperant_infosimples_apagar'),
 
 url(r'^s2299-infoperant-infosimples/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant_infosimples.listar', 
+        s2299_infoperant_infosimples_views.listar, 
         name='s2299_infoperant_infosimples'),
 
 url(r'^s2299-infoperant-infosimples/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infoperant_infosimples.salvar', 
+        s2299_infoperant_infosimples_views.salvar, 
         name='s2299_infoperant_infosimples_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2299-infotrabinterm/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm.apagar', 
+        s2299_infotrabinterm_views.apagar, 
         name='s2299_infotrabinterm_apagar'),
 
 url(r'^s2299-infotrabinterm/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm.listar', 
+        s2299_infotrabinterm_views.listar, 
         name='s2299_infotrabinterm'),
 
 url(r'^s2299-infotrabinterm/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm.salvar', 
+        s2299_infotrabinterm_views.salvar, 
         name='s2299_infotrabinterm_salvar'),
 
 
 
 url(r'^s2299-infotrabinterm-procjudtrab/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm_procjudtrab.apagar', 
+        s2299_infotrabinterm_procjudtrab_views.apagar, 
         name='s2299_infotrabinterm_procjudtrab_apagar'),
 
 url(r'^s2299-infotrabinterm-procjudtrab/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm_procjudtrab.listar', 
+        s2299_infotrabinterm_procjudtrab_views.listar, 
         name='s2299_infotrabinterm_procjudtrab'),
 
 url(r'^s2299-infotrabinterm-procjudtrab/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm_procjudtrab.salvar', 
+        s2299_infotrabinterm_procjudtrab_views.salvar, 
         name='s2299_infotrabinterm_procjudtrab_salvar'),
 
 
 
 url(r'^s2299-infotrabinterm-infomv/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm_infomv.apagar', 
+        s2299_infotrabinterm_infomv_views.apagar, 
         name='s2299_infotrabinterm_infomv_apagar'),
 
 url(r'^s2299-infotrabinterm-infomv/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm_infomv.listar', 
+        s2299_infotrabinterm_infomv_views.listar, 
         name='s2299_infotrabinterm_infomv'),
 
 url(r'^s2299-infotrabinterm-infomv/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm_infomv.salvar', 
+        s2299_infotrabinterm_infomv_views.salvar, 
         name='s2299_infotrabinterm_infomv_salvar'),
 
 
 
 url(r'^s2299-infotrabinterm-remunoutrempr/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm_remunoutrempr.apagar', 
+        s2299_infotrabinterm_remunoutrempr_views.apagar, 
         name='s2299_infotrabinterm_remunoutrempr_apagar'),
 
 url(r'^s2299-infotrabinterm-remunoutrempr/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm_remunoutrempr.listar', 
+        s2299_infotrabinterm_remunoutrempr_views.listar, 
         name='s2299_infotrabinterm_remunoutrempr'),
 
 url(r'^s2299-infotrabinterm-remunoutrempr/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm_remunoutrempr.salvar', 
+        s2299_infotrabinterm_remunoutrempr_views.salvar, 
         name='s2299_infotrabinterm_remunoutrempr_salvar'),
 
 
 
 url(r'^s2299-infotrabinterm-proccs/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm_proccs.apagar', 
+        s2299_infotrabinterm_proccs_views.apagar, 
         name='s2299_infotrabinterm_proccs_apagar'),
 
 url(r'^s2299-infotrabinterm-proccs/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm_proccs.listar', 
+        s2299_infotrabinterm_proccs_views.listar, 
         name='s2299_infotrabinterm_proccs'),
 
 url(r'^s2299-infotrabinterm-proccs/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm_proccs.salvar', 
+        s2299_infotrabinterm_proccs_views.salvar, 
         name='s2299_infotrabinterm_proccs_salvar'),
 
 
 
 url(r'^s2299-infotrabinterm-quarentena/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm_quarentena.apagar', 
+        s2299_infotrabinterm_quarentena_views.apagar, 
         name='s2299_infotrabinterm_quarentena_apagar'),
 
 url(r'^s2299-infotrabinterm-quarentena/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm_quarentena.listar', 
+        s2299_infotrabinterm_quarentena_views.listar, 
         name='s2299_infotrabinterm_quarentena'),
 
 url(r'^s2299-infotrabinterm-quarentena/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm_quarentena.salvar', 
+        s2299_infotrabinterm_quarentena_views.salvar, 
         name='s2299_infotrabinterm_quarentena_salvar'),
 
 
 
 url(r'^s2299-infotrabinterm-consigfgts/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm_consigfgts.apagar', 
+        s2299_infotrabinterm_consigfgts_views.apagar, 
         name='s2299_infotrabinterm_consigfgts_apagar'),
 
 url(r'^s2299-infotrabinterm-consigfgts/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm_consigfgts.listar', 
+        s2299_infotrabinterm_consigfgts_views.listar, 
         name='s2299_infotrabinterm_consigfgts'),
 
 url(r'^s2299-infotrabinterm-consigfgts/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2299.views.s2299_infotrabinterm_consigfgts.salvar', 
+        s2299_infotrabinterm_consigfgts_views.salvar, 
         name='s2299_infotrabinterm_consigfgts_salvar'),
 
 
 
 
 
-)
+]

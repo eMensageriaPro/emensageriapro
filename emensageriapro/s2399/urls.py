@@ -1,8 +1,24 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s2399.views import s2399_verbasresc as s2399_verbasresc_views
+from emensageriapro.s2399.views import s2399_dmdev as s2399_dmdev_views
+from emensageriapro.s2399.views import s2399_ideestablot as s2399_ideestablot_views
+from emensageriapro.s2399.views import s2399_detverbas as s2399_detverbas_views
+from emensageriapro.s2399.views import s2399_infosaudecolet as s2399_infosaudecolet_views
+from emensageriapro.s2399.views import s2399_detoper as s2399_detoper_views
+from emensageriapro.s2399.views import s2399_detplano as s2399_detplano_views
+from emensageriapro.s2399.views import s2399_infoagnocivo as s2399_infoagnocivo_views
+from emensageriapro.s2399.views import s2399_infosimples as s2399_infosimples_views
+from emensageriapro.s2399.views import s2399_procjudtrab as s2399_procjudtrab_views
+from emensageriapro.s2399.views import s2399_infomv as s2399_infomv_views
+from emensageriapro.s2399.views import s2399_remunoutrempr as s2399_remunoutrempr_views
+from emensageriapro.s2399.views import s2399_quarentena as s2399_quarentena_views
+
+
 
 """
 
@@ -37,197 +53,192 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s2399-verbasresc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_verbasresc.apagar', 
+        s2399_verbasresc_views.apagar, 
         name='s2399_verbasresc_apagar'),
 
 url(r'^s2399-verbasresc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_verbasresc.listar', 
+        s2399_verbasresc_views.listar, 
         name='s2399_verbasresc'),
 
 url(r'^s2399-verbasresc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_verbasresc.salvar', 
+        s2399_verbasresc_views.salvar, 
         name='s2399_verbasresc_salvar'),
 
 
 
 url(r'^s2399-dmdev/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_dmdev.apagar', 
+        s2399_dmdev_views.apagar, 
         name='s2399_dmdev_apagar'),
 
 url(r'^s2399-dmdev/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_dmdev.listar', 
+        s2399_dmdev_views.listar, 
         name='s2399_dmdev'),
 
 url(r'^s2399-dmdev/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_dmdev.salvar', 
+        s2399_dmdev_views.salvar, 
         name='s2399_dmdev_salvar'),
 
 
 
 url(r'^s2399-ideestablot/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_ideestablot.apagar', 
+        s2399_ideestablot_views.apagar, 
         name='s2399_ideestablot_apagar'),
 
 url(r'^s2399-ideestablot/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_ideestablot.listar', 
+        s2399_ideestablot_views.listar, 
         name='s2399_ideestablot'),
 
 url(r'^s2399-ideestablot/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_ideestablot.salvar', 
+        s2399_ideestablot_views.salvar, 
         name='s2399_ideestablot_salvar'),
 
 
 
 url(r'^s2399-detverbas/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_detverbas.apagar', 
+        s2399_detverbas_views.apagar, 
         name='s2399_detverbas_apagar'),
 
 url(r'^s2399-detverbas/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_detverbas.listar', 
+        s2399_detverbas_views.listar, 
         name='s2399_detverbas'),
 
 url(r'^s2399-detverbas/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_detverbas.salvar', 
+        s2399_detverbas_views.salvar, 
         name='s2399_detverbas_salvar'),
 
 
 
 url(r'^s2399-infosaudecolet/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_infosaudecolet.apagar', 
+        s2399_infosaudecolet_views.apagar, 
         name='s2399_infosaudecolet_apagar'),
 
 url(r'^s2399-infosaudecolet/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_infosaudecolet.listar', 
+        s2399_infosaudecolet_views.listar, 
         name='s2399_infosaudecolet'),
 
 url(r'^s2399-infosaudecolet/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_infosaudecolet.salvar', 
+        s2399_infosaudecolet_views.salvar, 
         name='s2399_infosaudecolet_salvar'),
 
 
 
 url(r'^s2399-detoper/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_detoper.apagar', 
+        s2399_detoper_views.apagar, 
         name='s2399_detoper_apagar'),
 
 url(r'^s2399-detoper/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_detoper.listar', 
+        s2399_detoper_views.listar, 
         name='s2399_detoper'),
 
 url(r'^s2399-detoper/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_detoper.salvar', 
+        s2399_detoper_views.salvar, 
         name='s2399_detoper_salvar'),
 
 
 
 url(r'^s2399-detplano/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_detplano.apagar', 
+        s2399_detplano_views.apagar, 
         name='s2399_detplano_apagar'),
 
 url(r'^s2399-detplano/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_detplano.listar', 
+        s2399_detplano_views.listar, 
         name='s2399_detplano'),
 
 url(r'^s2399-detplano/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_detplano.salvar', 
+        s2399_detplano_views.salvar, 
         name='s2399_detplano_salvar'),
 
 
 
 url(r'^s2399-infoagnocivo/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_infoagnocivo.apagar', 
+        s2399_infoagnocivo_views.apagar, 
         name='s2399_infoagnocivo_apagar'),
 
 url(r'^s2399-infoagnocivo/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_infoagnocivo.listar', 
+        s2399_infoagnocivo_views.listar, 
         name='s2399_infoagnocivo'),
 
 url(r'^s2399-infoagnocivo/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_infoagnocivo.salvar', 
+        s2399_infoagnocivo_views.salvar, 
         name='s2399_infoagnocivo_salvar'),
 
 
 
 url(r'^s2399-infosimples/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_infosimples.apagar', 
+        s2399_infosimples_views.apagar, 
         name='s2399_infosimples_apagar'),
 
 url(r'^s2399-infosimples/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_infosimples.listar', 
+        s2399_infosimples_views.listar, 
         name='s2399_infosimples'),
 
 url(r'^s2399-infosimples/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_infosimples.salvar', 
+        s2399_infosimples_views.salvar, 
         name='s2399_infosimples_salvar'),
 
 
 
 url(r'^s2399-procjudtrab/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_procjudtrab.apagar', 
+        s2399_procjudtrab_views.apagar, 
         name='s2399_procjudtrab_apagar'),
 
 url(r'^s2399-procjudtrab/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_procjudtrab.listar', 
+        s2399_procjudtrab_views.listar, 
         name='s2399_procjudtrab'),
 
 url(r'^s2399-procjudtrab/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_procjudtrab.salvar', 
+        s2399_procjudtrab_views.salvar, 
         name='s2399_procjudtrab_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2399-infomv/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_infomv.apagar', 
+        s2399_infomv_views.apagar, 
         name='s2399_infomv_apagar'),
 
 url(r'^s2399-infomv/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_infomv.listar', 
+        s2399_infomv_views.listar, 
         name='s2399_infomv'),
 
 url(r'^s2399-infomv/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_infomv.salvar', 
+        s2399_infomv_views.salvar, 
         name='s2399_infomv_salvar'),
 
 
 
 url(r'^s2399-remunoutrempr/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_remunoutrempr.apagar', 
+        s2399_remunoutrempr_views.apagar, 
         name='s2399_remunoutrempr_apagar'),
 
 url(r'^s2399-remunoutrempr/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_remunoutrempr.listar', 
+        s2399_remunoutrempr_views.listar, 
         name='s2399_remunoutrempr'),
 
 url(r'^s2399-remunoutrempr/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_remunoutrempr.salvar', 
+        s2399_remunoutrempr_views.salvar, 
         name='s2399_remunoutrempr_salvar'),
 
 
 
 url(r'^s2399-quarentena/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_quarentena.apagar', 
+        s2399_quarentena_views.apagar, 
         name='s2399_quarentena_apagar'),
 
 url(r'^s2399-quarentena/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_quarentena.listar', 
+        s2399_quarentena_views.listar, 
         name='s2399_quarentena'),
 
 url(r'^s2399-quarentena/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2399.views.s2399_quarentena.salvar', 
+        s2399_quarentena_views.salvar, 
         name='s2399_quarentena_salvar'),
 
 
 
 
 
-)
+]

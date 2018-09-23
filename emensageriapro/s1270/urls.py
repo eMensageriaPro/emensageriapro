@@ -1,8 +1,12 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s1270.views import s1270_remunavnp as s1270_remunavnp_views
+
+
 
 """
 
@@ -37,25 +41,24 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s1270-remunavnp/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1270.views.s1270_remunavnp.apagar', 
+        s1270_remunavnp_views.apagar, 
         name='s1270_remunavnp_apagar'),
 
 url(r'^s1270-remunavnp/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1270.views.s1270_remunavnp.listar', 
+        s1270_remunavnp_views.listar, 
         name='s1270_remunavnp'),
 
 url(r'^s1270-remunavnp/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1270.views.s1270_remunavnp.salvar', 
+        s1270_remunavnp_views.salvar, 
         name='s1270_remunavnp_salvar'),
 
 
 
 
 
-)
+]

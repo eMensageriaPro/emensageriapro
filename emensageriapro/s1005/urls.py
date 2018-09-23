@@ -1,8 +1,29 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s1005.views import s1005_inclusao as s1005_inclusao_views
+from emensageriapro.s1005.views import s1005_inclusao_procadmjudrat as s1005_inclusao_procadmjudrat_views
+from emensageriapro.s1005.views import s1005_inclusao_procadmjudfap as s1005_inclusao_procadmjudfap_views
+from emensageriapro.s1005.views import s1005_inclusao_infocaepf as s1005_inclusao_infocaepf_views
+from emensageriapro.s1005.views import s1005_inclusao_infoobra as s1005_inclusao_infoobra_views
+from emensageriapro.s1005.views import s1005_inclusao_infoenteduc as s1005_inclusao_infoenteduc_views
+from emensageriapro.s1005.views import s1005_inclusao_infopcd as s1005_inclusao_infopcd_views
+from emensageriapro.s1005.views import s1005_inclusao_infosst as s1005_inclusao_infosst_views
+from emensageriapro.s1005.views import s1005_alteracao as s1005_alteracao_views
+from emensageriapro.s1005.views import s1005_alteracao_procadmjudrat as s1005_alteracao_procadmjudrat_views
+from emensageriapro.s1005.views import s1005_alteracao_procadmjudfap as s1005_alteracao_procadmjudfap_views
+from emensageriapro.s1005.views import s1005_alteracao_infocaepf as s1005_alteracao_infocaepf_views
+from emensageriapro.s1005.views import s1005_alteracao_infoobra as s1005_alteracao_infoobra_views
+from emensageriapro.s1005.views import s1005_alteracao_infoenteduc as s1005_alteracao_infoenteduc_views
+from emensageriapro.s1005.views import s1005_alteracao_infopcd as s1005_alteracao_infopcd_views
+from emensageriapro.s1005.views import s1005_alteracao_novavalidade as s1005_alteracao_novavalidade_views
+from emensageriapro.s1005.views import s1005_alteracao_infosst as s1005_alteracao_infosst_views
+from emensageriapro.s1005.views import s1005_exclusao as s1005_exclusao_views
+
+
 
 """
 
@@ -37,267 +58,262 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s1005-inclusao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao.apagar', 
+        s1005_inclusao_views.apagar, 
         name='s1005_inclusao_apagar'),
 
 url(r'^s1005-inclusao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao.listar', 
+        s1005_inclusao_views.listar, 
         name='s1005_inclusao'),
 
 url(r'^s1005-inclusao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao.salvar', 
+        s1005_inclusao_views.salvar, 
         name='s1005_inclusao_salvar'),
 
 
 
 url(r'^s1005-inclusao-procadmjudrat/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_procadmjudrat.apagar', 
+        s1005_inclusao_procadmjudrat_views.apagar, 
         name='s1005_inclusao_procadmjudrat_apagar'),
 
 url(r'^s1005-inclusao-procadmjudrat/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_procadmjudrat.listar', 
+        s1005_inclusao_procadmjudrat_views.listar, 
         name='s1005_inclusao_procadmjudrat'),
 
 url(r'^s1005-inclusao-procadmjudrat/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_procadmjudrat.salvar', 
+        s1005_inclusao_procadmjudrat_views.salvar, 
         name='s1005_inclusao_procadmjudrat_salvar'),
 
 
 
 url(r'^s1005-inclusao-procadmjudfap/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_procadmjudfap.apagar', 
+        s1005_inclusao_procadmjudfap_views.apagar, 
         name='s1005_inclusao_procadmjudfap_apagar'),
 
 url(r'^s1005-inclusao-procadmjudfap/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_procadmjudfap.listar', 
+        s1005_inclusao_procadmjudfap_views.listar, 
         name='s1005_inclusao_procadmjudfap'),
 
 url(r'^s1005-inclusao-procadmjudfap/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_procadmjudfap.salvar', 
+        s1005_inclusao_procadmjudfap_views.salvar, 
         name='s1005_inclusao_procadmjudfap_salvar'),
 
 
 
 url(r'^s1005-inclusao-infocaepf/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_infocaepf.apagar', 
+        s1005_inclusao_infocaepf_views.apagar, 
         name='s1005_inclusao_infocaepf_apagar'),
 
 url(r'^s1005-inclusao-infocaepf/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_infocaepf.listar', 
+        s1005_inclusao_infocaepf_views.listar, 
         name='s1005_inclusao_infocaepf'),
 
 url(r'^s1005-inclusao-infocaepf/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_infocaepf.salvar', 
+        s1005_inclusao_infocaepf_views.salvar, 
         name='s1005_inclusao_infocaepf_salvar'),
 
 
 
 url(r'^s1005-inclusao-infoobra/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_infoobra.apagar', 
+        s1005_inclusao_infoobra_views.apagar, 
         name='s1005_inclusao_infoobra_apagar'),
 
 url(r'^s1005-inclusao-infoobra/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_infoobra.listar', 
+        s1005_inclusao_infoobra_views.listar, 
         name='s1005_inclusao_infoobra'),
 
 url(r'^s1005-inclusao-infoobra/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_infoobra.salvar', 
+        s1005_inclusao_infoobra_views.salvar, 
         name='s1005_inclusao_infoobra_salvar'),
 
 
 
 url(r'^s1005-inclusao-infoenteduc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_infoenteduc.apagar', 
+        s1005_inclusao_infoenteduc_views.apagar, 
         name='s1005_inclusao_infoenteduc_apagar'),
 
 url(r'^s1005-inclusao-infoenteduc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_infoenteduc.listar', 
+        s1005_inclusao_infoenteduc_views.listar, 
         name='s1005_inclusao_infoenteduc'),
 
 url(r'^s1005-inclusao-infoenteduc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_infoenteduc.salvar', 
+        s1005_inclusao_infoenteduc_views.salvar, 
         name='s1005_inclusao_infoenteduc_salvar'),
 
 
 
 url(r'^s1005-inclusao-infopcd/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_infopcd.apagar', 
+        s1005_inclusao_infopcd_views.apagar, 
         name='s1005_inclusao_infopcd_apagar'),
 
 url(r'^s1005-inclusao-infopcd/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_infopcd.listar', 
+        s1005_inclusao_infopcd_views.listar, 
         name='s1005_inclusao_infopcd'),
 
 url(r'^s1005-inclusao-infopcd/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_infopcd.salvar', 
+        s1005_inclusao_infopcd_views.salvar, 
         name='s1005_inclusao_infopcd_salvar'),
 
 
 
 url(r'^s1005-inclusao-infosst/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_infosst.apagar', 
+        s1005_inclusao_infosst_views.apagar, 
         name='s1005_inclusao_infosst_apagar'),
 
 url(r'^s1005-inclusao-infosst/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_infosst.listar', 
+        s1005_inclusao_infosst_views.listar, 
         name='s1005_inclusao_infosst'),
 
 url(r'^s1005-inclusao-infosst/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_inclusao_infosst.salvar', 
+        s1005_inclusao_infosst_views.salvar, 
         name='s1005_inclusao_infosst_salvar'),
 
 
 
 url(r'^s1005-alteracao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao.apagar', 
+        s1005_alteracao_views.apagar, 
         name='s1005_alteracao_apagar'),
 
 url(r'^s1005-alteracao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao.listar', 
+        s1005_alteracao_views.listar, 
         name='s1005_alteracao'),
 
 url(r'^s1005-alteracao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao.salvar', 
+        s1005_alteracao_views.salvar, 
         name='s1005_alteracao_salvar'),
 
 
 
 url(r'^s1005-alteracao-procadmjudrat/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_procadmjudrat.apagar', 
+        s1005_alteracao_procadmjudrat_views.apagar, 
         name='s1005_alteracao_procadmjudrat_apagar'),
 
 url(r'^s1005-alteracao-procadmjudrat/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_procadmjudrat.listar', 
+        s1005_alteracao_procadmjudrat_views.listar, 
         name='s1005_alteracao_procadmjudrat'),
 
 url(r'^s1005-alteracao-procadmjudrat/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_procadmjudrat.salvar', 
+        s1005_alteracao_procadmjudrat_views.salvar, 
         name='s1005_alteracao_procadmjudrat_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s1005-alteracao-procadmjudfap/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_procadmjudfap.apagar', 
+        s1005_alteracao_procadmjudfap_views.apagar, 
         name='s1005_alteracao_procadmjudfap_apagar'),
 
 url(r'^s1005-alteracao-procadmjudfap/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_procadmjudfap.listar', 
+        s1005_alteracao_procadmjudfap_views.listar, 
         name='s1005_alteracao_procadmjudfap'),
 
 url(r'^s1005-alteracao-procadmjudfap/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_procadmjudfap.salvar', 
+        s1005_alteracao_procadmjudfap_views.salvar, 
         name='s1005_alteracao_procadmjudfap_salvar'),
 
 
 
 url(r'^s1005-alteracao-infocaepf/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_infocaepf.apagar', 
+        s1005_alteracao_infocaepf_views.apagar, 
         name='s1005_alteracao_infocaepf_apagar'),
 
 url(r'^s1005-alteracao-infocaepf/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_infocaepf.listar', 
+        s1005_alteracao_infocaepf_views.listar, 
         name='s1005_alteracao_infocaepf'),
 
 url(r'^s1005-alteracao-infocaepf/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_infocaepf.salvar', 
+        s1005_alteracao_infocaepf_views.salvar, 
         name='s1005_alteracao_infocaepf_salvar'),
 
 
 
 url(r'^s1005-alteracao-infoobra/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_infoobra.apagar', 
+        s1005_alteracao_infoobra_views.apagar, 
         name='s1005_alteracao_infoobra_apagar'),
 
 url(r'^s1005-alteracao-infoobra/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_infoobra.listar', 
+        s1005_alteracao_infoobra_views.listar, 
         name='s1005_alteracao_infoobra'),
 
 url(r'^s1005-alteracao-infoobra/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_infoobra.salvar', 
+        s1005_alteracao_infoobra_views.salvar, 
         name='s1005_alteracao_infoobra_salvar'),
 
 
 
 url(r'^s1005-alteracao-infoenteduc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_infoenteduc.apagar', 
+        s1005_alteracao_infoenteduc_views.apagar, 
         name='s1005_alteracao_infoenteduc_apagar'),
 
 url(r'^s1005-alteracao-infoenteduc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_infoenteduc.listar', 
+        s1005_alteracao_infoenteduc_views.listar, 
         name='s1005_alteracao_infoenteduc'),
 
 url(r'^s1005-alteracao-infoenteduc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_infoenteduc.salvar', 
+        s1005_alteracao_infoenteduc_views.salvar, 
         name='s1005_alteracao_infoenteduc_salvar'),
 
 
 
 url(r'^s1005-alteracao-infopcd/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_infopcd.apagar', 
+        s1005_alteracao_infopcd_views.apagar, 
         name='s1005_alteracao_infopcd_apagar'),
 
 url(r'^s1005-alteracao-infopcd/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_infopcd.listar', 
+        s1005_alteracao_infopcd_views.listar, 
         name='s1005_alteracao_infopcd'),
 
 url(r'^s1005-alteracao-infopcd/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_infopcd.salvar', 
+        s1005_alteracao_infopcd_views.salvar, 
         name='s1005_alteracao_infopcd_salvar'),
 
 
 
 url(r'^s1005-alteracao-novavalidade/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_novavalidade.apagar', 
+        s1005_alteracao_novavalidade_views.apagar, 
         name='s1005_alteracao_novavalidade_apagar'),
 
 url(r'^s1005-alteracao-novavalidade/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_novavalidade.listar', 
+        s1005_alteracao_novavalidade_views.listar, 
         name='s1005_alteracao_novavalidade'),
 
 url(r'^s1005-alteracao-novavalidade/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_novavalidade.salvar', 
+        s1005_alteracao_novavalidade_views.salvar, 
         name='s1005_alteracao_novavalidade_salvar'),
 
 
 
 url(r'^s1005-alteracao-infosst/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_infosst.apagar', 
+        s1005_alteracao_infosst_views.apagar, 
         name='s1005_alteracao_infosst_apagar'),
 
 url(r'^s1005-alteracao-infosst/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_infosst.listar', 
+        s1005_alteracao_infosst_views.listar, 
         name='s1005_alteracao_infosst'),
 
 url(r'^s1005-alteracao-infosst/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_alteracao_infosst.salvar', 
+        s1005_alteracao_infosst_views.salvar, 
         name='s1005_alteracao_infosst_salvar'),
 
 
 
 url(r'^s1005-exclusao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_exclusao.apagar', 
+        s1005_exclusao_views.apagar, 
         name='s1005_exclusao_apagar'),
 
 url(r'^s1005-exclusao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_exclusao.listar', 
+        s1005_exclusao_views.listar, 
         name='s1005_exclusao'),
 
 url(r'^s1005-exclusao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1005.views.s1005_exclusao.salvar', 
+        s1005_exclusao_views.salvar, 
         name='s1005_exclusao_salvar'),
 
 
 
 
 
-)
+]

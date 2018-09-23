@@ -1,8 +1,18 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s5001.views import s5001_procjudtrab as s5001_procjudtrab_views
+from emensageriapro.s5001.views import s5001_infocpcalc as s5001_infocpcalc_views
+from emensageriapro.s5001.views import s5001_infocp as s5001_infocp_views
+from emensageriapro.s5001.views import s5001_ideestablot as s5001_ideestablot_views
+from emensageriapro.s5001.views import s5001_infocategincid as s5001_infocategincid_views
+from emensageriapro.s5001.views import s5001_infobasecs as s5001_infobasecs_views
+from emensageriapro.s5001.views import s5001_calcterc as s5001_calcterc_views
+
+
 
 """
 
@@ -37,109 +47,108 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s5001-procjudtrab/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_procjudtrab.apagar', 
+        s5001_procjudtrab_views.apagar, 
         name='s5001_procjudtrab_apagar'),
 
 url(r'^s5001-procjudtrab/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_procjudtrab.listar', 
+        s5001_procjudtrab_views.listar, 
         name='s5001_procjudtrab'),
 
 url(r'^s5001-procjudtrab/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_procjudtrab.salvar', 
+        s5001_procjudtrab_views.salvar, 
         name='s5001_procjudtrab_salvar'),
 
 
 
 url(r'^s5001-infocpcalc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_infocpcalc.apagar', 
+        s5001_infocpcalc_views.apagar, 
         name='s5001_infocpcalc_apagar'),
 
 url(r'^s5001-infocpcalc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_infocpcalc.listar', 
+        s5001_infocpcalc_views.listar, 
         name='s5001_infocpcalc'),
 
 url(r'^s5001-infocpcalc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_infocpcalc.salvar', 
+        s5001_infocpcalc_views.salvar, 
         name='s5001_infocpcalc_salvar'),
 
 
 
 url(r'^s5001-infocp/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_infocp.apagar', 
+        s5001_infocp_views.apagar, 
         name='s5001_infocp_apagar'),
 
 url(r'^s5001-infocp/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_infocp.listar', 
+        s5001_infocp_views.listar, 
         name='s5001_infocp'),
 
 url(r'^s5001-infocp/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_infocp.salvar', 
+        s5001_infocp_views.salvar, 
         name='s5001_infocp_salvar'),
 
 
 
 url(r'^s5001-ideestablot/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_ideestablot.apagar', 
+        s5001_ideestablot_views.apagar, 
         name='s5001_ideestablot_apagar'),
 
 url(r'^s5001-ideestablot/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_ideestablot.listar', 
+        s5001_ideestablot_views.listar, 
         name='s5001_ideestablot'),
 
 url(r'^s5001-ideestablot/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_ideestablot.salvar', 
+        s5001_ideestablot_views.salvar, 
         name='s5001_ideestablot_salvar'),
 
 
 
 url(r'^s5001-infocategincid/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_infocategincid.apagar', 
+        s5001_infocategincid_views.apagar, 
         name='s5001_infocategincid_apagar'),
 
 url(r'^s5001-infocategincid/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_infocategincid.listar', 
+        s5001_infocategincid_views.listar, 
         name='s5001_infocategincid'),
 
 url(r'^s5001-infocategincid/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_infocategincid.salvar', 
+        s5001_infocategincid_views.salvar, 
         name='s5001_infocategincid_salvar'),
 
 
 
 url(r'^s5001-infobasecs/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_infobasecs.apagar', 
+        s5001_infobasecs_views.apagar, 
         name='s5001_infobasecs_apagar'),
 
 url(r'^s5001-infobasecs/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_infobasecs.listar', 
+        s5001_infobasecs_views.listar, 
         name='s5001_infobasecs'),
 
 url(r'^s5001-infobasecs/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_infobasecs.salvar', 
+        s5001_infobasecs_views.salvar, 
         name='s5001_infobasecs_salvar'),
 
 
 
 url(r'^s5001-calcterc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_calcterc.apagar', 
+        s5001_calcterc_views.apagar, 
         name='s5001_calcterc_apagar'),
 
 url(r'^s5001-calcterc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_calcterc.listar', 
+        s5001_calcterc_views.listar, 
         name='s5001_calcterc'),
 
 url(r'^s5001-calcterc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s5001.views.s5001_calcterc.salvar', 
+        s5001_calcterc_views.salvar, 
         name='s5001_calcterc_salvar'),
 
 
 
 
 
-)
+]

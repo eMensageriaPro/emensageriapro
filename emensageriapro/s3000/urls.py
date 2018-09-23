@@ -1,8 +1,13 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s3000.views import s3000_idetrabalhador as s3000_idetrabalhador_views
+from emensageriapro.s3000.views import s3000_idefolhapagto as s3000_idefolhapagto_views
+
+
 
 """
 
@@ -37,39 +42,38 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s3000-idetrabalhador/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s3000.views.s3000_idetrabalhador.apagar', 
+        s3000_idetrabalhador_views.apagar, 
         name='s3000_idetrabalhador_apagar'),
 
 url(r'^s3000-idetrabalhador/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s3000.views.s3000_idetrabalhador.listar', 
+        s3000_idetrabalhador_views.listar, 
         name='s3000_idetrabalhador'),
 
 url(r'^s3000-idetrabalhador/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s3000.views.s3000_idetrabalhador.salvar', 
+        s3000_idetrabalhador_views.salvar, 
         name='s3000_idetrabalhador_salvar'),
 
 
 
 url(r'^s3000-idefolhapagto/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s3000.views.s3000_idefolhapagto.apagar', 
+        s3000_idefolhapagto_views.apagar, 
         name='s3000_idefolhapagto_apagar'),
 
 url(r'^s3000-idefolhapagto/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s3000.views.s3000_idefolhapagto.listar', 
+        s3000_idefolhapagto_views.listar, 
         name='s3000_idefolhapagto'),
 
 url(r'^s3000-idefolhapagto/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s3000.views.s3000_idefolhapagto.salvar', 
+        s3000_idefolhapagto_views.salvar, 
         name='s3000_idefolhapagto_salvar'),
 
 
 
 
 
-)
+]

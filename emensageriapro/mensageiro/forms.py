@@ -105,6 +105,8 @@ class form_transmissores(forms.ModelForm):
         
         self.fields['envio_automatico'].widget.attrs['required'] = True
         
+        self.fields['verificar_predecessao'].widget.attrs['required'] = True
+        
         self.fields['validar_eventos'].widget.attrs['required'] = True
         
         self.fields['data_abertura'].widget.attrs['required'] = True

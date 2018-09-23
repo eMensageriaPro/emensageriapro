@@ -1,8 +1,14 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.r2040.views import r2040_recursosrep as r2040_recursosrep_views
+from emensageriapro.r2040.views import r2040_inforecurso as r2040_inforecurso_views
+from emensageriapro.r2040.views import r2040_infoproc as r2040_infoproc_views
+
+
 
 """
 
@@ -37,53 +43,52 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^r2040-recursosrep/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2040.views.r2040_recursosrep.apagar', 
+        r2040_recursosrep_views.apagar, 
         name='r2040_recursosrep_apagar'),
 
 url(r'^r2040-recursosrep/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2040.views.r2040_recursosrep.listar', 
+        r2040_recursosrep_views.listar, 
         name='r2040_recursosrep'),
 
 url(r'^r2040-recursosrep/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2040.views.r2040_recursosrep.salvar', 
+        r2040_recursosrep_views.salvar, 
         name='r2040_recursosrep_salvar'),
 
 
 
 url(r'^r2040-inforecurso/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2040.views.r2040_inforecurso.apagar', 
+        r2040_inforecurso_views.apagar, 
         name='r2040_inforecurso_apagar'),
 
 url(r'^r2040-inforecurso/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2040.views.r2040_inforecurso.listar', 
+        r2040_inforecurso_views.listar, 
         name='r2040_inforecurso'),
 
 url(r'^r2040-inforecurso/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2040.views.r2040_inforecurso.salvar', 
+        r2040_inforecurso_views.salvar, 
         name='r2040_inforecurso_salvar'),
 
 
 
 url(r'^r2040-infoproc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2040.views.r2040_infoproc.apagar', 
+        r2040_infoproc_views.apagar, 
         name='r2040_infoproc_apagar'),
 
 url(r'^r2040-infoproc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2040.views.r2040_infoproc.listar', 
+        r2040_infoproc_views.listar, 
         name='r2040_infoproc'),
 
 url(r'^r2040-infoproc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2040.views.r2040_infoproc.salvar', 
+        r2040_infoproc_views.salvar, 
         name='r2040_infoproc_salvar'),
 
 
 
 
 
-)
+]

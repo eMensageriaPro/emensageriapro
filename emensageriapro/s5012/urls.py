@@ -1,8 +1,12 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s5012.views import s5012_infocrcontrib as s5012_infocrcontrib_views
+
+
 
 """
 
@@ -37,25 +41,24 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s5012-infocrcontrib/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s5012.views.s5012_infocrcontrib.apagar', 
+        s5012_infocrcontrib_views.apagar, 
         name='s5012_infocrcontrib_apagar'),
 
 url(r'^s5012-infocrcontrib/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s5012.views.s5012_infocrcontrib.listar', 
+        s5012_infocrcontrib_views.listar, 
         name='s5012_infocrcontrib'),
 
 url(r'^s5012-infocrcontrib/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s5012.views.s5012_infocrcontrib.salvar', 
+        s5012_infocrcontrib_views.salvar, 
         name='s5012_infocrcontrib_salvar'),
 
 
 
 
 
-)
+]

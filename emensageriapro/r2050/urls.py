@@ -1,8 +1,13 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.r2050.views import r2050_tipocom as r2050_tipocom_views
+from emensageriapro.r2050.views import r2050_infoproc as r2050_infoproc_views
+
+
 
 """
 
@@ -37,39 +42,38 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^r2050-tipocom/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2050.views.r2050_tipocom.apagar', 
+        r2050_tipocom_views.apagar, 
         name='r2050_tipocom_apagar'),
 
 url(r'^r2050-tipocom/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2050.views.r2050_tipocom.listar', 
+        r2050_tipocom_views.listar, 
         name='r2050_tipocom'),
 
 url(r'^r2050-tipocom/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2050.views.r2050_tipocom.salvar', 
+        r2050_tipocom_views.salvar, 
         name='r2050_tipocom_salvar'),
 
 
 
 url(r'^r2050-infoproc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.r2050.views.r2050_infoproc.apagar', 
+        r2050_infoproc_views.apagar, 
         name='r2050_infoproc_apagar'),
 
 url(r'^r2050-infoproc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.r2050.views.r2050_infoproc.listar', 
+        r2050_infoproc_views.listar, 
         name='r2050_infoproc'),
 
 url(r'^r2050-infoproc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.r2050.views.r2050_infoproc.salvar', 
+        r2050_infoproc_views.salvar, 
         name='r2050_infoproc_salvar'),
 
 
 
 
 
-)
+]

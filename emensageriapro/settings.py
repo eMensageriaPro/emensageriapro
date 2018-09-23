@@ -45,10 +45,10 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import psycopg2
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import environ
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-import environ
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
@@ -67,16 +67,6 @@ SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-
-TEMPLATE_DEBUG = DEBUG
-
-# PASSWORD_HASHERS = [
-#     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-#     'django.contrib.auth.hashers.BCryptPasswordHasher',
-#     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-#     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
-#     'django.contrib.auth.hashers.Argon2PasswordHasher',
-# ]
 
 # Application definition
 
@@ -179,9 +169,26 @@ ROOT_URLCONF = 'emensageriapro.urls'
 
 WSGI_APPLICATION = 'emensageriapro.wsgi.application'
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR,  'templates'),
-)
+
+TEMPLATES = [
+  {
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'DIRS': [
+      os.path.join(BASE_DIR, 'templates'),
+    ],
+    'APP_DIRS': True,
+    'OPTIONS': {
+      'context_processors': [
+        'django.template.context_processors.debug',
+        'django.template.context_processors.request',
+        'django.contrib.auth.context_processors.auth',
+        'django.contrib.messages.context_processors.messages',
+      ],
+    },
+  },
+]
+
+
 
 # Internacionalização
 
@@ -201,11 +208,15 @@ USE_L10N = True
 
 USE_TZ = False
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = 'http://static.emensageria.com.br/'
-# STATICFILES_DIR = (
-#    os.path.join(BASE_DIR, 'static'),
-# )
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = '/Users/marcelovasconcellos/PycharmProjects/emensageriapro/static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(BASE_DIR,'static'),
+)  
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -220,6 +231,7 @@ VERSAO_LAYOUT_EFDREINF = "v1_03_02"
 
 # Hosts permitidos em Produção (obrigatório caso o DEBUG = False)
 ALLOWED_HOSTS = [
+    'localhost',
     env('ALLOWED_HOSTS'),
 ]
 

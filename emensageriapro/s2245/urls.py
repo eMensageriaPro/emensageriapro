@@ -1,8 +1,12 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s2245.views import s2245_ideprofresp as s2245_ideprofresp_views
+
+
 
 """
 
@@ -37,25 +41,24 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s2245-ideprofresp/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2245.views.s2245_ideprofresp.apagar', 
+        s2245_ideprofresp_views.apagar, 
         name='s2245_ideprofresp_apagar'),
 
 url(r'^s2245-ideprofresp/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2245.views.s2245_ideprofresp.listar', 
+        s2245_ideprofresp_views.listar, 
         name='s2245_ideprofresp'),
 
 url(r'^s2245-ideprofresp/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2245.views.s2245_ideprofresp.salvar', 
+        s2245_ideprofresp_views.salvar, 
         name='s2245_ideprofresp_salvar'),
 
 
 
 
 
-)
+]

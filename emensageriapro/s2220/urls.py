@@ -1,8 +1,14 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s2220.views import s2220_exmedocup as s2220_exmedocup_views
+from emensageriapro.s2220.views import s2220_exame as s2220_exame_views
+from emensageriapro.s2220.views import s2220_toxicologico as s2220_toxicologico_views
+
+
 
 """
 
@@ -37,53 +43,52 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s2220-exmedocup/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2220.views.s2220_exmedocup.apagar', 
+        s2220_exmedocup_views.apagar, 
         name='s2220_exmedocup_apagar'),
 
 url(r'^s2220-exmedocup/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2220.views.s2220_exmedocup.listar', 
+        s2220_exmedocup_views.listar, 
         name='s2220_exmedocup'),
 
 url(r'^s2220-exmedocup/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2220.views.s2220_exmedocup.salvar', 
+        s2220_exmedocup_views.salvar, 
         name='s2220_exmedocup_salvar'),
 
 
 
 url(r'^s2220-exame/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2220.views.s2220_exame.apagar', 
+        s2220_exame_views.apagar, 
         name='s2220_exame_apagar'),
 
 url(r'^s2220-exame/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2220.views.s2220_exame.listar', 
+        s2220_exame_views.listar, 
         name='s2220_exame'),
 
 url(r'^s2220-exame/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2220.views.s2220_exame.salvar', 
+        s2220_exame_views.salvar, 
         name='s2220_exame_salvar'),
 
 
 
 url(r'^s2220-toxicologico/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2220.views.s2220_toxicologico.apagar', 
+        s2220_toxicologico_views.apagar, 
         name='s2220_toxicologico_apagar'),
 
 url(r'^s2220-toxicologico/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2220.views.s2220_toxicologico.listar', 
+        s2220_toxicologico_views.listar, 
         name='s2220_toxicologico'),
 
 url(r'^s2220-toxicologico/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2220.views.s2220_toxicologico.salvar', 
+        s2220_toxicologico_views.salvar, 
         name='s2220_toxicologico_salvar'),
 
 
 
 
 
-)
+]

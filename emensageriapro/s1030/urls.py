@@ -1,8 +1,17 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s1030.views import s1030_inclusao as s1030_inclusao_views
+from emensageriapro.s1030.views import s1030_inclusao_cargopublico as s1030_inclusao_cargopublico_views
+from emensageriapro.s1030.views import s1030_alteracao as s1030_alteracao_views
+from emensageriapro.s1030.views import s1030_alteracao_cargopublico as s1030_alteracao_cargopublico_views
+from emensageriapro.s1030.views import s1030_alteracao_novavalidade as s1030_alteracao_novavalidade_views
+from emensageriapro.s1030.views import s1030_exclusao as s1030_exclusao_views
+
+
 
 """
 
@@ -37,95 +46,94 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s1030-inclusao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1030.views.s1030_inclusao.apagar', 
+        s1030_inclusao_views.apagar, 
         name='s1030_inclusao_apagar'),
 
 url(r'^s1030-inclusao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1030.views.s1030_inclusao.listar', 
+        s1030_inclusao_views.listar, 
         name='s1030_inclusao'),
 
 url(r'^s1030-inclusao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1030.views.s1030_inclusao.salvar', 
+        s1030_inclusao_views.salvar, 
         name='s1030_inclusao_salvar'),
 
 
 
 url(r'^s1030-inclusao-cargopublico/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1030.views.s1030_inclusao_cargopublico.apagar', 
+        s1030_inclusao_cargopublico_views.apagar, 
         name='s1030_inclusao_cargopublico_apagar'),
 
 url(r'^s1030-inclusao-cargopublico/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1030.views.s1030_inclusao_cargopublico.listar', 
+        s1030_inclusao_cargopublico_views.listar, 
         name='s1030_inclusao_cargopublico'),
 
 url(r'^s1030-inclusao-cargopublico/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1030.views.s1030_inclusao_cargopublico.salvar', 
+        s1030_inclusao_cargopublico_views.salvar, 
         name='s1030_inclusao_cargopublico_salvar'),
 
 
 
 url(r'^s1030-alteracao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1030.views.s1030_alteracao.apagar', 
+        s1030_alteracao_views.apagar, 
         name='s1030_alteracao_apagar'),
 
 url(r'^s1030-alteracao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1030.views.s1030_alteracao.listar', 
+        s1030_alteracao_views.listar, 
         name='s1030_alteracao'),
 
 url(r'^s1030-alteracao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1030.views.s1030_alteracao.salvar', 
+        s1030_alteracao_views.salvar, 
         name='s1030_alteracao_salvar'),
 
 
 
 url(r'^s1030-alteracao-cargopublico/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1030.views.s1030_alteracao_cargopublico.apagar', 
+        s1030_alteracao_cargopublico_views.apagar, 
         name='s1030_alteracao_cargopublico_apagar'),
 
 url(r'^s1030-alteracao-cargopublico/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1030.views.s1030_alteracao_cargopublico.listar', 
+        s1030_alteracao_cargopublico_views.listar, 
         name='s1030_alteracao_cargopublico'),
 
 url(r'^s1030-alteracao-cargopublico/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1030.views.s1030_alteracao_cargopublico.salvar', 
+        s1030_alteracao_cargopublico_views.salvar, 
         name='s1030_alteracao_cargopublico_salvar'),
 
 
 
 url(r'^s1030-alteracao-novavalidade/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1030.views.s1030_alteracao_novavalidade.apagar', 
+        s1030_alteracao_novavalidade_views.apagar, 
         name='s1030_alteracao_novavalidade_apagar'),
 
 url(r'^s1030-alteracao-novavalidade/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1030.views.s1030_alteracao_novavalidade.listar', 
+        s1030_alteracao_novavalidade_views.listar, 
         name='s1030_alteracao_novavalidade'),
 
 url(r'^s1030-alteracao-novavalidade/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1030.views.s1030_alteracao_novavalidade.salvar', 
+        s1030_alteracao_novavalidade_views.salvar, 
         name='s1030_alteracao_novavalidade_salvar'),
 
 
 
 url(r'^s1030-exclusao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s1030.views.s1030_exclusao.apagar', 
+        s1030_exclusao_views.apagar, 
         name='s1030_exclusao_apagar'),
 
 url(r'^s1030-exclusao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s1030.views.s1030_exclusao.listar', 
+        s1030_exclusao_views.listar, 
         name='s1030_exclusao'),
 
 url(r'^s1030-exclusao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s1030.views.s1030_exclusao.salvar', 
+        s1030_exclusao_views.salvar, 
         name='s1030_exclusao_salvar'),
 
 
 
 
 
-)
+]

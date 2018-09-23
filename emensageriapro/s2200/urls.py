@@ -1,8 +1,44 @@
 #coding:utf-8
-from django.conf.urls import patterns, include, url
+#from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s2200.views import s2200_documentos as s2200_documentos_views
+from emensageriapro.s2200.views import s2200_ctps as s2200_ctps_views
+from emensageriapro.s2200.views import s2200_ric as s2200_ric_views
+from emensageriapro.s2200.views import s2200_rg as s2200_rg_views
+from emensageriapro.s2200.views import s2200_rne as s2200_rne_views
+from emensageriapro.s2200.views import s2200_oc as s2200_oc_views
+from emensageriapro.s2200.views import s2200_cnh as s2200_cnh_views
+from emensageriapro.s2200.views import s2200_brasil as s2200_brasil_views
+from emensageriapro.s2200.views import s2200_exterior as s2200_exterior_views
+from emensageriapro.s2200.views import s2200_trabestrangeiro as s2200_trabestrangeiro_views
+from emensageriapro.s2200.views import s2200_infodeficiencia as s2200_infodeficiencia_views
+from emensageriapro.s2200.views import s2200_dependente as s2200_dependente_views
+from emensageriapro.s2200.views import s2200_aposentadoria as s2200_aposentadoria_views
+from emensageriapro.s2200.views import s2200_contato as s2200_contato_views
+from emensageriapro.s2200.views import s2200_infoceletista as s2200_infoceletista_views
+from emensageriapro.s2200.views import s2200_trabtemporario as s2200_trabtemporario_views
+from emensageriapro.s2200.views import s2200_ideestabvinc as s2200_ideestabvinc_views
+from emensageriapro.s2200.views import s2200_idetrabsubstituido as s2200_idetrabsubstituido_views
+from emensageriapro.s2200.views import s2200_aprend as s2200_aprend_views
+from emensageriapro.s2200.views import s2200_infoestatutario as s2200_infoestatutario_views
+from emensageriapro.s2200.views import s2200_infodecjud as s2200_infodecjud_views
+from emensageriapro.s2200.views import s2200_localtrabgeral as s2200_localtrabgeral_views
+from emensageriapro.s2200.views import s2200_localtrabdom as s2200_localtrabdom_views
+from emensageriapro.s2200.views import s2200_horcontratual as s2200_horcontratual_views
+from emensageriapro.s2200.views import s2200_horario as s2200_horario_views
+from emensageriapro.s2200.views import s2200_filiacaosindical as s2200_filiacaosindical_views
+from emensageriapro.s2200.views import s2200_alvarajudicial as s2200_alvarajudicial_views
+from emensageriapro.s2200.views import s2200_observacoes as s2200_observacoes_views
+from emensageriapro.s2200.views import s2200_sucessaovinc as s2200_sucessaovinc_views
+from emensageriapro.s2200.views import s2200_transfdom as s2200_transfdom_views
+from emensageriapro.s2200.views import s2200_afastamento as s2200_afastamento_views
+from emensageriapro.s2200.views import s2200_desligamento as s2200_desligamento_views
+from emensageriapro.s2200.views import s2200_cessao as s2200_cessao_views
+
+
 
 """
 
@@ -37,485 +73,472 @@ from django.conf.urls.static import static
 
 """
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = [
 
 
 
 url(r'^s2200-documentos/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_documentos.apagar', 
+        s2200_documentos_views.apagar, 
         name='s2200_documentos_apagar'),
 
 url(r'^s2200-documentos/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_documentos.listar', 
+        s2200_documentos_views.listar, 
         name='s2200_documentos'),
 
 url(r'^s2200-documentos/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_documentos.salvar', 
+        s2200_documentos_views.salvar, 
         name='s2200_documentos_salvar'),
 
 
 
 url(r'^s2200-ctps/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_ctps.apagar', 
+        s2200_ctps_views.apagar, 
         name='s2200_ctps_apagar'),
 
 url(r'^s2200-ctps/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_ctps.listar', 
+        s2200_ctps_views.listar, 
         name='s2200_ctps'),
 
 url(r'^s2200-ctps/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_ctps.salvar', 
+        s2200_ctps_views.salvar, 
         name='s2200_ctps_salvar'),
 
 
 
 url(r'^s2200-ric/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_ric.apagar', 
+        s2200_ric_views.apagar, 
         name='s2200_ric_apagar'),
 
 url(r'^s2200-ric/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_ric.listar', 
+        s2200_ric_views.listar, 
         name='s2200_ric'),
 
 url(r'^s2200-ric/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_ric.salvar', 
+        s2200_ric_views.salvar, 
         name='s2200_ric_salvar'),
 
 
 
 url(r'^s2200-rg/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_rg.apagar', 
+        s2200_rg_views.apagar, 
         name='s2200_rg_apagar'),
 
 url(r'^s2200-rg/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_rg.listar', 
+        s2200_rg_views.listar, 
         name='s2200_rg'),
 
 url(r'^s2200-rg/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_rg.salvar', 
+        s2200_rg_views.salvar, 
         name='s2200_rg_salvar'),
 
 
 
 url(r'^s2200-rne/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_rne.apagar', 
+        s2200_rne_views.apagar, 
         name='s2200_rne_apagar'),
 
 url(r'^s2200-rne/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_rne.listar', 
+        s2200_rne_views.listar, 
         name='s2200_rne'),
 
 url(r'^s2200-rne/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_rne.salvar', 
+        s2200_rne_views.salvar, 
         name='s2200_rne_salvar'),
 
 
 
 url(r'^s2200-oc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_oc.apagar', 
+        s2200_oc_views.apagar, 
         name='s2200_oc_apagar'),
 
 url(r'^s2200-oc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_oc.listar', 
+        s2200_oc_views.listar, 
         name='s2200_oc'),
 
 url(r'^s2200-oc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_oc.salvar', 
+        s2200_oc_views.salvar, 
         name='s2200_oc_salvar'),
 
 
 
 url(r'^s2200-cnh/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_cnh.apagar', 
+        s2200_cnh_views.apagar, 
         name='s2200_cnh_apagar'),
 
 url(r'^s2200-cnh/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_cnh.listar', 
+        s2200_cnh_views.listar, 
         name='s2200_cnh'),
 
 url(r'^s2200-cnh/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_cnh.salvar', 
+        s2200_cnh_views.salvar, 
         name='s2200_cnh_salvar'),
 
 
 
 url(r'^s2200-brasil/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_brasil.apagar', 
+        s2200_brasil_views.apagar, 
         name='s2200_brasil_apagar'),
 
 url(r'^s2200-brasil/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_brasil.listar', 
+        s2200_brasil_views.listar, 
         name='s2200_brasil'),
 
 url(r'^s2200-brasil/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_brasil.salvar', 
+        s2200_brasil_views.salvar, 
         name='s2200_brasil_salvar'),
 
 
 
 url(r'^s2200-exterior/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_exterior.apagar', 
+        s2200_exterior_views.apagar, 
         name='s2200_exterior_apagar'),
 
 url(r'^s2200-exterior/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_exterior.listar', 
+        s2200_exterior_views.listar, 
         name='s2200_exterior'),
 
 url(r'^s2200-exterior/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_exterior.salvar', 
+        s2200_exterior_views.salvar, 
         name='s2200_exterior_salvar'),
 
 
 
 url(r'^s2200-trabestrangeiro/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_trabestrangeiro.apagar', 
+        s2200_trabestrangeiro_views.apagar, 
         name='s2200_trabestrangeiro_apagar'),
 
 url(r'^s2200-trabestrangeiro/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_trabestrangeiro.listar', 
+        s2200_trabestrangeiro_views.listar, 
         name='s2200_trabestrangeiro'),
 
 url(r'^s2200-trabestrangeiro/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_trabestrangeiro.salvar', 
+        s2200_trabestrangeiro_views.salvar, 
         name='s2200_trabestrangeiro_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2200-infodeficiencia/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_infodeficiencia.apagar', 
+        s2200_infodeficiencia_views.apagar, 
         name='s2200_infodeficiencia_apagar'),
 
 url(r'^s2200-infodeficiencia/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_infodeficiencia.listar', 
+        s2200_infodeficiencia_views.listar, 
         name='s2200_infodeficiencia'),
 
 url(r'^s2200-infodeficiencia/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_infodeficiencia.salvar', 
+        s2200_infodeficiencia_views.salvar, 
         name='s2200_infodeficiencia_salvar'),
 
 
 
 url(r'^s2200-dependente/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_dependente.apagar', 
+        s2200_dependente_views.apagar, 
         name='s2200_dependente_apagar'),
 
 url(r'^s2200-dependente/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_dependente.listar', 
+        s2200_dependente_views.listar, 
         name='s2200_dependente'),
 
 url(r'^s2200-dependente/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_dependente.salvar', 
+        s2200_dependente_views.salvar, 
         name='s2200_dependente_salvar'),
 
 
 
 url(r'^s2200-aposentadoria/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_aposentadoria.apagar', 
+        s2200_aposentadoria_views.apagar, 
         name='s2200_aposentadoria_apagar'),
 
 url(r'^s2200-aposentadoria/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_aposentadoria.listar', 
+        s2200_aposentadoria_views.listar, 
         name='s2200_aposentadoria'),
 
 url(r'^s2200-aposentadoria/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_aposentadoria.salvar', 
+        s2200_aposentadoria_views.salvar, 
         name='s2200_aposentadoria_salvar'),
 
 
 
 url(r'^s2200-contato/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_contato.apagar', 
+        s2200_contato_views.apagar, 
         name='s2200_contato_apagar'),
 
 url(r'^s2200-contato/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_contato.listar', 
+        s2200_contato_views.listar, 
         name='s2200_contato'),
 
 url(r'^s2200-contato/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_contato.salvar', 
+        s2200_contato_views.salvar, 
         name='s2200_contato_salvar'),
 
 
 
 url(r'^s2200-infoceletista/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_infoceletista.apagar', 
+        s2200_infoceletista_views.apagar, 
         name='s2200_infoceletista_apagar'),
 
 url(r'^s2200-infoceletista/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_infoceletista.listar', 
+        s2200_infoceletista_views.listar, 
         name='s2200_infoceletista'),
 
 url(r'^s2200-infoceletista/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_infoceletista.salvar', 
+        s2200_infoceletista_views.salvar, 
         name='s2200_infoceletista_salvar'),
 
 
 
 url(r'^s2200-trabtemporario/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_trabtemporario.apagar', 
+        s2200_trabtemporario_views.apagar, 
         name='s2200_trabtemporario_apagar'),
 
 url(r'^s2200-trabtemporario/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_trabtemporario.listar', 
+        s2200_trabtemporario_views.listar, 
         name='s2200_trabtemporario'),
 
 url(r'^s2200-trabtemporario/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_trabtemporario.salvar', 
+        s2200_trabtemporario_views.salvar, 
         name='s2200_trabtemporario_salvar'),
 
 
 
 url(r'^s2200-ideestabvinc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_ideestabvinc.apagar', 
+        s2200_ideestabvinc_views.apagar, 
         name='s2200_ideestabvinc_apagar'),
 
 url(r'^s2200-ideestabvinc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_ideestabvinc.listar', 
+        s2200_ideestabvinc_views.listar, 
         name='s2200_ideestabvinc'),
 
 url(r'^s2200-ideestabvinc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_ideestabvinc.salvar', 
+        s2200_ideestabvinc_views.salvar, 
         name='s2200_ideestabvinc_salvar'),
 
 
 
 url(r'^s2200-idetrabsubstituido/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_idetrabsubstituido.apagar', 
+        s2200_idetrabsubstituido_views.apagar, 
         name='s2200_idetrabsubstituido_apagar'),
 
 url(r'^s2200-idetrabsubstituido/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_idetrabsubstituido.listar', 
+        s2200_idetrabsubstituido_views.listar, 
         name='s2200_idetrabsubstituido'),
 
 url(r'^s2200-idetrabsubstituido/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_idetrabsubstituido.salvar', 
+        s2200_idetrabsubstituido_views.salvar, 
         name='s2200_idetrabsubstituido_salvar'),
 
 
 
 url(r'^s2200-aprend/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_aprend.apagar', 
+        s2200_aprend_views.apagar, 
         name='s2200_aprend_apagar'),
 
 url(r'^s2200-aprend/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_aprend.listar', 
+        s2200_aprend_views.listar, 
         name='s2200_aprend'),
 
 url(r'^s2200-aprend/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_aprend.salvar', 
+        s2200_aprend_views.salvar, 
         name='s2200_aprend_salvar'),
 
 
 
 url(r'^s2200-infoestatutario/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_infoestatutario.apagar', 
+        s2200_infoestatutario_views.apagar, 
         name='s2200_infoestatutario_apagar'),
 
 url(r'^s2200-infoestatutario/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_infoestatutario.listar', 
+        s2200_infoestatutario_views.listar, 
         name='s2200_infoestatutario'),
 
 url(r'^s2200-infoestatutario/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_infoestatutario.salvar', 
+        s2200_infoestatutario_views.salvar, 
         name='s2200_infoestatutario_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2200-infodecjud/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_infodecjud.apagar', 
+        s2200_infodecjud_views.apagar, 
         name='s2200_infodecjud_apagar'),
 
 url(r'^s2200-infodecjud/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_infodecjud.listar', 
+        s2200_infodecjud_views.listar, 
         name='s2200_infodecjud'),
 
 url(r'^s2200-infodecjud/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_infodecjud.salvar', 
+        s2200_infodecjud_views.salvar, 
         name='s2200_infodecjud_salvar'),
 
 
 
 url(r'^s2200-localtrabgeral/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_localtrabgeral.apagar', 
+        s2200_localtrabgeral_views.apagar, 
         name='s2200_localtrabgeral_apagar'),
 
 url(r'^s2200-localtrabgeral/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_localtrabgeral.listar', 
+        s2200_localtrabgeral_views.listar, 
         name='s2200_localtrabgeral'),
 
 url(r'^s2200-localtrabgeral/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_localtrabgeral.salvar', 
+        s2200_localtrabgeral_views.salvar, 
         name='s2200_localtrabgeral_salvar'),
 
 
 
 url(r'^s2200-localtrabdom/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_localtrabdom.apagar', 
+        s2200_localtrabdom_views.apagar, 
         name='s2200_localtrabdom_apagar'),
 
 url(r'^s2200-localtrabdom/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_localtrabdom.listar', 
+        s2200_localtrabdom_views.listar, 
         name='s2200_localtrabdom'),
 
 url(r'^s2200-localtrabdom/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_localtrabdom.salvar', 
+        s2200_localtrabdom_views.salvar, 
         name='s2200_localtrabdom_salvar'),
 
 
 
 url(r'^s2200-horcontratual/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_horcontratual.apagar', 
+        s2200_horcontratual_views.apagar, 
         name='s2200_horcontratual_apagar'),
 
 url(r'^s2200-horcontratual/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_horcontratual.listar', 
+        s2200_horcontratual_views.listar, 
         name='s2200_horcontratual'),
 
 url(r'^s2200-horcontratual/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_horcontratual.salvar', 
+        s2200_horcontratual_views.salvar, 
         name='s2200_horcontratual_salvar'),
 
 
 
 url(r'^s2200-horario/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_horario.apagar', 
+        s2200_horario_views.apagar, 
         name='s2200_horario_apagar'),
 
 url(r'^s2200-horario/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_horario.listar', 
+        s2200_horario_views.listar, 
         name='s2200_horario'),
 
 url(r'^s2200-horario/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_horario.salvar', 
+        s2200_horario_views.salvar, 
         name='s2200_horario_salvar'),
 
 
 
 url(r'^s2200-filiacaosindical/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_filiacaosindical.apagar', 
+        s2200_filiacaosindical_views.apagar, 
         name='s2200_filiacaosindical_apagar'),
 
 url(r'^s2200-filiacaosindical/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_filiacaosindical.listar', 
+        s2200_filiacaosindical_views.listar, 
         name='s2200_filiacaosindical'),
 
 url(r'^s2200-filiacaosindical/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_filiacaosindical.salvar', 
+        s2200_filiacaosindical_views.salvar, 
         name='s2200_filiacaosindical_salvar'),
 
 
 
 url(r'^s2200-alvarajudicial/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_alvarajudicial.apagar', 
+        s2200_alvarajudicial_views.apagar, 
         name='s2200_alvarajudicial_apagar'),
 
 url(r'^s2200-alvarajudicial/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_alvarajudicial.listar', 
+        s2200_alvarajudicial_views.listar, 
         name='s2200_alvarajudicial'),
 
 url(r'^s2200-alvarajudicial/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_alvarajudicial.salvar', 
+        s2200_alvarajudicial_views.salvar, 
         name='s2200_alvarajudicial_salvar'),
 
 
 
 url(r'^s2200-observacoes/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_observacoes.apagar', 
+        s2200_observacoes_views.apagar, 
         name='s2200_observacoes_apagar'),
 
 url(r'^s2200-observacoes/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_observacoes.listar', 
+        s2200_observacoes_views.listar, 
         name='s2200_observacoes'),
 
 url(r'^s2200-observacoes/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_observacoes.salvar', 
+        s2200_observacoes_views.salvar, 
         name='s2200_observacoes_salvar'),
 
 
 
 url(r'^s2200-sucessaovinc/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_sucessaovinc.apagar', 
+        s2200_sucessaovinc_views.apagar, 
         name='s2200_sucessaovinc_apagar'),
 
 url(r'^s2200-sucessaovinc/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_sucessaovinc.listar', 
+        s2200_sucessaovinc_views.listar, 
         name='s2200_sucessaovinc'),
 
 url(r'^s2200-sucessaovinc/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_sucessaovinc.salvar', 
+        s2200_sucessaovinc_views.salvar, 
         name='s2200_sucessaovinc_salvar'),
 
 
 
 url(r'^s2200-transfdom/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_transfdom.apagar', 
+        s2200_transfdom_views.apagar, 
         name='s2200_transfdom_apagar'),
 
 url(r'^s2200-transfdom/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_transfdom.listar', 
+        s2200_transfdom_views.listar, 
         name='s2200_transfdom'),
 
 url(r'^s2200-transfdom/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_transfdom.salvar', 
+        s2200_transfdom_views.salvar, 
         name='s2200_transfdom_salvar'),
 
-)
-
-
-urlpatterns += patterns('',
 
 
 url(r'^s2200-afastamento/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_afastamento.apagar', 
+        s2200_afastamento_views.apagar, 
         name='s2200_afastamento_apagar'),
 
 url(r'^s2200-afastamento/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_afastamento.listar', 
+        s2200_afastamento_views.listar, 
         name='s2200_afastamento'),
 
 url(r'^s2200-afastamento/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_afastamento.salvar', 
+        s2200_afastamento_views.salvar, 
         name='s2200_afastamento_salvar'),
 
 
 
 url(r'^s2200-desligamento/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_desligamento.apagar', 
+        s2200_desligamento_views.apagar, 
         name='s2200_desligamento_apagar'),
 
 url(r'^s2200-desligamento/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_desligamento.listar', 
+        s2200_desligamento_views.listar, 
         name='s2200_desligamento'),
 
 url(r'^s2200-desligamento/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_desligamento.salvar', 
+        s2200_desligamento_views.salvar, 
         name='s2200_desligamento_salvar'),
 
 
 
 url(r'^s2200-cessao/apagar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_cessao.apagar', 
+        s2200_cessao_views.apagar, 
         name='s2200_cessao_apagar'),
 
 url(r'^s2200-cessao/listar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_cessao.listar', 
+        s2200_cessao_views.listar, 
         name='s2200_cessao'),
 
 url(r'^s2200-cessao/salvar/(?P<hash>.*)/$', 
-        'emensageriapro.s2200.views.s2200_cessao.salvar', 
+        s2200_cessao_views.salvar, 
         name='s2200_cessao_salvar'),
 
 
 
 
 
-)
+]
