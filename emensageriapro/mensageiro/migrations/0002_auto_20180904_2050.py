@@ -1488,34 +1488,6 @@ UNION
    FROM s2399_evttsvtermino
   WHERE s2399_evttsvtermino.excluido = false
 UNION
- SELECT s2400_evtcdbenprrp.id,
-    's2400'::text AS evento,
-    s2400_evtcdbenprrp.identidade,
-    s2400_evtcdbenprrp.transmissor_lote_esocial_id,
-    s2400_evtcdbenprrp.criado_em,
-    s2400_evtcdbenprrp.criado_por_id,
-    s2400_evtcdbenprrp.modificado_em,
-    s2400_evtcdbenprrp.modificado_por_id,
-    s2400_evtcdbenprrp.excluido,
-    2 AS grupo,
-    's2400_evtcdbenprrp'::text AS tabela,
-    's2400_evtcdbenprrp_salvar'::text AS tabela_salvar,
-    s2400_evtcdbenprrp.id AS ordem,
-    s2400_evtcdbenprrp.tpinsc,
-    s2400_evtcdbenprrp.nrinsc,
-    s2400_evtcdbenprrp.recibo_numero,
-    s2400_evtcdbenprrp.recibo_hash,
-    's2400_evtcdbenprrp_recibo'::text AS url_recibo,
-    s2400_evtcdbenprrp.processamento_codigo_resposta,
-    s2400_evtcdbenprrp.processamento_descricao_resposta,
-    s2400_evtcdbenprrp.validacao_precedencia,
-    s2400_evtcdbenprrp.validacoes,
-    s2400_evtcdbenprrp.status,
-    s2400_evtcdbenprrp.retornos_eventos_id,
-    s2400_evtcdbenprrp.ocorrencias
-   FROM s2400_evtcdbenprrp
-  WHERE s2400_evtcdbenprrp.excluido = false
-UNION
  SELECT s3000_evtexclusao.id,
     's3000'::text AS evento,
     s3000_evtexclusao.identidade,
