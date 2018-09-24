@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -221,6 +222,13 @@ class s1070alteracao(models.Model):
         ordering = ['s1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid', 'fimvalid', 'indautoria', 'indmatproc', 'observacao']
 
 
+
+class s1070alteracaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1070alteracao
+        fields = '__all__'
+            
+
 class s1070alteracaodadosProcJud(models.Model):
     s1070_alteracao = models.OneToOneField('s1070alteracao',
         related_name='%(class)s_s1070_alteracao')
@@ -243,6 +251,13 @@ class s1070alteracaodadosProcJud(models.Model):
         managed = True
         ordering = ['s1070_alteracao', 'ufvara', 'codmunic', 'idvara']
 
+
+
+class s1070alteracaodadosProcJudSerializer(ModelSerializer):
+    class Meta:
+        model = s1070alteracaodadosProcJud
+        fields = '__all__'
+            
 
 class s1070alteracaoinfoSusp(models.Model):
     s1070_alteracao = models.ForeignKey('s1070alteracao',
@@ -268,6 +283,13 @@ class s1070alteracaoinfoSusp(models.Model):
         ordering = ['s1070_alteracao', 'codsusp', 'indsusp', 'dtdecisao', 'inddeposito']
 
 
+
+class s1070alteracaoinfoSuspSerializer(ModelSerializer):
+    class Meta:
+        model = s1070alteracaoinfoSusp
+        fields = '__all__'
+            
+
 class s1070alteracaonovaValidade(models.Model):
     s1070_alteracao = models.OneToOneField('s1070alteracao',
         related_name='%(class)s_s1070_alteracao')
@@ -289,6 +311,13 @@ class s1070alteracaonovaValidade(models.Model):
         managed = True
         ordering = ['s1070_alteracao', 'inivalid', 'fimvalid']
 
+
+
+class s1070alteracaonovaValidadeSerializer(ModelSerializer):
+    class Meta:
+        model = s1070alteracaonovaValidade
+        fields = '__all__'
+            
 
 class s1070exclusao(models.Model):
     s1070_evttabprocesso = models.OneToOneField('esocial.s1070evtTabProcesso',
@@ -313,6 +342,13 @@ class s1070exclusao(models.Model):
         managed = True
         ordering = ['s1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid', 'fimvalid']
 
+
+
+class s1070exclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1070exclusao
+        fields = '__all__'
+            
 
 class s1070inclusao(models.Model):
     s1070_evttabprocesso = models.OneToOneField('esocial.s1070evtTabProcesso',
@@ -341,6 +377,13 @@ class s1070inclusao(models.Model):
         ordering = ['s1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid', 'fimvalid', 'indautoria', 'indmatproc', 'observacao']
 
 
+
+class s1070inclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1070inclusao
+        fields = '__all__'
+            
+
 class s1070inclusaodadosProcJud(models.Model):
     s1070_inclusao = models.OneToOneField('s1070inclusao',
         related_name='%(class)s_s1070_inclusao')
@@ -363,6 +406,13 @@ class s1070inclusaodadosProcJud(models.Model):
         managed = True
         ordering = ['s1070_inclusao', 'ufvara', 'codmunic', 'idvara']
 
+
+
+class s1070inclusaodadosProcJudSerializer(ModelSerializer):
+    class Meta:
+        model = s1070inclusaodadosProcJud
+        fields = '__all__'
+            
 
 class s1070inclusaoinfoSusp(models.Model):
     s1070_inclusao = models.ForeignKey('s1070inclusao',
@@ -387,5 +437,12 @@ class s1070inclusaoinfoSusp(models.Model):
         managed = True
         ordering = ['s1070_inclusao', 'codsusp', 'indsusp', 'dtdecisao', 'inddeposito']
 
+
+
+class s1070inclusaoinfoSuspSerializer(ModelSerializer):
+    class Meta:
+        model = s1070inclusaoinfoSusp
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

@@ -36,20 +36,21 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
 
 
-SIM_NAO = (
-    (0, u'Não'),
-    (1, u'Sim'),
-)
-
 AUDITORIA_TIPO = (
     (1, u'Inclusão'),
     (2, u'Alteração'),
     (3, u'Exclusão'),
+)
+
+SIM_NAO = (
+    (0, u'Não'),
+    (1, u'Sim'),
 )
 
 TIPOS_CONFIG_PAGINAS = (
@@ -80,6 +81,13 @@ class Auditoria(models.Model):
         ordering = ['identidade']
 
 
+
+class AuditoriaSerializer(ModelSerializer):
+    class Meta:
+        model = Auditoria
+        fields = '__all__'
+            
+
 class ConfigModulos(models.Model):
     titulo = models.CharField(max_length=200)
     slug = models.CharField(max_length=200)
@@ -102,6 +110,13 @@ class ConfigModulos(models.Model):
         managed = True
         ordering = ['titulo']
 
+
+
+class ConfigModulosSerializer(ModelSerializer):
+    class Meta:
+        model = ConfigModulos
+        fields = '__all__'
+            
 
 class ConfigPaginas(models.Model):
     config_modulos = models.ForeignKey('ConfigModulos',
@@ -128,6 +143,13 @@ class ConfigPaginas(models.Model):
         ordering = ['titulo']
 
 
+
+class ConfigPaginasSerializer(ModelSerializer):
+    class Meta:
+        model = ConfigPaginas
+        fields = '__all__'
+            
+
 class ConfigPerfis(models.Model):
     titulo = models.CharField(max_length=25)
     permissoes = models.TextField(blank=True, null=True)
@@ -149,6 +171,13 @@ class ConfigPerfis(models.Model):
         managed = True
         ordering = ['titulo']
 
+
+
+class ConfigPerfisSerializer(ModelSerializer):
+    class Meta:
+        model = ConfigPerfis
+        fields = '__all__'
+            
 
 class ConfigPermissoes(models.Model):
     config_perfis = models.ForeignKey('ConfigPerfis',
@@ -176,6 +205,13 @@ class ConfigPermissoes(models.Model):
         managed = True
         ordering = ['config_perfis', 'config_paginas']
 
+
+
+class ConfigPermissoesSerializer(ModelSerializer):
+    class Meta:
+        model = ConfigPermissoes
+        fields = '__all__'
+            
 
 from django.contrib.auth.models import User
 class Usuarios(User):
@@ -209,5 +245,12 @@ class Usuarios(User):
         managed = True
         ordering = ['first_name', 'last_name']
 
+
+
+class UsuariosSerializer(ModelSerializer):
+    class Meta:
+        model = Usuarios
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

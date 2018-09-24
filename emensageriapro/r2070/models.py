@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -145,6 +146,13 @@ class r2070compJud(models.Model):
         ordering = ['r2070_pgtopf', 'vlrcompanocalend', 'vlrcompanoant']
 
 
+
+class r2070compJudSerializer(ModelSerializer):
+    class Meta:
+        model = r2070compJud
+        fields = '__all__'
+            
+
 class r2070depJudicial(models.Model):
     r2070_pgtopf = models.OneToOneField('r2070pgtoPF',
         related_name='%(class)s_r2070_pgtopf')
@@ -166,6 +174,13 @@ class r2070depJudicial(models.Model):
         managed = True
         ordering = ['r2070_pgtopf', 'vlrdepjudicial']
 
+
+
+class r2070depJudicialSerializer(ModelSerializer):
+    class Meta:
+        model = r2070depJudicial
+        fields = '__all__'
+            
 
 class r2070detCompet(models.Model):
     r2070_pgtopf = models.ForeignKey('r2070pgtoPF',
@@ -191,6 +206,13 @@ class r2070detCompet(models.Model):
         ordering = ['r2070_pgtopf', 'indperreferencia', 'perrefpagto', 'vlrrendtributavel']
 
 
+
+class r2070detCompetSerializer(ModelSerializer):
+    class Meta:
+        model = r2070detCompet
+        fields = '__all__'
+            
+
 class r2070detDeducao(models.Model):
     r2070_pgtopf = models.ForeignKey('r2070pgtoPF',
         related_name='%(class)s_r2070_pgtopf')
@@ -213,6 +235,13 @@ class r2070detDeducao(models.Model):
         managed = True
         ordering = ['r2070_pgtopf', 'indtpdeducao', 'vlrdeducao']
 
+
+
+class r2070detDeducaoSerializer(ModelSerializer):
+    class Meta:
+        model = r2070detDeducao
+        fields = '__all__'
+            
 
 class r2070ideEstab(models.Model):
     r2070_evtpgtosdivs = models.ForeignKey('efdreinf.r2070evtPgtosDivs',
@@ -237,6 +266,13 @@ class r2070ideEstab(models.Model):
         ordering = ['r2070_evtpgtosdivs', 'tpinsc', 'nrinsc']
 
 
+
+class r2070ideEstabSerializer(ModelSerializer):
+    class Meta:
+        model = r2070ideEstab
+        fields = '__all__'
+            
+
 class r2070infoMolestia(models.Model):
     r2070_evtpgtosdivs = models.OneToOneField('efdreinf.r2070evtPgtosDivs',
         related_name='%(class)s_r2070_evtpgtosdivs')
@@ -258,6 +294,13 @@ class r2070infoMolestia(models.Model):
         managed = True
         ordering = ['r2070_evtpgtosdivs', 'dtlaudo']
 
+
+
+class r2070infoMolestiaSerializer(ModelSerializer):
+    class Meta:
+        model = r2070infoMolestia
+        fields = '__all__'
+            
 
 class r2070infoProcJud(models.Model):
     r2070_pgtopf = models.ForeignKey('r2070pgtoPF',
@@ -283,6 +326,13 @@ class r2070infoProcJud(models.Model):
         ordering = ['r2070_pgtopf', 'nrprocjud', 'codsusp', 'indorigemrecursos']
 
 
+
+class r2070infoProcJudSerializer(ModelSerializer):
+    class Meta:
+        model = r2070infoProcJud
+        fields = '__all__'
+            
+
 class r2070infoProcJuddespProcJud(models.Model):
     r2070_infoprocjud = models.OneToOneField('r2070infoProcJud',
         related_name='%(class)s_r2070_infoprocjud')
@@ -305,6 +355,13 @@ class r2070infoProcJuddespProcJud(models.Model):
         managed = True
         ordering = ['r2070_infoprocjud', 'vlrdespcustas', 'vlrdespadvogados']
 
+
+
+class r2070infoProcJuddespProcJudSerializer(ModelSerializer):
+    class Meta:
+        model = r2070infoProcJuddespProcJud
+        fields = '__all__'
+            
 
 class r2070infoProcJudideAdvogado(models.Model):
     r2070_infoprocjud_despprocjud = models.ForeignKey('r2070infoProcJuddespProcJud',
@@ -330,6 +387,13 @@ class r2070infoProcJudideAdvogado(models.Model):
         ordering = ['r2070_infoprocjud_despprocjud', 'tpinscadvogado', 'nrinscadvogado', 'vlradvogado']
 
 
+
+class r2070infoProcJudideAdvogadoSerializer(ModelSerializer):
+    class Meta:
+        model = r2070infoProcJudideAdvogado
+        fields = '__all__'
+            
+
 class r2070infoProcJudorigemRecursos(models.Model):
     r2070_infoprocjud = models.OneToOneField('r2070infoProcJud',
         related_name='%(class)s_r2070_infoprocjud')
@@ -351,6 +415,13 @@ class r2070infoProcJudorigemRecursos(models.Model):
         managed = True
         ordering = ['r2070_infoprocjud', 'cnpjorigemrecursos']
 
+
+
+class r2070infoProcJudorigemRecursosSerializer(ModelSerializer):
+    class Meta:
+        model = r2070infoProcJudorigemRecursos
+        fields = '__all__'
+            
 
 class r2070infoRRA(models.Model):
     r2070_pgtopf = models.ForeignKey('r2070pgtoPF',
@@ -378,6 +449,13 @@ class r2070infoRRA(models.Model):
         ordering = ['r2070_pgtopf', 'tpprocrra', 'nrprocrra', 'codsusp', 'natrra', 'qtdmesesrra']
 
 
+
+class r2070infoRRASerializer(ModelSerializer):
+    class Meta:
+        model = r2070infoRRA
+        fields = '__all__'
+            
+
 class r2070infoRRAdespProcJud(models.Model):
     r2070_inforra = models.OneToOneField('r2070infoRRA',
         related_name='%(class)s_r2070_inforra')
@@ -400,6 +478,13 @@ class r2070infoRRAdespProcJud(models.Model):
         managed = True
         ordering = ['r2070_inforra', 'vlrdespcustas', 'vlrdespadvogados']
 
+
+
+class r2070infoRRAdespProcJudSerializer(ModelSerializer):
+    class Meta:
+        model = r2070infoRRAdespProcJud
+        fields = '__all__'
+            
 
 class r2070infoRRAideAdvogado(models.Model):
     r2070_inforra_despprocjud = models.ForeignKey('r2070infoRRAdespProcJud',
@@ -424,6 +509,13 @@ class r2070infoRRAideAdvogado(models.Model):
         managed = True
         ordering = ['r2070_inforra_despprocjud', 'tpinscadvogado', 'nrinscadvogado', 'vlradvogado']
 
+
+
+class r2070infoRRAideAdvogadoSerializer(ModelSerializer):
+    class Meta:
+        model = r2070infoRRAideAdvogado
+        fields = '__all__'
+            
 
 class r2070infoResidExt(models.Model):
     r2070_evtpgtosdivs = models.OneToOneField('efdreinf.r2070evtPgtosDivs',
@@ -456,6 +548,13 @@ class r2070infoResidExt(models.Model):
         ordering = ['r2070_evtpgtosdivs', 'paisresid', 'dsclograd', 'nrlograd', 'complem', 'bairro', 'cidade', 'codpostal', 'indnif', 'nifbenef', 'relfontepagad']
 
 
+
+class r2070infoResidExtSerializer(ModelSerializer):
+    class Meta:
+        model = r2070infoResidExt
+        fields = '__all__'
+            
+
 class r2070pgtoPF(models.Model):
     r2070_pgtoresidbr = models.ForeignKey('r2070pgtoResidBR',
         related_name='%(class)s_r2070_pgtoresidbr')
@@ -482,6 +581,13 @@ class r2070pgtoPF(models.Model):
         ordering = ['r2070_pgtoresidbr', 'dtpgto', 'indsuspexig', 'inddecterceiro', 'vlrrendtributavel', 'vlrirrf']
 
 
+
+class r2070pgtoPFSerializer(ModelSerializer):
+    class Meta:
+        model = r2070pgtoPF
+        fields = '__all__'
+            
+
 class r2070pgtoPJ(models.Model):
     r2070_pgtoresidbr = models.ForeignKey('r2070pgtoResidBR',
         related_name='%(class)s_r2070_pgtoresidbr')
@@ -506,6 +612,13 @@ class r2070pgtoPJ(models.Model):
         ordering = ['r2070_pgtoresidbr', 'dtpagto', 'vlrrendtributavel', 'vlrret']
 
 
+
+class r2070pgtoPJSerializer(ModelSerializer):
+    class Meta:
+        model = r2070pgtoPJ
+        fields = '__all__'
+            
+
 class r2070pgtoPJdespProcJud(models.Model):
     r2070_pgtopj_infoprocjud = models.OneToOneField('r2070pgtoPJinfoProcJud',
         related_name='%(class)s_r2070_pgtopj_infoprocjud')
@@ -528,6 +641,13 @@ class r2070pgtoPJdespProcJud(models.Model):
         managed = True
         ordering = ['r2070_pgtopj_infoprocjud', 'vlrdespcustas', 'vlrdespadvogados']
 
+
+
+class r2070pgtoPJdespProcJudSerializer(ModelSerializer):
+    class Meta:
+        model = r2070pgtoPJdespProcJud
+        fields = '__all__'
+            
 
 class r2070pgtoPJideAdvogado(models.Model):
     r2070_pgtopj_despprocjud = models.ForeignKey('r2070pgtoPJdespProcJud',
@@ -553,6 +673,13 @@ class r2070pgtoPJideAdvogado(models.Model):
         ordering = ['r2070_pgtopj_despprocjud', 'tpinscadvogado', 'nrinscadvogado', 'vlradvogado']
 
 
+
+class r2070pgtoPJideAdvogadoSerializer(ModelSerializer):
+    class Meta:
+        model = r2070pgtoPJideAdvogado
+        fields = '__all__'
+            
+
 class r2070pgtoPJinfoProcJud(models.Model):
     r2070_pgtopj = models.ForeignKey('r2070pgtoPJ',
         related_name='%(class)s_r2070_pgtopj')
@@ -577,6 +704,13 @@ class r2070pgtoPJinfoProcJud(models.Model):
         ordering = ['r2070_pgtopj', 'nrprocjud', 'codsusp', 'indorigemrecursos']
 
 
+
+class r2070pgtoPJinfoProcJudSerializer(ModelSerializer):
+    class Meta:
+        model = r2070pgtoPJinfoProcJud
+        fields = '__all__'
+            
+
 class r2070pgtoPJorigemRecursos(models.Model):
     r2070_pgtopj_infoprocjud = models.OneToOneField('r2070pgtoPJinfoProcJud',
         related_name='%(class)s_r2070_pgtopj_infoprocjud')
@@ -599,6 +733,13 @@ class r2070pgtoPJorigemRecursos(models.Model):
         ordering = ['r2070_pgtopj_infoprocjud', 'cnpjorigemrecursos']
 
 
+
+class r2070pgtoPJorigemRecursosSerializer(ModelSerializer):
+    class Meta:
+        model = r2070pgtoPJorigemRecursos
+        fields = '__all__'
+            
+
 class r2070pgtoResidBR(models.Model):
     r2070_ideestab = models.OneToOneField('r2070ideEstab',
         related_name='%(class)s_r2070_ideestab')
@@ -619,6 +760,13 @@ class r2070pgtoResidBR(models.Model):
         managed = True
         ordering = ['r2070_ideestab']
 
+
+
+class r2070pgtoResidBRSerializer(ModelSerializer):
+    class Meta:
+        model = r2070pgtoResidBR
+        fields = '__all__'
+            
 
 class r2070pgtoResidExt(models.Model):
     r2070_ideestab = models.OneToOneField('r2070ideEstab',
@@ -646,6 +794,13 @@ class r2070pgtoResidExt(models.Model):
         ordering = ['r2070_ideestab', 'dtpagto', 'tprendimento', 'formatributacao', 'vlrpgto', 'vlrret']
 
 
+
+class r2070pgtoResidExtSerializer(ModelSerializer):
+    class Meta:
+        model = r2070pgtoResidExt
+        fields = '__all__'
+            
+
 class r2070rendIsento(models.Model):
     r2070_pgtopf = models.ForeignKey('r2070pgtoPF',
         related_name='%(class)s_r2070_pgtopf')
@@ -669,5 +824,12 @@ class r2070rendIsento(models.Model):
         managed = True
         ordering = ['r2070_pgtopf', 'tpisencao', 'vlrisento', 'descrendimento']
 
+
+
+class r2070rendIsentoSerializer(ModelSerializer):
+    class Meta:
+        model = r2070rendIsento
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

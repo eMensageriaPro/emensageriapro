@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -287,6 +288,13 @@ class s2300CNH(models.Model):
         ordering = ['s2300_documentos', 'nrregcnh', 'dtexped', 'ufcnh', 'dtvalid', 'dtprihab', 'categoriacnh']
 
 
+
+class s2300CNHSerializer(ModelSerializer):
+    class Meta:
+        model = s2300CNH
+        fields = '__all__'
+            
+
 class s2300CTPS(models.Model):
     s2300_documentos = models.OneToOneField('s2300documentos',
         related_name='%(class)s_s2300_documentos')
@@ -309,6 +317,13 @@ class s2300CTPS(models.Model):
         managed = True
         ordering = ['s2300_documentos', 'nrctps', 'seriectps', 'ufctps']
 
+
+
+class s2300CTPSSerializer(ModelSerializer):
+    class Meta:
+        model = s2300CTPS
+        fields = '__all__'
+            
 
 class s2300OC(models.Model):
     s2300_documentos = models.OneToOneField('s2300documentos',
@@ -334,6 +349,13 @@ class s2300OC(models.Model):
         ordering = ['s2300_documentos', 'nroc', 'orgaoemissor', 'dtexped', 'dtvalid']
 
 
+
+class s2300OCSerializer(ModelSerializer):
+    class Meta:
+        model = s2300OC
+        fields = '__all__'
+            
+
 class s2300RG(models.Model):
     s2300_documentos = models.OneToOneField('s2300documentos',
         related_name='%(class)s_s2300_documentos')
@@ -356,6 +378,13 @@ class s2300RG(models.Model):
         managed = True
         ordering = ['s2300_documentos', 'nrrg', 'orgaoemissor', 'dtexped']
 
+
+
+class s2300RGSerializer(ModelSerializer):
+    class Meta:
+        model = s2300RG
+        fields = '__all__'
+            
 
 class s2300RIC(models.Model):
     s2300_documentos = models.OneToOneField('s2300documentos',
@@ -380,6 +409,13 @@ class s2300RIC(models.Model):
         ordering = ['s2300_documentos', 'nrric', 'orgaoemissor', 'dtexped']
 
 
+
+class s2300RICSerializer(ModelSerializer):
+    class Meta:
+        model = s2300RIC
+        fields = '__all__'
+            
+
 class s2300RNE(models.Model):
     s2300_documentos = models.OneToOneField('s2300documentos',
         related_name='%(class)s_s2300_documentos')
@@ -403,6 +439,13 @@ class s2300RNE(models.Model):
         ordering = ['s2300_documentos', 'nrrne', 'orgaoemissor', 'dtexped']
 
 
+
+class s2300RNESerializer(ModelSerializer):
+    class Meta:
+        model = s2300RNE
+        fields = '__all__'
+            
+
 class s2300afastamento(models.Model):
     s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
         related_name='%(class)s_s2300_evttsvinicio')
@@ -424,6 +467,13 @@ class s2300afastamento(models.Model):
         managed = True
         ordering = ['s2300_evttsvinicio', 'dtiniafast', 'codmotafast']
 
+
+
+class s2300afastamentoSerializer(ModelSerializer):
+    class Meta:
+        model = s2300afastamento
+        fields = '__all__'
+            
 
 class s2300ageIntegracao(models.Model):
     s2300_infoestagiario = models.OneToOneField('s2300infoEstagiario',
@@ -453,6 +503,13 @@ class s2300ageIntegracao(models.Model):
         ordering = ['s2300_infoestagiario', 'cnpjagntinteg', 'nmrazao', 'dsclograd', 'nrlograd', 'bairro', 'cep', 'codmunic', 'uf']
 
 
+
+class s2300ageIntegracaoSerializer(ModelSerializer):
+    class Meta:
+        model = s2300ageIntegracao
+        fields = '__all__'
+            
+
 class s2300brasil(models.Model):
     s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
         related_name='%(class)s_s2300_evttsvinicio')
@@ -481,6 +538,13 @@ class s2300brasil(models.Model):
         ordering = ['s2300_evttsvinicio', 'tplograd', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'cep', 'codmunic', 'uf']
 
 
+
+class s2300brasilSerializer(ModelSerializer):
+    class Meta:
+        model = s2300brasil
+        fields = '__all__'
+            
+
 class s2300cargoFuncao(models.Model):
     s2300_infocomplementares = models.OneToOneField('s2300infoComplementares',
         related_name='%(class)s_s2300_infocomplementares')
@@ -502,6 +566,13 @@ class s2300cargoFuncao(models.Model):
         managed = True
         ordering = ['s2300_infocomplementares', 'codcargo', 'codfuncao']
 
+
+
+class s2300cargoFuncaoSerializer(ModelSerializer):
+    class Meta:
+        model = s2300cargoFuncao
+        fields = '__all__'
+            
 
 class s2300contato(models.Model):
     s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
@@ -526,6 +597,13 @@ class s2300contato(models.Model):
         managed = True
         ordering = ['s2300_evttsvinicio', 'foneprinc', 'fonealternat', 'emailprinc', 'emailalternat']
 
+
+
+class s2300contatoSerializer(ModelSerializer):
+    class Meta:
+        model = s2300contato
+        fields = '__all__'
+            
 
 class s2300dependente(models.Model):
     s2300_evttsvinicio = models.ForeignKey('esocial.s2300evtTSVInicio',
@@ -556,6 +634,13 @@ class s2300dependente(models.Model):
         ordering = ['s2300_evttsvinicio', 'tpdep', 'nmdep', 'dtnascto', 'cpfdep', 'sexodep', 'depirrf', 'depsf', 'inctrab', 'depfinsprev']
 
 
+
+class s2300dependenteSerializer(ModelSerializer):
+    class Meta:
+        model = s2300dependente
+        fields = '__all__'
+            
+
 class s2300documentos(models.Model):
     s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
         related_name='%(class)s_s2300_evttsvinicio')
@@ -575,6 +660,13 @@ class s2300documentos(models.Model):
         managed = True
         ordering = ['s2300_evttsvinicio']
 
+
+
+class s2300documentosSerializer(ModelSerializer):
+    class Meta:
+        model = s2300documentos
+        fields = '__all__'
+            
 
 class s2300exterior(models.Model):
     s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
@@ -603,6 +695,13 @@ class s2300exterior(models.Model):
         ordering = ['s2300_evttsvinicio', 'paisresid', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'nmcid', 'codpostal']
 
 
+
+class s2300exteriorSerializer(ModelSerializer):
+    class Meta:
+        model = s2300exterior
+        fields = '__all__'
+            
+
 class s2300fgts(models.Model):
     s2300_infocomplementares = models.OneToOneField('s2300infoComplementares',
         related_name='%(class)s_s2300_infocomplementares')
@@ -625,6 +724,13 @@ class s2300fgts(models.Model):
         ordering = ['s2300_infocomplementares', 'opcfgts', 'dtopcfgts']
 
 
+
+class s2300fgtsSerializer(ModelSerializer):
+    class Meta:
+        model = s2300fgts
+        fields = '__all__'
+            
+
 class s2300infoComplementares(models.Model):
     s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
         related_name='%(class)s_s2300_evttsvinicio')
@@ -644,6 +750,13 @@ class s2300infoComplementares(models.Model):
         managed = True
         ordering = ['s2300_evttsvinicio']
 
+
+
+class s2300infoComplementaresSerializer(ModelSerializer):
+    class Meta:
+        model = s2300infoComplementares
+        fields = '__all__'
+            
 
 class s2300infoDeficiencia(models.Model):
     s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
@@ -672,6 +785,13 @@ class s2300infoDeficiencia(models.Model):
         ordering = ['s2300_evttsvinicio', 'deffisica', 'defvisual', 'defauditiva', 'defmental', 'defintelectual', 'reabreadap', 'observacao']
 
 
+
+class s2300infoDeficienciaSerializer(ModelSerializer):
+    class Meta:
+        model = s2300infoDeficiencia
+        fields = '__all__'
+            
+
 class s2300infoDirigenteSindical(models.Model):
     s2300_infocomplementares = models.OneToOneField('s2300infoComplementares',
         related_name='%(class)s_s2300_infocomplementares')
@@ -695,6 +815,13 @@ class s2300infoDirigenteSindical(models.Model):
         managed = True
         ordering = ['s2300_infocomplementares', 'categorig', 'cnpjorigem', 'dtadmorig', 'matricorig']
 
+
+
+class s2300infoDirigenteSindicalSerializer(ModelSerializer):
+    class Meta:
+        model = s2300infoDirigenteSindical
+        fields = '__all__'
+            
 
 class s2300infoEstagiario(models.Model):
     s2300_infocomplementares = models.OneToOneField('s2300infoComplementares',
@@ -730,6 +857,13 @@ class s2300infoEstagiario(models.Model):
         ordering = ['s2300_infocomplementares', 'natestagio', 'nivestagio', 'areaatuacao', 'nrapol', 'vlrbolsa', 'dtprevterm', 'cnpjinstensino', 'nmrazao', 'dsclograd', 'nrlograd', 'bairro', 'cep', 'codmunic', 'uf']
 
 
+
+class s2300infoEstagiarioSerializer(ModelSerializer):
+    class Meta:
+        model = s2300infoEstagiario
+        fields = '__all__'
+            
+
 class s2300infoTrabCedido(models.Model):
     s2300_infocomplementares = models.OneToOneField('s2300infoComplementares',
         related_name='%(class)s_s2300_infocomplementares')
@@ -758,6 +892,13 @@ class s2300infoTrabCedido(models.Model):
         ordering = ['s2300_infocomplementares', 'categorig', 'cnpjcednt', 'matricced', 'dtadmced', 'tpregtrab', 'tpregprev', 'infonus', 'indremuncargo']
 
 
+
+class s2300infoTrabCedidoSerializer(ModelSerializer):
+    class Meta:
+        model = s2300infoTrabCedido
+        fields = '__all__'
+            
+
 class s2300remuneracao(models.Model):
     s2300_infocomplementares = models.OneToOneField('s2300infoComplementares',
         related_name='%(class)s_s2300_infocomplementares')
@@ -781,6 +922,13 @@ class s2300remuneracao(models.Model):
         ordering = ['s2300_infocomplementares', 'vrsalfx', 'undsalfixo', 'dscsalvar']
 
 
+
+class s2300remuneracaoSerializer(ModelSerializer):
+    class Meta:
+        model = s2300remuneracao
+        fields = '__all__'
+            
+
 class s2300supervisorEstagio(models.Model):
     s2300_infoestagiario = models.OneToOneField('s2300infoEstagiario',
         related_name='%(class)s_s2300_infoestagiario')
@@ -803,6 +951,13 @@ class s2300supervisorEstagio(models.Model):
         ordering = ['s2300_infoestagiario', 'cpfsupervisor', 'nmsuperv']
 
 
+
+class s2300supervisorEstagioSerializer(ModelSerializer):
+    class Meta:
+        model = s2300supervisorEstagio
+        fields = '__all__'
+            
+
 class s2300termino(models.Model):
     s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
         related_name='%(class)s_s2300_evttsvinicio')
@@ -823,6 +978,13 @@ class s2300termino(models.Model):
         managed = True
         ordering = ['s2300_evttsvinicio', 'dtterm']
 
+
+
+class s2300terminoSerializer(ModelSerializer):
+    class Meta:
+        model = s2300termino
+        fields = '__all__'
+            
 
 class s2300trabEstrangeiro(models.Model):
     s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
@@ -847,5 +1009,12 @@ class s2300trabEstrangeiro(models.Model):
         managed = True
         ordering = ['s2300_evttsvinicio', 'dtchegada', 'classtrabestrang', 'casadobr', 'filhosbr']
 
+
+
+class s2300trabEstrangeiroSerializer(ModelSerializer):
+    class Meta:
+        model = s2300trabEstrangeiro
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

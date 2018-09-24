@@ -49,6 +49,12 @@ url(r'^s2260-localtrabinterm/apagar/(?P<hash>.*)/$',
         s2260_localtrabinterm_views.apagar, 
         name='s2260_localtrabinterm_apagar'),
 
+url(r'^s2260-localtrabinterm/api/$',
+            s2260_localtrabinterm_views.s2260localTrabIntermList.as_view() ),
+
+        url(r'^s2260-localtrabinterm/api/(?P<pk>[0-9]+)/$',
+            s2260_localtrabinterm_views.s2260localTrabIntermDetail.as_view() ),
+
 url(r'^s2260-localtrabinterm/listar/(?P<hash>.*)/$', 
         s2260_localtrabinterm_views.listar, 
         name='s2260_localtrabinterm'),

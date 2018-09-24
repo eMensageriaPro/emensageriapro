@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 's2299_infotrabinterm_quarentena_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s2299infoTrabIntermquarentenaList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s2299infoTrabIntermquarentena.objects.using(db_slug).all()
+    serializer_class = s2299infoTrabIntermquarentenaSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s2299infoTrabIntermquarentenaDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s2299infoTrabIntermquarentena.objects.using(db_slug).all()
+    serializer_class = s2299infoTrabIntermquarentenaSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

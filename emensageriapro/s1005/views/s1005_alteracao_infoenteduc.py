@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 's1005_alteracao_infoenteduc_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s1005alteracaoinfoEntEducList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s1005alteracaoinfoEntEduc.objects.using(db_slug).all()
+    serializer_class = s1005alteracaoinfoEntEducSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s1005alteracaoinfoEntEducDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s1005alteracaoinfoEntEduc.objects.using(db_slug).all()
+    serializer_class = s1005alteracaoinfoEntEducSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

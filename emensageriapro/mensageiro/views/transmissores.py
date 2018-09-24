@@ -53,6 +53,187 @@ import base64
 
 
 @login_required
+def salvar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        transmissores_id = int(dict_hash['id'])
+        if 'tab' not in dict_hash.keys():
+            dict_hash['tab'] = ''
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='transmissores')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+    if transmissores_id:
+        transmissores = get_object_or_404(TransmissorLote.objects.using( db_slug ), excluido = False, id = transmissores_id)
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    if permissao.permite_visualizar:
+        mensagem = None
+        if transmissores_id:
+            transmissores_form = form_transmissores(request.POST or None, instance = transmissores, slug = db_slug)
+        else:
+            transmissores_form = form_transmissores(request.POST or None, slug = db_slug, initial={})
+        if request.method == 'POST':
+            if transmissores_form.is_valid():
+                dados = transmissores_form.cleaned_data
+                if transmissores_id:
+                    if request.FILES:
+                        from emensageriapro.settings import BASE_DIR
+                        from django.core.files.storage import FileSystemStorage
+                        if bool(request.FILES.get('logotipo', False)) == True:
+                            myfile = request.FILES['logotipo']
+                            fs = FileSystemStorage(location=BASE_DIR+'/media/')
+                            filename = fs.save(myfile.name, myfile)
+                            dados['logotipo'] = filename
+                            messages.success(request, 'Arquivo %s salvo com sucesso!' % filename)
+
+                        files = ['esocial_certificado','efdreinf_certificado']
+                        for f in files:
+                            if bool(request.FILES.get(f, False)) == True:
+                                myfile = request.FILES[f]
+                                fs = FileSystemStorage(location=BASE_DIR+'/certificados/')
+                                filename = fs.save(myfile.name, myfile)
+                                dados[f] = filename
+                                messages.success(request, 'Arquivo %s salvo com sucesso!' % filename)
+                dados = transmissores_form.cleaned_data
+                if transmissores_id:
+                    dados['modificado_por_id'] = usuario_id
+                    dados['modificado_em'] = datetime.datetime.now()
+                    #transmissores_campos_multiple_passo1
+                    TransmissorLote.objects.using(db_slug).filter(id=transmissores_id).update(**dados)
+                    obj = TransmissorLote.objects.using(db_slug).get(id=transmissores_id)
+                    #transmissores_editar_custom
+                    #transmissores_campos_multiple_passo2
+                    messages.success(request, 'Alterado com sucesso!')
+                else:
+
+                    dados['criado_por_id'] = usuario_id
+                    dados['criado_em'] = datetime.datetime.now()
+                    dados['excluido'] = False
+                    #transmissores_cadastrar_campos_multiple_passo1
+                    obj = TransmissorLote(**dados)
+                    obj.save(using = db_slug)
+                    #transmissores_cadastrar_custom
+                    #transmissores_cadastrar_campos_multiple_passo2
+                    messages.success(request, 'Cadastrado com sucesso!')
+                if request.session['retorno_pagina'] not in ('transmissores_apagar', 'transmissores_salvar', 'transmissores'):
+                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if transmissores_id != obj.id:
+                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
+                    return redirect('transmissores_salvar', hash=url_hash)
+            else:
+                messages.error(request, 'Erro ao salvar!')
+        transmissores_form = disabled_form_fields(transmissores_form, permissao.permite_editar)
+        #transmissores_campos_multiple_passo3
+
+        for field in transmissores_form.fields.keys():
+            transmissores_form.fields[field].widget.attrs['ng-model'] = 'transmissores_'+field
+        if int(dict_hash['print']):
+            transmissores_form = disabled_form_for_print(transmissores_form)
+        #[VARIAVEIS_SECUNDARIAS_VAZIAS]
+        if transmissores_id:
+            transmissores = get_object_or_404(TransmissorLote.objects.using( db_slug ), excluido = False, id = transmissores_id)
+            pass
+        else:
+            transmissores = None
+        #transmissores_salvar_custom_variaveis#
+        tabelas_secundarias = []
+        #[FUNCOES_ESPECIAIS_SALVAR]
+        if dict_hash['tab'] or 'transmissores' in request.session['retorno_pagina']:
+            request.session["retorno_hash"] = hash
+            request.session["retorno_pagina"] = 'transmissores_salvar'
+        context = {
+            'transmissores': transmissores,
+            'transmissores_form': transmissores_form,
+            'mensagem': mensagem,
+            'transmissores_id': int(transmissores_id),
+            'usuario': usuario,
+       
+            'hash': hash,
+            #[VARIAVEIS_SECUNDARIAS]
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+       
+            'permissao': permissao,
+            'data': datetime.datetime.now(),
+            'pagina': pagina,
+            'dict_permissoes': dict_permissoes,
+            'for_print': int(dict_hash['print']),
+            'tabelas_secundarias': tabelas_secundarias,
+            'tab': dict_hash['tab'],
+            #transmissores_salvar_custom_variaveis_context#
+        }
+        if for_print in (0,1 ):
+            return render(request, 'transmissores_salvar.html', context)
+        elif for_print == 2:
+            from wkhtmltopdf.views import PDFTemplateResponse
+            response = PDFTemplateResponse(
+                request=request,
+                template='transmissores_salvar.html',
+                filename="transmissores.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 10,
+                             'margin-bottom': 10,
+                             'margin-right': 10,
+                             'margin-left': 10,
+                             'zoom': 1,
+                             'dpi': 72,
+                             'orientation': 'Landscape',
+                             "viewport-size": "1366 x 513",
+                             'javascript-delay': 1000,
+                             'footer-center': '[page]/[topage]',
+                             "no-stop-slow-scripts": True},
+            )
+            return response
+        elif for_print == 3:
+            from django.shortcuts import render_to_response
+            response = render_to_response('transmissores_salvar.html', context)
+            filename = "transmissores.xls"
+            response['Content-Disposition'] = 'attachment; filename=' + filename
+            response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            return response
+
+    else:
+        context = {
+            'usuario': usuario,
+       
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+       
+            'permissao': permissao,
+            'data': datetime.datetime.now(),
+            'pagina': pagina,
+            'dict_permissoes': dict_permissoes,
+        }
+        return render(request, 'permissao_negada.html', context)
+
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class TransmissorLoteList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = TransmissorLote.objects.using(db_slug).all()
+    serializer_class = TransmissorLoteSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class TransmissorLoteDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = TransmissorLote.objects.using(db_slug).all()
+    serializer_class = TransmissorLoteSerializer
+    permission_classes = (IsAdminUser,)
+
+
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
@@ -248,169 +429,6 @@ def listar(request, hash):
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-    else:
-        context = {
-            'usuario': usuario,
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-            'permissao': permissao,
-            'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
-        }
-        return render(request, 'permissao_negada.html', context)
-
-@login_required
-def salvar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        transmissores_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='transmissores')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-    if transmissores_id:
-        transmissores = get_object_or_404(TransmissorLote.objects.using( db_slug ), excluido = False, id = transmissores_id)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    if permissao.permite_visualizar:
-        mensagem = None
-        if transmissores_id:
-            transmissores_form = form_transmissores(request.POST or None, instance = transmissores, slug = db_slug)
-        else:
-            transmissores_form = form_transmissores(request.POST or None, slug = db_slug, initial={})
-        if request.method == 'POST':
-            if transmissores_form.is_valid():
-                dados = transmissores_form.cleaned_data
-                if transmissores_id:
-                    if request.FILES:
-                        from emensageriapro.settings import BASE_DIR
-                        from django.core.files.storage import FileSystemStorage
-                        if bool(request.FILES.get('logotipo', False)) == True:
-                            myfile = request.FILES['logotipo']
-                            fs = FileSystemStorage(location=BASE_DIR+'/media/')
-                            filename = fs.save(myfile.name, myfile)
-                            dados['logotipo'] = filename
-                            messages.success(request, 'Arquivo %s salvo com sucesso!' % filename)
-
-                        files = ['esocial_certificado','efdreinf_certificado']
-                        for f in files:
-                            if bool(request.FILES.get(f, False)) == True:
-                                myfile = request.FILES[f]
-                                fs = FileSystemStorage(location=BASE_DIR+'/certificados/')
-                                filename = fs.save(myfile.name, myfile)
-                                dados[f] = filename
-                                messages.success(request, 'Arquivo %s salvo com sucesso!' % filename)
-                dados = transmissores_form.cleaned_data
-                if transmissores_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #transmissores_campos_multiple_passo1
-                    TransmissorLote.objects.using(db_slug).filter(id=transmissores_id).update(**dados)
-                    obj = TransmissorLote.objects.using(db_slug).get(id=transmissores_id)
-                    #transmissores_editar_custom
-                    #transmissores_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
-                else:
-
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #transmissores_cadastrar_campos_multiple_passo1
-                    obj = TransmissorLote(**dados)
-                    obj.save(using = db_slug)
-                    #transmissores_cadastrar_custom
-                    #transmissores_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
-                if request.session['retorno_pagina'] not in ('transmissores_apagar', 'transmissores_salvar', 'transmissores'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-                if transmissores_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('transmissores_salvar', hash=url_hash)
-            else:
-                messages.error(request, 'Erro ao salvar!')
-        transmissores_form = disabled_form_fields(transmissores_form, permissao.permite_editar)
-        #transmissores_campos_multiple_passo3
-
-        for field in transmissores_form.fields.keys():
-            transmissores_form.fields[field].widget.attrs['ng-model'] = 'transmissores_'+field
-        if int(dict_hash['print']):
-            transmissores_form = disabled_form_for_print(transmissores_form)
-        #[VARIAVEIS_SECUNDARIAS_VAZIAS]
-        if transmissores_id:
-            transmissores = get_object_or_404(TransmissorLote.objects.using( db_slug ), excluido = False, id = transmissores_id)
-            pass
-        else:
-            transmissores = None
-        #transmissores_salvar_custom_variaveis#
-        tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-        if dict_hash['tab'] or 'transmissores' in request.session['retorno_pagina']:
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'transmissores_salvar'
-        context = {
-            'transmissores': transmissores,
-            'transmissores_form': transmissores_form,
-            'mensagem': mensagem,
-            'transmissores_id': int(transmissores_id),
-            'usuario': usuario,
-       
-            'hash': hash,
-            #[VARIAVEIS_SECUNDARIAS]
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-            'permissao': permissao,
-            'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
-            'for_print': int(dict_hash['print']),
-            'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
-            #transmissores_salvar_custom_variaveis_context#
-        }
-        if for_print in (0,1 ):
-            return render(request, 'transmissores_salvar.html', context)
-        elif for_print == 2:
-            from wkhtmltopdf.views import PDFTemplateResponse
-            response = PDFTemplateResponse(
-                request=request,
-                template='transmissores_salvar.html',
-                filename="transmissores.pdf",
-                context=context,
-                show_content_in_browser=True,
-                cmd_options={'margin-top': 10,
-                             'margin-bottom': 10,
-                             'margin-right': 10,
-                             'margin-left': 10,
-                             'zoom': 1,
-                             'dpi': 72,
-                             'orientation': 'Landscape',
-                             "viewport-size": "1366 x 513",
-                             'javascript-delay': 1000,
-                             'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
-            return response
-        elif for_print == 3:
-            from django.shortcuts import render_to_response
-            response = render_to_response('transmissores_salvar.html', context)
-            filename = "transmissores.xls"
-            response['Content-Disposition'] = 'attachment; filename=' + filename
-            response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            return response
-
     else:
         context = {
             'usuario': usuario,

@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -78,6 +79,13 @@ class s2250cancAvPrevio(models.Model):
         ordering = ['s2250_evtavprevio', 'dtcancavprv', 'observacao', 'mtvcancavprevio']
 
 
+
+class s2250cancAvPrevioSerializer(ModelSerializer):
+    class Meta:
+        model = s2250cancAvPrevio
+        fields = '__all__'
+            
+
 class s2250detAvPrevio(models.Model):
     s2250_evtavprevio = models.OneToOneField('esocial.s2250evtAvPrevio',
         related_name='%(class)s_s2250_evtavprevio')
@@ -101,5 +109,12 @@ class s2250detAvPrevio(models.Model):
         managed = True
         ordering = ['s2250_evtavprevio', 'dtavprv', 'dtprevdeslig', 'tpavprevio', 'observacao']
 
+
+
+class s2250detAvPrevioSerializer(ModelSerializer):
+    class Meta:
+        model = s2250detAvPrevio
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

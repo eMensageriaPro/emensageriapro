@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -88,6 +89,13 @@ class s1260ideAdquir(models.Model):
         ordering = ['s1260_tpcomerc', 'tpinsc', 'nrinsc', 'vrcomerc']
 
 
+
+class s1260ideAdquirSerializer(ModelSerializer):
+    class Meta:
+        model = s1260ideAdquir
+        fields = '__all__'
+            
+
 class s1260infoProcJud(models.Model):
     s1260_tpcomerc = models.ForeignKey('s1260tpComerc',
         related_name='%(class)s_s1260_tpcomerc')
@@ -113,6 +121,13 @@ class s1260infoProcJud(models.Model):
         managed = True
         ordering = ['s1260_tpcomerc', 'tpproc', 'nrproc', 'codsusp', 'vrcpsusp', 'vrratsusp', 'vrsenarsusp']
 
+
+
+class s1260infoProcJudSerializer(ModelSerializer):
+    class Meta:
+        model = s1260infoProcJud
+        fields = '__all__'
+            
 
 class s1260nfs(models.Model):
     s1260_ideadquir = models.ForeignKey('s1260ideAdquir',
@@ -141,6 +156,13 @@ class s1260nfs(models.Model):
         ordering = ['s1260_ideadquir', 'serie', 'nrdocto', 'dtemisnf', 'vlrbruto', 'vrcpdescpr', 'vrratdescpr', 'vrsenardesc']
 
 
+
+class s1260nfsSerializer(ModelSerializer):
+    class Meta:
+        model = s1260nfs
+        fields = '__all__'
+            
+
 class s1260tpComerc(models.Model):
     s1260_evtcomprod = models.ForeignKey('esocial.s1260evtComProd',
         related_name='%(class)s_s1260_evtcomprod')
@@ -162,5 +184,12 @@ class s1260tpComerc(models.Model):
         managed = True
         ordering = ['s1260_evtcomprod', 'indcomerc', 'vrtotcom']
 
+
+
+class s1260tpComercSerializer(ModelSerializer):
+    class Meta:
+        model = s1260tpComerc
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

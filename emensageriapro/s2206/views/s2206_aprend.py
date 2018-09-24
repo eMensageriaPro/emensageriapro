@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 's2206_aprend_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s2206aprendList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s2206aprend.objects.using(db_slug).all()
+    serializer_class = s2206aprendSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s2206aprendDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s2206aprend.objects.using(db_slug).all()
+    serializer_class = s2206aprendSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

@@ -52,6 +52,12 @@ url(r'^s1260-tpcomerc/apagar/(?P<hash>.*)/$',
         s1260_tpcomerc_views.apagar, 
         name='s1260_tpcomerc_apagar'),
 
+url(r'^s1260-tpcomerc/api/$',
+            s1260_tpcomerc_views.s1260tpComercList.as_view() ),
+
+        url(r'^s1260-tpcomerc/api/(?P<pk>[0-9]+)/$',
+            s1260_tpcomerc_views.s1260tpComercDetail.as_view() ),
+
 url(r'^s1260-tpcomerc/listar/(?P<hash>.*)/$', 
         s1260_tpcomerc_views.listar, 
         name='s1260_tpcomerc'),
@@ -65,6 +71,12 @@ url(r'^s1260-tpcomerc/salvar/(?P<hash>.*)/$',
 url(r'^s1260-ideadquir/apagar/(?P<hash>.*)/$', 
         s1260_ideadquir_views.apagar, 
         name='s1260_ideadquir_apagar'),
+
+url(r'^s1260-ideadquir/api/$',
+            s1260_ideadquir_views.s1260ideAdquirList.as_view() ),
+
+        url(r'^s1260-ideadquir/api/(?P<pk>[0-9]+)/$',
+            s1260_ideadquir_views.s1260ideAdquirDetail.as_view() ),
 
 url(r'^s1260-ideadquir/listar/(?P<hash>.*)/$', 
         s1260_ideadquir_views.listar, 
@@ -80,6 +92,12 @@ url(r'^s1260-nfs/apagar/(?P<hash>.*)/$',
         s1260_nfs_views.apagar, 
         name='s1260_nfs_apagar'),
 
+url(r'^s1260-nfs/api/$',
+            s1260_nfs_views.s1260nfsList.as_view() ),
+
+        url(r'^s1260-nfs/api/(?P<pk>[0-9]+)/$',
+            s1260_nfs_views.s1260nfsDetail.as_view() ),
+
 url(r'^s1260-nfs/listar/(?P<hash>.*)/$', 
         s1260_nfs_views.listar, 
         name='s1260_nfs'),
@@ -93,6 +111,12 @@ url(r'^s1260-nfs/salvar/(?P<hash>.*)/$',
 url(r'^s1260-infoprocjud/apagar/(?P<hash>.*)/$', 
         s1260_infoprocjud_views.apagar, 
         name='s1260_infoprocjud_apagar'),
+
+url(r'^s1260-infoprocjud/api/$',
+            s1260_infoprocjud_views.s1260infoProcJudList.as_view() ),
+
+        url(r'^s1260-infoprocjud/api/(?P<pk>[0-9]+)/$',
+            s1260_infoprocjud_views.s1260infoProcJudDetail.as_view() ),
 
 url(r'^s1260-infoprocjud/listar/(?P<hash>.*)/$', 
         s1260_infoprocjud_views.listar, 

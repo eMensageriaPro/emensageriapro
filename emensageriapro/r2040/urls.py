@@ -51,6 +51,12 @@ url(r'^r2040-recursosrep/apagar/(?P<hash>.*)/$',
         r2040_recursosrep_views.apagar, 
         name='r2040_recursosrep_apagar'),
 
+url(r'^r2040-recursosrep/api/$',
+            r2040_recursosrep_views.r2040recursosRepList.as_view() ),
+
+        url(r'^r2040-recursosrep/api/(?P<pk>[0-9]+)/$',
+            r2040_recursosrep_views.r2040recursosRepDetail.as_view() ),
+
 url(r'^r2040-recursosrep/listar/(?P<hash>.*)/$', 
         r2040_recursosrep_views.listar, 
         name='r2040_recursosrep'),
@@ -65,6 +71,12 @@ url(r'^r2040-inforecurso/apagar/(?P<hash>.*)/$',
         r2040_inforecurso_views.apagar, 
         name='r2040_inforecurso_apagar'),
 
+url(r'^r2040-inforecurso/api/$',
+            r2040_inforecurso_views.r2040infoRecursoList.as_view() ),
+
+        url(r'^r2040-inforecurso/api/(?P<pk>[0-9]+)/$',
+            r2040_inforecurso_views.r2040infoRecursoDetail.as_view() ),
+
 url(r'^r2040-inforecurso/listar/(?P<hash>.*)/$', 
         r2040_inforecurso_views.listar, 
         name='r2040_inforecurso'),
@@ -78,6 +90,12 @@ url(r'^r2040-inforecurso/salvar/(?P<hash>.*)/$',
 url(r'^r2040-infoproc/apagar/(?P<hash>.*)/$', 
         r2040_infoproc_views.apagar, 
         name='r2040_infoproc_apagar'),
+
+url(r'^r2040-infoproc/api/$',
+            r2040_infoproc_views.r2040infoProcList.as_view() ),
+
+        url(r'^r2040-infoproc/api/(?P<pk>[0-9]+)/$',
+            r2040_infoproc_views.r2040infoProcDetail.as_view() ),
 
 url(r'^r2040-infoproc/listar/(?P<hash>.*)/$', 
         r2040_infoproc_views.listar, 

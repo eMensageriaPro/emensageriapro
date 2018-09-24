@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -75,6 +76,13 @@ class r5001RCPRB(models.Model):
         ordering = ['r5001_infototal', 'crcprb', 'vlrcrcprb', 'vlrcrcprbsusp']
 
 
+
+class r5001RCPRBSerializer(ModelSerializer):
+    class Meta:
+        model = r5001RCPRB
+        fields = '__all__'
+            
+
 class r5001RComl(models.Model):
     r5001_infototal = models.ForeignKey('r5001infoTotal',
         related_name='%(class)s_r5001_infototal')
@@ -98,6 +106,13 @@ class r5001RComl(models.Model):
         managed = True
         ordering = ['r5001_infototal', 'crcoml', 'vlrcrcoml', 'vlrcrcomlsusp']
 
+
+
+class r5001RComlSerializer(ModelSerializer):
+    class Meta:
+        model = r5001RComl
+        fields = '__all__'
+            
 
 class r5001RPrest(models.Model):
     r5001_infototal = models.OneToOneField('r5001infoTotal',
@@ -127,6 +142,13 @@ class r5001RPrest(models.Model):
         ordering = ['r5001_infototal', 'tpinsctomador', 'nrinsctomador', 'vlrtotalbaseret', 'vlrtotalretprinc', 'vlrtotalretadic', 'vlrtotalnretprinc', 'vlrtotalnretadic']
 
 
+
+class r5001RPrestSerializer(ModelSerializer):
+    class Meta:
+        model = r5001RPrest
+        fields = '__all__'
+            
+
 class r5001RRecEspetDesp(models.Model):
     r5001_infototal = models.OneToOneField('r5001infoTotal',
         related_name='%(class)s_r5001_infototal')
@@ -151,6 +173,13 @@ class r5001RRecEspetDesp(models.Model):
         managed = True
         ordering = ['r5001_infototal', 'crrecespetdesp', 'vlrreceitatotal', 'vlrcrrecespetdesp', 'vlrcrrecespetdespsusp']
 
+
+
+class r5001RRecEspetDespSerializer(ModelSerializer):
+    class Meta:
+        model = r5001RRecEspetDesp
+        fields = '__all__'
+            
 
 class r5001RRecRepAD(models.Model):
     r5001_infototal = models.ForeignKey('r5001infoTotal',
@@ -178,6 +207,13 @@ class r5001RRecRepAD(models.Model):
         ordering = ['r5001_infototal', 'cnpjassocdesp', 'vlrtotalrep', 'crrecrepad', 'vlrcrrecrepad', 'vlrcrrecrepadsusp']
 
 
+
+class r5001RRecRepADSerializer(ModelSerializer):
+    class Meta:
+        model = r5001RRecRepAD
+        fields = '__all__'
+            
+
 class r5001RTom(models.Model):
     r5001_infototal = models.OneToOneField('r5001infoTotal',
         related_name='%(class)s_r5001_infototal')
@@ -200,6 +236,13 @@ class r5001RTom(models.Model):
         managed = True
         ordering = ['r5001_infototal', 'cnpjprestador', 'vlrtotalbaseret']
 
+
+
+class r5001RTomSerializer(ModelSerializer):
+    class Meta:
+        model = r5001RTom
+        fields = '__all__'
+            
 
 class r5001infoCRTom(models.Model):
     r5001_rtom = models.ForeignKey('r5001RTom',
@@ -225,6 +268,13 @@ class r5001infoCRTom(models.Model):
         ordering = ['r5001_rtom', 'crtom', 'vlrcrtom', 'vlrcrtomsusp']
 
 
+
+class r5001infoCRTomSerializer(ModelSerializer):
+    class Meta:
+        model = r5001infoCRTom
+        fields = '__all__'
+            
+
 class r5001infoTotal(models.Model):
     r5001_evttotal = models.OneToOneField('efdreinf.r5001evtTotal',
         related_name='%(class)s_r5001_evttotal')
@@ -246,6 +296,13 @@ class r5001infoTotal(models.Model):
         managed = True
         ordering = ['r5001_evttotal', 'nrrecarqbase']
 
+
+
+class r5001infoTotalSerializer(ModelSerializer):
+    class Meta:
+        model = r5001infoTotal
+        fields = '__all__'
+            
 
 class r5001regOcorrs(models.Model):
     r5001_evttotal = models.ForeignKey('efdreinf.r5001evtTotal',
@@ -271,5 +328,12 @@ class r5001regOcorrs(models.Model):
         managed = True
         ordering = ['r5001_evttotal', 'tpocorr', 'localerroaviso', 'codresp', 'dscresp']
 
+
+
+class r5001regOcorrsSerializer(ModelSerializer):
+    class Meta:
+        model = r5001regOcorrs
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

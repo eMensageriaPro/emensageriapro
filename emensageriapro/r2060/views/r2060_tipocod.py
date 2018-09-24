@@ -295,6 +295,24 @@ def apagar(request, hash):
     }
     return render(request, 'r2060_tipocod_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class r2060tipoCodList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = r2060tipoCod.objects.using(db_slug).all()
+    serializer_class = r2060tipoCodSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class r2060tipoCodDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = r2060tipoCod.objects.using(db_slug).all()
+    serializer_class = r2060tipoCodSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

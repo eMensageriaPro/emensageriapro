@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -70,5 +71,12 @@ class s1300contribSind(models.Model):
         managed = True
         ordering = ['s1300_evtcontrsindpatr', 'cnpjsindic', 'tpcontribsind', 'vlrcontribsind']
 
+
+
+class s1300contribSindSerializer(ModelSerializer):
+    class Meta:
+        model = s1300contribSind
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

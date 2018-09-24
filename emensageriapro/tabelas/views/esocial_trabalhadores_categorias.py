@@ -96,6 +96,24 @@ from emensageriapro.s5011.forms import form_s5011_basesremun
 #IMPORTACOES
 
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class eSocialTrabalhadoresCategoriasList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = eSocialTrabalhadoresCategorias.objects.using(db_slug).all()
+    serializer_class = eSocialTrabalhadoresCategoriasSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class eSocialTrabalhadoresCategoriasDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = eSocialTrabalhadoresCategorias.objects.using(db_slug).all()
+    serializer_class = eSocialTrabalhadoresCategoriasSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

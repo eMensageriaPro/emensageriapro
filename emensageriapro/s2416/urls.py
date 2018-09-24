@@ -51,6 +51,12 @@ url(r'^s2416-infopenmorte/apagar/(?P<hash>.*)/$',
         s2416_infopenmorte_views.apagar, 
         name='s2416_infopenmorte_apagar'),
 
+url(r'^s2416-infopenmorte/api/$',
+            s2416_infopenmorte_views.s2416infoPenMorteList.as_view() ),
+
+        url(r'^s2416-infopenmorte/api/(?P<pk>[0-9]+)/$',
+            s2416_infopenmorte_views.s2416infoPenMorteDetail.as_view() ),
+
 url(r'^s2416-infopenmorte/listar/(?P<hash>.*)/$', 
         s2416_infopenmorte_views.listar, 
         name='s2416_infopenmorte'),
@@ -65,6 +71,12 @@ url(r'^s2416-homologtc/apagar/(?P<hash>.*)/$',
         s2416_homologtc_views.apagar, 
         name='s2416_homologtc_apagar'),
 
+url(r'^s2416-homologtc/api/$',
+            s2416_homologtc_views.s2416homologTCList.as_view() ),
+
+        url(r'^s2416-homologtc/api/(?P<pk>[0-9]+)/$',
+            s2416_homologtc_views.s2416homologTCDetail.as_view() ),
+
 url(r'^s2416-homologtc/listar/(?P<hash>.*)/$', 
         s2416_homologtc_views.listar, 
         name='s2416_homologtc'),
@@ -78,6 +90,12 @@ url(r'^s2416-homologtc/salvar/(?P<hash>.*)/$',
 url(r'^s2416-suspensao/apagar/(?P<hash>.*)/$', 
         s2416_suspensao_views.apagar, 
         name='s2416_suspensao_apagar'),
+
+url(r'^s2416-suspensao/api/$',
+            s2416_suspensao_views.s2416suspensaoList.as_view() ),
+
+        url(r'^s2416-suspensao/api/(?P<pk>[0-9]+)/$',
+            s2416_suspensao_views.s2416suspensaoDetail.as_view() ),
 
 url(r'^s2416-suspensao/listar/(?P<hash>.*)/$', 
         s2416_suspensao_views.listar, 

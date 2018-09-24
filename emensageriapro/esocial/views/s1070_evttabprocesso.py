@@ -319,6 +319,82 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        s1070_evttabprocesso_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s1070_evttabprocesso')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    s1070_evttabprocesso = get_object_or_404(s1070evtTabProcesso.objects.using( db_slug ), excluido = False, id = s1070_evttabprocesso_id)
+
+    if s1070_evttabprocesso_id:
+        if s1070_evttabprocesso.status != 0:
+            dict_permissoes['s1070_evttabprocesso_apagar'] = 0
+            dict_permissoes['s1070_evttabprocesso_editar'] = 0
+
+    if request.method == 'POST':
+        if s1070_evttabprocesso.status == 0:
+            import json
+            from django.forms.models import model_to_dict
+            situacao_anterior = json.dumps(model_to_dict(s1070_evttabprocesso), indent=4, sort_keys=True, default=str)
+            s1070evtTabProcesso.objects.using( db_slug ).filter(id = s1070_evttabprocesso_id).delete()
+            #s1070_evttabprocesso_apagar_custom
+            #s1070_evttabprocesso_apagar_custom
+            messages.success(request, 'Apagado com sucesso!')
+            gravar_auditoria(situacao_anterior,
+                             '',
+                             's1070_evttabprocesso', s1070_evttabprocesso_id, usuario_id, 3)
+        else:
+            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+   
+        if request.session['retorno_pagina']== 's1070_evttabprocesso_salvar':
+            return redirect('s1070_evttabprocesso', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 's1070_evttabprocesso_apagar.html', context)
+
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s1070evtTabProcessoList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s1070evtTabProcesso.objects.using(db_slug).all()
+    serializer_class = s1070evtTabProcessoSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s1070evtTabProcessoDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s1070evtTabProcesso.objects.using(db_slug).all()
+    serializer_class = s1070evtTabProcessoSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse
@@ -514,62 +590,4 @@ def listar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
-
-@login_required
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s1070_evttabprocesso_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s1070_evttabprocesso')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-    s1070_evttabprocesso = get_object_or_404(s1070evtTabProcesso.objects.using( db_slug ), excluido = False, id = s1070_evttabprocesso_id)
-
-    if s1070_evttabprocesso_id:
-        if s1070_evttabprocesso.status != 0:
-            dict_permissoes['s1070_evttabprocesso_apagar'] = 0
-            dict_permissoes['s1070_evttabprocesso_editar'] = 0
-
-    if request.method == 'POST':
-        if s1070_evttabprocesso.status == 0:
-            import json
-            from django.forms.models import model_to_dict
-            situacao_anterior = json.dumps(model_to_dict(s1070_evttabprocesso), indent=4, sort_keys=True, default=str)
-            s1070evtTabProcesso.objects.using( db_slug ).filter(id = s1070_evttabprocesso_id).delete()
-            #s1070_evttabprocesso_apagar_custom
-            #s1070_evttabprocesso_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
-            gravar_auditoria(situacao_anterior,
-                             '',
-                             's1070_evttabprocesso', s1070_evttabprocesso_id, usuario_id, 3)
-        else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
-        if request.session['retorno_pagina']== 's1070_evttabprocesso_salvar':
-            return redirect('s1070_evttabprocesso', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 's1070_evttabprocesso_apagar.html', context)
 

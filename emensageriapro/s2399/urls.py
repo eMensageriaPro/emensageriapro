@@ -61,6 +61,12 @@ url(r'^s2399-verbasresc/apagar/(?P<hash>.*)/$',
         s2399_verbasresc_views.apagar, 
         name='s2399_verbasresc_apagar'),
 
+url(r'^s2399-verbasresc/api/$',
+            s2399_verbasresc_views.s2399verbasRescList.as_view() ),
+
+        url(r'^s2399-verbasresc/api/(?P<pk>[0-9]+)/$',
+            s2399_verbasresc_views.s2399verbasRescDetail.as_view() ),
+
 url(r'^s2399-verbasresc/listar/(?P<hash>.*)/$', 
         s2399_verbasresc_views.listar, 
         name='s2399_verbasresc'),
@@ -74,6 +80,12 @@ url(r'^s2399-verbasresc/salvar/(?P<hash>.*)/$',
 url(r'^s2399-dmdev/apagar/(?P<hash>.*)/$', 
         s2399_dmdev_views.apagar, 
         name='s2399_dmdev_apagar'),
+
+url(r'^s2399-dmdev/api/$',
+            s2399_dmdev_views.s2399dmDevList.as_view() ),
+
+        url(r'^s2399-dmdev/api/(?P<pk>[0-9]+)/$',
+            s2399_dmdev_views.s2399dmDevDetail.as_view() ),
 
 url(r'^s2399-dmdev/listar/(?P<hash>.*)/$', 
         s2399_dmdev_views.listar, 
@@ -89,6 +101,12 @@ url(r'^s2399-ideestablot/apagar/(?P<hash>.*)/$',
         s2399_ideestablot_views.apagar, 
         name='s2399_ideestablot_apagar'),
 
+url(r'^s2399-ideestablot/api/$',
+            s2399_ideestablot_views.s2399ideEstabLotList.as_view() ),
+
+        url(r'^s2399-ideestablot/api/(?P<pk>[0-9]+)/$',
+            s2399_ideestablot_views.s2399ideEstabLotDetail.as_view() ),
+
 url(r'^s2399-ideestablot/listar/(?P<hash>.*)/$', 
         s2399_ideestablot_views.listar, 
         name='s2399_ideestablot'),
@@ -102,6 +120,12 @@ url(r'^s2399-ideestablot/salvar/(?P<hash>.*)/$',
 url(r'^s2399-detverbas/apagar/(?P<hash>.*)/$', 
         s2399_detverbas_views.apagar, 
         name='s2399_detverbas_apagar'),
+
+url(r'^s2399-detverbas/api/$',
+            s2399_detverbas_views.s2399detVerbasList.as_view() ),
+
+        url(r'^s2399-detverbas/api/(?P<pk>[0-9]+)/$',
+            s2399_detverbas_views.s2399detVerbasDetail.as_view() ),
 
 url(r'^s2399-detverbas/listar/(?P<hash>.*)/$', 
         s2399_detverbas_views.listar, 
@@ -117,6 +141,12 @@ url(r'^s2399-infosaudecolet/apagar/(?P<hash>.*)/$',
         s2399_infosaudecolet_views.apagar, 
         name='s2399_infosaudecolet_apagar'),
 
+url(r'^s2399-infosaudecolet/api/$',
+            s2399_infosaudecolet_views.s2399infoSaudeColetList.as_view() ),
+
+        url(r'^s2399-infosaudecolet/api/(?P<pk>[0-9]+)/$',
+            s2399_infosaudecolet_views.s2399infoSaudeColetDetail.as_view() ),
+
 url(r'^s2399-infosaudecolet/listar/(?P<hash>.*)/$', 
         s2399_infosaudecolet_views.listar, 
         name='s2399_infosaudecolet'),
@@ -130,6 +160,12 @@ url(r'^s2399-infosaudecolet/salvar/(?P<hash>.*)/$',
 url(r'^s2399-detoper/apagar/(?P<hash>.*)/$', 
         s2399_detoper_views.apagar, 
         name='s2399_detoper_apagar'),
+
+url(r'^s2399-detoper/api/$',
+            s2399_detoper_views.s2399detOperList.as_view() ),
+
+        url(r'^s2399-detoper/api/(?P<pk>[0-9]+)/$',
+            s2399_detoper_views.s2399detOperDetail.as_view() ),
 
 url(r'^s2399-detoper/listar/(?P<hash>.*)/$', 
         s2399_detoper_views.listar, 
@@ -145,6 +181,12 @@ url(r'^s2399-detplano/apagar/(?P<hash>.*)/$',
         s2399_detplano_views.apagar, 
         name='s2399_detplano_apagar'),
 
+url(r'^s2399-detplano/api/$',
+            s2399_detplano_views.s2399detPlanoList.as_view() ),
+
+        url(r'^s2399-detplano/api/(?P<pk>[0-9]+)/$',
+            s2399_detplano_views.s2399detPlanoDetail.as_view() ),
+
 url(r'^s2399-detplano/listar/(?P<hash>.*)/$', 
         s2399_detplano_views.listar, 
         name='s2399_detplano'),
@@ -158,6 +200,12 @@ url(r'^s2399-detplano/salvar/(?P<hash>.*)/$',
 url(r'^s2399-infoagnocivo/apagar/(?P<hash>.*)/$', 
         s2399_infoagnocivo_views.apagar, 
         name='s2399_infoagnocivo_apagar'),
+
+url(r'^s2399-infoagnocivo/api/$',
+            s2399_infoagnocivo_views.s2399infoAgNocivoList.as_view() ),
+
+        url(r'^s2399-infoagnocivo/api/(?P<pk>[0-9]+)/$',
+            s2399_infoagnocivo_views.s2399infoAgNocivoDetail.as_view() ),
 
 url(r'^s2399-infoagnocivo/listar/(?P<hash>.*)/$', 
         s2399_infoagnocivo_views.listar, 
@@ -173,6 +221,12 @@ url(r'^s2399-infosimples/apagar/(?P<hash>.*)/$',
         s2399_infosimples_views.apagar, 
         name='s2399_infosimples_apagar'),
 
+url(r'^s2399-infosimples/api/$',
+            s2399_infosimples_views.s2399infoSimplesList.as_view() ),
+
+        url(r'^s2399-infosimples/api/(?P<pk>[0-9]+)/$',
+            s2399_infosimples_views.s2399infoSimplesDetail.as_view() ),
+
 url(r'^s2399-infosimples/listar/(?P<hash>.*)/$', 
         s2399_infosimples_views.listar, 
         name='s2399_infosimples'),
@@ -186,6 +240,12 @@ url(r'^s2399-infosimples/salvar/(?P<hash>.*)/$',
 url(r'^s2399-procjudtrab/apagar/(?P<hash>.*)/$', 
         s2399_procjudtrab_views.apagar, 
         name='s2399_procjudtrab_apagar'),
+
+url(r'^s2399-procjudtrab/api/$',
+            s2399_procjudtrab_views.s2399procJudTrabList.as_view() ),
+
+        url(r'^s2399-procjudtrab/api/(?P<pk>[0-9]+)/$',
+            s2399_procjudtrab_views.s2399procJudTrabDetail.as_view() ),
 
 url(r'^s2399-procjudtrab/listar/(?P<hash>.*)/$', 
         s2399_procjudtrab_views.listar, 
@@ -201,6 +261,12 @@ url(r'^s2399-infomv/apagar/(?P<hash>.*)/$',
         s2399_infomv_views.apagar, 
         name='s2399_infomv_apagar'),
 
+url(r'^s2399-infomv/api/$',
+            s2399_infomv_views.s2399infoMVList.as_view() ),
+
+        url(r'^s2399-infomv/api/(?P<pk>[0-9]+)/$',
+            s2399_infomv_views.s2399infoMVDetail.as_view() ),
+
 url(r'^s2399-infomv/listar/(?P<hash>.*)/$', 
         s2399_infomv_views.listar, 
         name='s2399_infomv'),
@@ -215,6 +281,12 @@ url(r'^s2399-remunoutrempr/apagar/(?P<hash>.*)/$',
         s2399_remunoutrempr_views.apagar, 
         name='s2399_remunoutrempr_apagar'),
 
+url(r'^s2399-remunoutrempr/api/$',
+            s2399_remunoutrempr_views.s2399remunOutrEmprList.as_view() ),
+
+        url(r'^s2399-remunoutrempr/api/(?P<pk>[0-9]+)/$',
+            s2399_remunoutrempr_views.s2399remunOutrEmprDetail.as_view() ),
+
 url(r'^s2399-remunoutrempr/listar/(?P<hash>.*)/$', 
         s2399_remunoutrempr_views.listar, 
         name='s2399_remunoutrempr'),
@@ -228,6 +300,12 @@ url(r'^s2399-remunoutrempr/salvar/(?P<hash>.*)/$',
 url(r'^s2399-quarentena/apagar/(?P<hash>.*)/$', 
         s2399_quarentena_views.apagar, 
         name='s2399_quarentena_apagar'),
+
+url(r'^s2399-quarentena/api/$',
+            s2399_quarentena_views.s2399quarentenaList.as_view() ),
+
+        url(r'^s2399-quarentena/api/(?P<pk>[0-9]+)/$',
+            s2399_quarentena_views.s2399quarentenaDetail.as_view() ),
 
 url(r'^s2399-quarentena/listar/(?P<hash>.*)/$', 
         s2399_quarentena_views.listar, 

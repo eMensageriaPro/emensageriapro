@@ -49,6 +49,12 @@ url(r'^s5012-infocrcontrib/apagar/(?P<hash>.*)/$',
         s5012_infocrcontrib_views.apagar, 
         name='s5012_infocrcontrib_apagar'),
 
+url(r'^s5012-infocrcontrib/api/$',
+            s5012_infocrcontrib_views.s5012infoCRContribList.as_view() ),
+
+        url(r'^s5012-infocrcontrib/api/(?P<pk>[0-9]+)/$',
+            s5012_infocrcontrib_views.s5012infoCRContribDetail.as_view() ),
+
 url(r'^s5012-infocrcontrib/listar/(?P<hash>.*)/$', 
         s5012_infocrcontrib_views.listar, 
         name='s5012_infocrcontrib'),

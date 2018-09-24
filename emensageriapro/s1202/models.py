@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -105,6 +106,13 @@ class s1202dmDev(models.Model):
         ordering = ['s1202_evtrmnrpps', 'idedmdev', 'codcateg']
 
 
+
+class s1202dmDevSerializer(ModelSerializer):
+    class Meta:
+        model = s1202dmDev
+        fields = '__all__'
+            
+
 class s1202infoPerAnt(models.Model):
     s1202_dmdev = models.OneToOneField('s1202dmDev',
         related_name='%(class)s_s1202_dmdev')
@@ -124,6 +132,13 @@ class s1202infoPerAnt(models.Model):
         managed = True
         ordering = ['s1202_dmdev']
 
+
+
+class s1202infoPerAntSerializer(ModelSerializer):
+    class Meta:
+        model = s1202infoPerAnt
+        fields = '__all__'
+            
 
 class s1202infoPerAntideADC(models.Model):
     s1202_infoperant = models.ForeignKey('s1202infoPerAnt',
@@ -153,6 +168,13 @@ class s1202infoPerAntideADC(models.Model):
         ordering = ['s1202_infoperant', 'dtlei', 'nrlei', 'dtef', 'dtacconv', 'tpacconv', 'compacconv', 'dtefacconv', 'dsc']
 
 
+
+class s1202infoPerAntideADCSerializer(ModelSerializer):
+    class Meta:
+        model = s1202infoPerAntideADC
+        fields = '__all__'
+            
+
 class s1202infoPerAntideEstab(models.Model):
     s1202_infoperant_ideperiodo = models.ForeignKey('s1202infoPerAntidePeriodo',
         related_name='%(class)s_s1202_infoperant_ideperiodo')
@@ -175,6 +197,13 @@ class s1202infoPerAntideEstab(models.Model):
         ordering = ['s1202_infoperant_ideperiodo', 'tpinsc', 'nrinsc']
 
 
+
+class s1202infoPerAntideEstabSerializer(ModelSerializer):
+    class Meta:
+        model = s1202infoPerAntideEstab
+        fields = '__all__'
+            
+
 class s1202infoPerAntidePeriodo(models.Model):
     s1202_infoperant_ideadc = models.ForeignKey('s1202infoPerAntideADC',
         related_name='%(class)s_s1202_infoperant_ideadc')
@@ -195,6 +224,13 @@ class s1202infoPerAntidePeriodo(models.Model):
         managed = True
         ordering = ['s1202_infoperant_ideadc', 'perref']
 
+
+
+class s1202infoPerAntidePeriodoSerializer(ModelSerializer):
+    class Meta:
+        model = s1202infoPerAntidePeriodo
+        fields = '__all__'
+            
 
 class s1202infoPerAntitensRemun(models.Model):
     s1202_infoperant_remunperant = models.ForeignKey('s1202infoPerAntremunPerAnt',
@@ -222,6 +258,13 @@ class s1202infoPerAntitensRemun(models.Model):
         ordering = ['s1202_infoperant_remunperant', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
 
 
+
+class s1202infoPerAntitensRemunSerializer(ModelSerializer):
+    class Meta:
+        model = s1202infoPerAntitensRemun
+        fields = '__all__'
+            
+
 class s1202infoPerAntremunPerAnt(models.Model):
     s1202_infoperant_ideestab = models.ForeignKey('s1202infoPerAntideEstab',
         related_name='%(class)s_s1202_infoperant_ideestab')
@@ -244,6 +287,13 @@ class s1202infoPerAntremunPerAnt(models.Model):
         ordering = ['s1202_infoperant_ideestab', 'matricula', 'codcateg']
 
 
+
+class s1202infoPerAntremunPerAntSerializer(ModelSerializer):
+    class Meta:
+        model = s1202infoPerAntremunPerAnt
+        fields = '__all__'
+            
+
 class s1202infoPerApur(models.Model):
     s1202_dmdev = models.OneToOneField('s1202dmDev',
         related_name='%(class)s_s1202_dmdev')
@@ -263,6 +313,13 @@ class s1202infoPerApur(models.Model):
         managed = True
         ordering = ['s1202_dmdev']
 
+
+
+class s1202infoPerApurSerializer(ModelSerializer):
+    class Meta:
+        model = s1202infoPerApur
+        fields = '__all__'
+            
 
 class s1202infoPerApurdetOper(models.Model):
     s1202_infoperapur_infosaudecolet = models.ForeignKey('s1202infoPerApurinfoSaudeColet',
@@ -286,6 +343,13 @@ class s1202infoPerApurdetOper(models.Model):
         managed = True
         ordering = ['s1202_infoperapur_infosaudecolet', 'cnpjoper', 'regans', 'vrpgtit']
 
+
+
+class s1202infoPerApurdetOperSerializer(ModelSerializer):
+    class Meta:
+        model = s1202infoPerApurdetOper
+        fields = '__all__'
+            
 
 class s1202infoPerApurdetPlano(models.Model):
     s1202_infoperapur_detoper = models.ForeignKey('s1202infoPerApurdetOper',
@@ -312,6 +376,13 @@ class s1202infoPerApurdetPlano(models.Model):
         ordering = ['s1202_infoperapur_detoper', 'tpdep', 'cpfdep', 'nmdep', 'dtnascto', 'vlrpgdep']
 
 
+
+class s1202infoPerApurdetPlanoSerializer(ModelSerializer):
+    class Meta:
+        model = s1202infoPerApurdetPlano
+        fields = '__all__'
+            
+
 class s1202infoPerApurideEstab(models.Model):
     s1202_infoperapur = models.ForeignKey('s1202infoPerApur',
         related_name='%(class)s_s1202_infoperapur')
@@ -334,6 +405,13 @@ class s1202infoPerApurideEstab(models.Model):
         ordering = ['s1202_infoperapur', 'tpinsc', 'nrinsc']
 
 
+
+class s1202infoPerApurideEstabSerializer(ModelSerializer):
+    class Meta:
+        model = s1202infoPerApurideEstab
+        fields = '__all__'
+            
+
 class s1202infoPerApurinfoSaudeColet(models.Model):
     s1202_infoperapur_remunperapur = models.OneToOneField('s1202infoPerApurremunPerApur',
         related_name='%(class)s_s1202_infoperapur_remunperapur')
@@ -353,6 +431,13 @@ class s1202infoPerApurinfoSaudeColet(models.Model):
         managed = True
         ordering = ['s1202_infoperapur_remunperapur']
 
+
+
+class s1202infoPerApurinfoSaudeColetSerializer(ModelSerializer):
+    class Meta:
+        model = s1202infoPerApurinfoSaudeColet
+        fields = '__all__'
+            
 
 class s1202infoPerApuritensRemun(models.Model):
     s1202_infoperapur_remunperapur = models.ForeignKey('s1202infoPerApurremunPerApur',
@@ -380,6 +465,13 @@ class s1202infoPerApuritensRemun(models.Model):
         ordering = ['s1202_infoperapur_remunperapur', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
 
 
+
+class s1202infoPerApuritensRemunSerializer(ModelSerializer):
+    class Meta:
+        model = s1202infoPerApuritensRemun
+        fields = '__all__'
+            
+
 class s1202infoPerApurremunPerApur(models.Model):
     s1202_infoperapur_ideestab = models.ForeignKey('s1202infoPerApurideEstab',
         related_name='%(class)s_s1202_infoperapur_ideestab')
@@ -401,6 +493,13 @@ class s1202infoPerApurremunPerApur(models.Model):
         managed = True
         ordering = ['s1202_infoperapur_ideestab', 'matricula', 'codcateg']
 
+
+
+class s1202infoPerApurremunPerApurSerializer(ModelSerializer):
+    class Meta:
+        model = s1202infoPerApurremunPerApur
+        fields = '__all__'
+            
 
 class s1202procJudTrab(models.Model):
     s1202_evtrmnrpps = models.ForeignKey('esocial.s1202evtRmnRPPS',
@@ -424,5 +523,12 @@ class s1202procJudTrab(models.Model):
         managed = True
         ordering = ['s1202_evtrmnrpps', 'tptrib', 'nrprocjud', 'codsusp']
 
+
+
+class s1202procJudTrabSerializer(ModelSerializer):
+    class Meta:
+        model = s1202procJudTrab
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

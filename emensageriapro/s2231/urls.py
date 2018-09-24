@@ -50,6 +50,12 @@ url(r'^s2231-inicessao/apagar/(?P<hash>.*)/$',
         s2231_inicessao_views.apagar, 
         name='s2231_inicessao_apagar'),
 
+url(r'^s2231-inicessao/api/$',
+            s2231_inicessao_views.s2231iniCessaoList.as_view() ),
+
+        url(r'^s2231-inicessao/api/(?P<pk>[0-9]+)/$',
+            s2231_inicessao_views.s2231iniCessaoDetail.as_view() ),
+
 url(r'^s2231-inicessao/listar/(?P<hash>.*)/$', 
         s2231_inicessao_views.listar, 
         name='s2231_inicessao'),
@@ -63,6 +69,12 @@ url(r'^s2231-inicessao/salvar/(?P<hash>.*)/$',
 url(r'^s2231-fimcessao/apagar/(?P<hash>.*)/$', 
         s2231_fimcessao_views.apagar, 
         name='s2231_fimcessao_apagar'),
+
+url(r'^s2231-fimcessao/api/$',
+            s2231_fimcessao_views.s2231fimCessaoList.as_view() ),
+
+        url(r'^s2231-fimcessao/api/(?P<pk>[0-9]+)/$',
+            s2231_fimcessao_views.s2231fimCessaoDetail.as_view() ),
 
 url(r'^s2231-fimcessao/listar/(?P<hash>.*)/$', 
         s2231_fimcessao_views.listar, 

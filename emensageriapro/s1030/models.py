@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -143,6 +144,13 @@ class s1030alteracao(models.Model):
         ordering = ['s1030_evttabcargo', 'codcargo', 'inivalid', 'fimvalid', 'nmcargo', 'codcbo']
 
 
+
+class s1030alteracaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1030alteracao
+        fields = '__all__'
+            
+
 class s1030alteracaocargoPublico(models.Model):
     s1030_alteracao = models.OneToOneField('s1030alteracao',
         related_name='%(class)s_s1030_alteracao')
@@ -170,6 +178,13 @@ class s1030alteracaocargoPublico(models.Model):
         ordering = ['s1030_alteracao', 'acumcargo', 'contagemesp', 'dedicexcl', 'codcarreira', 'nrlei', 'dtlei', 'sitcargo']
 
 
+
+class s1030alteracaocargoPublicoSerializer(ModelSerializer):
+    class Meta:
+        model = s1030alteracaocargoPublico
+        fields = '__all__'
+            
+
 class s1030alteracaonovaValidade(models.Model):
     s1030_alteracao = models.OneToOneField('s1030alteracao',
         related_name='%(class)s_s1030_alteracao')
@@ -191,6 +206,13 @@ class s1030alteracaonovaValidade(models.Model):
         managed = True
         ordering = ['s1030_alteracao', 'inivalid', 'fimvalid']
 
+
+
+class s1030alteracaonovaValidadeSerializer(ModelSerializer):
+    class Meta:
+        model = s1030alteracaonovaValidade
+        fields = '__all__'
+            
 
 class s1030exclusao(models.Model):
     s1030_evttabcargo = models.OneToOneField('esocial.s1030evtTabCargo',
@@ -214,6 +236,13 @@ class s1030exclusao(models.Model):
         managed = True
         ordering = ['s1030_evttabcargo', 'codcargo', 'inivalid', 'fimvalid']
 
+
+
+class s1030exclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1030exclusao
+        fields = '__all__'
+            
 
 class s1030inclusao(models.Model):
     s1030_evttabcargo = models.OneToOneField('esocial.s1030evtTabCargo',
@@ -239,6 +268,13 @@ class s1030inclusao(models.Model):
         managed = True
         ordering = ['s1030_evttabcargo', 'codcargo', 'inivalid', 'fimvalid', 'nmcargo', 'codcbo']
 
+
+
+class s1030inclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1030inclusao
+        fields = '__all__'
+            
 
 class s1030inclusaocargoPublico(models.Model):
     s1030_inclusao = models.OneToOneField('s1030inclusao',
@@ -266,5 +302,12 @@ class s1030inclusaocargoPublico(models.Model):
         managed = True
         ordering = ['s1030_inclusao', 'acumcargo', 'contagemesp', 'dedicexcl', 'codcarreira', 'nrlei', 'dtlei', 'sitcargo']
 
+
+
+class s1030inclusaocargoPublicoSerializer(ModelSerializer):
+    class Meta:
+        model = s1030inclusaocargoPublico
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

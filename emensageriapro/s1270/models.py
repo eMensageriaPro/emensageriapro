@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -81,5 +82,12 @@ class s1270remunAvNP(models.Model):
         managed = True
         ordering = ['s1270_evtcontratavnp', 'tpinsc', 'nrinsc', 'codlotacao', 'vrbccp00', 'vrbccp15', 'vrbccp20', 'vrbccp25', 'vrbccp13', 'vrbcfgts', 'vrdesccp']
 
+
+
+class s1270remunAvNPSerializer(ModelSerializer):
+    class Meta:
+        model = s1270remunAvNP
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

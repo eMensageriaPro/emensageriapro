@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -2059,6 +2060,13 @@ class s1000evtInfoEmpregador(models.Model):
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
 
+
+class s1000evtInfoEmpregadorSerializer(ModelSerializer):
+    class Meta:
+        model = s1000evtInfoEmpregador
+        fields = '__all__'
+            
+
 class s1005evtTabEstab(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -2105,6 +2113,13 @@ class s1005evtTabEstab(models.Model):
         managed = True
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
+
+
+class s1005evtTabEstabSerializer(ModelSerializer):
+    class Meta:
+        model = s1005evtTabEstab
+        fields = '__all__'
+            
 
 class s1010evtTabRubrica(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -2153,6 +2168,13 @@ class s1010evtTabRubrica(models.Model):
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
 
+
+class s1010evtTabRubricaSerializer(ModelSerializer):
+    class Meta:
+        model = s1010evtTabRubrica
+        fields = '__all__'
+            
+
 class s1020evtTabLotacao(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -2199,6 +2221,13 @@ class s1020evtTabLotacao(models.Model):
         managed = True
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
+
+
+class s1020evtTabLotacaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1020evtTabLotacao
+        fields = '__all__'
+            
 
 class s1030evtTabCargo(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -2247,6 +2276,13 @@ class s1030evtTabCargo(models.Model):
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
 
+
+class s1030evtTabCargoSerializer(ModelSerializer):
+    class Meta:
+        model = s1030evtTabCargo
+        fields = '__all__'
+            
+
 class s1035evtTabCarreira(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -2293,6 +2329,13 @@ class s1035evtTabCarreira(models.Model):
         managed = True
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
+
+
+class s1035evtTabCarreiraSerializer(ModelSerializer):
+    class Meta:
+        model = s1035evtTabCarreira
+        fields = '__all__'
+            
 
 class s1040evtTabFuncao(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -2341,6 +2384,13 @@ class s1040evtTabFuncao(models.Model):
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
 
+
+class s1040evtTabFuncaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1040evtTabFuncao
+        fields = '__all__'
+            
+
 class s1050evtTabHorTur(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -2387,6 +2437,13 @@ class s1050evtTabHorTur(models.Model):
         managed = True
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
+
+
+class s1050evtTabHorTurSerializer(ModelSerializer):
+    class Meta:
+        model = s1050evtTabHorTur
+        fields = '__all__'
+            
 
 class s1060evtTabAmbiente(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -2435,6 +2492,13 @@ class s1060evtTabAmbiente(models.Model):
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
 
+
+class s1060evtTabAmbienteSerializer(ModelSerializer):
+    class Meta:
+        model = s1060evtTabAmbiente
+        fields = '__all__'
+            
+
 class s1065evtTabEquipamento(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -2481,6 +2545,13 @@ class s1065evtTabEquipamento(models.Model):
         managed = True
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
+
+
+class s1065evtTabEquipamentoSerializer(ModelSerializer):
+    class Meta:
+        model = s1065evtTabEquipamento
+        fields = '__all__'
+            
 
 class s1070evtTabProcesso(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -2529,6 +2600,13 @@ class s1070evtTabProcesso(models.Model):
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
 
+
+class s1070evtTabProcessoSerializer(ModelSerializer):
+    class Meta:
+        model = s1070evtTabProcesso
+        fields = '__all__'
+            
+
 class s1080evtTabOperPort(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -2575,6 +2653,13 @@ class s1080evtTabOperPort(models.Model):
         managed = True
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
+
+
+class s1080evtTabOperPortSerializer(ModelSerializer):
+    class Meta:
+        model = s1080evtTabOperPort
+        fields = '__all__'
+            
 
 class s1200evtRemun(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -2627,6 +2712,13 @@ class s1200evtRemun(models.Model):
         managed = True
         ordering = ['identidade', 'indretif', 'nrrecibo', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab']
 
+
+
+class s1200evtRemunSerializer(ModelSerializer):
+    class Meta:
+        model = s1200evtRemun
+        fields = '__all__'
+            
 
 class s1202evtRmnRPPS(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -2681,6 +2773,13 @@ class s1202evtRmnRPPS(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'qtddepfp']
 
 
+
+class s1202evtRmnRPPSSerializer(ModelSerializer):
+    class Meta:
+        model = s1202evtRmnRPPS
+        fields = '__all__'
+            
+
 class s1207evtBenPrRP(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -2732,6 +2831,13 @@ class s1207evtBenPrRP(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef']
 
 
+
+class s1207evtBenPrRPSerializer(ModelSerializer):
+    class Meta:
+        model = s1207evtBenPrRP
+        fields = '__all__'
+            
+
 class s1210evtPgtos(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -2782,6 +2888,13 @@ class s1210evtPgtos(models.Model):
         managed = True
         ordering = ['identidade', 'indretif', 'nrrecibo', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef']
 
+
+
+class s1210evtPgtosSerializer(ModelSerializer):
+    class Meta:
+        model = s1210evtPgtos
+        fields = '__all__'
+            
 
 class s1250evtAqProd(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -2835,6 +2948,13 @@ class s1250evtAqProd(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscadq', 'nrinscadq']
 
 
+
+class s1250evtAqProdSerializer(ModelSerializer):
+    class Meta:
+        model = s1250evtAqProd
+        fields = '__all__'
+            
+
 class s1260evtComProd(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -2886,6 +3006,13 @@ class s1260evtComProd(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'nrinscestabrural']
 
 
+
+class s1260evtComProdSerializer(ModelSerializer):
+    class Meta:
+        model = s1260evtComProd
+        fields = '__all__'
+            
+
 class s1270evtContratAvNP(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -2935,6 +3062,13 @@ class s1270evtContratAvNP(models.Model):
         managed = True
         ordering = ['identidade', 'indretif', 'nrrecibo', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
+
+
+class s1270evtContratAvNPSerializer(ModelSerializer):
+    class Meta:
+        model = s1270evtContratAvNP
+        fields = '__all__'
+            
 
 class s1280evtInfoComplPer(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -2986,6 +3120,13 @@ class s1280evtInfoComplPer(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
 
+
+class s1280evtInfoComplPerSerializer(ModelSerializer):
+    class Meta:
+        model = s1280evtInfoComplPer
+        fields = '__all__'
+            
+
 class s1295evtTotConting(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -3034,6 +3175,13 @@ class s1295evtTotConting(models.Model):
         ordering = ['identidade', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
 
+
+class s1295evtTotContingSerializer(ModelSerializer):
+    class Meta:
+        model = s1295evtTotConting
+        fields = '__all__'
+            
+
 class s1298evtReabreEvPer(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -3081,6 +3229,13 @@ class s1298evtReabreEvPer(models.Model):
         managed = True
         ordering = ['identidade', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
+
+
+class s1298evtReabreEvPerSerializer(ModelSerializer):
+    class Meta:
+        model = s1298evtReabreEvPer
+        fields = '__all__'
+            
 
 class s1299evtFechaEvPer(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -3137,6 +3292,13 @@ class s1299evtFechaEvPer(models.Model):
         ordering = ['identidade', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'evtremun', 'evtpgtos', 'evtaqprod', 'evtcomprod', 'evtcontratavnp', 'evtinfocomplper', 'compsemmovto']
 
 
+
+class s1299evtFechaEvPerSerializer(ModelSerializer):
+    class Meta:
+        model = s1299evtFechaEvPer
+        fields = '__all__'
+            
+
 class s1300evtContrSindPatr(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -3187,6 +3349,13 @@ class s1300evtContrSindPatr(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
 
+
+class s1300evtContrSindPatrSerializer(ModelSerializer):
+    class Meta:
+        model = s1300evtContrSindPatr
+        fields = '__all__'
+            
+
 class s2190evtAdmPrelim(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -3235,6 +3404,13 @@ class s2190evtAdmPrelim(models.Model):
         managed = True
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'dtnascto', 'dtadm']
 
+
+
+class s2190evtAdmPrelimSerializer(ModelSerializer):
+    class Meta:
+        model = s2190evtAdmPrelim
+        fields = '__all__'
+            
 
 class s2200evtAdmissao(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -3317,6 +3493,13 @@ class s2200evtAdmissao(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'nmtrab', 'sexo', 'racacor', 'estciv', 'grauinstr', 'indpriempr', 'nmsoc', 'dtnascto', 'codmunic', 'uf', 'paisnascto', 'paisnac', 'nmmae', 'nmpai', 'matricula', 'tpregtrab', 'tpregprev', 'nrrecinfprelim', 'cadini', 'codcargo', 'dtingrcargo', 'codfuncao', 'codcateg', 'codcarreira', 'dtingrcarr', 'vrsalfx', 'undsalfixo', 'dscsalvar', 'tpcontr', 'dtterm', 'clauassec']
 
 
+
+class s2200evtAdmissaoSerializer(ModelSerializer):
+    class Meta:
+        model = s2200evtAdmissao
+        fields = '__all__'
+            
+
 class s2205evtAltCadastral(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -3380,6 +3563,13 @@ class s2205evtAltCadastral(models.Model):
         managed = True
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'dtalteracao', 'nistrab', 'nmtrab', 'sexo', 'racacor', 'estciv', 'grauinstr', 'nmsoc', 'dtnascto', 'codmunic', 'uf', 'paisnascto', 'paisnac', 'nmmae', 'nmpai']
 
+
+
+class s2205evtAltCadastralSerializer(ModelSerializer):
+    class Meta:
+        model = s2205evtAltCadastral
+        fields = '__all__'
+            
 
 class s2206evtAltContratual(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -3445,6 +3635,13 @@ class s2206evtAltContratual(models.Model):
         managed = True
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'dtalteracao', 'dtef', 'dscalt', 'tpregprev', 'codcargo', 'codfuncao', 'codcateg', 'codcarreira', 'dtingrcarr', 'vrsalfx', 'undsalfixo', 'dscsalvar', 'tpcontr', 'dtterm']
 
+
+
+class s2206evtAltContratualSerializer(ModelSerializer):
+    class Meta:
+        model = s2206evtAltContratual
+        fields = '__all__'
+            
 
 class s2210evtCAT(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -3527,6 +3724,13 @@ class s2210evtCAT(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpregistrador', 'tpinsc', 'nrinsc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'dtacid', 'tpacid', 'hracid', 'hrstrabantesacid', 'tpcat', 'indcatobito', 'dtobito', 'indcomunpolicia', 'codsitgeradora', 'iniciatcat', 'observacao', 'tplocal', 'dsclocal', 'codamb', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'cep', 'codmunic', 'uf', 'cnpjlocalacid', 'pais', 'codpostal', 'tpinsc', 'nrinsc']
 
 
+
+class s2210evtCATSerializer(ModelSerializer):
+    class Meta:
+        model = s2210evtCAT
+        fields = '__all__'
+            
+
 class s2220evtMonit(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -3592,6 +3796,13 @@ class s2220evtMonit(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'tpexame', 'dtaso', 'tpaso', 'resaso', 'cpfmed', 'nismed', 'nmmed', 'nrcrm', 'ufcrm', 'codcnes', 'frmctt', 'email', 'nmmed']
 
 
+
+class s2220evtMonitSerializer(ModelSerializer):
+    class Meta:
+        model = s2220evtMonit
+        fields = '__all__'
+            
+
 class s2230evtAfastTemp(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -3644,6 +3855,13 @@ class s2230evtAfastTemp(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg']
 
 
+
+class s2230evtAfastTempSerializer(ModelSerializer):
+    class Meta:
+        model = s2230evtAfastTemp
+        fields = '__all__'
+            
+
 class s2231evtCessao(models.Model):
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2231_INDRETIF)
@@ -3673,6 +3891,13 @@ class s2231evtCessao(models.Model):
         managed = True
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula']
 
+
+
+class s2231evtCessaoSerializer(ModelSerializer):
+    class Meta:
+        model = s2231evtCessao
+        fields = '__all__'
+            
 
 class s2240evtExpRisco(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -3727,6 +3952,13 @@ class s2240evtExpRisco(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg']
 
 
+
+class s2240evtExpRiscoSerializer(ModelSerializer):
+    class Meta:
+        model = s2240evtExpRisco
+        fields = '__all__'
+            
+
 class s2241evtInsApo(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -3778,6 +4010,13 @@ class s2241evtInsApo(models.Model):
         managed = True
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula']
 
+
+
+class s2241evtInsApoSerializer(ModelSerializer):
+    class Meta:
+        model = s2241evtInsApo
+        fields = '__all__'
+            
 
 class s2245evtTreiCap(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -3838,6 +4077,13 @@ class s2245evtTreiCap(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'codtreicap', 'dttreicap', 'durtreicap', 'modtreicap', 'tptreicap', 'observacao']
 
 
+
+class s2245evtTreiCapSerializer(ModelSerializer):
+    class Meta:
+        model = s2245evtTreiCap
+        fields = '__all__'
+            
+
 class s2250evtAvPrevio(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -3888,6 +4134,13 @@ class s2250evtAvPrevio(models.Model):
         managed = True
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula']
 
+
+
+class s2250evtAvPrevioSerializer(ModelSerializer):
+    class Meta:
+        model = s2250evtAvPrevio
+        fields = '__all__'
+            
 
 class s2260evtConvInterm(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -3947,6 +4200,13 @@ class s2260evtConvInterm(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codconv', 'dtinicio', 'dtfim', 'dtprevpgto', 'codhorcontrat', 'dscjornada', 'indlocal']
 
 
+
+class s2260evtConvIntermSerializer(ModelSerializer):
+    class Meta:
+        model = s2260evtConvInterm
+        fields = '__all__'
+            
+
 class s2298evtReintegr(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -4003,6 +4263,13 @@ class s2298evtReintegr(models.Model):
         managed = True
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'tpreint', 'nrprocjud', 'nrleianistia', 'dtefetretorno', 'dtefeito', 'indpagtojuizo']
 
+
+
+class s2298evtReintegrSerializer(ModelSerializer):
+    class Meta:
+        model = s2298evtReintegr
+        fields = '__all__'
+            
 
 class s2299evtDeslig(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -4065,6 +4332,13 @@ class s2299evtDeslig(models.Model):
         managed = True
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'mtvdeslig', 'dtdeslig', 'indpagtoapi', 'dtprojfimapi', 'pensalim', 'percaliment', 'vralim', 'nrcertobito', 'nrproctrab', 'indcumprparc', 'qtddiasinterm']
 
+
+
+class s2299evtDesligSerializer(ModelSerializer):
+    class Meta:
+        model = s2299evtDeslig
+        fields = '__all__'
+            
 
 class s2300evtTSVInicio(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -4133,6 +4407,13 @@ class s2300evtTSVInicio(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'nmtrab', 'sexo', 'racacor', 'estciv', 'grauinstr', 'nmsoc', 'dtnascto', 'codmunic', 'uf', 'paisnascto', 'paisnac', 'nmmae', 'nmpai', 'cadini', 'codcateg', 'dtinicio', 'natatividade']
 
 
+
+class s2300evtTSVInicioSerializer(ModelSerializer):
+    class Meta:
+        model = s2300evtTSVInicio
+        fields = '__all__'
+            
+
 class s2306evtTSVAltContr(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -4186,6 +4467,13 @@ class s2306evtTSVAltContr(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'codcateg', 'dtalteracao', 'natatividade']
 
 
+
+class s2306evtTSVAltContrSerializer(ModelSerializer):
+    class Meta:
+        model = s2306evtTSVAltContr
+        fields = '__all__'
+            
+
 class s2399evtTSVTermino(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -4238,6 +4526,13 @@ class s2399evtTSVTermino(models.Model):
         managed = True
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'codcateg', 'dtterm', 'mtvdesligtsv']
 
+
+
+class s2399evtTSVTerminoSerializer(ModelSerializer):
+    class Meta:
+        model = s2399evtTSVTermino
+        fields = '__all__'
+            
 
 class s2400evtCdBenefIn(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -4303,6 +4598,13 @@ class s2400evtCdBenefIn(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'nisbenef', 'nmbenefic', 'dtinicio', 'sexo', 'racacor', 'estciv', 'incfismen', 'dtincfismen', 'dtnascto', 'codmunic', 'uf', 'paisnascto', 'paisnac', 'nmmae', 'nmpai']
 
 
+
+class s2400evtCdBenefInSerializer(ModelSerializer):
+    class Meta:
+        model = s2400evtCdBenefIn
+        fields = '__all__'
+            
+
 class s2405evtCdBenefAlt(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     identidade = models.CharField(max_length=36, blank=True, null=True)
@@ -4362,6 +4664,13 @@ class s2405evtCdBenefAlt(models.Model):
         managed = True
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'dtalteracao', 'nisbenef', 'nmbenefic', 'sexo', 'racacor', 'estciv', 'incfismen', 'dtincfismen', 'paisnac', 'nmmae', 'nmpai']
 
+
+
+class s2405evtCdBenefAltSerializer(ModelSerializer):
+    class Meta:
+        model = s2405evtCdBenefAlt
+        fields = '__all__'
+            
 
 class s2410evtCdBenIn(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -4423,6 +4732,13 @@ class s2410evtCdBenIn(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'matricula', 'cnpjorigem', 'cadini', 'nrbeneficio', 'dtinibeneficio', 'tpbeneficio', 'vrbeneficio', 'tpplanrp', 'dsc', 'inddecjud', 'indhomologtc']
 
 
+
+class s2410evtCdBenInSerializer(ModelSerializer):
+    class Meta:
+        model = s2410evtCdBenIn
+        fields = '__all__'
+            
+
 class s2416evtCdBenAlt(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     identidade = models.CharField(max_length=36, blank=True, null=True)
@@ -4481,6 +4797,13 @@ class s2416evtCdBenAlt(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'nrbeneficio', 'dtaltbeneficio', 'tpbeneficio', 'tpplanrp', 'dsc', 'inddecjud', 'indhomologtc', 'indsuspensao']
 
 
+
+class s2416evtCdBenAltSerializer(ModelSerializer):
+    class Meta:
+        model = s2416evtCdBenAlt
+        fields = '__all__'
+            
+
 class s2420evtCdBenTerm(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -4534,6 +4857,13 @@ class s2420evtCdBenTerm(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'nrbeneficio', 'dttermbeneficio', 'mtvtermino']
 
 
+
+class s2420evtCdBenTermSerializer(ModelSerializer):
+    class Meta:
+        model = s2420evtCdBenTerm
+        fields = '__all__'
+            
+
 class s3000evtExclusao(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -4582,6 +4912,13 @@ class s3000evtExclusao(models.Model):
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpevento', 'nrrecevt']
 
 
+
+class s3000evtExclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s3000evtExclusao
+        fields = '__all__'
+            
+
 class s5001evtBasesTrab(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -4629,6 +4966,13 @@ class s5001evtBasesTrab(models.Model):
         ordering = ['identidade', 'nrrecarqbase', 'indapuracao', 'perapur', 'tpinsc', 'nrinsc', 'cpftrab']
 
 
+
+class s5001evtBasesTrabSerializer(ModelSerializer):
+    class Meta:
+        model = s5001evtBasesTrab
+        fields = '__all__'
+            
+
 class s5002evtIrrfBenef(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -4674,6 +5018,13 @@ class s5002evtIrrfBenef(models.Model):
         managed = True
         ordering = ['identidade', 'nrrecarqbase', 'perapur', 'tpinsc', 'nrinsc', 'cpftrab']
 
+
+
+class s5002evtIrrfBenefSerializer(ModelSerializer):
+    class Meta:
+        model = s5002evtIrrfBenef
+        fields = '__all__'
+            
 
 class s5011evtCS(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
@@ -4723,6 +5074,13 @@ class s5011evtCS(models.Model):
         ordering = ['identidade', 'indapuracao', 'perapur', 'tpinsc', 'nrinsc', 'nrrecarqbase', 'indexistinfo', 'classtrib']
 
 
+
+class s5011evtCSSerializer(ModelSerializer):
+    class Meta:
+        model = s5011evtCS
+        fields = '__all__'
+            
+
 class s5012evtIrrf(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -4768,5 +5126,12 @@ class s5012evtIrrf(models.Model):
         managed = True
         ordering = ['identidade', 'perapur', 'tpinsc', 'nrinsc', 'nrrecarqbase', 'indexistinfo']
 
+
+
+class s5012evtIrrfSerializer(ModelSerializer):
+    class Meta:
+        model = s5012evtIrrf
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

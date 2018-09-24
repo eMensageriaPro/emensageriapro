@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -446,6 +447,13 @@ class s2210agenteCausador(models.Model):
         ordering = ['s2210_evtcat', 'codagntcausador']
 
 
+
+class s2210agenteCausadorSerializer(ModelSerializer):
+    class Meta:
+        model = s2210agenteCausador
+        fields = '__all__'
+            
+
 class s2210atestado(models.Model):
     s2210_evtcat = models.OneToOneField('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat')
@@ -481,6 +489,13 @@ class s2210atestado(models.Model):
         ordering = ['s2210_evtcat', 'codcnes', 'dtatendimento', 'hratendimento', 'indinternacao', 'durtrat', 'indafast', 'dsclesao', 'dsccomplesao', 'diagprovavel', 'codcid', 'observacao', 'nmemit', 'ideoc', 'nroc', 'ufoc']
 
 
+
+class s2210atestadoSerializer(ModelSerializer):
+    class Meta:
+        model = s2210atestado
+        fields = '__all__'
+            
+
 class s2210catOrigem(models.Model):
     s2210_evtcat = models.OneToOneField('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat')
@@ -503,6 +518,13 @@ class s2210catOrigem(models.Model):
         ordering = ['s2210_evtcat', 'dtcatorig', 'nrcatorig']
 
 
+
+class s2210catOrigemSerializer(ModelSerializer):
+    class Meta:
+        model = s2210catOrigem
+        fields = '__all__'
+            
+
 class s2210ideLocalAcid(models.Model):
     s2210_evtcat = models.OneToOneField('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat')
@@ -522,6 +544,13 @@ class s2210ideLocalAcid(models.Model):
         managed = True
         ordering = ['s2210_evtcat']
 
+
+
+class s2210ideLocalAcidSerializer(ModelSerializer):
+    class Meta:
+        model = s2210ideLocalAcid
+        fields = '__all__'
+            
 
 class s2210parteAtingida(models.Model):
     s2210_evtcat = models.ForeignKey('esocial.s2210evtCAT',
@@ -544,5 +573,12 @@ class s2210parteAtingida(models.Model):
         managed = True
         ordering = ['s2210_evtcat', 'codparteating', 'lateralidade']
 
+
+
+class s2210parteAtingidaSerializer(ModelSerializer):
+    class Meta:
+        model = s2210parteAtingida
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

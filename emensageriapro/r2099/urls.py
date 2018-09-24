@@ -49,6 +49,12 @@ url(r'^r2099-iderespinf/apagar/(?P<hash>.*)/$',
         r2099_iderespinf_views.apagar, 
         name='r2099_iderespinf_apagar'),
 
+url(r'^r2099-iderespinf/api/$',
+            r2099_iderespinf_views.r2099ideRespInfList.as_view() ),
+
+        url(r'^r2099-iderespinf/api/(?P<pk>[0-9]+)/$',
+            r2099_iderespinf_views.r2099ideRespInfDetail.as_view() ),
+
 url(r'^r2099-iderespinf/listar/(?P<hash>.*)/$', 
         r2099_iderespinf_views.listar, 
         name='r2099_iderespinf'),

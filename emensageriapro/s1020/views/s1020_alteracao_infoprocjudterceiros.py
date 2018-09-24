@@ -288,6 +288,24 @@ def apagar(request, hash):
     }
     return render(request, 's1020_alteracao_infoprocjudterceiros_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s1020alteracaoinfoProcJudTerceirosList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s1020alteracaoinfoProcJudTerceiros.objects.using(db_slug).all()
+    serializer_class = s1020alteracaoinfoProcJudTerceirosSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s1020alteracaoinfoProcJudTerceirosDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s1020alteracaoinfoProcJudTerceiros.objects.using(db_slug).all()
+    serializer_class = s1020alteracaoinfoProcJudTerceirosSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

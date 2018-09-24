@@ -73,6 +73,12 @@ url(r'^s1200-infomv/apagar/(?P<hash>.*)/$',
         s1200_infomv_views.apagar, 
         name='s1200_infomv_apagar'),
 
+url(r'^s1200-infomv/api/$',
+            s1200_infomv_views.s1200infoMVList.as_view() ),
+
+        url(r'^s1200-infomv/api/(?P<pk>[0-9]+)/$',
+            s1200_infomv_views.s1200infoMVDetail.as_view() ),
+
 url(r'^s1200-infomv/listar/(?P<hash>.*)/$', 
         s1200_infomv_views.listar, 
         name='s1200_infomv'),
@@ -86,6 +92,12 @@ url(r'^s1200-infomv/salvar/(?P<hash>.*)/$',
 url(r'^s1200-remunoutrempr/apagar/(?P<hash>.*)/$', 
         s1200_remunoutrempr_views.apagar, 
         name='s1200_remunoutrempr_apagar'),
+
+url(r'^s1200-remunoutrempr/api/$',
+            s1200_remunoutrempr_views.s1200remunOutrEmprList.as_view() ),
+
+        url(r'^s1200-remunoutrempr/api/(?P<pk>[0-9]+)/$',
+            s1200_remunoutrempr_views.s1200remunOutrEmprDetail.as_view() ),
 
 url(r'^s1200-remunoutrempr/listar/(?P<hash>.*)/$', 
         s1200_remunoutrempr_views.listar, 
@@ -101,6 +113,12 @@ url(r'^s1200-infocomplem/apagar/(?P<hash>.*)/$',
         s1200_infocomplem_views.apagar, 
         name='s1200_infocomplem_apagar'),
 
+url(r'^s1200-infocomplem/api/$',
+            s1200_infocomplem_views.s1200infoComplemList.as_view() ),
+
+        url(r'^s1200-infocomplem/api/(?P<pk>[0-9]+)/$',
+            s1200_infocomplem_views.s1200infoComplemDetail.as_view() ),
+
 url(r'^s1200-infocomplem/listar/(?P<hash>.*)/$', 
         s1200_infocomplem_views.listar, 
         name='s1200_infocomplem'),
@@ -114,6 +132,12 @@ url(r'^s1200-infocomplem/salvar/(?P<hash>.*)/$',
 url(r'^s1200-sucessaovinc/apagar/(?P<hash>.*)/$', 
         s1200_sucessaovinc_views.apagar, 
         name='s1200_sucessaovinc_apagar'),
+
+url(r'^s1200-sucessaovinc/api/$',
+            s1200_sucessaovinc_views.s1200sucessaoVincList.as_view() ),
+
+        url(r'^s1200-sucessaovinc/api/(?P<pk>[0-9]+)/$',
+            s1200_sucessaovinc_views.s1200sucessaoVincDetail.as_view() ),
 
 url(r'^s1200-sucessaovinc/listar/(?P<hash>.*)/$', 
         s1200_sucessaovinc_views.listar, 
@@ -129,6 +153,12 @@ url(r'^s1200-procjudtrab/apagar/(?P<hash>.*)/$',
         s1200_procjudtrab_views.apagar, 
         name='s1200_procjudtrab_apagar'),
 
+url(r'^s1200-procjudtrab/api/$',
+            s1200_procjudtrab_views.s1200procJudTrabList.as_view() ),
+
+        url(r'^s1200-procjudtrab/api/(?P<pk>[0-9]+)/$',
+            s1200_procjudtrab_views.s1200procJudTrabDetail.as_view() ),
+
 url(r'^s1200-procjudtrab/listar/(?P<hash>.*)/$', 
         s1200_procjudtrab_views.listar, 
         name='s1200_procjudtrab'),
@@ -142,6 +172,12 @@ url(r'^s1200-procjudtrab/salvar/(?P<hash>.*)/$',
 url(r'^s1200-infointerm/apagar/(?P<hash>.*)/$', 
         s1200_infointerm_views.apagar, 
         name='s1200_infointerm_apagar'),
+
+url(r'^s1200-infointerm/api/$',
+            s1200_infointerm_views.s1200infoIntermList.as_view() ),
+
+        url(r'^s1200-infointerm/api/(?P<pk>[0-9]+)/$',
+            s1200_infointerm_views.s1200infoIntermDetail.as_view() ),
 
 url(r'^s1200-infointerm/listar/(?P<hash>.*)/$', 
         s1200_infointerm_views.listar, 
@@ -157,6 +193,12 @@ url(r'^s1200-dmdev/apagar/(?P<hash>.*)/$',
         s1200_dmdev_views.apagar, 
         name='s1200_dmdev_apagar'),
 
+url(r'^s1200-dmdev/api/$',
+            s1200_dmdev_views.s1200dmDevList.as_view() ),
+
+        url(r'^s1200-dmdev/api/(?P<pk>[0-9]+)/$',
+            s1200_dmdev_views.s1200dmDevDetail.as_view() ),
+
 url(r'^s1200-dmdev/listar/(?P<hash>.*)/$', 
         s1200_dmdev_views.listar, 
         name='s1200_dmdev'),
@@ -170,6 +212,12 @@ url(r'^s1200-dmdev/salvar/(?P<hash>.*)/$',
 url(r'^s1200-infoperapur/apagar/(?P<hash>.*)/$', 
         s1200_infoperapur_views.apagar, 
         name='s1200_infoperapur_apagar'),
+
+url(r'^s1200-infoperapur/api/$',
+            s1200_infoperapur_views.s1200infoPerApurList.as_view() ),
+
+        url(r'^s1200-infoperapur/api/(?P<pk>[0-9]+)/$',
+            s1200_infoperapur_views.s1200infoPerApurDetail.as_view() ),
 
 url(r'^s1200-infoperapur/listar/(?P<hash>.*)/$', 
         s1200_infoperapur_views.listar, 
@@ -185,6 +233,12 @@ url(r'^s1200-infoperapur-ideestablot/apagar/(?P<hash>.*)/$',
         s1200_infoperapur_ideestablot_views.apagar, 
         name='s1200_infoperapur_ideestablot_apagar'),
 
+url(r'^s1200-infoperapur-ideestablot/api/$',
+            s1200_infoperapur_ideestablot_views.s1200infoPerApurideEstabLotList.as_view() ),
+
+        url(r'^s1200-infoperapur-ideestablot/api/(?P<pk>[0-9]+)/$',
+            s1200_infoperapur_ideestablot_views.s1200infoPerApurideEstabLotDetail.as_view() ),
+
 url(r'^s1200-infoperapur-ideestablot/listar/(?P<hash>.*)/$', 
         s1200_infoperapur_ideestablot_views.listar, 
         name='s1200_infoperapur_ideestablot'),
@@ -198,6 +252,12 @@ url(r'^s1200-infoperapur-ideestablot/salvar/(?P<hash>.*)/$',
 url(r'^s1200-infoperapur-remunperapur/apagar/(?P<hash>.*)/$', 
         s1200_infoperapur_remunperapur_views.apagar, 
         name='s1200_infoperapur_remunperapur_apagar'),
+
+url(r'^s1200-infoperapur-remunperapur/api/$',
+            s1200_infoperapur_remunperapur_views.s1200infoPerApurremunPerApurList.as_view() ),
+
+        url(r'^s1200-infoperapur-remunperapur/api/(?P<pk>[0-9]+)/$',
+            s1200_infoperapur_remunperapur_views.s1200infoPerApurremunPerApurDetail.as_view() ),
 
 url(r'^s1200-infoperapur-remunperapur/listar/(?P<hash>.*)/$', 
         s1200_infoperapur_remunperapur_views.listar, 
@@ -213,6 +273,12 @@ url(r'^s1200-infoperapur-itensremun/apagar/(?P<hash>.*)/$',
         s1200_infoperapur_itensremun_views.apagar, 
         name='s1200_infoperapur_itensremun_apagar'),
 
+url(r'^s1200-infoperapur-itensremun/api/$',
+            s1200_infoperapur_itensremun_views.s1200infoPerApuritensRemunList.as_view() ),
+
+        url(r'^s1200-infoperapur-itensremun/api/(?P<pk>[0-9]+)/$',
+            s1200_infoperapur_itensremun_views.s1200infoPerApuritensRemunDetail.as_view() ),
+
 url(r'^s1200-infoperapur-itensremun/listar/(?P<hash>.*)/$', 
         s1200_infoperapur_itensremun_views.listar, 
         name='s1200_infoperapur_itensremun'),
@@ -226,6 +292,12 @@ url(r'^s1200-infoperapur-itensremun/salvar/(?P<hash>.*)/$',
 url(r'^s1200-infoperapur-infosaudecolet/apagar/(?P<hash>.*)/$', 
         s1200_infoperapur_infosaudecolet_views.apagar, 
         name='s1200_infoperapur_infosaudecolet_apagar'),
+
+url(r'^s1200-infoperapur-infosaudecolet/api/$',
+            s1200_infoperapur_infosaudecolet_views.s1200infoPerApurinfoSaudeColetList.as_view() ),
+
+        url(r'^s1200-infoperapur-infosaudecolet/api/(?P<pk>[0-9]+)/$',
+            s1200_infoperapur_infosaudecolet_views.s1200infoPerApurinfoSaudeColetDetail.as_view() ),
 
 url(r'^s1200-infoperapur-infosaudecolet/listar/(?P<hash>.*)/$', 
         s1200_infoperapur_infosaudecolet_views.listar, 
@@ -241,6 +313,12 @@ url(r'^s1200-infoperapur-detoper/apagar/(?P<hash>.*)/$',
         s1200_infoperapur_detoper_views.apagar, 
         name='s1200_infoperapur_detoper_apagar'),
 
+url(r'^s1200-infoperapur-detoper/api/$',
+            s1200_infoperapur_detoper_views.s1200infoPerApurdetOperList.as_view() ),
+
+        url(r'^s1200-infoperapur-detoper/api/(?P<pk>[0-9]+)/$',
+            s1200_infoperapur_detoper_views.s1200infoPerApurdetOperDetail.as_view() ),
+
 url(r'^s1200-infoperapur-detoper/listar/(?P<hash>.*)/$', 
         s1200_infoperapur_detoper_views.listar, 
         name='s1200_infoperapur_detoper'),
@@ -254,6 +332,12 @@ url(r'^s1200-infoperapur-detoper/salvar/(?P<hash>.*)/$',
 url(r'^s1200-infoperapur-detplano/apagar/(?P<hash>.*)/$', 
         s1200_infoperapur_detplano_views.apagar, 
         name='s1200_infoperapur_detplano_apagar'),
+
+url(r'^s1200-infoperapur-detplano/api/$',
+            s1200_infoperapur_detplano_views.s1200infoPerApurdetPlanoList.as_view() ),
+
+        url(r'^s1200-infoperapur-detplano/api/(?P<pk>[0-9]+)/$',
+            s1200_infoperapur_detplano_views.s1200infoPerApurdetPlanoDetail.as_view() ),
 
 url(r'^s1200-infoperapur-detplano/listar/(?P<hash>.*)/$', 
         s1200_infoperapur_detplano_views.listar, 
@@ -269,6 +353,12 @@ url(r'^s1200-infoperapur-infoagnocivo/apagar/(?P<hash>.*)/$',
         s1200_infoperapur_infoagnocivo_views.apagar, 
         name='s1200_infoperapur_infoagnocivo_apagar'),
 
+url(r'^s1200-infoperapur-infoagnocivo/api/$',
+            s1200_infoperapur_infoagnocivo_views.s1200infoPerApurinfoAgNocivoList.as_view() ),
+
+        url(r'^s1200-infoperapur-infoagnocivo/api/(?P<pk>[0-9]+)/$',
+            s1200_infoperapur_infoagnocivo_views.s1200infoPerApurinfoAgNocivoDetail.as_view() ),
+
 url(r'^s1200-infoperapur-infoagnocivo/listar/(?P<hash>.*)/$', 
         s1200_infoperapur_infoagnocivo_views.listar, 
         name='s1200_infoperapur_infoagnocivo'),
@@ -282,6 +372,12 @@ url(r'^s1200-infoperapur-infoagnocivo/salvar/(?P<hash>.*)/$',
 url(r'^s1200-infoperapur-infotrabinterm/apagar/(?P<hash>.*)/$', 
         s1200_infoperapur_infotrabinterm_views.apagar, 
         name='s1200_infoperapur_infotrabinterm_apagar'),
+
+url(r'^s1200-infoperapur-infotrabinterm/api/$',
+            s1200_infoperapur_infotrabinterm_views.s1200infoPerApurinfoTrabIntermList.as_view() ),
+
+        url(r'^s1200-infoperapur-infotrabinterm/api/(?P<pk>[0-9]+)/$',
+            s1200_infoperapur_infotrabinterm_views.s1200infoPerApurinfoTrabIntermDetail.as_view() ),
 
 url(r'^s1200-infoperapur-infotrabinterm/listar/(?P<hash>.*)/$', 
         s1200_infoperapur_infotrabinterm_views.listar, 
@@ -297,6 +393,12 @@ url(r'^s1200-infoperant/apagar/(?P<hash>.*)/$',
         s1200_infoperant_views.apagar, 
         name='s1200_infoperant_apagar'),
 
+url(r'^s1200-infoperant/api/$',
+            s1200_infoperant_views.s1200infoPerAntList.as_view() ),
+
+        url(r'^s1200-infoperant/api/(?P<pk>[0-9]+)/$',
+            s1200_infoperant_views.s1200infoPerAntDetail.as_view() ),
+
 url(r'^s1200-infoperant/listar/(?P<hash>.*)/$', 
         s1200_infoperant_views.listar, 
         name='s1200_infoperant'),
@@ -310,6 +412,12 @@ url(r'^s1200-infoperant/salvar/(?P<hash>.*)/$',
 url(r'^s1200-infoperant-ideadc/apagar/(?P<hash>.*)/$', 
         s1200_infoperant_ideadc_views.apagar, 
         name='s1200_infoperant_ideadc_apagar'),
+
+url(r'^s1200-infoperant-ideadc/api/$',
+            s1200_infoperant_ideadc_views.s1200infoPerAntideADCList.as_view() ),
+
+        url(r'^s1200-infoperant-ideadc/api/(?P<pk>[0-9]+)/$',
+            s1200_infoperant_ideadc_views.s1200infoPerAntideADCDetail.as_view() ),
 
 url(r'^s1200-infoperant-ideadc/listar/(?P<hash>.*)/$', 
         s1200_infoperant_ideadc_views.listar, 
@@ -325,6 +433,12 @@ url(r'^s1200-infoperant-ideperiodo/apagar/(?P<hash>.*)/$',
         s1200_infoperant_ideperiodo_views.apagar, 
         name='s1200_infoperant_ideperiodo_apagar'),
 
+url(r'^s1200-infoperant-ideperiodo/api/$',
+            s1200_infoperant_ideperiodo_views.s1200infoPerAntidePeriodoList.as_view() ),
+
+        url(r'^s1200-infoperant-ideperiodo/api/(?P<pk>[0-9]+)/$',
+            s1200_infoperant_ideperiodo_views.s1200infoPerAntidePeriodoDetail.as_view() ),
+
 url(r'^s1200-infoperant-ideperiodo/listar/(?P<hash>.*)/$', 
         s1200_infoperant_ideperiodo_views.listar, 
         name='s1200_infoperant_ideperiodo'),
@@ -338,6 +452,12 @@ url(r'^s1200-infoperant-ideperiodo/salvar/(?P<hash>.*)/$',
 url(r'^s1200-infoperant-ideestablot/apagar/(?P<hash>.*)/$', 
         s1200_infoperant_ideestablot_views.apagar, 
         name='s1200_infoperant_ideestablot_apagar'),
+
+url(r'^s1200-infoperant-ideestablot/api/$',
+            s1200_infoperant_ideestablot_views.s1200infoPerAntideEstabLotList.as_view() ),
+
+        url(r'^s1200-infoperant-ideestablot/api/(?P<pk>[0-9]+)/$',
+            s1200_infoperant_ideestablot_views.s1200infoPerAntideEstabLotDetail.as_view() ),
 
 url(r'^s1200-infoperant-ideestablot/listar/(?P<hash>.*)/$', 
         s1200_infoperant_ideestablot_views.listar, 
@@ -353,6 +473,12 @@ url(r'^s1200-infoperant-remunperant/apagar/(?P<hash>.*)/$',
         s1200_infoperant_remunperant_views.apagar, 
         name='s1200_infoperant_remunperant_apagar'),
 
+url(r'^s1200-infoperant-remunperant/api/$',
+            s1200_infoperant_remunperant_views.s1200infoPerAntremunPerAntList.as_view() ),
+
+        url(r'^s1200-infoperant-remunperant/api/(?P<pk>[0-9]+)/$',
+            s1200_infoperant_remunperant_views.s1200infoPerAntremunPerAntDetail.as_view() ),
+
 url(r'^s1200-infoperant-remunperant/listar/(?P<hash>.*)/$', 
         s1200_infoperant_remunperant_views.listar, 
         name='s1200_infoperant_remunperant'),
@@ -366,6 +492,12 @@ url(r'^s1200-infoperant-remunperant/salvar/(?P<hash>.*)/$',
 url(r'^s1200-infoperant-itensremun/apagar/(?P<hash>.*)/$', 
         s1200_infoperant_itensremun_views.apagar, 
         name='s1200_infoperant_itensremun_apagar'),
+
+url(r'^s1200-infoperant-itensremun/api/$',
+            s1200_infoperant_itensremun_views.s1200infoPerAntitensRemunList.as_view() ),
+
+        url(r'^s1200-infoperant-itensremun/api/(?P<pk>[0-9]+)/$',
+            s1200_infoperant_itensremun_views.s1200infoPerAntitensRemunDetail.as_view() ),
 
 url(r'^s1200-infoperant-itensremun/listar/(?P<hash>.*)/$', 
         s1200_infoperant_itensremun_views.listar, 
@@ -381,6 +513,12 @@ url(r'^s1200-infoperant-infoagnocivo/apagar/(?P<hash>.*)/$',
         s1200_infoperant_infoagnocivo_views.apagar, 
         name='s1200_infoperant_infoagnocivo_apagar'),
 
+url(r'^s1200-infoperant-infoagnocivo/api/$',
+            s1200_infoperant_infoagnocivo_views.s1200infoPerAntinfoAgNocivoList.as_view() ),
+
+        url(r'^s1200-infoperant-infoagnocivo/api/(?P<pk>[0-9]+)/$',
+            s1200_infoperant_infoagnocivo_views.s1200infoPerAntinfoAgNocivoDetail.as_view() ),
+
 url(r'^s1200-infoperant-infoagnocivo/listar/(?P<hash>.*)/$', 
         s1200_infoperant_infoagnocivo_views.listar, 
         name='s1200_infoperant_infoagnocivo'),
@@ -395,6 +533,12 @@ url(r'^s1200-infoperant-infotrabinterm/apagar/(?P<hash>.*)/$',
         s1200_infoperant_infotrabinterm_views.apagar, 
         name='s1200_infoperant_infotrabinterm_apagar'),
 
+url(r'^s1200-infoperant-infotrabinterm/api/$',
+            s1200_infoperant_infotrabinterm_views.s1200infoPerAntinfoTrabIntermList.as_view() ),
+
+        url(r'^s1200-infoperant-infotrabinterm/api/(?P<pk>[0-9]+)/$',
+            s1200_infoperant_infotrabinterm_views.s1200infoPerAntinfoTrabIntermDetail.as_view() ),
+
 url(r'^s1200-infoperant-infotrabinterm/listar/(?P<hash>.*)/$', 
         s1200_infoperant_infotrabinterm_views.listar, 
         name='s1200_infoperant_infotrabinterm'),
@@ -408,6 +552,12 @@ url(r'^s1200-infoperant-infotrabinterm/salvar/(?P<hash>.*)/$',
 url(r'^s1200-infoperant-infocomplcont/apagar/(?P<hash>.*)/$', 
         s1200_infoperant_infocomplcont_views.apagar, 
         name='s1200_infoperant_infocomplcont_apagar'),
+
+url(r'^s1200-infoperant-infocomplcont/api/$',
+            s1200_infoperant_infocomplcont_views.s1200infoPerAntinfoComplContList.as_view() ),
+
+        url(r'^s1200-infoperant-infocomplcont/api/(?P<pk>[0-9]+)/$',
+            s1200_infoperant_infocomplcont_views.s1200infoPerAntinfoComplContDetail.as_view() ),
 
 url(r'^s1200-infoperant-infocomplcont/listar/(?P<hash>.*)/$', 
         s1200_infoperant_infocomplcont_views.listar, 

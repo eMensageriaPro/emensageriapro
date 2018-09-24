@@ -92,6 +92,12 @@ url(r'^municipios/apagar/(?P<hash>.*)/$',
         municipios_views.apagar, 
         name='municipios_apagar'),
 
+url(r'^municipios/api/$',
+            municipios_views.MunicipiosList.as_view() ),
+
+        url(r'^municipios/api/(?P<pk>[0-9]+)/$',
+            municipios_views.MunicipiosDetail.as_view() ),
+
 url(r'^municipios/listar/(?P<hash>.*)/$', 
         municipios_views.listar, 
         name='municipios'),
@@ -110,6 +116,12 @@ url(r'^municipios/salvar/(?P<hash>.*)/$',
 url(r'^cbo/apagar/(?P<hash>.*)/$', 
         cbo_views.apagar, 
         name='cbo_apagar'),
+
+url(r'^cbo/api/$',
+            cbo_views.CBOList.as_view() ),
+
+        url(r'^cbo/api/(?P<pk>[0-9]+)/$',
+            cbo_views.CBODetail.as_view() ),
 
 url(r'^cbo/listar/(?P<hash>.*)/$', 
         cbo_views.listar, 
@@ -130,6 +142,12 @@ url(r'^cid/apagar/(?P<hash>.*)/$',
         cid_views.apagar, 
         name='cid_apagar'),
 
+url(r'^cid/api/$',
+            cid_views.CIDList.as_view() ),
+
+        url(r'^cid/api/(?P<pk>[0-9]+)/$',
+            cid_views.CIDDetail.as_view() ),
+
 url(r'^cid/listar/(?P<hash>.*)/$', 
         cid_views.listar, 
         name='cid'),
@@ -148,6 +166,12 @@ url(r'^cid/salvar/(?P<hash>.*)/$',
 url(r'^cnae/apagar/(?P<hash>.*)/$', 
         cnae_views.apagar, 
         name='cnae_apagar'),
+
+url(r'^cnae/api/$',
+            cnae_views.CNAEList.as_view() ),
+
+        url(r'^cnae/api/(?P<pk>[0-9]+)/$',
+            cnae_views.CNAEDetail.as_view() ),
 
 url(r'^cnae/listar/(?P<hash>.*)/$', 
         cnae_views.listar, 
@@ -168,6 +192,12 @@ url(r'^esocial-trabalhadores-categorias/apagar/(?P<hash>.*)/$',
         esocial_trabalhadores_categorias_views.apagar, 
         name='esocial_trabalhadores_categorias_apagar'),
 
+url(r'^esocial-trabalhadores-categorias/api/$',
+            esocial_trabalhadores_categorias_views.eSocialTrabalhadoresCategoriasList.as_view() ),
+
+        url(r'^esocial-trabalhadores-categorias/api/(?P<pk>[0-9]+)/$',
+            esocial_trabalhadores_categorias_views.eSocialTrabalhadoresCategoriasDetail.as_view() ),
+
 url(r'^esocial-trabalhadores-categorias/listar/(?P<hash>.*)/$', 
         esocial_trabalhadores_categorias_views.listar, 
         name='esocial_trabalhadores_categorias'),
@@ -186,6 +216,12 @@ url(r'^esocial-trabalhadores-categorias/salvar/(?P<hash>.*)/$',
 url(r'^esocial-financiamentos-aposentadorias-especiais/apagar/(?P<hash>.*)/$', 
         esocial_financiamentos_aposentadorias_especiais_views.apagar, 
         name='esocial_financiamentos_aposentadorias_especiais_apagar'),
+
+url(r'^esocial-financiamentos-aposentadorias-especiais/api/$',
+            esocial_financiamentos_aposentadorias_especiais_views.eSocialFinanciamentosAposentadoriasEspeciaisList.as_view() ),
+
+        url(r'^esocial-financiamentos-aposentadorias-especiais/api/(?P<pk>[0-9]+)/$',
+            esocial_financiamentos_aposentadorias_especiais_views.eSocialFinanciamentosAposentadoriasEspeciaisDetail.as_view() ),
 
 url(r'^esocial-financiamentos-aposentadorias-especiais/listar/(?P<hash>.*)/$', 
         esocial_financiamentos_aposentadorias_especiais_views.listar, 
@@ -206,6 +242,12 @@ url(r'^esocial-naturezas-rubricas/apagar/(?P<hash>.*)/$',
         esocial_naturezas_rubricas_views.apagar, 
         name='esocial_naturezas_rubricas_apagar'),
 
+url(r'^esocial-naturezas-rubricas/api/$',
+            esocial_naturezas_rubricas_views.eSocialNaturezasRubricasList.as_view() ),
+
+        url(r'^esocial-naturezas-rubricas/api/(?P<pk>[0-9]+)/$',
+            esocial_naturezas_rubricas_views.eSocialNaturezasRubricasDetail.as_view() ),
+
 url(r'^esocial-naturezas-rubricas/listar/(?P<hash>.*)/$', 
         esocial_naturezas_rubricas_views.listar, 
         name='esocial_naturezas_rubricas'),
@@ -224,6 +266,12 @@ url(r'^esocial-naturezas-rubricas/salvar/(?P<hash>.*)/$',
 url(r'^esocial-codigo-aliquotas-fpas-terceiros/apagar/(?P<hash>.*)/$', 
         esocial_codigo_aliquotas_fpas_terceiros_views.apagar, 
         name='esocial_codigo_aliquotas_fpas_terceiros_apagar'),
+
+url(r'^esocial-codigo-aliquotas-fpas-terceiros/api/$',
+            esocial_codigo_aliquotas_fpas_terceiros_views.eSocialCodigoAliquotasFPASTerceirosList.as_view() ),
+
+        url(r'^esocial-codigo-aliquotas-fpas-terceiros/api/(?P<pk>[0-9]+)/$',
+            esocial_codigo_aliquotas_fpas_terceiros_views.eSocialCodigoAliquotasFPASTerceirosDetail.as_view() ),
 
 url(r'^esocial-codigo-aliquotas-fpas-terceiros/listar/(?P<hash>.*)/$', 
         esocial_codigo_aliquotas_fpas_terceiros_views.listar, 
@@ -244,6 +292,12 @@ url(r'^esocial-inscricoes-tipos/apagar/(?P<hash>.*)/$',
         esocial_inscricoes_tipos_views.apagar, 
         name='esocial_inscricoes_tipos_apagar'),
 
+url(r'^esocial-inscricoes-tipos/api/$',
+            esocial_inscricoes_tipos_views.eSocialInscricoesTiposList.as_view() ),
+
+        url(r'^esocial-inscricoes-tipos/api/(?P<pk>[0-9]+)/$',
+            esocial_inscricoes_tipos_views.eSocialInscricoesTiposDetail.as_view() ),
+
 url(r'^esocial-inscricoes-tipos/listar/(?P<hash>.*)/$', 
         esocial_inscricoes_tipos_views.listar, 
         name='esocial_inscricoes_tipos'),
@@ -262,6 +316,12 @@ url(r'^esocial-inscricoes-tipos/salvar/(?P<hash>.*)/$',
 url(r'^esocial-paises/apagar/(?P<hash>.*)/$', 
         esocial_paises_views.apagar, 
         name='esocial_paises_apagar'),
+
+url(r'^esocial-paises/api/$',
+            esocial_paises_views.eSocialPaisesList.as_view() ),
+
+        url(r'^esocial-paises/api/(?P<pk>[0-9]+)/$',
+            esocial_paises_views.eSocialPaisesDetail.as_view() ),
 
 url(r'^esocial-paises/listar/(?P<hash>.*)/$', 
         esocial_paises_views.listar, 
@@ -282,6 +342,12 @@ url(r'^esocial-dependentes-tipos/apagar/(?P<hash>.*)/$',
         esocial_dependentes_tipos_views.apagar, 
         name='esocial_dependentes_tipos_apagar'),
 
+url(r'^esocial-dependentes-tipos/api/$',
+            esocial_dependentes_tipos_views.eSocialDependentesTiposList.as_view() ),
+
+        url(r'^esocial-dependentes-tipos/api/(?P<pk>[0-9]+)/$',
+            esocial_dependentes_tipos_views.eSocialDependentesTiposDetail.as_view() ),
+
 url(r'^esocial-dependentes-tipos/listar/(?P<hash>.*)/$', 
         esocial_dependentes_tipos_views.listar, 
         name='esocial_dependentes_tipos'),
@@ -300,6 +366,12 @@ url(r'^esocial-dependentes-tipos/salvar/(?P<hash>.*)/$',
 url(r'^esocial-classificacoes-tributarias/apagar/(?P<hash>.*)/$', 
         esocial_classificacoes_tributarias_views.apagar, 
         name='esocial_classificacoes_tributarias_apagar'),
+
+url(r'^esocial-classificacoes-tributarias/api/$',
+            esocial_classificacoes_tributarias_views.eSocialClassificacoesTributariasList.as_view() ),
+
+        url(r'^esocial-classificacoes-tributarias/api/(?P<pk>[0-9]+)/$',
+            esocial_classificacoes_tributarias_views.eSocialClassificacoesTributariasDetail.as_view() ),
 
 url(r'^esocial-classificacoes-tributarias/listar/(?P<hash>.*)/$', 
         esocial_classificacoes_tributarias_views.listar, 
@@ -320,6 +392,12 @@ url(r'^esocial-arquivos-esocial-tipos/apagar/(?P<hash>.*)/$',
         esocial_arquivos_esocial_tipos_views.apagar, 
         name='esocial_arquivos_esocial_tipos_apagar'),
 
+url(r'^esocial-arquivos-esocial-tipos/api/$',
+            esocial_arquivos_esocial_tipos_views.eSocialArquivosEsocialTiposList.as_view() ),
+
+        url(r'^esocial-arquivos-esocial-tipos/api/(?P<pk>[0-9]+)/$',
+            esocial_arquivos_esocial_tipos_views.eSocialArquivosEsocialTiposDetail.as_view() ),
+
 url(r'^esocial-arquivos-esocial-tipos/listar/(?P<hash>.*)/$', 
         esocial_arquivos_esocial_tipos_views.listar, 
         name='esocial_arquivos_esocial_tipos'),
@@ -338,6 +416,12 @@ url(r'^esocial-arquivos-esocial-tipos/salvar/(?P<hash>.*)/$',
 url(r'^esocial-lotacoes-tributarias-tipos/apagar/(?P<hash>.*)/$', 
         esocial_lotacoes_tributarias_tipos_views.apagar, 
         name='esocial_lotacoes_tributarias_tipos_apagar'),
+
+url(r'^esocial-lotacoes-tributarias-tipos/api/$',
+            esocial_lotacoes_tributarias_tipos_views.eSocialLotacoesTributariasTiposList.as_view() ),
+
+        url(r'^esocial-lotacoes-tributarias-tipos/api/(?P<pk>[0-9]+)/$',
+            esocial_lotacoes_tributarias_tipos_views.eSocialLotacoesTributariasTiposDetail.as_view() ),
 
 url(r'^esocial-lotacoes-tributarias-tipos/listar/(?P<hash>.*)/$', 
         esocial_lotacoes_tributarias_tipos_views.listar, 
@@ -358,6 +442,12 @@ url(r'^esocial-compatibilidades-categorias-classificacoes-lotacoes/apagar/(?P<ha
         esocial_compatibilidades_categorias_classificacoes_lotacoes_views.apagar, 
         name='esocial_compatibilidades_categorias_classificacoes_lotacoes_apagar'),
 
+url(r'^esocial-compatibilidades-categorias-classificacoes-lotacoes/api/$',
+            esocial_compatibilidades_categorias_classificacoes_lotacoes_views.eSocialCompatibilidadesCategoriasClassificacoesLotacoesList.as_view() ),
+
+        url(r'^esocial-compatibilidades-categorias-classificacoes-lotacoes/api/(?P<pk>[0-9]+)/$',
+            esocial_compatibilidades_categorias_classificacoes_lotacoes_views.eSocialCompatibilidadesCategoriasClassificacoesLotacoesDetail.as_view() ),
+
 url(r'^esocial-compatibilidades-categorias-classificacoes-lotacoes/listar/(?P<hash>.*)/$', 
         esocial_compatibilidades_categorias_classificacoes_lotacoes_views.listar, 
         name='esocial_compatibilidades_categorias_classificacoes_lotacoes'),
@@ -376,6 +466,12 @@ url(r'^esocial-compatibilidades-categorias-classificacoes-lotacoes/salvar/(?P<ha
 url(r'^esocial-compatibilidades-lotacoes-classificacoes/apagar/(?P<hash>.*)/$', 
         esocial_compatibilidades_lotacoes_classificacoes_views.apagar, 
         name='esocial_compatibilidades_lotacoes_classificacoes_apagar'),
+
+url(r'^esocial-compatibilidades-lotacoes-classificacoes/api/$',
+            esocial_compatibilidades_lotacoes_classificacoes_views.eSocialCompatibilidadesLotacoesClassificacoesList.as_view() ),
+
+        url(r'^esocial-compatibilidades-lotacoes-classificacoes/api/(?P<pk>[0-9]+)/$',
+            esocial_compatibilidades_lotacoes_classificacoes_views.eSocialCompatibilidadesLotacoesClassificacoesDetail.as_view() ),
 
 url(r'^esocial-compatibilidades-lotacoes-classificacoes/listar/(?P<hash>.*)/$', 
         esocial_compatibilidades_lotacoes_classificacoes_views.listar, 
@@ -396,6 +492,12 @@ url(r'^esocial-partes-corpo-atingidas/apagar/(?P<hash>.*)/$',
         esocial_partes_corpo_atingidas_views.apagar, 
         name='esocial_partes_corpo_atingidas_apagar'),
 
+url(r'^esocial-partes-corpo-atingidas/api/$',
+            esocial_partes_corpo_atingidas_views.eSocialPartesCorpoAtingidasList.as_view() ),
+
+        url(r'^esocial-partes-corpo-atingidas/api/(?P<pk>[0-9]+)/$',
+            esocial_partes_corpo_atingidas_views.eSocialPartesCorpoAtingidasDetail.as_view() ),
+
 url(r'^esocial-partes-corpo-atingidas/listar/(?P<hash>.*)/$', 
         esocial_partes_corpo_atingidas_views.listar, 
         name='esocial_partes_corpo_atingidas'),
@@ -414,6 +516,12 @@ url(r'^esocial-partes-corpo-atingidas/salvar/(?P<hash>.*)/$',
 url(r'^esocial-agentes-causadores-acidentes-trabalho/apagar/(?P<hash>.*)/$', 
         esocial_agentes_causadores_acidentes_trabalho_views.apagar, 
         name='esocial_agentes_causadores_acidentes_trabalho_apagar'),
+
+url(r'^esocial-agentes-causadores-acidentes-trabalho/api/$',
+            esocial_agentes_causadores_acidentes_trabalho_views.eSocialAgentesCausadoresAcidentesTrabalhoList.as_view() ),
+
+        url(r'^esocial-agentes-causadores-acidentes-trabalho/api/(?P<pk>[0-9]+)/$',
+            esocial_agentes_causadores_acidentes_trabalho_views.eSocialAgentesCausadoresAcidentesTrabalhoDetail.as_view() ),
 
 url(r'^esocial-agentes-causadores-acidentes-trabalho/listar/(?P<hash>.*)/$', 
         esocial_agentes_causadores_acidentes_trabalho_views.listar, 
@@ -434,6 +542,12 @@ url(r'^esocial-agentes-causadores-doencas-profissionais/apagar/(?P<hash>.*)/$',
         esocial_agentes_causadores_doencas_profissionais_views.apagar, 
         name='esocial_agentes_causadores_doencas_profissionais_apagar'),
 
+url(r'^esocial-agentes-causadores-doencas-profissionais/api/$',
+            esocial_agentes_causadores_doencas_profissionais_views.eSocialAgentesCausadoresDoencasProfissionaisList.as_view() ),
+
+        url(r'^esocial-agentes-causadores-doencas-profissionais/api/(?P<pk>[0-9]+)/$',
+            esocial_agentes_causadores_doencas_profissionais_views.eSocialAgentesCausadoresDoencasProfissionaisDetail.as_view() ),
+
 url(r'^esocial-agentes-causadores-doencas-profissionais/listar/(?P<hash>.*)/$', 
         esocial_agentes_causadores_doencas_profissionais_views.listar, 
         name='esocial_agentes_causadores_doencas_profissionais'),
@@ -452,6 +566,12 @@ url(r'^esocial-agentes-causadores-doencas-profissionais/salvar/(?P<hash>.*)/$',
 url(r'^esocial-acidentes-situacoes-geradoras/apagar/(?P<hash>.*)/$', 
         esocial_acidentes_situacoes_geradoras_views.apagar, 
         name='esocial_acidentes_situacoes_geradoras_apagar'),
+
+url(r'^esocial-acidentes-situacoes-geradoras/api/$',
+            esocial_acidentes_situacoes_geradoras_views.eSocialAcidentesSituacoesGeradorasList.as_view() ),
+
+        url(r'^esocial-acidentes-situacoes-geradoras/api/(?P<pk>[0-9]+)/$',
+            esocial_acidentes_situacoes_geradoras_views.eSocialAcidentesSituacoesGeradorasDetail.as_view() ),
 
 url(r'^esocial-acidentes-situacoes-geradoras/listar/(?P<hash>.*)/$', 
         esocial_acidentes_situacoes_geradoras_views.listar, 
@@ -472,6 +592,12 @@ url(r'^esocial-naturezas-lesoes/apagar/(?P<hash>.*)/$',
         esocial_naturezas_lesoes_views.apagar, 
         name='esocial_naturezas_lesoes_apagar'),
 
+url(r'^esocial-naturezas-lesoes/api/$',
+            esocial_naturezas_lesoes_views.eSocialNaturezasLesoesList.as_view() ),
+
+        url(r'^esocial-naturezas-lesoes/api/(?P<pk>[0-9]+)/$',
+            esocial_naturezas_lesoes_views.eSocialNaturezasLesoesDetail.as_view() ),
+
 url(r'^esocial-naturezas-lesoes/listar/(?P<hash>.*)/$', 
         esocial_naturezas_lesoes_views.listar, 
         name='esocial_naturezas_lesoes'),
@@ -490,6 +616,12 @@ url(r'^esocial-naturezas-lesoes/salvar/(?P<hash>.*)/$',
 url(r'^esocial-afastamentos-motivos/apagar/(?P<hash>.*)/$', 
         esocial_afastamentos_motivos_views.apagar, 
         name='esocial_afastamentos_motivos_apagar'),
+
+url(r'^esocial-afastamentos-motivos/api/$',
+            esocial_afastamentos_motivos_views.eSocialAfastamentosMotivosList.as_view() ),
+
+        url(r'^esocial-afastamentos-motivos/api/(?P<pk>[0-9]+)/$',
+            esocial_afastamentos_motivos_views.eSocialAfastamentosMotivosDetail.as_view() ),
 
 url(r'^esocial-afastamentos-motivos/listar/(?P<hash>.*)/$', 
         esocial_afastamentos_motivos_views.listar, 
@@ -510,6 +642,12 @@ url(r'^esocial-desligamentos-motivos/apagar/(?P<hash>.*)/$',
         esocial_desligamentos_motivos_views.apagar, 
         name='esocial_desligamentos_motivos_apagar'),
 
+url(r'^esocial-desligamentos-motivos/api/$',
+            esocial_desligamentos_motivos_views.eSocialDesligamentosMotivosList.as_view() ),
+
+        url(r'^esocial-desligamentos-motivos/api/(?P<pk>[0-9]+)/$',
+            esocial_desligamentos_motivos_views.eSocialDesligamentosMotivosDetail.as_view() ),
+
 url(r'^esocial-desligamentos-motivos/listar/(?P<hash>.*)/$', 
         esocial_desligamentos_motivos_views.listar, 
         name='esocial_desligamentos_motivos'),
@@ -528,6 +666,12 @@ url(r'^esocial-desligamentos-motivos/salvar/(?P<hash>.*)/$',
 url(r'^esocial-logradouros-tipos/apagar/(?P<hash>.*)/$', 
         esocial_logradouros_tipos_views.apagar, 
         name='esocial_logradouros_tipos_apagar'),
+
+url(r'^esocial-logradouros-tipos/api/$',
+            esocial_logradouros_tipos_views.eSocialLogradourosTiposList.as_view() ),
+
+        url(r'^esocial-logradouros-tipos/api/(?P<pk>[0-9]+)/$',
+            esocial_logradouros_tipos_views.eSocialLogradourosTiposDetail.as_view() ),
 
 url(r'^esocial-logradouros-tipos/listar/(?P<hash>.*)/$', 
         esocial_logradouros_tipos_views.listar, 
@@ -548,6 +692,12 @@ url(r'^esocial-naturezas-juridicas/apagar/(?P<hash>.*)/$',
         esocial_naturezas_juridicas_views.apagar, 
         name='esocial_naturezas_juridicas_apagar'),
 
+url(r'^esocial-naturezas-juridicas/api/$',
+            esocial_naturezas_juridicas_views.eSocialNaturezasJuridicasList.as_view() ),
+
+        url(r'^esocial-naturezas-juridicas/api/(?P<pk>[0-9]+)/$',
+            esocial_naturezas_juridicas_views.eSocialNaturezasJuridicasDetail.as_view() ),
+
 url(r'^esocial-naturezas-juridicas/listar/(?P<hash>.*)/$', 
         esocial_naturezas_juridicas_views.listar, 
         name='esocial_naturezas_juridicas'),
@@ -566,6 +716,12 @@ url(r'^esocial-naturezas-juridicas/salvar/(?P<hash>.*)/$',
 url(r'^esocial-compatibilidades-fpas-classificacoes-tributarias/apagar/(?P<hash>.*)/$', 
         esocial_compatibilidades_fpas_classificacoes_tributarias_views.apagar, 
         name='esocial_compatibilidades_fpas_classificacoes_tributarias_apagar'),
+
+url(r'^esocial-compatibilidades-fpas-classificacoes-tributarias/api/$',
+            esocial_compatibilidades_fpas_classificacoes_tributarias_views.eSocialCompatibilidadesFPASClassificacoesTributariasList.as_view() ),
+
+        url(r'^esocial-compatibilidades-fpas-classificacoes-tributarias/api/(?P<pk>[0-9]+)/$',
+            esocial_compatibilidades_fpas_classificacoes_tributarias_views.eSocialCompatibilidadesFPASClassificacoesTributariasDetail.as_view() ),
 
 url(r'^esocial-compatibilidades-fpas-classificacoes-tributarias/listar/(?P<hash>.*)/$', 
         esocial_compatibilidades_fpas_classificacoes_tributarias_views.listar, 
@@ -586,6 +742,12 @@ url(r'^esocial-fatores-risco/apagar/(?P<hash>.*)/$',
         esocial_fatores_risco_views.apagar, 
         name='esocial_fatores_risco_apagar'),
 
+url(r'^esocial-fatores-risco/api/$',
+            esocial_fatores_risco_views.eSocialFatoresRiscoList.as_view() ),
+
+        url(r'^esocial-fatores-risco/api/(?P<pk>[0-9]+)/$',
+            esocial_fatores_risco_views.eSocialFatoresRiscoDetail.as_view() ),
+
 url(r'^esocial-fatores-risco/listar/(?P<hash>.*)/$', 
         esocial_fatores_risco_views.listar, 
         name='esocial_fatores_risco'),
@@ -604,6 +766,12 @@ url(r'^esocial-fatores-risco/salvar/(?P<hash>.*)/$',
 url(r'^esocial-codificacoes-acidente-trabalho/apagar/(?P<hash>.*)/$', 
         esocial_codificacoes_acidente_trabalho_views.apagar, 
         name='esocial_codificacoes_acidente_trabalho_apagar'),
+
+url(r'^esocial-codificacoes-acidente-trabalho/api/$',
+            esocial_codificacoes_acidente_trabalho_views.eSocialCodificacoesAcidenteTrabalhoList.as_view() ),
+
+        url(r'^esocial-codificacoes-acidente-trabalho/api/(?P<pk>[0-9]+)/$',
+            esocial_codificacoes_acidente_trabalho_views.eSocialCodificacoesAcidenteTrabalhoDetail.as_view() ),
 
 url(r'^esocial-codificacoes-acidente-trabalho/listar/(?P<hash>.*)/$', 
         esocial_codificacoes_acidente_trabalho_views.listar, 
@@ -624,6 +792,12 @@ url(r'^esocial-beneficios-previdenciarios-tipos/apagar/(?P<hash>.*)/$',
         esocial_beneficios_previdenciarios_tipos_views.apagar, 
         name='esocial_beneficios_previdenciarios_tipos_apagar'),
 
+url(r'^esocial-beneficios-previdenciarios-tipos/api/$',
+            esocial_beneficios_previdenciarios_tipos_views.eSocialBeneficiosPrevidenciariosTiposList.as_view() ),
+
+        url(r'^esocial-beneficios-previdenciarios-tipos/api/(?P<pk>[0-9]+)/$',
+            esocial_beneficios_previdenciarios_tipos_views.eSocialBeneficiosPrevidenciariosTiposDetail.as_view() ),
+
 url(r'^esocial-beneficios-previdenciarios-tipos/listar/(?P<hash>.*)/$', 
         esocial_beneficios_previdenciarios_tipos_views.listar, 
         name='esocial_beneficios_previdenciarios_tipos'),
@@ -642,6 +816,12 @@ url(r'^esocial-beneficios-previdenciarios-tipos/salvar/(?P<hash>.*)/$',
 url(r'^esocial-beneficios-previdenciarios-cessacao-motivos/apagar/(?P<hash>.*)/$', 
         esocial_beneficios_previdenciarios_cessacao_motivos_views.apagar, 
         name='esocial_beneficios_previdenciarios_cessacao_motivos_apagar'),
+
+url(r'^esocial-beneficios-previdenciarios-cessacao-motivos/api/$',
+            esocial_beneficios_previdenciarios_cessacao_motivos_views.eSocialBeneficiosPrevidenciariosCessacaoMotivosList.as_view() ),
+
+        url(r'^esocial-beneficios-previdenciarios-cessacao-motivos/api/(?P<pk>[0-9]+)/$',
+            esocial_beneficios_previdenciarios_cessacao_motivos_views.eSocialBeneficiosPrevidenciariosCessacaoMotivosDetail.as_view() ),
 
 url(r'^esocial-beneficios-previdenciarios-cessacao-motivos/listar/(?P<hash>.*)/$', 
         esocial_beneficios_previdenciarios_cessacao_motivos_views.listar, 
@@ -662,6 +842,12 @@ url(r'^esocial-procedimentos-diagnosticos/apagar/(?P<hash>.*)/$',
         esocial_procedimentos_diagnosticos_views.apagar, 
         name='esocial_procedimentos_diagnosticos_apagar'),
 
+url(r'^esocial-procedimentos-diagnosticos/api/$',
+            esocial_procedimentos_diagnosticos_views.eSocialProcedimentosDiagnosticosList.as_view() ),
+
+        url(r'^esocial-procedimentos-diagnosticos/api/(?P<pk>[0-9]+)/$',
+            esocial_procedimentos_diagnosticos_views.eSocialProcedimentosDiagnosticosDetail.as_view() ),
+
 url(r'^esocial-procedimentos-diagnosticos/listar/(?P<hash>.*)/$', 
         esocial_procedimentos_diagnosticos_views.listar, 
         name='esocial_procedimentos_diagnosticos'),
@@ -680,6 +866,12 @@ url(r'^esocial-procedimentos-diagnosticos/salvar/(?P<hash>.*)/$',
 url(r'^esocial-atividades-periculosas-insalubres-especiais/apagar/(?P<hash>.*)/$', 
         esocial_atividades_periculosas_insalubres_especiais_views.apagar, 
         name='esocial_atividades_periculosas_insalubres_especiais_apagar'),
+
+url(r'^esocial-atividades-periculosas-insalubres-especiais/api/$',
+            esocial_atividades_periculosas_insalubres_especiais_views.eSocialAtividadesPericulosasInsalubresEspeciaisList.as_view() ),
+
+        url(r'^esocial-atividades-periculosas-insalubres-especiais/api/(?P<pk>[0-9]+)/$',
+            esocial_atividades_periculosas_insalubres_especiais_views.eSocialAtividadesPericulosasInsalubresEspeciaisDetail.as_view() ),
 
 url(r'^esocial-atividades-periculosas-insalubres-especiais/listar/(?P<hash>.*)/$', 
         esocial_atividades_periculosas_insalubres_especiais_views.listar, 
@@ -700,6 +892,12 @@ url(r'^esocial-treinamentos-capacitacoes-exercicios-simulados/apagar/(?P<hash>.*
         esocial_treinamentos_capacitacoes_exercicios_simulados_views.apagar, 
         name='esocial_treinamentos_capacitacoes_exercicios_simulados_apagar'),
 
+url(r'^esocial-treinamentos-capacitacoes-exercicios-simulados/api/$',
+            esocial_treinamentos_capacitacoes_exercicios_simulados_views.eSocialTreinamentosCapacitacoesExerciciosSimuladosList.as_view() ),
+
+        url(r'^esocial-treinamentos-capacitacoes-exercicios-simulados/api/(?P<pk>[0-9]+)/$',
+            esocial_treinamentos_capacitacoes_exercicios_simulados_views.eSocialTreinamentosCapacitacoesExerciciosSimuladosDetail.as_view() ),
+
 url(r'^esocial-treinamentos-capacitacoes-exercicios-simulados/listar/(?P<hash>.*)/$', 
         esocial_treinamentos_capacitacoes_exercicios_simulados_views.listar, 
         name='esocial_treinamentos_capacitacoes_exercicios_simulados'),
@@ -718,6 +916,12 @@ url(r'^esocial-treinamentos-capacitacoes-exercicios-simulados/salvar/(?P<hash>.*
 url(r'^esocial-programas-planos-documentos/apagar/(?P<hash>.*)/$', 
         esocial_programas_planos_documentos_views.apagar, 
         name='esocial_programas_planos_documentos_apagar'),
+
+url(r'^esocial-programas-planos-documentos/api/$',
+            esocial_programas_planos_documentos_views.eSocialProgramasPlanosDocumentosList.as_view() ),
+
+        url(r'^esocial-programas-planos-documentos/api/(?P<pk>[0-9]+)/$',
+            esocial_programas_planos_documentos_views.eSocialProgramasPlanosDocumentosDetail.as_view() ),
 
 url(r'^esocial-programas-planos-documentos/listar/(?P<hash>.*)/$', 
         esocial_programas_planos_documentos_views.listar, 
@@ -738,6 +942,12 @@ url(r'^efdreinf-pagamentos-codigos/apagar/(?P<hash>.*)/$',
         efdreinf_pagamentos_codigos_views.apagar, 
         name='efdreinf_pagamentos_codigos_apagar'),
 
+url(r'^efdreinf-pagamentos-codigos/api/$',
+            efdreinf_pagamentos_codigos_views.EFDReinfPagamentosCodigosList.as_view() ),
+
+        url(r'^efdreinf-pagamentos-codigos/api/(?P<pk>[0-9]+)/$',
+            efdreinf_pagamentos_codigos_views.EFDReinfPagamentosCodigosDetail.as_view() ),
+
 url(r'^efdreinf-pagamentos-codigos/listar/(?P<hash>.*)/$', 
         efdreinf_pagamentos_codigos_views.listar, 
         name='efdreinf_pagamentos_codigos'),
@@ -756,6 +966,12 @@ url(r'^efdreinf-pagamentos-codigos/salvar/(?P<hash>.*)/$',
 url(r'^efdreinf-regras-pagamentos-codigos/apagar/(?P<hash>.*)/$', 
         efdreinf_regras_pagamentos_codigos_views.apagar, 
         name='efdreinf_regras_pagamentos_codigos_apagar'),
+
+url(r'^efdreinf-regras-pagamentos-codigos/api/$',
+            efdreinf_regras_pagamentos_codigos_views.EFDReinfRegrasPagamentosCodigosList.as_view() ),
+
+        url(r'^efdreinf-regras-pagamentos-codigos/api/(?P<pk>[0-9]+)/$',
+            efdreinf_regras_pagamentos_codigos_views.EFDReinfRegrasPagamentosCodigosDetail.as_view() ),
 
 url(r'^efdreinf-regras-pagamentos-codigos/listar/(?P<hash>.*)/$', 
         efdreinf_regras_pagamentos_codigos_views.listar, 
@@ -776,6 +992,12 @@ url(r'^efdreinf-rendimentos-beneficiarios-exterior/apagar/(?P<hash>.*)/$',
         efdreinf_rendimentos_beneficiarios_exterior_views.apagar, 
         name='efdreinf_rendimentos_beneficiarios_exterior_apagar'),
 
+url(r'^efdreinf-rendimentos-beneficiarios-exterior/api/$',
+            efdreinf_rendimentos_beneficiarios_exterior_views.EFDReinfRendimentosBeneficiariosExteriorList.as_view() ),
+
+        url(r'^efdreinf-rendimentos-beneficiarios-exterior/api/(?P<pk>[0-9]+)/$',
+            efdreinf_rendimentos_beneficiarios_exterior_views.EFDReinfRendimentosBeneficiariosExteriorDetail.as_view() ),
+
 url(r'^efdreinf-rendimentos-beneficiarios-exterior/listar/(?P<hash>.*)/$', 
         efdreinf_rendimentos_beneficiarios_exterior_views.listar, 
         name='efdreinf_rendimentos_beneficiarios_exterior'),
@@ -794,6 +1016,12 @@ url(r'^efdreinf-rendimentos-beneficiarios-exterior/salvar/(?P<hash>.*)/$',
 url(r'^efdreinf-rendimentos-beneficiarios-exterior-tributacao/apagar/(?P<hash>.*)/$', 
         efdreinf_rendimentos_beneficiarios_exterior_tributacao_views.apagar, 
         name='efdreinf_rendimentos_beneficiarios_exterior_tributacao_apagar'),
+
+url(r'^efdreinf-rendimentos-beneficiarios-exterior-tributacao/api/$',
+            efdreinf_rendimentos_beneficiarios_exterior_tributacao_views.EFDReinfRendimentosBeneficiariosExteriorTributacaoList.as_view() ),
+
+        url(r'^efdreinf-rendimentos-beneficiarios-exterior-tributacao/api/(?P<pk>[0-9]+)/$',
+            efdreinf_rendimentos_beneficiarios_exterior_tributacao_views.EFDReinfRendimentosBeneficiariosExteriorTributacaoDetail.as_view() ),
 
 url(r'^efdreinf-rendimentos-beneficiarios-exterior-tributacao/listar/(?P<hash>.*)/$', 
         efdreinf_rendimentos_beneficiarios_exterior_tributacao_views.listar, 
@@ -814,6 +1042,12 @@ url(r'^efdreinf-informacoes-beneficiarios-exterior/apagar/(?P<hash>.*)/$',
         efdreinf_informacoes_beneficiarios_exterior_views.apagar, 
         name='efdreinf_informacoes_beneficiarios_exterior_apagar'),
 
+url(r'^efdreinf-informacoes-beneficiarios-exterior/api/$',
+            efdreinf_informacoes_beneficiarios_exterior_views.EFDReinfInformacoesBeneficiariosExteriorList.as_view() ),
+
+        url(r'^efdreinf-informacoes-beneficiarios-exterior/api/(?P<pk>[0-9]+)/$',
+            efdreinf_informacoes_beneficiarios_exterior_views.EFDReinfInformacoesBeneficiariosExteriorDetail.as_view() ),
+
 url(r'^efdreinf-informacoes-beneficiarios-exterior/listar/(?P<hash>.*)/$', 
         efdreinf_informacoes_beneficiarios_exterior_views.listar, 
         name='efdreinf_informacoes_beneficiarios_exterior'),
@@ -832,6 +1066,12 @@ url(r'^efdreinf-informacoes-beneficiarios-exterior/salvar/(?P<hash>.*)/$',
 url(r'^efdreinf-classificacao-servicos-prestados/apagar/(?P<hash>.*)/$', 
         efdreinf_classificacao_servicos_prestados_views.apagar, 
         name='efdreinf_classificacao_servicos_prestados_apagar'),
+
+url(r'^efdreinf-classificacao-servicos-prestados/api/$',
+            efdreinf_classificacao_servicos_prestados_views.EFDReinfClassificacaoServicosPrestadosList.as_view() ),
+
+        url(r'^efdreinf-classificacao-servicos-prestados/api/(?P<pk>[0-9]+)/$',
+            efdreinf_classificacao_servicos_prestados_views.EFDReinfClassificacaoServicosPrestadosDetail.as_view() ),
 
 url(r'^efdreinf-classificacao-servicos-prestados/listar/(?P<hash>.*)/$', 
         efdreinf_classificacao_servicos_prestados_views.listar, 
@@ -852,6 +1092,12 @@ url(r'^efdreinf-paises/apagar/(?P<hash>.*)/$',
         efdreinf_paises_views.apagar, 
         name='efdreinf_paises_apagar'),
 
+url(r'^efdreinf-paises/api/$',
+            efdreinf_paises_views.EFDReinfPaisesList.as_view() ),
+
+        url(r'^efdreinf-paises/api/(?P<pk>[0-9]+)/$',
+            efdreinf_paises_views.EFDReinfPaisesDetail.as_view() ),
+
 url(r'^efdreinf-paises/listar/(?P<hash>.*)/$', 
         efdreinf_paises_views.listar, 
         name='efdreinf_paises'),
@@ -870,6 +1116,12 @@ url(r'^efdreinf-paises/salvar/(?P<hash>.*)/$',
 url(r'^efdreinf-classificacao-tributaria/apagar/(?P<hash>.*)/$', 
         efdreinf_classificacao_tributaria_views.apagar, 
         name='efdreinf_classificacao_tributaria_apagar'),
+
+url(r'^efdreinf-classificacao-tributaria/api/$',
+            efdreinf_classificacao_tributaria_views.EFDReinfClassificacaoTributariaList.as_view() ),
+
+        url(r'^efdreinf-classificacao-tributaria/api/(?P<pk>[0-9]+)/$',
+            efdreinf_classificacao_tributaria_views.EFDReinfClassificacaoTributariaDetail.as_view() ),
 
 url(r'^efdreinf-classificacao-tributaria/listar/(?P<hash>.*)/$', 
         efdreinf_classificacao_tributaria_views.listar, 
@@ -890,6 +1142,12 @@ url(r'^efdreinf-codigos-atividades-produtos-servicos-cprb/apagar/(?P<hash>.*)/$'
         efdreinf_codigos_atividades_produtos_servicos_cprb_views.apagar, 
         name='efdreinf_codigos_atividades_produtos_servicos_cprb_apagar'),
 
+url(r'^efdreinf-codigos-atividades-produtos-servicos-cprb/api/$',
+            efdreinf_codigos_atividades_produtos_servicos_cprb_views.EFDReinfCodigosAtividadesProdutosServicosCPRBList.as_view() ),
+
+        url(r'^efdreinf-codigos-atividades-produtos-servicos-cprb/api/(?P<pk>[0-9]+)/$',
+            efdreinf_codigos_atividades_produtos_servicos_cprb_views.EFDReinfCodigosAtividadesProdutosServicosCPRBDetail.as_view() ),
+
 url(r'^efdreinf-codigos-atividades-produtos-servicos-cprb/listar/(?P<hash>.*)/$', 
         efdreinf_codigos_atividades_produtos_servicos_cprb_views.listar, 
         name='efdreinf_codigos_atividades_produtos_servicos_cprb'),
@@ -908,6 +1166,12 @@ url(r'^efdreinf-codigos-atividades-produtos-servicos-cprb/salvar/(?P<hash>.*)/$'
 url(r'^efdreinf-eventos/apagar/(?P<hash>.*)/$', 
         efdreinf_eventos_views.apagar, 
         name='efdreinf_eventos_apagar'),
+
+url(r'^efdreinf-eventos/api/$',
+            efdreinf_eventos_views.EFDReinfEventosList.as_view() ),
+
+        url(r'^efdreinf-eventos/api/(?P<pk>[0-9]+)/$',
+            efdreinf_eventos_views.EFDReinfEventosDetail.as_view() ),
 
 url(r'^efdreinf-eventos/listar/(?P<hash>.*)/$', 
         efdreinf_eventos_views.listar, 

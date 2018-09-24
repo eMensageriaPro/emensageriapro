@@ -51,6 +51,12 @@ url(r'^s2220-exmedocup/apagar/(?P<hash>.*)/$',
         s2220_exmedocup_views.apagar, 
         name='s2220_exmedocup_apagar'),
 
+url(r'^s2220-exmedocup/api/$',
+            s2220_exmedocup_views.s2220exMedOcupList.as_view() ),
+
+        url(r'^s2220-exmedocup/api/(?P<pk>[0-9]+)/$',
+            s2220_exmedocup_views.s2220exMedOcupDetail.as_view() ),
+
 url(r'^s2220-exmedocup/listar/(?P<hash>.*)/$', 
         s2220_exmedocup_views.listar, 
         name='s2220_exmedocup'),
@@ -65,6 +71,12 @@ url(r'^s2220-exame/apagar/(?P<hash>.*)/$',
         s2220_exame_views.apagar, 
         name='s2220_exame_apagar'),
 
+url(r'^s2220-exame/api/$',
+            s2220_exame_views.s2220exameList.as_view() ),
+
+        url(r'^s2220-exame/api/(?P<pk>[0-9]+)/$',
+            s2220_exame_views.s2220exameDetail.as_view() ),
+
 url(r'^s2220-exame/listar/(?P<hash>.*)/$', 
         s2220_exame_views.listar, 
         name='s2220_exame'),
@@ -78,6 +90,12 @@ url(r'^s2220-exame/salvar/(?P<hash>.*)/$',
 url(r'^s2220-toxicologico/apagar/(?P<hash>.*)/$', 
         s2220_toxicologico_views.apagar, 
         name='s2220_toxicologico_apagar'),
+
+url(r'^s2220-toxicologico/api/$',
+            s2220_toxicologico_views.s2220toxicologicoList.as_view() ),
+
+        url(r'^s2220-toxicologico/api/(?P<pk>[0-9]+)/$',
+            s2220_toxicologico_views.s2220toxicologicoDetail.as_view() ),
 
 url(r'^s2220-toxicologico/listar/(?P<hash>.*)/$', 
         s2220_toxicologico_views.listar, 

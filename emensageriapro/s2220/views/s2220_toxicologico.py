@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 's2220_toxicologico_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s2220toxicologicoList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s2220toxicologico.objects.using(db_slug).all()
+    serializer_class = s2220toxicologicoSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s2220toxicologicoDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s2220toxicologico.objects.using(db_slug).all()
+    serializer_class = s2220toxicologicoSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

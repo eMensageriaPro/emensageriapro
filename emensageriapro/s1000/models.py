@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -373,6 +374,13 @@ class s1000alteracao(models.Model):
         ordering = ['s1000_evtinfoempregador', 'inivalid', 'fimvalid', 'nmrazao', 'classtrib', 'natjurid', 'indcoop', 'indconstr', 'inddesfolha', 'indoptregeletron', 'indented', 'indett', 'nrregett', 'nmctt', 'cpfctt', 'fonefixo', 'fonecel', 'email']
 
 
+
+class s1000alteracaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1000alteracao
+        fields = '__all__'
+            
+
 class s1000alteracaodadosIsencao(models.Model):
     s1000_alteracao = models.OneToOneField('s1000alteracao',
         related_name='%(class)s_s1000_alteracao')
@@ -401,6 +409,13 @@ class s1000alteracaodadosIsencao(models.Model):
         ordering = ['s1000_alteracao', 'ideminlei', 'nrcertif', 'dtemiscertif', 'dtvenccertif', 'nrprotrenov', 'dtprotrenov', 'dtdou', 'pagdou']
 
 
+
+class s1000alteracaodadosIsencaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1000alteracaodadosIsencao
+        fields = '__all__'
+            
+
 class s1000alteracaoinfoEFR(models.Model):
     s1000_alteracao_infoop = models.OneToOneField('s1000alteracaoinfoOP',
         related_name='%(class)s_s1000_alteracao_infoop')
@@ -424,6 +439,13 @@ class s1000alteracaoinfoEFR(models.Model):
         managed = True
         ordering = ['s1000_alteracao_infoop', 'ideefr', 'cnpjefr', 'indrpps', 'prevcomp']
 
+
+
+class s1000alteracaoinfoEFRSerializer(ModelSerializer):
+    class Meta:
+        model = s1000alteracaoinfoEFR
+        fields = '__all__'
+            
 
 class s1000alteracaoinfoEnte(models.Model):
     s1000_alteracao_infoop = models.OneToOneField('s1000alteracaoinfoOP',
@@ -450,6 +472,13 @@ class s1000alteracaoinfoEnte(models.Model):
         managed = True
         ordering = ['s1000_alteracao_infoop', 'nmente', 'uf', 'codmunic', 'indrpps', 'subteto', 'vrsubteto']
 
+
+
+class s1000alteracaoinfoEnteSerializer(ModelSerializer):
+    class Meta:
+        model = s1000alteracaoinfoEnte
+        fields = '__all__'
+            
 
 class s1000alteracaoinfoOP(models.Model):
     s1000_alteracao = models.OneToOneField('s1000alteracao',
@@ -478,6 +507,13 @@ class s1000alteracaoinfoOP(models.Model):
         ordering = ['s1000_alteracao', 'nrsiafi', 'indugrpps', 'esferaop', 'poderop', 'vrtetorem', 'ideefr', 'cnpjefr']
 
 
+
+class s1000alteracaoinfoOPSerializer(ModelSerializer):
+    class Meta:
+        model = s1000alteracaoinfoOP
+        fields = '__all__'
+            
+
 class s1000alteracaoinfoOrgInternacional(models.Model):
     s1000_alteracao = models.OneToOneField('s1000alteracao',
         related_name='%(class)s_s1000_alteracao')
@@ -498,6 +534,13 @@ class s1000alteracaoinfoOrgInternacional(models.Model):
         managed = True
         ordering = ['s1000_alteracao', 'indacordoisenmulta']
 
+
+
+class s1000alteracaoinfoOrgInternacionalSerializer(ModelSerializer):
+    class Meta:
+        model = s1000alteracaoinfoOrgInternacional
+        fields = '__all__'
+            
 
 class s1000alteracaonovaValidade(models.Model):
     s1000_alteracao = models.OneToOneField('s1000alteracao',
@@ -521,6 +564,13 @@ class s1000alteracaonovaValidade(models.Model):
         ordering = ['s1000_alteracao', 'inivalid', 'fimvalid']
 
 
+
+class s1000alteracaonovaValidadeSerializer(ModelSerializer):
+    class Meta:
+        model = s1000alteracaonovaValidade
+        fields = '__all__'
+            
+
 class s1000alteracaosituacaoPF(models.Model):
     s1000_alteracao = models.OneToOneField('s1000alteracao',
         related_name='%(class)s_s1000_alteracao')
@@ -542,6 +592,13 @@ class s1000alteracaosituacaoPF(models.Model):
         ordering = ['s1000_alteracao', 'indsitpf']
 
 
+
+class s1000alteracaosituacaoPFSerializer(ModelSerializer):
+    class Meta:
+        model = s1000alteracaosituacaoPF
+        fields = '__all__'
+            
+
 class s1000alteracaosituacaoPJ(models.Model):
     s1000_alteracao = models.OneToOneField('s1000alteracao',
         related_name='%(class)s_s1000_alteracao')
@@ -562,6 +619,13 @@ class s1000alteracaosituacaoPJ(models.Model):
         managed = True
         ordering = ['s1000_alteracao', 'indsitpj']
 
+
+
+class s1000alteracaosituacaoPJSerializer(ModelSerializer):
+    class Meta:
+        model = s1000alteracaosituacaoPJ
+        fields = '__all__'
+            
 
 class s1000alteracaosoftwareHouse(models.Model):
     s1000_alteracao = models.ForeignKey('s1000alteracao',
@@ -588,6 +652,13 @@ class s1000alteracaosoftwareHouse(models.Model):
         ordering = ['s1000_alteracao', 'cnpjsofthouse', 'nmrazao', 'nmcont', 'telefone', 'email']
 
 
+
+class s1000alteracaosoftwareHouseSerializer(ModelSerializer):
+    class Meta:
+        model = s1000alteracaosoftwareHouse
+        fields = '__all__'
+            
+
 class s1000exclusao(models.Model):
     s1000_evtinfoempregador = models.OneToOneField('esocial.s1000evtInfoEmpregador',
         related_name='%(class)s_s1000_evtinfoempregador')
@@ -609,6 +680,13 @@ class s1000exclusao(models.Model):
         managed = True
         ordering = ['s1000_evtinfoempregador', 'inivalid', 'fimvalid']
 
+
+
+class s1000exclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1000exclusao
+        fields = '__all__'
+            
 
 class s1000inclusao(models.Model):
     s1000_evtinfoempregador = models.OneToOneField('esocial.s1000evtInfoEmpregador',
@@ -647,6 +725,13 @@ class s1000inclusao(models.Model):
         ordering = ['s1000_evtinfoempregador', 'inivalid', 'fimvalid', 'nmrazao', 'classtrib', 'natjurid', 'indcoop', 'indconstr', 'inddesfolha', 'indoptregeletron', 'indented', 'indett', 'nrregett', 'nmctt', 'cpfctt', 'fonefixo', 'fonecel', 'email']
 
 
+
+class s1000inclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1000inclusao
+        fields = '__all__'
+            
+
 class s1000inclusaodadosIsencao(models.Model):
     s1000_inclusao = models.OneToOneField('s1000inclusao',
         related_name='%(class)s_s1000_inclusao')
@@ -675,6 +760,13 @@ class s1000inclusaodadosIsencao(models.Model):
         ordering = ['s1000_inclusao', 'ideminlei', 'nrcertif', 'dtemiscertif', 'dtvenccertif', 'nrprotrenov', 'dtprotrenov', 'dtdou', 'pagdou']
 
 
+
+class s1000inclusaodadosIsencaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1000inclusaodadosIsencao
+        fields = '__all__'
+            
+
 class s1000inclusaoinfoEFR(models.Model):
     s1000_inclusao_infoop = models.OneToOneField('s1000inclusaoinfoOP',
         related_name='%(class)s_s1000_inclusao_infoop')
@@ -698,6 +790,13 @@ class s1000inclusaoinfoEFR(models.Model):
         managed = True
         ordering = ['s1000_inclusao_infoop', 'ideefr', 'cnpjefr', 'indrpps', 'prevcomp']
 
+
+
+class s1000inclusaoinfoEFRSerializer(ModelSerializer):
+    class Meta:
+        model = s1000inclusaoinfoEFR
+        fields = '__all__'
+            
 
 class s1000inclusaoinfoEnte(models.Model):
     s1000_inclusao_infoop = models.OneToOneField('s1000inclusaoinfoOP',
@@ -724,6 +823,13 @@ class s1000inclusaoinfoEnte(models.Model):
         managed = True
         ordering = ['s1000_inclusao_infoop', 'nmente', 'uf', 'codmunic', 'indrpps', 'subteto', 'vrsubteto']
 
+
+
+class s1000inclusaoinfoEnteSerializer(ModelSerializer):
+    class Meta:
+        model = s1000inclusaoinfoEnte
+        fields = '__all__'
+            
 
 class s1000inclusaoinfoOP(models.Model):
     s1000_inclusao = models.OneToOneField('s1000inclusao',
@@ -752,6 +858,13 @@ class s1000inclusaoinfoOP(models.Model):
         ordering = ['s1000_inclusao', 'nrsiafi', 'indugrpps', 'esferaop', 'poderop', 'vrtetorem', 'ideefr', 'cnpjefr']
 
 
+
+class s1000inclusaoinfoOPSerializer(ModelSerializer):
+    class Meta:
+        model = s1000inclusaoinfoOP
+        fields = '__all__'
+            
+
 class s1000inclusaoinfoOrgInternacional(models.Model):
     s1000_inclusao = models.OneToOneField('s1000inclusao',
         related_name='%(class)s_s1000_inclusao')
@@ -772,6 +885,13 @@ class s1000inclusaoinfoOrgInternacional(models.Model):
         managed = True
         ordering = ['s1000_inclusao', 'indacordoisenmulta']
 
+
+
+class s1000inclusaoinfoOrgInternacionalSerializer(ModelSerializer):
+    class Meta:
+        model = s1000inclusaoinfoOrgInternacional
+        fields = '__all__'
+            
 
 class s1000inclusaosituacaoPF(models.Model):
     s1000_inclusao = models.OneToOneField('s1000inclusao',
@@ -794,6 +914,13 @@ class s1000inclusaosituacaoPF(models.Model):
         ordering = ['s1000_inclusao', 'indsitpf']
 
 
+
+class s1000inclusaosituacaoPFSerializer(ModelSerializer):
+    class Meta:
+        model = s1000inclusaosituacaoPF
+        fields = '__all__'
+            
+
 class s1000inclusaosituacaoPJ(models.Model):
     s1000_inclusao = models.OneToOneField('s1000inclusao',
         related_name='%(class)s_s1000_inclusao')
@@ -814,6 +941,13 @@ class s1000inclusaosituacaoPJ(models.Model):
         managed = True
         ordering = ['s1000_inclusao', 'indsitpj']
 
+
+
+class s1000inclusaosituacaoPJSerializer(ModelSerializer):
+    class Meta:
+        model = s1000inclusaosituacaoPJ
+        fields = '__all__'
+            
 
 class s1000inclusaosoftwareHouse(models.Model):
     s1000_inclusao = models.ForeignKey('s1000inclusao',
@@ -839,5 +973,12 @@ class s1000inclusaosoftwareHouse(models.Model):
         managed = True
         ordering = ['s1000_inclusao', 'cnpjsofthouse', 'nmrazao', 'nmcont', 'telefone', 'email']
 
+
+
+class s1000inclusaosoftwareHouseSerializer(ModelSerializer):
+    class Meta:
+        model = s1000inclusaosoftwareHouse
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

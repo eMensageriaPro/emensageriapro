@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -121,6 +122,13 @@ class s2400brasil(models.Model):
         ordering = ['s2400_endereco', 'tplograd', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'cep', 'codmunic', 'uf']
 
 
+
+class s2400brasilSerializer(ModelSerializer):
+    class Meta:
+        model = s2400brasil
+        fields = '__all__'
+            
+
 class s2400dependente(models.Model):
     s2400_evtcdbenefin = models.ForeignKey('esocial.s2400evtCdBenefIn',
         related_name='%(class)s_s2400_evtcdbenefin')
@@ -149,6 +157,13 @@ class s2400dependente(models.Model):
         ordering = ['s2400_evtcdbenefin', 'tpdep', 'nmdep', 'dtnascto', 'cpfdep', 'sexodep', 'depirrf', 'incfismen', 'depfinsprev']
 
 
+
+class s2400dependenteSerializer(ModelSerializer):
+    class Meta:
+        model = s2400dependente
+        fields = '__all__'
+            
+
 class s2400endereco(models.Model):
     s2400_evtcdbenefin = models.OneToOneField('esocial.s2400evtCdBenefIn',
         related_name='%(class)s_s2400_evtcdbenefin')
@@ -168,6 +183,13 @@ class s2400endereco(models.Model):
         managed = True
         ordering = ['s2400_evtcdbenefin']
 
+
+
+class s2400enderecoSerializer(ModelSerializer):
+    class Meta:
+        model = s2400endereco
+        fields = '__all__'
+            
 
 class s2400exterior(models.Model):
     s2400_endereco = models.OneToOneField('s2400endereco',
@@ -195,5 +217,12 @@ class s2400exterior(models.Model):
         managed = True
         ordering = ['s2400_endereco', 'paisresid', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'nmcid', 'codpostal']
 
+
+
+class s2400exteriorSerializer(ModelSerializer):
+    class Meta:
+        model = s2400exterior
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

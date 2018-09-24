@@ -63,6 +63,12 @@ url(r'^s1202-procjudtrab/apagar/(?P<hash>.*)/$',
         s1202_procjudtrab_views.apagar, 
         name='s1202_procjudtrab_apagar'),
 
+url(r'^s1202-procjudtrab/api/$',
+            s1202_procjudtrab_views.s1202procJudTrabList.as_view() ),
+
+        url(r'^s1202-procjudtrab/api/(?P<pk>[0-9]+)/$',
+            s1202_procjudtrab_views.s1202procJudTrabDetail.as_view() ),
+
 url(r'^s1202-procjudtrab/listar/(?P<hash>.*)/$', 
         s1202_procjudtrab_views.listar, 
         name='s1202_procjudtrab'),
@@ -76,6 +82,12 @@ url(r'^s1202-procjudtrab/salvar/(?P<hash>.*)/$',
 url(r'^s1202-dmdev/apagar/(?P<hash>.*)/$', 
         s1202_dmdev_views.apagar, 
         name='s1202_dmdev_apagar'),
+
+url(r'^s1202-dmdev/api/$',
+            s1202_dmdev_views.s1202dmDevList.as_view() ),
+
+        url(r'^s1202-dmdev/api/(?P<pk>[0-9]+)/$',
+            s1202_dmdev_views.s1202dmDevDetail.as_view() ),
 
 url(r'^s1202-dmdev/listar/(?P<hash>.*)/$', 
         s1202_dmdev_views.listar, 
@@ -91,6 +103,12 @@ url(r'^s1202-infoperapur/apagar/(?P<hash>.*)/$',
         s1202_infoperapur_views.apagar, 
         name='s1202_infoperapur_apagar'),
 
+url(r'^s1202-infoperapur/api/$',
+            s1202_infoperapur_views.s1202infoPerApurList.as_view() ),
+
+        url(r'^s1202-infoperapur/api/(?P<pk>[0-9]+)/$',
+            s1202_infoperapur_views.s1202infoPerApurDetail.as_view() ),
+
 url(r'^s1202-infoperapur/listar/(?P<hash>.*)/$', 
         s1202_infoperapur_views.listar, 
         name='s1202_infoperapur'),
@@ -104,6 +122,12 @@ url(r'^s1202-infoperapur/salvar/(?P<hash>.*)/$',
 url(r'^s1202-infoperapur-ideestab/apagar/(?P<hash>.*)/$', 
         s1202_infoperapur_ideestab_views.apagar, 
         name='s1202_infoperapur_ideestab_apagar'),
+
+url(r'^s1202-infoperapur-ideestab/api/$',
+            s1202_infoperapur_ideestab_views.s1202infoPerApurideEstabList.as_view() ),
+
+        url(r'^s1202-infoperapur-ideestab/api/(?P<pk>[0-9]+)/$',
+            s1202_infoperapur_ideestab_views.s1202infoPerApurideEstabDetail.as_view() ),
 
 url(r'^s1202-infoperapur-ideestab/listar/(?P<hash>.*)/$', 
         s1202_infoperapur_ideestab_views.listar, 
@@ -119,6 +143,12 @@ url(r'^s1202-infoperapur-remunperapur/apagar/(?P<hash>.*)/$',
         s1202_infoperapur_remunperapur_views.apagar, 
         name='s1202_infoperapur_remunperapur_apagar'),
 
+url(r'^s1202-infoperapur-remunperapur/api/$',
+            s1202_infoperapur_remunperapur_views.s1202infoPerApurremunPerApurList.as_view() ),
+
+        url(r'^s1202-infoperapur-remunperapur/api/(?P<pk>[0-9]+)/$',
+            s1202_infoperapur_remunperapur_views.s1202infoPerApurremunPerApurDetail.as_view() ),
+
 url(r'^s1202-infoperapur-remunperapur/listar/(?P<hash>.*)/$', 
         s1202_infoperapur_remunperapur_views.listar, 
         name='s1202_infoperapur_remunperapur'),
@@ -132,6 +162,12 @@ url(r'^s1202-infoperapur-remunperapur/salvar/(?P<hash>.*)/$',
 url(r'^s1202-infoperapur-itensremun/apagar/(?P<hash>.*)/$', 
         s1202_infoperapur_itensremun_views.apagar, 
         name='s1202_infoperapur_itensremun_apagar'),
+
+url(r'^s1202-infoperapur-itensremun/api/$',
+            s1202_infoperapur_itensremun_views.s1202infoPerApuritensRemunList.as_view() ),
+
+        url(r'^s1202-infoperapur-itensremun/api/(?P<pk>[0-9]+)/$',
+            s1202_infoperapur_itensremun_views.s1202infoPerApuritensRemunDetail.as_view() ),
 
 url(r'^s1202-infoperapur-itensremun/listar/(?P<hash>.*)/$', 
         s1202_infoperapur_itensremun_views.listar, 
@@ -147,6 +183,12 @@ url(r'^s1202-infoperapur-infosaudecolet/apagar/(?P<hash>.*)/$',
         s1202_infoperapur_infosaudecolet_views.apagar, 
         name='s1202_infoperapur_infosaudecolet_apagar'),
 
+url(r'^s1202-infoperapur-infosaudecolet/api/$',
+            s1202_infoperapur_infosaudecolet_views.s1202infoPerApurinfoSaudeColetList.as_view() ),
+
+        url(r'^s1202-infoperapur-infosaudecolet/api/(?P<pk>[0-9]+)/$',
+            s1202_infoperapur_infosaudecolet_views.s1202infoPerApurinfoSaudeColetDetail.as_view() ),
+
 url(r'^s1202-infoperapur-infosaudecolet/listar/(?P<hash>.*)/$', 
         s1202_infoperapur_infosaudecolet_views.listar, 
         name='s1202_infoperapur_infosaudecolet'),
@@ -160,6 +202,12 @@ url(r'^s1202-infoperapur-infosaudecolet/salvar/(?P<hash>.*)/$',
 url(r'^s1202-infoperapur-detoper/apagar/(?P<hash>.*)/$', 
         s1202_infoperapur_detoper_views.apagar, 
         name='s1202_infoperapur_detoper_apagar'),
+
+url(r'^s1202-infoperapur-detoper/api/$',
+            s1202_infoperapur_detoper_views.s1202infoPerApurdetOperList.as_view() ),
+
+        url(r'^s1202-infoperapur-detoper/api/(?P<pk>[0-9]+)/$',
+            s1202_infoperapur_detoper_views.s1202infoPerApurdetOperDetail.as_view() ),
 
 url(r'^s1202-infoperapur-detoper/listar/(?P<hash>.*)/$', 
         s1202_infoperapur_detoper_views.listar, 
@@ -175,6 +223,12 @@ url(r'^s1202-infoperapur-detplano/apagar/(?P<hash>.*)/$',
         s1202_infoperapur_detplano_views.apagar, 
         name='s1202_infoperapur_detplano_apagar'),
 
+url(r'^s1202-infoperapur-detplano/api/$',
+            s1202_infoperapur_detplano_views.s1202infoPerApurdetPlanoList.as_view() ),
+
+        url(r'^s1202-infoperapur-detplano/api/(?P<pk>[0-9]+)/$',
+            s1202_infoperapur_detplano_views.s1202infoPerApurdetPlanoDetail.as_view() ),
+
 url(r'^s1202-infoperapur-detplano/listar/(?P<hash>.*)/$', 
         s1202_infoperapur_detplano_views.listar, 
         name='s1202_infoperapur_detplano'),
@@ -188,6 +242,12 @@ url(r'^s1202-infoperapur-detplano/salvar/(?P<hash>.*)/$',
 url(r'^s1202-infoperant/apagar/(?P<hash>.*)/$', 
         s1202_infoperant_views.apagar, 
         name='s1202_infoperant_apagar'),
+
+url(r'^s1202-infoperant/api/$',
+            s1202_infoperant_views.s1202infoPerAntList.as_view() ),
+
+        url(r'^s1202-infoperant/api/(?P<pk>[0-9]+)/$',
+            s1202_infoperant_views.s1202infoPerAntDetail.as_view() ),
 
 url(r'^s1202-infoperant/listar/(?P<hash>.*)/$', 
         s1202_infoperant_views.listar, 
@@ -203,6 +263,12 @@ url(r'^s1202-infoperant-ideadc/apagar/(?P<hash>.*)/$',
         s1202_infoperant_ideadc_views.apagar, 
         name='s1202_infoperant_ideadc_apagar'),
 
+url(r'^s1202-infoperant-ideadc/api/$',
+            s1202_infoperant_ideadc_views.s1202infoPerAntideADCList.as_view() ),
+
+        url(r'^s1202-infoperant-ideadc/api/(?P<pk>[0-9]+)/$',
+            s1202_infoperant_ideadc_views.s1202infoPerAntideADCDetail.as_view() ),
+
 url(r'^s1202-infoperant-ideadc/listar/(?P<hash>.*)/$', 
         s1202_infoperant_ideadc_views.listar, 
         name='s1202_infoperant_ideadc'),
@@ -216,6 +282,12 @@ url(r'^s1202-infoperant-ideadc/salvar/(?P<hash>.*)/$',
 url(r'^s1202-infoperant-ideperiodo/apagar/(?P<hash>.*)/$', 
         s1202_infoperant_ideperiodo_views.apagar, 
         name='s1202_infoperant_ideperiodo_apagar'),
+
+url(r'^s1202-infoperant-ideperiodo/api/$',
+            s1202_infoperant_ideperiodo_views.s1202infoPerAntidePeriodoList.as_view() ),
+
+        url(r'^s1202-infoperant-ideperiodo/api/(?P<pk>[0-9]+)/$',
+            s1202_infoperant_ideperiodo_views.s1202infoPerAntidePeriodoDetail.as_view() ),
 
 url(r'^s1202-infoperant-ideperiodo/listar/(?P<hash>.*)/$', 
         s1202_infoperant_ideperiodo_views.listar, 
@@ -231,6 +303,12 @@ url(r'^s1202-infoperant-ideestab/apagar/(?P<hash>.*)/$',
         s1202_infoperant_ideestab_views.apagar, 
         name='s1202_infoperant_ideestab_apagar'),
 
+url(r'^s1202-infoperant-ideestab/api/$',
+            s1202_infoperant_ideestab_views.s1202infoPerAntideEstabList.as_view() ),
+
+        url(r'^s1202-infoperant-ideestab/api/(?P<pk>[0-9]+)/$',
+            s1202_infoperant_ideestab_views.s1202infoPerAntideEstabDetail.as_view() ),
+
 url(r'^s1202-infoperant-ideestab/listar/(?P<hash>.*)/$', 
         s1202_infoperant_ideestab_views.listar, 
         name='s1202_infoperant_ideestab'),
@@ -245,6 +323,12 @@ url(r'^s1202-infoperant-remunperant/apagar/(?P<hash>.*)/$',
         s1202_infoperant_remunperant_views.apagar, 
         name='s1202_infoperant_remunperant_apagar'),
 
+url(r'^s1202-infoperant-remunperant/api/$',
+            s1202_infoperant_remunperant_views.s1202infoPerAntremunPerAntList.as_view() ),
+
+        url(r'^s1202-infoperant-remunperant/api/(?P<pk>[0-9]+)/$',
+            s1202_infoperant_remunperant_views.s1202infoPerAntremunPerAntDetail.as_view() ),
+
 url(r'^s1202-infoperant-remunperant/listar/(?P<hash>.*)/$', 
         s1202_infoperant_remunperant_views.listar, 
         name='s1202_infoperant_remunperant'),
@@ -258,6 +342,12 @@ url(r'^s1202-infoperant-remunperant/salvar/(?P<hash>.*)/$',
 url(r'^s1202-infoperant-itensremun/apagar/(?P<hash>.*)/$', 
         s1202_infoperant_itensremun_views.apagar, 
         name='s1202_infoperant_itensremun_apagar'),
+
+url(r'^s1202-infoperant-itensremun/api/$',
+            s1202_infoperant_itensremun_views.s1202infoPerAntitensRemunList.as_view() ),
+
+        url(r'^s1202-infoperant-itensremun/api/(?P<pk>[0-9]+)/$',
+            s1202_infoperant_itensremun_views.s1202infoPerAntitensRemunDetail.as_view() ),
 
 url(r'^s1202-infoperant-itensremun/listar/(?P<hash>.*)/$', 
         s1202_infoperant_itensremun_views.listar, 

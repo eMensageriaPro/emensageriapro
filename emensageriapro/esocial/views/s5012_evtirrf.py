@@ -301,6 +301,82 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        s5012_evtirrf_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s5012_evtirrf')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    s5012_evtirrf = get_object_or_404(s5012evtIrrf.objects.using( db_slug ), excluido = False, id = s5012_evtirrf_id)
+
+    if s5012_evtirrf_id:
+        if s5012_evtirrf.status != 0:
+            dict_permissoes['s5012_evtirrf_apagar'] = 0
+            dict_permissoes['s5012_evtirrf_editar'] = 0
+
+    if request.method == 'POST':
+        if s5012_evtirrf.status == 0:
+            import json
+            from django.forms.models import model_to_dict
+            situacao_anterior = json.dumps(model_to_dict(s5012_evtirrf), indent=4, sort_keys=True, default=str)
+            s5012evtIrrf.objects.using( db_slug ).filter(id = s5012_evtirrf_id).delete()
+            #s5012_evtirrf_apagar_custom
+            #s5012_evtirrf_apagar_custom
+            messages.success(request, 'Apagado com sucesso!')
+            gravar_auditoria(situacao_anterior,
+                             '',
+                             's5012_evtirrf', s5012_evtirrf_id, usuario_id, 3)
+        else:
+            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+   
+        if request.session['retorno_pagina']== 's5012_evtirrf_salvar':
+            return redirect('s5012_evtirrf', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 's5012_evtirrf_apagar.html', context)
+
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s5012evtIrrfList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s5012evtIrrf.objects.using(db_slug).all()
+    serializer_class = s5012evtIrrfSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s5012evtIrrfDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s5012evtIrrf.objects.using(db_slug).all()
+    serializer_class = s5012evtIrrfSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse
@@ -493,62 +569,4 @@ def listar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
-
-@login_required
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s5012_evtirrf_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s5012_evtirrf')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-    s5012_evtirrf = get_object_or_404(s5012evtIrrf.objects.using( db_slug ), excluido = False, id = s5012_evtirrf_id)
-
-    if s5012_evtirrf_id:
-        if s5012_evtirrf.status != 0:
-            dict_permissoes['s5012_evtirrf_apagar'] = 0
-            dict_permissoes['s5012_evtirrf_editar'] = 0
-
-    if request.method == 'POST':
-        if s5012_evtirrf.status == 0:
-            import json
-            from django.forms.models import model_to_dict
-            situacao_anterior = json.dumps(model_to_dict(s5012_evtirrf), indent=4, sort_keys=True, default=str)
-            s5012evtIrrf.objects.using( db_slug ).filter(id = s5012_evtirrf_id).delete()
-            #s5012_evtirrf_apagar_custom
-            #s5012_evtirrf_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
-            gravar_auditoria(situacao_anterior,
-                             '',
-                             's5012_evtirrf', s5012_evtirrf_id, usuario_id, 3)
-        else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
-        if request.session['retorno_pagina']== 's5012_evtirrf_salvar':
-            return redirect('s5012_evtirrf', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 's5012_evtirrf_apagar.html', context)
 

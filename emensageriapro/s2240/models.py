@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -243,6 +244,13 @@ class s2240altExpRisco(models.Model):
         ordering = ['s2240_evtexprisco', 'dtaltcondicao']
 
 
+
+class s2240altExpRiscoSerializer(ModelSerializer):
+    class Meta:
+        model = s2240altExpRisco
+        fields = '__all__'
+            
+
 class s2240altExpRiscoepc(models.Model):
     s2240_altexprisco_fatrisco = models.ForeignKey('s2240altExpRiscofatRisco',
         related_name='%(class)s_s2240_altexprisco_fatrisco')
@@ -264,6 +272,13 @@ class s2240altExpRiscoepc(models.Model):
         managed = True
         ordering = ['s2240_altexprisco_fatrisco', 'dscepc', 'eficepc']
 
+
+
+class s2240altExpRiscoepcSerializer(ModelSerializer):
+    class Meta:
+        model = s2240altExpRiscoepc
+        fields = '__all__'
+            
 
 class s2240altExpRiscoepi(models.Model):
     s2240_altexprisco_fatrisco = models.ForeignKey('s2240altExpRiscofatRisco',
@@ -292,6 +307,13 @@ class s2240altExpRiscoepi(models.Model):
         ordering = ['s2240_altexprisco_fatrisco', 'caepi', 'eficepi', 'medprotecao', 'condfuncto', 'przvalid', 'periodictroca', 'higienizacao']
 
 
+
+class s2240altExpRiscoepiSerializer(ModelSerializer):
+    class Meta:
+        model = s2240altExpRiscoepi
+        fields = '__all__'
+            
+
 class s2240altExpRiscofatRisco(models.Model):
     s2240_altexprisco_infoamb = models.ForeignKey('s2240altExpRiscoinfoAmb',
         related_name='%(class)s_s2240_altexprisco_infoamb')
@@ -317,6 +339,13 @@ class s2240altExpRiscofatRisco(models.Model):
         ordering = ['s2240_altexprisco_infoamb', 'codfatris', 'intconc', 'tecmedicao', 'utilizepc', 'utilizepi']
 
 
+
+class s2240altExpRiscofatRiscoSerializer(ModelSerializer):
+    class Meta:
+        model = s2240altExpRiscofatRisco
+        fields = '__all__'
+            
+
 class s2240altExpRiscoinfoAmb(models.Model):
     s2240_altexprisco = models.ForeignKey('s2240altExpRisco',
         related_name='%(class)s_s2240_altexprisco')
@@ -339,6 +368,13 @@ class s2240altExpRiscoinfoAmb(models.Model):
         ordering = ['s2240_altexprisco', 'codamb', 'dscativdes']
 
 
+
+class s2240altExpRiscoinfoAmbSerializer(ModelSerializer):
+    class Meta:
+        model = s2240altExpRiscoinfoAmb
+        fields = '__all__'
+            
+
 class s2240fimExpRisco(models.Model):
     s2240_evtexprisco = models.OneToOneField('esocial.s2240evtExpRisco',
         related_name='%(class)s_s2240_evtexprisco')
@@ -360,6 +396,13 @@ class s2240fimExpRisco(models.Model):
         ordering = ['s2240_evtexprisco', 'dtfimcondicao']
 
 
+
+class s2240fimExpRiscoSerializer(ModelSerializer):
+    class Meta:
+        model = s2240fimExpRisco
+        fields = '__all__'
+            
+
 class s2240fimExpRiscoinfoAmb(models.Model):
     s2240_fimexprisco = models.ForeignKey('s2240fimExpRisco',
         related_name='%(class)s_s2240_fimexprisco')
@@ -380,6 +423,13 @@ class s2240fimExpRiscoinfoAmb(models.Model):
         managed = True
         ordering = ['s2240_fimexprisco', 'codamb']
 
+
+
+class s2240fimExpRiscoinfoAmbSerializer(ModelSerializer):
+    class Meta:
+        model = s2240fimExpRiscoinfoAmb
+        fields = '__all__'
+            
 
 class s2240fimExpRiscorespReg(models.Model):
     s2240_evtexprisco = models.ForeignKey('esocial.s2240evtExpRisco',
@@ -406,6 +456,13 @@ class s2240fimExpRiscorespReg(models.Model):
         ordering = ['s2240_evtexprisco', 'dtini', 'dtfim', 'nisresp', 'nroc', 'ufoc']
 
 
+
+class s2240fimExpRiscorespRegSerializer(ModelSerializer):
+    class Meta:
+        model = s2240fimExpRiscorespReg
+        fields = '__all__'
+            
+
 class s2240iniExpRisco(models.Model):
     s2240_evtexprisco = models.OneToOneField('esocial.s2240evtExpRisco',
         related_name='%(class)s_s2240_evtexprisco')
@@ -427,6 +484,13 @@ class s2240iniExpRisco(models.Model):
         ordering = ['s2240_evtexprisco', 'dtinicondicao']
 
 
+
+class s2240iniExpRiscoSerializer(ModelSerializer):
+    class Meta:
+        model = s2240iniExpRisco
+        fields = '__all__'
+            
+
 class s2240iniExpRiscoativPericInsal(models.Model):
     s2240_iniexprisco_infoamb = models.ForeignKey('s2240iniExpRiscoinfoAmb',
         related_name='%(class)s_s2240_iniexprisco_infoamb')
@@ -447,6 +511,13 @@ class s2240iniExpRiscoativPericInsal(models.Model):
         managed = True
         ordering = ['s2240_iniexprisco_infoamb', 'codativ']
 
+
+
+class s2240iniExpRiscoativPericInsalSerializer(ModelSerializer):
+    class Meta:
+        model = s2240iniExpRiscoativPericInsal
+        fields = '__all__'
+            
 
 class s2240iniExpRiscoepc(models.Model):
     s2240_iniexprisco_fatrisco = models.ForeignKey('s2240iniExpRiscofatRisco',
@@ -471,6 +542,13 @@ class s2240iniExpRiscoepc(models.Model):
         managed = True
         ordering = ['s2240_iniexprisco_fatrisco', 'codep', 'dscepc', 'eficepc', 'codep']
 
+
+
+class s2240iniExpRiscoepcSerializer(ModelSerializer):
+    class Meta:
+        model = s2240iniExpRiscoepc
+        fields = '__all__'
+            
 
 class s2240iniExpRiscoepi(models.Model):
     s2240_iniexprisco_fatrisco = models.ForeignKey('s2240iniExpRiscofatRisco',
@@ -499,6 +577,13 @@ class s2240iniExpRiscoepi(models.Model):
         managed = True
         ordering = ['s2240_iniexprisco_fatrisco', 'caepi', 'eficepi', 'medprotecao', 'condfuncto', 'przvalid', 'periodictroca', 'higienizacao', 'manutencao']
 
+
+
+class s2240iniExpRiscoepiSerializer(ModelSerializer):
+    class Meta:
+        model = s2240iniExpRiscoepi
+        fields = '__all__'
+            
 
 class s2240iniExpRiscofatRisco(models.Model):
     s2240_iniexprisco_infoamb = models.ForeignKey('s2240iniExpRiscoinfoAmb',
@@ -531,6 +616,13 @@ class s2240iniExpRiscofatRisco(models.Model):
         ordering = ['s2240_iniexprisco_infoamb', 'codfatris', 'tpaval', 'intconc', 'unmed', 'tecmedicao', 'insalubridade', 'periculosidade', 'aposentesp', 'utilizepc', 'hieruso', 'utilizepi']
 
 
+
+class s2240iniExpRiscofatRiscoSerializer(ModelSerializer):
+    class Meta:
+        model = s2240iniExpRiscofatRisco
+        fields = '__all__'
+            
+
 class s2240iniExpRiscoinfoAmb(models.Model):
     s2240_iniexprisco = models.ForeignKey('s2240iniExpRisco',
         related_name='%(class)s_s2240_iniexprisco')
@@ -553,6 +645,13 @@ class s2240iniExpRiscoinfoAmb(models.Model):
         ordering = ['s2240_iniexprisco', 'codamb', 'dscativdes']
 
 
+
+class s2240iniExpRiscoinfoAmbSerializer(ModelSerializer):
+    class Meta:
+        model = s2240iniExpRiscoinfoAmb
+        fields = '__all__'
+            
+
 class s2240iniExpRiscoobs(models.Model):
     s2240_evtexprisco = models.OneToOneField('esocial.s2240evtExpRisco',
         related_name='%(class)s_s2240_evtexprisco')
@@ -574,6 +673,13 @@ class s2240iniExpRiscoobs(models.Model):
         managed = True
         ordering = ['s2240_evtexprisco', 'meterg', 'observacao']
 
+
+
+class s2240iniExpRiscoobsSerializer(ModelSerializer):
+    class Meta:
+        model = s2240iniExpRiscoobs
+        fields = '__all__'
+            
 
 class s2240iniExpRiscorespReg(models.Model):
     s2240_evtexprisco = models.ForeignKey('esocial.s2240evtExpRisco',
@@ -601,5 +707,12 @@ class s2240iniExpRiscorespReg(models.Model):
         managed = True
         ordering = ['s2240_evtexprisco', 'cpfresp', 'nisresp', 'nmresp', 'ideoc', 'dscoc', 'nroc', 'ufoc']
 
+
+
+class s2240iniExpRiscorespRegSerializer(ModelSerializer):
+    class Meta:
+        model = s2240iniExpRiscorespReg
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

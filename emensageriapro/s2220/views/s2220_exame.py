@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 's2220_exame_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s2220exameList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s2220exame.objects.using(db_slug).all()
+    serializer_class = s2220exameSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s2220exameDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s2220exame.objects.using(db_slug).all()
+    serializer_class = s2220exameSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

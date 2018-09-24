@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 's2299_infotrabinterm_procjudtrab_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s2299infoTrabIntermprocJudTrabList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s2299infoTrabIntermprocJudTrab.objects.using(db_slug).all()
+    serializer_class = s2299infoTrabIntermprocJudTrabSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s2299infoTrabIntermprocJudTrabDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s2299infoTrabIntermprocJudTrab.objects.using(db_slug).all()
+    serializer_class = s2299infoTrabIntermprocJudTrabSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

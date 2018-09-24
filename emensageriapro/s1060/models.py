@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -119,6 +120,13 @@ class s1060alteracao(models.Model):
         ordering = ['s1060_evttabambiente', 'codamb', 'inivalid', 'fimvalid', 'dscamb', 'localamb', 'tpinsc', 'nrinsc']
 
 
+
+class s1060alteracaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1060alteracao
+        fields = '__all__'
+            
+
 class s1060alteracaofatorRisco(models.Model):
     s1060_alteracao = models.ForeignKey('s1060alteracao',
         related_name='%(class)s_s1060_alteracao')
@@ -139,6 +147,13 @@ class s1060alteracaofatorRisco(models.Model):
         managed = True
         ordering = ['s1060_alteracao', 'codfatris']
 
+
+
+class s1060alteracaofatorRiscoSerializer(ModelSerializer):
+    class Meta:
+        model = s1060alteracaofatorRisco
+        fields = '__all__'
+            
 
 class s1060alteracaonovaValidade(models.Model):
     s1060_alteracao = models.OneToOneField('s1060alteracao',
@@ -162,6 +177,13 @@ class s1060alteracaonovaValidade(models.Model):
         ordering = ['s1060_alteracao', 'inivalid', 'fimvalid']
 
 
+
+class s1060alteracaonovaValidadeSerializer(ModelSerializer):
+    class Meta:
+        model = s1060alteracaonovaValidade
+        fields = '__all__'
+            
+
 class s1060exclusao(models.Model):
     s1060_evttabambiente = models.OneToOneField('esocial.s1060evtTabAmbiente',
         related_name='%(class)s_s1060_evttabambiente')
@@ -184,6 +206,13 @@ class s1060exclusao(models.Model):
         managed = True
         ordering = ['s1060_evttabambiente', 'codamb', 'inivalid', 'fimvalid']
 
+
+
+class s1060exclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1060exclusao
+        fields = '__all__'
+            
 
 class s1060inclusao(models.Model):
     s1060_evttabambiente = models.OneToOneField('esocial.s1060evtTabAmbiente',
@@ -212,6 +241,13 @@ class s1060inclusao(models.Model):
         ordering = ['s1060_evttabambiente', 'codamb', 'inivalid', 'fimvalid', 'dscamb', 'localamb', 'tpinsc', 'nrinsc']
 
 
+
+class s1060inclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1060inclusao
+        fields = '__all__'
+            
+
 class s1060inclusaofatorRisco(models.Model):
     s1060_inclusao = models.ForeignKey('s1060inclusao',
         related_name='%(class)s_s1060_inclusao')
@@ -232,5 +268,12 @@ class s1060inclusaofatorRisco(models.Model):
         managed = True
         ordering = ['s1060_inclusao', 'codfatris']
 
+
+
+class s1060inclusaofatorRiscoSerializer(ModelSerializer):
+    class Meta:
+        model = s1060inclusaofatorRisco
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

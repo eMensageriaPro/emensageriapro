@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 's5011_infoemprparcial_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s5011infoEmprParcialList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s5011infoEmprParcial.objects.using(db_slug).all()
+    serializer_class = s5011infoEmprParcialSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s5011infoEmprParcialDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s5011infoEmprParcial.objects.using(db_slug).all()
+    serializer_class = s5011infoEmprParcialSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

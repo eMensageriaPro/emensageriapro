@@ -346,6 +346,82 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        s2240_evtexprisco_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2240_evtexprisco')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    s2240_evtexprisco = get_object_or_404(s2240evtExpRisco.objects.using( db_slug ), excluido = False, id = s2240_evtexprisco_id)
+
+    if s2240_evtexprisco_id:
+        if s2240_evtexprisco.status != 0:
+            dict_permissoes['s2240_evtexprisco_apagar'] = 0
+            dict_permissoes['s2240_evtexprisco_editar'] = 0
+
+    if request.method == 'POST':
+        if s2240_evtexprisco.status == 0:
+            import json
+            from django.forms.models import model_to_dict
+            situacao_anterior = json.dumps(model_to_dict(s2240_evtexprisco), indent=4, sort_keys=True, default=str)
+            s2240evtExpRisco.objects.using( db_slug ).filter(id = s2240_evtexprisco_id).delete()
+            #s2240_evtexprisco_apagar_custom
+            #s2240_evtexprisco_apagar_custom
+            messages.success(request, 'Apagado com sucesso!')
+            gravar_auditoria(situacao_anterior,
+                             '',
+                             's2240_evtexprisco', s2240_evtexprisco_id, usuario_id, 3)
+        else:
+            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+   
+        if request.session['retorno_pagina']== 's2240_evtexprisco_salvar':
+            return redirect('s2240_evtexprisco', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 's2240_evtexprisco_apagar.html', context)
+
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s2240evtExpRiscoList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s2240evtExpRisco.objects.using(db_slug).all()
+    serializer_class = s2240evtExpRiscoSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s2240evtExpRiscoDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s2240evtExpRisco.objects.using(db_slug).all()
+    serializer_class = s2240evtExpRiscoSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse
@@ -562,62 +638,4 @@ def listar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
-
-@login_required
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2240_evtexprisco_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2240_evtexprisco')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-    s2240_evtexprisco = get_object_or_404(s2240evtExpRisco.objects.using( db_slug ), excluido = False, id = s2240_evtexprisco_id)
-
-    if s2240_evtexprisco_id:
-        if s2240_evtexprisco.status != 0:
-            dict_permissoes['s2240_evtexprisco_apagar'] = 0
-            dict_permissoes['s2240_evtexprisco_editar'] = 0
-
-    if request.method == 'POST':
-        if s2240_evtexprisco.status == 0:
-            import json
-            from django.forms.models import model_to_dict
-            situacao_anterior = json.dumps(model_to_dict(s2240_evtexprisco), indent=4, sort_keys=True, default=str)
-            s2240evtExpRisco.objects.using( db_slug ).filter(id = s2240_evtexprisco_id).delete()
-            #s2240_evtexprisco_apagar_custom
-            #s2240_evtexprisco_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
-            gravar_auditoria(situacao_anterior,
-                             '',
-                             's2240_evtexprisco', s2240_evtexprisco_id, usuario_id, 3)
-        else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
-        if request.session['retorno_pagina']== 's2240_evtexprisco_salvar':
-            return redirect('s2240_evtexprisco', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 's2240_evtexprisco_apagar.html', context)
 

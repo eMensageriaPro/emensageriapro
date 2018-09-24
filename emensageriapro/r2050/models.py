@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -79,6 +80,13 @@ class r2050infoProc(models.Model):
         ordering = ['r2050_tipocom', 'tpproc', 'nrproc', 'codsusp', 'vlrcpsusp', 'vlrratsusp', 'vlrsenarsusp']
 
 
+
+class r2050infoProcSerializer(ModelSerializer):
+    class Meta:
+        model = r2050infoProc
+        fields = '__all__'
+            
+
 class r2050tipoCom(models.Model):
     r2050_evtcomprod = models.ForeignKey('efdreinf.r2050evtComProd',
         related_name='%(class)s_r2050_evtcomprod')
@@ -101,5 +109,12 @@ class r2050tipoCom(models.Model):
         managed = True
         ordering = ['r2050_evtcomprod', 'indcom', 'vlrrecbruta']
 
+
+
+class r2050tipoComSerializer(ModelSerializer):
+    class Meta:
+        model = r2050tipoCom
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

@@ -49,6 +49,12 @@ url(r'^s1270-remunavnp/apagar/(?P<hash>.*)/$',
         s1270_remunavnp_views.apagar, 
         name='s1270_remunavnp_apagar'),
 
+url(r'^s1270-remunavnp/api/$',
+            s1270_remunavnp_views.s1270remunAvNPList.as_view() ),
+
+        url(r'^s1270-remunavnp/api/(?P<pk>[0-9]+)/$',
+            s1270_remunavnp_views.s1270remunAvNPDetail.as_view() ),
+
 url(r'^s1270-remunavnp/listar/(?P<hash>.*)/$', 
         s1270_remunavnp_views.listar, 
         name='s1270_remunavnp'),

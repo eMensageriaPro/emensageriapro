@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -75,6 +76,13 @@ class s2231fimCessao(models.Model):
         ordering = ['s2231_evtcessao', 'dttermcessao']
 
 
+
+class s2231fimCessaoSerializer(ModelSerializer):
+    class Meta:
+        model = s2231fimCessao
+        fields = '__all__'
+            
+
 class s2231iniCessao(models.Model):
     s2231_evtcessao = models.OneToOneField('esocial.s2231evtCessao',
         related_name='%(class)s_s2231_evtcessao')
@@ -99,5 +107,12 @@ class s2231iniCessao(models.Model):
         managed = True
         ordering = ['s2231_evtcessao', 'dtinicessao', 'cnpjcess', 'infonus', 'indcessao', 'dscsituacao']
 
+
+
+class s2231iniCessaoSerializer(ModelSerializer):
+    class Meta:
+        model = s2231iniCessao
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

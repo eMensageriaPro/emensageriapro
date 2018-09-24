@@ -323,6 +323,24 @@ def apagar(request, hash):
     }
     return render(request, 's2200_documentos_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s2200documentosList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s2200documentos.objects.using(db_slug).all()
+    serializer_class = s2200documentosSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s2200documentosDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s2200documentos.objects.using(db_slug).all()
+    serializer_class = s2200documentosSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

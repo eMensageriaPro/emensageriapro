@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 'r5011_infocrtom_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class r5011infoCRTomList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = r5011infoCRTom.objects.using(db_slug).all()
+    serializer_class = r5011infoCRTomSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class r5011infoCRTomDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = r5011infoCRTom.objects.using(db_slug).all()
+    serializer_class = r5011infoCRTomSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

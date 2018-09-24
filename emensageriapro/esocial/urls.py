@@ -152,6 +152,12 @@ url(r'^s1000-evtinfoempregador/apagar/(?P<hash>.*)/$',
         s1000_evtinfoempregador_views.apagar, 
         name='s1000_evtinfoempregador_apagar'),
 
+url(r'^s1000-evtinfoempregador/api/$',
+            s1000_evtinfoempregador_views.s1000evtInfoEmpregadorList.as_view() ),
+
+        url(r'^s1000-evtinfoempregador/api/(?P<pk>[0-9]+)/$',
+            s1000_evtinfoempregador_views.s1000evtInfoEmpregadorDetail.as_view() ),
+
 url(r'^s1000-evtinfoempregador/listar/(?P<hash>.*)/$', 
         s1000_evtinfoempregador_views.listar, 
         name='s1000_evtinfoempregador'),
@@ -208,6 +214,12 @@ url(r'^scripts/gerar-identidade/s1000-evtinfoempregador/(?P<chave>.*)/(?P<evento
 url(r'^s1005-evttabestab/apagar/(?P<hash>.*)/$', 
         s1005_evttabestab_views.apagar, 
         name='s1005_evttabestab_apagar'),
+
+url(r'^s1005-evttabestab/api/$',
+            s1005_evttabestab_views.s1005evtTabEstabList.as_view() ),
+
+        url(r'^s1005-evttabestab/api/(?P<pk>[0-9]+)/$',
+            s1005_evttabestab_views.s1005evtTabEstabDetail.as_view() ),
 
 url(r'^s1005-evttabestab/listar/(?P<hash>.*)/$', 
         s1005_evttabestab_views.listar, 
@@ -266,6 +278,12 @@ url(r'^s1010-evttabrubrica/apagar/(?P<hash>.*)/$',
         s1010_evttabrubrica_views.apagar, 
         name='s1010_evttabrubrica_apagar'),
 
+url(r'^s1010-evttabrubrica/api/$',
+            s1010_evttabrubrica_views.s1010evtTabRubricaList.as_view() ),
+
+        url(r'^s1010-evttabrubrica/api/(?P<pk>[0-9]+)/$',
+            s1010_evttabrubrica_views.s1010evtTabRubricaDetail.as_view() ),
+
 url(r'^s1010-evttabrubrica/listar/(?P<hash>.*)/$', 
         s1010_evttabrubrica_views.listar, 
         name='s1010_evttabrubrica'),
@@ -322,6 +340,12 @@ url(r'^scripts/gerar-identidade/s1010-evttabrubrica/(?P<chave>.*)/(?P<evento_id>
 url(r'^s1020-evttablotacao/apagar/(?P<hash>.*)/$', 
         s1020_evttablotacao_views.apagar, 
         name='s1020_evttablotacao_apagar'),
+
+url(r'^s1020-evttablotacao/api/$',
+            s1020_evttablotacao_views.s1020evtTabLotacaoList.as_view() ),
+
+        url(r'^s1020-evttablotacao/api/(?P<pk>[0-9]+)/$',
+            s1020_evttablotacao_views.s1020evtTabLotacaoDetail.as_view() ),
 
 url(r'^s1020-evttablotacao/listar/(?P<hash>.*)/$', 
         s1020_evttablotacao_views.listar, 
@@ -380,6 +404,12 @@ url(r'^s1030-evttabcargo/apagar/(?P<hash>.*)/$',
         s1030_evttabcargo_views.apagar, 
         name='s1030_evttabcargo_apagar'),
 
+url(r'^s1030-evttabcargo/api/$',
+            s1030_evttabcargo_views.s1030evtTabCargoList.as_view() ),
+
+        url(r'^s1030-evttabcargo/api/(?P<pk>[0-9]+)/$',
+            s1030_evttabcargo_views.s1030evtTabCargoDetail.as_view() ),
+
 url(r'^s1030-evttabcargo/listar/(?P<hash>.*)/$', 
         s1030_evttabcargo_views.listar, 
         name='s1030_evttabcargo'),
@@ -436,6 +466,12 @@ url(r'^scripts/gerar-identidade/s1030-evttabcargo/(?P<chave>.*)/(?P<evento_id>\d
 url(r'^s1035-evttabcarreira/apagar/(?P<hash>.*)/$', 
         s1035_evttabcarreira_views.apagar, 
         name='s1035_evttabcarreira_apagar'),
+
+url(r'^s1035-evttabcarreira/api/$',
+            s1035_evttabcarreira_views.s1035evtTabCarreiraList.as_view() ),
+
+        url(r'^s1035-evttabcarreira/api/(?P<pk>[0-9]+)/$',
+            s1035_evttabcarreira_views.s1035evtTabCarreiraDetail.as_view() ),
 
 url(r'^s1035-evttabcarreira/listar/(?P<hash>.*)/$', 
         s1035_evttabcarreira_views.listar, 
@@ -494,6 +530,12 @@ url(r'^s1040-evttabfuncao/apagar/(?P<hash>.*)/$',
         s1040_evttabfuncao_views.apagar, 
         name='s1040_evttabfuncao_apagar'),
 
+url(r'^s1040-evttabfuncao/api/$',
+            s1040_evttabfuncao_views.s1040evtTabFuncaoList.as_view() ),
+
+        url(r'^s1040-evttabfuncao/api/(?P<pk>[0-9]+)/$',
+            s1040_evttabfuncao_views.s1040evtTabFuncaoDetail.as_view() ),
+
 url(r'^s1040-evttabfuncao/listar/(?P<hash>.*)/$', 
         s1040_evttabfuncao_views.listar, 
         name='s1040_evttabfuncao'),
@@ -550,6 +592,12 @@ url(r'^scripts/gerar-identidade/s1040-evttabfuncao/(?P<chave>.*)/(?P<evento_id>\
 url(r'^s1050-evttabhortur/apagar/(?P<hash>.*)/$', 
         s1050_evttabhortur_views.apagar, 
         name='s1050_evttabhortur_apagar'),
+
+url(r'^s1050-evttabhortur/api/$',
+            s1050_evttabhortur_views.s1050evtTabHorTurList.as_view() ),
+
+        url(r'^s1050-evttabhortur/api/(?P<pk>[0-9]+)/$',
+            s1050_evttabhortur_views.s1050evtTabHorTurDetail.as_view() ),
 
 url(r'^s1050-evttabhortur/listar/(?P<hash>.*)/$', 
         s1050_evttabhortur_views.listar, 
@@ -608,6 +656,12 @@ url(r'^s1060-evttabambiente/apagar/(?P<hash>.*)/$',
         s1060_evttabambiente_views.apagar, 
         name='s1060_evttabambiente_apagar'),
 
+url(r'^s1060-evttabambiente/api/$',
+            s1060_evttabambiente_views.s1060evtTabAmbienteList.as_view() ),
+
+        url(r'^s1060-evttabambiente/api/(?P<pk>[0-9]+)/$',
+            s1060_evttabambiente_views.s1060evtTabAmbienteDetail.as_view() ),
+
 url(r'^s1060-evttabambiente/listar/(?P<hash>.*)/$', 
         s1060_evttabambiente_views.listar, 
         name='s1060_evttabambiente'),
@@ -664,6 +718,12 @@ url(r'^scripts/gerar-identidade/s1060-evttabambiente/(?P<chave>.*)/(?P<evento_id
 url(r'^s1065-evttabequipamento/apagar/(?P<hash>.*)/$', 
         s1065_evttabequipamento_views.apagar, 
         name='s1065_evttabequipamento_apagar'),
+
+url(r'^s1065-evttabequipamento/api/$',
+            s1065_evttabequipamento_views.s1065evtTabEquipamentoList.as_view() ),
+
+        url(r'^s1065-evttabequipamento/api/(?P<pk>[0-9]+)/$',
+            s1065_evttabequipamento_views.s1065evtTabEquipamentoDetail.as_view() ),
 
 url(r'^s1065-evttabequipamento/listar/(?P<hash>.*)/$', 
         s1065_evttabequipamento_views.listar, 
@@ -722,6 +782,12 @@ url(r'^s1070-evttabprocesso/apagar/(?P<hash>.*)/$',
         s1070_evttabprocesso_views.apagar, 
         name='s1070_evttabprocesso_apagar'),
 
+url(r'^s1070-evttabprocesso/api/$',
+            s1070_evttabprocesso_views.s1070evtTabProcessoList.as_view() ),
+
+        url(r'^s1070-evttabprocesso/api/(?P<pk>[0-9]+)/$',
+            s1070_evttabprocesso_views.s1070evtTabProcessoDetail.as_view() ),
+
 url(r'^s1070-evttabprocesso/listar/(?P<hash>.*)/$', 
         s1070_evttabprocesso_views.listar, 
         name='s1070_evttabprocesso'),
@@ -778,6 +844,12 @@ url(r'^scripts/gerar-identidade/s1070-evttabprocesso/(?P<chave>.*)/(?P<evento_id
 url(r'^s1080-evttaboperport/apagar/(?P<hash>.*)/$', 
         s1080_evttaboperport_views.apagar, 
         name='s1080_evttaboperport_apagar'),
+
+url(r'^s1080-evttaboperport/api/$',
+            s1080_evttaboperport_views.s1080evtTabOperPortList.as_view() ),
+
+        url(r'^s1080-evttaboperport/api/(?P<pk>[0-9]+)/$',
+            s1080_evttaboperport_views.s1080evtTabOperPortDetail.as_view() ),
 
 url(r'^s1080-evttaboperport/listar/(?P<hash>.*)/$', 
         s1080_evttaboperport_views.listar, 
@@ -836,6 +908,12 @@ url(r'^s1200-evtremun/apagar/(?P<hash>.*)/$',
         s1200_evtremun_views.apagar, 
         name='s1200_evtremun_apagar'),
 
+url(r'^s1200-evtremun/api/$',
+            s1200_evtremun_views.s1200evtRemunList.as_view() ),
+
+        url(r'^s1200-evtremun/api/(?P<pk>[0-9]+)/$',
+            s1200_evtremun_views.s1200evtRemunDetail.as_view() ),
+
 url(r'^s1200-evtremun/listar/(?P<hash>.*)/$', 
         s1200_evtremun_views.listar, 
         name='s1200_evtremun'),
@@ -892,6 +970,12 @@ url(r'^scripts/gerar-identidade/s1200-evtremun/(?P<chave>.*)/(?P<evento_id>\d+)/
 url(r'^s1202-evtrmnrpps/apagar/(?P<hash>.*)/$', 
         s1202_evtrmnrpps_views.apagar, 
         name='s1202_evtrmnrpps_apagar'),
+
+url(r'^s1202-evtrmnrpps/api/$',
+            s1202_evtrmnrpps_views.s1202evtRmnRPPSList.as_view() ),
+
+        url(r'^s1202-evtrmnrpps/api/(?P<pk>[0-9]+)/$',
+            s1202_evtrmnrpps_views.s1202evtRmnRPPSDetail.as_view() ),
 
 url(r'^s1202-evtrmnrpps/listar/(?P<hash>.*)/$', 
         s1202_evtrmnrpps_views.listar, 
@@ -950,6 +1034,12 @@ url(r'^s1207-evtbenprrp/apagar/(?P<hash>.*)/$',
         s1207_evtbenprrp_views.apagar, 
         name='s1207_evtbenprrp_apagar'),
 
+url(r'^s1207-evtbenprrp/api/$',
+            s1207_evtbenprrp_views.s1207evtBenPrRPList.as_view() ),
+
+        url(r'^s1207-evtbenprrp/api/(?P<pk>[0-9]+)/$',
+            s1207_evtbenprrp_views.s1207evtBenPrRPDetail.as_view() ),
+
 url(r'^s1207-evtbenprrp/listar/(?P<hash>.*)/$', 
         s1207_evtbenprrp_views.listar, 
         name='s1207_evtbenprrp'),
@@ -1006,6 +1096,12 @@ url(r'^scripts/gerar-identidade/s1207-evtbenprrp/(?P<chave>.*)/(?P<evento_id>\d+
 url(r'^s1210-evtpgtos/apagar/(?P<hash>.*)/$', 
         s1210_evtpgtos_views.apagar, 
         name='s1210_evtpgtos_apagar'),
+
+url(r'^s1210-evtpgtos/api/$',
+            s1210_evtpgtos_views.s1210evtPgtosList.as_view() ),
+
+        url(r'^s1210-evtpgtos/api/(?P<pk>[0-9]+)/$',
+            s1210_evtpgtos_views.s1210evtPgtosDetail.as_view() ),
 
 url(r'^s1210-evtpgtos/listar/(?P<hash>.*)/$', 
         s1210_evtpgtos_views.listar, 
@@ -1064,6 +1160,12 @@ url(r'^s1250-evtaqprod/apagar/(?P<hash>.*)/$',
         s1250_evtaqprod_views.apagar, 
         name='s1250_evtaqprod_apagar'),
 
+url(r'^s1250-evtaqprod/api/$',
+            s1250_evtaqprod_views.s1250evtAqProdList.as_view() ),
+
+        url(r'^s1250-evtaqprod/api/(?P<pk>[0-9]+)/$',
+            s1250_evtaqprod_views.s1250evtAqProdDetail.as_view() ),
+
 url(r'^s1250-evtaqprod/listar/(?P<hash>.*)/$', 
         s1250_evtaqprod_views.listar, 
         name='s1250_evtaqprod'),
@@ -1120,6 +1222,12 @@ url(r'^scripts/gerar-identidade/s1250-evtaqprod/(?P<chave>.*)/(?P<evento_id>\d+)
 url(r'^s1260-evtcomprod/apagar/(?P<hash>.*)/$', 
         s1260_evtcomprod_views.apagar, 
         name='s1260_evtcomprod_apagar'),
+
+url(r'^s1260-evtcomprod/api/$',
+            s1260_evtcomprod_views.s1260evtComProdList.as_view() ),
+
+        url(r'^s1260-evtcomprod/api/(?P<pk>[0-9]+)/$',
+            s1260_evtcomprod_views.s1260evtComProdDetail.as_view() ),
 
 url(r'^s1260-evtcomprod/listar/(?P<hash>.*)/$', 
         s1260_evtcomprod_views.listar, 
@@ -1178,6 +1286,12 @@ url(r'^s1270-evtcontratavnp/apagar/(?P<hash>.*)/$',
         s1270_evtcontratavnp_views.apagar, 
         name='s1270_evtcontratavnp_apagar'),
 
+url(r'^s1270-evtcontratavnp/api/$',
+            s1270_evtcontratavnp_views.s1270evtContratAvNPList.as_view() ),
+
+        url(r'^s1270-evtcontratavnp/api/(?P<pk>[0-9]+)/$',
+            s1270_evtcontratavnp_views.s1270evtContratAvNPDetail.as_view() ),
+
 url(r'^s1270-evtcontratavnp/listar/(?P<hash>.*)/$', 
         s1270_evtcontratavnp_views.listar, 
         name='s1270_evtcontratavnp'),
@@ -1234,6 +1348,12 @@ url(r'^scripts/gerar-identidade/s1270-evtcontratavnp/(?P<chave>.*)/(?P<evento_id
 url(r'^s1280-evtinfocomplper/apagar/(?P<hash>.*)/$', 
         s1280_evtinfocomplper_views.apagar, 
         name='s1280_evtinfocomplper_apagar'),
+
+url(r'^s1280-evtinfocomplper/api/$',
+            s1280_evtinfocomplper_views.s1280evtInfoComplPerList.as_view() ),
+
+        url(r'^s1280-evtinfocomplper/api/(?P<pk>[0-9]+)/$',
+            s1280_evtinfocomplper_views.s1280evtInfoComplPerDetail.as_view() ),
 
 url(r'^s1280-evtinfocomplper/listar/(?P<hash>.*)/$', 
         s1280_evtinfocomplper_views.listar, 
@@ -1292,6 +1412,12 @@ url(r'^s1295-evttotconting/apagar/(?P<hash>.*)/$',
         s1295_evttotconting_views.apagar, 
         name='s1295_evttotconting_apagar'),
 
+url(r'^s1295-evttotconting/api/$',
+            s1295_evttotconting_views.s1295evtTotContingList.as_view() ),
+
+        url(r'^s1295-evttotconting/api/(?P<pk>[0-9]+)/$',
+            s1295_evttotconting_views.s1295evtTotContingDetail.as_view() ),
+
 url(r'^s1295-evttotconting/listar/(?P<hash>.*)/$', 
         s1295_evttotconting_views.listar, 
         name='s1295_evttotconting'),
@@ -1348,6 +1474,12 @@ url(r'^scripts/gerar-identidade/s1295-evttotconting/(?P<chave>.*)/(?P<evento_id>
 url(r'^s1298-evtreabreevper/apagar/(?P<hash>.*)/$', 
         s1298_evtreabreevper_views.apagar, 
         name='s1298_evtreabreevper_apagar'),
+
+url(r'^s1298-evtreabreevper/api/$',
+            s1298_evtreabreevper_views.s1298evtReabreEvPerList.as_view() ),
+
+        url(r'^s1298-evtreabreevper/api/(?P<pk>[0-9]+)/$',
+            s1298_evtreabreevper_views.s1298evtReabreEvPerDetail.as_view() ),
 
 url(r'^s1298-evtreabreevper/listar/(?P<hash>.*)/$', 
         s1298_evtreabreevper_views.listar, 
@@ -1406,6 +1538,12 @@ url(r'^s1299-evtfechaevper/apagar/(?P<hash>.*)/$',
         s1299_evtfechaevper_views.apagar, 
         name='s1299_evtfechaevper_apagar'),
 
+url(r'^s1299-evtfechaevper/api/$',
+            s1299_evtfechaevper_views.s1299evtFechaEvPerList.as_view() ),
+
+        url(r'^s1299-evtfechaevper/api/(?P<pk>[0-9]+)/$',
+            s1299_evtfechaevper_views.s1299evtFechaEvPerDetail.as_view() ),
+
 url(r'^s1299-evtfechaevper/listar/(?P<hash>.*)/$', 
         s1299_evtfechaevper_views.listar, 
         name='s1299_evtfechaevper'),
@@ -1462,6 +1600,12 @@ url(r'^scripts/gerar-identidade/s1299-evtfechaevper/(?P<chave>.*)/(?P<evento_id>
 url(r'^s1300-evtcontrsindpatr/apagar/(?P<hash>.*)/$', 
         s1300_evtcontrsindpatr_views.apagar, 
         name='s1300_evtcontrsindpatr_apagar'),
+
+url(r'^s1300-evtcontrsindpatr/api/$',
+            s1300_evtcontrsindpatr_views.s1300evtContrSindPatrList.as_view() ),
+
+        url(r'^s1300-evtcontrsindpatr/api/(?P<pk>[0-9]+)/$',
+            s1300_evtcontrsindpatr_views.s1300evtContrSindPatrDetail.as_view() ),
 
 url(r'^s1300-evtcontrsindpatr/listar/(?P<hash>.*)/$', 
         s1300_evtcontrsindpatr_views.listar, 
@@ -1520,6 +1664,12 @@ url(r'^s2190-evtadmprelim/apagar/(?P<hash>.*)/$',
         s2190_evtadmprelim_views.apagar, 
         name='s2190_evtadmprelim_apagar'),
 
+url(r'^s2190-evtadmprelim/api/$',
+            s2190_evtadmprelim_views.s2190evtAdmPrelimList.as_view() ),
+
+        url(r'^s2190-evtadmprelim/api/(?P<pk>[0-9]+)/$',
+            s2190_evtadmprelim_views.s2190evtAdmPrelimDetail.as_view() ),
+
 url(r'^s2190-evtadmprelim/listar/(?P<hash>.*)/$', 
         s2190_evtadmprelim_views.listar, 
         name='s2190_evtadmprelim'),
@@ -1576,6 +1726,12 @@ url(r'^scripts/gerar-identidade/s2190-evtadmprelim/(?P<chave>.*)/(?P<evento_id>\
 url(r'^s2200-evtadmissao/apagar/(?P<hash>.*)/$', 
         s2200_evtadmissao_views.apagar, 
         name='s2200_evtadmissao_apagar'),
+
+url(r'^s2200-evtadmissao/api/$',
+            s2200_evtadmissao_views.s2200evtAdmissaoList.as_view() ),
+
+        url(r'^s2200-evtadmissao/api/(?P<pk>[0-9]+)/$',
+            s2200_evtadmissao_views.s2200evtAdmissaoDetail.as_view() ),
 
 url(r'^s2200-evtadmissao/listar/(?P<hash>.*)/$', 
         s2200_evtadmissao_views.listar, 
@@ -1634,6 +1790,12 @@ url(r'^s2205-evtaltcadastral/apagar/(?P<hash>.*)/$',
         s2205_evtaltcadastral_views.apagar, 
         name='s2205_evtaltcadastral_apagar'),
 
+url(r'^s2205-evtaltcadastral/api/$',
+            s2205_evtaltcadastral_views.s2205evtAltCadastralList.as_view() ),
+
+        url(r'^s2205-evtaltcadastral/api/(?P<pk>[0-9]+)/$',
+            s2205_evtaltcadastral_views.s2205evtAltCadastralDetail.as_view() ),
+
 url(r'^s2205-evtaltcadastral/listar/(?P<hash>.*)/$', 
         s2205_evtaltcadastral_views.listar, 
         name='s2205_evtaltcadastral'),
@@ -1690,6 +1852,12 @@ url(r'^scripts/gerar-identidade/s2205-evtaltcadastral/(?P<chave>.*)/(?P<evento_i
 url(r'^s2206-evtaltcontratual/apagar/(?P<hash>.*)/$', 
         s2206_evtaltcontratual_views.apagar, 
         name='s2206_evtaltcontratual_apagar'),
+
+url(r'^s2206-evtaltcontratual/api/$',
+            s2206_evtaltcontratual_views.s2206evtAltContratualList.as_view() ),
+
+        url(r'^s2206-evtaltcontratual/api/(?P<pk>[0-9]+)/$',
+            s2206_evtaltcontratual_views.s2206evtAltContratualDetail.as_view() ),
 
 url(r'^s2206-evtaltcontratual/listar/(?P<hash>.*)/$', 
         s2206_evtaltcontratual_views.listar, 
@@ -1748,6 +1916,12 @@ url(r'^s2210-evtcat/apagar/(?P<hash>.*)/$',
         s2210_evtcat_views.apagar, 
         name='s2210_evtcat_apagar'),
 
+url(r'^s2210-evtcat/api/$',
+            s2210_evtcat_views.s2210evtCATList.as_view() ),
+
+        url(r'^s2210-evtcat/api/(?P<pk>[0-9]+)/$',
+            s2210_evtcat_views.s2210evtCATDetail.as_view() ),
+
 url(r'^s2210-evtcat/listar/(?P<hash>.*)/$', 
         s2210_evtcat_views.listar, 
         name='s2210_evtcat'),
@@ -1804,6 +1978,12 @@ url(r'^scripts/gerar-identidade/s2210-evtcat/(?P<chave>.*)/(?P<evento_id>\d+)/$'
 url(r'^s2220-evtmonit/apagar/(?P<hash>.*)/$', 
         s2220_evtmonit_views.apagar, 
         name='s2220_evtmonit_apagar'),
+
+url(r'^s2220-evtmonit/api/$',
+            s2220_evtmonit_views.s2220evtMonitList.as_view() ),
+
+        url(r'^s2220-evtmonit/api/(?P<pk>[0-9]+)/$',
+            s2220_evtmonit_views.s2220evtMonitDetail.as_view() ),
 
 url(r'^s2220-evtmonit/listar/(?P<hash>.*)/$', 
         s2220_evtmonit_views.listar, 
@@ -1862,6 +2042,12 @@ url(r'^s2230-evtafasttemp/apagar/(?P<hash>.*)/$',
         s2230_evtafasttemp_views.apagar, 
         name='s2230_evtafasttemp_apagar'),
 
+url(r'^s2230-evtafasttemp/api/$',
+            s2230_evtafasttemp_views.s2230evtAfastTempList.as_view() ),
+
+        url(r'^s2230-evtafasttemp/api/(?P<pk>[0-9]+)/$',
+            s2230_evtafasttemp_views.s2230evtAfastTempDetail.as_view() ),
+
 url(r'^s2230-evtafasttemp/listar/(?P<hash>.*)/$', 
         s2230_evtafasttemp_views.listar, 
         name='s2230_evtafasttemp'),
@@ -1918,6 +2104,12 @@ url(r'^scripts/gerar-identidade/s2230-evtafasttemp/(?P<chave>.*)/(?P<evento_id>\
 url(r'^s2231-evtcessao/apagar/(?P<hash>.*)/$', 
         s2231_evtcessao_views.apagar, 
         name='s2231_evtcessao_apagar'),
+
+url(r'^s2231-evtcessao/api/$',
+            s2231_evtcessao_views.s2231evtCessaoList.as_view() ),
+
+        url(r'^s2231-evtcessao/api/(?P<pk>[0-9]+)/$',
+            s2231_evtcessao_views.s2231evtCessaoDetail.as_view() ),
 
 url(r'^s2231-evtcessao/listar/(?P<hash>.*)/$', 
         s2231_evtcessao_views.listar, 
@@ -1976,6 +2168,12 @@ url(r'^s2240-evtexprisco/apagar/(?P<hash>.*)/$',
         s2240_evtexprisco_views.apagar, 
         name='s2240_evtexprisco_apagar'),
 
+url(r'^s2240-evtexprisco/api/$',
+            s2240_evtexprisco_views.s2240evtExpRiscoList.as_view() ),
+
+        url(r'^s2240-evtexprisco/api/(?P<pk>[0-9]+)/$',
+            s2240_evtexprisco_views.s2240evtExpRiscoDetail.as_view() ),
+
 url(r'^s2240-evtexprisco/listar/(?P<hash>.*)/$', 
         s2240_evtexprisco_views.listar, 
         name='s2240_evtexprisco'),
@@ -2032,6 +2230,12 @@ url(r'^scripts/gerar-identidade/s2240-evtexprisco/(?P<chave>.*)/(?P<evento_id>\d
 url(r'^s2241-evtinsapo/apagar/(?P<hash>.*)/$', 
         s2241_evtinsapo_views.apagar, 
         name='s2241_evtinsapo_apagar'),
+
+url(r'^s2241-evtinsapo/api/$',
+            s2241_evtinsapo_views.s2241evtInsApoList.as_view() ),
+
+        url(r'^s2241-evtinsapo/api/(?P<pk>[0-9]+)/$',
+            s2241_evtinsapo_views.s2241evtInsApoDetail.as_view() ),
 
 url(r'^s2241-evtinsapo/listar/(?P<hash>.*)/$', 
         s2241_evtinsapo_views.listar, 
@@ -2090,6 +2294,12 @@ url(r'^s2245-evttreicap/apagar/(?P<hash>.*)/$',
         s2245_evttreicap_views.apagar, 
         name='s2245_evttreicap_apagar'),
 
+url(r'^s2245-evttreicap/api/$',
+            s2245_evttreicap_views.s2245evtTreiCapList.as_view() ),
+
+        url(r'^s2245-evttreicap/api/(?P<pk>[0-9]+)/$',
+            s2245_evttreicap_views.s2245evtTreiCapDetail.as_view() ),
+
 url(r'^s2245-evttreicap/listar/(?P<hash>.*)/$', 
         s2245_evttreicap_views.listar, 
         name='s2245_evttreicap'),
@@ -2146,6 +2356,12 @@ url(r'^scripts/gerar-identidade/s2245-evttreicap/(?P<chave>.*)/(?P<evento_id>\d+
 url(r'^s2250-evtavprevio/apagar/(?P<hash>.*)/$', 
         s2250_evtavprevio_views.apagar, 
         name='s2250_evtavprevio_apagar'),
+
+url(r'^s2250-evtavprevio/api/$',
+            s2250_evtavprevio_views.s2250evtAvPrevioList.as_view() ),
+
+        url(r'^s2250-evtavprevio/api/(?P<pk>[0-9]+)/$',
+            s2250_evtavprevio_views.s2250evtAvPrevioDetail.as_view() ),
 
 url(r'^s2250-evtavprevio/listar/(?P<hash>.*)/$', 
         s2250_evtavprevio_views.listar, 
@@ -2204,6 +2420,12 @@ url(r'^s2260-evtconvinterm/apagar/(?P<hash>.*)/$',
         s2260_evtconvinterm_views.apagar, 
         name='s2260_evtconvinterm_apagar'),
 
+url(r'^s2260-evtconvinterm/api/$',
+            s2260_evtconvinterm_views.s2260evtConvIntermList.as_view() ),
+
+        url(r'^s2260-evtconvinterm/api/(?P<pk>[0-9]+)/$',
+            s2260_evtconvinterm_views.s2260evtConvIntermDetail.as_view() ),
+
 url(r'^s2260-evtconvinterm/listar/(?P<hash>.*)/$', 
         s2260_evtconvinterm_views.listar, 
         name='s2260_evtconvinterm'),
@@ -2260,6 +2482,12 @@ url(r'^scripts/gerar-identidade/s2260-evtconvinterm/(?P<chave>.*)/(?P<evento_id>
 url(r'^s2298-evtreintegr/apagar/(?P<hash>.*)/$', 
         s2298_evtreintegr_views.apagar, 
         name='s2298_evtreintegr_apagar'),
+
+url(r'^s2298-evtreintegr/api/$',
+            s2298_evtreintegr_views.s2298evtReintegrList.as_view() ),
+
+        url(r'^s2298-evtreintegr/api/(?P<pk>[0-9]+)/$',
+            s2298_evtreintegr_views.s2298evtReintegrDetail.as_view() ),
 
 url(r'^s2298-evtreintegr/listar/(?P<hash>.*)/$', 
         s2298_evtreintegr_views.listar, 
@@ -2318,6 +2546,12 @@ url(r'^s2299-evtdeslig/apagar/(?P<hash>.*)/$',
         s2299_evtdeslig_views.apagar, 
         name='s2299_evtdeslig_apagar'),
 
+url(r'^s2299-evtdeslig/api/$',
+            s2299_evtdeslig_views.s2299evtDesligList.as_view() ),
+
+        url(r'^s2299-evtdeslig/api/(?P<pk>[0-9]+)/$',
+            s2299_evtdeslig_views.s2299evtDesligDetail.as_view() ),
+
 url(r'^s2299-evtdeslig/listar/(?P<hash>.*)/$', 
         s2299_evtdeslig_views.listar, 
         name='s2299_evtdeslig'),
@@ -2374,6 +2608,12 @@ url(r'^scripts/gerar-identidade/s2299-evtdeslig/(?P<chave>.*)/(?P<evento_id>\d+)
 url(r'^s2300-evttsvinicio/apagar/(?P<hash>.*)/$', 
         s2300_evttsvinicio_views.apagar, 
         name='s2300_evttsvinicio_apagar'),
+
+url(r'^s2300-evttsvinicio/api/$',
+            s2300_evttsvinicio_views.s2300evtTSVInicioList.as_view() ),
+
+        url(r'^s2300-evttsvinicio/api/(?P<pk>[0-9]+)/$',
+            s2300_evttsvinicio_views.s2300evtTSVInicioDetail.as_view() ),
 
 url(r'^s2300-evttsvinicio/listar/(?P<hash>.*)/$', 
         s2300_evttsvinicio_views.listar, 
@@ -2432,6 +2672,12 @@ url(r'^s2306-evttsvaltcontr/apagar/(?P<hash>.*)/$',
         s2306_evttsvaltcontr_views.apagar, 
         name='s2306_evttsvaltcontr_apagar'),
 
+url(r'^s2306-evttsvaltcontr/api/$',
+            s2306_evttsvaltcontr_views.s2306evtTSVAltContrList.as_view() ),
+
+        url(r'^s2306-evttsvaltcontr/api/(?P<pk>[0-9]+)/$',
+            s2306_evttsvaltcontr_views.s2306evtTSVAltContrDetail.as_view() ),
+
 url(r'^s2306-evttsvaltcontr/listar/(?P<hash>.*)/$', 
         s2306_evttsvaltcontr_views.listar, 
         name='s2306_evttsvaltcontr'),
@@ -2488,6 +2734,12 @@ url(r'^scripts/gerar-identidade/s2306-evttsvaltcontr/(?P<chave>.*)/(?P<evento_id
 url(r'^s2399-evttsvtermino/apagar/(?P<hash>.*)/$', 
         s2399_evttsvtermino_views.apagar, 
         name='s2399_evttsvtermino_apagar'),
+
+url(r'^s2399-evttsvtermino/api/$',
+            s2399_evttsvtermino_views.s2399evtTSVTerminoList.as_view() ),
+
+        url(r'^s2399-evttsvtermino/api/(?P<pk>[0-9]+)/$',
+            s2399_evttsvtermino_views.s2399evtTSVTerminoDetail.as_view() ),
 
 url(r'^s2399-evttsvtermino/listar/(?P<hash>.*)/$', 
         s2399_evttsvtermino_views.listar, 
@@ -2546,6 +2798,12 @@ url(r'^s2400-evtcdbenefin/apagar/(?P<hash>.*)/$',
         s2400_evtcdbenefin_views.apagar, 
         name='s2400_evtcdbenefin_apagar'),
 
+url(r'^s2400-evtcdbenefin/api/$',
+            s2400_evtcdbenefin_views.s2400evtCdBenefInList.as_view() ),
+
+        url(r'^s2400-evtcdbenefin/api/(?P<pk>[0-9]+)/$',
+            s2400_evtcdbenefin_views.s2400evtCdBenefInDetail.as_view() ),
+
 url(r'^s2400-evtcdbenefin/listar/(?P<hash>.*)/$', 
         s2400_evtcdbenefin_views.listar, 
         name='s2400_evtcdbenefin'),
@@ -2602,6 +2860,12 @@ url(r'^scripts/gerar-identidade/s2400-evtcdbenefin/(?P<chave>.*)/(?P<evento_id>\
 url(r'^s2405-evtcdbenefalt/apagar/(?P<hash>.*)/$', 
         s2405_evtcdbenefalt_views.apagar, 
         name='s2405_evtcdbenefalt_apagar'),
+
+url(r'^s2405-evtcdbenefalt/api/$',
+            s2405_evtcdbenefalt_views.s2405evtCdBenefAltList.as_view() ),
+
+        url(r'^s2405-evtcdbenefalt/api/(?P<pk>[0-9]+)/$',
+            s2405_evtcdbenefalt_views.s2405evtCdBenefAltDetail.as_view() ),
 
 url(r'^s2405-evtcdbenefalt/listar/(?P<hash>.*)/$', 
         s2405_evtcdbenefalt_views.listar, 
@@ -2660,6 +2924,12 @@ url(r'^s2410-evtcdbenin/apagar/(?P<hash>.*)/$',
         s2410_evtcdbenin_views.apagar, 
         name='s2410_evtcdbenin_apagar'),
 
+url(r'^s2410-evtcdbenin/api/$',
+            s2410_evtcdbenin_views.s2410evtCdBenInList.as_view() ),
+
+        url(r'^s2410-evtcdbenin/api/(?P<pk>[0-9]+)/$',
+            s2410_evtcdbenin_views.s2410evtCdBenInDetail.as_view() ),
+
 url(r'^s2410-evtcdbenin/listar/(?P<hash>.*)/$', 
         s2410_evtcdbenin_views.listar, 
         name='s2410_evtcdbenin'),
@@ -2716,6 +2986,12 @@ url(r'^scripts/gerar-identidade/s2410-evtcdbenin/(?P<chave>.*)/(?P<evento_id>\d+
 url(r'^s2416-evtcdbenalt/apagar/(?P<hash>.*)/$', 
         s2416_evtcdbenalt_views.apagar, 
         name='s2416_evtcdbenalt_apagar'),
+
+url(r'^s2416-evtcdbenalt/api/$',
+            s2416_evtcdbenalt_views.s2416evtCdBenAltList.as_view() ),
+
+        url(r'^s2416-evtcdbenalt/api/(?P<pk>[0-9]+)/$',
+            s2416_evtcdbenalt_views.s2416evtCdBenAltDetail.as_view() ),
 
 url(r'^s2416-evtcdbenalt/listar/(?P<hash>.*)/$', 
         s2416_evtcdbenalt_views.listar, 
@@ -2774,6 +3050,12 @@ url(r'^s2420-evtcdbenterm/apagar/(?P<hash>.*)/$',
         s2420_evtcdbenterm_views.apagar, 
         name='s2420_evtcdbenterm_apagar'),
 
+url(r'^s2420-evtcdbenterm/api/$',
+            s2420_evtcdbenterm_views.s2420evtCdBenTermList.as_view() ),
+
+        url(r'^s2420-evtcdbenterm/api/(?P<pk>[0-9]+)/$',
+            s2420_evtcdbenterm_views.s2420evtCdBenTermDetail.as_view() ),
+
 url(r'^s2420-evtcdbenterm/listar/(?P<hash>.*)/$', 
         s2420_evtcdbenterm_views.listar, 
         name='s2420_evtcdbenterm'),
@@ -2830,6 +3112,12 @@ url(r'^scripts/gerar-identidade/s2420-evtcdbenterm/(?P<chave>.*)/(?P<evento_id>\
 url(r'^s3000-evtexclusao/apagar/(?P<hash>.*)/$', 
         s3000_evtexclusao_views.apagar, 
         name='s3000_evtexclusao_apagar'),
+
+url(r'^s3000-evtexclusao/api/$',
+            s3000_evtexclusao_views.s3000evtExclusaoList.as_view() ),
+
+        url(r'^s3000-evtexclusao/api/(?P<pk>[0-9]+)/$',
+            s3000_evtexclusao_views.s3000evtExclusaoDetail.as_view() ),
 
 url(r'^s3000-evtexclusao/listar/(?P<hash>.*)/$', 
         s3000_evtexclusao_views.listar, 
@@ -2888,6 +3176,12 @@ url(r'^s5001-evtbasestrab/apagar/(?P<hash>.*)/$',
         s5001_evtbasestrab_views.apagar, 
         name='s5001_evtbasestrab_apagar'),
 
+url(r'^s5001-evtbasestrab/api/$',
+            s5001_evtbasestrab_views.s5001evtBasesTrabList.as_view() ),
+
+        url(r'^s5001-evtbasestrab/api/(?P<pk>[0-9]+)/$',
+            s5001_evtbasestrab_views.s5001evtBasesTrabDetail.as_view() ),
+
 url(r'^s5001-evtbasestrab/listar/(?P<hash>.*)/$', 
         s5001_evtbasestrab_views.listar, 
         name='s5001_evtbasestrab'),
@@ -2944,6 +3238,12 @@ url(r'^scripts/gerar-identidade/s5001-evtbasestrab/(?P<chave>.*)/(?P<evento_id>\
 url(r'^s5002-evtirrfbenef/apagar/(?P<hash>.*)/$', 
         s5002_evtirrfbenef_views.apagar, 
         name='s5002_evtirrfbenef_apagar'),
+
+url(r'^s5002-evtirrfbenef/api/$',
+            s5002_evtirrfbenef_views.s5002evtIrrfBenefList.as_view() ),
+
+        url(r'^s5002-evtirrfbenef/api/(?P<pk>[0-9]+)/$',
+            s5002_evtirrfbenef_views.s5002evtIrrfBenefDetail.as_view() ),
 
 url(r'^s5002-evtirrfbenef/listar/(?P<hash>.*)/$', 
         s5002_evtirrfbenef_views.listar, 
@@ -3002,6 +3302,12 @@ url(r'^s5011-evtcs/apagar/(?P<hash>.*)/$',
         s5011_evtcs_views.apagar, 
         name='s5011_evtcs_apagar'),
 
+url(r'^s5011-evtcs/api/$',
+            s5011_evtcs_views.s5011evtCSList.as_view() ),
+
+        url(r'^s5011-evtcs/api/(?P<pk>[0-9]+)/$',
+            s5011_evtcs_views.s5011evtCSDetail.as_view() ),
+
 url(r'^s5011-evtcs/listar/(?P<hash>.*)/$', 
         s5011_evtcs_views.listar, 
         name='s5011_evtcs'),
@@ -3058,6 +3364,12 @@ url(r'^scripts/gerar-identidade/s5011-evtcs/(?P<chave>.*)/(?P<evento_id>\d+)/$',
 url(r'^s5012-evtirrf/apagar/(?P<hash>.*)/$', 
         s5012_evtirrf_views.apagar, 
         name='s5012_evtirrf_apagar'),
+
+url(r'^s5012-evtirrf/api/$',
+            s5012_evtirrf_views.s5012evtIrrfList.as_view() ),
+
+        url(r'^s5012-evtirrf/api/(?P<pk>[0-9]+)/$',
+            s5012_evtirrf_views.s5012evtIrrfDetail.as_view() ),
 
 url(r'^s5012-evtirrf/listar/(?P<hash>.*)/$', 
         s5012_evtirrf_views.listar, 

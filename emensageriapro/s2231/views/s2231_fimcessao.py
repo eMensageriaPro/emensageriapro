@@ -297,6 +297,24 @@ def apagar(request, hash, slug=0):
     }
     return render(request, 's2231_fimcessao_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s2231fimCessaoList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s2231fimCessao.objects.using(db_slug).all()
+    serializer_class = s2231fimCessaoSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s2231fimCessaoDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s2231fimCessao.objects.using(db_slug).all()
+    serializer_class = s2231fimCessaoSerializer
+    permission_classes = (IsAdminUser,)
+    
+    
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

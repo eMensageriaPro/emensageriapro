@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -93,6 +94,13 @@ class s1040alteracao(models.Model):
         ordering = ['s1040_evttabfuncao', 'codfuncao', 'inivalid', 'fimvalid', 'dscfuncao', 'codcbo']
 
 
+
+class s1040alteracaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1040alteracao
+        fields = '__all__'
+            
+
 class s1040alteracaonovaValidade(models.Model):
     s1040_alteracao = models.OneToOneField('s1040alteracao',
         related_name='%(class)s_s1040_alteracao')
@@ -114,6 +122,13 @@ class s1040alteracaonovaValidade(models.Model):
         managed = True
         ordering = ['s1040_alteracao', 'inivalid', 'fimvalid']
 
+
+
+class s1040alteracaonovaValidadeSerializer(ModelSerializer):
+    class Meta:
+        model = s1040alteracaonovaValidade
+        fields = '__all__'
+            
 
 class s1040exclusao(models.Model):
     s1040_evttabfuncao = models.OneToOneField('esocial.s1040evtTabFuncao',
@@ -137,6 +152,13 @@ class s1040exclusao(models.Model):
         managed = True
         ordering = ['s1040_evttabfuncao', 'codfuncao', 'inivalid', 'fimvalid']
 
+
+
+class s1040exclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1040exclusao
+        fields = '__all__'
+            
 
 class s1040inclusao(models.Model):
     s1040_evttabfuncao = models.OneToOneField('esocial.s1040evtTabFuncao',
@@ -162,5 +184,12 @@ class s1040inclusao(models.Model):
         managed = True
         ordering = ['s1040_evttabfuncao', 'codfuncao', 'inivalid', 'fimvalid', 'dscfuncao', 'codcbo']
 
+
+
+class s1040inclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1040inclusao
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

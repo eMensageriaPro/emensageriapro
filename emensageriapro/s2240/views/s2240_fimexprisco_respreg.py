@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 's2240_fimexprisco_respreg_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s2240fimExpRiscorespRegList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s2240fimExpRiscorespReg.objects.using(db_slug).all()
+    serializer_class = s2240fimExpRiscorespRegSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s2240fimExpRiscorespRegDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s2240fimExpRiscorespReg.objects.using(db_slug).all()
+    serializer_class = s2240fimExpRiscorespRegSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

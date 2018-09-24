@@ -100,6 +100,24 @@ from emensageriapro.s2405.forms import form_s2405_brasil
 #IMPORTACOES
 
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class MunicipiosList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = Municipios.objects.using(db_slug).all()
+    serializer_class = MunicipiosSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class MunicipiosDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = Municipios.objects.using(db_slug).all()
+    serializer_class = MunicipiosSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

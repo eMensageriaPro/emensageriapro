@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -131,6 +132,13 @@ class s1207dmDev(models.Model):
         ordering = ['s1207_evtbenprrp', 'tpbenef', 'nrbenefic', 'idedmdev']
 
 
+
+class s1207dmDevSerializer(ModelSerializer):
+    class Meta:
+        model = s1207dmDev
+        fields = '__all__'
+            
+
 class s1207infoPerAnt(models.Model):
     s1207_dmdev = models.OneToOneField('s1207dmDev',
         related_name='%(class)s_s1207_dmdev')
@@ -150,6 +158,13 @@ class s1207infoPerAnt(models.Model):
         managed = True
         ordering = ['s1207_dmdev']
 
+
+
+class s1207infoPerAntSerializer(ModelSerializer):
+    class Meta:
+        model = s1207infoPerAnt
+        fields = '__all__'
+            
 
 class s1207infoPerAntideADC(models.Model):
     s1207_infoperant = models.ForeignKey('s1207infoPerAnt',
@@ -176,6 +191,13 @@ class s1207infoPerAntideADC(models.Model):
         ordering = ['s1207_infoperant', 'dtacconv', 'tpacconv', 'compacconv', 'dtefacconv', 'dsc']
 
 
+
+class s1207infoPerAntideADCSerializer(ModelSerializer):
+    class Meta:
+        model = s1207infoPerAntideADC
+        fields = '__all__'
+            
+
 class s1207infoPerAntideEstab(models.Model):
     s1207_infoperant_ideperiodo = models.ForeignKey('s1207infoPerAntidePeriodo',
         related_name='%(class)s_s1207_infoperant_ideperiodo')
@@ -198,6 +220,13 @@ class s1207infoPerAntideEstab(models.Model):
         ordering = ['s1207_infoperant_ideperiodo', 'tpinsc', 'nrinsc']
 
 
+
+class s1207infoPerAntideEstabSerializer(ModelSerializer):
+    class Meta:
+        model = s1207infoPerAntideEstab
+        fields = '__all__'
+            
+
 class s1207infoPerAntidePeriodo(models.Model):
     s1207_infoperant_ideadc = models.ForeignKey('s1207infoPerAntideADC',
         related_name='%(class)s_s1207_infoperant_ideadc')
@@ -218,6 +247,13 @@ class s1207infoPerAntidePeriodo(models.Model):
         managed = True
         ordering = ['s1207_infoperant_ideadc', 'perref']
 
+
+
+class s1207infoPerAntidePeriodoSerializer(ModelSerializer):
+    class Meta:
+        model = s1207infoPerAntidePeriodo
+        fields = '__all__'
+            
 
 class s1207infoPerAntitensRemun(models.Model):
     s1207_infoperant_remunperant = models.ForeignKey('s1207infoPerAntremunPerAnt',
@@ -245,6 +281,13 @@ class s1207infoPerAntitensRemun(models.Model):
         ordering = ['s1207_infoperant_remunperant', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
 
 
+
+class s1207infoPerAntitensRemunSerializer(ModelSerializer):
+    class Meta:
+        model = s1207infoPerAntitensRemun
+        fields = '__all__'
+            
+
 class s1207infoPerAntremunPerAnt(models.Model):
     s1207_infoperant_ideestab = models.ForeignKey('s1207infoPerAntideEstab',
         related_name='%(class)s_s1207_infoperant_ideestab')
@@ -265,6 +308,13 @@ class s1207infoPerAntremunPerAnt(models.Model):
         ordering = ['s1207_infoperant_ideestab']
 
 
+
+class s1207infoPerAntremunPerAntSerializer(ModelSerializer):
+    class Meta:
+        model = s1207infoPerAntremunPerAnt
+        fields = '__all__'
+            
+
 class s1207infoPerApur(models.Model):
     s1207_dmdev = models.OneToOneField('s1207dmDev',
         related_name='%(class)s_s1207_dmdev')
@@ -284,6 +334,13 @@ class s1207infoPerApur(models.Model):
         managed = True
         ordering = ['s1207_dmdev']
 
+
+
+class s1207infoPerApurSerializer(ModelSerializer):
+    class Meta:
+        model = s1207infoPerApur
+        fields = '__all__'
+            
 
 class s1207infoPerApurideEstab(models.Model):
     s1207_infoperapur = models.ForeignKey('s1207infoPerApur',
@@ -306,6 +363,13 @@ class s1207infoPerApurideEstab(models.Model):
         managed = True
         ordering = ['s1207_infoperapur', 'tpinsc', 'nrinsc']
 
+
+
+class s1207infoPerApurideEstabSerializer(ModelSerializer):
+    class Meta:
+        model = s1207infoPerApurideEstab
+        fields = '__all__'
+            
 
 class s1207infoPerApuritensRemun(models.Model):
     s1207_infoperapur_remunperapur = models.ForeignKey('s1207infoPerApurremunPerApur',
@@ -333,6 +397,13 @@ class s1207infoPerApuritensRemun(models.Model):
         ordering = ['s1207_infoperapur_remunperapur', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
 
 
+
+class s1207infoPerApuritensRemunSerializer(ModelSerializer):
+    class Meta:
+        model = s1207infoPerApuritensRemun
+        fields = '__all__'
+            
+
 class s1207infoPerApurremunPerApur(models.Model):
     s1207_infoperapur_ideestab = models.ForeignKey('s1207infoPerApurideEstab',
         related_name='%(class)s_s1207_infoperapur_ideestab')
@@ -352,6 +423,13 @@ class s1207infoPerApurremunPerApur(models.Model):
         managed = True
         ordering = ['s1207_infoperapur_ideestab']
 
+
+
+class s1207infoPerApurremunPerApurSerializer(ModelSerializer):
+    class Meta:
+        model = s1207infoPerApurremunPerApur
+        fields = '__all__'
+            
 
 class s1207itens(models.Model):
     s1207_dmdev = models.ForeignKey('s1207dmDev',
@@ -376,6 +454,13 @@ class s1207itens(models.Model):
         ordering = ['s1207_dmdev', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
+
+class s1207itensSerializer(ModelSerializer):
+    class Meta:
+        model = s1207itens
+        fields = '__all__'
+            
+
 class s1207procJudTrab(models.Model):
     s1207_evtbenprrp = models.ForeignKey('esocial.s1207evtBenPrRP',
         related_name='%(class)s_s1207_evtbenprrp')
@@ -398,5 +483,12 @@ class s1207procJudTrab(models.Model):
         managed = True
         ordering = ['s1207_evtbenprrp', 'tptrib', 'nrprocjud', 'codsusp']
 
+
+
+class s1207procJudTrabSerializer(ModelSerializer):
+    class Meta:
+        model = s1207procJudTrab
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

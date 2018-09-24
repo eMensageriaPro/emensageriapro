@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 's2210_parteatingida_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s2210parteAtingidaList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s2210parteAtingida.objects.using(db_slug).all()
+    serializer_class = s2210parteAtingidaSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s2210parteAtingidaDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s2210parteAtingida.objects.using(db_slug).all()
+    serializer_class = s2210parteAtingidaSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

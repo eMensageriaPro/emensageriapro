@@ -52,6 +52,12 @@ url(r'^r2020-nfs/apagar/(?P<hash>.*)/$',
         r2020_nfs_views.apagar, 
         name='r2020_nfs_apagar'),
 
+url(r'^r2020-nfs/api/$',
+            r2020_nfs_views.r2020nfsList.as_view() ),
+
+        url(r'^r2020-nfs/api/(?P<pk>[0-9]+)/$',
+            r2020_nfs_views.r2020nfsDetail.as_view() ),
+
 url(r'^r2020-nfs/listar/(?P<hash>.*)/$', 
         r2020_nfs_views.listar, 
         name='r2020_nfs'),
@@ -65,6 +71,12 @@ url(r'^r2020-nfs/salvar/(?P<hash>.*)/$',
 url(r'^r2020-infotpserv/apagar/(?P<hash>.*)/$', 
         r2020_infotpserv_views.apagar, 
         name='r2020_infotpserv_apagar'),
+
+url(r'^r2020-infotpserv/api/$',
+            r2020_infotpserv_views.r2020infoTpServList.as_view() ),
+
+        url(r'^r2020-infotpserv/api/(?P<pk>[0-9]+)/$',
+            r2020_infotpserv_views.r2020infoTpServDetail.as_view() ),
 
 url(r'^r2020-infotpserv/listar/(?P<hash>.*)/$', 
         r2020_infotpserv_views.listar, 
@@ -80,6 +92,12 @@ url(r'^r2020-infoprocretpr/apagar/(?P<hash>.*)/$',
         r2020_infoprocretpr_views.apagar, 
         name='r2020_infoprocretpr_apagar'),
 
+url(r'^r2020-infoprocretpr/api/$',
+            r2020_infoprocretpr_views.r2020infoProcRetPrList.as_view() ),
+
+        url(r'^r2020-infoprocretpr/api/(?P<pk>[0-9]+)/$',
+            r2020_infoprocretpr_views.r2020infoProcRetPrDetail.as_view() ),
+
 url(r'^r2020-infoprocretpr/listar/(?P<hash>.*)/$', 
         r2020_infoprocretpr_views.listar, 
         name='r2020_infoprocretpr'),
@@ -93,6 +111,12 @@ url(r'^r2020-infoprocretpr/salvar/(?P<hash>.*)/$',
 url(r'^r2020-infoprocretad/apagar/(?P<hash>.*)/$', 
         r2020_infoprocretad_views.apagar, 
         name='r2020_infoprocretad_apagar'),
+
+url(r'^r2020-infoprocretad/api/$',
+            r2020_infoprocretad_views.r2020infoProcRetAdList.as_view() ),
+
+        url(r'^r2020-infoprocretad/api/(?P<pk>[0-9]+)/$',
+            r2020_infoprocretad_views.r2020infoProcRetAdDetail.as_view() ),
 
 url(r'^r2020-infoprocretad/listar/(?P<hash>.*)/$', 
         r2020_infoprocretad_views.listar, 

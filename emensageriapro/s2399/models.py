@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -119,6 +120,13 @@ class s2399detOper(models.Model):
         ordering = ['s2399_infosaudecolet', 'cnpjoper', 'regans', 'vrpgtit']
 
 
+
+class s2399detOperSerializer(ModelSerializer):
+    class Meta:
+        model = s2399detOper
+        fields = '__all__'
+            
+
 class s2399detPlano(models.Model):
     s2399_detoper = models.ForeignKey('s2399detOper',
         related_name='%(class)s_s2399_detoper')
@@ -143,6 +151,13 @@ class s2399detPlano(models.Model):
         managed = True
         ordering = ['s2399_detoper', 'tpdep', 'cpfdep', 'nmdep', 'dtnascto', 'vlrpgdep']
 
+
+
+class s2399detPlanoSerializer(ModelSerializer):
+    class Meta:
+        model = s2399detPlano
+        fields = '__all__'
+            
 
 class s2399detVerbas(models.Model):
     s2399_ideestablot = models.ForeignKey('s2399ideEstabLot',
@@ -170,6 +185,13 @@ class s2399detVerbas(models.Model):
         ordering = ['s2399_ideestablot', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
 
 
+
+class s2399detVerbasSerializer(ModelSerializer):
+    class Meta:
+        model = s2399detVerbas
+        fields = '__all__'
+            
+
 class s2399dmDev(models.Model):
     s2399_verbasresc = models.ForeignKey('s2399verbasResc',
         related_name='%(class)s_s2399_verbasresc')
@@ -190,6 +212,13 @@ class s2399dmDev(models.Model):
         managed = True
         ordering = ['s2399_verbasresc', 'idedmdev']
 
+
+
+class s2399dmDevSerializer(ModelSerializer):
+    class Meta:
+        model = s2399dmDev
+        fields = '__all__'
+            
 
 class s2399ideEstabLot(models.Model):
     s2399_dmdev = models.ForeignKey('s2399dmDev',
@@ -214,6 +243,13 @@ class s2399ideEstabLot(models.Model):
         ordering = ['s2399_dmdev', 'tpinsc', 'nrinsc', 'codlotacao']
 
 
+
+class s2399ideEstabLotSerializer(ModelSerializer):
+    class Meta:
+        model = s2399ideEstabLot
+        fields = '__all__'
+            
+
 class s2399infoAgNocivo(models.Model):
     s2399_ideestablot = models.OneToOneField('s2399ideEstabLot',
         related_name='%(class)s_s2399_ideestablot')
@@ -234,6 +270,13 @@ class s2399infoAgNocivo(models.Model):
         managed = True
         ordering = ['s2399_ideestablot', 'grauexp']
 
+
+
+class s2399infoAgNocivoSerializer(ModelSerializer):
+    class Meta:
+        model = s2399infoAgNocivo
+        fields = '__all__'
+            
 
 class s2399infoMV(models.Model):
     s2399_verbasresc = models.OneToOneField('s2399verbasResc',
@@ -256,6 +299,13 @@ class s2399infoMV(models.Model):
         ordering = ['s2399_verbasresc', 'indmv']
 
 
+
+class s2399infoMVSerializer(ModelSerializer):
+    class Meta:
+        model = s2399infoMV
+        fields = '__all__'
+            
+
 class s2399infoSaudeColet(models.Model):
     s2399_ideestablot = models.OneToOneField('s2399ideEstabLot',
         related_name='%(class)s_s2399_ideestablot')
@@ -275,6 +325,13 @@ class s2399infoSaudeColet(models.Model):
         managed = True
         ordering = ['s2399_ideestablot']
 
+
+
+class s2399infoSaudeColetSerializer(ModelSerializer):
+    class Meta:
+        model = s2399infoSaudeColet
+        fields = '__all__'
+            
 
 class s2399infoSimples(models.Model):
     s2399_ideestablot = models.OneToOneField('s2399ideEstabLot',
@@ -296,6 +353,13 @@ class s2399infoSimples(models.Model):
         managed = True
         ordering = ['s2399_ideestablot', 'indsimples']
 
+
+
+class s2399infoSimplesSerializer(ModelSerializer):
+    class Meta:
+        model = s2399infoSimples
+        fields = '__all__'
+            
 
 class s2399procJudTrab(models.Model):
     s2399_verbasresc = models.ForeignKey('s2399verbasResc',
@@ -320,6 +384,13 @@ class s2399procJudTrab(models.Model):
         ordering = ['s2399_verbasresc', 'tptrib', 'nrprocjud', 'codsusp']
 
 
+
+class s2399procJudTrabSerializer(ModelSerializer):
+    class Meta:
+        model = s2399procJudTrab
+        fields = '__all__'
+            
+
 class s2399quarentena(models.Model):
     s2399_evttsvtermino = models.OneToOneField('esocial.s2399evtTSVTermino',
         related_name='%(class)s_s2399_evttsvtermino')
@@ -340,6 +411,13 @@ class s2399quarentena(models.Model):
         managed = True
         ordering = ['s2399_evttsvtermino', 'dtfimquar']
 
+
+
+class s2399quarentenaSerializer(ModelSerializer):
+    class Meta:
+        model = s2399quarentena
+        fields = '__all__'
+            
 
 class s2399remunOutrEmpr(models.Model):
     s2399_infomv = models.ForeignKey('s2399infoMV',
@@ -365,6 +443,13 @@ class s2399remunOutrEmpr(models.Model):
         ordering = ['s2399_infomv', 'tpinsc', 'nrinsc', 'codcateg', 'vlrremunoe']
 
 
+
+class s2399remunOutrEmprSerializer(ModelSerializer):
+    class Meta:
+        model = s2399remunOutrEmpr
+        fields = '__all__'
+            
+
 class s2399verbasResc(models.Model):
     s2399_evttsvtermino = models.OneToOneField('esocial.s2399evtTSVTermino',
         related_name='%(class)s_s2399_evttsvtermino')
@@ -384,5 +469,12 @@ class s2399verbasResc(models.Model):
         managed = True
         ordering = ['s2399_evttsvtermino']
 
+
+
+class s2399verbasRescSerializer(ModelSerializer):
+    class Meta:
+        model = s2399verbasResc
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

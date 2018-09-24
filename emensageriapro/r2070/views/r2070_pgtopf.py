@@ -330,6 +330,24 @@ def apagar(request, hash):
     }
     return render(request, 'r2070_pgtopf_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class r2070pgtoPFList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = r2070pgtoPF.objects.using(db_slug).all()
+    serializer_class = r2070pgtoPFSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class r2070pgtoPFDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = r2070pgtoPF.objects.using(db_slug).all()
+    serializer_class = r2070pgtoPFSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

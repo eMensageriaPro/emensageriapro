@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -71,5 +72,12 @@ class s2245ideProfResp(models.Model):
         managed = True
         ordering = ['s2245_evttreicap', 'cpfprof', 'nmprof', 'tpprof', 'matricula', 'formprof', 'codcbo']
 
+
+
+class s2245ideProfRespSerializer(ModelSerializer):
+    class Meta:
+        model = s2245ideProfResp
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

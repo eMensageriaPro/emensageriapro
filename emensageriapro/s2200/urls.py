@@ -81,6 +81,12 @@ url(r'^s2200-documentos/apagar/(?P<hash>.*)/$',
         s2200_documentos_views.apagar, 
         name='s2200_documentos_apagar'),
 
+url(r'^s2200-documentos/api/$',
+            s2200_documentos_views.s2200documentosList.as_view() ),
+
+        url(r'^s2200-documentos/api/(?P<pk>[0-9]+)/$',
+            s2200_documentos_views.s2200documentosDetail.as_view() ),
+
 url(r'^s2200-documentos/listar/(?P<hash>.*)/$', 
         s2200_documentos_views.listar, 
         name='s2200_documentos'),
@@ -94,6 +100,12 @@ url(r'^s2200-documentos/salvar/(?P<hash>.*)/$',
 url(r'^s2200-ctps/apagar/(?P<hash>.*)/$', 
         s2200_ctps_views.apagar, 
         name='s2200_ctps_apagar'),
+
+url(r'^s2200-ctps/api/$',
+            s2200_ctps_views.s2200CTPSList.as_view() ),
+
+        url(r'^s2200-ctps/api/(?P<pk>[0-9]+)/$',
+            s2200_ctps_views.s2200CTPSDetail.as_view() ),
 
 url(r'^s2200-ctps/listar/(?P<hash>.*)/$', 
         s2200_ctps_views.listar, 
@@ -109,6 +121,12 @@ url(r'^s2200-ric/apagar/(?P<hash>.*)/$',
         s2200_ric_views.apagar, 
         name='s2200_ric_apagar'),
 
+url(r'^s2200-ric/api/$',
+            s2200_ric_views.s2200RICList.as_view() ),
+
+        url(r'^s2200-ric/api/(?P<pk>[0-9]+)/$',
+            s2200_ric_views.s2200RICDetail.as_view() ),
+
 url(r'^s2200-ric/listar/(?P<hash>.*)/$', 
         s2200_ric_views.listar, 
         name='s2200_ric'),
@@ -122,6 +140,12 @@ url(r'^s2200-ric/salvar/(?P<hash>.*)/$',
 url(r'^s2200-rg/apagar/(?P<hash>.*)/$', 
         s2200_rg_views.apagar, 
         name='s2200_rg_apagar'),
+
+url(r'^s2200-rg/api/$',
+            s2200_rg_views.s2200RGList.as_view() ),
+
+        url(r'^s2200-rg/api/(?P<pk>[0-9]+)/$',
+            s2200_rg_views.s2200RGDetail.as_view() ),
 
 url(r'^s2200-rg/listar/(?P<hash>.*)/$', 
         s2200_rg_views.listar, 
@@ -137,6 +161,12 @@ url(r'^s2200-rne/apagar/(?P<hash>.*)/$',
         s2200_rne_views.apagar, 
         name='s2200_rne_apagar'),
 
+url(r'^s2200-rne/api/$',
+            s2200_rne_views.s2200RNEList.as_view() ),
+
+        url(r'^s2200-rne/api/(?P<pk>[0-9]+)/$',
+            s2200_rne_views.s2200RNEDetail.as_view() ),
+
 url(r'^s2200-rne/listar/(?P<hash>.*)/$', 
         s2200_rne_views.listar, 
         name='s2200_rne'),
@@ -150,6 +180,12 @@ url(r'^s2200-rne/salvar/(?P<hash>.*)/$',
 url(r'^s2200-oc/apagar/(?P<hash>.*)/$', 
         s2200_oc_views.apagar, 
         name='s2200_oc_apagar'),
+
+url(r'^s2200-oc/api/$',
+            s2200_oc_views.s2200OCList.as_view() ),
+
+        url(r'^s2200-oc/api/(?P<pk>[0-9]+)/$',
+            s2200_oc_views.s2200OCDetail.as_view() ),
 
 url(r'^s2200-oc/listar/(?P<hash>.*)/$', 
         s2200_oc_views.listar, 
@@ -165,6 +201,12 @@ url(r'^s2200-cnh/apagar/(?P<hash>.*)/$',
         s2200_cnh_views.apagar, 
         name='s2200_cnh_apagar'),
 
+url(r'^s2200-cnh/api/$',
+            s2200_cnh_views.s2200CNHList.as_view() ),
+
+        url(r'^s2200-cnh/api/(?P<pk>[0-9]+)/$',
+            s2200_cnh_views.s2200CNHDetail.as_view() ),
+
 url(r'^s2200-cnh/listar/(?P<hash>.*)/$', 
         s2200_cnh_views.listar, 
         name='s2200_cnh'),
@@ -178,6 +220,12 @@ url(r'^s2200-cnh/salvar/(?P<hash>.*)/$',
 url(r'^s2200-brasil/apagar/(?P<hash>.*)/$', 
         s2200_brasil_views.apagar, 
         name='s2200_brasil_apagar'),
+
+url(r'^s2200-brasil/api/$',
+            s2200_brasil_views.s2200brasilList.as_view() ),
+
+        url(r'^s2200-brasil/api/(?P<pk>[0-9]+)/$',
+            s2200_brasil_views.s2200brasilDetail.as_view() ),
 
 url(r'^s2200-brasil/listar/(?P<hash>.*)/$', 
         s2200_brasil_views.listar, 
@@ -193,6 +241,12 @@ url(r'^s2200-exterior/apagar/(?P<hash>.*)/$',
         s2200_exterior_views.apagar, 
         name='s2200_exterior_apagar'),
 
+url(r'^s2200-exterior/api/$',
+            s2200_exterior_views.s2200exteriorList.as_view() ),
+
+        url(r'^s2200-exterior/api/(?P<pk>[0-9]+)/$',
+            s2200_exterior_views.s2200exteriorDetail.as_view() ),
+
 url(r'^s2200-exterior/listar/(?P<hash>.*)/$', 
         s2200_exterior_views.listar, 
         name='s2200_exterior'),
@@ -206,6 +260,12 @@ url(r'^s2200-exterior/salvar/(?P<hash>.*)/$',
 url(r'^s2200-trabestrangeiro/apagar/(?P<hash>.*)/$', 
         s2200_trabestrangeiro_views.apagar, 
         name='s2200_trabestrangeiro_apagar'),
+
+url(r'^s2200-trabestrangeiro/api/$',
+            s2200_trabestrangeiro_views.s2200trabEstrangeiroList.as_view() ),
+
+        url(r'^s2200-trabestrangeiro/api/(?P<pk>[0-9]+)/$',
+            s2200_trabestrangeiro_views.s2200trabEstrangeiroDetail.as_view() ),
 
 url(r'^s2200-trabestrangeiro/listar/(?P<hash>.*)/$', 
         s2200_trabestrangeiro_views.listar, 
@@ -221,6 +281,12 @@ url(r'^s2200-infodeficiencia/apagar/(?P<hash>.*)/$',
         s2200_infodeficiencia_views.apagar, 
         name='s2200_infodeficiencia_apagar'),
 
+url(r'^s2200-infodeficiencia/api/$',
+            s2200_infodeficiencia_views.s2200infoDeficienciaList.as_view() ),
+
+        url(r'^s2200-infodeficiencia/api/(?P<pk>[0-9]+)/$',
+            s2200_infodeficiencia_views.s2200infoDeficienciaDetail.as_view() ),
+
 url(r'^s2200-infodeficiencia/listar/(?P<hash>.*)/$', 
         s2200_infodeficiencia_views.listar, 
         name='s2200_infodeficiencia'),
@@ -234,6 +300,12 @@ url(r'^s2200-infodeficiencia/salvar/(?P<hash>.*)/$',
 url(r'^s2200-dependente/apagar/(?P<hash>.*)/$', 
         s2200_dependente_views.apagar, 
         name='s2200_dependente_apagar'),
+
+url(r'^s2200-dependente/api/$',
+            s2200_dependente_views.s2200dependenteList.as_view() ),
+
+        url(r'^s2200-dependente/api/(?P<pk>[0-9]+)/$',
+            s2200_dependente_views.s2200dependenteDetail.as_view() ),
 
 url(r'^s2200-dependente/listar/(?P<hash>.*)/$', 
         s2200_dependente_views.listar, 
@@ -249,6 +321,12 @@ url(r'^s2200-aposentadoria/apagar/(?P<hash>.*)/$',
         s2200_aposentadoria_views.apagar, 
         name='s2200_aposentadoria_apagar'),
 
+url(r'^s2200-aposentadoria/api/$',
+            s2200_aposentadoria_views.s2200aposentadoriaList.as_view() ),
+
+        url(r'^s2200-aposentadoria/api/(?P<pk>[0-9]+)/$',
+            s2200_aposentadoria_views.s2200aposentadoriaDetail.as_view() ),
+
 url(r'^s2200-aposentadoria/listar/(?P<hash>.*)/$', 
         s2200_aposentadoria_views.listar, 
         name='s2200_aposentadoria'),
@@ -262,6 +340,12 @@ url(r'^s2200-aposentadoria/salvar/(?P<hash>.*)/$',
 url(r'^s2200-contato/apagar/(?P<hash>.*)/$', 
         s2200_contato_views.apagar, 
         name='s2200_contato_apagar'),
+
+url(r'^s2200-contato/api/$',
+            s2200_contato_views.s2200contatoList.as_view() ),
+
+        url(r'^s2200-contato/api/(?P<pk>[0-9]+)/$',
+            s2200_contato_views.s2200contatoDetail.as_view() ),
 
 url(r'^s2200-contato/listar/(?P<hash>.*)/$', 
         s2200_contato_views.listar, 
@@ -277,6 +361,12 @@ url(r'^s2200-infoceletista/apagar/(?P<hash>.*)/$',
         s2200_infoceletista_views.apagar, 
         name='s2200_infoceletista_apagar'),
 
+url(r'^s2200-infoceletista/api/$',
+            s2200_infoceletista_views.s2200infoCeletistaList.as_view() ),
+
+        url(r'^s2200-infoceletista/api/(?P<pk>[0-9]+)/$',
+            s2200_infoceletista_views.s2200infoCeletistaDetail.as_view() ),
+
 url(r'^s2200-infoceletista/listar/(?P<hash>.*)/$', 
         s2200_infoceletista_views.listar, 
         name='s2200_infoceletista'),
@@ -290,6 +380,12 @@ url(r'^s2200-infoceletista/salvar/(?P<hash>.*)/$',
 url(r'^s2200-trabtemporario/apagar/(?P<hash>.*)/$', 
         s2200_trabtemporario_views.apagar, 
         name='s2200_trabtemporario_apagar'),
+
+url(r'^s2200-trabtemporario/api/$',
+            s2200_trabtemporario_views.s2200trabTemporarioList.as_view() ),
+
+        url(r'^s2200-trabtemporario/api/(?P<pk>[0-9]+)/$',
+            s2200_trabtemporario_views.s2200trabTemporarioDetail.as_view() ),
 
 url(r'^s2200-trabtemporario/listar/(?P<hash>.*)/$', 
         s2200_trabtemporario_views.listar, 
@@ -305,6 +401,12 @@ url(r'^s2200-ideestabvinc/apagar/(?P<hash>.*)/$',
         s2200_ideestabvinc_views.apagar, 
         name='s2200_ideestabvinc_apagar'),
 
+url(r'^s2200-ideestabvinc/api/$',
+            s2200_ideestabvinc_views.s2200ideEstabVincList.as_view() ),
+
+        url(r'^s2200-ideestabvinc/api/(?P<pk>[0-9]+)/$',
+            s2200_ideestabvinc_views.s2200ideEstabVincDetail.as_view() ),
+
 url(r'^s2200-ideestabvinc/listar/(?P<hash>.*)/$', 
         s2200_ideestabvinc_views.listar, 
         name='s2200_ideestabvinc'),
@@ -318,6 +420,12 @@ url(r'^s2200-ideestabvinc/salvar/(?P<hash>.*)/$',
 url(r'^s2200-idetrabsubstituido/apagar/(?P<hash>.*)/$', 
         s2200_idetrabsubstituido_views.apagar, 
         name='s2200_idetrabsubstituido_apagar'),
+
+url(r'^s2200-idetrabsubstituido/api/$',
+            s2200_idetrabsubstituido_views.s2200ideTrabSubstituidoList.as_view() ),
+
+        url(r'^s2200-idetrabsubstituido/api/(?P<pk>[0-9]+)/$',
+            s2200_idetrabsubstituido_views.s2200ideTrabSubstituidoDetail.as_view() ),
 
 url(r'^s2200-idetrabsubstituido/listar/(?P<hash>.*)/$', 
         s2200_idetrabsubstituido_views.listar, 
@@ -333,6 +441,12 @@ url(r'^s2200-aprend/apagar/(?P<hash>.*)/$',
         s2200_aprend_views.apagar, 
         name='s2200_aprend_apagar'),
 
+url(r'^s2200-aprend/api/$',
+            s2200_aprend_views.s2200aprendList.as_view() ),
+
+        url(r'^s2200-aprend/api/(?P<pk>[0-9]+)/$',
+            s2200_aprend_views.s2200aprendDetail.as_view() ),
+
 url(r'^s2200-aprend/listar/(?P<hash>.*)/$', 
         s2200_aprend_views.listar, 
         name='s2200_aprend'),
@@ -346,6 +460,12 @@ url(r'^s2200-aprend/salvar/(?P<hash>.*)/$',
 url(r'^s2200-infoestatutario/apagar/(?P<hash>.*)/$', 
         s2200_infoestatutario_views.apagar, 
         name='s2200_infoestatutario_apagar'),
+
+url(r'^s2200-infoestatutario/api/$',
+            s2200_infoestatutario_views.s2200infoEstatutarioList.as_view() ),
+
+        url(r'^s2200-infoestatutario/api/(?P<pk>[0-9]+)/$',
+            s2200_infoestatutario_views.s2200infoEstatutarioDetail.as_view() ),
 
 url(r'^s2200-infoestatutario/listar/(?P<hash>.*)/$', 
         s2200_infoestatutario_views.listar, 
@@ -361,6 +481,12 @@ url(r'^s2200-infodecjud/apagar/(?P<hash>.*)/$',
         s2200_infodecjud_views.apagar, 
         name='s2200_infodecjud_apagar'),
 
+url(r'^s2200-infodecjud/api/$',
+            s2200_infodecjud_views.s2200infoDecJudList.as_view() ),
+
+        url(r'^s2200-infodecjud/api/(?P<pk>[0-9]+)/$',
+            s2200_infodecjud_views.s2200infoDecJudDetail.as_view() ),
+
 url(r'^s2200-infodecjud/listar/(?P<hash>.*)/$', 
         s2200_infodecjud_views.listar, 
         name='s2200_infodecjud'),
@@ -374,6 +500,12 @@ url(r'^s2200-infodecjud/salvar/(?P<hash>.*)/$',
 url(r'^s2200-localtrabgeral/apagar/(?P<hash>.*)/$', 
         s2200_localtrabgeral_views.apagar, 
         name='s2200_localtrabgeral_apagar'),
+
+url(r'^s2200-localtrabgeral/api/$',
+            s2200_localtrabgeral_views.s2200localTrabGeralList.as_view() ),
+
+        url(r'^s2200-localtrabgeral/api/(?P<pk>[0-9]+)/$',
+            s2200_localtrabgeral_views.s2200localTrabGeralDetail.as_view() ),
 
 url(r'^s2200-localtrabgeral/listar/(?P<hash>.*)/$', 
         s2200_localtrabgeral_views.listar, 
@@ -389,6 +521,12 @@ url(r'^s2200-localtrabdom/apagar/(?P<hash>.*)/$',
         s2200_localtrabdom_views.apagar, 
         name='s2200_localtrabdom_apagar'),
 
+url(r'^s2200-localtrabdom/api/$',
+            s2200_localtrabdom_views.s2200localTrabDomList.as_view() ),
+
+        url(r'^s2200-localtrabdom/api/(?P<pk>[0-9]+)/$',
+            s2200_localtrabdom_views.s2200localTrabDomDetail.as_view() ),
+
 url(r'^s2200-localtrabdom/listar/(?P<hash>.*)/$', 
         s2200_localtrabdom_views.listar, 
         name='s2200_localtrabdom'),
@@ -402,6 +540,12 @@ url(r'^s2200-localtrabdom/salvar/(?P<hash>.*)/$',
 url(r'^s2200-horcontratual/apagar/(?P<hash>.*)/$', 
         s2200_horcontratual_views.apagar, 
         name='s2200_horcontratual_apagar'),
+
+url(r'^s2200-horcontratual/api/$',
+            s2200_horcontratual_views.s2200horContratualList.as_view() ),
+
+        url(r'^s2200-horcontratual/api/(?P<pk>[0-9]+)/$',
+            s2200_horcontratual_views.s2200horContratualDetail.as_view() ),
 
 url(r'^s2200-horcontratual/listar/(?P<hash>.*)/$', 
         s2200_horcontratual_views.listar, 
@@ -417,6 +561,12 @@ url(r'^s2200-horario/apagar/(?P<hash>.*)/$',
         s2200_horario_views.apagar, 
         name='s2200_horario_apagar'),
 
+url(r'^s2200-horario/api/$',
+            s2200_horario_views.s2200horarioList.as_view() ),
+
+        url(r'^s2200-horario/api/(?P<pk>[0-9]+)/$',
+            s2200_horario_views.s2200horarioDetail.as_view() ),
+
 url(r'^s2200-horario/listar/(?P<hash>.*)/$', 
         s2200_horario_views.listar, 
         name='s2200_horario'),
@@ -430,6 +580,12 @@ url(r'^s2200-horario/salvar/(?P<hash>.*)/$',
 url(r'^s2200-filiacaosindical/apagar/(?P<hash>.*)/$', 
         s2200_filiacaosindical_views.apagar, 
         name='s2200_filiacaosindical_apagar'),
+
+url(r'^s2200-filiacaosindical/api/$',
+            s2200_filiacaosindical_views.s2200filiacaoSindicalList.as_view() ),
+
+        url(r'^s2200-filiacaosindical/api/(?P<pk>[0-9]+)/$',
+            s2200_filiacaosindical_views.s2200filiacaoSindicalDetail.as_view() ),
 
 url(r'^s2200-filiacaosindical/listar/(?P<hash>.*)/$', 
         s2200_filiacaosindical_views.listar, 
@@ -445,6 +601,12 @@ url(r'^s2200-alvarajudicial/apagar/(?P<hash>.*)/$',
         s2200_alvarajudicial_views.apagar, 
         name='s2200_alvarajudicial_apagar'),
 
+url(r'^s2200-alvarajudicial/api/$',
+            s2200_alvarajudicial_views.s2200alvaraJudicialList.as_view() ),
+
+        url(r'^s2200-alvarajudicial/api/(?P<pk>[0-9]+)/$',
+            s2200_alvarajudicial_views.s2200alvaraJudicialDetail.as_view() ),
+
 url(r'^s2200-alvarajudicial/listar/(?P<hash>.*)/$', 
         s2200_alvarajudicial_views.listar, 
         name='s2200_alvarajudicial'),
@@ -458,6 +620,12 @@ url(r'^s2200-alvarajudicial/salvar/(?P<hash>.*)/$',
 url(r'^s2200-observacoes/apagar/(?P<hash>.*)/$', 
         s2200_observacoes_views.apagar, 
         name='s2200_observacoes_apagar'),
+
+url(r'^s2200-observacoes/api/$',
+            s2200_observacoes_views.s2200observacoesList.as_view() ),
+
+        url(r'^s2200-observacoes/api/(?P<pk>[0-9]+)/$',
+            s2200_observacoes_views.s2200observacoesDetail.as_view() ),
 
 url(r'^s2200-observacoes/listar/(?P<hash>.*)/$', 
         s2200_observacoes_views.listar, 
@@ -473,6 +641,12 @@ url(r'^s2200-sucessaovinc/apagar/(?P<hash>.*)/$',
         s2200_sucessaovinc_views.apagar, 
         name='s2200_sucessaovinc_apagar'),
 
+url(r'^s2200-sucessaovinc/api/$',
+            s2200_sucessaovinc_views.s2200sucessaoVincList.as_view() ),
+
+        url(r'^s2200-sucessaovinc/api/(?P<pk>[0-9]+)/$',
+            s2200_sucessaovinc_views.s2200sucessaoVincDetail.as_view() ),
+
 url(r'^s2200-sucessaovinc/listar/(?P<hash>.*)/$', 
         s2200_sucessaovinc_views.listar, 
         name='s2200_sucessaovinc'),
@@ -486,6 +660,12 @@ url(r'^s2200-sucessaovinc/salvar/(?P<hash>.*)/$',
 url(r'^s2200-transfdom/apagar/(?P<hash>.*)/$', 
         s2200_transfdom_views.apagar, 
         name='s2200_transfdom_apagar'),
+
+url(r'^s2200-transfdom/api/$',
+            s2200_transfdom_views.s2200transfDomList.as_view() ),
+
+        url(r'^s2200-transfdom/api/(?P<pk>[0-9]+)/$',
+            s2200_transfdom_views.s2200transfDomDetail.as_view() ),
 
 url(r'^s2200-transfdom/listar/(?P<hash>.*)/$', 
         s2200_transfdom_views.listar, 
@@ -501,6 +681,12 @@ url(r'^s2200-afastamento/apagar/(?P<hash>.*)/$',
         s2200_afastamento_views.apagar, 
         name='s2200_afastamento_apagar'),
 
+url(r'^s2200-afastamento/api/$',
+            s2200_afastamento_views.s2200afastamentoList.as_view() ),
+
+        url(r'^s2200-afastamento/api/(?P<pk>[0-9]+)/$',
+            s2200_afastamento_views.s2200afastamentoDetail.as_view() ),
+
 url(r'^s2200-afastamento/listar/(?P<hash>.*)/$', 
         s2200_afastamento_views.listar, 
         name='s2200_afastamento'),
@@ -515,6 +701,12 @@ url(r'^s2200-desligamento/apagar/(?P<hash>.*)/$',
         s2200_desligamento_views.apagar, 
         name='s2200_desligamento_apagar'),
 
+url(r'^s2200-desligamento/api/$',
+            s2200_desligamento_views.s2200desligamentoList.as_view() ),
+
+        url(r'^s2200-desligamento/api/(?P<pk>[0-9]+)/$',
+            s2200_desligamento_views.s2200desligamentoDetail.as_view() ),
+
 url(r'^s2200-desligamento/listar/(?P<hash>.*)/$', 
         s2200_desligamento_views.listar, 
         name='s2200_desligamento'),
@@ -528,6 +720,12 @@ url(r'^s2200-desligamento/salvar/(?P<hash>.*)/$',
 url(r'^s2200-cessao/apagar/(?P<hash>.*)/$', 
         s2200_cessao_views.apagar, 
         name='s2200_cessao_apagar'),
+
+url(r'^s2200-cessao/api/$',
+            s2200_cessao_views.s2200cessaoList.as_view() ),
+
+        url(r'^s2200-cessao/api/(?P<pk>[0-9]+)/$',
+            s2200_cessao_views.s2200cessaoDetail.as_view() ),
 
 url(r'^s2200-cessao/listar/(?P<hash>.*)/$', 
         s2200_cessao_views.listar, 

@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 's1050_inclusao_horariointervalo_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s1050inclusaohorarioIntervaloList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s1050inclusaohorarioIntervalo.objects.using(db_slug).all()
+    serializer_class = s1050inclusaohorarioIntervaloSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s1050inclusaohorarioIntervaloDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s1050inclusaohorarioIntervalo.objects.using(db_slug).all()
+    serializer_class = s1050inclusaohorarioIntervaloSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

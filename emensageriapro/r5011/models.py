@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -81,6 +82,13 @@ class r5011RCPRB(models.Model):
         ordering = ['r5011_infototalcontrib', 'crcprb', 'vlrcrcprb', 'vlrcrcprbsusp']
 
 
+
+class r5011RCPRBSerializer(ModelSerializer):
+    class Meta:
+        model = r5011RCPRB
+        fields = '__all__'
+            
+
 class r5011RComl(models.Model):
     r5011_infototalcontrib = models.ForeignKey('r5011infoTotalContrib',
         related_name='%(class)s_r5011_infototalcontrib')
@@ -104,6 +112,13 @@ class r5011RComl(models.Model):
         managed = True
         ordering = ['r5011_infototalcontrib', 'crcoml', 'vlrcrcoml', 'vlrcrcomlsusp']
 
+
+
+class r5011RComlSerializer(ModelSerializer):
+    class Meta:
+        model = r5011RComl
+        fields = '__all__'
+            
 
 class r5011RPrest(models.Model):
     r5011_infototalcontrib = models.ForeignKey('r5011infoTotalContrib',
@@ -133,6 +148,13 @@ class r5011RPrest(models.Model):
         ordering = ['r5011_infototalcontrib', 'tpinsctomador', 'nrinsctomador', 'vlrtotalbaseret', 'vlrtotalretprinc', 'vlrtotalretadic', 'vlrtotalnretprinc', 'vlrtotalnretadic']
 
 
+
+class r5011RPrestSerializer(ModelSerializer):
+    class Meta:
+        model = r5011RPrest
+        fields = '__all__'
+            
+
 class r5011RRecRepAD(models.Model):
     r5011_infototalcontrib = models.ForeignKey('r5011infoTotalContrib',
         related_name='%(class)s_r5011_infototalcontrib')
@@ -159,6 +181,13 @@ class r5011RRecRepAD(models.Model):
         ordering = ['r5011_infototalcontrib', 'cnpjassocdesp', 'vlrtotalrep', 'crrecrepad', 'vlrcrrecrepad', 'vlrcrrecrepadsusp']
 
 
+
+class r5011RRecRepADSerializer(ModelSerializer):
+    class Meta:
+        model = r5011RRecRepAD
+        fields = '__all__'
+            
+
 class r5011RTom(models.Model):
     r5011_infototalcontrib = models.ForeignKey('r5011infoTotalContrib',
         related_name='%(class)s_r5011_infototalcontrib')
@@ -181,6 +210,13 @@ class r5011RTom(models.Model):
         managed = True
         ordering = ['r5011_infototalcontrib', 'cnpjprestador', 'vlrtotalbaseret']
 
+
+
+class r5011RTomSerializer(ModelSerializer):
+    class Meta:
+        model = r5011RTom
+        fields = '__all__'
+            
 
 class r5011infoCRTom(models.Model):
     r5011_rtom = models.ForeignKey('r5011RTom',
@@ -206,6 +242,13 @@ class r5011infoCRTom(models.Model):
         ordering = ['r5011_rtom', 'crtom', 'vlrcrtom', 'vlrcrtomsusp']
 
 
+
+class r5011infoCRTomSerializer(ModelSerializer):
+    class Meta:
+        model = r5011infoCRTom
+        fields = '__all__'
+            
+
 class r5011infoTotalContrib(models.Model):
     r5011_evttotalcontrib = models.ForeignKey('efdreinf.r5011evtTotalContrib',
         related_name='%(class)s_r5011_evttotalcontrib')
@@ -228,6 +271,13 @@ class r5011infoTotalContrib(models.Model):
         managed = True
         ordering = ['r5011_evttotalcontrib', 'nrrecarqbase', 'indexistinfo']
 
+
+
+class r5011infoTotalContribSerializer(ModelSerializer):
+    class Meta:
+        model = r5011infoTotalContrib
+        fields = '__all__'
+            
 
 class r5011regOcorrs(models.Model):
     r5011_evttotalcontrib = models.ForeignKey('efdreinf.r5011evtTotalContrib',
@@ -253,5 +303,12 @@ class r5011regOcorrs(models.Model):
         managed = True
         ordering = ['r5011_evttotalcontrib', 'tpocorr', 'localerroaviso', 'codresp', 'dscresp']
 
+
+
+class r5011regOcorrsSerializer(ModelSerializer):
+    class Meta:
+        model = r5011regOcorrs
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

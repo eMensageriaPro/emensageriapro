@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -79,6 +80,13 @@ class r2030infoProc(models.Model):
         ordering = ['r2030_recursosrec', 'tpproc', 'nrproc', 'codsusp', 'vlrnret']
 
 
+
+class r2030infoProcSerializer(ModelSerializer):
+    class Meta:
+        model = r2030infoProc
+        fields = '__all__'
+            
+
 class r2030infoRecurso(models.Model):
     r2030_recursosrec = models.ForeignKey('r2030recursosRec',
         related_name='%(class)s_r2030_recursosrec')
@@ -104,6 +112,13 @@ class r2030infoRecurso(models.Model):
         ordering = ['r2030_recursosrec', 'tprepasse', 'descrecurso', 'vlrbruto', 'vlrretapur']
 
 
+
+class r2030infoRecursoSerializer(ModelSerializer):
+    class Meta:
+        model = r2030infoRecurso
+        fields = '__all__'
+            
+
 class r2030recursosRec(models.Model):
     r2030_evtassocdesprec = models.ForeignKey('efdreinf.r2030evtAssocDespRec',
         related_name='%(class)s_r2030_evtassocdesprec')
@@ -128,5 +143,12 @@ class r2030recursosRec(models.Model):
         managed = True
         ordering = ['r2030_evtassocdesprec', 'cnpjorigrecurso', 'vlrtotalrec', 'vlrtotalret', 'vlrtotalnret']
 
+
+
+class r2030recursosRecSerializer(ModelSerializer):
+    class Meta:
+        model = r2030recursosRec
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

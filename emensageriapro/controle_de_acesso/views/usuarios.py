@@ -2551,6 +2551,168 @@ from emensageriapro.s5012.forms import form_s5012_infocrcontrib
 
 
 @login_required
+def salvar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        usuarios_id = int(dict_hash['id'])
+        if 'tab' not in dict_hash.keys():
+            dict_hash['tab'] = ''
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='usuarios')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+    if usuarios_id:
+        usuarios = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuarios_id)
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    if permissao.permite_visualizar:
+        mensagem = None
+        if usuarios_id:
+            usuarios_form = form_usuarios(request.POST or None, instance = usuarios, slug = db_slug)
+        else:
+            usuarios_form = form_usuarios(request.POST or None, slug = db_slug, initial={'password': 'asdkl1231'})
+        if request.method == 'POST':
+            if usuarios_form.is_valid():
+                dados = usuarios_form.cleaned_data
+                if usuarios_id:
+                    dados['modificado_por_id'] = usuario_id
+                    dados['modificado_em'] = datetime.datetime.now()
+                    #usuarios_campos_multiple_passo1
+                    Usuarios.objects.using(db_slug).filter(id=usuarios_id).update(**dados)
+                    obj = Usuarios.objects.using(db_slug).get(id=usuarios_id)
+                    #usuarios_editar_custom
+                    #usuarios_campos_multiple_passo2
+                    messages.success(request, 'Alterado com sucesso!')
+                else:
+                    dados['password'] = 'asdkl1231'
+
+                    dados['criado_por_id'] = usuario_id
+                    dados['criado_em'] = datetime.datetime.now()
+                    dados['excluido'] = False
+                    #usuarios_cadastrar_campos_multiple_passo1
+                    obj = Usuarios(**dados)
+                    obj.save(using = db_slug)
+                    #usuarios_cadastrar_custom
+                    #usuarios_cadastrar_campos_multiple_passo2
+                    messages.success(request, 'Cadastrado com sucesso!')
+                if request.session['retorno_pagina'] not in ('usuarios_apagar', 'usuarios_salvar', 'usuarios'):
+                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if usuarios_id != obj.id:
+                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
+                    return redirect('usuarios_salvar', hash=url_hash)
+            else:
+                messages.error(request, 'Erro ao salvar!')
+        usuarios_form = disabled_form_fields(usuarios_form, permissao.permite_editar)
+        #usuarios_campos_multiple_passo3
+
+        for field in usuarios_form.fields.keys():
+            usuarios_form.fields[field].widget.attrs['ng-model'] = 'usuarios_'+field
+        if int(dict_hash['print']):
+            usuarios_form = disabled_form_for_print(usuarios_form)
+        #[VARIAVEIS_SECUNDARIAS_VAZIAS]
+        if usuarios_id:
+            usuarios = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuarios_id)
+            pass
+        else:
+            usuarios = None
+        #usuarios_salvar_custom_variaveis#
+        tabelas_secundarias = []
+        #[FUNCOES_ESPECIAIS_SALVAR]
+        if dict_hash['tab'] or 'usuarios' in request.session['retorno_pagina']:
+            request.session["retorno_hash"] = hash
+            request.session["retorno_pagina"] = 'usuarios_salvar'
+        context = {
+            'usuarios': usuarios,
+            'usuarios_form': usuarios_form,
+            'mensagem': mensagem,
+            'usuarios_id': int(usuarios_id),
+            'usuario': usuario,
+       
+            'hash': hash,
+            #[VARIAVEIS_SECUNDARIAS]
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+       
+            'permissao': permissao,
+            'data': datetime.datetime.now(),
+            'pagina': pagina,
+            'dict_permissoes': dict_permissoes,
+            'for_print': int(dict_hash['print']),
+            'tabelas_secundarias': tabelas_secundarias,
+            'tab': dict_hash['tab'],
+            #usuarios_salvar_custom_variaveis_context#
+        }
+        if for_print in (0,1 ):
+            return render(request, 'usuarios_salvar.html', context)
+        elif for_print == 2:
+            from wkhtmltopdf.views import PDFTemplateResponse
+            response = PDFTemplateResponse(
+                request=request,
+                template='usuarios_salvar.html',
+                filename="usuarios.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 10,
+                             'margin-bottom': 10,
+                             'margin-right': 10,
+                             'margin-left': 10,
+                             'zoom': 1,
+                             'dpi': 72,
+                             'orientation': 'Landscape',
+                             "viewport-size": "1366 x 513",
+                             'javascript-delay': 1000,
+                             'footer-center': '[page]/[topage]',
+                             "no-stop-slow-scripts": True},
+            )
+            return response
+        elif for_print == 3:
+            from django.shortcuts import render_to_response
+            response = render_to_response('usuarios_salvar.html', context)
+            filename = "usuarios.xls"
+            response['Content-Disposition'] = 'attachment; filename=' + filename
+            response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            return response
+
+    else:
+        context = {
+            'usuario': usuario,
+       
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+       
+            'permissao': permissao,
+            'data': datetime.datetime.now(),
+            'pagina': pagina,
+            'dict_permissoes': dict_permissoes,
+        }
+        return render(request, 'permissao_negada.html', context)
+
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class UsuariosList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = Usuarios.objects.using(db_slug).all()
+    serializer_class = UsuariosSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class UsuariosDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = Usuarios.objects.using(db_slug).all()
+    serializer_class = UsuariosSerializer
+    permission_classes = (IsAdminUser,)
+
+
+@login_required
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
@@ -2682,150 +2844,6 @@ def listar(request, hash):
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-    else:
-        context = {
-            'usuario': usuario,
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-            'permissao': permissao,
-            'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
-        }
-        return render(request, 'permissao_negada.html', context)
-
-@login_required
-def salvar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        usuarios_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='usuarios')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-    if usuarios_id:
-        usuarios = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuarios_id)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    if permissao.permite_visualizar:
-        mensagem = None
-        if usuarios_id:
-            usuarios_form = form_usuarios(request.POST or None, instance = usuarios, slug = db_slug)
-        else:
-            usuarios_form = form_usuarios(request.POST or None, slug = db_slug, initial={'password': 'asdkl1231'})
-        if request.method == 'POST':
-            if usuarios_form.is_valid():
-                dados = usuarios_form.cleaned_data
-                if usuarios_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #usuarios_campos_multiple_passo1
-                    Usuarios.objects.using(db_slug).filter(id=usuarios_id).update(**dados)
-                    obj = Usuarios.objects.using(db_slug).get(id=usuarios_id)
-                    #usuarios_editar_custom
-                    #usuarios_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
-                else:
-                    dados['password'] = 'asdkl1231'
-
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #usuarios_cadastrar_campos_multiple_passo1
-                    obj = Usuarios(**dados)
-                    obj.save(using = db_slug)
-                    #usuarios_cadastrar_custom
-                    #usuarios_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
-                if request.session['retorno_pagina'] not in ('usuarios_apagar', 'usuarios_salvar', 'usuarios'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-                if usuarios_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('usuarios_salvar', hash=url_hash)
-            else:
-                messages.error(request, 'Erro ao salvar!')
-        usuarios_form = disabled_form_fields(usuarios_form, permissao.permite_editar)
-        #usuarios_campos_multiple_passo3
-
-        for field in usuarios_form.fields.keys():
-            usuarios_form.fields[field].widget.attrs['ng-model'] = 'usuarios_'+field
-        if int(dict_hash['print']):
-            usuarios_form = disabled_form_for_print(usuarios_form)
-        #[VARIAVEIS_SECUNDARIAS_VAZIAS]
-        if usuarios_id:
-            usuarios = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuarios_id)
-            pass
-        else:
-            usuarios = None
-        #usuarios_salvar_custom_variaveis#
-        tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
-        if dict_hash['tab'] or 'usuarios' in request.session['retorno_pagina']:
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'usuarios_salvar'
-        context = {
-            'usuarios': usuarios,
-            'usuarios_form': usuarios_form,
-            'mensagem': mensagem,
-            'usuarios_id': int(usuarios_id),
-            'usuario': usuario,
-       
-            'hash': hash,
-            #[VARIAVEIS_SECUNDARIAS]
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-            'permissao': permissao,
-            'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
-            'for_print': int(dict_hash['print']),
-            'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
-            #usuarios_salvar_custom_variaveis_context#
-        }
-        if for_print in (0,1 ):
-            return render(request, 'usuarios_salvar.html', context)
-        elif for_print == 2:
-            from wkhtmltopdf.views import PDFTemplateResponse
-            response = PDFTemplateResponse(
-                request=request,
-                template='usuarios_salvar.html',
-                filename="usuarios.pdf",
-                context=context,
-                show_content_in_browser=True,
-                cmd_options={'margin-top': 10,
-                             'margin-bottom': 10,
-                             'margin-right': 10,
-                             'margin-left': 10,
-                             'zoom': 1,
-                             'dpi': 72,
-                             'orientation': 'Landscape',
-                             "viewport-size": "1366 x 513",
-                             'javascript-delay': 1000,
-                             'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
-            return response
-        elif for_print == 3:
-            from django.shortcuts import render_to_response
-            response = render_to_response('usuarios_salvar.html', context)
-            filename = "usuarios.xls"
-            response['Content-Disposition'] = 'attachment; filename=' + filename
-            response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            return response
-
     else:
         context = {
             'usuario': usuario,

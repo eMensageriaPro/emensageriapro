@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -225,6 +226,13 @@ class s1005alteracao(models.Model):
         ordering = ['s1005_evttabestab', 'tpinsc', 'nrinsc', 'inivalid', 'fimvalid', 'cnaeprep', 'aliqrat', 'fap', 'aliqratajust', 'regpt', 'contapr', 'nrprocjud', 'contented']
 
 
+
+class s1005alteracaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1005alteracao
+        fields = '__all__'
+            
+
 class s1005alteracaoinfoCaepf(models.Model):
     s1005_alteracao = models.OneToOneField('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
@@ -245,6 +253,13 @@ class s1005alteracaoinfoCaepf(models.Model):
         managed = True
         ordering = ['s1005_alteracao', 'tpcaepf']
 
+
+
+class s1005alteracaoinfoCaepfSerializer(ModelSerializer):
+    class Meta:
+        model = s1005alteracaoinfoCaepf
+        fields = '__all__'
+            
 
 class s1005alteracaoinfoEntEduc(models.Model):
     s1005_alteracao = models.ForeignKey('s1005alteracao',
@@ -267,6 +282,13 @@ class s1005alteracaoinfoEntEduc(models.Model):
         ordering = ['s1005_alteracao', 'nrinsc']
 
 
+
+class s1005alteracaoinfoEntEducSerializer(ModelSerializer):
+    class Meta:
+        model = s1005alteracaoinfoEntEduc
+        fields = '__all__'
+            
+
 class s1005alteracaoinfoObra(models.Model):
     s1005_alteracao = models.OneToOneField('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
@@ -287,6 +309,13 @@ class s1005alteracaoinfoObra(models.Model):
         managed = True
         ordering = ['s1005_alteracao', 'indsubstpatrobra']
 
+
+
+class s1005alteracaoinfoObraSerializer(ModelSerializer):
+    class Meta:
+        model = s1005alteracaoinfoObra
+        fields = '__all__'
+            
 
 class s1005alteracaoinfoPCD(models.Model):
     s1005_alteracao = models.OneToOneField('s1005alteracao',
@@ -310,6 +339,13 @@ class s1005alteracaoinfoPCD(models.Model):
         ordering = ['s1005_alteracao', 'contpcd', 'nrprocjud']
 
 
+
+class s1005alteracaoinfoPCDSerializer(ModelSerializer):
+    class Meta:
+        model = s1005alteracaoinfoPCD
+        fields = '__all__'
+            
+
 class s1005alteracaoinfoSST(models.Model):
     s1005_alteracao = models.ForeignKey('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
@@ -332,6 +368,13 @@ class s1005alteracaoinfoSST(models.Model):
         ordering = ['s1005_alteracao', 'progsst', 'dtiniprog']
 
 
+
+class s1005alteracaoinfoSSTSerializer(ModelSerializer):
+    class Meta:
+        model = s1005alteracaoinfoSST
+        fields = '__all__'
+            
+
 class s1005alteracaonovaValidade(models.Model):
     s1005_alteracao = models.OneToOneField('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
@@ -353,6 +396,13 @@ class s1005alteracaonovaValidade(models.Model):
         managed = True
         ordering = ['s1005_alteracao', 'inivalid', 'fimvalid']
 
+
+
+class s1005alteracaonovaValidadeSerializer(ModelSerializer):
+    class Meta:
+        model = s1005alteracaonovaValidade
+        fields = '__all__'
+            
 
 class s1005alteracaoprocAdmJudFap(models.Model):
     s1005_alteracao = models.OneToOneField('s1005alteracao',
@@ -377,6 +427,13 @@ class s1005alteracaoprocAdmJudFap(models.Model):
         ordering = ['s1005_alteracao', 'tpproc', 'nrproc', 'codsusp']
 
 
+
+class s1005alteracaoprocAdmJudFapSerializer(ModelSerializer):
+    class Meta:
+        model = s1005alteracaoprocAdmJudFap
+        fields = '__all__'
+            
+
 class s1005alteracaoprocAdmJudRat(models.Model):
     s1005_alteracao = models.OneToOneField('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
@@ -399,6 +456,13 @@ class s1005alteracaoprocAdmJudRat(models.Model):
         managed = True
         ordering = ['s1005_alteracao', 'tpproc', 'nrproc', 'codsusp']
 
+
+
+class s1005alteracaoprocAdmJudRatSerializer(ModelSerializer):
+    class Meta:
+        model = s1005alteracaoprocAdmJudRat
+        fields = '__all__'
+            
 
 class s1005exclusao(models.Model):
     s1005_evttabestab = models.OneToOneField('esocial.s1005evtTabEstab',
@@ -423,6 +487,13 @@ class s1005exclusao(models.Model):
         managed = True
         ordering = ['s1005_evttabestab', 'tpinsc', 'nrinsc', 'inivalid', 'fimvalid']
 
+
+
+class s1005exclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1005exclusao
+        fields = '__all__'
+            
 
 class s1005inclusao(models.Model):
     s1005_evttabestab = models.OneToOneField('esocial.s1005evtTabEstab',
@@ -456,6 +527,13 @@ class s1005inclusao(models.Model):
         ordering = ['s1005_evttabestab', 'tpinsc', 'nrinsc', 'inivalid', 'fimvalid', 'cnaeprep', 'aliqrat', 'fap', 'aliqratajust', 'regpt', 'contapr', 'nrprocjud', 'contented']
 
 
+
+class s1005inclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1005inclusao
+        fields = '__all__'
+            
+
 class s1005inclusaoinfoCaepf(models.Model):
     s1005_inclusao = models.OneToOneField('s1005inclusao',
         related_name='%(class)s_s1005_inclusao')
@@ -476,6 +554,13 @@ class s1005inclusaoinfoCaepf(models.Model):
         managed = True
         ordering = ['s1005_inclusao', 'tpcaepf']
 
+
+
+class s1005inclusaoinfoCaepfSerializer(ModelSerializer):
+    class Meta:
+        model = s1005inclusaoinfoCaepf
+        fields = '__all__'
+            
 
 class s1005inclusaoinfoEntEduc(models.Model):
     s1005_inclusao = models.ForeignKey('s1005inclusao',
@@ -498,6 +583,13 @@ class s1005inclusaoinfoEntEduc(models.Model):
         ordering = ['s1005_inclusao', 'nrinsc']
 
 
+
+class s1005inclusaoinfoEntEducSerializer(ModelSerializer):
+    class Meta:
+        model = s1005inclusaoinfoEntEduc
+        fields = '__all__'
+            
+
 class s1005inclusaoinfoObra(models.Model):
     s1005_inclusao = models.OneToOneField('s1005inclusao',
         related_name='%(class)s_s1005_inclusao')
@@ -518,6 +610,13 @@ class s1005inclusaoinfoObra(models.Model):
         managed = True
         ordering = ['s1005_inclusao', 'indsubstpatrobra']
 
+
+
+class s1005inclusaoinfoObraSerializer(ModelSerializer):
+    class Meta:
+        model = s1005inclusaoinfoObra
+        fields = '__all__'
+            
 
 class s1005inclusaoinfoPCD(models.Model):
     s1005_inclusao = models.OneToOneField('s1005inclusao',
@@ -541,6 +640,13 @@ class s1005inclusaoinfoPCD(models.Model):
         ordering = ['s1005_inclusao', 'contpcd', 'nrprocjud']
 
 
+
+class s1005inclusaoinfoPCDSerializer(ModelSerializer):
+    class Meta:
+        model = s1005inclusaoinfoPCD
+        fields = '__all__'
+            
+
 class s1005inclusaoinfoSST(models.Model):
     s1005_inclusao = models.ForeignKey('s1005inclusao',
         related_name='%(class)s_s1005_inclusao')
@@ -562,6 +668,13 @@ class s1005inclusaoinfoSST(models.Model):
         managed = True
         ordering = ['s1005_inclusao', 'progsst', 'dtiniprog']
 
+
+
+class s1005inclusaoinfoSSTSerializer(ModelSerializer):
+    class Meta:
+        model = s1005inclusaoinfoSST
+        fields = '__all__'
+            
 
 class s1005inclusaoprocAdmJudFap(models.Model):
     s1005_inclusao = models.OneToOneField('s1005inclusao',
@@ -586,6 +699,13 @@ class s1005inclusaoprocAdmJudFap(models.Model):
         ordering = ['s1005_inclusao', 'tpproc', 'nrproc', 'codsusp']
 
 
+
+class s1005inclusaoprocAdmJudFapSerializer(ModelSerializer):
+    class Meta:
+        model = s1005inclusaoprocAdmJudFap
+        fields = '__all__'
+            
+
 class s1005inclusaoprocAdmJudRat(models.Model):
     s1005_inclusao = models.OneToOneField('s1005inclusao',
         related_name='%(class)s_s1005_inclusao')
@@ -608,5 +728,12 @@ class s1005inclusaoprocAdmJudRat(models.Model):
         managed = True
         ordering = ['s1005_inclusao', 'tpproc', 'nrproc', 'codsusp']
 
+
+
+class s1005inclusaoprocAdmJudRatSerializer(ModelSerializer):
+    class Meta:
+        model = s1005inclusaoprocAdmJudRat
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

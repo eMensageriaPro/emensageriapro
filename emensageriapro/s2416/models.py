@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -72,6 +73,13 @@ class s2416homologTC(models.Model):
         ordering = ['s2416_evtcdbenalt', 'nratolegal']
 
 
+
+class s2416homologTCSerializer(ModelSerializer):
+    class Meta:
+        model = s2416homologTC
+        fields = '__all__'
+            
+
 class s2416infoPenMorte(models.Model):
     s2416_evtcdbenalt = models.OneToOneField('esocial.s2416evtCdBenAlt',
         related_name='%(class)s_s2416_evtcdbenalt')
@@ -92,6 +100,13 @@ class s2416infoPenMorte(models.Model):
         managed = True
         ordering = ['s2416_evtcdbenalt', 'tppenmorte']
 
+
+
+class s2416infoPenMorteSerializer(ModelSerializer):
+    class Meta:
+        model = s2416infoPenMorte
+        fields = '__all__'
+            
 
 class s2416suspensao(models.Model):
     s2416_evtcdbenalt = models.OneToOneField('esocial.s2416evtCdBenAlt',
@@ -114,5 +129,12 @@ class s2416suspensao(models.Model):
         managed = True
         ordering = ['s2416_evtcdbenalt', 'mtvsuspensao', 'dscsuspensao']
 
+
+
+class s2416suspensaoSerializer(ModelSerializer):
+    class Meta:
+        model = s2416suspensao
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

@@ -52,6 +52,12 @@ url(r'^s1250-tpaquis/apagar/(?P<hash>.*)/$',
         s1250_tpaquis_views.apagar, 
         name='s1250_tpaquis_apagar'),
 
+url(r'^s1250-tpaquis/api/$',
+            s1250_tpaquis_views.s1250tpAquisList.as_view() ),
+
+        url(r'^s1250-tpaquis/api/(?P<pk>[0-9]+)/$',
+            s1250_tpaquis_views.s1250tpAquisDetail.as_view() ),
+
 url(r'^s1250-tpaquis/listar/(?P<hash>.*)/$', 
         s1250_tpaquis_views.listar, 
         name='s1250_tpaquis'),
@@ -65,6 +71,12 @@ url(r'^s1250-tpaquis/salvar/(?P<hash>.*)/$',
 url(r'^s1250-ideprodutor/apagar/(?P<hash>.*)/$', 
         s1250_ideprodutor_views.apagar, 
         name='s1250_ideprodutor_apagar'),
+
+url(r'^s1250-ideprodutor/api/$',
+            s1250_ideprodutor_views.s1250ideProdutorList.as_view() ),
+
+        url(r'^s1250-ideprodutor/api/(?P<pk>[0-9]+)/$',
+            s1250_ideprodutor_views.s1250ideProdutorDetail.as_view() ),
 
 url(r'^s1250-ideprodutor/listar/(?P<hash>.*)/$', 
         s1250_ideprodutor_views.listar, 
@@ -80,6 +92,12 @@ url(r'^s1250-nfs/apagar/(?P<hash>.*)/$',
         s1250_nfs_views.apagar, 
         name='s1250_nfs_apagar'),
 
+url(r'^s1250-nfs/api/$',
+            s1250_nfs_views.s1250nfsList.as_view() ),
+
+        url(r'^s1250-nfs/api/(?P<pk>[0-9]+)/$',
+            s1250_nfs_views.s1250nfsDetail.as_view() ),
+
 url(r'^s1250-nfs/listar/(?P<hash>.*)/$', 
         s1250_nfs_views.listar, 
         name='s1250_nfs'),
@@ -93,6 +111,12 @@ url(r'^s1250-nfs/salvar/(?P<hash>.*)/$',
 url(r'^s1250-infoprocjud/apagar/(?P<hash>.*)/$', 
         s1250_infoprocjud_views.apagar, 
         name='s1250_infoprocjud_apagar'),
+
+url(r'^s1250-infoprocjud/api/$',
+            s1250_infoprocjud_views.s1250infoProcJudList.as_view() ),
+
+        url(r'^s1250-infoprocjud/api/(?P<pk>[0-9]+)/$',
+            s1250_infoprocjud_views.s1250infoProcJudDetail.as_view() ),
 
 url(r'^s1250-infoprocjud/listar/(?P<hash>.*)/$', 
         s1250_infoprocjud_views.listar, 

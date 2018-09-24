@@ -304,6 +304,24 @@ def apagar(request, hash, slug=0):
     }
     return render(request, 's2410_infopenmorte_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s2410infoPenMorteList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s2410infoPenMorte.objects.using(db_slug).all()
+    serializer_class = s2410infoPenMorteSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s2410infoPenMorteDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s2410infoPenMorte.objects.using(db_slug).all()
+    serializer_class = s2410infoPenMorteSerializer
+    permission_classes = (IsAdminUser,)
+    
+    
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

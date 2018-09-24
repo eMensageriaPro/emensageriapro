@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -106,6 +107,13 @@ class s1080alteracao(models.Model):
         ordering = ['s1080_evttaboperport', 'cnpjopportuario', 'inivalid', 'fimvalid', 'aliqrat', 'fap', 'aliqratajust']
 
 
+
+class s1080alteracaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1080alteracao
+        fields = '__all__'
+            
+
 class s1080alteracaonovaValidade(models.Model):
     s1080_alteracao = models.OneToOneField('s1080alteracao',
         related_name='%(class)s_s1080_alteracao')
@@ -127,6 +135,13 @@ class s1080alteracaonovaValidade(models.Model):
         managed = True
         ordering = ['s1080_alteracao', 'inivalid', 'fimvalid']
 
+
+
+class s1080alteracaonovaValidadeSerializer(ModelSerializer):
+    class Meta:
+        model = s1080alteracaonovaValidade
+        fields = '__all__'
+            
 
 class s1080exclusao(models.Model):
     s1080_evttaboperport = models.OneToOneField('esocial.s1080evtTabOperPort',
@@ -150,6 +165,13 @@ class s1080exclusao(models.Model):
         managed = True
         ordering = ['s1080_evttaboperport', 'cnpjopportuario', 'inivalid', 'fimvalid']
 
+
+
+class s1080exclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1080exclusao
+        fields = '__all__'
+            
 
 class s1080inclusao(models.Model):
     s1080_evttaboperport = models.OneToOneField('esocial.s1080evtTabOperPort',
@@ -176,5 +198,12 @@ class s1080inclusao(models.Model):
         managed = True
         ordering = ['s1080_evttaboperport', 'cnpjopportuario', 'inivalid', 'fimvalid', 'aliqrat', 'fap', 'aliqratajust']
 
+
+
+class s1080inclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1080inclusao
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -151,6 +152,13 @@ class s5011basesAquis(models.Model):
         ordering = ['s5011_ideestab', 'indaquis', 'vlraquis', 'vrcpdescpr', 'vrcpnret', 'vrratnret', 'vrsenarnret', 'vrcpcalcpr', 'vrratdescpr', 'vrratcalcpr', 'vrsenardesc', 'vrsenarcalc']
 
 
+
+class s5011basesAquisSerializer(ModelSerializer):
+    class Meta:
+        model = s5011basesAquis
+        fields = '__all__'
+            
+
 class s5011basesAvNPort(models.Model):
     s5011_idelotacao = models.OneToOneField('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
@@ -178,6 +186,13 @@ class s5011basesAvNPort(models.Model):
         ordering = ['s5011_idelotacao', 'vrbccp00', 'vrbccp15', 'vrbccp20', 'vrbccp25', 'vrbccp13', 'vrbcfgts', 'vrdesccp']
 
 
+
+class s5011basesAvNPortSerializer(ModelSerializer):
+    class Meta:
+        model = s5011basesAvNPort
+        fields = '__all__'
+            
+
 class s5011basesComerc(models.Model):
     s5011_ideestab = models.ForeignKey('s5011ideEstab',
         related_name='%(class)s_s5011_ideestab')
@@ -202,6 +217,13 @@ class s5011basesComerc(models.Model):
         managed = True
         ordering = ['s5011_ideestab', 'indcomerc', 'vrbccompr', 'vrcpsusp', 'vrratsusp', 'vrsenarsusp']
 
+
+
+class s5011basesComercSerializer(ModelSerializer):
+    class Meta:
+        model = s5011basesComerc
+        fields = '__all__'
+            
 
 class s5011basesRemun(models.Model):
     s5011_idelotacao = models.ForeignKey('s5011ideLotacao',
@@ -239,6 +261,13 @@ class s5011basesRemun(models.Model):
         ordering = ['s5011_idelotacao', 'indincid', 'codcateg', 'vrbccp00', 'vrbccp15', 'vrbccp20', 'vrbccp25', 'vrsuspbccp00', 'vrsuspbccp15', 'vrsuspbccp20', 'vrsuspbccp25', 'vrdescsest', 'vrcalcsest', 'vrdescsenat', 'vrcalcsenat', 'vrsalfam', 'vrsalmat']
 
 
+
+class s5011basesRemunSerializer(ModelSerializer):
+    class Meta:
+        model = s5011basesRemun
+        fields = '__all__'
+            
+
 class s5011dadosOpPort(models.Model):
     s5011_idelotacao = models.OneToOneField('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
@@ -263,6 +292,13 @@ class s5011dadosOpPort(models.Model):
         ordering = ['s5011_idelotacao', 'cnpjopportuario', 'aliqrat', 'fap', 'aliqratajust']
 
 
+
+class s5011dadosOpPortSerializer(ModelSerializer):
+    class Meta:
+        model = s5011dadosOpPort
+        fields = '__all__'
+            
+
 class s5011ideEstab(models.Model):
     s5011_evtcs = models.ForeignKey('esocial.s5011evtCS',
         related_name='%(class)s_s5011_evtcs')
@@ -284,6 +320,13 @@ class s5011ideEstab(models.Model):
         managed = True
         ordering = ['s5011_evtcs', 'tpinsc', 'nrinsc']
 
+
+
+class s5011ideEstabSerializer(ModelSerializer):
+    class Meta:
+        model = s5011ideEstab
+        fields = '__all__'
+            
 
 class s5011ideLotacao(models.Model):
     s5011_ideestab = models.ForeignKey('s5011ideEstab',
@@ -309,6 +352,13 @@ class s5011ideLotacao(models.Model):
         ordering = ['s5011_ideestab', 'codlotacao', 'fpas', 'codtercs', 'codtercssusp']
 
 
+
+class s5011ideLotacaoSerializer(ModelSerializer):
+    class Meta:
+        model = s5011ideLotacao
+        fields = '__all__'
+            
+
 class s5011infoAtConc(models.Model):
     s5011_infopj = models.OneToOneField('s5011infoPJ',
         related_name='%(class)s_s5011_infopj')
@@ -331,6 +381,13 @@ class s5011infoAtConc(models.Model):
         ordering = ['s5011_infopj', 'fatormes', 'fator13']
 
 
+
+class s5011infoAtConcSerializer(ModelSerializer):
+    class Meta:
+        model = s5011infoAtConc
+        fields = '__all__'
+            
+
 class s5011infoCPSeg(models.Model):
     s5011_evtcs = models.OneToOneField('esocial.s5011evtCS',
         related_name='%(class)s_s5011_evtcs')
@@ -352,6 +409,13 @@ class s5011infoCPSeg(models.Model):
         managed = True
         ordering = ['s5011_evtcs', 'vrdesccp', 'vrcpseg']
 
+
+
+class s5011infoCPSegSerializer(ModelSerializer):
+    class Meta:
+        model = s5011infoCPSeg
+        fields = '__all__'
+            
 
 class s5011infoCRContrib(models.Model):
     s5011_evtcs = models.ForeignKey('esocial.s5011evtCS',
@@ -376,6 +440,13 @@ class s5011infoCRContrib(models.Model):
         ordering = ['s5011_evtcs', 'tpcr', 'vrcr', 'vrcrsusp']
 
 
+
+class s5011infoCRContribSerializer(ModelSerializer):
+    class Meta:
+        model = s5011infoCRContrib
+        fields = '__all__'
+            
+
 class s5011infoCREstab(models.Model):
     s5011_ideestab = models.ForeignKey('s5011ideEstab',
         related_name='%(class)s_s5011_ideestab')
@@ -399,6 +470,13 @@ class s5011infoCREstab(models.Model):
         ordering = ['s5011_ideestab', 'tpcr', 'vrcr', 'vrsuspcr']
 
 
+
+class s5011infoCREstabSerializer(ModelSerializer):
+    class Meta:
+        model = s5011infoCREstab
+        fields = '__all__'
+            
+
 class s5011infoComplObra(models.Model):
     s5011_infoestab = models.OneToOneField('s5011infoEstab',
         related_name='%(class)s_s5011_infoestab')
@@ -419,6 +497,13 @@ class s5011infoComplObra(models.Model):
         managed = True
         ordering = ['s5011_infoestab', 'indsubstpatrobra']
 
+
+
+class s5011infoComplObraSerializer(ModelSerializer):
+    class Meta:
+        model = s5011infoComplObra
+        fields = '__all__'
+            
 
 class s5011infoEmprParcial(models.Model):
     s5011_idelotacao = models.OneToOneField('s5011ideLotacao',
@@ -444,6 +529,13 @@ class s5011infoEmprParcial(models.Model):
         ordering = ['s5011_idelotacao', 'tpinsccontrat', 'nrinsccontrat', 'tpinscprop', 'nrinscprop']
 
 
+
+class s5011infoEmprParcialSerializer(ModelSerializer):
+    class Meta:
+        model = s5011infoEmprParcial
+        fields = '__all__'
+            
+
 class s5011infoEstab(models.Model):
     s5011_ideestab = models.OneToOneField('s5011ideEstab',
         related_name='%(class)s_s5011_ideestab')
@@ -467,6 +559,13 @@ class s5011infoEstab(models.Model):
         managed = True
         ordering = ['s5011_ideestab', 'cnaeprep', 'aliqrat', 'fap', 'aliqratajust']
 
+
+
+class s5011infoEstabSerializer(ModelSerializer):
+    class Meta:
+        model = s5011infoEstab
+        fields = '__all__'
+            
 
 class s5011infoPJ(models.Model):
     s5011_evtcs = models.OneToOneField('esocial.s5011evtCS',
@@ -492,6 +591,13 @@ class s5011infoPJ(models.Model):
         ordering = ['s5011_evtcs', 'indcoop', 'indconstr', 'indsubstpatr', 'percredcontrib']
 
 
+
+class s5011infoPJSerializer(ModelSerializer):
+    class Meta:
+        model = s5011infoPJ
+        fields = '__all__'
+            
+
 class s5011infoSubstPatrOpPort(models.Model):
     s5011_idelotacao = models.ForeignKey('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
@@ -513,6 +619,13 @@ class s5011infoSubstPatrOpPort(models.Model):
         ordering = ['s5011_idelotacao', 'cnpjopportuario']
 
 
+
+class s5011infoSubstPatrOpPortSerializer(ModelSerializer):
+    class Meta:
+        model = s5011infoSubstPatrOpPort
+        fields = '__all__'
+            
+
 class s5011infoTercSusp(models.Model):
     s5011_idelotacao = models.ForeignKey('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
@@ -533,5 +646,12 @@ class s5011infoTercSusp(models.Model):
         managed = True
         ordering = ['s5011_idelotacao', 'codterc']
 
+
+
+class s5011infoTercSuspSerializer(ModelSerializer):
+    class Meta:
+        model = s5011infoTercSusp
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

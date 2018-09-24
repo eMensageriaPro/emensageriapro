@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -83,6 +84,13 @@ class s1250ideProdutor(models.Model):
         ordering = ['s1250_tpaquis', 'tpinscprod', 'nrinscprod', 'vlrbruto', 'vrcpdescpr', 'vrratdescpr', 'vrsenardesc']
 
 
+
+class s1250ideProdutorSerializer(ModelSerializer):
+    class Meta:
+        model = s1250ideProdutor
+        fields = '__all__'
+            
+
 class s1250infoProcJud(models.Model):
     s1250_ideprodutor = models.ForeignKey('s1250ideProdutor',
         related_name='%(class)s_s1250_ideprodutor')
@@ -107,6 +115,13 @@ class s1250infoProcJud(models.Model):
         managed = True
         ordering = ['s1250_ideprodutor', 'nrprocjud', 'codsusp', 'vrcpnret', 'vrratnret', 'vrsenarnret']
 
+
+
+class s1250infoProcJudSerializer(ModelSerializer):
+    class Meta:
+        model = s1250infoProcJud
+        fields = '__all__'
+            
 
 class s1250nfs(models.Model):
     s1250_ideprodutor = models.ForeignKey('s1250ideProdutor',
@@ -135,6 +150,13 @@ class s1250nfs(models.Model):
         ordering = ['s1250_ideprodutor', 'serie', 'nrdocto', 'dtemisnf', 'vlrbruto', 'vrcpdescpr', 'vrratdescpr', 'vrsenardesc']
 
 
+
+class s1250nfsSerializer(ModelSerializer):
+    class Meta:
+        model = s1250nfs
+        fields = '__all__'
+            
+
 class s1250tpAquis(models.Model):
     s1250_evtaqprod = models.ForeignKey('esocial.s1250evtAqProd',
         related_name='%(class)s_s1250_evtaqprod')
@@ -156,5 +178,12 @@ class s1250tpAquis(models.Model):
         managed = True
         ordering = ['s1250_evtaqprod', 'indaquis', 'vlrtotaquis']
 
+
+
+class s1250tpAquisSerializer(ModelSerializer):
+    class Meta:
+        model = s1250tpAquis
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

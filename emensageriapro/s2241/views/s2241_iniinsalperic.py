@@ -288,6 +288,24 @@ def apagar(request, hash):
     }
     return render(request, 's2241_iniinsalperic_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s2241iniInsalPericList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s2241iniInsalPeric.objects.using(db_slug).all()
+    serializer_class = s2241iniInsalPericSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s2241iniInsalPericDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s2241iniInsalPeric.objects.using(db_slug).all()
+    serializer_class = s2241iniInsalPericSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

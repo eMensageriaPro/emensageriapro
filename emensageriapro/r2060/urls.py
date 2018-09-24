@@ -51,6 +51,12 @@ url(r'^r2060-tipocod/apagar/(?P<hash>.*)/$',
         r2060_tipocod_views.apagar, 
         name='r2060_tipocod_apagar'),
 
+url(r'^r2060-tipocod/api/$',
+            r2060_tipocod_views.r2060tipoCodList.as_view() ),
+
+        url(r'^r2060-tipocod/api/(?P<pk>[0-9]+)/$',
+            r2060_tipocod_views.r2060tipoCodDetail.as_view() ),
+
 url(r'^r2060-tipocod/listar/(?P<hash>.*)/$', 
         r2060_tipocod_views.listar, 
         name='r2060_tipocod'),
@@ -65,6 +71,12 @@ url(r'^r2060-tipoajuste/apagar/(?P<hash>.*)/$',
         r2060_tipoajuste_views.apagar, 
         name='r2060_tipoajuste_apagar'),
 
+url(r'^r2060-tipoajuste/api/$',
+            r2060_tipoajuste_views.r2060tipoAjusteList.as_view() ),
+
+        url(r'^r2060-tipoajuste/api/(?P<pk>[0-9]+)/$',
+            r2060_tipoajuste_views.r2060tipoAjusteDetail.as_view() ),
+
 url(r'^r2060-tipoajuste/listar/(?P<hash>.*)/$', 
         r2060_tipoajuste_views.listar, 
         name='r2060_tipoajuste'),
@@ -78,6 +90,12 @@ url(r'^r2060-tipoajuste/salvar/(?P<hash>.*)/$',
 url(r'^r2060-infoproc/apagar/(?P<hash>.*)/$', 
         r2060_infoproc_views.apagar, 
         name='r2060_infoproc_apagar'),
+
+url(r'^r2060-infoproc/api/$',
+            r2060_infoproc_views.r2060infoProcList.as_view() ),
+
+        url(r'^r2060-infoproc/api/(?P<pk>[0-9]+)/$',
+            r2060_infoproc_views.r2060infoProcDetail.as_view() ),
 
 url(r'^r2060-infoproc/listar/(?P<hash>.*)/$', 
         r2060_infoproc_views.listar, 

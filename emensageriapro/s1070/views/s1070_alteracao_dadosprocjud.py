@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 's1070_alteracao_dadosprocjud_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s1070alteracaodadosProcJudList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s1070alteracaodadosProcJud.objects.using(db_slug).all()
+    serializer_class = s1070alteracaodadosProcJudSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s1070alteracaodadosProcJudDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s1070alteracaodadosProcJud.objects.using(db_slug).all()
+    serializer_class = s1070alteracaodadosProcJudSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

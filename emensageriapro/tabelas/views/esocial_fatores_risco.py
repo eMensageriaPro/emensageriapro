@@ -68,6 +68,24 @@ from emensageriapro.s2241.forms import form_s2241_altaposentesp_fatrisco
 #IMPORTACOES
 
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class eSocialFatoresRiscoList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = eSocialFatoresRisco.objects.using(db_slug).all()
+    serializer_class = eSocialFatoresRiscoSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class eSocialFatoresRiscoDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = eSocialFatoresRisco.objects.using(db_slug).all()
+    serializer_class = eSocialFatoresRiscoSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -122,6 +123,13 @@ class s5001calcTerc(models.Model):
         ordering = ['s5001_infocategincid', 'tpcr', 'vrcssegterc', 'vrdescterc']
 
 
+
+class s5001calcTercSerializer(ModelSerializer):
+    class Meta:
+        model = s5001calcTerc
+        fields = '__all__'
+            
+
 class s5001ideEstabLot(models.Model):
     s5001_infocp = models.ForeignKey('s5001infoCp',
         related_name='%(class)s_s5001_infocp')
@@ -144,6 +152,13 @@ class s5001ideEstabLot(models.Model):
         managed = True
         ordering = ['s5001_infocp', 'tpinsc', 'nrinsc', 'codlotacao']
 
+
+
+class s5001ideEstabLotSerializer(ModelSerializer):
+    class Meta:
+        model = s5001ideEstabLot
+        fields = '__all__'
+            
 
 class s5001infoBaseCS(models.Model):
     s5001_infocategincid = models.ForeignKey('s5001infoCategIncid',
@@ -168,6 +183,13 @@ class s5001infoBaseCS(models.Model):
         ordering = ['s5001_infocategincid', 'ind13', 'tpvalor', 'valor']
 
 
+
+class s5001infoBaseCSSerializer(ModelSerializer):
+    class Meta:
+        model = s5001infoBaseCS
+        fields = '__all__'
+            
+
 class s5001infoCategIncid(models.Model):
     s5001_ideestablot = models.ForeignKey('s5001ideEstabLot',
         related_name='%(class)s_s5001_ideestablot')
@@ -191,6 +213,13 @@ class s5001infoCategIncid(models.Model):
         ordering = ['s5001_ideestablot', 'matricula', 'codcateg', 'indsimples']
 
 
+
+class s5001infoCategIncidSerializer(ModelSerializer):
+    class Meta:
+        model = s5001infoCategIncid
+        fields = '__all__'
+            
+
 class s5001infoCp(models.Model):
     s5001_evtbasestrab = models.OneToOneField('esocial.s5001evtBasesTrab',
         related_name='%(class)s_s5001_evtbasestrab')
@@ -210,6 +239,13 @@ class s5001infoCp(models.Model):
         managed = True
         ordering = ['s5001_evtbasestrab']
 
+
+
+class s5001infoCpSerializer(ModelSerializer):
+    class Meta:
+        model = s5001infoCp
+        fields = '__all__'
+            
 
 class s5001infoCpCalc(models.Model):
     s5001_evtbasestrab = models.ForeignKey('esocial.s5001evtBasesTrab',
@@ -234,6 +270,13 @@ class s5001infoCpCalc(models.Model):
         ordering = ['s5001_evtbasestrab', 'tpcr', 'vrcpseg', 'vrdescseg']
 
 
+
+class s5001infoCpCalcSerializer(ModelSerializer):
+    class Meta:
+        model = s5001infoCpCalc
+        fields = '__all__'
+            
+
 class s5001procJudTrab(models.Model):
     s5001_evtbasestrab = models.ForeignKey('esocial.s5001evtBasesTrab',
         related_name='%(class)s_s5001_evtbasestrab')
@@ -255,5 +298,12 @@ class s5001procJudTrab(models.Model):
         managed = True
         ordering = ['s5001_evtbasestrab', 'nrprocjud', 'codsusp']
 
+
+
+class s5001procJudTrabSerializer(ModelSerializer):
+    class Meta:
+        model = s5001procJudTrab
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

@@ -310,6 +310,82 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        s2399_evttsvtermino_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2399_evttsvtermino')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    s2399_evttsvtermino = get_object_or_404(s2399evtTSVTermino.objects.using( db_slug ), excluido = False, id = s2399_evttsvtermino_id)
+
+    if s2399_evttsvtermino_id:
+        if s2399_evttsvtermino.status != 0:
+            dict_permissoes['s2399_evttsvtermino_apagar'] = 0
+            dict_permissoes['s2399_evttsvtermino_editar'] = 0
+
+    if request.method == 'POST':
+        if s2399_evttsvtermino.status == 0:
+            import json
+            from django.forms.models import model_to_dict
+            situacao_anterior = json.dumps(model_to_dict(s2399_evttsvtermino), indent=4, sort_keys=True, default=str)
+            s2399evtTSVTermino.objects.using( db_slug ).filter(id = s2399_evttsvtermino_id).delete()
+            #s2399_evttsvtermino_apagar_custom
+            #s2399_evttsvtermino_apagar_custom
+            messages.success(request, 'Apagado com sucesso!')
+            gravar_auditoria(situacao_anterior,
+                             '',
+                             's2399_evttsvtermino', s2399_evttsvtermino_id, usuario_id, 3)
+        else:
+            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+   
+        if request.session['retorno_pagina']== 's2399_evttsvtermino_salvar':
+            return redirect('s2399_evttsvtermino', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 's2399_evttsvtermino_apagar.html', context)
+
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s2399evtTSVTerminoList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s2399evtTSVTermino.objects.using(db_slug).all()
+    serializer_class = s2399evtTSVTerminoSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s2399evtTSVTerminoDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s2399evtTSVTermino.objects.using(db_slug).all()
+    serializer_class = s2399evtTSVTerminoSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse
@@ -526,62 +602,4 @@ def listar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
-
-@login_required
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2399_evttsvtermino_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2399_evttsvtermino')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-    s2399_evttsvtermino = get_object_or_404(s2399evtTSVTermino.objects.using( db_slug ), excluido = False, id = s2399_evttsvtermino_id)
-
-    if s2399_evttsvtermino_id:
-        if s2399_evttsvtermino.status != 0:
-            dict_permissoes['s2399_evttsvtermino_apagar'] = 0
-            dict_permissoes['s2399_evttsvtermino_editar'] = 0
-
-    if request.method == 'POST':
-        if s2399_evttsvtermino.status == 0:
-            import json
-            from django.forms.models import model_to_dict
-            situacao_anterior = json.dumps(model_to_dict(s2399_evttsvtermino), indent=4, sort_keys=True, default=str)
-            s2399evtTSVTermino.objects.using( db_slug ).filter(id = s2399_evttsvtermino_id).delete()
-            #s2399_evttsvtermino_apagar_custom
-            #s2399_evttsvtermino_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
-            gravar_auditoria(situacao_anterior,
-                             '',
-                             's2399_evttsvtermino', s2399_evttsvtermino_id, usuario_id, 3)
-        else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
-        if request.session['retorno_pagina']== 's2399_evttsvtermino_salvar':
-            return redirect('s2399_evttsvtermino', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 's2399_evttsvtermino_apagar.html', context)
 

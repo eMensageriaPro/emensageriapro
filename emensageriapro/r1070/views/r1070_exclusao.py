@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 'r1070_exclusao_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class r1070exclusaoList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = r1070exclusao.objects.using(db_slug).all()
+    serializer_class = r1070exclusaoSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class r1070exclusaoDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = r1070exclusao.objects.using(db_slug).all()
+    serializer_class = r1070exclusaoSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

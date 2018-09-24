@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -90,6 +91,13 @@ class r2060infoProc(models.Model):
         ordering = ['r2060_tipocod', 'tpproc', 'nrproc', 'codsusp', 'vlrcprbsusp']
 
 
+
+class r2060infoProcSerializer(ModelSerializer):
+    class Meta:
+        model = r2060infoProc
+        fields = '__all__'
+            
+
 class r2060tipoAjuste(models.Model):
     r2060_tipocod = models.ForeignKey('r2060tipoCod',
         related_name='%(class)s_r2060_tipocod')
@@ -115,6 +123,13 @@ class r2060tipoAjuste(models.Model):
         managed = True
         ordering = ['r2060_tipocod', 'tpajuste', 'codajuste', 'vlrajuste', 'descajuste', 'dtajuste']
 
+
+
+class r2060tipoAjusteSerializer(ModelSerializer):
+    class Meta:
+        model = r2060tipoAjuste
+        fields = '__all__'
+            
 
 class r2060tipoCod(models.Model):
     r2060_evtcprb = models.ForeignKey('efdreinf.r2060evtCPRB',
@@ -142,5 +157,12 @@ class r2060tipoCod(models.Model):
         managed = True
         ordering = ['r2060_evtcprb', 'codativecon', 'vlrrecbrutaativ', 'vlrexcrecbruta', 'vlradicrecbruta', 'vlrbccprb', 'vlrcprbapur']
 
+
+
+class r2060tipoCodSerializer(ModelSerializer):
+    class Meta:
+        model = r2060tipoCod
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

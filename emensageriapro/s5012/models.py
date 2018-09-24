@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -77,5 +78,12 @@ class s5012infoCRContrib(models.Model):
         managed = True
         ordering = ['s5012_evtirrf', 'tpcr', 'vrcr']
 
+
+
+class s5012infoCRContribSerializer(ModelSerializer):
+    class Meta:
+        model = s5012infoCRContrib
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

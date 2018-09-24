@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -107,6 +108,13 @@ class s1035alteracao(models.Model):
         ordering = ['s1035_evttabcarreira', 'codcarreira', 'inivalid', 'fimvalid', 'dsccarreira', 'leicarr', 'dtleicarr', 'sitcarr']
 
 
+
+class s1035alteracaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1035alteracao
+        fields = '__all__'
+            
+
 class s1035alteracaonovaValidade(models.Model):
     s1035_alteracao = models.OneToOneField('s1035alteracao',
         related_name='%(class)s_s1035_alteracao')
@@ -128,6 +136,13 @@ class s1035alteracaonovaValidade(models.Model):
         managed = True
         ordering = ['s1035_alteracao', 'inivalid', 'fimvalid']
 
+
+
+class s1035alteracaonovaValidadeSerializer(ModelSerializer):
+    class Meta:
+        model = s1035alteracaonovaValidade
+        fields = '__all__'
+            
 
 class s1035exclusao(models.Model):
     s1035_evttabcarreira = models.OneToOneField('esocial.s1035evtTabCarreira',
@@ -151,6 +166,13 @@ class s1035exclusao(models.Model):
         managed = True
         ordering = ['s1035_evttabcarreira', 'codcarreira', 'inivalid', 'fimvalid']
 
+
+
+class s1035exclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1035exclusao
+        fields = '__all__'
+            
 
 class s1035inclusao(models.Model):
     s1035_evttabcarreira = models.OneToOneField('esocial.s1035evtTabCarreira',
@@ -178,5 +200,12 @@ class s1035inclusao(models.Model):
         managed = True
         ordering = ['s1035_evttabcarreira', 'codcarreira', 'inivalid', 'fimvalid', 'dsccarreira', 'leicarr', 'dtleicarr', 'sitcarr']
 
+
+
+class s1035inclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1035inclusao
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

@@ -50,6 +50,12 @@ url(r'^r2050-tipocom/apagar/(?P<hash>.*)/$',
         r2050_tipocom_views.apagar, 
         name='r2050_tipocom_apagar'),
 
+url(r'^r2050-tipocom/api/$',
+            r2050_tipocom_views.r2050tipoComList.as_view() ),
+
+        url(r'^r2050-tipocom/api/(?P<pk>[0-9]+)/$',
+            r2050_tipocom_views.r2050tipoComDetail.as_view() ),
+
 url(r'^r2050-tipocom/listar/(?P<hash>.*)/$', 
         r2050_tipocom_views.listar, 
         name='r2050_tipocom'),
@@ -63,6 +69,12 @@ url(r'^r2050-tipocom/salvar/(?P<hash>.*)/$',
 url(r'^r2050-infoproc/apagar/(?P<hash>.*)/$', 
         r2050_infoproc_views.apagar, 
         name='r2050_infoproc_apagar'),
+
+url(r'^r2050-infoproc/api/$',
+            r2050_infoproc_views.r2050infoProcList.as_view() ),
+
+        url(r'^r2050-infoproc/api/(?P<pk>[0-9]+)/$',
+            r2050_infoproc_views.r2050infoProcDetail.as_view() ),
 
 url(r'^r2050-infoproc/listar/(?P<hash>.*)/$', 
         r2050_infoproc_views.listar, 

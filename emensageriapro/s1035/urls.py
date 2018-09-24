@@ -52,6 +52,12 @@ url(r'^s1035-inclusao/apagar/(?P<hash>.*)/$',
         s1035_inclusao_views.apagar, 
         name='s1035_inclusao_apagar'),
 
+url(r'^s1035-inclusao/api/$',
+            s1035_inclusao_views.s1035inclusaoList.as_view() ),
+
+        url(r'^s1035-inclusao/api/(?P<pk>[0-9]+)/$',
+            s1035_inclusao_views.s1035inclusaoDetail.as_view() ),
+
 url(r'^s1035-inclusao/listar/(?P<hash>.*)/$', 
         s1035_inclusao_views.listar, 
         name='s1035_inclusao'),
@@ -65,6 +71,12 @@ url(r'^s1035-inclusao/salvar/(?P<hash>.*)/$',
 url(r'^s1035-alteracao/apagar/(?P<hash>.*)/$', 
         s1035_alteracao_views.apagar, 
         name='s1035_alteracao_apagar'),
+
+url(r'^s1035-alteracao/api/$',
+            s1035_alteracao_views.s1035alteracaoList.as_view() ),
+
+        url(r'^s1035-alteracao/api/(?P<pk>[0-9]+)/$',
+            s1035_alteracao_views.s1035alteracaoDetail.as_view() ),
 
 url(r'^s1035-alteracao/listar/(?P<hash>.*)/$', 
         s1035_alteracao_views.listar, 
@@ -80,6 +92,12 @@ url(r'^s1035-alteracao-novavalidade/apagar/(?P<hash>.*)/$',
         s1035_alteracao_novavalidade_views.apagar, 
         name='s1035_alteracao_novavalidade_apagar'),
 
+url(r'^s1035-alteracao-novavalidade/api/$',
+            s1035_alteracao_novavalidade_views.s1035alteracaonovaValidadeList.as_view() ),
+
+        url(r'^s1035-alteracao-novavalidade/api/(?P<pk>[0-9]+)/$',
+            s1035_alteracao_novavalidade_views.s1035alteracaonovaValidadeDetail.as_view() ),
+
 url(r'^s1035-alteracao-novavalidade/listar/(?P<hash>.*)/$', 
         s1035_alteracao_novavalidade_views.listar, 
         name='s1035_alteracao_novavalidade'),
@@ -93,6 +111,12 @@ url(r'^s1035-alteracao-novavalidade/salvar/(?P<hash>.*)/$',
 url(r'^s1035-exclusao/apagar/(?P<hash>.*)/$', 
         s1035_exclusao_views.apagar, 
         name='s1035_exclusao_apagar'),
+
+url(r'^s1035-exclusao/api/$',
+            s1035_exclusao_views.s1035exclusaoList.as_view() ),
+
+        url(r'^s1035-exclusao/api/(?P<pk>[0-9]+)/$',
+            s1035_exclusao_views.s1035exclusaoDetail.as_view() ),
 
 url(r'^s1035-exclusao/listar/(?P<hash>.*)/$', 
         s1035_exclusao_views.listar, 

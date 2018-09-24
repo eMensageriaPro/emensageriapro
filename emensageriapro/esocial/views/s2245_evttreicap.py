@@ -301,6 +301,82 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        s2245_evttreicap_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2245_evttreicap')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    s2245_evttreicap = get_object_or_404(s2245evtTreiCap.objects.using( db_slug ), excluido = False, id = s2245_evttreicap_id)
+
+    if s2245_evttreicap_id:
+        if s2245_evttreicap.status != 0:
+            dict_permissoes['s2245_evttreicap_apagar'] = 0
+            dict_permissoes['s2245_evttreicap_editar'] = 0
+
+    if request.method == 'POST':
+        if s2245_evttreicap.status == 0:
+            import json
+            from django.forms.models import model_to_dict
+            situacao_anterior = json.dumps(model_to_dict(s2245_evttreicap), indent=4, sort_keys=True, default=str)
+            s2245evtTreiCap.objects.using( db_slug ).filter(id = s2245_evttreicap_id).delete()
+            #s2245_evttreicap_apagar_custom
+            #s2245_evttreicap_apagar_custom
+            messages.success(request, 'Apagado com sucesso!')
+            gravar_auditoria(situacao_anterior,
+                             '',
+                             's2245_evttreicap', s2245_evttreicap_id, usuario_id, 3)
+        else:
+            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+   
+        if request.session['retorno_pagina']== 's2245_evttreicap_salvar':
+            return redirect('s2245_evttreicap', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 's2245_evttreicap_apagar.html', context)
+
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s2245evtTreiCapList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s2245evtTreiCap.objects.using(db_slug).all()
+    serializer_class = s2245evtTreiCapSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s2245evtTreiCapDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s2245evtTreiCap.objects.using(db_slug).all()
+    serializer_class = s2245evtTreiCapSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse
@@ -535,62 +611,4 @@ def listar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
-
-@login_required
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2245_evttreicap_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2245_evttreicap')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-    s2245_evttreicap = get_object_or_404(s2245evtTreiCap.objects.using( db_slug ), excluido = False, id = s2245_evttreicap_id)
-
-    if s2245_evttreicap_id:
-        if s2245_evttreicap.status != 0:
-            dict_permissoes['s2245_evttreicap_apagar'] = 0
-            dict_permissoes['s2245_evttreicap_editar'] = 0
-
-    if request.method == 'POST':
-        if s2245_evttreicap.status == 0:
-            import json
-            from django.forms.models import model_to_dict
-            situacao_anterior = json.dumps(model_to_dict(s2245_evttreicap), indent=4, sort_keys=True, default=str)
-            s2245evtTreiCap.objects.using( db_slug ).filter(id = s2245_evttreicap_id).delete()
-            #s2245_evttreicap_apagar_custom
-            #s2245_evttreicap_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
-            gravar_auditoria(situacao_anterior,
-                             '',
-                             's2245_evttreicap', s2245_evttreicap_id, usuario_id, 3)
-        else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
-        if request.session['retorno_pagina']== 's2245_evttreicap_salvar':
-            return redirect('s2245_evttreicap', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 's2245_evttreicap_apagar.html', context)
 

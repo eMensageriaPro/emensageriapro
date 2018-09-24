@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 's2200_transfdom_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s2200transfDomList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s2200transfDom.objects.using(db_slug).all()
+    serializer_class = s2200transfDomSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s2200transfDomDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s2200transfDom.objects.using(db_slug).all()
+    serializer_class = s2200transfDomSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 's1000_inclusao_softwarehouse_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s1000inclusaosoftwareHouseList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s1000inclusaosoftwareHouse.objects.using(db_slug).all()
+    serializer_class = s1000inclusaosoftwareHouseSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s1000inclusaosoftwareHouseDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s1000inclusaosoftwareHouse.objects.using(db_slug).all()
+    serializer_class = s1000inclusaosoftwareHouseSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

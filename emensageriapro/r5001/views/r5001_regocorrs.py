@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 'r5001_regocorrs_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class r5001regOcorrsList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = r5001regOcorrs.objects.using(db_slug).all()
+    serializer_class = r5001regOcorrsSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class r5001regOcorrsDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = r5001regOcorrs.objects.using(db_slug).all()
+    serializer_class = r5001regOcorrsSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

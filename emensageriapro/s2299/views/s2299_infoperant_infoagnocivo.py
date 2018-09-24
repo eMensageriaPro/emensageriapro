@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 's2299_infoperant_infoagnocivo_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s2299infoPerAntinfoAgNocivoList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s2299infoPerAntinfoAgNocivo.objects.using(db_slug).all()
+    serializer_class = s2299infoPerAntinfoAgNocivoSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s2299infoPerAntinfoAgNocivoDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s2299infoPerAntinfoAgNocivo.objects.using(db_slug).all()
+    serializer_class = s2299infoPerAntinfoAgNocivoSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

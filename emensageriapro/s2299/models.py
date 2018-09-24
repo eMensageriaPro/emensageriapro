@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -144,6 +145,13 @@ class s2299dmDev(models.Model):
         ordering = ['s2299_verbasresc', 'idedmdev']
 
 
+
+class s2299dmDevSerializer(ModelSerializer):
+    class Meta:
+        model = s2299dmDev
+        fields = '__all__'
+            
+
 class s2299infoPerAnt(models.Model):
     s2299_dmdev = models.OneToOneField('s2299dmDev',
         related_name='%(class)s_s2299_dmdev')
@@ -163,6 +171,13 @@ class s2299infoPerAnt(models.Model):
         managed = True
         ordering = ['s2299_dmdev']
 
+
+
+class s2299infoPerAntSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoPerAnt
+        fields = '__all__'
+            
 
 class s2299infoPerAntdetVerbas(models.Model):
     s2299_infoperant_ideestablot = models.ForeignKey('s2299infoPerAntideEstabLot',
@@ -190,6 +205,13 @@ class s2299infoPerAntdetVerbas(models.Model):
         ordering = ['s2299_infoperant_ideestablot', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
 
 
+
+class s2299infoPerAntdetVerbasSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoPerAntdetVerbas
+        fields = '__all__'
+            
+
 class s2299infoPerAntideADC(models.Model):
     s2299_infoperant = models.ForeignKey('s2299infoPerAnt',
         related_name='%(class)s_s2299_infoperant')
@@ -215,6 +237,13 @@ class s2299infoPerAntideADC(models.Model):
         ordering = ['s2299_infoperant', 'dtacconv', 'tpacconv', 'compacconv', 'dtefacconv', 'dsc']
 
 
+
+class s2299infoPerAntideADCSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoPerAntideADC
+        fields = '__all__'
+            
+
 class s2299infoPerAntideEstabLot(models.Model):
     s2299_infoperant_ideperiodo = models.ForeignKey('s2299infoPerAntidePeriodo',
         related_name='%(class)s_s2299_infoperant_ideperiodo')
@@ -238,6 +267,13 @@ class s2299infoPerAntideEstabLot(models.Model):
         ordering = ['s2299_infoperant_ideperiodo', 'tpinsc', 'nrinsc', 'codlotacao']
 
 
+
+class s2299infoPerAntideEstabLotSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoPerAntideEstabLot
+        fields = '__all__'
+            
+
 class s2299infoPerAntidePeriodo(models.Model):
     s2299_infoperant_ideadc = models.ForeignKey('s2299infoPerAntideADC',
         related_name='%(class)s_s2299_infoperant_ideadc')
@@ -258,6 +294,13 @@ class s2299infoPerAntidePeriodo(models.Model):
         managed = True
         ordering = ['s2299_infoperant_ideadc', 'perref']
 
+
+
+class s2299infoPerAntidePeriodoSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoPerAntidePeriodo
+        fields = '__all__'
+            
 
 class s2299infoPerAntinfoAgNocivo(models.Model):
     s2299_infoperant_ideestablot = models.OneToOneField('s2299infoPerAntideEstabLot',
@@ -280,6 +323,13 @@ class s2299infoPerAntinfoAgNocivo(models.Model):
         ordering = ['s2299_infoperant_ideestablot', 'grauexp']
 
 
+
+class s2299infoPerAntinfoAgNocivoSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoPerAntinfoAgNocivo
+        fields = '__all__'
+            
+
 class s2299infoPerAntinfoSimples(models.Model):
     s2299_infoperant_ideestablot = models.OneToOneField('s2299infoPerAntideEstabLot',
         related_name='%(class)s_s2299_infoperant_ideestablot')
@@ -301,6 +351,13 @@ class s2299infoPerAntinfoSimples(models.Model):
         ordering = ['s2299_infoperant_ideestablot', 'indsimples']
 
 
+
+class s2299infoPerAntinfoSimplesSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoPerAntinfoSimples
+        fields = '__all__'
+            
+
 class s2299infoPerApur(models.Model):
     s2299_dmdev = models.OneToOneField('s2299dmDev',
         related_name='%(class)s_s2299_dmdev')
@@ -320,6 +377,13 @@ class s2299infoPerApur(models.Model):
         managed = True
         ordering = ['s2299_dmdev']
 
+
+
+class s2299infoPerApurSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoPerApur
+        fields = '__all__'
+            
 
 class s2299infoPerApurdetOper(models.Model):
     s2299_infoperapur_infosaudecolet = models.ForeignKey('s2299infoPerApurinfoSaudeColet',
@@ -343,6 +407,13 @@ class s2299infoPerApurdetOper(models.Model):
         managed = True
         ordering = ['s2299_infoperapur_infosaudecolet', 'cnpjoper', 'regans', 'vrpgtit']
 
+
+
+class s2299infoPerApurdetOperSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoPerApurdetOper
+        fields = '__all__'
+            
 
 class s2299infoPerApurdetPlano(models.Model):
     s2299_infoperapur_detoper = models.ForeignKey('s2299infoPerApurdetOper',
@@ -368,6 +439,13 @@ class s2299infoPerApurdetPlano(models.Model):
         managed = True
         ordering = ['s2299_infoperapur_detoper', 'tpdep', 'cpfdep', 'nmdep', 'dtnascto', 'vlrpgdep']
 
+
+
+class s2299infoPerApurdetPlanoSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoPerApurdetPlano
+        fields = '__all__'
+            
 
 class s2299infoPerApurdetVerbas(models.Model):
     s2299_infoperapur_ideestablot = models.ForeignKey('s2299infoPerApurideEstabLot',
@@ -395,6 +473,13 @@ class s2299infoPerApurdetVerbas(models.Model):
         ordering = ['s2299_infoperapur_ideestablot', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
 
 
+
+class s2299infoPerApurdetVerbasSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoPerApurdetVerbas
+        fields = '__all__'
+            
+
 class s2299infoPerApurideEstabLot(models.Model):
     s2299_infoperapur = models.ForeignKey('s2299infoPerApur',
         related_name='%(class)s_s2299_infoperapur')
@@ -418,6 +503,13 @@ class s2299infoPerApurideEstabLot(models.Model):
         ordering = ['s2299_infoperapur', 'tpinsc', 'nrinsc', 'codlotacao']
 
 
+
+class s2299infoPerApurideEstabLotSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoPerApurideEstabLot
+        fields = '__all__'
+            
+
 class s2299infoPerApurinfoAgNocivo(models.Model):
     s2299_infoperapur_ideestablot = models.OneToOneField('s2299infoPerApurideEstabLot',
         related_name='%(class)s_s2299_infoperapur_ideestablot')
@@ -439,6 +531,13 @@ class s2299infoPerApurinfoAgNocivo(models.Model):
         ordering = ['s2299_infoperapur_ideestablot', 'grauexp']
 
 
+
+class s2299infoPerApurinfoAgNocivoSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoPerApurinfoAgNocivo
+        fields = '__all__'
+            
+
 class s2299infoPerApurinfoSaudeColet(models.Model):
     s2299_infoperapur_ideestablot = models.OneToOneField('s2299infoPerApurideEstabLot',
         related_name='%(class)s_s2299_infoperapur_ideestablot')
@@ -458,6 +557,13 @@ class s2299infoPerApurinfoSaudeColet(models.Model):
         managed = True
         ordering = ['s2299_infoperapur_ideestablot']
 
+
+
+class s2299infoPerApurinfoSaudeColetSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoPerApurinfoSaudeColet
+        fields = '__all__'
+            
 
 class s2299infoPerApurinfoSimples(models.Model):
     s2299_infoperapur_ideestablot = models.OneToOneField('s2299infoPerApurideEstabLot',
@@ -480,6 +586,13 @@ class s2299infoPerApurinfoSimples(models.Model):
         ordering = ['s2299_infoperapur_ideestablot', 'indsimples']
 
 
+
+class s2299infoPerApurinfoSimplesSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoPerApurinfoSimples
+        fields = '__all__'
+            
+
 class s2299infoTrabInterm(models.Model):
     s2299_dmdev = models.ForeignKey('s2299dmDev',
         related_name='%(class)s_s2299_dmdev')
@@ -500,6 +613,13 @@ class s2299infoTrabInterm(models.Model):
         managed = True
         ordering = ['s2299_dmdev', 'codconv']
 
+
+
+class s2299infoTrabIntermSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoTrabInterm
+        fields = '__all__'
+            
 
 class s2299infoTrabIntermconsigFGTS(models.Model):
     s2299_evtdeslig = models.ForeignKey('esocial.s2299evtDeslig',
@@ -523,6 +643,13 @@ class s2299infoTrabIntermconsigFGTS(models.Model):
         ordering = ['s2299_evtdeslig', 'insconsig', 'nrcontr']
 
 
+
+class s2299infoTrabIntermconsigFGTSSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoTrabIntermconsigFGTS
+        fields = '__all__'
+            
+
 class s2299infoTrabInterminfoMV(models.Model):
     s2299_verbasresc = models.OneToOneField('s2299verbasResc',
         related_name='%(class)s_s2299_verbasresc')
@@ -544,6 +671,13 @@ class s2299infoTrabInterminfoMV(models.Model):
         ordering = ['s2299_verbasresc', 'indmv']
 
 
+
+class s2299infoTrabInterminfoMVSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoTrabInterminfoMV
+        fields = '__all__'
+            
+
 class s2299infoTrabIntermprocCS(models.Model):
     s2299_verbasresc = models.OneToOneField('s2299verbasResc',
         related_name='%(class)s_s2299_verbasresc')
@@ -564,6 +698,13 @@ class s2299infoTrabIntermprocCS(models.Model):
         managed = True
         ordering = ['s2299_verbasresc', 'nrprocjud']
 
+
+
+class s2299infoTrabIntermprocCSSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoTrabIntermprocCS
+        fields = '__all__'
+            
 
 class s2299infoTrabIntermprocJudTrab(models.Model):
     s2299_verbasresc = models.ForeignKey('s2299verbasResc',
@@ -588,6 +729,13 @@ class s2299infoTrabIntermprocJudTrab(models.Model):
         ordering = ['s2299_verbasresc', 'tptrib', 'nrprocjud', 'codsusp']
 
 
+
+class s2299infoTrabIntermprocJudTrabSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoTrabIntermprocJudTrab
+        fields = '__all__'
+            
+
 class s2299infoTrabIntermquarentena(models.Model):
     s2299_evtdeslig = models.OneToOneField('esocial.s2299evtDeslig',
         related_name='%(class)s_s2299_evtdeslig')
@@ -608,6 +756,13 @@ class s2299infoTrabIntermquarentena(models.Model):
         managed = True
         ordering = ['s2299_evtdeslig', 'dtfimquar']
 
+
+
+class s2299infoTrabIntermquarentenaSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoTrabIntermquarentena
+        fields = '__all__'
+            
 
 class s2299infoTrabIntermremunOutrEmpr(models.Model):
     s2299_infotrabinterm_infomv = models.ForeignKey('s2299infoTrabInterminfoMV',
@@ -633,6 +788,13 @@ class s2299infoTrabIntermremunOutrEmpr(models.Model):
         ordering = ['s2299_infotrabinterm_infomv', 'tpinsc', 'nrinsc', 'codcateg', 'vlrremunoe']
 
 
+
+class s2299infoTrabIntermremunOutrEmprSerializer(ModelSerializer):
+    class Meta:
+        model = s2299infoTrabIntermremunOutrEmpr
+        fields = '__all__'
+            
+
 class s2299observacoes(models.Model):
     s2299_evtdeslig = models.ForeignKey('esocial.s2299evtDeslig',
         related_name='%(class)s_s2299_evtdeslig')
@@ -654,6 +816,13 @@ class s2299observacoes(models.Model):
         ordering = ['s2299_evtdeslig', 'observacao']
 
 
+
+class s2299observacoesSerializer(ModelSerializer):
+    class Meta:
+        model = s2299observacoes
+        fields = '__all__'
+            
+
 class s2299sucessaoVinc(models.Model):
     s2299_evtdeslig = models.OneToOneField('esocial.s2299evtDeslig',
         related_name='%(class)s_s2299_evtdeslig')
@@ -674,6 +843,13 @@ class s2299sucessaoVinc(models.Model):
         managed = True
         ordering = ['s2299_evtdeslig', 'cnpjsucessora']
 
+
+
+class s2299sucessaoVincSerializer(ModelSerializer):
+    class Meta:
+        model = s2299sucessaoVinc
+        fields = '__all__'
+            
 
 class s2299transfTit(models.Model):
     s2299_evtdeslig = models.OneToOneField('esocial.s2299evtDeslig',
@@ -697,6 +873,13 @@ class s2299transfTit(models.Model):
         ordering = ['s2299_evtdeslig', 'cpfsubstituto', 'dtnascto']
 
 
+
+class s2299transfTitSerializer(ModelSerializer):
+    class Meta:
+        model = s2299transfTit
+        fields = '__all__'
+            
+
 class s2299verbasResc(models.Model):
     s2299_evtdeslig = models.OneToOneField('esocial.s2299evtDeslig',
         related_name='%(class)s_s2299_evtdeslig')
@@ -716,5 +899,12 @@ class s2299verbasResc(models.Model):
         managed = True
         ordering = ['s2299_evtdeslig']
 
+
+
+class s2299verbasRescSerializer(ModelSerializer):
+    class Meta:
+        model = s2299verbasResc
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

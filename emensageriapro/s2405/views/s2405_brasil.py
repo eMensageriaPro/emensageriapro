@@ -297,6 +297,24 @@ def apagar(request, hash, slug=0):
     }
     return render(request, 's2405_brasil_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s2405brasilList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s2405brasil.objects.using(db_slug).all()
+    serializer_class = s2405brasilSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s2405brasilDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s2405brasil.objects.using(db_slug).all()
+    serializer_class = s2405brasilSerializer
+    permission_classes = (IsAdminUser,)
+    
+    
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

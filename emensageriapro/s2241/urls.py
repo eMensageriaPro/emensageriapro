@@ -66,6 +66,12 @@ url(r'^s2241-insalperic/apagar/(?P<hash>.*)/$',
         s2241_insalperic_views.apagar, 
         name='s2241_insalperic_apagar'),
 
+url(r'^s2241-insalperic/api/$',
+            s2241_insalperic_views.s2241insalPericList.as_view() ),
+
+        url(r'^s2241-insalperic/api/(?P<pk>[0-9]+)/$',
+            s2241_insalperic_views.s2241insalPericDetail.as_view() ),
+
 url(r'^s2241-insalperic/listar/(?P<hash>.*)/$', 
         s2241_insalperic_views.listar, 
         name='s2241_insalperic'),
@@ -79,6 +85,12 @@ url(r'^s2241-insalperic/salvar/(?P<hash>.*)/$',
 url(r'^s2241-iniinsalperic/apagar/(?P<hash>.*)/$', 
         s2241_iniinsalperic_views.apagar, 
         name='s2241_iniinsalperic_apagar'),
+
+url(r'^s2241-iniinsalperic/api/$',
+            s2241_iniinsalperic_views.s2241iniInsalPericList.as_view() ),
+
+        url(r'^s2241-iniinsalperic/api/(?P<pk>[0-9]+)/$',
+            s2241_iniinsalperic_views.s2241iniInsalPericDetail.as_view() ),
 
 url(r'^s2241-iniinsalperic/listar/(?P<hash>.*)/$', 
         s2241_iniinsalperic_views.listar, 
@@ -94,6 +106,12 @@ url(r'^s2241-iniinsalperic-infoamb/apagar/(?P<hash>.*)/$',
         s2241_iniinsalperic_infoamb_views.apagar, 
         name='s2241_iniinsalperic_infoamb_apagar'),
 
+url(r'^s2241-iniinsalperic-infoamb/api/$',
+            s2241_iniinsalperic_infoamb_views.s2241iniInsalPericinfoAmbList.as_view() ),
+
+        url(r'^s2241-iniinsalperic-infoamb/api/(?P<pk>[0-9]+)/$',
+            s2241_iniinsalperic_infoamb_views.s2241iniInsalPericinfoAmbDetail.as_view() ),
+
 url(r'^s2241-iniinsalperic-infoamb/listar/(?P<hash>.*)/$', 
         s2241_iniinsalperic_infoamb_views.listar, 
         name='s2241_iniinsalperic_infoamb'),
@@ -107,6 +125,12 @@ url(r'^s2241-iniinsalperic-infoamb/salvar/(?P<hash>.*)/$',
 url(r'^s2241-iniinsalperic-fatrisco/apagar/(?P<hash>.*)/$', 
         s2241_iniinsalperic_fatrisco_views.apagar, 
         name='s2241_iniinsalperic_fatrisco_apagar'),
+
+url(r'^s2241-iniinsalperic-fatrisco/api/$',
+            s2241_iniinsalperic_fatrisco_views.s2241iniInsalPericfatRiscoList.as_view() ),
+
+        url(r'^s2241-iniinsalperic-fatrisco/api/(?P<pk>[0-9]+)/$',
+            s2241_iniinsalperic_fatrisco_views.s2241iniInsalPericfatRiscoDetail.as_view() ),
 
 url(r'^s2241-iniinsalperic-fatrisco/listar/(?P<hash>.*)/$', 
         s2241_iniinsalperic_fatrisco_views.listar, 
@@ -122,6 +146,12 @@ url(r'^s2241-altinsalperic/apagar/(?P<hash>.*)/$',
         s2241_altinsalperic_views.apagar, 
         name='s2241_altinsalperic_apagar'),
 
+url(r'^s2241-altinsalperic/api/$',
+            s2241_altinsalperic_views.s2241altInsalPericList.as_view() ),
+
+        url(r'^s2241-altinsalperic/api/(?P<pk>[0-9]+)/$',
+            s2241_altinsalperic_views.s2241altInsalPericDetail.as_view() ),
+
 url(r'^s2241-altinsalperic/listar/(?P<hash>.*)/$', 
         s2241_altinsalperic_views.listar, 
         name='s2241_altinsalperic'),
@@ -135,6 +165,12 @@ url(r'^s2241-altinsalperic/salvar/(?P<hash>.*)/$',
 url(r'^s2241-altinsalperic-infoamb/apagar/(?P<hash>.*)/$', 
         s2241_altinsalperic_infoamb_views.apagar, 
         name='s2241_altinsalperic_infoamb_apagar'),
+
+url(r'^s2241-altinsalperic-infoamb/api/$',
+            s2241_altinsalperic_infoamb_views.s2241altInsalPericinfoambList.as_view() ),
+
+        url(r'^s2241-altinsalperic-infoamb/api/(?P<pk>[0-9]+)/$',
+            s2241_altinsalperic_infoamb_views.s2241altInsalPericinfoambDetail.as_view() ),
 
 url(r'^s2241-altinsalperic-infoamb/listar/(?P<hash>.*)/$', 
         s2241_altinsalperic_infoamb_views.listar, 
@@ -150,6 +186,12 @@ url(r'^s2241-altinsalperic-fatrisco/apagar/(?P<hash>.*)/$',
         s2241_altinsalperic_fatrisco_views.apagar, 
         name='s2241_altinsalperic_fatrisco_apagar'),
 
+url(r'^s2241-altinsalperic-fatrisco/api/$',
+            s2241_altinsalperic_fatrisco_views.s2241altInsalPericfatRiscoList.as_view() ),
+
+        url(r'^s2241-altinsalperic-fatrisco/api/(?P<pk>[0-9]+)/$',
+            s2241_altinsalperic_fatrisco_views.s2241altInsalPericfatRiscoDetail.as_view() ),
+
 url(r'^s2241-altinsalperic-fatrisco/listar/(?P<hash>.*)/$', 
         s2241_altinsalperic_fatrisco_views.listar, 
         name='s2241_altinsalperic_fatrisco'),
@@ -163,6 +205,12 @@ url(r'^s2241-altinsalperic-fatrisco/salvar/(?P<hash>.*)/$',
 url(r'^s2241-fiminsalperic/apagar/(?P<hash>.*)/$', 
         s2241_fiminsalperic_views.apagar, 
         name='s2241_fiminsalperic_apagar'),
+
+url(r'^s2241-fiminsalperic/api/$',
+            s2241_fiminsalperic_views.s2241fimInsalPericList.as_view() ),
+
+        url(r'^s2241-fiminsalperic/api/(?P<pk>[0-9]+)/$',
+            s2241_fiminsalperic_views.s2241fimInsalPericDetail.as_view() ),
 
 url(r'^s2241-fiminsalperic/listar/(?P<hash>.*)/$', 
         s2241_fiminsalperic_views.listar, 
@@ -178,6 +226,12 @@ url(r'^s2241-fiminsalperic-infoamb/apagar/(?P<hash>.*)/$',
         s2241_fiminsalperic_infoamb_views.apagar, 
         name='s2241_fiminsalperic_infoamb_apagar'),
 
+url(r'^s2241-fiminsalperic-infoamb/api/$',
+            s2241_fiminsalperic_infoamb_views.s2241fimInsalPericinfoAmbList.as_view() ),
+
+        url(r'^s2241-fiminsalperic-infoamb/api/(?P<pk>[0-9]+)/$',
+            s2241_fiminsalperic_infoamb_views.s2241fimInsalPericinfoAmbDetail.as_view() ),
+
 url(r'^s2241-fiminsalperic-infoamb/listar/(?P<hash>.*)/$', 
         s2241_fiminsalperic_infoamb_views.listar, 
         name='s2241_fiminsalperic_infoamb'),
@@ -191,6 +245,12 @@ url(r'^s2241-fiminsalperic-infoamb/salvar/(?P<hash>.*)/$',
 url(r'^s2241-aposentesp/apagar/(?P<hash>.*)/$', 
         s2241_aposentesp_views.apagar, 
         name='s2241_aposentesp_apagar'),
+
+url(r'^s2241-aposentesp/api/$',
+            s2241_aposentesp_views.s2241aposentEspList.as_view() ),
+
+        url(r'^s2241-aposentesp/api/(?P<pk>[0-9]+)/$',
+            s2241_aposentesp_views.s2241aposentEspDetail.as_view() ),
 
 url(r'^s2241-aposentesp/listar/(?P<hash>.*)/$', 
         s2241_aposentesp_views.listar, 
@@ -206,6 +266,12 @@ url(r'^s2241-iniaposentesp/apagar/(?P<hash>.*)/$',
         s2241_iniaposentesp_views.apagar, 
         name='s2241_iniaposentesp_apagar'),
 
+url(r'^s2241-iniaposentesp/api/$',
+            s2241_iniaposentesp_views.s2241iniAposentEspList.as_view() ),
+
+        url(r'^s2241-iniaposentesp/api/(?P<pk>[0-9]+)/$',
+            s2241_iniaposentesp_views.s2241iniAposentEspDetail.as_view() ),
+
 url(r'^s2241-iniaposentesp/listar/(?P<hash>.*)/$', 
         s2241_iniaposentesp_views.listar, 
         name='s2241_iniaposentesp'),
@@ -219,6 +285,12 @@ url(r'^s2241-iniaposentesp/salvar/(?P<hash>.*)/$',
 url(r'^s2241-iniaposentesp-infoamb/apagar/(?P<hash>.*)/$', 
         s2241_iniaposentesp_infoamb_views.apagar, 
         name='s2241_iniaposentesp_infoamb_apagar'),
+
+url(r'^s2241-iniaposentesp-infoamb/api/$',
+            s2241_iniaposentesp_infoamb_views.s2241iniAposentEspinfoAmbList.as_view() ),
+
+        url(r'^s2241-iniaposentesp-infoamb/api/(?P<pk>[0-9]+)/$',
+            s2241_iniaposentesp_infoamb_views.s2241iniAposentEspinfoAmbDetail.as_view() ),
 
 url(r'^s2241-iniaposentesp-infoamb/listar/(?P<hash>.*)/$', 
         s2241_iniaposentesp_infoamb_views.listar, 
@@ -234,6 +306,12 @@ url(r'^s2241-iniaposentesp-fatrisco/apagar/(?P<hash>.*)/$',
         s2241_iniaposentesp_fatrisco_views.apagar, 
         name='s2241_iniaposentesp_fatrisco_apagar'),
 
+url(r'^s2241-iniaposentesp-fatrisco/api/$',
+            s2241_iniaposentesp_fatrisco_views.s2241iniAposentEspfatRiscoList.as_view() ),
+
+        url(r'^s2241-iniaposentesp-fatrisco/api/(?P<pk>[0-9]+)/$',
+            s2241_iniaposentesp_fatrisco_views.s2241iniAposentEspfatRiscoDetail.as_view() ),
+
 url(r'^s2241-iniaposentesp-fatrisco/listar/(?P<hash>.*)/$', 
         s2241_iniaposentesp_fatrisco_views.listar, 
         name='s2241_iniaposentesp_fatrisco'),
@@ -247,6 +325,12 @@ url(r'^s2241-iniaposentesp-fatrisco/salvar/(?P<hash>.*)/$',
 url(r'^s2241-altaposentesp/apagar/(?P<hash>.*)/$', 
         s2241_altaposentesp_views.apagar, 
         name='s2241_altaposentesp_apagar'),
+
+url(r'^s2241-altaposentesp/api/$',
+            s2241_altaposentesp_views.s2241altAposentEspList.as_view() ),
+
+        url(r'^s2241-altaposentesp/api/(?P<pk>[0-9]+)/$',
+            s2241_altaposentesp_views.s2241altAposentEspDetail.as_view() ),
 
 url(r'^s2241-altaposentesp/listar/(?P<hash>.*)/$', 
         s2241_altaposentesp_views.listar, 
@@ -262,6 +346,12 @@ url(r'^s2241-altaposentesp-infoamb/apagar/(?P<hash>.*)/$',
         s2241_altaposentesp_infoamb_views.apagar, 
         name='s2241_altaposentesp_infoamb_apagar'),
 
+url(r'^s2241-altaposentesp-infoamb/api/$',
+            s2241_altaposentesp_infoamb_views.s2241altAposentEspinfoambList.as_view() ),
+
+        url(r'^s2241-altaposentesp-infoamb/api/(?P<pk>[0-9]+)/$',
+            s2241_altaposentesp_infoamb_views.s2241altAposentEspinfoambDetail.as_view() ),
+
 url(r'^s2241-altaposentesp-infoamb/listar/(?P<hash>.*)/$', 
         s2241_altaposentesp_infoamb_views.listar, 
         name='s2241_altaposentesp_infoamb'),
@@ -275,6 +365,12 @@ url(r'^s2241-altaposentesp-infoamb/salvar/(?P<hash>.*)/$',
 url(r'^s2241-altaposentesp-fatrisco/apagar/(?P<hash>.*)/$', 
         s2241_altaposentesp_fatrisco_views.apagar, 
         name='s2241_altaposentesp_fatrisco_apagar'),
+
+url(r'^s2241-altaposentesp-fatrisco/api/$',
+            s2241_altaposentesp_fatrisco_views.s2241altAposentEspfatRiscoList.as_view() ),
+
+        url(r'^s2241-altaposentesp-fatrisco/api/(?P<pk>[0-9]+)/$',
+            s2241_altaposentesp_fatrisco_views.s2241altAposentEspfatRiscoDetail.as_view() ),
 
 url(r'^s2241-altaposentesp-fatrisco/listar/(?P<hash>.*)/$', 
         s2241_altaposentesp_fatrisco_views.listar, 
@@ -290,6 +386,12 @@ url(r'^s2241-fimaposentesp/apagar/(?P<hash>.*)/$',
         s2241_fimaposentesp_views.apagar, 
         name='s2241_fimaposentesp_apagar'),
 
+url(r'^s2241-fimaposentesp/api/$',
+            s2241_fimaposentesp_views.s2241fimAposentEspList.as_view() ),
+
+        url(r'^s2241-fimaposentesp/api/(?P<pk>[0-9]+)/$',
+            s2241_fimaposentesp_views.s2241fimAposentEspDetail.as_view() ),
+
 url(r'^s2241-fimaposentesp/listar/(?P<hash>.*)/$', 
         s2241_fimaposentesp_views.listar, 
         name='s2241_fimaposentesp'),
@@ -303,6 +405,12 @@ url(r'^s2241-fimaposentesp/salvar/(?P<hash>.*)/$',
 url(r'^s2241-fimaposentesp-infoamb/apagar/(?P<hash>.*)/$', 
         s2241_fimaposentesp_infoamb_views.apagar, 
         name='s2241_fimaposentesp_infoamb_apagar'),
+
+url(r'^s2241-fimaposentesp-infoamb/api/$',
+            s2241_fimaposentesp_infoamb_views.s2241fimAposentEspinfoAmbList.as_view() ),
+
+        url(r'^s2241-fimaposentesp-infoamb/api/(?P<pk>[0-9]+)/$',
+            s2241_fimaposentesp_infoamb_views.s2241fimAposentEspinfoAmbDetail.as_view() ),
 
 url(r'^s2241-fimaposentesp-infoamb/listar/(?P<hash>.*)/$', 
         s2241_fimaposentesp_infoamb_views.listar, 

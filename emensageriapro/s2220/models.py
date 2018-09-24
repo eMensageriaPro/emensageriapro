@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -115,6 +116,13 @@ class s2220exMedOcup(models.Model):
         ordering = ['s2220_evtmonit', 'tpexameocup']
 
 
+
+class s2220exMedOcupSerializer(ModelSerializer):
+    class Meta:
+        model = s2220exMedOcup
+        fields = '__all__'
+            
+
 class s2220exame(models.Model):
     s2220_evtmonit = models.ForeignKey('esocial.s2220evtMonit',
         related_name='%(class)s_s2220_evtmonit')
@@ -150,6 +158,13 @@ class s2220exame(models.Model):
         ordering = ['s2220_evtmonit', 'dtexm', 'procrealizado', 'obsproc', 'interprexm', 'ordexame', 'dtinimonit', 'dtfimmonit', 'indresult', 'nisresp', 'nrconsclasse', 'ufconsclasse', 'cpfresp', 'nmresp', 'nrcrm', 'ufcrm']
 
 
+
+class s2220exameSerializer(ModelSerializer):
+    class Meta:
+        model = s2220exame
+        fields = '__all__'
+            
+
 class s2220toxicologico(models.Model):
     s2220_evtmonit = models.OneToOneField('esocial.s2220evtMonit',
         related_name='%(class)s_s2220_evtmonit')
@@ -175,5 +190,12 @@ class s2220toxicologico(models.Model):
         managed = True
         ordering = ['s2220_evtmonit', 'dtexame', 'cnpjlab', 'codseqexame', 'nmmed', 'nrcrm', 'ufcrm']
 
+
+
+class s2220toxicologicoSerializer(ModelSerializer):
+    class Meta:
+        model = s2220toxicologico
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

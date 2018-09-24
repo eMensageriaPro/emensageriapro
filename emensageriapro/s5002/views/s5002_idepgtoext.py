@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 's5002_idepgtoext_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s5002idePgtoExtList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s5002idePgtoExt.objects.using(db_slug).all()
+    serializer_class = s5002idePgtoExtSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s5002idePgtoExtDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s5002idePgtoExt.objects.using(db_slug).all()
+    serializer_class = s5002idePgtoExtSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

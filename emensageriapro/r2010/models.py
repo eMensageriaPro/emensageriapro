@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -76,6 +77,13 @@ class r2010infoProcRetAd(models.Model):
         ordering = ['r2010_evtservtom', 'tpprocretadic', 'nrprocretadic', 'codsuspadic', 'valoradic']
 
 
+
+class r2010infoProcRetAdSerializer(ModelSerializer):
+    class Meta:
+        model = r2010infoProcRetAd
+        fields = '__all__'
+            
+
 class r2010infoProcRetPr(models.Model):
     r2010_evtservtom = models.ForeignKey('efdreinf.r2010evtServTom',
         related_name='%(class)s_r2010_evtservtom')
@@ -100,6 +108,13 @@ class r2010infoProcRetPr(models.Model):
         managed = True
         ordering = ['r2010_evtservtom', 'tpprocretprinc', 'nrprocretprinc', 'codsuspprinc', 'valorprinc']
 
+
+
+class r2010infoProcRetPrSerializer(ModelSerializer):
+    class Meta:
+        model = r2010infoProcRetPr
+        fields = '__all__'
+            
 
 class r2010infoTpServ(models.Model):
     r2010_nfs = models.ForeignKey('r2010nfs',
@@ -132,6 +147,13 @@ class r2010infoTpServ(models.Model):
         ordering = ['r2010_nfs', 'tpservico', 'vlrbaseret', 'vlrretencao', 'vlrretsub', 'vlrnretprinc', 'vlrservicos15', 'vlrservicos20', 'vlrservicos25', 'vlradicional', 'vlrnretadic']
 
 
+
+class r2010infoTpServSerializer(ModelSerializer):
+    class Meta:
+        model = r2010infoTpServ
+        fields = '__all__'
+            
+
 class r2010nfs(models.Model):
     r2010_evtservtom = models.ForeignKey('efdreinf.r2010evtServTom',
         related_name='%(class)s_r2010_evtservtom')
@@ -157,5 +179,12 @@ class r2010nfs(models.Model):
         managed = True
         ordering = ['r2010_evtservtom', 'serie', 'numdocto', 'dtemissaonf', 'vlrbruto', 'obs']
 
+
+
+class r2010nfsSerializer(ModelSerializer):
+    class Meta:
+        model = r2010nfs
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

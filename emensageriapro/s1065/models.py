@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -104,6 +105,13 @@ class s1065alteracao(models.Model):
         ordering = ['s1065_evttabequipamento', 'codep', 'inivalid', 'fimvalid', 'tpep', 'dscep', 'caepi']
 
 
+
+class s1065alteracaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1065alteracao
+        fields = '__all__'
+            
+
 class s1065alteracaonovaValidade(models.Model):
     s1065_alteracao = models.OneToOneField('s1065alteracao',
         related_name='%(class)s_s1065_alteracao')
@@ -125,6 +133,13 @@ class s1065alteracaonovaValidade(models.Model):
         managed = True
         ordering = ['s1065_alteracao', 'inivalid', 'fimvalid']
 
+
+
+class s1065alteracaonovaValidadeSerializer(ModelSerializer):
+    class Meta:
+        model = s1065alteracaonovaValidade
+        fields = '__all__'
+            
 
 class s1065exclusao(models.Model):
     s1065_evttabequipamento = models.OneToOneField('esocial.s1065evtTabEquipamento',
@@ -148,6 +163,13 @@ class s1065exclusao(models.Model):
         managed = True
         ordering = ['s1065_evttabequipamento', 'codep', 'inivalid', 'fimvalid']
 
+
+
+class s1065exclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1065exclusao
+        fields = '__all__'
+            
 
 class s1065inclusao(models.Model):
     s1065_evttabequipamento = models.OneToOneField('esocial.s1065evtTabEquipamento',
@@ -174,5 +196,12 @@ class s1065inclusao(models.Model):
         managed = True
         ordering = ['s1065_evttabequipamento', 'codep', 'inivalid', 'fimvalid', 'tpep', 'dscep', 'caepi']
 
+
+
+class s1065inclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1065inclusao
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

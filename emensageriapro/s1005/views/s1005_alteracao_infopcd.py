@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 's1005_alteracao_infopcd_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s1005alteracaoinfoPCDList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s1005alteracaoinfoPCD.objects.using(db_slug).all()
+    serializer_class = s1005alteracaoinfoPCDSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s1005alteracaoinfoPCDDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s1005alteracaoinfoPCD.objects.using(db_slug).all()
+    serializer_class = s1005alteracaoinfoPCDSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

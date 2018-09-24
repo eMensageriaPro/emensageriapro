@@ -36,14 +36,33 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
 
 
-SIM_NAO = (
-    (0, u'Não'),
-    (1, u'Sim'),
+TIPO_OCORRENCIA = (
+    (1, u'1 - Erro'),
+    (2, u'2 - Advertência'),
+)
+
+CHOICES_S2200_TPJORNADA = (
+    (1, u'1 - Jornada com horário diário e folga fixos'),
+    (2, u'2 - Jornada 12 x 36 (12 horas de trabalho seguidas de 36 horas ininterruptas de descanso)'),
+    (3, u'3 - Jornada com horário diário fixo e folga variável'),
+    (9, u'9 - Demais tipos de jornada'),
+)
+
+CHOICES_S2200_DIA = (
+    (1, u'1 - Segunda-Feira'),
+    (2, u'2 - Terça-Feira'),
+    (3, u'3 - Quarta-Feira'),
+    (4, u'4 - Quinta-Feira'),
+    (5, u'5 - Sexta-Feira'),
+    (6, u'6 - Sábado'),
+    (7, u'7 - Domingo'),
+    (8, u'8 - Dia variável'),
 )
 
 TIPO_INSCRICAO = (
@@ -51,17 +70,6 @@ TIPO_INSCRICAO = (
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-EVENTOS_OCORRENCIAS_TIPO_EFDREINF = (
-    (1, u'1 - Aviso'),
-    (2, u'2 - Erro'),
-)
-
-CODIGO_STATUS_EFDREINF = (
-    (0, u'0 - Sucesso'),
-    (1, u'1 - Erro'),
-    (2, u'2 - Em Processamento'),
 )
 
 TRANSMISSOR_STATUS = (
@@ -82,6 +90,62 @@ TRANSMISSOR_STATUS = (
     (9, u'Consultado'),
 )
 
+EVENTOS_GRUPOS = (
+    (1, u'1 - Eventos de Tabelas'),
+    (2, u'2 - Eventos Não Periódicos'),
+    (3, u'3 - Eventos Periódicos'),
+)
+
+SIM_NAO = (
+    (0, u'Não'),
+    (1, u'Sim'),
+)
+
+CODIGO_STATUS_EFDREINF = (
+    (0, u'0 - Sucesso'),
+    (1, u'1 - Erro'),
+    (2, u'2 - Em Processamento'),
+)
+
+CHOICES_S1000_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1050_INCLUSAO_TPINTERV = (
+    (1, u'1 - Intervalo em Horário Fixo'),
+    (2, u'2 - Intervalo em Horário Variável'),
+)
+
+CHOICES_S2200_UNDSALFIXO = (
+    (1, u'1 - Por Hora'),
+    (2, u'2 - Por Dia'),
+    (3, u'3 - Por Semana'),
+    (4, u'4 - Por Quinzena'),
+    (5, u'5 - Por Mês'),
+    (6, u'6 - Por Tarefa'),
+    (7, u'7 - Não aplicável - salário exclusivamente variável'),
+)
+
+CHOICES_S2200_TMPPARC = (
+    (0, u'0 - Não é contrato em tempo parcial'),
+    (1, u'1 - Limitado a 25 horas semanais'),
+    (2, u'2 - Limitado a 30 horas semanais'),
+    (3, u'3 - Limitado a 26 horas semanais'),
+)
+
+TIPO_AMBIENTE = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+EVENTOS_OCORRENCIAS_TIPO = (
+    (1, u'1 - Erro'),
+    (2, u'2 - Advertência'),
+)
+
 IMPORTACAO_STATUS = (
     (0, u'Aguardando!'),
     (1, u'Sucesso!'),
@@ -93,6 +157,16 @@ IMPORTACAO_STATUS = (
     (7, u'Processando'),
     (8, u'Processado com erros'),
     (9, u'Versão incompatível'),
+)
+
+EVENTOS_OCORRENCIAS_TIPO_EFDREINF = (
+    (1, u'1 - Aviso'),
+    (2, u'2 - Erro'),
+)
+
+CHOICES_S2200_INFOCOTA = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
 )
 
 CODIGO_RESPOSTA = (
@@ -113,79 +187,6 @@ CODIGO_RESPOSTA = (
     (505, u'505 - Solicitação de Consulta Incorreta - Consulta nula ou vazia.'),
 )
 
-TIPO_OCORRENCIA = (
-    (1, u'1 - Erro'),
-    (2, u'2 - Advertência'),
-)
-
-TIPO_AMBIENTE = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-EVENTOS_OCORRENCIAS_TIPO = (
-    (1, u'1 - Erro'),
-    (2, u'2 - Advertência'),
-)
-
-EVENTOS_GRUPOS = (
-    (1, u'1 - Eventos de Tabelas'),
-    (2, u'2 - Eventos Não Periódicos'),
-    (3, u'3 - Eventos Periódicos'),
-)
-
-CHOICES_S1000_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1050_INCLUSAO_PERHORFLEXIVEL = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1050_INCLUSAO_TPINTERV = (
-    (1, u'1 - Intervalo em Horário Fixo'),
-    (2, u'2 - Intervalo em Horário Variável'),
-)
-
-CHOICES_S2200_DIA = (
-    (1, u'1 - Segunda-Feira'),
-    (2, u'2 - Terça-Feira'),
-    (3, u'3 - Quarta-Feira'),
-    (4, u'4 - Quinta-Feira'),
-    (5, u'5 - Sexta-Feira'),
-    (6, u'6 - Sábado'),
-    (7, u'7 - Domingo'),
-    (8, u'8 - Dia variável'),
-)
-
-CHOICES_S2200_INFOCOTA = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2200_TMPPARC = (
-    (0, u'0 - Não é contrato em tempo parcial'),
-    (1, u'1 - Limitado a 25 horas semanais'),
-    (2, u'2 - Limitado a 30 horas semanais'),
-    (3, u'3 - Limitado a 26 horas semanais'),
-)
-
-CHOICES_S2200_TPCONTR = (
-    (1, u'1 - Prazo indeterminado'),
-    (2, u'2 - Prazo determinado'),
-)
-
-CHOICES_S2200_TPJORNADA = (
-    (1, u'1 - Jornada com horário diário e folga fixos'),
-    (2, u'2 - Jornada 12 x 36 (12 horas de trabalho seguidas de 36 horas ininterruptas de descanso)'),
-    (3, u'3 - Jornada com horário diário fixo e folga variável'),
-    (9, u'9 - Demais tipos de jornada'),
-)
-
 CHOICES_S2200_TPREGJOR = (
     (1, u'1 - Submetidos a Horário de Trabalho (Cap. II da CLT)'),
     (2, u'2 - Atividade Externa especificada no Inciso I do Art. 62 da CLT'),
@@ -193,14 +194,14 @@ CHOICES_S2200_TPREGJOR = (
     (4, u'4 - Teletrabalho, previsto no Inciso III do Art. 62 da CLT'),
 )
 
-CHOICES_S2200_UNDSALFIXO = (
-    (1, u'1 - Por Hora'),
-    (2, u'2 - Por Dia'),
-    (3, u'3 - Por Semana'),
-    (4, u'4 - Por Quinzena'),
-    (5, u'5 - Por Mês'),
-    (6, u'6 - Por Tarefa'),
-    (7, u'7 - Não aplicável - salário exclusivamente variável'),
+CHOICES_S2200_TPCONTR = (
+    (1, u'1 - Prazo indeterminado'),
+    (2, u'2 - Prazo determinado'),
+)
+
+CHOICES_S1050_INCLUSAO_PERHORFLEXIVEL = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
 )
 
 class Arquivos(models.Model):
@@ -220,6 +221,13 @@ class Arquivos(models.Model):
         db_table = r'arquivos'
         managed = True
 
+
+
+class ArquivosSerializer(ModelSerializer):
+    class Meta:
+        model = Arquivos
+        fields = '__all__'
+            
 
 class ImportacaoArquivos(models.Model):
     arquivo = models.CharField(max_length=200)
@@ -249,6 +257,13 @@ class ImportacaoArquivos(models.Model):
         ordering = ['arquivo']
 
 
+
+class ImportacaoArquivosSerializer(ModelSerializer):
+    class Meta:
+        model = ImportacaoArquivos
+        fields = '__all__'
+            
+
 class ImportacaoArquivosEventos(models.Model):
     importacao_arquivos = models.ForeignKey('ImportacaoArquivos',
         related_name='%(class)s_importacao_arquivos')
@@ -276,6 +291,13 @@ class ImportacaoArquivosEventos(models.Model):
         managed = True
         ordering = ['importacao_arquivos', 'arquivo', 'evento', 'versao', 'identidade_evento', 'identidade']
 
+
+
+class ImportacaoArquivosEventosSerializer(ModelSerializer):
+    class Meta:
+        model = ImportacaoArquivosEventos
+        fields = '__all__'
+            
 
 class RegrasDeValidacao(models.Model):
     evento = models.CharField(max_length=5000)
@@ -310,6 +332,13 @@ class RegrasDeValidacao(models.Model):
         managed = True
 
 
+
+class RegrasDeValidacaoSerializer(ModelSerializer):
+    class Meta:
+        model = RegrasDeValidacao
+        fields = '__all__'
+            
+
 class Relatorios(models.Model):
     titulo = models.CharField(max_length=500)
     campos = models.CharField(max_length=500)
@@ -327,6 +356,13 @@ class Relatorios(models.Model):
         db_table = r'relatorios'
         managed = True
 
+
+
+class RelatoriosSerializer(ModelSerializer):
+    class Meta:
+        model = Relatorios
+        fields = '__all__'
+            
 
 class RetornosEventos(models.Model):
     transmissor_lote_esocial = models.ForeignKey('TransmissorLoteEsocial',
@@ -394,6 +430,13 @@ class RetornosEventos(models.Model):
         ordering = ['transmissor_lote_esocial', 'identidade']
 
 
+
+class RetornosEventosSerializer(ModelSerializer):
+    class Meta:
+        model = RetornosEventos
+        fields = '__all__'
+            
+
 class RetornosEventosHorarios(models.Model):
     retornos_eventos = models.ForeignKey('RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
@@ -417,6 +460,13 @@ class RetornosEventosHorarios(models.Model):
         managed = True
 
 
+
+class RetornosEventosHorariosSerializer(ModelSerializer):
+    class Meta:
+        model = RetornosEventosHorarios
+        fields = '__all__'
+            
+
 class RetornosEventosIntervalos(models.Model):
     retornos_eventos_horarios = models.ForeignKey('RetornosEventosHorarios',
         related_name='%(class)s_retornos_eventos_horarios', blank=True, null=True)
@@ -438,6 +488,13 @@ class RetornosEventosIntervalos(models.Model):
         managed = True
 
 
+
+class RetornosEventosIntervalosSerializer(ModelSerializer):
+    class Meta:
+        model = RetornosEventosIntervalos
+        fields = '__all__'
+            
+
 class RetornosEventosOcorrencias(models.Model):
     retornos_eventos = models.ForeignKey('RetornosEventos',
         related_name='%(class)s_retornos_eventos')
@@ -458,6 +515,13 @@ class RetornosEventosOcorrencias(models.Model):
         db_table = r'retornos_eventos_ocorrencias'
         managed = True
 
+
+
+class RetornosEventosOcorrenciasSerializer(ModelSerializer):
+    class Meta:
+        model = RetornosEventosOcorrencias
+        fields = '__all__'
+            
 
 class TransmissorLote(models.Model):
     transmissor_tpinsc = models.IntegerField(choices=TIPO_INSCRICAO)
@@ -505,6 +569,13 @@ class TransmissorLote(models.Model):
         managed = True
 
 
+
+class TransmissorLoteSerializer(ModelSerializer):
+    class Meta:
+        model = TransmissorLote
+        fields = '__all__'
+            
+
 class TransmissorLoteEfdreinf(models.Model):
     transmissor = models.ForeignKey('TransmissorLote',
         related_name='%(class)s_transmissor', max_length=1, blank=True, null=True)
@@ -537,6 +608,13 @@ class TransmissorLoteEfdreinf(models.Model):
         managed = True
 
 
+
+class TransmissorLoteEfdreinfSerializer(ModelSerializer):
+    class Meta:
+        model = TransmissorLoteEfdreinf
+        fields = '__all__'
+            
+
 class TransmissorLoteEfdreinfOcorrencias(models.Model):
     transmissor_lote_efdreinf = models.ForeignKey('TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf')
@@ -557,6 +635,13 @@ class TransmissorLoteEfdreinfOcorrencias(models.Model):
         db_table = r'transmissor_lote_efdreinf_ocorrencias'
         managed = True
 
+
+
+class TransmissorLoteEfdreinfOcorrenciasSerializer(ModelSerializer):
+    class Meta:
+        model = TransmissorLoteEfdreinfOcorrencias
+        fields = '__all__'
+            
 
 class TransmissorLoteEsocial(models.Model):
     transmissor = models.ForeignKey('TransmissorLote',
@@ -588,6 +673,13 @@ class TransmissorLoteEsocial(models.Model):
         managed = True
 
 
+
+class TransmissorLoteEsocialSerializer(ModelSerializer):
+    class Meta:
+        model = TransmissorLoteEsocial
+        fields = '__all__'
+            
+
 class TransmissorLoteEsocialOcorrencias(models.Model):
     transmissor_lote_esocial = models.ForeignKey('TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial')
@@ -608,6 +700,13 @@ class TransmissorLoteEsocialOcorrencias(models.Model):
         db_table = r'transmissor_lote_esocial_ocorrencias'
         managed = True
 
+
+
+class TransmissorLoteEsocialOcorrenciasSerializer(ModelSerializer):
+    class Meta:
+        model = TransmissorLoteEsocialOcorrencias
+        fields = '__all__'
+            
 
 TPINSC_TRANSMISSOR_EVENTOS = (
     ('1', u'1 - CNPJ'),

@@ -52,6 +52,24 @@ import base64
 #IMPORTACOES
 
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class eSocialCompatibilidadesCategoriasClassificacoesLotacoesList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = eSocialCompatibilidadesCategoriasClassificacoesLotacoes.objects.using(db_slug).all()
+    serializer_class = eSocialCompatibilidadesCategoriasClassificacoesLotacoesSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class eSocialCompatibilidadesCategoriasClassificacoesLotacoesDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = eSocialCompatibilidadesCategoriasClassificacoesLotacoes.objects.using(db_slug).all()
+    serializer_class = eSocialCompatibilidadesCategoriasClassificacoesLotacoesSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

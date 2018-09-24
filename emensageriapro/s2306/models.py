@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -128,6 +129,13 @@ class s2306ageIntegracao(models.Model):
         ordering = ['s2306_infoestagiario', 'cnpjagntinteg', 'nmrazao', 'dsclograd', 'nrlograd', 'bairro', 'cep', 'codmunic', 'uf']
 
 
+
+class s2306ageIntegracaoSerializer(ModelSerializer):
+    class Meta:
+        model = s2306ageIntegracao
+        fields = '__all__'
+            
+
 class s2306cargoFuncao(models.Model):
     s2306_infocomplementares = models.OneToOneField('s2306infoComplementares',
         related_name='%(class)s_s2306_infocomplementares')
@@ -150,6 +158,13 @@ class s2306cargoFuncao(models.Model):
         ordering = ['s2306_infocomplementares', 'codcargo', 'codfuncao']
 
 
+
+class s2306cargoFuncaoSerializer(ModelSerializer):
+    class Meta:
+        model = s2306cargoFuncao
+        fields = '__all__'
+            
+
 class s2306infoComplementares(models.Model):
     s2306_evttsvaltcontr = models.OneToOneField('esocial.s2306evtTSVAltContr',
         related_name='%(class)s_s2306_evttsvaltcontr')
@@ -169,6 +184,13 @@ class s2306infoComplementares(models.Model):
         managed = True
         ordering = ['s2306_evttsvaltcontr']
 
+
+
+class s2306infoComplementaresSerializer(ModelSerializer):
+    class Meta:
+        model = s2306infoComplementares
+        fields = '__all__'
+            
 
 class s2306infoEstagiario(models.Model):
     s2306_infocomplementares = models.OneToOneField('s2306infoComplementares',
@@ -204,6 +226,13 @@ class s2306infoEstagiario(models.Model):
         ordering = ['s2306_infocomplementares', 'natestagio', 'nivestagio', 'areaatuacao', 'nrapol', 'vlrbolsa', 'dtprevterm', 'cnpjinstensino', 'nmrazao', 'dsclograd', 'nrlograd', 'bairro', 'cep', 'codmunic', 'uf']
 
 
+
+class s2306infoEstagiarioSerializer(ModelSerializer):
+    class Meta:
+        model = s2306infoEstagiario
+        fields = '__all__'
+            
+
 class s2306infoTrabCedido(models.Model):
     s2306_infocomplementares = models.OneToOneField('s2306infoComplementares',
         related_name='%(class)s_s2306_infocomplementares')
@@ -224,6 +253,13 @@ class s2306infoTrabCedido(models.Model):
         managed = True
         ordering = ['s2306_infocomplementares', 'indremuncargo']
 
+
+
+class s2306infoTrabCedidoSerializer(ModelSerializer):
+    class Meta:
+        model = s2306infoTrabCedido
+        fields = '__all__'
+            
 
 class s2306remuneracao(models.Model):
     s2306_infocomplementares = models.OneToOneField('s2306infoComplementares',
@@ -248,6 +284,13 @@ class s2306remuneracao(models.Model):
         ordering = ['s2306_infocomplementares', 'vrsalfx', 'undsalfixo', 'dscsalvar']
 
 
+
+class s2306remuneracaoSerializer(ModelSerializer):
+    class Meta:
+        model = s2306remuneracao
+        fields = '__all__'
+            
+
 class s2306supervisorEstagio(models.Model):
     s2306_infoestagiario = models.OneToOneField('s2306infoEstagiario',
         related_name='%(class)s_s2306_infoestagiario')
@@ -269,5 +312,12 @@ class s2306supervisorEstagio(models.Model):
         managed = True
         ordering = ['s2306_infoestagiario', 'cpfsupervisor', 'nmsuperv']
 
+
+
+class s2306supervisorEstagioSerializer(ModelSerializer):
+    class Meta:
+        model = s2306supervisorEstagio
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

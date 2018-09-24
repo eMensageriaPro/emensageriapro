@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 's5001_infobasecs_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s5001infoBaseCSList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s5001infoBaseCS.objects.using(db_slug).all()
+    serializer_class = s5001infoBaseCSSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s5001infoBaseCSDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s5001infoBaseCS.objects.using(db_slug).all()
+    serializer_class = s5001infoBaseCSSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

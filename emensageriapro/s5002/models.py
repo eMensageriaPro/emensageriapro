@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -90,6 +91,13 @@ class s5002basesIrrf(models.Model):
         ordering = ['s5002_infoirrf', 'tpvalor', 'valor']
 
 
+
+class s5002basesIrrfSerializer(ModelSerializer):
+    class Meta:
+        model = s5002basesIrrf
+        fields = '__all__'
+            
+
 class s5002idePgtoExt(models.Model):
     s5002_infoirrf = models.OneToOneField('s5002infoIrrf',
         related_name='%(class)s_s5002_infoirrf')
@@ -119,6 +127,13 @@ class s5002idePgtoExt(models.Model):
         ordering = ['s5002_infoirrf', 'codpais', 'indnif', 'nifbenef', 'dsclograd', 'nrlograd', 'complem', 'bairro', 'nmcid', 'codpostal']
 
 
+
+class s5002idePgtoExtSerializer(ModelSerializer):
+    class Meta:
+        model = s5002idePgtoExt
+        fields = '__all__'
+            
+
 class s5002infoDep(models.Model):
     s5002_evtirrfbenef = models.OneToOneField('esocial.s5002evtIrrfBenef',
         related_name='%(class)s_s5002_evtirrfbenef')
@@ -139,6 +154,13 @@ class s5002infoDep(models.Model):
         managed = True
         ordering = ['s5002_evtirrfbenef', 'vrdeddep']
 
+
+
+class s5002infoDepSerializer(ModelSerializer):
+    class Meta:
+        model = s5002infoDep
+        fields = '__all__'
+            
 
 class s5002infoIrrf(models.Model):
     s5002_evtirrfbenef = models.ForeignKey('esocial.s5002evtIrrfBenef',
@@ -162,6 +184,13 @@ class s5002infoIrrf(models.Model):
         ordering = ['s5002_evtirrfbenef', 'codcateg', 'indresbr']
 
 
+
+class s5002infoIrrfSerializer(ModelSerializer):
+    class Meta:
+        model = s5002infoIrrf
+        fields = '__all__'
+            
+
 class s5002irrf(models.Model):
     s5002_infoirrf = models.ForeignKey('s5002infoIrrf',
         related_name='%(class)s_s5002_infoirrf')
@@ -183,5 +212,12 @@ class s5002irrf(models.Model):
         managed = True
         ordering = ['s5002_infoirrf', 'tpcr', 'vrirrfdesc']
 
+
+
+class s5002irrfSerializer(ModelSerializer):
+    class Meta:
+        model = s5002irrf
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

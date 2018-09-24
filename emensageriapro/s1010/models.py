@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -426,6 +427,13 @@ class s1010alteracao(models.Model):
         ordering = ['s1010_evttabrubrica', 'codrubr', 'idetabrubr', 'inivalid', 'fimvalid', 'dscrubr', 'natrubr', 'tprubr', 'codinccp', 'codincirrf', 'codincfgts', 'codincsind', 'codinccprp', 'tetoremun', 'observacao']
 
 
+
+class s1010alteracaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1010alteracao
+        fields = '__all__'
+            
+
 class s1010alteracaoideProcessoCP(models.Model):
     s1010_alteracao = models.ForeignKey('s1010alteracao',
         related_name='%(class)s_s1010_alteracao')
@@ -453,6 +461,13 @@ class s1010alteracaoideProcessoCP(models.Model):
         ordering = ['s1010_alteracao', 'tpproc', 'nrproc', 'extdecisao', 'codsusp', 'tpproc', 'nrproc', 'extdecisao']
 
 
+
+class s1010alteracaoideProcessoCPSerializer(ModelSerializer):
+    class Meta:
+        model = s1010alteracaoideProcessoCP
+        fields = '__all__'
+            
+
 class s1010alteracaoideProcessoCPRP(models.Model):
     s1010_alteracao = models.ForeignKey('s1010alteracao',
         related_name='%(class)s_s1010_alteracao')
@@ -472,6 +487,13 @@ class s1010alteracaoideProcessoCPRP(models.Model):
         managed = True
         ordering = ['s1010_alteracao']
 
+
+
+class s1010alteracaoideProcessoCPRPSerializer(ModelSerializer):
+    class Meta:
+        model = s1010alteracaoideProcessoCPRP
+        fields = '__all__'
+            
 
 class s1010alteracaoideProcessoFGTS(models.Model):
     s1010_alteracao = models.ForeignKey('s1010alteracao',
@@ -493,6 +515,13 @@ class s1010alteracaoideProcessoFGTS(models.Model):
         managed = True
         ordering = ['s1010_alteracao', 'nrproc']
 
+
+
+class s1010alteracaoideProcessoFGTSSerializer(ModelSerializer):
+    class Meta:
+        model = s1010alteracaoideProcessoFGTS
+        fields = '__all__'
+            
 
 class s1010alteracaoideProcessoIRRF(models.Model):
     s1010_alteracao = models.ForeignKey('s1010alteracao',
@@ -516,6 +545,13 @@ class s1010alteracaoideProcessoIRRF(models.Model):
         ordering = ['s1010_alteracao', 'nrproc', 'codsusp']
 
 
+
+class s1010alteracaoideProcessoIRRFSerializer(ModelSerializer):
+    class Meta:
+        model = s1010alteracaoideProcessoIRRF
+        fields = '__all__'
+            
+
 class s1010alteracaoideProcessoSIND(models.Model):
     s1010_alteracao = models.ForeignKey('s1010alteracao',
         related_name='%(class)s_s1010_alteracao')
@@ -536,6 +572,13 @@ class s1010alteracaoideProcessoSIND(models.Model):
         managed = True
         ordering = ['s1010_alteracao', 'nrproc']
 
+
+
+class s1010alteracaoideProcessoSINDSerializer(ModelSerializer):
+    class Meta:
+        model = s1010alteracaoideProcessoSIND
+        fields = '__all__'
+            
 
 class s1010alteracaonovaValidade(models.Model):
     s1010_alteracao = models.OneToOneField('s1010alteracao',
@@ -558,6 +601,13 @@ class s1010alteracaonovaValidade(models.Model):
         managed = True
         ordering = ['s1010_alteracao', 'inivalid', 'fimvalid']
 
+
+
+class s1010alteracaonovaValidadeSerializer(ModelSerializer):
+    class Meta:
+        model = s1010alteracaonovaValidade
+        fields = '__all__'
+            
 
 class s1010exclusao(models.Model):
     s1010_evttabrubrica = models.OneToOneField('esocial.s1010evtTabRubrica',
@@ -582,6 +632,13 @@ class s1010exclusao(models.Model):
         managed = True
         ordering = ['s1010_evttabrubrica', 'codrubr', 'idetabrubr', 'inivalid', 'fimvalid']
 
+
+
+class s1010exclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1010exclusao
+        fields = '__all__'
+            
 
 class s1010inclusao(models.Model):
     s1010_evttabrubrica = models.OneToOneField('esocial.s1010evtTabRubrica',
@@ -617,6 +674,13 @@ class s1010inclusao(models.Model):
         ordering = ['s1010_evttabrubrica', 'codrubr', 'idetabrubr', 'inivalid', 'fimvalid', 'dscrubr', 'natrubr', 'tprubr', 'codinccp', 'codincirrf', 'codincfgts', 'codincsind', 'codinccprp', 'tetoremun', 'observacao']
 
 
+
+class s1010inclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1010inclusao
+        fields = '__all__'
+            
+
 class s1010inclusaoideProcessoCP(models.Model):
     s1010_inclusao = models.ForeignKey('s1010inclusao',
         related_name='%(class)s_s1010_inclusao')
@@ -644,6 +708,13 @@ class s1010inclusaoideProcessoCP(models.Model):
         ordering = ['s1010_inclusao', 'tpproc', 'nrproc', 'extdecisao', 'codsusp', 'tpproc', 'nrproc', 'extdecisao']
 
 
+
+class s1010inclusaoideProcessoCPSerializer(ModelSerializer):
+    class Meta:
+        model = s1010inclusaoideProcessoCP
+        fields = '__all__'
+            
+
 class s1010inclusaoideProcessoCPRP(models.Model):
     s1010_inclusao = models.ForeignKey('s1010inclusao',
         related_name='%(class)s_s1010_inclusao')
@@ -663,6 +734,13 @@ class s1010inclusaoideProcessoCPRP(models.Model):
         managed = True
         ordering = ['s1010_inclusao']
 
+
+
+class s1010inclusaoideProcessoCPRPSerializer(ModelSerializer):
+    class Meta:
+        model = s1010inclusaoideProcessoCPRP
+        fields = '__all__'
+            
 
 class s1010inclusaoideProcessoFGTS(models.Model):
     s1010_inclusao = models.ForeignKey('s1010inclusao',
@@ -684,6 +762,13 @@ class s1010inclusaoideProcessoFGTS(models.Model):
         managed = True
         ordering = ['s1010_inclusao', 'nrproc']
 
+
+
+class s1010inclusaoideProcessoFGTSSerializer(ModelSerializer):
+    class Meta:
+        model = s1010inclusaoideProcessoFGTS
+        fields = '__all__'
+            
 
 class s1010inclusaoideProcessoIRRF(models.Model):
     s1010_inclusao = models.ForeignKey('s1010inclusao',
@@ -707,6 +792,13 @@ class s1010inclusaoideProcessoIRRF(models.Model):
         ordering = ['s1010_inclusao', 'nrproc', 'codsusp']
 
 
+
+class s1010inclusaoideProcessoIRRFSerializer(ModelSerializer):
+    class Meta:
+        model = s1010inclusaoideProcessoIRRF
+        fields = '__all__'
+            
+
 class s1010inclusaoideProcessoSIND(models.Model):
     s1010_inclusao = models.ForeignKey('s1010inclusao',
         related_name='%(class)s_s1010_inclusao')
@@ -727,5 +819,12 @@ class s1010inclusaoideProcessoSIND(models.Model):
         managed = True
         ordering = ['s1010_inclusao', 'nrproc']
 
+
+
+class s1010inclusaoideProcessoSINDSerializer(ModelSerializer):
+    class Meta:
+        model = s1010inclusaoideProcessoSIND
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -213,6 +214,13 @@ class s2205CNH(models.Model):
         ordering = ['s2205_documentos', 'nrregcnh', 'dtexped', 'ufcnh', 'dtvalid', 'dtprihab', 'categoriacnh']
 
 
+
+class s2205CNHSerializer(ModelSerializer):
+    class Meta:
+        model = s2205CNH
+        fields = '__all__'
+            
+
 class s2205CTPS(models.Model):
     s2205_documentos = models.OneToOneField('s2205documentos',
         related_name='%(class)s_s2205_documentos')
@@ -235,6 +243,13 @@ class s2205CTPS(models.Model):
         managed = True
         ordering = ['s2205_documentos', 'nrctps', 'seriectps', 'ufctps']
 
+
+
+class s2205CTPSSerializer(ModelSerializer):
+    class Meta:
+        model = s2205CTPS
+        fields = '__all__'
+            
 
 class s2205OC(models.Model):
     s2205_documentos = models.OneToOneField('s2205documentos',
@@ -260,6 +275,13 @@ class s2205OC(models.Model):
         ordering = ['s2205_documentos', 'nroc', 'orgaoemissor', 'dtexped', 'dtvalid']
 
 
+
+class s2205OCSerializer(ModelSerializer):
+    class Meta:
+        model = s2205OC
+        fields = '__all__'
+            
+
 class s2205RG(models.Model):
     s2205_documentos = models.OneToOneField('s2205documentos',
         related_name='%(class)s_s2205_documentos')
@@ -282,6 +304,13 @@ class s2205RG(models.Model):
         managed = True
         ordering = ['s2205_documentos', 'nrrg', 'orgaoemissor', 'dtexped']
 
+
+
+class s2205RGSerializer(ModelSerializer):
+    class Meta:
+        model = s2205RG
+        fields = '__all__'
+            
 
 class s2205RIC(models.Model):
     s2205_documentos = models.OneToOneField('s2205documentos',
@@ -306,6 +335,13 @@ class s2205RIC(models.Model):
         ordering = ['s2205_documentos', 'nrric', 'orgaoemissor', 'dtexped']
 
 
+
+class s2205RICSerializer(ModelSerializer):
+    class Meta:
+        model = s2205RIC
+        fields = '__all__'
+            
+
 class s2205RNE(models.Model):
     s2205_documentos = models.OneToOneField('s2205documentos',
         related_name='%(class)s_s2205_documentos')
@@ -329,6 +365,13 @@ class s2205RNE(models.Model):
         ordering = ['s2205_documentos', 'nrrne', 'orgaoemissor', 'dtexped']
 
 
+
+class s2205RNESerializer(ModelSerializer):
+    class Meta:
+        model = s2205RNE
+        fields = '__all__'
+            
+
 class s2205aposentadoria(models.Model):
     s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
         related_name='%(class)s_s2205_evtaltcadastral')
@@ -349,6 +392,13 @@ class s2205aposentadoria(models.Model):
         managed = True
         ordering = ['s2205_evtaltcadastral', 'trabaposent']
 
+
+
+class s2205aposentadoriaSerializer(ModelSerializer):
+    class Meta:
+        model = s2205aposentadoria
+        fields = '__all__'
+            
 
 class s2205brasil(models.Model):
     s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
@@ -378,6 +428,13 @@ class s2205brasil(models.Model):
         ordering = ['s2205_evtaltcadastral', 'tplograd', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'cep', 'codmunic', 'uf']
 
 
+
+class s2205brasilSerializer(ModelSerializer):
+    class Meta:
+        model = s2205brasil
+        fields = '__all__'
+            
+
 class s2205contato(models.Model):
     s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
         related_name='%(class)s_s2205_evtaltcadastral')
@@ -401,6 +458,13 @@ class s2205contato(models.Model):
         managed = True
         ordering = ['s2205_evtaltcadastral', 'foneprinc', 'fonealternat', 'emailprinc', 'emailalternat']
 
+
+
+class s2205contatoSerializer(ModelSerializer):
+    class Meta:
+        model = s2205contato
+        fields = '__all__'
+            
 
 class s2205dependente(models.Model):
     s2205_evtaltcadastral = models.ForeignKey('esocial.s2205evtAltCadastral',
@@ -431,6 +495,13 @@ class s2205dependente(models.Model):
         ordering = ['s2205_evtaltcadastral', 'tpdep', 'nmdep', 'dtnascto', 'cpfdep', 'sexodep', 'depirrf', 'depsf', 'inctrab', 'depfinsprev']
 
 
+
+class s2205dependenteSerializer(ModelSerializer):
+    class Meta:
+        model = s2205dependente
+        fields = '__all__'
+            
+
 class s2205documentos(models.Model):
     s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
         related_name='%(class)s_s2205_evtaltcadastral')
@@ -450,6 +521,13 @@ class s2205documentos(models.Model):
         managed = True
         ordering = ['s2205_evtaltcadastral']
 
+
+
+class s2205documentosSerializer(ModelSerializer):
+    class Meta:
+        model = s2205documentos
+        fields = '__all__'
+            
 
 class s2205exterior(models.Model):
     s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
@@ -477,6 +555,13 @@ class s2205exterior(models.Model):
         managed = True
         ordering = ['s2205_evtaltcadastral', 'paisresid', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'nmcid', 'codpostal']
 
+
+
+class s2205exteriorSerializer(ModelSerializer):
+    class Meta:
+        model = s2205exterior
+        fields = '__all__'
+            
 
 class s2205infoDeficiencia(models.Model):
     s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
@@ -506,6 +591,13 @@ class s2205infoDeficiencia(models.Model):
         ordering = ['s2205_evtaltcadastral', 'deffisica', 'defvisual', 'defauditiva', 'defmental', 'defintelectual', 'reabreadap', 'infocota', 'observacao']
 
 
+
+class s2205infoDeficienciaSerializer(ModelSerializer):
+    class Meta:
+        model = s2205infoDeficiencia
+        fields = '__all__'
+            
+
 class s2205trabEstrangeiro(models.Model):
     s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
         related_name='%(class)s_s2205_evtaltcadastral')
@@ -529,5 +621,12 @@ class s2205trabEstrangeiro(models.Model):
         managed = True
         ordering = ['s2205_evtaltcadastral', 'dtchegada', 'classtrabestrang', 'casadobr', 'filhosbr']
 
+
+
+class s2205trabEstrangeiroSerializer(ModelSerializer):
+    class Meta:
+        model = s2205trabEstrangeiro
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

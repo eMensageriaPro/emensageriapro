@@ -36,10 +36,16 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
 
+
+CHOICES_R1000_INCLUSAO_INDACORDOISENMULTA = (
+    (0, u'0 - Sem acordo'),
+    (1, u'1 - Com acordo'),
+)
 
 PERIODOS = (
     ('2017-01', u'Janeiro/2017'),
@@ -68,26 +74,6 @@ PERIODOS = (
     ('2018-12', u'Dezembro/2018'),
 )
 
-CHOICES_R1000_ALTERACAO_IDEEFR = (
-    ('N', u'N - Não é EFR'),
-    ('S', u'S - É EFR'),
-)
-
-CHOICES_R1000_ALTERACAO_INDACORDOISENMULTA = (
-    (0, u'0 - Sem acordo'),
-    (1, u'1 - Com acordo'),
-)
-
-CHOICES_R1000_ALTERACAO_INDDESONERACAO = (
-    (0, u'0 - Não Aplicável'),
-    (1, u'1 - Empresa enquadrada nos termos da Lei 12.546/2011 e alterações'),
-)
-
-CHOICES_R1000_ALTERACAO_INDESCRITURACAO = (
-    (0, u'0 - Empresa Não obrigada à ECD'),
-    (1, u'1 - Empresa obrigada à ECD'),
-)
-
 CHOICES_R1000_ALTERACAO_INDSITPJ = (
     (0, u'0 - Situação Normal'),
     (1, u'1 - Extinção'),
@@ -101,19 +87,19 @@ CHOICES_R1000_INCLUSAO_IDEEFR = (
     ('S', u'S - É EFR'),
 )
 
-CHOICES_R1000_INCLUSAO_INDACORDOISENMULTA = (
-    (0, u'0 - Sem acordo'),
-    (1, u'1 - Com acordo'),
-)
-
-CHOICES_R1000_INCLUSAO_INDDESONERACAO = (
+CHOICES_R1000_ALTERACAO_INDDESONERACAO = (
     (0, u'0 - Não Aplicável'),
     (1, u'1 - Empresa enquadrada nos termos da Lei 12.546/2011 e alterações'),
 )
 
-CHOICES_R1000_INCLUSAO_INDESCRITURACAO = (
-    (0, u'0 - Empresa Não obrigada à ECD'),
-    (1, u'1 - Empresa obrigada à ECD'),
+CHOICES_R1000_ALTERACAO_INDACORDOISENMULTA = (
+    (0, u'0 - Sem acordo'),
+    (1, u'1 - Com acordo'),
+)
+
+CHOICES_R1000_ALTERACAO_IDEEFR = (
+    ('N', u'N - Não é EFR'),
+    ('S', u'S - É EFR'),
 )
 
 CHOICES_R1000_INCLUSAO_INDSITPJ = (
@@ -122,6 +108,21 @@ CHOICES_R1000_INCLUSAO_INDSITPJ = (
     (2, u'2 - Fusão'),
     (3, u'3 - Cisão'),
     (4, u'4 - Incorporação'),
+)
+
+CHOICES_R1000_INCLUSAO_INDESCRITURACAO = (
+    (0, u'0 - Empresa Não obrigada à ECD'),
+    (1, u'1 - Empresa obrigada à ECD'),
+)
+
+CHOICES_R1000_INCLUSAO_INDDESONERACAO = (
+    (0, u'0 - Não Aplicável'),
+    (1, u'1 - Empresa enquadrada nos termos da Lei 12.546/2011 e alterações'),
+)
+
+CHOICES_R1000_ALTERACAO_INDESCRITURACAO = (
+    (0, u'0 - Empresa Não obrigada à ECD'),
+    (1, u'1 - Empresa obrigada à ECD'),
 )
 
 class r1000alteracao(models.Model):
@@ -157,6 +158,13 @@ class r1000alteracao(models.Model):
         ordering = ['r1000_evtinfocontri', 'inivalid', 'fimvalid', 'classtrib', 'indescrituracao', 'inddesoneracao', 'indacordoisenmulta', 'indsitpj', 'nmctt', 'cpfctt', 'fonefixo', 'fonecel', 'email']
 
 
+
+class r1000alteracaoSerializer(ModelSerializer):
+    class Meta:
+        model = r1000alteracao
+        fields = '__all__'
+            
+
 class r1000alteracaoinfoEFR(models.Model):
     r1000_alteracao = models.OneToOneField('r1000alteracao',
         related_name='%(class)s_r1000_alteracao')
@@ -180,6 +188,13 @@ class r1000alteracaoinfoEFR(models.Model):
         ordering = ['r1000_alteracao', 'ideefr', 'cnpjefr']
 
 
+
+class r1000alteracaoinfoEFRSerializer(ModelSerializer):
+    class Meta:
+        model = r1000alteracaoinfoEFR
+        fields = '__all__'
+            
+
 class r1000alteracaonovaValidade(models.Model):
     r1000_alteracao = models.OneToOneField('r1000alteracao',
         related_name='%(class)s_r1000_alteracao')
@@ -202,6 +217,13 @@ class r1000alteracaonovaValidade(models.Model):
         managed = True
         ordering = ['r1000_alteracao', 'inivalid', 'fimvalid']
 
+
+
+class r1000alteracaonovaValidadeSerializer(ModelSerializer):
+    class Meta:
+        model = r1000alteracaonovaValidade
+        fields = '__all__'
+            
 
 class r1000alteracaosoftHouse(models.Model):
     r1000_alteracao = models.ForeignKey('r1000alteracao',
@@ -229,6 +251,13 @@ class r1000alteracaosoftHouse(models.Model):
         ordering = ['r1000_alteracao', 'cnpjsofthouse', 'nmrazao', 'nmcont', 'telefone', 'email']
 
 
+
+class r1000alteracaosoftHouseSerializer(ModelSerializer):
+    class Meta:
+        model = r1000alteracaosoftHouse
+        fields = '__all__'
+            
+
 class r1000exclusao(models.Model):
     r1000_evtinfocontri = models.OneToOneField('efdreinf.r1000evtInfoContri',
         related_name='%(class)s_r1000_evtinfocontri')
@@ -251,6 +280,13 @@ class r1000exclusao(models.Model):
         managed = True
         ordering = ['r1000_evtinfocontri', 'inivalid', 'fimvalid']
 
+
+
+class r1000exclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = r1000exclusao
+        fields = '__all__'
+            
 
 class r1000inclusao(models.Model):
     r1000_evtinfocontri = models.OneToOneField('efdreinf.r1000evtInfoContri',
@@ -285,6 +321,13 @@ class r1000inclusao(models.Model):
         ordering = ['r1000_evtinfocontri', 'inivalid', 'fimvalid', 'classtrib', 'indescrituracao', 'inddesoneracao', 'indacordoisenmulta', 'indsitpj', 'nmctt', 'cpfctt', 'fonefixo', 'fonecel', 'email']
 
 
+
+class r1000inclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = r1000inclusao
+        fields = '__all__'
+            
+
 class r1000inclusaoinfoEFR(models.Model):
     r1000_inclusao = models.OneToOneField('r1000inclusao',
         related_name='%(class)s_r1000_inclusao')
@@ -307,6 +350,13 @@ class r1000inclusaoinfoEFR(models.Model):
         managed = True
         ordering = ['r1000_inclusao', 'ideefr', 'cnpjefr']
 
+
+
+class r1000inclusaoinfoEFRSerializer(ModelSerializer):
+    class Meta:
+        model = r1000inclusaoinfoEFR
+        fields = '__all__'
+            
 
 class r1000inclusaosoftHouse(models.Model):
     r1000_inclusao = models.ForeignKey('r1000inclusao',
@@ -333,5 +383,12 @@ class r1000inclusaosoftHouse(models.Model):
         managed = True
         ordering = ['r1000_inclusao', 'cnpjsofthouse', 'nmrazao', 'nmcont', 'telefone', 'email']
 
+
+
+class r1000inclusaosoftHouseSerializer(ModelSerializer):
+    class Meta:
+        model = r1000inclusaosoftHouse
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

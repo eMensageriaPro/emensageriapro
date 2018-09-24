@@ -64,6 +64,12 @@ url(r'^config-modulos/apagar/(?P<hash>.*)/$',
         config_modulos_views.apagar, 
         name='config_modulos_apagar'),
 
+url(r'^config-modulos/api/$',
+            config_modulos_views.ConfigModulosList.as_view() ),
+
+        url(r'^config-modulos/api/(?P<pk>[0-9]+)/$',
+            config_modulos_views.ConfigModulosDetail.as_view() ),
+
 url(r'^config-modulos/listar/(?P<hash>.*)/$', 
         config_modulos_views.listar, 
         name='config_modulos'),
@@ -77,6 +83,12 @@ url(r'^config-modulos/salvar/(?P<hash>.*)/$',
 url(r'^config-paginas/apagar/(?P<hash>.*)/$', 
         config_paginas_views.apagar, 
         name='config_paginas_apagar'),
+
+url(r'^config-paginas/api/$',
+            config_paginas_views.ConfigPaginasList.as_view() ),
+
+        url(r'^config-paginas/api/(?P<pk>[0-9]+)/$',
+            config_paginas_views.ConfigPaginasDetail.as_view() ),
 
 url(r'^config-paginas/listar/(?P<hash>.*)/$', 
         config_paginas_views.listar, 
@@ -92,6 +104,12 @@ url(r'^config-perfis/apagar/(?P<hash>.*)/$',
         config_perfis_views.apagar, 
         name='config_perfis_apagar'),
 
+url(r'^config-perfis/api/$',
+            config_perfis_views.ConfigPerfisList.as_view() ),
+
+        url(r'^config-perfis/api/(?P<pk>[0-9]+)/$',
+            config_perfis_views.ConfigPerfisDetail.as_view() ),
+
 url(r'^config-perfis/listar/(?P<hash>.*)/$', 
         config_perfis_views.listar, 
         name='config_perfis'),
@@ -105,6 +123,12 @@ url(r'^config-perfis/salvar/(?P<hash>.*)/$',
 url(r'^config-permissoes/apagar/(?P<hash>.*)/$', 
         config_permissoes_views.apagar, 
         name='config_permissoes_apagar'),
+
+url(r'^config-permissoes/api/$',
+            config_permissoes_views.ConfigPermissoesList.as_view() ),
+
+        url(r'^config-permissoes/api/(?P<pk>[0-9]+)/$',
+            config_permissoes_views.ConfigPermissoesDetail.as_view() ),
 
 url(r'^config-permissoes/listar/(?P<hash>.*)/$', 
         config_permissoes_views.listar, 
@@ -120,6 +144,12 @@ url(r'^usuarios/apagar/(?P<hash>.*)/$',
         usuarios_views.apagar, 
         name='usuarios_apagar'),
 
+url(r'^usuarios/api/$',
+            usuarios_views.UsuariosList.as_view() ),
+
+        url(r'^usuarios/api/(?P<pk>[0-9]+)/$',
+            usuarios_views.UsuariosDetail.as_view() ),
+
 url(r'^usuarios/listar/(?P<hash>.*)/$', 
         usuarios_views.listar, 
         name='usuarios'),
@@ -133,6 +163,12 @@ url(r'^usuarios/salvar/(?P<hash>.*)/$',
 url(r'^auditoria/apagar/(?P<hash>.*)/$', 
         auditoria_views.apagar, 
         name='auditoria_apagar'),
+
+url(r'^auditoria/api/$',
+            auditoria_views.AuditoriaList.as_view() ),
+
+        url(r'^auditoria/api/(?P<pk>[0-9]+)/$',
+            auditoria_views.AuditoriaDetail.as_view() ),
 
 url(r'^auditoria/listar/(?P<hash>.*)/$', 
         auditoria_views.listar, 

@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -68,6 +69,13 @@ class s1280infoAtivConcom(models.Model):
         ordering = ['s1280_evtinfocomplper', 'fatormes', 'fator13']
 
 
+
+class s1280infoAtivConcomSerializer(ModelSerializer):
+    class Meta:
+        model = s1280infoAtivConcom
+        fields = '__all__'
+            
+
 class s1280infoSubstPatr(models.Model):
     s1280_evtinfocomplper = models.OneToOneField('esocial.s1280evtInfoComplPer',
         related_name='%(class)s_s1280_evtinfocomplper')
@@ -90,6 +98,13 @@ class s1280infoSubstPatr(models.Model):
         ordering = ['s1280_evtinfocomplper', 'indsubstpatr', 'percredcontrib']
 
 
+
+class s1280infoSubstPatrSerializer(ModelSerializer):
+    class Meta:
+        model = s1280infoSubstPatr
+        fields = '__all__'
+            
+
 class s1280infoSubstPatrOpPort(models.Model):
     s1280_evtinfocomplper = models.ForeignKey('esocial.s1280evtInfoComplPer',
         related_name='%(class)s_s1280_evtinfocomplper')
@@ -110,5 +125,12 @@ class s1280infoSubstPatrOpPort(models.Model):
         managed = True
         ordering = ['s1280_evtinfocomplper', 'cnpjopportuario']
 
+
+
+class s1280infoSubstPatrOpPortSerializer(ModelSerializer):
+    class Meta:
+        model = s1280infoSubstPatrOpPort
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

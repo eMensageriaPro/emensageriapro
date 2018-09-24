@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -141,6 +142,13 @@ class r3010boletim(models.Model):
         ordering = ['r3010_ideestab', 'nrboletim', 'tpcompeticao', 'categevento', 'moddesportiva', 'nomecompeticao', 'cnpjmandante', 'cnpjvisitante', 'nomevisitante', 'pracadesportiva', 'codmunic', 'uf', 'qtdepagantes', 'qtdenaopagantes']
 
 
+
+class r3010boletimSerializer(ModelSerializer):
+    class Meta:
+        model = r3010boletim
+        fields = '__all__'
+            
+
 class r3010ideEstab(models.Model):
     r3010_evtespdesportivo = models.ForeignKey('efdreinf.r3010evtEspDesportivo',
         related_name='%(class)s_r3010_evtespdesportivo')
@@ -169,6 +177,13 @@ class r3010ideEstab(models.Model):
         ordering = ['r3010_evtespdesportivo', 'tpinscestab', 'nrinscestab', 'vlrreceitatotal', 'vlrcp', 'vlrcpsusptotal', 'vlrreceitaclubes', 'vlrretparc']
 
 
+
+class r3010ideEstabSerializer(ModelSerializer):
+    class Meta:
+        model = r3010ideEstab
+        fields = '__all__'
+            
+
 class r3010infoProc(models.Model):
     r3010_ideestab = models.ForeignKey('r3010ideEstab',
         related_name='%(class)s_r3010_ideestab')
@@ -194,6 +209,13 @@ class r3010infoProc(models.Model):
         ordering = ['r3010_ideestab', 'tpproc', 'nrproc', 'codsusp', 'vlrcpsusp']
 
 
+
+class r3010infoProcSerializer(ModelSerializer):
+    class Meta:
+        model = r3010infoProc
+        fields = '__all__'
+            
+
 class r3010outrasReceitas(models.Model):
     r3010_boletim = models.ForeignKey('r3010boletim',
         related_name='%(class)s_r3010_boletim')
@@ -217,6 +239,13 @@ class r3010outrasReceitas(models.Model):
         managed = True
         ordering = ['r3010_boletim', 'tpreceita', 'vlrreceita', 'descreceita']
 
+
+
+class r3010outrasReceitasSerializer(ModelSerializer):
+    class Meta:
+        model = r3010outrasReceitas
+        fields = '__all__'
+            
 
 class r3010receitaIngressos(models.Model):
     r3010_boletim = models.ForeignKey('r3010boletim',
@@ -245,5 +274,12 @@ class r3010receitaIngressos(models.Model):
         managed = True
         ordering = ['r3010_boletim', 'tpingresso', 'descingr', 'qtdeingrvenda', 'qtdeingrvendidos', 'qtdeingrdev', 'precoindiv', 'vlrtotal']
 
+
+
+class r3010receitaIngressosSerializer(ModelSerializer):
+    class Meta:
+        model = r3010receitaIngressos
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

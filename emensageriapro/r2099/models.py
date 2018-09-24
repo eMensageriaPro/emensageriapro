@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -65,5 +66,12 @@ class r2099ideRespInf(models.Model):
         managed = True
         ordering = ['r2099_evtfechaevper', 'nmresp', 'cpfresp', 'telefone', 'email']
 
+
+
+class r2099ideRespInfSerializer(ModelSerializer):
+    class Meta:
+        model = r2099ideRespInf
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

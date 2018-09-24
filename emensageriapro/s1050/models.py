@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -115,6 +116,13 @@ class s1050alteracao(models.Model):
         ordering = ['s1050_evttabhortur', 'codhorcontrat', 'inivalid', 'fimvalid', 'hrentr', 'hrsaida', 'durjornada', 'perhorflexivel']
 
 
+
+class s1050alteracaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1050alteracao
+        fields = '__all__'
+            
+
 class s1050alteracaohorarioIntervalo(models.Model):
     s1050_alteracao = models.ForeignKey('s1050alteracao',
         related_name='%(class)s_s1050_alteracao')
@@ -139,6 +147,13 @@ class s1050alteracaohorarioIntervalo(models.Model):
         ordering = ['s1050_alteracao', 'tpinterv', 'durinterv', 'iniinterv', 'terminterv']
 
 
+
+class s1050alteracaohorarioIntervaloSerializer(ModelSerializer):
+    class Meta:
+        model = s1050alteracaohorarioIntervalo
+        fields = '__all__'
+            
+
 class s1050alteracaonovaValidade(models.Model):
     s1050_alteracao = models.OneToOneField('s1050alteracao',
         related_name='%(class)s_s1050_alteracao')
@@ -160,6 +175,13 @@ class s1050alteracaonovaValidade(models.Model):
         managed = True
         ordering = ['s1050_alteracao', 'inivalid', 'fimvalid']
 
+
+
+class s1050alteracaonovaValidadeSerializer(ModelSerializer):
+    class Meta:
+        model = s1050alteracaonovaValidade
+        fields = '__all__'
+            
 
 class s1050exclusao(models.Model):
     s1050_evttabhortur = models.OneToOneField('esocial.s1050evtTabHorTur',
@@ -183,6 +205,13 @@ class s1050exclusao(models.Model):
         managed = True
         ordering = ['s1050_evttabhortur', 'codhorcontrat', 'inivalid', 'fimvalid']
 
+
+
+class s1050exclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1050exclusao
+        fields = '__all__'
+            
 
 class s1050inclusao(models.Model):
     s1050_evttabhortur = models.OneToOneField('esocial.s1050evtTabHorTur',
@@ -211,6 +240,13 @@ class s1050inclusao(models.Model):
         ordering = ['s1050_evttabhortur', 'codhorcontrat', 'inivalid', 'fimvalid', 'hrentr', 'hrsaida', 'durjornada', 'perhorflexivel']
 
 
+
+class s1050inclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1050inclusao
+        fields = '__all__'
+            
+
 class s1050inclusaohorarioIntervalo(models.Model):
     s1050_inclusao = models.ForeignKey('s1050inclusao',
         related_name='%(class)s_s1050_inclusao')
@@ -234,5 +270,12 @@ class s1050inclusaohorarioIntervalo(models.Model):
         managed = True
         ordering = ['s1050_inclusao', 'tpinterv', 'durinterv', 'iniinterv', 'terminterv']
 
+
+
+class s1050inclusaohorarioIntervaloSerializer(ModelSerializer):
+    class Meta:
+        model = s1050inclusaohorarioIntervalo
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -173,6 +174,13 @@ class s1020alteracao(models.Model):
         ordering = ['s1020_evttablotacao', 'codlotacao', 'inivalid', 'fimvalid', 'tplotacao', 'tpinsc', 'nrinsc', 'fpas', 'codtercs', 'codtercssusp']
 
 
+
+class s1020alteracaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1020alteracao
+        fields = '__all__'
+            
+
 class s1020alteracaoinfoEmprParcial(models.Model):
     s1020_alteracao = models.OneToOneField('s1020alteracao',
         related_name='%(class)s_s1020_alteracao')
@@ -197,6 +205,13 @@ class s1020alteracaoinfoEmprParcial(models.Model):
         ordering = ['s1020_alteracao', 'tpinsccontrat', 'nrinsccontrat', 'tpinscprop', 'nrinscprop']
 
 
+
+class s1020alteracaoinfoEmprParcialSerializer(ModelSerializer):
+    class Meta:
+        model = s1020alteracaoinfoEmprParcial
+        fields = '__all__'
+            
+
 class s1020alteracaoinfoProcJudTerceiros(models.Model):
     s1020_alteracao = models.OneToOneField('s1020alteracao',
         related_name='%(class)s_s1020_alteracao')
@@ -216,6 +231,13 @@ class s1020alteracaoinfoProcJudTerceiros(models.Model):
         managed = True
         ordering = ['s1020_alteracao']
 
+
+
+class s1020alteracaoinfoProcJudTerceirosSerializer(ModelSerializer):
+    class Meta:
+        model = s1020alteracaoinfoProcJudTerceiros
+        fields = '__all__'
+            
 
 class s1020alteracaonovaValidade(models.Model):
     s1020_alteracao = models.OneToOneField('s1020alteracao',
@@ -238,6 +260,13 @@ class s1020alteracaonovaValidade(models.Model):
         managed = True
         ordering = ['s1020_alteracao', 'inivalid', 'fimvalid']
 
+
+
+class s1020alteracaonovaValidadeSerializer(ModelSerializer):
+    class Meta:
+        model = s1020alteracaonovaValidade
+        fields = '__all__'
+            
 
 class s1020alteracaoprocJudTerceiro(models.Model):
     s1020_alteracao_infoprocjudterceiros = models.ForeignKey('s1020alteracaoinfoProcJudTerceiros',
@@ -262,6 +291,13 @@ class s1020alteracaoprocJudTerceiro(models.Model):
         ordering = ['s1020_alteracao_infoprocjudterceiros', 'codterc', 'nrprocjud', 'codsusp']
 
 
+
+class s1020alteracaoprocJudTerceiroSerializer(ModelSerializer):
+    class Meta:
+        model = s1020alteracaoprocJudTerceiro
+        fields = '__all__'
+            
+
 class s1020exclusao(models.Model):
     s1020_evttablotacao = models.OneToOneField('esocial.s1020evtTabLotacao',
         related_name='%(class)s_s1020_evttablotacao')
@@ -284,6 +320,13 @@ class s1020exclusao(models.Model):
         managed = True
         ordering = ['s1020_evttablotacao', 'codlotacao', 'inivalid', 'fimvalid']
 
+
+
+class s1020exclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1020exclusao
+        fields = '__all__'
+            
 
 class s1020inclusao(models.Model):
     s1020_evttablotacao = models.OneToOneField('esocial.s1020evtTabLotacao',
@@ -314,6 +357,13 @@ class s1020inclusao(models.Model):
         ordering = ['s1020_evttablotacao', 'codlotacao', 'inivalid', 'fimvalid', 'tplotacao', 'tpinsc', 'nrinsc', 'fpas', 'codtercs', 'codtercssusp']
 
 
+
+class s1020inclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = s1020inclusao
+        fields = '__all__'
+            
+
 class s1020inclusaoinfoEmprParcial(models.Model):
     s1020_inclusao = models.OneToOneField('s1020inclusao',
         related_name='%(class)s_s1020_inclusao')
@@ -338,6 +388,13 @@ class s1020inclusaoinfoEmprParcial(models.Model):
         ordering = ['s1020_inclusao', 'tpinsccontrat', 'nrinsccontrat', 'tpinscprop', 'nrinscprop']
 
 
+
+class s1020inclusaoinfoEmprParcialSerializer(ModelSerializer):
+    class Meta:
+        model = s1020inclusaoinfoEmprParcial
+        fields = '__all__'
+            
+
 class s1020inclusaoinfoProcJudTerceiros(models.Model):
     s1020_inclusao = models.OneToOneField('s1020inclusao',
         related_name='%(class)s_s1020_inclusao')
@@ -357,6 +414,13 @@ class s1020inclusaoinfoProcJudTerceiros(models.Model):
         managed = True
         ordering = ['s1020_inclusao']
 
+
+
+class s1020inclusaoinfoProcJudTerceirosSerializer(ModelSerializer):
+    class Meta:
+        model = s1020inclusaoinfoProcJudTerceiros
+        fields = '__all__'
+            
 
 class s1020inclusaoprocJudTerceiro(models.Model):
     s1020_inclusao_infoprocjudterceiros = models.ForeignKey('s1020inclusaoinfoProcJudTerceiros',
@@ -380,5 +444,12 @@ class s1020inclusaoprocJudTerceiro(models.Model):
         managed = True
         ordering = ['s1020_inclusao_infoprocjudterceiros', 'codterc', 'nrprocjud', 'codsusp']
 
+
+
+class s1020inclusaoprocJudTerceiroSerializer(ModelSerializer):
+    class Meta:
+        model = s1020inclusaoprocJudTerceiro
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

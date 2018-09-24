@@ -36,14 +36,144 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
 
 
-SIM_NAO = (
-    (0, u'Não'),
-    (1, u'Sim'),
+CHOICES_R2050_TPINSCESTAB = (
+    (1, u'1 - CNPJ'),
+)
+
+CHOICES_R2099_EVTSERVTM = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_R1070_PROCEMI = (
+    (1, u'1 - Aplicativo do contribuinte'),
+    (2, u'2 - Aplicativo governamental'),
+)
+
+CHOICES_R3010_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+)
+
+CHOICES_R2060_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_R2050_PROCEMI = (
+    (1, u'1 - Aplicativo do contribuinte'),
+    (2, u'2 - Aplicativo governamental'),
+)
+
+CHOICES_R2070_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_R9000_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+)
+
+CHOICES_R2020_TPINSCTOMADOR = (
+    (1, u'1 - CNPJ'),
+    (4, u'4 - CNO'),
+)
+
+CHOICES_R2070_INDRETIF = (
+    (1, u'1 - Arquivo original'),
+    (2, u'2 - Arquivo de retificação'),
+)
+
+CHOICES_R2040_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+)
+
+CHOICES_R2099_EVTASSDESPREC = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_R2040_TPINSCESTAB = (
+    (1, u'1 - CNPJ'),
+)
+
+CHOICES_R2030_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_R2010_PROCEMI = (
+    (1, u'1 - Aplicativo do contribuinte'),
+    (2, u'2 - Aplicativo governamental'),
+)
+
+CHOICES_R2098_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_R2020_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+)
+
+CHOICES_R2040_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_R2099_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_R2050_INDRETIF = (
+    (1, u'1 - Arquivo original'),
+    (2, u'2 - Arquivo de retificação'),
+)
+
+CHOICES_R2010_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_R9000_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_R1000_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+)
+
+CHOICES_R5001_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+)
+
+OPERACOES = (
+    (1, u'Incluir'),
+    (2, u'Alterar'),
+    (3, u'Excluir'),
+)
+
+CHOICES_R1000_PROCEMI = (
+    (1, u'1 - Aplicativo do contribuinte'),
+    (2, u'2 - Aplicativo governamental'),
+)
+
+CHOICES_R2010_INDCPRB = (
+    (0, u'0 - Não é contribuinte da Contribuição Previdenciária sobre a Receita Bruta (CPRB) - Retenção 11%'),
+    (1, u'1 - Contribuinte da Contribuição Previdenciária sobre a Receita Bruta (CPRB) - Retenção 3,5%'),
 )
 
 TRANSMISSOR_STATUS = (
@@ -64,17 +194,186 @@ TRANSMISSOR_STATUS = (
     (9, u'Consultado'),
 )
 
-OPERACOES = (
-    (1, u'Incluir'),
-    (2, u'Alterar'),
-    (3, u'Excluir'),
+CHOICES_R2020_PROCEMI = (
+    (1, u'1 - Aplicativo do contribuinte'),
+    (2, u'2 - Aplicativo governamental'),
+)
+
+CHOICES_R2010_INDOBRA = (
+    (0, u'0 - Não é obra de construção civil ou não está sujeita a matrícula de obra'),
+    (1, u'1 - Obra de Construção Civil - Empreitada Total'),
+    (2, u'2 - Obra de Construção Civil - Empreitada Parcial'),
+)
+
+CHOICES_R5011_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+)
+
+CHOICES_R2010_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+)
+
+CHOICES_R2050_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_R2070_TPINSCBENEF = (
+    (1, u'1 - Pessoa Jurídica'),
+    (2, u'2 - Pessoa Física'),
+)
+
+CHOICES_R2070_PROCEMI = (
+    (1, u'1 - Aplicativo do contribuinte'),
+    (2, u'2 - Aplicativo governamental'),
+)
+
+CHOICES_R2099_EVTASSDESPREP = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_R2060_TPINSCESTAB = (
+    (1, u'1 - CNPJ'),
+    (4, u'4 - CNO'),
+)
+
+CHOICES_R2098_PROCEMI = (
+    (1, u'1 - Aplicativo do contribuinte'),
+    (2, u'2 - Aplicativo governamental'),
+)
+
+CHOICES_R3010_PROCEMI = (
+    (1, u'1 - Aplicativo do contribuinte'),
+    (2, u'2 - Aplicativo governamental'),
+)
+
+CHOICES_R2010_TPINSCESTAB = (
+    (1, u'1 - CNPJ'),
+    (4, u'4 - CNO'),
+)
+
+CHOICES_R2099_EVTSERVPR = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_R2050_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+)
+
+CHOICES_R2099_EVTCPRB = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_R2030_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+)
+
+CHOICES_R2020_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_R3010_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_R2030_PROCEMI = (
+    (1, u'1 - Aplicativo do contribuinte'),
+    (2, u'2 - Aplicativo governamental'),
+)
+
+CHOICES_R3010_INDRETIF = (
+    (1, u'1 - Arquivo original'),
+    (2, u'2 - Arquivo de retificação'),
+)
+
+CHOICES_R2040_INDRETIF = (
+    (1, u'1 - Arquivo original'),
+    (2, u'2 - Arquivo de retificação'),
+)
+
+CHOICES_R2098_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+)
+
+CHOICES_R2099_PROCEMI = (
+    (1, u'1 - Aplicativo do contribuinte'),
+    (2, u'2 - Aplicativo governamental'),
+)
+
+CHOICES_R2020_INDRETIF = (
+    (1, u'1 - Arquivo original'),
+    (2, u'2 - Arquivo de retificação'),
+)
+
+CHOICES_R2030_TPINSCESTAB = (
+    (1, u'1 - CNPJ'),
+)
+
+CHOICES_R2060_INDRETIF = (
+    (1, u'1 - Arquivo original'),
+    (2, u'2 - Arquivo de retificação'),
+)
+
+CHOICES_R2099_EVTPGTOS = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
 )
 
 EFDREINF_VERSOES = (
     ('v1_03_02', u'Versão 1.03.02'),
 )
 
-CHOICES_R1000_PROCEMI = (
+CHOICES_R2040_PROCEMI = (
+    (1, u'1 - Aplicativo do contribuinte'),
+    (2, u'2 - Aplicativo governamental'),
+)
+
+CHOICES_R2099_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+)
+
+CHOICES_R2020_TPINSCESTABPREST = (
+    (1, u'1 - CNPJ'),
+)
+
+CHOICES_R2020_INDOBRA = (
+    (0, u'0 - Não é obra de construção civil ou não está sujeita a matrícula de obra'),
+    (1, u'1 - Obra de Construção Civil - Empreitada Total'),
+    (2, u'2 - Obra de Construção Civil - Empreitada Parcial'),
+)
+
+CHOICES_R2099_EVTCOMPROD = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+SIM_NAO = (
+    (0, u'Não'),
+    (1, u'Sim'),
+)
+
+CHOICES_R2060_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+)
+
+CHOICES_R2030_INDRETIF = (
+    (1, u'1 - Arquivo original'),
+    (2, u'2 - Arquivo de retificação'),
+)
+
+CHOICES_R9000_PROCEMI = (
     (1, u'1 - Aplicativo do contribuinte'),
     (2, u'2 - Aplicativo governamental'),
 )
@@ -84,207 +383,9 @@ CHOICES_R1000_TPAMB = (
     (2, u'2 - Produção restrita'),
 )
 
-CHOICES_R1000_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-)
-
-CHOICES_R1070_PROCEMI = (
-    (1, u'1 - Aplicativo do contribuinte'),
-    (2, u'2 - Aplicativo governamental'),
-)
-
-CHOICES_R1070_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_R1070_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-)
-
-CHOICES_R2010_INDCPRB = (
-    (0, u'0 - Não é contribuinte da Contribuição Previdenciária sobre a Receita Bruta (CPRB) - Retenção 11%'),
-    (1, u'1 - Contribuinte da Contribuição Previdenciária sobre a Receita Bruta (CPRB) - Retenção 3,5%'),
-)
-
-CHOICES_R2010_INDOBRA = (
-    (0, u'0 - Não é obra de construção civil ou não está sujeita a matrícula de obra'),
-    (1, u'1 - Obra de Construção Civil - Empreitada Total'),
-    (2, u'2 - Obra de Construção Civil - Empreitada Parcial'),
-)
-
-CHOICES_R2010_INDRETIF = (
-    (1, u'1 - Arquivo original'),
-    (2, u'2 - Arquivo de retificação'),
-)
-
-CHOICES_R2010_PROCEMI = (
-    (1, u'1 - Aplicativo do contribuinte'),
-    (2, u'2 - Aplicativo governamental'),
-)
-
-CHOICES_R2010_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_R2010_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-)
-
-CHOICES_R2010_TPINSCESTAB = (
-    (1, u'1 - CNPJ'),
-    (4, u'4 - CNO'),
-)
-
-CHOICES_R2020_INDOBRA = (
-    (0, u'0 - Não é obra de construção civil ou não está sujeita a matrícula de obra'),
-    (1, u'1 - Obra de Construção Civil - Empreitada Total'),
-    (2, u'2 - Obra de Construção Civil - Empreitada Parcial'),
-)
-
-CHOICES_R2020_INDRETIF = (
-    (1, u'1 - Arquivo original'),
-    (2, u'2 - Arquivo de retificação'),
-)
-
-CHOICES_R2020_PROCEMI = (
-    (1, u'1 - Aplicativo do contribuinte'),
-    (2, u'2 - Aplicativo governamental'),
-)
-
-CHOICES_R2020_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_R2020_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-)
-
-CHOICES_R2020_TPINSCESTABPREST = (
-    (1, u'1 - CNPJ'),
-)
-
-CHOICES_R2020_TPINSCTOMADOR = (
-    (1, u'1 - CNPJ'),
-    (4, u'4 - CNO'),
-)
-
-CHOICES_R2030_INDRETIF = (
-    (1, u'1 - Arquivo original'),
-    (2, u'2 - Arquivo de retificação'),
-)
-
-CHOICES_R2030_PROCEMI = (
-    (1, u'1 - Aplicativo do contribuinte'),
-    (2, u'2 - Aplicativo governamental'),
-)
-
-CHOICES_R2030_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_R2030_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-)
-
-CHOICES_R2030_TPINSCESTAB = (
-    (1, u'1 - CNPJ'),
-)
-
-CHOICES_R2040_INDRETIF = (
-    (1, u'1 - Arquivo original'),
-    (2, u'2 - Arquivo de retificação'),
-)
-
-CHOICES_R2040_PROCEMI = (
-    (1, u'1 - Aplicativo do contribuinte'),
-    (2, u'2 - Aplicativo governamental'),
-)
-
-CHOICES_R2040_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_R2040_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-)
-
-CHOICES_R2040_TPINSCESTAB = (
-    (1, u'1 - CNPJ'),
-)
-
-CHOICES_R2050_INDRETIF = (
-    (1, u'1 - Arquivo original'),
-    (2, u'2 - Arquivo de retificação'),
-)
-
-CHOICES_R2050_PROCEMI = (
-    (1, u'1 - Aplicativo do contribuinte'),
-    (2, u'2 - Aplicativo governamental'),
-)
-
-CHOICES_R2050_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_R2050_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-)
-
-CHOICES_R2050_TPINSCESTAB = (
-    (1, u'1 - CNPJ'),
-)
-
-CHOICES_R2060_INDRETIF = (
-    (1, u'1 - Arquivo original'),
-    (2, u'2 - Arquivo de retificação'),
-)
-
 CHOICES_R2060_PROCEMI = (
     (1, u'1 - Aplicativo do contribuinte'),
     (2, u'2 - Aplicativo governamental'),
-)
-
-CHOICES_R2060_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_R2060_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-)
-
-CHOICES_R2060_TPINSCESTAB = (
-    (1, u'1 - CNPJ'),
-    (4, u'4 - CNO'),
-)
-
-CHOICES_R2070_INDRETIF = (
-    (1, u'1 - Arquivo original'),
-    (2, u'2 - Arquivo de retificação'),
-)
-
-CHOICES_R2070_PROCEMI = (
-    (1, u'1 - Aplicativo do contribuinte'),
-    (2, u'2 - Aplicativo governamental'),
-)
-
-CHOICES_R2070_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
 )
 
 CHOICES_R2070_TPINSC = (
@@ -294,119 +395,19 @@ CHOICES_R2070_TPINSC = (
     (2, u'2 - CPF'),
 )
 
-CHOICES_R2070_TPINSCBENEF = (
-    (1, u'1 - Pessoa Jurídica'),
-    (2, u'2 - Pessoa Física'),
-)
-
-CHOICES_R2098_PROCEMI = (
-    (1, u'1 - Aplicativo do contribuinte'),
-    (2, u'2 - Aplicativo governamental'),
-)
-
-CHOICES_R2098_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_R2098_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-)
-
-CHOICES_R2099_EVTASSDESPREC = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_R2099_EVTASSDESPREP = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_R2099_EVTCOMPROD = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_R2099_EVTCPRB = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_R2099_EVTPGTOS = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_R2099_EVTSERVPR = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_R2099_EVTSERVTM = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_R2099_PROCEMI = (
-    (1, u'1 - Aplicativo do contribuinte'),
-    (2, u'2 - Aplicativo governamental'),
-)
-
-CHOICES_R2099_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_R2099_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-)
-
-CHOICES_R3010_INDRETIF = (
+CHOICES_R2010_INDRETIF = (
     (1, u'1 - Arquivo original'),
     (2, u'2 - Arquivo de retificação'),
 )
 
-CHOICES_R3010_PROCEMI = (
-    (1, u'1 - Aplicativo do contribuinte'),
-    (2, u'2 - Aplicativo governamental'),
+CHOICES_R1070_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
 )
 
-CHOICES_R3010_TPAMB = (
+CHOICES_R1070_TPAMB = (
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita'),
-)
-
-CHOICES_R3010_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-)
-
-CHOICES_R5001_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-)
-
-CHOICES_R5011_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-)
-
-CHOICES_R9000_PROCEMI = (
-    (1, u'1 - Aplicativo do contribuinte'),
-    (2, u'2 - Aplicativo governamental'),
-)
-
-CHOICES_R9000_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-CHOICES_R9000_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
 )
 
 class r1000evtInfoContri(models.Model):
@@ -451,6 +452,13 @@ class r1000evtInfoContri(models.Model):
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
 
+
+class r1000evtInfoContriSerializer(ModelSerializer):
+    class Meta:
+        model = r1000evtInfoContri
+        fields = '__all__'
+            
+
 class r1070evtTabProcesso(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
@@ -492,6 +500,13 @@ class r1070evtTabProcesso(models.Model):
         managed = True
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
+
+
+class r1070evtTabProcessoSerializer(ModelSerializer):
+    class Meta:
+        model = r1070evtTabProcesso
+        fields = '__all__'
+            
 
 class r2010evtServTom(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
@@ -548,6 +563,13 @@ class r2010evtServTom(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab', 'indobra', 'cnpjprestador', 'vlrtotalbruto', 'vlrtotalbaseret', 'vlrtotalretprinc', 'vlrtotalretadic', 'vlrtotalnretprinc', 'vlrtotalnretadic', 'indcprb']
 
 
+
+class r2010evtServTomSerializer(ModelSerializer):
+    class Meta:
+        model = r2010evtServTom
+        fields = '__all__'
+            
+
 class r2020evtServPrest(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
@@ -603,6 +625,13 @@ class r2020evtServPrest(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestabprest', 'nrinscestabprest', 'tpinsctomador', 'nrinsctomador', 'indobra', 'vlrtotalbruto', 'vlrtotalbaseret', 'vlrtotalretprinc', 'vlrtotalretadic', 'vlrtotalnretprinc', 'vlrtotalnretadic']
 
 
+
+class r2020evtServPrestSerializer(ModelSerializer):
+    class Meta:
+        model = r2020evtServPrest
+        fields = '__all__'
+            
+
 class r2030evtAssocDespRec(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
@@ -649,6 +678,13 @@ class r2030evtAssocDespRec(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab']
 
 
+
+class r2030evtAssocDespRecSerializer(ModelSerializer):
+    class Meta:
+        model = r2030evtAssocDespRec
+        fields = '__all__'
+            
+
 class r2040evtAssocDespRep(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
@@ -694,6 +730,13 @@ class r2040evtAssocDespRep(models.Model):
         managed = True
         ordering = ['identidade', 'indretif', 'nrrecibo', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab']
 
+
+
+class r2040evtAssocDespRepSerializer(ModelSerializer):
+    class Meta:
+        model = r2040evtAssocDespRep
+        fields = '__all__'
+            
 
 class r2050evtComProd(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
@@ -748,6 +791,13 @@ class r2050evtComProd(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab', 'vlrrecbrutatotal', 'vlrcpapur', 'vlrratapur', 'vlrsenarapur', 'vlrcpsusptotal', 'vlrratsusptotal', 'vlrsenarsusptotal']
 
 
+
+class r2050evtComProdSerializer(ModelSerializer):
+    class Meta:
+        model = r2050evtComProd
+        fields = '__all__'
+            
+
 class r2060evtCPRB(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
@@ -797,6 +847,13 @@ class r2060evtCPRB(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab', 'vlrrecbrutatotal', 'vlrcpapurtotal', 'vlrcprbsusptotal']
 
 
+
+class r2060evtCPRBSerializer(ModelSerializer):
+    class Meta:
+        model = r2060evtCPRB
+        fields = '__all__'
+            
+
 class r2070evtPgtosDivs(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
@@ -845,6 +902,13 @@ class r2070evtPgtosDivs(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'codpgto', 'tpinscbenef', 'nrinscbenef', 'nmrazaobenef']
 
 
+
+class r2070evtPgtosDivsSerializer(ModelSerializer):
+    class Meta:
+        model = r2070evtPgtosDivs
+        fields = '__all__'
+            
+
 class r2098evtReabreEvPer(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
@@ -886,6 +950,13 @@ class r2098evtReabreEvPer(models.Model):
         managed = True
         ordering = ['identidade', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
+
+
+class r2098evtReabreEvPerSerializer(ModelSerializer):
+    class Meta:
+        model = r2098evtReabreEvPer
+        fields = '__all__'
+            
 
 class r2099evtFechaEvPer(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
@@ -937,6 +1008,13 @@ class r2099evtFechaEvPer(models.Model):
         ordering = ['identidade', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'evtservtm', 'evtservpr', 'evtassdesprec', 'evtassdesprep', 'evtcomprod', 'evtcprb', 'evtpgtos', 'compsemmovto']
 
 
+
+class r2099evtFechaEvPerSerializer(ModelSerializer):
+    class Meta:
+        model = r2099evtFechaEvPer
+        fields = '__all__'
+            
+
 class r3010evtEspDesportivo(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
@@ -981,6 +1059,13 @@ class r3010evtEspDesportivo(models.Model):
         ordering = ['identidade', 'indretif', 'nrrecibo', 'dtapuracao', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
 
+
+class r3010evtEspDesportivoSerializer(ModelSerializer):
+    class Meta:
+        model = r3010evtEspDesportivo
+        fields = '__all__'
+            
+
 class r5001evtTotal(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
@@ -1023,6 +1108,13 @@ class r5001evtTotal(models.Model):
         managed = True
         ordering = ['identidade', 'perapur', 'tpinsc', 'nrinsc', 'cdretorno', 'descretorno', 'nrprotentr', 'dhprocess', 'tpev', 'idev', 'hash']
 
+
+
+class r5001evtTotalSerializer(ModelSerializer):
+    class Meta:
+        model = r5001evtTotal
+        fields = '__all__'
+            
 
 class r5011evtTotalContrib(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
@@ -1067,6 +1159,13 @@ class r5011evtTotalContrib(models.Model):
         ordering = ['identidade', 'perapur', 'tpinsc', 'nrinsc', 'cdretorno', 'descretorno', 'nrprotentr', 'dhprocess', 'tpev', 'idev', 'hash']
 
 
+
+class r5011evtTotalContribSerializer(ModelSerializer):
+    class Meta:
+        model = r5011evtTotalContrib
+        fields = '__all__'
+            
+
 class r9000evtExclusao(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
@@ -1110,5 +1209,12 @@ class r9000evtExclusao(models.Model):
         managed = True
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpevento', 'nrrecevt', 'perapur']
 
+
+
+class r9000evtExclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = r9000evtExclusao
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

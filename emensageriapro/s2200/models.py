@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -371,6 +372,13 @@ class s2200CNH(models.Model):
         ordering = ['s2200_documentos', 'nrregcnh', 'dtexped', 'ufcnh', 'dtvalid', 'dtprihab', 'categoriacnh']
 
 
+
+class s2200CNHSerializer(ModelSerializer):
+    class Meta:
+        model = s2200CNH
+        fields = '__all__'
+            
+
 class s2200CTPS(models.Model):
     s2200_documentos = models.OneToOneField('s2200documentos',
         related_name='%(class)s_s2200_documentos')
@@ -393,6 +401,13 @@ class s2200CTPS(models.Model):
         managed = True
         ordering = ['s2200_documentos', 'nrctps', 'seriectps', 'ufctps']
 
+
+
+class s2200CTPSSerializer(ModelSerializer):
+    class Meta:
+        model = s2200CTPS
+        fields = '__all__'
+            
 
 class s2200OC(models.Model):
     s2200_documentos = models.OneToOneField('s2200documentos',
@@ -418,6 +433,13 @@ class s2200OC(models.Model):
         ordering = ['s2200_documentos', 'nroc', 'orgaoemissor', 'dtexped', 'dtvalid']
 
 
+
+class s2200OCSerializer(ModelSerializer):
+    class Meta:
+        model = s2200OC
+        fields = '__all__'
+            
+
 class s2200RG(models.Model):
     s2200_documentos = models.OneToOneField('s2200documentos',
         related_name='%(class)s_s2200_documentos')
@@ -440,6 +462,13 @@ class s2200RG(models.Model):
         managed = True
         ordering = ['s2200_documentos', 'nrrg', 'orgaoemissor', 'dtexped']
 
+
+
+class s2200RGSerializer(ModelSerializer):
+    class Meta:
+        model = s2200RG
+        fields = '__all__'
+            
 
 class s2200RIC(models.Model):
     s2200_documentos = models.OneToOneField('s2200documentos',
@@ -464,6 +493,13 @@ class s2200RIC(models.Model):
         ordering = ['s2200_documentos', 'nrric', 'orgaoemissor', 'dtexped']
 
 
+
+class s2200RICSerializer(ModelSerializer):
+    class Meta:
+        model = s2200RIC
+        fields = '__all__'
+            
+
 class s2200RNE(models.Model):
     s2200_documentos = models.OneToOneField('s2200documentos',
         related_name='%(class)s_s2200_documentos')
@@ -487,6 +523,13 @@ class s2200RNE(models.Model):
         ordering = ['s2200_documentos', 'nrrne', 'orgaoemissor', 'dtexped']
 
 
+
+class s2200RNESerializer(ModelSerializer):
+    class Meta:
+        model = s2200RNE
+        fields = '__all__'
+            
+
 class s2200afastamento(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
@@ -509,6 +552,13 @@ class s2200afastamento(models.Model):
         ordering = ['s2200_evtadmissao', 'dtiniafast', 'codmotafast']
 
 
+
+class s2200afastamentoSerializer(ModelSerializer):
+    class Meta:
+        model = s2200afastamento
+        fields = '__all__'
+            
+
 class s2200alvaraJudicial(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
@@ -529,6 +579,13 @@ class s2200alvaraJudicial(models.Model):
         managed = True
         ordering = ['s2200_evtadmissao', 'nrprocjud']
 
+
+
+class s2200alvaraJudicialSerializer(ModelSerializer):
+    class Meta:
+        model = s2200alvaraJudicial
+        fields = '__all__'
+            
 
 class s2200aposentadoria(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
@@ -551,6 +608,13 @@ class s2200aposentadoria(models.Model):
         ordering = ['s2200_evtadmissao', 'trabaposent']
 
 
+
+class s2200aposentadoriaSerializer(ModelSerializer):
+    class Meta:
+        model = s2200aposentadoria
+        fields = '__all__'
+            
+
 class s2200aprend(models.Model):
     s2200_infoceletista = models.OneToOneField('s2200infoCeletista',
         related_name='%(class)s_s2200_infoceletista')
@@ -572,6 +636,13 @@ class s2200aprend(models.Model):
         managed = True
         ordering = ['s2200_infoceletista', 'tpinsc', 'nrinsc']
 
+
+
+class s2200aprendSerializer(ModelSerializer):
+    class Meta:
+        model = s2200aprend
+        fields = '__all__'
+            
 
 class s2200brasil(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
@@ -601,6 +672,13 @@ class s2200brasil(models.Model):
         ordering = ['s2200_evtadmissao', 'tplograd', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'cep', 'codmunic', 'uf']
 
 
+
+class s2200brasilSerializer(ModelSerializer):
+    class Meta:
+        model = s2200brasil
+        fields = '__all__'
+            
+
 class s2200cessao(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
@@ -621,6 +699,13 @@ class s2200cessao(models.Model):
         managed = True
         ordering = ['s2200_evtadmissao', 'dtinicessao']
 
+
+
+class s2200cessaoSerializer(ModelSerializer):
+    class Meta:
+        model = s2200cessao
+        fields = '__all__'
+            
 
 class s2200contato(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
@@ -645,6 +730,13 @@ class s2200contato(models.Model):
         managed = True
         ordering = ['s2200_evtadmissao', 'foneprinc', 'fonealternat', 'emailprinc', 'emailalternat']
 
+
+
+class s2200contatoSerializer(ModelSerializer):
+    class Meta:
+        model = s2200contato
+        fields = '__all__'
+            
 
 class s2200dependente(models.Model):
     s2200_evtadmissao = models.ForeignKey('esocial.s2200evtAdmissao',
@@ -675,6 +767,13 @@ class s2200dependente(models.Model):
         ordering = ['s2200_evtadmissao', 'tpdep', 'nmdep', 'dtnascto', 'cpfdep', 'sexodep', 'depirrf', 'depsf', 'inctrab', 'depfinsprev']
 
 
+
+class s2200dependenteSerializer(ModelSerializer):
+    class Meta:
+        model = s2200dependente
+        fields = '__all__'
+            
+
 class s2200desligamento(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
@@ -696,6 +795,13 @@ class s2200desligamento(models.Model):
         ordering = ['s2200_evtadmissao', 'dtdeslig']
 
 
+
+class s2200desligamentoSerializer(ModelSerializer):
+    class Meta:
+        model = s2200desligamento
+        fields = '__all__'
+            
+
 class s2200documentos(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
@@ -715,6 +821,13 @@ class s2200documentos(models.Model):
         managed = True
         ordering = ['s2200_evtadmissao']
 
+
+
+class s2200documentosSerializer(ModelSerializer):
+    class Meta:
+        model = s2200documentos
+        fields = '__all__'
+            
 
 class s2200exterior(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
@@ -743,6 +856,13 @@ class s2200exterior(models.Model):
         ordering = ['s2200_evtadmissao', 'paisresid', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'nmcid', 'codpostal']
 
 
+
+class s2200exteriorSerializer(ModelSerializer):
+    class Meta:
+        model = s2200exterior
+        fields = '__all__'
+            
+
 class s2200filiacaoSindical(models.Model):
     s2200_evtadmissao = models.ForeignKey('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
@@ -763,6 +883,13 @@ class s2200filiacaoSindical(models.Model):
         managed = True
         ordering = ['s2200_evtadmissao', 'cnpjsindtrab']
 
+
+
+class s2200filiacaoSindicalSerializer(ModelSerializer):
+    class Meta:
+        model = s2200filiacaoSindical
+        fields = '__all__'
+            
 
 class s2200horContratual(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
@@ -788,6 +915,13 @@ class s2200horContratual(models.Model):
         ordering = ['s2200_evtadmissao', 'qtdhrssem', 'tpjornada', 'dsctpjorn', 'tmpparc']
 
 
+
+class s2200horContratualSerializer(ModelSerializer):
+    class Meta:
+        model = s2200horContratual
+        fields = '__all__'
+            
+
 class s2200horario(models.Model):
     s2200_horcontratual = models.ForeignKey('s2200horContratual',
         related_name='%(class)s_s2200_horcontratual')
@@ -809,6 +943,13 @@ class s2200horario(models.Model):
         managed = True
         ordering = ['s2200_horcontratual', 'dia', 'codhorcontrat']
 
+
+
+class s2200horarioSerializer(ModelSerializer):
+    class Meta:
+        model = s2200horario
+        fields = '__all__'
+            
 
 class s2200ideEstabVinc(models.Model):
     s2200_trabtemporario = models.OneToOneField('s2200trabTemporario',
@@ -832,6 +973,13 @@ class s2200ideEstabVinc(models.Model):
         ordering = ['s2200_trabtemporario', 'tpinsc', 'nrinsc']
 
 
+
+class s2200ideEstabVincSerializer(ModelSerializer):
+    class Meta:
+        model = s2200ideEstabVinc
+        fields = '__all__'
+            
+
 class s2200ideTrabSubstituido(models.Model):
     s2200_trabtemporario = models.ForeignKey('s2200trabTemporario',
         related_name='%(class)s_s2200_trabtemporario')
@@ -852,6 +1000,13 @@ class s2200ideTrabSubstituido(models.Model):
         managed = True
         ordering = ['s2200_trabtemporario', 'cpftrabsubst']
 
+
+
+class s2200ideTrabSubstituidoSerializer(ModelSerializer):
+    class Meta:
+        model = s2200ideTrabSubstituido
+        fields = '__all__'
+            
 
 class s2200infoCeletista(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
@@ -882,6 +1037,13 @@ class s2200infoCeletista(models.Model):
         ordering = ['s2200_evtadmissao', 'dtadm', 'tpadmissao', 'indadmissao', 'tpregjor', 'natatividade', 'dtbase', 'cnpjsindcategprof', 'opcfgts', 'dtopcfgts']
 
 
+
+class s2200infoCeletistaSerializer(ModelSerializer):
+    class Meta:
+        model = s2200infoCeletista
+        fields = '__all__'
+            
+
 class s2200infoDecJud(models.Model):
     s2200_infoestatutario = models.OneToOneField('s2200infoEstatutario',
         related_name='%(class)s_s2200_infoestatutario')
@@ -902,6 +1064,13 @@ class s2200infoDecJud(models.Model):
         managed = True
         ordering = ['s2200_infoestatutario', 'nrprocjud']
 
+
+
+class s2200infoDecJudSerializer(ModelSerializer):
+    class Meta:
+        model = s2200infoDecJud
+        fields = '__all__'
+            
 
 class s2200infoDeficiencia(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
@@ -930,6 +1099,13 @@ class s2200infoDeficiencia(models.Model):
         managed = True
         ordering = ['s2200_evtadmissao', 'deffisica', 'defvisual', 'defauditiva', 'defmental', 'defintelectual', 'reabreadap', 'infocota', 'observacao']
 
+
+
+class s2200infoDeficienciaSerializer(ModelSerializer):
+    class Meta:
+        model = s2200infoDeficiencia
+        fields = '__all__'
+            
 
 class s2200infoEstatutario(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
@@ -963,6 +1139,13 @@ class s2200infoEstatutario(models.Model):
         ordering = ['s2200_evtadmissao', 'indprovim', 'tpprov', 'dtnomeacao', 'dtposse', 'dtexercicio', 'dtingsvpub', 'tpplanrp', 'indtetorgps', 'indabonoperm', 'dtiniabono', 'indparcremun', 'dtiniparc']
 
 
+
+class s2200infoEstatutarioSerializer(ModelSerializer):
+    class Meta:
+        model = s2200infoEstatutario
+        fields = '__all__'
+            
+
 class s2200localTrabDom(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
@@ -991,6 +1174,13 @@ class s2200localTrabDom(models.Model):
         ordering = ['s2200_evtadmissao', 'tplograd', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'cep', 'codmunic', 'uf']
 
 
+
+class s2200localTrabDomSerializer(ModelSerializer):
+    class Meta:
+        model = s2200localTrabDom
+        fields = '__all__'
+            
+
 class s2200localTrabGeral(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
@@ -1014,6 +1204,13 @@ class s2200localTrabGeral(models.Model):
         ordering = ['s2200_evtadmissao', 'tpinsc', 'nrinsc', 'desccomp']
 
 
+
+class s2200localTrabGeralSerializer(ModelSerializer):
+    class Meta:
+        model = s2200localTrabGeral
+        fields = '__all__'
+            
+
 class s2200observacoes(models.Model):
     s2200_evtadmissao = models.ForeignKey('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
@@ -1034,6 +1231,13 @@ class s2200observacoes(models.Model):
         managed = True
         ordering = ['s2200_evtadmissao', 'observacao']
 
+
+
+class s2200observacoesSerializer(ModelSerializer):
+    class Meta:
+        model = s2200observacoes
+        fields = '__all__'
+            
 
 class s2200sucessaoVinc(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
@@ -1059,6 +1263,13 @@ class s2200sucessaoVinc(models.Model):
         ordering = ['s2200_evtadmissao', 'cnpjempregant', 'matricant', 'dttransf', 'observacao']
 
 
+
+class s2200sucessaoVincSerializer(ModelSerializer):
+    class Meta:
+        model = s2200sucessaoVinc
+        fields = '__all__'
+            
+
 class s2200trabEstrangeiro(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
@@ -1082,6 +1293,13 @@ class s2200trabEstrangeiro(models.Model):
         managed = True
         ordering = ['s2200_evtadmissao', 'dtchegada', 'classtrabestrang', 'casadobr', 'filhosbr']
 
+
+
+class s2200trabEstrangeiroSerializer(ModelSerializer):
+    class Meta:
+        model = s2200trabEstrangeiro
+        fields = '__all__'
+            
 
 class s2200trabTemporario(models.Model):
     s2200_infoceletista = models.OneToOneField('s2200infoCeletista',
@@ -1108,6 +1326,13 @@ class s2200trabTemporario(models.Model):
         ordering = ['s2200_infoceletista', 'hipleg', 'justcontr', 'tpinclcontr', 'tpinsc', 'nrinsc']
 
 
+
+class s2200trabTemporarioSerializer(ModelSerializer):
+    class Meta:
+        model = s2200trabTemporario
+        fields = '__all__'
+            
+
 class s2200transfDom(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
@@ -1130,5 +1355,12 @@ class s2200transfDom(models.Model):
         managed = True
         ordering = ['s2200_evtadmissao', 'cpfsubstituido', 'matricant', 'dttransf']
 
+
+
+class s2200transfDomSerializer(ModelSerializer):
+    class Meta:
+        model = s2200transfDom
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

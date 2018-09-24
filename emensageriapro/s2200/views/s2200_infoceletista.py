@@ -295,6 +295,24 @@ def apagar(request, hash):
     }
     return render(request, 's2200_infoceletista_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s2200infoCeletistaList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s2200infoCeletista.objects.using(db_slug).all()
+    serializer_class = s2200infoCeletistaSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s2200infoCeletistaDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s2200infoCeletista.objects.using(db_slug).all()
+    serializer_class = s2200infoCeletistaSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

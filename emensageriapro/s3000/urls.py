@@ -50,6 +50,12 @@ url(r'^s3000-idetrabalhador/apagar/(?P<hash>.*)/$',
         s3000_idetrabalhador_views.apagar, 
         name='s3000_idetrabalhador_apagar'),
 
+url(r'^s3000-idetrabalhador/api/$',
+            s3000_idetrabalhador_views.s3000ideTrabalhadorList.as_view() ),
+
+        url(r'^s3000-idetrabalhador/api/(?P<pk>[0-9]+)/$',
+            s3000_idetrabalhador_views.s3000ideTrabalhadorDetail.as_view() ),
+
 url(r'^s3000-idetrabalhador/listar/(?P<hash>.*)/$', 
         s3000_idetrabalhador_views.listar, 
         name='s3000_idetrabalhador'),
@@ -63,6 +69,12 @@ url(r'^s3000-idetrabalhador/salvar/(?P<hash>.*)/$',
 url(r'^s3000-idefolhapagto/apagar/(?P<hash>.*)/$', 
         s3000_idefolhapagto_views.apagar, 
         name='s3000_idefolhapagto_apagar'),
+
+url(r'^s3000-idefolhapagto/api/$',
+            s3000_idefolhapagto_views.s3000ideFolhaPagtoList.as_view() ),
+
+        url(r'^s3000-idefolhapagto/api/(?P<pk>[0-9]+)/$',
+            s3000_idefolhapagto_views.s3000ideFolhaPagtoDetail.as_view() ),
 
 url(r'^s3000-idefolhapagto/listar/(?P<hash>.*)/$', 
         s3000_idefolhapagto_views.listar, 

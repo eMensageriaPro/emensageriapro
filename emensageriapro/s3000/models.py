@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -68,6 +69,13 @@ class s3000ideFolhaPagto(models.Model):
         ordering = ['s3000_evtexclusao', 'indapuracao', 'perapur']
 
 
+
+class s3000ideFolhaPagtoSerializer(ModelSerializer):
+    class Meta:
+        model = s3000ideFolhaPagto
+        fields = '__all__'
+            
+
 class s3000ideTrabalhador(models.Model):
     s3000_evtexclusao = models.OneToOneField('esocial.s3000evtExclusao',
         related_name='%(class)s_s3000_evtexclusao')
@@ -89,5 +97,12 @@ class s3000ideTrabalhador(models.Model):
         managed = True
         ordering = ['s3000_evtexclusao', 'cpftrab', 'nistrab']
 
+
+
+class s3000ideTrabalhadorSerializer(ModelSerializer):
+    class Meta:
+        model = s3000ideTrabalhador
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

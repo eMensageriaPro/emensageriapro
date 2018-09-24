@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -133,6 +134,13 @@ class CBO(models.Model):
         ordering = ['codigo', 'descricao']
 
 
+
+class CBOSerializer(ModelSerializer):
+    class Meta:
+        model = CBO
+        fields = '__all__'
+            
+
 class CID(models.Model):
     codigo = models.CharField(max_length=6)
     descricao = models.TextField()
@@ -155,6 +163,13 @@ class CID(models.Model):
         managed = True
         ordering = ['codigo', 'descricao']
 
+
+
+class CIDSerializer(ModelSerializer):
+    class Meta:
+        model = CID
+        fields = '__all__'
+            
 
 class CNAE(models.Model):
     codigo = models.CharField(max_length=7)
@@ -179,6 +194,13 @@ class CNAE(models.Model):
         ordering = ['codigo', 'descricao']
 
 
+
+class CNAESerializer(ModelSerializer):
+    class Meta:
+        model = CNAE
+        fields = '__all__'
+            
+
 class EFDReinfClassificacaoServicosPrestados(models.Model):
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
@@ -199,6 +221,13 @@ class EFDReinfClassificacaoServicosPrestados(models.Model):
         ordering = ['codigo', 'descricao']
 
 
+
+class EFDReinfClassificacaoServicosPrestadosSerializer(ModelSerializer):
+    class Meta:
+        model = EFDReinfClassificacaoServicosPrestados
+        fields = '__all__'
+            
+
 class EFDReinfClassificacaoTributaria(models.Model):
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
@@ -218,6 +247,13 @@ class EFDReinfClassificacaoTributaria(models.Model):
         managed = True
         ordering = ['codigo', 'descricao']
 
+
+
+class EFDReinfClassificacaoTributariaSerializer(ModelSerializer):
+    class Meta:
+        model = EFDReinfClassificacaoTributaria
+        fields = '__all__'
+            
 
 class EFDReinfCodigosAtividadesProdutosServicosCPRB(models.Model):
     codigo = models.CharField(max_length=4)
@@ -245,6 +281,13 @@ class EFDReinfCodigosAtividadesProdutosServicosCPRB(models.Model):
         ordering = ['codigo', 'grupo', 'aliquota', 'inicio_escrituracao', 'ncm', 'cr', 'incidencia', 'descricao']
 
 
+
+class EFDReinfCodigosAtividadesProdutosServicosCPRBSerializer(ModelSerializer):
+    class Meta:
+        model = EFDReinfCodigosAtividadesProdutosServicosCPRB
+        fields = '__all__'
+            
+
 class EFDReinfEventos(models.Model):
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
@@ -265,6 +308,13 @@ class EFDReinfEventos(models.Model):
         ordering = ['codigo', 'descricao']
 
 
+
+class EFDReinfEventosSerializer(ModelSerializer):
+    class Meta:
+        model = EFDReinfEventos
+        fields = '__all__'
+            
+
 class EFDReinfInformacoesBeneficiariosExterior(models.Model):
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
@@ -284,6 +334,13 @@ class EFDReinfInformacoesBeneficiariosExterior(models.Model):
         managed = True
         ordering = ['codigo', 'descricao']
 
+
+
+class EFDReinfInformacoesBeneficiariosExteriorSerializer(ModelSerializer):
+    class Meta:
+        model = EFDReinfInformacoesBeneficiariosExterior
+        fields = '__all__'
+            
 
 class EFDReinfPagamentosCodigos(models.Model):
     grupo = models.IntegerField(choices=GRUPO_PAGAMENTOS_CODIGOS)
@@ -308,6 +365,13 @@ class EFDReinfPagamentosCodigos(models.Model):
         ordering = ['grupo', 'beneficiario_pf', 'beneficiario_pj', 'codigo', 'descricao']
 
 
+
+class EFDReinfPagamentosCodigosSerializer(ModelSerializer):
+    class Meta:
+        model = EFDReinfPagamentosCodigos
+        fields = '__all__'
+            
+
 class EFDReinfPaises(models.Model):
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
@@ -327,6 +391,13 @@ class EFDReinfPaises(models.Model):
         managed = True
         ordering = ['codigo', 'descricao']
 
+
+
+class EFDReinfPaisesSerializer(ModelSerializer):
+    class Meta:
+        model = EFDReinfPaises
+        fields = '__all__'
+            
 
 class EFDReinfRegrasPagamentosCodigos(models.Model):
     classificacao = models.IntegerField(choices=CLASSIFICACAO_REGRAS_PAGAMENTOS_CODIGOS)
@@ -354,6 +425,13 @@ class EFDReinfRegrasPagamentosCodigos(models.Model):
         ordering = ['classificacao', 'tributacao_com_exigibilidade_suspensa', 'compensacao_imposto_por_decisao_judicial', 'rendimentos_isentos', 'deducoes', 'decimo_terceiro', 'codigo', 'descricao']
 
 
+
+class EFDReinfRegrasPagamentosCodigosSerializer(ModelSerializer):
+    class Meta:
+        model = EFDReinfRegrasPagamentosCodigos
+        fields = '__all__'
+            
+
 class EFDReinfRendimentosBeneficiariosExterior(models.Model):
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
@@ -373,6 +451,13 @@ class EFDReinfRendimentosBeneficiariosExterior(models.Model):
         managed = True
         ordering = ['codigo', 'descricao']
 
+
+
+class EFDReinfRendimentosBeneficiariosExteriorSerializer(ModelSerializer):
+    class Meta:
+        model = EFDReinfRendimentosBeneficiariosExterior
+        fields = '__all__'
+            
 
 class EFDReinfRendimentosBeneficiariosExteriorTributacao(models.Model):
     codigo = models.CharField(max_length=4)
@@ -394,6 +479,13 @@ class EFDReinfRendimentosBeneficiariosExteriorTributacao(models.Model):
         ordering = ['codigo', 'descricao']
 
 
+
+class EFDReinfRendimentosBeneficiariosExteriorTributacaoSerializer(ModelSerializer):
+    class Meta:
+        model = EFDReinfRendimentosBeneficiariosExteriorTributacao
+        fields = '__all__'
+            
+
 class Municipios(models.Model):
     codigo = models.CharField(max_length=7)
     titulo = models.CharField(max_length=300)
@@ -414,6 +506,13 @@ class Municipios(models.Model):
         ordering = ['titulo']
 
 
+
+class MunicipiosSerializer(ModelSerializer):
+    class Meta:
+        model = Municipios
+        fields = '__all__'
+            
+
 class eSocialAcidentesSituacoesGeradoras(models.Model):
     codigo = models.CharField(max_length=9)
     descricao = models.TextField()
@@ -433,6 +532,13 @@ class eSocialAcidentesSituacoesGeradoras(models.Model):
         managed = True
         ordering = ['codigo', 'descricao']
 
+
+
+class eSocialAcidentesSituacoesGeradorasSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialAcidentesSituacoesGeradoras
+        fields = '__all__'
+            
 
 class eSocialAfastamentosMotivos(models.Model):
     codigo = models.CharField(max_length=2)
@@ -456,6 +562,13 @@ class eSocialAfastamentosMotivos(models.Model):
         ordering = ['codigo', 'descricao', 'data_inicio', 'data_termino']
 
 
+
+class eSocialAfastamentosMotivosSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialAfastamentosMotivos
+        fields = '__all__'
+            
+
 class eSocialAgentesCausadoresAcidentesTrabalho(models.Model):
     codigo = models.CharField(max_length=9)
     descricao = models.TextField()
@@ -475,6 +588,13 @@ class eSocialAgentesCausadoresAcidentesTrabalho(models.Model):
         managed = True
         ordering = ['codigo', 'descricao']
 
+
+
+class eSocialAgentesCausadoresAcidentesTrabalhoSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialAgentesCausadoresAcidentesTrabalho
+        fields = '__all__'
+            
 
 class eSocialAgentesCausadoresDoencasProfissionais(models.Model):
     codigo = models.CharField(max_length=9)
@@ -496,6 +616,13 @@ class eSocialAgentesCausadoresDoencasProfissionais(models.Model):
         ordering = ['codigo', 'descricao']
 
 
+
+class eSocialAgentesCausadoresDoencasProfissionaisSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialAgentesCausadoresDoencasProfissionais
+        fields = '__all__'
+            
+
 class eSocialArquivosEsocialTipos(models.Model):
     codigo = models.CharField(max_length=6)
     descricao = models.TextField()
@@ -515,6 +642,13 @@ class eSocialArquivosEsocialTipos(models.Model):
         managed = True
         ordering = ['codigo', 'descricao']
 
+
+
+class eSocialArquivosEsocialTiposSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialArquivosEsocialTipos
+        fields = '__all__'
+            
 
 class eSocialAtividadesPericulosasInsalubresEspeciais(models.Model):
     grupo = models.IntegerField(choices=GRUPO_ATIVIDADES_PERICULOSAS)
@@ -537,6 +671,13 @@ class eSocialAtividadesPericulosasInsalubresEspeciais(models.Model):
         ordering = ['grupo', 'codigo', 'descricao']
 
 
+
+class eSocialAtividadesPericulosasInsalubresEspeciaisSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialAtividadesPericulosasInsalubresEspeciais
+        fields = '__all__'
+            
+
 class eSocialBeneficiosPrevidenciariosCessacaoMotivos(models.Model):
     codigo = models.CharField(max_length=2)
     descricao = models.TextField()
@@ -556,6 +697,13 @@ class eSocialBeneficiosPrevidenciariosCessacaoMotivos(models.Model):
         managed = True
         ordering = ['codigo', 'descricao']
 
+
+
+class eSocialBeneficiosPrevidenciariosCessacaoMotivosSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialBeneficiosPrevidenciariosCessacaoMotivos
+        fields = '__all__'
+            
 
 class eSocialBeneficiosPrevidenciariosTipos(models.Model):
     codigo = models.CharField(max_length=2)
@@ -577,6 +725,13 @@ class eSocialBeneficiosPrevidenciariosTipos(models.Model):
         ordering = ['codigo', 'descricao']
 
 
+
+class eSocialBeneficiosPrevidenciariosTiposSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialBeneficiosPrevidenciariosTipos
+        fields = '__all__'
+            
+
 class eSocialClassificacoesTributarias(models.Model):
     codigo = models.CharField(max_length=2)
     descricao = models.TextField()
@@ -597,6 +752,13 @@ class eSocialClassificacoesTributarias(models.Model):
         ordering = ['codigo', 'descricao']
 
 
+
+class eSocialClassificacoesTributariasSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialClassificacoesTributarias
+        fields = '__all__'
+            
+
 class eSocialCodificacoesAcidenteTrabalho(models.Model):
     codigo = models.CharField(max_length=6)
     descricao = models.TextField()
@@ -616,6 +778,13 @@ class eSocialCodificacoesAcidenteTrabalho(models.Model):
         managed = True
         ordering = ['codigo', 'descricao']
 
+
+
+class eSocialCodificacoesAcidenteTrabalhoSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialCodificacoesAcidenteTrabalho
+        fields = '__all__'
+            
 
 class eSocialCodigoAliquotasFPASTerceiros(models.Model):
     codigo = models.CharField(max_length=3)
@@ -642,6 +811,13 @@ class eSocialCodigoAliquotasFPASTerceiros(models.Model):
         managed = True
         ordering = ['codigo', 'descricao']
 
+
+
+class eSocialCodigoAliquotasFPASTerceirosSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialCodigoAliquotasFPASTerceiros
+        fields = '__all__'
+            
 
 class eSocialCompatibilidadesCategoriasClassificacoesLotacoes(models.Model):
     codigo = models.CharField(max_length=3)
@@ -676,6 +852,13 @@ class eSocialCompatibilidadesCategoriasClassificacoesLotacoes(models.Model):
         managed = True
         ordering = ['codigo', 'classificacao_tributaria']
 
+
+
+class eSocialCompatibilidadesCategoriasClassificacoesLotacoesSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialCompatibilidadesCategoriasClassificacoesLotacoes
+        fields = '__all__'
+            
 
 class eSocialCompatibilidadesFPASClassificacoesTributarias(models.Model):
     codigo = models.CharField(max_length=3)
@@ -715,6 +898,13 @@ class eSocialCompatibilidadesFPASClassificacoesTributarias(models.Model):
         ordering = ['codigo']
 
 
+
+class eSocialCompatibilidadesFPASClassificacoesTributariasSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialCompatibilidadesFPASClassificacoesTributarias
+        fields = '__all__'
+            
+
 class eSocialCompatibilidadesLotacoesClassificacoes(models.Model):
     codigo = models.CharField(max_length=2)
     tipo_classificacao_tributaria_01 = models.CharField(choices=SIM_NAO_TXT, max_length=1)
@@ -753,6 +943,13 @@ class eSocialCompatibilidadesLotacoesClassificacoes(models.Model):
         ordering = ['codigo']
 
 
+
+class eSocialCompatibilidadesLotacoesClassificacoesSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialCompatibilidadesLotacoesClassificacoes
+        fields = '__all__'
+            
+
 class eSocialDependentesTipos(models.Model):
     codigo = models.CharField(max_length=2)
     descricao = models.TextField()
@@ -772,6 +969,13 @@ class eSocialDependentesTipos(models.Model):
         managed = True
         ordering = ['codigo', 'descricao']
 
+
+
+class eSocialDependentesTiposSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialDependentesTipos
+        fields = '__all__'
+            
 
 class eSocialDesligamentosMotivos(models.Model):
     codigo = models.CharField(max_length=2)
@@ -795,6 +999,13 @@ class eSocialDesligamentosMotivos(models.Model):
         ordering = ['codigo', 'descricao', 'data_inicio', 'data_termino']
 
 
+
+class eSocialDesligamentosMotivosSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialDesligamentosMotivos
+        fields = '__all__'
+            
+
 class eSocialFatoresRisco(models.Model):
     grupo = models.IntegerField(choices=GRUPOS_FATORES_RISCOS)
     codigo = models.CharField(max_length=9)
@@ -816,6 +1027,13 @@ class eSocialFatoresRisco(models.Model):
         ordering = ['grupo', 'codigo', 'descricao']
 
 
+
+class eSocialFatoresRiscoSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialFatoresRisco
+        fields = '__all__'
+            
+
 class eSocialFinanciamentosAposentadoriasEspeciais(models.Model):
     codigo = models.CharField(max_length=14)
     descricao = models.TextField()
@@ -835,6 +1053,13 @@ class eSocialFinanciamentosAposentadoriasEspeciais(models.Model):
         managed = True
         ordering = ['codigo', 'descricao']
 
+
+
+class eSocialFinanciamentosAposentadoriasEspeciaisSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialFinanciamentosAposentadoriasEspeciais
+        fields = '__all__'
+            
 
 class eSocialInscricoesTipos(models.Model):
     codigo = models.CharField(max_length=14)
@@ -856,6 +1081,13 @@ class eSocialInscricoesTipos(models.Model):
         ordering = ['codigo', 'descricao']
 
 
+
+class eSocialInscricoesTiposSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialInscricoesTipos
+        fields = '__all__'
+            
+
 class eSocialLogradourosTipos(models.Model):
     codigo = models.CharField(max_length=3)
     descricao = models.TextField()
@@ -875,6 +1107,13 @@ class eSocialLogradourosTipos(models.Model):
         managed = True
         ordering = ['codigo', 'descricao']
 
+
+
+class eSocialLogradourosTiposSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialLogradourosTipos
+        fields = '__all__'
+            
 
 class eSocialLotacoesTributariasTipos(models.Model):
     codigo = models.CharField(max_length=2)
@@ -897,6 +1136,13 @@ class eSocialLotacoesTributariasTipos(models.Model):
         ordering = ['codigo', 'descricao']
 
 
+
+class eSocialLotacoesTributariasTiposSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialLotacoesTributariasTipos
+        fields = '__all__'
+            
+
 class eSocialNaturezasJuridicas(models.Model):
     grupo = models.IntegerField(choices=GRUPO_NATUREZAS_JURIDICAS)
     codigo = models.CharField(max_length=20)
@@ -914,6 +1160,13 @@ class eSocialNaturezasJuridicas(models.Model):
         db_table = r'esocial_naturezas_juridicas'
         managed = True
 
+
+
+class eSocialNaturezasJuridicasSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialNaturezasJuridicas
+        fields = '__all__'
+            
 
 class eSocialNaturezasLesoes(models.Model):
     codigo = models.CharField(max_length=9)
@@ -934,6 +1187,13 @@ class eSocialNaturezasLesoes(models.Model):
         managed = True
         ordering = ['codigo', 'descricao']
 
+
+
+class eSocialNaturezasLesoesSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialNaturezasLesoes
+        fields = '__all__'
+            
 
 class eSocialNaturezasRubricas(models.Model):
     codigo = models.CharField(max_length=14)
@@ -958,6 +1218,13 @@ class eSocialNaturezasRubricas(models.Model):
         ordering = ['codigo', 'titulo']
 
 
+
+class eSocialNaturezasRubricasSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialNaturezasRubricas
+        fields = '__all__'
+            
+
 class eSocialPaises(models.Model):
     codigo = models.CharField(max_length=14)
     nome = models.CharField(max_length=200)
@@ -980,6 +1247,13 @@ class eSocialPaises(models.Model):
         ordering = ['codigo', 'nome']
 
 
+
+class eSocialPaisesSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialPaises
+        fields = '__all__'
+            
+
 class eSocialPartesCorpoAtingidas(models.Model):
     codigo = models.CharField(max_length=9)
     descricao = models.TextField()
@@ -999,6 +1273,13 @@ class eSocialPartesCorpoAtingidas(models.Model):
         managed = True
         ordering = ['codigo', 'descricao']
 
+
+
+class eSocialPartesCorpoAtingidasSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialPartesCorpoAtingidas
+        fields = '__all__'
+            
 
 class eSocialProcedimentosDiagnosticos(models.Model):
     codigo = models.CharField(max_length=4)
@@ -1020,6 +1301,13 @@ class eSocialProcedimentosDiagnosticos(models.Model):
         ordering = ['codigo', 'descricao']
 
 
+
+class eSocialProcedimentosDiagnosticosSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialProcedimentosDiagnosticos
+        fields = '__all__'
+            
+
 class eSocialProgramasPlanosDocumentos(models.Model):
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
@@ -1039,6 +1327,13 @@ class eSocialProgramasPlanosDocumentos(models.Model):
         managed = True
         ordering = ['codigo', 'descricao']
 
+
+
+class eSocialProgramasPlanosDocumentosSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialProgramasPlanosDocumentos
+        fields = '__all__'
+            
 
 class eSocialTrabalhadoresCategorias(models.Model):
     grupo = models.IntegerField(choices=TRABALHADORES_CATEGORIAS_GRUPO)
@@ -1061,6 +1356,13 @@ class eSocialTrabalhadoresCategorias(models.Model):
         ordering = ['grupo', 'codigo', 'descricao']
 
 
+
+class eSocialTrabalhadoresCategoriasSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialTrabalhadoresCategorias
+        fields = '__all__'
+            
+
 class eSocialTreinamentosCapacitacoesExerciciosSimulados(models.Model):
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
@@ -1080,5 +1382,12 @@ class eSocialTreinamentosCapacitacoesExerciciosSimulados(models.Model):
         managed = True
         ordering = ['codigo', 'descricao']
 
+
+
+class eSocialTreinamentosCapacitacoesExerciciosSimuladosSerializer(ModelSerializer):
+    class Meta:
+        model = eSocialTreinamentosCapacitacoesExerciciosSimulados
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

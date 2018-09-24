@@ -49,6 +49,12 @@ url(r'^s2245-ideprofresp/apagar/(?P<hash>.*)/$',
         s2245_ideprofresp_views.apagar, 
         name='s2245_ideprofresp_apagar'),
 
+url(r'^s2245-ideprofresp/api/$',
+            s2245_ideprofresp_views.s2245ideProfRespList.as_view() ),
+
+        url(r'^s2245-ideprofresp/api/(?P<pk>[0-9]+)/$',
+            s2245_ideprofresp_views.s2245ideProfRespDetail.as_view() ),
+
 url(r'^s2245-ideprofresp/listar/(?P<hash>.*)/$', 
         s2245_ideprofresp_views.listar, 
         name='s2245_ideprofresp'),

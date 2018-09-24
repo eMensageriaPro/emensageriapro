@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -169,6 +170,13 @@ class s2230emitente(models.Model):
         ordering = ['s2230_infoatestado', 'nmemit', 'ideoc', 'nroc', 'ufoc']
 
 
+
+class s2230emitenteSerializer(ModelSerializer):
+    class Meta:
+        model = s2230emitente
+        fields = '__all__'
+            
+
 class s2230fimAfastamento(models.Model):
     s2230_evtafasttemp = models.OneToOneField('esocial.s2230evtAfastTemp',
         related_name='%(class)s_s2230_evtafasttemp')
@@ -189,6 +197,13 @@ class s2230fimAfastamento(models.Model):
         managed = True
         ordering = ['s2230_evtafasttemp', 'dttermafast']
 
+
+
+class s2230fimAfastamentoSerializer(ModelSerializer):
+    class Meta:
+        model = s2230fimAfastamento
+        fields = '__all__'
+            
 
 class s2230infoAtestado(models.Model):
     s2230_iniafastamento = models.ForeignKey('s2230iniAfastamento',
@@ -212,6 +227,13 @@ class s2230infoAtestado(models.Model):
         ordering = ['s2230_iniafastamento', 'codcid', 'qtddiasafast']
 
 
+
+class s2230infoAtestadoSerializer(ModelSerializer):
+    class Meta:
+        model = s2230infoAtestado
+        fields = '__all__'
+            
+
 class s2230infoCessao(models.Model):
     s2230_iniafastamento = models.OneToOneField('s2230iniAfastamento',
         related_name='%(class)s_s2230_iniafastamento')
@@ -233,6 +255,13 @@ class s2230infoCessao(models.Model):
         managed = True
         ordering = ['s2230_iniafastamento', 'cnpjcess', 'infonus']
 
+
+
+class s2230infoCessaoSerializer(ModelSerializer):
+    class Meta:
+        model = s2230infoCessao
+        fields = '__all__'
+            
 
 class s2230infoMandSind(models.Model):
     s2230_iniafastamento = models.OneToOneField('s2230iniAfastamento',
@@ -256,6 +285,13 @@ class s2230infoMandSind(models.Model):
         ordering = ['s2230_iniafastamento', 'cnpjsind', 'infonusremun']
 
 
+
+class s2230infoMandSindSerializer(ModelSerializer):
+    class Meta:
+        model = s2230infoMandSind
+        fields = '__all__'
+            
+
 class s2230infoRetif(models.Model):
     s2230_evtafasttemp = models.OneToOneField('esocial.s2230evtAfastTemp',
         related_name='%(class)s_s2230_evtafasttemp')
@@ -278,6 +314,13 @@ class s2230infoRetif(models.Model):
         managed = True
         ordering = ['s2230_evtafasttemp', 'origretif', 'tpproc', 'nrproc']
 
+
+
+class s2230infoRetifSerializer(ModelSerializer):
+    class Meta:
+        model = s2230infoRetif
+        fields = '__all__'
+            
 
 class s2230iniAfastamento(models.Model):
     s2230_evtafasttemp = models.OneToOneField('esocial.s2230evtAfastTemp',
@@ -303,5 +346,12 @@ class s2230iniAfastamento(models.Model):
         managed = True
         ordering = ['s2230_evtafasttemp', 'dtiniafast', 'codmotafast', 'infomesmomtv', 'tpacidtransito', 'observacao']
 
+
+
+class s2230iniAfastamentoSerializer(ModelSerializer):
+    class Meta:
+        model = s2230iniAfastamento
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

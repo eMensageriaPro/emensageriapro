@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 's1005_inclusao_infosst_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class s1005inclusaoinfoSSTList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = s1005inclusaoinfoSST.objects.using(db_slug).all()
+    serializer_class = s1005inclusaoinfoSSTSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class s1005inclusaoinfoSSTDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = s1005inclusaoinfoSST.objects.using(db_slug).all()
+    serializer_class = s1005inclusaoinfoSSTSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

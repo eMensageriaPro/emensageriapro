@@ -301,6 +301,82 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        r3010_evtespdesportivo_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='r3010_evtespdesportivo')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo.objects.using( db_slug ), excluido = False, id = r3010_evtespdesportivo_id)
+
+    if r3010_evtespdesportivo_id:
+        if r3010_evtespdesportivo.status != 0:
+            dict_permissoes['r3010_evtespdesportivo_apagar'] = 0
+            dict_permissoes['r3010_evtespdesportivo_editar'] = 0
+
+    if request.method == 'POST':
+        if r3010_evtespdesportivo.status == 0:
+            import json
+            from django.forms.models import model_to_dict
+            situacao_anterior = json.dumps(model_to_dict(r3010_evtespdesportivo), indent=4, sort_keys=True, default=str)
+            r3010evtEspDesportivo.objects.using( db_slug ).filter(id = r3010_evtespdesportivo_id).delete()
+            #r3010_evtespdesportivo_apagar_custom
+            #r3010_evtespdesportivo_apagar_custom
+            messages.success(request, 'Apagado com sucesso!')
+            gravar_auditoria(situacao_anterior,
+                             '',
+                             'r3010_evtespdesportivo', r3010_evtespdesportivo_id, usuario_id, 3)
+        else:
+            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+   
+        if request.session['retorno_pagina']== 'r3010_evtespdesportivo_salvar':
+            return redirect('r3010_evtespdesportivo', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 'r3010_evtespdesportivo_apagar.html', context)
+
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class r3010evtEspDesportivoList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = r3010evtEspDesportivo.objects.using(db_slug).all()
+    serializer_class = r3010evtEspDesportivoSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class r3010evtEspDesportivoDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = r3010evtEspDesportivo.objects.using(db_slug).all()
+    serializer_class = r3010evtEspDesportivoSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse
@@ -493,62 +569,4 @@ def listar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
-
-@login_required
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r3010_evtespdesportivo_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='r3010_evtespdesportivo')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-    r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo.objects.using( db_slug ), excluido = False, id = r3010_evtespdesportivo_id)
-
-    if r3010_evtespdesportivo_id:
-        if r3010_evtespdesportivo.status != 0:
-            dict_permissoes['r3010_evtespdesportivo_apagar'] = 0
-            dict_permissoes['r3010_evtespdesportivo_editar'] = 0
-
-    if request.method == 'POST':
-        if r3010_evtespdesportivo.status == 0:
-            import json
-            from django.forms.models import model_to_dict
-            situacao_anterior = json.dumps(model_to_dict(r3010_evtespdesportivo), indent=4, sort_keys=True, default=str)
-            r3010evtEspDesportivo.objects.using( db_slug ).filter(id = r3010_evtespdesportivo_id).delete()
-            #r3010_evtespdesportivo_apagar_custom
-            #r3010_evtespdesportivo_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
-            gravar_auditoria(situacao_anterior,
-                             '',
-                             'r3010_evtespdesportivo', r3010_evtespdesportivo_id, usuario_id, 3)
-        else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
-        if request.session['retorno_pagina']== 'r3010_evtespdesportivo_salvar':
-            return redirect('r3010_evtespdesportivo', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 'r3010_evtespdesportivo_apagar.html', context)
 

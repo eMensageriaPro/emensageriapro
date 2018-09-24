@@ -56,6 +56,24 @@ from emensageriapro.s1000.forms import form_s1000_alteracao
 #IMPORTACOES
 
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class eSocialNaturezasJuridicasList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = eSocialNaturezasJuridicas.objects.using(db_slug).all()
+    serializer_class = eSocialNaturezasJuridicasSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class eSocialNaturezasJuridicasDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = eSocialNaturezasJuridicas.objects.using(db_slug).all()
+    serializer_class = eSocialNaturezasJuridicasSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

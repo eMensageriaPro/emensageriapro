@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -139,6 +140,13 @@ class s1210deps(models.Model):
         ordering = ['s1210_evtpgtos', 'vrdeddep']
 
 
+
+class s1210depsSerializer(ModelSerializer):
+    class Meta:
+        model = s1210deps
+        fields = '__all__'
+            
+
 class s1210detPgtoAnt(models.Model):
     s1210_infopgto = models.ForeignKey('s1210infoPgto',
         related_name='%(class)s_s1210_infopgto')
@@ -159,6 +167,13 @@ class s1210detPgtoAnt(models.Model):
         managed = True
         ordering = ['s1210_infopgto', 'codcateg']
 
+
+
+class s1210detPgtoAntSerializer(ModelSerializer):
+    class Meta:
+        model = s1210detPgtoAnt
+        fields = '__all__'
+            
 
 class s1210detPgtoAntinfoPgtoAnt(models.Model):
     s1210_detpgtoant = models.ForeignKey('s1210detPgtoAnt',
@@ -181,6 +196,13 @@ class s1210detPgtoAntinfoPgtoAnt(models.Model):
         managed = True
         ordering = ['s1210_detpgtoant', 'tpbcirrf', 'vrbcirrf']
 
+
+
+class s1210detPgtoAntinfoPgtoAntSerializer(ModelSerializer):
+    class Meta:
+        model = s1210detPgtoAntinfoPgtoAnt
+        fields = '__all__'
+            
 
 class s1210detPgtoBenPr(models.Model):
     s1210_infopgto = models.OneToOneField('s1210infoPgto',
@@ -205,6 +227,13 @@ class s1210detPgtoBenPr(models.Model):
         managed = True
         ordering = ['s1210_infopgto', 'perref', 'idedmdev', 'indpgtott', 'vrliq']
 
+
+
+class s1210detPgtoBenPrSerializer(ModelSerializer):
+    class Meta:
+        model = s1210detPgtoBenPr
+        fields = '__all__'
+            
 
 class s1210detPgtoBenPrinfoPgtoParc(models.Model):
     s1210_detpgtobenpr = models.ForeignKey('s1210detPgtoBenPr',
@@ -232,6 +261,13 @@ class s1210detPgtoBenPrinfoPgtoParc(models.Model):
         ordering = ['s1210_detpgtobenpr', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
 
 
+
+class s1210detPgtoBenPrinfoPgtoParcSerializer(ModelSerializer):
+    class Meta:
+        model = s1210detPgtoBenPrinfoPgtoParc
+        fields = '__all__'
+            
+
 class s1210detPgtoBenPrretPgtoTot(models.Model):
     s1210_detpgtobenpr = models.ForeignKey('s1210detPgtoBenPr',
         related_name='%(class)s_s1210_detpgtobenpr')
@@ -258,6 +294,13 @@ class s1210detPgtoBenPrretPgtoTot(models.Model):
         ordering = ['s1210_detpgtobenpr', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
 
 
+
+class s1210detPgtoBenPrretPgtoTotSerializer(ModelSerializer):
+    class Meta:
+        model = s1210detPgtoBenPrretPgtoTot
+        fields = '__all__'
+            
+
 class s1210detPgtoFer(models.Model):
     s1210_infopgto = models.ForeignKey('s1210infoPgto',
         related_name='%(class)s_s1210_infopgto')
@@ -282,6 +325,13 @@ class s1210detPgtoFer(models.Model):
         managed = True
         ordering = ['s1210_infopgto', 'codcateg', 'matricula', 'dtinigoz', 'qtdias', 'vrliq']
 
+
+
+class s1210detPgtoFerSerializer(ModelSerializer):
+    class Meta:
+        model = s1210detPgtoFer
+        fields = '__all__'
+            
 
 class s1210detPgtoFerdetRubrFer(models.Model):
     s1210_detpgtofer = models.ForeignKey('s1210detPgtoFer',
@@ -309,6 +359,13 @@ class s1210detPgtoFerdetRubrFer(models.Model):
         ordering = ['s1210_detpgtofer', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
 
 
+
+class s1210detPgtoFerdetRubrFerSerializer(ModelSerializer):
+    class Meta:
+        model = s1210detPgtoFerdetRubrFer
+        fields = '__all__'
+            
+
 class s1210detPgtoFerpenAlim(models.Model):
     s1210_detpgtofer_detrubrfer = models.ForeignKey('s1210detPgtoFerdetRubrFer',
         related_name='%(class)s_s1210_detpgtofer_detrubrfer')
@@ -332,6 +389,13 @@ class s1210detPgtoFerpenAlim(models.Model):
         managed = True
         ordering = ['s1210_detpgtofer_detrubrfer', 'cpfbenef', 'dtnasctobenef', 'nmbenefic', 'vlrpensao']
 
+
+
+class s1210detPgtoFerpenAlimSerializer(ModelSerializer):
+    class Meta:
+        model = s1210detPgtoFerpenAlim
+        fields = '__all__'
+            
 
 class s1210detPgtoFl(models.Model):
     s1210_infopgto = models.ForeignKey('s1210infoPgto',
@@ -357,6 +421,13 @@ class s1210detPgtoFl(models.Model):
         managed = True
         ordering = ['s1210_infopgto', 'perref', 'idedmdev', 'indpgtott', 'vrliq', 'nrrecarq']
 
+
+
+class s1210detPgtoFlSerializer(ModelSerializer):
+    class Meta:
+        model = s1210detPgtoFl
+        fields = '__all__'
+            
 
 class s1210detPgtoFlinfoPgtoParc(models.Model):
     s1210_detpgtofl = models.ForeignKey('s1210detPgtoFl',
@@ -385,6 +456,13 @@ class s1210detPgtoFlinfoPgtoParc(models.Model):
         ordering = ['s1210_detpgtofl', 'matricula', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
 
 
+
+class s1210detPgtoFlinfoPgtoParcSerializer(ModelSerializer):
+    class Meta:
+        model = s1210detPgtoFlinfoPgtoParc
+        fields = '__all__'
+            
+
 class s1210detPgtoFlpenAlim(models.Model):
     s1210_detpgtofl_retpgtotot = models.ForeignKey('s1210detPgtoFlretPgtoTot',
         related_name='%(class)s_s1210_detpgtofl_retpgtotot')
@@ -408,6 +486,13 @@ class s1210detPgtoFlpenAlim(models.Model):
         managed = True
         ordering = ['s1210_detpgtofl_retpgtotot', 'cpfbenef', 'dtnasctobenef', 'nmbenefic', 'vlrpensao']
 
+
+
+class s1210detPgtoFlpenAlimSerializer(ModelSerializer):
+    class Meta:
+        model = s1210detPgtoFlpenAlim
+        fields = '__all__'
+            
 
 class s1210detPgtoFlretPgtoTot(models.Model):
     s1210_detpgtofl = models.ForeignKey('s1210detPgtoFl',
@@ -434,6 +519,13 @@ class s1210detPgtoFlretPgtoTot(models.Model):
         managed = True
         ordering = ['s1210_detpgtofl', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
 
+
+
+class s1210detPgtoFlretPgtoTotSerializer(ModelSerializer):
+    class Meta:
+        model = s1210detPgtoFlretPgtoTot
+        fields = '__all__'
+            
 
 class s1210idePgtoExt(models.Model):
     s1210_infopgto = models.OneToOneField('s1210infoPgto',
@@ -464,6 +556,13 @@ class s1210idePgtoExt(models.Model):
         ordering = ['s1210_infopgto', 'codpais', 'indnif', 'nifbenef', 'dsclograd', 'nrlograd', 'complem', 'bairro', 'nmcid', 'codpostal']
 
 
+
+class s1210idePgtoExtSerializer(ModelSerializer):
+    class Meta:
+        model = s1210idePgtoExt
+        fields = '__all__'
+            
+
 class s1210infoPgto(models.Model):
     s1210_evtpgtos = models.ForeignKey('esocial.s1210evtPgtos',
         related_name='%(class)s_s1210_evtpgtos')
@@ -486,5 +585,12 @@ class s1210infoPgto(models.Model):
         managed = True
         ordering = ['s1210_evtpgtos', 'dtpgto', 'tppgto', 'indresbr']
 
+
+
+class s1210infoPgtoSerializer(ModelSerializer):
+    class Meta:
+        model = s1210infoPgto
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

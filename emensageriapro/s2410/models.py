@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -73,6 +74,13 @@ class s2410homologTC(models.Model):
         ordering = ['s2410_evtcdbenin', 'dthomol', 'nratolegal']
 
 
+
+class s2410homologTCSerializer(ModelSerializer):
+    class Meta:
+        model = s2410homologTC
+        fields = '__all__'
+            
+
 class s2410infoPenMorte(models.Model):
     s2410_evtcdbenin = models.OneToOneField('esocial.s2410evtCdBenIn',
         related_name='%(class)s_s2410_evtcdbenin')
@@ -93,6 +101,13 @@ class s2410infoPenMorte(models.Model):
         managed = True
         ordering = ['s2410_evtcdbenin', 'tppenmorte']
 
+
+
+class s2410infoPenMorteSerializer(ModelSerializer):
+    class Meta:
+        model = s2410infoPenMorte
+        fields = '__all__'
+            
 
 class s2410instPenMorte(models.Model):
     s2410_infopenmorte = models.OneToOneField('s2410infoPenMorte',
@@ -116,5 +131,12 @@ class s2410instPenMorte(models.Model):
         managed = True
         ordering = ['s2410_infopenmorte', 'cpfinst', 'dtinst', 'intaposentado']
 
+
+
+class s2410instPenMorteSerializer(ModelSerializer):
+    class Meta:
+        model = s2410instPenMorte
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

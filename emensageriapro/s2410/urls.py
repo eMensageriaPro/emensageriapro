@@ -51,6 +51,12 @@ url(r'^s2410-infopenmorte/apagar/(?P<hash>.*)/$',
         s2410_infopenmorte_views.apagar, 
         name='s2410_infopenmorte_apagar'),
 
+url(r'^s2410-infopenmorte/api/$',
+            s2410_infopenmorte_views.s2410infoPenMorteList.as_view() ),
+
+        url(r'^s2410-infopenmorte/api/(?P<pk>[0-9]+)/$',
+            s2410_infopenmorte_views.s2410infoPenMorteDetail.as_view() ),
+
 url(r'^s2410-infopenmorte/listar/(?P<hash>.*)/$', 
         s2410_infopenmorte_views.listar, 
         name='s2410_infopenmorte'),
@@ -65,6 +71,12 @@ url(r'^s2410-instpenmorte/apagar/(?P<hash>.*)/$',
         s2410_instpenmorte_views.apagar, 
         name='s2410_instpenmorte_apagar'),
 
+url(r'^s2410-instpenmorte/api/$',
+            s2410_instpenmorte_views.s2410instPenMorteList.as_view() ),
+
+        url(r'^s2410-instpenmorte/api/(?P<pk>[0-9]+)/$',
+            s2410_instpenmorte_views.s2410instPenMorteDetail.as_view() ),
+
 url(r'^s2410-instpenmorte/listar/(?P<hash>.*)/$', 
         s2410_instpenmorte_views.listar, 
         name='s2410_instpenmorte'),
@@ -78,6 +90,12 @@ url(r'^s2410-instpenmorte/salvar/(?P<hash>.*)/$',
 url(r'^s2410-homologtc/apagar/(?P<hash>.*)/$', 
         s2410_homologtc_views.apagar, 
         name='s2410_homologtc_apagar'),
+
+url(r'^s2410-homologtc/api/$',
+            s2410_homologtc_views.s2410homologTCList.as_view() ),
+
+        url(r'^s2410-homologtc/api/(?P<pk>[0-9]+)/$',
+            s2410_homologtc_views.s2410homologTCDetail.as_view() ),
 
 url(r'^s2410-homologtc/listar/(?P<hash>.*)/$', 
         s2410_homologtc_views.listar, 

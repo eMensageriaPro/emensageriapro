@@ -281,6 +281,24 @@ def apagar(request, hash):
     }
     return render(request, 'r3010_infoproc_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class r3010infoProcList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = r3010infoProc.objects.using(db_slug).all()
+    serializer_class = r3010infoProcSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class r3010infoProcDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = r3010infoProc.objects.using(db_slug).all()
+    serializer_class = r3010infoProcSerializer
+    permission_classes = (IsAdminUser,)
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse

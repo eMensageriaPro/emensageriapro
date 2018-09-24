@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -121,6 +122,13 @@ class s2405brasil(models.Model):
         ordering = ['s2405_endereco', 'tplograd', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'cep', 'codmunic', 'uf']
 
 
+
+class s2405brasilSerializer(ModelSerializer):
+    class Meta:
+        model = s2405brasil
+        fields = '__all__'
+            
+
 class s2405dependente(models.Model):
     s2405_evtcdbenefalt = models.ForeignKey('esocial.s2405evtCdBenefAlt',
         related_name='%(class)s_s2405_evtcdbenefalt')
@@ -149,6 +157,13 @@ class s2405dependente(models.Model):
         ordering = ['s2405_evtcdbenefalt', 'tpdep', 'nmdep', 'dtnascto', 'cpfdep', 'sexodep', 'depirrf', 'incfismen', 'depfinsprev']
 
 
+
+class s2405dependenteSerializer(ModelSerializer):
+    class Meta:
+        model = s2405dependente
+        fields = '__all__'
+            
+
 class s2405endereco(models.Model):
     s2405_evtcdbenefalt = models.OneToOneField('esocial.s2405evtCdBenefAlt',
         related_name='%(class)s_s2405_evtcdbenefalt')
@@ -168,6 +183,13 @@ class s2405endereco(models.Model):
         managed = True
         ordering = ['s2405_evtcdbenefalt']
 
+
+
+class s2405enderecoSerializer(ModelSerializer):
+    class Meta:
+        model = s2405endereco
+        fields = '__all__'
+            
 
 class s2405exterior(models.Model):
     s2405_endereco = models.OneToOneField('s2405endereco',
@@ -195,5 +217,12 @@ class s2405exterior(models.Model):
         managed = True
         ordering = ['s2405_endereco', 'paisresid', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'nmcid', 'codpostal']
 
+
+
+class s2405exteriorSerializer(ModelSerializer):
+    class Meta:
+        model = s2405exterior
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

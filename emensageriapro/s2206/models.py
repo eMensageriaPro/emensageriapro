@@ -36,6 +36,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
@@ -172,6 +173,13 @@ class s2206alvaraJudicial(models.Model):
         ordering = ['s2206_evtaltcontratual', 'nrprocjud']
 
 
+
+class s2206alvaraJudicialSerializer(ModelSerializer):
+    class Meta:
+        model = s2206alvaraJudicial
+        fields = '__all__'
+            
+
 class s2206aprend(models.Model):
     s2206_infoceletista = models.OneToOneField('s2206infoCeletista',
         related_name='%(class)s_s2206_infoceletista')
@@ -194,6 +202,13 @@ class s2206aprend(models.Model):
         ordering = ['s2206_infoceletista', 'tpinsc', 'nrinsc']
 
 
+
+class s2206aprendSerializer(ModelSerializer):
+    class Meta:
+        model = s2206aprend
+        fields = '__all__'
+            
+
 class s2206filiacaoSindical(models.Model):
     s2206_evtaltcontratual = models.ForeignKey('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
@@ -214,6 +229,13 @@ class s2206filiacaoSindical(models.Model):
         managed = True
         ordering = ['s2206_evtaltcontratual', 'cnpjsindtrab']
 
+
+
+class s2206filiacaoSindicalSerializer(ModelSerializer):
+    class Meta:
+        model = s2206filiacaoSindical
+        fields = '__all__'
+            
 
 class s2206horContratual(models.Model):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
@@ -239,6 +261,13 @@ class s2206horContratual(models.Model):
         ordering = ['s2206_evtaltcontratual', 'qtdhrssem', 'tpjornada', 'dsctpjorn', 'tmpparc']
 
 
+
+class s2206horContratualSerializer(ModelSerializer):
+    class Meta:
+        model = s2206horContratual
+        fields = '__all__'
+            
+
 class s2206horario(models.Model):
     s2206_horcontratual = models.ForeignKey('s2206horContratual',
         related_name='%(class)s_s2206_horcontratual')
@@ -260,6 +289,13 @@ class s2206horario(models.Model):
         managed = True
         ordering = ['s2206_horcontratual', 'dia', 'codhorcontrat']
 
+
+
+class s2206horarioSerializer(ModelSerializer):
+    class Meta:
+        model = s2206horario
+        fields = '__all__'
+            
 
 class s2206infoCeletista(models.Model):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
@@ -285,6 +321,13 @@ class s2206infoCeletista(models.Model):
         ordering = ['s2206_evtaltcontratual', 'tpregjor', 'natatividade', 'dtbase', 'cnpjsindcategprof']
 
 
+
+class s2206infoCeletistaSerializer(ModelSerializer):
+    class Meta:
+        model = s2206infoCeletista
+        fields = '__all__'
+            
+
 class s2206infoEstatutario(models.Model):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
@@ -308,6 +351,13 @@ class s2206infoEstatutario(models.Model):
         managed = True
         ordering = ['s2206_evtaltcontratual', 'tpplanrp', 'indtetorgps', 'indabonoperm', 'indparcremun']
 
+
+
+class s2206infoEstatutarioSerializer(ModelSerializer):
+    class Meta:
+        model = s2206infoEstatutario
+        fields = '__all__'
+            
 
 class s2206localTrabDom(models.Model):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
@@ -337,6 +387,13 @@ class s2206localTrabDom(models.Model):
         ordering = ['s2206_evtaltcontratual', 'tplograd', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'cep', 'codmunic', 'uf']
 
 
+
+class s2206localTrabDomSerializer(ModelSerializer):
+    class Meta:
+        model = s2206localTrabDom
+        fields = '__all__'
+            
+
 class s2206localTrabGeral(models.Model):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
@@ -360,6 +417,13 @@ class s2206localTrabGeral(models.Model):
         ordering = ['s2206_evtaltcontratual', 'tpinsc', 'nrinsc', 'desccomp']
 
 
+
+class s2206localTrabGeralSerializer(ModelSerializer):
+    class Meta:
+        model = s2206localTrabGeral
+        fields = '__all__'
+            
+
 class s2206observacoes(models.Model):
     s2206_evtaltcontratual = models.ForeignKey('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
@@ -380,6 +444,13 @@ class s2206observacoes(models.Model):
         managed = True
         ordering = ['s2206_evtaltcontratual', 'observacao']
 
+
+
+class s2206observacoesSerializer(ModelSerializer):
+    class Meta:
+        model = s2206observacoes
+        fields = '__all__'
+            
 
 class s2206servPubl(models.Model):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
@@ -402,6 +473,13 @@ class s2206servPubl(models.Model):
         ordering = ['s2206_evtaltcontratual', 'mtvalter']
 
 
+
+class s2206servPublSerializer(ModelSerializer):
+    class Meta:
+        model = s2206servPubl
+        fields = '__all__'
+            
+
 class s2206trabTemp(models.Model):
     s2206_infoceletista = models.OneToOneField('s2206infoCeletista',
         related_name='%(class)s_s2206_infoceletista')
@@ -422,5 +500,12 @@ class s2206trabTemp(models.Model):
         managed = True
         ordering = ['s2206_infoceletista', 'justprorr']
 
+
+
+class s2206trabTempSerializer(ModelSerializer):
+    class Meta:
+        model = s2206trabTemp
+        fields = '__all__'
+            
 
 #VIEWS_MODELS

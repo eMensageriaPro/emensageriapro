@@ -36,40 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
 from django.apps import apps
 get_model = apps.get_model
 
 
-
-ESTADOS = (
-    ('AC', u'Acre'),
-    ('AL', u'Alagoas'),
-    ('AM', u'Amazonas'),
-    ('AP', u'Amapá'),
-    ('BA', u'Bahia'),
-    ('CE', u'Ceará'),
-    ('DF', u'Distrito Federal'),
-    ('ES', u'Espírito Santo'),
-    ('GO', u'Goiás'),
-    ('MA', u'Maranhão'),
-    ('MG', u'Minas Gerais'),
-    ('MS', u'Mato Grosso do Sul'),
-    ('MT', u'Mato Grosso'),
-    ('PA', u'Pará'),
-    ('PB', u'Paraíba'),
-    ('PE', u'Pernambuco'),
-    ('PI', u'Piauí'),
-    ('PR', u'Paraná'),
-    ('RJ', u'Rio de Janeiro'),
-    ('RN', u'Rio Grande do Norte'),
-    ('RO', u'Rondônia'),
-    ('RR', u'Roraima'),
-    ('RS', u'Rio Grande do Sul'),
-    ('SC', u'Santa Catarina'),
-    ('SE', u'Sergipe'),
-    ('SP', u'São Paulo'),
-    ('TO', u'Tocantins'),
-)
 
 PERIODOS = (
     ('2017-01', u'Janeiro/2017'),
@@ -103,12 +74,7 @@ CHOICES_R1070_ALTERACAO_INDAUTORIA = (
     (2, u'2 - Outra entidade ou empresa'),
 )
 
-CHOICES_R1070_ALTERACAO_INDDEPOSITO = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_R1070_ALTERACAO_INDSUSP = (
+CHOICES_R1070_INCLUSAO_INDSUSP = (
     ('01', u'01 - Liminar em Mandado de Segurança'),
     ('02', u'02 - Depósito Judicial do Montante Integral'),
     ('03', u'03 - Depósito Administrativo do Montante Integral'),
@@ -129,22 +95,12 @@ CHOICES_R1070_ALTERACAO_TPPROC = (
     (2, u'2 - Judicial'),
 )
 
-CHOICES_R1070_EXCLUSAO_TPPROC = (
+CHOICES_R1070_INCLUSAO_TPPROC = (
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial'),
 )
 
-CHOICES_R1070_INCLUSAO_INDAUTORIA = (
-    (1, u'1 - Próprio contribuinte'),
-    (2, u'2 - Outra entidade ou empresa'),
-)
-
-CHOICES_R1070_INCLUSAO_INDDEPOSITO = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_R1070_INCLUSAO_INDSUSP = (
+CHOICES_R1070_ALTERACAO_INDSUSP = (
     ('01', u'01 - Liminar em Mandado de Segurança'),
     ('02', u'02 - Depósito Judicial do Montante Integral'),
     ('03', u'03 - Depósito Administrativo do Montante Integral'),
@@ -160,9 +116,54 @@ CHOICES_R1070_INCLUSAO_INDSUSP = (
     ('92', u'92 - Sem suspensão da exigibilidade'),
 )
 
-CHOICES_R1070_INCLUSAO_TPPROC = (
+CHOICES_R1070_ALTERACAO_INDDEPOSITO = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_R1070_INCLUSAO_INDDEPOSITO = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_R1070_EXCLUSAO_TPPROC = (
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial'),
+)
+
+CHOICES_R1070_INCLUSAO_INDAUTORIA = (
+    (1, u'1 - Próprio contribuinte'),
+    (2, u'2 - Outra entidade ou empresa'),
+)
+
+ESTADOS = (
+    ('AC', u'Acre'),
+    ('AL', u'Alagoas'),
+    ('AM', u'Amazonas'),
+    ('AP', u'Amapá'),
+    ('BA', u'Bahia'),
+    ('CE', u'Ceará'),
+    ('DF', u'Distrito Federal'),
+    ('ES', u'Espírito Santo'),
+    ('GO', u'Goiás'),
+    ('MA', u'Maranhão'),
+    ('MG', u'Minas Gerais'),
+    ('MS', u'Mato Grosso do Sul'),
+    ('MT', u'Mato Grosso'),
+    ('PA', u'Pará'),
+    ('PB', u'Paraíba'),
+    ('PE', u'Pernambuco'),
+    ('PI', u'Piauí'),
+    ('PR', u'Paraná'),
+    ('RJ', u'Rio de Janeiro'),
+    ('RN', u'Rio Grande do Norte'),
+    ('RO', u'Rondônia'),
+    ('RR', u'Roraima'),
+    ('RS', u'Rio Grande do Sul'),
+    ('SC', u'Santa Catarina'),
+    ('SE', u'Sergipe'),
+    ('SP', u'São Paulo'),
+    ('TO', u'Tocantins'),
 )
 
 class r1070alteracao(models.Model):
@@ -191,6 +192,13 @@ class r1070alteracao(models.Model):
         ordering = ['r1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid', 'fimvalid', 'indautoria']
 
 
+
+class r1070alteracaoSerializer(ModelSerializer):
+    class Meta:
+        model = r1070alteracao
+        fields = '__all__'
+            
+
 class r1070alteracaodadosProcJud(models.Model):
     r1070_alteracao = models.OneToOneField('r1070alteracao',
         related_name='%(class)s_r1070_alteracao')
@@ -214,6 +222,13 @@ class r1070alteracaodadosProcJud(models.Model):
         managed = True
         ordering = ['r1070_alteracao', 'ufvara', 'codmunic', 'idvara']
 
+
+
+class r1070alteracaodadosProcJudSerializer(ModelSerializer):
+    class Meta:
+        model = r1070alteracaodadosProcJud
+        fields = '__all__'
+            
 
 class r1070alteracaoinfoSusp(models.Model):
     r1070_alteracao = models.ForeignKey('r1070alteracao',
@@ -240,6 +255,13 @@ class r1070alteracaoinfoSusp(models.Model):
         ordering = ['r1070_alteracao', 'codsusp', 'indsusp', 'dtdecisao', 'inddeposito']
 
 
+
+class r1070alteracaoinfoSuspSerializer(ModelSerializer):
+    class Meta:
+        model = r1070alteracaoinfoSusp
+        fields = '__all__'
+            
+
 class r1070alteracaonovaValidade(models.Model):
     r1070_alteracao = models.OneToOneField('r1070alteracao',
         related_name='%(class)s_r1070_alteracao')
@@ -262,6 +284,13 @@ class r1070alteracaonovaValidade(models.Model):
         managed = True
         ordering = ['r1070_alteracao', 'inivalid', 'fimvalid']
 
+
+
+class r1070alteracaonovaValidadeSerializer(ModelSerializer):
+    class Meta:
+        model = r1070alteracaonovaValidade
+        fields = '__all__'
+            
 
 class r1070exclusao(models.Model):
     r1070_evttabprocesso = models.OneToOneField('efdreinf.r1070evtTabProcesso',
@@ -287,6 +316,13 @@ class r1070exclusao(models.Model):
         managed = True
         ordering = ['r1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid', 'fimvalid']
 
+
+
+class r1070exclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = r1070exclusao
+        fields = '__all__'
+            
 
 class r1070inclusao(models.Model):
     r1070_evttabprocesso = models.OneToOneField('efdreinf.r1070evtTabProcesso',
@@ -314,6 +350,13 @@ class r1070inclusao(models.Model):
         ordering = ['r1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid', 'fimvalid', 'indautoria']
 
 
+
+class r1070inclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = r1070inclusao
+        fields = '__all__'
+            
+
 class r1070inclusaodadosProcJud(models.Model):
     r1070_inclusao = models.OneToOneField('r1070inclusao',
         related_name='%(class)s_r1070_inclusao')
@@ -337,6 +380,13 @@ class r1070inclusaodadosProcJud(models.Model):
         managed = True
         ordering = ['r1070_inclusao', 'ufvara', 'codmunic', 'idvara']
 
+
+
+class r1070inclusaodadosProcJudSerializer(ModelSerializer):
+    class Meta:
+        model = r1070inclusaodadosProcJud
+        fields = '__all__'
+            
 
 class r1070inclusaoinfoSusp(models.Model):
     r1070_inclusao = models.ForeignKey('r1070inclusao',
@@ -362,5 +412,12 @@ class r1070inclusaoinfoSusp(models.Model):
         managed = True
         ordering = ['r1070_inclusao', 'codsusp', 'indsusp', 'dtdecisao', 'inddeposito']
 
+
+
+class r1070inclusaoinfoSuspSerializer(ModelSerializer):
+    class Meta:
+        model = r1070inclusaoinfoSusp
+        fields = '__all__'
+            
 
 #VIEWS_MODELS
