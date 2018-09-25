@@ -209,8 +209,7 @@ USE_L10N = True
 
 USE_TZ = False
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-#STATIC_ROOT = '/Users/marcelovasconcellos/PycharmProjects/emensageriapro/static/'
+STATIC_ROOT = env('STATIC_ROOT')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
