@@ -273,4 +273,4 @@ FORCE_PRODUCAO_RESTRITA = env('FORCE_PRODUCAO_RESTRITA')
 
 PASS_SCRIPT = env('PASS_SCRIPT')
 
-LOGIN_REDIRECT_URL = 'mensageiro/transmissor-lote-esocial/listar/eyJyZXR1cm5fcGFnZSI6ICJ0cmFuc21pc3Nvcl9sb3RlIiwgInJldHVybl9oYXNoIjogImUzMD0iLCAiaWQiOiAiMCIsICJwcmludCI6ICIwIn0=/'
+LOGIN_REDIRECT_URL = 'mensageiro/mapa-processamento/eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ==/'
