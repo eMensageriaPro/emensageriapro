@@ -56,8 +56,9 @@ import base64
 def listar(request, hash):
     for_print = 0
     db_slug = 'default'
-    from emensageriapro.controle_de_acesso.views.login import criar_permissoes
+    from emensageriapro.controle_de_acesso.views.login import criar_permissoes, salvar_modulos_paginas_permitidas
     criar_permissoes(db_slug)
+    salvar_modulos_paginas_permitidas(db_slug)
     try:
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
