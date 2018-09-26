@@ -2581,69 +2581,27 @@ def salvar(request, hash):
         if request.method == 'POST':
             if usuarios_form.is_valid():
                 dados = usuarios_form.cleaned_data
-                from django.contrib.auth.models import User
                 if usuarios_id:
-                    dad_usu = {
-                        'username': request.POST.get('username'),
-                        'first_name': request.POST.get('first_name'),
-                        'last_name': request.POST.get('last_name'),
-                        'email': request.POST.get('email'),
-                    }
-                    dad_usuario = {
-                        'config_perfis_id': dados['config_perfis'],
-                        'modificado_por_id': usuario_id,
-                        'modificado_em': datetime.datetime.now(),
-                        'excluido': False,
-                    }
+                    dados['modificado_por_id'] = usuario_id
+                    dados['modificado_em'] = datetime.datetime.now()
                     #usuarios_campos_multiple_passo1
-                    User.objects.using(db_slug).filter(id=usuarios_id).update(**dad_usu)
-                    Usuarios.objects.using(db_slug).filter(id=usuarios_id).update(**dad_usuario)
+                    Usuarios.objects.using(db_slug).filter(id=usuarios_id).update(**dados)
                     obj = Usuarios.objects.using(db_slug).get(id=usuarios_id)
                     #usuarios_editar_custom
                     #usuarios_campos_multiple_passo2
                     messages.success(request, 'Alterado com sucesso!')
                 else:
-                    dad_usu = {
-                        'is_superuser': False,
-                        'username': request.POST.get('username'),
-                        'first_name': request.POST.get('first_name'),
-                        'last_name': request.POST.get('last_name'),
-                        'email': request.POST.get('email'),
-                        'is_staff': False,
-                        'is_active': True,
-                        'date_joined': datetime.datetime.now(),
-                    }
-                    obj_us = User(**dad_usu)
-                    obj_us.save(using = db_slug)
+                    dados['password'] = 'asdkl1231'
 
-                    dad_usuario = {
-                        'user_ptr_id': obj_us.id,
-                        'config_perfis': dados['config_perfis'],
-                        'criado_por_id': usuario_id,
-                        'criado_em': datetime.datetime.now(),
-                        'excluido': False,
-                    }
-
+                    dados['criado_por_id'] = usuario_id
+                    dados['criado_em'] = datetime.datetime.now()
+                    dados['excluido'] = False
                     #usuarios_cadastrar_campos_multiple_passo1
-                    obj = Usuarios(**dad_usuario)
+                    obj = Usuarios(**dados)
                     obj.save(using = db_slug)
                     #usuarios_cadastrar_custom
                     #usuarios_cadastrar_campos_multiple_passo2
                     messages.success(request, 'Cadastrado com sucesso!')
-
-                    from django.contrib.auth.hashers import make_password
-                    from .login_recuperar_senha import gera_senha, enviar_email_senha_recuperar
-                    nova_senha = gera_senha(10)
-                    hashed_password = make_password(nova_senha)
-                    User.objects.using(db_slug).filter(email=dados['email']).update(password=hashed_password)
-                    enviar_email_senha_recuperar(
-                        dados['first_name'],
-                        dados['email'],
-                        nova_senha
-                    )
-
-                    messages.success(request,
-                                     'Senha criada/alterada com sucessoe e enviada para o email %s!' % dados['email'])
                 if request.session['retorno_pagina'] not in ('usuarios_apagar', 'usuarios_salvar', 'usuarios'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if usuarios_id != obj.id:
@@ -2922,8 +2880,6 @@ def apagar(request, hash):
     usuarios = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuarios_id)
     if request.method == 'POST':
         Usuarios.objects.using( db_slug ).filter(id = usuarios_id).update(excluido = True)
-        #NOVO
-        User.objects.using( db_slug ).filter(id = usuarios_id).update(is_active = False)
         #usuarios_apagar_custom
         #usuarios_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
