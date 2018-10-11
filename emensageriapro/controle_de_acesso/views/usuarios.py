@@ -375,8 +375,6 @@ from emensageriapro.esocial.models import s1050evtTabHorTur
 from emensageriapro.esocial.models import s1050evtTabHorTur
 from emensageriapro.esocial.models import s1060evtTabAmbiente
 from emensageriapro.esocial.models import s1060evtTabAmbiente
-from emensageriapro.esocial.models import s1065evtTabEquipamento
-from emensageriapro.esocial.models import s1065evtTabEquipamento
 from emensageriapro.esocial.models import s1070evtTabProcesso
 from emensageriapro.esocial.models import s1070evtTabProcesso
 from emensageriapro.esocial.models import s1080evtTabOperPort
@@ -417,6 +415,8 @@ from emensageriapro.esocial.models import s2210evtCAT
 from emensageriapro.esocial.models import s2210evtCAT
 from emensageriapro.esocial.models import s2220evtMonit
 from emensageriapro.esocial.models import s2220evtMonit
+from emensageriapro.esocial.models import s2221evtToxic
+from emensageriapro.esocial.models import s2221evtToxic
 from emensageriapro.esocial.models import s2230evtAfastTemp
 from emensageriapro.esocial.models import s2230evtAfastTemp
 from emensageriapro.esocial.models import s2231evtCessao
@@ -515,8 +515,6 @@ from emensageriapro.s1005.models import s1005inclusaoinfoEntEduc
 from emensageriapro.s1005.models import s1005inclusaoinfoEntEduc
 from emensageriapro.s1005.models import s1005inclusaoinfoPCD
 from emensageriapro.s1005.models import s1005inclusaoinfoPCD
-from emensageriapro.s1005.models import s1005inclusaoinfoSST
-from emensageriapro.s1005.models import s1005inclusaoinfoSST
 from emensageriapro.s1005.models import s1005alteracao
 from emensageriapro.s1005.models import s1005alteracao
 from emensageriapro.s1005.models import s1005alteracaoprocAdmJudRat
@@ -525,6 +523,8 @@ from emensageriapro.s1005.models import s1005alteracaoprocAdmJudFap
 from emensageriapro.s1005.models import s1005alteracaoprocAdmJudFap
 from emensageriapro.s1005.models import s1005alteracaoinfoCaepf
 from emensageriapro.s1005.models import s1005alteracaoinfoCaepf
+from emensageriapro.s1050.models import s1050exclusao
+from emensageriapro.s1050.models import s1050exclusao
 from emensageriapro.s1005.models import s1005alteracaoinfoObra
 from emensageriapro.s1005.models import s1005alteracaoinfoObra
 from emensageriapro.s1005.models import s1005alteracaoinfoEntEduc
@@ -533,8 +533,6 @@ from emensageriapro.s1005.models import s1005alteracaoinfoPCD
 from emensageriapro.s1005.models import s1005alteracaoinfoPCD
 from emensageriapro.s1005.models import s1005alteracaonovaValidade
 from emensageriapro.s1005.models import s1005alteracaonovaValidade
-from emensageriapro.s1005.models import s1005alteracaoinfoSST
-from emensageriapro.s1005.models import s1005alteracaoinfoSST
 from emensageriapro.s1005.models import s1005exclusao
 from emensageriapro.s1005.models import s1005exclusao
 from emensageriapro.s1010.models import s1010inclusao
@@ -551,8 +549,12 @@ from emensageriapro.s1010.models import s1010inclusaoideProcessoCPRP
 from emensageriapro.s1010.models import s1010inclusaoideProcessoCPRP
 from emensageriapro.s1010.models import s1010alteracao
 from emensageriapro.s1010.models import s1010alteracao
-from emensageriapro.s1050.models import s1050exclusao
-from emensageriapro.s1050.models import s1050exclusao
+from emensageriapro.s1060.models import s1060inclusao
+from emensageriapro.s1060.models import s1060inclusao
+from emensageriapro.s1060.models import s1060alteracao
+from emensageriapro.s1060.models import s1060alteracao
+from emensageriapro.s2205.models import s2205exterior
+from emensageriapro.s2205.models import s2205exterior
 from emensageriapro.s1010.models import s1010alteracaoideProcessoCP
 from emensageriapro.s1010.models import s1010alteracaoideProcessoCP
 from emensageriapro.s1010.models import s1010alteracaoideProcessoIRRF
@@ -625,26 +627,10 @@ from emensageriapro.s1050.models import s1050alteracaohorarioIntervalo
 from emensageriapro.s1050.models import s1050alteracaohorarioIntervalo
 from emensageriapro.s1050.models import s1050alteracaonovaValidade
 from emensageriapro.s1050.models import s1050alteracaonovaValidade
-from emensageriapro.s1060.models import s1060inclusao
-from emensageriapro.s1060.models import s1060inclusao
-from emensageriapro.s1060.models import s1060inclusaofatorRisco
-from emensageriapro.s1060.models import s1060inclusaofatorRisco
-from emensageriapro.s1060.models import s1060alteracao
-from emensageriapro.s1060.models import s1060alteracao
-from emensageriapro.s1060.models import s1060alteracaofatorRisco
-from emensageriapro.s1060.models import s1060alteracaofatorRisco
 from emensageriapro.s1060.models import s1060alteracaonovaValidade
 from emensageriapro.s1060.models import s1060alteracaonovaValidade
 from emensageriapro.s1060.models import s1060exclusao
 from emensageriapro.s1060.models import s1060exclusao
-from emensageriapro.s1065.models import s1065inclusao
-from emensageriapro.s1065.models import s1065inclusao
-from emensageriapro.s1065.models import s1065alteracao
-from emensageriapro.s1065.models import s1065alteracao
-from emensageriapro.s1065.models import s1065alteracaonovaValidade
-from emensageriapro.s1065.models import s1065alteracaonovaValidade
-from emensageriapro.s1065.models import s1065exclusao
-from emensageriapro.s1065.models import s1065exclusao
 from emensageriapro.s1070.models import s1070inclusao
 from emensageriapro.s1070.models import s1070inclusao
 from emensageriapro.s1070.models import s1070inclusaodadosProcJud
@@ -701,6 +687,12 @@ from emensageriapro.s1200.models import s1200infoPerApurinfoAgNocivo
 from emensageriapro.s1200.models import s1200infoPerApurinfoAgNocivo
 from emensageriapro.s1200.models import s1200infoPerApurinfoTrabInterm
 from emensageriapro.s1200.models import s1200infoPerApurinfoTrabInterm
+from emensageriapro.s1202.models import s1202infoPerApur
+from emensageriapro.s1202.models import s1202infoPerApur
+from emensageriapro.s1202.models import s1202infoPerApurideEstab
+from emensageriapro.s1202.models import s1202infoPerApurideEstab
+from emensageriapro.s1210.models import s1210detPgtoFerpenAlim
+from emensageriapro.s1210.models import s1210detPgtoFerpenAlim
 from emensageriapro.s1200.models import s1200infoPerAnt
 from emensageriapro.s1200.models import s1200infoPerAnt
 from emensageriapro.s1200.models import s1200infoPerAntideADC
@@ -717,18 +709,12 @@ from emensageriapro.s1200.models import s1200infoPerAntinfoAgNocivo
 from emensageriapro.s1200.models import s1200infoPerAntinfoAgNocivo
 from emensageriapro.s1200.models import s1200infoPerAntinfoTrabInterm
 from emensageriapro.s1200.models import s1200infoPerAntinfoTrabInterm
-from emensageriapro.s1202.models import s1202infoPerAntremunPerAnt
-from emensageriapro.s1202.models import s1202infoPerAntremunPerAnt
 from emensageriapro.s1200.models import s1200infoPerAntinfoComplCont
 from emensageriapro.s1200.models import s1200infoPerAntinfoComplCont
 from emensageriapro.s1202.models import s1202procJudTrab
 from emensageriapro.s1202.models import s1202procJudTrab
 from emensageriapro.s1202.models import s1202dmDev
 from emensageriapro.s1202.models import s1202dmDev
-from emensageriapro.s1202.models import s1202infoPerApur
-from emensageriapro.s1202.models import s1202infoPerApur
-from emensageriapro.s1202.models import s1202infoPerApurideEstab
-from emensageriapro.s1202.models import s1202infoPerApurideEstab
 from emensageriapro.s1202.models import s1202infoPerApurremunPerApur
 from emensageriapro.s1202.models import s1202infoPerApurremunPerApur
 from emensageriapro.s1202.models import s1202infoPerApuritensRemun
@@ -747,6 +733,8 @@ from emensageriapro.s1202.models import s1202infoPerAntidePeriodo
 from emensageriapro.s1202.models import s1202infoPerAntidePeriodo
 from emensageriapro.s1202.models import s1202infoPerAntideEstab
 from emensageriapro.s1202.models import s1202infoPerAntideEstab
+from emensageriapro.s1202.models import s1202infoPerAntremunPerAnt
+from emensageriapro.s1202.models import s1202infoPerAntremunPerAnt
 from emensageriapro.s1202.models import s1202infoPerAntitensRemun
 from emensageriapro.s1202.models import s1202infoPerAntitensRemun
 from emensageriapro.s1207.models import s1207procJudTrab
@@ -797,8 +785,6 @@ from emensageriapro.s1210.models import s1210detPgtoFer
 from emensageriapro.s1210.models import s1210detPgtoFer
 from emensageriapro.s1210.models import s1210detPgtoFerdetRubrFer
 from emensageriapro.s1210.models import s1210detPgtoFerdetRubrFer
-from emensageriapro.s1210.models import s1210detPgtoFerpenAlim
-from emensageriapro.s1210.models import s1210detPgtoFerpenAlim
 from emensageriapro.s1210.models import s1210detPgtoAnt
 from emensageriapro.s1210.models import s1210detPgtoAnt
 from emensageriapro.s1210.models import s1210detPgtoAntinfoPgtoAnt
@@ -819,8 +805,6 @@ from emensageriapro.s1260.models import s1260ideAdquir
 from emensageriapro.s1260.models import s1260ideAdquir
 from emensageriapro.s1260.models import s1260nfs
 from emensageriapro.s1260.models import s1260nfs
-from emensageriapro.s2200.models import s2200infoCeletista
-from emensageriapro.s2200.models import s2200infoCeletista
 from emensageriapro.s1260.models import s1260infoProcJud
 from emensageriapro.s1260.models import s1260infoProcJud
 from emensageriapro.s1270.models import s1270remunAvNP
@@ -829,6 +813,8 @@ from emensageriapro.s1280.models import s1280infoSubstPatr
 from emensageriapro.s1280.models import s1280infoSubstPatr
 from emensageriapro.s1280.models import s1280infoSubstPatrOpPort
 from emensageriapro.s1280.models import s1280infoSubstPatrOpPort
+from emensageriapro.s2200.models import s2200infoDecJud
+from emensageriapro.s2200.models import s2200infoDecJud
 from emensageriapro.s1280.models import s1280infoAtivConcom
 from emensageriapro.s1280.models import s1280infoAtivConcom
 from emensageriapro.s1295.models import s1295ideRespInf
@@ -865,6 +851,8 @@ from emensageriapro.s2200.models import s2200aposentadoria
 from emensageriapro.s2200.models import s2200aposentadoria
 from emensageriapro.s2200.models import s2200contato
 from emensageriapro.s2200.models import s2200contato
+from emensageriapro.s2200.models import s2200infoCeletista
+from emensageriapro.s2200.models import s2200infoCeletista
 from emensageriapro.s2200.models import s2200trabTemporario
 from emensageriapro.s2200.models import s2200trabTemporario
 from emensageriapro.s2200.models import s2200ideEstabVinc
@@ -875,8 +863,6 @@ from emensageriapro.s2200.models import s2200aprend
 from emensageriapro.s2200.models import s2200aprend
 from emensageriapro.s2200.models import s2200infoEstatutario
 from emensageriapro.s2200.models import s2200infoEstatutario
-from emensageriapro.s2200.models import s2200infoDecJud
-from emensageriapro.s2200.models import s2200infoDecJud
 from emensageriapro.s2200.models import s2200localTrabGeral
 from emensageriapro.s2200.models import s2200localTrabGeral
 from emensageriapro.s2200.models import s2200localTrabDom
@@ -917,8 +903,6 @@ from emensageriapro.s2205.models import s2205CNH
 from emensageriapro.s2205.models import s2205CNH
 from emensageriapro.s2205.models import s2205brasil
 from emensageriapro.s2205.models import s2205brasil
-from emensageriapro.s2205.models import s2205exterior
-from emensageriapro.s2205.models import s2205exterior
 from emensageriapro.s2205.models import s2205trabEstrangeiro
 from emensageriapro.s2205.models import s2205trabEstrangeiro
 from emensageriapro.s2205.models import s2205infoDeficiencia
@@ -947,8 +931,6 @@ from emensageriapro.s2206.models import s2206horario
 from emensageriapro.s2206.models import s2206horario
 from emensageriapro.s2206.models import s2206filiacaoSindical
 from emensageriapro.s2206.models import s2206filiacaoSindical
-from emensageriapro.s2240.models import s2240iniExpRiscoepc
-from emensageriapro.s2240.models import s2240iniExpRiscoepc
 from emensageriapro.s2206.models import s2206alvaraJudicial
 from emensageriapro.s2206.models import s2206alvaraJudicial
 from emensageriapro.s2206.models import s2206observacoes
@@ -965,12 +947,8 @@ from emensageriapro.s2210.models import s2210atestado
 from emensageriapro.s2210.models import s2210atestado
 from emensageriapro.s2210.models import s2210catOrigem
 from emensageriapro.s2210.models import s2210catOrigem
-from emensageriapro.s2220.models import s2220exMedOcup
-from emensageriapro.s2220.models import s2220exMedOcup
 from emensageriapro.s2220.models import s2220exame
 from emensageriapro.s2220.models import s2220exame
-from emensageriapro.s2220.models import s2220toxicologico
-from emensageriapro.s2220.models import s2220toxicologico
 from emensageriapro.s2230.models import s2230iniAfastamento
 from emensageriapro.s2230.models import s2230iniAfastamento
 from emensageriapro.s2230.models import s2230infoAtestado
@@ -997,6 +975,8 @@ from emensageriapro.s2240.models import s2240iniExpRiscoativPericInsal
 from emensageriapro.s2240.models import s2240iniExpRiscoativPericInsal
 from emensageriapro.s2240.models import s2240iniExpRiscofatRisco
 from emensageriapro.s2240.models import s2240iniExpRiscofatRisco
+from emensageriapro.s2240.models import s2240iniExpRiscoepc
+from emensageriapro.s2240.models import s2240iniExpRiscoepc
 from emensageriapro.s2240.models import s2240iniExpRiscoepi
 from emensageriapro.s2240.models import s2240iniExpRiscoepi
 from emensageriapro.s2240.models import s2240iniExpRiscorespReg
@@ -1055,6 +1035,8 @@ from emensageriapro.s2241.models import s2241fimAposentEsp
 from emensageriapro.s2241.models import s2241fimAposentEsp
 from emensageriapro.s2241.models import s2241fimAposentEspinfoAmb
 from emensageriapro.s2241.models import s2241fimAposentEspinfoAmb
+from emensageriapro.s2245.models import s2245infoComplem
+from emensageriapro.s2245.models import s2245infoComplem
 from emensageriapro.s2245.models import s2245ideProfResp
 from emensageriapro.s2245.models import s2245ideProfResp
 from emensageriapro.s2250.models import s2250detAvPrevio
@@ -1085,12 +1067,14 @@ from emensageriapro.s2299.models import s2299infoPerApurdetOper
 from emensageriapro.s2299.models import s2299infoPerApurdetOper
 from emensageriapro.s2299.models import s2299infoPerApurdetPlano
 from emensageriapro.s2299.models import s2299infoPerApurdetPlano
-from emensageriapro.s2300.models import s2300infoDirigenteSindical
-from emensageriapro.s2300.models import s2300infoDirigenteSindical
 from emensageriapro.s2299.models import s2299infoPerApurinfoAgNocivo
 from emensageriapro.s2299.models import s2299infoPerApurinfoAgNocivo
 from emensageriapro.s2299.models import s2299infoPerApurinfoSimples
 from emensageriapro.s2299.models import s2299infoPerApurinfoSimples
+from emensageriapro.s2299.models import s2299infoTrabIntermprocCS
+from emensageriapro.s2299.models import s2299infoTrabIntermprocCS
+from emensageriapro.s2299.models import s2299infoTrabIntermquarentena
+from emensageriapro.s2299.models import s2299infoTrabIntermquarentena
 from emensageriapro.s2299.models import s2299infoPerAnt
 from emensageriapro.s2299.models import s2299infoPerAnt
 from emensageriapro.s2299.models import s2299infoPerAntideADC
@@ -1113,10 +1097,6 @@ from emensageriapro.s2299.models import s2299infoTrabInterminfoMV
 from emensageriapro.s2299.models import s2299infoTrabInterminfoMV
 from emensageriapro.s2299.models import s2299infoTrabIntermremunOutrEmpr
 from emensageriapro.s2299.models import s2299infoTrabIntermremunOutrEmpr
-from emensageriapro.s2299.models import s2299infoTrabIntermprocCS
-from emensageriapro.s2299.models import s2299infoTrabIntermprocCS
-from emensageriapro.s2299.models import s2299infoTrabIntermquarentena
-from emensageriapro.s2299.models import s2299infoTrabIntermquarentena
 from emensageriapro.s2299.models import s2299infoTrabIntermconsigFGTS
 from emensageriapro.s2299.models import s2299infoTrabIntermconsigFGTS
 from emensageriapro.s2300.models import s2300documentos
@@ -1153,6 +1133,8 @@ from emensageriapro.s2300.models import s2300remuneracao
 from emensageriapro.s2300.models import s2300remuneracao
 from emensageriapro.s2300.models import s2300fgts
 from emensageriapro.s2300.models import s2300fgts
+from emensageriapro.s2300.models import s2300infoDirigenteSindical
+from emensageriapro.s2300.models import s2300infoDirigenteSindical
 from emensageriapro.s2300.models import s2300infoTrabCedido
 from emensageriapro.s2300.models import s2300infoTrabCedido
 from emensageriapro.s2300.models import s2300infoEstagiario
@@ -1624,8 +1606,6 @@ from emensageriapro.esocial.forms import form_s1050_evttabhortur
 from emensageriapro.esocial.forms import form_s1050_evttabhortur
 from emensageriapro.esocial.forms import form_s1060_evttabambiente
 from emensageriapro.esocial.forms import form_s1060_evttabambiente
-from emensageriapro.esocial.forms import form_s1065_evttabequipamento
-from emensageriapro.esocial.forms import form_s1065_evttabequipamento
 from emensageriapro.esocial.forms import form_s1070_evttabprocesso
 from emensageriapro.esocial.forms import form_s1070_evttabprocesso
 from emensageriapro.esocial.forms import form_s1080_evttaboperport
@@ -1666,6 +1646,8 @@ from emensageriapro.esocial.forms import form_s2210_evtcat
 from emensageriapro.esocial.forms import form_s2210_evtcat
 from emensageriapro.esocial.forms import form_s2220_evtmonit
 from emensageriapro.esocial.forms import form_s2220_evtmonit
+from emensageriapro.esocial.forms import form_s2221_evttoxic
+from emensageriapro.esocial.forms import form_s2221_evttoxic
 from emensageriapro.esocial.forms import form_s2230_evtafasttemp
 from emensageriapro.esocial.forms import form_s2230_evtafasttemp
 from emensageriapro.esocial.forms import form_s2231_evtcessao
@@ -1764,8 +1746,6 @@ from emensageriapro.s1005.forms import form_s1005_inclusao_infoenteduc
 from emensageriapro.s1005.forms import form_s1005_inclusao_infoenteduc
 from emensageriapro.s1005.forms import form_s1005_inclusao_infopcd
 from emensageriapro.s1005.forms import form_s1005_inclusao_infopcd
-from emensageriapro.s1005.forms import form_s1005_inclusao_infosst
-from emensageriapro.s1005.forms import form_s1005_inclusao_infosst
 from emensageriapro.s1005.forms import form_s1005_alteracao
 from emensageriapro.s1005.forms import form_s1005_alteracao
 from emensageriapro.s1005.forms import form_s1005_alteracao_procadmjudrat
@@ -1774,6 +1754,8 @@ from emensageriapro.s1005.forms import form_s1005_alteracao_procadmjudfap
 from emensageriapro.s1005.forms import form_s1005_alteracao_procadmjudfap
 from emensageriapro.s1005.forms import form_s1005_alteracao_infocaepf
 from emensageriapro.s1005.forms import form_s1005_alteracao_infocaepf
+from emensageriapro.s1050.forms import form_s1050_exclusao
+from emensageriapro.s1050.forms import form_s1050_exclusao
 from emensageriapro.s1005.forms import form_s1005_alteracao_infoobra
 from emensageriapro.s1005.forms import form_s1005_alteracao_infoobra
 from emensageriapro.s1005.forms import form_s1005_alteracao_infoenteduc
@@ -1782,8 +1764,6 @@ from emensageriapro.s1005.forms import form_s1005_alteracao_infopcd
 from emensageriapro.s1005.forms import form_s1005_alteracao_infopcd
 from emensageriapro.s1005.forms import form_s1005_alteracao_novavalidade
 from emensageriapro.s1005.forms import form_s1005_alteracao_novavalidade
-from emensageriapro.s1005.forms import form_s1005_alteracao_infosst
-from emensageriapro.s1005.forms import form_s1005_alteracao_infosst
 from emensageriapro.s1005.forms import form_s1005_exclusao
 from emensageriapro.s1005.forms import form_s1005_exclusao
 from emensageriapro.s1010.forms import form_s1010_inclusao
@@ -1800,8 +1780,12 @@ from emensageriapro.s1010.forms import form_s1010_inclusao_ideprocessocprp
 from emensageriapro.s1010.forms import form_s1010_inclusao_ideprocessocprp
 from emensageriapro.s1010.forms import form_s1010_alteracao
 from emensageriapro.s1010.forms import form_s1010_alteracao
-from emensageriapro.s1050.forms import form_s1050_exclusao
-from emensageriapro.s1050.forms import form_s1050_exclusao
+from emensageriapro.s1060.forms import form_s1060_inclusao
+from emensageriapro.s1060.forms import form_s1060_inclusao
+from emensageriapro.s1060.forms import form_s1060_alteracao
+from emensageriapro.s1060.forms import form_s1060_alteracao
+from emensageriapro.s2205.forms import form_s2205_exterior
+from emensageriapro.s2205.forms import form_s2205_exterior
 from emensageriapro.s1010.forms import form_s1010_alteracao_ideprocessocp
 from emensageriapro.s1010.forms import form_s1010_alteracao_ideprocessocp
 from emensageriapro.s1010.forms import form_s1010_alteracao_ideprocessoirrf
@@ -1874,26 +1858,10 @@ from emensageriapro.s1050.forms import form_s1050_alteracao_horariointervalo
 from emensageriapro.s1050.forms import form_s1050_alteracao_horariointervalo
 from emensageriapro.s1050.forms import form_s1050_alteracao_novavalidade
 from emensageriapro.s1050.forms import form_s1050_alteracao_novavalidade
-from emensageriapro.s1060.forms import form_s1060_inclusao
-from emensageriapro.s1060.forms import form_s1060_inclusao
-from emensageriapro.s1060.forms import form_s1060_inclusao_fatorrisco
-from emensageriapro.s1060.forms import form_s1060_inclusao_fatorrisco
-from emensageriapro.s1060.forms import form_s1060_alteracao
-from emensageriapro.s1060.forms import form_s1060_alteracao
-from emensageriapro.s1060.forms import form_s1060_alteracao_fatorrisco
-from emensageriapro.s1060.forms import form_s1060_alteracao_fatorrisco
 from emensageriapro.s1060.forms import form_s1060_alteracao_novavalidade
 from emensageriapro.s1060.forms import form_s1060_alteracao_novavalidade
 from emensageriapro.s1060.forms import form_s1060_exclusao
 from emensageriapro.s1060.forms import form_s1060_exclusao
-from emensageriapro.s1065.forms import form_s1065_inclusao
-from emensageriapro.s1065.forms import form_s1065_inclusao
-from emensageriapro.s1065.forms import form_s1065_alteracao
-from emensageriapro.s1065.forms import form_s1065_alteracao
-from emensageriapro.s1065.forms import form_s1065_alteracao_novavalidade
-from emensageriapro.s1065.forms import form_s1065_alteracao_novavalidade
-from emensageriapro.s1065.forms import form_s1065_exclusao
-from emensageriapro.s1065.forms import form_s1065_exclusao
 from emensageriapro.s1070.forms import form_s1070_inclusao
 from emensageriapro.s1070.forms import form_s1070_inclusao
 from emensageriapro.s1070.forms import form_s1070_inclusao_dadosprocjud
@@ -1950,6 +1918,12 @@ from emensageriapro.s1200.forms import form_s1200_infoperapur_infoagnocivo
 from emensageriapro.s1200.forms import form_s1200_infoperapur_infoagnocivo
 from emensageriapro.s1200.forms import form_s1200_infoperapur_infotrabinterm
 from emensageriapro.s1200.forms import form_s1200_infoperapur_infotrabinterm
+from emensageriapro.s1202.forms import form_s1202_infoperapur
+from emensageriapro.s1202.forms import form_s1202_infoperapur
+from emensageriapro.s1202.forms import form_s1202_infoperapur_ideestab
+from emensageriapro.s1202.forms import form_s1202_infoperapur_ideestab
+from emensageriapro.s1210.forms import form_s1210_detpgtofer_penalim
+from emensageriapro.s1210.forms import form_s1210_detpgtofer_penalim
 from emensageriapro.s1200.forms import form_s1200_infoperant
 from emensageriapro.s1200.forms import form_s1200_infoperant
 from emensageriapro.s1200.forms import form_s1200_infoperant_ideadc
@@ -1966,18 +1940,12 @@ from emensageriapro.s1200.forms import form_s1200_infoperant_infoagnocivo
 from emensageriapro.s1200.forms import form_s1200_infoperant_infoagnocivo
 from emensageriapro.s1200.forms import form_s1200_infoperant_infotrabinterm
 from emensageriapro.s1200.forms import form_s1200_infoperant_infotrabinterm
-from emensageriapro.s1202.forms import form_s1202_infoperant_remunperant
-from emensageriapro.s1202.forms import form_s1202_infoperant_remunperant
 from emensageriapro.s1200.forms import form_s1200_infoperant_infocomplcont
 from emensageriapro.s1200.forms import form_s1200_infoperant_infocomplcont
 from emensageriapro.s1202.forms import form_s1202_procjudtrab
 from emensageriapro.s1202.forms import form_s1202_procjudtrab
 from emensageriapro.s1202.forms import form_s1202_dmdev
 from emensageriapro.s1202.forms import form_s1202_dmdev
-from emensageriapro.s1202.forms import form_s1202_infoperapur
-from emensageriapro.s1202.forms import form_s1202_infoperapur
-from emensageriapro.s1202.forms import form_s1202_infoperapur_ideestab
-from emensageriapro.s1202.forms import form_s1202_infoperapur_ideestab
 from emensageriapro.s1202.forms import form_s1202_infoperapur_remunperapur
 from emensageriapro.s1202.forms import form_s1202_infoperapur_remunperapur
 from emensageriapro.s1202.forms import form_s1202_infoperapur_itensremun
@@ -1996,6 +1964,8 @@ from emensageriapro.s1202.forms import form_s1202_infoperant_ideperiodo
 from emensageriapro.s1202.forms import form_s1202_infoperant_ideperiodo
 from emensageriapro.s1202.forms import form_s1202_infoperant_ideestab
 from emensageriapro.s1202.forms import form_s1202_infoperant_ideestab
+from emensageriapro.s1202.forms import form_s1202_infoperant_remunperant
+from emensageriapro.s1202.forms import form_s1202_infoperant_remunperant
 from emensageriapro.s1202.forms import form_s1202_infoperant_itensremun
 from emensageriapro.s1202.forms import form_s1202_infoperant_itensremun
 from emensageriapro.s1207.forms import form_s1207_procjudtrab
@@ -2046,8 +2016,6 @@ from emensageriapro.s1210.forms import form_s1210_detpgtofer
 from emensageriapro.s1210.forms import form_s1210_detpgtofer
 from emensageriapro.s1210.forms import form_s1210_detpgtofer_detrubrfer
 from emensageriapro.s1210.forms import form_s1210_detpgtofer_detrubrfer
-from emensageriapro.s1210.forms import form_s1210_detpgtofer_penalim
-from emensageriapro.s1210.forms import form_s1210_detpgtofer_penalim
 from emensageriapro.s1210.forms import form_s1210_detpgtoant
 from emensageriapro.s1210.forms import form_s1210_detpgtoant
 from emensageriapro.s1210.forms import form_s1210_detpgtoant_infopgtoant
@@ -2068,8 +2036,6 @@ from emensageriapro.s1260.forms import form_s1260_ideadquir
 from emensageriapro.s1260.forms import form_s1260_ideadquir
 from emensageriapro.s1260.forms import form_s1260_nfs
 from emensageriapro.s1260.forms import form_s1260_nfs
-from emensageriapro.s2200.forms import form_s2200_infoceletista
-from emensageriapro.s2200.forms import form_s2200_infoceletista
 from emensageriapro.s1260.forms import form_s1260_infoprocjud
 from emensageriapro.s1260.forms import form_s1260_infoprocjud
 from emensageriapro.s1270.forms import form_s1270_remunavnp
@@ -2078,6 +2044,8 @@ from emensageriapro.s1280.forms import form_s1280_infosubstpatr
 from emensageriapro.s1280.forms import form_s1280_infosubstpatr
 from emensageriapro.s1280.forms import form_s1280_infosubstpatropport
 from emensageriapro.s1280.forms import form_s1280_infosubstpatropport
+from emensageriapro.s2200.forms import form_s2200_infodecjud
+from emensageriapro.s2200.forms import form_s2200_infodecjud
 from emensageriapro.s1280.forms import form_s1280_infoativconcom
 from emensageriapro.s1280.forms import form_s1280_infoativconcom
 from emensageriapro.s1295.forms import form_s1295_iderespinf
@@ -2114,6 +2082,8 @@ from emensageriapro.s2200.forms import form_s2200_aposentadoria
 from emensageriapro.s2200.forms import form_s2200_aposentadoria
 from emensageriapro.s2200.forms import form_s2200_contato
 from emensageriapro.s2200.forms import form_s2200_contato
+from emensageriapro.s2200.forms import form_s2200_infoceletista
+from emensageriapro.s2200.forms import form_s2200_infoceletista
 from emensageriapro.s2200.forms import form_s2200_trabtemporario
 from emensageriapro.s2200.forms import form_s2200_trabtemporario
 from emensageriapro.s2200.forms import form_s2200_ideestabvinc
@@ -2124,8 +2094,6 @@ from emensageriapro.s2200.forms import form_s2200_aprend
 from emensageriapro.s2200.forms import form_s2200_aprend
 from emensageriapro.s2200.forms import form_s2200_infoestatutario
 from emensageriapro.s2200.forms import form_s2200_infoestatutario
-from emensageriapro.s2200.forms import form_s2200_infodecjud
-from emensageriapro.s2200.forms import form_s2200_infodecjud
 from emensageriapro.s2200.forms import form_s2200_localtrabgeral
 from emensageriapro.s2200.forms import form_s2200_localtrabgeral
 from emensageriapro.s2200.forms import form_s2200_localtrabdom
@@ -2166,8 +2134,6 @@ from emensageriapro.s2205.forms import form_s2205_cnh
 from emensageriapro.s2205.forms import form_s2205_cnh
 from emensageriapro.s2205.forms import form_s2205_brasil
 from emensageriapro.s2205.forms import form_s2205_brasil
-from emensageriapro.s2205.forms import form_s2205_exterior
-from emensageriapro.s2205.forms import form_s2205_exterior
 from emensageriapro.s2205.forms import form_s2205_trabestrangeiro
 from emensageriapro.s2205.forms import form_s2205_trabestrangeiro
 from emensageriapro.s2205.forms import form_s2205_infodeficiencia
@@ -2196,8 +2162,6 @@ from emensageriapro.s2206.forms import form_s2206_horario
 from emensageriapro.s2206.forms import form_s2206_horario
 from emensageriapro.s2206.forms import form_s2206_filiacaosindical
 from emensageriapro.s2206.forms import form_s2206_filiacaosindical
-from emensageriapro.s2240.forms import form_s2240_iniexprisco_epc
-from emensageriapro.s2240.forms import form_s2240_iniexprisco_epc
 from emensageriapro.s2206.forms import form_s2206_alvarajudicial
 from emensageriapro.s2206.forms import form_s2206_alvarajudicial
 from emensageriapro.s2206.forms import form_s2206_observacoes
@@ -2214,12 +2178,8 @@ from emensageriapro.s2210.forms import form_s2210_atestado
 from emensageriapro.s2210.forms import form_s2210_atestado
 from emensageriapro.s2210.forms import form_s2210_catorigem
 from emensageriapro.s2210.forms import form_s2210_catorigem
-from emensageriapro.s2220.forms import form_s2220_exmedocup
-from emensageriapro.s2220.forms import form_s2220_exmedocup
 from emensageriapro.s2220.forms import form_s2220_exame
 from emensageriapro.s2220.forms import form_s2220_exame
-from emensageriapro.s2220.forms import form_s2220_toxicologico
-from emensageriapro.s2220.forms import form_s2220_toxicologico
 from emensageriapro.s2230.forms import form_s2230_iniafastamento
 from emensageriapro.s2230.forms import form_s2230_iniafastamento
 from emensageriapro.s2230.forms import form_s2230_infoatestado
@@ -2246,6 +2206,8 @@ from emensageriapro.s2240.forms import form_s2240_iniexprisco_ativpericinsal
 from emensageriapro.s2240.forms import form_s2240_iniexprisco_ativpericinsal
 from emensageriapro.s2240.forms import form_s2240_iniexprisco_fatrisco
 from emensageriapro.s2240.forms import form_s2240_iniexprisco_fatrisco
+from emensageriapro.s2240.forms import form_s2240_iniexprisco_epc
+from emensageriapro.s2240.forms import form_s2240_iniexprisco_epc
 from emensageriapro.s2240.forms import form_s2240_iniexprisco_epi
 from emensageriapro.s2240.forms import form_s2240_iniexprisco_epi
 from emensageriapro.s2240.forms import form_s2240_iniexprisco_respreg
@@ -2304,6 +2266,8 @@ from emensageriapro.s2241.forms import form_s2241_fimaposentesp
 from emensageriapro.s2241.forms import form_s2241_fimaposentesp
 from emensageriapro.s2241.forms import form_s2241_fimaposentesp_infoamb
 from emensageriapro.s2241.forms import form_s2241_fimaposentesp_infoamb
+from emensageriapro.s2245.forms import form_s2245_infocomplem
+from emensageriapro.s2245.forms import form_s2245_infocomplem
 from emensageriapro.s2245.forms import form_s2245_ideprofresp
 from emensageriapro.s2245.forms import form_s2245_ideprofresp
 from emensageriapro.s2250.forms import form_s2250_detavprevio
@@ -2334,12 +2298,14 @@ from emensageriapro.s2299.forms import form_s2299_infoperapur_detoper
 from emensageriapro.s2299.forms import form_s2299_infoperapur_detoper
 from emensageriapro.s2299.forms import form_s2299_infoperapur_detplano
 from emensageriapro.s2299.forms import form_s2299_infoperapur_detplano
-from emensageriapro.s2300.forms import form_s2300_infodirigentesindical
-from emensageriapro.s2300.forms import form_s2300_infodirigentesindical
 from emensageriapro.s2299.forms import form_s2299_infoperapur_infoagnocivo
 from emensageriapro.s2299.forms import form_s2299_infoperapur_infoagnocivo
 from emensageriapro.s2299.forms import form_s2299_infoperapur_infosimples
 from emensageriapro.s2299.forms import form_s2299_infoperapur_infosimples
+from emensageriapro.s2299.forms import form_s2299_infotrabinterm_proccs
+from emensageriapro.s2299.forms import form_s2299_infotrabinterm_proccs
+from emensageriapro.s2299.forms import form_s2299_infotrabinterm_quarentena
+from emensageriapro.s2299.forms import form_s2299_infotrabinterm_quarentena
 from emensageriapro.s2299.forms import form_s2299_infoperant
 from emensageriapro.s2299.forms import form_s2299_infoperant
 from emensageriapro.s2299.forms import form_s2299_infoperant_ideadc
@@ -2362,10 +2328,6 @@ from emensageriapro.s2299.forms import form_s2299_infotrabinterm_infomv
 from emensageriapro.s2299.forms import form_s2299_infotrabinterm_infomv
 from emensageriapro.s2299.forms import form_s2299_infotrabinterm_remunoutrempr
 from emensageriapro.s2299.forms import form_s2299_infotrabinterm_remunoutrempr
-from emensageriapro.s2299.forms import form_s2299_infotrabinterm_proccs
-from emensageriapro.s2299.forms import form_s2299_infotrabinterm_proccs
-from emensageriapro.s2299.forms import form_s2299_infotrabinterm_quarentena
-from emensageriapro.s2299.forms import form_s2299_infotrabinterm_quarentena
 from emensageriapro.s2299.forms import form_s2299_infotrabinterm_consigfgts
 from emensageriapro.s2299.forms import form_s2299_infotrabinterm_consigfgts
 from emensageriapro.s2300.forms import form_s2300_documentos
@@ -2402,6 +2364,8 @@ from emensageriapro.s2300.forms import form_s2300_remuneracao
 from emensageriapro.s2300.forms import form_s2300_remuneracao
 from emensageriapro.s2300.forms import form_s2300_fgts
 from emensageriapro.s2300.forms import form_s2300_fgts
+from emensageriapro.s2300.forms import form_s2300_infodirigentesindical
+from emensageriapro.s2300.forms import form_s2300_infodirigentesindical
 from emensageriapro.s2300.forms import form_s2300_infotrabcedido
 from emensageriapro.s2300.forms import form_s2300_infotrabcedido
 from emensageriapro.s2300.forms import form_s2300_infoestagiario
@@ -2581,69 +2545,27 @@ def salvar(request, hash):
         if request.method == 'POST':
             if usuarios_form.is_valid():
                 dados = usuarios_form.cleaned_data
-                from django.contrib.auth.models import User
                 if usuarios_id:
-                    dad_usu = {
-                        'username': request.POST.get('username'),
-                        'first_name': request.POST.get('first_name'),
-                        'last_name': request.POST.get('last_name'),
-                        'email': request.POST.get('email'),
-                    }
-                    dad_usuario = {
-                        'config_perfis_id': dados['config_perfis'],
-                        'modificado_por_id': usuario_id,
-                        'modificado_em': datetime.datetime.now(),
-                        'excluido': False,
-                    }
+                    dados['modificado_por_id'] = usuario_id
+                    dados['modificado_em'] = datetime.datetime.now()
                     #usuarios_campos_multiple_passo1
-                    User.objects.using(db_slug).filter(id=usuarios_id).update(**dad_usu)
-                    Usuarios.objects.using(db_slug).filter(id=usuarios_id).update(**dad_usuario)
+                    Usuarios.objects.using(db_slug).filter(id=usuarios_id).update(**dados)
                     obj = Usuarios.objects.using(db_slug).get(id=usuarios_id)
                     #usuarios_editar_custom
                     #usuarios_campos_multiple_passo2
                     messages.success(request, 'Alterado com sucesso!')
                 else:
-                    dad_usu = {
-                        'is_superuser': False,
-                        'username': request.POST.get('username'),
-                        'first_name': request.POST.get('first_name'),
-                        'last_name': request.POST.get('last_name'),
-                        'email': request.POST.get('email'),
-                        'is_staff': False,
-                        'is_active': True,
-                        'date_joined': datetime.datetime.now(),
-                    }
-                    obj_us = User(**dad_usu)
-                    obj_us.save(using = db_slug)
+                    dados['password'] = 'asdkl1231'
 
-                    dad_usuario = {
-                        'user_ptr_id': obj_us.id,
-                        'config_perfis': dados['config_perfis'],
-                        'criado_por_id': usuario_id,
-                        'criado_em': datetime.datetime.now(),
-                        'excluido': False,
-                    }
-
+                    dados['criado_por_id'] = usuario_id
+                    dados['criado_em'] = datetime.datetime.now()
+                    dados['excluido'] = False
                     #usuarios_cadastrar_campos_multiple_passo1
-                    obj = Usuarios(**dad_usuario)
+                    obj = Usuarios(**dados)
                     obj.save(using = db_slug)
                     #usuarios_cadastrar_custom
                     #usuarios_cadastrar_campos_multiple_passo2
                     messages.success(request, 'Cadastrado com sucesso!')
-
-                    from django.contrib.auth.hashers import make_password
-                    from .login_recuperar_senha import gera_senha, enviar_email_senha_recuperar
-                    nova_senha = gera_senha(10)
-                    hashed_password = make_password(nova_senha)
-                    User.objects.using(db_slug).filter(email=dados['email']).update(password=hashed_password)
-                    enviar_email_senha_recuperar(
-                        dados['first_name'],
-                        dados['email'],
-                        nova_senha
-                    )
-
-                    messages.success(request,
-                                     'Senha criada/alterada com sucessoe e enviada para o email %s!' % dados['email'])
                 if request.session['retorno_pagina'] not in ('usuarios_apagar', 'usuarios_salvar', 'usuarios'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if usuarios_id != obj.id:
@@ -2735,6 +2657,49 @@ def salvar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
+
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        usuarios_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='usuarios')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    usuarios = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuarios_id)
+    if request.method == 'POST':
+        Usuarios.objects.using( db_slug ).filter(id = usuarios_id).update(excluido = True)
+        #usuarios_apagar_custom
+        #usuarios_apagar_custom
+        messages.success(request, 'Apagado com sucesso!')
+        if request.session['retorno_pagina']== 'usuarios_salvar':
+            return redirect('usuarios', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 'usuarios_apagar.html', context)
 
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
@@ -2899,49 +2864,4 @@ def listar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
-
-@login_required
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        usuarios_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='usuarios')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    usuarios = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuarios_id)
-    if request.method == 'POST':
-        Usuarios.objects.using( db_slug ).filter(id = usuarios_id).update(excluido = True)
-        #NOVO
-        User.objects.using( db_slug ).filter(id = usuarios_id).update(is_active = False)
-        #usuarios_apagar_custom
-        #usuarios_apagar_custom
-        messages.success(request, 'Apagado com sucesso!')
-        if request.session['retorno_pagina']== 'usuarios_salvar':
-            return redirect('usuarios', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 'usuarios_apagar.html', context)
 

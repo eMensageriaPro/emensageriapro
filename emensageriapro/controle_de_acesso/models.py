@@ -42,15 +42,15 @@ get_model = apps.get_model
 
 
 
+SIM_NAO = (
+    (0, u'Não'),
+    (1, u'Sim'),
+)
+
 AUDITORIA_TIPO = (
     (1, u'Inclusão'),
     (2, u'Alteração'),
     (3, u'Exclusão'),
-)
-
-SIM_NAO = (
-    (0, u'Não'),
-    (1, u'Sim'),
 )
 
 TIPOS_CONFIG_PAGINAS = (

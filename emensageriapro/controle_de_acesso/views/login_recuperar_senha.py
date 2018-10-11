@@ -120,7 +120,7 @@ def enviar_email_senha_recuperar(nome, email_usuario, senha):
         """ % (LINK_WEBSITE, nome, senha)
 
     send_mail(
-        u'Criação/Recuperação de senha | eMensageriaPro',
+        u'Recuperação de senha | eMensageriaPro',
         strip_tags(mensagem_html),
         EMAIL_RECUPERACAO_SENHA,
         [ email_usuario, ],
