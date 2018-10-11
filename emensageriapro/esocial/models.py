@@ -2441,7 +2441,7 @@ class s1060evtTabAmbienteSerializer(ModelSerializer):
         fields = '__all__'
            
 
-class s1065evtTabEquipamento(models.Model):
+class s1065evttabequipamento(models.Model):
     class Meta:
         db_table = r's1065_evttabequipamento' 
 
