@@ -2441,9 +2441,6 @@ class s1060evtTabAmbienteSerializer(ModelSerializer):
         fields = '__all__'
            
 
-class s1065evttabequipamento(models.Model):
-    class Meta:
-        db_table = r's1065_evttabequipamento' 
 
 class s1070evtTabProcesso(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
