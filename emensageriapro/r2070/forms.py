@@ -45,155 +45,6 @@ __author__ = 'marcelovasconcellos'
 
 
 
-class form_r2070_inforesidext(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_r2070_inforesidext,self ).__init__(*args,**kwargs)
-        
-        self.fields['indnif'].widget.attrs['required'] = True
-        
-        self.fields['dsclograd'].widget.attrs['required'] = True
-        
-        self.fields['paisresid'].widget.attrs['required'] = True
-        
-        self.fields['r2070_evtpgtosdivs'].widget.attrs['required'] = True
-
-    class Meta:
-        model = r2070infoResidExt
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_r2070_infomolestia(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_r2070_infomolestia,self ).__init__(*args,**kwargs)
-        
-        self.fields['dtlaudo'].widget.attrs['required'] = True
-        
-        self.fields['r2070_evtpgtosdivs'].widget.attrs['required'] = True
-
-    class Meta:
-        model = r2070infoMolestia
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_r2070_ideestab(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_r2070_ideestab,self ).__init__(*args,**kwargs)
-        
-        self.fields['nrinsc'].widget.attrs['required'] = True
-        
-        self.fields['tpinsc'].widget.attrs['required'] = True
-        self.fields['r2070_evtpgtosdivs'].queryset = r2070evtPgtosDivs.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2070_evtpgtosdivs'].widget.attrs['required'] = True
-
-    class Meta:
-        model = r2070ideEstab
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_r2070_pgtoresidbr(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_r2070_pgtoresidbr,self ).__init__(*args,**kwargs)
-        
-        self.fields['r2070_ideestab'].widget.attrs['required'] = True
-
-    class Meta:
-        model = r2070pgtoResidBR
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_r2070_pgtopf(forms.ModelForm):
-    vlrirrf = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    vlrrendtributavel = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_r2070_pgtopf,self ).__init__(*args,**kwargs)
-        
-        self.fields['vlrirrf'].widget.attrs['required'] = True
-        
-        self.fields['vlrrendtributavel'].widget.attrs['required'] = True
-        
-        self.fields['inddecterceiro'].widget.attrs['required'] = True
-        
-        self.fields['indsuspexig'].widget.attrs['required'] = True
-        
-        self.fields['dtpgto'].widget.attrs['required'] = True
-        self.fields['r2070_pgtoresidbr'].queryset = r2070pgtoResidBR.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2070_pgtoresidbr'].widget.attrs['required'] = True
-
-    class Meta:
-        model = r2070pgtoPF
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_r2070_detdeducao(forms.ModelForm):
-    vlrdeducao = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_r2070_detdeducao,self ).__init__(*args,**kwargs)
-        
-        self.fields['vlrdeducao'].widget.attrs['required'] = True
-        
-        self.fields['indtpdeducao'].widget.attrs['required'] = True
-        self.fields['r2070_pgtopf'].queryset = r2070pgtoPF.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2070_pgtopf'].widget.attrs['required'] = True
-
-    class Meta:
-        model = r2070detDeducao
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
 class form_r2070_rendisento(forms.ModelForm):
     vlrisento = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
@@ -610,6 +461,155 @@ class form_r2070_pgtoresidext(forms.ModelForm):
 
     class Meta:
         model = r2070pgtoResidExt
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_r2070_inforesidext(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_r2070_inforesidext,self ).__init__(*args,**kwargs)
+        
+        self.fields['indnif'].widget.attrs['required'] = True
+        
+        self.fields['dsclograd'].widget.attrs['required'] = True
+        
+        self.fields['paisresid'].widget.attrs['required'] = True
+        
+        self.fields['r2070_evtpgtosdivs'].widget.attrs['required'] = True
+
+    class Meta:
+        model = r2070infoResidExt
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_r2070_infomolestia(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_r2070_infomolestia,self ).__init__(*args,**kwargs)
+        
+        self.fields['dtlaudo'].widget.attrs['required'] = True
+        
+        self.fields['r2070_evtpgtosdivs'].widget.attrs['required'] = True
+
+    class Meta:
+        model = r2070infoMolestia
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_r2070_ideestab(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_r2070_ideestab,self ).__init__(*args,**kwargs)
+        
+        self.fields['nrinsc'].widget.attrs['required'] = True
+        
+        self.fields['tpinsc'].widget.attrs['required'] = True
+        self.fields['r2070_evtpgtosdivs'].queryset = r2070evtPgtosDivs.objects.using( slug ).filter(excluido=False).all()
+        self.fields['r2070_evtpgtosdivs'].widget.attrs['required'] = True
+
+    class Meta:
+        model = r2070ideEstab
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_r2070_pgtoresidbr(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_r2070_pgtoresidbr,self ).__init__(*args,**kwargs)
+        
+        self.fields['r2070_ideestab'].widget.attrs['required'] = True
+
+    class Meta:
+        model = r2070pgtoResidBR
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_r2070_pgtopf(forms.ModelForm):
+    vlrirrf = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vlrrendtributavel = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_r2070_pgtopf,self ).__init__(*args,**kwargs)
+        
+        self.fields['vlrirrf'].widget.attrs['required'] = True
+        
+        self.fields['vlrrendtributavel'].widget.attrs['required'] = True
+        
+        self.fields['inddecterceiro'].widget.attrs['required'] = True
+        
+        self.fields['indsuspexig'].widget.attrs['required'] = True
+        
+        self.fields['dtpgto'].widget.attrs['required'] = True
+        self.fields['r2070_pgtoresidbr'].queryset = r2070pgtoResidBR.objects.using( slug ).filter(excluido=False).all()
+        self.fields['r2070_pgtoresidbr'].widget.attrs['required'] = True
+
+    class Meta:
+        model = r2070pgtoPF
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_r2070_detdeducao(forms.ModelForm):
+    vlrdeducao = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_r2070_detdeducao,self ).__init__(*args,**kwargs)
+        
+        self.fields['vlrdeducao'].widget.attrs['required'] = True
+        
+        self.fields['indtpdeducao'].widget.attrs['required'] = True
+        self.fields['r2070_pgtopf'].queryset = r2070pgtoPF.objects.using( slug ).filter(excluido=False).all()
+        self.fields['r2070_pgtopf'].widget.attrs['required'] = True
+
+    class Meta:
+        model = r2070detDeducao
         exclude = [ 
             'excluido',
             'modificado_por',

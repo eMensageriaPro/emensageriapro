@@ -108,9 +108,7 @@ def verificar(request, hash):
    
 
         s1060_inclusao_lista = s1060inclusao.objects.using(db_slug).filter(s1060_evttabambiente_id__in = listar_ids(s1060_evttabambiente_lista) ).filter(excluido=False).all()
-        s1060_inclusao_fatorrisco_lista = s1060inclusaofatorRisco.objects.using(db_slug).filter(s1060_inclusao_id__in = listar_ids(s1060_inclusao_lista) ).filter(excluido=False).all()
         s1060_alteracao_lista = s1060alteracao.objects.using(db_slug).filter(s1060_evttabambiente_id__in = listar_ids(s1060_evttabambiente_lista) ).filter(excluido=False).all()
-        s1060_alteracao_fatorrisco_lista = s1060alteracaofatorRisco.objects.using(db_slug).filter(s1060_alteracao_id__in = listar_ids(s1060_alteracao_lista) ).filter(excluido=False).all()
         s1060_alteracao_novavalidade_lista = s1060alteracaonovaValidade.objects.using(db_slug).filter(s1060_alteracao_id__in = listar_ids(s1060_alteracao_lista) ).filter(excluido=False).all()
         s1060_exclusao_lista = s1060exclusao.objects.using(db_slug).filter(s1060_evttabambiente_id__in = listar_ids(s1060_evttabambiente_lista) ).filter(excluido=False).all()
         request.session["retorno_hash"] = hash
@@ -132,9 +130,7 @@ def verificar(request, hash):
             'hash': hash,
 
             's1060_inclusao_lista': s1060_inclusao_lista,
-            's1060_inclusao_fatorrisco_lista': s1060_inclusao_fatorrisco_lista,
             's1060_alteracao_lista': s1060_alteracao_lista,
-            's1060_alteracao_fatorrisco_lista': s1060_alteracao_fatorrisco_lista,
             's1060_alteracao_novavalidade_lista': s1060_alteracao_novavalidade_lista,
             's1060_exclusao_lista': s1060_exclusao_lista,
         }
@@ -196,9 +192,7 @@ def gerar_xml_s1060(s1060_evttabambiente_id, db_slug):
         s1060_evttabambiente_lista = s1060evtTabAmbiente.objects.using( db_slug ).filter(id=s1060_evttabambiente_id, excluido = False).all()
 
         s1060_inclusao_lista = s1060inclusao.objects.using(db_slug).filter(s1060_evttabambiente_id__in = listar_ids(s1060_evttabambiente_lista) ).filter(excluido=False).all()
-        s1060_inclusao_fatorrisco_lista = s1060inclusaofatorRisco.objects.using(db_slug).filter(s1060_inclusao_id__in = listar_ids(s1060_inclusao_lista) ).filter(excluido=False).all()
         s1060_alteracao_lista = s1060alteracao.objects.using(db_slug).filter(s1060_evttabambiente_id__in = listar_ids(s1060_evttabambiente_lista) ).filter(excluido=False).all()
-        s1060_alteracao_fatorrisco_lista = s1060alteracaofatorRisco.objects.using(db_slug).filter(s1060_alteracao_id__in = listar_ids(s1060_alteracao_lista) ).filter(excluido=False).all()
         s1060_alteracao_novavalidade_lista = s1060alteracaonovaValidade.objects.using(db_slug).filter(s1060_alteracao_id__in = listar_ids(s1060_alteracao_lista) ).filter(excluido=False).all()
         s1060_exclusao_lista = s1060exclusao.objects.using(db_slug).filter(s1060_evttabambiente_id__in = listar_ids(s1060_evttabambiente_lista) ).filter(excluido=False).all()
         context = {
@@ -208,9 +202,7 @@ def gerar_xml_s1060(s1060_evttabambiente_id, db_slug):
             's1060_evttabambiente': s1060_evttabambiente,
 
             's1060_inclusao_lista': s1060_inclusao_lista,
-            's1060_inclusao_fatorrisco_lista': s1060_inclusao_fatorrisco_lista,
             's1060_alteracao_lista': s1060_alteracao_lista,
-            's1060_alteracao_fatorrisco_lista': s1060_alteracao_fatorrisco_lista,
             's1060_alteracao_novavalidade_lista': s1060_alteracao_novavalidade_lista,
             's1060_exclusao_lista': s1060_exclusao_lista,
         }
@@ -539,12 +531,23 @@ def validar_evento_funcao(s1060_evttabambiente_id, db_slug):
     from emensageriapro.settings import BASE_DIR
     lista_validacoes = []
     s1060_evttabambiente = get_object_or_404(s1060evtTabAmbiente.objects.using(db_slug), excluido=False, id=s1060_evttabambiente_id)
-    quant = validar_precedencia('esocial', 's1060_evttabambiente', s1060_evttabambiente_id)
-    if quant <= 0:
-        #lista_validacoes.append('Precedência não foi enviada!')
-        precedencia = 0
+    if s1060_evttabambiente.transmissor_lote_esocial:
+        if s1060_evttabambiente.transmissor_lote_esocial.transmissor:
+            if s1060_evttabambiente.transmissor_lote_esocial.transmissor.verificar_predecessao:
+                quant = validar_precedencia('esocial', 's1060_evttabambiente', s1060_evttabambiente_id)
+                if quant <= 0:
+                    lista_validacoes.append('Precedência não foi enviada!')
+                    precedencia = 0
+                else:
+                    precedencia = 1
+            else:
+                precedencia = 1
+        else:
+            lista_validacoes.append('Precedência não foi enviada!')
+            precedencia = 0
     else:
-        precedencia = 1
+        lista_validacoes.append('Precedência não foi enviada!')
+        precedencia = 0
     executar_sql("UPDATE public.s1060_evttabambiente SET validacao_precedencia=%s WHERE id=%s;" % (precedencia, s1060_evttabambiente_id), False)
     #
     # Validações internas

@@ -1,9 +1,8 @@
 # coding: utf-8
 from django import forms
 from emensageriapro.s1210.models import * 
-from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.tabelas.models import eSocialTrabalhadoresCategorias 
-from emensageriapro.tabelas.models import eSocialPaises 
+from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.esocial.models import s1210evtPgtos 
 
 
@@ -44,6 +43,62 @@ __author__ = 'marcelovasconcellos'
 
 #custom_forms#
 
+
+
+class form_s1210_detpgtobenpr(forms.ModelForm):
+    vrliq = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1210_detpgtobenpr,self ).__init__(*args,**kwargs)
+        
+        self.fields['vrliq'].widget.attrs['required'] = True
+        
+        self.fields['indpgtott'].widget.attrs['required'] = True
+        
+        self.fields['idedmdev'].widget.attrs['required'] = True
+        
+        self.fields['perref'].widget.attrs['required'] = True
+        
+        self.fields['s1210_infopgto'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1210detPgtoBenPr
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s1210_detpgtofer_penalim(forms.ModelForm):
+    vlrpensao = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1210_detpgtofer_penalim,self ).__init__(*args,**kwargs)
+        
+        self.fields['vlrpensao'].widget.attrs['required'] = True
+        
+        self.fields['nmbenefic'].widget.attrs['required'] = True
+        
+        self.fields['cpfbenef'].widget.attrs['required'] = True
+        self.fields['s1210_detpgtofer_detrubrfer'].queryset = s1210detPgtoFerdetRubrFer.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s1210_detpgtofer_detrubrfer'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1210detPgtoFerpenAlim
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
 
 
 class form_s1210_deps(forms.ModelForm):
@@ -209,35 +264,6 @@ class form_s1210_detpgtofl_infopgtoparc(forms.ModelForm):
         ]
 
 
-class form_s1210_detpgtobenpr(forms.ModelForm):
-    vrliq = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1210_detpgtobenpr,self ).__init__(*args,**kwargs)
-        
-        self.fields['vrliq'].widget.attrs['required'] = True
-        
-        self.fields['indpgtott'].widget.attrs['required'] = True
-        
-        self.fields['idedmdev'].widget.attrs['required'] = True
-        
-        self.fields['perref'].widget.attrs['required'] = True
-        
-        self.fields['s1210_infopgto'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1210detPgtoBenPr
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
 class form_s1210_detpgtobenpr_retpgtotot(forms.ModelForm):
     vrrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrunit = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
@@ -347,33 +373,6 @@ class form_s1210_detpgtofer_detrubrfer(forms.ModelForm):
 
     class Meta:
         model = s1210detPgtoFerdetRubrFer
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s1210_detpgtofer_penalim(forms.ModelForm):
-    vlrpensao = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1210_detpgtofer_penalim,self ).__init__(*args,**kwargs)
-        
-        self.fields['vlrpensao'].widget.attrs['required'] = True
-        
-        self.fields['nmbenefic'].widget.attrs['required'] = True
-        
-        self.fields['cpfbenef'].widget.attrs['required'] = True
-        self.fields['s1210_detpgtofer_detrubrfer'].queryset = s1210detPgtoFerdetRubrFer.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1210_detpgtofer_detrubrfer'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1210detPgtoFerpenAlim
         exclude = [ 
             'excluido',
             'modificado_por',

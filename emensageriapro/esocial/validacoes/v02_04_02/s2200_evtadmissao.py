@@ -1,4 +1,36 @@
 #coding:utf-8
+"""
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+    
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 import xmltodict
 import pprint
 import json
@@ -44,8 +76,9 @@ def validacoes_s2200_evtadmissao(arquivo):
     if 'nrRecInfPrelim' in dir(evtAdmissao.vinculo): validacoes_lista = validar_campo(validacoes_lista,'evtAdmissao.vinculo.nrRecInfPrelim', evtAdmissao.vinculo.nrRecInfPrelim.cdata, 0, '')
     if 'cadIni' in dir(evtAdmissao.vinculo): validacoes_lista = validar_campo(validacoes_lista,'evtAdmissao.vinculo.cadIni', evtAdmissao.vinculo.cadIni.cdata, 1, 'S;N')
     if 'codCargo' in dir(evtAdmissao.vinculo.infoContrato): validacoes_lista = validar_campo(validacoes_lista,'evtAdmissao.vinculo.infoContrato.codCargo', evtAdmissao.vinculo.infoContrato.codCargo.cdata, 0, '')
+    if 'dtIngrCargo' in dir(evtAdmissao.vinculo.infoContrato): validacoes_lista = validar_campo(validacoes_lista,'evtAdmissao.vinculo.infoContrato.dtIngrCargo', evtAdmissao.vinculo.infoContrato.dtIngrCargo.cdata, 0, '')
     if 'codFuncao' in dir(evtAdmissao.vinculo.infoContrato): validacoes_lista = validar_campo(validacoes_lista,'evtAdmissao.vinculo.infoContrato.codFuncao', evtAdmissao.vinculo.infoContrato.codFuncao.cdata, 0, '')
-    if 'codCateg' in dir(evtAdmissao.vinculo.infoContrato): validacoes_lista = validar_campo(validacoes_lista,'evtAdmissao.vinculo.infoContrato.codCateg', evtAdmissao.vinculo.infoContrato.codCateg.cdata, 1, '')
+    if 'codCateg' in dir(evtAdmissao.vinculo.infoContrato): validacoes_lista = validar_campo(validacoes_lista,'evtAdmissao.vinculo.infoContrato.codCateg', evtAdmissao.vinculo.infoContrato.codCateg.cdata, 1, '101;102;103;104;105;106;111;201;202;301;302;303;305;306;307;308;309;401;410;701;711;712;721;722;723;731;734;738;741;751;761;771;781;901;902;903;904;905')
     if 'codCarreira' in dir(evtAdmissao.vinculo.infoContrato): validacoes_lista = validar_campo(validacoes_lista,'evtAdmissao.vinculo.infoContrato.codCarreira', evtAdmissao.vinculo.infoContrato.codCarreira.cdata, 0, '')
     if 'dtIngrCarr' in dir(evtAdmissao.vinculo.infoContrato): validacoes_lista = validar_campo(validacoes_lista,'evtAdmissao.vinculo.infoContrato.dtIngrCarr', evtAdmissao.vinculo.infoContrato.dtIngrCarr.cdata, 0, '')
     if 'vrSalFx' in dir(evtAdmissao.vinculo.infoContrato.remuneracao): validacoes_lista = validar_campo(validacoes_lista,'evtAdmissao.vinculo.infoContrato.remuneracao.vrSalFx', evtAdmissao.vinculo.infoContrato.remuneracao.vrSalFx.cdata, 1, '')
@@ -154,9 +187,11 @@ def validacoes_s2200_evtadmissao(arquivo):
             if 'nmDep' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.nmDep', dependente.nmDep.cdata, 1, '')
             if 'dtNascto' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.dtNascto', dependente.dtNascto.cdata, 1, '')
             if 'cpfDep' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.cpfDep', dependente.cpfDep.cdata, 0, '')
+            if 'sexoDep' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.sexoDep', dependente.sexoDep.cdata, 0, 'M;F')
             if 'depIRRF' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.depIRRF', dependente.depIRRF.cdata, 1, 'S;N')
             if 'depSF' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.depSF', dependente.depSF.cdata, 1, 'S;N')
             if 'incTrab' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.incTrab', dependente.incTrab.cdata, 1, 'S;N')
+            if 'depFinsPrev' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.depFinsPrev', dependente.depFinsPrev.cdata, 0, 'S;N')
 
     if 'aposentadoria' in dir(evtAdmissao.trabalhador):
         for aposentadoria in evtAdmissao.trabalhador.aposentadoria:
@@ -207,7 +242,13 @@ def validacoes_s2200_evtadmissao(arquivo):
             if 'dtNomeacao' in dir(infoEstatutario): validacoes_lista = validar_campo(validacoes_lista,'infoEstatutario.dtNomeacao', infoEstatutario.dtNomeacao.cdata, 1, '')
             if 'dtPosse' in dir(infoEstatutario): validacoes_lista = validar_campo(validacoes_lista,'infoEstatutario.dtPosse', infoEstatutario.dtPosse.cdata, 1, '')
             if 'dtExercicio' in dir(infoEstatutario): validacoes_lista = validar_campo(validacoes_lista,'infoEstatutario.dtExercicio', infoEstatutario.dtExercicio.cdata, 1, '')
+            if 'dtIngSvPub' in dir(infoEstatutario): validacoes_lista = validar_campo(validacoes_lista,'infoEstatutario.dtIngSvPub', infoEstatutario.dtIngSvPub.cdata, 1, '')
             if 'tpPlanRP' in dir(infoEstatutario): validacoes_lista = validar_campo(validacoes_lista,'infoEstatutario.tpPlanRP', infoEstatutario.tpPlanRP.cdata, 0, '1;2')
+            if 'indTetoRGPS' in dir(infoEstatutario): validacoes_lista = validar_campo(validacoes_lista,'infoEstatutario.indTetoRGPS', infoEstatutario.indTetoRGPS.cdata, 0, 'S;N')
+            if 'indAbonoPerm' in dir(infoEstatutario): validacoes_lista = validar_campo(validacoes_lista,'infoEstatutario.indAbonoPerm', infoEstatutario.indAbonoPerm.cdata, 0, 'S;N')
+            if 'dtIniAbono' in dir(infoEstatutario): validacoes_lista = validar_campo(validacoes_lista,'infoEstatutario.dtIniAbono', infoEstatutario.dtIniAbono.cdata, 0, '')
+            if 'indParcRemun' in dir(infoEstatutario): validacoes_lista = validar_campo(validacoes_lista,'infoEstatutario.indParcRemun', infoEstatutario.indParcRemun.cdata, 0, 'S;N')
+            if 'dtIniParc' in dir(infoEstatutario): validacoes_lista = validar_campo(validacoes_lista,'infoEstatutario.dtIniParc', infoEstatutario.dtIniParc.cdata, 0, '')
 
             if 'infoDecJud' in dir(infoEstatutario):
                 for infoDecJud in infoEstatutario.infoDecJud:
@@ -287,5 +328,10 @@ def validacoes_s2200_evtadmissao(arquivo):
         for desligamento in evtAdmissao.vinculo.desligamento:
             
             if 'dtDeslig' in dir(desligamento): validacoes_lista = validar_campo(validacoes_lista,'desligamento.dtDeslig', desligamento.dtDeslig.cdata, 1, '')
+
+    if 'cessao' in dir(evtAdmissao.vinculo):
+        for cessao in evtAdmissao.vinculo.cessao:
+            
+            if 'dtIniCessao' in dir(cessao): validacoes_lista = validar_campo(validacoes_lista,'cessao.dtIniCessao', cessao.dtIniCessao.cdata, 1, '')
 
     return validacoes_lista

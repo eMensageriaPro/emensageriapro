@@ -49,12 +49,18 @@ from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
 import base64
 from emensageriapro.s2240.models import s2240iniExpRisco
+from emensageriapro.s2240.models import s2240iniExpRiscoinfoAmb
+from emensageriapro.s2240.models import s2240iniExpRiscoativPericInsal
+from emensageriapro.s2240.models import s2240iniExpRiscofatRisco
 from emensageriapro.s2240.models import s2240iniExpRiscorespReg
 from emensageriapro.s2240.models import s2240iniExpRiscoobs
 from emensageriapro.s2240.models import s2240altExpRisco
 from emensageriapro.s2240.models import s2240fimExpRisco
 from emensageriapro.s2240.models import s2240fimExpRiscorespReg
 from emensageriapro.s2240.forms import form_s2240_iniexprisco
+from emensageriapro.s2240.forms import form_s2240_iniexprisco_infoamb
+from emensageriapro.s2240.forms import form_s2240_iniexprisco_ativpericinsal
+from emensageriapro.s2240.forms import form_s2240_iniexprisco_fatrisco
 from emensageriapro.s2240.forms import form_s2240_iniexprisco_respreg
 from emensageriapro.s2240.forms import form_s2240_iniexprisco_obs
 from emensageriapro.s2240.forms import form_s2240_altexprisco
@@ -212,6 +218,12 @@ def salvar(request, hash):
 
         s2240_iniexprisco_form = None
         s2240_iniexprisco_lista = None
+        s2240_iniexprisco_infoamb_form = None
+        s2240_iniexprisco_infoamb_lista = None
+        s2240_iniexprisco_ativpericinsal_form = None
+        s2240_iniexprisco_ativpericinsal_lista = None
+        s2240_iniexprisco_fatrisco_form = None
+        s2240_iniexprisco_fatrisco_lista = None
         s2240_iniexprisco_respreg_form = None
         s2240_iniexprisco_respreg_lista = None
         s2240_iniexprisco_obs_form = None
@@ -228,6 +240,15 @@ def salvar(request, hash):
             s2240_iniexprisco_form = form_s2240_iniexprisco(initial={ 's2240_evtexprisco': s2240_evtexprisco }, slug=db_slug)
             s2240_iniexprisco_form.fields['s2240_evtexprisco'].widget.attrs['readonly'] = True
             s2240_iniexprisco_lista = s2240iniExpRisco.objects.using( db_slug ).filter(excluido = False, s2240_evtexprisco_id=s2240_evtexprisco.id).all()
+            s2240_iniexprisco_infoamb_form = form_s2240_iniexprisco_infoamb(initial={ 's2240_evtexprisco': s2240_evtexprisco }, slug=db_slug)
+            s2240_iniexprisco_infoamb_form.fields['s2240_evtexprisco'].widget.attrs['readonly'] = True
+            s2240_iniexprisco_infoamb_lista = s2240iniExpRiscoinfoAmb.objects.using( db_slug ).filter(excluido = False, s2240_evtexprisco_id=s2240_evtexprisco.id).all()
+            s2240_iniexprisco_ativpericinsal_form = form_s2240_iniexprisco_ativpericinsal(initial={ 's2240_evtexprisco': s2240_evtexprisco }, slug=db_slug)
+            s2240_iniexprisco_ativpericinsal_form.fields['s2240_evtexprisco'].widget.attrs['readonly'] = True
+            s2240_iniexprisco_ativpericinsal_lista = s2240iniExpRiscoativPericInsal.objects.using( db_slug ).filter(excluido = False, s2240_evtexprisco_id=s2240_evtexprisco.id).all()
+            s2240_iniexprisco_fatrisco_form = form_s2240_iniexprisco_fatrisco(initial={ 's2240_evtexprisco': s2240_evtexprisco }, slug=db_slug)
+            s2240_iniexprisco_fatrisco_form.fields['s2240_evtexprisco'].widget.attrs['readonly'] = True
+            s2240_iniexprisco_fatrisco_lista = s2240iniExpRiscofatRisco.objects.using( db_slug ).filter(excluido = False, s2240_evtexprisco_id=s2240_evtexprisco.id).all()
             s2240_iniexprisco_respreg_form = form_s2240_iniexprisco_respreg(initial={ 's2240_evtexprisco': s2240_evtexprisco }, slug=db_slug)
             s2240_iniexprisco_respreg_form.fields['s2240_evtexprisco'].widget.attrs['readonly'] = True
             s2240_iniexprisco_respreg_lista = s2240iniExpRiscorespReg.objects.using( db_slug ).filter(excluido = False, s2240_evtexprisco_id=s2240_evtexprisco.id).all()
@@ -279,6 +300,12 @@ def salvar(request, hash):
   
             's2240_iniexprisco_form': s2240_iniexprisco_form,
             's2240_iniexprisco_lista': s2240_iniexprisco_lista,
+            's2240_iniexprisco_infoamb_form': s2240_iniexprisco_infoamb_form,
+            's2240_iniexprisco_infoamb_lista': s2240_iniexprisco_infoamb_lista,
+            's2240_iniexprisco_ativpericinsal_form': s2240_iniexprisco_ativpericinsal_form,
+            's2240_iniexprisco_ativpericinsal_lista': s2240_iniexprisco_ativpericinsal_lista,
+            's2240_iniexprisco_fatrisco_form': s2240_iniexprisco_fatrisco_form,
+            's2240_iniexprisco_fatrisco_lista': s2240_iniexprisco_fatrisco_lista,
             's2240_iniexprisco_respreg_form': s2240_iniexprisco_respreg_form,
             's2240_iniexprisco_respreg_lista': s2240_iniexprisco_respreg_lista,
             's2240_iniexprisco_obs_form': s2240_iniexprisco_obs_form,
@@ -465,6 +492,9 @@ def listar(request, hash):
             'show_modificado_em': 0,
             'show_criado_por': 0,
             'show_criado_em': 0,
+            'show_dscativdes': 1,
+            'show_infoativ': 0,
+            'show_dtinicondicao': 1,
             'show_infoexprisco': 0,
             'show_codcateg': 0,
             'show_matricula': 0,
@@ -506,6 +536,9 @@ def listar(request, hash):
         if request.method == 'POST':
             post = True
             dict_fields = {
+                'dscativdes__icontains': 'dscativdes__icontains',
+                'infoativ': 'infoativ',
+                'dtinicondicao__range': 'dtinicondicao__range',
                 'infoexprisco': 'infoexprisco',
                 'codcateg__icontains': 'codcateg__icontains',
                 'matricula__icontains': 'matricula__icontains',
@@ -533,6 +566,9 @@ def listar(request, hash):
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
+                'dscativdes__icontains': 'dscativdes__icontains',
+                'infoativ': 'infoativ',
+                'dtinicondicao__range': 'dtinicondicao__range',
                 'infoexprisco': 'infoexprisco',
                 'codcateg__icontains': 'codcateg__icontains',
                 'matricula__icontains': 'matricula__icontains',

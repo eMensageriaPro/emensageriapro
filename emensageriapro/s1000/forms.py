@@ -1,9 +1,9 @@
 # coding: utf-8
 from django import forms
 from emensageriapro.s1000.models import * 
-from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.tabelas.models import Municipios 
 from emensageriapro.tabelas.models import eSocialNaturezasJuridicas 
+from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.esocial.models import s1000evtInfoEmpregador 
 
 

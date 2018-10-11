@@ -44,30 +44,6 @@ __author__ = 'marcelovasconcellos'
 
 
 
-class form_s1050_exclusao(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1050_exclusao,self ).__init__(*args,**kwargs)
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
-        
-        self.fields['codhorcontrat'].widget.attrs['required'] = True
-        
-        self.fields['s1050_evttabhortur'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1050exclusao
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
 class form_s1050_alteracao_novavalidade(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
@@ -192,6 +168,30 @@ class form_s1050_inclusao(forms.ModelForm):
 
     class Meta:
         model = s1050inclusao
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s1050_exclusao(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1050_exclusao,self ).__init__(*args,**kwargs)
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['codhorcontrat'].widget.attrs['required'] = True
+        
+        self.fields['s1050_evttabhortur'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1050exclusao
         exclude = [ 
             'excluido',
             'modificado_por',

@@ -117,12 +117,8 @@ CHOICES_S1200_INFOPERAPUR_TPINSC = (
 
 CHOICES_S1200_TPINSC = (
     (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 

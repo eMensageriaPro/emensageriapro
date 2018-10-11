@@ -138,15 +138,10 @@ def salvar(request, hash):
             s2240_iniexprisco_form.fields[field].widget.attrs['ng-model'] = 's2240_iniexprisco_'+field
         if int(dict_hash['print']):
             s2240_iniexprisco_form = disabled_form_for_print(s2240_iniexprisco_form)
-
-        s2240_iniexprisco_infoamb_form = None
-        s2240_iniexprisco_infoamb_lista = None
+        #[VARIAVEIS_SECUNDARIAS_VAZIAS]
         if s2240_iniexprisco_id:
             s2240_iniexprisco = get_object_or_404(s2240iniExpRisco.objects.using( db_slug ), excluido = False, id = s2240_iniexprisco_id)
-  
-            s2240_iniexprisco_infoamb_form = form_s2240_iniexprisco_infoamb(initial={ 's2240_iniexprisco': s2240_iniexprisco }, slug=db_slug)
-            s2240_iniexprisco_infoamb_form.fields['s2240_iniexprisco'].widget.attrs['readonly'] = True
-            s2240_iniexprisco_infoamb_lista = s2240iniExpRiscoinfoAmb.objects.using( db_slug ).filter(excluido = False, s2240_iniexprisco_id=s2240_iniexprisco.id).all()
+            pass
         else:
             s2240_iniexprisco = None
         #s2240_iniexprisco_salvar_custom_variaveis#
@@ -169,9 +164,7 @@ def salvar(request, hash):
             'usuario': usuario,
        
             'hash': hash,
-  
-            's2240_iniexprisco_infoamb_form': s2240_iniexprisco_infoamb_form,
-            's2240_iniexprisco_infoamb_lista': s2240_iniexprisco_infoamb_lista,
+            #[VARIAVEIS_SECUNDARIAS]
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
@@ -351,13 +344,11 @@ def listar(request, hash):
             'show_modificado_em': 0,
             'show_criado_por': 0,
             'show_criado_em': 0,
-            'show_dtinicondicao': 1,
             'show_s2240_evtexprisco': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'dtinicondicao__range': 'dtinicondicao__range',
                 's2240_evtexprisco': 's2240_evtexprisco',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
@@ -365,7 +356,6 @@ def listar(request, hash):
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'dtinicondicao__range': 'dtinicondicao__range',
                 's2240_evtexprisco': 's2240_evtexprisco',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)

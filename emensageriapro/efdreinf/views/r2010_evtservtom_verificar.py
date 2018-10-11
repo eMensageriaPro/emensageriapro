@@ -678,12 +678,23 @@ def validar_evento_funcao(r2010_evtservtom_id, db_slug):
     from emensageriapro.settings import BASE_DIR
     lista_validacoes = []
     r2010_evtservtom = get_object_or_404(r2010evtServTom.objects.using(db_slug), excluido=False, id=r2010_evtservtom_id)
-    quant = validar_precedencia('efdreinf', 'r2010_evtservtom', r2010_evtservtom_id)
-    if quant <= 0:
+    if r2010_evtservtom.transmissor_lote_efdreinf:
+        if r2010_evtservtom.transmissor_lote_efdreinf.transmissor:
+            if r2010_evtservtom.transmissor_lote_efdreinf.transmissor.verificar_predecessao:
+                quant = validar_precedencia('efdreinf', 'r2010_evtservtom', r2010_evtservtom_id)
+                if quant <= 0:
+                    lista_validacoes.append('Precedência não foi enviada!')
+                    precedencia = 0
+                else:
+                    precedencia = 1
+            else:
+                precedencia = 1
+        else:
+            lista_validacoes.append('Precedência não foi enviada!')
+            precedencia = 0
+    else:
         lista_validacoes.append('Precedência não foi enviada!')
         precedencia = 0
-    else:
-        precedencia = 1
     executar_sql("UPDATE public.r2010_evtservtom SET validacao_precedencia=%s WHERE id=%s;" % (precedencia, r2010_evtservtom_id), False)
     #
     # Validações internas

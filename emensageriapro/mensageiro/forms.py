@@ -43,6 +43,44 @@ __author__ = 'marcelovasconcellos'
 
 
 
+class form_retornos_eventos_horarios(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_retornos_eventos_horarios,self ).__init__(*args,**kwargs)
+        self.fields['retornos_eventos'].queryset = RetornosEventos.objects.using( slug ).filter(excluido=False).all()
+
+    class Meta:
+        model = RetornosEventosHorarios
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_retornos_eventos_intervalos(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_retornos_eventos_intervalos,self ).__init__(*args,**kwargs)
+        self.fields['retornos_eventos_horarios'].queryset = RetornosEventosHorarios.objects.using( slug ).filter(excluido=False).all()
+
+    class Meta:
+        model = RetornosEventosIntervalos
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
 class form_relatorios(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
@@ -571,44 +609,6 @@ class form_retornos_eventos_ocorrencias(forms.ModelForm):
             'criado_por',
             'criado_em',
             'descricao',
- 
-        ]
-
-
-class form_retornos_eventos_horarios(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_retornos_eventos_horarios,self ).__init__(*args,**kwargs)
-        self.fields['retornos_eventos'].queryset = RetornosEventos.objects.using( slug ).filter(excluido=False).all()
-
-    class Meta:
-        model = RetornosEventosHorarios
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_retornos_eventos_intervalos(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_retornos_eventos_intervalos,self ).__init__(*args,**kwargs)
-        self.fields['retornos_eventos_horarios'].queryset = RetornosEventosHorarios.objects.using( slug ).filter(excluido=False).all()
-
-    class Meta:
-        model = RetornosEventosIntervalos
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
  
         ]
 

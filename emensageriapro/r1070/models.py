@@ -42,6 +42,36 @@ get_model = apps.get_model
 
 
 
+ESTADOS = (
+    ('AC', u'Acre'),
+    ('AL', u'Alagoas'),
+    ('AM', u'Amazonas'),
+    ('AP', u'Amapá'),
+    ('BA', u'Bahia'),
+    ('CE', u'Ceará'),
+    ('DF', u'Distrito Federal'),
+    ('ES', u'Espírito Santo'),
+    ('GO', u'Goiás'),
+    ('MA', u'Maranhão'),
+    ('MG', u'Minas Gerais'),
+    ('MS', u'Mato Grosso do Sul'),
+    ('MT', u'Mato Grosso'),
+    ('PA', u'Pará'),
+    ('PB', u'Paraíba'),
+    ('PE', u'Pernambuco'),
+    ('PI', u'Piauí'),
+    ('PR', u'Paraná'),
+    ('RJ', u'Rio de Janeiro'),
+    ('RN', u'Rio Grande do Norte'),
+    ('RO', u'Rondônia'),
+    ('RR', u'Roraima'),
+    ('RS', u'Rio Grande do Sul'),
+    ('SC', u'Santa Catarina'),
+    ('SE', u'Sergipe'),
+    ('SP', u'São Paulo'),
+    ('TO', u'Tocantins'),
+)
+
 PERIODOS = (
     ('2017-01', u'Janeiro/2017'),
     ('2017-02', u'Fevereiro/2017'),
@@ -74,7 +104,12 @@ CHOICES_R1070_ALTERACAO_INDAUTORIA = (
     (2, u'2 - Outra entidade ou empresa'),
 )
 
-CHOICES_R1070_INCLUSAO_INDSUSP = (
+CHOICES_R1070_ALTERACAO_INDDEPOSITO = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_R1070_ALTERACAO_INDSUSP = (
     ('01', u'01 - Liminar em Mandado de Segurança'),
     ('02', u'02 - Depósito Judicial do Montante Integral'),
     ('03', u'03 - Depósito Administrativo do Montante Integral'),
@@ -95,12 +130,22 @@ CHOICES_R1070_ALTERACAO_TPPROC = (
     (2, u'2 - Judicial'),
 )
 
-CHOICES_R1070_INCLUSAO_TPPROC = (
+CHOICES_R1070_EXCLUSAO_TPPROC = (
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial'),
 )
 
-CHOICES_R1070_ALTERACAO_INDSUSP = (
+CHOICES_R1070_INCLUSAO_INDAUTORIA = (
+    (1, u'1 - Próprio contribuinte'),
+    (2, u'2 - Outra entidade ou empresa'),
+)
+
+CHOICES_R1070_INCLUSAO_INDDEPOSITO = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_R1070_INCLUSAO_INDSUSP = (
     ('01', u'01 - Liminar em Mandado de Segurança'),
     ('02', u'02 - Depósito Judicial do Montante Integral'),
     ('03', u'03 - Depósito Administrativo do Montante Integral'),
@@ -116,54 +161,9 @@ CHOICES_R1070_ALTERACAO_INDSUSP = (
     ('92', u'92 - Sem suspensão da exigibilidade'),
 )
 
-CHOICES_R1070_ALTERACAO_INDDEPOSITO = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_R1070_INCLUSAO_INDDEPOSITO = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_R1070_EXCLUSAO_TPPROC = (
+CHOICES_R1070_INCLUSAO_TPPROC = (
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial'),
-)
-
-CHOICES_R1070_INCLUSAO_INDAUTORIA = (
-    (1, u'1 - Próprio contribuinte'),
-    (2, u'2 - Outra entidade ou empresa'),
-)
-
-ESTADOS = (
-    ('AC', u'Acre'),
-    ('AL', u'Alagoas'),
-    ('AM', u'Amazonas'),
-    ('AP', u'Amapá'),
-    ('BA', u'Bahia'),
-    ('CE', u'Ceará'),
-    ('DF', u'Distrito Federal'),
-    ('ES', u'Espírito Santo'),
-    ('GO', u'Goiás'),
-    ('MA', u'Maranhão'),
-    ('MG', u'Minas Gerais'),
-    ('MS', u'Mato Grosso do Sul'),
-    ('MT', u'Mato Grosso'),
-    ('PA', u'Pará'),
-    ('PB', u'Paraíba'),
-    ('PE', u'Pernambuco'),
-    ('PI', u'Piauí'),
-    ('PR', u'Paraná'),
-    ('RJ', u'Rio de Janeiro'),
-    ('RN', u'Rio Grande do Norte'),
-    ('RO', u'Rondônia'),
-    ('RR', u'Roraima'),
-    ('RS', u'Rio Grande do Sul'),
-    ('SC', u'Santa Catarina'),
-    ('SE', u'Sergipe'),
-    ('SP', u'São Paulo'),
-    ('TO', u'Tocantins'),
 )
 
 class r1070alteracao(models.Model):

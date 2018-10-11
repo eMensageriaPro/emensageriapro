@@ -42,11 +42,6 @@ get_model = apps.get_model
 
 
 
-CHOICES_R1000_INCLUSAO_INDACORDOISENMULTA = (
-    (0, u'0 - Sem acordo'),
-    (1, u'1 - Com acordo'),
-)
-
 PERIODOS = (
     ('2017-01', u'Janeiro/2017'),
     ('2017-02', u'Fevereiro/2017'),
@@ -74,6 +69,26 @@ PERIODOS = (
     ('2018-12', u'Dezembro/2018'),
 )
 
+CHOICES_R1000_ALTERACAO_IDEEFR = (
+    ('N', u'N - Não é EFR'),
+    ('S', u'S - É EFR'),
+)
+
+CHOICES_R1000_ALTERACAO_INDACORDOISENMULTA = (
+    (0, u'0 - Sem acordo'),
+    (1, u'1 - Com acordo'),
+)
+
+CHOICES_R1000_ALTERACAO_INDDESONERACAO = (
+    (0, u'0 - Não Aplicável'),
+    (1, u'1 - Empresa enquadrada nos termos da Lei 12.546/2011 e alterações'),
+)
+
+CHOICES_R1000_ALTERACAO_INDESCRITURACAO = (
+    (0, u'0 - Empresa Não obrigada à ECD'),
+    (1, u'1 - Empresa obrigada à ECD'),
+)
+
 CHOICES_R1000_ALTERACAO_INDSITPJ = (
     (0, u'0 - Situação Normal'),
     (1, u'1 - Extinção'),
@@ -87,19 +102,19 @@ CHOICES_R1000_INCLUSAO_IDEEFR = (
     ('S', u'S - É EFR'),
 )
 
-CHOICES_R1000_ALTERACAO_INDDESONERACAO = (
-    (0, u'0 - Não Aplicável'),
-    (1, u'1 - Empresa enquadrada nos termos da Lei 12.546/2011 e alterações'),
-)
-
-CHOICES_R1000_ALTERACAO_INDACORDOISENMULTA = (
+CHOICES_R1000_INCLUSAO_INDACORDOISENMULTA = (
     (0, u'0 - Sem acordo'),
     (1, u'1 - Com acordo'),
 )
 
-CHOICES_R1000_ALTERACAO_IDEEFR = (
-    ('N', u'N - Não é EFR'),
-    ('S', u'S - É EFR'),
+CHOICES_R1000_INCLUSAO_INDDESONERACAO = (
+    (0, u'0 - Não Aplicável'),
+    (1, u'1 - Empresa enquadrada nos termos da Lei 12.546/2011 e alterações'),
+)
+
+CHOICES_R1000_INCLUSAO_INDESCRITURACAO = (
+    (0, u'0 - Empresa Não obrigada à ECD'),
+    (1, u'1 - Empresa obrigada à ECD'),
 )
 
 CHOICES_R1000_INCLUSAO_INDSITPJ = (
@@ -108,21 +123,6 @@ CHOICES_R1000_INCLUSAO_INDSITPJ = (
     (2, u'2 - Fusão'),
     (3, u'3 - Cisão'),
     (4, u'4 - Incorporação'),
-)
-
-CHOICES_R1000_INCLUSAO_INDESCRITURACAO = (
-    (0, u'0 - Empresa Não obrigada à ECD'),
-    (1, u'1 - Empresa obrigada à ECD'),
-)
-
-CHOICES_R1000_INCLUSAO_INDDESONERACAO = (
-    (0, u'0 - Não Aplicável'),
-    (1, u'1 - Empresa enquadrada nos termos da Lei 12.546/2011 e alterações'),
-)
-
-CHOICES_R1000_ALTERACAO_INDESCRITURACAO = (
-    (0, u'0 - Empresa Não obrigada à ECD'),
-    (1, u'1 - Empresa obrigada à ECD'),
 )
 
 class r1000alteracao(models.Model):

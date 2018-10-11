@@ -344,14 +344,14 @@ def listar(request, hash):
             'show_modificado_em': 0,
             'show_criado_por': 0,
             'show_criado_em': 0,
-            'show_nrcatorig': 0,
+            'show_nrreccatorig': 0,
             'show_dtcatorig': 1,
             'show_s2210_evtcat': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'nrcatorig__icontains': 'nrcatorig__icontains',
+                'nrreccatorig__icontains': 'nrreccatorig__icontains',
                 'dtcatorig__range': 'dtcatorig__range',
                 's2210_evtcat': 's2210_evtcat',}
             for a in dict_fields:
@@ -360,7 +360,7 @@ def listar(request, hash):
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'nrcatorig__icontains': 'nrcatorig__icontains',
+                'nrreccatorig__icontains': 'nrreccatorig__icontains',
                 'dtcatorig__range': 'dtcatorig__range',
                 's2210_evtcat': 's2210_evtcat',}
                 for a in dict_fields:

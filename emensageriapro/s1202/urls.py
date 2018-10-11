@@ -4,10 +4,10 @@ from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from emensageriapro.s1202.views import s1202_procjudtrab as s1202_procjudtrab_views
-from emensageriapro.s1202.views import s1202_dmdev as s1202_dmdev_views
 from emensageriapro.s1202.views import s1202_infoperapur as s1202_infoperapur_views
 from emensageriapro.s1202.views import s1202_infoperapur_ideestab as s1202_infoperapur_ideestab_views
+from emensageriapro.s1202.views import s1202_procjudtrab as s1202_procjudtrab_views
+from emensageriapro.s1202.views import s1202_dmdev as s1202_dmdev_views
 from emensageriapro.s1202.views import s1202_infoperapur_remunperapur as s1202_infoperapur_remunperapur_views
 from emensageriapro.s1202.views import s1202_infoperapur_itensremun as s1202_infoperapur_itensremun_views
 from emensageriapro.s1202.views import s1202_infoperapur_infosaudecolet as s1202_infoperapur_infosaudecolet_views
@@ -59,46 +59,6 @@ urlpatterns = [
 
 
 
-url(r'^s1202-procjudtrab/apagar/(?P<hash>.*)/$', 
-        s1202_procjudtrab_views.apagar, 
-        name='s1202_procjudtrab_apagar'),
-
-url(r'^s1202-procjudtrab/api/$',
-            s1202_procjudtrab_views.s1202procJudTrabList.as_view() ),
-
-        url(r'^s1202-procjudtrab/api/(?P<pk>[0-9]+)/$',
-            s1202_procjudtrab_views.s1202procJudTrabDetail.as_view() ),
-
-url(r'^s1202-procjudtrab/listar/(?P<hash>.*)/$', 
-        s1202_procjudtrab_views.listar, 
-        name='s1202_procjudtrab'),
-
-url(r'^s1202-procjudtrab/salvar/(?P<hash>.*)/$', 
-        s1202_procjudtrab_views.salvar, 
-        name='s1202_procjudtrab_salvar'),
-
-
-
-url(r'^s1202-dmdev/apagar/(?P<hash>.*)/$', 
-        s1202_dmdev_views.apagar, 
-        name='s1202_dmdev_apagar'),
-
-url(r'^s1202-dmdev/api/$',
-            s1202_dmdev_views.s1202dmDevList.as_view() ),
-
-        url(r'^s1202-dmdev/api/(?P<pk>[0-9]+)/$',
-            s1202_dmdev_views.s1202dmDevDetail.as_view() ),
-
-url(r'^s1202-dmdev/listar/(?P<hash>.*)/$', 
-        s1202_dmdev_views.listar, 
-        name='s1202_dmdev'),
-
-url(r'^s1202-dmdev/salvar/(?P<hash>.*)/$', 
-        s1202_dmdev_views.salvar, 
-        name='s1202_dmdev_salvar'),
-
-
-
 url(r'^s1202-infoperapur/apagar/(?P<hash>.*)/$', 
         s1202_infoperapur_views.apagar, 
         name='s1202_infoperapur_apagar'),
@@ -136,6 +96,46 @@ url(r'^s1202-infoperapur-ideestab/listar/(?P<hash>.*)/$',
 url(r'^s1202-infoperapur-ideestab/salvar/(?P<hash>.*)/$', 
         s1202_infoperapur_ideestab_views.salvar, 
         name='s1202_infoperapur_ideestab_salvar'),
+
+
+
+url(r'^s1202-procjudtrab/apagar/(?P<hash>.*)/$', 
+        s1202_procjudtrab_views.apagar, 
+        name='s1202_procjudtrab_apagar'),
+
+url(r'^s1202-procjudtrab/api/$',
+            s1202_procjudtrab_views.s1202procJudTrabList.as_view() ),
+
+        url(r'^s1202-procjudtrab/api/(?P<pk>[0-9]+)/$',
+            s1202_procjudtrab_views.s1202procJudTrabDetail.as_view() ),
+
+url(r'^s1202-procjudtrab/listar/(?P<hash>.*)/$', 
+        s1202_procjudtrab_views.listar, 
+        name='s1202_procjudtrab'),
+
+url(r'^s1202-procjudtrab/salvar/(?P<hash>.*)/$', 
+        s1202_procjudtrab_views.salvar, 
+        name='s1202_procjudtrab_salvar'),
+
+
+
+url(r'^s1202-dmdev/apagar/(?P<hash>.*)/$', 
+        s1202_dmdev_views.apagar, 
+        name='s1202_dmdev_apagar'),
+
+url(r'^s1202-dmdev/api/$',
+            s1202_dmdev_views.s1202dmDevList.as_view() ),
+
+        url(r'^s1202-dmdev/api/(?P<pk>[0-9]+)/$',
+            s1202_dmdev_views.s1202dmDevDetail.as_view() ),
+
+url(r'^s1202-dmdev/listar/(?P<hash>.*)/$', 
+        s1202_dmdev_views.listar, 
+        name='s1202_dmdev'),
+
+url(r'^s1202-dmdev/salvar/(?P<hash>.*)/$', 
+        s1202_dmdev_views.salvar, 
+        name='s1202_dmdev_salvar'),
 
 
 

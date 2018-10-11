@@ -43,7 +43,6 @@ get_model = apps.get_model
 
 
 CHOICES_S5012_TPCR = (
-    (3533, u'3533 - Proventos de Aposentadoria, Reserva, Reforma ou Pensão Pagos por Previdência Pública'),
     (47301, u'047301 - IRRF - Residentes Fiscais no Exterior'),
     (56107, u'056107 - IRRF Mensal, 13° salário e Férias sobre Trabalho Assalariado no país ou ausente no exterior a serviço do país, exceto se contratado por Empregador Doméstico ou por Segurado Especial sujeito a recolhimento unificado'),
     (56108, u'056108 - IRRF Mensal, 13° salário e Férias sobre Trabalho Assalariado no país ou ausente no exterior a serviço do país, Empregado Doméstico ou Trabalhador contratado por Segurado Especial sujeito a recolhimento unificado'),
@@ -54,6 +53,7 @@ CHOICES_S5012_TPCR = (
     (56113, u'056113 - IRRF - Empregado/Trabalhador Rural - Segurado Especial 13° salário rescisório'),
     (58806, u'058806 - IRRF sobre Rendimento do trabalho sem vínculo empregatício'),
     (61001, u'061001 - IRRF sobre Rendimentos relativos a prestação de serviços de transporte rodoviário internacional de carga, pagos a transportador autônomo PF residente no Paraguai'),
+    (3533, u'3533 - Proventos de Aposentadoria, Reserva, Reforma ou Pensão Pagos por Previdência Pública'),
     (356201, u'356201 - IRRF sobre Participação dos trabalhadores em Lucros ou Resultados (PLR).'),
 )
 

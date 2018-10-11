@@ -153,8 +153,6 @@ def salvar(request, hash):
         s1005_alteracao_infopcd_lista = None
         s1005_alteracao_novavalidade_form = None
         s1005_alteracao_novavalidade_lista = None
-        s1005_alteracao_infosst_form = None
-        s1005_alteracao_infosst_lista = None
         if s1005_alteracao_id:
             s1005_alteracao = get_object_or_404(s1005alteracao.objects.using( db_slug ), excluido = False, id = s1005_alteracao_id)
   
@@ -179,9 +177,6 @@ def salvar(request, hash):
             s1005_alteracao_novavalidade_form = form_s1005_alteracao_novavalidade(initial={ 's1005_alteracao': s1005_alteracao }, slug=db_slug)
             s1005_alteracao_novavalidade_form.fields['s1005_alteracao'].widget.attrs['readonly'] = True
             s1005_alteracao_novavalidade_lista = s1005alteracaonovaValidade.objects.using( db_slug ).filter(excluido = False, s1005_alteracao_id=s1005_alteracao.id).all()
-            s1005_alteracao_infosst_form = form_s1005_alteracao_infosst(initial={ 's1005_alteracao': s1005_alteracao }, slug=db_slug)
-            s1005_alteracao_infosst_form.fields['s1005_alteracao'].widget.attrs['readonly'] = True
-            s1005_alteracao_infosst_lista = s1005alteracaoinfoSST.objects.using( db_slug ).filter(excluido = False, s1005_alteracao_id=s1005_alteracao.id).all()
         else:
             s1005_alteracao = None
         #s1005_alteracao_salvar_custom_variaveis#
@@ -219,8 +214,6 @@ def salvar(request, hash):
             's1005_alteracao_infopcd_lista': s1005_alteracao_infopcd_lista,
             's1005_alteracao_novavalidade_form': s1005_alteracao_novavalidade_form,
             's1005_alteracao_novavalidade_lista': s1005_alteracao_novavalidade_lista,
-            's1005_alteracao_infosst_form': s1005_alteracao_infosst_form,
-            's1005_alteracao_infosst_lista': s1005_alteracao_infosst_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        

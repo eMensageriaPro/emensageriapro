@@ -1,8 +1,8 @@
 # coding: utf-8
 from django import forms
 from emensageriapro.r3010.models import * 
-from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.tabelas.models import Municipios 
+from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.efdreinf.models import r3010evtEspDesportivo 
 
 

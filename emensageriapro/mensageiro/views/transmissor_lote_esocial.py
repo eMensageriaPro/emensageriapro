@@ -57,7 +57,6 @@ from emensageriapro.esocial.models import s1035evtTabCarreira
 from emensageriapro.esocial.models import s1040evtTabFuncao
 from emensageriapro.esocial.models import s1050evtTabHorTur
 from emensageriapro.esocial.models import s1060evtTabAmbiente
-from emensageriapro.esocial.models import s1065evtTabEquipamento
 from emensageriapro.esocial.models import s1070evtTabProcesso
 from emensageriapro.esocial.models import s1080evtTabOperPort
 from emensageriapro.esocial.models import s1200evtRemun
@@ -78,6 +77,7 @@ from emensageriapro.esocial.models import s2205evtAltCadastral
 from emensageriapro.esocial.models import s2206evtAltContratual
 from emensageriapro.esocial.models import s2210evtCAT
 from emensageriapro.esocial.models import s2220evtMonit
+from emensageriapro.esocial.models import s2221evtToxic
 from emensageriapro.esocial.models import s2230evtAfastTemp
 from emensageriapro.esocial.models import s2240evtExpRisco
 from emensageriapro.esocial.models import s2241evtInsApo
@@ -108,7 +108,6 @@ from emensageriapro.esocial.forms import form_s1035_evttabcarreira
 from emensageriapro.esocial.forms import form_s1040_evttabfuncao
 from emensageriapro.esocial.forms import form_s1050_evttabhortur
 from emensageriapro.esocial.forms import form_s1060_evttabambiente
-from emensageriapro.esocial.forms import form_s1065_evttabequipamento
 from emensageriapro.esocial.forms import form_s1070_evttabprocesso
 from emensageriapro.esocial.forms import form_s1080_evttaboperport
 from emensageriapro.esocial.forms import form_s1200_evtremun
@@ -129,6 +128,7 @@ from emensageriapro.esocial.forms import form_s2205_evtaltcadastral
 from emensageriapro.esocial.forms import form_s2206_evtaltcontratual
 from emensageriapro.esocial.forms import form_s2210_evtcat
 from emensageriapro.esocial.forms import form_s2220_evtmonit
+from emensageriapro.esocial.forms import form_s2221_evttoxic
 from emensageriapro.esocial.forms import form_s2230_evtafasttemp
 from emensageriapro.esocial.forms import form_s2240_evtexprisco
 from emensageriapro.esocial.forms import form_s2241_evtinsapo
@@ -317,6 +317,49 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        transmissor_lote_esocial_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='transmissor_lote_esocial')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial.objects.using( db_slug ), excluido = False, id = transmissor_lote_esocial_id)
+    if request.method == 'POST':
+        TransmissorLoteEsocial.objects.using( db_slug ).filter(id = transmissor_lote_esocial_id).update(excluido = True)
+        #transmissor_lote_esocial_apagar_custom
+        #transmissor_lote_esocial_apagar_custom
+        messages.success(request, 'Apagado com sucesso!')
+        if request.session['retorno_pagina']== 'transmissor_lote_esocial_salvar':
+            return redirect('transmissor_lote_esocial', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 'transmissor_lote_esocial_apagar.html', context)
+
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 
@@ -493,47 +536,4 @@ def listar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
-
-@login_required
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        transmissor_lote_esocial_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='transmissor_lote_esocial')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial.objects.using( db_slug ), excluido = False, id = transmissor_lote_esocial_id)
-    if request.method == 'POST':
-        TransmissorLoteEsocial.objects.using( db_slug ).filter(id = transmissor_lote_esocial_id).update(excluido = True)
-        #transmissor_lote_esocial_apagar_custom
-        #transmissor_lote_esocial_apagar_custom
-        messages.success(request, 'Apagado com sucesso!')
-        if request.session['retorno_pagina']== 'transmissor_lote_esocial_salvar':
-            return redirect('transmissor_lote_esocial', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 'transmissor_lote_esocial_apagar.html', context)
 

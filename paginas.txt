@@ -1,0 +1,633 @@
+
+
+
+
+Controle de Acesso|controle_de_acesso|Módulos|config_modulos
+Controle de Acesso|controle_de_acesso|Páginas|config_paginas
+Controle de Acesso|controle_de_acesso|Perfis|config_perfis
+Controle de Acesso|controle_de_acesso|Permissões|config_permissoes
+Controle de Acesso|controle_de_acesso|Usuários|usuarios
+Controle de Acesso|controle_de_acesso|Auditoria|auditoria
+Mensageiro|mensageiro|Mapa de Processamento|mapa_processamento
+Mensageiro|mensageiro|Importações|importacoes
+Mensageiro|mensageiro|RelatoriosImprimir|relatorios_imprimir
+Mensageiro|mensageiro|Relatórios|relatorios
+Mensageiro|mensageiro|Transmissor|transmissores
+Mensageiro|mensageiro|Regras de Validação|regras_validacao
+Mensageiro|mensageiro|Importação de Arquivos|importacao_arquivos
+Mensageiro|mensageiro|Eventos de Arquivos Importados|importacao_arquivos_eventos
+Mensageiro|mensageiro|Transmissor do eSocial|transmissor_lote_esocial
+Mensageiro|mensageiro|Ocorrências do Transmissor de Lote do eSocial|transmissor_lote_esocial_ocorrencias
+Mensageiro|mensageiro|Transmissor do EFD-Reinf|transmissor_lote_efdreinf
+Mensageiro|mensageiro|Ocorrências do Transmissor de Lote do EFD-Reinf|transmissor_lote_efdreinf_ocorrencias
+Mensageiro|mensageiro|Arquivos|arquivos
+Mensageiro|mensageiro|Retornos dos Eventos|retornos_eventos
+Mensageiro|mensageiro|Retornos dos Eventos - Ocorrencias|retornos_eventos_ocorrencias
+Mensageiro|mensageiro|Retornos dos Eventos - Horários|retornos_eventos_horarios
+Mensageiro|mensageiro|Retornos dos Eventos - Intervalos|retornos_eventos_intervalos
+Tabelas|tabelas|Municipios|municipios
+Tabelas|tabelas|CBO|cbo
+Tabelas|tabelas|CID|cid
+Tabelas|tabelas|CNAE|cnae
+Tabelas|tabelas|eSocial 01 - Categorias de Trabalhadores|esocial_trabalhadores_categorias
+Tabelas|tabelas|eSocial 02 - Financiamento da Aposent. Especial e Redução do Tempo de Contrib.|esocial_financiamentos_aposentadorias_especiais
+Tabelas|tabelas|eSocial 03 - Natureza das Rubricas da Folha de Pagamento|esocial_naturezas_rubricas
+Tabelas|tabelas|eSocial 04 - Códigos e Alíquotas de FPAS/Terceiros|esocial_codigo_aliquotas_fpas_terceiros
+Tabelas|tabelas|eSocial 05 - Tipos de Inscrição|esocial_inscricoes_tipos
+Tabelas|tabelas|eSocial 06 - Países|esocial_paises
+Tabelas|tabelas|eSocial 07 - Tipos de Dependente|esocial_dependentes_tipos
+Tabelas|tabelas|eSocial 08 - Classificação Tributária|esocial_classificacoes_tributarias
+Tabelas|tabelas|eSocial 09 - Tipos de Arquivo do eSocial|esocial_arquivos_esocial_tipos
+Tabelas|tabelas|eSocial 10 - Tipos de Lotação Tributária|esocial_lotacoes_tributarias_tipos
+Tabelas|tabelas|eSocial 11 - Compatibilidade entre Categoria de Trabalhadores, Classif. Tributária e Tipos de Lotação|esocial_compatibilidades_categorias_classificacoes_lotacoes
+Tabelas|tabelas|eSocial 12 - Compatibilidade entre Tipos de Lotação e Classificação Tributária|esocial_compatibilidades_lotacoes_classificacoes
+Tabelas|tabelas|eSocial 13 - Parte do corpo atingida|esocial_partes_corpo_atingidas
+Tabelas|tabelas|eSocial 14 - Agente Causador do Acidente de Trabalho|esocial_agentes_causadores_acidentes_trabalho
+Tabelas|tabelas|eSocial 15 - Agente Causador / Situação Geradora de Doença Profissional|esocial_agentes_causadores_doencas_profissionais
+Tabelas|tabelas|eSocial 16 - Situação Geradora do Acidente de Trabalho|esocial_acidentes_situacoes_geradoras
+Tabelas|tabelas|eSocial 17 - Descrição da Natureza da Lesão|esocial_naturezas_lesoes
+Tabelas|tabelas|eSocial 18 - Motivos de Afastamento|esocial_afastamentos_motivos
+Tabelas|tabelas|eSocial 19 - Motivos de Desligamento|esocial_desligamentos_motivos
+Tabelas|tabelas|eSocial 20 - Tipos de Logradouro|esocial_logradouros_tipos
+Tabelas|tabelas|eSocial 21 - Natureza Jurídica|esocial_naturezas_juridicas
+Tabelas|tabelas|eSocial 22 - Compatibilidade entre FPAS e Classificação Tributária|esocial_compatibilidades_fpas_classificacoes_tributarias
+Tabelas|tabelas|eSocial 23 - Fatores de Riscos do Meio Ambiente do Trabalho|esocial_fatores_risco
+Tabelas|tabelas|eSocial 24 - Codificação de Acidente de Trabalho|esocial_codificacoes_acidente_trabalho
+Tabelas|tabelas|eSocial 25 - Tipos de Benefícios|esocial_beneficios_previdenciarios_tipos
+Tabelas|tabelas|eSocial 26 - Motivos de Cessação de Benefícios|esocial_beneficios_previdenciarios_cessacao_motivos
+Tabelas|tabelas|eSocial 27 - Procedimentos Diagnósticos|esocial_procedimentos_diagnosticos
+Tabelas|tabelas|eSocial 28 - Atividades Periculosas, Insalubres e/ou Especiais|esocial_atividades_periculosas_insalubres_especiais
+Tabelas|tabelas|eSocial 29 - Treinamentos, Capacitações e Exercícios Simulados|esocial_treinamentos_capacitacoes_exercicios_simulados
+Tabelas|tabelas|eSocial 30 - Programas, Planos e Documentos|esocial_programas_planos_documentos
+Tabelas|tabelas|EFD-Reinf 01 – Códigos de Pagamentos|efdreinf_pagamentos_codigos
+Tabelas|tabelas|EFD-Reinf 02 - Regras para utilização dos códigos de pagamento a Pessoas Físicas|efdreinf_regras_pagamentos_codigos
+Tabelas|tabelas|EFD-Reinf 03 – Rendimentos de Beneficiários no Exterior|efdreinf_rendimentos_beneficiarios_exterior
+Tabelas|tabelas|EFD-Reinf 04 - Forma de Tributação para rendimentos de beneficiários no Exterior|efdreinf_rendimentos_beneficiarios_exterior_tributacao
+Tabelas|tabelas|EFD-Reinf 05 - Informações sobre os beneficiários de Rendimentos no Exterior|efdreinf_informacoes_beneficiarios_exterior
+Tabelas|tabelas|EFD-Reinf 06 – Classificação de Serviços Prestados mediante cessão de mão de obra/Empreitada|efdreinf_classificacao_servicos_prestados
+Tabelas|tabelas|EFD-Reinf 07 – Países|efdreinf_paises
+Tabelas|tabelas|EFD-Reinf 08 - Classificação Tributária|efdreinf_classificacao_tributaria
+Tabelas|tabelas|EFD-Reinf 09 – Código de Atividades, Produtos e Serviços Sujeitos à CPRB|efdreinf_codigos_atividades_produtos_servicos_cprb
+Tabelas|tabelas|EFD-Reinf 10 - Eventos da EFD-Reinf|efdreinf_eventos
+
+eSocial|esocial|S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000_evtinfoempregador
+eSocial|esocial|S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos|s1005_evttabestab
+eSocial|esocial|S-1010 - Tabela de Rubricas|s1010_evttabrubrica
+eSocial|esocial|S-1020 - Tabela de Lotações Tributárias|s1020_evttablotacao
+eSocial|esocial|S-1030 - Tabela de Cargos/Empregos Públicos|s1030_evttabcargo
+eSocial|esocial|S-1035 - Tabela de Carreiras Públicas|s1035_evttabcarreira
+eSocial|esocial|S-1040 - Tabela de Funções/Cargos em Comissão|s1040_evttabfuncao
+eSocial|esocial|S-1050 - Tabela de Horários/Turnos de Trabalho|s1050_evttabhortur
+eSocial|esocial|S-1060 - Tabela de Ambientes de Trabalho|s1060_evttabambiente
+eSocial|esocial|S-1070 - Tabela de Processos Administrativos/Judiciais|s1070_evttabprocesso
+eSocial|esocial|S-1080 - Tabela de Operadores Portuários|s1080_evttaboperport
+eSocial|esocial|S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200_evtremun
+eSocial|esocial|S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social|s1202_evtrmnrpps
+eSocial|esocial|S-1207 - Benefícios previdenciários - RPPS|s1207_evtbenprrp
+eSocial|esocial|S-1210 - Pagamentos de Rendimentos do Trabalho|s1210_evtpgtos
+eSocial|esocial|S-1250 - Aquisição de Produção Rural|s1250_evtaqprod
+eSocial|esocial|S-1260 - Comercialização da Produção Rural Pessoa Física|s1260_evtcomprod
+eSocial|esocial|S-1270 - Contratação de Trabalhadores Avulsos Não Portuários|s1270_evtcontratavnp
+eSocial|esocial|S-1280 - Informações Complementares aos Eventos Periódicos|s1280_evtinfocomplper
+eSocial|esocial|S-1295 - Solicitação de Totalização para Pagamento em Contingência|s1295_evttotconting
+eSocial|esocial|S-1298 - Reabertura dos Eventos Periódicos|s1298_evtreabreevper
+eSocial|esocial|S-1299 - Fechamento dos Eventos Periódicos|s1299_evtfechaevper
+eSocial|esocial|S-1300 - Contribuição Sindical Patronal|s1300_evtcontrsindpatr
+eSocial|esocial|S-2190 - Admissão de Trabalhador - Registro Preliminar|s2190_evtadmprelim
+eSocial|esocial|S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200_evtadmissao
+eSocial|esocial|S-2205 - Alteração de Dados Cadastrais do Trabalhador|s2205_evtaltcadastral
+eSocial|esocial|S-2206 - Alteração de Contrato de Trabalho|s2206_evtaltcontratual
+eSocial|esocial|S-2210 - Comunicação de Acidente de Trabalho|s2210_evtcat
+eSocial|esocial|S-2220 - Monitoramento da Saúde do Trabalhador|s2220_evtmonit
+eSocial|esocial|S-2221 - Exame Toxicológico do Motorista Profissional|s2221_evttoxic
+eSocial|esocial|S-2230 - Afastamento Temporário|s2230_evtafasttemp
+eSocial|esocial|S-2231 - Cessão/Exercício em Outro Órgão|s2231_evtcessao
+eSocial|esocial|S-2240 - Condições Ambientais do Trabalho - Fatores de Risco|s2240_evtexprisco
+eSocial|esocial|S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241_evtinsapo
+eSocial|esocial|S-2245 - Treinamentos, Capacitações e Exercícios Simulados|s2245_evttreicap
+eSocial|esocial|S-2250 - Aviso Prévio|s2250_evtavprevio
+eSocial|esocial|S-2260 - Convocação para Trabalho Intermitente|s2260_evtconvinterm
+eSocial|esocial|S-2298 - Reintegração|s2298_evtreintegr
+eSocial|esocial|S-2299 - Desligamento|s2299_evtdeslig
+eSocial|esocial|S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300_evttsvinicio
+eSocial|esocial|S-2306 - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual|s2306_evttsvaltcontr
+eSocial|esocial|S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término|s2399_evttsvtermino
+eSocial|esocial|S-2400 - Cadastro de Beneficiários - Entes Públicos - Início|s2400_evtcdbenefin
+eSocial|esocial|S-2405 - Cadastro de Beneficiários - Entes Públicos - Alteração|s2405_evtcdbenefalt
+eSocial|esocial|S-2410 - Cadastro de Benefícios - Entes Públicos - Início|s2410_evtcdbenin
+eSocial|esocial|S-2416 - Cadastro de Benefícios - Entes Públicos - Alteração|s2416_evtcdbenalt
+eSocial|esocial|S-2420 - Cadastro de Benefícios - Entes Públicos - Término|s2420_evtcdbenterm
+eSocial|esocial|S-3000 - Exclusão de eventos|s3000_evtexclusao
+eSocial|esocial|S-5001 - Informações das contribuições sociais por trabalhador|s5001_evtbasestrab
+eSocial|esocial|S-5002 - Imposto de Renda Retido na Fonte|s5002_evtirrfbenef
+eSocial|esocial|S-5011 - Informações das contribuições sociais consolidadas por contribuinte|s5011_evtcs
+eSocial|esocial|S-5012 - Informações do IRRF consolidadas por contribuinte|s5012_evtirrf
+
+EFD-Reinf|efdreinf|R-1000 - Informações do Contribuinte|r1000_evtinfocontri
+EFD-Reinf|efdreinf|R-1070 - Tabela de Processos Administrativos/Judiciais|r1070_evttabprocesso
+EFD-Reinf|efdreinf|R-2010 - Retenção Contribuição Previdenciária - Serviços|r2010_evtservtom
+EFD-Reinf|efdreinf|R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados|r2020_evtservprest
+EFD-Reinf|efdreinf|R-2030 - Recursos Recebidos por Associação Desportiva|r2030_evtassocdesprec
+EFD-Reinf|efdreinf|R-2040 - Recursos Repassados para Associação Desportiva|r2040_evtassocdesprep
+EFD-Reinf|efdreinf|R-2050 - Comercialização da Produção por Produtor Rural PJ/Agroindústria|r2050_evtcomprod
+EFD-Reinf|efdreinf|R-2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB|r2060_evtcprb
+EFD-Reinf|efdreinf|R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070_evtpgtosdivs
+EFD-Reinf|efdreinf|R-2098 - Reabertura dos Eventos Periódicos|r2098_evtreabreevper
+EFD-Reinf|efdreinf|R-2099 - Fechamento dos Eventos Periódicos|r2099_evtfechaevper
+EFD-Reinf|efdreinf|R-3010 - Receita de Espetáculo Desportivo|r3010_evtespdesportivo
+EFD-Reinf|efdreinf|R-5001 - Informações de bases e tributos por evento|r5001_evttotal
+EFD-Reinf|efdreinf|R-5011 - Informações de bases e tributos consolidadas por período de apuração|r5011_evttotalcontrib
+EFD-Reinf|efdreinf|R-9000 - Exclusão de Eventos|r9000_evtexclusao
+
+R-1000 - Informações do Contribuinte|r1000|R-1000 - Inclusão de novas informações|r1000_inclusao
+R-1000 - Informações do Contribuinte|r1000|R-1000 - Informações da(s) empresa(s) desenvolvedora(s) da(s) aplicação(ões) que gera(m) os arquivos transmitidos para o ambiente nacional da EFD-Reinf.|r1000_inclusao_softhouse
+R-1000 - Informações do Contribuinte|r1000|R-1000 - Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR|r1000_inclusao_infoefr
+R-1000 - Informações do Contribuinte|r1000|R-1000 - Alteração das informações|r1000_alteracao
+R-1000 - Informações do Contribuinte|r1000|R-1000 - Informações da(s) empresa(s) desenvolvedora(s) da(s) aplicação(ões) que gera(m) os arquivos transmitidos para o ambiente nacional da EFD-Reinf.|r1000_alteracao_softhouse
+R-1000 - Informações do Contribuinte|r1000|R-1000 - Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR|r1000_alteracao_infoefr
+R-1000 - Informações do Contribuinte|r1000|R-1000 - Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade|r1000_alteracao_novavalidade
+R-1000 - Informações do Contribuinte|r1000|R-1000 - Exclusão das informações|r1000_exclusao
+R-1070 - Tabela de Processos Administrativos/Judiciais|r1070|R-1070 - Inclusão de novas informações|r1070_inclusao
+R-1070 - Tabela de Processos Administrativos/Judiciais|r1070|R-1070 - Informações de Suspensão de Exibilidade de tributos|r1070_inclusao_infosusp
+R-1070 - Tabela de Processos Administrativos/Judiciais|r1070|R-1070 - Informações Complementares do Processo Judicial|r1070_inclusao_dadosprocjud
+R-1070 - Tabela de Processos Administrativos/Judiciais|r1070|R-1070 - Alteração das informações|r1070_alteracao
+R-1070 - Tabela de Processos Administrativos/Judiciais|r1070|R-1070 - Informações de Suspensão de Exibilidade de tributos|r1070_alteracao_infosusp
+R-1070 - Tabela de Processos Administrativos/Judiciais|r1070|R-1070 - Informações Complementares do Processo Judicial|r1070_alteracao_dadosprocjud
+R-1070 - Tabela de Processos Administrativos/Judiciais|r1070|R-1070 - Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade|r1070_alteracao_novavalidade
+R-1070 - Tabela de Processos Administrativos/Judiciais|r1070|R-1070 - Exclusão das informações|r1070_exclusao
+R-2010 - Retenção Contribuição Previdenciária - Serviços Tomados|r2010|R-2010 - Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior|r2010_nfs
+R-2010 - Retenção Contribuição Previdenciária - Serviços Tomados|r2010|R-2010 - Informações sobre os tipos de Serviços constantes da Nota Fiscal|r2010_infotpserv
+R-2010 - Retenção Contribuição Previdenciária - Serviços Tomados|r2010|R-2010 - Informações de processos relacionados a não retenção de contribuição previdenciária|r2010_infoprocretpr
+R-2010 - Retenção Contribuição Previdenciária - Serviços Tomados|r2010|R-2010 - Informações de processos relacionados a não retenção de contribuição previdenciária adicional|r2010_infoprocretad
+R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados|r2020|R-2020 - Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior|r2020_nfs
+R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados|r2020|R-2020 - Informações sobre os tipos de Serviços constantes da Nota Fiscal|r2020_infotpserv
+R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados|r2020|R-2020 - Informações de processos relacionados a não retenção de contribuição previdenciária|r2020_infoprocretpr
+R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados|r2020|R-2020 - Informações de processos relacionados a não retenção de contribuição previdenciária adicional|r2020_infoprocretad
+R-2030 - Recursos Recebidos por Associação Desportiva|r2030|R-2030 - Registro preenchido exclusivamente por associação desportiva que mantenha equipe de futebol profissional, quando receber repasse de outras empresas a título de patrocínio, publicidade, licenciamento, etc|r2030_recursosrec
+R-2030 - Recursos Recebidos por Associação Desportiva|r2030|R-2030 - Detalhamento dos recursos recebidos.|r2030_inforecurso
+R-2030 - Recursos Recebidos por Associação Desportiva|r2030|R-2030 - Informações de processos relacionados a não retenção de contribuição previdenciária|r2030_infoproc
+R-2040 - Recursos Repassados para Associação Desportiva|r2040|R-2040 - Detalhamento dos repasses efetuados pelo estabelecimento indicado em {ideEstab} a Associação Desportiva que mantenha equipe de futebol profissional.|r2040_recursosrep
+R-2040 - Recursos Repassados para Associação Desportiva|r2040|R-2040 - Detalhamento dos recursos recebidos.|r2040_inforecurso
+R-2040 - Recursos Repassados para Associação Desportiva|r2040|R-2040 - Informações de processos relacionados a não retenção de contribuição previdenciária|r2040_infoproc
+R-2050 - Comercialização da Produção por Produtor Rural PJ/Agroindústria|r2050|R-2050 - Registro que apresenta o valor total da Receita Bruta por "tipo" de comercialização.|r2050_tipocom
+R-2050 - Comercialização da Produção por Produtor Rural PJ/Agroindústria|r2050|R-2050 - Informações de processos relacionados a não retenção de contribuição previdenciária|r2050_infoproc
+R-2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB|r2060|R-2060 - Registro que apresenta o valor total da receita por tipo de código de atividade econômica.|r2060_tipocod
+R-2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB|r2060|R-2060 - Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.|r2060_tipoajuste
+R-2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB|r2060|R-2060 - Informações de processos relacionados a não retenção de contribuição previdenciária|r2060_infoproc
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Informações complementares de beneficiário residente ou domiciliado no exterior|r2070_inforesidext
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Informações de Beneficiário portador de moléstia grave|r2070_infomolestia
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Identificação dos estabelecimentos da associação desportiva que receberam os recursos|r2070_ideestab
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Pagamento a Pessoa Física ou Jurídica residente ou domiciliada no Brasil|r2070_pgtoresidbr
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Beneficiário Pessoa Física - Residente no Brasil|r2070_pgtopf
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Detalhamento das Deduções|r2070_detdeducao
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Rendimentos Isentos/Não Tributáveis|r2070_rendisento
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Detalhamento das Competências|r2070_detcompet
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Compensação Judicial|r2070_compjud
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Informações Complementares - Rendimentos Recebidos Acumuladamente|r2070_inforra
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Detalhamento das despesas de processo judicial|r2070_inforra_despprocjud
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Identificação do Advogado|r2070_inforra_ideadvogado
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial|r2070_infoprocjud
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Detalhamento das despesas de processo judicial|r2070_infoprocjud_despprocjud
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Identificação do Advogado|r2070_infoprocjud_ideadvogado
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Identificação da origem dos recursos|r2070_infoprocjud_origemrecursos
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Depósito Judicial|r2070_depjudicial
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil|r2070_pgtopj
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial|r2070_pgtopj_infoprocjud
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Detalhamento das despesas de processo judicial|r2070_pgtopj_despprocjud
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Identificação do Advogado|r2070_pgtopj_ideadvogado
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Identificação da origem dos recursos|r2070_pgtopj_origemrecursos
+R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP|r2070|R-2070 - Pagamento a não residente ou domiciliado no exterior|r2070_pgtoresidext
+R-2099 - Fechamento dos Eventos Periódicos|r2099|R-2099 - Responsável pelas informações|r2099_iderespinf
+R-3010 - Receita de Espetáculo Desportivo|r3010|R-3010 - Identificação dos estabelecimentos da associação desportiva que receberam os recursos|r3010_ideestab
+R-3010 - Receita de Espetáculo Desportivo|r3010|R-3010 - Boletim do Espetáculo Desportivo|r3010_boletim
+R-3010 - Receita de Espetáculo Desportivo|r3010|R-3010 - Receita da Venda de Ingressos|r3010_receitaingressos
+R-3010 - Receita de Espetáculo Desportivo|r3010|R-3010 - Outras receitas do espetáculo|r3010_outrasreceitas
+R-3010 - Receita de Espetáculo Desportivo|r3010|R-3010 - Informações de processos relacionados a não retenção de contribuição previdenciária|r3010_infoproc
+R-5001 - Informações de bases e tributos por evento|r5001|R-5001 - Informações de ocorrências registradas|r5001_regocorrs
+R-5001 - Informações de bases e tributos por evento|r5001|R-5001 - Informações relativas a totalizadores de bases e tributos|r5001_infototal
+R-5001 - Informações de bases e tributos por evento|r5001|R-5001 - Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010|r5001_rtom
+R-5001 - Informações de bases e tributos por evento|r5001|R-5001 - Totalizador das retenções de contribuição previdenciária sobre serviços tomados|r5001_infocrtom
+R-5001 - Informações de bases e tributos por evento|r5001|R-5001 - Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020|r5001_rprest
+R-5001 - Informações de bases e tributos por evento|r5001|R-5001 - Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040|r5001_rrecrepad
+R-5001 - Informações de bases e tributos por evento|r5001|R-5001 - Totalizador das contribuições sociais incidentes sobre a comercialização de produção por Produtor Rural Pessoa Jurídica e Agroindústria, apuradas no evento R-2050|r5001_rcoml
+R-5001 - Informações de bases e tributos por evento|r5001|R-5001 - Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060|r5001_rcprb
+R-5001 - Informações de bases e tributos por evento|r5001|R-5001 - Totalizador da contribuição previdenciária incidente sobre Receitas de Espetáculos Desportivos, apuradas no evento R-3010.|r5001_rrecespetdesp
+R-5011 - Informações de bases e tributos consolidadas por período de apuração|r5011|R-5011 - Informações de ocorrências registradas|r5011_regocorrs
+R-5011 - Informações de bases e tributos consolidadas por período de apuração|r5011|R-5011 - Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos|r5011_infototalcontrib
+R-5011 - Informações de bases e tributos consolidadas por período de apuração|r5011|R-5011 - Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010|r5011_rtom
+R-5011 - Informações de bases e tributos consolidadas por período de apuração|r5011|R-5011 - Totalizador das retenções de contribuição previdenciária sobre serviços tomados|r5011_infocrtom
+R-5011 - Informações de bases e tributos consolidadas por período de apuração|r5011|R-5011 - Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020|r5011_rprest
+R-5011 - Informações de bases e tributos consolidadas por período de apuração|r5011|R-5011 - Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040|r5011_rrecrepad
+R-5011 - Informações de bases e tributos consolidadas por período de apuração|r5011|R-5011 - Totalizador das contribuições sociais incidentes sobre a comercialização de produção por Produtor Rural Pessoa Jurídica e Agroindústria, apuradas no evento R-2050|r5011_rcoml
+R-5011 - Informações de bases e tributos consolidadas por período de apuração|r5011|R-5011 - Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060|r5011_rcprb
+
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Inclusão de novas informações|s1000_inclusao
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Informações Complementares - Empresas Isentas - Dados da Isenção|s1000_inclusao_dadosisencao
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Informações relativas a Órgãos Públicos|s1000_inclusao_infoop
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Informações relativas a Ente Federativo Responsável - EFR|s1000_inclusao_infoefr
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Informações relativas ao ente federativo estadual, distrital ou municipal|s1000_inclusao_infoente
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Informações exclusivas de organismos internacionais e outras instituições extraterritoriais|s1000_inclusao_infoorginternacional
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Informações relativas ao desenvolvedor do software que gerou o arquivo xml.|s1000_inclusao_softwarehouse
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Informações Complementares - Pessoa Jurídica|s1000_inclusao_situacaopj
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Informações Complementares - Pessoa Física|s1000_inclusao_situacaopf
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Alteração das informações|s1000_alteracao
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Informações Complementares - Empresas Isentas - Dados da Isenção|s1000_alteracao_dadosisencao
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Informações relativas a Órgãos Públicos|s1000_alteracao_infoop
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Informações relativas a Ente Federativo Responsável - EFR|s1000_alteracao_infoefr
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Informações relativas ao ente federativo estadual, distrital ou municipal|s1000_alteracao_infoente
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Informações exclusivas de organismos internacionais e outras instituições extraterritoriais|s1000_alteracao_infoorginternacional
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Informações relativas ao desenvolvedor do software que gerou o arquivo xml.|s1000_alteracao_softwarehouse
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Informações Complementares - Pessoa Jurídica|s1000_alteracao_situacaopj
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Informações Complementares - Pessoa Física|s1000_alteracao_situacaopf
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.|s1000_alteracao_novavalidade
+S-1000 - Informações do Empregador/Contribuinte/Órgão Público|s1000|S-1000 - Exclusão das informações|s1000_exclusao
+S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos|s1005|S-1005 - Inclusão de novas informações|s1005_inclusao
+S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos|s1005|S-1005 - Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.|s1005_inclusao_procadmjudrat
+S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos|s1005|S-1005 - Registro que identifica, em caso de existência, o processo administrativo/judicial em que houve decisão ou sentença favorável ao contribuinte suspendendo ou alterando a alíquota FAP aplicável ao contribuinte.|s1005_inclusao_procadmjudfap
+S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos|s1005|S-1005 - Informações relativas ao Cadastro da Atividade Econômica da Pessoa Física - CAEPF.|s1005_inclusao_infocaepf
+S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos|s1005|S-1005 - Registro preenchido exclusivamente por empresa construtora enquadrada nos Arts. 7 a 9 da Lei 12.546/2011, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração (...)|s1005_inclusao_infoobra
+S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos|s1005|S-1005 - Identificação da(s) entidade(s) educativa(s) ou de prática desportiva|s1005_inclusao_infoenteduc
+S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos|s1005|S-1005 - Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento "Matriz".|s1005_inclusao_infopcd
+S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos|s1005|S-1005 - Alteração das informações|s1005_alteracao
+S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos|s1005|S-1005 - Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.|s1005_alteracao_procadmjudrat
+S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos|s1005|S-1005 - Registro que identifica, em caso de existência, o processo administrativo/judicial em que houve decisão ou sentença favorável ao contribuinte suspendendo ou alterando a alíquota FAP aplicável ao contribuinte.|s1005_alteracao_procadmjudfap
+S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos|s1005|S-1005 - Informações relativas ao Cadastro da Atividade Econômica da Pessoa Física - CAEPF.|s1005_alteracao_infocaepf
+S-1050 - Tabela de Horários/Turnos de Trabalho|s1050|S-1050 - Exclusão das informações|s1050_exclusao
+S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos|s1005|S-1005 - Registro preenchido exclusivamente por empresa construtora enquadrada nos Arts. 7 a 9 da Lei 12.546/2011, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração (...)|s1005_alteracao_infoobra
+S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos|s1005|S-1005 - Identificação da(s) entidade(s) educativa(s) ou de prática desportiva|s1005_alteracao_infoenteduc
+S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos|s1005|S-1005 - Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento "Matriz".|s1005_alteracao_infopcd
+S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos|s1005|S-1005 - Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.|s1005_alteracao_novavalidade
+S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos|s1005|S-1005 - Exclusão das informações|s1005_exclusao
+S-1010 - Tabela de Rubricas|s1010|S-1010 - Inclusão de novas informações|s1010_inclusao
+S-1010 - Tabela de Rubricas|s1010|S-1010 - Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, (...)|s1010_inclusao_ideprocessocp
+S-1010 - Tabela de Rubricas|s1010|S-1010 - Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo (...)|s1010_inclusao_ideprocessoirrf
+S-1010 - Tabela de Rubricas|s1010|S-1010 - Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser e (...)|s1010_inclusao_ideprocessofgts
+S-1010 - Tabela de Rubricas|s1010|S-1010 - Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do proc (...)|s1010_inclusao_ideprocessosind
+S-1010 - Tabela de Rubricas|s1010|S-1010 - Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas (...)|s1010_inclusao_ideprocessocprp
+S-1010 - Tabela de Rubricas|s1010|S-1010 - Alteração das informações|s1010_alteracao
+S-1060 - Tabela de Ambientes de Trabalho|s1060|S-1060 - Inclusão de novas informações|s1060_inclusao
+S-1060 - Tabela de Ambientes de Trabalho|s1060|S-1060 - Alteração das informações|s1060_alteracao
+S-2205 - Alteração de Dados Cadastrais do Trabalhador|s2205|S-2205 - Preenchido em caso de trabalhador residente no exterior.|s2205_exterior
+S-1010 - Tabela de Rubricas|s1010|S-1010 - Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, (...)|s1010_alteracao_ideprocessocp
+S-1010 - Tabela de Rubricas|s1010|S-1010 - Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo (...)|s1010_alteracao_ideprocessoirrf
+S-1010 - Tabela de Rubricas|s1010|S-1010 - Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser e (...)|s1010_alteracao_ideprocessofgts
+S-1010 - Tabela de Rubricas|s1010|S-1010 - Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do proc (...)|s1010_alteracao_ideprocessosind
+S-1010 - Tabela de Rubricas|s1010|S-1010 - Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas (...)|s1010_alteracao_ideprocessocprp
+S-1010 - Tabela de Rubricas|s1010|S-1010 - Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.|s1010_alteracao_novavalidade
+S-1010 - Tabela de Rubricas|s1010|S-1010 - Exclusão das informações|s1010_exclusao
+S-1020 - Tabela de Lotações Tributárias|s1020|S-1020 - Inclusão de novas informações|s1020_inclusao
+S-1020 - Tabela de Lotações Tributárias|s1020|S-1020 - Informações sobre a existência de processos judiciais, com sentença/decisão favorável ao contribuinte, relativos às contribuições destinadas a outras Entidades e Fundos.|s1020_inclusao_infoprocjudterceiros
+S-1020 - Tabela de Lotações Tributárias|s1020|S-1020 - Identificação do Processo Judicial|s1020_inclusao_procjudterceiro
+S-1020 - Tabela de Lotações Tributárias|s1020|S-1020 - Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada. A informação é preenchida exclusivamente para lotações cujo {tpLotacao} (...)|s1020_inclusao_infoemprparcial
+S-1020 - Tabela de Lotações Tributárias|s1020|S-1020 - Alteração das informações|s1020_alteracao
+S-1020 - Tabela de Lotações Tributárias|s1020|S-1020 - Informações sobre a existência de processos judiciais, com sentença/decisão favorável ao contribuinte, relativos às contribuições destinadas a outras Entidades e Fundos.|s1020_alteracao_infoprocjudterceiros
+S-1020 - Tabela de Lotações Tributárias|s1020|S-1020 - Identificação do Processo Judicial|s1020_alteracao_procjudterceiro
+S-1020 - Tabela de Lotações Tributárias|s1020|S-1020 - Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada. A informação é preenchida exclusivamente para lotações cujo {tpLotacao} (...)|s1020_alteracao_infoemprparcial
+S-1020 - Tabela de Lotações Tributárias|s1020|S-1020 - Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.|s1020_alteracao_novavalidade
+S-1020 - Tabela de Lotações Tributárias|s1020|S-1020 - Exclusão das informações|s1020_exclusao
+S-1030 - Tabela de Cargos/Empregos Públicos|s1030|S-1030 - Inclusão de novas informações|s1030_inclusao
+S-1030 - Tabela de Cargos/Empregos Públicos|s1030|S-1030 - Detalhamento de informações exclusivas para Cargos e Empregos Públicos|s1030_inclusao_cargopublico
+S-1030 - Tabela de Cargos/Empregos Públicos|s1030|S-1030 - Alteração das informações|s1030_alteracao
+S-1030 - Tabela de Cargos/Empregos Públicos|s1030|S-1030 - Detalhamento de informações exclusivas para Cargos e Empregos Públicos|s1030_alteracao_cargopublico
+S-1030 - Tabela de Cargos/Empregos Públicos|s1030|S-1030 - Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.|s1030_alteracao_novavalidade
+S-1030 - Tabela de Cargos/Empregos Públicos|s1030|S-1030 - Exclusão das informações|s1030_exclusao
+S-1035 - Tabela de Carreiras Públicas|s1035|S-1035 - Inclusão de novas informações|s1035_inclusao
+S-1035 - Tabela de Carreiras Públicas|s1035|S-1035 - Alteração das informações|s1035_alteracao
+S-1035 - Tabela de Carreiras Públicas|s1035|S-1035 - Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.|s1035_alteracao_novavalidade
+S-1035 - Tabela de Carreiras Públicas|s1035|S-1035 - Exclusão das informações|s1035_exclusao
+S-1040 - Tabela de Funções/Cargos em Comissão|s1040|S-1040 - Inclusão de novas informações|s1040_inclusao
+S-1040 - Tabela de Funções/Cargos em Comissão|s1040|S-1040 - Alteração das informações|s1040_alteracao
+S-1040 - Tabela de Funções/Cargos em Comissão|s1040|S-1040 - Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.|s1040_alteracao_novavalidade
+S-1040 - Tabela de Funções/Cargos em Comissão|s1040|S-1040 - Exclusão das informações|s1040_exclusao
+S-1050 - Tabela de Horários/Turnos de Trabalho|s1050|S-1050 - Inclusão de novas informações|s1050_inclusao
+S-1050 - Tabela de Horários/Turnos de Trabalho|s1050|S-1050 - Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo.|s1050_inclusao_horariointervalo
+S-1050 - Tabela de Horários/Turnos de Trabalho|s1050|S-1050 - Alteração das informações|s1050_alteracao
+S-1050 - Tabela de Horários/Turnos de Trabalho|s1050|S-1050 - Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo.|s1050_alteracao_horariointervalo
+S-1050 - Tabela de Horários/Turnos de Trabalho|s1050|S-1050 - Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.|s1050_alteracao_novavalidade
+S-1060 - Tabela de Ambientes de Trabalho|s1060|S-1060 - Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.|s1060_alteracao_novavalidade
+S-1060 - Tabela de Ambientes de Trabalho|s1060|S-1060 - Exclusão das informações|s1060_exclusao
+S-1070 - Tabela de Processos Administrativos/Judiciais|s1070|S-1070 - Inclusão de novas informações|s1070_inclusao
+S-1070 - Tabela de Processos Administrativos/Judiciais|s1070|S-1070 - Informações Complementares do Processo Judicial|s1070_inclusao_dadosprocjud
+S-1070 - Tabela de Processos Administrativos/Judiciais|s1070|S-1070 - Informações de suspensão de exigibilidade de tributos e FGTS em virtude de processo administrativo ou judicial.|s1070_inclusao_infosusp
+S-1070 - Tabela de Processos Administrativos/Judiciais|s1070|S-1070 - Alteração das informações|s1070_alteracao
+S-1070 - Tabela de Processos Administrativos/Judiciais|s1070|S-1070 - Informações Complementares do Processo Judicial|s1070_alteracao_dadosprocjud
+S-1070 - Tabela de Processos Administrativos/Judiciais|s1070|S-1070 - Informações de suspensão de exigibilidade de tributos e FGTS em virtude de processo administrativo ou judicial.|s1070_alteracao_infosusp
+S-1070 - Tabela de Processos Administrativos/Judiciais|s1070|S-1070 - Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.|s1070_alteracao_novavalidade
+S-1070 - Tabela de Processos Administrativos/Judiciais|s1070|S-1070 - Exclusão das informações|s1070_exclusao
+S-1080 - Tabela de Operadores Portuários|s1080|S-1080 - Inclusão de novas informações|s1080_inclusao
+S-1080 - Tabela de Operadores Portuários|s1080|S-1080 - Alteração das informações|s1080_alteracao
+S-1080 - Tabela de Operadores Portuários|s1080|S-1080 - Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.|s1080_alteracao_novavalidade
+S-1080 - Tabela de Operadores Portuários|s1080|S-1080 - Exclusão das informações|s1080_exclusao
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.|s1200_infomv
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda val (...)|s1200_remunoutrempr
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de "trabalhador sem vínculo". No caso das categorias em que o envio do evento (...)|s1200_infocomplem
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Grupo de informações da sucessão de vínculo trabalhista/estatutário|s1200_sucessaovinc
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev (...)|s1200_procjudtrab
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Informações relativas ao trabalho intermitente|s1200_infointerm
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF|s1200_dmdev
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Remuneração no período de apuração|s1200_infoperapur
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o númer (...)|s1200_infoperapur_ideestablot
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Informações relativas a remuneração do trabalhador no período de apuração|s1200_infoperapur_remunperapur
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Registro que relaciona as rubricas que compõem a remuneração do trabalhador.|s1200_infoperapur_itensremun
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Informações de plano privado coletivo empresarial de assistência à saúde. Só preencher se houver {codRubr} em {itensRemun}, cuja natureza de rubrica {natRubr} indicada em S-1010 seja igual a [9219]. Não preencher nos demais casos.|s1200_infoperapur_infosaudecolet
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Detalhamento dos valores pagos a Operadoras de Planos de Saúde.|s1200_infoperapur_detoper
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Informações do dependente do plano privado de saúde.|s1200_infoperapur_detplano
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado (...)|s1200_infoperapur_infoagnocivo
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Informações da(s) convocação(ões) de trabalho intermitente|s1200_infoperapur_infotrabinterm
+S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social|s1202|S-1202 - Remuneração no período de apuração|s1202_infoperapur
+S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social|s1202|S-1202 - Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas|s1202_infoperapur_ideestab
+S-1210 - Pagamentos de Rendimentos do Trabalho|s1210|S-1210 - Informações sobre beneficiários de pensão alimentícia.|s1210_detpgtofer_penalim
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públi (...)|s1200_infoperant
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.|s1200_infoperant_ideadc
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Período de validade das informações incluídas|s1200_infoperant_ideperiodo
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o númer (...)|s1200_infoperant_ideestablot
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração|s1200_infoperant_remunperant
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Registro que relaciona as rubricas que compõem a remuneração do trabalhador.|s1200_infoperant_itensremun
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado (...)|s1200_infoperant_infoagnocivo
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Informações da(s) convocação(ões) de trabalho intermitente|s1200_infoperant_infotrabinterm
+S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social|s1200|S-1200 - Registro preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente (CPF + categoria).|s1200_infoperant_infocomplcont
+S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social|s1202|S-1202 - Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev (...)|s1202_procjudtrab
+S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social|s1202|S-1202 - Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF|s1202_dmdev
+S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social|s1202|S-1202 - Informações relativas a remuneração do trabalhador no período de apuração|s1202_infoperapur_remunperapur
+S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social|s1202|S-1202 - Registro que relaciona as rubricas que compõem a remuneração do trabalhador.|s1202_infoperapur_itensremun
+S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social|s1202|S-1202 - Informações de plano privado coletivo empresarial de assistência à saúde. Só preencher se houver {codRubr} em {itensRemun}, cuja natureza de rubrica {natRubr} indicada em S-1010 seja igual a [9219]. Não preencher nos demais casos.|s1202_infoperapur_infosaudecolet
+S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social|s1202|S-1202 - Detalhamento dos valores pagos a Operadoras de Planos de Saúde.|s1202_infoperapur_detoper
+S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social|s1202|S-1202 - Informações do dependente do plano privado de saúde.|s1202_infoperapur_detplano
+S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social|s1202|S-1202 - Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públi (...)|s1202_infoperant
+S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social|s1202|S-1202 - Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.|s1202_infoperant_ideadc
+S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social|s1202|S-1202 - Período de validade das informações incluídas|s1202_infoperant_ideperiodo
+S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social|s1202|S-1202 - Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas|s1202_infoperant_ideestab
+S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social|s1202|S-1202 - Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração|s1202_infoperant_remunperant
+S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social|s1202|S-1202 - Registro que relaciona as rubricas que compõem a remuneração do trabalhador.|s1202_infoperant_itensremun
+S-1207 - Benefícios previdenciários - RPPS|s1207|S-1207 - Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev (...)|s1207_procjudtrab
+S-1207 - Benefícios previdenciários - RPPS|s1207|S-1207 - Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF|s1207_dmdev
+S-1207 - Benefícios previdenciários - RPPS|s1207|S-1207 - Detalhamento dos valores devidos ao beneficiário|s1207_itens
+S-1207 - Benefícios previdenciários - RPPS|s1207|S-1207 - Remuneração no período de apuração|s1207_infoperapur
+S-1207 - Benefícios previdenciários - RPPS|s1207|S-1207 - Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas|s1207_infoperapur_ideestab
+S-1207 - Benefícios previdenciários - RPPS|s1207|S-1207 - Informações relativas a remuneração do trabalhador no período de apuração|s1207_infoperapur_remunperapur
+S-1207 - Benefícios previdenciários - RPPS|s1207|S-1207 - Registro que relaciona as rubricas que compõem a remuneração do trabalhador.|s1207_infoperapur_itensremun
+S-1207 - Benefícios previdenciários - RPPS|s1207|S-1207 - Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públi (...)|s1207_infoperant
+S-1207 - Benefícios previdenciários - RPPS|s1207|S-1207 - Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.|s1207_infoperant_ideadc
+S-1207 - Benefícios previdenciários - RPPS|s1207|S-1207 - Período de validade das informações incluídas|s1207_infoperant_ideperiodo
+S-1207 - Benefícios previdenciários - RPPS|s1207|S-1207 - Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas|s1207_infoperant_ideestab
+S-1207 - Benefícios previdenciários - RPPS|s1207|S-1207 - Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração|s1207_infoperant_remunperant
+S-1207 - Benefícios previdenciários - RPPS|s1207|S-1207 - Registro que relaciona as rubricas que compõem a remuneração do trabalhador.|s1207_infoperant_itensremun
+S-1210 - Pagamentos de Rendimentos do Trabalho|s1210|S-1210 - Informações de dependentes do beneficiário do pagamento|s1210_deps
+S-1210 - Pagamentos de Rendimentos do Trabalho|s1210|S-1210 - Informações dos pagamentos efetuados|s1210_infopgto
+S-1210 - Pagamentos de Rendimentos do Trabalho|s1210|S-1210 - Detalhamento dos pagamentos efetuados, relativos a folha de pagamento e rescisões contratuais, apurados em S-1200, S-1202, S-2299 e S-2399|s1210_detpgtofl
+S-1210 - Pagamentos de Rendimentos do Trabalho|s1210|S-1210 - Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.|s1210_detpgtofl_retpgtotot
+S-1210 - Pagamentos de Rendimentos do Trabalho|s1210|S-1210 - Informações sobre beneficiários de pensão alimentícia.|s1210_detpgtofl_penalim
+S-1210 - Pagamentos de Rendimentos do Trabalho|s1210|S-1210 - Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo.|s1210_detpgtofl_infopgtoparc
+S-1210 - Pagamentos de Rendimentos do Trabalho|s1210|S-1210 - Detalhamento de pagamentos relativos a benefícios previdenciários|s1210_detpgtobenpr
+S-1210 - Pagamentos de Rendimentos do Trabalho|s1210|S-1210 - Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.|s1210_detpgtobenpr_retpgtotot
+S-1210 - Pagamentos de Rendimentos do Trabalho|s1210|S-1210 - Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo.|s1210_detpgtobenpr_infopgtoparc
+S-1210 - Pagamentos de Rendimentos do Trabalho|s1210|S-1210 - Detalhamento dos pagamentos efetuados relativos a férias|s1210_detpgtofer
+S-1210 - Pagamentos de Rendimentos do Trabalho|s1210|S-1210 - Detalhamento das rubricas do Recibo Antecipado de Férias|s1210_detpgtofer_detrubrfer
+S-1210 - Pagamentos de Rendimentos do Trabalho|s1210|S-1210 - Pagamento relativo a competências anteriores ao início de obrigatoriedade do eSocial|s1210_detpgtoant
+S-1210 - Pagamentos de Rendimentos do Trabalho|s1210|S-1210 - Detalhamento do pagamento|s1210_detpgtoant_infopgtoant
+S-1210 - Pagamentos de Rendimentos do Trabalho|s1210|S-1210 - Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.|s1210_idepgtoext
+S-1250 - Aquisição de Produção Rural|s1250|S-1250 - Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física. O registro também deve ser preenchido nas seguintes situações: - Por PF, quando a m (...)|s1250_tpaquis
+S-1250 - Aquisição de Produção Rural|s1250|S-1250 - Registro que identifica os produtores rurais dos quais foi efetuada aquisição da produção pelo contribuinte declarante.|s1250_ideprodutor
+S-1250 - Aquisição de Produção Rural|s1250|S-1250 - Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.|s1250_nfs
+S-1250 - Aquisição de Produção Rural|s1250|S-1250 - Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuiçõe (...)|s1250_infoprocjud
+S-1260 - Comercialização da Produção Rural Pessoa Física|s1260|S-1260 - Registro que apresenta o valor total da comercialização por "tipo" de comercialização|s1260_tpcomerc
+S-1260 - Comercialização da Produção Rural Pessoa Física|s1260|S-1260 - Identificação dos Adquirentes da Produção.|s1260_ideadquir
+S-1260 - Comercialização da Produção Rural Pessoa Física|s1260|S-1260 - Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.|s1260_nfs
+S-1260 - Comercialização da Produção Rural Pessoa Física|s1260|S-1260 - Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuiçõe (...)|s1260_infoprocjud
+S-1270 - Contratação de Trabalhadores Avulsos Não Portuários|s1270|S-1270 - Registro que apresenta a remuneração dos trabalhadores avulsos não portuários, de forma totalizada por estabelecimento contratante.|s1270_remunavnp
+S-1280 - Informações Complementares aos Eventos Periódicos|s1280|S-1280 - Registro preenchido exclusivamente por empresa enquadrada nos artigos 7 a 9 da Lei 12.546/2011, conforme classificação tributária indicada no evento de Informações Cadastrais do Empregador.|s1280_infosubstpatr
+S-1280 - Informações Complementares aos Eventos Periódicos|s1280|S-1280 - Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.|s1280_infosubstpatropport
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações sobre os dados da decisão judicial|s2200_infodecjud
+S-1280 - Informações Complementares aos Eventos Periódicos|s1280|S-1280 - Registro preenchido por empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída.|s1280_infoativconcom
+S-1295 - Solicitação de Totalização para Pagamento em Contingência|s1295|S-1295 - Responsável pelas informações|s1295_iderespinf
+S-1299 - Fechamento dos Eventos Periódicos|s1299|S-1299 - Responsável pelas informações|s1299_iderespinf
+S-1300 - Contribuição Sindical Patronal|s1300|S-1300 - Informações da contribuição sindical patronal|s1300_contribsind
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações dos documentos pessoais do trabalhador|s2200_documentos
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações da Carteira de Trabalho e Previdência Social|s2200_ctps
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)|s2200_ric
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações do Registro Geral (RG)|s2200_rg
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações do Registro Nacional de Estrangeiro|s2200_rne
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações do número de registro em Órgão de Classe (OC)|s2200_oc
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações da Carteira Nacional de Habilitação (CNH)|s2200_cnh
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Preenchimento obrigatório para trabalhador residente no Brasil.|s2200_brasil
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Preenchido em caso de trabalhador residente no exterior.|s2200_exterior
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Grupo de informações do Trabalhador Estrangeiro|s2200_trabestrangeiro
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Pessoa com Deficiência|s2200_infodeficiencia
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações dos dependentes|s2200_dependente
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informação de aposentadoria do trabalhador|s2200_aposentadoria
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações de contato|s2200_contato
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações de Trabalhador Celetista|s2200_infoceletista
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Dados sobre trabalho temporário. Preenchimento obrigatório na contratação de trabalhador temporário.|s2200_trabtemporario
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Identificação do estabelecimento ao qual o trabalhador temporário está vinculado. Se o local da efetiva prestação do serviço não possuir inscrição deverá ser informado o CNPJ/CPF ao qual o local da efetiva prestação está vinculado. O preenchimento (...)|s2200_ideestabvinc
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Identificação do(s) trabalhador(es) substituído(s)|s2200_idetrabsubstituido
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações para identificação do empregador contratante de aprendiz|s2200_aprend
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações de Trabalhador Estatutário|s2200_infoestatutario
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades. Caso o trabalhador exerça suas atividades em instalações de terceiros, este campo deve ser preenchido com o estabelecimento do próprio (...)|s2200_localtrabgeral
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.|s2200_localtrabdom
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].|s2200_horcontratual
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações diárias do horário contratual|s2200_horario
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Filiação Sindical do Trabalhador|s2200_filiacaosindical
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de "Aprendiz".|s2200_alvarajudicial
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Observações do contrato de trabalho|s2200_observacoes
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Grupo de informações da sucessão de vínculo trabalhista/estatutário|s2200_sucessaovinc
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações do empregado doméstico transferido de outro representante da mesma unidade familiar|s2200_transfdom
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações de afastamento do trabalhador|s2200_afastamento
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações do desligamento do trabalhador. Registro preenchido exclusivamente caso seja necessário enviar cadastramento inicial referente a trabalhador que já tenha sido desligado da empresa antes do início do eSocial (ex: envio para pagamento de (...)|s2200_desligamento
+S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador|s2200|S-2200 - Informações de cessão/exercício em outro órgão do trabalhador|s2200_cessao
+S-2205 - Alteração de Dados Cadastrais do Trabalhador|s2205|S-2205 - Informações dos documentos pessoais do trabalhador|s2205_documentos
+S-2205 - Alteração de Dados Cadastrais do Trabalhador|s2205|S-2205 - Informações da Carteira de Trabalho e Previdência Social|s2205_ctps
+S-2205 - Alteração de Dados Cadastrais do Trabalhador|s2205|S-2205 - Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)|s2205_ric
+S-2205 - Alteração de Dados Cadastrais do Trabalhador|s2205|S-2205 - Informações do Registro Geral (RG)|s2205_rg
+S-2205 - Alteração de Dados Cadastrais do Trabalhador|s2205|S-2205 - Informações do Registro Nacional de Estrangeiro|s2205_rne
+S-2205 - Alteração de Dados Cadastrais do Trabalhador|s2205|S-2205 - Informações do número de registro em Órgão de Classe (OC)|s2205_oc
+S-2205 - Alteração de Dados Cadastrais do Trabalhador|s2205|S-2205 - Informações da Carteira Nacional de Habilitação (CNH)|s2205_cnh
+S-2205 - Alteração de Dados Cadastrais do Trabalhador|s2205|S-2205 - Preenchimento obrigatório para trabalhador residente no Brasil.|s2205_brasil
+S-2205 - Alteração de Dados Cadastrais do Trabalhador|s2205|S-2205 - Grupo de informações do Trabalhador Estrangeiro|s2205_trabestrangeiro
+S-2205 - Alteração de Dados Cadastrais do Trabalhador|s2205|S-2205 - Pessoa com Deficiência|s2205_infodeficiencia
+S-2205 - Alteração de Dados Cadastrais do Trabalhador|s2205|S-2205 - Informações dos dependentes|s2205_dependente
+S-2205 - Alteração de Dados Cadastrais do Trabalhador|s2205|S-2205 - Informação de aposentadoria do trabalhador|s2205_aposentadoria
+S-2205 - Alteração de Dados Cadastrais do Trabalhador|s2205|S-2205 - Informações de contato|s2205_contato
+S-2206 - Alteração de Contrato de Trabalho|s2206|S-2206 - Informações de Trabalhador Celetista|s2206_infoceletista
+S-2206 - Alteração de Contrato de Trabalho|s2206|S-2206 - Dados sobre trabalho temporário. Preenchimento obrigatório na prorrogação de contrato de trabalhador temporário|s2206_trabtemp
+S-2206 - Alteração de Contrato de Trabalho|s2206|S-2206 - Informações para identificação do empregador contratante de aprendiz|s2206_aprend
+S-2206 - Alteração de Contrato de Trabalho|s2206|S-2206 - Informações de Trabalhador Estatutário|s2206_infoestatutario
+S-2206 - Alteração de Contrato de Trabalho|s2206|S-2206 - Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades. Caso o trabalhador exerça suas atividades em instalações de terceiros, este campo deve ser preenchido com o estabelecimento do próprio (...)|s2206_localtrabgeral
+S-2206 - Alteração de Contrato de Trabalho|s2206|S-2206 - Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.|s2206_localtrabdom
+S-2206 - Alteração de Contrato de Trabalho|s2206|S-2206 - Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].|s2206_horcontratual
+S-2206 - Alteração de Contrato de Trabalho|s2206|S-2206 - Informações diárias do horário contratual|s2206_horario
+S-2206 - Alteração de Contrato de Trabalho|s2206|S-2206 - Filiação Sindical do Trabalhador|s2206_filiacaosindical
+S-2206 - Alteração de Contrato de Trabalho|s2206|S-2206 - Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de "Aprendiz".|s2206_alvarajudicial
+S-2206 - Alteração de Contrato de Trabalho|s2206|S-2206 - Observações do contrato de trabalho|s2206_observacoes
+S-2206 - Alteração de Contrato de Trabalho|s2206|S-2206 - Alterações inerentes ao servidor público|s2206_servpubl
+S-2210 - Comunicação de Acidente de Trabalho|s2210|S-2210 - Identificação do local onde ocorreu o acidente|s2210_idelocalacid
+S-2210 - Comunicação de Acidente de Trabalho|s2210|S-2210 - Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.|s2210_parteatingida
+S-2210 - Comunicação de Acidente de Trabalho|s2210|S-2210 - Detalhamento do(s) agente(s) causador(es) do acidente de trabalho|s2210_agentecausador
+S-2210 - Comunicação de Acidente de Trabalho|s2210|S-2210 - Atestado Médico|s2210_atestado
+S-2210 - Comunicação de Acidente de Trabalho|s2210|S-2210 - Registro obrigatório que indica a CAT de origem, preenchido quando tratar-se de CAT de reabertura ou de comunicação de óbito.|s2210_catorigem
+S-2220 - Monitoramento da Saúde do Trabalhador|s2220|S-2220 - Registro que detalha os exames complementares porventura realizados pelo trabalhador em virtude do determinado no Quadro II da NR 07 do MTE, além de outros solicitados pelo médico e os referentes ao ASO. O não preenchimento siginifica a não realiz (...)|s2220_exame
+S-2230 - Afastamento Temporário|s2230|S-2230 - Informações do Afastamento Temporário - Início|s2230_iniafastamento
+S-2230 - Afastamento Temporário|s2230|S-2230 - Informações complementares relativas ao atestado médico|s2230_infoatestado
+S-2230 - Afastamento Temporário|s2230|S-2230 - Médico/Dentista que emitiu o atestado|s2230_emitente
+S-2230 - Afastamento Temporário|s2230|S-2230 - Registro preenchido nos casos de afastamento por cessão ou requisição do trabalhador.|s2230_infocessao
+S-2230 - Afastamento Temporário|s2230|S-2230 - Informações Complementares - afastamento para exercício de mandato sindical|s2230_infomandsind
+S-2230 - Afastamento Temporário|s2230|S-2230 - Informações de retificação do Afastamento Temporário. Preenchimento obrigatório caso {codMotAfast} seja retificado de [01] para [03] ou de [03] para [01].|s2230_inforetif
+S-2230 - Afastamento Temporário|s2230|S-2230 - Informações do Término do Afastamento|s2230_fimafastamento
+S-2231 - Cessão/Exercício em Outro Órgão|s2231|S-2231 - Informações de início da cessão/exercício em outro órgão|s2231_inicessao
+S-2231 - Cessão/Exercício em Outro Órgão|s2231|S-2231 - Informações de término da cessão/exercício em outro órgão|s2231_fimcessao
+S-2240 - Condições Ambientais do Trabalho - Fatores de Risco|s2240|S-2240 - Condições ambientais do trabalho - Início|s2240_iniexprisco
+S-2240 - Condições Ambientais do Trabalho - Fatores de Risco|s2240|S-2240 - Informações relativas ao ambiente de trabalho|s2240_iniexprisco_infoamb
+S-2240 - Condições Ambientais do Trabalho - Fatores de Risco|s2240|S-2240 - Informação da(s) atividade(s) perigosa(s), insalubre(s) ou especial(is) desempenhada(s)|s2240_iniexprisco_ativpericinsal
+S-2240 - Condições Ambientais do Trabalho - Fatores de Risco|s2240|S-2240 - Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente|s2240_iniexprisco_fatrisco
+S-2240 - Condições Ambientais do Trabalho - Fatores de Risco|s2240|S-2240 - Equipamentos de Proteção Coletiva - EPC|s2240_iniexprisco_epc
+S-2240 - Condições Ambientais do Trabalho - Fatores de Risco|s2240|S-2240 - Equipamentos de Proteção Individual - EPI|s2240_iniexprisco_epi
+S-2240 - Condições Ambientais do Trabalho - Fatores de Risco|s2240|S-2240 - Informações relativas ao responsável pelos registros ambientais|s2240_iniexprisco_respreg
+S-2240 - Condições Ambientais do Trabalho - Fatores de Risco|s2240|S-2240 - Observações relativas a registros ambientais|s2240_iniexprisco_obs
+S-2240 - Condições Ambientais do Trabalho - Fatores de Risco|s2240|S-2240 - Condições ambientais do trabalho - Alteração|s2240_altexprisco
+S-2240 - Condições Ambientais do Trabalho - Fatores de Risco|s2240|S-2240 - Informações relativas ao ambiente de trabalho|s2240_altexprisco_infoamb
+S-2240 - Condições Ambientais do Trabalho - Fatores de Risco|s2240|S-2240 - Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente|s2240_altexprisco_fatrisco
+S-2240 - Condições Ambientais do Trabalho - Fatores de Risco|s2240|S-2240 - Equipamentos de Proteção Coletiva - EPC|s2240_altexprisco_epc
+S-2240 - Condições Ambientais do Trabalho - Fatores de Risco|s2240|S-2240 - Equipamentos de Proteção Individual - EPI|s2240_altexprisco_epi
+S-2240 - Condições Ambientais do Trabalho - Fatores de Risco|s2240|S-2240 - Condições ambientais do trabalho - Fim|s2240_fimexprisco
+S-2240 - Condições Ambientais do Trabalho - Fatores de Risco|s2240|S-2240 - Informações relativas ao ambiente de trabalho|s2240_fimexprisco_infoamb
+S-2240 - Condições Ambientais do Trabalho - Fatores de Risco|s2240|S-2240 - Informações relativas ao responsável pelos registros ambientais|s2240_fimexprisco_respreg
+S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241|S-2241 - Informações sobre o ambiente de trabalho insalubre/periculoso.|s2241_insalperic
+S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241|S-2241 - Condições do ambiente de trabalho insalubre/periculoso - Início|s2241_iniinsalperic
+S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241|S-2241 - Informações relativas ao ambiente de trabalho|s2241_iniinsalperic_infoamb
+S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241|S-2241 - Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente|s2241_iniinsalperic_fatrisco
+S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241|S-2241 - Condições do ambiente de trabalho insalubre/periculoso - Alteração|s2241_altinsalperic
+S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241|S-2241 - Informações relativas ao ambiente de trabalho|s2241_altinsalperic_infoamb
+S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241|S-2241 - Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente|s2241_altinsalperic_fatrisco
+S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241|S-2241 - Condições do ambiente de trabalho insalubre/periculoso - Fim|s2241_fiminsalperic
+S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241|S-2241 - Informações relativas ao ambiente de trabalho|s2241_fiminsalperic_infoamb
+S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241|S-2241 - Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.|s2241_aposentesp
+S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241|S-2241 - Condições do ambiente de trabalho que ensejam aposentadoria especial - Início|s2241_iniaposentesp
+S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241|S-2241 - Informações relativas ao ambiente de trabalho|s2241_iniaposentesp_infoamb
+S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241|S-2241 - Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente|s2241_iniaposentesp_fatrisco
+S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241|S-2241 - Condições do ambiente de trabalho que ensejam aposentadoria especial - Alteração|s2241_altaposentesp
+S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241|S-2241 - Informações relativas ao ambiente de trabalho|s2241_altaposentesp_infoamb
+S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241|S-2241 - Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente|s2241_altaposentesp_fatrisco
+S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241|S-2241 - Condições do ambiente de trabalho que ensejam aposentadoria especial - Término|s2241_fimaposentesp
+S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial|s2241|S-2241 - Informações relativas ao ambiente de trabalho|s2241_fimaposentesp_infoamb
+S-2245 - Treinamentos, Capacitações e Exercícios Simulados|s2245|S-2245 - Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de "trabalhador sem vínculo". No caso das categorias em que o envio do evento (...)|s2245_infocomplem
+S-2245 - Treinamentos, Capacitações e Exercícios Simulados|s2245|S-2245 - Informações relativas ao profissional responsável pelo treinamento/capacitação/exercício simulado|s2245_ideprofresp
+S-2250 - Aviso Prévio|s2250|S-2250 - Detalha as informações do evento trabalhista|s2250_detavprevio
+S-2250 - Aviso Prévio|s2250|S-2250 - Cancelamento do Aviso Prévio|s2250_cancavprevio
+S-2260 - Convocação para Trabalho Intermitente|s2260|S-2260 - Informações do local de trabalho intermitente, quando prestado em apenas um local e fora do estabelecimento do empregador cadastrado no S-2200/S-2206|s2260_localtrabinterm
+S-2299 - Desligamento|s2299|S-2299 - Observações do contrato de trabalho|s2299_observacoes
+S-2299 - Desligamento|s2299|S-2299 - Grupo de informações da sucessão de vínculo trabalhista/estatutário|s2299_sucessaovinc
+S-2299 - Desligamento|s2299|S-2299 - Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar|s2299_transftit
+S-2299 - Desligamento|s2299|S-2299 - Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.|s2299_verbasresc
+S-2299 - Desligamento|s2299|S-2299 - Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF|s2299_dmdev
+S-2299 - Desligamento|s2299|S-2299 - Remuneração no período de apuração|s2299_infoperapur
+S-2299 - Desligamento|s2299|S-2299 - Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o númer (...)|s2299_infoperapur_ideestablot
+S-2299 - Desligamento|s2299|S-2299 - Detalhamento das verbas rescisórias devidas ao trabalhador. Deve haver, pelo menos uma rubrica de folha, mesmo que o valor líquido a ser pago ao trabalhador seja 0 (zero) em função de descontos.|s2299_infoperapur_detverbas
+S-2299 - Desligamento|s2299|S-2299 - Informações de plano privado coletivo empresarial de assistência à saúde. Só preencher se houver {codRubr} em {itensRemun}, cuja natureza de rubrica {natRubr} indicada em S-1010 seja igual a [9219]. Não preencher nos demais casos.|s2299_infoperapur_infosaudecolet
+S-2299 - Desligamento|s2299|S-2299 - Detalhamento dos valores pagos a Operadoras de Planos de Saúde.|s2299_infoperapur_detoper
+S-2299 - Desligamento|s2299|S-2299 - Informações do dependente do plano privado de saúde.|s2299_infoperapur_detplano
+S-2299 - Desligamento|s2299|S-2299 - Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado (...)|s2299_infoperapur_infoagnocivo
+S-2299 - Desligamento|s2299|S-2299 - Informação relativa a empresas enquadradas no Regime de Tributação Simples|s2299_infoperapur_infosimples
+S-2299 - Desligamento|s2299|S-2299 - Informação sobre processo judicial que suspende a exigibilidade da Contribuição Social Rescisória|s2299_infotrabinterm_proccs
+S-2299 - Desligamento|s2299|S-2299 - Informações sobre a "quarentena" remunerada de trabalhador desligado. O registro deve ser preenchido apenas no caso do trabalhador que recebe remuneração após o desligamento por estar impossibilitado de exercer atividade remunerada.|s2299_infotrabinterm_quarentena
+S-2299 - Desligamento|s2299|S-2299 - Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públi (...)|s2299_infoperant
+S-2299 - Desligamento|s2299|S-2299 - Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.|s2299_infoperant_ideadc
+S-2299 - Desligamento|s2299|S-2299 - Período de validade das informações incluídas|s2299_infoperant_ideperiodo
+S-2299 - Desligamento|s2299|S-2299 - Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o númer (...)|s2299_infoperant_ideestablot
+S-2299 - Desligamento|s2299|S-2299 - Detalhamento das verbas rescisórias devidas ao trabalhador. Deve haver, pelo menos uma rubrica de folha, mesmo que o valor líquido a ser pago ao trabalhador seja 0 (zero) em função de descontos.|s2299_infoperant_detverbas
+S-2299 - Desligamento|s2299|S-2299 - Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado (...)|s2299_infoperant_infoagnocivo
+S-2299 - Desligamento|s2299|S-2299 - Informação relativa a empresas enquadradas no Regime de Tributação Simples|s2299_infoperant_infosimples
+S-2299 - Desligamento|s2299|S-2299 - Informações da(s) convocação(ões) de trabalho intermitente|s2299_infotrabinterm
+S-2299 - Desligamento|s2299|S-2299 - Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev (...)|s2299_infotrabinterm_procjudtrab
+S-2299 - Desligamento|s2299|S-2299 - Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.|s2299_infotrabinterm_infomv
+S-2299 - Desligamento|s2299|S-2299 - Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda val (...)|s2299_infotrabinterm_remunoutrempr
+S-2299 - Desligamento|s2299|S-2299 - Informações sobre operação de crédito consignado com garantia de FGTS|s2299_infotrabinterm_consigfgts
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Informações dos documentos pessoais do trabalhador|s2300_documentos
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Informações da Carteira de Trabalho e Previdência Social|s2300_ctps
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)|s2300_ric
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Informações do Registro Geral (RG)|s2300_rg
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Informações do Registro Nacional de Estrangeiro|s2300_rne
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Informações do número de registro em Órgão de Classe (OC)|s2300_oc
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Informações da Carteira Nacional de Habilitação (CNH)|s2300_cnh
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Preenchimento obrigatório para trabalhador residente no Brasil.|s2300_brasil
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Preenchido em caso de trabalhador residente no exterior.|s2300_exterior
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Grupo de informações do Trabalhador Estrangeiro|s2300_trabestrangeiro
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Pessoa com Deficiência|s2300_infodeficiencia
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Informações dos dependentes|s2300_dependente
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Informações de contato|s2300_contato
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Informações complementares sobre o declarante|s2300_infocomplementares
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo|s2300_cargofuncao
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Informações da remuneração e periodicidade de pagamento|s2300_remuneracao
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Informações relativas ao FGTS|s2300_fgts
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Empresa de Origem do Dirigente Sindical|s2300_infodirigentesindical
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.|s2300_infotrabcedido
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Informações relativas ao estagiário|s2300_infoestagiario
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Agente de Integração|s2300_ageintegracao
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Supervisor do Estágio|s2300_supervisorestagio
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Informações de afastamento do trabalhador|s2300_afastamento
+S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início|s2300|S-2300 - Informações de término do TSVE|s2300_termino
+S-2306 - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual|s2306|S-2306 - Informações complementares sobre o declarante|s2306_infocomplementares
+S-2306 - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual|s2306|S-2306 - Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo|s2306_cargofuncao
+S-2306 - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual|s2306|S-2306 - Informações da remuneração e periodicidade de pagamento|s2306_remuneracao
+S-2306 - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual|s2306|S-2306 - Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.|s2306_infotrabcedido
+S-2306 - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual|s2306|S-2306 - Informações relativas ao estagiário|s2306_infoestagiario
+S-2306 - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual|s2306|S-2306 - Agente de Integração|s2306_ageintegracao
+S-2306 - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual|s2306|S-2306 - Supervisor do Estágio|s2306_supervisorestagio
+S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término|s2399|S-2399 - Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.|s2399_verbasresc
+S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término|s2399|S-2399 - Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF|s2399_dmdev
+S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término|s2399|S-2399 - Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o númer (...)|s2399_ideestablot
+S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término|s2399|S-2399 - Detalhamento das verbas rescisórias devidas ao trabalhador. Deve haver, pelo menos uma rubrica de folha, mesmo que o valor líquido a ser pago ao trabalhador seja 0 (zero) em função de descontos.|s2399_detverbas
+S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término|s2399|S-2399 - Informações de plano privado coletivo empresarial de assistência à saúde. Só preencher se houver {codRubr} em {itensRemun}, cuja natureza de rubrica {natRubr} indicada em S-1010 seja igual a [9219]. Não preencher nos demais casos.|s2399_infosaudecolet
+S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término|s2399|S-2399 - Detalhamento dos valores pagos a Operadoras de Planos de Saúde.|s2399_detoper
+S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término|s2399|S-2399 - Informações do dependente do plano privado de saúde.|s2399_detplano
+S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término|s2399|S-2399 - Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado (...)|s2399_infoagnocivo
+S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término|s2399|S-2399 - Informação relativa a empresas enquadradas no Regime de Tributação Simples|s2399_infosimples
+S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término|s2399|S-2399 - Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev (...)|s2399_procjudtrab
+S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término|s2399|S-2399 - Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.|s2399_infomv
+S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término|s2399|S-2399 - Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda val (...)|s2399_remunoutrempr
+S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término|s2399|S-2399 - Informações sobre a "quarentena" remunerada de trabalhador desligado. O registro deve ser preenchido apenas no caso do trabalhador que recebe remuneração após o desligamento por estar impossibilitado de exercer atividade remunerada.|s2399_quarentena
+S-2400 - Cadastro de Beneficiários - Entes Públicos - Início|s2400|S-2400 - Grupo de informações do endereço do Trabalhador|s2400_endereco
+S-2400 - Cadastro de Beneficiários - Entes Públicos - Início|s2400|S-2400 - Preenchimento obrigatório para trabalhador residente no Brasil.|s2400_brasil
+S-2400 - Cadastro de Beneficiários - Entes Públicos - Início|s2400|S-2400 - Preenchido em caso de trabalhador residente no exterior.|s2400_exterior
+S-2400 - Cadastro de Beneficiários - Entes Públicos - Início|s2400|S-2400 - Informações dos dependentes|s2400_dependente
+S-2405 - Cadastro de Beneficiários - Entes Públicos - Alteração|s2405|S-2405 - Grupo de informações do endereço do Trabalhador|s2405_endereco
+S-2405 - Cadastro de Beneficiários - Entes Públicos - Alteração|s2405|S-2405 - Preenchimento obrigatório para trabalhador residente no Brasil.|s2405_brasil
+S-2405 - Cadastro de Beneficiários - Entes Públicos - Alteração|s2405|S-2405 - Preenchido em caso de trabalhador residente no exterior.|s2405_exterior
+S-2405 - Cadastro de Beneficiários - Entes Públicos - Alteração|s2405|S-2405 - Informações dos dependentes|s2405_dependente
+S-2410 - Cadastro de Benefícios - Entes Públicos - Início|s2410|S-2410 - Informações relativas a pensão por morte|s2410_infopenmorte
+S-2410 - Cadastro de Benefícios - Entes Públicos - Início|s2410|S-2410 - Informações do instituidor da pensão por morte|s2410_instpenmorte
+S-2410 - Cadastro de Benefícios - Entes Públicos - Início|s2410|S-2410 - Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas|s2410_homologtc
+S-2416 - Cadastro de Benefícios - Entes Públicos - Alteração|s2416|S-2416 - Informações relativas a pensão por morte|s2416_infopenmorte
+S-2416 - Cadastro de Benefícios - Entes Públicos - Alteração|s2416|S-2416 - Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas|s2416_homologtc
+S-2416 - Cadastro de Benefícios - Entes Públicos - Alteração|s2416|S-2416 - Informações referentes à suspensão do benefício|s2416_suspensao
+S-3000 - Exclusão de eventos|s3000|S-3000 - Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.|s3000_idetrabalhador
+S-3000 - Exclusão de eventos|s3000|S-3000 - Registro que identifica a qual folha de pagamento pertence o evento que será excluído|s3000_idefolhapagto
+S-5001 - Informações das contribuições sociais por trabalhador|s5001|S-5001 - Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev (...)|s5001_procjudtrab
+S-5001 - Informações das contribuições sociais por trabalhador|s5001|S-5001 - Cálculo da contribuição previdenciária do segurado, incidente sobre a Remuneração do Período de Apuração e de Períodos Anteriores informada nos eventos S-1200, S-2299 e S-2399.|s5001_infocpcalc
+S-5001 - Informações das contribuições sociais por trabalhador|s5001|S-5001 - Informações sobre bases de cálculo, descontos e deduções de contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos, referentes à Remuneração do Período de Apuração e de Períodos Anteriores informados nos eventos S-1200, S (...)|s5001_infocp
+S-5001 - Informações das contribuições sociais por trabalhador|s5001|S-5001 - Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o númer (...)|s5001_ideestablot
+S-5001 - Informações das contribuições sociais por trabalhador|s5001|S-5001 - Informações relativas à matrícula e categoria do trabalhador e tipos de incidências.|s5001_infocategincid
+S-5001 - Informações das contribuições sociais por trabalhador|s5001|S-5001 - Informações sobre bases de cálculo, descontos e deduções de contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos. Evento de origem (S-1200, S-2299 e S-2399).|s5001_infobasecs
+S-5001 - Informações das contribuições sociais por trabalhador|s5001|S-5001 - Cálculo das contribuições sociais devidas a Outras Entidades e Fundos.|s5001_calcterc
+S-5002 - Imposto de Renda Retido na Fonte|s5002|S-5002 - Informações relativas a existência de dependentes do beneficiário do pagamento. Origem: S-1210 - registro {deps}|s5002_infodep
+S-5002 - Imposto de Renda Retido na Fonte|s5002|S-5002 - Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo. Origem S-1200, S-1202, S-1207, S-1210, S-2299, S-2399.|s5002_infoirrf
+S-5002 - Imposto de Renda Retido na Fonte|s5002|S-5002 - Bases, deduções, isenções e retenções do IRRF|s5002_basesirrf
+S-5002 - Imposto de Renda Retido na Fonte|s5002|S-5002 - Informações relativas ao Imposto de Renda Retido na Fonte|s5002_irrf
+S-5002 - Imposto de Renda Retido na Fonte|s5002|S-5002 - Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.|s5002_idepgtoext
+S-5011 - Informações das contribuições sociais consolidadas por contribuinte|s5011|S-5011 - Informações de contribuição previdenciária do Segurado|s5011_infocpseg
+S-5011 - Informações das contribuições sociais consolidadas por contribuinte|s5011|S-5011 - Informações complementares, exclusivas da Pessoa Jurídica.|s5011_infopj
+S-5011 - Informações das contribuições sociais consolidadas por contribuinte|s5011|S-5011 - Informações prestadas por empresa enquadrada no Regime de Tributação Simples Nacional com tributação previdenciária substituída e não substituída.|s5011_infoatconc
+S-5011 - Informações das contribuições sociais consolidadas por contribuinte|s5011|S-5011 - Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas|s5011_ideestab
+S-5011 - Informações das contribuições sociais consolidadas por contribuinte|s5011|S-5011 - Informações do Estabelecimento ou obra|s5011_infoestab
+S-5011 - Informações das contribuições sociais consolidadas por contribuinte|s5011|S-5011 - Informações complementares relativas a obras de construção civil|s5011_infocomplobra
+S-5011 - Informações das contribuições sociais consolidadas por contribuinte|s5011|S-5011 - Informações de identificação da lotação e validade das informações que estão sendo incluídas|s5011_idelotacao
+S-5011 - Informações das contribuições sociais consolidadas por contribuinte|s5011|S-5011 - Informações de suspensão de contribuições destinadas a Outras Entidades e Fundos (Terceiros).|s5011_infotercsusp
+S-5011 - Informações das contribuições sociais consolidadas por contribuinte|s5011|S-5011 - Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada. A informação é preenchida exclusivamente para lotações cujo {tpLotacao} (...)|s5011_infoemprparcial
+S-5011 - Informações das contribuições sociais consolidadas por contribuinte|s5011|S-5011 - Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).|s5011_dadosopport
+S-5011 - Informações das contribuições sociais consolidadas por contribuinte|s5011|S-5011 - Bases de cálculo da contribuição previdenciária incidente sobre remunerações, por categoria.|s5011_basesremun
+S-5011 - Informações das contribuições sociais consolidadas por contribuinte|s5011|S-5011 - Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários|s5011_basesavnport
+S-5011 - Informações das contribuições sociais consolidadas por contribuinte|s5011|S-5011 - Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.|s5011_infosubstpatropport
+S-5011 - Informações das contribuições sociais consolidadas por contribuinte|s5011|S-5011 - Informações de bases de cálculo relativas a aquisição de produção rural|s5011_basesaquis
+S-5011 - Informações das contribuições sociais consolidadas por contribuinte|s5011|S-5011 - Informações de bases de cálculo relativas à comercialização da produção rural da Pessoa Física. Informações desse grupo conforme informado pelo contribuinte em S-1260.|s5011_basescomerc
+S-5011 - Informações das contribuições sociais consolidadas por contribuinte|s5011|S-5011 - Informações das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, consolidadas por estabelecimento e por código de Receita - CR.|s5011_infocrestab
+S-5011 - Informações das contribuições sociais consolidadas por contribuinte|s5011|S-5011 - Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.|s5011_infocrcontrib
+S-5012 - Informações do IRRF consolidadas por contribuinte|s5012|S-5012 - Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.|s5012_infocrcontrib
+

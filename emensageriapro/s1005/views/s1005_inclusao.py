@@ -151,8 +151,6 @@ def salvar(request, hash):
         s1005_inclusao_infoenteduc_lista = None
         s1005_inclusao_infopcd_form = None
         s1005_inclusao_infopcd_lista = None
-        s1005_inclusao_infosst_form = None
-        s1005_inclusao_infosst_lista = None
         if s1005_inclusao_id:
             s1005_inclusao = get_object_or_404(s1005inclusao.objects.using( db_slug ), excluido = False, id = s1005_inclusao_id)
   
@@ -174,9 +172,6 @@ def salvar(request, hash):
             s1005_inclusao_infopcd_form = form_s1005_inclusao_infopcd(initial={ 's1005_inclusao': s1005_inclusao }, slug=db_slug)
             s1005_inclusao_infopcd_form.fields['s1005_inclusao'].widget.attrs['readonly'] = True
             s1005_inclusao_infopcd_lista = s1005inclusaoinfoPCD.objects.using( db_slug ).filter(excluido = False, s1005_inclusao_id=s1005_inclusao.id).all()
-            s1005_inclusao_infosst_form = form_s1005_inclusao_infosst(initial={ 's1005_inclusao': s1005_inclusao }, slug=db_slug)
-            s1005_inclusao_infosst_form.fields['s1005_inclusao'].widget.attrs['readonly'] = True
-            s1005_inclusao_infosst_lista = s1005inclusaoinfoSST.objects.using( db_slug ).filter(excluido = False, s1005_inclusao_id=s1005_inclusao.id).all()
         else:
             s1005_inclusao = None
         #s1005_inclusao_salvar_custom_variaveis#
@@ -212,8 +207,6 @@ def salvar(request, hash):
             's1005_inclusao_infoenteduc_lista': s1005_inclusao_infoenteduc_lista,
             's1005_inclusao_infopcd_form': s1005_inclusao_infopcd_form,
             's1005_inclusao_infopcd_lista': s1005_inclusao_infopcd_lista,
-            's1005_inclusao_infosst_form': s1005_inclusao_infosst_form,
-            's1005_inclusao_infosst_lista': s1005_inclusao_infosst_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        

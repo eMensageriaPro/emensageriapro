@@ -22,8 +22,6 @@ from emensageriapro.esocial.views import s1050_evttabhortur as s1050_evttabhortu
 from emensageriapro.esocial.views import s1050_evttabhortur_verificar as s1050_evttabhortur_verificar_views
 from emensageriapro.esocial.views import s1060_evttabambiente as s1060_evttabambiente_views
 from emensageriapro.esocial.views import s1060_evttabambiente_verificar as s1060_evttabambiente_verificar_views
-from emensageriapro.esocial.views import s1065_evttabequipamento as s1065_evttabequipamento_views
-from emensageriapro.esocial.views import s1065_evttabequipamento_verificar as s1065_evttabequipamento_verificar_views
 from emensageriapro.esocial.views import s1070_evttabprocesso as s1070_evttabprocesso_views
 from emensageriapro.esocial.views import s1070_evttabprocesso_verificar as s1070_evttabprocesso_verificar_views
 from emensageriapro.esocial.views import s1080_evttaboperport as s1080_evttaboperport_views
@@ -64,6 +62,8 @@ from emensageriapro.esocial.views import s2210_evtcat as s2210_evtcat_views
 from emensageriapro.esocial.views import s2210_evtcat_verificar as s2210_evtcat_verificar_views
 from emensageriapro.esocial.views import s2220_evtmonit as s2220_evtmonit_views
 from emensageriapro.esocial.views import s2220_evtmonit_verificar as s2220_evtmonit_verificar_views
+from emensageriapro.esocial.views import s2221_evttoxic as s2221_evttoxic_views
+from emensageriapro.esocial.views import s2221_evttoxic_verificar as s2221_evttoxic_verificar_views
 from emensageriapro.esocial.views import s2230_evtafasttemp as s2230_evtafasttemp_views
 from emensageriapro.esocial.views import s2230_evtafasttemp_verificar as s2230_evtafasttemp_verificar_views
 from emensageriapro.esocial.views import s2231_evtcessao as s2231_evtcessao_views
@@ -712,69 +712,6 @@ url(r'^s1060-evttabambiente/salvar/(?P<hash>.*)/$',
 url(r'^scripts/gerar-identidade/s1060-evttabambiente/(?P<chave>.*)/(?P<evento_id>\d+)/$',
         s1060_evttabambiente_views.gerar_identidade, 
         name='s1060_evttabambiente_gerar_identidade'),
-
-
-
-url(r'^s1065-evttabequipamento/apagar/(?P<hash>.*)/$', 
-        s1065_evttabequipamento_views.apagar, 
-        name='s1065_evttabequipamento_apagar'),
-
-url(r'^s1065-evttabequipamento/api/$',
-            s1065_evttabequipamento_views.s1065evtTabEquipamentoList.as_view() ),
-
-        url(r'^s1065-evttabequipamento/api/(?P<pk>[0-9]+)/$',
-            s1065_evttabequipamento_views.s1065evtTabEquipamentoDetail.as_view() ),
-
-url(r'^s1065-evttabequipamento/listar/(?P<hash>.*)/$', 
-        s1065_evttabequipamento_views.listar, 
-        name='s1065_evttabequipamento'),
-        
-url(r'^s1065-evttabequipamento/verificar/(?P<hash>.*)/$', 
-        s1065_evttabequipamento_verificar_views.verificar, 
-        name='s1065_evttabequipamento_verificar'),
-        
-url(r'^s1065-evttabequipamento/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
-        s1065_evttabequipamento_verificar_views.recibo, 
-        name='s1065_evttabequipamento_recibo'),
-        
-        
-url(r'^s1065-evttabequipamento/duplicar/(?P<hash>.*)/$',
-        s1065_evttabequipamento_verificar_views.duplicar,
-        name='s1065_evttabequipamento_duplicar'),
-
-url(r'^s1065-evttabequipamento/criar-alteracao/(?P<hash>.*)/$',
-        s1065_evttabequipamento_verificar_views.criar_alteracao,
-        name='s1065_evttabequipamento_criar_alteracao'),
-
-url(r'^s1065-evttabequipamento/criar-exclusao/(?P<hash>.*)/$',
-        s1065_evttabequipamento_verificar_views.criar_exclusao,
-        name='s1065_evttabequipamento_criar_exclusao'),
-        
-url(r'^s1065-evttabequipamento/xml/(?P<hash>.*)/$', 
-        s1065_evttabequipamento_verificar_views.gerar_xml, 
-                name='s1065_evttabequipamento_xml'),
-                
-
-url(r'^s1065-evttabequipamento/alterar-identidade/(?P<hash>.*)/$',
-        s1065_evttabequipamento_verificar_views.alterar_identidade,
-        name='s1065_evttabequipamento_alterar_identidade'),
-
-url(r'^s1065-evttabequipamento/abrir-evento-para-edicao/(?P<hash>.*)/$',
-        s1065_evttabequipamento_verificar_views.abrir_evento_para_edicao,
-        name='s1065_evttabequipamento_abrir_evento_para_edicao'),
-
-url(r'^s1065-evttabequipamento/validar-evento/(?P<hash>.*)/$',
-        s1065_evttabequipamento_verificar_views.validar_evento,
-        name='s1065_evttabequipamento_validar_evento'),
-
-url(r'^s1065-evttabequipamento/salvar/(?P<hash>.*)/$', 
-        s1065_evttabequipamento_views.salvar, 
-        name='s1065_evttabequipamento_salvar'),
-        
-
-url(r'^scripts/gerar-identidade/s1065-evttabequipamento/(?P<chave>.*)/(?P<evento_id>\d+)/$',
-        s1065_evttabequipamento_views.gerar_identidade, 
-        name='s1065_evttabequipamento_gerar_identidade'),
 
 
 
@@ -2035,6 +1972,69 @@ url(r'^s2220-evtmonit/salvar/(?P<hash>.*)/$',
 url(r'^scripts/gerar-identidade/s2220-evtmonit/(?P<chave>.*)/(?P<evento_id>\d+)/$',
         s2220_evtmonit_views.gerar_identidade, 
         name='s2220_evtmonit_gerar_identidade'),
+
+
+
+url(r'^s2221-evttoxic/apagar/(?P<hash>.*)/$', 
+        s2221_evttoxic_views.apagar, 
+        name='s2221_evttoxic_apagar'),
+
+url(r'^s2221-evttoxic/api/$',
+            s2221_evttoxic_views.s2221evtToxicList.as_view() ),
+
+        url(r'^s2221-evttoxic/api/(?P<pk>[0-9]+)/$',
+            s2221_evttoxic_views.s2221evtToxicDetail.as_view() ),
+
+url(r'^s2221-evttoxic/listar/(?P<hash>.*)/$', 
+        s2221_evttoxic_views.listar, 
+        name='s2221_evttoxic'),
+        
+url(r'^s2221-evttoxic/verificar/(?P<hash>.*)/$', 
+        s2221_evttoxic_verificar_views.verificar, 
+        name='s2221_evttoxic_verificar'),
+        
+url(r'^s2221-evttoxic/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+        s2221_evttoxic_verificar_views.recibo, 
+        name='s2221_evttoxic_recibo'),
+        
+        
+url(r'^s2221-evttoxic/duplicar/(?P<hash>.*)/$',
+        s2221_evttoxic_verificar_views.duplicar,
+        name='s2221_evttoxic_duplicar'),
+
+url(r'^s2221-evttoxic/criar-alteracao/(?P<hash>.*)/$',
+        s2221_evttoxic_verificar_views.criar_alteracao,
+        name='s2221_evttoxic_criar_alteracao'),
+
+url(r'^s2221-evttoxic/criar-exclusao/(?P<hash>.*)/$',
+        s2221_evttoxic_verificar_views.criar_exclusao,
+        name='s2221_evttoxic_criar_exclusao'),
+        
+url(r'^s2221-evttoxic/xml/(?P<hash>.*)/$', 
+        s2221_evttoxic_verificar_views.gerar_xml, 
+                name='s2221_evttoxic_xml'),
+                
+
+url(r'^s2221-evttoxic/alterar-identidade/(?P<hash>.*)/$',
+        s2221_evttoxic_verificar_views.alterar_identidade,
+        name='s2221_evttoxic_alterar_identidade'),
+
+url(r'^s2221-evttoxic/abrir-evento-para-edicao/(?P<hash>.*)/$',
+        s2221_evttoxic_verificar_views.abrir_evento_para_edicao,
+        name='s2221_evttoxic_abrir_evento_para_edicao'),
+
+url(r'^s2221-evttoxic/validar-evento/(?P<hash>.*)/$',
+        s2221_evttoxic_verificar_views.validar_evento,
+        name='s2221_evttoxic_validar_evento'),
+
+url(r'^s2221-evttoxic/salvar/(?P<hash>.*)/$', 
+        s2221_evttoxic_views.salvar, 
+        name='s2221_evttoxic_salvar'),
+        
+
+url(r'^scripts/gerar-identidade/s2221-evttoxic/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+        s2221_evttoxic_views.gerar_identidade, 
+        name='s2221_evttoxic_gerar_identidade'),
 
 
 

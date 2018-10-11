@@ -1,10 +1,10 @@
 # coding: utf-8
 from django import forms
 from emensageriapro.s2300.models import * 
-from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.tabelas.models import Municipios 
 from emensageriapro.tabelas.models import eSocialPaises 
 from emensageriapro.tabelas.models import eSocialLogradourosTipos 
+from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.esocial.models import s2300evtTSVInicio 
 
 
@@ -45,6 +45,66 @@ __author__ = 'marcelovasconcellos'
 
 #custom_forms#
 
+
+
+class form_s2300_brasil(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2300_brasil,self ).__init__(*args,**kwargs)
+        
+        self.fields['uf'].widget.attrs['required'] = True
+        
+        self.fields['codmunic'].widget.attrs['required'] = True
+        
+        self.fields['cep'].widget.attrs['required'] = True
+        
+        self.fields['nrlograd'].widget.attrs['required'] = True
+        
+        self.fields['dsclograd'].widget.attrs['required'] = True
+        
+        self.fields['tplograd'].widget.attrs['required'] = True
+        
+        self.fields['s2300_evttsvinicio'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s2300brasil
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s2300_exterior(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2300_exterior,self ).__init__(*args,**kwargs)
+        
+        self.fields['nmcid'].widget.attrs['required'] = True
+        
+        self.fields['nrlograd'].widget.attrs['required'] = True
+        
+        self.fields['dsclograd'].widget.attrs['required'] = True
+        
+        self.fields['paisresid'].widget.attrs['required'] = True
+        
+        self.fields['s2300_evttsvinicio'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s2300exterior
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
 
 
 class form_s2300_documentos(forms.ModelForm):
@@ -207,66 +267,6 @@ class form_s2300_cnh(forms.ModelForm):
 
     class Meta:
         model = s2300CNH
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s2300_brasil(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2300_brasil,self ).__init__(*args,**kwargs)
-        
-        self.fields['uf'].widget.attrs['required'] = True
-        
-        self.fields['codmunic'].widget.attrs['required'] = True
-        
-        self.fields['cep'].widget.attrs['required'] = True
-        
-        self.fields['nrlograd'].widget.attrs['required'] = True
-        
-        self.fields['dsclograd'].widget.attrs['required'] = True
-        
-        self.fields['tplograd'].widget.attrs['required'] = True
-        
-        self.fields['s2300_evttsvinicio'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2300brasil
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s2300_exterior(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2300_exterior,self ).__init__(*args,**kwargs)
-        
-        self.fields['nmcid'].widget.attrs['required'] = True
-        
-        self.fields['nrlograd'].widget.attrs['required'] = True
-        
-        self.fields['dsclograd'].widget.attrs['required'] = True
-        
-        self.fields['paisresid'].widget.attrs['required'] = True
-        
-        self.fields['s2300_evttsvinicio'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2300exterior
         exclude = [ 
             'excluido',
             'modificado_por',

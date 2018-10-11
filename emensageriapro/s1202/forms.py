@@ -1,8 +1,8 @@
 # coding: utf-8
 from django import forms
 from emensageriapro.s1202.models import * 
-from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.tabelas.models import eSocialTrabalhadoresCategorias 
+from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.esocial.models import s1202evtRmnRPPS 
 
 
@@ -45,44 +45,18 @@ __author__ = 'marcelovasconcellos'
 
 
 
-class form_s1202_procjudtrab(forms.ModelForm):
+class form_s1202_infoperant_ideperiodo(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1202_procjudtrab,self ).__init__(*args,**kwargs)
+        super (form_s1202_infoperant_ideperiodo,self ).__init__(*args,**kwargs)
         
-        self.fields['nrprocjud'].widget.attrs['required'] = True
-        
-        self.fields['tptrib'].widget.attrs['required'] = True
-        self.fields['s1202_evtrmnrpps'].queryset = s1202evtRmnRPPS.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1202_evtrmnrpps'].widget.attrs['required'] = True
+        self.fields['perref'].widget.attrs['required'] = True
+        self.fields['s1202_infoperant_ideadc'].queryset = s1202infoPerAntideADC.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s1202_infoperant_ideadc'].widget.attrs['required'] = True
 
     class Meta:
-        model = s1202procJudTrab
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s1202_dmdev(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1202_dmdev,self ).__init__(*args,**kwargs)
-        
-        self.fields['codcateg'].widget.attrs['required'] = True
-        
-        self.fields['idedmdev'].widget.attrs['required'] = True
-        self.fields['s1202_evtrmnrpps'].queryset = s1202evtRmnRPPS.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1202_evtrmnrpps'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1202dmDev
+        model = s1202infoPerAntidePeriodo
         exclude = [ 
             'excluido',
             'modificado_por',
@@ -127,6 +101,82 @@ class form_s1202_infoperapur_ideestab(forms.ModelForm):
 
     class Meta:
         model = s1202infoPerApurideEstab
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s1202_infoperant_ideadc(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1202_infoperant_ideadc,self ).__init__(*args,**kwargs)
+        
+        self.fields['dsc'].widget.attrs['required'] = True
+        
+        self.fields['tpacconv'].widget.attrs['required'] = True
+        
+        self.fields['nrlei'].widget.attrs['required'] = True
+        
+        self.fields['dtlei'].widget.attrs['required'] = True
+        self.fields['s1202_infoperant'].queryset = s1202infoPerAnt.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s1202_infoperant'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1202infoPerAntideADC
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s1202_procjudtrab(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1202_procjudtrab,self ).__init__(*args,**kwargs)
+        
+        self.fields['nrprocjud'].widget.attrs['required'] = True
+        
+        self.fields['tptrib'].widget.attrs['required'] = True
+        self.fields['s1202_evtrmnrpps'].queryset = s1202evtRmnRPPS.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s1202_evtrmnrpps'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1202procJudTrab
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s1202_dmdev(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1202_dmdev,self ).__init__(*args,**kwargs)
+        
+        self.fields['codcateg'].widget.attrs['required'] = True
+        
+        self.fields['idedmdev'].widget.attrs['required'] = True
+        self.fields['s1202_evtrmnrpps'].queryset = s1202evtRmnRPPS.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s1202_evtrmnrpps'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1202dmDev
         exclude = [ 
             'excluido',
             'modificado_por',
@@ -275,56 +325,6 @@ class form_s1202_infoperant(forms.ModelForm):
 
     class Meta:
         model = s1202infoPerAnt
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s1202_infoperant_ideadc(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1202_infoperant_ideadc,self ).__init__(*args,**kwargs)
-        
-        self.fields['dsc'].widget.attrs['required'] = True
-        
-        self.fields['tpacconv'].widget.attrs['required'] = True
-        
-        self.fields['nrlei'].widget.attrs['required'] = True
-        
-        self.fields['dtlei'].widget.attrs['required'] = True
-        self.fields['s1202_infoperant'].queryset = s1202infoPerAnt.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1202_infoperant'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1202infoPerAntideADC
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s1202_infoperant_ideperiodo(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1202_infoperant_ideperiodo,self ).__init__(*args,**kwargs)
-        
-        self.fields['perref'].widget.attrs['required'] = True
-        self.fields['s1202_infoperant_ideadc'].queryset = s1202infoPerAntideADC.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1202_infoperant_ideadc'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1202infoPerAntidePeriodo
         exclude = [ 
             'excluido',
             'modificado_por',

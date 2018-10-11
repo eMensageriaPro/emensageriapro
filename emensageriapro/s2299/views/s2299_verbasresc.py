@@ -141,27 +141,27 @@ def salvar(request, hash):
 
         s2299_dmdev_form = None
         s2299_dmdev_lista = None
+        s2299_infotrabinterm_proccs_form = None
+        s2299_infotrabinterm_proccs_lista = None
         s2299_infotrabinterm_procjudtrab_form = None
         s2299_infotrabinterm_procjudtrab_lista = None
         s2299_infotrabinterm_infomv_form = None
         s2299_infotrabinterm_infomv_lista = None
-        s2299_infotrabinterm_proccs_form = None
-        s2299_infotrabinterm_proccs_lista = None
         if s2299_verbasresc_id:
             s2299_verbasresc = get_object_or_404(s2299verbasResc.objects.using( db_slug ), excluido = False, id = s2299_verbasresc_id)
   
             s2299_dmdev_form = form_s2299_dmdev(initial={ 's2299_verbasresc': s2299_verbasresc }, slug=db_slug)
             s2299_dmdev_form.fields['s2299_verbasresc'].widget.attrs['readonly'] = True
             s2299_dmdev_lista = s2299dmDev.objects.using( db_slug ).filter(excluido = False, s2299_verbasresc_id=s2299_verbasresc.id).all()
+            s2299_infotrabinterm_proccs_form = form_s2299_infotrabinterm_proccs(initial={ 's2299_verbasresc': s2299_verbasresc }, slug=db_slug)
+            s2299_infotrabinterm_proccs_form.fields['s2299_verbasresc'].widget.attrs['readonly'] = True
+            s2299_infotrabinterm_proccs_lista = s2299infoTrabIntermprocCS.objects.using( db_slug ).filter(excluido = False, s2299_verbasresc_id=s2299_verbasresc.id).all()
             s2299_infotrabinterm_procjudtrab_form = form_s2299_infotrabinterm_procjudtrab(initial={ 's2299_verbasresc': s2299_verbasresc }, slug=db_slug)
             s2299_infotrabinterm_procjudtrab_form.fields['s2299_verbasresc'].widget.attrs['readonly'] = True
             s2299_infotrabinterm_procjudtrab_lista = s2299infoTrabIntermprocJudTrab.objects.using( db_slug ).filter(excluido = False, s2299_verbasresc_id=s2299_verbasresc.id).all()
             s2299_infotrabinterm_infomv_form = form_s2299_infotrabinterm_infomv(initial={ 's2299_verbasresc': s2299_verbasresc }, slug=db_slug)
             s2299_infotrabinterm_infomv_form.fields['s2299_verbasresc'].widget.attrs['readonly'] = True
             s2299_infotrabinterm_infomv_lista = s2299infoTrabInterminfoMV.objects.using( db_slug ).filter(excluido = False, s2299_verbasresc_id=s2299_verbasresc.id).all()
-            s2299_infotrabinterm_proccs_form = form_s2299_infotrabinterm_proccs(initial={ 's2299_verbasresc': s2299_verbasresc }, slug=db_slug)
-            s2299_infotrabinterm_proccs_form.fields['s2299_verbasresc'].widget.attrs['readonly'] = True
-            s2299_infotrabinterm_proccs_lista = s2299infoTrabIntermprocCS.objects.using( db_slug ).filter(excluido = False, s2299_verbasresc_id=s2299_verbasresc.id).all()
         else:
             s2299_verbasresc = None
         #s2299_verbasresc_salvar_custom_variaveis#
@@ -187,12 +187,12 @@ def salvar(request, hash):
   
             's2299_dmdev_form': s2299_dmdev_form,
             's2299_dmdev_lista': s2299_dmdev_lista,
+            's2299_infotrabinterm_proccs_form': s2299_infotrabinterm_proccs_form,
+            's2299_infotrabinterm_proccs_lista': s2299_infotrabinterm_proccs_lista,
             's2299_infotrabinterm_procjudtrab_form': s2299_infotrabinterm_procjudtrab_form,
             's2299_infotrabinterm_procjudtrab_lista': s2299_infotrabinterm_procjudtrab_lista,
             's2299_infotrabinterm_infomv_form': s2299_infotrabinterm_infomv_form,
             's2299_infotrabinterm_infomv_lista': s2299_infotrabinterm_infomv_lista,
-            's2299_infotrabinterm_proccs_form': s2299_infotrabinterm_proccs_form,
-            's2299_infotrabinterm_proccs_lista': s2299_infotrabinterm_proccs_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        

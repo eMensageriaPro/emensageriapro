@@ -105,7 +105,7 @@ def verificar(request, hash):
     if permissao.permite_listar:
         s2231_evtcessao = get_object_or_404(s2231evtCessao.objects.using( db_slug ), excluido = False, id = s2231_evtcessao_id)
         s2231_evtcessao_lista = s2231evtCessao.objects.using( db_slug ).filter(id=s2231_evtcessao_id, excluido = False).all()
-
+   
 
         s2231_inicessao_lista = s2231iniCessao.objects.using(db_slug).filter(s2231_evtcessao_id__in = listar_ids(s2231_evtcessao_lista) ).filter(excluido=False).all()
         s2231_fimcessao_lista = s2231fimCessao.objects.using(db_slug).filter(s2231_evtcessao_id__in = listar_ids(s2231_evtcessao_lista) ).filter(excluido=False).all()
@@ -115,11 +115,11 @@ def verificar(request, hash):
             's2231_evtcessao_lista': s2231_evtcessao_lista,
             's2231_evtcessao_id': s2231_evtcessao_id,
             's2231_evtcessao': s2231_evtcessao,
-
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -168,10 +168,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -202,7 +202,7 @@ def gerar_xml_s2231(s2231_evtcessao_id, db_slug):
         t = get_template('%s/s2231_evtcessao_xml.html' % s2231_evtcessao.versao)
         xml = t.render(context)
         return xml
-
+   
 
 
 @login_required
@@ -225,7 +225,7 @@ def recibo(request, hash, tipo):
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
     if permissao.permite_listar:
-
+   
         s2231_evtcessao = get_object_or_404(
             s2231evtCessao.objects.using( db_slug ),
             excluido = False, id = s2231_evtcessao_id)
@@ -244,7 +244,7 @@ def recibo(request, hash, tipo):
 
         retorno_ocorrencias = RetornosEventosOcorrencias.objects.using(db_slug).\
             filter(retornos_eventos_id=retorno.id,excluido=False).all()
-
+   
         context = {
             's2231_evtcessao_id': s2231_evtcessao_id,
             's2231_evtcessao': s2231_evtcessao,
@@ -254,11 +254,11 @@ def recibo(request, hash, tipo):
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
 
-
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -286,10 +286,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -345,8 +345,8 @@ def gerar_xml(request, hash):
         return HttpResponse(xml_assinado, content_type='text/xml')
     else:
         context = {
-
-
+            
+            
             'data': datetime.datetime.now(),
         }
         return render(request, 'permissao_negada.html', context)
@@ -366,7 +366,7 @@ def duplicar(request, hash):
         arquivo = 'arquivos/Eventos/s2231_evtcessao/%s.xml' % s2231_evtcessao.identidade
         if not os.path.exists(BASE_DIR + '/' + arquivo):
             xml = gerar_xml_assinado(s2231_evtcessao_id, db_slug)
-
+   
         texto = ler_arquivo('arquivos/Eventos/s2231_evtcessao/%s.xml' % s2231_evtcessao.identidade)
         salvar_arquivo('arquivos/Eventos/s2231_evtcessao/%s_duplicado_temp.xml' % s2231_evtcessao.identidade, texto)
         from emensageriapro.funcoes_importacao import importar_arquivo
@@ -376,7 +376,7 @@ def duplicar(request, hash):
         s2231evtCessao.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
         messages.success(request, 'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
         url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['identidade'] )
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (dent, s2231_evtcessao.identidade),
             's2231_evtcessao', dados['identidade'], usuario_id, 1)
         return redirect('s2231_evtcessao_salvar', hash=url_hash)
@@ -405,7 +405,7 @@ def criar_alteracao(request, hash):
         from emensageriapro.esocial.views.s2231_evtcessao import identidade_evento
         dent = identidade_evento(dados['identidade'], db_slug)
         s2231evtCessao.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         gravar_auditoria(u'{}', u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (dent, s2231_evtcessao.identidade),
             's2231_evtcessao', dados['identidade'], usuario_id, 1)
         messages.success(request, 'Evento de alteração criado com sucesso!')
@@ -438,7 +438,7 @@ def criar_exclusao(request, hash):
         from emensageriapro.esocial.views.s2231_evtcessao import identidade_evento
         dent = identidade_evento(dados['identidade'], db_slug)
         s2231evtCessao.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         gravar_auditoria(u'{}', u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (dent, s2231_evtcessao.identidade),
             's2231_evtcessao', dados['identidade'], usuario_id, 1)
         messages.success(request, 'Evento de exclusão criado com sucesso!')
@@ -463,7 +463,7 @@ def alterar_identidade(request, hash):
             dent = identidade_evento(s2231_evtcessao_id, db_slug)
             messages.success(request, 'Identidade do evento alterada com sucesso!')
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s2231_evtcessao_id )
-            usuario_id = request.session['usuario_id']
+            usuario_id = request.user.id
             gravar_auditoria(u'{}', u'{"funcao": "Identidade do evento foi alterada"}',
             's2231_evtcessao', s2231_evtcessao_id, usuario_id, 1)
             return redirect('s2231_evtcessao_salvar', hash=url_hash)
@@ -496,7 +496,7 @@ def abrir_evento_para_edicao(request, hash):
                 gravar_nome_arquivo('/arquivos/Eventos/s2231_evtcessao/%s_backup_%s.xml' % (s2231_evtcessao.identidade, data_hora_atual),
                     1)
             messages.success(request, 'Evento aberto para edição!')
-            usuario_id = request.session['usuario_id']
+            usuario_id = request.user.id
             gravar_auditoria(u'{}', u'{"funcao": "Evento aberto para edição"}',
             's2231_evtcessao', s2231_evtcessao_id, usuario_id, 1)
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s2231_evtcessao_id )
@@ -523,12 +523,23 @@ def validar_evento_funcao(s2231_evtcessao_id, db_slug):
     from emensageriapro.settings import BASE_DIR
     lista_validacoes = []
     s2231_evtcessao = get_object_or_404(s2231evtCessao.objects.using(db_slug), excluido=False, id=s2231_evtcessao_id)
-    quant = validar_precedencia('esocial', 's2231_evtcessao', s2231_evtcessao_id)
-    if quant <= 0:
-        #lista_validacoes.append('Precedência não foi enviada!')
-        precedencia = 0
+    if s2231_evtcessao.transmissor_lote_esocial:
+        if s2231_evtcessao.transmissor_lote_esocial.transmissor:
+            if s2231_evtcessao.transmissor_lote_esocial.transmissor.verificar_predecessao:
+                quant = validar_precedencia('esocial', 's2231_evtcessao', s2231_evtcessao_id)
+                if quant <= 0:
+                    lista_validacoes.append('Precedência não foi enviada!')
+                    precedencia = 0
+                else:
+                    precedencia = 1
+            else:
+                precedencia = 1
+        else:
+            lista_validacoes.append('Precedência não foi enviada!')
+            precedencia = 0
     else:
-        precedencia = 1
+        lista_validacoes.append('Precedência não foi enviada!')
+        precedencia = 0
     executar_sql("UPDATE public.s2231_evtcessao SET validacao_precedencia=%s WHERE id=%s;" % (precedencia, s2231_evtcessao_id), False)
     #
     # Validações internas

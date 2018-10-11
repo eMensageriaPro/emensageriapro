@@ -73,6 +73,7 @@ from emensageriapro.esocial.models import s1299evtFechaEvPer
 from emensageriapro.esocial.models import s1300evtContrSindPatr
 from emensageriapro.esocial.models import s2190evtAdmPrelim
 from emensageriapro.esocial.models import s2200evtAdmissao
+from emensageriapro.esocial.models import s2221evtToxic
 from emensageriapro.esocial.models import s2205evtAltCadastral
 from emensageriapro.esocial.models import s2206evtAltContratual
 from emensageriapro.esocial.models import s2210evtCAT
@@ -93,7 +94,6 @@ from emensageriapro.esocial.models import s5001evtBasesTrab
 from emensageriapro.esocial.models import s5002evtIrrfBenef
 from emensageriapro.esocial.models import s5011evtCS
 from emensageriapro.esocial.models import s5012evtIrrf
-from emensageriapro.esocial.models import s1065evtTabEquipamento
 from emensageriapro.esocial.models import s2245evtTreiCap
 from emensageriapro.esocial.models import s2405evtCdBenefAlt
 from emensageriapro.esocial.models import s2410evtCdBenIn
@@ -124,6 +124,7 @@ from emensageriapro.esocial.forms import form_s1299_evtfechaevper
 from emensageriapro.esocial.forms import form_s1300_evtcontrsindpatr
 from emensageriapro.esocial.forms import form_s2190_evtadmprelim
 from emensageriapro.esocial.forms import form_s2200_evtadmissao
+from emensageriapro.esocial.forms import form_s2221_evttoxic
 from emensageriapro.esocial.forms import form_s2205_evtaltcadastral
 from emensageriapro.esocial.forms import form_s2206_evtaltcontratual
 from emensageriapro.esocial.forms import form_s2210_evtcat
@@ -144,7 +145,6 @@ from emensageriapro.esocial.forms import form_s5001_evtbasestrab
 from emensageriapro.esocial.forms import form_s5002_evtirrfbenef
 from emensageriapro.esocial.forms import form_s5011_evtcs
 from emensageriapro.esocial.forms import form_s5012_evtirrf
-from emensageriapro.esocial.forms import form_s1065_evttabequipamento
 from emensageriapro.esocial.forms import form_s2245_evttreicap
 from emensageriapro.esocial.forms import form_s2405_evtcdbenefalt
 from emensageriapro.esocial.forms import form_s2410_evtcdbenin
@@ -303,6 +303,49 @@ def salvar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
+
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        retornos_eventos_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='retornos_eventos')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    retornos_eventos = get_object_or_404(RetornosEventos.objects.using( db_slug ), excluido = False, id = retornos_eventos_id)
+    if request.method == 'POST':
+        RetornosEventos.objects.using( db_slug ).filter(id = retornos_eventos_id).update(excluido = True)
+        #retornos_eventos_apagar_custom
+        #retornos_eventos_apagar_custom
+        messages.success(request, 'Apagado com sucesso!')
+        if request.session['retorno_pagina']== 'retornos_eventos_salvar':
+            return redirect('retornos_eventos', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 'retornos_eventos_apagar.html', context)
 
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
@@ -635,47 +678,4 @@ def listar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
-
-@login_required
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        retornos_eventos_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='retornos_eventos')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    retornos_eventos = get_object_or_404(RetornosEventos.objects.using( db_slug ), excluido = False, id = retornos_eventos_id)
-    if request.method == 'POST':
-        RetornosEventos.objects.using( db_slug ).filter(id = retornos_eventos_id).update(excluido = True)
-        #retornos_eventos_apagar_custom
-        #retornos_eventos_apagar_custom
-        messages.success(request, 'Apagado com sucesso!')
-        if request.session['retorno_pagina']== 'retornos_eventos_salvar':
-            return redirect('retornos_eventos', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 'retornos_eventos_apagar.html', context)
 

@@ -1,4 +1,36 @@
 #coding:utf-8
+"""
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+    
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 import xmltodict
 import pprint
 import json
@@ -6,25 +38,23 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo, create_insert, executar_sql
 
 
-
-
 def read_s1030_evttabcargo(dados, arquivo, validar=False):
     import untangle
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
-    s1030_evttabcargo_dados = {}
-    xmlns = doc.eSocial['xmlns'].split('/')
     if validar:
-        s1030_evttabcargo_dados['status'] = 1
+        status = 1
     else:
-        s1030_evttabcargo_dados['status'] = 0
-    s1030_evttabcargo_dados['versao'] = xmlns[len(xmlns)-1]
+        status = 0
+    read_s1030_evttabcargo_obj(doc, status)
+
+
+
+def read_s1030_evttabcargo_obj(doc):
+    s1030_evttabcargo_dados = {}
+    s1030_evttabcargo_dados['versao'] = 'v02_04_02'
+    s1030_evttabcargo_dados['status'] = status
     s1030_evttabcargo_dados['identidade'] = doc.eSocial.evtTabCargo['Id']
-    # verificacao = executar_sql("""SELECT count(*)
-    #     FROM public.transmissor_eventos_esocial WHERE identidade = '%s';
-    #     """ % s1030_evttabcargo_dados['identidade'], True)
-    # if validar and verificacao[0][0] != 0:
-    #     return False
     s1030_evttabcargo_dados['processamento_codigo_resposta'] = 1
     evtTabCargo = doc.eSocial.evtTabCargo
     
@@ -40,8 +70,9 @@ def read_s1030_evttabcargo(dados, arquivo, validar=False):
     insert = create_insert('s1030_evttabcargo', s1030_evttabcargo_dados)
     resp = executar_sql(insert, True)
     s1030_evttabcargo_id = resp[0][0]
+    dados = s1030_evttabcargo_dados
     dados['evento'] = 's1030'
-    dados['identidade'] = s1030_evttabcargo_id
+    dados['id'] = s1030_evttabcargo_id
     dados['identidade_evento'] = doc.eSocial.evtTabCargo['Id']
     dados['status'] = 1
 
@@ -68,6 +99,7 @@ def read_s1030_evttabcargo(dados, arquivo, validar=False):
                     if 'acumCargo' in dir(cargoPublico): s1030_inclusao_cargopublico_dados['acumcargo'] = cargoPublico.acumCargo.cdata
                     if 'contagemEsp' in dir(cargoPublico): s1030_inclusao_cargopublico_dados['contagemesp'] = cargoPublico.contagemEsp.cdata
                     if 'dedicExcl' in dir(cargoPublico): s1030_inclusao_cargopublico_dados['dedicexcl'] = cargoPublico.dedicExcl.cdata
+                    if 'codCarreira' in dir(cargoPublico): s1030_inclusao_cargopublico_dados['codcarreira'] = cargoPublico.codCarreira.cdata
                     if 'nrLei' in dir(cargoPublico): s1030_inclusao_cargopublico_dados['nrlei'] = cargoPublico.leiCargo.nrLei.cdata
                     if 'dtLei' in dir(cargoPublico): s1030_inclusao_cargopublico_dados['dtlei'] = cargoPublico.leiCargo.dtLei.cdata
                     if 'sitCargo' in dir(cargoPublico): s1030_inclusao_cargopublico_dados['sitcargo'] = cargoPublico.leiCargo.sitCargo.cdata
@@ -99,6 +131,7 @@ def read_s1030_evttabcargo(dados, arquivo, validar=False):
                     if 'acumCargo' in dir(cargoPublico): s1030_alteracao_cargopublico_dados['acumcargo'] = cargoPublico.acumCargo.cdata
                     if 'contagemEsp' in dir(cargoPublico): s1030_alteracao_cargopublico_dados['contagemesp'] = cargoPublico.contagemEsp.cdata
                     if 'dedicExcl' in dir(cargoPublico): s1030_alteracao_cargopublico_dados['dedicexcl'] = cargoPublico.dedicExcl.cdata
+                    if 'codCarreira' in dir(cargoPublico): s1030_alteracao_cargopublico_dados['codcarreira'] = cargoPublico.codCarreira.cdata
                     if 'nrLei' in dir(cargoPublico): s1030_alteracao_cargopublico_dados['nrlei'] = cargoPublico.leiCargo.nrLei.cdata
                     if 'dtLei' in dir(cargoPublico): s1030_alteracao_cargopublico_dados['dtlei'] = cargoPublico.leiCargo.dtLei.cdata
                     if 'sitCargo' in dir(cargoPublico): s1030_alteracao_cargopublico_dados['sitcargo'] = cargoPublico.leiCargo.sitCargo.cdata

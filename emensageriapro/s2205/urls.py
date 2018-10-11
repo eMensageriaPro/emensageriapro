@@ -4,6 +4,7 @@ from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s2205.views import s2205_exterior as s2205_exterior_views
 from emensageriapro.s2205.views import s2205_documentos as s2205_documentos_views
 from emensageriapro.s2205.views import s2205_ctps as s2205_ctps_views
 from emensageriapro.s2205.views import s2205_ric as s2205_ric_views
@@ -12,7 +13,6 @@ from emensageriapro.s2205.views import s2205_rne as s2205_rne_views
 from emensageriapro.s2205.views import s2205_oc as s2205_oc_views
 from emensageriapro.s2205.views import s2205_cnh as s2205_cnh_views
 from emensageriapro.s2205.views import s2205_brasil as s2205_brasil_views
-from emensageriapro.s2205.views import s2205_exterior as s2205_exterior_views
 from emensageriapro.s2205.views import s2205_trabestrangeiro as s2205_trabestrangeiro_views
 from emensageriapro.s2205.views import s2205_infodeficiencia as s2205_infodeficiencia_views
 from emensageriapro.s2205.views import s2205_dependente as s2205_dependente_views
@@ -55,6 +55,26 @@ from emensageriapro.s2205.views import s2205_contato as s2205_contato_views
 """
 
 urlpatterns = [
+
+
+
+url(r'^s2205-exterior/apagar/(?P<hash>.*)/$', 
+        s2205_exterior_views.apagar, 
+        name='s2205_exterior_apagar'),
+
+url(r'^s2205-exterior/api/$',
+            s2205_exterior_views.s2205exteriorList.as_view() ),
+
+        url(r'^s2205-exterior/api/(?P<pk>[0-9]+)/$',
+            s2205_exterior_views.s2205exteriorDetail.as_view() ),
+
+url(r'^s2205-exterior/listar/(?P<hash>.*)/$', 
+        s2205_exterior_views.listar, 
+        name='s2205_exterior'),
+
+url(r'^s2205-exterior/salvar/(?P<hash>.*)/$', 
+        s2205_exterior_views.salvar, 
+        name='s2205_exterior_salvar'),
 
 
 
@@ -215,26 +235,6 @@ url(r'^s2205-brasil/listar/(?P<hash>.*)/$',
 url(r'^s2205-brasil/salvar/(?P<hash>.*)/$', 
         s2205_brasil_views.salvar, 
         name='s2205_brasil_salvar'),
-
-
-
-url(r'^s2205-exterior/apagar/(?P<hash>.*)/$', 
-        s2205_exterior_views.apagar, 
-        name='s2205_exterior_apagar'),
-
-url(r'^s2205-exterior/api/$',
-            s2205_exterior_views.s2205exteriorList.as_view() ),
-
-        url(r'^s2205-exterior/api/(?P<pk>[0-9]+)/$',
-            s2205_exterior_views.s2205exteriorDetail.as_view() ),
-
-url(r'^s2205-exterior/listar/(?P<hash>.*)/$', 
-        s2205_exterior_views.listar, 
-        name='s2205_exterior'),
-
-url(r'^s2205-exterior/salvar/(?P<hash>.*)/$', 
-        s2205_exterior_views.salvar, 
-        name='s2205_exterior_salvar'),
 
 
 

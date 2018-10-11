@@ -1,4 +1,36 @@
 #coding:utf-8
+"""
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+    
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 import xmltodict
 import pprint
 import json
@@ -23,7 +55,7 @@ def validacoes_s1005_evttabestab(arquivo):
     if 'inclusao' in dir(evtTabEstab.infoEstab):
         for inclusao in evtTabEstab.infoEstab.inclusao:
             
-            if 'tpInsc' in dir(inclusao.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideEstab.tpInsc', inclusao.ideEstab.tpInsc.cdata, 1, '1;2;3;4')
+            if 'tpInsc' in dir(inclusao.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideEstab.tpInsc', inclusao.ideEstab.tpInsc.cdata, 1, '1;3;4')
             if 'nrInsc' in dir(inclusao.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideEstab.nrInsc', inclusao.ideEstab.nrInsc.cdata, 1, '')
             if 'iniValid' in dir(inclusao.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideEstab.iniValid', inclusao.ideEstab.iniValid.cdata, 1, '')
             if 'fimValid' in dir(inclusao.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideEstab.fimValid', inclusao.ideEstab.fimValid.cdata, 0, '')
@@ -46,7 +78,7 @@ def validacoes_s1005_evttabestab(arquivo):
             if 'procAdmJudFap' in dir(inclusao.dadosEstab.aliqGilrat):
                 for procAdmJudFap in inclusao.dadosEstab.aliqGilrat.procAdmJudFap:
                     
-                    if 'tpProc' in dir(procAdmJudFap): validacoes_lista = validar_campo(validacoes_lista,'procAdmJudFap.tpProc', procAdmJudFap.tpProc.cdata, 1, '1;2')
+                    if 'tpProc' in dir(procAdmJudFap): validacoes_lista = validar_campo(validacoes_lista,'procAdmJudFap.tpProc', procAdmJudFap.tpProc.cdata, 1, '1;2;4')
                     if 'nrProc' in dir(procAdmJudFap): validacoes_lista = validar_campo(validacoes_lista,'procAdmJudFap.nrProc', procAdmJudFap.nrProc.cdata, 1, '')
                     if 'codSusp' in dir(procAdmJudFap): validacoes_lista = validar_campo(validacoes_lista,'procAdmJudFap.codSusp', procAdmJudFap.codSusp.cdata, 1, '')
         
@@ -74,7 +106,7 @@ def validacoes_s1005_evttabestab(arquivo):
     if 'alteracao' in dir(evtTabEstab.infoEstab):
         for alteracao in evtTabEstab.infoEstab.alteracao:
             
-            if 'tpInsc' in dir(alteracao.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideEstab.tpInsc', alteracao.ideEstab.tpInsc.cdata, 1, '1;2;3;4')
+            if 'tpInsc' in dir(alteracao.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideEstab.tpInsc', alteracao.ideEstab.tpInsc.cdata, 1, '1;3;4')
             if 'nrInsc' in dir(alteracao.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideEstab.nrInsc', alteracao.ideEstab.nrInsc.cdata, 1, '')
             if 'iniValid' in dir(alteracao.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideEstab.iniValid', alteracao.ideEstab.iniValid.cdata, 1, '')
             if 'fimValid' in dir(alteracao.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideEstab.fimValid', alteracao.ideEstab.fimValid.cdata, 0, '')
@@ -97,7 +129,7 @@ def validacoes_s1005_evttabestab(arquivo):
             if 'procAdmJudFap' in dir(alteracao.dadosEstab.aliqGilrat):
                 for procAdmJudFap in alteracao.dadosEstab.aliqGilrat.procAdmJudFap:
                     
-                    if 'tpProc' in dir(procAdmJudFap): validacoes_lista = validar_campo(validacoes_lista,'procAdmJudFap.tpProc', procAdmJudFap.tpProc.cdata, 1, '1;2')
+                    if 'tpProc' in dir(procAdmJudFap): validacoes_lista = validar_campo(validacoes_lista,'procAdmJudFap.tpProc', procAdmJudFap.tpProc.cdata, 1, '1;2;4')
                     if 'nrProc' in dir(procAdmJudFap): validacoes_lista = validar_campo(validacoes_lista,'procAdmJudFap.nrProc', procAdmJudFap.nrProc.cdata, 1, '')
                     if 'codSusp' in dir(procAdmJudFap): validacoes_lista = validar_campo(validacoes_lista,'procAdmJudFap.codSusp', procAdmJudFap.codSusp.cdata, 1, '')
         
@@ -131,7 +163,7 @@ def validacoes_s1005_evttabestab(arquivo):
     if 'exclusao' in dir(evtTabEstab.infoEstab):
         for exclusao in evtTabEstab.infoEstab.exclusao:
             
-            if 'tpInsc' in dir(exclusao.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideEstab.tpInsc', exclusao.ideEstab.tpInsc.cdata, 1, '1;2;3;4')
+            if 'tpInsc' in dir(exclusao.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideEstab.tpInsc', exclusao.ideEstab.tpInsc.cdata, 1, '1;3;4')
             if 'nrInsc' in dir(exclusao.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideEstab.nrInsc', exclusao.ideEstab.nrInsc.cdata, 1, '')
             if 'iniValid' in dir(exclusao.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideEstab.iniValid', exclusao.ideEstab.iniValid.cdata, 1, '')
             if 'fimValid' in dir(exclusao.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideEstab.fimValid', exclusao.ideEstab.fimValid.cdata, 0, '')

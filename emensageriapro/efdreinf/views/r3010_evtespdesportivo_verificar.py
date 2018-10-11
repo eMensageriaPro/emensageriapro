@@ -682,12 +682,23 @@ def validar_evento_funcao(r3010_evtespdesportivo_id, db_slug):
     from emensageriapro.settings import BASE_DIR
     lista_validacoes = []
     r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo.objects.using(db_slug), excluido=False, id=r3010_evtespdesportivo_id)
-    quant = validar_precedencia('efdreinf', 'r3010_evtespdesportivo', r3010_evtespdesportivo_id)
-    if quant <= 0:
+    if r3010_evtespdesportivo.transmissor_lote_efdreinf:
+        if r3010_evtespdesportivo.transmissor_lote_efdreinf.transmissor:
+            if r3010_evtespdesportivo.transmissor_lote_efdreinf.transmissor.verificar_predecessao:
+                quant = validar_precedencia('efdreinf', 'r3010_evtespdesportivo', r3010_evtespdesportivo_id)
+                if quant <= 0:
+                    lista_validacoes.append('Precedência não foi enviada!')
+                    precedencia = 0
+                else:
+                    precedencia = 1
+            else:
+                precedencia = 1
+        else:
+            lista_validacoes.append('Precedência não foi enviada!')
+            precedencia = 0
+    else:
         lista_validacoes.append('Precedência não foi enviada!')
         precedencia = 0
-    else:
-        precedencia = 1
     executar_sql("UPDATE public.r3010_evtespdesportivo SET validacao_precedencia=%s WHERE id=%s;" % (precedencia, r3010_evtespdesportivo_id), False)
     #
     # Validações internas

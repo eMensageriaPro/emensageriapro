@@ -195,6 +195,49 @@ def salvar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
+@login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        arquivos_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='arquivos')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    arquivos = get_object_or_404(Arquivos.objects.using( db_slug ), excluido = False, id = arquivos_id)
+    if request.method == 'POST':
+        Arquivos.objects.using( db_slug ).filter(id = arquivos_id).update(excluido = True)
+        #arquivos_apagar_custom
+        #arquivos_apagar_custom
+        messages.success(request, 'Apagado com sucesso!')
+        if request.session['retorno_pagina']== 'arquivos_salvar':
+            return redirect('arquivos', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+   
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+   
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 'arquivos_apagar.html', context)
+
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 
@@ -344,47 +387,4 @@ def listar(request, hash):
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
-
-@login_required
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        arquivos_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='arquivos')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    arquivos = get_object_or_404(Arquivos.objects.using( db_slug ), excluido = False, id = arquivos_id)
-    if request.method == 'POST':
-        Arquivos.objects.using( db_slug ).filter(id = arquivos_id).update(excluido = True)
-        #arquivos_apagar_custom
-        #arquivos_apagar_custom
-        messages.success(request, 'Apagado com sucesso!')
-        if request.session['retorno_pagina']== 'arquivos_salvar':
-            return redirect('arquivos', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 'arquivos_apagar.html', context)
 

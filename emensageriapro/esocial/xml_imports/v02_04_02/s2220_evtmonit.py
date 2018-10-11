@@ -1,4 +1,36 @@
 #coding:utf-8
+"""
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+    
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 import xmltodict
 import pprint
 import json
@@ -6,25 +38,23 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo, create_insert, executar_sql
 
 
-
-
 def read_s2220_evtmonit(dados, arquivo, validar=False):
     import untangle
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
-    s2220_evtmonit_dados = {}
-    xmlns = doc.eSocial['xmlns'].split('/')
     if validar:
-        s2220_evtmonit_dados['status'] = 1
+        status = 1
     else:
-        s2220_evtmonit_dados['status'] = 0
-    s2220_evtmonit_dados['versao'] = xmlns[len(xmlns)-1]
+        status = 0
+    read_s2220_evtmonit_obj(doc, status)
+
+
+
+def read_s2220_evtmonit_obj(doc):
+    s2220_evtmonit_dados = {}
+    s2220_evtmonit_dados['versao'] = 'v02_04_02'
+    s2220_evtmonit_dados['status'] = status
     s2220_evtmonit_dados['identidade'] = doc.eSocial.evtMonit['Id']
-    # verificacao = executar_sql("""SELECT count(*)
-    #     FROM public.transmissor_eventos_esocial WHERE identidade = '%s';
-    #     """ % s2220_evtmonit_dados['identidade'], True)
-    # if validar and verificacao[0][0] != 0:
-    #     return False
     s2220_evtmonit_dados['processamento_codigo_resposta'] = 1
     evtMonit = doc.eSocial.evtMonit
     
@@ -38,27 +68,38 @@ def read_s2220_evtmonit(dados, arquivo, validar=False):
     if 'cpfTrab' in dir(evtMonit.ideVinculo): s2220_evtmonit_dados['cpftrab'] = evtMonit.ideVinculo.cpfTrab.cdata
     if 'nisTrab' in dir(evtMonit.ideVinculo): s2220_evtmonit_dados['nistrab'] = evtMonit.ideVinculo.nisTrab.cdata
     if 'matricula' in dir(evtMonit.ideVinculo): s2220_evtmonit_dados['matricula'] = evtMonit.ideVinculo.matricula.cdata
-    if 'dtAso' in dir(evtMonit.aso): s2220_evtmonit_dados['dtaso'] = evtMonit.aso.dtAso.cdata
-    if 'tpAso' in dir(evtMonit.aso): s2220_evtmonit_dados['tpaso'] = evtMonit.aso.tpAso.cdata
-    if 'resAso' in dir(evtMonit.aso): s2220_evtmonit_dados['resaso'] = evtMonit.aso.resAso.cdata
-    if 'codCNES' in dir(evtMonit.aso.ideServSaude): s2220_evtmonit_dados['codcnes'] = evtMonit.aso.ideServSaude.codCNES.cdata
-    if 'frmCtt' in dir(evtMonit.aso.ideServSaude): s2220_evtmonit_dados['frmctt'] = evtMonit.aso.ideServSaude.frmCtt.cdata
-    if 'email' in dir(evtMonit.aso.ideServSaude): s2220_evtmonit_dados['email'] = evtMonit.aso.ideServSaude.email.cdata
-    if 'nmMed' in dir(evtMonit.aso.ideServSaude.medico): s2220_evtmonit_dados['nmmed'] = evtMonit.aso.ideServSaude.medico.nmMed.cdata
-    if 'inclusao' in dir(evtMonit.aso): s2220_evtmonit_dados['operacao'] = 1
-    elif 'alteracao' in dir(evtMonit.aso): s2220_evtmonit_dados['operacao'] = 2
-    elif 'exclusao' in dir(evtMonit.aso): s2220_evtmonit_dados['operacao'] = 3
+    if 'codCateg' in dir(evtMonit.ideVinculo): s2220_evtmonit_dados['codcateg'] = evtMonit.ideVinculo.codCateg.cdata
+    if 'tpExameOcup' in dir(evtMonit.exMedOcup): s2220_evtmonit_dados['tpexameocup'] = evtMonit.exMedOcup.tpExameOcup.cdata
+    if 'dtAso' in dir(evtMonit.exMedOcup.aso): s2220_evtmonit_dados['dtaso'] = evtMonit.exMedOcup.aso.dtAso.cdata
+    if 'tpAso' in dir(evtMonit.exMedOcup.aso): s2220_evtmonit_dados['tpaso'] = evtMonit.exMedOcup.aso.tpAso.cdata
+    if 'resAso' in dir(evtMonit.exMedOcup.aso): s2220_evtmonit_dados['resaso'] = evtMonit.exMedOcup.aso.resAso.cdata
+    if 'cpfMed' in dir(evtMonit.exMedOcup.aso.medico): s2220_evtmonit_dados['cpfmed'] = evtMonit.exMedOcup.aso.medico.cpfMed.cdata
+    if 'nisMed' in dir(evtMonit.exMedOcup.aso.medico): s2220_evtmonit_dados['nismed'] = evtMonit.exMedOcup.aso.medico.nisMed.cdata
+    if 'nmMed' in dir(evtMonit.exMedOcup.aso.medico): s2220_evtmonit_dados['nmmed'] = evtMonit.exMedOcup.aso.medico.nmMed.cdata
+    if 'nrCRM' in dir(evtMonit.exMedOcup.aso.medico): s2220_evtmonit_dados['nrcrm'] = evtMonit.exMedOcup.aso.medico.nrCRM.cdata
+    if 'ufCRM' in dir(evtMonit.exMedOcup.aso.medico): s2220_evtmonit_dados['ufcrm'] = evtMonit.exMedOcup.aso.medico.ufCRM.cdata
+    if 'nisResp' in dir(evtMonit.exMedOcup.respMonit): s2220_evtmonit_dados['nisresp'] = evtMonit.exMedOcup.respMonit.nisResp.cdata
+    if 'nrConsClasse' in dir(evtMonit.exMedOcup.respMonit): s2220_evtmonit_dados['nrconsclasse'] = evtMonit.exMedOcup.respMonit.nrConsClasse.cdata
+    if 'ufConsClasse' in dir(evtMonit.exMedOcup.respMonit): s2220_evtmonit_dados['ufconsclasse'] = evtMonit.exMedOcup.respMonit.ufConsClasse.cdata
+    if 'cpfResp' in dir(evtMonit.exMedOcup.respMonit): s2220_evtmonit_dados['cpfresp'] = evtMonit.exMedOcup.respMonit.cpfResp.cdata
+    if 'nmResp' in dir(evtMonit.exMedOcup.respMonit): s2220_evtmonit_dados['nmresp'] = evtMonit.exMedOcup.respMonit.nmResp.cdata
+    if 'nrCRM' in dir(evtMonit.exMedOcup.respMonit): s2220_evtmonit_dados['nrcrm'] = evtMonit.exMedOcup.respMonit.nrCRM.cdata
+    if 'ufCRM' in dir(evtMonit.exMedOcup.respMonit): s2220_evtmonit_dados['ufcrm'] = evtMonit.exMedOcup.respMonit.ufCRM.cdata
+    if 'inclusao' in dir(evtMonit.exMedOcup): s2220_evtmonit_dados['operacao'] = 1
+    elif 'alteracao' in dir(evtMonit.exMedOcup): s2220_evtmonit_dados['operacao'] = 2
+    elif 'exclusao' in dir(evtMonit.exMedOcup): s2220_evtmonit_dados['operacao'] = 3
     #print dados
     insert = create_insert('s2220_evtmonit', s2220_evtmonit_dados)
     resp = executar_sql(insert, True)
     s2220_evtmonit_id = resp[0][0]
+    dados = s2220_evtmonit_dados
     dados['evento'] = 's2220'
-    dados['identidade'] = s2220_evtmonit_id
+    dados['id'] = s2220_evtmonit_id
     dados['identidade_evento'] = doc.eSocial.evtMonit['Id']
     dados['status'] = 1
 
-    if 'exame' in dir(evtMonit.aso):
-        for exame in evtMonit.aso.exame:
+    if 'exame' in dir(evtMonit.exMedOcup.aso):
+        for exame in evtMonit.exMedOcup.aso.exame:
             s2220_exame_dados = {}
             s2220_exame_dados['s2220_evtmonit_id'] = s2220_evtmonit_id
             
@@ -70,9 +111,6 @@ def read_s2220_evtmonit(dados, arquivo, validar=False):
             if 'dtIniMonit' in dir(exame): s2220_exame_dados['dtinimonit'] = exame.dtIniMonit.cdata
             if 'dtFimMonit' in dir(exame): s2220_exame_dados['dtfimmonit'] = exame.dtFimMonit.cdata
             if 'indResult' in dir(exame): s2220_exame_dados['indresult'] = exame.indResult.cdata
-            if 'nisResp' in dir(exame.respMonit): s2220_exame_dados['nisresp'] = exame.respMonit.nisResp.cdata
-            if 'nrConsClasse' in dir(exame.respMonit): s2220_exame_dados['nrconsclasse'] = exame.respMonit.nrConsClasse.cdata
-            if 'ufConsClasse' in dir(exame.respMonit): s2220_exame_dados['ufconsclasse'] = exame.respMonit.ufConsClasse.cdata
             insert = create_insert('s2220_exame', s2220_exame_dados)
             resp = executar_sql(insert, True)
             s2220_exame_id = resp[0][0]

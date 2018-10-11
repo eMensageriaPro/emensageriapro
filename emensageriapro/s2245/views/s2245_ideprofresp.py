@@ -370,22 +370,20 @@ def listar(request, hash, slug=0):
             'show_criado_em': 0,
             'show_codcbo': 1,
             'show_formprof': 1,
-            'show_matricula': 0,
             'show_tpprof': 1,
             'show_nmprof': 1,
             'show_cpfprof': 1,
-            'show_s2245_evttreicap': 1, }
+            'show_s2245_infocomplem': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
                 'codcbo__icontains': 'codcbo__icontains',
                 'formprof__icontains': 'formprof__icontains',
-                'matricula__icontains': 'matricula__icontains',
                 'tpprof': 'tpprof',
                 'nmprof__icontains': 'nmprof__icontains',
                 'cpfprof__icontains': 'cpfprof__icontains',
-                's2245_evttreicap': 's2245_evttreicap',}
+                's2245_infocomplem': 's2245_infocomplem',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
@@ -394,11 +392,10 @@ def listar(request, hash, slug=0):
                 dict_fields = {
                 'codcbo__icontains': 'codcbo__icontains',
                 'formprof__icontains': 'formprof__icontains',
-                'matricula__icontains': 'matricula__icontains',
                 'tpprof': 'tpprof',
                 'nmprof__icontains': 'nmprof__icontains',
                 'cpfprof__icontains': 'cpfprof__icontains',
-                's2245_evttreicap': 's2245_evttreicap',}
+                's2245_infocomplem': 's2245_infocomplem',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)
@@ -408,7 +405,7 @@ def listar(request, hash, slug=0):
             s2245_ideprofresp_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
         
-        s2245_evttreicap_lista = s2245evtTreiCap.objects.using( db_slug ).filter(excluido = False).all()
+        s2245_infocomplem_lista = s2245infoComplem.objects.using( db_slug ).filter(excluido = False).all()
         #s2245_ideprofresp_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2245_ideprofresp'
@@ -429,7 +426,7 @@ def listar(request, hash, slug=0):
             'hash': hash,
             'filtrar': filtrar,
             
-            's2245_evttreicap_lista': s2245_evttreicap_lista,
+            's2245_infocomplem_lista': s2245_infocomplem_lista,
         }
         if for_print in (0,1):
             return render(request, 's2245_ideprofresp_listar.html', context)

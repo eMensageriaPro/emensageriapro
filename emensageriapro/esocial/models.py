@@ -313,21 +313,6 @@ CHOICES_S1060_TPAMB = (
 CHOICES_S1060_TPINSC = (
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1065_PROCEMI = (
-    (1, u'1 - Aplicativo do empregador'),
-    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
-    (3, u'3 - Aplicativo governamental - Web Geral'),
-    (4, u'4 - Aplicativo governamental - Microempreendedor Individual (MEI)'),
-    (5, u'5 - Aplicativo governamental - Segurado Especial.'),
-)
-
-CHOICES_S1065_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
 )
 
 CHOICES_S1070_PROCEMI = (
@@ -395,12 +380,8 @@ CHOICES_S1200_TPAMB = (
 
 CHOICES_S1200_TPINSC = (
     (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
@@ -553,12 +534,8 @@ CHOICES_S1260_TPAMB = (
 
 CHOICES_S1260_TPINSC = (
     (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
@@ -586,12 +563,8 @@ CHOICES_S1270_TPAMB = (
 
 CHOICES_S1270_TPINSC = (
     (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
@@ -857,24 +830,8 @@ CHOICES_S2200_TPCONTR = (
 
 CHOICES_S2200_TPINSC = (
     (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
@@ -986,16 +943,8 @@ CHOICES_S2206_TPCONTR = (
 
 CHOICES_S2206_TPINSC = (
     (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
@@ -1144,12 +1093,8 @@ CHOICES_S2210_TPCAT = (
 
 CHOICES_S2210_TPINSC = (
     (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
@@ -1161,18 +1106,6 @@ CHOICES_S2210_TPLOCAL = (
     (5, u'5 - Área rural'),
     (6, u'6 - Embarcação'),
     (9, u'9 - Outros'),
-)
-
-CHOICES_S2210_TPREGISTRADOR = (
-    (1, u'1 - Empregador'),
-    (2, u'2 - Cooperativa'),
-    (3, u'3 - Sindicato de trabalhadores avulsos não portuários'),
-    (4, u'4 - Órgão Gestor de Mão de Obra'),
-    (5, u'5 - Empregado'),
-    (6, u'6 - Dependente do empregado'),
-    (7, u'7 - Entidade Sindical competente'),
-    (8, u'8 - Médico assistente'),
-    (9, u'9 - Autoridade Pública'),
 )
 
 CHOICES_S2220_INDRETIF = (
@@ -1207,16 +1140,41 @@ CHOICES_S2220_TPASO = (
     (8, u'8 - Demissional'),
 )
 
-CHOICES_S2220_TPEXAME = (
-    (0, u'0 - Exame médico ocupacional'),
-    (1, u'1 - Exame toxicológico do motorista profissional'),
+CHOICES_S2220_TPEXAMEOCUP = (
+    (0, u'0 - Exame médico admissional'),
+    (1, u'1 - Exame médico periódico, conforme NR7 do MTb e/ou planejamento do PCMSO'),
+    (2, u'2 - Exame médico de retorno ao trabalho'),
+    (3, u'3 - Exame médico de mudança de função'),
+    (4, u'4 - Exame médico de monitoração pontual, não enquadrado nos demais casos'),
+    (9, u'9 - Exame médico demissional'),
 )
 
 CHOICES_S2220_TPINSC = (
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S2221_INDRETIF = (
+    (1, u'1 - para arquivo original'),
+    (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2221_PROCEMI = (
+    (1, u'1 - Aplicativo do empregador'),
+    (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
+    (3, u'3 - Aplicativo governamental - Web Geral'),
+    (4, u'4 - Aplicativo governamental - Microempreendedor Individual(MEI)'),
+    (5, u'5 - Aplicativo governamental - Segurado Especial'),
+)
+
+CHOICES_S2221_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2221_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
 )
 
 CHOICES_S2230_INDRETIF = (
@@ -1265,6 +1223,11 @@ CHOICES_S2231_TPAMB = (
 CHOICES_S2240_INDRETIF = (
     (1, u'1 - para arquivo original'),
     (2, u'2 - para arquivo de retificação'),
+)
+
+CHOICES_S2300_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
 )
 
 CHOICES_S2240_PROCEMI = (
@@ -1317,12 +1280,6 @@ CHOICES_S2245_INDRETIF = (
     (2, u'2 - Arquivo de retificação'),
 )
 
-CHOICES_S2245_MODTREICAP = (
-    (1, u'1 - Presencial'),
-    (2, u'2 - Educação a Distância (EaD)'),
-    (3, u'3 - Mista'),
-)
-
 CHOICES_S2245_PROCEMI = (
     (1, u'1 - Aplicativo do empregador'),
     (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
@@ -1336,12 +1293,9 @@ CHOICES_S2245_TPAMB = (
     (2, u'2 - Produção restrita'),
 )
 
-CHOICES_S2245_TPTREICAP = (
-    (1, u'1 - Inicial'),
-    (2, u'2 - Periódico'),
-    (3, u'3 - Reciclagem'),
-    (4, u'4 - Eventual'),
-    (5, u'5 - Outros'),
+CHOICES_S2245_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
 )
 
 CHOICES_S2250_INDRETIF = (
@@ -1581,11 +1535,6 @@ CHOICES_S2300_SEXO = (
     ('M', u'M - Masculino'),
 )
 
-CHOICES_S2300_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
 CHOICES_S2300_TPINSC = (
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
@@ -1653,16 +1602,8 @@ CHOICES_S2399_TPAMB = (
 
 CHOICES_S2399_TPINSC = (
     (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
@@ -1676,8 +1617,6 @@ CHOICES_S2400_ESTCIV = (
 
 CHOICES_S2400_INCFISMEN = (
     ('N', u'N - Não'),
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
     ('S', u'S - Sim'),
 )
 
@@ -1715,9 +1654,6 @@ CHOICES_S2400_TPAMB = (
 
 CHOICES_S2400_TPINSC = (
     (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
 CHOICES_S2405_ESTCIV = (
@@ -1730,8 +1666,6 @@ CHOICES_S2405_ESTCIV = (
 
 CHOICES_S2405_INCFISMEN = (
     ('N', u'N - Não'),
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
     ('S', u'S - Sim'),
 )
 
@@ -1767,6 +1701,10 @@ CHOICES_S2405_TPAMB = (
     (2, u'2 - Produção restrita'),
 )
 
+CHOICES_S2405_TPINSC = (
+    (1, u'1 - CNPJ'),
+)
+
 CHOICES_S2410_CADINI = (
     ('N', u'N - Não'),
     ('S', u'S - Sim'),
@@ -1798,6 +1736,10 @@ CHOICES_S2410_PROCEMI = (
 CHOICES_S2410_TPAMB = (
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2410_TPINSC = (
+    (1, u'1 - CNPJ'),
 )
 
 CHOICES_S2410_TPPLANRP = (
@@ -1840,6 +1782,10 @@ CHOICES_S2416_TPAMB = (
     (2, u'2 - Produção restrita'),
 )
 
+CHOICES_S2416_TPINSC = (
+    (1, u'1 - CNPJ'),
+)
+
 CHOICES_S2416_TPPLANRP = (
     (0, u'0 - Sem segregação da massa'),
     (1, u'1 - Fundo em capitalização'),
@@ -1863,6 +1809,10 @@ CHOICES_S2420_PROCEMI = (
 CHOICES_S2420_TPAMB = (
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita'),
+)
+
+CHOICES_S2420_TPINSC = (
+    (1, u'1 - CNPJ'),
 )
 
 CHOICES_S3000_PROCEMI = (
@@ -1940,12 +1890,8 @@ CHOICES_S5001_INDAPURACAO = (
 
 CHOICES_S5001_TPINSC = (
     (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
@@ -1991,12 +1937,8 @@ CHOICES_S5011_INDEXISTINFO = (
 
 CHOICES_S5011_TPINSC = (
     (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
@@ -2496,60 +2438,6 @@ class s1060evtTabAmbiente(models.Model):
 class s1060evtTabAmbienteSerializer(ModelSerializer):
     class Meta:
         model = s1060evtTabAmbiente
-        fields = '__all__'
-            
-
-class s1065evtTabEquipamento(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
-    identidade = models.CharField(max_length=36, blank=True, null=True)
-    tpamb = models.IntegerField(choices=CHOICES_S1065_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1065_PROCEMI, default=1)
-    verproc = models.CharField(max_length=20)
-    tpinsc = models.IntegerField()
-    nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
-    def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
-    #s1065_evttabequipamento_custom#
-    #s1065_evttabequipamento_custom#
-    def evento(self): return self.__dict__
-    class Meta:
-        db_table = r's1065_evttabequipamento'
-        managed = True
-        ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
-
-
-
-class s1065evtTabEquipamentoSerializer(ModelSerializer):
-    class Meta:
-        model = s1065evtTabEquipamento
         fields = '__all__'
             
 
@@ -3653,9 +3541,6 @@ class s2210evtCAT(models.Model):
     tpamb = models.IntegerField(choices=CHOICES_S2210_TPAMB)
     procemi = models.IntegerField(choices=CHOICES_S2210_PROCEMI, default=1)
     verproc = models.CharField(max_length=20)
-    tpregistrador = models.IntegerField(choices=CHOICES_S2210_TPREGISTRADOR)
-    tpinsc = models.IntegerField(choices=CHOICES_S2210_TPINSC, blank=True, null=True)
-    nrinsc = models.CharField(max_length=15, blank=True, null=True)
     tpinsc = models.IntegerField(choices=CHOICES_S2210_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -3670,24 +3555,21 @@ class s2210evtCAT(models.Model):
     indcatobito = models.CharField(choices=CHOICES_S2210_INDCATOBITO, max_length=1)
     dtobito = models.DateField(blank=True, null=True)
     indcomunpolicia = models.CharField(choices=CHOICES_S2210_INDCOMUNPOLICIA, max_length=1)
-    codsitgeradora = models.IntegerField(choices=CHOICES_S2210_CODSITGERADORA, blank=True, null=True)
+    codsitgeradora = models.IntegerField(choices=CHOICES_S2210_CODSITGERADORA)
     iniciatcat = models.IntegerField(choices=CHOICES_S2210_INICIATCAT)
-    observacao = models.CharField(max_length=255, blank=True, null=True)
+    observacao = models.CharField(max_length=999, blank=True, null=True)
     tplocal = models.IntegerField(choices=CHOICES_S2210_TPLOCAL)
-    dsclocal = models.CharField(max_length=80, blank=True, null=True)
+    dsclocal = models.CharField(max_length=255, blank=True, null=True)
     codamb = models.CharField(max_length=30, blank=True, null=True)
-    dsclograd = models.CharField(max_length=100, blank=True, null=True)
-    nrlograd = models.CharField(max_length=10, blank=True, null=True)
+    dsclograd = models.CharField(max_length=100)
+    nrlograd = models.CharField(max_length=10)
     complemento = models.CharField(max_length=30, blank=True, null=True)
-    bairro = models.CharField(max_length=60, blank=True, null=True)
+    bairro = models.CharField(max_length=90, blank=True, null=True)
     cep = models.CharField(max_length=8, blank=True, null=True)
     codmunic = models.TextField(max_length=7, blank=True, null=True)
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
-    cnpjlocalacid = models.CharField(max_length=14, blank=True, null=True)
     pais = models.TextField(max_length=3, blank=True, null=True)
     codpostal = models.CharField(max_length=12, blank=True, null=True)
-    tpinsc = models.IntegerField()
-    nrinsc = models.CharField(max_length=15)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3714,14 +3596,14 @@ class s2210evtCAT(models.Model):
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpregistrador) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtacid) + ' - ' + unicode(self.tpacid) + ' - ' + unicode(self.hracid) + ' - ' + unicode(self.hrstrabantesacid) + ' - ' + unicode(self.tpcat) + ' - ' + unicode(self.indcatobito) + ' - ' + unicode(self.dtobito) + ' - ' + unicode(self.indcomunpolicia) + ' - ' + unicode(self.codsitgeradora) + ' - ' + unicode(self.iniciatcat) + ' - ' + unicode(self.observacao) + ' - ' + unicode(self.tplocal) + ' - ' + unicode(self.dsclocal) + ' - ' + unicode(self.codamb) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.complemento) + ' - ' + unicode(self.bairro) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.cnpjlocalacid) + ' - ' + unicode(self.pais) + ' - ' + unicode(self.codpostal) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtacid) + ' - ' + unicode(self.tpacid) + ' - ' + unicode(self.hracid) + ' - ' + unicode(self.hrstrabantesacid) + ' - ' + unicode(self.tpcat) + ' - ' + unicode(self.indcatobito) + ' - ' + unicode(self.dtobito) + ' - ' + unicode(self.indcomunpolicia) + ' - ' + unicode(self.codsitgeradora) + ' - ' + unicode(self.iniciatcat) + ' - ' + unicode(self.observacao) + ' - ' + unicode(self.tplocal) + ' - ' + unicode(self.dsclocal) + ' - ' + unicode(self.codamb) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.complemento) + ' - ' + unicode(self.bairro) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.pais) + ' - ' + unicode(self.codpostal)
     #s2210_evtcat_custom#
     #s2210_evtcat_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2210_evtcat'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpregistrador', 'tpinsc', 'nrinsc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'dtacid', 'tpacid', 'hracid', 'hrstrabantesacid', 'tpcat', 'indcatobito', 'dtobito', 'indcomunpolicia', 'codsitgeradora', 'iniciatcat', 'observacao', 'tplocal', 'dsclocal', 'codamb', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'cep', 'codmunic', 'uf', 'cnpjlocalacid', 'pais', 'codpostal', 'tpinsc', 'nrinsc']
+        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'dtacid', 'tpacid', 'hracid', 'hrstrabantesacid', 'tpcat', 'indcatobito', 'dtobito', 'indcomunpolicia', 'codsitgeradora', 'iniciatcat', 'observacao', 'tplocal', 'dsclocal', 'codamb', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'cep', 'codmunic', 'uf', 'pais', 'codpostal']
 
 
 
@@ -3747,19 +3629,22 @@ class s2220evtMonit(models.Model):
     nistrab = models.CharField(max_length=11, blank=True, null=True)
     matricula = models.CharField(max_length=30, blank=True, null=True)
     codcateg = models.TextField(max_length=3, blank=True, null=True)
-    tpexame = models.IntegerField(choices=CHOICES_S2220_TPEXAME)
+    tpexameocup = models.IntegerField(choices=CHOICES_S2220_TPEXAMEOCUP)
     dtaso = models.DateField()
     tpaso = models.IntegerField(choices=CHOICES_S2220_TPASO)
     resaso = models.IntegerField(choices=CHOICES_S2220_RESASO)
-    cpfmed = models.CharField(max_length=11)
-    nismed = models.CharField(max_length=11)
+    cpfmed = models.CharField(max_length=11, blank=True, null=True)
+    nismed = models.CharField(max_length=11, blank=True, null=True)
     nmmed = models.CharField(max_length=70)
     nrcrm = models.CharField(max_length=8)
     ufcrm = models.CharField(choices=ESTADOS, max_length=2)
-    codcnes = models.CharField(max_length=7, blank=True, null=True)
-    frmctt = models.CharField(max_length=100)
-    email = models.CharField(max_length=60, blank=True, null=True)
-    nmmed = models.CharField(max_length=70)
+    nisresp = models.CharField(max_length=11)
+    nrconsclasse = models.CharField(max_length=8)
+    ufconsclasse = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
+    cpfresp = models.CharField(max_length=11, blank=True, null=True)
+    nmresp = models.CharField(max_length=70)
+    nrcrm = models.CharField(max_length=8)
+    ufcrm = models.CharField(choices=ESTADOS, max_length=2)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3786,20 +3671,85 @@ class s2220evtMonit(models.Model):
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.tpexame) + ' - ' + unicode(self.dtaso) + ' - ' + unicode(self.tpaso) + ' - ' + unicode(self.resaso) + ' - ' + unicode(self.cpfmed) + ' - ' + unicode(self.nismed) + ' - ' + unicode(self.nmmed) + ' - ' + unicode(self.nrcrm) + ' - ' + unicode(self.ufcrm) + ' - ' + unicode(self.codcnes) + ' - ' + unicode(self.frmctt) + ' - ' + unicode(self.email) + ' - ' + unicode(self.nmmed)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.tpexameocup) + ' - ' + unicode(self.dtaso) + ' - ' + unicode(self.tpaso) + ' - ' + unicode(self.resaso) + ' - ' + unicode(self.cpfmed) + ' - ' + unicode(self.nismed) + ' - ' + unicode(self.nmmed) + ' - ' + unicode(self.nrcrm) + ' - ' + unicode(self.ufcrm) + ' - ' + unicode(self.nisresp) + ' - ' + unicode(self.nrconsclasse) + ' - ' + unicode(self.ufconsclasse) + ' - ' + unicode(self.cpfresp) + ' - ' + unicode(self.nmresp) + ' - ' + unicode(self.nrcrm) + ' - ' + unicode(self.ufcrm)
     #s2220_evtmonit_custom#
     #s2220_evtmonit_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2220_evtmonit'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'tpexame', 'dtaso', 'tpaso', 'resaso', 'cpfmed', 'nismed', 'nmmed', 'nrcrm', 'ufcrm', 'codcnes', 'frmctt', 'email', 'nmmed']
+        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'tpexameocup', 'dtaso', 'tpaso', 'resaso', 'cpfmed', 'nismed', 'nmmed', 'nrcrm', 'ufcrm', 'nisresp', 'nrconsclasse', 'ufconsclasse', 'cpfresp', 'nmresp', 'nrcrm', 'ufcrm']
 
 
 
 class s2220evtMonitSerializer(ModelSerializer):
     class Meta:
         model = s2220evtMonit
+        fields = '__all__'
+            
+
+class s2221evtToxic(models.Model):
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    indretif = models.IntegerField(choices=CHOICES_S2221_INDRETIF)
+    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
+    tpamb = models.IntegerField(choices=CHOICES_S2221_TPAMB)
+    procemi = models.IntegerField(choices=CHOICES_S2221_PROCEMI, default=1)
+    verproc = models.CharField(max_length=20)
+    tpinsc = models.IntegerField(choices=CHOICES_S2221_TPINSC)
+    nrinsc = models.CharField(max_length=15)
+    cpftrab = models.CharField(max_length=11)
+    nistrab = models.CharField(max_length=11, blank=True, null=True)
+    matricula = models.CharField(max_length=30, blank=True, null=True)
+    codcateg = models.TextField(max_length=3, blank=True, null=True)
+    dtexame = models.DateField()
+    cnpjlab = models.CharField(max_length=14)
+    codseqexame = models.CharField(max_length=11)
+    nmmed = models.CharField(max_length=70)
+    nrcrm = models.CharField(max_length=8)
+    ufcrm = models.CharField(choices=ESTADOS, max_length=2)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    validacoes = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    def __unicode__(self):
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtexame) + ' - ' + unicode(self.cnpjlab) + ' - ' + unicode(self.codseqexame) + ' - ' + unicode(self.nmmed) + ' - ' + unicode(self.nrcrm) + ' - ' + unicode(self.ufcrm)
+    #s2221_evttoxic_custom#
+    #s2221_evttoxic_custom#
+    def evento(self): return self.__dict__
+    class Meta:
+        db_table = r's2221_evttoxic'
+        managed = True
+        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'dtexame', 'cnpjlab', 'codseqexame', 'nmmed', 'nrcrm', 'ufcrm']
+
+
+
+class s2221evtToxicSerializer(ModelSerializer):
+    class Meta:
+        model = s2221evtToxic
         fields = '__all__'
             
 
@@ -3915,6 +3865,8 @@ class s2240evtExpRisco(models.Model):
     nistrab = models.CharField(max_length=11, blank=True, null=True)
     matricula = models.CharField(max_length=30, blank=True, null=True)
     codcateg = models.TextField(max_length=3, blank=True, null=True)
+    dtinicondicao = models.DateField()
+    dscativdes = models.CharField(max_length=999)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3942,14 +3894,14 @@ class s2240evtExpRisco(models.Model):
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtinicondicao) + ' - ' + unicode(self.dscativdes)
     #s2240_evtexprisco_custom#
     #s2240_evtexprisco_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2240_evtexprisco'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg']
+        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'dtinicondicao', 'dscativdes']
 
 
 
@@ -4020,25 +3972,21 @@ class s2241evtInsApoSerializer(ModelSerializer):
 
 class s2245evtTreiCap(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
-    identidade = models.CharField(max_length=36, blank=True, null=True)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2245_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2245_TPAMB)
     procemi = models.IntegerField(choices=CHOICES_S2245_PROCEMI, default=1)
     verproc = models.CharField(max_length=20)
-    tpinsc = models.IntegerField()
+    tpinsc = models.IntegerField(choices=CHOICES_S2245_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
     matricula = models.CharField(max_length=30, blank=True, null=True)
     codcateg = models.TextField(max_length=3, blank=True, null=True)
     codtreicap = models.CharField(max_length=4)
-    dttreicap = models.DateField()
-    durtreicap = models.DecimalField(max_digits=15, decimal_places=2, max_length=6)
-    modtreicap = models.IntegerField(choices=CHOICES_S2245_MODTREICAP)
-    tptreicap = models.IntegerField(choices=CHOICES_S2245_TPTREICAP)
     observacao = models.CharField(max_length=999, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -4067,14 +4015,14 @@ class s2245evtTreiCap(models.Model):
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES_INSALPERIC_APOSENTESP)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.codtreicap) + ' - ' + unicode(self.dttreicap) + ' - ' + unicode(self.durtreicap) + ' - ' + unicode(self.modtreicap) + ' - ' + unicode(self.tptreicap) + ' - ' + unicode(self.observacao)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.codtreicap) + ' - ' + unicode(self.observacao)
     #s2245_evttreicap_custom#
     #s2245_evttreicap_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2245_evttreicap'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'codtreicap', 'dttreicap', 'durtreicap', 'modtreicap', 'tptreicap', 'observacao']
+        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'codtreicap', 'observacao']
 
 
 
@@ -4615,7 +4563,7 @@ class s2405evtCdBenefAlt(models.Model):
     tpamb = models.IntegerField(choices=CHOICES_S2405_TPAMB)
     procemi = models.IntegerField(choices=CHOICES_S2405_PROCEMI, default=1)
     verproc = models.CharField(max_length=20)
-    tpinsc = models.IntegerField()
+    tpinsc = models.IntegerField(choices=CHOICES_S2405_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpfbenef = models.CharField(max_length=11)
     dtalteracao = models.DateField()
@@ -4682,7 +4630,7 @@ class s2410evtCdBenIn(models.Model):
     tpamb = models.IntegerField(choices=CHOICES_S2410_TPAMB)
     procemi = models.IntegerField(choices=CHOICES_S2410_PROCEMI, default=1)
     verproc = models.CharField(max_length=20)
-    tpinsc = models.IntegerField()
+    tpinsc = models.IntegerField(choices=CHOICES_S2410_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpfbenef = models.CharField(max_length=11)
     matricula = models.CharField(max_length=30, blank=True, null=True)
@@ -4749,7 +4697,7 @@ class s2416evtCdBenAlt(models.Model):
     tpamb = models.IntegerField(choices=CHOICES_S2416_TPAMB)
     procemi = models.IntegerField(choices=CHOICES_S2416_PROCEMI, default=1)
     verproc = models.CharField(max_length=20)
-    tpinsc = models.IntegerField()
+    tpinsc = models.IntegerField(choices=CHOICES_S2416_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpfbenef = models.CharField(max_length=11)
     nrbeneficio = models.CharField(max_length=20)
@@ -4814,7 +4762,7 @@ class s2420evtCdBenTerm(models.Model):
     tpamb = models.IntegerField(choices=CHOICES_S2420_TPAMB)
     procemi = models.IntegerField(choices=CHOICES_S2420_PROCEMI, default=1)
     verproc = models.CharField(max_length=20)
-    tpinsc = models.IntegerField()
+    tpinsc = models.IntegerField(choices=CHOICES_S2420_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpfbenef = models.CharField(max_length=11)
     nrbeneficio = models.CharField(max_length=20)

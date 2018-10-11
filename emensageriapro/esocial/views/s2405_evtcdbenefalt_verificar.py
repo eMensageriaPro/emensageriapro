@@ -105,7 +105,7 @@ def verificar(request, hash):
     if permissao.permite_listar:
         s2405_evtcdbenefalt = get_object_or_404(s2405evtCdBenefAlt.objects.using( db_slug ), excluido = False, id = s2405_evtcdbenefalt_id)
         s2405_evtcdbenefalt_lista = s2405evtCdBenefAlt.objects.using( db_slug ).filter(id=s2405_evtcdbenefalt_id, excluido = False).all()
-
+   
 
         s2405_endereco_lista = s2405endereco.objects.using(db_slug).filter(s2405_evtcdbenefalt_id__in = listar_ids(s2405_evtcdbenefalt_lista) ).filter(excluido=False).all()
         s2405_brasil_lista = s2405brasil.objects.using(db_slug).filter(s2405_endereco_id__in = listar_ids(s2405_endereco_lista) ).filter(excluido=False).all()
@@ -117,11 +117,11 @@ def verificar(request, hash):
             's2405_evtcdbenefalt_lista': s2405_evtcdbenefalt_lista,
             's2405_evtcdbenefalt_id': s2405_evtcdbenefalt_id,
             's2405_evtcdbenefalt': s2405_evtcdbenefalt,
-
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -172,10 +172,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -210,7 +210,7 @@ def gerar_xml_s2405(s2405_evtcdbenefalt_id, db_slug):
         t = get_template('%s/s2405_evtcdbenefalt_xml.html' % s2405_evtcdbenefalt.versao)
         xml = t.render(context)
         return xml
-
+   
 
 
 @login_required
@@ -233,7 +233,7 @@ def recibo(request, hash, tipo):
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
     if permissao.permite_listar:
-
+   
         s2405_evtcdbenefalt = get_object_or_404(
             s2405evtCdBenefAlt.objects.using( db_slug ),
             excluido = False, id = s2405_evtcdbenefalt_id)
@@ -252,7 +252,7 @@ def recibo(request, hash, tipo):
 
         retorno_ocorrencias = RetornosEventosOcorrencias.objects.using(db_slug).\
             filter(retornos_eventos_id=retorno.id,excluido=False).all()
-
+   
         context = {
             's2405_evtcdbenefalt_id': s2405_evtcdbenefalt_id,
             's2405_evtcdbenefalt': s2405_evtcdbenefalt,
@@ -262,11 +262,11 @@ def recibo(request, hash, tipo):
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
 
-
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -294,10 +294,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -353,8 +353,8 @@ def gerar_xml(request, hash):
         return HttpResponse(xml_assinado, content_type='text/xml')
     else:
         context = {
-
-
+            
+            
             'data': datetime.datetime.now(),
         }
         return render(request, 'permissao_negada.html', context)
@@ -374,7 +374,7 @@ def duplicar(request, hash):
         arquivo = 'arquivos/Eventos/s2405_evtcdbenefalt/%s.xml' % s2405_evtcdbenefalt.identidade
         if not os.path.exists(BASE_DIR + '/' + arquivo):
             xml = gerar_xml_assinado(s2405_evtcdbenefalt_id, db_slug)
-
+   
         texto = ler_arquivo('arquivos/Eventos/s2405_evtcdbenefalt/%s.xml' % s2405_evtcdbenefalt.identidade)
         salvar_arquivo('arquivos/Eventos/s2405_evtcdbenefalt/%s_duplicado_temp.xml' % s2405_evtcdbenefalt.identidade, texto)
         from emensageriapro.funcoes_importacao import importar_arquivo
@@ -384,7 +384,7 @@ def duplicar(request, hash):
         s2405evtCdBenefAlt.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
         messages.success(request, 'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
         url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['identidade'] )
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (dent, s2405_evtcdbenefalt.identidade),
             's2405_evtcdbenefalt', dados['identidade'], usuario_id, 1)
         return redirect('s2405_evtcdbenefalt_salvar', hash=url_hash)
@@ -413,7 +413,7 @@ def criar_alteracao(request, hash):
         from emensageriapro.esocial.views.s2405_evtcdbenefalt import identidade_evento
         dent = identidade_evento(dados['identidade'], db_slug)
         s2405evtCdBenefAlt.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         gravar_auditoria(u'{}', u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (dent, s2405_evtcdbenefalt.identidade),
             's2405_evtcdbenefalt', dados['identidade'], usuario_id, 1)
         messages.success(request, 'Evento de alteração criado com sucesso!')
@@ -446,7 +446,7 @@ def criar_exclusao(request, hash):
         from emensageriapro.esocial.views.s2405_evtcdbenefalt import identidade_evento
         dent = identidade_evento(dados['identidade'], db_slug)
         s2405evtCdBenefAlt.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         gravar_auditoria(u'{}', u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (dent, s2405_evtcdbenefalt.identidade),
             's2405_evtcdbenefalt', dados['identidade'], usuario_id, 1)
         messages.success(request, 'Evento de exclusão criado com sucesso!')
@@ -471,7 +471,7 @@ def alterar_identidade(request, hash):
             dent = identidade_evento(s2405_evtcdbenefalt_id, db_slug)
             messages.success(request, 'Identidade do evento alterada com sucesso!')
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s2405_evtcdbenefalt_id )
-            usuario_id = request.session['usuario_id']
+            usuario_id = request.user.id
             gravar_auditoria(u'{}', u'{"funcao": "Identidade do evento foi alterada"}',
             's2405_evtcdbenefalt', s2405_evtcdbenefalt_id, usuario_id, 1)
             return redirect('s2405_evtcdbenefalt_salvar', hash=url_hash)
@@ -504,7 +504,7 @@ def abrir_evento_para_edicao(request, hash):
                 gravar_nome_arquivo('/arquivos/Eventos/s2405_evtcdbenefalt/%s_backup_%s.xml' % (s2405_evtcdbenefalt.identidade, data_hora_atual),
                     1)
             messages.success(request, 'Evento aberto para edição!')
-            usuario_id = request.session['usuario_id']
+            usuario_id = request.user.id
             gravar_auditoria(u'{}', u'{"funcao": "Evento aberto para edição"}',
             's2405_evtcdbenefalt', s2405_evtcdbenefalt_id, usuario_id, 1)
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s2405_evtcdbenefalt_id )
@@ -531,12 +531,23 @@ def validar_evento_funcao(s2405_evtcdbenefalt_id, db_slug):
     from emensageriapro.settings import BASE_DIR
     lista_validacoes = []
     s2405_evtcdbenefalt = get_object_or_404(s2405evtCdBenefAlt.objects.using(db_slug), excluido=False, id=s2405_evtcdbenefalt_id)
-    quant = validar_precedencia('esocial', 's2405_evtcdbenefalt', s2405_evtcdbenefalt_id)
-    if quant <= 0:
-        #lista_validacoes.append('Precedência não foi enviada!')
-        precedencia = 0
+    if s2405_evtcdbenefalt.transmissor_lote_esocial:
+        if s2405_evtcdbenefalt.transmissor_lote_esocial.transmissor:
+            if s2405_evtcdbenefalt.transmissor_lote_esocial.transmissor.verificar_predecessao:
+                quant = validar_precedencia('esocial', 's2405_evtcdbenefalt', s2405_evtcdbenefalt_id)
+                if quant <= 0:
+                    lista_validacoes.append('Precedência não foi enviada!')
+                    precedencia = 0
+                else:
+                    precedencia = 1
+            else:
+                precedencia = 1
+        else:
+            lista_validacoes.append('Precedência não foi enviada!')
+            precedencia = 0
     else:
-        precedencia = 1
+        lista_validacoes.append('Precedência não foi enviada!')
+        precedencia = 0
     executar_sql("UPDATE public.s2405_evtcdbenefalt SET validacao_precedencia=%s WHERE id=%s;" % (precedencia, s2405_evtcdbenefalt_id), False)
     #
     # Validações internas

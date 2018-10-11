@@ -17,6 +17,8 @@ from emensageriapro.s2299.views import s2299_infoperapur_detoper as s2299_infope
 from emensageriapro.s2299.views import s2299_infoperapur_detplano as s2299_infoperapur_detplano_views
 from emensageriapro.s2299.views import s2299_infoperapur_infoagnocivo as s2299_infoperapur_infoagnocivo_views
 from emensageriapro.s2299.views import s2299_infoperapur_infosimples as s2299_infoperapur_infosimples_views
+from emensageriapro.s2299.views import s2299_infotrabinterm_proccs as s2299_infotrabinterm_proccs_views
+from emensageriapro.s2299.views import s2299_infotrabinterm_quarentena as s2299_infotrabinterm_quarentena_views
 from emensageriapro.s2299.views import s2299_infoperant as s2299_infoperant_views
 from emensageriapro.s2299.views import s2299_infoperant_ideadc as s2299_infoperant_ideadc_views
 from emensageriapro.s2299.views import s2299_infoperant_ideperiodo as s2299_infoperant_ideperiodo_views
@@ -28,8 +30,6 @@ from emensageriapro.s2299.views import s2299_infotrabinterm as s2299_infotrabint
 from emensageriapro.s2299.views import s2299_infotrabinterm_procjudtrab as s2299_infotrabinterm_procjudtrab_views
 from emensageriapro.s2299.views import s2299_infotrabinterm_infomv as s2299_infotrabinterm_infomv_views
 from emensageriapro.s2299.views import s2299_infotrabinterm_remunoutrempr as s2299_infotrabinterm_remunoutrempr_views
-from emensageriapro.s2299.views import s2299_infotrabinterm_proccs as s2299_infotrabinterm_proccs_views
-from emensageriapro.s2299.views import s2299_infotrabinterm_quarentena as s2299_infotrabinterm_quarentena_views
 from emensageriapro.s2299.views import s2299_infotrabinterm_consigfgts as s2299_infotrabinterm_consigfgts_views
 
 
@@ -331,6 +331,46 @@ url(r'^s2299-infoperapur-infosimples/salvar/(?P<hash>.*)/$',
 
 
 
+url(r'^s2299-infotrabinterm-proccs/apagar/(?P<hash>.*)/$', 
+        s2299_infotrabinterm_proccs_views.apagar, 
+        name='s2299_infotrabinterm_proccs_apagar'),
+
+url(r'^s2299-infotrabinterm-proccs/api/$',
+            s2299_infotrabinterm_proccs_views.s2299infoTrabIntermprocCSList.as_view() ),
+
+        url(r'^s2299-infotrabinterm-proccs/api/(?P<pk>[0-9]+)/$',
+            s2299_infotrabinterm_proccs_views.s2299infoTrabIntermprocCSDetail.as_view() ),
+
+url(r'^s2299-infotrabinterm-proccs/listar/(?P<hash>.*)/$', 
+        s2299_infotrabinterm_proccs_views.listar, 
+        name='s2299_infotrabinterm_proccs'),
+
+url(r'^s2299-infotrabinterm-proccs/salvar/(?P<hash>.*)/$', 
+        s2299_infotrabinterm_proccs_views.salvar, 
+        name='s2299_infotrabinterm_proccs_salvar'),
+
+
+
+url(r'^s2299-infotrabinterm-quarentena/apagar/(?P<hash>.*)/$', 
+        s2299_infotrabinterm_quarentena_views.apagar, 
+        name='s2299_infotrabinterm_quarentena_apagar'),
+
+url(r'^s2299-infotrabinterm-quarentena/api/$',
+            s2299_infotrabinterm_quarentena_views.s2299infoTrabIntermquarentenaList.as_view() ),
+
+        url(r'^s2299-infotrabinterm-quarentena/api/(?P<pk>[0-9]+)/$',
+            s2299_infotrabinterm_quarentena_views.s2299infoTrabIntermquarentenaDetail.as_view() ),
+
+url(r'^s2299-infotrabinterm-quarentena/listar/(?P<hash>.*)/$', 
+        s2299_infotrabinterm_quarentena_views.listar, 
+        name='s2299_infotrabinterm_quarentena'),
+
+url(r'^s2299-infotrabinterm-quarentena/salvar/(?P<hash>.*)/$', 
+        s2299_infotrabinterm_quarentena_views.salvar, 
+        name='s2299_infotrabinterm_quarentena_salvar'),
+
+
+
 url(r'^s2299-infoperant/apagar/(?P<hash>.*)/$', 
         s2299_infoperant_views.apagar, 
         name='s2299_infoperant_apagar'),
@@ -548,46 +588,6 @@ url(r'^s2299-infotrabinterm-remunoutrempr/listar/(?P<hash>.*)/$',
 url(r'^s2299-infotrabinterm-remunoutrempr/salvar/(?P<hash>.*)/$', 
         s2299_infotrabinterm_remunoutrempr_views.salvar, 
         name='s2299_infotrabinterm_remunoutrempr_salvar'),
-
-
-
-url(r'^s2299-infotrabinterm-proccs/apagar/(?P<hash>.*)/$', 
-        s2299_infotrabinterm_proccs_views.apagar, 
-        name='s2299_infotrabinterm_proccs_apagar'),
-
-url(r'^s2299-infotrabinterm-proccs/api/$',
-            s2299_infotrabinterm_proccs_views.s2299infoTrabIntermprocCSList.as_view() ),
-
-        url(r'^s2299-infotrabinterm-proccs/api/(?P<pk>[0-9]+)/$',
-            s2299_infotrabinterm_proccs_views.s2299infoTrabIntermprocCSDetail.as_view() ),
-
-url(r'^s2299-infotrabinterm-proccs/listar/(?P<hash>.*)/$', 
-        s2299_infotrabinterm_proccs_views.listar, 
-        name='s2299_infotrabinterm_proccs'),
-
-url(r'^s2299-infotrabinterm-proccs/salvar/(?P<hash>.*)/$', 
-        s2299_infotrabinterm_proccs_views.salvar, 
-        name='s2299_infotrabinterm_proccs_salvar'),
-
-
-
-url(r'^s2299-infotrabinterm-quarentena/apagar/(?P<hash>.*)/$', 
-        s2299_infotrabinterm_quarentena_views.apagar, 
-        name='s2299_infotrabinterm_quarentena_apagar'),
-
-url(r'^s2299-infotrabinterm-quarentena/api/$',
-            s2299_infotrabinterm_quarentena_views.s2299infoTrabIntermquarentenaList.as_view() ),
-
-        url(r'^s2299-infotrabinterm-quarentena/api/(?P<pk>[0-9]+)/$',
-            s2299_infotrabinterm_quarentena_views.s2299infoTrabIntermquarentenaDetail.as_view() ),
-
-url(r'^s2299-infotrabinterm-quarentena/listar/(?P<hash>.*)/$', 
-        s2299_infotrabinterm_quarentena_views.listar, 
-        name='s2299_infotrabinterm_quarentena'),
-
-url(r'^s2299-infotrabinterm-quarentena/salvar/(?P<hash>.*)/$', 
-        s2299_infotrabinterm_quarentena_views.salvar, 
-        name='s2299_infotrabinterm_quarentena_salvar'),
 
 
 

@@ -353,7 +353,7 @@ def listar(request, hash):
             'show_codcid': 1,
             'show_diagprovavel': 0,
             'show_dsccomplesao': 0,
-            'show_dsclesao': 0,
+            'show_dsclesao': 1,
             'show_indafast': 1,
             'show_durtrat': 1,
             'show_indinternacao': 1,

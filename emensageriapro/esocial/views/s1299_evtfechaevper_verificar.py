@@ -519,12 +519,23 @@ def validar_evento_funcao(s1299_evtfechaevper_id, db_slug):
     from emensageriapro.settings import BASE_DIR
     lista_validacoes = []
     s1299_evtfechaevper = get_object_or_404(s1299evtFechaEvPer.objects.using(db_slug), excluido=False, id=s1299_evtfechaevper_id)
-    quant = validar_precedencia('esocial', 's1299_evtfechaevper', s1299_evtfechaevper_id)
-    if quant <= 0:
-        #lista_validacoes.append('Precedência não foi enviada!')
-        precedencia = 0
+    if s1299_evtfechaevper.transmissor_lote_esocial:
+        if s1299_evtfechaevper.transmissor_lote_esocial.transmissor:
+            if s1299_evtfechaevper.transmissor_lote_esocial.transmissor.verificar_predecessao:
+                quant = validar_precedencia('esocial', 's1299_evtfechaevper', s1299_evtfechaevper_id)
+                if quant <= 0:
+                    lista_validacoes.append('Precedência não foi enviada!')
+                    precedencia = 0
+                else:
+                    precedencia = 1
+            else:
+                precedencia = 1
+        else:
+            lista_validacoes.append('Precedência não foi enviada!')
+            precedencia = 0
     else:
-        precedencia = 1
+        lista_validacoes.append('Precedência não foi enviada!')
+        precedencia = 0
     executar_sql("UPDATE public.s1299_evtfechaevper SET validacao_precedencia=%s WHERE id=%s;" % (precedencia, s1299_evtfechaevper_id), False)
     #
     # Validações internas

@@ -523,12 +523,23 @@ def validar_evento_funcao(s3000_evtexclusao_id, db_slug):
     from emensageriapro.settings import BASE_DIR
     lista_validacoes = []
     s3000_evtexclusao = get_object_or_404(s3000evtExclusao.objects.using(db_slug), excluido=False, id=s3000_evtexclusao_id)
-    quant = validar_precedencia('esocial', 's3000_evtexclusao', s3000_evtexclusao_id)
-    if quant <= 0:
-        #lista_validacoes.append('Precedência não foi enviada!')
-        precedencia = 0
+    if s3000_evtexclusao.transmissor_lote_esocial:
+        if s3000_evtexclusao.transmissor_lote_esocial.transmissor:
+            if s3000_evtexclusao.transmissor_lote_esocial.transmissor.verificar_predecessao:
+                quant = validar_precedencia('esocial', 's3000_evtexclusao', s3000_evtexclusao_id)
+                if quant <= 0:
+                    lista_validacoes.append('Precedência não foi enviada!')
+                    precedencia = 0
+                else:
+                    precedencia = 1
+            else:
+                precedencia = 1
+        else:
+            lista_validacoes.append('Precedência não foi enviada!')
+            precedencia = 0
     else:
-        precedencia = 1
+        lista_validacoes.append('Precedência não foi enviada!')
+        precedencia = 0
     executar_sql("UPDATE public.s3000_evtexclusao SET validacao_precedencia=%s WHERE id=%s;" % (precedencia, s3000_evtexclusao_id), False)
     #
     # Validações internas

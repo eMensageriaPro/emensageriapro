@@ -80,6 +80,8 @@ class form_s2210_atestado(forms.ModelForm):
         
         self.fields['codcid'].widget.attrs['required'] = True
         
+        self.fields['dsclesao'].widget.attrs['required'] = True
+        
         self.fields['indafast'].widget.attrs['required'] = True
         
         self.fields['durtrat'].widget.attrs['required'] = True
@@ -155,6 +157,10 @@ class form_s2210_idelocalacid(forms.ModelForm):
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_s2210_idelocalacid,self ).__init__(*args,**kwargs)
+        
+        self.fields['nrinsc'].widget.attrs['required'] = True
+        
+        self.fields['tpinsc'].widget.attrs['required'] = True
         
         self.fields['s2210_evtcat'].widget.attrs['required'] = True
 

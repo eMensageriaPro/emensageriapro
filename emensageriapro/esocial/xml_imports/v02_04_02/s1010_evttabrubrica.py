@@ -1,4 +1,36 @@
 #coding:utf-8
+"""
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+    
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 import xmltodict
 import pprint
 import json
@@ -6,25 +38,23 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo, create_insert, executar_sql
 
 
-
-
 def read_s1010_evttabrubrica(dados, arquivo, validar=False):
     import untangle
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
-    s1010_evttabrubrica_dados = {}
-    xmlns = doc.eSocial['xmlns'].split('/')
     if validar:
-        s1010_evttabrubrica_dados['status'] = 1
+        status = 1
     else:
-        s1010_evttabrubrica_dados['status'] = 0
-    s1010_evttabrubrica_dados['versao'] = xmlns[len(xmlns)-1]
+        status = 0
+    read_s1010_evttabrubrica_obj(doc, status)
+
+
+
+def read_s1010_evttabrubrica_obj(doc):
+    s1010_evttabrubrica_dados = {}
+    s1010_evttabrubrica_dados['versao'] = 'v02_04_02'
+    s1010_evttabrubrica_dados['status'] = status
     s1010_evttabrubrica_dados['identidade'] = doc.eSocial.evtTabRubrica['Id']
-    # verificacao = executar_sql("""SELECT count(*)
-    #     FROM public.transmissor_eventos_esocial WHERE identidade = '%s';
-    #     """ % s1010_evttabrubrica_dados['identidade'], True)
-    # if validar and verificacao[0][0] != 0:
-    #     return False
     s1010_evttabrubrica_dados['processamento_codigo_resposta'] = 1
     evtTabRubrica = doc.eSocial.evtTabRubrica
     
@@ -40,8 +70,9 @@ def read_s1010_evttabrubrica(dados, arquivo, validar=False):
     insert = create_insert('s1010_evttabrubrica', s1010_evttabrubrica_dados)
     resp = executar_sql(insert, True)
     s1010_evttabrubrica_id = resp[0][0]
+    dados = s1010_evttabrubrica_dados
     dados['evento'] = 's1010'
-    dados['identidade'] = s1010_evttabrubrica_id
+    dados['id'] = s1010_evttabrubrica_id
     dados['identidade_evento'] = doc.eSocial.evtTabRubrica['Id']
     dados['status'] = 1
 
@@ -61,6 +92,8 @@ def read_s1010_evttabrubrica(dados, arquivo, validar=False):
             if 'codIncIRRF' in dir(inclusao.dadosRubrica): s1010_inclusao_dados['codincirrf'] = inclusao.dadosRubrica.codIncIRRF.cdata
             if 'codIncFGTS' in dir(inclusao.dadosRubrica): s1010_inclusao_dados['codincfgts'] = inclusao.dadosRubrica.codIncFGTS.cdata
             if 'codIncSIND' in dir(inclusao.dadosRubrica): s1010_inclusao_dados['codincsind'] = inclusao.dadosRubrica.codIncSIND.cdata
+            if 'codIncCPRP' in dir(inclusao.dadosRubrica): s1010_inclusao_dados['codinccprp'] = inclusao.dadosRubrica.codIncCPRP.cdata
+            if 'tetoRemun' in dir(inclusao.dadosRubrica): s1010_inclusao_dados['tetoremun'] = inclusao.dadosRubrica.tetoRemun.cdata
             if 'observacao' in dir(inclusao.dadosRubrica): s1010_inclusao_dados['observacao'] = inclusao.dadosRubrica.observacao.cdata
             insert = create_insert('s1010_inclusao', s1010_inclusao_dados)
             resp = executar_sql(insert, True)
@@ -76,6 +109,9 @@ def read_s1010_evttabrubrica(dados, arquivo, validar=False):
                     if 'nrProc' in dir(ideProcessoCP): s1010_inclusao_ideprocessocp_dados['nrproc'] = ideProcessoCP.nrProc.cdata
                     if 'extDecisao' in dir(ideProcessoCP): s1010_inclusao_ideprocessocp_dados['extdecisao'] = ideProcessoCP.extDecisao.cdata
                     if 'codSusp' in dir(ideProcessoCP): s1010_inclusao_ideprocessocp_dados['codsusp'] = ideProcessoCP.codSusp.cdata
+                    if 'tpProc' in dir(ideProcessoCP): s1010_inclusao_ideprocessocp_dados['tpproc'] = ideProcessoCP.tpProc.cdata
+                    if 'nrProc' in dir(ideProcessoCP): s1010_inclusao_ideprocessocp_dados['nrproc'] = ideProcessoCP.nrProc.cdata
+                    if 'extDecisao' in dir(ideProcessoCP): s1010_inclusao_ideprocessocp_dados['extdecisao'] = ideProcessoCP.extDecisao.cdata
                     insert = create_insert('s1010_inclusao_ideprocessocp', s1010_inclusao_ideprocessocp_dados)
                     resp = executar_sql(insert, True)
                     s1010_inclusao_ideprocessocp_id = resp[0][0]
@@ -115,6 +151,16 @@ def read_s1010_evttabrubrica(dados, arquivo, validar=False):
                     s1010_inclusao_ideprocessosind_id = resp[0][0]
                     #print s1010_inclusao_ideprocessosind_id
         
+            if 'ideProcessoCPRP' in dir(inclusao.dadosRubrica):
+                for ideProcessoCPRP in inclusao.dadosRubrica.ideProcessoCPRP:
+                    s1010_inclusao_ideprocessocprp_dados = {}
+                    s1010_inclusao_ideprocessocprp_dados['s1010_inclusao_id'] = s1010_inclusao_id
+                    
+                    insert = create_insert('s1010_inclusao_ideprocessocprp', s1010_inclusao_ideprocessocprp_dados)
+                    resp = executar_sql(insert, True)
+                    s1010_inclusao_ideprocessocprp_id = resp[0][0]
+                    #print s1010_inclusao_ideprocessocprp_id
+        
     if 'alteracao' in dir(evtTabRubrica.infoRubrica):
         for alteracao in evtTabRubrica.infoRubrica.alteracao:
             s1010_alteracao_dados = {}
@@ -131,6 +177,8 @@ def read_s1010_evttabrubrica(dados, arquivo, validar=False):
             if 'codIncIRRF' in dir(alteracao.dadosRubrica): s1010_alteracao_dados['codincirrf'] = alteracao.dadosRubrica.codIncIRRF.cdata
             if 'codIncFGTS' in dir(alteracao.dadosRubrica): s1010_alteracao_dados['codincfgts'] = alteracao.dadosRubrica.codIncFGTS.cdata
             if 'codIncSIND' in dir(alteracao.dadosRubrica): s1010_alteracao_dados['codincsind'] = alteracao.dadosRubrica.codIncSIND.cdata
+            if 'codIncCPRP' in dir(alteracao.dadosRubrica): s1010_alteracao_dados['codinccprp'] = alteracao.dadosRubrica.codIncCPRP.cdata
+            if 'tetoRemun' in dir(alteracao.dadosRubrica): s1010_alteracao_dados['tetoremun'] = alteracao.dadosRubrica.tetoRemun.cdata
             if 'observacao' in dir(alteracao.dadosRubrica): s1010_alteracao_dados['observacao'] = alteracao.dadosRubrica.observacao.cdata
             insert = create_insert('s1010_alteracao', s1010_alteracao_dados)
             resp = executar_sql(insert, True)
@@ -146,6 +194,9 @@ def read_s1010_evttabrubrica(dados, arquivo, validar=False):
                     if 'nrProc' in dir(ideProcessoCP): s1010_alteracao_ideprocessocp_dados['nrproc'] = ideProcessoCP.nrProc.cdata
                     if 'extDecisao' in dir(ideProcessoCP): s1010_alteracao_ideprocessocp_dados['extdecisao'] = ideProcessoCP.extDecisao.cdata
                     if 'codSusp' in dir(ideProcessoCP): s1010_alteracao_ideprocessocp_dados['codsusp'] = ideProcessoCP.codSusp.cdata
+                    if 'tpProc' in dir(ideProcessoCP): s1010_alteracao_ideprocessocp_dados['tpproc'] = ideProcessoCP.tpProc.cdata
+                    if 'nrProc' in dir(ideProcessoCP): s1010_alteracao_ideprocessocp_dados['nrproc'] = ideProcessoCP.nrProc.cdata
+                    if 'extDecisao' in dir(ideProcessoCP): s1010_alteracao_ideprocessocp_dados['extdecisao'] = ideProcessoCP.extDecisao.cdata
                     insert = create_insert('s1010_alteracao_ideprocessocp', s1010_alteracao_ideprocessocp_dados)
                     resp = executar_sql(insert, True)
                     s1010_alteracao_ideprocessocp_id = resp[0][0]
@@ -184,6 +235,16 @@ def read_s1010_evttabrubrica(dados, arquivo, validar=False):
                     resp = executar_sql(insert, True)
                     s1010_alteracao_ideprocessosind_id = resp[0][0]
                     #print s1010_alteracao_ideprocessosind_id
+        
+            if 'ideProcessoCPRP' in dir(alteracao.dadosRubrica):
+                for ideProcessoCPRP in alteracao.dadosRubrica.ideProcessoCPRP:
+                    s1010_alteracao_ideprocessocprp_dados = {}
+                    s1010_alteracao_ideprocessocprp_dados['s1010_alteracao_id'] = s1010_alteracao_id
+                    
+                    insert = create_insert('s1010_alteracao_ideprocessocprp', s1010_alteracao_ideprocessocprp_dados)
+                    resp = executar_sql(insert, True)
+                    s1010_alteracao_ideprocessocprp_id = resp[0][0]
+                    #print s1010_alteracao_ideprocessocprp_id
         
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:

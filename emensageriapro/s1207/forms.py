@@ -44,56 +44,6 @@ __author__ = 'marcelovasconcellos'
 
 
 
-class form_s1207_infoperant_remunperant(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1207_infoperant_remunperant,self ).__init__(*args,**kwargs)
-        self.fields['s1207_infoperant_ideestab'].queryset = s1207infoPerAntideEstab.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1207_infoperant_ideestab'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1207infoPerAntremunPerAnt
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s1207_infoperant_itensremun(forms.ModelForm):
-    vrrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    vrunit = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1207_infoperant_itensremun,self ).__init__(*args,**kwargs)
-        
-        self.fields['vrrubr'].widget.attrs['required'] = True
-        
-        self.fields['idetabrubr'].widget.attrs['required'] = True
-        
-        self.fields['codrubr'].widget.attrs['required'] = True
-        self.fields['s1207_infoperant_remunperant'].queryset = s1207infoPerAntremunPerAnt.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1207_infoperant_remunperant'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1207infoPerAntitensRemun
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
 class form_s1207_procjudtrab(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
@@ -345,6 +295,56 @@ class form_s1207_infoperant_ideestab(forms.ModelForm):
 
     class Meta:
         model = s1207infoPerAntideEstab
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s1207_infoperant_remunperant(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1207_infoperant_remunperant,self ).__init__(*args,**kwargs)
+        self.fields['s1207_infoperant_ideestab'].queryset = s1207infoPerAntideEstab.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s1207_infoperant_ideestab'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1207infoPerAntremunPerAnt
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s1207_infoperant_itensremun(forms.ModelForm):
+    vrrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vrunit = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1207_infoperant_itensremun,self ).__init__(*args,**kwargs)
+        
+        self.fields['vrrubr'].widget.attrs['required'] = True
+        
+        self.fields['idetabrubr'].widget.attrs['required'] = True
+        
+        self.fields['codrubr'].widget.attrs['required'] = True
+        self.fields['s1207_infoperant_remunperant'].queryset = s1207infoPerAntremunPerAnt.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s1207_infoperant_remunperant'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1207infoPerAntitensRemun
         exclude = [ 
             'excluido',
             'modificado_por',

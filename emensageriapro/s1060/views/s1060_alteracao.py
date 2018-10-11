@@ -139,16 +139,11 @@ def salvar(request, hash):
         if int(dict_hash['print']):
             s1060_alteracao_form = disabled_form_for_print(s1060_alteracao_form)
 
-        s1060_alteracao_fatorrisco_form = None
-        s1060_alteracao_fatorrisco_lista = None
         s1060_alteracao_novavalidade_form = None
         s1060_alteracao_novavalidade_lista = None
         if s1060_alteracao_id:
             s1060_alteracao = get_object_or_404(s1060alteracao.objects.using( db_slug ), excluido = False, id = s1060_alteracao_id)
   
-            s1060_alteracao_fatorrisco_form = form_s1060_alteracao_fatorrisco(initial={ 's1060_alteracao': s1060_alteracao }, slug=db_slug)
-            s1060_alteracao_fatorrisco_form.fields['s1060_alteracao'].widget.attrs['readonly'] = True
-            s1060_alteracao_fatorrisco_lista = s1060alteracaofatorRisco.objects.using( db_slug ).filter(excluido = False, s1060_alteracao_id=s1060_alteracao.id).all()
             s1060_alteracao_novavalidade_form = form_s1060_alteracao_novavalidade(initial={ 's1060_alteracao': s1060_alteracao }, slug=db_slug)
             s1060_alteracao_novavalidade_form.fields['s1060_alteracao'].widget.attrs['readonly'] = True
             s1060_alteracao_novavalidade_lista = s1060alteracaonovaValidade.objects.using( db_slug ).filter(excluido = False, s1060_alteracao_id=s1060_alteracao.id).all()
@@ -175,8 +170,6 @@ def salvar(request, hash):
        
             'hash': hash,
   
-            's1060_alteracao_fatorrisco_form': s1060_alteracao_fatorrisco_form,
-            's1060_alteracao_fatorrisco_lista': s1060_alteracao_fatorrisco_lista,
             's1060_alteracao_novavalidade_form': s1060_alteracao_novavalidade_form,
             's1060_alteracao_novavalidade_lista': s1060_alteracao_novavalidade_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
@@ -358,8 +351,9 @@ def listar(request, hash):
             'show_modificado_em': 0,
             'show_criado_por': 0,
             'show_criado_em': 0,
-            'show_nrinsc': 1,
-            'show_tpinsc': 1,
+            'show_codlotacao': 0,
+            'show_nrinsc': 0,
+            'show_tpinsc': 0,
             'show_localamb': 1,
             'show_dscamb': 1,
             'show_dadosambiente': 0,
@@ -372,6 +366,7 @@ def listar(request, hash):
         if request.method == 'POST':
             post = True
             dict_fields = {
+                'codlotacao__icontains': 'codlotacao__icontains',
                 'nrinsc__icontains': 'nrinsc__icontains',
                 'tpinsc': 'tpinsc',
                 'localamb': 'localamb',
@@ -388,6 +383,7 @@ def listar(request, hash):
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
+                'codlotacao__icontains': 'codlotacao__icontains',
                 'nrinsc__icontains': 'nrinsc__icontains',
                 'tpinsc': 'tpinsc',
                 'localamb': 'localamb',

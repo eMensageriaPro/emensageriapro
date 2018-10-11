@@ -322,20 +322,20 @@ def read_consultaLoteEventos(arquivo, transmissor_lote_esocial_id):
 
 
             if 'evtBasesTrab' in dir(evento):
-                from emensageriapro.esocial.xml_imports.v02_04_02.s5001_evtbasestrab_obj import read_s5001_evtbasestrab_obj
-                dados = read_s5001_evtbasestrab_obj(evento.eSocial)
+                from emensageriapro.esocial.xml_imports.v02_04_02.s5001_evtbasestrab import read_s5001_evtbasestrab_obj
+                dados = read_s5001_evtbasestrab_obj(evento.eSocial, 12)
 
             if 'evtIrrfBenef' in dir(evento):
-                from emensageriapro.esocial.xml_imports.v02_04_02.s5002_evtirrfbenef_obj import read_s5002_evtirrfbenef_obj
-                dados = read_s5002_evtirrfbenef_obj(evento.eSocial)
+                from emensageriapro.esocial.xml_imports.v02_04_02.s5002_evtirrfbenef import read_s5002_evtirrfbenef_obj
+                dados = read_s5002_evtirrfbenef_obj(evento.eSocial, 12)
 
             if 'evtCS' in dir(evento):
-                from emensageriapro.esocial.xml_imports.v02_04_02.s5011_evtcs_obj import read_s5011_evtcs_obj
-                dados = read_s5011_evtcs_obj(evento.eSocial)
+                from emensageriapro.esocial.xml_imports.v02_04_02.s5011_evtcs import read_s5011_evtcs_obj
+                dados = read_s5011_evtcs_obj(evento.eSocial, 12)
 
             if 'evtIrrf' in dir(evento):
-                from emensageriapro.esocial.xml_imports.v02_04_02.s5012_evtirrf_obj import read_s5012_evtirrf_obj
-                dados = read_s5012_evtirrf_obj(evento.eSocial)
+                from emensageriapro.esocial.xml_imports.v02_04_02.s5012_evtirrf import read_s5012_evtirrf_obj
+                dados = read_s5012_evtirrf_obj(evento.eSocial, 12)
 
 
 

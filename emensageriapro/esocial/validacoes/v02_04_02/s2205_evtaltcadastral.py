@@ -1,4 +1,36 @@
 #coding:utf-8
+"""
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+    
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 import xmltodict
 import pprint
 import json
@@ -34,8 +66,8 @@ def validacoes_s2205_evtaltcadastral(arquivo):
     if 'dtNascto' in dir(evtAltCadastral.alteracao.dadosTrabalhador.nascimento): validacoes_lista = validar_campo(validacoes_lista,'evtAltCadastral.alteracao.dadosTrabalhador.nascimento.dtNascto', evtAltCadastral.alteracao.dadosTrabalhador.nascimento.dtNascto.cdata, 1, '')
     if 'codMunic' in dir(evtAltCadastral.alteracao.dadosTrabalhador.nascimento): validacoes_lista = validar_campo(validacoes_lista,'evtAltCadastral.alteracao.dadosTrabalhador.nascimento.codMunic', evtAltCadastral.alteracao.dadosTrabalhador.nascimento.codMunic.cdata, 0, '')
     if 'uf' in dir(evtAltCadastral.alteracao.dadosTrabalhador.nascimento): validacoes_lista = validar_campo(validacoes_lista,'evtAltCadastral.alteracao.dadosTrabalhador.nascimento.uf', evtAltCadastral.alteracao.dadosTrabalhador.nascimento.uf.cdata, 0, '')
-    if 'paisNascto' in dir(evtAltCadastral.alteracao.dadosTrabalhador.nascimento): validacoes_lista = validar_campo(validacoes_lista,'evtAltCadastral.alteracao.dadosTrabalhador.nascimento.paisNascto', evtAltCadastral.alteracao.dadosTrabalhador.nascimento.paisNascto.cdata, 1, '')
-    if 'paisNac' in dir(evtAltCadastral.alteracao.dadosTrabalhador.nascimento): validacoes_lista = validar_campo(validacoes_lista,'evtAltCadastral.alteracao.dadosTrabalhador.nascimento.paisNac', evtAltCadastral.alteracao.dadosTrabalhador.nascimento.paisNac.cdata, 1, '')
+    if 'paisNascto' in dir(evtAltCadastral.alteracao.dadosTrabalhador.nascimento): validacoes_lista = validar_campo(validacoes_lista,'evtAltCadastral.alteracao.dadosTrabalhador.nascimento.paisNascto', evtAltCadastral.alteracao.dadosTrabalhador.nascimento.paisNascto.cdata, 1, '008;040;329;331;334;337;341;345;351;355;357;358;041;359;361;365;367;369;372;375;379;383;386;043;388;391;395;396;399;403;411;420;423;426;047;427;431;434;438;440;442;445;447;449;450;053;452;455;458;461;464;467;472;474;476;477;059;485;488;490;493;494;495;497;499;501;505;063;507;508;511;517;521;525;528;531;535;538;064;542;545;548;551;556;563;566;569;573;575;065;576;578;580;583;586;589;593;599;603;607;069;611;623;625;628;640;647;660;665;670;675;009;072;676;677;678;685;687;690;691;695;697;700;073;705;710;715;720;728;731;735;738;741;744;077;748;750;754;756;759;764;767;770;772;776;080;780;782;783;785;788;790;791;795;800;805;081;810;815;820;823;824;827;828;831;833;840;083;845;847;848;850;855;858;863;866;870;873;085;875;888;890;087;088;090;013;093;097;098;100;101;105;106;108;111;115;017;119;127;131;137;141;145;149;150;151;152;020;153;154;158;160;161;163;165;169;173;177;023;183;187;190;193;195;196;198;199;229;232;025;235;237;239;240;243;244;245;246;247;249;031;251;253;255;259;263;267;271;275;281;285;037;289;291;293;297;301;305;309;313;317;325')
+    if 'paisNac' in dir(evtAltCadastral.alteracao.dadosTrabalhador.nascimento): validacoes_lista = validar_campo(validacoes_lista,'evtAltCadastral.alteracao.dadosTrabalhador.nascimento.paisNac', evtAltCadastral.alteracao.dadosTrabalhador.nascimento.paisNac.cdata, 1, '008;040;329;331;334;337;341;345;351;355;357;358;041;359;361;365;367;369;372;375;379;383;386;043;388;391;395;396;399;403;411;420;423;426;047;427;431;434;438;440;442;445;447;449;450;053;452;455;458;461;464;467;472;474;476;477;059;485;488;490;493;494;495;497;499;501;505;063;507;508;511;517;521;525;528;531;535;538;064;542;545;548;551;556;563;566;569;573;575;065;576;578;580;583;586;589;593;599;603;607;069;611;623;625;628;640;647;660;665;670;675;009;072;676;677;678;685;687;690;691;695;697;700;073;705;710;715;720;728;731;735;738;741;744;077;748;750;754;756;759;764;767;770;772;776;080;780;782;783;785;788;790;791;795;800;805;081;810;815;820;823;824;827;828;831;833;840;083;845;847;848;850;855;858;863;866;870;873;085;875;888;890;087;088;090;013;093;097;098;100;101;105;106;108;111;115;017;119;127;131;137;141;145;149;150;151;152;020;153;154;158;160;161;163;165;169;173;177;023;183;187;190;193;195;196;198;199;229;232;025;235;237;239;240;243;244;245;246;247;249;031;251;253;255;259;263;267;271;275;281;285;037;289;291;293;297;301;305;309;313;317;325')
     if 'nmMae' in dir(evtAltCadastral.alteracao.dadosTrabalhador.nascimento): validacoes_lista = validar_campo(validacoes_lista,'evtAltCadastral.alteracao.dadosTrabalhador.nascimento.nmMae', evtAltCadastral.alteracao.dadosTrabalhador.nascimento.nmMae.cdata, 0, '')
     if 'nmPai' in dir(evtAltCadastral.alteracao.dadosTrabalhador.nascimento): validacoes_lista = validar_campo(validacoes_lista,'evtAltCadastral.alteracao.dadosTrabalhador.nascimento.nmPai', evtAltCadastral.alteracao.dadosTrabalhador.nascimento.nmPai.cdata, 0, '')
     if 'documentos' in dir(evtAltCadastral.alteracao.dadosTrabalhador):
@@ -138,9 +170,11 @@ def validacoes_s2205_evtaltcadastral(arquivo):
             if 'nmDep' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.nmDep', dependente.nmDep.cdata, 1, '')
             if 'dtNascto' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.dtNascto', dependente.dtNascto.cdata, 1, '')
             if 'cpfDep' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.cpfDep', dependente.cpfDep.cdata, 0, '')
+            if 'sexoDep' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.sexoDep', dependente.sexoDep.cdata, 0, 'M;F')
             if 'depIRRF' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.depIRRF', dependente.depIRRF.cdata, 1, 'S;N')
             if 'depSF' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.depSF', dependente.depSF.cdata, 1, 'S;N')
             if 'incTrab' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.incTrab', dependente.incTrab.cdata, 1, 'S;N')
+            if 'depFinsPrev' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.depFinsPrev', dependente.depFinsPrev.cdata, 0, 'S;N')
 
     if 'aposentadoria' in dir(evtAltCadastral.alteracao.dadosTrabalhador):
         for aposentadoria in evtAltCadastral.alteracao.dadosTrabalhador.aposentadoria:

@@ -108,8 +108,8 @@ def verificar(request, hash):
    
 
         s2240_iniexprisco_lista = s2240iniExpRisco.objects.using(db_slug).filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).filter(excluido=False).all()
-        s2240_iniexprisco_infoamb_lista = s2240iniExpRiscoinfoAmb.objects.using(db_slug).filter(s2240_iniexprisco_id__in = listar_ids(s2240_iniexprisco_lista) ).filter(excluido=False).all()
-        s2240_iniexprisco_fatrisco_lista = s2240iniExpRiscofatRisco.objects.using(db_slug).filter(s2240_iniexprisco_infoamb_id__in = listar_ids(s2240_iniexprisco_infoamb_lista) ).filter(excluido=False).all()
+        s2240_iniexprisco_infoamb_lista = s2240iniExpRiscoinfoAmb.objects.using(db_slug).filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).filter(excluido=False).all()
+        s2240_iniexprisco_fatrisco_lista = s2240iniExpRiscofatRisco.objects.using(db_slug).filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).filter(excluido=False).all()
         s2240_iniexprisco_epc_lista = s2240iniExpRiscoepc.objects.using(db_slug).filter(s2240_iniexprisco_fatrisco_id__in = listar_ids(s2240_iniexprisco_fatrisco_lista) ).filter(excluido=False).all()
         s2240_iniexprisco_epi_lista = s2240iniExpRiscoepi.objects.using(db_slug).filter(s2240_iniexprisco_fatrisco_id__in = listar_ids(s2240_iniexprisco_fatrisco_lista) ).filter(excluido=False).all()
         s2240_altexprisco_lista = s2240altExpRisco.objects.using(db_slug).filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).filter(excluido=False).all()
@@ -210,8 +210,8 @@ def gerar_xml_s2240(s2240_evtexprisco_id, db_slug):
         s2240_evtexprisco_lista = s2240evtExpRisco.objects.using( db_slug ).filter(id=s2240_evtexprisco_id, excluido = False).all()
 
         s2240_iniexprisco_lista = s2240iniExpRisco.objects.using(db_slug).filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).filter(excluido=False).all()
-        s2240_iniexprisco_infoamb_lista = s2240iniExpRiscoinfoAmb.objects.using(db_slug).filter(s2240_iniexprisco_id__in = listar_ids(s2240_iniexprisco_lista) ).filter(excluido=False).all()
-        s2240_iniexprisco_fatrisco_lista = s2240iniExpRiscofatRisco.objects.using(db_slug).filter(s2240_iniexprisco_infoamb_id__in = listar_ids(s2240_iniexprisco_infoamb_lista) ).filter(excluido=False).all()
+        s2240_iniexprisco_infoamb_lista = s2240iniExpRiscoinfoAmb.objects.using(db_slug).filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).filter(excluido=False).all()
+        s2240_iniexprisco_fatrisco_lista = s2240iniExpRiscofatRisco.objects.using(db_slug).filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).filter(excluido=False).all()
         s2240_iniexprisco_epc_lista = s2240iniExpRiscoepc.objects.using(db_slug).filter(s2240_iniexprisco_fatrisco_id__in = listar_ids(s2240_iniexprisco_fatrisco_lista) ).filter(excluido=False).all()
         s2240_iniexprisco_epi_lista = s2240iniExpRiscoepi.objects.using(db_slug).filter(s2240_iniexprisco_fatrisco_id__in = listar_ids(s2240_iniexprisco_fatrisco_lista) ).filter(excluido=False).all()
         s2240_altexprisco_lista = s2240altExpRisco.objects.using(db_slug).filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).filter(excluido=False).all()
@@ -567,12 +567,23 @@ def validar_evento_funcao(s2240_evtexprisco_id, db_slug):
     from emensageriapro.settings import BASE_DIR
     lista_validacoes = []
     s2240_evtexprisco = get_object_or_404(s2240evtExpRisco.objects.using(db_slug), excluido=False, id=s2240_evtexprisco_id)
-    quant = validar_precedencia('esocial', 's2240_evtexprisco', s2240_evtexprisco_id)
-    if quant <= 0:
-        #lista_validacoes.append('Precedência não foi enviada!')
-        precedencia = 0
+    if s2240_evtexprisco.transmissor_lote_esocial:
+        if s2240_evtexprisco.transmissor_lote_esocial.transmissor:
+            if s2240_evtexprisco.transmissor_lote_esocial.transmissor.verificar_predecessao:
+                quant = validar_precedencia('esocial', 's2240_evtexprisco', s2240_evtexprisco_id)
+                if quant <= 0:
+                    lista_validacoes.append('Precedência não foi enviada!')
+                    precedencia = 0
+                else:
+                    precedencia = 1
+            else:
+                precedencia = 1
+        else:
+            lista_validacoes.append('Precedência não foi enviada!')
+            precedencia = 0
     else:
-        precedencia = 1
+        lista_validacoes.append('Precedência não foi enviada!')
+        precedencia = 0
     executar_sql("UPDATE public.s2240_evtexprisco SET validacao_precedencia=%s WHERE id=%s;" % (precedencia, s2240_evtexprisco_id), False)
     #
     # Validações internas

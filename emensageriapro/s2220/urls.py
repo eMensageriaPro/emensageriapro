@@ -4,9 +4,7 @@ from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from emensageriapro.s2220.views import s2220_exmedocup as s2220_exmedocup_views
 from emensageriapro.s2220.views import s2220_exame as s2220_exame_views
-from emensageriapro.s2220.views import s2220_toxicologico as s2220_toxicologico_views
 
 
 
@@ -47,26 +45,6 @@ urlpatterns = [
 
 
 
-url(r'^s2220-exmedocup/apagar/(?P<hash>.*)/$', 
-        s2220_exmedocup_views.apagar, 
-        name='s2220_exmedocup_apagar'),
-
-url(r'^s2220-exmedocup/api/$',
-            s2220_exmedocup_views.s2220exMedOcupList.as_view() ),
-
-        url(r'^s2220-exmedocup/api/(?P<pk>[0-9]+)/$',
-            s2220_exmedocup_views.s2220exMedOcupDetail.as_view() ),
-
-url(r'^s2220-exmedocup/listar/(?P<hash>.*)/$', 
-        s2220_exmedocup_views.listar, 
-        name='s2220_exmedocup'),
-
-url(r'^s2220-exmedocup/salvar/(?P<hash>.*)/$', 
-        s2220_exmedocup_views.salvar, 
-        name='s2220_exmedocup_salvar'),
-
-
-
 url(r'^s2220-exame/apagar/(?P<hash>.*)/$', 
         s2220_exame_views.apagar, 
         name='s2220_exame_apagar'),
@@ -84,26 +62,6 @@ url(r'^s2220-exame/listar/(?P<hash>.*)/$',
 url(r'^s2220-exame/salvar/(?P<hash>.*)/$', 
         s2220_exame_views.salvar, 
         name='s2220_exame_salvar'),
-
-
-
-url(r'^s2220-toxicologico/apagar/(?P<hash>.*)/$', 
-        s2220_toxicologico_views.apagar, 
-        name='s2220_toxicologico_apagar'),
-
-url(r'^s2220-toxicologico/api/$',
-            s2220_toxicologico_views.s2220toxicologicoList.as_view() ),
-
-        url(r'^s2220-toxicologico/api/(?P<pk>[0-9]+)/$',
-            s2220_toxicologico_views.s2220toxicologicoDetail.as_view() ),
-
-url(r'^s2220-toxicologico/listar/(?P<hash>.*)/$', 
-        s2220_toxicologico_views.listar, 
-        name='s2220_toxicologico'),
-
-url(r'^s2220-toxicologico/salvar/(?P<hash>.*)/$', 
-        s2220_toxicologico_views.salvar, 
-        name='s2220_toxicologico_salvar'),
 
 
 

@@ -1,4 +1,36 @@
 #coding:utf-8
+"""
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+    
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 import xmltodict
 import pprint
 import json
@@ -6,25 +38,23 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo, create_insert, executar_sql
 
 
-
-
 def read_s2260_evtconvinterm(dados, arquivo, validar=False):
     import untangle
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
-    s2260_evtconvinterm_dados = {}
-    xmlns = doc.eSocial['xmlns'].split('/')
     if validar:
-        s2260_evtconvinterm_dados['status'] = 1
+        status = 1
     else:
-        s2260_evtconvinterm_dados['status'] = 0
-    s2260_evtconvinterm_dados['versao'] = xmlns[len(xmlns)-1]
+        status = 0
+    read_s2260_evtconvinterm_obj(doc, status)
+
+
+
+def read_s2260_evtconvinterm_obj(doc):
+    s2260_evtconvinterm_dados = {}
+    s2260_evtconvinterm_dados['versao'] = 'v02_04_02'
+    s2260_evtconvinterm_dados['status'] = status
     s2260_evtconvinterm_dados['identidade'] = doc.eSocial.evtConvInterm['Id']
-    # verificacao = executar_sql("""SELECT count(*)
-    #     FROM public.transmissor_eventos_esocial WHERE identidade = '%s';
-    #     """ % s2260_evtconvinterm_dados['identidade'], True)
-    # if validar and verificacao[0][0] != 0:
-    #     return False
     s2260_evtconvinterm_dados['processamento_codigo_resposta'] = 1
     evtConvInterm = doc.eSocial.evtConvInterm
     
@@ -52,8 +82,9 @@ def read_s2260_evtconvinterm(dados, arquivo, validar=False):
     insert = create_insert('s2260_evtconvinterm', s2260_evtconvinterm_dados)
     resp = executar_sql(insert, True)
     s2260_evtconvinterm_id = resp[0][0]
+    dados = s2260_evtconvinterm_dados
     dados['evento'] = 's2260'
-    dados['identidade'] = s2260_evtconvinterm_id
+    dados['id'] = s2260_evtconvinterm_id
     dados['identidade_evento'] = doc.eSocial.evtConvInterm['Id']
     dados['status'] = 1
 

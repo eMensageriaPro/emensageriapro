@@ -344,7 +344,6 @@ def listar(request, hash):
             'show_modificado_em': 0,
             'show_criado_por': 0,
             'show_criado_em': 0,
-            'show_codep': 1,
             'show_eficepc': 0,
             'show_dscepc': 1,
             'show_codep': 1,
@@ -353,7 +352,6 @@ def listar(request, hash):
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'codep__icontains': 'codep__icontains',
                 'eficepc__icontains': 'eficepc__icontains',
                 'dscepc__icontains': 'dscepc__icontains',
                 'codep__icontains': 'codep__icontains',
@@ -364,7 +362,6 @@ def listar(request, hash):
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'codep__icontains': 'codep__icontains',
                 'eficepc__icontains': 'eficepc__icontains',
                 'dscepc__icontains': 'dscepc__icontains',
                 'codep__icontains': 'codep__icontains',

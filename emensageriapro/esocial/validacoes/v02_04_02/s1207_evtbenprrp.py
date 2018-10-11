@@ -1,4 +1,36 @@
 #coding:utf-8
+"""
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+    
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 import xmltodict
 import pprint
 import json
@@ -25,6 +57,13 @@ def validacoes_s1207_evtbenprrp(arquivo):
     if 'tpInsc' in dir(evtBenPrRP.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtBenPrRP.ideEmpregador.tpInsc', evtBenPrRP.ideEmpregador.tpInsc.cdata, 1, '1;2;3;4')
     if 'nrInsc' in dir(evtBenPrRP.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtBenPrRP.ideEmpregador.nrInsc', evtBenPrRP.ideEmpregador.nrInsc.cdata, 1, '')
     if 'cpfBenef' in dir(evtBenPrRP.ideBenef): validacoes_lista = validar_campo(validacoes_lista,'evtBenPrRP.ideBenef.cpfBenef', evtBenPrRP.ideBenef.cpfBenef.cdata, 1, '')
+    if 'procJudTrab' in dir(evtBenPrRP.ideBenef):
+        for procJudTrab in evtBenPrRP.ideBenef.procJudTrab:
+            
+            if 'tpTrib' in dir(procJudTrab): validacoes_lista = validar_campo(validacoes_lista,'procJudTrab.tpTrib', procJudTrab.tpTrib.cdata, 1, '1;5')
+            if 'nrProcJud' in dir(procJudTrab): validacoes_lista = validar_campo(validacoes_lista,'procJudTrab.nrProcJud', procJudTrab.nrProcJud.cdata, 1, '')
+            if 'codSusp' in dir(procJudTrab): validacoes_lista = validar_campo(validacoes_lista,'procJudTrab.codSusp', procJudTrab.codSusp.cdata, 0, '')
+
     if 'dmDev' in dir(evtBenPrRP):
         for dmDev in evtBenPrRP.dmDev:
             
@@ -38,5 +77,13 @@ def validacoes_s1207_evtbenprrp(arquivo):
                     if 'codRubr' in dir(itens): validacoes_lista = validar_campo(validacoes_lista,'itens.codRubr', itens.codRubr.cdata, 1, '')
                     if 'ideTabRubr' in dir(itens): validacoes_lista = validar_campo(validacoes_lista,'itens.ideTabRubr', itens.ideTabRubr.cdata, 1, '')
                     if 'vrRubr' in dir(itens): validacoes_lista = validar_campo(validacoes_lista,'itens.vrRubr', itens.vrRubr.cdata, 1, '')
+        
+            if 'infoPerApur' in dir(dmDev):
+                for infoPerApur in dmDev.infoPerApur:
+                    
+        
+            if 'infoPerAnt' in dir(dmDev):
+                for infoPerAnt in dmDev.infoPerAnt:
+                    
         
     return validacoes_lista

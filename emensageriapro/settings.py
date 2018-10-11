@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     'emensageriapro.s2206',
     'emensageriapro.s2210',
     'emensageriapro.s2220',
+    'emensageriapro.s2221',
     'emensageriapro.s2230',
     'emensageriapro.s2231',
     'emensageriapro.s2240',
@@ -209,14 +210,14 @@ USE_L10N = True
 
 USE_TZ = False
 
-STATIC_ROOT = env('STATIC_ROOT')
+#STATIC_ROOT = env('STATIC_ROOT')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR,'static'),
-)  
+    os.path.join(BASE_DIR, 'static'),
+)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

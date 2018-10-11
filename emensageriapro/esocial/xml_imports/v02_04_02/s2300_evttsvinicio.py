@@ -1,4 +1,36 @@
 #coding:utf-8
+"""
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+    
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 import xmltodict
 import pprint
 import json
@@ -6,25 +38,23 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo, create_insert, executar_sql
 
 
-
-
 def read_s2300_evttsvinicio(dados, arquivo, validar=False):
     import untangle
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
-    s2300_evttsvinicio_dados = {}
-    xmlns = doc.eSocial['xmlns'].split('/')
     if validar:
-        s2300_evttsvinicio_dados['status'] = 1
+        status = 1
     else:
-        s2300_evttsvinicio_dados['status'] = 0
-    s2300_evttsvinicio_dados['versao'] = xmlns[len(xmlns)-1]
+        status = 0
+    read_s2300_evttsvinicio_obj(doc, status)
+
+
+
+def read_s2300_evttsvinicio_obj(doc):
+    s2300_evttsvinicio_dados = {}
+    s2300_evttsvinicio_dados['versao'] = 'v02_04_02'
+    s2300_evttsvinicio_dados['status'] = status
     s2300_evttsvinicio_dados['identidade'] = doc.eSocial.evtTSVInicio['Id']
-    # verificacao = executar_sql("""SELECT count(*)
-    #     FROM public.transmissor_eventos_esocial WHERE identidade = '%s';
-    #     """ % s2300_evttsvinicio_dados['identidade'], True)
-    # if validar and verificacao[0][0] != 0:
-    #     return False
     s2300_evttsvinicio_dados['processamento_codigo_resposta'] = 1
     evtTSVInicio = doc.eSocial.evtTSVInicio
     
@@ -61,8 +91,9 @@ def read_s2300_evttsvinicio(dados, arquivo, validar=False):
     insert = create_insert('s2300_evttsvinicio', s2300_evttsvinicio_dados)
     resp = executar_sql(insert, True)
     s2300_evttsvinicio_id = resp[0][0]
+    dados = s2300_evttsvinicio_dados
     dados['evento'] = 's2300'
-    dados['identidade'] = s2300_evttsvinicio_id
+    dados['id'] = s2300_evttsvinicio_id
     dados['identidade_evento'] = doc.eSocial.evtTSVInicio['Id']
     dados['status'] = 1
 
@@ -233,9 +264,11 @@ def read_s2300_evttsvinicio(dados, arquivo, validar=False):
             if 'nmDep' in dir(dependente): s2300_dependente_dados['nmdep'] = dependente.nmDep.cdata
             if 'dtNascto' in dir(dependente): s2300_dependente_dados['dtnascto'] = dependente.dtNascto.cdata
             if 'cpfDep' in dir(dependente): s2300_dependente_dados['cpfdep'] = dependente.cpfDep.cdata
+            if 'sexoDep' in dir(dependente): s2300_dependente_dados['sexodep'] = dependente.sexoDep.cdata
             if 'depIRRF' in dir(dependente): s2300_dependente_dados['depirrf'] = dependente.depIRRF.cdata
             if 'depSF' in dir(dependente): s2300_dependente_dados['depsf'] = dependente.depSF.cdata
             if 'incTrab' in dir(dependente): s2300_dependente_dados['inctrab'] = dependente.incTrab.cdata
+            if 'depFinsPrev' in dir(dependente): s2300_dependente_dados['depfinsprev'] = dependente.depFinsPrev.cdata
             insert = create_insert('s2300_dependente', s2300_dependente_dados)
             resp = executar_sql(insert, True)
             s2300_dependente_id = resp[0][0]
@@ -328,6 +361,7 @@ def read_s2300_evttsvinicio(dados, arquivo, validar=False):
                     if 'tpRegTrab' in dir(infoTrabCedido): s2300_infotrabcedido_dados['tpregtrab'] = infoTrabCedido.tpRegTrab.cdata
                     if 'tpRegPrev' in dir(infoTrabCedido): s2300_infotrabcedido_dados['tpregprev'] = infoTrabCedido.tpRegPrev.cdata
                     if 'infOnus' in dir(infoTrabCedido): s2300_infotrabcedido_dados['infonus'] = infoTrabCedido.infOnus.cdata
+                    if 'indRemunCargo' in dir(infoTrabCedido): s2300_infotrabcedido_dados['indremuncargo'] = infoTrabCedido.indRemunCargo.cdata
                     insert = create_insert('s2300_infotrabcedido', s2300_infotrabcedido_dados)
                     resp = executar_sql(insert, True)
                     s2300_infotrabcedido_id = resp[0][0]

@@ -426,6 +426,13 @@ CHOICES_S2210_LATERALIDADE = (
     (3, u'3 - Ambas'),
 )
 
+CHOICES_S2210_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
 class s2210agenteCausador(models.Model):
     s2210_evtcat = models.ForeignKey('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat')
@@ -463,7 +470,7 @@ class s2210atestado(models.Model):
     indinternacao = models.CharField(choices=CHOICES_S2210_INDINTERNACAO, max_length=1)
     durtrat = models.IntegerField()
     indafast = models.CharField(choices=CHOICES_S2210_INDAFAST, max_length=1)
-    dsclesao = models.IntegerField(choices=CHOICES_S2210_DSCLESAO, blank=True, null=True)
+    dsclesao = models.IntegerField(choices=CHOICES_S2210_DSCLESAO)
     dsccomplesao = models.CharField(max_length=200, blank=True, null=True)
     diagprovavel = models.CharField(max_length=100, blank=True, null=True)
     codcid = models.CharField(max_length=4)
@@ -500,7 +507,7 @@ class s2210catOrigem(models.Model):
     s2210_evtcat = models.OneToOneField('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat')
     dtcatorig = models.DateField()
-    nrcatorig = models.CharField(max_length=40, blank=True, null=True)
+    nrreccatorig = models.CharField(max_length=40, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -509,13 +516,13 @@ class s2210catOrigem(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2210_evtcat) + ' - ' + unicode(self.dtcatorig) + ' - ' + unicode(self.nrcatorig)
+        return unicode(self.s2210_evtcat) + ' - ' + unicode(self.dtcatorig) + ' - ' + unicode(self.nrreccatorig)
     #s2210_catorigem_custom#
     #s2210_catorigem_custom#
     class Meta:
         db_table = r's2210_catorigem'
         managed = True
-        ordering = ['s2210_evtcat', 'dtcatorig', 'nrcatorig']
+        ordering = ['s2210_evtcat', 'dtcatorig', 'nrreccatorig']
 
 
 
@@ -528,6 +535,8 @@ class s2210catOrigemSerializer(ModelSerializer):
 class s2210ideLocalAcid(models.Model):
     s2210_evtcat = models.OneToOneField('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat')
+    tpinsc = models.IntegerField(choices=CHOICES_S2210_TPINSC)
+    nrinsc = models.CharField(max_length=15)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -536,13 +545,13 @@ class s2210ideLocalAcid(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2210_evtcat)
+        return unicode(self.s2210_evtcat) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s2210_idelocalacid_custom#
     #s2210_idelocalacid_custom#
     class Meta:
         db_table = r's2210_idelocalacid'
         managed = True
-        ordering = ['s2210_evtcat']
+        ordering = ['s2210_evtcat', 'tpinsc', 'nrinsc']
 
 
 

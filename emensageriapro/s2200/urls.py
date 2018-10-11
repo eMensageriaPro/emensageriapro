@@ -4,6 +4,7 @@ from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s2200.views import s2200_infodecjud as s2200_infodecjud_views
 from emensageriapro.s2200.views import s2200_documentos as s2200_documentos_views
 from emensageriapro.s2200.views import s2200_ctps as s2200_ctps_views
 from emensageriapro.s2200.views import s2200_ric as s2200_ric_views
@@ -24,7 +25,6 @@ from emensageriapro.s2200.views import s2200_ideestabvinc as s2200_ideestabvinc_
 from emensageriapro.s2200.views import s2200_idetrabsubstituido as s2200_idetrabsubstituido_views
 from emensageriapro.s2200.views import s2200_aprend as s2200_aprend_views
 from emensageriapro.s2200.views import s2200_infoestatutario as s2200_infoestatutario_views
-from emensageriapro.s2200.views import s2200_infodecjud as s2200_infodecjud_views
 from emensageriapro.s2200.views import s2200_localtrabgeral as s2200_localtrabgeral_views
 from emensageriapro.s2200.views import s2200_localtrabdom as s2200_localtrabdom_views
 from emensageriapro.s2200.views import s2200_horcontratual as s2200_horcontratual_views
@@ -74,6 +74,26 @@ from emensageriapro.s2200.views import s2200_cessao as s2200_cessao_views
 """
 
 urlpatterns = [
+
+
+
+url(r'^s2200-infodecjud/apagar/(?P<hash>.*)/$', 
+        s2200_infodecjud_views.apagar, 
+        name='s2200_infodecjud_apagar'),
+
+url(r'^s2200-infodecjud/api/$',
+            s2200_infodecjud_views.s2200infoDecJudList.as_view() ),
+
+        url(r'^s2200-infodecjud/api/(?P<pk>[0-9]+)/$',
+            s2200_infodecjud_views.s2200infoDecJudDetail.as_view() ),
+
+url(r'^s2200-infodecjud/listar/(?P<hash>.*)/$', 
+        s2200_infodecjud_views.listar, 
+        name='s2200_infodecjud'),
+
+url(r'^s2200-infodecjud/salvar/(?P<hash>.*)/$', 
+        s2200_infodecjud_views.salvar, 
+        name='s2200_infodecjud_salvar'),
 
 
 
@@ -474,26 +494,6 @@ url(r'^s2200-infoestatutario/listar/(?P<hash>.*)/$',
 url(r'^s2200-infoestatutario/salvar/(?P<hash>.*)/$', 
         s2200_infoestatutario_views.salvar, 
         name='s2200_infoestatutario_salvar'),
-
-
-
-url(r'^s2200-infodecjud/apagar/(?P<hash>.*)/$', 
-        s2200_infodecjud_views.apagar, 
-        name='s2200_infodecjud_apagar'),
-
-url(r'^s2200-infodecjud/api/$',
-            s2200_infodecjud_views.s2200infoDecJudList.as_view() ),
-
-        url(r'^s2200-infodecjud/api/(?P<pk>[0-9]+)/$',
-            s2200_infodecjud_views.s2200infoDecJudDetail.as_view() ),
-
-url(r'^s2200-infodecjud/listar/(?P<hash>.*)/$', 
-        s2200_infodecjud_views.listar, 
-        name='s2200_infodecjud'),
-
-url(r'^s2200-infodecjud/salvar/(?P<hash>.*)/$', 
-        s2200_infodecjud_views.salvar, 
-        name='s2200_infodecjud_salvar'),
 
 
 

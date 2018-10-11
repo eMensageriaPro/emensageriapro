@@ -138,15 +138,10 @@ def salvar(request, hash):
             s1060_inclusao_form.fields[field].widget.attrs['ng-model'] = 's1060_inclusao_'+field
         if int(dict_hash['print']):
             s1060_inclusao_form = disabled_form_for_print(s1060_inclusao_form)
-
-        s1060_inclusao_fatorrisco_form = None
-        s1060_inclusao_fatorrisco_lista = None
+        #[VARIAVEIS_SECUNDARIAS_VAZIAS]
         if s1060_inclusao_id:
             s1060_inclusao = get_object_or_404(s1060inclusao.objects.using( db_slug ), excluido = False, id = s1060_inclusao_id)
-  
-            s1060_inclusao_fatorrisco_form = form_s1060_inclusao_fatorrisco(initial={ 's1060_inclusao': s1060_inclusao }, slug=db_slug)
-            s1060_inclusao_fatorrisco_form.fields['s1060_inclusao'].widget.attrs['readonly'] = True
-            s1060_inclusao_fatorrisco_lista = s1060inclusaofatorRisco.objects.using( db_slug ).filter(excluido = False, s1060_inclusao_id=s1060_inclusao.id).all()
+            pass
         else:
             s1060_inclusao = None
         #s1060_inclusao_salvar_custom_variaveis#
@@ -169,9 +164,7 @@ def salvar(request, hash):
             'usuario': usuario,
        
             'hash': hash,
-  
-            's1060_inclusao_fatorrisco_form': s1060_inclusao_fatorrisco_form,
-            's1060_inclusao_fatorrisco_lista': s1060_inclusao_fatorrisco_lista,
+            #[VARIAVEIS_SECUNDARIAS]
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
@@ -351,8 +344,9 @@ def listar(request, hash):
             'show_modificado_em': 0,
             'show_criado_por': 0,
             'show_criado_em': 0,
-            'show_nrinsc': 1,
-            'show_tpinsc': 1,
+            'show_codlotacao': 0,
+            'show_nrinsc': 0,
+            'show_tpinsc': 0,
             'show_localamb': 1,
             'show_dscamb': 1,
             'show_dadosambiente': 0,
@@ -365,6 +359,7 @@ def listar(request, hash):
         if request.method == 'POST':
             post = True
             dict_fields = {
+                'codlotacao__icontains': 'codlotacao__icontains',
                 'nrinsc__icontains': 'nrinsc__icontains',
                 'tpinsc': 'tpinsc',
                 'localamb': 'localamb',
@@ -381,6 +376,7 @@ def listar(request, hash):
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
+                'codlotacao__icontains': 'codlotacao__icontains',
                 'nrinsc__icontains': 'nrinsc__icontains',
                 'tpinsc': 'tpinsc',
                 'localamb': 'localamb',

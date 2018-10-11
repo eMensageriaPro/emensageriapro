@@ -1,8 +1,8 @@
 # coding: utf-8
 from django import forms
 from emensageriapro.s2299.models import * 
-from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.tabelas.models import eSocialTrabalhadoresCategorias 
+from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.esocial.models import s2299evtDeslig 
 
 
@@ -351,6 +351,50 @@ class form_s2299_infoperapur_infosimples(forms.ModelForm):
         ]
 
 
+class form_s2299_infotrabinterm_proccs(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2299_infotrabinterm_proccs,self ).__init__(*args,**kwargs)
+        
+        self.fields['nrprocjud'].widget.attrs['required'] = True
+        
+        self.fields['s2299_verbasresc'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s2299infoTrabIntermprocCS
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s2299_infotrabinterm_quarentena(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2299_infotrabinterm_quarentena,self ).__init__(*args,**kwargs)
+        
+        self.fields['dtfimquar'].widget.attrs['required'] = True
+        
+        self.fields['s2299_evtdeslig'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s2299infoTrabIntermquarentena
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
 class form_s2299_infoperant(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
@@ -608,50 +652,6 @@ class form_s2299_infotrabinterm_remunoutrempr(forms.ModelForm):
 
     class Meta:
         model = s2299infoTrabIntermremunOutrEmpr
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s2299_infotrabinterm_proccs(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2299_infotrabinterm_proccs,self ).__init__(*args,**kwargs)
-        
-        self.fields['nrprocjud'].widget.attrs['required'] = True
-        
-        self.fields['s2299_verbasresc'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2299infoTrabIntermprocCS
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s2299_infotrabinterm_quarentena(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2299_infotrabinterm_quarentena,self ).__init__(*args,**kwargs)
-        
-        self.fields['dtfimquar'].widget.attrs['required'] = True
-        
-        self.fields['s2299_evtdeslig'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2299infoTrabIntermquarentena
         exclude = [ 
             'excluido',
             'modificado_por',

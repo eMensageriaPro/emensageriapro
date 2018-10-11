@@ -72,11 +72,11 @@ PERIODOS = (
 CHOICES_S1060_ALTERACAO_LOCALAMB = (
     (1, u'1 - Estabelecimento do próprio empregador'),
     (2, u'2 - Estabelecimento de terceiros'),
+    (3, u'3 - Prestação de serviços em instalações de terceiros não consideradas como lotações dos tipos 03 a 09 da Tabela 10'),
 )
 
 CHOICES_S1060_ALTERACAO_TPINSC = (
     (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
@@ -84,11 +84,11 @@ CHOICES_S1060_ALTERACAO_TPINSC = (
 CHOICES_S1060_INCLUSAO_LOCALAMB = (
     (1, u'1 - Estabelecimento do próprio empregador'),
     (2, u'2 - Estabelecimento de terceiros'),
+    (3, u'3 - Prestação de serviços em instalações de terceiros não consideradas como lotações dos tipos 03 a 09 da Tabela 10'),
 )
 
 CHOICES_S1060_INCLUSAO_TPINSC = (
     (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
@@ -99,10 +99,11 @@ class s1060alteracao(models.Model):
     codamb = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    dscamb = models.CharField(max_length=999)
+    dscamb = models.CharField(max_length=8000)
     localamb = models.IntegerField(choices=CHOICES_S1060_ALTERACAO_LOCALAMB)
-    tpinsc = models.IntegerField(choices=CHOICES_S1060_ALTERACAO_TPINSC)
-    nrinsc = models.CharField(max_length=15)
+    tpinsc = models.IntegerField(choices=CHOICES_S1060_ALTERACAO_TPINSC, blank=True, null=True)
+    nrinsc = models.CharField(max_length=15, blank=True, null=True)
+    codlotacao = models.CharField(max_length=30, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -111,47 +112,19 @@ class s1060alteracao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1060_evttabambiente) + ' - ' + unicode(self.codamb) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid) + ' - ' + unicode(self.dscamb) + ' - ' + unicode(self.localamb) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
+        return unicode(self.s1060_evttabambiente) + ' - ' + unicode(self.codamb) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid) + ' - ' + unicode(self.dscamb) + ' - ' + unicode(self.localamb) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao)
     #s1060_alteracao_custom#
     #s1060_alteracao_custom#
     class Meta:
         db_table = r's1060_alteracao'
         managed = True
-        ordering = ['s1060_evttabambiente', 'codamb', 'inivalid', 'fimvalid', 'dscamb', 'localamb', 'tpinsc', 'nrinsc']
+        ordering = ['s1060_evttabambiente', 'codamb', 'inivalid', 'fimvalid', 'dscamb', 'localamb', 'tpinsc', 'nrinsc', 'codlotacao']
 
 
 
 class s1060alteracaoSerializer(ModelSerializer):
     class Meta:
         model = s1060alteracao
-        fields = '__all__'
-            
-
-class s1060alteracaofatorRisco(models.Model):
-    s1060_alteracao = models.ForeignKey('s1060alteracao',
-        related_name='%(class)s_s1060_alteracao')
-    codfatris = models.TextField(max_length=10)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s1060_alteracao) + ' - ' + unicode(self.codfatris)
-    #s1060_alteracao_fatorrisco_custom#
-    #s1060_alteracao_fatorrisco_custom#
-    class Meta:
-        db_table = r's1060_alteracao_fatorrisco'
-        managed = True
-        ordering = ['s1060_alteracao', 'codfatris']
-
-
-
-class s1060alteracaofatorRiscoSerializer(ModelSerializer):
-    class Meta:
-        model = s1060alteracaofatorRisco
         fields = '__all__'
             
 
@@ -220,10 +193,11 @@ class s1060inclusao(models.Model):
     codamb = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    dscamb = models.CharField(max_length=999)
+    dscamb = models.CharField(max_length=8000)
     localamb = models.IntegerField(choices=CHOICES_S1060_INCLUSAO_LOCALAMB)
-    tpinsc = models.IntegerField(choices=CHOICES_S1060_INCLUSAO_TPINSC)
-    nrinsc = models.CharField(max_length=15)
+    tpinsc = models.IntegerField(choices=CHOICES_S1060_INCLUSAO_TPINSC, blank=True, null=True)
+    nrinsc = models.CharField(max_length=15, blank=True, null=True)
+    codlotacao = models.CharField(max_length=30, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -232,47 +206,19 @@ class s1060inclusao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1060_evttabambiente) + ' - ' + unicode(self.codamb) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid) + ' - ' + unicode(self.dscamb) + ' - ' + unicode(self.localamb) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
+        return unicode(self.s1060_evttabambiente) + ' - ' + unicode(self.codamb) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid) + ' - ' + unicode(self.dscamb) + ' - ' + unicode(self.localamb) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao)
     #s1060_inclusao_custom#
     #s1060_inclusao_custom#
     class Meta:
         db_table = r's1060_inclusao'
         managed = True
-        ordering = ['s1060_evttabambiente', 'codamb', 'inivalid', 'fimvalid', 'dscamb', 'localamb', 'tpinsc', 'nrinsc']
+        ordering = ['s1060_evttabambiente', 'codamb', 'inivalid', 'fimvalid', 'dscamb', 'localamb', 'tpinsc', 'nrinsc', 'codlotacao']
 
 
 
 class s1060inclusaoSerializer(ModelSerializer):
     class Meta:
         model = s1060inclusao
-        fields = '__all__'
-            
-
-class s1060inclusaofatorRisco(models.Model):
-    s1060_inclusao = models.ForeignKey('s1060inclusao',
-        related_name='%(class)s_s1060_inclusao')
-    codfatris = models.TextField(max_length=10)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s1060_inclusao) + ' - ' + unicode(self.codfatris)
-    #s1060_inclusao_fatorrisco_custom#
-    #s1060_inclusao_fatorrisco_custom#
-    class Meta:
-        db_table = r's1060_inclusao_fatorrisco'
-        managed = True
-        ordering = ['s1060_inclusao', 'codfatris']
-
-
-
-class s1060inclusaofatorRiscoSerializer(ModelSerializer):
-    class Meta:
-        model = s1060inclusaofatorRisco
         fields = '__all__'
             
 

@@ -220,30 +220,6 @@ class form_s1005_inclusao_infopcd(forms.ModelForm):
         ]
 
 
-class form_s1005_inclusao_infosst(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1005_inclusao_infosst,self ).__init__(*args,**kwargs)
-        
-        self.fields['dtiniprog'].widget.attrs['required'] = True
-        
-        self.fields['progsst'].widget.attrs['required'] = True
-        self.fields['s1005_inclusao'].queryset = s1005inclusao.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1005_inclusao'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1005inclusaoinfoSST
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
 class form_s1005_alteracao(forms.ModelForm):
     aliqratajust = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     fap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
@@ -432,30 +408,6 @@ class form_s1005_alteracao_novavalidade(forms.ModelForm):
 
     class Meta:
         model = s1005alteracaonovaValidade
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s1005_alteracao_infosst(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1005_alteracao_infosst,self ).__init__(*args,**kwargs)
-        
-        self.fields['dtiniprog'].widget.attrs['required'] = True
-        
-        self.fields['progsst'].widget.attrs['required'] = True
-        self.fields['s1005_alteracao'].queryset = s1005alteracao.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1005_alteracao'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1005alteracaoinfoSST
         exclude = [ 
             'excluido',
             'modificado_por',

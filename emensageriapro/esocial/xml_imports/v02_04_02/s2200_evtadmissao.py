@@ -1,4 +1,36 @@
 #coding:utf-8
+"""
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+    
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 import xmltodict
 import pprint
 import json
@@ -6,25 +38,23 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo, create_insert, executar_sql
 
 
-
-
 def read_s2200_evtadmissao(dados, arquivo, validar=False):
     import untangle
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
-    s2200_evtadmissao_dados = {}
-    xmlns = doc.eSocial['xmlns'].split('/')
     if validar:
-        s2200_evtadmissao_dados['status'] = 1
+        status = 1
     else:
-        s2200_evtadmissao_dados['status'] = 0
-    s2200_evtadmissao_dados['versao'] = xmlns[len(xmlns)-1]
+        status = 0
+    read_s2200_evtadmissao_obj(doc, status)
+
+
+
+def read_s2200_evtadmissao_obj(doc):
+    s2200_evtadmissao_dados = {}
+    s2200_evtadmissao_dados['versao'] = 'v02_04_02'
+    s2200_evtadmissao_dados['status'] = status
     s2200_evtadmissao_dados['identidade'] = doc.eSocial.evtAdmissao['Id']
-    # verificacao = executar_sql("""SELECT count(*)
-    #     FROM public.transmissor_eventos_esocial WHERE identidade = '%s';
-    #     """ % s2200_evtadmissao_dados['identidade'], True)
-    # if validar and verificacao[0][0] != 0:
-    #     return False
     s2200_evtadmissao_dados['processamento_codigo_resposta'] = 1
     evtAdmissao = doc.eSocial.evtAdmissao
     
@@ -57,6 +87,7 @@ def read_s2200_evtadmissao(dados, arquivo, validar=False):
     if 'nrRecInfPrelim' in dir(evtAdmissao.vinculo): s2200_evtadmissao_dados['nrrecinfprelim'] = evtAdmissao.vinculo.nrRecInfPrelim.cdata
     if 'cadIni' in dir(evtAdmissao.vinculo): s2200_evtadmissao_dados['cadini'] = evtAdmissao.vinculo.cadIni.cdata
     if 'codCargo' in dir(evtAdmissao.vinculo.infoContrato): s2200_evtadmissao_dados['codcargo'] = evtAdmissao.vinculo.infoContrato.codCargo.cdata
+    if 'dtIngrCargo' in dir(evtAdmissao.vinculo.infoContrato): s2200_evtadmissao_dados['dtingrcargo'] = evtAdmissao.vinculo.infoContrato.dtIngrCargo.cdata
     if 'codFuncao' in dir(evtAdmissao.vinculo.infoContrato): s2200_evtadmissao_dados['codfuncao'] = evtAdmissao.vinculo.infoContrato.codFuncao.cdata
     if 'codCateg' in dir(evtAdmissao.vinculo.infoContrato): s2200_evtadmissao_dados['codcateg'] = evtAdmissao.vinculo.infoContrato.codCateg.cdata
     if 'codCarreira' in dir(evtAdmissao.vinculo.infoContrato): s2200_evtadmissao_dados['codcarreira'] = evtAdmissao.vinculo.infoContrato.codCarreira.cdata
@@ -74,8 +105,9 @@ def read_s2200_evtadmissao(dados, arquivo, validar=False):
     insert = create_insert('s2200_evtadmissao', s2200_evtadmissao_dados)
     resp = executar_sql(insert, True)
     s2200_evtadmissao_id = resp[0][0]
+    dados = s2200_evtadmissao_dados
     dados['evento'] = 's2200'
-    dados['identidade'] = s2200_evtadmissao_id
+    dados['id'] = s2200_evtadmissao_id
     dados['identidade_evento'] = doc.eSocial.evtAdmissao['Id']
     dados['status'] = 1
 
@@ -247,9 +279,11 @@ def read_s2200_evtadmissao(dados, arquivo, validar=False):
             if 'nmDep' in dir(dependente): s2200_dependente_dados['nmdep'] = dependente.nmDep.cdata
             if 'dtNascto' in dir(dependente): s2200_dependente_dados['dtnascto'] = dependente.dtNascto.cdata
             if 'cpfDep' in dir(dependente): s2200_dependente_dados['cpfdep'] = dependente.cpfDep.cdata
+            if 'sexoDep' in dir(dependente): s2200_dependente_dados['sexodep'] = dependente.sexoDep.cdata
             if 'depIRRF' in dir(dependente): s2200_dependente_dados['depirrf'] = dependente.depIRRF.cdata
             if 'depSF' in dir(dependente): s2200_dependente_dados['depsf'] = dependente.depSF.cdata
             if 'incTrab' in dir(dependente): s2200_dependente_dados['inctrab'] = dependente.incTrab.cdata
+            if 'depFinsPrev' in dir(dependente): s2200_dependente_dados['depfinsprev'] = dependente.depFinsPrev.cdata
             insert = create_insert('s2200_dependente', s2200_dependente_dados)
             resp = executar_sql(insert, True)
             s2200_dependente_id = resp[0][0]
@@ -336,7 +370,13 @@ def read_s2200_evtadmissao(dados, arquivo, validar=False):
             if 'dtNomeacao' in dir(infoEstatutario): s2200_infoestatutario_dados['dtnomeacao'] = infoEstatutario.dtNomeacao.cdata
             if 'dtPosse' in dir(infoEstatutario): s2200_infoestatutario_dados['dtposse'] = infoEstatutario.dtPosse.cdata
             if 'dtExercicio' in dir(infoEstatutario): s2200_infoestatutario_dados['dtexercicio'] = infoEstatutario.dtExercicio.cdata
+            if 'dtIngSvPub' in dir(infoEstatutario): s2200_infoestatutario_dados['dtingsvpub'] = infoEstatutario.dtIngSvPub.cdata
             if 'tpPlanRP' in dir(infoEstatutario): s2200_infoestatutario_dados['tpplanrp'] = infoEstatutario.tpPlanRP.cdata
+            if 'indTetoRGPS' in dir(infoEstatutario): s2200_infoestatutario_dados['indtetorgps'] = infoEstatutario.indTetoRGPS.cdata
+            if 'indAbonoPerm' in dir(infoEstatutario): s2200_infoestatutario_dados['indabonoperm'] = infoEstatutario.indAbonoPerm.cdata
+            if 'dtIniAbono' in dir(infoEstatutario): s2200_infoestatutario_dados['dtiniabono'] = infoEstatutario.dtIniAbono.cdata
+            if 'indParcRemun' in dir(infoEstatutario): s2200_infoestatutario_dados['indparcremun'] = infoEstatutario.indParcRemun.cdata
+            if 'dtIniParc' in dir(infoEstatutario): s2200_infoestatutario_dados['dtiniparc'] = infoEstatutario.dtIniParc.cdata
             insert = create_insert('s2200_infoestatutario', s2200_infoestatutario_dados)
             resp = executar_sql(insert, True)
             s2200_infoestatutario_id = resp[0][0]
@@ -492,6 +532,17 @@ def read_s2200_evtadmissao(dados, arquivo, validar=False):
             resp = executar_sql(insert, True)
             s2200_desligamento_id = resp[0][0]
             #print s2200_desligamento_id
+
+    if 'cessao' in dir(evtAdmissao.vinculo):
+        for cessao in evtAdmissao.vinculo.cessao:
+            s2200_cessao_dados = {}
+            s2200_cessao_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
+            
+            if 'dtIniCessao' in dir(cessao): s2200_cessao_dados['dtinicessao'] = cessao.dtIniCessao.cdata
+            insert = create_insert('s2200_cessao', s2200_cessao_dados)
+            resp = executar_sql(insert, True)
+            s2200_cessao_id = resp[0][0]
+            #print s2200_cessao_id
 
     from emensageriapro.esocial.views.s2200_evtadmissao_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(s2200_evtadmissao_id, 'default')

@@ -129,8 +129,6 @@ CHOICES_S1000_ALTERACAO_ESFERAOP = (
 
 CHOICES_S1000_ALTERACAO_IDEEFR = (
     ('N', u'N - Não é EFR'),
-    ('N', u'N - Não é EFR'),
-    ('S', u'S - É EFR'),
     ('S', u'S - É EFR'),
 )
 
@@ -173,8 +171,6 @@ CHOICES_S1000_ALTERACAO_INDOPTREGELETRON = (
 
 CHOICES_S1000_ALTERACAO_INDRPPS = (
     ('N', u'N - Não'),
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
     ('S', u'S - Sim'),
 )
 
@@ -248,8 +244,6 @@ CHOICES_S1000_INCLUSAO_ESFERAOP = (
 
 CHOICES_S1000_INCLUSAO_IDEEFR = (
     ('N', u'N - Não é EFR'),
-    ('N', u'N - Não é EFR'),
-    ('S', u'S - É EFR'),
     ('S', u'S - É EFR'),
 )
 
@@ -292,8 +286,6 @@ CHOICES_S1000_INCLUSAO_INDOPTREGELETRON = (
 
 CHOICES_S1000_INCLUSAO_INDRPPS = (
     ('N', u'N - Não'),
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
     ('S', u'S - Sim'),
 )
 

@@ -105,7 +105,7 @@ def verificar(request, hash):
     if permissao.permite_listar:
         s2400_evtcdbenefin = get_object_or_404(s2400evtCdBenefIn.objects.using( db_slug ), excluido = False, id = s2400_evtcdbenefin_id)
         s2400_evtcdbenefin_lista = s2400evtCdBenefIn.objects.using( db_slug ).filter(id=s2400_evtcdbenefin_id, excluido = False).all()
-
+   
 
         s2400_endereco_lista = s2400endereco.objects.using(db_slug).filter(s2400_evtcdbenefin_id__in = listar_ids(s2400_evtcdbenefin_lista) ).filter(excluido=False).all()
         s2400_brasil_lista = s2400brasil.objects.using(db_slug).filter(s2400_endereco_id__in = listar_ids(s2400_endereco_lista) ).filter(excluido=False).all()
@@ -117,11 +117,11 @@ def verificar(request, hash):
             's2400_evtcdbenefin_lista': s2400_evtcdbenefin_lista,
             's2400_evtcdbenefin_id': s2400_evtcdbenefin_id,
             's2400_evtcdbenefin': s2400_evtcdbenefin,
-
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -172,10 +172,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -210,7 +210,7 @@ def gerar_xml_s2400(s2400_evtcdbenefin_id, db_slug):
         t = get_template('%s/s2400_evtcdbenefin_xml.html' % s2400_evtcdbenefin.versao)
         xml = t.render(context)
         return xml
-
+   
 
 
 @login_required
@@ -233,7 +233,7 @@ def recibo(request, hash, tipo):
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
     if permissao.permite_listar:
-
+   
         s2400_evtcdbenefin = get_object_or_404(
             s2400evtCdBenefIn.objects.using( db_slug ),
             excluido = False, id = s2400_evtcdbenefin_id)
@@ -252,7 +252,7 @@ def recibo(request, hash, tipo):
 
         retorno_ocorrencias = RetornosEventosOcorrencias.objects.using(db_slug).\
             filter(retornos_eventos_id=retorno.id,excluido=False).all()
-
+   
         context = {
             's2400_evtcdbenefin_id': s2400_evtcdbenefin_id,
             's2400_evtcdbenefin': s2400_evtcdbenefin,
@@ -262,11 +262,11 @@ def recibo(request, hash, tipo):
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
 
-
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -294,10 +294,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -353,8 +353,8 @@ def gerar_xml(request, hash):
         return HttpResponse(xml_assinado, content_type='text/xml')
     else:
         context = {
-
-
+            
+            
             'data': datetime.datetime.now(),
         }
         return render(request, 'permissao_negada.html', context)
@@ -374,7 +374,7 @@ def duplicar(request, hash):
         arquivo = 'arquivos/Eventos/s2400_evtcdbenefin/%s.xml' % s2400_evtcdbenefin.identidade
         if not os.path.exists(BASE_DIR + '/' + arquivo):
             xml = gerar_xml_assinado(s2400_evtcdbenefin_id, db_slug)
-
+   
         texto = ler_arquivo('arquivos/Eventos/s2400_evtcdbenefin/%s.xml' % s2400_evtcdbenefin.identidade)
         salvar_arquivo('arquivos/Eventos/s2400_evtcdbenefin/%s_duplicado_temp.xml' % s2400_evtcdbenefin.identidade, texto)
         from emensageriapro.funcoes_importacao import importar_arquivo
@@ -384,7 +384,7 @@ def duplicar(request, hash):
         s2400evtCdBenefIn.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
         messages.success(request, 'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
         url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['identidade'] )
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (dent, s2400_evtcdbenefin.identidade),
             's2400_evtcdbenefin', dados['identidade'], usuario_id, 1)
         return redirect('s2400_evtcdbenefin_salvar', hash=url_hash)
@@ -413,7 +413,7 @@ def criar_alteracao(request, hash):
         from emensageriapro.esocial.views.s2400_evtcdbenefin import identidade_evento
         dent = identidade_evento(dados['identidade'], db_slug)
         s2400evtCdBenefIn.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         gravar_auditoria(u'{}', u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (dent, s2400_evtcdbenefin.identidade),
             's2400_evtcdbenefin', dados['identidade'], usuario_id, 1)
         messages.success(request, 'Evento de alteração criado com sucesso!')
@@ -446,7 +446,7 @@ def criar_exclusao(request, hash):
         from emensageriapro.esocial.views.s2400_evtcdbenefin import identidade_evento
         dent = identidade_evento(dados['identidade'], db_slug)
         s2400evtCdBenefIn.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         gravar_auditoria(u'{}', u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (dent, s2400_evtcdbenefin.identidade),
             's2400_evtcdbenefin', dados['identidade'], usuario_id, 1)
         messages.success(request, 'Evento de exclusão criado com sucesso!')
@@ -471,7 +471,7 @@ def alterar_identidade(request, hash):
             dent = identidade_evento(s2400_evtcdbenefin_id, db_slug)
             messages.success(request, 'Identidade do evento alterada com sucesso!')
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s2400_evtcdbenefin_id )
-            usuario_id = request.session['usuario_id']
+            usuario_id = request.user.id
             gravar_auditoria(u'{}', u'{"funcao": "Identidade do evento foi alterada"}',
             's2400_evtcdbenefin', s2400_evtcdbenefin_id, usuario_id, 1)
             return redirect('s2400_evtcdbenefin_salvar', hash=url_hash)
@@ -504,7 +504,7 @@ def abrir_evento_para_edicao(request, hash):
                 gravar_nome_arquivo('/arquivos/Eventos/s2400_evtcdbenefin/%s_backup_%s.xml' % (s2400_evtcdbenefin.identidade, data_hora_atual),
                     1)
             messages.success(request, 'Evento aberto para edição!')
-            usuario_id = request.session['usuario_id']
+            usuario_id = request.user.id
             gravar_auditoria(u'{}', u'{"funcao": "Evento aberto para edição"}',
             's2400_evtcdbenefin', s2400_evtcdbenefin_id, usuario_id, 1)
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s2400_evtcdbenefin_id )
@@ -531,12 +531,23 @@ def validar_evento_funcao(s2400_evtcdbenefin_id, db_slug):
     from emensageriapro.settings import BASE_DIR
     lista_validacoes = []
     s2400_evtcdbenefin = get_object_or_404(s2400evtCdBenefIn.objects.using(db_slug), excluido=False, id=s2400_evtcdbenefin_id)
-    quant = validar_precedencia('esocial', 's2400_evtcdbenefin', s2400_evtcdbenefin_id)
-    if quant <= 0:
-        #lista_validacoes.append('Precedência não foi enviada!')
-        precedencia = 0
+    if s2400_evtcdbenefin.transmissor_lote_esocial:
+        if s2400_evtcdbenefin.transmissor_lote_esocial.transmissor:
+            if s2400_evtcdbenefin.transmissor_lote_esocial.transmissor.verificar_predecessao:
+                quant = validar_precedencia('esocial', 's2400_evtcdbenefin', s2400_evtcdbenefin_id)
+                if quant <= 0:
+                    lista_validacoes.append('Precedência não foi enviada!')
+                    precedencia = 0
+                else:
+                    precedencia = 1
+            else:
+                precedencia = 1
+        else:
+            lista_validacoes.append('Precedência não foi enviada!')
+            precedencia = 0
     else:
-        precedencia = 1
+        lista_validacoes.append('Precedência não foi enviada!')
+        precedencia = 0
     executar_sql("UPDATE public.s2400_evtcdbenefin SET validacao_precedencia=%s WHERE id=%s;" % (precedencia, s2400_evtcdbenefin_id), False)
     #
     # Validações internas

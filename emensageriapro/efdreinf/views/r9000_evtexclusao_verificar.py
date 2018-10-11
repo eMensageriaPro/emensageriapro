@@ -662,12 +662,23 @@ def validar_evento_funcao(r9000_evtexclusao_id, db_slug):
     from emensageriapro.settings import BASE_DIR
     lista_validacoes = []
     r9000_evtexclusao = get_object_or_404(r9000evtExclusao.objects.using(db_slug), excluido=False, id=r9000_evtexclusao_id)
-    quant = validar_precedencia('efdreinf', 'r9000_evtexclusao', r9000_evtexclusao_id)
-    if quant <= 0:
+    if r9000_evtexclusao.transmissor_lote_efdreinf:
+        if r9000_evtexclusao.transmissor_lote_efdreinf.transmissor:
+            if r9000_evtexclusao.transmissor_lote_efdreinf.transmissor.verificar_predecessao:
+                quant = validar_precedencia('efdreinf', 'r9000_evtexclusao', r9000_evtexclusao_id)
+                if quant <= 0:
+                    lista_validacoes.append('Precedência não foi enviada!')
+                    precedencia = 0
+                else:
+                    precedencia = 1
+            else:
+                precedencia = 1
+        else:
+            lista_validacoes.append('Precedência não foi enviada!')
+            precedencia = 0
+    else:
         lista_validacoes.append('Precedência não foi enviada!')
         precedencia = 0
-    else:
-        precedencia = 1
     executar_sql("UPDATE public.r9000_evtexclusao SET validacao_precedencia=%s WHERE id=%s;" % (precedencia, r9000_evtexclusao_id), False)
     #
     # Validações internas

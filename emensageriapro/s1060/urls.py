@@ -5,9 +5,7 @@ from django.conf.urls import include, url
 from django.conf import settings
 from django.conf.urls.static import static
 from emensageriapro.s1060.views import s1060_inclusao as s1060_inclusao_views
-from emensageriapro.s1060.views import s1060_inclusao_fatorrisco as s1060_inclusao_fatorrisco_views
 from emensageriapro.s1060.views import s1060_alteracao as s1060_alteracao_views
-from emensageriapro.s1060.views import s1060_alteracao_fatorrisco as s1060_alteracao_fatorrisco_views
 from emensageriapro.s1060.views import s1060_alteracao_novavalidade as s1060_alteracao_novavalidade_views
 from emensageriapro.s1060.views import s1060_exclusao as s1060_exclusao_views
 
@@ -70,26 +68,6 @@ url(r'^s1060-inclusao/salvar/(?P<hash>.*)/$',
 
 
 
-url(r'^s1060-inclusao-fatorrisco/apagar/(?P<hash>.*)/$', 
-        s1060_inclusao_fatorrisco_views.apagar, 
-        name='s1060_inclusao_fatorrisco_apagar'),
-
-url(r'^s1060-inclusao-fatorrisco/api/$',
-            s1060_inclusao_fatorrisco_views.s1060inclusaofatorRiscoList.as_view() ),
-
-        url(r'^s1060-inclusao-fatorrisco/api/(?P<pk>[0-9]+)/$',
-            s1060_inclusao_fatorrisco_views.s1060inclusaofatorRiscoDetail.as_view() ),
-
-url(r'^s1060-inclusao-fatorrisco/listar/(?P<hash>.*)/$', 
-        s1060_inclusao_fatorrisco_views.listar, 
-        name='s1060_inclusao_fatorrisco'),
-
-url(r'^s1060-inclusao-fatorrisco/salvar/(?P<hash>.*)/$', 
-        s1060_inclusao_fatorrisco_views.salvar, 
-        name='s1060_inclusao_fatorrisco_salvar'),
-
-
-
 url(r'^s1060-alteracao/apagar/(?P<hash>.*)/$', 
         s1060_alteracao_views.apagar, 
         name='s1060_alteracao_apagar'),
@@ -107,26 +85,6 @@ url(r'^s1060-alteracao/listar/(?P<hash>.*)/$',
 url(r'^s1060-alteracao/salvar/(?P<hash>.*)/$', 
         s1060_alteracao_views.salvar, 
         name='s1060_alteracao_salvar'),
-
-
-
-url(r'^s1060-alteracao-fatorrisco/apagar/(?P<hash>.*)/$', 
-        s1060_alteracao_fatorrisco_views.apagar, 
-        name='s1060_alteracao_fatorrisco_apagar'),
-
-url(r'^s1060-alteracao-fatorrisco/api/$',
-            s1060_alteracao_fatorrisco_views.s1060alteracaofatorRiscoList.as_view() ),
-
-        url(r'^s1060-alteracao-fatorrisco/api/(?P<pk>[0-9]+)/$',
-            s1060_alteracao_fatorrisco_views.s1060alteracaofatorRiscoDetail.as_view() ),
-
-url(r'^s1060-alteracao-fatorrisco/listar/(?P<hash>.*)/$', 
-        s1060_alteracao_fatorrisco_views.listar, 
-        name='s1060_alteracao_fatorrisco'),
-
-url(r'^s1060-alteracao-fatorrisco/salvar/(?P<hash>.*)/$', 
-        s1060_alteracao_fatorrisco_views.salvar, 
-        name='s1060_alteracao_fatorrisco_salvar'),
 
 
 

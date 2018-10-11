@@ -344,26 +344,28 @@ def listar(request, hash):
             'show_modificado_em': 0,
             'show_criado_por': 0,
             'show_criado_em': 0,
-            'show_manutencao': 1,
             'show_higienizacao': 1,
             'show_periodictroca': 1,
             'show_przvalid': 1,
+            'show_usoinint': 1,
             'show_condfuncto': 1,
             'show_medprotecao': 1,
             'show_eficepi': 1,
+            'show_dscepi': 0,
             'show_caepi': 0,
             'show_s2240_iniexprisco_fatrisco': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'manutencao__icontains': 'manutencao__icontains',
                 'higienizacao__icontains': 'higienizacao__icontains',
                 'periodictroca__icontains': 'periodictroca__icontains',
                 'przvalid__icontains': 'przvalid__icontains',
+                'usoinint__icontains': 'usoinint__icontains',
                 'condfuncto__icontains': 'condfuncto__icontains',
                 'medprotecao__icontains': 'medprotecao__icontains',
                 'eficepi__icontains': 'eficepi__icontains',
+                'dscepi__icontains': 'dscepi__icontains',
                 'caepi__icontains': 'caepi__icontains',
                 's2240_iniexprisco_fatrisco': 's2240_iniexprisco_fatrisco',}
             for a in dict_fields:
@@ -372,13 +374,14 @@ def listar(request, hash):
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'manutencao__icontains': 'manutencao__icontains',
                 'higienizacao__icontains': 'higienizacao__icontains',
                 'periodictroca__icontains': 'periodictroca__icontains',
                 'przvalid__icontains': 'przvalid__icontains',
+                'usoinint__icontains': 'usoinint__icontains',
                 'condfuncto__icontains': 'condfuncto__icontains',
                 'medprotecao__icontains': 'medprotecao__icontains',
                 'eficepi__icontains': 'eficepi__icontains',
+                'dscepi__icontains': 'dscepi__icontains',
                 'caepi__icontains': 'caepi__icontains',
                 's2240_iniexprisco_fatrisco': 's2240_iniexprisco_fatrisco',}
                 for a in dict_fields:

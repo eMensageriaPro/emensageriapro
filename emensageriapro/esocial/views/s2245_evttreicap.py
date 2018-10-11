@@ -48,8 +48,8 @@ from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
 import base64
-from emensageriapro.s2245.models import s2245ideProfResp
-from emensageriapro.s2245.forms import form_s2245_ideprofresp
+from emensageriapro.s2245.models import s2245infoComplem
+from emensageriapro.s2245.forms import form_s2245_infocomplem
 
 #IMPORTACOES
 
@@ -200,14 +200,14 @@ def salvar(request, hash):
         if int(dict_hash['print']):
             s2245_evttreicap_form = disabled_form_for_print(s2245_evttreicap_form)
 
-        s2245_ideprofresp_form = None
-        s2245_ideprofresp_lista = None
+        s2245_infocomplem_form = None
+        s2245_infocomplem_lista = None
         if s2245_evttreicap_id:
             s2245_evttreicap = get_object_or_404(s2245evtTreiCap.objects.using( db_slug ), excluido = False, id = s2245_evttreicap_id)
   
-            s2245_ideprofresp_form = form_s2245_ideprofresp(initial={ 's2245_evttreicap': s2245_evttreicap }, slug=db_slug)
-            s2245_ideprofresp_form.fields['s2245_evttreicap'].widget.attrs['readonly'] = True
-            s2245_ideprofresp_lista = s2245ideProfResp.objects.using( db_slug ).filter(excluido = False, s2245_evttreicap_id=s2245_evttreicap.id).all()
+            s2245_infocomplem_form = form_s2245_infocomplem(initial={ 's2245_evttreicap': s2245_evttreicap }, slug=db_slug)
+            s2245_infocomplem_form.fields['s2245_evttreicap'].widget.attrs['readonly'] = True
+            s2245_infocomplem_lista = s2245infoComplem.objects.using( db_slug ).filter(excluido = False, s2245_evttreicap_id=s2245_evttreicap.id).all()
         else:
             s2245_evttreicap = None
         #s2245_evttreicap_salvar_custom_variaveis#
@@ -242,8 +242,8 @@ def salvar(request, hash):
        
             'hash': hash,
   
-            's2245_ideprofresp_form': s2245_ideprofresp_form,
-            's2245_ideprofresp_lista': s2245_ideprofresp_lista,
+            's2245_infocomplem_form': s2245_infocomplem_form,
+            's2245_infocomplem_lista': s2245_infocomplem_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
@@ -421,10 +421,6 @@ def listar(request, hash):
             'show_criado_por': 0,
             'show_criado_em': 0,
             'show_observacao': 0,
-            'show_tptreicap': 1,
-            'show_modtreicap': 1,
-            'show_durtreicap': 1,
-            'show_dttreicap': 1,
             'show_codtreicap': 1,
             'show_treicap': 0,
             'show_codcateg': 0,
@@ -468,10 +464,6 @@ def listar(request, hash):
             post = True
             dict_fields = {
                 'observacao__icontains': 'observacao__icontains',
-                'tptreicap': 'tptreicap',
-                'modtreicap': 'modtreicap',
-                'durtreicap': 'durtreicap',
-                'dttreicap__range': 'dttreicap__range',
                 'codtreicap__icontains': 'codtreicap__icontains',
                 'treicap': 'treicap',
                 'codcateg__icontains': 'codcateg__icontains',
@@ -501,10 +493,6 @@ def listar(request, hash):
             if request.method == 'POST':
                 dict_fields = {
                 'observacao__icontains': 'observacao__icontains',
-                'tptreicap': 'tptreicap',
-                'modtreicap': 'modtreicap',
-                'durtreicap': 'durtreicap',
-                'dttreicap__range': 'dttreicap__range',
                 'codtreicap__icontains': 'codtreicap__icontains',
                 'treicap': 'treicap',
                 'codcateg__icontains': 'codcateg__icontains',

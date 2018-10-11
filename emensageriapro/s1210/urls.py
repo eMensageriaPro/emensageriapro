@@ -4,6 +4,7 @@ from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.s1210.views import s1210_detpgtofer_penalim as s1210_detpgtofer_penalim_views
 from emensageriapro.s1210.views import s1210_deps as s1210_deps_views
 from emensageriapro.s1210.views import s1210_infopgto as s1210_infopgto_views
 from emensageriapro.s1210.views import s1210_detpgtofl as s1210_detpgtofl_views
@@ -15,7 +16,6 @@ from emensageriapro.s1210.views import s1210_detpgtobenpr_retpgtotot as s1210_de
 from emensageriapro.s1210.views import s1210_detpgtobenpr_infopgtoparc as s1210_detpgtobenpr_infopgtoparc_views
 from emensageriapro.s1210.views import s1210_detpgtofer as s1210_detpgtofer_views
 from emensageriapro.s1210.views import s1210_detpgtofer_detrubrfer as s1210_detpgtofer_detrubrfer_views
-from emensageriapro.s1210.views import s1210_detpgtofer_penalim as s1210_detpgtofer_penalim_views
 from emensageriapro.s1210.views import s1210_detpgtoant as s1210_detpgtoant_views
 from emensageriapro.s1210.views import s1210_detpgtoant_infopgtoant as s1210_detpgtoant_infopgtoant_views
 from emensageriapro.s1210.views import s1210_idepgtoext as s1210_idepgtoext_views
@@ -56,6 +56,26 @@ from emensageriapro.s1210.views import s1210_idepgtoext as s1210_idepgtoext_view
 """
 
 urlpatterns = [
+
+
+
+url(r'^s1210-detpgtofer-penalim/apagar/(?P<hash>.*)/$', 
+        s1210_detpgtofer_penalim_views.apagar, 
+        name='s1210_detpgtofer_penalim_apagar'),
+
+url(r'^s1210-detpgtofer-penalim/api/$',
+            s1210_detpgtofer_penalim_views.s1210detPgtoFerpenAlimList.as_view() ),
+
+        url(r'^s1210-detpgtofer-penalim/api/(?P<pk>[0-9]+)/$',
+            s1210_detpgtofer_penalim_views.s1210detPgtoFerpenAlimDetail.as_view() ),
+
+url(r'^s1210-detpgtofer-penalim/listar/(?P<hash>.*)/$', 
+        s1210_detpgtofer_penalim_views.listar, 
+        name='s1210_detpgtofer_penalim'),
+
+url(r'^s1210-detpgtofer-penalim/salvar/(?P<hash>.*)/$', 
+        s1210_detpgtofer_penalim_views.salvar, 
+        name='s1210_detpgtofer_penalim_salvar'),
 
 
 
@@ -276,26 +296,6 @@ url(r'^s1210-detpgtofer-detrubrfer/listar/(?P<hash>.*)/$',
 url(r'^s1210-detpgtofer-detrubrfer/salvar/(?P<hash>.*)/$', 
         s1210_detpgtofer_detrubrfer_views.salvar, 
         name='s1210_detpgtofer_detrubrfer_salvar'),
-
-
-
-url(r'^s1210-detpgtofer-penalim/apagar/(?P<hash>.*)/$', 
-        s1210_detpgtofer_penalim_views.apagar, 
-        name='s1210_detpgtofer_penalim_apagar'),
-
-url(r'^s1210-detpgtofer-penalim/api/$',
-            s1210_detpgtofer_penalim_views.s1210detPgtoFerpenAlimList.as_view() ),
-
-        url(r'^s1210-detpgtofer-penalim/api/(?P<pk>[0-9]+)/$',
-            s1210_detpgtofer_penalim_views.s1210detPgtoFerpenAlimDetail.as_view() ),
-
-url(r'^s1210-detpgtofer-penalim/listar/(?P<hash>.*)/$', 
-        s1210_detpgtofer_penalim_views.listar, 
-        name='s1210_detpgtofer_penalim'),
-
-url(r'^s1210-detpgtofer-penalim/salvar/(?P<hash>.*)/$', 
-        s1210_detpgtofer_penalim_views.salvar, 
-        name='s1210_detpgtofer_penalim_salvar'),
 
 
 

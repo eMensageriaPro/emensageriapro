@@ -48,17 +48,17 @@ from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
 import base64
+from emensageriapro.s2205.models import s2205exterior
 from emensageriapro.s2205.models import s2205documentos
 from emensageriapro.s2205.models import s2205brasil
-from emensageriapro.s2205.models import s2205exterior
 from emensageriapro.s2205.models import s2205trabEstrangeiro
 from emensageriapro.s2205.models import s2205infoDeficiencia
 from emensageriapro.s2205.models import s2205dependente
 from emensageriapro.s2205.models import s2205aposentadoria
 from emensageriapro.s2205.models import s2205contato
+from emensageriapro.s2205.forms import form_s2205_exterior
 from emensageriapro.s2205.forms import form_s2205_documentos
 from emensageriapro.s2205.forms import form_s2205_brasil
-from emensageriapro.s2205.forms import form_s2205_exterior
 from emensageriapro.s2205.forms import form_s2205_trabestrangeiro
 from emensageriapro.s2205.forms import form_s2205_infodeficiencia
 from emensageriapro.s2205.forms import form_s2205_dependente
@@ -214,12 +214,12 @@ def salvar(request, hash):
         if int(dict_hash['print']):
             s2205_evtaltcadastral_form = disabled_form_for_print(s2205_evtaltcadastral_form)
 
+        s2205_exterior_form = None
+        s2205_exterior_lista = None
         s2205_documentos_form = None
         s2205_documentos_lista = None
         s2205_brasil_form = None
         s2205_brasil_lista = None
-        s2205_exterior_form = None
-        s2205_exterior_lista = None
         s2205_trabestrangeiro_form = None
         s2205_trabestrangeiro_lista = None
         s2205_infodeficiencia_form = None
@@ -233,15 +233,15 @@ def salvar(request, hash):
         if s2205_evtaltcadastral_id:
             s2205_evtaltcadastral = get_object_or_404(s2205evtAltCadastral.objects.using( db_slug ), excluido = False, id = s2205_evtaltcadastral_id)
   
+            s2205_exterior_form = form_s2205_exterior(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
+            s2205_exterior_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
+            s2205_exterior_lista = s2205exterior.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
             s2205_documentos_form = form_s2205_documentos(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
             s2205_documentos_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
             s2205_documentos_lista = s2205documentos.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
             s2205_brasil_form = form_s2205_brasil(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
             s2205_brasil_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
             s2205_brasil_lista = s2205brasil.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
-            s2205_exterior_form = form_s2205_exterior(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
-            s2205_exterior_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
-            s2205_exterior_lista = s2205exterior.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
             s2205_trabestrangeiro_form = form_s2205_trabestrangeiro(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
             s2205_trabestrangeiro_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
             s2205_trabestrangeiro_lista = s2205trabEstrangeiro.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
@@ -291,12 +291,12 @@ def salvar(request, hash):
        
             'hash': hash,
   
+            's2205_exterior_form': s2205_exterior_form,
+            's2205_exterior_lista': s2205_exterior_lista,
             's2205_documentos_form': s2205_documentos_form,
             's2205_documentos_lista': s2205_documentos_lista,
             's2205_brasil_form': s2205_brasil_form,
             's2205_brasil_lista': s2205_brasil_lista,
-            's2205_exterior_form': s2205_exterior_form,
-            's2205_exterior_lista': s2205_exterior_lista,
             's2205_trabestrangeiro_form': s2205_trabestrangeiro_form,
             's2205_trabestrangeiro_lista': s2205_trabestrangeiro_lista,
             's2205_infodeficiencia_form': s2205_infodeficiencia_form,

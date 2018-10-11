@@ -1,12 +1,12 @@
 # coding: utf-8
 from django import forms
 from emensageriapro.esocial.models import * 
-from emensageriapro.controle_de_acesso.models import Usuarios 
-from emensageriapro.mensageiro.models import TransmissorLoteEsocial 
-from emensageriapro.mensageiro.models import RetornosEventos 
 from emensageriapro.tabelas.models import Municipios 
 from emensageriapro.tabelas.models import eSocialTrabalhadoresCategorias 
 from emensageriapro.tabelas.models import eSocialPaises 
+from emensageriapro.controle_de_acesso.models import Usuarios 
+from emensageriapro.mensageiro.models import TransmissorLoteEsocial 
+from emensageriapro.mensageiro.models import RetornosEventos 
 
 
 __author__ = 'marcelovasconcellos'
@@ -535,63 +535,6 @@ class form_s1060_evttabambiente(forms.ModelForm):
 
     class Meta:
         model = s1060evtTabAmbiente
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
-            'recibo_hash',
-            'recibo_numero',
-            'processamento_data_hora',
-            'processamento_versao_app_processamento',
-            'processamento_descricao_resposta',
-            'processamento_codigo_resposta',
-            'recepcao_protocolo_envio_lote',
-            'recepcao_versao_app',
-            'recepcao_data_hora',
-            'recepcao_tp_amb',
-            'arquivo',
-            'arquivo_original',
-            'validacoes',
-            'validacao_precedencia',
-            'ocorrencias',
-            'retornos_eventos',
- 
-        ]
-
-
-class form_s1065_evttabequipamento(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1065_evttabequipamento,self ).__init__(*args,**kwargs)
-        
-        self.fields['nrinsc'].widget.attrs['required'] = True
-        
-        self.fields['tpinsc'].widget.attrs['required'] = True
-        
-        self.fields['verproc'].widget.attrs['required'] = True
-        
-        self.fields['procemi'].widget.attrs['required'] = True
-        
-        self.fields['tpamb'].widget.attrs['required'] = True
-        
-        self.fields['identidade'].widget.attrs['readonly'] = True
-        
-        self.fields['operacao'].widget.attrs['required'] = True
-        
-        self.fields['status'].widget.attrs['required'] = True
-        self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['readonly'] = True
-        
-        self.fields['versao'].widget.attrs['required'] = True
-        self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
-        self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-
-    class Meta:
-        model = s1065evtTabEquipamento
         exclude = [ 
             'excluido',
             'modificado_por',
@@ -1794,13 +1737,15 @@ class form_s2210_evtcat(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2210_evtcat,self ).__init__(*args,**kwargs)
         
-        self.fields['nrinsc'].widget.attrs['required'] = True
+        self.fields['nrlograd'].widget.attrs['required'] = True
         
-        self.fields['tpinsc'].widget.attrs['required'] = True
+        self.fields['dsclograd'].widget.attrs['required'] = True
         
         self.fields['tplocal'].widget.attrs['required'] = True
         
         self.fields['iniciatcat'].widget.attrs['required'] = True
+        
+        self.fields['codsitgeradora'].widget.attrs['required'] = True
         
         self.fields['indcomunpolicia'].widget.attrs['required'] = True
         
@@ -1821,8 +1766,6 @@ class form_s2210_evtcat(forms.ModelForm):
         self.fields['nrinsc'].widget.attrs['required'] = True
         
         self.fields['tpinsc'].widget.attrs['required'] = True
-        
-        self.fields['tpregistrador'].widget.attrs['required'] = True
         
         self.fields['verproc'].widget.attrs['required'] = True
         
@@ -1877,9 +1820,15 @@ class form_s2220_evtmonit(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2220_evtmonit,self ).__init__(*args,**kwargs)
         
-        self.fields['nmmed'].widget.attrs['required'] = True
+        self.fields['ufcrm'].widget.attrs['required'] = True
         
-        self.fields['frmctt'].widget.attrs['required'] = True
+        self.fields['nrcrm'].widget.attrs['required'] = True
+        
+        self.fields['nmresp'].widget.attrs['required'] = True
+        
+        self.fields['nrconsclasse'].widget.attrs['required'] = True
+        
+        self.fields['nisresp'].widget.attrs['required'] = True
         
         self.fields['ufcrm'].widget.attrs['required'] = True
         
@@ -1887,17 +1836,13 @@ class form_s2220_evtmonit(forms.ModelForm):
         
         self.fields['nmmed'].widget.attrs['required'] = True
         
-        self.fields['nismed'].widget.attrs['required'] = True
-        
-        self.fields['cpfmed'].widget.attrs['required'] = True
-        
         self.fields['resaso'].widget.attrs['required'] = True
         
         self.fields['tpaso'].widget.attrs['required'] = True
         
         self.fields['dtaso'].widget.attrs['required'] = True
         
-        self.fields['tpexame'].widget.attrs['required'] = True
+        self.fields['tpexameocup'].widget.attrs['required'] = True
         
         self.fields['cpftrab'].widget.attrs['required'] = True
         
@@ -1926,6 +1871,77 @@ class form_s2220_evtmonit(forms.ModelForm):
 
     class Meta:
         model = s2220evtMonit
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+            'recibo_hash',
+            'recibo_numero',
+            'processamento_data_hora',
+            'processamento_versao_app_processamento',
+            'processamento_descricao_resposta',
+            'processamento_codigo_resposta',
+            'recepcao_protocolo_envio_lote',
+            'recepcao_versao_app',
+            'recepcao_data_hora',
+            'recepcao_tp_amb',
+            'arquivo',
+            'arquivo_original',
+            'validacoes',
+            'validacao_precedencia',
+            'ocorrencias',
+            'retornos_eventos',
+ 
+        ]
+
+
+class form_s2221_evttoxic(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2221_evttoxic,self ).__init__(*args,**kwargs)
+        
+        self.fields['ufcrm'].widget.attrs['required'] = True
+        
+        self.fields['nrcrm'].widget.attrs['required'] = True
+        
+        self.fields['nmmed'].widget.attrs['required'] = True
+        
+        self.fields['codseqexame'].widget.attrs['required'] = True
+        
+        self.fields['cnpjlab'].widget.attrs['required'] = True
+        
+        self.fields['dtexame'].widget.attrs['required'] = True
+        
+        self.fields['cpftrab'].widget.attrs['required'] = True
+        
+        self.fields['nrinsc'].widget.attrs['required'] = True
+        
+        self.fields['tpinsc'].widget.attrs['required'] = True
+        
+        self.fields['verproc'].widget.attrs['required'] = True
+        
+        self.fields['procemi'].widget.attrs['required'] = True
+        
+        self.fields['tpamb'].widget.attrs['required'] = True
+        
+        self.fields['indretif'].widget.attrs['required'] = True
+        
+        self.fields['identidade'].widget.attrs['readonly'] = True
+        
+        self.fields['status'].widget.attrs['required'] = True
+        self.fields['status'].widget.attrs['readonly'] = True
+        self.fields['status'].widget.attrs['readonly'] = True
+        
+        self.fields['versao'].widget.attrs['required'] = True
+        self.fields['versao'].widget.attrs['readonly'] = True
+        self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
+        self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
+
+    class Meta:
+        model = s2221evtToxic
         exclude = [ 
             'excluido',
             'modificado_por',
@@ -2055,6 +2071,10 @@ class form_s2240_evtexprisco(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2240_evtexprisco,self ).__init__(*args,**kwargs)
         
+        self.fields['dscativdes'].widget.attrs['required'] = True
+        
+        self.fields['dtinicondicao'].widget.attrs['required'] = True
+        
         self.fields['cpftrab'].widget.attrs['required'] = True
         
         self.fields['nrinsc'].widget.attrs['required'] = True
@@ -2172,19 +2192,10 @@ class form_s2241_evtinsapo(forms.ModelForm):
 
 
 class form_s2245_evttreicap(forms.ModelForm):
-    durtreicap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_s2245_evttreicap,self ).__init__(*args,**kwargs)
-        
-        self.fields['tptreicap'].widget.attrs['required'] = True
-        
-        self.fields['modtreicap'].widget.attrs['required'] = True
-        
-        self.fields['durtreicap'].widget.attrs['required'] = True
-        
-        self.fields['dttreicap'].widget.attrs['required'] = True
         
         self.fields['codtreicap'].widget.attrs['required'] = True
         

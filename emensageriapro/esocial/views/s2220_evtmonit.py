@@ -48,12 +48,8 @@ from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
 import base64
-from emensageriapro.s2220.models import s2220exMedOcup
 from emensageriapro.s2220.models import s2220exame
-from emensageriapro.s2220.models import s2220toxicologico
-from emensageriapro.s2220.forms import form_s2220_exmedocup
 from emensageriapro.s2220.forms import form_s2220_exame
-from emensageriapro.s2220.forms import form_s2220_toxicologico
 
 #IMPORTACOES
 
@@ -204,24 +200,14 @@ def salvar(request, hash):
         if int(dict_hash['print']):
             s2220_evtmonit_form = disabled_form_for_print(s2220_evtmonit_form)
 
-        s2220_exmedocup_form = None
-        s2220_exmedocup_lista = None
         s2220_exame_form = None
         s2220_exame_lista = None
-        s2220_toxicologico_form = None
-        s2220_toxicologico_lista = None
         if s2220_evtmonit_id:
             s2220_evtmonit = get_object_or_404(s2220evtMonit.objects.using( db_slug ), excluido = False, id = s2220_evtmonit_id)
   
-            s2220_exmedocup_form = form_s2220_exmedocup(initial={ 's2220_evtmonit': s2220_evtmonit }, slug=db_slug)
-            s2220_exmedocup_form.fields['s2220_evtmonit'].widget.attrs['readonly'] = True
-            s2220_exmedocup_lista = s2220exMedOcup.objects.using( db_slug ).filter(excluido = False, s2220_evtmonit_id=s2220_evtmonit.id).all()
             s2220_exame_form = form_s2220_exame(initial={ 's2220_evtmonit': s2220_evtmonit }, slug=db_slug)
             s2220_exame_form.fields['s2220_evtmonit'].widget.attrs['readonly'] = True
             s2220_exame_lista = s2220exame.objects.using( db_slug ).filter(excluido = False, s2220_evtmonit_id=s2220_evtmonit.id).all()
-            s2220_toxicologico_form = form_s2220_toxicologico(initial={ 's2220_evtmonit': s2220_evtmonit }, slug=db_slug)
-            s2220_toxicologico_form.fields['s2220_evtmonit'].widget.attrs['readonly'] = True
-            s2220_toxicologico_lista = s2220toxicologico.objects.using( db_slug ).filter(excluido = False, s2220_evtmonit_id=s2220_evtmonit.id).all()
         else:
             s2220_evtmonit = None
         #s2220_evtmonit_salvar_custom_variaveis#
@@ -256,12 +242,8 @@ def salvar(request, hash):
        
             'hash': hash,
   
-            's2220_exmedocup_form': s2220_exmedocup_form,
-            's2220_exmedocup_lista': s2220_exmedocup_lista,
             's2220_exame_form': s2220_exame_form,
             's2220_exame_lista': s2220_exame_lista,
-            's2220_toxicologico_form': s2220_toxicologico_form,
-            's2220_toxicologico_lista': s2220_toxicologico_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
@@ -438,25 +420,26 @@ def listar(request, hash):
             'show_modificado_em': 0,
             'show_criado_por': 0,
             'show_criado_em': 0,
-            'show_crm': 0,
-            'show_nmmed': 1,
-            'show_medico': 0,
-            'show_email': 0,
-            'show_frmctt': 1,
-            'show_codcnes': 0,
-            'show_ideservsaude': 0,
+            'show_ufcrm': 1,
+            'show_nrcrm': 1,
+            'show_nmresp': 1,
+            'show_cpfresp': 0,
+            'show_ufconsclasse': 0,
+            'show_nrconsclasse': 1,
+            'show_nisresp': 1,
+            'show_respmonit': 0,
             'show_ufcrm': 1,
             'show_nrcrm': 1,
             'show_nmmed': 1,
-            'show_nismed': 1,
-            'show_cpfmed': 1,
+            'show_nismed': 0,
+            'show_cpfmed': 0,
             'show_medico': 0,
             'show_resaso': 1,
             'show_tpaso': 1,
             'show_dtaso': 1,
             'show_aso': 0,
-            'show_tpexame': 1,
-            'show_monit': 0,
+            'show_tpexameocup': 1,
+            'show_exmedocup': 0,
             'show_codcateg': 0,
             'show_matricula': 0,
             'show_nistrab': 0,
@@ -496,13 +479,14 @@ def listar(request, hash):
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'crm': 'crm',
-                'nmmed__icontains': 'nmmed__icontains',
-                'medico': 'medico',
-                'email__icontains': 'email__icontains',
-                'frmctt__icontains': 'frmctt__icontains',
-                'codcnes__icontains': 'codcnes__icontains',
-                'ideservsaude': 'ideservsaude',
+                'ufcrm__icontains': 'ufcrm__icontains',
+                'nrcrm__icontains': 'nrcrm__icontains',
+                'nmresp__icontains': 'nmresp__icontains',
+                'cpfresp__icontains': 'cpfresp__icontains',
+                'ufconsclasse__icontains': 'ufconsclasse__icontains',
+                'nrconsclasse__icontains': 'nrconsclasse__icontains',
+                'nisresp__icontains': 'nisresp__icontains',
+                'respmonit': 'respmonit',
                 'ufcrm__icontains': 'ufcrm__icontains',
                 'nrcrm__icontains': 'nrcrm__icontains',
                 'nmmed__icontains': 'nmmed__icontains',
@@ -513,8 +497,8 @@ def listar(request, hash):
                 'tpaso': 'tpaso',
                 'dtaso__range': 'dtaso__range',
                 'aso': 'aso',
-                'tpexame': 'tpexame',
-                'monit': 'monit',
+                'tpexameocup': 'tpexameocup',
+                'exmedocup': 'exmedocup',
                 'codcateg__icontains': 'codcateg__icontains',
                 'matricula__icontains': 'matricula__icontains',
                 'nistrab__icontains': 'nistrab__icontains',
@@ -540,13 +524,14 @@ def listar(request, hash):
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'crm': 'crm',
-                'nmmed__icontains': 'nmmed__icontains',
-                'medico': 'medico',
-                'email__icontains': 'email__icontains',
-                'frmctt__icontains': 'frmctt__icontains',
-                'codcnes__icontains': 'codcnes__icontains',
-                'ideservsaude': 'ideservsaude',
+                'ufcrm__icontains': 'ufcrm__icontains',
+                'nrcrm__icontains': 'nrcrm__icontains',
+                'nmresp__icontains': 'nmresp__icontains',
+                'cpfresp__icontains': 'cpfresp__icontains',
+                'ufconsclasse__icontains': 'ufconsclasse__icontains',
+                'nrconsclasse__icontains': 'nrconsclasse__icontains',
+                'nisresp__icontains': 'nisresp__icontains',
+                'respmonit': 'respmonit',
                 'ufcrm__icontains': 'ufcrm__icontains',
                 'nrcrm__icontains': 'nrcrm__icontains',
                 'nmmed__icontains': 'nmmed__icontains',
@@ -557,8 +542,8 @@ def listar(request, hash):
                 'tpaso': 'tpaso',
                 'dtaso__range': 'dtaso__range',
                 'aso': 'aso',
-                'tpexame': 'tpexame',
-                'monit': 'monit',
+                'tpexameocup': 'tpexameocup',
+                'exmedocup': 'exmedocup',
                 'codcateg__icontains': 'codcateg__icontains',
                 'matricula__icontains': 'matricula__icontains',
                 'nistrab__icontains': 'nistrab__icontains',

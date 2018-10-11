@@ -344,8 +344,8 @@ def listar(request, hash):
             'show_modificado_em': 0,
             'show_criado_por': 0,
             'show_criado_em': 0,
-            'show_observacao': 1,
-            'show_meterg': 1,
+            'show_observacao': 0,
+            'show_meterg': 0,
             'show_s2240_evtexprisco': 1, }
         post = False
         if request.method == 'POST':

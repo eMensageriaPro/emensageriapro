@@ -1,4 +1,36 @@
 #coding:utf-8
+"""
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+    
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 import xmltodict
 import pprint
 import json
@@ -34,6 +66,8 @@ def validacoes_s1010_evttabrubrica(arquivo):
             if 'codIncIRRF' in dir(inclusao.dadosRubrica): validacoes_lista = validar_campo(validacoes_lista,'inclusao.dadosRubrica.codIncIRRF', inclusao.dadosRubrica.codIncIRRF.cdata, 1, '00;01;09;11;12;13;14;15;31;32;33;34;35;41;42;43;44;46;47;51;52;53;54;55;61;62;63;64;70;71;72;73;74;75;76;77;78;79;81;82;83;91;92;93;94;95')
             if 'codIncFGTS' in dir(inclusao.dadosRubrica): validacoes_lista = validar_campo(validacoes_lista,'inclusao.dadosRubrica.codIncFGTS', inclusao.dadosRubrica.codIncFGTS.cdata, 1, '00;11;12;21;91')
             if 'codIncSIND' in dir(inclusao.dadosRubrica): validacoes_lista = validar_campo(validacoes_lista,'inclusao.dadosRubrica.codIncSIND', inclusao.dadosRubrica.codIncSIND.cdata, 1, '00;11;31;91')
+            if 'codIncCPRP' in dir(inclusao.dadosRubrica): validacoes_lista = validar_campo(validacoes_lista,'inclusao.dadosRubrica.codIncCPRP', inclusao.dadosRubrica.codIncCPRP.cdata, 0, '00;01;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;31;32;33;34;35;36;41;42;51;52;91;92;93;94;95;96')
+            if 'tetoRemun' in dir(inclusao.dadosRubrica): validacoes_lista = validar_campo(validacoes_lista,'inclusao.dadosRubrica.tetoRemun', inclusao.dadosRubrica.tetoRemun.cdata, 0, 'S;N')
             if 'observacao' in dir(inclusao.dadosRubrica): validacoes_lista = validar_campo(validacoes_lista,'inclusao.dadosRubrica.observacao', inclusao.dadosRubrica.observacao.cdata, 0, '')
 
             if 'ideProcessoCP' in dir(inclusao.dadosRubrica):
@@ -43,6 +77,9 @@ def validacoes_s1010_evttabrubrica(arquivo):
                     if 'nrProc' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.nrProc', ideProcessoCP.nrProc.cdata, 1, '')
                     if 'extDecisao' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.extDecisao', ideProcessoCP.extDecisao.cdata, 1, '1;2')
                     if 'codSusp' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.codSusp', ideProcessoCP.codSusp.cdata, 1, '')
+                    if 'tpProc' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.tpProc', ideProcessoCP.tpProc.cdata, 1, '1;2')
+                    if 'nrProc' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.nrProc', ideProcessoCP.nrProc.cdata, 1, '')
+                    if 'extDecisao' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.extDecisao', ideProcessoCP.extDecisao.cdata, 1, '1;2;3')
         
             if 'ideProcessoIRRF' in dir(inclusao.dadosRubrica):
                 for ideProcessoIRRF in inclusao.dadosRubrica.ideProcessoIRRF:
@@ -60,6 +97,10 @@ def validacoes_s1010_evttabrubrica(arquivo):
                     
                     if 'nrProc' in dir(ideProcessoSIND): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoSIND.nrProc', ideProcessoSIND.nrProc.cdata, 1, '')
         
+            if 'ideProcessoCPRP' in dir(inclusao.dadosRubrica):
+                for ideProcessoCPRP in inclusao.dadosRubrica.ideProcessoCPRP:
+                    
+        
     if 'alteracao' in dir(evtTabRubrica.infoRubrica):
         for alteracao in evtTabRubrica.infoRubrica.alteracao:
             
@@ -74,6 +115,8 @@ def validacoes_s1010_evttabrubrica(arquivo):
             if 'codIncIRRF' in dir(alteracao.dadosRubrica): validacoes_lista = validar_campo(validacoes_lista,'alteracao.dadosRubrica.codIncIRRF', alteracao.dadosRubrica.codIncIRRF.cdata, 1, '00;01;09;11;12;13;14;15;31;32;33;34;35;41;42;43;44;46;47;51;52;53;54;55;61;62;63;64;70;71;72;73;74;75;76;77;78;79;81;82;83;91;92;93;94;95')
             if 'codIncFGTS' in dir(alteracao.dadosRubrica): validacoes_lista = validar_campo(validacoes_lista,'alteracao.dadosRubrica.codIncFGTS', alteracao.dadosRubrica.codIncFGTS.cdata, 1, '00;11;12;21;91')
             if 'codIncSIND' in dir(alteracao.dadosRubrica): validacoes_lista = validar_campo(validacoes_lista,'alteracao.dadosRubrica.codIncSIND', alteracao.dadosRubrica.codIncSIND.cdata, 1, '00;11;31;91')
+            if 'codIncCPRP' in dir(alteracao.dadosRubrica): validacoes_lista = validar_campo(validacoes_lista,'alteracao.dadosRubrica.codIncCPRP', alteracao.dadosRubrica.codIncCPRP.cdata, 0, '00;01;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;31;32;33;34;35;36;41;42;51;52;91;92;93;94;95;96')
+            if 'tetoRemun' in dir(alteracao.dadosRubrica): validacoes_lista = validar_campo(validacoes_lista,'alteracao.dadosRubrica.tetoRemun', alteracao.dadosRubrica.tetoRemun.cdata, 0, 'S;N')
             if 'observacao' in dir(alteracao.dadosRubrica): validacoes_lista = validar_campo(validacoes_lista,'alteracao.dadosRubrica.observacao', alteracao.dadosRubrica.observacao.cdata, 0, '')
 
             if 'ideProcessoCP' in dir(alteracao.dadosRubrica):
@@ -83,6 +126,9 @@ def validacoes_s1010_evttabrubrica(arquivo):
                     if 'nrProc' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.nrProc', ideProcessoCP.nrProc.cdata, 1, '')
                     if 'extDecisao' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.extDecisao', ideProcessoCP.extDecisao.cdata, 1, '1;2')
                     if 'codSusp' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.codSusp', ideProcessoCP.codSusp.cdata, 1, '')
+                    if 'tpProc' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.tpProc', ideProcessoCP.tpProc.cdata, 1, '1;2')
+                    if 'nrProc' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.nrProc', ideProcessoCP.nrProc.cdata, 1, '')
+                    if 'extDecisao' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.extDecisao', ideProcessoCP.extDecisao.cdata, 1, '1;2;3')
         
             if 'ideProcessoIRRF' in dir(alteracao.dadosRubrica):
                 for ideProcessoIRRF in alteracao.dadosRubrica.ideProcessoIRRF:
@@ -99,6 +145,10 @@ def validacoes_s1010_evttabrubrica(arquivo):
                 for ideProcessoSIND in alteracao.dadosRubrica.ideProcessoSIND:
                     
                     if 'nrProc' in dir(ideProcessoSIND): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoSIND.nrProc', ideProcessoSIND.nrProc.cdata, 1, '')
+        
+            if 'ideProcessoCPRP' in dir(alteracao.dadosRubrica):
+                for ideProcessoCPRP in alteracao.dadosRubrica.ideProcessoCPRP:
+                    
         
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:

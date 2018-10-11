@@ -1,4 +1,36 @@
 #coding:utf-8
+"""
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+    
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 import xmltodict
 import pprint
 import json
@@ -140,9 +172,11 @@ def validacoes_s2300_evttsvinicio(arquivo):
             if 'nmDep' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.nmDep', dependente.nmDep.cdata, 1, '')
             if 'dtNascto' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.dtNascto', dependente.dtNascto.cdata, 1, '')
             if 'cpfDep' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.cpfDep', dependente.cpfDep.cdata, 0, '')
+            if 'sexoDep' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.sexoDep', dependente.sexoDep.cdata, 0, 'M;F')
             if 'depIRRF' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.depIRRF', dependente.depIRRF.cdata, 1, 'S;N')
             if 'depSF' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.depSF', dependente.depSF.cdata, 1, 'S;N')
             if 'incTrab' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.incTrab', dependente.incTrab.cdata, 1, 'S;N')
+            if 'depFinsPrev' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.depFinsPrev', dependente.depFinsPrev.cdata, 0, 'S;N')
 
     if 'contato' in dir(evtTSVInicio.trabalhador):
         for contato in evtTSVInicio.trabalhador.contato:
@@ -193,6 +227,7 @@ def validacoes_s2300_evttsvinicio(arquivo):
                     if 'tpRegTrab' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.tpRegTrab', infoTrabCedido.tpRegTrab.cdata, 1, '1;2')
                     if 'tpRegPrev' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.tpRegPrev', infoTrabCedido.tpRegPrev.cdata, 1, '1;2;3')
                     if 'infOnus' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.infOnus', infoTrabCedido.infOnus.cdata, 1, '1;2;3')
+                    if 'indRemunCargo' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.indRemunCargo', infoTrabCedido.indRemunCargo.cdata, 0, 'S;N')
         
             if 'infoEstagiario' in dir(infoComplementares):
                 for infoEstagiario in infoComplementares.infoEstagiario:

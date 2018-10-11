@@ -59,11 +59,40 @@ class form_s2245_ideprofresp(forms.ModelForm):
         self.fields['nmprof'].widget.attrs['required'] = True
         
         self.fields['cpfprof'].widget.attrs['required'] = True
-        self.fields['s2245_evttreicap'].queryset = s2245evtTreiCap.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2245_evttreicap'].widget.attrs['required'] = True
+        self.fields['s2245_infocomplem'].queryset = s2245infoComplem.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s2245_infocomplem'].widget.attrs['required'] = True
 
     class Meta:
         model = s2245ideProfResp
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s2245_infocomplem(forms.ModelForm):
+    durtreicap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2245_infocomplem,self ).__init__(*args,**kwargs)
+        
+        self.fields['tptreicap'].widget.attrs['required'] = True
+        
+        self.fields['modtreicap'].widget.attrs['required'] = True
+        
+        self.fields['durtreicap'].widget.attrs['required'] = True
+        
+        self.fields['dttreicap'].widget.attrs['required'] = True
+        
+        self.fields['s2245_evttreicap'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s2245infoComplem
         exclude = [ 
             'excluido',
             'modificado_por',

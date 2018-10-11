@@ -1,4 +1,36 @@
 #coding:utf-8
+"""
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+    
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 import xmltodict
 import pprint
 import json
@@ -6,25 +38,23 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo, create_insert, executar_sql
 
 
-
-
 def read_s1000_evtinfoempregador(dados, arquivo, validar=False):
     import untangle
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
-    s1000_evtinfoempregador_dados = {}
-    xmlns = doc.eSocial['xmlns'].split('/')
     if validar:
-        s1000_evtinfoempregador_dados['status'] = 1
+        status = 1
     else:
-        s1000_evtinfoempregador_dados['status'] = 0
-    s1000_evtinfoempregador_dados['versao'] = xmlns[len(xmlns)-1]
+        status = 0
+    read_s1000_evtinfoempregador_obj(doc, status)
+
+
+
+def read_s1000_evtinfoempregador_obj(doc):
+    s1000_evtinfoempregador_dados = {}
+    s1000_evtinfoempregador_dados['versao'] = 'v02_04_02'
+    s1000_evtinfoempregador_dados['status'] = status
     s1000_evtinfoempregador_dados['identidade'] = doc.eSocial.evtInfoEmpregador['Id']
-    # verificacao = executar_sql("""SELECT count(*)
-    #     FROM public.transmissor_eventos_esocial WHERE identidade = '%s';
-    #     """ % s1000_evtinfoempregador_dados['identidade'], True)
-    # if validar and verificacao[0][0] != 0:
-    #     return False
     s1000_evtinfoempregador_dados['processamento_codigo_resposta'] = 1
     evtInfoEmpregador = doc.eSocial.evtInfoEmpregador
     
@@ -40,8 +70,9 @@ def read_s1000_evtinfoempregador(dados, arquivo, validar=False):
     insert = create_insert('s1000_evtinfoempregador', s1000_evtinfoempregador_dados)
     resp = executar_sql(insert, True)
     s1000_evtinfoempregador_id = resp[0][0]
+    dados = s1000_evtinfoempregador_dados
     dados['evento'] = 's1000'
-    dados['identidade'] = s1000_evtinfoempregador_id
+    dados['id'] = s1000_evtinfoempregador_id
     dados['identidade_evento'] = doc.eSocial.evtInfoEmpregador['Id']
     dados['status'] = 1
 
@@ -96,6 +127,12 @@ def read_s1000_evtinfoempregador(dados, arquivo, validar=False):
                     s1000_inclusao_infoop_dados['s1000_inclusao_id'] = s1000_inclusao_id
                     
                     if 'nrSiafi' in dir(infoOP): s1000_inclusao_infoop_dados['nrsiafi'] = infoOP.nrSiafi.cdata
+                    if 'indUGRPPS' in dir(infoOP): s1000_inclusao_infoop_dados['indugrpps'] = infoOP.indUGRPPS.cdata
+                    if 'esferaOP' in dir(infoOP): s1000_inclusao_infoop_dados['esferaop'] = infoOP.esferaOP.cdata
+                    if 'poderOP' in dir(infoOP): s1000_inclusao_infoop_dados['poderop'] = infoOP.poderOP.cdata
+                    if 'vrTetoRem' in dir(infoOP): s1000_inclusao_infoop_dados['vrtetorem'] = infoOP.vrTetoRem.cdata
+                    if 'ideEFR' in dir(infoOP): s1000_inclusao_infoop_dados['ideefr'] = infoOP.ideEFR.cdata
+                    if 'cnpjEFR' in dir(infoOP): s1000_inclusao_infoop_dados['cnpjefr'] = infoOP.cnpjEFR.cdata
                     insert = create_insert('s1000_inclusao_infoop', s1000_inclusao_infoop_dados)
                     resp = executar_sql(insert, True)
                     s1000_inclusao_infoop_id = resp[0][0]
@@ -200,6 +237,12 @@ def read_s1000_evtinfoempregador(dados, arquivo, validar=False):
                     s1000_alteracao_infoop_dados['s1000_alteracao_id'] = s1000_alteracao_id
                     
                     if 'nrSiafi' in dir(infoOP): s1000_alteracao_infoop_dados['nrsiafi'] = infoOP.nrSiafi.cdata
+                    if 'indUGRPPS' in dir(infoOP): s1000_alteracao_infoop_dados['indugrpps'] = infoOP.indUGRPPS.cdata
+                    if 'esferaOP' in dir(infoOP): s1000_alteracao_infoop_dados['esferaop'] = infoOP.esferaOP.cdata
+                    if 'poderOP' in dir(infoOP): s1000_alteracao_infoop_dados['poderop'] = infoOP.poderOP.cdata
+                    if 'vrTetoRem' in dir(infoOP): s1000_alteracao_infoop_dados['vrtetorem'] = infoOP.vrTetoRem.cdata
+                    if 'ideEFR' in dir(infoOP): s1000_alteracao_infoop_dados['ideefr'] = infoOP.ideEFR.cdata
+                    if 'cnpjEFR' in dir(infoOP): s1000_alteracao_infoop_dados['cnpjefr'] = infoOP.cnpjEFR.cdata
                     insert = create_insert('s1000_alteracao_infoop', s1000_alteracao_infoop_dados)
                     resp = executar_sql(insert, True)
                     s1000_alteracao_infoop_id = resp[0][0]

@@ -77,24 +77,16 @@ CHOICES_S2399_TPDEP = (
 
 CHOICES_S2399_TPINSC = (
     (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (2, u'2 - CPF'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
 CHOICES_S2399_TPTRIB = (
     (2, u'2 - Contribuições sociais do trabalhador'),
     (3, u'3 - FGTS'),
-    (4, u'4 - Contribuição sindical'),
     (4, u'4 - IRRF'),
+    (4, u'4 - Contribuição sindical'),
 )
 
 class s2399detOper(models.Model):

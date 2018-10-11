@@ -48,7 +48,6 @@ from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
 import base64
-from emensageriapro.s2200.models import s2200infoCeletista
 from emensageriapro.s2200.models import s2200documentos
 from emensageriapro.s2200.models import s2200brasil
 from emensageriapro.s2200.models import s2200exterior
@@ -57,6 +56,7 @@ from emensageriapro.s2200.models import s2200infoDeficiencia
 from emensageriapro.s2200.models import s2200dependente
 from emensageriapro.s2200.models import s2200aposentadoria
 from emensageriapro.s2200.models import s2200contato
+from emensageriapro.s2200.models import s2200infoCeletista
 from emensageriapro.s2200.models import s2200infoEstatutario
 from emensageriapro.s2200.models import s2200localTrabGeral
 from emensageriapro.s2200.models import s2200localTrabDom
@@ -69,7 +69,6 @@ from emensageriapro.s2200.models import s2200transfDom
 from emensageriapro.s2200.models import s2200afastamento
 from emensageriapro.s2200.models import s2200desligamento
 from emensageriapro.s2200.models import s2200cessao
-from emensageriapro.s2200.forms import form_s2200_infoceletista
 from emensageriapro.s2200.forms import form_s2200_documentos
 from emensageriapro.s2200.forms import form_s2200_brasil
 from emensageriapro.s2200.forms import form_s2200_exterior
@@ -78,6 +77,7 @@ from emensageriapro.s2200.forms import form_s2200_infodeficiencia
 from emensageriapro.s2200.forms import form_s2200_dependente
 from emensageriapro.s2200.forms import form_s2200_aposentadoria
 from emensageriapro.s2200.forms import form_s2200_contato
+from emensageriapro.s2200.forms import form_s2200_infoceletista
 from emensageriapro.s2200.forms import form_s2200_infoestatutario
 from emensageriapro.s2200.forms import form_s2200_localtrabgeral
 from emensageriapro.s2200.forms import form_s2200_localtrabdom
@@ -240,8 +240,6 @@ def salvar(request, hash):
         if int(dict_hash['print']):
             s2200_evtadmissao_form = disabled_form_for_print(s2200_evtadmissao_form)
 
-        s2200_infoceletista_form = None
-        s2200_infoceletista_lista = None
         s2200_documentos_form = None
         s2200_documentos_lista = None
         s2200_brasil_form = None
@@ -258,6 +256,8 @@ def salvar(request, hash):
         s2200_aposentadoria_lista = None
         s2200_contato_form = None
         s2200_contato_lista = None
+        s2200_infoceletista_form = None
+        s2200_infoceletista_lista = None
         s2200_infoestatutario_form = None
         s2200_infoestatutario_lista = None
         s2200_localtrabgeral_form = None
@@ -285,9 +285,6 @@ def salvar(request, hash):
         if s2200_evtadmissao_id:
             s2200_evtadmissao = get_object_or_404(s2200evtAdmissao.objects.using( db_slug ), excluido = False, id = s2200_evtadmissao_id)
   
-            s2200_infoceletista_form = form_s2200_infoceletista(initial={ 's2200_evtadmissao': s2200_evtadmissao }, slug=db_slug)
-            s2200_infoceletista_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
-            s2200_infoceletista_lista = s2200infoCeletista.objects.using( db_slug ).filter(excluido = False, s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_documentos_form = form_s2200_documentos(initial={ 's2200_evtadmissao': s2200_evtadmissao }, slug=db_slug)
             s2200_documentos_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_documentos_lista = s2200documentos.objects.using( db_slug ).filter(excluido = False, s2200_evtadmissao_id=s2200_evtadmissao.id).all()
@@ -312,6 +309,9 @@ def salvar(request, hash):
             s2200_contato_form = form_s2200_contato(initial={ 's2200_evtadmissao': s2200_evtadmissao }, slug=db_slug)
             s2200_contato_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_contato_lista = s2200contato.objects.using( db_slug ).filter(excluido = False, s2200_evtadmissao_id=s2200_evtadmissao.id).all()
+            s2200_infoceletista_form = form_s2200_infoceletista(initial={ 's2200_evtadmissao': s2200_evtadmissao }, slug=db_slug)
+            s2200_infoceletista_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
+            s2200_infoceletista_lista = s2200infoCeletista.objects.using( db_slug ).filter(excluido = False, s2200_evtadmissao_id=s2200_evtadmissao.id).all()
             s2200_infoestatutario_form = form_s2200_infoestatutario(initial={ 's2200_evtadmissao': s2200_evtadmissao }, slug=db_slug)
             s2200_infoestatutario_form.fields['s2200_evtadmissao'].widget.attrs['readonly'] = True
             s2200_infoestatutario_lista = s2200infoEstatutario.objects.using( db_slug ).filter(excluido = False, s2200_evtadmissao_id=s2200_evtadmissao.id).all()
@@ -382,8 +382,6 @@ def salvar(request, hash):
        
             'hash': hash,
   
-            's2200_infoceletista_form': s2200_infoceletista_form,
-            's2200_infoceletista_lista': s2200_infoceletista_lista,
             's2200_documentos_form': s2200_documentos_form,
             's2200_documentos_lista': s2200_documentos_lista,
             's2200_brasil_form': s2200_brasil_form,
@@ -400,6 +398,8 @@ def salvar(request, hash):
             's2200_aposentadoria_lista': s2200_aposentadoria_lista,
             's2200_contato_form': s2200_contato_form,
             's2200_contato_lista': s2200_contato_lista,
+            's2200_infoceletista_form': s2200_infoceletista_form,
+            's2200_infoceletista_lista': s2200_infoceletista_lista,
             's2200_infoestatutario_form': s2200_infoestatutario_form,
             's2200_infoestatutario_lista': s2200_infoestatutario_lista,
             's2200_localtrabgeral_form': s2200_localtrabgeral_form,

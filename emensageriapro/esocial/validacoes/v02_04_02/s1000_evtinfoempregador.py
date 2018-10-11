@@ -1,4 +1,36 @@
 #coding:utf-8
+"""
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+    
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 import xmltodict
 import pprint
 import json
@@ -27,7 +59,7 @@ def validacoes_s1000_evtinfoempregador(arquivo):
             if 'fimValid' in dir(inclusao.idePeriodo): validacoes_lista = validar_campo(validacoes_lista,'inclusao.idePeriodo.fimValid', inclusao.idePeriodo.fimValid.cdata, 0, '')
             if 'nmRazao' in dir(inclusao.infoCadastro): validacoes_lista = validar_campo(validacoes_lista,'inclusao.infoCadastro.nmRazao', inclusao.infoCadastro.nmRazao.cdata, 1, '')
             if 'classTrib' in dir(inclusao.infoCadastro): validacoes_lista = validar_campo(validacoes_lista,'inclusao.infoCadastro.classTrib', inclusao.infoCadastro.classTrib.cdata, 1, '01;02;03;04;06;07;08;09;10;11;13;14;21;22;60;70;80;85;99')
-            if 'natJurid' in dir(inclusao.infoCadastro): validacoes_lista = validar_campo(validacoes_lista,'inclusao.infoCadastro.natJurid', inclusao.infoCadastro.natJurid.cdata, 0, '')
+            if 'natJurid' in dir(inclusao.infoCadastro): validacoes_lista = validar_campo(validacoes_lista,'inclusao.infoCadastro.natJurid', inclusao.infoCadastro.natJurid.cdata, 0, '1015;1023;1031;1040;1058;1066;1074;1082;1104;1112;1120;1139;1147;1155;1163;1171;1180;1198;1201;1210;1228;1236;1244;1252;1260;1279;2011;2038;2046;2054;2062;2070;2089;2097;2127;2135;2143;2151;2160;2178;2194;2216;2224;2232;2240;2259;2267;2275;2283;2291;2305;2313;2321;2330;3034;3069;3077;3085;3107;3115;3131;3204;3212;3220;3239;3247;3255;3263;3271;3280;3298;3306;3310;3999;4014;4022;4081;4090;4111;4124;5010;5029;5037')
             if 'indCoop' in dir(inclusao.infoCadastro): validacoes_lista = validar_campo(validacoes_lista,'inclusao.infoCadastro.indCoop', inclusao.infoCadastro.indCoop.cdata, 0, '0;1;2;3')
             if 'indConstr' in dir(inclusao.infoCadastro): validacoes_lista = validar_campo(validacoes_lista,'inclusao.infoCadastro.indConstr', inclusao.infoCadastro.indConstr.cdata, 0, '0;1')
             if 'indDesFolha' in dir(inclusao.infoCadastro): validacoes_lista = validar_campo(validacoes_lista,'inclusao.infoCadastro.indDesFolha', inclusao.infoCadastro.indDesFolha.cdata, 1, '0;1')
@@ -57,6 +89,12 @@ def validacoes_s1000_evtinfoempregador(arquivo):
                 for infoOP in inclusao.infoCadastro.infoOP:
                     
                     if 'nrSiafi' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.nrSiafi', infoOP.nrSiafi.cdata, 1, '')
+                    if 'indUGRPPS' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.indUGRPPS', infoOP.indUGRPPS.cdata, 1, 'S;N')
+                    if 'esferaOP' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.esferaOP', infoOP.esferaOP.cdata, 0, '1;2;3')
+                    if 'poderOP' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.poderOP', infoOP.poderOP.cdata, 1, '1;2;3;4;5;6')
+                    if 'vrTetoRem' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.vrTetoRem', infoOP.vrTetoRem.cdata, 1, '')
+                    if 'ideEFR' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.ideEFR', infoOP.ideEFR.cdata, 1, 'S;N')
+                    if 'cnpjEFR' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.cnpjEFR', infoOP.cnpjEFR.cdata, 0, '')
         
             if 'infoOrgInternacional' in dir(inclusao.infoCadastro):
                 for infoOrgInternacional in inclusao.infoCadastro.infoOrgInternacional:
@@ -119,6 +157,12 @@ def validacoes_s1000_evtinfoempregador(arquivo):
                 for infoOP in alteracao.infoCadastro.infoOP:
                     
                     if 'nrSiafi' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.nrSiafi', infoOP.nrSiafi.cdata, 1, '')
+                    if 'indUGRPPS' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.indUGRPPS', infoOP.indUGRPPS.cdata, 1, 'S;N')
+                    if 'esferaOP' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.esferaOP', infoOP.esferaOP.cdata, 0, '1;2;3')
+                    if 'poderOP' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.poderOP', infoOP.poderOP.cdata, 1, '1;2;3;4;5;6')
+                    if 'vrTetoRem' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.vrTetoRem', infoOP.vrTetoRem.cdata, 1, '')
+                    if 'ideEFR' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.ideEFR', infoOP.ideEFR.cdata, 1, 'S;N')
+                    if 'cnpjEFR' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.cnpjEFR', infoOP.cnpjEFR.cdata, 0, '')
         
             if 'infoOrgInternacional' in dir(alteracao.infoCadastro):
                 for infoOrgInternacional in alteracao.infoCadastro.infoOrgInternacional:

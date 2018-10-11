@@ -44,55 +44,11 @@ __author__ = 'marcelovasconcellos'
 
 
 
-class form_s2220_toxicologico(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2220_toxicologico,self ).__init__(*args,**kwargs)
-        
-        self.fields['ufcrm'].widget.attrs['required'] = True
-        
-        self.fields['nrcrm'].widget.attrs['required'] = True
-        
-        self.fields['nmmed'].widget.attrs['required'] = True
-        
-        self.fields['codseqexame'].widget.attrs['required'] = True
-        
-        self.fields['cnpjlab'].widget.attrs['required'] = True
-        
-        self.fields['dtexame'].widget.attrs['required'] = True
-        
-        self.fields['s2220_evtmonit'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2220toxicologico
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
 class form_s2220_exame(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_s2220_exame,self ).__init__(*args,**kwargs)
-        
-        self.fields['ufcrm'].widget.attrs['required'] = True
-        
-        self.fields['nrcrm'].widget.attrs['required'] = True
-        
-        self.fields['nmresp'].widget.attrs['required'] = True
-        
-        self.fields['cpfresp'].widget.attrs['required'] = True
-        
-        self.fields['nrconsclasse'].widget.attrs['required'] = True
-        
-        self.fields['nisresp'].widget.attrs['required'] = True
         
         self.fields['dtinimonit'].widget.attrs['required'] = True
         
@@ -100,34 +56,14 @@ class form_s2220_exame(forms.ModelForm):
         
         self.fields['interprexm'].widget.attrs['required'] = True
         
+        self.fields['procrealizado'].widget.attrs['required'] = True
+        
         self.fields['dtexm'].widget.attrs['required'] = True
         self.fields['s2220_evtmonit'].queryset = s2220evtMonit.objects.using( slug ).filter(excluido=False).all()
         self.fields['s2220_evtmonit'].widget.attrs['required'] = True
 
     class Meta:
         model = s2220exame
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s2220_exmedocup(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2220_exmedocup,self ).__init__(*args,**kwargs)
-        
-        self.fields['tpexameocup'].widget.attrs['required'] = True
-        
-        self.fields['s2220_evtmonit'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2220exMedOcup
         exclude = [ 
             'excluido',
             'modificado_por',

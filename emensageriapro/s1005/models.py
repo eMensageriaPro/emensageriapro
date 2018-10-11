@@ -116,21 +116,18 @@ CHOICES_S1005_ALTERACAO_TPCAEPF = (
 
 CHOICES_S1005_ALTERACAO_TPINSC = (
     (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
 CHOICES_S1005_ALTERACAO_TPPROC = (
     (1, u'1 - Administrativo'),
-    (1, u'1 - Administrativo'),
     (2, u'2 - Judicial'),
-    (2, u'2 - Judicial'),
+    (4, u'4 - Processo FAP'),
 )
 
 CHOICES_S1005_EXCLUSAO_TPINSC = (
     (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
@@ -182,16 +179,14 @@ CHOICES_S1005_INCLUSAO_TPCAEPF = (
 
 CHOICES_S1005_INCLUSAO_TPINSC = (
     (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
 CHOICES_S1005_INCLUSAO_TPPROC = (
     (1, u'1 - Administrativo'),
-    (1, u'1 - Administrativo'),
     (2, u'2 - Judicial'),
-    (2, u'2 - Judicial'),
+    (4, u'4 - Processo FAP'),
 )
 
 class s1005alteracao(models.Model):
@@ -343,35 +338,6 @@ class s1005alteracaoinfoPCD(models.Model):
 class s1005alteracaoinfoPCDSerializer(ModelSerializer):
     class Meta:
         model = s1005alteracaoinfoPCD
-        fields = '__all__'
-            
-
-class s1005alteracaoinfoSST(models.Model):
-    s1005_alteracao = models.ForeignKey('s1005alteracao',
-        related_name='%(class)s_s1005_alteracao')
-    progsst = models.CharField(max_length=4)
-    dtiniprog = models.DateField()
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s1005_alteracao) + ' - ' + unicode(self.progsst) + ' - ' + unicode(self.dtiniprog)
-    #s1005_alteracao_infosst_custom#
-    #s1005_alteracao_infosst_custom#
-    class Meta:
-        db_table = r's1005_alteracao_infosst'
-        managed = True
-        ordering = ['s1005_alteracao', 'progsst', 'dtiniprog']
-
-
-
-class s1005alteracaoinfoSSTSerializer(ModelSerializer):
-    class Meta:
-        model = s1005alteracaoinfoSST
         fields = '__all__'
             
 
@@ -644,35 +610,6 @@ class s1005inclusaoinfoPCD(models.Model):
 class s1005inclusaoinfoPCDSerializer(ModelSerializer):
     class Meta:
         model = s1005inclusaoinfoPCD
-        fields = '__all__'
-            
-
-class s1005inclusaoinfoSST(models.Model):
-    s1005_inclusao = models.ForeignKey('s1005inclusao',
-        related_name='%(class)s_s1005_inclusao')
-    progsst = models.CharField(max_length=4)
-    dtiniprog = models.DateField()
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s1005_inclusao) + ' - ' + unicode(self.progsst) + ' - ' + unicode(self.dtiniprog)
-    #s1005_inclusao_infosst_custom#
-    #s1005_inclusao_infosst_custom#
-    class Meta:
-        db_table = r's1005_inclusao_infosst'
-        managed = True
-        ordering = ['s1005_inclusao', 'progsst', 'dtiniprog']
-
-
-
-class s1005inclusaoinfoSSTSerializer(ModelSerializer):
-    class Meta:
-        model = s1005inclusaoinfoSST
         fields = '__all__'
             
 

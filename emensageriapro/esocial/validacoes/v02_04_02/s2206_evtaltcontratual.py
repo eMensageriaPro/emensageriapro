@@ -1,4 +1,36 @@
 #coding:utf-8
+"""
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+    
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 import xmltodict
 import pprint
 import json
@@ -31,7 +63,7 @@ def validacoes_s2206_evtaltcontratual(arquivo):
     if 'tpRegPrev' in dir(evtAltContratual.altContratual.vinculo): validacoes_lista = validar_campo(validacoes_lista,'evtAltContratual.altContratual.vinculo.tpRegPrev', evtAltContratual.altContratual.vinculo.tpRegPrev.cdata, 1, '1;2;3')
     if 'codCargo' in dir(evtAltContratual.altContratual.infoContrato): validacoes_lista = validar_campo(validacoes_lista,'evtAltContratual.altContratual.infoContrato.codCargo', evtAltContratual.altContratual.infoContrato.codCargo.cdata, 0, '')
     if 'codFuncao' in dir(evtAltContratual.altContratual.infoContrato): validacoes_lista = validar_campo(validacoes_lista,'evtAltContratual.altContratual.infoContrato.codFuncao', evtAltContratual.altContratual.infoContrato.codFuncao.cdata, 0, '')
-    if 'codCateg' in dir(evtAltContratual.altContratual.infoContrato): validacoes_lista = validar_campo(validacoes_lista,'evtAltContratual.altContratual.infoContrato.codCateg', evtAltContratual.altContratual.infoContrato.codCateg.cdata, 1, '')
+    if 'codCateg' in dir(evtAltContratual.altContratual.infoContrato): validacoes_lista = validar_campo(validacoes_lista,'evtAltContratual.altContratual.infoContrato.codCateg', evtAltContratual.altContratual.infoContrato.codCateg.cdata, 1, '101;102;103;104;105;106;111;201;202;301;302;303;305;306;307;308;309;401;410;701;711;712;721;722;723;731;734;738;741;751;761;771;781;901;902;903;904;905')
     if 'codCarreira' in dir(evtAltContratual.altContratual.infoContrato): validacoes_lista = validar_campo(validacoes_lista,'evtAltContratual.altContratual.infoContrato.codCarreira', evtAltContratual.altContratual.infoContrato.codCarreira.cdata, 0, '')
     if 'dtIngrCarr' in dir(evtAltContratual.altContratual.infoContrato): validacoes_lista = validar_campo(validacoes_lista,'evtAltContratual.altContratual.infoContrato.dtIngrCarr', evtAltContratual.altContratual.infoContrato.dtIngrCarr.cdata, 0, '')
     if 'vrSalFx' in dir(evtAltContratual.altContratual.infoContrato.remuneracao): validacoes_lista = validar_campo(validacoes_lista,'evtAltContratual.altContratual.infoContrato.remuneracao.vrSalFx', evtAltContratual.altContratual.infoContrato.remuneracao.vrSalFx.cdata, 1, '')
@@ -62,6 +94,9 @@ def validacoes_s2206_evtaltcontratual(arquivo):
         for infoEstatutario in evtAltContratual.altContratual.infoRegimeTrab.infoEstatutario:
             
             if 'tpPlanRP' in dir(infoEstatutario): validacoes_lista = validar_campo(validacoes_lista,'infoEstatutario.tpPlanRP', infoEstatutario.tpPlanRP.cdata, 1, '1;2')
+            if 'indTetoRGPS' in dir(infoEstatutario): validacoes_lista = validar_campo(validacoes_lista,'infoEstatutario.indTetoRGPS', infoEstatutario.indTetoRGPS.cdata, 0, 'S;N')
+            if 'indAbonoPerm' in dir(infoEstatutario): validacoes_lista = validar_campo(validacoes_lista,'infoEstatutario.indAbonoPerm', infoEstatutario.indAbonoPerm.cdata, 0, 'S;N')
+            if 'indParcRemun' in dir(infoEstatutario): validacoes_lista = validar_campo(validacoes_lista,'infoEstatutario.indParcRemun', infoEstatutario.indParcRemun.cdata, 0, 'S;N')
 
     if 'localTrabGeral' in dir(evtAltContratual.altContratual.infoContrato.localTrabalho):
         for localTrabGeral in evtAltContratual.altContratual.infoContrato.localTrabalho.localTrabGeral:

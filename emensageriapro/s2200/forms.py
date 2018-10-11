@@ -1,10 +1,10 @@
 # coding: utf-8
 from django import forms
 from emensageriapro.s2200.models import * 
-from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.tabelas.models import Municipios 
 from emensageriapro.tabelas.models import eSocialPaises 
 from emensageriapro.tabelas.models import eSocialLogradourosTipos 
+from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.esocial.models import s2200evtAdmissao 
 
 
@@ -45,6 +45,210 @@ __author__ = 'marcelovasconcellos'
 
 #custom_forms#
 
+
+
+class form_s2200_filiacaosindical(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2200_filiacaosindical,self ).__init__(*args,**kwargs)
+        
+        self.fields['cnpjsindtrab'].widget.attrs['required'] = True
+        self.fields['s2200_evtadmissao'].queryset = s2200evtAdmissao.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s2200_evtadmissao'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s2200filiacaoSindical
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s2200_alvarajudicial(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2200_alvarajudicial,self ).__init__(*args,**kwargs)
+        
+        self.fields['nrprocjud'].widget.attrs['required'] = True
+        
+        self.fields['s2200_evtadmissao'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s2200alvaraJudicial
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s2200_observacoes(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2200_observacoes,self ).__init__(*args,**kwargs)
+        
+        self.fields['observacao'].widget.attrs['required'] = True
+        self.fields['s2200_evtadmissao'].queryset = s2200evtAdmissao.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s2200_evtadmissao'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s2200observacoes
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s2200_sucessaovinc(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2200_sucessaovinc,self ).__init__(*args,**kwargs)
+        
+        self.fields['dttransf'].widget.attrs['required'] = True
+        
+        self.fields['cnpjempregant'].widget.attrs['required'] = True
+        
+        self.fields['s2200_evtadmissao'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s2200sucessaoVinc
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s2200_transfdom(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2200_transfdom,self ).__init__(*args,**kwargs)
+        
+        self.fields['dttransf'].widget.attrs['required'] = True
+        
+        self.fields['cpfsubstituido'].widget.attrs['required'] = True
+        
+        self.fields['s2200_evtadmissao'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s2200transfDom
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s2200_afastamento(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2200_afastamento,self ).__init__(*args,**kwargs)
+        
+        self.fields['codmotafast'].widget.attrs['required'] = True
+        
+        self.fields['dtiniafast'].widget.attrs['required'] = True
+        
+        self.fields['s2200_evtadmissao'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s2200afastamento
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s2200_desligamento(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2200_desligamento,self ).__init__(*args,**kwargs)
+        
+        self.fields['dtdeslig'].widget.attrs['required'] = True
+        
+        self.fields['s2200_evtadmissao'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s2200desligamento
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s2200_cessao(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2200_cessao,self ).__init__(*args,**kwargs)
+        
+        self.fields['dtinicessao'].widget.attrs['required'] = True
+        
+        self.fields['s2200_evtadmissao'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s2200cessao
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s2200_infodecjud(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2200_infodecjud,self ).__init__(*args,**kwargs)
+        
+        self.fields['nrprocjud'].widget.attrs['required'] = True
+        
+        self.fields['s2200_infoestatutario'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s2200infoDecJud
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
 
 
 class form_s2200_documentos(forms.ModelForm):
@@ -577,28 +781,6 @@ class form_s2200_infoestatutario(forms.ModelForm):
         ]
 
 
-class form_s2200_infodecjud(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2200_infodecjud,self ).__init__(*args,**kwargs)
-        
-        self.fields['nrprocjud'].widget.attrs['required'] = True
-        
-        self.fields['s2200_infoestatutario'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2200infoDecJud
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
 class form_s2200_localtrabgeral(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
@@ -694,188 +876,6 @@ class form_s2200_horario(forms.ModelForm):
 
     class Meta:
         model = s2200horario
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s2200_filiacaosindical(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2200_filiacaosindical,self ).__init__(*args,**kwargs)
-        
-        self.fields['cnpjsindtrab'].widget.attrs['required'] = True
-        self.fields['s2200_evtadmissao'].queryset = s2200evtAdmissao.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2200_evtadmissao'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2200filiacaoSindical
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s2200_alvarajudicial(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2200_alvarajudicial,self ).__init__(*args,**kwargs)
-        
-        self.fields['nrprocjud'].widget.attrs['required'] = True
-        
-        self.fields['s2200_evtadmissao'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2200alvaraJudicial
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s2200_observacoes(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2200_observacoes,self ).__init__(*args,**kwargs)
-        
-        self.fields['observacao'].widget.attrs['required'] = True
-        self.fields['s2200_evtadmissao'].queryset = s2200evtAdmissao.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2200_evtadmissao'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2200observacoes
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s2200_sucessaovinc(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2200_sucessaovinc,self ).__init__(*args,**kwargs)
-        
-        self.fields['dttransf'].widget.attrs['required'] = True
-        
-        self.fields['cnpjempregant'].widget.attrs['required'] = True
-        
-        self.fields['s2200_evtadmissao'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2200sucessaoVinc
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s2200_transfdom(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2200_transfdom,self ).__init__(*args,**kwargs)
-        
-        self.fields['dttransf'].widget.attrs['required'] = True
-        
-        self.fields['cpfsubstituido'].widget.attrs['required'] = True
-        
-        self.fields['s2200_evtadmissao'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2200transfDom
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s2200_afastamento(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2200_afastamento,self ).__init__(*args,**kwargs)
-        
-        self.fields['codmotafast'].widget.attrs['required'] = True
-        
-        self.fields['dtiniafast'].widget.attrs['required'] = True
-        
-        self.fields['s2200_evtadmissao'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2200afastamento
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s2200_desligamento(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2200_desligamento,self ).__init__(*args,**kwargs)
-        
-        self.fields['dtdeslig'].widget.attrs['required'] = True
-        
-        self.fields['s2200_evtadmissao'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2200desligamento
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
-
-
-class form_s2200_cessao(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2200_cessao,self ).__init__(*args,**kwargs)
-        
-        self.fields['dtinicessao'].widget.attrs['required'] = True
-        
-        self.fields['s2200_evtadmissao'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2200cessao
         exclude = [ 
             'excluido',
             'modificado_por',

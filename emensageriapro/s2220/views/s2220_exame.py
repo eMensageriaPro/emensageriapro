@@ -344,35 +344,19 @@ def listar(request, hash):
             'show_modificado_em': 0,
             'show_criado_por': 0,
             'show_criado_em': 0,
-            'show_ufcrm': 1,
-            'show_nrcrm': 1,
-            'show_nmresp': 1,
-            'show_cpfresp': 1,
-            'show_ufconsclasse': 0,
-            'show_nrconsclasse': 1,
-            'show_nisresp': 1,
-            'show_respmonit': 0,
             'show_indresult': 0,
             'show_dtfimmonit': 0,
             'show_dtinimonit': 1,
             'show_ordexame': 1,
             'show_interprexm': 1,
             'show_obsproc': 0,
-            'show_procrealizado': 0,
+            'show_procrealizado': 1,
             'show_dtexm': 1,
             'show_s2220_evtmonit': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'ufcrm__icontains': 'ufcrm__icontains',
-                'nrcrm__icontains': 'nrcrm__icontains',
-                'nmresp__icontains': 'nmresp__icontains',
-                'cpfresp__icontains': 'cpfresp__icontains',
-                'ufconsclasse__icontains': 'ufconsclasse__icontains',
-                'nrconsclasse__icontains': 'nrconsclasse__icontains',
-                'nisresp__icontains': 'nisresp__icontains',
-                'respmonit': 'respmonit',
                 'indresult': 'indresult',
                 'dtfimmonit__range': 'dtfimmonit__range',
                 'dtinimonit__range': 'dtinimonit__range',
@@ -388,14 +372,6 @@ def listar(request, hash):
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'ufcrm__icontains': 'ufcrm__icontains',
-                'nrcrm__icontains': 'nrcrm__icontains',
-                'nmresp__icontains': 'nmresp__icontains',
-                'cpfresp__icontains': 'cpfresp__icontains',
-                'ufconsclasse__icontains': 'ufconsclasse__icontains',
-                'nrconsclasse__icontains': 'nrconsclasse__icontains',
-                'nisresp__icontains': 'nisresp__icontains',
-                'respmonit': 'respmonit',
                 'indresult': 'indresult',
                 'dtfimmonit__range': 'dtfimmonit__range',
                 'dtinimonit__range': 'dtinimonit__range',

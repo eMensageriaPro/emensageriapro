@@ -1,4 +1,36 @@
 #coding:utf-8
+"""
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+    
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 import xmltodict
 import pprint
 import json
@@ -6,25 +38,23 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo, create_insert, executar_sql
 
 
-
-
 def read_s1060_evttabambiente(dados, arquivo, validar=False):
     import untangle
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
-    s1060_evttabambiente_dados = {}
-    xmlns = doc.eSocial['xmlns'].split('/')
     if validar:
-        s1060_evttabambiente_dados['status'] = 1
+        status = 1
     else:
-        s1060_evttabambiente_dados['status'] = 0
-    s1060_evttabambiente_dados['versao'] = xmlns[len(xmlns)-1]
+        status = 0
+    read_s1060_evttabambiente_obj(doc, status)
+
+
+
+def read_s1060_evttabambiente_obj(doc):
+    s1060_evttabambiente_dados = {}
+    s1060_evttabambiente_dados['versao'] = 'v02_04_02'
+    s1060_evttabambiente_dados['status'] = status
     s1060_evttabambiente_dados['identidade'] = doc.eSocial.evtTabAmbiente['Id']
-    # verificacao = executar_sql("""SELECT count(*)
-    #     FROM public.transmissor_eventos_esocial WHERE identidade = '%s';
-    #     """ % s1060_evttabambiente_dados['identidade'], True)
-    # if validar and verificacao[0][0] != 0:
-    #     return False
     s1060_evttabambiente_dados['processamento_codigo_resposta'] = 1
     evtTabAmbiente = doc.eSocial.evtTabAmbiente
     
@@ -40,8 +70,9 @@ def read_s1060_evttabambiente(dados, arquivo, validar=False):
     insert = create_insert('s1060_evttabambiente', s1060_evttabambiente_dados)
     resp = executar_sql(insert, True)
     s1060_evttabambiente_id = resp[0][0]
+    dados = s1060_evttabambiente_dados
     dados['evento'] = 's1060'
-    dados['identidade'] = s1060_evttabambiente_id
+    dados['id'] = s1060_evttabambiente_id
     dados['identidade_evento'] = doc.eSocial.evtTabAmbiente['Id']
     dados['status'] = 1
 
@@ -57,22 +88,12 @@ def read_s1060_evttabambiente(dados, arquivo, validar=False):
             if 'localAmb' in dir(inclusao.dadosAmbiente): s1060_inclusao_dados['localamb'] = inclusao.dadosAmbiente.localAmb.cdata
             if 'tpInsc' in dir(inclusao.dadosAmbiente): s1060_inclusao_dados['tpinsc'] = inclusao.dadosAmbiente.tpInsc.cdata
             if 'nrInsc' in dir(inclusao.dadosAmbiente): s1060_inclusao_dados['nrinsc'] = inclusao.dadosAmbiente.nrInsc.cdata
+            if 'codLotacao' in dir(inclusao.dadosAmbiente): s1060_inclusao_dados['codlotacao'] = inclusao.dadosAmbiente.codLotacao.cdata
             insert = create_insert('s1060_inclusao', s1060_inclusao_dados)
             resp = executar_sql(insert, True)
             s1060_inclusao_id = resp[0][0]
             #print s1060_inclusao_id
 
-            if 'fatorRisco' in dir(inclusao.dadosAmbiente):
-                for fatorRisco in inclusao.dadosAmbiente.fatorRisco:
-                    s1060_inclusao_fatorrisco_dados = {}
-                    s1060_inclusao_fatorrisco_dados['s1060_inclusao_id'] = s1060_inclusao_id
-                    
-                    if 'codFatRis' in dir(fatorRisco): s1060_inclusao_fatorrisco_dados['codfatris'] = fatorRisco.codFatRis.cdata
-                    insert = create_insert('s1060_inclusao_fatorrisco', s1060_inclusao_fatorrisco_dados)
-                    resp = executar_sql(insert, True)
-                    s1060_inclusao_fatorrisco_id = resp[0][0]
-                    #print s1060_inclusao_fatorrisco_id
-        
     if 'alteracao' in dir(evtTabAmbiente.infoAmbiente):
         for alteracao in evtTabAmbiente.infoAmbiente.alteracao:
             s1060_alteracao_dados = {}
@@ -85,22 +106,12 @@ def read_s1060_evttabambiente(dados, arquivo, validar=False):
             if 'localAmb' in dir(alteracao.dadosAmbiente): s1060_alteracao_dados['localamb'] = alteracao.dadosAmbiente.localAmb.cdata
             if 'tpInsc' in dir(alteracao.dadosAmbiente): s1060_alteracao_dados['tpinsc'] = alteracao.dadosAmbiente.tpInsc.cdata
             if 'nrInsc' in dir(alteracao.dadosAmbiente): s1060_alteracao_dados['nrinsc'] = alteracao.dadosAmbiente.nrInsc.cdata
+            if 'codLotacao' in dir(alteracao.dadosAmbiente): s1060_alteracao_dados['codlotacao'] = alteracao.dadosAmbiente.codLotacao.cdata
             insert = create_insert('s1060_alteracao', s1060_alteracao_dados)
             resp = executar_sql(insert, True)
             s1060_alteracao_id = resp[0][0]
             #print s1060_alteracao_id
 
-            if 'fatorRisco' in dir(alteracao.dadosAmbiente):
-                for fatorRisco in alteracao.dadosAmbiente.fatorRisco:
-                    s1060_alteracao_fatorrisco_dados = {}
-                    s1060_alteracao_fatorrisco_dados['s1060_alteracao_id'] = s1060_alteracao_id
-                    
-                    if 'codFatRis' in dir(fatorRisco): s1060_alteracao_fatorrisco_dados['codfatris'] = fatorRisco.codFatRis.cdata
-                    insert = create_insert('s1060_alteracao_fatorrisco', s1060_alteracao_fatorrisco_dados)
-                    resp = executar_sql(insert, True)
-                    s1060_alteracao_fatorrisco_id = resp[0][0]
-                    #print s1060_alteracao_fatorrisco_id
-        
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:
                     s1060_alteracao_novavalidade_dados = {}

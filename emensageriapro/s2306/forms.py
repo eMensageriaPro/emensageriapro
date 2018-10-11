@@ -1,8 +1,8 @@
 # coding: utf-8
 from django import forms
 from emensageriapro.s2306.models import * 
-from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.tabelas.models import Municipios 
+from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.esocial.models import s2306evtTSVAltContr 
 
 
@@ -43,30 +43,6 @@ __author__ = 'marcelovasconcellos'
 
 #custom_forms#
 
-
-
-class form_s2306_supervisorestagio(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s2306_supervisorestagio,self ).__init__(*args,**kwargs)
-        
-        self.fields['nmsuperv'].widget.attrs['required'] = True
-        
-        self.fields['cpfsupervisor'].widget.attrs['required'] = True
-        
-        self.fields['s2306_infoestagiario'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s2306supervisorEstagio
-        exclude = [ 
-            'excluido',
-            'modificado_por',
-            'modificado_em',
-            'criado_por',
-            'criado_em',
- 
-        ]
 
 
 class form_s2306_infocomplementares(forms.ModelForm):
@@ -209,6 +185,30 @@ class form_s2306_ageintegracao(forms.ModelForm):
 
     class Meta:
         model = s2306ageIntegracao
+        exclude = [ 
+            'excluido',
+            'modificado_por',
+            'modificado_em',
+            'criado_por',
+            'criado_em',
+ 
+        ]
+
+
+class form_s2306_supervisorestagio(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s2306_supervisorestagio,self ).__init__(*args,**kwargs)
+        
+        self.fields['nmsuperv'].widget.attrs['required'] = True
+        
+        self.fields['cpfsupervisor'].widget.attrs['required'] = True
+        
+        self.fields['s2306_infoestagiario'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s2306supervisorEstagio
         exclude = [ 
             'excluido',
             'modificado_por',

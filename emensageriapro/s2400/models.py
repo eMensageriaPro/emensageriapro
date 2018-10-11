@@ -84,8 +84,6 @@ CHOICES_S2400_DEPIRRF = (
 
 CHOICES_S2400_INCFISMEN = (
     ('N', u'N - Não'),
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
     ('S', u'S - Sim'),
 )
 

@@ -118,7 +118,7 @@
               
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtTabEstab</td>
-            <td bgcolor="lightgray" colspan="3">Evento tabela de estabelecimentos, obras de construção civil ou ÓrgãosPúblicosRegras de validação: REGRA_EXISTE_INFO_EMPREGADOR REGRA_TABESTAB_VALIDA_ESTABELECIMENTOREGRA_TABESTAB_VALIDA_GILRATREGRA_TABESTAB_VALIDA_INFO_CNO REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_DT_FUTURAREGRA_VALIDA_FAP</td>
+            <td bgcolor="lightgray" colspan="3">Evento tabela de estabelecimentos, obras de construção civil ou Órgãos Públicos Regras de validação: REGRA_EXISTE_INFO_EMPREGADOR REGRA_TABESTAB_VALIDA_ESTABELECIMENTO REGRA_TABESTAB_VALIDA_GILRAT REGRA_TABESTAB_VALIDA_INFO_CNO REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_DT_FUTURA REGRA_VALIDA_FAP</td>
         </tr>
     {% for s1005_evttabestab in s1005_evttabestab_lista %}
     {% ifequal 1 1 %}
@@ -129,7 +129,7 @@
 
         <tr {% if s1005_evttabestab.tpamb|validacoes_esocial_efdreinf:"s1005_evttabestab.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1005_evttabestab.tpamb or s1005_evttabestab.tpamb == 0 %}{{ s1005_evttabestab.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -148,7 +148,7 @@
 
         <tr {% if s1005_evttabestab.procemi|validacoes_esocial_efdreinf:"s1005_evttabestab.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1005_evttabestab.procemi or s1005_evttabestab.procemi == 0 %}{{ s1005_evttabestab.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -191,7 +191,7 @@
 
         <tr {% if s1005_evttabestab.tpinsc|validacoes_esocial_efdreinf:"s1005_evttabestab.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5 Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
             <td width="200px"><b>{% if s1005_evttabestab.tpinsc or s1005_evttabestab.tpinsc == 0 %}{{ s1005_evttabestab.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -210,7 +210,7 @@
 
         <tr {% if s1005_evttabestab.nrinsc|validacoes_esocial_efdreinf:"s1005_evttabestab.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido.Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s1005_evttabestab.nrinsc or s1005_evttabestab.nrinsc == 0 %}{{ s1005_evttabestab.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -245,7 +245,7 @@
 
         <tr {% if s1005_inclusao.tpinsc|validacoes_esocial_efdreinf:"s1005_inclusao.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Valores Válidos: 1, 3, 4.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5 Valores Válidos: 1, 3, 4.</td>
             <td width="200px"><b>{% if s1005_inclusao.tpinsc or s1005_inclusao.tpinsc == 0 %}{{ s1005_inclusao.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -264,7 +264,7 @@
 
         <tr {% if s1005_inclusao.nrinsc|validacoes_esocial_efdreinf:"s1005_inclusao.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do estabelecimento, obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo{tpInsc}.Validação: Deve ser compatível com o conteúdo do campo {tpInsc}. Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador.</td>
+            <td width="500px">Informar o número de inscrição do estabelecimento, obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo {tpInsc}. Validação: Deve ser compatível com o conteúdo do campo {tpInsc}. Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador.</td>
             <td width="200px"><b>{% if s1005_inclusao.nrinsc or s1005_inclusao.nrinsc == 0 %}{{ s1005_inclusao.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -283,7 +283,7 @@
 
         <tr {% if s1005_inclusao.inivalid|validacoes_esocial_efdreinf:"s1005_inclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1005_inclusao.inivalid or s1005_inclusao.inivalid == 0 %}{{ s1005_inclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -302,7 +302,7 @@
 
         <tr {% if s1005_inclusao.fimvalid|validacoes_esocial_efdreinf:"s1005_inclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
             <td width="200px"><b>{% if s1005_inclusao.fimvalid or s1005_inclusao.fimvalid == 0 %}{{ s1005_inclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -326,7 +326,7 @@
 
         <tr {% if s1005_inclusao.cnaeprep|validacoes_esocial_efdreinf:"s1005_inclusao.cnaeprep" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnaePrep</td>
-            <td width="500px">Preencher com o código do CNAE conforme tabela do Anexo V do Regulamento da Previdência Social, referente a atividade econômica preponderante do estabelecimento.Validação: Deve ser um número existente na tabela CNAE.</td>
+            <td width="500px">Preencher com o código do CNAE conforme tabela do Anexo V do Regulamento da Previdência Social, referente a atividade econômica preponderante do estabelecimento. Validação: Deve ser um número existente na tabela CNAE.</td>
             <td width="200px"><b>{% if s1005_inclusao.cnaeprep or s1005_inclusao.cnaeprep == 0 %}{{ s1005_inclusao.cnaeprep|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -350,7 +350,7 @@
 
         <tr {% if s1005_inclusao.aliqrat|validacoes_esocial_efdreinf:"s1005_inclusao.aliqrat" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">aliqRat</td>
-            <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. A divergência só é permitida se existir o registro complementar com informações sobre o processo administrativo/judicial que permite a aplicação de alíquotas diferentes.Validação: Deve ser igual a 1, 2 ou 3. Se a alíquota informada for diferente da definida na legislação vigente para o CNAE informado deverá haver informações de processo em {procAdmJudRat}</td>
+            <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. A divergência só é permitida se existir o registro complementar com informações sobre o processo administrativo/judicial que permite a aplicação de alíquotas diferentes. Validação: Deve ser igual a 1, 2 ou 3. Se a alíquota informada for diferente da definida na legislação vigente para o CNAE informado deverá haver informações de processo em {procAdmJudRat}</td>
             <td width="200px"><b>{% if s1005_inclusao.aliqrat or s1005_inclusao.aliqrat == 0 %}{{ s1005_inclusao.aliqrat|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -388,7 +388,7 @@
 
         <tr {% if s1005_inclusao.aliqratajust|validacoes_esocial_efdreinf:"s1005_inclusao.aliqratajust" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">aliqRatAjust</td>
-            <td width="500px">Alíquota do RAT após ajuste pelo FAPValidação: Deve corresponder ao resultado da multiplicação dos campos{aliqRat} e {fap}.Preenchimento obrigatório pela Pessoa Jurídica.</td>
+            <td width="500px">Alíquota do RAT após ajuste pelo FAP Validação: Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}. Preenchimento obrigatório pela Pessoa Jurídica.</td>
             <td width="200px"><b>{% if s1005_inclusao.aliqratajust or s1005_inclusao.aliqratajust == 0 %}{{ s1005_inclusao.aliqratajust|format_number_4dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -413,7 +413,7 @@
     {% ifequal s1005_inclusao_procadmjudrat.s1005_inclusao.id s1005_inclusao.id %}
         <tr {% if s1005_inclusao_procadmjudrat.tpproc|validacoes_esocial_efdreinf:"s1005_inclusao_procadmjudrat.tpproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpProc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de processo:1 - Administrativo;2 - Judicial.Valores Válidos: 1, 2.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1005_inclusao_procadmjudrat.tpproc or s1005_inclusao_procadmjudrat.tpproc == 0 %}{{ s1005_inclusao_procadmjudrat.tpproc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -432,7 +432,7 @@
 
         <tr {% if s1005_inclusao_procadmjudrat.nrproc|validacoes_esocial_efdreinf:"s1005_inclusao_procadmjudrat.nrproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProc</td>
-            <td width="500px">Informar um número de processo cadastrado através do evento S-1070, cujo{indMatProc} seja igual a [1].Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070).</td>
+            <td width="500px">Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070).</td>
             <td width="200px"><b>{% if s1005_inclusao_procadmjudrat.nrproc or s1005_inclusao_procadmjudrat.nrproc == 0 %}{{ s1005_inclusao_procadmjudrat.nrproc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -476,7 +476,7 @@
     {% ifequal s1005_inclusao_procadmjudfap.s1005_inclusao.id s1005_inclusao.id %}
         <tr {% if s1005_inclusao_procadmjudfap.tpproc|validacoes_esocial_efdreinf:"s1005_inclusao_procadmjudfap.tpproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpProc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de processo:1 - Administrativo;2 - Judicial;4 - Processo FAP. Valores Válidos: 1, 2, 4.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial; 4 - Processo FAP. Valores Válidos: 1, 2, 4.</td>
             <td width="200px"><b>{% if s1005_inclusao_procadmjudfap.tpproc or s1005_inclusao_procadmjudfap.tpproc == 0 %}{{ s1005_inclusao_procadmjudfap.tpproc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -495,7 +495,7 @@
 
         <tr {% if s1005_inclusao_procadmjudfap.nrproc|validacoes_esocial_efdreinf:"s1005_inclusao_procadmjudfap.nrproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProc</td>
-            <td width="500px">Informar um número de processo cadastrado através do evento S-1070, cujo{indMatProc} seja igual a [1].Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070).</td>
+            <td width="500px">Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070).</td>
             <td width="200px"><b>{% if s1005_inclusao_procadmjudfap.nrproc or s1005_inclusao_procadmjudfap.nrproc == 0 %}{{ s1005_inclusao_procadmjudfap.nrproc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -539,7 +539,7 @@
     {% ifequal s1005_inclusao_infocaepf.s1005_inclusao.id s1005_inclusao.id %}
         <tr {% if s1005_inclusao_infocaepf.tpcaepf|validacoes_esocial_efdreinf:"s1005_inclusao_infocaepf.tpcaepf" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpCaepf</td>
-            <td width="500px">Tipo de CAEPF:1 - Contribuinte Individual;2 - Produtor Rural;3 - Segurado Especial.Validação: Deve ser compatível com o cadastro da RFB. Valores Válidos: 1, 2, 3.</td>
+            <td width="500px">Tipo de CAEPF: 1 - Contribuinte Individual; 2 - Produtor Rural; 3 - Segurado Especial. Validação: Deve ser compatível com o cadastro da RFB. Valores Válidos: 1, 2, 3.</td>
             <td width="200px"><b>{% if s1005_inclusao_infocaepf.tpcaepf or s1005_inclusao_infocaepf.tpcaepf == 0 %}{{ s1005_inclusao_infocaepf.tpcaepf|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -558,13 +558,13 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoObra</td>
-            <td bgcolor="lightgray" colspan="3">Registro preenchido exclusivamente por empresa construtora, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores deobra de construção civil.</td>
+            <td bgcolor="lightgray" colspan="3">Registro preenchido exclusivamente por empresa construtora, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.</td>
         </tr>
     {% for s1005_inclusao_infoobra in s1005_inclusao_infoobra_lista %}
     {% ifequal s1005_inclusao_infoobra.s1005_inclusao.id s1005_inclusao.id %}
         <tr {% if s1005_inclusao_infoobra.indsubstpatrobra|validacoes_esocial_efdreinf:"s1005_inclusao_infoobra.indsubstpatrobra" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indSubstPatrObra</td>
-            <td width="500px">Indicativo de Substituição da Contribuição Patronal de Obra de ConstruçãoCivil:1 - Contribuição Patronal Substituída; 2 - Contribuição Patronal Não Substituída. Valores Válidos: 1, 2.</td>
+            <td width="500px">Indicativo de Substituição da Contribuição Patronal de Obra de Construção Civil: 1 - Contribuição Patronal Substituída; 2 - Contribuição Patronal Não Substituída. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1005_inclusao_infoobra.indsubstpatrobra or s1005_inclusao_infoobra.indsubstpatrobra == 0 %}{{ s1005_inclusao_infoobra.indsubstpatrobra|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -588,7 +588,7 @@
 
         <tr {% if s1005_inclusao.regpt|validacoes_esocial_efdreinf:"s1005_inclusao.regpt" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">regPt</td>
-            <td width="500px">Opção de registro de ponto (jornada) adotada pelo estabelecimento. Indicar o sistema de controle de ponto preponderante, conforme opções:0 - Não utiliza;1 - Manual;2 - Mecânico;3 - Eletrônico (portaria MTE 1.510/2009);4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011);5 - Eletrônico alternativo ( art. 2° da Portaria MTE 373/2011);6 - Eletrônico - outros.Valores Válidos: 0, 1, 2, 3, 4, 5, 6.</td>
+            <td width="500px">Opção de registro de ponto (jornada) adotada pelo estabelecimento. Indicar o sistema de controle de ponto preponderante, conforme opções: 0 - Não utiliza; 1 - Manual; 2 - Mecânico; 3 - Eletrônico (portaria MTE 1.510/2009); 4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011); 5 - Eletrônico alternativo (art. 2° da Portaria MTE 373/2011); 6 - Eletrônico - outros. Valores Válidos: 0, 1, 2, 3, 4, 5, 6.</td>
             <td width="200px"><b>{% if s1005_inclusao.regpt or s1005_inclusao.regpt == 0 %}{{ s1005_inclusao.regpt|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -612,7 +612,7 @@
 
         <tr {% if s1005_inclusao.contapr|validacoes_esocial_efdreinf:"s1005_inclusao.contapr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">contApr</td>
-            <td width="500px">Indicativo de contratação de aprendiz:0 - Dispensado de acordo com a lei;1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial;2 - Obrigado.Valores Válidos: 0, 1, 2.</td>
+            <td width="500px">Indicativo de contratação de aprendiz: 0 - Dispensado de acordo com a lei; 1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial; 2 - Obrigado. Valores Válidos: 0, 1, 2.</td>
             <td width="200px"><b>{% if s1005_inclusao.contapr or s1005_inclusao.contapr == 0 %}{{ s1005_inclusao.contapr|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -631,7 +631,7 @@
 
         <tr {% if s1005_inclusao.nrprocjud|validacoes_esocial_efdreinf:"s1005_inclusao.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProcJud</td>
-            <td width="500px">Preencher com o número do processo judicial.Validação: O preenchimento é obrigatório se {contApr} for igual a [1]. Deve ser um número de processo judicial válido e existente na Tabela de Processos - S-1070.</td>
+            <td width="500px">Preencher com o número do processo judicial. Validação: O preenchimento é obrigatório se {contApr} for igual a [1]. Deve ser um número de processo judicial válido e existente na Tabela de Processos - S-1070.</td>
             <td width="200px"><b>{% if s1005_inclusao.nrprocjud or s1005_inclusao.nrprocjud == 0 %}{{ s1005_inclusao.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -650,7 +650,7 @@
 
         <tr {% if s1005_inclusao.contented|validacoes_esocial_efdreinf:"s1005_inclusao.contented" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">contEntEd</td>
-            <td width="500px">Informar se o estabelecimento realiza a contratação de aprendiz por intermédio de entidade educativa sem fins lucrativos que tenha por objetivo a assistência ao adolescente e à educação profissional (art. 430, inciso II, CLT) ou por entidade de prática desportiva filiada ao Sistema Nacional do Desporto ou a Sistema de Desporto de Estado, do Distrito Federal ou de Município (art.430, inciso III, CLT):S - Sim; N - Não.Validação: O preenchimento é obrigatório se {contApr} for igual a [1, 2].Valores Válidos: S, N.</td>
+            <td width="500px">Informar se o estabelecimento realiza a contratação de aprendiz por intermédio de entidade educativa sem fins lucrativos que tenha por objetivo a assistência ao adolescente e à educação profissional (art. 430, inciso II, CLT) ou por entidade de prática desportiva filiada ao Sistema Nacional do Desporto ou a Sistema de Desporto de Estado, do Distrito Federal ou de Município (art. 430, inciso III, CLT): S - Sim; N - Não. Validação: O preenchimento é obrigatório se {contApr} for igual a [1, 2]. Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s1005_inclusao.contented or s1005_inclusao.contented == 0 %}{{ s1005_inclusao.contented }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -675,7 +675,7 @@
     {% ifequal s1005_inclusao_infoenteduc.s1005_inclusao.id s1005_inclusao.id %}
         <tr {% if s1005_inclusao_infoenteduc.nrinsc|validacoes_esocial_efdreinf:"s1005_inclusao_infoenteduc.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição da entidade educativa ou de prática desportiva.Validação: Deve ser um número de CNPJ válido.</td>
+            <td width="500px">Informar o número de inscrição da entidade educativa ou de prática desportiva. Validação: Deve ser um número de CNPJ válido.</td>
             <td width="200px"><b>{% if s1005_inclusao_infoenteduc.nrinsc or s1005_inclusao_infoenteduc.nrinsc == 0 %}{{ s1005_inclusao_infoenteduc.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -694,13 +694,13 @@
     {% endifequal %}{% endfor %} 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoPCD</td>
-            <td bgcolor="lightgray" colspan="3">Informações sobre a contratação de pessoa com deficiência (PCD).Essa informação deve ser prestada apenas no estabelecimento "Matriz".</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento "Matriz".</td>
         </tr>
     {% for s1005_inclusao_infopcd in s1005_inclusao_infopcd_lista %}
     {% ifequal s1005_inclusao_infopcd.s1005_inclusao.id s1005_inclusao.id %}
         <tr {% if s1005_inclusao_infopcd.contpcd|validacoes_esocial_efdreinf:"s1005_inclusao_infopcd.contpcd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">contPCD</td>
-            <td width="500px">Indicativo de contratação de PCD:0 - Dispensado de acordo com a lei;1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial;2 - Com exigibilidade suspensa, mesmo que parcialmente em virtude deTermo de Compromisso firmado com o Ministério do Trabalho;9 - Obrigado.Valores Válidos: 0, 1, 2, 9.</td>
+            <td width="500px">Indicativo de contratação de PCD: 0 - Dispensado de acordo com a lei; 1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial; 2 - Com exigibilidade suspensa, mesmo que parcialmente em virtude de Termo de Compromisso firmado com o Ministério do Trabalho; 9 - Obrigado. Valores Válidos: 0, 1, 2, 9.</td>
             <td width="200px"><b>{% if s1005_inclusao_infopcd.contpcd or s1005_inclusao_infopcd.contpcd == 0 %}{{ s1005_inclusao_infopcd.contpcd|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -719,7 +719,7 @@
 
         <tr {% if s1005_inclusao_infopcd.nrprocjud|validacoes_esocial_efdreinf:"s1005_inclusao_infopcd.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProcJud</td>
-            <td width="500px">Preencher com o número do processo judicial. Validação: Informação obrigatória se {contPCD} = [1].Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos - S-1070.</td>
+            <td width="500px">Preencher com o número do processo judicial. Validação: Informação obrigatória se {contPCD} = [1]. Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos - S-1070.</td>
             <td width="200px"><b>{% if s1005_inclusao_infopcd.nrprocjud or s1005_inclusao_infopcd.nrprocjud == 0 %}{{ s1005_inclusao_infopcd.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -749,7 +749,7 @@
 
         <tr {% if s1005_alteracao.tpinsc|validacoes_esocial_efdreinf:"s1005_alteracao.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Valores Válidos: 1, 3, 4.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5 Valores Válidos: 1, 3, 4.</td>
             <td width="200px"><b>{% if s1005_alteracao.tpinsc or s1005_alteracao.tpinsc == 0 %}{{ s1005_alteracao.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -768,7 +768,7 @@
 
         <tr {% if s1005_alteracao.nrinsc|validacoes_esocial_efdreinf:"s1005_alteracao.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do estabelecimento, obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo{tpInsc}.Validação: Deve ser compatível com o conteúdo do campo {tpInsc}. Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador.</td>
+            <td width="500px">Informar o número de inscrição do estabelecimento, obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo {tpInsc}. Validação: Deve ser compatível com o conteúdo do campo {tpInsc}. Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador.</td>
             <td width="200px"><b>{% if s1005_alteracao.nrinsc or s1005_alteracao.nrinsc == 0 %}{{ s1005_alteracao.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -787,7 +787,7 @@
 
         <tr {% if s1005_alteracao.inivalid|validacoes_esocial_efdreinf:"s1005_alteracao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1005_alteracao.inivalid or s1005_alteracao.inivalid == 0 %}{{ s1005_alteracao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -806,7 +806,7 @@
 
         <tr {% if s1005_alteracao.fimvalid|validacoes_esocial_efdreinf:"s1005_alteracao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
             <td width="200px"><b>{% if s1005_alteracao.fimvalid or s1005_alteracao.fimvalid == 0 %}{{ s1005_alteracao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -830,7 +830,7 @@
 
         <tr {% if s1005_alteracao.cnaeprep|validacoes_esocial_efdreinf:"s1005_alteracao.cnaeprep" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnaePrep</td>
-            <td width="500px">Preencher com o código do CNAE conforme tabela do Anexo V do Regulamento da Previdência Social, referente a atividade econômica preponderante do estabelecimento.Validação: Deve ser um número existente na tabela CNAE.</td>
+            <td width="500px">Preencher com o código do CNAE conforme tabela do Anexo V do Regulamento da Previdência Social, referente a atividade econômica preponderante do estabelecimento. Validação: Deve ser um número existente na tabela CNAE.</td>
             <td width="200px"><b>{% if s1005_alteracao.cnaeprep or s1005_alteracao.cnaeprep == 0 %}{{ s1005_alteracao.cnaeprep|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -854,7 +854,7 @@
 
         <tr {% if s1005_alteracao.aliqrat|validacoes_esocial_efdreinf:"s1005_alteracao.aliqrat" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">aliqRat</td>
-            <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. A divergência só é permitida se existir o registro complementar com informações sobre o processo administrativo/judicial que permite a aplicação de alíquotas diferentes.Validação: Deve ser igual a 1, 2 ou 3. Se a alíquota informada for diferente dadefinida na legislação vigente para o CNAE informado deverá haver informações de processo em {procAdmJudRat}</td>
+            <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. A divergência só é permitida se existir o registro complementar com informações sobre o processo administrativo/judicial que permite a aplicação de alíquotas diferentes. Validação: Deve ser igual a 1, 2 ou 3. Se a alíquota informada for diferente da definida na legislação vigente para o CNAE informado deverá haver informações de processo em {procAdmJudRat}</td>
             <td width="200px"><b>{% if s1005_alteracao.aliqrat or s1005_alteracao.aliqrat == 0 %}{{ s1005_alteracao.aliqrat|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -892,7 +892,7 @@
 
         <tr {% if s1005_alteracao.aliqratajust|validacoes_esocial_efdreinf:"s1005_alteracao.aliqratajust" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">aliqRatAjust</td>
-            <td width="500px">Alíquota do RAT após ajuste pelo FAPValidação: Deve corresponder ao resultado da multiplicação dos campos{aliqRat} e {fap}.Preenchimento obrigatório pela Pessoa Jurídica.</td>
+            <td width="500px">Alíquota do RAT após ajuste pelo FAP Validação: Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}. Preenchimento obrigatório pela Pessoa Jurídica.</td>
             <td width="200px"><b>{% if s1005_alteracao.aliqratajust or s1005_alteracao.aliqratajust == 0 %}{{ s1005_alteracao.aliqratajust|format_number_4dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -917,7 +917,7 @@
     {% ifequal s1005_alteracao_procadmjudrat.s1005_alteracao.id s1005_alteracao.id %}
         <tr {% if s1005_alteracao_procadmjudrat.tpproc|validacoes_esocial_efdreinf:"s1005_alteracao_procadmjudrat.tpproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpProc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de processo:1 - Administrativo;2 - Judicial.Valores Válidos: 1, 2.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1005_alteracao_procadmjudrat.tpproc or s1005_alteracao_procadmjudrat.tpproc == 0 %}{{ s1005_alteracao_procadmjudrat.tpproc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -936,7 +936,7 @@
 
         <tr {% if s1005_alteracao_procadmjudrat.nrproc|validacoes_esocial_efdreinf:"s1005_alteracao_procadmjudrat.nrproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProc</td>
-            <td width="500px">Informar um número de processo cadastrado através do evento S-1070, cujo{indMatProc} seja igual a [1].Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070).</td>
+            <td width="500px">Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070).</td>
             <td width="200px"><b>{% if s1005_alteracao_procadmjudrat.nrproc or s1005_alteracao_procadmjudrat.nrproc == 0 %}{{ s1005_alteracao_procadmjudrat.nrproc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -980,7 +980,7 @@
     {% ifequal s1005_alteracao_procadmjudfap.s1005_alteracao.id s1005_alteracao.id %}
         <tr {% if s1005_alteracao_procadmjudfap.tpproc|validacoes_esocial_efdreinf:"s1005_alteracao_procadmjudfap.tpproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpProc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de processo:1 - Administrativo;2 - Judicial;4 - Processo FAP. Valores Válidos: 1, 2, 4.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial; 4 - Processo FAP. Valores Válidos: 1, 2, 4.</td>
             <td width="200px"><b>{% if s1005_alteracao_procadmjudfap.tpproc or s1005_alteracao_procadmjudfap.tpproc == 0 %}{{ s1005_alteracao_procadmjudfap.tpproc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -999,7 +999,7 @@
 
         <tr {% if s1005_alteracao_procadmjudfap.nrproc|validacoes_esocial_efdreinf:"s1005_alteracao_procadmjudfap.nrproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProc</td>
-            <td width="500px">Informar um número de processo cadastrado através do evento S-1070, cujo{indMatProc} seja igual a [1].Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070).</td>
+            <td width="500px">Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070).</td>
             <td width="200px"><b>{% if s1005_alteracao_procadmjudfap.nrproc or s1005_alteracao_procadmjudfap.nrproc == 0 %}{{ s1005_alteracao_procadmjudfap.nrproc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1037,13 +1037,13 @@
     {% endifequal %}{% endfor %} 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoCaepf</td>
-            <td bgcolor="lightgray" colspan="3">Informações relativas ao Cadastro da Atividade Econômica da Pessoa Física- CAEPF.</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas ao Cadastro da Atividade Econômica da Pessoa Física - CAEPF.</td>
         </tr>
     {% for s1005_alteracao_infocaepf in s1005_alteracao_infocaepf_lista %}
     {% ifequal s1005_alteracao_infocaepf.s1005_alteracao.id s1005_alteracao.id %}
         <tr {% if s1005_alteracao_infocaepf.tpcaepf|validacoes_esocial_efdreinf:"s1005_alteracao_infocaepf.tpcaepf" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpCaepf</td>
-            <td width="500px">Tipo de CAEPF:1 - Contribuinte Individual;2 - Produtor Rural;3 - Segurado Especial.Validação: Deve ser compatível com o cadastro da RFB. Valores Válidos: 1, 2, 3.</td>
+            <td width="500px">Tipo de CAEPF: 1 - Contribuinte Individual; 2 - Produtor Rural; 3 - Segurado Especial. Validação: Deve ser compatível com o cadastro da RFB. Valores Válidos: 1, 2, 3.</td>
             <td width="200px"><b>{% if s1005_alteracao_infocaepf.tpcaepf or s1005_alteracao_infocaepf.tpcaepf == 0 %}{{ s1005_alteracao_infocaepf.tpcaepf|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1068,7 +1068,7 @@
     {% ifequal s1005_alteracao_infoobra.s1005_alteracao.id s1005_alteracao.id %}
         <tr {% if s1005_alteracao_infoobra.indsubstpatrobra|validacoes_esocial_efdreinf:"s1005_alteracao_infoobra.indsubstpatrobra" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indSubstPatrObra</td>
-            <td width="500px">Indicativo de Substituição da Contribuição Patronal de Obra de ConstruçãoCivil:1 - Contribuição Patronal Substituída;2 - Contribuição Patronal Não Substituída. Valores Válidos: 1, 2.</td>
+            <td width="500px">Indicativo de Substituição da Contribuição Patronal de Obra de Construção Civil: 1 - Contribuição Patronal Substituída; 2 - Contribuição Patronal Não Substituída. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1005_alteracao_infoobra.indsubstpatrobra or s1005_alteracao_infoobra.indsubstpatrobra == 0 %}{{ s1005_alteracao_infoobra.indsubstpatrobra|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1092,7 +1092,7 @@
 
         <tr {% if s1005_alteracao.regpt|validacoes_esocial_efdreinf:"s1005_alteracao.regpt" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">regPt</td>
-            <td width="500px">Opção de registro de ponto (jornada) adotada pelo estabelecimento. Indicar o sistema de controle de ponto preponderante, conforme opções:0 - Não utiliza;1 - Manual;2 - Mecânico;3 - Eletrônico (portaria MTE 1.510/2009);4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011); 5 - Eletrônico alternativo ( art. 2° da Portaria MTE 373/2011);6 - Eletrônico - outros.Valores Válidos: 0, 1, 2, 3, 4, 5, 6.</td>
+            <td width="500px">Opção de registro de ponto (jornada) adotada pelo estabelecimento. Indicar o sistema de controle de ponto preponderante, conforme opções: 0 - Não utiliza; 1 - Manual; 2 - Mecânico; 3 - Eletrônico (portaria MTE 1.510/2009); 4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011); 5 - Eletrônico alternativo (art. 2° da Portaria MTE 373/2011); 6 - Eletrônico - outros. Valores Válidos: 0, 1, 2, 3, 4, 5, 6.</td>
             <td width="200px"><b>{% if s1005_alteracao.regpt or s1005_alteracao.regpt == 0 %}{{ s1005_alteracao.regpt|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1116,7 +1116,7 @@
 
         <tr {% if s1005_alteracao.contapr|validacoes_esocial_efdreinf:"s1005_alteracao.contapr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">contApr</td>
-            <td width="500px">Indicativo de contratação de aprendiz:0 - Dispensado de acordo com a lei;1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial;2 - Obrigado.Valores Válidos: 0, 1, 2.</td>
+            <td width="500px">Indicativo de contratação de aprendiz: 0 - Dispensado de acordo com a lei; 1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial; 2 - Obrigado. Valores Válidos: 0, 1, 2.</td>
             <td width="200px"><b>{% if s1005_alteracao.contapr or s1005_alteracao.contapr == 0 %}{{ s1005_alteracao.contapr|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1135,7 +1135,7 @@
 
         <tr {% if s1005_alteracao.nrprocjud|validacoes_esocial_efdreinf:"s1005_alteracao.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProcJud</td>
-            <td width="500px">Preencher com o número do processo judicial.Validação: O preenchimento é obrigatório se {contApr} for igual a [1]. Deve ser um número de processo judicial válido e existente na Tabela de Processos - S-1070.</td>
+            <td width="500px">Preencher com o número do processo judicial. Validação: O preenchimento é obrigatório se {contApr} for igual a [1]. Deve ser um número de processo judicial válido e existente na Tabela de Processos - S-1070.</td>
             <td width="200px"><b>{% if s1005_alteracao.nrprocjud or s1005_alteracao.nrprocjud == 0 %}{{ s1005_alteracao.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1154,7 +1154,7 @@
 
         <tr {% if s1005_alteracao.contented|validacoes_esocial_efdreinf:"s1005_alteracao.contented" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">contEntEd</td>
-            <td width="500px">Informar se o estabelecimento realiza a contratação de aprendiz por intermédio de entidade educativa sem fins lucrativos que tenha por objetivo a assistência ao adolescente e à educação profissional (art. 430, inciso II, CLT) ou por entidade de prática desportiva filiada ao Sistema Nacional do Desporto ou a Sistema de Desporto de Estado, do Distrito Federal ou de Município (art.430, inciso III, CLT): S - Sim;N - Não.Validação: O preenchimento é obrigatório se {contApr} for igual a [1, 2]. Valores Válidos: S, N.</td>
+            <td width="500px">Informar se o estabelecimento realiza a contratação de aprendiz por intermédio de entidade educativa sem fins lucrativos que tenha por objetivo a assistência ao adolescente e à educação profissional (art. 430, inciso II, CLT) ou por entidade de prática desportiva filiada ao Sistema Nacional do Desporto ou a Sistema de Desporto de Estado, do Distrito Federal ou de Município (art. 430, inciso III, CLT): S - Sim; N - Não. Validação: O preenchimento é obrigatório se {contApr} for igual a [1, 2]. Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s1005_alteracao.contented or s1005_alteracao.contented == 0 %}{{ s1005_alteracao.contented }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1179,7 +1179,7 @@
     {% ifequal s1005_alteracao_infoenteduc.s1005_alteracao.id s1005_alteracao.id %}
         <tr {% if s1005_alteracao_infoenteduc.nrinsc|validacoes_esocial_efdreinf:"s1005_alteracao_infoenteduc.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição da entidade educativa ou de prática desportiva.Validação: Deve ser um número de CNPJ válido.</td>
+            <td width="500px">Informar o número de inscrição da entidade educativa ou de prática desportiva. Validação: Deve ser um número de CNPJ válido.</td>
             <td width="200px"><b>{% if s1005_alteracao_infoenteduc.nrinsc or s1005_alteracao_infoenteduc.nrinsc == 0 %}{{ s1005_alteracao_infoenteduc.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1198,13 +1198,13 @@
     {% endifequal %}{% endfor %} 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoPCD</td>
-            <td bgcolor="lightgray" colspan="3">Informações sobre a contratação de pessoa com deficiência (PCD).Essa informação deve ser prestada apenas no estabelecimento "Matriz".</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento "Matriz".</td>
         </tr>
     {% for s1005_alteracao_infopcd in s1005_alteracao_infopcd_lista %}
     {% ifequal s1005_alteracao_infopcd.s1005_alteracao.id s1005_alteracao.id %}
         <tr {% if s1005_alteracao_infopcd.contpcd|validacoes_esocial_efdreinf:"s1005_alteracao_infopcd.contpcd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">contPCD</td>
-            <td width="500px">Indicativo de contratação de PCD:0 - Dispensado de acordo com a lei;1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial;2 - Com exigibilidade suspensa, mesmo que parcialmente em virtude deTermo de Compromisso firmado com o Ministério do Trabalho;9 - Obrigado.Valores Válidos: 0, 1, 2, 9.</td>
+            <td width="500px">Indicativo de contratação de PCD: 0 - Dispensado de acordo com a lei; 1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial; 2 - Com exigibilidade suspensa, mesmo que parcialmente em virtude de Termo de Compromisso firmado com o Ministério do Trabalho; 9 - Obrigado. Valores Válidos: 0, 1, 2, 9.</td>
             <td width="200px"><b>{% if s1005_alteracao_infopcd.contpcd or s1005_alteracao_infopcd.contpcd == 0 %}{{ s1005_alteracao_infopcd.contpcd|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1223,7 +1223,7 @@
 
         <tr {% if s1005_alteracao_infopcd.nrprocjud|validacoes_esocial_efdreinf:"s1005_alteracao_infopcd.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProcJud</td>
-            <td width="500px">Preencher com o número do processo judicial. Validação: Informação obrigatória se {contPCD} = [1].Deve ser um número de processo administrativo ou judicial válido e existentena Tabela de Processos - S-1070.</td>
+            <td width="500px">Preencher com o número do processo judicial. Validação: Informação obrigatória se {contPCD} = [1]. Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos - S-1070.</td>
             <td width="200px"><b>{% if s1005_alteracao_infopcd.nrprocjud or s1005_alteracao_infopcd.nrprocjud == 0 %}{{ s1005_alteracao_infopcd.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1248,7 +1248,7 @@
     {% ifequal s1005_alteracao_novavalidade.s1005_alteracao.id s1005_alteracao.id %}
         <tr {% if s1005_alteracao_novavalidade.inivalid|validacoes_esocial_efdreinf:"s1005_alteracao_novavalidade.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1005_alteracao_novavalidade.inivalid or s1005_alteracao_novavalidade.inivalid == 0 %}{{ s1005_alteracao_novavalidade.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1267,7 +1267,7 @@
 
         <tr {% if s1005_alteracao_novavalidade.fimvalid|validacoes_esocial_efdreinf:"s1005_alteracao_novavalidade.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser umperíodo igual ou posterior a {iniValid}</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
             <td width="200px"><b>{% if s1005_alteracao_novavalidade.fimvalid or s1005_alteracao_novavalidade.fimvalid == 0 %}{{ s1005_alteracao_novavalidade.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1297,7 +1297,7 @@
 
         <tr {% if s1005_exclusao.tpinsc|validacoes_esocial_efdreinf:"s1005_exclusao.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Valores Válidos: 1, 3, 4.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5 Valores Válidos: 1, 3, 4.</td>
             <td width="200px"><b>{% if s1005_exclusao.tpinsc or s1005_exclusao.tpinsc == 0 %}{{ s1005_exclusao.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1316,7 +1316,7 @@
 
         <tr {% if s1005_exclusao.nrinsc|validacoes_esocial_efdreinf:"s1005_exclusao.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do estabelecimento, obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo{tpInsc}.Validação: Deve ser compatível com o conteúdo do campo {tpInsc}. Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador.</td>
+            <td width="500px">Informar o número de inscrição do estabelecimento, obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo {tpInsc}. Validação: Deve ser compatível com o conteúdo do campo {tpInsc}. Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador.</td>
             <td width="200px"><b>{% if s1005_exclusao.nrinsc or s1005_exclusao.nrinsc == 0 %}{{ s1005_exclusao.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1335,7 +1335,7 @@
 
         <tr {% if s1005_exclusao.inivalid|validacoes_esocial_efdreinf:"s1005_exclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial deimplantação do eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1005_exclusao.inivalid or s1005_exclusao.inivalid == 0 %}{{ s1005_exclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1354,7 +1354,7 @@
 
         <tr {% if s1005_exclusao.fimvalid|validacoes_esocial_efdreinf:"s1005_exclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser umperíodo igual ou posterior a {iniValid}</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
             <td width="200px"><b>{% if s1005_exclusao.fimvalid or s1005_exclusao.fimvalid == 0 %}{{ s1005_exclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">

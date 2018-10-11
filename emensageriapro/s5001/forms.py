@@ -1,8 +1,8 @@
 # coding: utf-8
 from django import forms
 from emensageriapro.s5001.models import * 
-from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.tabelas.models import eSocialTrabalhadoresCategorias 
+from emensageriapro.controle_de_acesso.models import Usuarios 
 from emensageriapro.esocial.models import s5001evtBasesTrab 
 
 
