@@ -108,7 +108,7 @@ INSTALLED_APPS = (
     'emensageriapro.s1040',
     'emensageriapro.s1050',
     'emensageriapro.s1060',
-    'emensageriapro.s1065',
+    # 'emensageriapro.s1065',
     'emensageriapro.s1070',
     'emensageriapro.s1080',
     'emensageriapro.s1200',
