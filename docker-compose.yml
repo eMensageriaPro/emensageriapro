@@ -1,0 +1,34 @@
+# Dockerfile by Marcos Roberto - marcosroberto1808@gmail.com
+version: '3'
+services:
+
+## Database setup
+  db:
+    ports:
+      - "5499:5432"
+    volumes: 
+    - ../db_backups:/backups
+    env_file:
+    - ./compose_setup/.envs/.local/.postgres
+    build:
+      context: ./compose_setup/local/db/.
+      dockerfile: Dockerfile
+
+## App setup 
+  app:
+    links:
+    - db
+    ports:
+      - "8000:8000"
+    volumes:
+    - ../emensageriapro-data/logs:/appdata/logs
+    - ../emensageriapro-data/repositorios/arquivos:/app/arquivos
+    - ../emensageriapro-data/repositorios/certificados:/app/certificados/certificado_valido
+    # Link local code dir inside container
+    - .:/app
+    env_file:
+    - ./compose_setup/.envs/.local/.django
+    command: uwsgi --ini /requirements/uwsgi.ini
+    build:
+      context: .
+      dockerfile: ./compose_setup/local/app/Dockerfile

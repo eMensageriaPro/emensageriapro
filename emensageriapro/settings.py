@@ -210,7 +210,7 @@ USE_L10N = True
 
 USE_TZ = False
 
-#STATIC_ROOT = env('STATIC_ROOT')
+STATIC_ROOT = env('STATIC_ROOT')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
