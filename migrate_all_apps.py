@@ -198,6 +198,6 @@ def migrates():
 
 
 if __name__ == "__main__":
-    cadastro_controle_acesso()
     migrates()
+    cadastro_controle_acesso()
 
