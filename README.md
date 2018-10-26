@@ -3,39 +3,34 @@
 eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
 Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
-Requisitos de Sistema
-----
+## Requisitos de Sistema
+
 - Linux;
 - Python (versão 2.7);
 - Django (versão 1.11.15);
 - Postgres 9.6;
 
-Instalação usando docker:
-----
+# Instalação usando docker:
 
 Contribuição Marcos Roberto <marcosroberto1808@gmail.com>
 
-Starting all services in detached mode:
-- docker-compose up -d
+## Starting all services in detached mode:
+`docker-compose up -d`
 
-Execute initial migrate
-- docker-compose exec app python migrate_all_apps.py
+## Execute initial migrate
+`docker-compose exec app python migrate_all_apps.py`
 
-Atualização de Banco de dados:
-----
+## Atualização de Banco de dados:
 
-- python migrate_all_apps.py
+`python migrate_all_apps.py`
 
-Versão de Demostração:
-----
+# Versão de Demostração:
 
-- https://www.emensageria.com.br/index.php?page=demo#demo
+https://www.emensageria.com.br/index.php?page=demo#demo
 - login: admin
 - senha: admin
 
-
 # Licença AGPL-3
-----
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -66,7 +61,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   Para maiores informações acesse: www.emensageria.com.br e baixe o Manual de Instruções
 
 # Contato
-----
 
 Marcelo Medeiros de Vasconcellos
 contato@emensageria.com.br
