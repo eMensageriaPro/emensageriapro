@@ -45,23 +45,9 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-  Este programa é software livre: você pode redistribuí-lo e/ou modificá-lo
-  sob os termos da licença GNU Affero General Public License como
-  publicado pela Free Software Foundation, seja versão 3 do
-  Licença, ou (a seu critério) qualquer versão posterior.
-
-  Este programa é distribuído na esperança de que seja útil,
-  mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-  COMERCIABILIDADE ou ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-  Licença Pública Geral GNU Affero para mais detalhes.
-
-  Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-  junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-  Para maiores informações acesse: www.emensageria.com.br e baixe o Manual de Instruções
-
 ## Contato
 
 Marcelo Medeiros de Vasconcellos <marcelomdevasconcellos@gmail.com>
+Para maiores informações acesse: www.emensageria.com.br e baixe o Manual de Instruções
 
 
