@@ -1,11 +1,11 @@
 # eMensageriaPro
 
 eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+
 Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
 ## Requisitos de Sistema
 
-- Linux;
 - Python (versão 2.7);
 - Django (versão 1.11.15);
 - Postgres 9.6;
