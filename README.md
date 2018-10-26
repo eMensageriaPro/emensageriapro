@@ -12,12 +12,14 @@ Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
 ## Instalação usando docker:
 
-Contribuição Marcos Roberto <marcosroberto1808@gmail.com>
+__Autor:__ Marcos Roberto <marcosroberto1808@gmail.com>
 
 __Starting all services in detached mode:__
+
 `docker-compose up -d`
 
 __Execute initial migrate:__
+
 `docker-compose exec app python migrate_all_apps.py`
 
 ## Atualização de Banco de dados:
@@ -48,6 +50,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ## Contato
 
 Marcelo Medeiros de Vasconcellos <marcelomdevasconcellos@gmail.com>
+
 Para maiores informações acesse: www.emensageria.com.br e baixe o Manual de Instruções
 
 
