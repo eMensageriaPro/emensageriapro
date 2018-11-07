@@ -274,4 +274,4 @@ FORCE_PRODUCAO_RESTRITA = env('FORCE_PRODUCAO_RESTRITA')
 
 PASS_SCRIPT = env('PASS_SCRIPT')
 
-LOGIN_REDIRECT_URL = '%s/mensageiro/mapa-processamento/eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ==/' % LINK_WEBSITE
+LOGIN_REDIRECT_URL = LINK_WEBSITE + 'mensageiro/mapa-processamento/eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ==/' % LINK_WEBSITE
