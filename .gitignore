@@ -4,3 +4,4 @@
 certificados/*.pfx
 certificados/*.pem
 arquivos/
+static/

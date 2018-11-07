@@ -46,6 +46,7 @@ import psycopg2
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import environ
+import socket
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -261,7 +262,7 @@ CERT_PEM_FILE = env('CERT_PEM_FILE')
 KEY_PEM_FILE = env('KEY_PEM_FILE')
 CA_CERT_PEM_FILE = env('CA_CERT_PEM_FILE')
 
-LINK_WEBSITE = env('LINK_WEBSITE')
+LINK_WEBSITE = env('LINK_WEBSITE') or ''
 EMAIL_RECUPERACAO_SENHA = env('EMAIL_RECUPERACAO_SENHA')
 
 # Configurações Específicas do eSocial
@@ -273,4 +274,4 @@ FORCE_PRODUCAO_RESTRITA = env('FORCE_PRODUCAO_RESTRITA')
 
 PASS_SCRIPT = env('PASS_SCRIPT')
 
-LOGIN_REDIRECT_URL = '/mensageiro/mapa-processamento/eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ==/'
+LOGIN_REDIRECT_URL = '%s/mensageiro/mapa-processamento/eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ==/' % LINK_WEBSITE
