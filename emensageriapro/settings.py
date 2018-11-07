@@ -80,10 +80,6 @@ INSTALLED_APPS = (
     'rest_framework',
 
     'emensageriapro.controle_de_acesso',
-    'emensageriapro.efdreinf',
-    'emensageriapro.esocial',
-    'emensageriapro.mensageiro',
-    'emensageriapro.tabelas',
     'emensageriapro.r1000',
     'emensageriapro.r1070',
     'emensageriapro.r2010',
@@ -152,18 +148,20 @@ INSTALLED_APPS = (
     'emensageriapro.s5002',
     'emensageriapro.s5011',
     'emensageriapro.s5012',
-
-
+    'emensageriapro.tabelas',
+    'emensageriapro.efdreinf',
+    'emensageriapro.esocial',
+    'emensageriapro.mensageiro',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
 )
 
 
@@ -210,14 +208,15 @@ USE_L10N = True
 
 USE_TZ = False
 
+
 STATIC_ROOT = env('STATIC_ROOT')
+
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR, 'static'),
-)
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'staticfiles')
+]
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -274,4 +273,4 @@ FORCE_PRODUCAO_RESTRITA = env('FORCE_PRODUCAO_RESTRITA')
 
 PASS_SCRIPT = env('PASS_SCRIPT')
 
-LOGIN_REDIRECT_URL = 'mensageiro/mapa-processamento/eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ==/'
+LOGIN_REDIRECT_URL = '/mensageiro/mapa-processamento/eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ==/'

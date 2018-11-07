@@ -1,0 +1,12 @@
+DELETE FROM public.esocial_dependentes_tipos;
+INSERT INTO public.esocial_dependentes_tipos (codigo, descricao, criado_em, criado_por_id, excluido) VALUES ('01', 'Cônjuge', now(), 1, False);
+INSERT INTO public.esocial_dependentes_tipos (codigo, descricao, criado_em, criado_por_id, excluido) VALUES ('02', 'Companheiro(a) com o(a) qual tenha filho ou viva há mais de 5 (cinco) anos ou possua Declaração de União Estável', now(), 1, False);
+INSERT INTO public.esocial_dependentes_tipos (codigo, descricao, criado_em, criado_por_id, excluido) VALUES ('03', 'Filho(a) ou enteado(a)', now(), 1, False);
+INSERT INTO public.esocial_dependentes_tipos (codigo, descricao, criado_em, criado_por_id, excluido) VALUES ('04', 'Filho(a) ou enteado(a), universitário(a) ou cursando escola técnica de 2º grau', now(), 1, False);
+INSERT INTO public.esocial_dependentes_tipos (codigo, descricao, criado_em, criado_por_id, excluido) VALUES ('06', 'Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, do(a) qual detenha a guarda judicial', now(), 1, False);
+INSERT INTO public.esocial_dependentes_tipos (codigo, descricao, criado_em, criado_por_id, excluido) VALUES ('07', 'Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, universitário(a) ou cursando escola técnica de 2° grau, do(a) qual detenha a guarda judicial', now(), 1, False);
+INSERT INTO public.esocial_dependentes_tipos (codigo, descricao, criado_em, criado_por_id, excluido) VALUES ('09', 'Pais, avós e bisavós', now(), 1, False);
+INSERT INTO public.esocial_dependentes_tipos (codigo, descricao, criado_em, criado_por_id, excluido) VALUES ('10', 'Menor pobre do qual detenha a guarda judicial', now(), 1, False);
+INSERT INTO public.esocial_dependentes_tipos (codigo, descricao, criado_em, criado_por_id, excluido) VALUES ('11', 'A pessoa absolutamente incapaz, da qual seja tutor ou curador', now(), 1, False);
+INSERT INTO public.esocial_dependentes_tipos (codigo, descricao, criado_em, criado_por_id, excluido) VALUES ('12', 'Ex-cônjuge', now(), 1, False);
+INSERT INTO public.esocial_dependentes_tipos (codigo, descricao, criado_em, criado_por_id, excluido) VALUES ('99', 'Agregado/Outros', now(), 1, False);
