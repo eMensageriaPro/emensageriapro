@@ -173,7 +173,7 @@ def assinar_efdreinf(xml):
     from lxml import etree
     from emensageriapro.settings import FORCE_PRODUCAO_RESTRITA, BASE_DIR
     from signxml import XMLSigner, methods
-    from emensageriapro.certificado import CERT, CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE
+    from emensageriapro.settings import CERT, CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE
     CERT_HOST = BASE_DIR + '/' + CERT_HOST
     CERT_PEM_FILE = CERT_PEM_FILE
     KEY_PEM_FILE = KEY_PEM_FILE
@@ -262,7 +262,7 @@ def send_xml(request, transmissor_id, service):
     from datetime import datetime
     import os
     from emensageriapro.settings import CERT_PEM_FILE, KEY_PEM_FILE, CA_CERT_PEM_FILE, FORCE_PRODUCAO_RESTRITA, TP_AMB, CERT_HOST, CERT_PASS
-    from emensageriapro.certificado import CERT
+    from emensageriapro.settings import CERT
     CERT_HOST = BASE_DIR + '/' + CERT_HOST
     if TP_AMB == '1': # Produção
         if service == 'RecepcaoLoteReinf':
@@ -282,7 +282,7 @@ def send_xml(request, transmissor_id, service):
     name = get_transmissor_name(transmissor_id)
     tra = executar_sql("""
         SELECT te.contribuinte_tpinsc, te.contribuinte_nrinsc,
-                   t.tipo_inscricao, t.cpf_cnpj, 
+                   t.transmissor_tpinsc, t.transmissor_nrinsc,
                    t.efdreinf_lote_min, t.efdreinf_lote_max, 
                    t.efdreinf_timeout, t.efdreinf_certificado, t.efdreinf_senha
               FROM public.transmissor_lote_efdreinf te

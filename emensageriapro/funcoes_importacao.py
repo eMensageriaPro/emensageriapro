@@ -38,7 +38,7 @@ import datetime
 import os
 from padrao import ler_arquivo
 from emensageriapro.funcoes_validacoes import validar_schema
-from emensageriapro.certificado import CERT, CERT_HOST, CERT_PASS
+from emensageriapro.settings import CERT, CERT_HOST, CERT_PASS
 
 
 

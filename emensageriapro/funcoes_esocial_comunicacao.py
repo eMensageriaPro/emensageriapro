@@ -82,6 +82,7 @@ def read_envioLoteEventos(arquivo, transmissor_lote_esocial_id):
     lote['transmissor_lote_esocial_id'] = transmissor_lote_esocial_id
     lote['cdResposta'] = child.status.cdResposta.cdata
     lote['descResposta'] = child.status.descResposta.cdata
+    print lote
     executar_sql("""
       DELETE FROM public.transmissor_lote_esocial_ocorrencias 
             WHERE transmissor_lote_esocial_id=%s;""" % transmissor_lote_esocial_id, False)
@@ -127,6 +128,7 @@ def read_envioLoteEventos(arquivo, transmissor_lote_esocial_id):
                        modificado_em=now(), modificado_por_id=1
                  WHERE id=%(transmissor_lote_esocial_id)s;
                 """ % lote
+        print UPDATE
     executar_sql(UPDATE, False)
 
 

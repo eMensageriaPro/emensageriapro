@@ -1,4 +1,5 @@
 #coding:utf-8
+from emensageriapro.mensageiro.models import TransmissorEventosEsocial
 
 """
 
@@ -128,7 +129,7 @@ def alterar_status_transmissor(transmissor_id, status):
     if status == 7:
         executar_sql("""
             UPDATE public.transmissor_lote_esocial 
-            SET status=%s, resposta_codigo=Null, resposta_descricao=Null
+            SET status=%s --, resposta_codigo=Null, resposta_descricao=Null CORRIGIR
             WHERE id=%s;""" % (status, transmissor_id), False)
     else:
         executar_sql("""
@@ -191,7 +192,7 @@ def create_pem_files(CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE):
 
 
 def assinar_esocial(xml):
-    from emensageriapro.certificado import CERT, CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE
+    from emensageriapro.settings import CERT, CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE
     from lxml import etree
     from emensageriapro.settings import FORCE_PRODUCAO_RESTRITA, BASE_DIR
     from signxml import XMLSigner, methods
@@ -239,7 +240,7 @@ def create_request(dados, transmissor_dados):
         eventos = executar_sql("""
             SELECT tee.evento, tee.id, tee.identidade, tee.grupo, tee.tabela,
             tle.empregador_tpinsc, tle.empregador_nrinsc,
-            t.tipo_inscricao, t.cpf_cnpj
+            t.transmissor_tpinsc, t.transmissor_nrinsc
             
             FROM public.transmissor_eventos_esocial tee
             JOIN public.transmissor_lote_esocial tle ON tle.id = tee.transmissor_lote_esocial_id
@@ -289,7 +290,7 @@ def send_xml(request, transmissor_id, service):
     criar_diretorio_arquivos()
     import os
     from emensageriapro.settings import FORCE_PRODUCAO_RESTRITA, TP_AMB, CA_CERT_PEM_FILE, CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE
-    from emensageriapro.certificado import CERT
+    from emensageriapro.settings import CERT
     CERT_HOST = BASE_DIR + '/' + CERT_HOST
     if TP_AMB == '1': # Produção
         if service == 'WsEnviarLoteEventos':
@@ -310,7 +311,7 @@ def send_xml(request, transmissor_id, service):
     transmissor_dados = {}
     tra = executar_sql("""
         SELECT te.empregador_tpinsc, te.empregador_nrinsc,
-                   t.tipo_inscricao, t.cpf_cnpj, 
+                   t.transmissor_tpinsc, t.transmissor_nrinsc, 
                    t.esocial_lote_min, t.esocial_lote_max, 
                    t.esocial_timeout, t.esocial_certificado, t.esocial_senha
               FROM public.transmissor_lote_esocial te
