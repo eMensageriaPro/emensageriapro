@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -132,6 +101,7 @@ CHOICES_S1200_TPTRIB = (
 class s1200dmDev(models.Model):
     s1200_evtremun = models.ForeignKey('esocial.s1200evtRemun',
         related_name='%(class)s_s1200_evtremun')
+    def evento(self): return self.s1200_evtremun.evento()
     idedmdev = models.CharField(max_length=30)
     codcateg = models.TextField(max_length=3)
     criado_em = models.DateTimeField(blank=True)
@@ -161,6 +131,7 @@ class s1200dmDevSerializer(ModelSerializer):
 class s1200infoComplem(models.Model):
     s1200_evtremun = models.OneToOneField('esocial.s1200evtRemun',
         related_name='%(class)s_s1200_evtremun')
+    def evento(self): return self.s1200_evtremun.evento()
     nmtrab = models.CharField(max_length=70)
     dtnascto = models.DateField()
     criado_em = models.DateTimeField(blank=True)
@@ -190,6 +161,7 @@ class s1200infoComplemSerializer(ModelSerializer):
 class s1200infoInterm(models.Model):
     s1200_evtremun = models.OneToOneField('esocial.s1200evtRemun',
         related_name='%(class)s_s1200_evtremun')
+    def evento(self): return self.s1200_evtremun.evento()
     qtddiasinterm = models.IntegerField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -218,6 +190,7 @@ class s1200infoIntermSerializer(ModelSerializer):
 class s1200infoMV(models.Model):
     s1200_evtremun = models.OneToOneField('esocial.s1200evtRemun',
         related_name='%(class)s_s1200_evtremun')
+    def evento(self): return self.s1200_evtremun.evento()
     indmv = models.IntegerField(choices=CHOICES_S1200_INDMV)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -246,6 +219,7 @@ class s1200infoMVSerializer(ModelSerializer):
 class s1200infoPerAnt(models.Model):
     s1200_dmdev = models.OneToOneField('s1200dmDev',
         related_name='%(class)s_s1200_dmdev')
+    def evento(self): return self.s1200_dmdev.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -273,6 +247,7 @@ class s1200infoPerAntSerializer(ModelSerializer):
 class s1200infoPerAntideADC(models.Model):
     s1200_infoperant = models.ForeignKey('s1200infoPerAnt',
         related_name='%(class)s_s1200_infoperant')
+    def evento(self): return self.s1200_infoperant.evento()
     dtacconv = models.DateField(blank=True, null=True)
     tpacconv = models.CharField(choices=CHOICES_S1200_INFOPERANT_TPACCONV, max_length=1)
     compacconv = models.CharField(max_length=7, blank=True, null=True)
@@ -306,6 +281,7 @@ class s1200infoPerAntideADCSerializer(ModelSerializer):
 class s1200infoPerAntideEstabLot(models.Model):
     s1200_infoperant_ideperiodo = models.ForeignKey('s1200infoPerAntidePeriodo',
         related_name='%(class)s_s1200_infoperant_ideperiodo')
+    def evento(self): return self.s1200_infoperant_ideperiodo.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S1200_INFOPERANT_TPINSC)
     nrinsc = models.CharField(max_length=15)
     codlotacao = models.CharField(max_length=30)
@@ -336,6 +312,7 @@ class s1200infoPerAntideEstabLotSerializer(ModelSerializer):
 class s1200infoPerAntidePeriodo(models.Model):
     s1200_infoperant_ideadc = models.ForeignKey('s1200infoPerAntideADC',
         related_name='%(class)s_s1200_infoperant_ideadc')
+    def evento(self): return self.s1200_infoperant_ideadc.evento()
     perref = models.CharField(max_length=7)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -364,6 +341,7 @@ class s1200infoPerAntidePeriodoSerializer(ModelSerializer):
 class s1200infoPerAntinfoAgNocivo(models.Model):
     s1200_infoperant_remunperant = models.OneToOneField('s1200infoPerAntremunPerAnt',
         related_name='%(class)s_s1200_infoperant_remunperant')
+    def evento(self): return self.s1200_infoperant_remunperant.evento()
     grauexp = models.IntegerField(choices=CHOICES_S1200_INFOPERANT_GRAUEXP)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -392,6 +370,7 @@ class s1200infoPerAntinfoAgNocivoSerializer(ModelSerializer):
 class s1200infoPerAntinfoComplCont(models.Model):
     s1200_dmdev = models.OneToOneField('s1200dmDev',
         related_name='%(class)s_s1200_dmdev')
+    def evento(self): return self.s1200_dmdev.evento()
     codcbo = models.CharField(max_length=6)
     natatividade = models.IntegerField(blank=True, null=True)
     qtddiastrab = models.IntegerField(blank=True, null=True)
@@ -422,6 +401,7 @@ class s1200infoPerAntinfoComplContSerializer(ModelSerializer):
 class s1200infoPerAntinfoTrabInterm(models.Model):
     s1200_infoperant_remunperant = models.ForeignKey('s1200infoPerAntremunPerAnt',
         related_name='%(class)s_s1200_infoperant_remunperant')
+    def evento(self): return self.s1200_infoperant_remunperant.evento()
     codconv = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -450,6 +430,7 @@ class s1200infoPerAntinfoTrabIntermSerializer(ModelSerializer):
 class s1200infoPerAntitensRemun(models.Model):
     s1200_infoperant_remunperant = models.ForeignKey('s1200infoPerAntremunPerAnt',
         related_name='%(class)s_s1200_infoperant_remunperant')
+    def evento(self): return self.s1200_infoperant_remunperant.evento()
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
     qtdrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=6, blank=True, null=True)
@@ -483,6 +464,7 @@ class s1200infoPerAntitensRemunSerializer(ModelSerializer):
 class s1200infoPerAntremunPerAnt(models.Model):
     s1200_infoperant_ideestablot = models.ForeignKey('s1200infoPerAntideEstabLot',
         related_name='%(class)s_s1200_infoperant_ideestablot')
+    def evento(self): return self.s1200_infoperant_ideestablot.evento()
     matricula = models.CharField(max_length=30, blank=True, null=True)
     indsimples = models.IntegerField(choices=CHOICES_S1200_INFOPERANT_INDSIMPLES, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -512,6 +494,7 @@ class s1200infoPerAntremunPerAntSerializer(ModelSerializer):
 class s1200infoPerApur(models.Model):
     s1200_dmdev = models.OneToOneField('s1200dmDev',
         related_name='%(class)s_s1200_dmdev')
+    def evento(self): return self.s1200_dmdev.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -539,6 +522,7 @@ class s1200infoPerApurSerializer(ModelSerializer):
 class s1200infoPerApurdetOper(models.Model):
     s1200_infoperapur_infosaudecolet = models.ForeignKey('s1200infoPerApurinfoSaudeColet',
         related_name='%(class)s_s1200_infoperapur_infosaudecolet')
+    def evento(self): return self.s1200_infoperapur_infosaudecolet.evento()
     cnpjoper = models.CharField(max_length=14)
     regans = models.CharField(max_length=6)
     vrpgtit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -569,6 +553,7 @@ class s1200infoPerApurdetOperSerializer(ModelSerializer):
 class s1200infoPerApurdetPlano(models.Model):
     s1200_infoperapur_detoper = models.ForeignKey('s1200infoPerApurdetOper',
         related_name='%(class)s_s1200_infoperapur_detoper')
+    def evento(self): return self.s1200_infoperapur_detoper.evento()
     tpdep = models.CharField(choices=CHOICES_S1200_INFOPERAPUR_TPDEP, max_length=2)
     cpfdep = models.CharField(max_length=11, blank=True, null=True)
     nmdep = models.CharField(max_length=70)
@@ -601,6 +586,7 @@ class s1200infoPerApurdetPlanoSerializer(ModelSerializer):
 class s1200infoPerApurideEstabLot(models.Model):
     s1200_infoperapur = models.ForeignKey('s1200infoPerApur',
         related_name='%(class)s_s1200_infoperapur')
+    def evento(self): return self.s1200_infoperapur.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S1200_INFOPERAPUR_TPINSC)
     nrinsc = models.CharField(max_length=15)
     codlotacao = models.CharField(max_length=30)
@@ -632,6 +618,7 @@ class s1200infoPerApurideEstabLotSerializer(ModelSerializer):
 class s1200infoPerApurinfoAgNocivo(models.Model):
     s1200_infoperapur_remunperapur = models.OneToOneField('s1200infoPerApurremunPerApur',
         related_name='%(class)s_s1200_infoperapur_remunperapur')
+    def evento(self): return self.s1200_infoperapur_remunperapur.evento()
     grauexp = models.IntegerField(choices=CHOICES_S1200_INFOPERAPUR_GRAUEXP)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -660,6 +647,7 @@ class s1200infoPerApurinfoAgNocivoSerializer(ModelSerializer):
 class s1200infoPerApurinfoSaudeColet(models.Model):
     s1200_infoperapur_remunperapur = models.OneToOneField('s1200infoPerApurremunPerApur',
         related_name='%(class)s_s1200_infoperapur_remunperapur')
+    def evento(self): return self.s1200_infoperapur_remunperapur.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -687,6 +675,7 @@ class s1200infoPerApurinfoSaudeColetSerializer(ModelSerializer):
 class s1200infoPerApurinfoTrabInterm(models.Model):
     s1200_infoperapur_remunperapur = models.ForeignKey('s1200infoPerApurremunPerApur',
         related_name='%(class)s_s1200_infoperapur_remunperapur')
+    def evento(self): return self.s1200_infoperapur_remunperapur.evento()
     codconv = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -715,6 +704,7 @@ class s1200infoPerApurinfoTrabIntermSerializer(ModelSerializer):
 class s1200infoPerApuritensRemun(models.Model):
     s1200_infoperapur_remunperapur = models.ForeignKey('s1200infoPerApurremunPerApur',
         related_name='%(class)s_s1200_infoperapur_remunperapur')
+    def evento(self): return self.s1200_infoperapur_remunperapur.evento()
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
     qtdrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=6, blank=True, null=True)
@@ -748,6 +738,7 @@ class s1200infoPerApuritensRemunSerializer(ModelSerializer):
 class s1200infoPerApurremunPerApur(models.Model):
     s1200_infoperapur_ideestablot = models.ForeignKey('s1200infoPerApurideEstabLot',
         related_name='%(class)s_s1200_infoperapur_ideestablot')
+    def evento(self): return self.s1200_infoperapur_ideestablot.evento()
     matricula = models.CharField(max_length=30, blank=True, null=True)
     indsimples = models.IntegerField(choices=CHOICES_S1200_INFOPERAPUR_INDSIMPLES, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -777,6 +768,7 @@ class s1200infoPerApurremunPerApurSerializer(ModelSerializer):
 class s1200procJudTrab(models.Model):
     s1200_evtremun = models.ForeignKey('esocial.s1200evtRemun',
         related_name='%(class)s_s1200_evtremun')
+    def evento(self): return self.s1200_evtremun.evento()
     tptrib = models.IntegerField(choices=CHOICES_S1200_TPTRIB)
     nrprocjud = models.CharField(max_length=20)
     codsusp = models.IntegerField(blank=True, null=True)
@@ -807,6 +799,7 @@ class s1200procJudTrabSerializer(ModelSerializer):
 class s1200remunOutrEmpr(models.Model):
     s1200_infomv = models.ForeignKey('s1200infoMV',
         related_name='%(class)s_s1200_infomv')
+    def evento(self): return self.s1200_infomv.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S1200_TPINSC)
     nrinsc = models.CharField(max_length=15)
     codcateg = models.TextField(max_length=3)
@@ -838,6 +831,7 @@ class s1200remunOutrEmprSerializer(ModelSerializer):
 class s1200sucessaoVinc(models.Model):
     s1200_infocomplem = models.OneToOneField('s1200infoComplem',
         related_name='%(class)s_s1200_infocomplem')
+    def evento(self): return self.s1200_infocomplem.evento()
     cnpjempregant = models.CharField(max_length=14)
     matricant = models.CharField(max_length=30, blank=True, null=True)
     dtadm = models.DateField()

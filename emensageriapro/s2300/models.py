@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -265,6 +234,7 @@ CHOICES_S2300_UNDSALFIXO = (
 class s2300CNH(models.Model):
     s2300_documentos = models.OneToOneField('s2300documentos',
         related_name='%(class)s_s2300_documentos')
+    def evento(self): return self.s2300_documentos.evento()
     nrregcnh = models.CharField(max_length=12)
     dtexped = models.DateField(blank=True, null=True)
     ufcnh = models.CharField(choices=ESTADOS, max_length=2)
@@ -298,6 +268,7 @@ class s2300CNHSerializer(ModelSerializer):
 class s2300CTPS(models.Model):
     s2300_documentos = models.OneToOneField('s2300documentos',
         related_name='%(class)s_s2300_documentos')
+    def evento(self): return self.s2300_documentos.evento()
     nrctps = models.CharField(max_length=11)
     seriectps = models.CharField(max_length=5)
     ufctps = models.CharField(choices=ESTADOS, max_length=2)
@@ -328,6 +299,7 @@ class s2300CTPSSerializer(ModelSerializer):
 class s2300OC(models.Model):
     s2300_documentos = models.OneToOneField('s2300documentos',
         related_name='%(class)s_s2300_documentos')
+    def evento(self): return self.s2300_documentos.evento()
     nroc = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -359,6 +331,7 @@ class s2300OCSerializer(ModelSerializer):
 class s2300RG(models.Model):
     s2300_documentos = models.OneToOneField('s2300documentos',
         related_name='%(class)s_s2300_documentos')
+    def evento(self): return self.s2300_documentos.evento()
     nrrg = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -389,6 +362,7 @@ class s2300RGSerializer(ModelSerializer):
 class s2300RIC(models.Model):
     s2300_documentos = models.OneToOneField('s2300documentos',
         related_name='%(class)s_s2300_documentos')
+    def evento(self): return self.s2300_documentos.evento()
     nrric = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -419,6 +393,7 @@ class s2300RICSerializer(ModelSerializer):
 class s2300RNE(models.Model):
     s2300_documentos = models.OneToOneField('s2300documentos',
         related_name='%(class)s_s2300_documentos')
+    def evento(self): return self.s2300_documentos.evento()
     nrrne = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -449,6 +424,7 @@ class s2300RNESerializer(ModelSerializer):
 class s2300afastamento(models.Model):
     s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
         related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     dtiniafast = models.DateField()
     codmotafast = models.CharField(choices=CHOICES_S2300_CODMOTAFAST, max_length=2)
     criado_em = models.DateTimeField(blank=True)
@@ -478,6 +454,7 @@ class s2300afastamentoSerializer(ModelSerializer):
 class s2300ageIntegracao(models.Model):
     s2300_infoestagiario = models.OneToOneField('s2300infoEstagiario',
         related_name='%(class)s_s2300_infoestagiario')
+    def evento(self): return self.s2300_infoestagiario.evento()
     cnpjagntinteg = models.CharField(max_length=14)
     nmrazao = models.CharField(max_length=100)
     dsclograd = models.CharField(max_length=100)
@@ -513,6 +490,7 @@ class s2300ageIntegracaoSerializer(ModelSerializer):
 class s2300brasil(models.Model):
     s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
         related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     tplograd = models.TextField(max_length=4)
     dsclograd = models.CharField(max_length=100)
     nrlograd = models.CharField(max_length=10)
@@ -548,6 +526,7 @@ class s2300brasilSerializer(ModelSerializer):
 class s2300cargoFuncao(models.Model):
     s2300_infocomplementares = models.OneToOneField('s2300infoComplementares',
         related_name='%(class)s_s2300_infocomplementares')
+    def evento(self): return self.s2300_infocomplementares.evento()
     codcargo = models.CharField(max_length=30)
     codfuncao = models.CharField(max_length=30, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -577,6 +556,7 @@ class s2300cargoFuncaoSerializer(ModelSerializer):
 class s2300contato(models.Model):
     s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
         related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     foneprinc = models.CharField(max_length=13, blank=True, null=True)
     fonealternat = models.CharField(max_length=13, blank=True, null=True)
     emailprinc = models.CharField(max_length=60, blank=True, null=True)
@@ -608,6 +588,7 @@ class s2300contatoSerializer(ModelSerializer):
 class s2300dependente(models.Model):
     s2300_evttsvinicio = models.ForeignKey('esocial.s2300evtTSVInicio',
         related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     tpdep = models.CharField(choices=CHOICES_S2300_TPDEP, max_length=2)
     nmdep = models.CharField(max_length=70)
     dtnascto = models.DateField()
@@ -644,6 +625,7 @@ class s2300dependenteSerializer(ModelSerializer):
 class s2300documentos(models.Model):
     s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
         related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -671,6 +653,7 @@ class s2300documentosSerializer(ModelSerializer):
 class s2300exterior(models.Model):
     s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
         related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     paisresid = models.TextField(max_length=3)
     dsclograd = models.CharField(max_length=100)
     nrlograd = models.CharField(max_length=10)
@@ -705,6 +688,7 @@ class s2300exteriorSerializer(ModelSerializer):
 class s2300fgts(models.Model):
     s2300_infocomplementares = models.OneToOneField('s2300infoComplementares',
         related_name='%(class)s_s2300_infocomplementares')
+    def evento(self): return self.s2300_infocomplementares.evento()
     opcfgts = models.IntegerField(choices=CHOICES_S2300_OPCFGTS)
     dtopcfgts = models.DateField(blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -734,6 +718,7 @@ class s2300fgtsSerializer(ModelSerializer):
 class s2300infoComplementares(models.Model):
     s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
         related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -761,6 +746,7 @@ class s2300infoComplementaresSerializer(ModelSerializer):
 class s2300infoDeficiencia(models.Model):
     s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
         related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     deffisica = models.CharField(choices=CHOICES_S2300_DEFFISICA, max_length=1)
     defvisual = models.CharField(choices=CHOICES_S2300_DEFVISUAL, max_length=1)
     defauditiva = models.CharField(choices=CHOICES_S2300_DEFAUDITIVA, max_length=1)
@@ -795,6 +781,7 @@ class s2300infoDeficienciaSerializer(ModelSerializer):
 class s2300infoDirigenteSindical(models.Model):
     s2300_infocomplementares = models.OneToOneField('s2300infoComplementares',
         related_name='%(class)s_s2300_infocomplementares')
+    def evento(self): return self.s2300_infocomplementares.evento()
     categorig = models.IntegerField()
     cnpjorigem = models.CharField(max_length=14, blank=True, null=True)
     dtadmorig = models.DateField(blank=True, null=True)
@@ -826,6 +813,7 @@ class s2300infoDirigenteSindicalSerializer(ModelSerializer):
 class s2300infoEstagiario(models.Model):
     s2300_infocomplementares = models.OneToOneField('s2300infoComplementares',
         related_name='%(class)s_s2300_infocomplementares')
+    def evento(self): return self.s2300_infocomplementares.evento()
     natestagio = models.CharField(choices=CHOICES_S2300_NATESTAGIO, max_length=1)
     nivestagio = models.IntegerField(choices=CHOICES_S2300_NIVESTAGIO)
     areaatuacao = models.CharField(max_length=50, blank=True, null=True)
@@ -867,6 +855,7 @@ class s2300infoEstagiarioSerializer(ModelSerializer):
 class s2300infoTrabCedido(models.Model):
     s2300_infocomplementares = models.OneToOneField('s2300infoComplementares',
         related_name='%(class)s_s2300_infocomplementares')
+    def evento(self): return self.s2300_infocomplementares.evento()
     categorig = models.IntegerField()
     cnpjcednt = models.CharField(max_length=14)
     matricced = models.CharField(max_length=30)
@@ -902,6 +891,7 @@ class s2300infoTrabCedidoSerializer(ModelSerializer):
 class s2300remuneracao(models.Model):
     s2300_infocomplementares = models.OneToOneField('s2300infoComplementares',
         related_name='%(class)s_s2300_infocomplementares')
+    def evento(self): return self.s2300_infocomplementares.evento()
     vrsalfx = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     undsalfixo = models.IntegerField(choices=CHOICES_S2300_UNDSALFIXO)
     dscsalvar = models.CharField(max_length=255, blank=True, null=True)
@@ -932,6 +922,7 @@ class s2300remuneracaoSerializer(ModelSerializer):
 class s2300supervisorEstagio(models.Model):
     s2300_infoestagiario = models.OneToOneField('s2300infoEstagiario',
         related_name='%(class)s_s2300_infoestagiario')
+    def evento(self): return self.s2300_infoestagiario.evento()
     cpfsupervisor = models.CharField(max_length=11)
     nmsuperv = models.CharField(max_length=70)
     criado_em = models.DateTimeField(blank=True)
@@ -961,6 +952,7 @@ class s2300supervisorEstagioSerializer(ModelSerializer):
 class s2300termino(models.Model):
     s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
         related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     dtterm = models.DateField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -989,6 +981,7 @@ class s2300terminoSerializer(ModelSerializer):
 class s2300trabEstrangeiro(models.Model):
     s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
         related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     dtchegada = models.DateField(blank=True, null=True)
     classtrabestrang = models.IntegerField(choices=CHOICES_S2300_CLASSTRABESTRANG)
     casadobr = models.CharField(choices=CHOICES_S2300_CASADOBR, max_length=1)

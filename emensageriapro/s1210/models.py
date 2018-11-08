@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -387,6 +356,7 @@ CHOICES_S1210_TPPGTO = (
 class s1210deps(models.Model):
     s1210_evtpgtos = models.OneToOneField('esocial.s1210evtPgtos',
         related_name='%(class)s_s1210_evtpgtos')
+    def evento(self): return self.s1210_evtpgtos.evento()
     vrdeddep = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -415,6 +385,7 @@ class s1210depsSerializer(ModelSerializer):
 class s1210detPgtoAnt(models.Model):
     s1210_infopgto = models.ForeignKey('s1210infoPgto',
         related_name='%(class)s_s1210_infopgto')
+    def evento(self): return self.s1210_infopgto.evento()
     codcateg = models.TextField(max_length=3)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -443,6 +414,7 @@ class s1210detPgtoAntSerializer(ModelSerializer):
 class s1210detPgtoAntinfoPgtoAnt(models.Model):
     s1210_detpgtoant = models.ForeignKey('s1210detPgtoAnt',
         related_name='%(class)s_s1210_detpgtoant')
+    def evento(self): return self.s1210_detpgtoant.evento()
     tpbcirrf = models.CharField(choices=CHOICES_S1210_DETPGTOANT_TPBCIRRF, max_length=2)
     vrbcirrf = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     criado_em = models.DateTimeField(blank=True)
@@ -472,6 +444,7 @@ class s1210detPgtoAntinfoPgtoAntSerializer(ModelSerializer):
 class s1210detPgtoBenPr(models.Model):
     s1210_infopgto = models.OneToOneField('s1210infoPgto',
         related_name='%(class)s_s1210_infopgto')
+    def evento(self): return self.s1210_infopgto.evento()
     perref = models.CharField(max_length=7)
     idedmdev = models.CharField(max_length=30)
     indpgtott = models.CharField(choices=CHOICES_S1210_DETPGTOBENPR_INDPGTOTT, max_length=1)
@@ -503,6 +476,7 @@ class s1210detPgtoBenPrSerializer(ModelSerializer):
 class s1210detPgtoBenPrinfoPgtoParc(models.Model):
     s1210_detpgtobenpr = models.ForeignKey('s1210detPgtoBenPr',
         related_name='%(class)s_s1210_detpgtobenpr')
+    def evento(self): return self.s1210_detpgtobenpr.evento()
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
     qtdrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=6, blank=True, null=True)
@@ -536,6 +510,7 @@ class s1210detPgtoBenPrinfoPgtoParcSerializer(ModelSerializer):
 class s1210detPgtoBenPrretPgtoTot(models.Model):
     s1210_detpgtobenpr = models.ForeignKey('s1210detPgtoBenPr',
         related_name='%(class)s_s1210_detpgtobenpr')
+    def evento(self): return self.s1210_detpgtobenpr.evento()
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
     qtdrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=6, blank=True, null=True)
@@ -569,6 +544,7 @@ class s1210detPgtoBenPrretPgtoTotSerializer(ModelSerializer):
 class s1210detPgtoFer(models.Model):
     s1210_infopgto = models.ForeignKey('s1210infoPgto',
         related_name='%(class)s_s1210_infopgto')
+    def evento(self): return self.s1210_infopgto.evento()
     codcateg = models.TextField(max_length=3)
     matricula = models.CharField(max_length=30, blank=True, null=True)
     dtinigoz = models.DateField()
@@ -601,6 +577,7 @@ class s1210detPgtoFerSerializer(ModelSerializer):
 class s1210detPgtoFerdetRubrFer(models.Model):
     s1210_detpgtofer = models.ForeignKey('s1210detPgtoFer',
         related_name='%(class)s_s1210_detpgtofer')
+    def evento(self): return self.s1210_detpgtofer.evento()
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
     qtdrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=6, blank=True, null=True)
@@ -634,6 +611,7 @@ class s1210detPgtoFerdetRubrFerSerializer(ModelSerializer):
 class s1210detPgtoFerpenAlim(models.Model):
     s1210_detpgtofer_detrubrfer = models.ForeignKey('s1210detPgtoFerdetRubrFer',
         related_name='%(class)s_s1210_detpgtofer_detrubrfer')
+    def evento(self): return self.s1210_detpgtofer_detrubrfer.evento()
     cpfbenef = models.CharField(max_length=11)
     dtnasctobenef = models.DateField(blank=True, null=True)
     nmbenefic = models.CharField(max_length=70)
@@ -665,6 +643,7 @@ class s1210detPgtoFerpenAlimSerializer(ModelSerializer):
 class s1210detPgtoFl(models.Model):
     s1210_infopgto = models.ForeignKey('s1210infoPgto',
         related_name='%(class)s_s1210_infopgto')
+    def evento(self): return self.s1210_infopgto.evento()
     perref = models.CharField(max_length=7, blank=True, null=True)
     idedmdev = models.CharField(max_length=30)
     indpgtott = models.CharField(choices=CHOICES_S1210_DETPGTOFL_INDPGTOTT, max_length=1)
@@ -697,6 +676,7 @@ class s1210detPgtoFlSerializer(ModelSerializer):
 class s1210detPgtoFlinfoPgtoParc(models.Model):
     s1210_detpgtofl = models.ForeignKey('s1210detPgtoFl',
         related_name='%(class)s_s1210_detpgtofl')
+    def evento(self): return self.s1210_detpgtofl.evento()
     matricula = models.CharField(max_length=30, blank=True, null=True)
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
@@ -731,6 +711,7 @@ class s1210detPgtoFlinfoPgtoParcSerializer(ModelSerializer):
 class s1210detPgtoFlpenAlim(models.Model):
     s1210_detpgtofl_retpgtotot = models.ForeignKey('s1210detPgtoFlretPgtoTot',
         related_name='%(class)s_s1210_detpgtofl_retpgtotot')
+    def evento(self): return self.s1210_detpgtofl_retpgtotot.evento()
     cpfbenef = models.CharField(max_length=11)
     dtnasctobenef = models.DateField(blank=True, null=True)
     nmbenefic = models.CharField(max_length=70)
@@ -762,6 +743,7 @@ class s1210detPgtoFlpenAlimSerializer(ModelSerializer):
 class s1210detPgtoFlretPgtoTot(models.Model):
     s1210_detpgtofl = models.ForeignKey('s1210detPgtoFl',
         related_name='%(class)s_s1210_detpgtofl')
+    def evento(self): return self.s1210_detpgtofl.evento()
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
     qtdrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=6, blank=True, null=True)
@@ -795,6 +777,7 @@ class s1210detPgtoFlretPgtoTotSerializer(ModelSerializer):
 class s1210idePgtoExt(models.Model):
     s1210_infopgto = models.OneToOneField('s1210infoPgto',
         related_name='%(class)s_s1210_infopgto')
+    def evento(self): return self.s1210_infopgto.evento()
     codpais = models.CharField(choices=CHOICES_S1210_IDEPGTOEXT_CODPAIS, max_length=3)
     indnif = models.IntegerField(choices=CHOICES_S1210_IDEPGTOEXT_INDNIF)
     nifbenef = models.CharField(max_length=20, blank=True, null=True)
@@ -831,6 +814,7 @@ class s1210idePgtoExtSerializer(ModelSerializer):
 class s1210infoPgto(models.Model):
     s1210_evtpgtos = models.ForeignKey('esocial.s1210evtPgtos',
         related_name='%(class)s_s1210_evtpgtos')
+    def evento(self): return self.s1210_evtpgtos.evento()
     dtpgto = models.DateField()
     tppgto = models.IntegerField(choices=CHOICES_S1210_TPPGTO)
     indresbr = models.CharField(choices=CHOICES_S1210_INDRESBR, max_length=1)

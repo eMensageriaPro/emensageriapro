@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -191,6 +160,7 @@ CHOICES_S2205_TRABAPOSENT = (
 class s2205CNH(models.Model):
     s2205_documentos = models.OneToOneField('s2205documentos',
         related_name='%(class)s_s2205_documentos')
+    def evento(self): return self.s2205_documentos.evento()
     nrregcnh = models.CharField(max_length=12)
     dtexped = models.DateField(blank=True, null=True)
     ufcnh = models.CharField(choices=ESTADOS, max_length=2)
@@ -224,6 +194,7 @@ class s2205CNHSerializer(ModelSerializer):
 class s2205CTPS(models.Model):
     s2205_documentos = models.OneToOneField('s2205documentos',
         related_name='%(class)s_s2205_documentos')
+    def evento(self): return self.s2205_documentos.evento()
     nrctps = models.CharField(max_length=11)
     seriectps = models.CharField(max_length=5)
     ufctps = models.CharField(choices=ESTADOS, max_length=2)
@@ -254,6 +225,7 @@ class s2205CTPSSerializer(ModelSerializer):
 class s2205OC(models.Model):
     s2205_documentos = models.OneToOneField('s2205documentos',
         related_name='%(class)s_s2205_documentos')
+    def evento(self): return self.s2205_documentos.evento()
     nroc = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -285,6 +257,7 @@ class s2205OCSerializer(ModelSerializer):
 class s2205RG(models.Model):
     s2205_documentos = models.OneToOneField('s2205documentos',
         related_name='%(class)s_s2205_documentos')
+    def evento(self): return self.s2205_documentos.evento()
     nrrg = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -315,6 +288,7 @@ class s2205RGSerializer(ModelSerializer):
 class s2205RIC(models.Model):
     s2205_documentos = models.OneToOneField('s2205documentos',
         related_name='%(class)s_s2205_documentos')
+    def evento(self): return self.s2205_documentos.evento()
     nrric = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -345,6 +319,7 @@ class s2205RICSerializer(ModelSerializer):
 class s2205RNE(models.Model):
     s2205_documentos = models.OneToOneField('s2205documentos',
         related_name='%(class)s_s2205_documentos')
+    def evento(self): return self.s2205_documentos.evento()
     nrrne = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -375,6 +350,7 @@ class s2205RNESerializer(ModelSerializer):
 class s2205aposentadoria(models.Model):
     s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
         related_name='%(class)s_s2205_evtaltcadastral')
+    def evento(self): return self.s2205_evtaltcadastral.evento()
     trabaposent = models.CharField(choices=CHOICES_S2205_TRABAPOSENT, max_length=1)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -403,6 +379,7 @@ class s2205aposentadoriaSerializer(ModelSerializer):
 class s2205brasil(models.Model):
     s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
         related_name='%(class)s_s2205_evtaltcadastral')
+    def evento(self): return self.s2205_evtaltcadastral.evento()
     tplograd = models.TextField(max_length=4)
     dsclograd = models.CharField(max_length=100)
     nrlograd = models.CharField(max_length=10)
@@ -438,6 +415,7 @@ class s2205brasilSerializer(ModelSerializer):
 class s2205contato(models.Model):
     s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
         related_name='%(class)s_s2205_evtaltcadastral')
+    def evento(self): return self.s2205_evtaltcadastral.evento()
     foneprinc = models.CharField(max_length=13, blank=True, null=True)
     fonealternat = models.CharField(max_length=13, blank=True, null=True)
     emailprinc = models.CharField(max_length=60, blank=True, null=True)
@@ -469,6 +447,7 @@ class s2205contatoSerializer(ModelSerializer):
 class s2205dependente(models.Model):
     s2205_evtaltcadastral = models.ForeignKey('esocial.s2205evtAltCadastral',
         related_name='%(class)s_s2205_evtaltcadastral')
+    def evento(self): return self.s2205_evtaltcadastral.evento()
     tpdep = models.CharField(choices=CHOICES_S2205_TPDEP, max_length=2)
     nmdep = models.CharField(max_length=70)
     dtnascto = models.DateField()
@@ -505,6 +484,7 @@ class s2205dependenteSerializer(ModelSerializer):
 class s2205documentos(models.Model):
     s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
         related_name='%(class)s_s2205_evtaltcadastral')
+    def evento(self): return self.s2205_evtaltcadastral.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -532,6 +512,7 @@ class s2205documentosSerializer(ModelSerializer):
 class s2205exterior(models.Model):
     s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
         related_name='%(class)s_s2205_evtaltcadastral')
+    def evento(self): return self.s2205_evtaltcadastral.evento()
     paisresid = models.TextField(max_length=3)
     dsclograd = models.CharField(max_length=100)
     nrlograd = models.CharField(max_length=10)
@@ -566,6 +547,7 @@ class s2205exteriorSerializer(ModelSerializer):
 class s2205infoDeficiencia(models.Model):
     s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
         related_name='%(class)s_s2205_evtaltcadastral')
+    def evento(self): return self.s2205_evtaltcadastral.evento()
     deffisica = models.CharField(choices=CHOICES_S2205_DEFFISICA, max_length=1)
     defvisual = models.CharField(choices=CHOICES_S2205_DEFVISUAL, max_length=1)
     defauditiva = models.CharField(choices=CHOICES_S2205_DEFAUDITIVA, max_length=1)
@@ -601,6 +583,7 @@ class s2205infoDeficienciaSerializer(ModelSerializer):
 class s2205trabEstrangeiro(models.Model):
     s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
         related_name='%(class)s_s2205_evtaltcadastral')
+    def evento(self): return self.s2205_evtaltcadastral.evento()
     dtchegada = models.DateField(blank=True, null=True)
     classtrabestrang = models.IntegerField(choices=CHOICES_S2205_CLASSTRABESTRANG)
     casadobr = models.CharField(choices=CHOICES_S2205_CASADOBR, max_length=1)

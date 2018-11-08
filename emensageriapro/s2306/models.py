@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -104,6 +73,7 @@ CHOICES_S2306_UNDSALFIXO = (
 class s2306ageIntegracao(models.Model):
     s2306_infoestagiario = models.OneToOneField('s2306infoEstagiario',
         related_name='%(class)s_s2306_infoestagiario')
+    def evento(self): return self.s2306_infoestagiario.evento()
     cnpjagntinteg = models.CharField(max_length=14)
     nmrazao = models.CharField(max_length=100)
     dsclograd = models.CharField(max_length=100)
@@ -139,6 +109,7 @@ class s2306ageIntegracaoSerializer(ModelSerializer):
 class s2306cargoFuncao(models.Model):
     s2306_infocomplementares = models.OneToOneField('s2306infoComplementares',
         related_name='%(class)s_s2306_infocomplementares')
+    def evento(self): return self.s2306_infocomplementares.evento()
     codcargo = models.CharField(max_length=30)
     codfuncao = models.CharField(max_length=30, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -168,6 +139,7 @@ class s2306cargoFuncaoSerializer(ModelSerializer):
 class s2306infoComplementares(models.Model):
     s2306_evttsvaltcontr = models.OneToOneField('esocial.s2306evtTSVAltContr',
         related_name='%(class)s_s2306_evttsvaltcontr')
+    def evento(self): return self.s2306_evttsvaltcontr.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -195,6 +167,7 @@ class s2306infoComplementaresSerializer(ModelSerializer):
 class s2306infoEstagiario(models.Model):
     s2306_infocomplementares = models.OneToOneField('s2306infoComplementares',
         related_name='%(class)s_s2306_infocomplementares')
+    def evento(self): return self.s2306_infocomplementares.evento()
     natestagio = models.CharField(choices=CHOICES_S2306_NATESTAGIO, max_length=1)
     nivestagio = models.IntegerField(choices=CHOICES_S2306_NIVESTAGIO)
     areaatuacao = models.CharField(max_length=50, blank=True, null=True)
@@ -236,6 +209,7 @@ class s2306infoEstagiarioSerializer(ModelSerializer):
 class s2306infoTrabCedido(models.Model):
     s2306_infocomplementares = models.OneToOneField('s2306infoComplementares',
         related_name='%(class)s_s2306_infocomplementares')
+    def evento(self): return self.s2306_infocomplementares.evento()
     indremuncargo = models.CharField(choices=CHOICES_S2306_INDREMUNCARGO, max_length=1)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -264,6 +238,7 @@ class s2306infoTrabCedidoSerializer(ModelSerializer):
 class s2306remuneracao(models.Model):
     s2306_infocomplementares = models.OneToOneField('s2306infoComplementares',
         related_name='%(class)s_s2306_infocomplementares')
+    def evento(self): return self.s2306_infocomplementares.evento()
     vrsalfx = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     undsalfixo = models.IntegerField(choices=CHOICES_S2306_UNDSALFIXO)
     dscsalvar = models.CharField(max_length=255, blank=True, null=True)
@@ -294,6 +269,7 @@ class s2306remuneracaoSerializer(ModelSerializer):
 class s2306supervisorEstagio(models.Model):
     s2306_infoestagiario = models.OneToOneField('s2306infoEstagiario',
         related_name='%(class)s_s2306_infoestagiario')
+    def evento(self): return self.s2306_infoestagiario.evento()
     cpfsupervisor = models.CharField(max_length=11)
     nmsuperv = models.CharField(max_length=70)
     criado_em = models.DateTimeField(blank=True)

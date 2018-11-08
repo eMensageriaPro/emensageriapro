@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -198,6 +167,7 @@ CHOICES_S1070_INCLUSAO_TPPROC = (
 class s1070alteracao(models.Model):
     s1070_evttabprocesso = models.OneToOneField('esocial.s1070evtTabProcesso',
         related_name='%(class)s_s1070_evttabprocesso')
+    def evento(self): return self.s1070_evttabprocesso.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1070_ALTERACAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
@@ -232,6 +202,7 @@ class s1070alteracaoSerializer(ModelSerializer):
 class s1070alteracaodadosProcJud(models.Model):
     s1070_alteracao = models.OneToOneField('s1070alteracao',
         related_name='%(class)s_s1070_alteracao')
+    def evento(self): return self.s1070_alteracao.evento()
     ufvara = models.CharField(choices=ESTADOS, max_length=2)
     codmunic = models.TextField(max_length=7)
     idvara = models.IntegerField()
@@ -262,6 +233,7 @@ class s1070alteracaodadosProcJudSerializer(ModelSerializer):
 class s1070alteracaoinfoSusp(models.Model):
     s1070_alteracao = models.ForeignKey('s1070alteracao',
         related_name='%(class)s_s1070_alteracao')
+    def evento(self): return self.s1070_alteracao.evento()
     codsusp = models.IntegerField()
     indsusp = models.CharField(choices=CHOICES_S1070_ALTERACAO_INDSUSP, max_length=2)
     dtdecisao = models.DateField()
@@ -293,6 +265,7 @@ class s1070alteracaoinfoSuspSerializer(ModelSerializer):
 class s1070alteracaonovaValidade(models.Model):
     s1070_alteracao = models.OneToOneField('s1070alteracao',
         related_name='%(class)s_s1070_alteracao')
+    def evento(self): return self.s1070_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -322,6 +295,7 @@ class s1070alteracaonovaValidadeSerializer(ModelSerializer):
 class s1070exclusao(models.Model):
     s1070_evttabprocesso = models.OneToOneField('esocial.s1070evtTabProcesso',
         related_name='%(class)s_s1070_evttabprocesso')
+    def evento(self): return self.s1070_evttabprocesso.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1070_EXCLUSAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
@@ -353,6 +327,7 @@ class s1070exclusaoSerializer(ModelSerializer):
 class s1070inclusao(models.Model):
     s1070_evttabprocesso = models.OneToOneField('esocial.s1070evtTabProcesso',
         related_name='%(class)s_s1070_evttabprocesso')
+    def evento(self): return self.s1070_evttabprocesso.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1070_INCLUSAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
@@ -387,6 +362,7 @@ class s1070inclusaoSerializer(ModelSerializer):
 class s1070inclusaodadosProcJud(models.Model):
     s1070_inclusao = models.OneToOneField('s1070inclusao',
         related_name='%(class)s_s1070_inclusao')
+    def evento(self): return self.s1070_inclusao.evento()
     ufvara = models.CharField(choices=ESTADOS, max_length=2)
     codmunic = models.TextField(max_length=7)
     idvara = models.IntegerField()
@@ -417,6 +393,7 @@ class s1070inclusaodadosProcJudSerializer(ModelSerializer):
 class s1070inclusaoinfoSusp(models.Model):
     s1070_inclusao = models.ForeignKey('s1070inclusao',
         related_name='%(class)s_s1070_inclusao')
+    def evento(self): return self.s1070_inclusao.evento()
     codsusp = models.IntegerField()
     indsusp = models.CharField(choices=CHOICES_S1070_INCLUSAO_INDSUSP, max_length=2)
     dtdecisao = models.DateField()

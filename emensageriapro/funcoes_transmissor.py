@@ -53,7 +53,7 @@ def validacao_automatica_eventos():
       FROM public.transmissor_eventos_efdreinf WHERE status=1;
     """, True)
 
-    for a in lista:
+    for a in transmissor_lista:
         pass
 
     transmissor_lista = executar_sql("""
@@ -64,7 +64,7 @@ def validacao_automatica_eventos():
            validacao_precedencia, validacoes, status
       FROM public.transmissor_eventos_esocial WHERE status=1;
     """, True)
-    for a in lista:
+    for a in transmissor_lista:
         pass
 
 if __name__ == "__main__":

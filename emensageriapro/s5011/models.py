@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -117,6 +86,7 @@ CHOICES_S5011_TPINSCPROP = (
 class s5011basesAquis(models.Model):
     s5011_ideestab = models.ForeignKey('s5011ideEstab',
         related_name='%(class)s_s5011_ideestab')
+    def evento(self): return self.s5011_ideestab.evento()
     indaquis = models.IntegerField(choices=CHOICES_S5011_INDAQUIS)
     vlraquis = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrcpdescpr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -155,6 +125,7 @@ class s5011basesAquisSerializer(ModelSerializer):
 class s5011basesAvNPort(models.Model):
     s5011_idelotacao = models.OneToOneField('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
+    def evento(self): return self.s5011_idelotacao.evento()
     vrbccp00 = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrbccp15 = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrbccp20 = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -189,6 +160,7 @@ class s5011basesAvNPortSerializer(ModelSerializer):
 class s5011basesComerc(models.Model):
     s5011_ideestab = models.ForeignKey('s5011ideEstab',
         related_name='%(class)s_s5011_ideestab')
+    def evento(self): return self.s5011_ideestab.evento()
     indcomerc = models.IntegerField(choices=CHOICES_S5011_INDCOMERC)
     vrbccompr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrcpsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
@@ -221,6 +193,7 @@ class s5011basesComercSerializer(ModelSerializer):
 class s5011basesRemun(models.Model):
     s5011_idelotacao = models.ForeignKey('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
+    def evento(self): return self.s5011_idelotacao.evento()
     indincid = models.IntegerField(choices=CHOICES_S5011_INDINCID)
     codcateg = models.TextField(max_length=3)
     vrbccp00 = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -264,6 +237,7 @@ class s5011basesRemunSerializer(ModelSerializer):
 class s5011dadosOpPort(models.Model):
     s5011_idelotacao = models.OneToOneField('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
+    def evento(self): return self.s5011_idelotacao.evento()
     cnpjopportuario = models.CharField(max_length=14)
     aliqrat = models.IntegerField(choices=CHOICES_S5011_ALIQRAT)
     fap = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
@@ -295,6 +269,7 @@ class s5011dadosOpPortSerializer(ModelSerializer):
 class s5011ideEstab(models.Model):
     s5011_evtcs = models.ForeignKey('esocial.s5011evtCS',
         related_name='%(class)s_s5011_evtcs')
+    def evento(self): return self.s5011_evtcs.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S5011_TPINSC)
     nrinsc = models.CharField(max_length=15)
     criado_em = models.DateTimeField(blank=True)
@@ -324,6 +299,7 @@ class s5011ideEstabSerializer(ModelSerializer):
 class s5011ideLotacao(models.Model):
     s5011_ideestab = models.ForeignKey('s5011ideEstab',
         related_name='%(class)s_s5011_ideestab')
+    def evento(self): return self.s5011_ideestab.evento()
     codlotacao = models.CharField(max_length=30)
     fpas = models.IntegerField()
     codtercs = models.CharField(max_length=4)
@@ -355,6 +331,7 @@ class s5011ideLotacaoSerializer(ModelSerializer):
 class s5011infoAtConc(models.Model):
     s5011_infopj = models.OneToOneField('s5011infoPJ',
         related_name='%(class)s_s5011_infopj')
+    def evento(self): return self.s5011_infopj.evento()
     fatormes = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
     fator13 = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
     criado_em = models.DateTimeField(blank=True)
@@ -384,6 +361,7 @@ class s5011infoAtConcSerializer(ModelSerializer):
 class s5011infoCPSeg(models.Model):
     s5011_evtcs = models.OneToOneField('esocial.s5011evtCS',
         related_name='%(class)s_s5011_evtcs')
+    def evento(self): return self.s5011_evtcs.evento()
     vrdesccp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrcpseg = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     criado_em = models.DateTimeField(blank=True)
@@ -413,6 +391,7 @@ class s5011infoCPSegSerializer(ModelSerializer):
 class s5011infoCRContrib(models.Model):
     s5011_evtcs = models.ForeignKey('esocial.s5011evtCS',
         related_name='%(class)s_s5011_evtcs')
+    def evento(self): return self.s5011_evtcs.evento()
     tpcr = models.IntegerField()
     vrcr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrcrsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -443,6 +422,7 @@ class s5011infoCRContribSerializer(ModelSerializer):
 class s5011infoCREstab(models.Model):
     s5011_ideestab = models.ForeignKey('s5011ideEstab',
         related_name='%(class)s_s5011_ideestab')
+    def evento(self): return self.s5011_ideestab.evento()
     tpcr = models.IntegerField()
     vrcr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrsuspcr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -473,6 +453,7 @@ class s5011infoCREstabSerializer(ModelSerializer):
 class s5011infoComplObra(models.Model):
     s5011_infoestab = models.OneToOneField('s5011infoEstab',
         related_name='%(class)s_s5011_infoestab')
+    def evento(self): return self.s5011_infoestab.evento()
     indsubstpatrobra = models.IntegerField(choices=CHOICES_S5011_INDSUBSTPATROBRA)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -501,6 +482,7 @@ class s5011infoComplObraSerializer(ModelSerializer):
 class s5011infoEmprParcial(models.Model):
     s5011_idelotacao = models.OneToOneField('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
+    def evento(self): return self.s5011_idelotacao.evento()
     tpinsccontrat = models.IntegerField(choices=CHOICES_S5011_TPINSCCONTRAT)
     nrinsccontrat = models.CharField(max_length=14)
     tpinscprop = models.IntegerField(choices=CHOICES_S5011_TPINSCPROP)
@@ -532,6 +514,7 @@ class s5011infoEmprParcialSerializer(ModelSerializer):
 class s5011infoEstab(models.Model):
     s5011_ideestab = models.OneToOneField('s5011ideEstab',
         related_name='%(class)s_s5011_ideestab')
+    def evento(self): return self.s5011_ideestab.evento()
     cnaeprep = models.IntegerField()
     aliqrat = models.IntegerField(choices=CHOICES_S5011_ALIQRAT)
     fap = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
@@ -563,6 +546,7 @@ class s5011infoEstabSerializer(ModelSerializer):
 class s5011infoPJ(models.Model):
     s5011_evtcs = models.OneToOneField('esocial.s5011evtCS',
         related_name='%(class)s_s5011_evtcs')
+    def evento(self): return self.s5011_evtcs.evento()
     indcoop = models.IntegerField(choices=CHOICES_S5011_INDCOOP, blank=True, null=True)
     indconstr = models.IntegerField(choices=CHOICES_S5011_INDCONSTR)
     indsubstpatr = models.IntegerField(choices=CHOICES_S5011_INDSUBSTPATR, blank=True, null=True)
@@ -594,6 +578,7 @@ class s5011infoPJSerializer(ModelSerializer):
 class s5011infoSubstPatrOpPort(models.Model):
     s5011_idelotacao = models.ForeignKey('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
+    def evento(self): return self.s5011_idelotacao.evento()
     cnpjopportuario = models.CharField(max_length=14)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -622,6 +607,7 @@ class s5011infoSubstPatrOpPortSerializer(ModelSerializer):
 class s5011infoTercSusp(models.Model):
     s5011_idelotacao = models.ForeignKey('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
+    def evento(self): return self.s5011_idelotacao.evento()
     codterc = models.CharField(max_length=4)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',

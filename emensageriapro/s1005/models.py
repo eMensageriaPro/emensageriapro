@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -192,6 +161,7 @@ CHOICES_S1005_INCLUSAO_TPPROC = (
 class s1005alteracao(models.Model):
     s1005_evttabestab = models.OneToOneField('esocial.s1005evtTabEstab',
         related_name='%(class)s_s1005_evttabestab')
+    def evento(self): return self.s1005_evttabestab.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_TPINSC)
     nrinsc = models.CharField(max_length=15)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
@@ -231,6 +201,7 @@ class s1005alteracaoSerializer(ModelSerializer):
 class s1005alteracaoinfoCaepf(models.Model):
     s1005_alteracao = models.OneToOneField('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
+    def evento(self): return self.s1005_alteracao.evento()
     tpcaepf = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_TPCAEPF)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -259,6 +230,7 @@ class s1005alteracaoinfoCaepfSerializer(ModelSerializer):
 class s1005alteracaoinfoEntEduc(models.Model):
     s1005_alteracao = models.ForeignKey('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
+    def evento(self): return self.s1005_alteracao.evento()
     nrinsc = models.CharField(max_length=15)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -287,6 +259,7 @@ class s1005alteracaoinfoEntEducSerializer(ModelSerializer):
 class s1005alteracaoinfoObra(models.Model):
     s1005_alteracao = models.OneToOneField('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
+    def evento(self): return self.s1005_alteracao.evento()
     indsubstpatrobra = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_INDSUBSTPATROBRA)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -315,6 +288,7 @@ class s1005alteracaoinfoObraSerializer(ModelSerializer):
 class s1005alteracaoinfoPCD(models.Model):
     s1005_alteracao = models.OneToOneField('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
+    def evento(self): return self.s1005_alteracao.evento()
     contpcd = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_CONTPCD)
     nrprocjud = models.CharField(max_length=20, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -344,6 +318,7 @@ class s1005alteracaoinfoPCDSerializer(ModelSerializer):
 class s1005alteracaonovaValidade(models.Model):
     s1005_alteracao = models.OneToOneField('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
+    def evento(self): return self.s1005_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -373,6 +348,7 @@ class s1005alteracaonovaValidadeSerializer(ModelSerializer):
 class s1005alteracaoprocAdmJudFap(models.Model):
     s1005_alteracao = models.OneToOneField('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
+    def evento(self): return self.s1005_alteracao.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()
@@ -403,6 +379,7 @@ class s1005alteracaoprocAdmJudFapSerializer(ModelSerializer):
 class s1005alteracaoprocAdmJudRat(models.Model):
     s1005_alteracao = models.OneToOneField('s1005alteracao',
         related_name='%(class)s_s1005_alteracao')
+    def evento(self): return self.s1005_alteracao.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()
@@ -433,6 +410,7 @@ class s1005alteracaoprocAdmJudRatSerializer(ModelSerializer):
 class s1005exclusao(models.Model):
     s1005_evttabestab = models.OneToOneField('esocial.s1005evtTabEstab',
         related_name='%(class)s_s1005_evttabestab')
+    def evento(self): return self.s1005_evttabestab.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S1005_EXCLUSAO_TPINSC)
     nrinsc = models.CharField(max_length=15)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
@@ -464,6 +442,7 @@ class s1005exclusaoSerializer(ModelSerializer):
 class s1005inclusao(models.Model):
     s1005_evttabestab = models.OneToOneField('esocial.s1005evtTabEstab',
         related_name='%(class)s_s1005_evttabestab')
+    def evento(self): return self.s1005_evttabestab.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_TPINSC)
     nrinsc = models.CharField(max_length=15)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
@@ -503,6 +482,7 @@ class s1005inclusaoSerializer(ModelSerializer):
 class s1005inclusaoinfoCaepf(models.Model):
     s1005_inclusao = models.OneToOneField('s1005inclusao',
         related_name='%(class)s_s1005_inclusao')
+    def evento(self): return self.s1005_inclusao.evento()
     tpcaepf = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_TPCAEPF)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -531,6 +511,7 @@ class s1005inclusaoinfoCaepfSerializer(ModelSerializer):
 class s1005inclusaoinfoEntEduc(models.Model):
     s1005_inclusao = models.ForeignKey('s1005inclusao',
         related_name='%(class)s_s1005_inclusao')
+    def evento(self): return self.s1005_inclusao.evento()
     nrinsc = models.CharField(max_length=15)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -559,6 +540,7 @@ class s1005inclusaoinfoEntEducSerializer(ModelSerializer):
 class s1005inclusaoinfoObra(models.Model):
     s1005_inclusao = models.OneToOneField('s1005inclusao',
         related_name='%(class)s_s1005_inclusao')
+    def evento(self): return self.s1005_inclusao.evento()
     indsubstpatrobra = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_INDSUBSTPATROBRA)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -587,6 +569,7 @@ class s1005inclusaoinfoObraSerializer(ModelSerializer):
 class s1005inclusaoinfoPCD(models.Model):
     s1005_inclusao = models.OneToOneField('s1005inclusao',
         related_name='%(class)s_s1005_inclusao')
+    def evento(self): return self.s1005_inclusao.evento()
     contpcd = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_CONTPCD)
     nrprocjud = models.CharField(max_length=20, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -616,6 +599,7 @@ class s1005inclusaoinfoPCDSerializer(ModelSerializer):
 class s1005inclusaoprocAdmJudFap(models.Model):
     s1005_inclusao = models.OneToOneField('s1005inclusao',
         related_name='%(class)s_s1005_inclusao')
+    def evento(self): return self.s1005_inclusao.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()
@@ -646,6 +630,7 @@ class s1005inclusaoprocAdmJudFapSerializer(ModelSerializer):
 class s1005inclusaoprocAdmJudRat(models.Model):
     s1005_inclusao = models.OneToOneField('s1005inclusao',
         related_name='%(class)s_s1005_inclusao')
+    def evento(self): return self.s1005_inclusao.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()

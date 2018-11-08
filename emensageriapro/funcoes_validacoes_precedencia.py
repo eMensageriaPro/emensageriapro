@@ -560,9 +560,9 @@ def validar_precedencia(tipo, tabela, tabela_id):
 
     #quant += 1
 
-    executar_sql("""
-                UPDATE public.%s SET validacao_precedencia = %s WHERE id=%s
-            """ % (tabela, quant, tabela_id), False)
+    # executar_sql("""
+    #             UPDATE public.%s SET validacao_precedencia = %s WHERE id=%s
+    #         """ % (tabela, quant, tabela_id), False)
 
     return quant
 

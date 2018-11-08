@@ -1,0 +1,589 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
+{% if not for_print %}
+
+    <section class="content-header">
+      <h1>
+        S-2245 - Treinamentos, Capacitações e Exercícios Simulados
+        <small>Verificações</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">S-2245 - Treinamentos, Capacitações e Exercícios Simulados</a></li>
+        <li class="active">Verificar</li>
+      </ol>
+    </section>
+    <section class="content">
+
+        {% if messages %}
+                <div class="pad margin no-print">
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+                </div>
+        {% endif %}
+
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">S-2245 - Treinamentos, Capacitações e Exercícios Simulados<br>Identidade: {{ s2245_evttreicap.identidade }}</h3>
+              <div class="text-right">
+                <a href="{% url 's2245_evttreicap_verificar' hash='{}'|json_id:s2245_evttreicap_id|json_print:1|base64_encode_me %}" target="_blank">
+                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
+                </a>
+
+
+
+                  <div class="btn-group">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="text-left"><a
+                                            href="{% url 's2245_evttreicap_verificar' hash='{}'|json_id:s2245_evttreicap_id|json_print:2|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
+                                    <li class="text-left"><a
+                                            href="{% url 's2245_evttreicap_verificar' hash='{}'|json_id:s2245_evttreicap_id|json_print:3|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
+                                    <!--<li class="text-left"><a
+                                            href="{% url 's2245_evttreicap_verificar' hash='{}'|json_id:s2245_evttreicap_id|json_print:4|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
+                                </ul>
+                            </div>&nbsp;
+
+              </div>              
+            </div>
+            <div class="box-body">
+{% else %} 
+   <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            S-2245 - Treinamentos, Capacitações e Exercícios Simulados<br>Identidade: {{ s2245_evttreicap.identidade }}
+            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+{% endif %} 
+
+
+
+
+      <h4>Layout</h4>
+
+
+
+
+<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
+              
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtTreiCap</td>
+            <td bgcolor="lightgray" colspan="3">Evento Treinamentos, Capacitações e Exercícios Simulados Regras de validação: REGRA_EVENTOS_EXTEMP REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXTEMP_REINTEGRACAO REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_TRABALHADOR_BASE_CNIS</td>
+        </tr>
+    {% for s2245_evttreicap in s2245_evttreicap_lista %}
+    {% ifequal 1 1 %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
+        </tr>
+
+        <tr {% if s2245_evttreicap.indretif|validacoes_esocial_efdreinf:"s2245_evttreicap.indretif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indRetif</td>
+            <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2245_evttreicap.indretif or s2245_evttreicap.indretif == 0 %}{{ s2245_evttreicap.indretif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_evttreicap_visualizar' %}
+                <a href="{% url 's2245_evttreicap_salvar'  hash='{}'|json_id:s2245_evttreicap.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2245_evttreicap.nrrecibo|validacoes_esocial_efdreinf:"s2245_evttreicap.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecibo</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
+            <td width="200px"><b>{% if s2245_evttreicap.nrrecibo or s2245_evttreicap.nrrecibo == 0 %}{{ s2245_evttreicap.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_evttreicap_visualizar' %}
+                <a href="{% url 's2245_evttreicap_salvar'  hash='{}'|json_id:s2245_evttreicap.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2245_evttreicap.tpamb|validacoes_esocial_efdreinf:"s2245_evttreicap.tpamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAmb</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2245_evttreicap.tpamb or s2245_evttreicap.tpamb == 0 %}{{ s2245_evttreicap.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_evttreicap_visualizar' %}
+                <a href="{% url 's2245_evttreicap_salvar'  hash='{}'|json_id:s2245_evttreicap.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2245_evttreicap.procemi|validacoes_esocial_efdreinf:"s2245_evttreicap.procemi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">procEmi</td>
+            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="200px"><b>{% if s2245_evttreicap.procemi or s2245_evttreicap.procemi == 0 %}{{ s2245_evttreicap.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_evttreicap_visualizar' %}
+                <a href="{% url 's2245_evttreicap_salvar'  hash='{}'|json_id:s2245_evttreicap.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2245_evttreicap.verproc|validacoes_esocial_efdreinf:"s2245_evttreicap.verproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">verProc</td>
+            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
+            <td width="200px"><b>{% if s2245_evttreicap.verproc or s2245_evttreicap.verproc == 0 %}{{ s2245_evttreicap.verproc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_evttreicap_visualizar' %}
+                <a href="{% url 's2245_evttreicap_salvar'  hash='{}'|json_id:s2245_evttreicap.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+        </tr>
+
+        <tr {% if s2245_evttreicap.tpinsc|validacoes_esocial_efdreinf:"s2245_evttreicap.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
+            <td width="200px"><b>{% if s2245_evttreicap.tpinsc or s2245_evttreicap.tpinsc == 0 %}{{ s2245_evttreicap.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_evttreicap_visualizar' %}
+                <a href="{% url 's2245_evttreicap_salvar'  hash='{}'|json_id:s2245_evttreicap.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2245_evttreicap.nrinsc|validacoes_esocial_efdreinf:"s2245_evttreicap.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2245_evttreicap.nrinsc or s2245_evttreicap.nrinsc == 0 %}{{ s2245_evttreicap.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_evttreicap_visualizar' %}
+                <a href="{% url 's2245_evttreicap_salvar'  hash='{}'|json_id:s2245_evttreicap.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideVinculo</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador e do Vínculo Regras de validação: REGRA_TSV_ATIVO_NA_DTEVENTO REGRA_VINCULO_ATIVO_NA_DTEVENTO</td>
+        </tr>
+
+        <tr {% if s2245_evttreicap.cpftrab|validacoes_esocial_efdreinf:"s2245_evttreicap.cpftrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfTrab</td>
+            <td width="500px">Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2245_evttreicap.cpftrab or s2245_evttreicap.cpftrab == 0 %}{{ s2245_evttreicap.cpftrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_evttreicap_visualizar' %}
+                <a href="{% url 's2245_evttreicap_salvar'  hash='{}'|json_id:s2245_evttreicap.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2245_evttreicap.nistrab|validacoes_esocial_efdreinf:"s2245_evttreicap.nistrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nisTrab</td>
+            <td width="500px">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT. Validação: O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904].</td>
+            <td width="200px"><b>{% if s2245_evttreicap.nistrab or s2245_evttreicap.nistrab == 0 %}{{ s2245_evttreicap.nistrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_evttreicap_visualizar' %}
+                <a href="{% url 's2245_evttreicap_salvar'  hash='{}'|json_id:s2245_evttreicap.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2245_evttreicap.matricula|validacoes_esocial_efdreinf:"s2245_evttreicap.matricula" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">matricula</td>
+            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: A matrícula deve corresponder à informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista ativo. Se o trabalhador não está sujeito a esse evento (S-2200), a matrícula não deve ser informada, porém, o trabalhador deve ter sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300.</td>
+            <td width="200px"><b>{% if s2245_evttreicap.matricula or s2245_evttreicap.matricula == 0 %}{{ s2245_evttreicap.matricula }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_evttreicap_visualizar' %}
+                <a href="{% url 's2245_evttreicap_salvar'  hash='{}'|json_id:s2245_evttreicap.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2245_evttreicap.codcateg|validacoes_esocial_efdreinf:"s2245_evttreicap.codcateg" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codCateg</td>
+            <td width="500px">Preencher com o código da categoria do trabalhador, conforme Tabela 01. Validação: Só informar se o trabalhador tiver sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300. Não informar nos demais casos. Se informado, deve existir na Tabela de Categorias de Trabalhadores (Tabela 01).</td>
+            <td width="200px"><b>{% if s2245_evttreicap.codcateg or s2245_evttreicap.codcateg == 0 %}{{ s2245_evttreicap.codcateg|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_evttreicap_visualizar' %}
+                <a href="{% url 's2245_evttreicap_salvar'  hash='{}'|json_id:s2245_evttreicap.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">treiCap</td>
+            <td bgcolor="lightgray" colspan="3">Treinamentos, Capacitações e Exercícios Simulados Específicos para Trabalho</td>
+        </tr>
+
+        <tr {% if s2245_evttreicap.codtreicap|validacoes_esocial_efdreinf:"s2245_evttreicap.codtreicap" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codTreiCap</td>
+            <td width="500px">Informar o código do treinamento/capacitação/exercício simulado, conforme Tabela 29. Validação: Deve ser um código existente na Tabela 29 - Treinamentos, Capacitações e Exercícios Simulados.</td>
+            <td width="200px"><b>{% if s2245_evttreicap.codtreicap or s2245_evttreicap.codtreicap == 0 %}{{ s2245_evttreicap.codtreicap }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_evttreicap_visualizar' %}
+                <a href="{% url 's2245_evttreicap_salvar'  hash='{}'|json_id:s2245_evttreicap.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2245_evttreicap.observacao|validacoes_esocial_efdreinf:"s2245_evttreicap.observacao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">observacao</td>
+            <td width="500px">Observação referente ao treinamento/capacitação/exercício simulado.</td>
+            <td width="200px"><b>{% if s2245_evttreicap.observacao or s2245_evttreicap.observacao == 0 %}{{ s2245_evttreicap.observacao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_evttreicap_visualizar' %}
+                <a href="{% url 's2245_evttreicap_salvar'  hash='{}'|json_id:s2245_evttreicap.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoComplem</td>
+            <td bgcolor="lightgray" colspan="3">Informações complementares referentes ao treinamento/capacitação/exercício simulado</td>
+        </tr>
+    {% for s2245_infocomplem in s2245_infocomplem_lista %}
+    {% ifequal s2245_infocomplem.s2245_evttreicap.id s2245_evttreicap.id %}
+        <tr {% if s2245_infocomplem.dttreicap|validacoes_esocial_efdreinf:"s2245_infocomplem.dttreicap" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtTreiCap</td>
+            <td width="500px">Informar a data de início do treinamento/capacitação/exercício simulado ou a data de início da obrigatoriedade deste evento para o empregador no eSocial, a que for mais recente. Validação: Deve ser uma data válida, igual ou anterior à data atual e igual ou posterior à data de admissão do vínculo a que se refere. Não pode ser anterior à data de início da obrigatoriedade deste evento para o empregador no eSocial.</td>
+            <td width="200px"><b>{% if s2245_infocomplem.dttreicap or s2245_infocomplem.dttreicap == 0 %}{{ s2245_infocomplem.dttreicap|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_infocomplem_visualizar' %}
+                <a href="{% url 's2245_infocomplem_salvar'  hash='{}'|json_id:s2245_infocomplem.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2245_infocomplem.durtreicap|validacoes_esocial_efdreinf:"s2245_infocomplem.durtreicap" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">durTreiCap</td>
+            <td width="500px">Informar a duração do treinamento/capacitação/exercício simulado, em horas.</td>
+            <td width="200px"><b>{% if s2245_infocomplem.durtreicap or s2245_infocomplem.durtreicap == 0 %}{{ s2245_infocomplem.durtreicap|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_infocomplem_visualizar' %}
+                <a href="{% url 's2245_infocomplem_salvar'  hash='{}'|json_id:s2245_infocomplem.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2245_infocomplem.modtreicap|validacoes_esocial_efdreinf:"s2245_infocomplem.modtreicap" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">modTreiCap</td>
+            <td width="500px">Modalidade do treinamento/capacitação/exercício simulado, conforme opções abaixo: 1 - Presencial; 2 - Educação a Distância (EaD); 3 - Semipresencial. Valores Válidos: 1, 2, 3.</td>
+            <td width="200px"><b>{% if s2245_infocomplem.modtreicap or s2245_infocomplem.modtreicap == 0 %}{{ s2245_infocomplem.modtreicap|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_infocomplem_visualizar' %}
+                <a href="{% url 's2245_infocomplem_salvar'  hash='{}'|json_id:s2245_infocomplem.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2245_infocomplem.tptreicap|validacoes_esocial_efdreinf:"s2245_infocomplem.tptreicap" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpTreiCap</td>
+            <td width="500px">Tipo de treinamento/capacitação/exercício simulado, conforme opções abaixo: 1 - Inicial; 2 - Periódico; 3 - Reciclagem; 4 - Eventual. 5 - Outros. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="200px"><b>{% if s2245_infocomplem.tptreicap or s2245_infocomplem.tptreicap == 0 %}{{ s2245_infocomplem.tptreicap|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_infocomplem_visualizar' %}
+                <a href="{% url 's2245_infocomplem_salvar'  hash='{}'|json_id:s2245_infocomplem.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideProfResp</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas ao profissional responsável pelo treinamento/capacitação/exercício simulado</td>
+        </tr>
+    {% for s2245_ideprofresp in s2245_ideprofresp_lista %}
+    {% ifequal s2245_ideprofresp.s2245_infocomplem.id s2245_infocomplem.id %}
+        <tr {% if s2245_ideprofresp.cpfprof|validacoes_esocial_efdreinf:"s2245_ideprofresp.cpfprof" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfProf</td>
+            <td width="500px">Preencher com o CPF do profissional responsável pelo treinamento/capacitação/exercício simulado. Validação: Deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2245_ideprofresp.cpfprof or s2245_ideprofresp.cpfprof == 0 %}{{ s2245_ideprofresp.cpfprof }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_ideprofresp_visualizar' %}
+                <a href="{% url 's2245_ideprofresp_salvar'  hash='{}'|json_id:s2245_ideprofresp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2245_ideprofresp.nmprof|validacoes_esocial_efdreinf:"s2245_ideprofresp.nmprof" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmProf</td>
+            <td width="500px">Nome do profissional responsável pelo treinamento/capacitação/exercício simulado.</td>
+            <td width="200px"><b>{% if s2245_ideprofresp.nmprof or s2245_ideprofresp.nmprof == 0 %}{{ s2245_ideprofresp.nmprof }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_ideprofresp_visualizar' %}
+                <a href="{% url 's2245_ideprofresp_salvar'  hash='{}'|json_id:s2245_ideprofresp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2245_ideprofresp.tpprof|validacoes_esocial_efdreinf:"s2245_ideprofresp.tpprof" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpProf</td>
+            <td width="500px">O treinamento/capacitação/exercício simulado foi ministrado por: 1 - Profissional empregado do declarante; 2 - Profissional sem vínculo de emprego/estatutário com o declarante. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2245_ideprofresp.tpprof or s2245_ideprofresp.tpprof == 0 %}{{ s2245_ideprofresp.tpprof|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_ideprofresp_visualizar' %}
+                <a href="{% url 's2245_ideprofresp_salvar'  hash='{}'|json_id:s2245_ideprofresp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2245_ideprofresp.formprof|validacoes_esocial_efdreinf:"s2245_ideprofresp.formprof" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">formProf</td>
+            <td width="500px">Formação do profissional responsável pelo treinamento/capacitação/exercício simulado (seja acadêmica, prática ou outra forma).</td>
+            <td width="200px"><b>{% if s2245_ideprofresp.formprof or s2245_ideprofresp.formprof == 0 %}{{ s2245_ideprofresp.formprof }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_ideprofresp_visualizar' %}
+                <a href="{% url 's2245_ideprofresp_salvar'  hash='{}'|json_id:s2245_ideprofresp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2245_ideprofresp.codcbo|validacoes_esocial_efdreinf:"s2245_ideprofresp.codcbo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codCBO</td>
+            <td width="500px">Informar a Classificação Brasileira de Ocupação - CBO referente à formação do profissional responsável pelo treinamento/capacitação/exercício simulado. Validação: Deve ser um código existente na tabela de CBO, com 6 (seis) posições.</td>
+            <td width="200px"><b>{% if s2245_ideprofresp.codcbo or s2245_ideprofresp.codcbo == 0 %}{{ s2245_ideprofresp.codcbo }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_ideprofresp_visualizar' %}
+                <a href="{% url 's2245_ideprofresp_salvar'  hash='{}'|json_id:s2245_ideprofresp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %} {% endifequal %}{% endfor %}
+</table>
+{% if not for_print %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %} 
+
+        </div>
+      </div>
+    </section>
+{% endif %}  
+
+{% endblock content %}

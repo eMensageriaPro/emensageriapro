@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -392,6 +361,7 @@ CHOICES_S1010_INCLUSAO_TPRUBR = (
 class s1010alteracao(models.Model):
     s1010_evttabrubrica = models.OneToOneField('esocial.s1010evtTabRubrica',
         related_name='%(class)s_s1010_evttabrubrica')
+    def evento(self): return self.s1010_evttabrubrica.evento()
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
@@ -433,6 +403,7 @@ class s1010alteracaoSerializer(ModelSerializer):
 class s1010alteracaoideProcessoCP(models.Model):
     s1010_alteracao = models.ForeignKey('s1010alteracao',
         related_name='%(class)s_s1010_alteracao')
+    def evento(self): return self.s1010_alteracao.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1010_ALTERACAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     extdecisao = models.IntegerField(choices=CHOICES_S1010_ALTERACAO_EXTDECISAO)
@@ -467,6 +438,7 @@ class s1010alteracaoideProcessoCPSerializer(ModelSerializer):
 class s1010alteracaoideProcessoCPRP(models.Model):
     s1010_alteracao = models.ForeignKey('s1010alteracao',
         related_name='%(class)s_s1010_alteracao')
+    def evento(self): return self.s1010_alteracao.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -494,6 +466,7 @@ class s1010alteracaoideProcessoCPRPSerializer(ModelSerializer):
 class s1010alteracaoideProcessoFGTS(models.Model):
     s1010_alteracao = models.ForeignKey('s1010alteracao',
         related_name='%(class)s_s1010_alteracao')
+    def evento(self): return self.s1010_alteracao.evento()
     nrproc = models.CharField(max_length=21)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -522,6 +495,7 @@ class s1010alteracaoideProcessoFGTSSerializer(ModelSerializer):
 class s1010alteracaoideProcessoIRRF(models.Model):
     s1010_alteracao = models.ForeignKey('s1010alteracao',
         related_name='%(class)s_s1010_alteracao')
+    def evento(self): return self.s1010_alteracao.evento()
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()
     criado_em = models.DateTimeField(blank=True)
@@ -551,6 +525,7 @@ class s1010alteracaoideProcessoIRRFSerializer(ModelSerializer):
 class s1010alteracaoideProcessoSIND(models.Model):
     s1010_alteracao = models.ForeignKey('s1010alteracao',
         related_name='%(class)s_s1010_alteracao')
+    def evento(self): return self.s1010_alteracao.evento()
     nrproc = models.CharField(max_length=21)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -579,6 +554,7 @@ class s1010alteracaoideProcessoSINDSerializer(ModelSerializer):
 class s1010alteracaonovaValidade(models.Model):
     s1010_alteracao = models.OneToOneField('s1010alteracao',
         related_name='%(class)s_s1010_alteracao')
+    def evento(self): return self.s1010_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -608,6 +584,7 @@ class s1010alteracaonovaValidadeSerializer(ModelSerializer):
 class s1010exclusao(models.Model):
     s1010_evttabrubrica = models.OneToOneField('esocial.s1010evtTabRubrica',
         related_name='%(class)s_s1010_evttabrubrica')
+    def evento(self): return self.s1010_evttabrubrica.evento()
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
@@ -639,6 +616,7 @@ class s1010exclusaoSerializer(ModelSerializer):
 class s1010inclusao(models.Model):
     s1010_evttabrubrica = models.OneToOneField('esocial.s1010evtTabRubrica',
         related_name='%(class)s_s1010_evttabrubrica')
+    def evento(self): return self.s1010_evttabrubrica.evento()
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
@@ -680,6 +658,7 @@ class s1010inclusaoSerializer(ModelSerializer):
 class s1010inclusaoideProcessoCP(models.Model):
     s1010_inclusao = models.ForeignKey('s1010inclusao',
         related_name='%(class)s_s1010_inclusao')
+    def evento(self): return self.s1010_inclusao.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1010_INCLUSAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     extdecisao = models.IntegerField(choices=CHOICES_S1010_INCLUSAO_EXTDECISAO)
@@ -714,6 +693,7 @@ class s1010inclusaoideProcessoCPSerializer(ModelSerializer):
 class s1010inclusaoideProcessoCPRP(models.Model):
     s1010_inclusao = models.ForeignKey('s1010inclusao',
         related_name='%(class)s_s1010_inclusao')
+    def evento(self): return self.s1010_inclusao.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -741,6 +721,7 @@ class s1010inclusaoideProcessoCPRPSerializer(ModelSerializer):
 class s1010inclusaoideProcessoFGTS(models.Model):
     s1010_inclusao = models.ForeignKey('s1010inclusao',
         related_name='%(class)s_s1010_inclusao')
+    def evento(self): return self.s1010_inclusao.evento()
     nrproc = models.CharField(max_length=21)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -769,6 +750,7 @@ class s1010inclusaoideProcessoFGTSSerializer(ModelSerializer):
 class s1010inclusaoideProcessoIRRF(models.Model):
     s1010_inclusao = models.ForeignKey('s1010inclusao',
         related_name='%(class)s_s1010_inclusao')
+    def evento(self): return self.s1010_inclusao.evento()
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()
     criado_em = models.DateTimeField(blank=True)
@@ -798,6 +780,7 @@ class s1010inclusaoideProcessoIRRFSerializer(ModelSerializer):
 class s1010inclusaoideProcessoSIND(models.Model):
     s1010_inclusao = models.ForeignKey('s1010inclusao',
         related_name='%(class)s_s1010_inclusao')
+    def evento(self): return self.s1010_inclusao.evento()
     nrproc = models.CharField(max_length=21)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',

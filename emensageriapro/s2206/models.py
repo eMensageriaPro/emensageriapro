@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -147,6 +116,7 @@ CHOICES_S2206_TPREGJOR = (
 class s2206alvaraJudicial(models.Model):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
+    def evento(self): return self.s2206_evtaltcontratual.evento()
     nrprocjud = models.CharField(max_length=20)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -175,6 +145,7 @@ class s2206alvaraJudicialSerializer(ModelSerializer):
 class s2206aprend(models.Model):
     s2206_infoceletista = models.OneToOneField('s2206infoCeletista',
         related_name='%(class)s_s2206_infoceletista')
+    def evento(self): return self.s2206_infoceletista.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S2206_TPINSC)
     nrinsc = models.CharField(max_length=15)
     criado_em = models.DateTimeField(blank=True)
@@ -204,6 +175,7 @@ class s2206aprendSerializer(ModelSerializer):
 class s2206filiacaoSindical(models.Model):
     s2206_evtaltcontratual = models.ForeignKey('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
+    def evento(self): return self.s2206_evtaltcontratual.evento()
     cnpjsindtrab = models.CharField(max_length=14)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -232,6 +204,7 @@ class s2206filiacaoSindicalSerializer(ModelSerializer):
 class s2206horContratual(models.Model):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
+    def evento(self): return self.s2206_evtaltcontratual.evento()
     qtdhrssem = models.DecimalField(max_digits=15, decimal_places=2, max_length=4, blank=True, null=True)
     tpjornada = models.IntegerField(choices=CHOICES_S2206_TPJORNADA)
     dsctpjorn = models.CharField(max_length=100, blank=True, null=True)
@@ -263,6 +236,7 @@ class s2206horContratualSerializer(ModelSerializer):
 class s2206horario(models.Model):
     s2206_horcontratual = models.ForeignKey('s2206horContratual',
         related_name='%(class)s_s2206_horcontratual')
+    def evento(self): return self.s2206_horcontratual.evento()
     dia = models.IntegerField(choices=CHOICES_S2206_DIA)
     codhorcontrat = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
@@ -292,6 +266,7 @@ class s2206horarioSerializer(ModelSerializer):
 class s2206infoCeletista(models.Model):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
+    def evento(self): return self.s2206_evtaltcontratual.evento()
     tpregjor = models.IntegerField(choices=CHOICES_S2206_TPREGJOR)
     natatividade = models.IntegerField(choices=CHOICES_S2206_NATATIVIDADE)
     dtbase = models.IntegerField(blank=True, null=True)
@@ -323,6 +298,7 @@ class s2206infoCeletistaSerializer(ModelSerializer):
 class s2206infoEstatutario(models.Model):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
+    def evento(self): return self.s2206_evtaltcontratual.evento()
     tpplanrp = models.IntegerField(choices=CHOICES_S2206_TPPLANRP)
     indtetorgps = models.CharField(choices=CHOICES_S2206_INDTETORGPS, max_length=1, blank=True, null=True)
     indabonoperm = models.CharField(choices=CHOICES_S2206_INDABONOPERM, max_length=1, blank=True, null=True)
@@ -354,6 +330,7 @@ class s2206infoEstatutarioSerializer(ModelSerializer):
 class s2206localTrabDom(models.Model):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
+    def evento(self): return self.s2206_evtaltcontratual.evento()
     tplograd = models.TextField(max_length=4)
     dsclograd = models.CharField(max_length=100)
     nrlograd = models.CharField(max_length=10)
@@ -389,6 +366,7 @@ class s2206localTrabDomSerializer(ModelSerializer):
 class s2206localTrabGeral(models.Model):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
+    def evento(self): return self.s2206_evtaltcontratual.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S2206_TPINSC)
     nrinsc = models.CharField(max_length=15)
     desccomp = models.CharField(max_length=80, blank=True, null=True)
@@ -419,6 +397,7 @@ class s2206localTrabGeralSerializer(ModelSerializer):
 class s2206observacoes(models.Model):
     s2206_evtaltcontratual = models.ForeignKey('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
+    def evento(self): return self.s2206_evtaltcontratual.evento()
     observacao = models.CharField(max_length=255)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -447,6 +426,7 @@ class s2206observacoesSerializer(ModelSerializer):
 class s2206servPubl(models.Model):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
+    def evento(self): return self.s2206_evtaltcontratual.evento()
     mtvalter = models.IntegerField(choices=CHOICES_S2206_MTVALTER)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -475,6 +455,7 @@ class s2206servPublSerializer(ModelSerializer):
 class s2206trabTemp(models.Model):
     s2206_infoceletista = models.OneToOneField('s2206infoCeletista',
         related_name='%(class)s_s2206_infoceletista')
+    def evento(self): return self.s2206_infoceletista.evento()
     justprorr = models.CharField(max_length=999)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',

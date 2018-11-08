@@ -141,8 +141,28 @@ def migrates():
     print 'Tempo decorrido:', data_fim - data_inicio
 
 
+def update_tables():
+
+    arquivos = os.listdir('sql_tabelas')
+
+    for a in arquivos:
+
+        if '.sql' in a:
+
+            try:
+
+                TXT = ler_arquivo('sql_tabelas/%s' % a)
+                executar_sql(TXT, False)
+                print ('Arquivo %s executado com sucesso!' % a)
+
+            except:
+
+                print ('Erro ao executar o arquivo %s!' % a)
+
+
 if __name__ == "__main__":
     #migrates()
-    reset_sequences()
-    cadastro_controle_acesso()
+    #reset_sequences()
+    #cadastro_controle_acesso()
+    update_tables()
 

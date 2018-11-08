@@ -1,0 +1,1325 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
+{% if not for_print %}
+
+    <section class="content-header">
+      <h1>
+        S-2206 - Alteração de Contrato de Trabalho
+        <small>Verificações</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">S-2206 - Alteração de Contrato de Trabalho</a></li>
+        <li class="active">Verificar</li>
+      </ol>
+    </section>
+    <section class="content">
+
+        {% if messages %}
+                <div class="pad margin no-print">
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+                </div>
+        {% endif %}
+
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">S-2206 - Alteração de Contrato de Trabalho<br>Identidade: {{ s2206_evtaltcontratual.identidade }}</h3>
+              <div class="text-right">
+                <a href="{% url 's2206_evtaltcontratual_verificar' hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:1|base64_encode_me %}" target="_blank">
+                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
+                </a>
+
+
+
+                  <div class="btn-group">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="text-left"><a
+                                            href="{% url 's2206_evtaltcontratual_verificar' hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:2|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
+                                    <li class="text-left"><a
+                                            href="{% url 's2206_evtaltcontratual_verificar' hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:3|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
+                                    <!--<li class="text-left"><a
+                                            href="{% url 's2206_evtaltcontratual_verificar' hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:4|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
+                                </ul>
+                            </div>&nbsp;
+
+              </div>              
+            </div>
+            <div class="box-body">
+{% else %} 
+   <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            S-2206 - Alteração de Contrato de Trabalho<br>Identidade: {{ s2206_evtaltcontratual.identidade }}
+            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+{% endif %} 
+
+
+
+
+      <h4>Layout</h4>
+
+
+
+
+<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
+              
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtAltContratual</td>
+            <td bgcolor="lightgray" colspan="3">Evento Alteração Contratual Regras de validação: REGRA_ADMISSAO_VALIDA_DURACAO_CONTRATO REGRA_ALTERA_CATEGREGRA_EVENTOS_EXTEMP REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXISTE_VINCULOREGRA_EXTEMP_REINTEGRACAOREGRA_GERAL_VALIDA_DADOS_TABCONTRIB REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_TRABALHADOR_BASE_CNIS REGRA_VINCULO_ATIVO_NA_DTEVENTO</td>
+        </tr>
+    {% for s2206_evtaltcontratual in s2206_evtaltcontratual_lista %}
+    {% ifequal 1 1 %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.indretif|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.indretif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indRetif</td>
+            <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.indretif or s2206_evtaltcontratual.indretif == 0 %}{{ s2206_evtaltcontratual.indretif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.nrrecibo|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecibo</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2].Deve ser um recibo de entrega válido, correspondente ao arquivo que estásendo retificado.</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.nrrecibo or s2206_evtaltcontratual.nrrecibo == 0 %}{{ s2206_evtaltcontratual.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.tpamb|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.tpamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAmb</td>
+            <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.tpamb or s2206_evtaltcontratual.tpamb == 0 %}{{ s2206_evtaltcontratual.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.procemi|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.procemi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">procEmi</td>
+            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.procemi or s2206_evtaltcontratual.procemi == 0 %}{{ s2206_evtaltcontratual.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.verproc|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.verproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">verProc</td>
+            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.verproc or s2206_evtaltcontratual.verproc == 0 %}{{ s2206_evtaltcontratual.verproc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.tpinsc|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.tpinsc or s2206_evtaltcontratual.tpinsc == 0 %}{{ s2206_evtaltcontratual.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.nrinsc|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.nrinsc or s2206_evtaltcontratual.nrinsc == 0 %}{{ s2206_evtaltcontratual.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideVinculo</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador e do Vínculo</td>
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.cpftrab|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.cpftrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfTrab</td>
+            <td width="500px">Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.cpftrab or s2206_evtaltcontratual.cpftrab == 0 %}{{ s2206_evtaltcontratual.cpftrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.nistrab|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.nistrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nisTrab</td>
+            <td width="500px">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT.</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.nistrab or s2206_evtaltcontratual.nistrab == 0 %}{{ s2206_evtaltcontratual.nistrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.matricula|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.matricula" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">matricula</td>
+            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.Validação: Deve corresponder à matrícula informada pelo empregador noevento S-2200 do respectivo vínculo trabalhista.</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.matricula or s2206_evtaltcontratual.matricula == 0 %}{{ s2206_evtaltcontratual.matricula }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">altContratual</td>
+            <td bgcolor="lightgray" colspan="3">Informações do Contrato de Trabalho</td>
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.dtalteracao|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.dtalteracao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtAlteracao</td>
+            <td width="500px">Preencher com a data da alteração das informaçõesValidação: Deve ser uma data válida.</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.dtalteracao or s2206_evtaltcontratual.dtalteracao == 0 %}{{ s2206_evtaltcontratual.dtalteracao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.dtef|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.dtef" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtEf</td>
+            <td width="500px">Se a alteração foi fruto de lei, acordo coletivo, convenção coletiva ousentença normativa, informar a data a partir da qual a alteração produz efeitos remuneratóriosValidação: Deve ser uma data válida, igual ou posterior à data de admissão.</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.dtef or s2206_evtaltcontratual.dtef == 0 %}{{ s2206_evtaltcontratual.dtef|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.dscalt|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.dscalt" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscAlt</td>
+            <td width="500px">Descrição da alteração ou do instrumento que a gerou.</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.dscalt or s2206_evtaltcontratual.dscalt == 0 %}{{ s2206_evtaltcontratual.dscalt }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">vinculo</td>
+            <td bgcolor="lightgray" colspan="3">Grupo de informações do vínculo trabalhista.</td>
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.tpregprev|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.tpregprev" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpRegPrev</td>
+            <td width="500px">Tipo de regime previdenciário conforme opções abaixo:1 - Regime Geral da Previdência Social - RGPS;2 - Regime Próprio de Previdência Social - RPPS;3 - Regime de Previdência Social no Exterior.Validação: Se {codCateg} = [104], deve ser preenchido com [1]. Valores Válidos: 1, 2, 3.</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.tpregprev or s2206_evtaltcontratual.tpregprev == 0 %}{{ s2206_evtaltcontratual.tpregprev|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoRegimeTrab</td>
+            <td bgcolor="lightgray" colspan="3">Informações do regime trabalhista</td>
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoCeletista</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Trabalhador Celetista</td>
+        </tr>
+    {% for s2206_infoceletista in s2206_infoceletista_lista %}
+    {% ifequal s2206_infoceletista.s2206_evtaltcontratual.id s2206_evtaltcontratual.id %}
+        <tr {% if s2206_infoceletista.tpregjor|validacoes_esocial_efdreinf:"s2206_infoceletista.tpregjor" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpRegJor</td>
+            <td width="500px">Identifica o regime de jornada do empregado:1 - Submetidos a Horário de Trabalho (Cap. II da CLT);2 - Atividade Externa especificada no Inciso I do Art. 62 da CLT;3 - Funções especificadas no Inciso II do Art. 62 da CLT;4 - Teletrabalho, previsto no Inciso III do Art. 62 da CLT. Valores Válidos: 1, 2, 3, 4.</td>
+            <td width="200px"><b>{% if s2206_infoceletista.tpregjor or s2206_infoceletista.tpregjor == 0 %}{{ s2206_infoceletista.tpregjor|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_infoceletista_visualizar' %}
+                <a href="{% url 's2206_infoceletista_salvar'  hash='{}'|json_id:s2206_infoceletista.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_infoceletista.natatividade|validacoes_esocial_efdreinf:"s2206_infoceletista.natatividade" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">natAtividade</td>
+            <td width="500px">Natureza da atividade, conforme opções abaixo:1 - Trabalho Urbano;2 - Trabalho Rural.Validação: Se {codCateg} = [104], deve ser preenchido com [1]. Se{codCateg} = [102], deve ser preenchido com [2]. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2206_infoceletista.natatividade or s2206_infoceletista.natatividade == 0 %}{{ s2206_infoceletista.natatividade|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_infoceletista_visualizar' %}
+                <a href="{% url 's2206_infoceletista_salvar'  hash='{}'|json_id:s2206_infoceletista.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_infoceletista.dtbase|validacoes_esocial_efdreinf:"s2206_infoceletista.dtbase" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtBase</td>
+            <td width="500px">Mês relativo à data base da categoria profissional do trabalhador.Validação: Se informado, deve ser maior ou igual a 1 e menor ou igual a 12.</td>
+            <td width="200px"><b>{% if s2206_infoceletista.dtbase or s2206_infoceletista.dtbase == 0 %}{{ s2206_infoceletista.dtbase|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_infoceletista_visualizar' %}
+                <a href="{% url 's2206_infoceletista_salvar'  hash='{}'|json_id:s2206_infoceletista.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_infoceletista.cnpjsindcategprof|validacoes_esocial_efdreinf:"s2206_infoceletista.cnpjsindcategprof" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjSindCategProf</td>
+            <td width="500px">Preencher com o CNPJ do sindicato representativo da categoria(Preponderante ou Diferenciada). Validação: Deve ser um CNPJ válido.</td>
+            <td width="200px"><b>{% if s2206_infoceletista.cnpjsindcategprof or s2206_infoceletista.cnpjsindcategprof == 0 %}{{ s2206_infoceletista.cnpjsindcategprof }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_infoceletista_visualizar' %}
+                <a href="{% url 's2206_infoceletista_salvar'  hash='{}'|json_id:s2206_infoceletista.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">trabTemp</td>
+            <td bgcolor="lightgray" colspan="3">Dados sobre trabalho temporário. Preenchimento obrigatório na prorrogação de contrato de trabalhador temporário</td>
+        </tr>
+    {% for s2206_trabtemp in s2206_trabtemp_lista %}
+    {% ifequal s2206_trabtemp.s2206_infoceletista.id s2206_infoceletista.id %}
+        <tr {% if s2206_trabtemp.justprorr|validacoes_esocial_efdreinf:"s2206_trabtemp.justprorr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">justProrr</td>
+            <td width="500px">Descrever a justificativa para a prorrogação do contrato de trabalho temporário</td>
+            <td width="200px"><b>{% if s2206_trabtemp.justprorr or s2206_trabtemp.justprorr == 0 %}{{ s2206_trabtemp.justprorr }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_trabtemp_visualizar' %}
+                <a href="{% url 's2206_trabtemp_salvar'  hash='{}'|json_id:s2206_trabtemp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">aprend</td>
+            <td bgcolor="lightgray" colspan="3">Informações para identificação do empregador contratante de aprendiz. Preenchimento obrigatório na contratação de aprendiz por entidade educativa sem fins lucrativos que tenha por objetivo a assistência ao adolescente e à educação profissional (art. 430, inciso II, CLT) ou por entidade de prática desportiva filiada ao Sistema Nacional do Desporto ou a Sistema de Desporto de Estado, do Distrito Federal ou de Município (art. 430, inciso III, CLT)</td>
+        </tr>
+    {% for s2206_aprend in s2206_aprend_lista %}
+    {% ifequal s2206_aprend.s2206_infoceletista.id s2206_infoceletista.id %}
+        <tr {% if s2206_aprend.tpinsc|validacoes_esocial_efdreinf:"s2206_aprend.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF). Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2206_aprend.tpinsc or s2206_aprend.tpinsc == 0 %}{{ s2206_aprend.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_aprend_visualizar' %}
+                <a href="{% url 's2206_aprend_salvar'  hash='{}'|json_id:s2206_aprend.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_aprend.nrinsc|validacoes_esocial_efdreinf:"s2206_aprend.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do empregador para o qual a contratação de aprendiz foi efetivada, de acordo com o tipo de inscrição indicado no campo{tpInsc}.Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2206_aprend.nrinsc or s2206_aprend.nrinsc == 0 %}{{ s2206_aprend.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_aprend_visualizar' %}
+                <a href="{% url 's2206_aprend_salvar'  hash='{}'|json_id:s2206_aprend.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoEstatutario</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Trabalhador Estatutário</td>
+        </tr>
+    {% for s2206_infoestatutario in s2206_infoestatutario_lista %}
+    {% ifequal s2206_infoestatutario.s2206_evtaltcontratual.id s2206_evtaltcontratual.id %}
+        <tr {% if s2206_infoestatutario.tpplanrp|validacoes_esocial_efdreinf:"s2206_infoestatutario.tpplanrp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpPlanRP</td>
+            <td width="500px">Tipo de plano de segregação da massa:1 - Plano previdenciário ou único;2 - Plano financeiro. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2206_infoestatutario.tpplanrp or s2206_infoestatutario.tpplanrp == 0 %}{{ s2206_infoestatutario.tpplanrp|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_infoestatutario_visualizar' %}
+                <a href="{% url 's2206_infoestatutario_salvar'  hash='{}'|json_id:s2206_infoestatutario.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_infoestatutario.indtetorgps|validacoes_esocial_efdreinf:"s2206_infoestatutario.indtetorgps" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indTetoRGPS</td>
+            <td width="500px">Informar se o servidor está sujeito ao Teto do Regime Geral pela instituição do regime de previdência complementar: S - Sim; N - Não. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2206_infoestatutario.indtetorgps or s2206_infoestatutario.indtetorgps == 0 %}{{ s2206_infoestatutario.indtetorgps }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_infoestatutario_visualizar' %}
+                <a href="{% url 's2206_infoestatutario_salvar'  hash='{}'|json_id:s2206_infoestatutario.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_infoestatutario.indabonoperm|validacoes_esocial_efdreinf:"s2206_infoestatutario.indabonoperm" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indAbonoPerm</td>
+            <td width="500px">Indicar se o servidor recebe abono permanência: S - Sim; N - Não. Validação: Preenchimento obrigatório se {tpRegPrev} = [2]. Não preencher nos demais casos. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2206_infoestatutario.indabonoperm or s2206_infoestatutario.indabonoperm == 0 %}{{ s2206_infoestatutario.indabonoperm }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_infoestatutario_visualizar' %}
+                <a href="{% url 's2206_infoestatutario_salvar'  hash='{}'|json_id:s2206_infoestatutario.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_infoestatutario.indparcremun|validacoes_esocial_efdreinf:"s2206_infoestatutario.indparcremun" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indParcRemun</td>
+            <td width="500px">Informar se o servidor fez a opção pela inclusão na base de cálculo da contribuição de parcelas remuneratórias percebidas em decorrência de local de trabalho e do exercício de cargo em comissão ou de função comissionada ou gratificada, conforme art. 4º, § 2º, da Lei nº 10.887/2004: S - Sim; N - Não. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2206_infoestatutario.indparcremun or s2206_infoestatutario.indparcremun == 0 %}{{ s2206_infoestatutario.indparcremun }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_infoestatutario_visualizar' %}
+                <a href="{% url 's2206_infoestatutario_salvar'  hash='{}'|json_id:s2206_infoestatutario.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %} 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoContrato</td>
+            <td bgcolor="lightgray" colspan="3">Informações do Contrato de Trabalho</td>
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.codcargo|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.codcargo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codCargo</td>
+            <td width="500px">Preencher com o código do cargo.Validação: Não é obrigatório para o servidor público contratado com{tpProv} = [2]. Obrigatório nos demais casos. Se informado, o código informado deve constar na Tabela de Cargos/Empregos Públicos - S-1030.</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.codcargo or s2206_evtaltcontratual.codcargo == 0 %}{{ s2206_evtaltcontratual.codcargo }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.codfuncao|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.codfuncao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codFuncao</td>
+            <td width="500px">Preencher com o código da função, se utilizado pelo empregador. Validação: Preenchimento obrigatório para categorias de trabalhadores "Agente Público" se {tpProv} = [2].Se informado, o código informado deve constar na Tabela de Funções/Cargos em Comissão - S-1040.</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.codfuncao or s2206_evtaltcontratual.codfuncao == 0 %}{{ s2206_evtaltcontratual.codfuncao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.codcateg|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.codcateg" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codCateg</td>
+            <td width="500px">Preencher com o código da categoria do trabalhador, conforme Tabela 1Validação: Deve existir na Tabela de Categorias de Trabalhadores (tabela 1)</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.codcateg or s2206_evtaltcontratual.codcateg == 0 %}{{ s2206_evtaltcontratual.codcateg|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.codcarreira|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.codcarreira" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codCarreira</td>
+            <td width="500px">Preencher com o código da carreira públicaValidação: Se informado deve constar na Tabela de Carreiras Públicas - S- 1035</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.codcarreira or s2206_evtaltcontratual.codcarreira == 0 %}{{ s2206_evtaltcontratual.codcarreira }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.dtingrcarr|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.dtingrcarr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtIngrCarr</td>
+            <td width="500px">Data de ingresso na carreira identificada em {codCarreira} Validação: Preenchimento obrigatório se houver informação em{codCarreira}.</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.dtingrcarr or s2206_evtaltcontratual.dtingrcarr == 0 %}{{ s2206_evtaltcontratual.dtingrcarr|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">remuneracao</td>
+            <td bgcolor="lightgray" colspan="3">Informações da remuneração e periodicidade de pagamento</td>
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.vrsalfx|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.vrsalfx" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrSalFx</td>
+            <td width="500px">Salário base do trabalhador, correspondente à parte fixa da remuneração. Validação: Se {undSalFixo} for igual a [7], preencher com 0 (zero).</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.vrsalfx or s2206_evtaltcontratual.vrsalfx == 0 %}{{ s2206_evtaltcontratual.vrsalfx|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.undsalfixo|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.undsalfixo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">undSalFixo</td>
+            <td width="500px">Unidade de pagamento da parte fixa da remuneração, conforme opções abaixo:1 - Por Hora;2 - Por Dia;3 - Por Semana;4 - Por Quinzena;5 - Por Mês;6 - Por Tarefa;7 - Não aplicável - salário exclusivamente variável. Valores Válidos: 1, 2, 3, 4, 5, 6, 7.</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.undsalfixo or s2206_evtaltcontratual.undsalfixo == 0 %}{{ s2206_evtaltcontratual.undsalfixo|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.dscsalvar|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.dscsalvar" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscSalVar</td>
+            <td width="500px">Descrição do salário por tarefa ou variável e como este é calculado. Ex.: Comissões pagas no percentual de 10% sobre as vendas.Validação: Preenchimento obrigatório se {undSalFixo} for igual a [6, 7].</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.dscsalvar or s2206_evtaltcontratual.dscsalvar == 0 %}{{ s2206_evtaltcontratual.dscsalvar }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">duracao</td>
+            <td bgcolor="lightgray" colspan="3">Duração do Contrato de Trabalho</td>
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.tpcontr|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.tpcontr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpContr</td>
+            <td width="500px">Tipo de contrato de trabalho conforme opções abaixo:1 - Prazo indeterminado;2 - Prazo determinado. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.tpcontr or s2206_evtaltcontratual.tpcontr == 0 %}{{ s2206_evtaltcontratual.tpcontr|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_evtaltcontratual.dtterm|validacoes_esocial_efdreinf:"s2206_evtaltcontratual.dtterm" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtTerm</td>
+            <td width="500px">Data do TérminoValidação: O preenchimento é obrigatório se {tpContr} igual a [2]. Deve ser igual ou posterior à data de admissão (no caso de sucessão, igual ou posteriorà data da transferência).</td>
+            <td width="200px"><b>{% if s2206_evtaltcontratual.dtterm or s2206_evtaltcontratual.dtterm == 0 %}{{ s2206_evtaltcontratual.dtterm|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                <a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">localTrabalho</td>
+            <td bgcolor="lightgray" colspan="3">Informações do local de trabalho</td>
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">localTrabGeral</td>
+            <td bgcolor="lightgray" colspan="3">Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades. Caso o trabalhador exerça suas atividades em instalações de terceiros, este campo deve ser preenchido com o estabelecimento do próprio empregador ao qual o trabalhador esteja vinculado.</td>
+        </tr>
+    {% for s2206_localtrabgeral in s2206_localtrabgeral_lista %}
+    {% ifequal s2206_localtrabgeral.s2206_evtaltcontratual.id s2206_evtaltcontratual.id %}
+        <tr {% if s2206_localtrabgeral.tpinsc|validacoes_esocial_efdreinf:"s2206_localtrabgeral.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Valores Válidos: 1, 3, 4.</td>
+            <td width="200px"><b>{% if s2206_localtrabgeral.tpinsc or s2206_localtrabgeral.tpinsc == 0 %}{{ s2206_localtrabgeral.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_localtrabgeral_visualizar' %}
+                <a href="{% url 's2206_localtrabgeral_salvar'  hash='{}'|json_id:s2206_localtrabgeral.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_localtrabgeral.nrinsc|validacoes_esocial_efdreinf:"s2206_localtrabgeral.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}.Validação: A inscrição informada deve ser compatível com {tpInsc} e constar na tabela S-1005.</td>
+            <td width="200px"><b>{% if s2206_localtrabgeral.nrinsc or s2206_localtrabgeral.nrinsc == 0 %}{{ s2206_localtrabgeral.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_localtrabgeral_visualizar' %}
+                <a href="{% url 's2206_localtrabgeral_salvar'  hash='{}'|json_id:s2206_localtrabgeral.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_localtrabgeral.desccomp|validacoes_esocial_efdreinf:"s2206_localtrabgeral.desccomp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">descComp</td>
+            <td width="500px">Descrição complementar do local de trabalho.</td>
+            <td width="200px"><b>{% if s2206_localtrabgeral.desccomp or s2206_localtrabgeral.desccomp == 0 %}{{ s2206_localtrabgeral.desccomp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_localtrabgeral_visualizar' %}
+                <a href="{% url 's2206_localtrabgeral_salvar'  hash='{}'|json_id:s2206_localtrabgeral.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">localTrabDom</td>
+            <td bgcolor="lightgray" colspan="3">Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.</td>
+        </tr>
+    {% for s2206_localtrabdom in s2206_localtrabdom_lista %}
+    {% ifequal s2206_localtrabdom.s2206_evtaltcontratual.id s2206_evtaltcontratual.id %}
+        <tr {% if s2206_localtrabdom.tplograd|validacoes_esocial_efdreinf:"s2206_localtrabdom.tplograd" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpLograd</td>
+            <td width="500px">Tipo de Logradouro, conforme tabela 20.Validação: Deve ser um código válido, existente na tabela 20.</td>
+            <td width="200px"><b>{% if s2206_localtrabdom.tplograd or s2206_localtrabdom.tplograd == 0 %}{{ s2206_localtrabdom.tplograd }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_localtrabdom_visualizar' %}
+                <a href="{% url 's2206_localtrabdom_salvar'  hash='{}'|json_id:s2206_localtrabdom.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_localtrabdom.dsclograd|validacoes_esocial_efdreinf:"s2206_localtrabdom.dsclograd" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscLograd</td>
+            <td width="500px">Descrição do logradouro</td>
+            <td width="200px"><b>{% if s2206_localtrabdom.dsclograd or s2206_localtrabdom.dsclograd == 0 %}{{ s2206_localtrabdom.dsclograd }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_localtrabdom_visualizar' %}
+                <a href="{% url 's2206_localtrabdom_salvar'  hash='{}'|json_id:s2206_localtrabdom.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_localtrabdom.nrlograd|validacoes_esocial_efdreinf:"s2206_localtrabdom.nrlograd" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrLograd</td>
+            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com "S/N"</td>
+            <td width="200px"><b>{% if s2206_localtrabdom.nrlograd or s2206_localtrabdom.nrlograd == 0 %}{{ s2206_localtrabdom.nrlograd }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_localtrabdom_visualizar' %}
+                <a href="{% url 's2206_localtrabdom_salvar'  hash='{}'|json_id:s2206_localtrabdom.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_localtrabdom.complemento|validacoes_esocial_efdreinf:"s2206_localtrabdom.complemento" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">complemento</td>
+            <td width="500px">Complemento do logradouro.</td>
+            <td width="200px"><b>{% if s2206_localtrabdom.complemento or s2206_localtrabdom.complemento == 0 %}{{ s2206_localtrabdom.complemento }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_localtrabdom_visualizar' %}
+                <a href="{% url 's2206_localtrabdom_salvar'  hash='{}'|json_id:s2206_localtrabdom.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_localtrabdom.bairro|validacoes_esocial_efdreinf:"s2206_localtrabdom.bairro" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">bairro</td>
+            <td width="500px">Nome do bairro/distrito</td>
+            <td width="200px"><b>{% if s2206_localtrabdom.bairro or s2206_localtrabdom.bairro == 0 %}{{ s2206_localtrabdom.bairro }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_localtrabdom_visualizar' %}
+                <a href="{% url 's2206_localtrabdom_salvar'  hash='{}'|json_id:s2206_localtrabdom.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_localtrabdom.cep|validacoes_esocial_efdreinf:"s2206_localtrabdom.cep" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cep</td>
+            <td width="500px">Código de Endereçamento Postal - CEP.Validação: Deve ser preenchido apenas com números. Deve ser um CEP válido.</td>
+            <td width="200px"><b>{% if s2206_localtrabdom.cep or s2206_localtrabdom.cep == 0 %}{{ s2206_localtrabdom.cep }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_localtrabdom_visualizar' %}
+                <a href="{% url 's2206_localtrabdom_salvar'  hash='{}'|json_id:s2206_localtrabdom.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_localtrabdom.codmunic|validacoes_esocial_efdreinf:"s2206_localtrabdom.codmunic" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codMunic</td>
+            <td width="500px">Preencher com o código do município, conforme tabela do IBGE Validação: Deve ser um código existente na tabela do IBGE.</td>
+            <td width="200px"><b>{% if s2206_localtrabdom.codmunic or s2206_localtrabdom.codmunic == 0 %}{{ s2206_localtrabdom.codmunic|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_localtrabdom_visualizar' %}
+                <a href="{% url 's2206_localtrabdom_salvar'  hash='{}'|json_id:s2206_localtrabdom.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_localtrabdom.uf|validacoes_esocial_efdreinf:"s2206_localtrabdom.uf" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">uf</td>
+            <td width="500px">Preencher com a sigla da Unidade da FederaçãoValidação: Deve ser uma UF válida.</td>
+            <td width="200px"><b>{% if s2206_localtrabdom.uf or s2206_localtrabdom.uf == 0 %}{{ s2206_localtrabdom.uf }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_localtrabdom_visualizar' %}
+                <a href="{% url 's2206_localtrabdom_salvar'  hash='{}'|json_id:s2206_localtrabdom.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %} 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">horContratual</td>
+            <td bgcolor="lightgray" colspan="3">Informações do Horário Contratual do Trabalhador. O preenchimento éobrigatório se {tpRegJor} = [1].</td>
+        </tr>
+    {% for s2206_horcontratual in s2206_horcontratual_lista %}
+    {% ifequal s2206_horcontratual.s2206_evtaltcontratual.id s2206_evtaltcontratual.id %}
+        <tr {% if s2206_horcontratual.qtdhrssem|validacoes_esocial_efdreinf:"s2206_horcontratual.qtdhrssem" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">qtdHrsSem</td>
+            <td width="500px">Quantidade média de horas relativas à jornada semanal do trabalhador. Validação: Deve ser preenchido se {codCateg} <> [111].Se preenchido, deve ser maior que zero.</td>
+            <td width="200px"><b>{% if s2206_horcontratual.qtdhrssem or s2206_horcontratual.qtdhrssem == 0 %}{{ s2206_horcontratual.qtdhrssem|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_horcontratual_visualizar' %}
+                <a href="{% url 's2206_horcontratual_salvar'  hash='{}'|json_id:s2206_horcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_horcontratual.tpjornada|validacoes_esocial_efdreinf:"s2206_horcontratual.tpjornada" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpJornada</td>
+            <td width="500px">Tipo da Jornada. Preencher com uma das opções:1 - Jornada com horário diário e folga fixos;2 - Jornada 12 x 36 (12 horas de trabalho seguidas de 36 horas ininterruptas de descanso);3 - Jornada com horário diário fixo e folga variável;9 - Demais tipos de jornada. Valores Válidos: 1, 2, 3, 9.</td>
+            <td width="200px"><b>{% if s2206_horcontratual.tpjornada or s2206_horcontratual.tpjornada == 0 %}{{ s2206_horcontratual.tpjornada|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_horcontratual_visualizar' %}
+                <a href="{% url 's2206_horcontratual_salvar'  hash='{}'|json_id:s2206_horcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_horcontratual.dsctpjorn|validacoes_esocial_efdreinf:"s2206_horcontratual.dsctpjorn" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscTpJorn</td>
+            <td width="500px">Descrição do tipo de jornada.Validação: Deve ser preenchido se {tpJornada} = [9]</td>
+            <td width="200px"><b>{% if s2206_horcontratual.dsctpjorn or s2206_horcontratual.dsctpjorn == 0 %}{{ s2206_horcontratual.dsctpjorn }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_horcontratual_visualizar' %}
+                <a href="{% url 's2206_horcontratual_salvar'  hash='{}'|json_id:s2206_horcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_horcontratual.tmpparc|validacoes_esocial_efdreinf:"s2206_horcontratual.tmpparc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tmpParc</td>
+            <td width="500px">Preencher com o código relativo ao tipo de contrato em tempo parcial:0 - Não é contrato em tempo parcial;1 - Limitado a 25 horas semanais; 2 - Limitado a 30 horas semanais;3 - Limitado a 26 horas semanais.Validação: O código [1] só é válido se {codCateg} = [104]. Os códigos [2, 3]não são válidos se {codCateg} = [104]. Valores Válidos: 0, 1, 2, 3.</td>
+            <td width="200px"><b>{% if s2206_horcontratual.tmpparc or s2206_horcontratual.tmpparc == 0 %}{{ s2206_horcontratual.tmpparc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_horcontratual_visualizar' %}
+                <a href="{% url 's2206_horcontratual_salvar'  hash='{}'|json_id:s2206_horcontratual.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">horario</td>
+            <td bgcolor="lightgray" colspan="3">Informações diárias do horário contratual</td>
+        </tr>
+    {% for s2206_horario in s2206_horario_lista %}
+    {% ifequal s2206_horario.s2206_horcontratual.id s2206_horcontratual.id %}
+        <tr {% if s2206_horario.dia|validacoes_esocial_efdreinf:"s2206_horario.dia" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dia</td>
+            <td width="500px">Preencher com o código relativo ao dia do horário:1 - Segunda-Feira;2 - Terça-Feira;3 - Quarta-Feira;4 - Quinta-Feira;5 - Sexta-Feira;6 - Sábado;7 - Domingo;8 - Dia variável.Valores Válidos: 1, 2, 3, 4, 5, 6, 7, 8.</td>
+            <td width="200px"><b>{% if s2206_horario.dia or s2206_horario.dia == 0 %}{{ s2206_horario.dia|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_horario_visualizar' %}
+                <a href="{% url 's2206_horario_salvar'  hash='{}'|json_id:s2206_horario.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2206_horario.codhorcontrat|validacoes_esocial_efdreinf:"s2206_horario.codhorcontrat" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codHorContrat</td>
+            <td width="500px">Preencher com o código atribuído pela empresa para o Horário Contratual. Validação: O valor informado deve existir na Tabela de Horários/Turnos de Trabalho - S-1050.</td>
+            <td width="200px"><b>{% if s2206_horario.codhorcontrat or s2206_horario.codhorcontrat == 0 %}{{ s2206_horario.codhorcontrat }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_horario_visualizar' %}
+                <a href="{% url 's2206_horario_salvar'  hash='{}'|json_id:s2206_horario.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">filiacaoSindical</td>
+            <td bgcolor="lightgray" colspan="3">Filiação Sindical do Trabalhador</td>
+        </tr>
+    {% for s2206_filiacaosindical in s2206_filiacaosindical_lista %}
+    {% ifequal s2206_filiacaosindical.s2206_evtaltcontratual.id s2206_evtaltcontratual.id %}
+        <tr {% if s2206_filiacaosindical.cnpjsindtrab|validacoes_esocial_efdreinf:"s2206_filiacaosindical.cnpjsindtrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjSindTrab</td>
+            <td width="500px">Preencher com o CNPJ do sindicato ao qual o trabalhador encontra-se filiado. Validação: Deve ser um CNPJ válido.</td>
+            <td width="200px"><b>{% if s2206_filiacaosindical.cnpjsindtrab or s2206_filiacaosindical.cnpjsindtrab == 0 %}{{ s2206_filiacaosindical.cnpjsindtrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_filiacaosindical_visualizar' %}
+                <a href="{% url 's2206_filiacaosindical_salvar'  hash='{}'|json_id:s2206_filiacaosindical.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">alvaraJudicial</td>
+            <td bgcolor="lightgray" colspan="3">Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de "Aprendiz".</td>
+        </tr>
+    {% for s2206_alvarajudicial in s2206_alvarajudicial_lista %}
+    {% ifequal s2206_alvarajudicial.s2206_evtaltcontratual.id s2206_evtaltcontratual.id %}
+        <tr {% if s2206_alvarajudicial.nrprocjud|validacoes_esocial_efdreinf:"s2206_alvarajudicial.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrProcJud</td>
+            <td width="500px">Preencher com o número do processo judicial.Validação: Deve ser um número de processo judicial válido, existente naTabela de Processos - S-1070.</td>
+            <td width="200px"><b>{% if s2206_alvarajudicial.nrprocjud or s2206_alvarajudicial.nrprocjud == 0 %}{{ s2206_alvarajudicial.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_alvarajudicial_visualizar' %}
+                <a href="{% url 's2206_alvarajudicial_salvar'  hash='{}'|json_id:s2206_alvarajudicial.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">observacoes</td>
+            <td bgcolor="lightgray" colspan="3">Observações do contrato de trabalho</td>
+        </tr>
+    {% for s2206_observacoes in s2206_observacoes_lista %}
+    {% ifequal s2206_observacoes.s2206_evtaltcontratual.id s2206_evtaltcontratual.id %}
+        <tr {% if s2206_observacoes.observacao|validacoes_esocial_efdreinf:"s2206_observacoes.observacao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">observacao</td>
+            <td width="500px">Observação relacionada ao contrato de trabalho.</td>
+            <td width="200px"><b>{% if s2206_observacoes.observacao or s2206_observacoes.observacao == 0 %}{{ s2206_observacoes.observacao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_observacoes_visualizar' %}
+                <a href="{% url 's2206_observacoes_salvar'  hash='{}'|json_id:s2206_observacoes.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">servPubl</td>
+            <td bgcolor="lightgray" colspan="3">Alterações inerentes ao servidor público</td>
+        </tr>
+    {% for s2206_servpubl in s2206_servpubl_lista %}
+    {% ifequal s2206_servpubl.s2206_evtaltcontratual.id s2206_evtaltcontratual.id %}
+        <tr {% if s2206_servpubl.mtvalter|validacoes_esocial_efdreinf:"s2206_servpubl.mtvalter" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">mtvAlter</td>
+            <td width="500px">Informar o motivo da alteração do cargo ou função:1 - Promoção;2 - Readaptação;3 - Aproveitamento;8 - Outros;9 - Não alterado.Valores Válidos: 1, 2, 3, 8, 9.</td>
+            <td width="200px"><b>{% if s2206_servpubl.mtvalter or s2206_servpubl.mtvalter == 0 %}{{ s2206_servpubl.mtvalter|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2206_servpubl_visualizar' %}
+                <a href="{% url 's2206_servpubl_salvar'  hash='{}'|json_id:s2206_servpubl.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}  {% endifequal %}{% endfor %}
+</table>
+{% if not for_print %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %} 
+
+        </div>
+      </div>
+    </section>
+{% endif %}  
+
+{% endblock content %}

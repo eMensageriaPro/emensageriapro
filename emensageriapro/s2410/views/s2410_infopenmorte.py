@@ -4,38 +4,7 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 import datetime
 from django.contrib import messages
@@ -53,24 +22,16 @@ import base64
 
 
 @login_required
-def salvar(request, hash, slug=0):
-    if slug:
-        conta = get_json(slug)
-        if not conta:  
-            raise Http404 
-        else:
-            db_slug = 'emensageriapro'+str(conta.id)
-    else:
-        db_slug = 'default'
-        conta = None
-    try: 
-        usuario_id = request.user.id    
+def salvar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2410_infopenmorte_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
+        if 'tab' not in dict_hash.keys():
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
-    except: 
+    except:
         usuario_id = False
         return redirect('login')
     usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
@@ -111,7 +72,7 @@ def salvar(request, hash, slug=0):
                         #s2410_infopenmorte_campos_multiple_passo2
                         messages.success(request, 'Alterado com sucesso!')
                         gravar_auditoria(json.dumps(model_to_dict(s2410_infopenmorte), indent=4, sort_keys=True, default=str),
-                                         json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                                         json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                                          's2410_infopenmorte', s2410_infopenmorte_id, usuario_id, 2)
                     else:
                         messages.error(request, 'Somente é possível alterar eventos com status "Cadastrado"!')
@@ -127,7 +88,7 @@ def salvar(request, hash, slug=0):
                     #s2410_infopenmorte_cadastrar_campos_multiple_passo2
                     messages.success(request, 'Cadastrado com sucesso!')
                     gravar_auditoria('{}',
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                                      's2410_infopenmorte', obj.id, usuario_id, 1)
                     if request.session['retorno_pagina'] not in ('s2410_infopenmorte_apagar', 's2410_infopenmorte_salvar', 's2410_infopenmorte'):
                         return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
@@ -146,12 +107,12 @@ def salvar(request, hash, slug=0):
             s2410_infopenmorte_form.fields[field].widget.attrs['ng-model'] = 's2410_infopenmorte_'+field
         if int(dict_hash['print']):
             s2410_infopenmorte_form = disabled_form_for_print(s2410_infopenmorte_form)
-        
+
         s2410_instpenmorte_form = None
         s2410_instpenmorte_lista = None
         if s2410_infopenmorte_id:
             s2410_infopenmorte = get_object_or_404(s2410infoPenMorte.objects.using( db_slug ), excluido = False, id = s2410_infopenmorte_id)
-            
+  
             s2410_instpenmorte_form = form_s2410_instpenmorte(initial={ 's2410_infopenmorte': s2410_infopenmorte }, slug=db_slug)
             s2410_instpenmorte_form.fields['s2410_infopenmorte'].widget.attrs['readonly'] = True
             s2410_instpenmorte_lista = s2410instPenMorte.objects.using( db_slug ).filter(excluido = False, s2410_infopenmorte_id=s2410_infopenmorte.id).all()
@@ -165,24 +126,24 @@ def salvar(request, hash, slug=0):
             request.session["retorno_pagina"] = 's2410_infopenmorte_salvar'
         controle_alteracoes = Auditoria.objects.using( db_slug ).filter(identidade=s2410_infopenmorte_id, tabela='s2410_infopenmorte').all()
         context = {
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
+            'ocorrencias': dados_evento['ocorrencias'],
+            'validacao_precedencia': dados_evento['validacao_precedencia'],
             'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
-            'controle_alteracoes': controle_alteracoes, 
-            's2410_infopenmorte': s2410_infopenmorte, 
-            's2410_infopenmorte_form': s2410_infopenmorte_form, 
-            'mensagem': mensagem, 
+            'status': dados_evento['status'],
+            'controle_alteracoes': controle_alteracoes,
+            's2410_infopenmorte': s2410_infopenmorte,
+            's2410_infopenmorte_form': s2410_infopenmorte_form,
+            'mensagem': mensagem,
             's2410_infopenmorte_id': int(s2410_infopenmorte_id),
-            'usuario': usuario, 
-            'conta': conta, 
-            'hash': hash, 
-            
+            'usuario': usuario,
+       
+            'hash': hash,
+  
             's2410_instpenmorte_form': s2410_instpenmorte_form,
             's2410_instpenmorte_lista': s2410_instpenmorte_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            'slug': slug,
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -225,11 +186,11 @@ def salvar(request, hash, slug=0):
 
     else:
         context = {
-            'usuario': usuario, 
-            'conta': conta, 
+            'usuario': usuario,
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            'slug': slug,
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -238,28 +199,20 @@ def salvar(request, hash, slug=0):
         return render(request, 'permissao_negada.html', context)
 
 @login_required
-def apagar(request, hash, slug=0):
-    if slug:
-        conta = get_json(slug)
-        if not conta:  
-            raise Http404 
-        else:
-            db_slug = 'emensageriapro'+str(conta.id)
-    else:
-        db_slug = 'default'
-        conta = None
-    try: 
-        usuario_id = request.user.id 
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2410_infopenmorte_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
-    except: 
+    except:
         usuario_id = False
         return redirect('login')
     usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
     pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2410_infopenmorte')
     permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-    
+
     dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
     paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
@@ -281,21 +234,21 @@ def apagar(request, hash, slug=0):
             #s2410_infopenmorte_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
-                             '', 
+                             '',
                              's2410_infopenmorte', s2410_infopenmorte_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
+   
         if request.session['retorno_pagina']== 's2410_infopenmorte_salvar':
             return redirect('s2410_infopenmorte', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
-        'usuario': usuario, 
-        'conta': conta, 
+        'usuario': usuario,
+   
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        'slug': slug,
+   
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -320,8 +273,8 @@ class s2410infoPenMorteDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = s2410infoPenMorte.objects.using(db_slug).all()
     serializer_class = s2410infoPenMorteSerializer
     permission_classes = (IsAdminUser,)
-    
-    
+
+
 def render_to_pdf(template_src, context_dict={}):
     from io import BytesIO
     from django.http import HttpResponse
@@ -337,25 +290,17 @@ def render_to_pdf(template_src, context_dict={}):
 
 
 @login_required
-def listar(request, hash, slug=0):
+def listar(request, hash):
     for_print = 0
-    if slug:
-        conta = get_json(slug)
-        if not conta:  
-            raise Http404 
-        else:
-            db_slug = 'emensageriapro'+str(conta.id)
-    else:
-        db_slug = 'default'
-        conta = None
-    try: 
-        usuario_id = request.user.id   
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         #retorno_pagina = dict_hash['retorno_pagina']
         #retorno_hash = dict_hash['retorno_hash']
         #s2410_infopenmorte_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
-    except: 
+    except:
         usuario_id = False
         return redirect('login')
     usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
@@ -364,7 +309,7 @@ def listar(request, hash, slug=0):
     dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
     paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-    
+
 
     if permissao.permite_listar:
         filtrar = False
@@ -399,17 +344,17 @@ def listar(request, hash, slug=0):
             filtrar = True
             s2410_infopenmorte_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-        
+
         #s2410_infopenmorte_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2410_infopenmorte'
         context = {
-            's2410_infopenmorte_lista': s2410_infopenmorte_lista, 
-            'conta': conta, 
+            's2410_infopenmorte_lista': s2410_infopenmorte_lista,
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            'slug': slug,
+       
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -419,7 +364,7 @@ def listar(request, hash, slug=0):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-            
+   
         }
         if for_print in (0,1):
             return render(request, 's2410_infopenmorte_listar.html', context)
@@ -461,11 +406,11 @@ def listar(request, hash, slug=0):
             return response
     else:
         context = {
-            'usuario': usuario, 
-            'conta': conta, 
+            'usuario': usuario,
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            'slug': slug,
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

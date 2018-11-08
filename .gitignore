@@ -5,3 +5,9 @@ certificados/*.pfx
 certificados/*.pem
 arquivos/
 static/
+arquivos_backup/
+media/
+predecessores/
+www/
+UMLs/
+

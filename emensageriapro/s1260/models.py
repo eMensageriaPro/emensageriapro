@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -65,6 +34,7 @@ CHOICES_S1260_TPPROC = (
 class s1260ideAdquir(models.Model):
     s1260_tpcomerc = models.ForeignKey('s1260tpComerc',
         related_name='%(class)s_s1260_tpcomerc')
+    def evento(self): return self.s1260_tpcomerc.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S1260_TPINSC)
     nrinsc = models.CharField(max_length=15)
     vrcomerc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -95,6 +65,7 @@ class s1260ideAdquirSerializer(ModelSerializer):
 class s1260infoProcJud(models.Model):
     s1260_tpcomerc = models.ForeignKey('s1260tpComerc',
         related_name='%(class)s_s1260_tpcomerc')
+    def evento(self): return self.s1260_tpcomerc.evento()
     tpproc = models.IntegerField(choices=CHOICES_S1260_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()
@@ -128,6 +99,7 @@ class s1260infoProcJudSerializer(ModelSerializer):
 class s1260nfs(models.Model):
     s1260_ideadquir = models.ForeignKey('s1260ideAdquir',
         related_name='%(class)s_s1260_ideadquir')
+    def evento(self): return self.s1260_ideadquir.evento()
     serie = models.CharField(max_length=5, blank=True, null=True)
     nrdocto = models.CharField(max_length=20)
     dtemisnf = models.DateField()
@@ -162,6 +134,7 @@ class s1260nfsSerializer(ModelSerializer):
 class s1260tpComerc(models.Model):
     s1260_evtcomprod = models.ForeignKey('esocial.s1260evtComProd',
         related_name='%(class)s_s1260_evtcomprod')
+    def evento(self): return self.s1260_evtcomprod.evento()
     indcomerc = models.IntegerField(choices=CHOICES_S1260_INDCOMERC)
     vrtotcom = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     criado_em = models.DateTimeField(blank=True)

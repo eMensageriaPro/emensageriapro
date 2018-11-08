@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -221,6 +190,7 @@ CHOICES_S2240_INIEXPRISCO_UTILIZEPI = (
 class s2240altExpRisco(models.Model):
     s2240_evtexprisco = models.OneToOneField('esocial.s2240evtExpRisco',
         related_name='%(class)s_s2240_evtexprisco')
+    def evento(self): return self.s2240_evtexprisco.evento()
     dtaltcondicao = models.DateField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -249,6 +219,7 @@ class s2240altExpRiscoSerializer(ModelSerializer):
 class s2240altExpRiscoepc(models.Model):
     s2240_altexprisco_fatrisco = models.ForeignKey('s2240altExpRiscofatRisco',
         related_name='%(class)s_s2240_altexprisco_fatrisco')
+    def evento(self): return self.s2240_altexprisco_fatrisco.evento()
     dscepc = models.CharField(max_length=70)
     eficepc = models.CharField(choices=CHOICES_S2240_ALTEXPRISCO_EFICEPC, max_length=1, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -278,6 +249,7 @@ class s2240altExpRiscoepcSerializer(ModelSerializer):
 class s2240altExpRiscoepi(models.Model):
     s2240_altexprisco_fatrisco = models.ForeignKey('s2240altExpRiscofatRisco',
         related_name='%(class)s_s2240_altexprisco_fatrisco')
+    def evento(self): return self.s2240_altexprisco_fatrisco.evento()
     caepi = models.CharField(max_length=20, blank=True, null=True)
     eficepi = models.CharField(choices=CHOICES_S2240_ALTEXPRISCO_EFICEPI, max_length=1)
     medprotecao = models.CharField(choices=CHOICES_S2240_ALTEXPRISCO_MEDPROTECAO, max_length=1)
@@ -312,6 +284,7 @@ class s2240altExpRiscoepiSerializer(ModelSerializer):
 class s2240altExpRiscofatRisco(models.Model):
     s2240_altexprisco_infoamb = models.ForeignKey('s2240altExpRiscoinfoAmb',
         related_name='%(class)s_s2240_altexprisco_infoamb')
+    def evento(self): return self.s2240_altexprisco_infoamb.evento()
     codfatris = models.TextField(max_length=10)
     intconc = models.CharField(max_length=15, blank=True, null=True)
     tecmedicao = models.CharField(max_length=40, blank=True, null=True)
@@ -344,6 +317,7 @@ class s2240altExpRiscofatRiscoSerializer(ModelSerializer):
 class s2240altExpRiscoinfoAmb(models.Model):
     s2240_altexprisco = models.ForeignKey('s2240altExpRisco',
         related_name='%(class)s_s2240_altexprisco')
+    def evento(self): return self.s2240_altexprisco.evento()
     codamb = models.CharField(max_length=30)
     dscativdes = models.CharField(max_length=999)
     criado_em = models.DateTimeField(blank=True)
@@ -373,6 +347,7 @@ class s2240altExpRiscoinfoAmbSerializer(ModelSerializer):
 class s2240fimExpRisco(models.Model):
     s2240_evtexprisco = models.OneToOneField('esocial.s2240evtExpRisco',
         related_name='%(class)s_s2240_evtexprisco')
+    def evento(self): return self.s2240_evtexprisco.evento()
     dtfimcondicao = models.DateField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -401,6 +376,7 @@ class s2240fimExpRiscoSerializer(ModelSerializer):
 class s2240fimExpRiscoinfoAmb(models.Model):
     s2240_fimexprisco = models.ForeignKey('s2240fimExpRisco',
         related_name='%(class)s_s2240_fimexprisco')
+    def evento(self): return self.s2240_fimexprisco.evento()
     codamb = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -429,6 +405,7 @@ class s2240fimExpRiscoinfoAmbSerializer(ModelSerializer):
 class s2240fimExpRiscorespReg(models.Model):
     s2240_evtexprisco = models.ForeignKey('esocial.s2240evtExpRisco',
         related_name='%(class)s_s2240_evtexprisco')
+    def evento(self): return self.s2240_evtexprisco.evento()
     dtini = models.DateField()
     dtfim = models.DateField(blank=True, null=True)
     nisresp = models.CharField(max_length=11)
@@ -461,6 +438,7 @@ class s2240fimExpRiscorespRegSerializer(ModelSerializer):
 class s2240iniExpRisco(models.Model):
     s2240_evtexprisco = models.OneToOneField('esocial.s2240evtExpRisco',
         related_name='%(class)s_s2240_evtexprisco')
+    def evento(self): return self.s2240_evtexprisco.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -488,6 +466,7 @@ class s2240iniExpRiscoSerializer(ModelSerializer):
 class s2240iniExpRiscoativPericInsal(models.Model):
     s2240_evtexprisco = models.ForeignKey('esocial.s2240evtExpRisco',
         related_name='%(class)s_s2240_evtexprisco')
+    def evento(self): return self.s2240_evtexprisco.evento()
     codativ = models.CharField(max_length=6)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -516,6 +495,7 @@ class s2240iniExpRiscoativPericInsalSerializer(ModelSerializer):
 class s2240iniExpRiscoepc(models.Model):
     s2240_iniexprisco_fatrisco = models.ForeignKey('s2240iniExpRiscofatRisco',
         related_name='%(class)s_s2240_iniexprisco_fatrisco')
+    def evento(self): return self.s2240_iniexprisco_fatrisco.evento()
     codep = models.CharField(max_length=30)
     dscepc = models.CharField(max_length=70)
     eficepc = models.CharField(choices=CHOICES_S2240_INIEXPRISCO_EFICEPC, max_length=1, blank=True, null=True)
@@ -546,6 +526,7 @@ class s2240iniExpRiscoepcSerializer(ModelSerializer):
 class s2240iniExpRiscoepi(models.Model):
     s2240_iniexprisco_fatrisco = models.ForeignKey('s2240iniExpRiscofatRisco',
         related_name='%(class)s_s2240_iniexprisco_fatrisco')
+    def evento(self): return self.s2240_iniexprisco_fatrisco.evento()
     caepi = models.CharField(max_length=20, blank=True, null=True)
     dscepi = models.CharField(max_length=999, blank=True, null=True)
     eficepi = models.CharField(choices=CHOICES_S2240_INIEXPRISCO_EFICEPI, max_length=1)
@@ -582,6 +563,7 @@ class s2240iniExpRiscoepiSerializer(ModelSerializer):
 class s2240iniExpRiscofatRisco(models.Model):
     s2240_evtexprisco = models.ForeignKey('esocial.s2240evtExpRisco',
         related_name='%(class)s_s2240_evtexprisco')
+    def evento(self): return self.s2240_evtexprisco.evento()
     codfatris = models.TextField(max_length=9)
     tpaval = models.IntegerField(choices=CHOICES_S2240_INIEXPRISCO_TPAVAL)
     intconc = models.DecimalField(max_digits=15, decimal_places=2, max_length=10, blank=True, null=True)
@@ -621,6 +603,7 @@ class s2240iniExpRiscofatRiscoSerializer(ModelSerializer):
 class s2240iniExpRiscoinfoAmb(models.Model):
     s2240_evtexprisco = models.ForeignKey('esocial.s2240evtExpRisco',
         related_name='%(class)s_s2240_evtexprisco')
+    def evento(self): return self.s2240_evtexprisco.evento()
     codamb = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -649,6 +632,7 @@ class s2240iniExpRiscoinfoAmbSerializer(ModelSerializer):
 class s2240iniExpRiscoobs(models.Model):
     s2240_evtexprisco = models.OneToOneField('esocial.s2240evtExpRisco',
         related_name='%(class)s_s2240_evtexprisco')
+    def evento(self): return self.s2240_evtexprisco.evento()
     meterg = models.CharField(max_length=999, blank=True, null=True)
     observacao = models.CharField(max_length=999, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -678,6 +662,7 @@ class s2240iniExpRiscoobsSerializer(ModelSerializer):
 class s2240iniExpRiscorespReg(models.Model):
     s2240_evtexprisco = models.ForeignKey('esocial.s2240evtExpRisco',
         related_name='%(class)s_s2240_evtexprisco')
+    def evento(self): return self.s2240_evtexprisco.evento()
     cpfresp = models.CharField(max_length=11)
     nisresp = models.CharField(max_length=11)
     nmresp = models.CharField(max_length=70)

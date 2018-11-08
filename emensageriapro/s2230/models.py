@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -149,6 +118,7 @@ CHOICES_S2230_TPPROC = (
 class s2230emitente(models.Model):
     s2230_infoatestado = models.OneToOneField('s2230infoAtestado',
         related_name='%(class)s_s2230_infoatestado')
+    def evento(self): return self.s2230_infoatestado.evento()
     nmemit = models.CharField(max_length=70)
     ideoc = models.IntegerField(choices=CHOICES_S2230_IDEOC)
     nroc = models.CharField(max_length=14)
@@ -180,6 +150,7 @@ class s2230emitenteSerializer(ModelSerializer):
 class s2230fimAfastamento(models.Model):
     s2230_evtafasttemp = models.OneToOneField('esocial.s2230evtAfastTemp',
         related_name='%(class)s_s2230_evtafasttemp')
+    def evento(self): return self.s2230_evtafasttemp.evento()
     dttermafast = models.DateField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -208,6 +179,7 @@ class s2230fimAfastamentoSerializer(ModelSerializer):
 class s2230infoAtestado(models.Model):
     s2230_iniafastamento = models.ForeignKey('s2230iniAfastamento',
         related_name='%(class)s_s2230_iniafastamento')
+    def evento(self): return self.s2230_iniafastamento.evento()
     codcid = models.CharField(max_length=4, blank=True, null=True)
     qtddiasafast = models.IntegerField()
     criado_em = models.DateTimeField(blank=True)
@@ -237,6 +209,7 @@ class s2230infoAtestadoSerializer(ModelSerializer):
 class s2230infoCessao(models.Model):
     s2230_iniafastamento = models.OneToOneField('s2230iniAfastamento',
         related_name='%(class)s_s2230_iniafastamento')
+    def evento(self): return self.s2230_iniafastamento.evento()
     cnpjcess = models.CharField(max_length=14)
     infonus = models.IntegerField(choices=CHOICES_S2230_INFONUS)
     criado_em = models.DateTimeField(blank=True)
@@ -266,6 +239,7 @@ class s2230infoCessaoSerializer(ModelSerializer):
 class s2230infoMandSind(models.Model):
     s2230_iniafastamento = models.OneToOneField('s2230iniAfastamento',
         related_name='%(class)s_s2230_iniafastamento')
+    def evento(self): return self.s2230_iniafastamento.evento()
     cnpjsind = models.CharField(max_length=14)
     infonusremun = models.IntegerField(choices=CHOICES_S2230_INFONUSREMUN)
     criado_em = models.DateTimeField(blank=True)
@@ -295,6 +269,7 @@ class s2230infoMandSindSerializer(ModelSerializer):
 class s2230infoRetif(models.Model):
     s2230_evtafasttemp = models.OneToOneField('esocial.s2230evtAfastTemp',
         related_name='%(class)s_s2230_evtafasttemp')
+    def evento(self): return self.s2230_evtafasttemp.evento()
     origretif = models.IntegerField(choices=CHOICES_S2230_ORIGRETIF)
     tpproc = models.IntegerField(choices=CHOICES_S2230_TPPROC, blank=True, null=True)
     nrproc = models.CharField(max_length=21, blank=True, null=True)
@@ -325,6 +300,7 @@ class s2230infoRetifSerializer(ModelSerializer):
 class s2230iniAfastamento(models.Model):
     s2230_evtafasttemp = models.OneToOneField('esocial.s2230evtAfastTemp',
         related_name='%(class)s_s2230_evtafasttemp')
+    def evento(self): return self.s2230_evtafasttemp.evento()
     dtiniafast = models.DateField()
     codmotafast = models.CharField(choices=CHOICES_S2230_CODMOTAFAST, max_length=2)
     infomesmomtv = models.CharField(choices=CHOICES_S2230_INFOMESMOMTV, max_length=1, blank=True, null=True)

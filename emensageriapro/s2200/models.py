@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -333,6 +302,7 @@ CHOICES_S2200_TRABAPOSENT = (
 class s2200CNH(models.Model):
     s2200_documentos = models.OneToOneField('s2200documentos',
         related_name='%(class)s_s2200_documentos')
+    def evento(self): return self.s2200_documentos.evento()
     nrregcnh = models.CharField(max_length=12)
     dtexped = models.DateField(blank=True, null=True)
     ufcnh = models.CharField(choices=ESTADOS, max_length=2)
@@ -366,6 +336,7 @@ class s2200CNHSerializer(ModelSerializer):
 class s2200CTPS(models.Model):
     s2200_documentos = models.OneToOneField('s2200documentos',
         related_name='%(class)s_s2200_documentos')
+    def evento(self): return self.s2200_documentos.evento()
     nrctps = models.CharField(max_length=11)
     seriectps = models.CharField(max_length=5)
     ufctps = models.CharField(choices=ESTADOS, max_length=2)
@@ -396,6 +367,7 @@ class s2200CTPSSerializer(ModelSerializer):
 class s2200OC(models.Model):
     s2200_documentos = models.OneToOneField('s2200documentos',
         related_name='%(class)s_s2200_documentos')
+    def evento(self): return self.s2200_documentos.evento()
     nroc = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -427,6 +399,7 @@ class s2200OCSerializer(ModelSerializer):
 class s2200RG(models.Model):
     s2200_documentos = models.OneToOneField('s2200documentos',
         related_name='%(class)s_s2200_documentos')
+    def evento(self): return self.s2200_documentos.evento()
     nrrg = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -457,6 +430,7 @@ class s2200RGSerializer(ModelSerializer):
 class s2200RIC(models.Model):
     s2200_documentos = models.OneToOneField('s2200documentos',
         related_name='%(class)s_s2200_documentos')
+    def evento(self): return self.s2200_documentos.evento()
     nrric = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -487,6 +461,7 @@ class s2200RICSerializer(ModelSerializer):
 class s2200RNE(models.Model):
     s2200_documentos = models.OneToOneField('s2200documentos',
         related_name='%(class)s_s2200_documentos')
+    def evento(self): return self.s2200_documentos.evento()
     nrrne = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -517,6 +492,7 @@ class s2200RNESerializer(ModelSerializer):
 class s2200afastamento(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     dtiniafast = models.DateField()
     codmotafast = models.CharField(choices=CHOICES_S2200_CODMOTAFAST, max_length=2)
     criado_em = models.DateTimeField(blank=True)
@@ -546,6 +522,7 @@ class s2200afastamentoSerializer(ModelSerializer):
 class s2200alvaraJudicial(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     nrprocjud = models.CharField(max_length=20)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -574,6 +551,7 @@ class s2200alvaraJudicialSerializer(ModelSerializer):
 class s2200aposentadoria(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     trabaposent = models.CharField(choices=CHOICES_S2200_TRABAPOSENT, max_length=1)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -602,6 +580,7 @@ class s2200aposentadoriaSerializer(ModelSerializer):
 class s2200aprend(models.Model):
     s2200_infoceletista = models.OneToOneField('s2200infoCeletista',
         related_name='%(class)s_s2200_infoceletista')
+    def evento(self): return self.s2200_infoceletista.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S2200_TPINSC)
     nrinsc = models.CharField(max_length=15)
     criado_em = models.DateTimeField(blank=True)
@@ -631,6 +610,7 @@ class s2200aprendSerializer(ModelSerializer):
 class s2200brasil(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     tplograd = models.TextField(max_length=4)
     dsclograd = models.CharField(max_length=100)
     nrlograd = models.CharField(max_length=10)
@@ -666,6 +646,7 @@ class s2200brasilSerializer(ModelSerializer):
 class s2200cessao(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     dtinicessao = models.DateField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -694,6 +675,7 @@ class s2200cessaoSerializer(ModelSerializer):
 class s2200contato(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     foneprinc = models.CharField(max_length=13, blank=True, null=True)
     fonealternat = models.CharField(max_length=13, blank=True, null=True)
     emailprinc = models.CharField(max_length=60, blank=True, null=True)
@@ -725,6 +707,7 @@ class s2200contatoSerializer(ModelSerializer):
 class s2200dependente(models.Model):
     s2200_evtadmissao = models.ForeignKey('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     tpdep = models.CharField(choices=CHOICES_S2200_TPDEP, max_length=2)
     nmdep = models.CharField(max_length=70)
     dtnascto = models.DateField()
@@ -761,6 +744,7 @@ class s2200dependenteSerializer(ModelSerializer):
 class s2200desligamento(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     dtdeslig = models.DateField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -789,6 +773,7 @@ class s2200desligamentoSerializer(ModelSerializer):
 class s2200documentos(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -816,6 +801,7 @@ class s2200documentosSerializer(ModelSerializer):
 class s2200exterior(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     paisresid = models.TextField(max_length=3)
     dsclograd = models.CharField(max_length=100)
     nrlograd = models.CharField(max_length=10)
@@ -850,6 +836,7 @@ class s2200exteriorSerializer(ModelSerializer):
 class s2200filiacaoSindical(models.Model):
     s2200_evtadmissao = models.ForeignKey('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     cnpjsindtrab = models.CharField(max_length=14)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -878,6 +865,7 @@ class s2200filiacaoSindicalSerializer(ModelSerializer):
 class s2200horContratual(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     qtdhrssem = models.DecimalField(max_digits=15, decimal_places=2, max_length=4, blank=True, null=True)
     tpjornada = models.IntegerField(choices=CHOICES_S2200_TPJORNADA)
     dsctpjorn = models.CharField(max_length=100, blank=True, null=True)
@@ -909,6 +897,7 @@ class s2200horContratualSerializer(ModelSerializer):
 class s2200horario(models.Model):
     s2200_horcontratual = models.ForeignKey('s2200horContratual',
         related_name='%(class)s_s2200_horcontratual')
+    def evento(self): return self.s2200_horcontratual.evento()
     dia = models.IntegerField(choices=CHOICES_S2200_DIA)
     codhorcontrat = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
@@ -938,6 +927,7 @@ class s2200horarioSerializer(ModelSerializer):
 class s2200ideEstabVinc(models.Model):
     s2200_trabtemporario = models.OneToOneField('s2200trabTemporario',
         related_name='%(class)s_s2200_trabtemporario')
+    def evento(self): return self.s2200_trabtemporario.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S2200_TPINSC)
     nrinsc = models.CharField(max_length=15)
     criado_em = models.DateTimeField(blank=True)
@@ -967,6 +957,7 @@ class s2200ideEstabVincSerializer(ModelSerializer):
 class s2200ideTrabSubstituido(models.Model):
     s2200_trabtemporario = models.ForeignKey('s2200trabTemporario',
         related_name='%(class)s_s2200_trabtemporario')
+    def evento(self): return self.s2200_trabtemporario.evento()
     cpftrabsubst = models.CharField(max_length=11)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -995,6 +986,7 @@ class s2200ideTrabSubstituidoSerializer(ModelSerializer):
 class s2200infoCeletista(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     dtadm = models.DateField()
     tpadmissao = models.IntegerField(choices=CHOICES_S2200_TPADMISSAO)
     indadmissao = models.IntegerField(choices=CHOICES_S2200_INDADMISSAO)
@@ -1031,6 +1023,7 @@ class s2200infoCeletistaSerializer(ModelSerializer):
 class s2200infoDecJud(models.Model):
     s2200_infoestatutario = models.OneToOneField('s2200infoEstatutario',
         related_name='%(class)s_s2200_infoestatutario')
+    def evento(self): return self.s2200_infoestatutario.evento()
     nrprocjud = models.CharField(max_length=20)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -1059,6 +1052,7 @@ class s2200infoDecJudSerializer(ModelSerializer):
 class s2200infoDeficiencia(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     deffisica = models.CharField(choices=CHOICES_S2200_DEFFISICA, max_length=1)
     defvisual = models.CharField(choices=CHOICES_S2200_DEFVISUAL, max_length=1)
     defauditiva = models.CharField(choices=CHOICES_S2200_DEFAUDITIVA, max_length=1)
@@ -1094,6 +1088,7 @@ class s2200infoDeficienciaSerializer(ModelSerializer):
 class s2200infoEstatutario(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     indprovim = models.IntegerField(choices=CHOICES_S2200_INDPROVIM)
     tpprov = models.IntegerField(choices=CHOICES_S2200_TPPROV)
     dtnomeacao = models.DateField()
@@ -1133,6 +1128,7 @@ class s2200infoEstatutarioSerializer(ModelSerializer):
 class s2200localTrabDom(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     tplograd = models.TextField(max_length=4)
     dsclograd = models.CharField(max_length=100)
     nrlograd = models.CharField(max_length=10)
@@ -1168,6 +1164,7 @@ class s2200localTrabDomSerializer(ModelSerializer):
 class s2200localTrabGeral(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S2200_TPINSC)
     nrinsc = models.CharField(max_length=15)
     desccomp = models.CharField(max_length=80, blank=True, null=True)
@@ -1198,6 +1195,7 @@ class s2200localTrabGeralSerializer(ModelSerializer):
 class s2200observacoes(models.Model):
     s2200_evtadmissao = models.ForeignKey('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     observacao = models.CharField(max_length=255)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -1226,6 +1224,7 @@ class s2200observacoesSerializer(ModelSerializer):
 class s2200sucessaoVinc(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     cnpjempregant = models.CharField(max_length=14)
     matricant = models.CharField(max_length=30, blank=True, null=True)
     dttransf = models.DateField()
@@ -1257,6 +1256,7 @@ class s2200sucessaoVincSerializer(ModelSerializer):
 class s2200trabEstrangeiro(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     dtchegada = models.DateField(blank=True, null=True)
     classtrabestrang = models.IntegerField(choices=CHOICES_S2200_CLASSTRABESTRANG)
     casadobr = models.CharField(choices=CHOICES_S2200_CASADOBR, max_length=1)
@@ -1288,6 +1288,7 @@ class s2200trabEstrangeiroSerializer(ModelSerializer):
 class s2200trabTemporario(models.Model):
     s2200_infoceletista = models.OneToOneField('s2200infoCeletista',
         related_name='%(class)s_s2200_infoceletista')
+    def evento(self): return self.s2200_infoceletista.evento()
     hipleg = models.IntegerField(choices=CHOICES_S2200_HIPLEG)
     justcontr = models.CharField(max_length=999)
     tpinclcontr = models.IntegerField(choices=CHOICES_S2200_TPINCLCONTR)
@@ -1320,6 +1321,7 @@ class s2200trabTemporarioSerializer(ModelSerializer):
 class s2200transfDom(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     cpfsubstituido = models.CharField(max_length=11)
     matricant = models.CharField(max_length=30, blank=True, null=True)
     dttransf = models.DateField()

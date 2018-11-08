@@ -74,7 +74,7 @@ def atualizar_tabela(tabela, dados, arquivo):
     executar_sql("""
         UPDATE public.%(tabela)s 
         SET status=%(status)s, arquivo_original=1, arquivo='%(arquivo)s'
-        WHERE id=%(identidade)s""" % (dados), False)
+        WHERE id=%(id)s""" % (dados), False)
     return dados
 
 
@@ -107,51 +107,51 @@ def importar_arquivo(arquivo, request, validar=0):
         if 'eSocial' in xml:
             xmlns = doc.eSocial['xmlns'].split('/')
             dados['versao'] = get_versao_evento(xml)
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1000_evtinfoempregador import read_s1000_evtinfoempregador
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1005_evttabestab import read_s1005_evttabestab
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1010_evttabrubrica import read_s1010_evttabrubrica
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1020_evttablotacao import read_s1020_evttablotacao
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1030_evttabcargo import read_s1030_evttabcargo
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1035_evttabcarreira import read_s1035_evttabcarreira
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1040_evttabfuncao import read_s1040_evttabfuncao
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1050_evttabhortur import read_s1050_evttabhortur
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1060_evttabambiente import read_s1060_evttabambiente
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1070_evttabprocesso import read_s1070_evttabprocesso
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1080_evttaboperport import read_s1080_evttaboperport
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1200_evtremun import read_s1200_evtremun
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1202_evtrmnrpps import read_s1202_evtrmnrpps
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1207_evtbenprrp import read_s1207_evtbenprrp
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1210_evtpgtos import read_s1210_evtpgtos
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1250_evtaqprod import read_s1250_evtaqprod
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1260_evtcomprod import read_s1260_evtcomprod
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1270_evtcontratavnp import read_s1270_evtcontratavnp
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1280_evtinfocomplper import read_s1280_evtinfocomplper
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1295_evttotconting import read_s1295_evttotconting
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1298_evtreabreevper import read_s1298_evtreabreevper
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1299_evtfechaevper import read_s1299_evtfechaevper
-            from emensageriapro.esocial.xml_imports.v02_04_02.s1300_evtcontrsindpatr import read_s1300_evtcontrsindpatr
-            from emensageriapro.esocial.xml_imports.v02_04_02.s2190_evtadmprelim import read_s2190_evtadmprelim
-            from emensageriapro.esocial.xml_imports.v02_04_02.s2200_evtadmissao import read_s2200_evtadmissao
-            from emensageriapro.esocial.xml_imports.v02_04_02.s2205_evtaltcadastral import read_s2205_evtaltcadastral
-            from emensageriapro.esocial.xml_imports.v02_04_02.s2206_evtaltcontratual import read_s2206_evtaltcontratual
-            from emensageriapro.esocial.xml_imports.v02_04_02.s2210_evtcat import read_s2210_evtcat
-            from emensageriapro.esocial.xml_imports.v02_04_02.s2220_evtmonit import read_s2220_evtmonit
-            from emensageriapro.esocial.xml_imports.v02_04_02.s2230_evtafasttemp import read_s2230_evtafasttemp
-            from emensageriapro.esocial.xml_imports.v02_04_02.s2240_evtexprisco import read_s2240_evtexprisco
-            from emensageriapro.esocial.xml_imports.v02_04_02.s2241_evtinsapo import read_s2241_evtinsapo
-            from emensageriapro.esocial.xml_imports.v02_04_02.s2250_evtavprevio import read_s2250_evtavprevio
-            from emensageriapro.esocial.xml_imports.v02_04_02.s2260_evtconvinterm import read_s2260_evtconvinterm
-            from emensageriapro.esocial.xml_imports.v02_04_02.s2298_evtreintegr import read_s2298_evtreintegr
-            from emensageriapro.esocial.xml_imports.v02_04_02.s2299_evtdeslig import read_s2299_evtdeslig
-            from emensageriapro.esocial.xml_imports.v02_04_02.s2300_evttsvinicio import read_s2300_evttsvinicio
-            from emensageriapro.esocial.xml_imports.v02_04_02.s2306_evttsvaltcontr import read_s2306_evttsvaltcontr
-            from emensageriapro.esocial.xml_imports.v02_04_02.s2399_evttsvtermino import read_s2399_evttsvtermino
-            #from emensageriapro.esocial.xml_imports.v02_04_02.s2400_evtcdbenefin import read_s2400_evtcdbenefin
-            from emensageriapro.esocial.xml_imports.v02_04_02.s3000_evtexclusao import read_s3000_evtexclusao
-            from emensageriapro.esocial.xml_imports.v02_04_02.s5001_evtbasestrab import read_s5001_evtbasestrab
-            from emensageriapro.esocial.xml_imports.v02_04_02.s5002_evtirrfbenef import read_s5002_evtirrfbenef
-            from emensageriapro.esocial.xml_imports.v02_04_02.s5011_evtcs import read_s5011_evtcs
-            from emensageriapro.esocial.xml_imports.v02_04_02.s5012_evtirrf import read_s5012_evtirrf
+            from emensageriapro.esocial.views.s1000_evtinfoempregador_importar import read_s1000_evtinfoempregador
+            from emensageriapro.esocial.views.s1005_evttabestab_importar import read_s1005_evttabestab
+            from emensageriapro.esocial.views.s1010_evttabrubrica_importar import read_s1010_evttabrubrica
+            from emensageriapro.esocial.views.s1020_evttablotacao_importar import read_s1020_evttablotacao
+            from emensageriapro.esocial.views.s1030_evttabcargo_importar import read_s1030_evttabcargo
+            from emensageriapro.esocial.views.s1035_evttabcarreira_importar import read_s1035_evttabcarreira
+            from emensageriapro.esocial.views.s1040_evttabfuncao_importar import read_s1040_evttabfuncao
+            from emensageriapro.esocial.views.s1050_evttabhortur_importar import read_s1050_evttabhortur
+            from emensageriapro.esocial.views.s1060_evttabambiente_importar import read_s1060_evttabambiente
+            from emensageriapro.esocial.views.s1070_evttabprocesso_importar import read_s1070_evttabprocesso
+            from emensageriapro.esocial.views.s1080_evttaboperport_importar import read_s1080_evttaboperport
+            from emensageriapro.esocial.views.s1200_evtremun_importar import read_s1200_evtremun
+            from emensageriapro.esocial.views.s1202_evtrmnrpps_importar import read_s1202_evtrmnrpps
+            from emensageriapro.esocial.views.s1207_evtbenprrp_importar import read_s1207_evtbenprrp
+            from emensageriapro.esocial.views.s1210_evtpgtos_importar import read_s1210_evtpgtos
+            from emensageriapro.esocial.views.s1250_evtaqprod_importar import read_s1250_evtaqprod
+            from emensageriapro.esocial.views.s1260_evtcomprod_importar import read_s1260_evtcomprod
+            from emensageriapro.esocial.views.s1270_evtcontratavnp_importar import read_s1270_evtcontratavnp
+            from emensageriapro.esocial.views.s1280_evtinfocomplper_importar import read_s1280_evtinfocomplper
+            from emensageriapro.esocial.views.s1295_evttotconting_importar import read_s1295_evttotconting
+            from emensageriapro.esocial.views.s1298_evtreabreevper_importar import read_s1298_evtreabreevper
+            from emensageriapro.esocial.views.s1299_evtfechaevper_importar import read_s1299_evtfechaevper
+            from emensageriapro.esocial.views.s1300_evtcontrsindpatr_importar import read_s1300_evtcontrsindpatr
+            from emensageriapro.esocial.views.s2190_evtadmprelim_importar import read_s2190_evtadmprelim
+            from emensageriapro.esocial.views.s2200_evtadmissao_importar import read_s2200_evtadmissao
+            from emensageriapro.esocial.views.s2205_evtaltcadastral_importar import read_s2205_evtaltcadastral
+            from emensageriapro.esocial.views.s2206_evtaltcontratual_importar import read_s2206_evtaltcontratual
+            from emensageriapro.esocial.views.s2210_evtcat_importar import read_s2210_evtcat
+            from emensageriapro.esocial.views.s2220_evtmonit_importar import read_s2220_evtmonit
+            from emensageriapro.esocial.views.s2230_evtafasttemp_importar import read_s2230_evtafasttemp
+            from emensageriapro.esocial.views.s2240_evtexprisco_importar import read_s2240_evtexprisco
+            from emensageriapro.esocial.views.s2241_evtinsapo_importar import read_s2241_evtinsapo
+            from emensageriapro.esocial.views.s2250_evtavprevio_importar import read_s2250_evtavprevio
+            from emensageriapro.esocial.views.s2260_evtconvinterm_importar import read_s2260_evtconvinterm
+            from emensageriapro.esocial.views.s2298_evtreintegr_importar import read_s2298_evtreintegr
+            from emensageriapro.esocial.views.s2299_evtdeslig_importar import read_s2299_evtdeslig
+            from emensageriapro.esocial.views.s2300_evttsvinicio_importar import read_s2300_evttsvinicio
+            from emensageriapro.esocial.views.s2306_evttsvaltcontr_importar import read_s2306_evttsvaltcontr
+            from emensageriapro.esocial.views.s2399_evttsvtermino_importar import read_s2399_evttsvtermino
+            #from emensageriapro.esocial.views.s2400_evtcdbenefin_importar import read_s2400_evtcdbenefin
+            from emensageriapro.esocial.views.s3000_evtexclusao_importar import read_s3000_evtexclusao
+            from emensageriapro.esocial.views.s5001_evtbasestrab_importar import read_s5001_evtbasestrab
+            from emensageriapro.esocial.views.s5002_evtirrfbenef_importar import read_s5002_evtirrfbenef
+            from emensageriapro.esocial.views.s5011_evtcs_importar import read_s5011_evtcs
+            from emensageriapro.esocial.views.s5012_evtirrf_importar import read_s5012_evtirrf
 
             if ('evtInfoEmpregador' in xml) and ('eSocial' in xml):
                 dados = read_s1000_evtinfoempregador(dados, arquivo, validar)
@@ -336,21 +336,21 @@ def importar_arquivo(arquivo, request, validar=0):
         elif 'Reinf' in xml:
             xmlns = doc.Reinf['xmlns'].split('/')
             dados['versao'] = get_versao_evento(xml)
-            from emensageriapro.efdreinf.xml_imports.v1_03_02.r1000_evtinfocontri import read_r1000_evtinfocontri
-            from emensageriapro.efdreinf.xml_imports.v1_03_02.r1070_evttabprocesso import read_r1070_evttabprocesso
-            from emensageriapro.efdreinf.xml_imports.v1_03_02.r2010_evtservtom import read_r2010_evtservtom
-            from emensageriapro.efdreinf.xml_imports.v1_03_02.r2020_evtservprest import read_r2020_evtservprest
-            from emensageriapro.efdreinf.xml_imports.v1_03_02.r2030_evtassocdesprec import read_r2030_evtassocdesprec
-            from emensageriapro.efdreinf.xml_imports.v1_03_02.r2040_evtassocdesprep import read_r2040_evtassocdesprep
-            from emensageriapro.efdreinf.xml_imports.v1_03_02.r2050_evtcomprod import read_r2050_evtcomprod
-            from emensageriapro.efdreinf.xml_imports.v1_03_02.r2060_evtcprb import read_r2060_evtcprb
-            from emensageriapro.efdreinf.xml_imports.v1_03_02.r2070_evtpgtosdivs import read_r2070_evtpgtosdivs
-            from emensageriapro.efdreinf.xml_imports.v1_03_02.r2098_evtreabreevper import read_r2098_evtreabreevper
-            from emensageriapro.efdreinf.xml_imports.v1_03_02.r2099_evtfechaevper import read_r2099_evtfechaevper
-            from emensageriapro.efdreinf.xml_imports.v1_03_02.r3010_evtespdesportivo import read_r3010_evtespdesportivo
-            from emensageriapro.efdreinf.xml_imports.v1_03_02.r5001_evttotal import read_r5001_evttotal
-            from emensageriapro.efdreinf.xml_imports.v1_03_02.r5011_evttotalcontrib import read_r5011_evttotalcontrib
-            from emensageriapro.efdreinf.xml_imports.v1_03_02.r9000_evtexclusao import read_r9000_evtexclusao
+            from emensageriapro.efdreinf.views.r1000_evtinfocontri_importar import read_r1000_evtinfocontri
+            from emensageriapro.efdreinf.views.r1070_evttabprocesso_importar import read_r1070_evttabprocesso
+            from emensageriapro.efdreinf.views.r2010_evtservtom_importar import read_r2010_evtservtom
+            from emensageriapro.efdreinf.views.r2020_evtservprest_importar import read_r2020_evtservprest
+            from emensageriapro.efdreinf.views.r2030_evtassocdesprec_importar import read_r2030_evtassocdesprec
+            from emensageriapro.efdreinf.views.r2040_evtassocdesprep_importar import read_r2040_evtassocdesprep
+            from emensageriapro.efdreinf.views.r2050_evtcomprod_importar import read_r2050_evtcomprod
+            from emensageriapro.efdreinf.views.r2060_evtcprb_importar import read_r2060_evtcprb
+            from emensageriapro.efdreinf.views.r2070_evtpgtosdivs_importar import read_r2070_evtpgtosdivs
+            from emensageriapro.efdreinf.views.r2098_evtreabreevper_importar import read_r2098_evtreabreevper
+            from emensageriapro.efdreinf.views.r2099_evtfechaevper_importar import read_r2099_evtfechaevper
+            from emensageriapro.efdreinf.views.r3010_evtespdesportivo_importar import read_r3010_evtespdesportivo
+            from emensageriapro.efdreinf.views.r5001_evttotal_importar import read_r5001_evttotal
+            from emensageriapro.efdreinf.views.r5011_evttotalcontrib_importar import read_r5011_evttotalcontrib
+            from emensageriapro.efdreinf.views.r9000_evtexclusao_importar import read_r9000_evtexclusao
 
             if ('evtInfoContri' in xml) and ('Reinf' in xml):
                 dados = read_r1000_evtinfocontri(dados, arquivo, validar)

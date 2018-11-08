@@ -1,0 +1,593 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
+{% if not for_print %}
+
+    <section class="content-header">
+      <h1>
+        S-5002 - Imposto de Renda Retido na Fonte
+        <small>Verificações</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">S-5002 - Imposto de Renda Retido na Fonte</a></li>
+        <li class="active">Verificar</li>
+      </ol>
+    </section>
+    <section class="content">
+
+        {% if messages %}
+                <div class="pad margin no-print">
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+                </div>
+        {% endif %}
+
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">S-5002 - Imposto de Renda Retido na Fonte<br>Identidade: {{ s5002_evtirrfbenef.identidade }}</h3>
+              <div class="text-right">
+                <a href="{% url 's5002_evtirrfbenef_verificar' hash='{}'|json_id:s5002_evtirrfbenef_id|json_print:1|base64_encode_me %}" target="_blank">
+                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
+                </a>
+
+
+
+                  <div class="btn-group">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="text-left"><a
+                                            href="{% url 's5002_evtirrfbenef_verificar' hash='{}'|json_id:s5002_evtirrfbenef_id|json_print:2|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
+                                    <li class="text-left"><a
+                                            href="{% url 's5002_evtirrfbenef_verificar' hash='{}'|json_id:s5002_evtirrfbenef_id|json_print:3|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
+                                    <!--<li class="text-left"><a
+                                            href="{% url 's5002_evtirrfbenef_verificar' hash='{}'|json_id:s5002_evtirrfbenef_id|json_print:4|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
+                                </ul>
+                            </div>&nbsp;
+
+              </div>              
+            </div>
+            <div class="box-body">
+{% else %} 
+   <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            S-5002 - Imposto de Renda Retido na Fonte<br>Identidade: {{ s5002_evtirrfbenef.identidade }}
+            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+{% endif %} 
+
+
+
+
+      <h4>Layout</h4>
+
+
+
+
+<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
+              
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtIrrfBenef</td>
+            <td bgcolor="lightgray" colspan="3">Imposto de Renda Retido do beneficiário do rendimento</td>
+        </tr>
+    {% for s5002_evtirrfbenef in s5002_evtirrfbenef_lista %}
+    {% ifequal 1 1 %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do evento de retorno</td>
+        </tr>
+
+        <tr {% if s5002_evtirrfbenef.nrrecarqbase|validacoes_esocial_efdreinf:"s5002_evtirrfbenef.nrrecarqbase" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecArqBase</td>
+            <td width="500px">Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador.Validação: Deve corresponder ao recibo de um arquivo com informações de rendimentos sujeitos a IRRF (S-1210).</td>
+            <td width="200px"><b>{% if s5002_evtirrfbenef.nrrecarqbase or s5002_evtirrfbenef.nrrecarqbase == 0 %}{{ s5002_evtirrfbenef.nrrecarqbase }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_evtirrfbenef_visualizar' %}
+                <a href="{% url 's5002_evtirrfbenef_salvar'  hash='{}'|json_id:s5002_evtirrfbenef.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5002_evtirrfbenef.perapur|validacoes_esocial_efdreinf:"s5002_evtirrfbenef.perapur" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">perApur</td>
+            <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência das informações.</td>
+            <td width="200px"><b>{% if s5002_evtirrfbenef.perapur or s5002_evtirrfbenef.perapur == 0 %}{{ s5002_evtirrfbenef.perapur }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_evtirrfbenef_visualizar' %}
+                <a href="{% url 's5002_evtirrfbenef_salvar'  hash='{}'|json_id:s5002_evtirrfbenef.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+        </tr>
+
+        <tr {% if s5002_evtirrfbenef.tpinsc|validacoes_esocial_efdreinf:"s5002_evtirrfbenef.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
+            <td width="200px"><b>{% if s5002_evtirrfbenef.tpinsc or s5002_evtirrfbenef.tpinsc == 0 %}{{ s5002_evtirrfbenef.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_evtirrfbenef_visualizar' %}
+                <a href="{% url 's5002_evtirrfbenef_salvar'  hash='{}'|json_id:s5002_evtirrfbenef.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5002_evtirrfbenef.nrinsc|validacoes_esocial_efdreinf:"s5002_evtirrfbenef.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido.Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s5002_evtirrfbenef.nrinsc or s5002_evtirrfbenef.nrinsc == 0 %}{{ s5002_evtirrfbenef.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_evtirrfbenef_visualizar' %}
+                <a href="{% url 's5002_evtirrfbenef_salvar'  hash='{}'|json_id:s5002_evtirrfbenef.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideTrabalhador</td>
+            <td bgcolor="lightgray" colspan="3">Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.</td>
+        </tr>
+
+        <tr {% if s5002_evtirrfbenef.cpftrab|validacoes_esocial_efdreinf:"s5002_evtirrfbenef.cpftrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfTrab</td>
+            <td width="500px">Preencher com o número do CPF do trabalhador.Validação: Deve ser um CPF constante no arquivo gerado pelo empregador no evento S-1210.</td>
+            <td width="200px"><b>{% if s5002_evtirrfbenef.cpftrab or s5002_evtirrfbenef.cpftrab == 0 %}{{ s5002_evtirrfbenef.cpftrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_evtirrfbenef_visualizar' %}
+                <a href="{% url 's5002_evtirrfbenef_salvar'  hash='{}'|json_id:s5002_evtirrfbenef.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoDep</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas a existência de dependentes do beneficiário do pagamento.Origem: S-1210 - registro {deps}</td>
+        </tr>
+    {% for s5002_infodep in s5002_infodep_lista %}
+    {% ifequal s5002_infodep.s5002_evtirrfbenef.id s5002_evtirrfbenef.id %}
+        <tr {% if s5002_infodep.vrdeddep|validacoes_esocial_efdreinf:"s5002_infodep.vrdeddep" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrDedDep</td>
+            <td width="500px">Valor da dedução da base de cálculo do IRRF relativo aos dependentes do beneficiário do pagamento, correspondente ao número de dependentes multiplicado pelo valor de dedução por dependente previsto na legislação do Imposto de Renda.</td>
+            <td width="200px"><b>{% if s5002_infodep.vrdeddep or s5002_infodep.vrdeddep == 0 %}{{ s5002_infodep.vrdeddep|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_infodep_visualizar' %}
+                <a href="{% url 's5002_infodep_salvar'  hash='{}'|json_id:s5002_infodep.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoIrrf</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo.Origem S-1200, S-1202, S-1207, S-1210, S-2299, S-2399.</td>
+        </tr>
+    {% for s5002_infoirrf in s5002_infoirrf_lista %}
+    {% ifequal s5002_infoirrf.s5002_evtirrfbenef.id s5002_evtirrfbenef.id %}
+        <tr {% if s5002_infoirrf.codcateg|validacoes_esocial_efdreinf:"s5002_infoirrf.codcateg" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codCateg</td>
+            <td width="500px">Preencher com o código da categoria do trabalhador, conforme Tabela 1Validação: Deve existir na Tabela de Categorias de Trabalhadores (tabela 1). Preenchimento obrigatório se a informação de origem for dos eventos S-1200, S-1202, S-2299 e S-2399.</td>
+            <td width="200px"><b>{% if s5002_infoirrf.codcateg or s5002_infoirrf.codcateg == 0 %}{{ s5002_infoirrf.codcateg|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_infoirrf_visualizar' %}
+                <a href="{% url 's5002_infoirrf_salvar'  hash='{}'|json_id:s5002_infoirrf.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5002_infoirrf.indresbr|validacoes_esocial_efdreinf:"s5002_infoirrf.indresbr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indResBr</td>
+            <td width="500px">Indicar se o beneficiário do pagamento é residente fiscal no Brasil: S - Sim;N - Não.Valores Válidos: S, N</td>
+            <td width="200px"><b>{% if s5002_infoirrf.indresbr or s5002_infoirrf.indresbr == 0 %}{{ s5002_infoirrf.indresbr }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_infoirrf_visualizar' %}
+                <a href="{% url 's5002_infoirrf_salvar'  hash='{}'|json_id:s5002_infoirrf.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">basesIrrf</td>
+            <td bgcolor="lightgray" colspan="3">Bases, deduções, isenções e retenções do IRRF</td>
+        </tr>
+    {% for s5002_basesirrf in s5002_basesirrf_lista %}
+    {% ifequal s5002_basesirrf.s5002_infoirrf.id s5002_infoirrf.id %}
+        <tr {% if s5002_basesirrf.tpvalor|validacoes_esocial_efdreinf:"s5002_basesirrf.tpvalor" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpValor</td>
+            <td width="500px">Tipo de valor relativo aos rendimentos pagos e ao IRRF retido. Validação: Deve corresponder ao {codIncIRRF} em S-1010 das rubricas utilizadas na composição das remunerações informadas nos eventos S-1200, S-1202, S-1207, S-1210, S-2299 e S-2399, conforme segue:Rendimentos não tributáveis:00 - Rendimento não tributável;01 - Rendimento não tributável em função de acordos internacionais de bitributação;09 - Outras verbas não consideradas como base de cálculo ou rendimento;Rendimentos tributáveis - base de cálculo do IRRF:11 - Remuneração Mensal;12 - 13o Salário;13 - Férias;14 - PLR;15 - Rendimentos Recebidos Acumuladamente - RRA;Retenções do IRRF efetuadas sobre:31 - Remuneração Mensal;32 - 13o Salário;33 - Férias;34 - PLR;35 - RRA;Deduções da base de cálculo do IRRF:41 - Previdência Social Oficial - PSO - Remuner. Mensal;42 - PSO - 13° salário;43 - PSO - Férias;44 - PSO - RRA;46 - Previdência Privada - salário mensal;47 - Previdência Privada - 13° salário;51 - Pensão Alimentícia - Remuneração Mensal;52 - Pensão Alimentícia - 13° salário;53 - Pensão Alimentícia - Férias;54 - Pensão Alimentícia - PLR;55 - Pensão Alimentícia - RRA;61 - Fundo de Aposentadoria Programada Individual - FAPI - RemuneraçãoMensal;62 - Fundo de Aposentadoria Programada Individual - FAPI - 13° salário;63 - Fundação de Previdência Complementar do Servidor Público - Funpresp- Remuneração Mensal;64 - Fundação de Previdência Complementar do Servidor Público - Funpresp- 13° salário;Isenções do IRRF:70 - Parcela Isenta 65 anos - Remuneração Mensal;71 - Parcela Isenta 65 anos - 13° salário;72 - Diárias;73 - Ajuda de Custo;74 - Indenização e rescisão de contrato, inclusive a título de PDV e acidentes de trabalho;75 - Abono pecuniário;76 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - Remuneração Mensal;77 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - 13° salário; 78 - Valores pagos a titular ou sócio de microempresa ou empresa de pequeno porte, exceto pró-labore e alugueis;79 - Outras isenções (identificar o nome da rubrica em S-1010);Demandas Judiciais:81 - Depósito Judicial;82 - Compensação Judicial do ano calendário;83 - Compensação Judicial de anos anteriores;Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre:91 - Remuneração Mensal;92 - 13o Salário;93 - Férias;94 - PLR;95 - RRA.Validação: Deve ser um código válido, conforme opções acima.</td>
+            <td width="200px"><b>{% if s5002_basesirrf.tpvalor or s5002_basesirrf.tpvalor == 0 %}{{ s5002_basesirrf.tpvalor|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_basesirrf_visualizar' %}
+                <a href="{% url 's5002_basesirrf_salvar'  hash='{}'|json_id:s5002_basesirrf.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5002_basesirrf.valor|validacoes_esocial_efdreinf:"s5002_basesirrf.valor" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">valor</td>
+            <td width="500px">Valor do rendimento tributável, não tributável, retenção, dedução ou isenção do Imposto de Renda Retido na Fonte, conforme definido no campo{tpValor}.I - Se ({tpPgto} <> [7,9] e {indPgtoTt} = [S]) deve corresponder ao somatório dos valores informados em {vrRubr} em S-1200 e S-1202, nos grupos {remunPerApur} e {remunPerAnt}, e em S-1207, S-1210, S-2299 e S-2399, obedecendo o que segue:a) Somar os valores das rubricas cujo {tpRubr} seja igual a [1,3] menos as rubricas cujo {tpRubr} seja igual a [2,4], cujo pagamento tenha sido realizado no mês indicado em {perApur}, conforme informado no campo {dtPgto} do evento S-1210, cujo {tpValor} = [00,01,09,11,12,13,14,15, 70,71,72,73,74,75,76,77,78,79, 81,82,83, 91,92,93,94,95];b) Somar os valores das rubricas cujo {tpRubr} seja igual a [2,4] menos as rubricas cujo {tpRubr} seja igual a [1,3], cujo pagamento tenha sido realizado no mês indicado em {perApur}, conforme informado no campo {dtPgto} do evento S-1210, cujo {tpValor} = [31,32,33,34,35, 41,42,43,44,46,47,51,52,53,54,55, 61,62,63,64].II - Se {tpPgto} <> [7,9] e {indPgtoTt} = [N] Deve corresponder ao somatório dos valores informados em {vrRubr} dos grupos{detPgtoFl/infoPgtoParc} e {detPgtoBenPr/infoPgtoParc} em S-1210,obedecendo o que segue:a) Somar {vrRubr} cujo {tpRubr} seja igual a [1] menos as rubricas cujo{tpRubr} seja igual a [2,4], cujo {tpValor} = [00,01,09,11,12,13,14,15,70,71,72,73,74, 75,76,77,78,79, 81,82,83, 91,92,93,94,95];b) Somar {vrRubr} cujo {tpRubr} seja igual a [2,4] menos as rubricas cujo{tpRubr} seja igual a [1,3], cujo {tpValor} = [31,32,33,34,35,41,42,43,44,46,47, 51,52,53,54,55, 61,62,63,64].III - Se {tpPgto} = [7], deve corresponder ao somatório dos valores informados em {vrRubr} em S-1210 no grupo {detRubrFer}, obedecendo o que segue:a) Somar {vrRubr} cujo {tpRubr} seja igual a [1,3] menos as rubricas cujo{tpRubr} seja igual a [2,4], cujo {tpValor} = [00,01,09,11,12,13,14,15,70,71,72,73,74, 75,76,77,78,79, 81,82,83, 91,92,93,94,95];b) Somar [vrRubr] cujo {tpRubr} seja igual a [2,4] menos as rubricas cujo{tpRubr} seja igual a [1,3], cujo {tpValor} = [31,32,33,34,35,41,42,43,44,46,47, 51,52,53,54,55, 61,62,63,64].IV - Se {tpPgto} = [9], deve corresponder à soma dos valores informados em{vrBcIRRF} em S-1210 no grupo {infoPgtoAnt}, obedecendo a correspondência para cada {tpBcIRRF} informado.Validação: Deve corresponder ao somatório do campo {vrRubr} em S-1200 eS-1202, nos grupos {remunPerApur} e {remunPerAnt}, e em S-1207, S-1210, S-2299 e S-2399, obedecendo o que segue:a) Somar os valores das rubricas cujo {tpRubr} seja igual a [1,3] menos as rubricas cujo {tpRubr} seja igual a [2,4], cujo pagamento tenha sido realizado no mês indicado em {perApur}, conforme informado em S-1210, campo{dtPgto} cujo {tpValor} = [00,01,09,11,12,13,14,15, 70,71,72,73,74,75,76,77,78,79, 81,82,83, 91,92,93,94,95];b) Somar os valores das rubricas cujo {tpRubr} seja igual a [2,4] menos as rubricas cujo {tpRubr} seja igual a [1,3], cujo pagamento tenha sido realizado no mês indicado em {perApur}, conforme informado em S-1210, campo{dtPgto} cujo {tpValor} = [31,32,33,34,35, 41,42,43,44,46,47,51,52,53,54,55, 61,62,63,64].c) Só informar valores, mesmo zerados, relativos a {tpValor} se houver alguma informação nos eventos de origem.</td>
+            <td width="200px"><b>{% if s5002_basesirrf.valor or s5002_basesirrf.valor == 0 %}{{ s5002_basesirrf.valor|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_basesirrf_visualizar' %}
+                <a href="{% url 's5002_basesirrf_salvar'  hash='{}'|json_id:s5002_basesirrf.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">irrf</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas ao Imposto de Renda Retido na Fonte</td>
+        </tr>
+    {% for s5002_irrf in s5002_irrf_lista %}
+    {% ifequal s5002_irrf.s5002_infoirrf.id s5002_infoirrf.id %}
+        <tr {% if s5002_irrf.tpcr|validacoes_esocial_efdreinf:"s5002_irrf.tpcr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpCR</td>
+            <td width="500px">Código de Receita - CR relativo ao Imposto de Renda Retido na Fonte sobre rendimentos do trabalho, conforme legislação em vigor na competência:0473-01 - Renda e Proventos de Qualquer Natureza;0561-07 - IRRF - Rendimento do Trabalho Assalariado no País/Ausente noExterior a Serviço do País;0561-08 - IRRF - Empregado Doméstico;0561-09 - IRRF - Empregado Doméstico - 13º Sal Rescisão;0561-10 - IRRF - Empregado doméstico - 13º salário;0561-11 - IRRF - Empregado/Trabalhador Rural - Segurado Especial; 0561-12 - IRRF - Empregado/Trabalhador Rural - Segurado Especial 13°salário;0561-13 - IRRF - Empregado/Trabalhador Rural - Segurado Especial 13°salário rescisório;0588-06 - IRRF - Rendimento do trabalho sem vínculo empregatício;0610- 01 - IRRF - Rendimentos relativos a prestação de serviços de transporte rodoviário internacional de carga, pagos a transportador autônomo PF residente no Paraguai;3280-06 - IRRF - Serviços Prestados por associados de cooperativas de trabalho;3533 Proventos de Aposentadoria, Reserva, Reforma ou Pensão Pagos porPrevidência Pública;3562-01 - IRRF - Participação dos trabalhadores em Lucros ou Resultados(PLR).Origem S-1210, para definição do mês de ocorrência dos fatos geradores e os respectivos demonstrativos de pagamento constantes dos eventos S-1200, S-1202,S-1207, S-2299 e S-2399.Validação: Deve ser um código válido, conforme opções acima.</td>
+            <td width="200px"><b>{% if s5002_irrf.tpcr or s5002_irrf.tpcr == 0 %}{{ s5002_irrf.tpcr|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_irrf_visualizar' %}
+                <a href="{% url 's5002_irrf_salvar'  hash='{}'|json_id:s5002_irrf.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5002_irrf.vrirrfdesc|validacoes_esocial_efdreinf:"s5002_irrf.vrirrfdesc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrIrrfDesc</td>
+            <td width="500px">Valor efetivamente descontado relativo ao Imposto de Renda Retido na Fonte sobre rendimentos do trabalho, agrupado conforme segue: ORIGEM: S-1200, S-1202, S-2299, S-2399 e respectivo S-1210: 0473-01: Se {codCateg} = [101,103,105,106,111,301,302,303,305,306,309,401,410, 721,722,723], {indResBr} = [N] e {classTrib} <> [22], efetuar o somatório de {valor} cujo {tpValor} = [31,32,33,34,35]; 0561-07: Se {codCateg} = [101,103,105,106,111,201,202,301,302,303,305,306,309, 401,410, 721,722,723, 901,902,903,904,905], {indResBr} = [S] e {classTrib} <> [22], efetuar o somatório de {valor} cujo {tpValor} = [31,32,33,35]; 0561-08: Se {codCateg} = [104], efetuar o somatório de {valor} cujo{tpValor} = [31,33]; 0561-09: Se {codCateg} = [104], efetuar o somatório de {valor} cujo{tpValor} = [32], apenas se origem for S-2299;0561-10: Se {codCateg} = [104], efetuar o somatório de {valor} cujo{tpValor} = [32], exceto se origem for S-2299; 0561-11: Se {codCateg} = [101,102,103,105,106,111,201,202] e {classTrib}= [22], efetuar o somatório de {valor} cujo {tpValor} = [31,33]; 0561-12: Se {codCateg} = [101,102,103,105,106,111,201,202] e {classTrib}= [22], efetuar o somatório de {valor} cujo {tpValor} = [32], exceto se origem for S-2299/S-2399; 0561-13: Se {codCateg} = [101,102,103,105,106,111,201,202] e {classTrib}= [22], efetuar o somatório de {valor} cujo {tpValor} = [32], apenas se origem for S-2299/S-2399; 0588-06: Se {codCateg} = [701, 711, 731, 734, 738, 741, 751, 761, 771, 781] ou ({codCateg} = [712] e {paisResid} do Trabalhador <> [586]), efetuar o somatório de {valor} cujo {tpValor} = [31]; 0610-01: Se {codCateg} = [712] e {paisResid} do Trabalhador = [586], efetuar o somatório de {valor} cujo {tpValor} = [31]; 3562-01: Efetuar o somatório de {valor} cujo {tpValor} = [34] e{indResBr} = [S];</td>
+            <td width="200px"><b>{% if s5002_irrf.vrirrfdesc or s5002_irrf.vrirrfdesc == 0 %}{{ s5002_irrf.vrirrfdesc|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_irrf_visualizar' %}
+                <a href="{% url 's5002_irrf_salvar'  hash='{}'|json_id:s5002_irrf.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">idePgtoExt</td>
+            <td bgcolor="lightgray" colspan="3">Informações complementares relativas a pagamento efetuado a beneficiário residente fiscal no exterior.</td>
+        </tr>
+    {% for s5002_idepgtoext in s5002_idepgtoext_lista %}
+    {% ifequal s5002_idepgtoext.s5002_infoirrf.id s5002_infoirrf.id %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">idePais</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do País onde foi efetuado o pagamento</td>
+        </tr>
+
+        <tr {% if s5002_idepgtoext.codpais|validacoes_esocial_efdreinf:"s5002_idepgtoext.codpais" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codPais</td>
+            <td width="500px">Preencher com o código do país, conforme tabela 6. Validação: Deve ser um código existente na tabela de países.</td>
+            <td width="200px"><b>{% if s5002_idepgtoext.codpais or s5002_idepgtoext.codpais == 0 %}{{ s5002_idepgtoext.codpais }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_idepgtoext_visualizar' %}
+                <a href="{% url 's5002_idepgtoext_salvar'  hash='{}'|json_id:s5002_idepgtoext.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5002_idepgtoext.indnif|validacoes_esocial_efdreinf:"s5002_idepgtoext.indnif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indNIF</td>
+            <td width="500px">Indicativo do Número de Identificação Fiscal:1 - Beneficiário com NIF;2 - Beneficiário dispensado do NIF;3 - País não exige NIF. Valores Válidos: 1, 2, 3.</td>
+            <td width="200px"><b>{% if s5002_idepgtoext.indnif or s5002_idepgtoext.indnif == 0 %}{{ s5002_idepgtoext.indnif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_idepgtoext_visualizar' %}
+                <a href="{% url 's5002_idepgtoext_salvar'  hash='{}'|json_id:s5002_idepgtoext.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5002_idepgtoext.nifbenef|validacoes_esocial_efdreinf:"s5002_idepgtoext.nifbenef" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nifBenef</td>
+            <td width="500px">Número de Identificação Fiscal - NIF Validação: Obrigatório se {indNIF} = [1]</td>
+            <td width="200px"><b>{% if s5002_idepgtoext.nifbenef or s5002_idepgtoext.nifbenef == 0 %}{{ s5002_idepgtoext.nifbenef }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_idepgtoext_visualizar' %}
+                <a href="{% url 's5002_idepgtoext_salvar'  hash='{}'|json_id:s5002_idepgtoext.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">endExt</td>
+            <td bgcolor="lightgray" colspan="3">Informações complementares de endereço do beneficiário.</td>
+        </tr>
+
+        <tr {% if s5002_idepgtoext.dsclograd|validacoes_esocial_efdreinf:"s5002_idepgtoext.dsclograd" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscLograd</td>
+            <td width="500px">Descrição do logradouro</td>
+            <td width="200px"><b>{% if s5002_idepgtoext.dsclograd or s5002_idepgtoext.dsclograd == 0 %}{{ s5002_idepgtoext.dsclograd }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_idepgtoext_visualizar' %}
+                <a href="{% url 's5002_idepgtoext_salvar'  hash='{}'|json_id:s5002_idepgtoext.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5002_idepgtoext.nrlograd|validacoes_esocial_efdreinf:"s5002_idepgtoext.nrlograd" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrLograd</td>
+            <td width="500px">Número do logradouro.</td>
+            <td width="200px"><b>{% if s5002_idepgtoext.nrlograd or s5002_idepgtoext.nrlograd == 0 %}{{ s5002_idepgtoext.nrlograd }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_idepgtoext_visualizar' %}
+                <a href="{% url 's5002_idepgtoext_salvar'  hash='{}'|json_id:s5002_idepgtoext.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5002_idepgtoext.complem|validacoes_esocial_efdreinf:"s5002_idepgtoext.complem" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">complem</td>
+            <td width="500px">Complemento do logradouro.</td>
+            <td width="200px"><b>{% if s5002_idepgtoext.complem or s5002_idepgtoext.complem == 0 %}{{ s5002_idepgtoext.complem }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_idepgtoext_visualizar' %}
+                <a href="{% url 's5002_idepgtoext_salvar'  hash='{}'|json_id:s5002_idepgtoext.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5002_idepgtoext.bairro|validacoes_esocial_efdreinf:"s5002_idepgtoext.bairro" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">bairro</td>
+            <td width="500px">Nome do bairro/distrito</td>
+            <td width="200px"><b>{% if s5002_idepgtoext.bairro or s5002_idepgtoext.bairro == 0 %}{{ s5002_idepgtoext.bairro }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_idepgtoext_visualizar' %}
+                <a href="{% url 's5002_idepgtoext_salvar'  hash='{}'|json_id:s5002_idepgtoext.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5002_idepgtoext.nmcid|validacoes_esocial_efdreinf:"s5002_idepgtoext.nmcid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmCid</td>
+            <td width="500px">Nome da Cidade</td>
+            <td width="200px"><b>{% if s5002_idepgtoext.nmcid or s5002_idepgtoext.nmcid == 0 %}{{ s5002_idepgtoext.nmcid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_idepgtoext_visualizar' %}
+                <a href="{% url 's5002_idepgtoext_salvar'  hash='{}'|json_id:s5002_idepgtoext.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5002_idepgtoext.codpostal|validacoes_esocial_efdreinf:"s5002_idepgtoext.codpostal" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codPostal</td>
+            <td width="500px">Código de Endereçamento Postal</td>
+            <td width="200px"><b>{% if s5002_idepgtoext.codpostal or s5002_idepgtoext.codpostal == 0 %}{{ s5002_idepgtoext.codpostal }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5002_idepgtoext_visualizar' %}
+                <a href="{% url 's5002_idepgtoext_salvar'  hash='{}'|json_id:s5002_idepgtoext.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}{% endifequal %}{% endfor %}
+</table>
+{% if not for_print %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %} 
+
+        </div>
+      </div>
+    </section>
+{% endif %}  
+
+{% endblock content %}

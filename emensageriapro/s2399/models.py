@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -92,6 +61,7 @@ CHOICES_S2399_TPTRIB = (
 class s2399detOper(models.Model):
     s2399_infosaudecolet = models.ForeignKey('s2399infoSaudeColet',
         related_name='%(class)s_s2399_infosaudecolet')
+    def evento(self): return self.s2399_infosaudecolet.evento()
     cnpjoper = models.CharField(max_length=14)
     regans = models.CharField(max_length=6)
     vrpgtit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -122,6 +92,7 @@ class s2399detOperSerializer(ModelSerializer):
 class s2399detPlano(models.Model):
     s2399_detoper = models.ForeignKey('s2399detOper',
         related_name='%(class)s_s2399_detoper')
+    def evento(self): return self.s2399_detoper.evento()
     tpdep = models.CharField(choices=CHOICES_S2399_TPDEP, max_length=2)
     cpfdep = models.CharField(max_length=11, blank=True, null=True)
     nmdep = models.CharField(max_length=70)
@@ -154,6 +125,7 @@ class s2399detPlanoSerializer(ModelSerializer):
 class s2399detVerbas(models.Model):
     s2399_ideestablot = models.ForeignKey('s2399ideEstabLot',
         related_name='%(class)s_s2399_ideestablot')
+    def evento(self): return self.s2399_ideestablot.evento()
     codrubr = models.CharField(max_length=30)
     idetabrubr = models.CharField(max_length=8)
     qtdrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=6, blank=True, null=True)
@@ -187,6 +159,7 @@ class s2399detVerbasSerializer(ModelSerializer):
 class s2399dmDev(models.Model):
     s2399_verbasresc = models.ForeignKey('s2399verbasResc',
         related_name='%(class)s_s2399_verbasresc')
+    def evento(self): return self.s2399_verbasresc.evento()
     idedmdev = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -215,6 +188,7 @@ class s2399dmDevSerializer(ModelSerializer):
 class s2399ideEstabLot(models.Model):
     s2399_dmdev = models.ForeignKey('s2399dmDev',
         related_name='%(class)s_s2399_dmdev')
+    def evento(self): return self.s2399_dmdev.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S2399_TPINSC)
     nrinsc = models.CharField(max_length=15)
     codlotacao = models.CharField(max_length=30)
@@ -245,6 +219,7 @@ class s2399ideEstabLotSerializer(ModelSerializer):
 class s2399infoAgNocivo(models.Model):
     s2399_ideestablot = models.OneToOneField('s2399ideEstabLot',
         related_name='%(class)s_s2399_ideestablot')
+    def evento(self): return self.s2399_ideestablot.evento()
     grauexp = models.IntegerField(choices=CHOICES_S2399_GRAUEXP)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -273,6 +248,7 @@ class s2399infoAgNocivoSerializer(ModelSerializer):
 class s2399infoMV(models.Model):
     s2399_verbasresc = models.OneToOneField('s2399verbasResc',
         related_name='%(class)s_s2399_verbasresc')
+    def evento(self): return self.s2399_verbasresc.evento()
     indmv = models.IntegerField(choices=CHOICES_S2399_INDMV)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -301,6 +277,7 @@ class s2399infoMVSerializer(ModelSerializer):
 class s2399infoSaudeColet(models.Model):
     s2399_ideestablot = models.OneToOneField('s2399ideEstabLot',
         related_name='%(class)s_s2399_ideestablot')
+    def evento(self): return self.s2399_ideestablot.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -328,6 +305,7 @@ class s2399infoSaudeColetSerializer(ModelSerializer):
 class s2399infoSimples(models.Model):
     s2399_ideestablot = models.OneToOneField('s2399ideEstabLot',
         related_name='%(class)s_s2399_ideestablot')
+    def evento(self): return self.s2399_ideestablot.evento()
     indsimples = models.IntegerField(choices=CHOICES_S2399_INDSIMPLES)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -356,6 +334,7 @@ class s2399infoSimplesSerializer(ModelSerializer):
 class s2399procJudTrab(models.Model):
     s2399_verbasresc = models.ForeignKey('s2399verbasResc',
         related_name='%(class)s_s2399_verbasresc')
+    def evento(self): return self.s2399_verbasresc.evento()
     tptrib = models.IntegerField(choices=CHOICES_S2399_TPTRIB)
     nrprocjud = models.CharField(max_length=20)
     codsusp = models.IntegerField(blank=True, null=True)
@@ -386,6 +365,7 @@ class s2399procJudTrabSerializer(ModelSerializer):
 class s2399quarentena(models.Model):
     s2399_evttsvtermino = models.OneToOneField('esocial.s2399evtTSVTermino',
         related_name='%(class)s_s2399_evttsvtermino')
+    def evento(self): return self.s2399_evttsvtermino.evento()
     dtfimquar = models.DateField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -414,6 +394,7 @@ class s2399quarentenaSerializer(ModelSerializer):
 class s2399remunOutrEmpr(models.Model):
     s2399_infomv = models.ForeignKey('s2399infoMV',
         related_name='%(class)s_s2399_infomv')
+    def evento(self): return self.s2399_infomv.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S2399_TPINSC)
     nrinsc = models.CharField(max_length=15)
     codcateg = models.TextField(max_length=3)
@@ -445,6 +426,7 @@ class s2399remunOutrEmprSerializer(ModelSerializer):
 class s2399verbasResc(models.Model):
     s2399_evttsvtermino = models.OneToOneField('esocial.s2399evtTSVTermino',
         related_name='%(class)s_s2399_evttsvtermino')
+    def evento(self): return self.s2399_evttsvtermino.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)

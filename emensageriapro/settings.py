@@ -224,8 +224,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Configurações de Versão do Aplicativo
 
-VERSAO_EMENSAGERIA = '1.0'
-VERSAO_MODELO = "v02_04_02" # apagar
+VERSAO_EMENSAGERIA = '1.3'
 VERSAO_LAYOUT_ESOCIAL = "v02_04_02"
 VERSAO_LAYOUT_EFDREINF = "v1_03_02"
 

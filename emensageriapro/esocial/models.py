@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -1225,11 +1194,6 @@ CHOICES_S2240_INDRETIF = (
     (2, u'2 - para arquivo de retificação'),
 )
 
-CHOICES_S2300_TPAMB = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
 CHOICES_S2240_PROCEMI = (
     (1, u'1 - Aplicativo do empregador'),
     (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
@@ -1533,6 +1497,11 @@ CHOICES_S2300_RACACOR = (
 CHOICES_S2300_SEXO = (
     ('F', u'F - Feminino'),
     ('M', u'M - Masculino'),
+)
+
+CHOICES_S2300_TPAMB = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
 )
 
 CHOICES_S2300_TPINSC = (
@@ -2439,8 +2408,7 @@ class s1060evtTabAmbienteSerializer(ModelSerializer):
     class Meta:
         model = s1060evtTabAmbiente
         fields = '__all__'
-           
-
+            
 
 class s1070evtTabProcesso(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')

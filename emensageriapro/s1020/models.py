@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -148,6 +117,7 @@ CHOICES_S1020_INCLUSAO_TPLOTACAO = (
 class s1020alteracao(models.Model):
     s1020_evttablotacao = models.OneToOneField('esocial.s1020evtTabLotacao',
         related_name='%(class)s_s1020_evttablotacao')
+    def evento(self): return self.s1020_evttablotacao.evento()
     codlotacao = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
@@ -184,6 +154,7 @@ class s1020alteracaoSerializer(ModelSerializer):
 class s1020alteracaoinfoEmprParcial(models.Model):
     s1020_alteracao = models.OneToOneField('s1020alteracao',
         related_name='%(class)s_s1020_alteracao')
+    def evento(self): return self.s1020_alteracao.evento()
     tpinsccontrat = models.IntegerField(choices=CHOICES_S1020_ALTERACAO_TPINSCCONTRAT)
     nrinsccontrat = models.CharField(max_length=14)
     tpinscprop = models.IntegerField(choices=CHOICES_S1020_ALTERACAO_TPINSCPROP)
@@ -215,6 +186,7 @@ class s1020alteracaoinfoEmprParcialSerializer(ModelSerializer):
 class s1020alteracaoinfoProcJudTerceiros(models.Model):
     s1020_alteracao = models.OneToOneField('s1020alteracao',
         related_name='%(class)s_s1020_alteracao')
+    def evento(self): return self.s1020_alteracao.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -242,6 +214,7 @@ class s1020alteracaoinfoProcJudTerceirosSerializer(ModelSerializer):
 class s1020alteracaonovaValidade(models.Model):
     s1020_alteracao = models.OneToOneField('s1020alteracao',
         related_name='%(class)s_s1020_alteracao')
+    def evento(self): return self.s1020_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -271,6 +244,7 @@ class s1020alteracaonovaValidadeSerializer(ModelSerializer):
 class s1020alteracaoprocJudTerceiro(models.Model):
     s1020_alteracao_infoprocjudterceiros = models.ForeignKey('s1020alteracaoinfoProcJudTerceiros',
         related_name='%(class)s_s1020_alteracao_infoprocjudterceiros')
+    def evento(self): return self.s1020_alteracao_infoprocjudterceiros.evento()
     codterc = models.CharField(max_length=4)
     nrprocjud = models.CharField(max_length=20)
     codsusp = models.IntegerField()
@@ -301,6 +275,7 @@ class s1020alteracaoprocJudTerceiroSerializer(ModelSerializer):
 class s1020exclusao(models.Model):
     s1020_evttablotacao = models.OneToOneField('esocial.s1020evtTabLotacao',
         related_name='%(class)s_s1020_evttablotacao')
+    def evento(self): return self.s1020_evttablotacao.evento()
     codlotacao = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
@@ -331,6 +306,7 @@ class s1020exclusaoSerializer(ModelSerializer):
 class s1020inclusao(models.Model):
     s1020_evttablotacao = models.OneToOneField('esocial.s1020evtTabLotacao',
         related_name='%(class)s_s1020_evttablotacao')
+    def evento(self): return self.s1020_evttablotacao.evento()
     codlotacao = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
@@ -367,6 +343,7 @@ class s1020inclusaoSerializer(ModelSerializer):
 class s1020inclusaoinfoEmprParcial(models.Model):
     s1020_inclusao = models.OneToOneField('s1020inclusao',
         related_name='%(class)s_s1020_inclusao')
+    def evento(self): return self.s1020_inclusao.evento()
     tpinsccontrat = models.IntegerField(choices=CHOICES_S1020_INCLUSAO_TPINSCCONTRAT)
     nrinsccontrat = models.CharField(max_length=14)
     tpinscprop = models.IntegerField(choices=CHOICES_S1020_INCLUSAO_TPINSCPROP)
@@ -398,6 +375,7 @@ class s1020inclusaoinfoEmprParcialSerializer(ModelSerializer):
 class s1020inclusaoinfoProcJudTerceiros(models.Model):
     s1020_inclusao = models.OneToOneField('s1020inclusao',
         related_name='%(class)s_s1020_inclusao')
+    def evento(self): return self.s1020_inclusao.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -425,6 +403,7 @@ class s1020inclusaoinfoProcJudTerceirosSerializer(ModelSerializer):
 class s1020inclusaoprocJudTerceiro(models.Model):
     s1020_inclusao_infoprocjudterceiros = models.ForeignKey('s1020inclusaoinfoProcJudTerceiros',
         related_name='%(class)s_s1020_inclusao_infoprocjudterceiros')
+    def evento(self): return self.s1020_inclusao_infoprocjudterceiros.evento()
     codterc = models.CharField(max_length=4)
     nrprocjud = models.CharField(max_length=20)
     codsusp = models.IntegerField()

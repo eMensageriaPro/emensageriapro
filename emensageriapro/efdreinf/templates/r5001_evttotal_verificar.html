@@ -1,0 +1,1016 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
+{% if not for_print %}
+
+    <section class="content-header">
+      <h1>
+        R-5001 - Informações de bases e tributos por evento
+        <small>Verificações</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">R-5001 - Informações de bases e tributos por evento</a></li>
+        <li class="active">Verificar</li>
+      </ol>
+    </section>
+    <section class="content">
+
+        {% if messages %}
+                <div class="pad margin no-print">
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+                </div>
+        {% endif %}
+
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">R-5001 - Informações de bases e tributos por evento<br>Identidade: {{ r5001_evttotal.identidade }}</h3>
+              <div class="text-right">
+                <a href="{% url 'r5001_evttotal_verificar' hash='{}'|json_id:r5001_evttotal_id|json_print:1|base64_encode_me %}" target="_blank">
+                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
+                </a>
+
+
+
+                  <div class="btn-group">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="text-left"><a
+                                            href="{% url 'r5001_evttotal_verificar' hash='{}'|json_id:r5001_evttotal_id|json_print:2|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
+                                    <li class="text-left"><a
+                                            href="{% url 'r5001_evttotal_verificar' hash='{}'|json_id:r5001_evttotal_id|json_print:3|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
+                                    <!--<li class="text-left"><a
+                                            href="{% url 'r5001_evttotal_verificar' hash='{}'|json_id:r5001_evttotal_id|json_print:4|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
+                                </ul>
+                            </div>&nbsp;
+
+              </div>              
+            </div>
+            <div class="box-body">
+{% else %} 
+   <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            R-5001 - Informações de bases e tributos por evento<br>Identidade: {{ r5001_evttotal.identidade }}
+            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+{% endif %} 
+
+
+
+
+      <h4>Layout</h4>
+
+
+
+
+<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
+              
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtTotal</td>
+            <td bgcolor="lightgray" colspan="3">Evento Totalização</td>
+        </tr>
+    {% for r5001_evttotal in r5001_evttotal_lista %}
+    {% ifequal 1 1 %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
+        </tr>
+
+        <tr {% if r5001_evttotal.perapur|validacoes_esocial_efdreinf:"r5001_evttotal.perapur" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">perApur</td>
+            <td width="500px">Informar o ano/mês no formato AAAA-MM ou ano/mês/dia no formato AAAA-MM-DD de referência das informações. O formato diário refere-se a consolidação de bases e tributos informados apenas através do evento R-3010. Validação: Deve ser uma data, igual ou posterior a implementação da EFD- Reinf. Não pode ser maior que o ano/mês corrente.</td>
+            <td width="200px"><b>{% if r5001_evttotal.perapur or r5001_evttotal.perapur == 0 %}{{ r5001_evttotal.perapur }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_evttotal_visualizar' %}
+                <a href="{% url 'r5001_evttotal_salvar'  hash='{}'|json_id:r5001_evttotal.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideContri</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte</td>
+        </tr>
+
+        <tr {% if r5001_evttotal.tpinsc|validacoes_esocial_efdreinf:"r5001_evttotal.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF) Valores Válidos: 1, 2</td>
+            <td width="200px"><b>{% if r5001_evttotal.tpinsc or r5001_evttotal.tpinsc == 0 %}{{ r5001_evttotal.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_evttotal_visualizar' %}
+                <a href="{% url 'r5001_evttotal_salvar'  hash='{}'|json_id:r5001_evttotal.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_evttotal.nrinsc|validacoes_esocial_efdreinf:"r5001_evttotal.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if r5001_evttotal.nrinsc or r5001_evttotal.nrinsc == 0 %}{{ r5001_evttotal.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_evttotal_visualizar' %}
+                <a href="{% url 'r5001_evttotal_salvar'  hash='{}'|json_id:r5001_evttotal.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideRecRetorno</td>
+            <td bgcolor="lightgray" colspan="3">Informações do Recibo de Retorno</td>
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideStatus</td>
+            <td bgcolor="lightgray" colspan="3">Situação atual do evento</td>
+        </tr>
+
+        <tr {% if r5001_evttotal.cdretorno|validacoes_esocial_efdreinf:"r5001_evttotal.cdretorno" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cdRetorno</td>
+            <td width="500px">Código do Retorno</td>
+            <td width="200px"><b>{% if r5001_evttotal.cdretorno or r5001_evttotal.cdretorno == 0 %}{{ r5001_evttotal.cdretorno }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_evttotal_visualizar' %}
+                <a href="{% url 'r5001_evttotal_salvar'  hash='{}'|json_id:r5001_evttotal.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_evttotal.descretorno|validacoes_esocial_efdreinf:"r5001_evttotal.descretorno" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">descRetorno</td>
+            <td width="500px">Descrição do retorno</td>
+            <td width="200px"><b>{% if r5001_evttotal.descretorno or r5001_evttotal.descretorno == 0 %}{{ r5001_evttotal.descretorno }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_evttotal_visualizar' %}
+                <a href="{% url 'r5001_evttotal_salvar'  hash='{}'|json_id:r5001_evttotal.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">regOcorrs</td>
+            <td bgcolor="lightgray" colspan="3">Informações de ocorrências registradas</td>
+        </tr>
+    {% for r5001_regocorrs in r5001_regocorrs_lista %}
+    {% ifequal r5001_regocorrs.r5001_evttotal.id r5001_evttotal.id %}
+        <tr {% if r5001_regocorrs.tpocorr|validacoes_esocial_efdreinf:"r5001_regocorrs.tpocorr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpOcorr</td>
+            <td width="500px">Tipo da ocorrência: 1 - Aviso; 2 - Erro.</td>
+            <td width="200px"><b>{% if r5001_regocorrs.tpocorr or r5001_regocorrs.tpocorr == 0 %}{{ r5001_regocorrs.tpocorr|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_regocorrs_visualizar' %}
+                <a href="{% url 'r5001_regocorrs_salvar'  hash='{}'|json_id:r5001_regocorrs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_regocorrs.localerroaviso|validacoes_esocial_efdreinf:"r5001_regocorrs.localerroaviso" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">localErroAviso</td>
+            <td width="500px">Campo que originou o erro ou aviso</td>
+            <td width="200px"><b>{% if r5001_regocorrs.localerroaviso or r5001_regocorrs.localerroaviso == 0 %}{{ r5001_regocorrs.localerroaviso }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_regocorrs_visualizar' %}
+                <a href="{% url 'r5001_regocorrs_salvar'  hash='{}'|json_id:r5001_regocorrs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_regocorrs.codresp|validacoes_esocial_efdreinf:"r5001_regocorrs.codresp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codResp</td>
+            <td width="500px">Código do status da resposta do processamento da consulta</td>
+            <td width="200px"><b>{% if r5001_regocorrs.codresp or r5001_regocorrs.codresp == 0 %}{{ r5001_regocorrs.codresp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_regocorrs_visualizar' %}
+                <a href="{% url 'r5001_regocorrs_salvar'  hash='{}'|json_id:r5001_regocorrs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_regocorrs.dscresp|validacoes_esocial_efdreinf:"r5001_regocorrs.dscresp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscResp</td>
+            <td width="500px">Descrição literal da resposta do processamento da consulta</td>
+            <td width="200px"><b>{% if r5001_regocorrs.dscresp or r5001_regocorrs.dscresp == 0 %}{{ r5001_regocorrs.dscresp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_regocorrs_visualizar' %}
+                <a href="{% url 'r5001_regocorrs_salvar'  hash='{}'|json_id:r5001_regocorrs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}  
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoRecEv</td>
+            <td bgcolor="lightgray" colspan="3">Informações de processamento dos eventos</td>
+        </tr>
+
+        <tr {% if r5001_evttotal.nrprotentr|validacoes_esocial_efdreinf:"r5001_evttotal.nrprotentr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrProtEntr</td>
+            <td width="500px">Número do protocolo de entrega do evento</td>
+            <td width="200px"><b>{% if r5001_evttotal.nrprotentr or r5001_evttotal.nrprotentr == 0 %}{{ r5001_evttotal.nrprotentr }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_evttotal_visualizar' %}
+                <a href="{% url 'r5001_evttotal_salvar'  hash='{}'|json_id:r5001_evttotal.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_evttotal.dhprocess|validacoes_esocial_efdreinf:"r5001_evttotal.dhprocess" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dhProcess</td>
+            <td width="500px">Data e hora do início do processamento da consulta</td>
+            <td width="200px"><b>{% if r5001_evttotal.dhprocess or r5001_evttotal.dhprocess == 0 %}{{ r5001_evttotal.dhprocess|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_evttotal_visualizar' %}
+                <a href="{% url 'r5001_evttotal_salvar'  hash='{}'|json_id:r5001_evttotal.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_evttotal.tpev|validacoes_esocial_efdreinf:"r5001_evttotal.tpev" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpEv</td>
+            <td width="500px">Tipo do Evento</td>
+            <td width="200px"><b>{% if r5001_evttotal.tpev or r5001_evttotal.tpev == 0 %}{{ r5001_evttotal.tpev }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_evttotal_visualizar' %}
+                <a href="{% url 'r5001_evttotal_salvar'  hash='{}'|json_id:r5001_evttotal.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_evttotal.idev|validacoes_esocial_efdreinf:"r5001_evttotal.idev" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">idEv</td>
+            <td width="500px">ID do Evento</td>
+            <td width="200px"><b>{% if r5001_evttotal.idev or r5001_evttotal.idev == 0 %}{{ r5001_evttotal.idev }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_evttotal_visualizar' %}
+                <a href="{% url 'r5001_evttotal_salvar'  hash='{}'|json_id:r5001_evttotal.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_evttotal.hash|validacoes_esocial_efdreinf:"r5001_evttotal.hash" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">hash</td>
+            <td width="500px">Hash do arquivo processado</td>
+            <td width="200px"><b>{% if r5001_evttotal.hash or r5001_evttotal.hash == 0 %}{{ r5001_evttotal.hash }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_evttotal_visualizar' %}
+                <a href="{% url 'r5001_evttotal_salvar'  hash='{}'|json_id:r5001_evttotal.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoTotal</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas a totalizadores de bases e tributos</td>
+        </tr>
+    {% for r5001_infototal in r5001_infototal_lista %}
+    {% ifequal r5001_infototal.r5001_evttotal.id r5001_evttotal.id %}
+        <tr {% if r5001_infototal.nrrecarqbase|validacoes_esocial_efdreinf:"r5001_infototal.nrrecarqbase" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecArqBase</td>
+            <td width="500px">Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao contribuinte. Validação: Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem a este arquivo totalizador.</td>
+            <td width="200px"><b>{% if r5001_infototal.nrrecarqbase or r5001_infototal.nrrecarqbase == 0 %}{{ r5001_infototal.nrrecarqbase }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_infototal_visualizar' %}
+                <a href="{% url 'r5001_infototal_salvar'  hash='{}'|json_id:r5001_infototal.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">RTom</td>
+            <td bgcolor="lightgray" colspan="3">Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010</td>
+        </tr>
+    {% for r5001_rtom in r5001_rtom_lista %}
+    {% ifequal r5001_rtom.r5001_infototal.id r5001_infototal.id %}
+        <tr {% if r5001_rtom.cnpjprestador|validacoes_esocial_efdreinf:"r5001_rtom.cnpjprestador" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjPrestador</td>
+            <td width="500px">CNPJ do Prestador de Serviços. Origem: R-2010.</td>
+            <td width="200px"><b>{% if r5001_rtom.cnpjprestador or r5001_rtom.cnpjprestador == 0 %}{{ r5001_rtom.cnpjprestador }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rtom_visualizar' %}
+                <a href="{% url 'r5001_rtom_salvar'  hash='{}'|json_id:r5001_rtom.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rtom.vlrtotalbaseret|validacoes_esocial_efdreinf:"r5001_rtom.vlrtotalbaseret" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrTotalBaseRet</td>
+            <td width="500px">Base de cálculo da retenção da contribuição previdenciária. Origem: R-2010.</td>
+            <td width="200px"><b>{% if r5001_rtom.vlrtotalbaseret or r5001_rtom.vlrtotalbaseret == 0 %}{{ r5001_rtom.vlrtotalbaseret|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rtom_visualizar' %}
+                <a href="{% url 'r5001_rtom_salvar'  hash='{}'|json_id:r5001_rtom.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoCRTom</td>
+            <td bgcolor="lightgray" colspan="3">Totalizador das retenções de contribuição previdenciária sobre serviços tomados</td>
+        </tr>
+    {% for r5001_infocrtom in r5001_infocrtom_lista %}
+    {% ifequal r5001_infocrtom.r5001_rtom.id r5001_rtom.id %}
+        <tr {% if r5001_infocrtom.crtom|validacoes_esocial_efdreinf:"r5001_infocrtom.crtom" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">CRTom</td>
+            <td width="500px">Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social sobre serviços tomados. Validação: Deve ser um código válido, compatível com as informações prestadas nos demais eventos Valores Válidos: 1141-06, 1162-01</td>
+            <td width="200px"><b>{% if r5001_infocrtom.crtom or r5001_infocrtom.crtom == 0 %}{{ r5001_infocrtom.crtom|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_infocrtom_visualizar' %}
+                <a href="{% url 'r5001_infocrtom_salvar'  hash='{}'|json_id:r5001_infocrtom.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_infocrtom.vlrcrtom|validacoes_esocial_efdreinf:"r5001_infocrtom.vlrcrtom" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrCRTom</td>
+            <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRTom}. Validação: Deve ser apurado de acordo com a legislação em vigor na competência. Deve ser maior que 0 (zero).</td>
+            <td width="200px"><b>{% if r5001_infocrtom.vlrcrtom or r5001_infocrtom.vlrcrtom == 0 %}{{ r5001_infocrtom.vlrcrtom|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_infocrtom_visualizar' %}
+                <a href="{% url 'r5001_infocrtom_salvar'  hash='{}'|json_id:r5001_infocrtom.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_infocrtom.vlrcrtomsusp|validacoes_esocial_efdreinf:"r5001_infocrtom.vlrcrtomsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrCRTomSusp</td>
+            <td width="500px">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao código de Receita - CR informado em {CRTom}. Valores Válidos: Deve ser maior que 0 (zero).</td>
+            <td width="200px"><b>{% if r5001_infocrtom.vlrcrtomsusp or r5001_infocrtom.vlrcrtomsusp == 0 %}{{ r5001_infocrtom.vlrcrtomsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_infocrtom_visualizar' %}
+                <a href="{% url 'r5001_infocrtom_salvar'  hash='{}'|json_id:r5001_infocrtom.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">RPrest</td>
+            <td bgcolor="lightgray" colspan="3">Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020</td>
+        </tr>
+    {% for r5001_rprest in r5001_rprest_lista %}
+    {% ifequal r5001_rprest.r5001_infototal.id r5001_infototal.id %}
+        <tr {% if r5001_rprest.tpinsctomador|validacoes_esocial_efdreinf:"r5001_rprest.tpinsctomador" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInscTomador</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. Origem: R-2020. Valores Válidos: 1,4</td>
+            <td width="200px"><b>{% if r5001_rprest.tpinsctomador or r5001_rprest.tpinsctomador == 0 %}{{ r5001_rprest.tpinsctomador|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rprest_visualizar' %}
+                <a href="{% url 'r5001_rprest_salvar'  hash='{}'|json_id:r5001_rprest.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rprest.nrinsctomador|validacoes_esocial_efdreinf:"r5001_rprest.nrinsctomador" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInscTomador</td>
+            <td width="500px">Número de inscrição do Tomador de Serviços, de acordo com o tipo de inscrição informado em {tpInscTomador}. Origem: R-2020.</td>
+            <td width="200px"><b>{% if r5001_rprest.nrinsctomador or r5001_rprest.nrinsctomador == 0 %}{{ r5001_rprest.nrinsctomador }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rprest_visualizar' %}
+                <a href="{% url 'r5001_rprest_salvar'  hash='{}'|json_id:r5001_rprest.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rprest.vlrtotalbaseret|validacoes_esocial_efdreinf:"r5001_rprest.vlrtotalbaseret" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrTotalBaseRet</td>
+            <td width="500px">Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante</td>
+            <td width="200px"><b>{% if r5001_rprest.vlrtotalbaseret or r5001_rprest.vlrtotalbaseret == 0 %}{{ r5001_rprest.vlrtotalbaseret|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rprest_visualizar' %}
+                <a href="{% url 'r5001_rprest_salvar'  hash='{}'|json_id:r5001_rprest.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rprest.vlrtotalretprinc|validacoes_esocial_efdreinf:"r5001_rprest.vlrtotalretprinc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrTotalRetPrinc</td>
+            <td width="500px">Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante</td>
+            <td width="200px"><b>{% if r5001_rprest.vlrtotalretprinc or r5001_rprest.vlrtotalretprinc == 0 %}{{ r5001_rprest.vlrtotalretprinc|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rprest_visualizar' %}
+                <a href="{% url 'r5001_rprest_salvar'  hash='{}'|json_id:r5001_rprest.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rprest.vlrtotalretadic|validacoes_esocial_efdreinf:"r5001_rprest.vlrtotalretadic" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrTotalRetAdic</td>
+            <td width="500px">Soma do valor do adicional de retenção das notas fiscais</td>
+            <td width="200px"><b>{% if r5001_rprest.vlrtotalretadic or r5001_rprest.vlrtotalretadic == 0 %}{{ r5001_rprest.vlrtotalretadic|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rprest_visualizar' %}
+                <a href="{% url 'r5001_rprest_salvar'  hash='{}'|json_id:r5001_rprest.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rprest.vlrtotalnretprinc|validacoes_esocial_efdreinf:"r5001_rprest.vlrtotalnretprinc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrTotalNRetPrinc</td>
+            <td width="500px">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial</td>
+            <td width="200px"><b>{% if r5001_rprest.vlrtotalnretprinc or r5001_rprest.vlrtotalnretprinc == 0 %}{{ r5001_rprest.vlrtotalnretprinc|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rprest_visualizar' %}
+                <a href="{% url 'r5001_rprest_salvar'  hash='{}'|json_id:r5001_rprest.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rprest.vlrtotalnretadic|validacoes_esocial_efdreinf:"r5001_rprest.vlrtotalnretadic" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrTotalNRetAdic</td>
+            <td width="500px">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial</td>
+            <td width="200px"><b>{% if r5001_rprest.vlrtotalnretadic or r5001_rprest.vlrtotalnretadic == 0 %}{{ r5001_rprest.vlrtotalnretadic|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rprest_visualizar' %}
+                <a href="{% url 'r5001_rprest_salvar'  hash='{}'|json_id:r5001_rprest.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">RRecRepAD</td>
+            <td bgcolor="lightgray" colspan="3">Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040</td>
+        </tr>
+    {% for r5001_rrecrepad in r5001_rrecrepad_lista %}
+    {% ifequal r5001_rrecrepad.r5001_infototal.id r5001_infototal.id %}
+        <tr {% if r5001_rrecrepad.cnpjassocdesp|validacoes_esocial_efdreinf:"r5001_rrecrepad.cnpjassocdesp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjAssocDesp</td>
+            <td width="500px">CNPJ da associação desportiva que mantém clube de futebol para a qual foi efetuado o repasse. Origem: R- 2040.</td>
+            <td width="200px"><b>{% if r5001_rrecrepad.cnpjassocdesp or r5001_rrecrepad.cnpjassocdesp == 0 %}{{ r5001_rrecrepad.cnpjassocdesp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rrecrepad_visualizar' %}
+                <a href="{% url 'r5001_rrecrepad_salvar'  hash='{}'|json_id:r5001_rrecrepad.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rrecrepad.vlrtotalrep|validacoes_esocial_efdreinf:"r5001_rrecrepad.vlrtotalrep" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrTotalRep</td>
+            <td width="500px">Valor bruto dos recursos repassados. Origem: R- 2040.</td>
+            <td width="200px"><b>{% if r5001_rrecrepad.vlrtotalrep or r5001_rrecrepad.vlrtotalrep == 0 %}{{ r5001_rrecrepad.vlrtotalrep|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rrecrepad_visualizar' %}
+                <a href="{% url 'r5001_rrecrepad_salvar'  hash='{}'|json_id:r5001_rrecrepad.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rrecrepad.crrecrepad|validacoes_esocial_efdreinf:"r5001_rrecrepad.crrecrepad" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">CRRecRepAD</td>
+            <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre recursos repassados a Associação Desportiva que mantenha equipe de futebol profissional, calculada segundo as regras estabelecidas na legislação em vigor. Validação: Deve ser um código válido, compatível com as informações prestadas nos demais eventos. Deve ser maior que 0 (zero). Valores Válidos: 1151-02</td>
+            <td width="200px"><b>{% if r5001_rrecrepad.crrecrepad or r5001_rrecrepad.crrecrepad == 0 %}{{ r5001_rrecrepad.crrecrepad|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rrecrepad_visualizar' %}
+                <a href="{% url 'r5001_rrecrepad_salvar'  hash='{}'|json_id:r5001_rrecrepad.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rrecrepad.vlrcrrecrepad|validacoes_esocial_efdreinf:"r5001_rrecrepad.vlrcrrecrepad" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrCRRecRepAD</td>
+            <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-2040 Validação: Deve ser apurado de acordo com a legislação em vigor na competência.</td>
+            <td width="200px"><b>{% if r5001_rrecrepad.vlrcrrecrepad or r5001_rrecrepad.vlrcrrecrepad == 0 %}{{ r5001_rrecrepad.vlrcrrecrepad|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rrecrepad_visualizar' %}
+                <a href="{% url 'r5001_rrecrepad_salvar'  hash='{}'|json_id:r5001_rrecrepad.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rrecrepad.vlrcrrecrepadsusp|validacoes_esocial_efdreinf:"r5001_rrecrepad.vlrcrrecrepadsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrCRRecRepADSusp</td>
+            <td width="500px">Valor da retenção da contribuição previdenciária que deixou de ser efetuada ou que foi depositada em juízo em decorência de decisão judicial/administrativa, correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-2040</td>
+            <td width="200px"><b>{% if r5001_rrecrepad.vlrcrrecrepadsusp or r5001_rrecrepad.vlrcrrecrepadsusp == 0 %}{{ r5001_rrecrepad.vlrcrrecrepadsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rrecrepad_visualizar' %}
+                <a href="{% url 'r5001_rrecrepad_salvar'  hash='{}'|json_id:r5001_rrecrepad.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">RComl</td>
+            <td bgcolor="lightgray" colspan="3">Totalizador das contribuições sociais incidentes sobre a comercialização de produção por Produtor Rural Pessoa Jurídica e Agroindústria, apuradas no evento R-2050</td>
+        </tr>
+    {% for r5001_rcoml in r5001_rcoml_lista %}
+    {% ifequal r5001_rcoml.r5001_infototal.id r5001_infototal.id %}
+        <tr {% if r5001_rcoml.crcoml|validacoes_esocial_efdreinf:"r5001_rcoml.crcoml" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">CRComl</td>
+            <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Comercialização de Produção, calculada segundo as regras estabelecidas na legislação em vigor. Validação: Deve ser um código válido, compatível com as informações prestadas nos demais eventos, observando o que segue: a) 1657-01 se {classTrib} <> [6] ou 1657-02 se {classTrib} = [6], b) 1646-05 se {classTrib} = [7] ou 1646-06 se {classTrib} = [6}, c) 1213-02 se {classTrib} = [7] ou 1213-04 se {classTrib} = [6]. Valores Válidos: 1657-01, 1657-02, 1646-05, 1646-06, 1213-02, 1213-04.</td>
+            <td width="200px"><b>{% if r5001_rcoml.crcoml or r5001_rcoml.crcoml == 0 %}{{ r5001_rcoml.crcoml|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rcoml_visualizar' %}
+                <a href="{% url 'r5001_rcoml_salvar'  hash='{}'|json_id:r5001_rcoml.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rcoml.vlrcrcoml|validacoes_esocial_efdreinf:"r5001_rcoml.vlrcrcoml" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrCRComl</td>
+            <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-2050 Validação: Deve ser apurado de acordo com a legislação em vigor na competência.</td>
+            <td width="200px"><b>{% if r5001_rcoml.vlrcrcoml or r5001_rcoml.vlrcrcoml == 0 %}{{ r5001_rcoml.vlrcrcoml|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rcoml_visualizar' %}
+                <a href="{% url 'r5001_rcoml_salvar'  hash='{}'|json_id:r5001_rcoml.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rcoml.vlrcrcomlsusp|validacoes_esocial_efdreinf:"r5001_rcoml.vlrcrcomlsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrCRComlSusp</td>
+            <td width="500px">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-2050</td>
+            <td width="200px"><b>{% if r5001_rcoml.vlrcrcomlsusp or r5001_rcoml.vlrcrcomlsusp == 0 %}{{ r5001_rcoml.vlrcrcomlsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rcoml_visualizar' %}
+                <a href="{% url 'r5001_rcoml_salvar'  hash='{}'|json_id:r5001_rcoml.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">RCPRB</td>
+            <td bgcolor="lightgray" colspan="3">Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060</td>
+        </tr>
+    {% for r5001_rcprb in r5001_rcprb_lista %}
+    {% ifequal r5001_rcprb.r5001_infototal.id r5001_infototal.id %}
+        <tr {% if r5001_rcprb.crcprb|validacoes_esocial_efdreinf:"r5001_rcprb.crcprb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">CRCPRB</td>
+            <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre a Receita Bruta - CPRB. Validação: Deve ser um código válido, compatível com as informações prestadas nos demais eventos. Valores Válidos: 2991-01, 2985-01, 2985-04, 2985-06 (sem os hífens).</td>
+            <td width="200px"><b>{% if r5001_rcprb.crcprb or r5001_rcprb.crcprb == 0 %}{{ r5001_rcprb.crcprb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rcprb_visualizar' %}
+                <a href="{% url 'r5001_rcprb_salvar'  hash='{}'|json_id:r5001_rcprb.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rcprb.vlrcrcprb|validacoes_esocial_efdreinf:"r5001_rcprb.vlrcrcprb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrCRCPRB</td>
+            <td width="500px">Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB, calculada segundo as regras estabelecidas na legislação em vigor.</td>
+            <td width="200px"><b>{% if r5001_rcprb.vlrcrcprb or r5001_rcprb.vlrcrcprb == 0 %}{{ r5001_rcprb.vlrcrcprb|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rcprb_visualizar' %}
+                <a href="{% url 'r5001_rcprb_salvar'  hash='{}'|json_id:r5001_rcprb.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rcprb.vlrcrcprbsusp|validacoes_esocial_efdreinf:"r5001_rcprb.vlrcrcprbsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrCRCPRBSusp</td>
+            <td width="500px">Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB com exigibilidade suspensa. Origem: R-2060</td>
+            <td width="200px"><b>{% if r5001_rcprb.vlrcrcprbsusp or r5001_rcprb.vlrcrcprbsusp == 0 %}{{ r5001_rcprb.vlrcrcprbsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rcprb_visualizar' %}
+                <a href="{% url 'r5001_rcprb_salvar'  hash='{}'|json_id:r5001_rcprb.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">RRecEspetDesp</td>
+            <td bgcolor="lightgray" colspan="3">Totalizador da contribuição previdenciária incidente sobre Receitas de Espetáculos Desportivos, apuradas no evento R-3010.</td>
+        </tr>
+    {% for r5001_rrecespetdesp in r5001_rrecespetdesp_lista %}
+    {% ifequal r5001_rrecespetdesp.r5001_infototal.id r5001_infototal.id %}
+        <tr {% if r5001_rrecespetdesp.crrecespetdesp|validacoes_esocial_efdreinf:"r5001_rrecespetdesp.crrecespetdesp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">CRRecEspetDesp</td>
+            <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Receita de Espetáculos Desportivos, calculada segundo as regras estabelecidas na legislação em vigor. Validação: Deve ser um código válido, compatível com as informações prestadas nos demais eventos. Valores Válidos: 1151-01</td>
+            <td width="200px"><b>{% if r5001_rrecespetdesp.crrecespetdesp or r5001_rrecespetdesp.crrecespetdesp == 0 %}{{ r5001_rrecespetdesp.crrecespetdesp|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rrecespetdesp_visualizar' %}
+                <a href="{% url 'r5001_rrecespetdesp_salvar'  hash='{}'|json_id:r5001_rrecespetdesp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rrecespetdesp.vlrreceitatotal|validacoes_esocial_efdreinf:"r5001_rrecespetdesp.vlrreceitatotal" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrReceitaTotal</td>
+            <td width="500px">Valor da receita bruta total auferida em espetáculos desportivos. Origem: R-3010 - somatório dos valores informados no campo {vlrReceitaTotal}.</td>
+            <td width="200px"><b>{% if r5001_rrecespetdesp.vlrreceitatotal or r5001_rrecespetdesp.vlrreceitatotal == 0 %}{{ r5001_rrecespetdesp.vlrreceitatotal|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rrecespetdesp_visualizar' %}
+                <a href="{% url 'r5001_rrecespetdesp_salvar'  hash='{}'|json_id:r5001_rrecespetdesp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rrecespetdesp.vlrcrrecespetdesp|validacoes_esocial_efdreinf:"r5001_rrecespetdesp.vlrcrrecespetdesp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrCRRecEspetDesp</td>
+            <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}. Origem:R-3010 Validação: Deve ser igual ao somatório dos valores informados no campo {vlrReceitaTotal} multiplicado por 5%.</td>
+            <td width="200px"><b>{% if r5001_rrecespetdesp.vlrcrrecespetdesp or r5001_rrecespetdesp.vlrcrrecespetdesp == 0 %}{{ r5001_rrecespetdesp.vlrcrrecespetdesp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rrecespetdesp_visualizar' %}
+                <a href="{% url 'r5001_rrecespetdesp_salvar'  hash='{}'|json_id:r5001_rrecespetdesp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rrecespetdesp.vlrcrrecespetdespsusp|validacoes_esocial_efdreinf:"r5001_rrecespetdesp.vlrcrrecespetdespsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrCRRecEspetDespSusp</td>
+            <td width="500px">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}. Origem: R-3010</td>
+            <td width="200px"><b>{% if r5001_rrecespetdesp.vlrcrrecespetdespsusp or r5001_rrecespetdesp.vlrcrrecespetdespsusp == 0 %}{{ r5001_rrecespetdesp.vlrcrrecespetdespsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rrecespetdesp_visualizar' %}
+                <a href="{% url 'r5001_rrecespetdesp_salvar'  hash='{}'|json_id:r5001_rrecespetdesp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}{% endifequal %}{% endfor %}
+</table>
+{% if not for_print %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %} 
+
+        </div>
+      </div>
+    </section>
+{% endif %}  
+
+{% endblock content %}

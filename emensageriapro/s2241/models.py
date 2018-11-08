@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -45,6 +14,7 @@ get_model = apps.get_model
 class s2241altAposentEsp(models.Model):
     s2241_aposentesp = models.OneToOneField('s2241aposentEsp',
         related_name='%(class)s_s2241_aposentesp')
+    def evento(self): return self.s2241_aposentesp.evento()
     dtaltcondicao = models.DateField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -73,6 +43,7 @@ class s2241altAposentEspSerializer(ModelSerializer):
 class s2241altAposentEspfatRisco(models.Model):
     s2241_altaposentesp_infoamb = models.ForeignKey('s2241altAposentEspinfoamb',
         related_name='%(class)s_s2241_altaposentesp_infoamb')
+    def evento(self): return self.s2241_altaposentesp_infoamb.evento()
     codfatris = models.TextField(max_length=10)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -101,6 +72,7 @@ class s2241altAposentEspfatRiscoSerializer(ModelSerializer):
 class s2241altAposentEspinfoamb(models.Model):
     s2241_altaposentesp = models.ForeignKey('s2241altAposentEsp',
         related_name='%(class)s_s2241_altaposentesp')
+    def evento(self): return self.s2241_altaposentesp.evento()
     codamb = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -129,6 +101,7 @@ class s2241altAposentEspinfoambSerializer(ModelSerializer):
 class s2241altInsalPeric(models.Model):
     s2241_insalperic = models.OneToOneField('s2241insalPeric',
         related_name='%(class)s_s2241_insalperic')
+    def evento(self): return self.s2241_insalperic.evento()
     dtaltcondicao = models.DateField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -157,6 +130,7 @@ class s2241altInsalPericSerializer(ModelSerializer):
 class s2241altInsalPericfatRisco(models.Model):
     s2241_altinsalperic_infoamb = models.ForeignKey('s2241altInsalPericinfoamb',
         related_name='%(class)s_s2241_altinsalperic_infoamb')
+    def evento(self): return self.s2241_altinsalperic_infoamb.evento()
     codfatris = models.TextField(max_length=10)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -185,6 +159,7 @@ class s2241altInsalPericfatRiscoSerializer(ModelSerializer):
 class s2241altInsalPericinfoamb(models.Model):
     s2241_altinsalperic = models.ForeignKey('s2241altInsalPeric',
         related_name='%(class)s_s2241_altinsalperic')
+    def evento(self): return self.s2241_altinsalperic.evento()
     codamb = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -213,6 +188,7 @@ class s2241altInsalPericinfoambSerializer(ModelSerializer):
 class s2241aposentEsp(models.Model):
     s2241_evtinsapo = models.OneToOneField('esocial.s2241evtInsApo',
         related_name='%(class)s_s2241_evtinsapo')
+    def evento(self): return self.s2241_evtinsapo.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -240,6 +216,7 @@ class s2241aposentEspSerializer(ModelSerializer):
 class s2241fimAposentEsp(models.Model):
     s2241_aposentesp = models.OneToOneField('s2241aposentEsp',
         related_name='%(class)s_s2241_aposentesp')
+    def evento(self): return self.s2241_aposentesp.evento()
     dtfimcondicao = models.DateField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -268,6 +245,7 @@ class s2241fimAposentEspSerializer(ModelSerializer):
 class s2241fimAposentEspinfoAmb(models.Model):
     s2241_fimaposentesp = models.ForeignKey('s2241fimAposentEsp',
         related_name='%(class)s_s2241_fimaposentesp')
+    def evento(self): return self.s2241_fimaposentesp.evento()
     codamb = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -296,6 +274,7 @@ class s2241fimAposentEspinfoAmbSerializer(ModelSerializer):
 class s2241fimInsalPeric(models.Model):
     s2241_insalperic = models.OneToOneField('s2241insalPeric',
         related_name='%(class)s_s2241_insalperic')
+    def evento(self): return self.s2241_insalperic.evento()
     dtfimcondicao = models.DateField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -324,6 +303,7 @@ class s2241fimInsalPericSerializer(ModelSerializer):
 class s2241fimInsalPericinfoAmb(models.Model):
     s2241_fiminsalperic = models.ForeignKey('s2241fimInsalPeric',
         related_name='%(class)s_s2241_fiminsalperic')
+    def evento(self): return self.s2241_fiminsalperic.evento()
     codamb = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -352,6 +332,7 @@ class s2241fimInsalPericinfoAmbSerializer(ModelSerializer):
 class s2241iniAposentEsp(models.Model):
     s2241_aposentesp = models.OneToOneField('s2241aposentEsp',
         related_name='%(class)s_s2241_aposentesp')
+    def evento(self): return self.s2241_aposentesp.evento()
     dtinicondicao = models.DateField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -380,6 +361,7 @@ class s2241iniAposentEspSerializer(ModelSerializer):
 class s2241iniAposentEspfatRisco(models.Model):
     s2241_iniaposentesp_infoamb = models.ForeignKey('s2241iniAposentEspinfoAmb',
         related_name='%(class)s_s2241_iniaposentesp_infoamb')
+    def evento(self): return self.s2241_iniaposentesp_infoamb.evento()
     codfatris = models.TextField(max_length=10)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -408,6 +390,7 @@ class s2241iniAposentEspfatRiscoSerializer(ModelSerializer):
 class s2241iniAposentEspinfoAmb(models.Model):
     s2241_iniaposentesp = models.ForeignKey('s2241iniAposentEsp',
         related_name='%(class)s_s2241_iniaposentesp')
+    def evento(self): return self.s2241_iniaposentesp.evento()
     codamb = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -436,6 +419,7 @@ class s2241iniAposentEspinfoAmbSerializer(ModelSerializer):
 class s2241iniInsalPeric(models.Model):
     s2241_insalperic = models.OneToOneField('s2241insalPeric',
         related_name='%(class)s_s2241_insalperic')
+    def evento(self): return self.s2241_insalperic.evento()
     dtinicondicao = models.DateField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -464,6 +448,7 @@ class s2241iniInsalPericSerializer(ModelSerializer):
 class s2241iniInsalPericfatRisco(models.Model):
     s2241_iniinsalperic_infoamb = models.ForeignKey('s2241iniInsalPericinfoAmb',
         related_name='%(class)s_s2241_iniinsalperic_infoamb')
+    def evento(self): return self.s2241_iniinsalperic_infoamb.evento()
     codfatris = models.TextField(max_length=10)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -492,6 +477,7 @@ class s2241iniInsalPericfatRiscoSerializer(ModelSerializer):
 class s2241iniInsalPericinfoAmb(models.Model):
     s2241_iniinsalperic = models.ForeignKey('s2241iniInsalPeric',
         related_name='%(class)s_s2241_iniinsalperic')
+    def evento(self): return self.s2241_iniinsalperic.evento()
     codamb = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -520,6 +506,7 @@ class s2241iniInsalPericinfoAmbSerializer(ModelSerializer):
 class s2241insalPeric(models.Model):
     s2241_evtinsapo = models.OneToOneField('esocial.s2241evtInsApo',
         related_name='%(class)s_s2241_evtinsapo')
+    def evento(self): return self.s2241_evtinsapo.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)

@@ -129,10 +129,10 @@ def verificar(request, hash):
             's1300_contribsind_lista': s1300_contribsind_lista,
         }
         if for_print == 2:
-            #return render_to_pdf('%s/s1300_evtcontrsindpatr_verificar.html' % s1300_evtcontrsindpatr.versao, context)
+
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(request=request,
-                                           template='%s/s1300_evtcontrsindpatr_verificar.html' % s1300_evtcontrsindpatr.versao,
+                                           template='s1300_evtcontrsindpatr_verificar.html',
                                            filename="s1300_evtcontrsindpatr.pdf",
                                            context=context,
                                            show_content_in_browser=True,
@@ -149,20 +149,20 @@ def verificar(request, hash):
             return response
         elif for_print == 3:
             from django.shortcuts import render_to_response
-            response =  render_to_response('%s/s1300_evtcontrsindpatr_verificar.html' % s1300_evtcontrsindpatr.versao, context)
+            response =  render_to_response('s1300_evtcontrsindpatr_verificar.html', context)
             filename = "%s.xls" % s1300_evtcontrsindpatr.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
         elif for_print == 4:
             from django.shortcuts import render_to_response
-            response =  render_to_response('%s/s1300_evtcontrsindpatr_verificar.html' % s1300_evtcontrsindpatr.versao, context)
+            response =  render_to_response('s1300_evtcontrsindpatr_verificar.html', context)
             filename = "%s.csv" % s1300_evtcontrsindpatr.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
         else:
-            return render(request, '%s/s1300_evtcontrsindpatr_verificar.html' % s1300_evtcontrsindpatr.versao, context)
+            return render(request, 's1300_evtcontrsindpatr_verificar.html', context)
     else:
         context = {
             'usuario': usuario,
@@ -179,23 +179,39 @@ def verificar(request, hash):
 
 
 
-def gerar_xml_s1300(s1300_evtcontrsindpatr_id, db_slug):
+def gerar_xml_s1300(s1300_evtcontrsindpatr_id, db_slug, versao=None):
+
     from django.template.loader import get_template
+
     if s1300_evtcontrsindpatr_id:
-        s1300_evtcontrsindpatr = get_object_or_404(s1300evtContrSindPatr.objects.using( db_slug ), excluido = False, id = s1300_evtcontrsindpatr_id)
+
+        s1300_evtcontrsindpatr = get_object_or_404(
+            s1300evtContrSindPatr.objects.using( db_slug ),
+            excluido = False,
+            id = s1300_evtcontrsindpatr_id)
+   
+        if not versao:
+
+            versao = s1300_evtcontrsindpatr.versao
+   
         s1300_evtcontrsindpatr_lista = s1300evtContrSindPatr.objects.using( db_slug ).filter(id=s1300_evtcontrsindpatr_id, excluido = False).all()
+   
 
         s1300_contribsind_lista = s1300contribSind.objects.using(db_slug).filter(s1300_evtcontrsindpatr_id__in = listar_ids(s1300_evtcontrsindpatr_lista) ).filter(excluido=False).all()
+   
         context = {
+            'versao': versao,
             'base': s1300_evtcontrsindpatr,
             's1300_evtcontrsindpatr_lista': s1300_evtcontrsindpatr_lista,
             's1300_evtcontrsindpatr_id': int(s1300_evtcontrsindpatr_id),
             's1300_evtcontrsindpatr': s1300_evtcontrsindpatr,
 
+
             's1300_contribsind_lista': s1300_contribsind_lista,
+
         }
-        #return render(request, 'xml/%s/s1300_evtcontrsindpatr.html' % s1300_evtcontrsindpatr.versao, context, content_type='text/xml')
-        t = get_template('%s/s1300_evtcontrsindpatr_xml.html' % s1300_evtcontrsindpatr.versao)
+   
+        t = get_template('s1300_evtcontrsindpatr.xml')
         xml = t.render(context)
         return xml
    
@@ -297,116 +313,139 @@ def recibo(request, hash, tipo):
 
 def gerar_xml_assinado(s1300_evtcontrsindpatr_id, db_slug):
     import os
-    from datetime import datetime
-    from django.http import HttpResponse
     from emensageriapro.funcoes_esocial import salvar_arquivo_esocial
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.funcoes_esocial import assinar_esocial
-    s1300_evtcontrsindpatr = get_object_or_404(s1300evtContrSindPatr.objects.using(db_slug), excluido=False, id=s1300_evtcontrsindpatr_id)
+
+    s1300_evtcontrsindpatr = get_object_or_404(
+        s1300evtContrSindPatr.objects.using(db_slug),
+        excluido=False,
+        id=s1300_evtcontrsindpatr_id)
+
     if s1300_evtcontrsindpatr.arquivo_original:
+
         xml = ler_arquivo(s1300_evtcontrsindpatr.arquivo)
+
     else:
+
         xml = gerar_xml_s1300(s1300_evtcontrsindpatr_id, db_slug)
+
     if 'Signature' in xml:
+
         xml_assinado = xml
+
     else:
+
         xml_assinado = assinar_esocial(xml)
+
     if s1300_evtcontrsindpatr.status in (0,1,2,11):
-        s1300evtContrSindPatr.objects.using(db_slug).filter(id=s1300_evtcontrsindpatr_id,excluido=False).update(status=10)
+
+        s1300evtContrSindPatr.objects.using(db_slug).\
+            filter(id=s1300_evtcontrsindpatr_id,excluido=False).update(status=10)
+
     arquivo = 'arquivos/Eventos/s1300_evtcontrsindpatr/%s.xml' % (s1300_evtcontrsindpatr.identidade)
+
     os.system('mkdir -p %s/arquivos/Eventos/s1300_evtcontrsindpatr/' % BASE_DIR)
+
     if not os.path.exists(BASE_DIR+arquivo):
+
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
+
     xml_assinado = ler_arquivo(arquivo)
+
     return xml_assinado
 
 
 
 @login_required
 def gerar_xml(request, hash):
-    import os
+
     from datetime import datetime
     from django.http import HttpResponse
-    from emensageriapro.funcoes_esocial import salvar_arquivo_esocial
-    from emensageriapro.settings import BASE_DIR
-    from emensageriapro.funcoes_esocial import assinar_esocial
-    hora_atual = str(datetime.now()).replace(' ', '_').replace('.', '_').replace(':', '_')
-    for_print = 0
     db_slug = 'default'
     dict_hash = get_hash_url( hash )
     s1300_evtcontrsindpatr_id = int(dict_hash['id'])
+
     if s1300_evtcontrsindpatr_id:
-        s1300_evtcontrsindpatr = get_object_or_404(s1300evtContrSindPatr.objects.using(db_slug), excluido=False, id=s1300_evtcontrsindpatr_id)
+   
         xml_assinado = gerar_xml_assinado(s1300_evtcontrsindpatr_id, db_slug)
         return HttpResponse(xml_assinado, content_type='text/xml')
-    else:
-        context = {
-            
-            
-            'data': datetime.datetime.now(),
-        }
-        return render(request, 'permissao_negada.html', context)
+
+    context = {'data': datetime.datetime.now(),}
+    return render(request, 'permissao_negada.html', context)
 
 
 
 @login_required
 def duplicar(request, hash):
-    from emensageriapro.settings import BASE_DIR
+
+    from emensageriapro.esocial.views.s1300_evtcontrsindpatr_importar import read_s1300_evtcontrsindpatr_string
+    from emensageriapro.esocial.views.s1300_evtcontrsindpatr import identidade_evento
+
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
     s1300_evtcontrsindpatr_id = int(dict_hash['id'])
-    if s1300_evtcontrsindpatr_id:
-        s1300_evtcontrsindpatr = get_object_or_404(s1300evtContrSindPatr.objects.using(db_slug), excluido=False,
-                                                    id=s1300_evtcontrsindpatr_id)
 
-        arquivo = 'arquivos/Eventos/s1300_evtcontrsindpatr/%s.xml' % s1300_evtcontrsindpatr.identidade
-        if not os.path.exists(BASE_DIR + '/' + arquivo):
-            xml = gerar_xml_assinado(s1300_evtcontrsindpatr_id, db_slug)
+    if s1300_evtcontrsindpatr_id:
    
-        texto = ler_arquivo('arquivos/Eventos/s1300_evtcontrsindpatr/%s.xml' % s1300_evtcontrsindpatr.identidade)
-        salvar_arquivo('arquivos/Eventos/s1300_evtcontrsindpatr/%s_duplicado_temp.xml' % s1300_evtcontrsindpatr.identidade, texto)
-        from emensageriapro.funcoes_importacao import importar_arquivo
-        dados = importar_arquivo('arquivos/Eventos/s1300_evtcontrsindpatr/%s_duplicado_temp.xml' % s1300_evtcontrsindpatr.identidade, request)
-        from emensageriapro.esocial.views.s1300_evtcontrsindpatr import identidade_evento
-        dent = identidade_evento(dados['identidade'], db_slug)
-        s1300evtContrSindPatr.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
+        s1300_evtcontrsindpatr = get_object_or_404(
+            s1300evtContrSindPatr.objects.using(db_slug),
+            excluido=False,
+            id=s1300_evtcontrsindpatr_id)
+
+        texto = gerar_xml_s1300(s1300_evtcontrsindpatr_id, db_slug, versao="|")
+        dados = read_s1300_evtcontrsindpatr_string({}, texto.encode('utf-8'), 0)
+        nova_identidade = identidade_evento(dados['id'], db_slug)
+
+        s1300evtContrSindPatr.objects.using(db_slug).filter(id=dados['id']).\
+            update(status=0, arquivo_original=0, arquivo='')
+
+        gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1300_evtcontrsindpatr.identidade),
+            's1300_evtcontrsindpatr', dados['id'], request.user.id, 1)
+
         messages.success(request, 'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['identidade'] )
-        usuario_id = request.user.id
-        gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (dent, s1300_evtcontrsindpatr.identidade),
-            's1300_evtcontrsindpatr', dados['identidade'], usuario_id, 1)
+        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('s1300_evtcontrsindpatr_salvar', hash=url_hash)
+
     messages.error(request, 'Erro ao duplicar evento!')
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
 
 
+
 @login_required
 def criar_alteracao(request, hash):
-    from emensageriapro.settings import BASE_DIR
+
+    from emensageriapro.esocial.views.s1300_evtcontrsindpatr_importar import read_s1300_evtcontrsindpatr_string
+    from emensageriapro.esocial.views.s1300_evtcontrsindpatr import identidade_evento
+
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
     s1300_evtcontrsindpatr_id = int(dict_hash['id'])
+
     if s1300_evtcontrsindpatr_id:
-        s1300_evtcontrsindpatr = get_object_or_404(s1300evtContrSindPatr.objects.using(db_slug), excluido=False,
-                                                    id=s1300_evtcontrsindpatr_id)
-        arquivo = 'arquivos/Eventos/s1300_evtcontrsindpatr/%s.xml' % s1300_evtcontrsindpatr.identidade
-        if not os.path.exists(BASE_DIR + '/' + arquivo):
-            xml = gerar_xml_assinado(s1300_evtcontrsindpatr_id, db_slug)
-        texto = ler_arquivo('arquivos/Eventos/s1300_evtcontrsindpatr/%s.xml' % s1300_evtcontrsindpatr.identidade)
+
+        s1300_evtcontrsindpatr = get_object_or_404(
+            s1300evtContrSindPatr.objects.using(db_slug),
+            excluido=False,
+            id=s1300_evtcontrsindpatr_id)
+   
+        texto = gerar_xml_s1300(s1300_evtcontrsindpatr_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
-        salvar_arquivo('arquivos/Eventos/s1300_evtcontrsindpatr/%s_alteracao_temp.xml' % s1300_evtcontrsindpatr.identidade, texto)
-        from emensageriapro.funcoes_importacao import importar_arquivo
-        dados = importar_arquivo('arquivos/Eventos/s1300_evtcontrsindpatr/%s_alteracao_temp.xml' % s1300_evtcontrsindpatr.identidade, request)
-        from emensageriapro.esocial.views.s1300_evtcontrsindpatr import identidade_evento
-        dent = identidade_evento(dados['identidade'], db_slug)
-        s1300evtContrSindPatr.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
-        usuario_id = request.user.id
-        gravar_auditoria(u'{}', u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (dent, s1300_evtcontrsindpatr.identidade),
-            's1300_evtcontrsindpatr', dados['identidade'], usuario_id, 1)
+        dados = read_s1300_evtcontrsindpatr_string({}, texto.encode('utf-8'), 0)
+        nova_identidade = identidade_evento(dados['id'], db_slug)
+   
+        s1300evtContrSindPatr.objects.using(db_slug).filter(id=dados['id']).\
+            update(status=0, arquivo_original=0, arquivo='')
+   
+        gravar_auditoria(u'{}',
+            u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1300_evtcontrsindpatr.identidade),
+            's1300_evtcontrsindpatr', dados['id'], request.user.id, 1)
+   
         messages.success(request, 'Evento de alteração criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['identidade'] )
+        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )   
         return redirect('s1300_evtcontrsindpatr_salvar', hash=url_hash)
+
     messages.error(request, 'Erro ao criar evento de alteração!')
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
@@ -415,31 +454,38 @@ def criar_alteracao(request, hash):
 
 @login_required
 def criar_exclusao(request, hash):
-    from emensageriapro.settings import BASE_DIR
+
+    from emensageriapro.esocial.views.s1300_evtcontrsindpatr_importar import read_s1300_evtcontrsindpatr_string
+    from emensageriapro.esocial.views.s1300_evtcontrsindpatr import identidade_evento
+
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
     s1300_evtcontrsindpatr_id = int(dict_hash['id'])
+
     if s1300_evtcontrsindpatr_id:
-        s1300_evtcontrsindpatr = get_object_or_404(s1300evtContrSindPatr.objects.using(db_slug), excluido=False,
-                                                    id=s1300_evtcontrsindpatr_id)
-        arquivo = 'arquivos/Eventos/s1300_evtcontrsindpatr/%s.xml' % s1300_evtcontrsindpatr.identidade
-        if not os.path.exists(BASE_DIR + '/' + arquivo):
-            xml = gerar_xml_assinado(s1300_evtcontrsindpatr_id, db_slug)
-        texto = ler_arquivo('arquivos/Eventos/s1300_evtcontrsindpatr/%s.xml' % s1300_evtcontrsindpatr.identidade)
+   
+        s1300_evtcontrsindpatr = get_object_or_404(
+            s1300evtContrSindPatr.objects.using(db_slug),
+            excluido=False,
+            id=s1300_evtcontrsindpatr_id)
+   
+        texto = gerar_xml_s1300(s1300_evtcontrsindpatr_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-        salvar_arquivo('arquivos/Eventos/s1300_evtcontrsindpatr/%s_exclusao_temp.xml' % s1300_evtcontrsindpatr.identidade, texto)
-        from emensageriapro.funcoes_importacao import importar_arquivo
-        dados = importar_arquivo('arquivos/Eventos/s1300_evtcontrsindpatr/%s_exclusao_temp.xml' % s1300_evtcontrsindpatr.identidade, request)
-        from emensageriapro.esocial.views.s1300_evtcontrsindpatr import identidade_evento
-        dent = identidade_evento(dados['identidade'], db_slug)
-        s1300evtContrSindPatr.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
-        usuario_id = request.user.id
-        gravar_auditoria(u'{}', u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (dent, s1300_evtcontrsindpatr.identidade),
-            's1300_evtcontrsindpatr', dados['identidade'], usuario_id, 1)
+        dados = read_s1300_evtcontrsindpatr_string({}, texto.encode('utf-8'), 0)
+        nova_identidade = identidade_evento(dados['id'], db_slug)
+   
+        s1300evtContrSindPatr.objects.using(db_slug).filter(id=dados['id']).\
+            update(status=0, arquivo_original=0, arquivo='')
+   
+        gravar_auditoria(u'{}',
+            u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1300_evtcontrsindpatr.identidade),
+            's1300_evtcontrsindpatr', dados['id'], request.user.id, 1)
+   
         messages.success(request, 'Evento de exclusão criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['identidade'] )
+        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('s1300_evtcontrsindpatr_salvar', hash=url_hash)
+
     messages.error(request, 'Erro ao criar evento de exclusão!')
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
@@ -448,22 +494,33 @@ def criar_exclusao(request, hash):
 
 @login_required
 def alterar_identidade(request, hash):
+
+    from emensageriapro.esocial.views.s1300_evtcontrsindpatr import identidade_evento
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
     s1300_evtcontrsindpatr_id = int(dict_hash['id'])
+
     if s1300_evtcontrsindpatr_id:
-        s1300_evtcontrsindpatr = get_object_or_404(s1300evtContrSindPatr.objects.using(db_slug), excluido=False,
-                                                    id=s1300_evtcontrsindpatr_id)
+   
+        s1300_evtcontrsindpatr = get_object_or_404(
+            s1300evtContrSindPatr.objects.using(db_slug),
+            excluido=False,
+            id=s1300_evtcontrsindpatr_id)
+
         if s1300_evtcontrsindpatr.status == 0:
-            from emensageriapro.esocial.views.s1300_evtcontrsindpatr import identidade_evento
-            dent = identidade_evento(s1300_evtcontrsindpatr_id, db_slug)
-            messages.success(request, 'Identidade do evento alterada com sucesso!')
+
+            nova_identidade = identidade_evento(s1300_evtcontrsindpatr_id, db_slug)
+            messages.success(request, 'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s1300_evtcontrsindpatr_id )
-            usuario_id = request.user.id
-            gravar_auditoria(u'{}', u'{"funcao": "Identidade do evento foi alterada"}',
-            's1300_evtcontrsindpatr', s1300_evtcontrsindpatr_id, usuario_id, 1)
+
+            gravar_auditoria(u'{}',
+                u'{"funcao": "Identidade do evento foi alterada"}',
+                's1300_evtcontrsindpatr', s1300_evtcontrsindpatr_id, request.user.id, 1)
+
             return redirect('s1300_evtcontrsindpatr_salvar', hash=url_hash)
+
         else:
+       
             messages.error(request, 'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
@@ -479,11 +536,14 @@ def abrir_evento_para_edicao(request, hash):
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
     s1300_evtcontrsindpatr_id = int(dict_hash['id'])
+
     if s1300_evtcontrsindpatr_id:
         s1300_evtcontrsindpatr = get_object_or_404(s1300evtContrSindPatr.objects.using(db_slug), excluido=False, id=s1300_evtcontrsindpatr_id)
+
         if s1300_evtcontrsindpatr.status in (0, 1, 2, 3, 4, 10, 11) or s1300_evtcontrsindpatr.processamento_codigo_resposta in (401,402):
             s1300evtContrSindPatr.objects.using(db_slug).filter(id=s1300_evtcontrsindpatr_id).update(status=0, arquivo_original=0)
             arquivo = 'arquivos/Eventos/s1300_evtcontrsindpatr/%s.xml' % (s1300_evtcontrsindpatr.identidade)
+
             if os.path.exists(BASE_DIR + '/' + arquivo):
                 from datetime import datetime
                 data_hora_atual = str(datetime.now()).replace(':','_').replace(' ','_').replace('.','_')
@@ -498,7 +558,7 @@ def abrir_evento_para_edicao(request, hash):
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s1300_evtcontrsindpatr_id )
             return redirect('s1300_evtcontrsindpatr_salvar', hash=url_hash)
         else:
-            messages.error(request, '''
+            messages.error(request, u'''
             Não foi possível abrir o evento para edição! Somente é possível
             abrir eventos com os seguintes status: "Cadastrado", "Importado", "Validado",
             "Duplicado", "Erro na validação", "XML Assinado" ou "XML Gerado"
@@ -524,19 +584,24 @@ def validar_evento_funcao(s1300_evtcontrsindpatr_id, db_slug):
             if s1300_evtcontrsindpatr.transmissor_lote_esocial.transmissor.verificar_predecessao:
                 quant = validar_precedencia('esocial', 's1300_evtcontrsindpatr', s1300_evtcontrsindpatr_id)
                 if quant <= 0:
-                    lista_validacoes.append('Precedência não foi enviada!')
+                    lista_validacoes.append(u'Precedência não foi enviada!')
                     precedencia = 0
                 else:
                     precedencia = 1
             else:
                 precedencia = 1
         else:
-            lista_validacoes.append('Precedência não foi enviada!')
+            lista_validacoes.append(u'Precedência não pode ser verificada. Vincule um transmissor para que este evento possa ser validado!')
             precedencia = 0
     else:
-        lista_validacoes.append('Precedência não foi enviada!')
+        lista_validacoes.append(u'Precedência não pode ser verificada. Cadastre um transmissor para este evento para que possa ser validado!')
         precedencia = 0
-    executar_sql("UPDATE public.s1300_evtcontrsindpatr SET validacao_precedencia=%s WHERE id=%s;" % (precedencia, s1300_evtcontrsindpatr_id), False)
+
+    s1300evtContrSindPatr.objects.using( db_slug ).\
+        filter(id=s1300_evtcontrsindpatr_id, excluido = False).\
+        update(validacao_precedencia=precedencia)
+
+    #executar_sql("UPDATE public.s1300_evtcontrsindpatr SET validacao_precedencia=%s WHERE id=%s;" % (precedencia, s1300_evtcontrsindpatr_id), False)
     #
     # Validações internas
     #
@@ -549,14 +614,8 @@ def validar_evento_funcao(s1300_evtcontrsindpatr_id, db_slug):
     if os.path.exists(BASE_DIR + '/' + arquivo):
         texto_xml = ler_arquivo(arquivo).replace("s:", "")
         versao = get_versao_evento(texto_xml)
-        if tipo == 'esocial':
-            if versao == 'v02_04_02':
-                from emensageriapro.esocial.validacoes.v02_04_02.s1300_evtcontrsindpatr import validacoes_s1300_evtcontrsindpatr
-                lista = validacoes_s1300_evtcontrsindpatr(arquivo)
-        elif tipo == 'efdreinf':
-            if versao == 'v1_03_02':
-                from emensageriapro.efdreinf.validacoes.v1_03_02.s1300_evtcontrsindpatr import validacoes_s1300_evtcontrsindpatr
-                lista = validacoes_s1300_evtcontrsindpatr(arquivo)
+        from emensageriapro.esocial.views.s1300_evtcontrsindpatr_validar import validacoes_s1300_evtcontrsindpatr
+        lista = validacoes_s1300_evtcontrsindpatr(arquivo)
     for a in lista:
         if a:
             lista_validacoes.append(a)
@@ -572,27 +631,52 @@ def validar_evento_funcao(s1300_evtcontrsindpatr_id, db_slug):
     #
     #
     if lista_validacoes:
-        executar_sql("UPDATE public.s1300_evtcontrsindpatr SET validacoes='%s', status=3 WHERE id=%s;" % ('<br>'.join(lista_validacoes).replace("'","''"), s1300_evtcontrsindpatr_id), False)
+
+        validacoes = '<br>'.join(lista_validacoes).replace("'","''")
+
+        s1300evtContrSindPatr.objects.using( db_slug ).\
+            filter(id=s1300_evtcontrsindpatr_id, excluido = False).\
+            update(validacoes=validacoes, status=3)
+
+        #executar_sql("UPDATE public.s1300_evtcontrsindpatr SET validacoes='%s', status=3 WHERE id=%s;" % ('<br>'.join(lista_validacoes).replace("'","''"), s1300_evtcontrsindpatr_id), False)
+
     else:
-        executar_sql("UPDATE public.s1300_evtcontrsindpatr SET validacoes='', status=4 WHERE id=%s;" % (s1300_evtcontrsindpatr_id), False)
+
+        s1300evtContrSindPatr.objects.using( db_slug ).\
+            filter(id=s1300_evtcontrsindpatr_id, excluido = False).\
+            update(validacoes='', status=4)
+
+        #executar_sql("UPDATE public.s1300_evtcontrsindpatr SET validacoes='', status=4 WHERE id=%s;" % (s1300_evtcontrsindpatr_id), False)
+
     return lista_validacoes
 
 
 
 @login_required
 def validar_evento(request, hash):
+
     from emensageriapro.funcoes_validacoes import VERSAO_ATUAL
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
     s1300_evtcontrsindpatr_id = int(dict_hash['id'])
+
     if s1300_evtcontrsindpatr_id:
-        lista_validacoes = []
-        s1300_evtcontrsindpatr = get_object_or_404(s1300evtContrSindPatr.objects.using(db_slug), excluido=False, id=s1300_evtcontrsindpatr_id)
+
+        s1300_evtcontrsindpatr = get_object_or_404(
+            s1300evtContrSindPatr.objects.using(db_slug),
+            excluido=False,
+            id=s1300_evtcontrsindpatr_id)
+
         if s1300_evtcontrsindpatr.versao in VERSAO_ATUAL:
-            lista_validacoes = validar_evento_funcao(s1300_evtcontrsindpatr_id, db_slug)
-            messages.success(request, 'Validações processadas com sucesso!')
+
+            validar_evento_funcao(s1300_evtcontrsindpatr_id, db_slug)
+            messages.success(request, u'Validações processadas com sucesso!')
+
         else:
-            messages.error(request, 'Não foi possível validar o evento pois a versão do evento não é compatível com a versão do sistema!')
+       
+            messages.error(request, u'Não foi possível validar o evento pois a versão do evento não é compatível com a versão do sistema!')
     else:
-        messages.error(request, 'Não foi possível validar o evento pois o mesmo não foi identificado!')
+
+        messages.error(request, u'Não foi possível validar o evento pois o mesmo não foi identificado!')
+
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])

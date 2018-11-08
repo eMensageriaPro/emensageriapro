@@ -107,8 +107,19 @@ def verificar(request, hash):
         s1207_evtbenprrp_lista = s1207evtBenPrRP.objects.using( db_slug ).filter(id=s1207_evtbenprrp_id, excluido = False).all()
    
 
+        s1207_procjudtrab_lista = s1207procJudTrab.objects.using(db_slug).filter(s1207_evtbenprrp_id__in = listar_ids(s1207_evtbenprrp_lista) ).filter(excluido=False).all()
         s1207_dmdev_lista = s1207dmDev.objects.using(db_slug).filter(s1207_evtbenprrp_id__in = listar_ids(s1207_evtbenprrp_lista) ).filter(excluido=False).all()
         s1207_itens_lista = s1207itens.objects.using(db_slug).filter(s1207_dmdev_id__in = listar_ids(s1207_dmdev_lista) ).filter(excluido=False).all()
+        s1207_infoperapur_lista = s1207infoPerApur.objects.using(db_slug).filter(s1207_dmdev_id__in = listar_ids(s1207_dmdev_lista) ).filter(excluido=False).all()
+        s1207_infoperapur_ideestab_lista = s1207infoPerApurideEstab.objects.using(db_slug).filter(s1207_infoperapur_id__in = listar_ids(s1207_infoperapur_lista) ).filter(excluido=False).all()
+        s1207_infoperapur_remunperapur_lista = s1207infoPerApurremunPerApur.objects.using(db_slug).filter(s1207_infoperapur_ideestab_id__in = listar_ids(s1207_infoperapur_ideestab_lista) ).filter(excluido=False).all()
+        s1207_infoperapur_itensremun_lista = s1207infoPerApuritensRemun.objects.using(db_slug).filter(s1207_infoperapur_remunperapur_id__in = listar_ids(s1207_infoperapur_remunperapur_lista) ).filter(excluido=False).all()
+        s1207_infoperant_lista = s1207infoPerAnt.objects.using(db_slug).filter(s1207_dmdev_id__in = listar_ids(s1207_dmdev_lista) ).filter(excluido=False).all()
+        s1207_infoperant_ideadc_lista = s1207infoPerAntideADC.objects.using(db_slug).filter(s1207_infoperant_id__in = listar_ids(s1207_infoperant_lista) ).filter(excluido=False).all()
+        s1207_infoperant_ideperiodo_lista = s1207infoPerAntidePeriodo.objects.using(db_slug).filter(s1207_infoperant_ideadc_id__in = listar_ids(s1207_infoperant_ideadc_lista) ).filter(excluido=False).all()
+        s1207_infoperant_ideestab_lista = s1207infoPerAntideEstab.objects.using(db_slug).filter(s1207_infoperant_ideperiodo_id__in = listar_ids(s1207_infoperant_ideperiodo_lista) ).filter(excluido=False).all()
+        s1207_infoperant_remunperant_lista = s1207infoPerAntremunPerAnt.objects.using(db_slug).filter(s1207_infoperant_ideestab_id__in = listar_ids(s1207_infoperant_ideestab_lista) ).filter(excluido=False).all()
+        s1207_infoperant_itensremun_lista = s1207infoPerAntitensRemun.objects.using(db_slug).filter(s1207_infoperant_remunperant_id__in = listar_ids(s1207_infoperant_remunperant_lista) ).filter(excluido=False).all()
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1207_evtbenprrp'
         context = {
@@ -127,14 +138,25 @@ def verificar(request, hash):
             'for_print': for_print,
             'hash': hash,
 
+            's1207_procjudtrab_lista': s1207_procjudtrab_lista,
             's1207_dmdev_lista': s1207_dmdev_lista,
             's1207_itens_lista': s1207_itens_lista,
+            's1207_infoperapur_lista': s1207_infoperapur_lista,
+            's1207_infoperapur_ideestab_lista': s1207_infoperapur_ideestab_lista,
+            's1207_infoperapur_remunperapur_lista': s1207_infoperapur_remunperapur_lista,
+            's1207_infoperapur_itensremun_lista': s1207_infoperapur_itensremun_lista,
+            's1207_infoperant_lista': s1207_infoperant_lista,
+            's1207_infoperant_ideadc_lista': s1207_infoperant_ideadc_lista,
+            's1207_infoperant_ideperiodo_lista': s1207_infoperant_ideperiodo_lista,
+            's1207_infoperant_ideestab_lista': s1207_infoperant_ideestab_lista,
+            's1207_infoperant_remunperant_lista': s1207_infoperant_remunperant_lista,
+            's1207_infoperant_itensremun_lista': s1207_infoperant_itensremun_lista,
         }
         if for_print == 2:
-            #return render_to_pdf('%s/s1207_evtbenprrp_verificar.html' % s1207_evtbenprrp.versao, context)
+
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(request=request,
-                                           template='%s/s1207_evtbenprrp_verificar.html' % s1207_evtbenprrp.versao,
+                                           template='s1207_evtbenprrp_verificar.html',
                                            filename="s1207_evtbenprrp.pdf",
                                            context=context,
                                            show_content_in_browser=True,
@@ -151,20 +173,20 @@ def verificar(request, hash):
             return response
         elif for_print == 3:
             from django.shortcuts import render_to_response
-            response =  render_to_response('%s/s1207_evtbenprrp_verificar.html' % s1207_evtbenprrp.versao, context)
+            response =  render_to_response('s1207_evtbenprrp_verificar.html', context)
             filename = "%s.xls" % s1207_evtbenprrp.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
         elif for_print == 4:
             from django.shortcuts import render_to_response
-            response =  render_to_response('%s/s1207_evtbenprrp_verificar.html' % s1207_evtbenprrp.versao, context)
+            response =  render_to_response('s1207_evtbenprrp_verificar.html', context)
             filename = "%s.csv" % s1207_evtbenprrp.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
         else:
-            return render(request, '%s/s1207_evtbenprrp_verificar.html' % s1207_evtbenprrp.versao, context)
+            return render(request, 's1207_evtbenprrp_verificar.html', context)
     else:
         context = {
             'usuario': usuario,
@@ -181,25 +203,63 @@ def verificar(request, hash):
 
 
 
-def gerar_xml_s1207(s1207_evtbenprrp_id, db_slug):
-    from django.template.loader import get_template
-    if s1207_evtbenprrp_id:
-        s1207_evtbenprrp = get_object_or_404(s1207evtBenPrRP.objects.using( db_slug ), excluido = False, id = s1207_evtbenprrp_id)
-        s1207_evtbenprrp_lista = s1207evtBenPrRP.objects.using( db_slug ).filter(id=s1207_evtbenprrp_id, excluido = False).all()
+def gerar_xml_s1207(s1207_evtbenprrp_id, db_slug, versao=None):
 
+    from django.template.loader import get_template
+
+    if s1207_evtbenprrp_id:
+
+        s1207_evtbenprrp = get_object_or_404(
+            s1207evtBenPrRP.objects.using( db_slug ),
+            excluido = False,
+            id = s1207_evtbenprrp_id)
+   
+        if not versao:
+
+            versao = s1207_evtbenprrp.versao
+   
+        s1207_evtbenprrp_lista = s1207evtBenPrRP.objects.using( db_slug ).filter(id=s1207_evtbenprrp_id, excluido = False).all()
+   
+
+        s1207_procjudtrab_lista = s1207procJudTrab.objects.using(db_slug).filter(s1207_evtbenprrp_id__in = listar_ids(s1207_evtbenprrp_lista) ).filter(excluido=False).all()
         s1207_dmdev_lista = s1207dmDev.objects.using(db_slug).filter(s1207_evtbenprrp_id__in = listar_ids(s1207_evtbenprrp_lista) ).filter(excluido=False).all()
         s1207_itens_lista = s1207itens.objects.using(db_slug).filter(s1207_dmdev_id__in = listar_ids(s1207_dmdev_lista) ).filter(excluido=False).all()
+        s1207_infoperapur_lista = s1207infoPerApur.objects.using(db_slug).filter(s1207_dmdev_id__in = listar_ids(s1207_dmdev_lista) ).filter(excluido=False).all()
+        s1207_infoperapur_ideestab_lista = s1207infoPerApurideEstab.objects.using(db_slug).filter(s1207_infoperapur_id__in = listar_ids(s1207_infoperapur_lista) ).filter(excluido=False).all()
+        s1207_infoperapur_remunperapur_lista = s1207infoPerApurremunPerApur.objects.using(db_slug).filter(s1207_infoperapur_ideestab_id__in = listar_ids(s1207_infoperapur_ideestab_lista) ).filter(excluido=False).all()
+        s1207_infoperapur_itensremun_lista = s1207infoPerApuritensRemun.objects.using(db_slug).filter(s1207_infoperapur_remunperapur_id__in = listar_ids(s1207_infoperapur_remunperapur_lista) ).filter(excluido=False).all()
+        s1207_infoperant_lista = s1207infoPerAnt.objects.using(db_slug).filter(s1207_dmdev_id__in = listar_ids(s1207_dmdev_lista) ).filter(excluido=False).all()
+        s1207_infoperant_ideadc_lista = s1207infoPerAntideADC.objects.using(db_slug).filter(s1207_infoperant_id__in = listar_ids(s1207_infoperant_lista) ).filter(excluido=False).all()
+        s1207_infoperant_ideperiodo_lista = s1207infoPerAntidePeriodo.objects.using(db_slug).filter(s1207_infoperant_ideadc_id__in = listar_ids(s1207_infoperant_ideadc_lista) ).filter(excluido=False).all()
+        s1207_infoperant_ideestab_lista = s1207infoPerAntideEstab.objects.using(db_slug).filter(s1207_infoperant_ideperiodo_id__in = listar_ids(s1207_infoperant_ideperiodo_lista) ).filter(excluido=False).all()
+        s1207_infoperant_remunperant_lista = s1207infoPerAntremunPerAnt.objects.using(db_slug).filter(s1207_infoperant_ideestab_id__in = listar_ids(s1207_infoperant_ideestab_lista) ).filter(excluido=False).all()
+        s1207_infoperant_itensremun_lista = s1207infoPerAntitensRemun.objects.using(db_slug).filter(s1207_infoperant_remunperant_id__in = listar_ids(s1207_infoperant_remunperant_lista) ).filter(excluido=False).all()
+   
         context = {
+            'versao': versao,
             'base': s1207_evtbenprrp,
             's1207_evtbenprrp_lista': s1207_evtbenprrp_lista,
             's1207_evtbenprrp_id': int(s1207_evtbenprrp_id),
             's1207_evtbenprrp': s1207_evtbenprrp,
 
+
+            's1207_procjudtrab_lista': s1207_procjudtrab_lista,
             's1207_dmdev_lista': s1207_dmdev_lista,
             's1207_itens_lista': s1207_itens_lista,
+            's1207_infoperapur_lista': s1207_infoperapur_lista,
+            's1207_infoperapur_ideestab_lista': s1207_infoperapur_ideestab_lista,
+            's1207_infoperapur_remunperapur_lista': s1207_infoperapur_remunperapur_lista,
+            's1207_infoperapur_itensremun_lista': s1207_infoperapur_itensremun_lista,
+            's1207_infoperant_lista': s1207_infoperant_lista,
+            's1207_infoperant_ideadc_lista': s1207_infoperant_ideadc_lista,
+            's1207_infoperant_ideperiodo_lista': s1207_infoperant_ideperiodo_lista,
+            's1207_infoperant_ideestab_lista': s1207_infoperant_ideestab_lista,
+            's1207_infoperant_remunperant_lista': s1207_infoperant_remunperant_lista,
+            's1207_infoperant_itensremun_lista': s1207_infoperant_itensremun_lista,
+
         }
-        #return render(request, 'xml/%s/s1207_evtbenprrp.html' % s1207_evtbenprrp.versao, context, content_type='text/xml')
-        t = get_template('%s/s1207_evtbenprrp_xml.html' % s1207_evtbenprrp.versao)
+   
+        t = get_template('s1207_evtbenprrp.xml')
         xml = t.render(context)
         return xml
    
@@ -301,116 +361,139 @@ def recibo(request, hash, tipo):
 
 def gerar_xml_assinado(s1207_evtbenprrp_id, db_slug):
     import os
-    from datetime import datetime
-    from django.http import HttpResponse
     from emensageriapro.funcoes_esocial import salvar_arquivo_esocial
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.funcoes_esocial import assinar_esocial
-    s1207_evtbenprrp = get_object_or_404(s1207evtBenPrRP.objects.using(db_slug), excluido=False, id=s1207_evtbenprrp_id)
+
+    s1207_evtbenprrp = get_object_or_404(
+        s1207evtBenPrRP.objects.using(db_slug),
+        excluido=False,
+        id=s1207_evtbenprrp_id)
+
     if s1207_evtbenprrp.arquivo_original:
+
         xml = ler_arquivo(s1207_evtbenprrp.arquivo)
+
     else:
+
         xml = gerar_xml_s1207(s1207_evtbenprrp_id, db_slug)
+
     if 'Signature' in xml:
+
         xml_assinado = xml
+
     else:
+
         xml_assinado = assinar_esocial(xml)
+
     if s1207_evtbenprrp.status in (0,1,2,11):
-        s1207evtBenPrRP.objects.using(db_slug).filter(id=s1207_evtbenprrp_id,excluido=False).update(status=10)
+
+        s1207evtBenPrRP.objects.using(db_slug).\
+            filter(id=s1207_evtbenprrp_id,excluido=False).update(status=10)
+
     arquivo = 'arquivos/Eventos/s1207_evtbenprrp/%s.xml' % (s1207_evtbenprrp.identidade)
+
     os.system('mkdir -p %s/arquivos/Eventos/s1207_evtbenprrp/' % BASE_DIR)
+
     if not os.path.exists(BASE_DIR+arquivo):
+
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
+
     xml_assinado = ler_arquivo(arquivo)
+
     return xml_assinado
 
 
 
 @login_required
 def gerar_xml(request, hash):
-    import os
+
     from datetime import datetime
     from django.http import HttpResponse
-    from emensageriapro.funcoes_esocial import salvar_arquivo_esocial
-    from emensageriapro.settings import BASE_DIR
-    from emensageriapro.funcoes_esocial import assinar_esocial
-    hora_atual = str(datetime.now()).replace(' ', '_').replace('.', '_').replace(':', '_')
-    for_print = 0
     db_slug = 'default'
     dict_hash = get_hash_url( hash )
     s1207_evtbenprrp_id = int(dict_hash['id'])
+
     if s1207_evtbenprrp_id:
-        s1207_evtbenprrp = get_object_or_404(s1207evtBenPrRP.objects.using(db_slug), excluido=False, id=s1207_evtbenprrp_id)
+   
         xml_assinado = gerar_xml_assinado(s1207_evtbenprrp_id, db_slug)
         return HttpResponse(xml_assinado, content_type='text/xml')
-    else:
-        context = {
-            
-            
-            'data': datetime.datetime.now(),
-        }
-        return render(request, 'permissao_negada.html', context)
+
+    context = {'data': datetime.datetime.now(),}
+    return render(request, 'permissao_negada.html', context)
 
 
 
 @login_required
 def duplicar(request, hash):
-    from emensageriapro.settings import BASE_DIR
+
+    from emensageriapro.esocial.views.s1207_evtbenprrp_importar import read_s1207_evtbenprrp_string
+    from emensageriapro.esocial.views.s1207_evtbenprrp import identidade_evento
+
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
     s1207_evtbenprrp_id = int(dict_hash['id'])
-    if s1207_evtbenprrp_id:
-        s1207_evtbenprrp = get_object_or_404(s1207evtBenPrRP.objects.using(db_slug), excluido=False,
-                                                    id=s1207_evtbenprrp_id)
 
-        arquivo = 'arquivos/Eventos/s1207_evtbenprrp/%s.xml' % s1207_evtbenprrp.identidade
-        if not os.path.exists(BASE_DIR + '/' + arquivo):
-            xml = gerar_xml_assinado(s1207_evtbenprrp_id, db_slug)
+    if s1207_evtbenprrp_id:
    
-        texto = ler_arquivo('arquivos/Eventos/s1207_evtbenprrp/%s.xml' % s1207_evtbenprrp.identidade)
-        salvar_arquivo('arquivos/Eventos/s1207_evtbenprrp/%s_duplicado_temp.xml' % s1207_evtbenprrp.identidade, texto)
-        from emensageriapro.funcoes_importacao import importar_arquivo
-        dados = importar_arquivo('arquivos/Eventos/s1207_evtbenprrp/%s_duplicado_temp.xml' % s1207_evtbenprrp.identidade, request)
-        from emensageriapro.esocial.views.s1207_evtbenprrp import identidade_evento
-        dent = identidade_evento(dados['identidade'], db_slug)
-        s1207evtBenPrRP.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
+        s1207_evtbenprrp = get_object_or_404(
+            s1207evtBenPrRP.objects.using(db_slug),
+            excluido=False,
+            id=s1207_evtbenprrp_id)
+
+        texto = gerar_xml_s1207(s1207_evtbenprrp_id, db_slug, versao="|")
+        dados = read_s1207_evtbenprrp_string({}, texto.encode('utf-8'), 0)
+        nova_identidade = identidade_evento(dados['id'], db_slug)
+
+        s1207evtBenPrRP.objects.using(db_slug).filter(id=dados['id']).\
+            update(status=0, arquivo_original=0, arquivo='')
+
+        gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1207_evtbenprrp.identidade),
+            's1207_evtbenprrp', dados['id'], request.user.id, 1)
+
         messages.success(request, 'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['identidade'] )
-        usuario_id = request.user.id
-        gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (dent, s1207_evtbenprrp.identidade),
-            's1207_evtbenprrp', dados['identidade'], usuario_id, 1)
+        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('s1207_evtbenprrp_salvar', hash=url_hash)
+
     messages.error(request, 'Erro ao duplicar evento!')
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
 
 
+
 @login_required
 def criar_alteracao(request, hash):
-    from emensageriapro.settings import BASE_DIR
+
+    from emensageriapro.esocial.views.s1207_evtbenprrp_importar import read_s1207_evtbenprrp_string
+    from emensageriapro.esocial.views.s1207_evtbenprrp import identidade_evento
+
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
     s1207_evtbenprrp_id = int(dict_hash['id'])
+
     if s1207_evtbenprrp_id:
-        s1207_evtbenprrp = get_object_or_404(s1207evtBenPrRP.objects.using(db_slug), excluido=False,
-                                                    id=s1207_evtbenprrp_id)
-        arquivo = 'arquivos/Eventos/s1207_evtbenprrp/%s.xml' % s1207_evtbenprrp.identidade
-        if not os.path.exists(BASE_DIR + '/' + arquivo):
-            xml = gerar_xml_assinado(s1207_evtbenprrp_id, db_slug)
-        texto = ler_arquivo('arquivos/Eventos/s1207_evtbenprrp/%s.xml' % s1207_evtbenprrp.identidade)
+
+        s1207_evtbenprrp = get_object_or_404(
+            s1207evtBenPrRP.objects.using(db_slug),
+            excluido=False,
+            id=s1207_evtbenprrp_id)
+   
+        texto = gerar_xml_s1207(s1207_evtbenprrp_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
-        salvar_arquivo('arquivos/Eventos/s1207_evtbenprrp/%s_alteracao_temp.xml' % s1207_evtbenprrp.identidade, texto)
-        from emensageriapro.funcoes_importacao import importar_arquivo
-        dados = importar_arquivo('arquivos/Eventos/s1207_evtbenprrp/%s_alteracao_temp.xml' % s1207_evtbenprrp.identidade, request)
-        from emensageriapro.esocial.views.s1207_evtbenprrp import identidade_evento
-        dent = identidade_evento(dados['identidade'], db_slug)
-        s1207evtBenPrRP.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
-        usuario_id = request.user.id
-        gravar_auditoria(u'{}', u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (dent, s1207_evtbenprrp.identidade),
-            's1207_evtbenprrp', dados['identidade'], usuario_id, 1)
+        dados = read_s1207_evtbenprrp_string({}, texto.encode('utf-8'), 0)
+        nova_identidade = identidade_evento(dados['id'], db_slug)
+   
+        s1207evtBenPrRP.objects.using(db_slug).filter(id=dados['id']).\
+            update(status=0, arquivo_original=0, arquivo='')
+   
+        gravar_auditoria(u'{}',
+            u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1207_evtbenprrp.identidade),
+            's1207_evtbenprrp', dados['id'], request.user.id, 1)
+   
         messages.success(request, 'Evento de alteração criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['identidade'] )
+        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )   
         return redirect('s1207_evtbenprrp_salvar', hash=url_hash)
+
     messages.error(request, 'Erro ao criar evento de alteração!')
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
@@ -419,31 +502,38 @@ def criar_alteracao(request, hash):
 
 @login_required
 def criar_exclusao(request, hash):
-    from emensageriapro.settings import BASE_DIR
+
+    from emensageriapro.esocial.views.s1207_evtbenprrp_importar import read_s1207_evtbenprrp_string
+    from emensageriapro.esocial.views.s1207_evtbenprrp import identidade_evento
+
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
     s1207_evtbenprrp_id = int(dict_hash['id'])
+
     if s1207_evtbenprrp_id:
-        s1207_evtbenprrp = get_object_or_404(s1207evtBenPrRP.objects.using(db_slug), excluido=False,
-                                                    id=s1207_evtbenprrp_id)
-        arquivo = 'arquivos/Eventos/s1207_evtbenprrp/%s.xml' % s1207_evtbenprrp.identidade
-        if not os.path.exists(BASE_DIR + '/' + arquivo):
-            xml = gerar_xml_assinado(s1207_evtbenprrp_id, db_slug)
-        texto = ler_arquivo('arquivos/Eventos/s1207_evtbenprrp/%s.xml' % s1207_evtbenprrp.identidade)
+   
+        s1207_evtbenprrp = get_object_or_404(
+            s1207evtBenPrRP.objects.using(db_slug),
+            excluido=False,
+            id=s1207_evtbenprrp_id)
+   
+        texto = gerar_xml_s1207(s1207_evtbenprrp_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-        salvar_arquivo('arquivos/Eventos/s1207_evtbenprrp/%s_exclusao_temp.xml' % s1207_evtbenprrp.identidade, texto)
-        from emensageriapro.funcoes_importacao import importar_arquivo
-        dados = importar_arquivo('arquivos/Eventos/s1207_evtbenprrp/%s_exclusao_temp.xml' % s1207_evtbenprrp.identidade, request)
-        from emensageriapro.esocial.views.s1207_evtbenprrp import identidade_evento
-        dent = identidade_evento(dados['identidade'], db_slug)
-        s1207evtBenPrRP.objects.using(db_slug).filter(id=dados['identidade']).update(status=0, arquivo_original=0, arquivo='')
-        usuario_id = request.user.id
-        gravar_auditoria(u'{}', u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (dent, s1207_evtbenprrp.identidade),
-            's1207_evtbenprrp', dados['identidade'], usuario_id, 1)
+        dados = read_s1207_evtbenprrp_string({}, texto.encode('utf-8'), 0)
+        nova_identidade = identidade_evento(dados['id'], db_slug)
+   
+        s1207evtBenPrRP.objects.using(db_slug).filter(id=dados['id']).\
+            update(status=0, arquivo_original=0, arquivo='')
+   
+        gravar_auditoria(u'{}',
+            u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1207_evtbenprrp.identidade),
+            's1207_evtbenprrp', dados['id'], request.user.id, 1)
+   
         messages.success(request, 'Evento de exclusão criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['identidade'] )
+        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('s1207_evtbenprrp_salvar', hash=url_hash)
+
     messages.error(request, 'Erro ao criar evento de exclusão!')
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
@@ -452,22 +542,33 @@ def criar_exclusao(request, hash):
 
 @login_required
 def alterar_identidade(request, hash):
+
+    from emensageriapro.esocial.views.s1207_evtbenprrp import identidade_evento
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
     s1207_evtbenprrp_id = int(dict_hash['id'])
+
     if s1207_evtbenprrp_id:
-        s1207_evtbenprrp = get_object_or_404(s1207evtBenPrRP.objects.using(db_slug), excluido=False,
-                                                    id=s1207_evtbenprrp_id)
+   
+        s1207_evtbenprrp = get_object_or_404(
+            s1207evtBenPrRP.objects.using(db_slug),
+            excluido=False,
+            id=s1207_evtbenprrp_id)
+
         if s1207_evtbenprrp.status == 0:
-            from emensageriapro.esocial.views.s1207_evtbenprrp import identidade_evento
-            dent = identidade_evento(s1207_evtbenprrp_id, db_slug)
-            messages.success(request, 'Identidade do evento alterada com sucesso!')
+
+            nova_identidade = identidade_evento(s1207_evtbenprrp_id, db_slug)
+            messages.success(request, 'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s1207_evtbenprrp_id )
-            usuario_id = request.user.id
-            gravar_auditoria(u'{}', u'{"funcao": "Identidade do evento foi alterada"}',
-            's1207_evtbenprrp', s1207_evtbenprrp_id, usuario_id, 1)
+
+            gravar_auditoria(u'{}',
+                u'{"funcao": "Identidade do evento foi alterada"}',
+                's1207_evtbenprrp', s1207_evtbenprrp_id, request.user.id, 1)
+
             return redirect('s1207_evtbenprrp_salvar', hash=url_hash)
+
         else:
+       
             messages.error(request, 'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
@@ -483,11 +584,14 @@ def abrir_evento_para_edicao(request, hash):
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
     s1207_evtbenprrp_id = int(dict_hash['id'])
+
     if s1207_evtbenprrp_id:
         s1207_evtbenprrp = get_object_or_404(s1207evtBenPrRP.objects.using(db_slug), excluido=False, id=s1207_evtbenprrp_id)
+
         if s1207_evtbenprrp.status in (0, 1, 2, 3, 4, 10, 11) or s1207_evtbenprrp.processamento_codigo_resposta in (401,402):
             s1207evtBenPrRP.objects.using(db_slug).filter(id=s1207_evtbenprrp_id).update(status=0, arquivo_original=0)
             arquivo = 'arquivos/Eventos/s1207_evtbenprrp/%s.xml' % (s1207_evtbenprrp.identidade)
+
             if os.path.exists(BASE_DIR + '/' + arquivo):
                 from datetime import datetime
                 data_hora_atual = str(datetime.now()).replace(':','_').replace(' ','_').replace('.','_')
@@ -502,7 +606,7 @@ def abrir_evento_para_edicao(request, hash):
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s1207_evtbenprrp_id )
             return redirect('s1207_evtbenprrp_salvar', hash=url_hash)
         else:
-            messages.error(request, '''
+            messages.error(request, u'''
             Não foi possível abrir o evento para edição! Somente é possível
             abrir eventos com os seguintes status: "Cadastrado", "Importado", "Validado",
             "Duplicado", "Erro na validação", "XML Assinado" ou "XML Gerado"
@@ -528,19 +632,24 @@ def validar_evento_funcao(s1207_evtbenprrp_id, db_slug):
             if s1207_evtbenprrp.transmissor_lote_esocial.transmissor.verificar_predecessao:
                 quant = validar_precedencia('esocial', 's1207_evtbenprrp', s1207_evtbenprrp_id)
                 if quant <= 0:
-                    lista_validacoes.append('Precedência não foi enviada!')
+                    lista_validacoes.append(u'Precedência não foi enviada!')
                     precedencia = 0
                 else:
                     precedencia = 1
             else:
                 precedencia = 1
         else:
-            lista_validacoes.append('Precedência não foi enviada!')
+            lista_validacoes.append(u'Precedência não pode ser verificada. Vincule um transmissor para que este evento possa ser validado!')
             precedencia = 0
     else:
-        lista_validacoes.append('Precedência não foi enviada!')
+        lista_validacoes.append(u'Precedência não pode ser verificada. Cadastre um transmissor para este evento para que possa ser validado!')
         precedencia = 0
-    executar_sql("UPDATE public.s1207_evtbenprrp SET validacao_precedencia=%s WHERE id=%s;" % (precedencia, s1207_evtbenprrp_id), False)
+
+    s1207evtBenPrRP.objects.using( db_slug ).\
+        filter(id=s1207_evtbenprrp_id, excluido = False).\
+        update(validacao_precedencia=precedencia)
+
+    #executar_sql("UPDATE public.s1207_evtbenprrp SET validacao_precedencia=%s WHERE id=%s;" % (precedencia, s1207_evtbenprrp_id), False)
     #
     # Validações internas
     #
@@ -553,14 +662,8 @@ def validar_evento_funcao(s1207_evtbenprrp_id, db_slug):
     if os.path.exists(BASE_DIR + '/' + arquivo):
         texto_xml = ler_arquivo(arquivo).replace("s:", "")
         versao = get_versao_evento(texto_xml)
-        if tipo == 'esocial':
-            if versao == 'v02_04_02':
-                from emensageriapro.esocial.validacoes.v02_04_02.s1207_evtbenprrp import validacoes_s1207_evtbenprrp
-                lista = validacoes_s1207_evtbenprrp(arquivo)
-        elif tipo == 'efdreinf':
-            if versao == 'v1_03_02':
-                from emensageriapro.efdreinf.validacoes.v1_03_02.s1207_evtbenprrp import validacoes_s1207_evtbenprrp
-                lista = validacoes_s1207_evtbenprrp(arquivo)
+        from emensageriapro.esocial.views.s1207_evtbenprrp_validar import validacoes_s1207_evtbenprrp
+        lista = validacoes_s1207_evtbenprrp(arquivo)
     for a in lista:
         if a:
             lista_validacoes.append(a)
@@ -576,27 +679,52 @@ def validar_evento_funcao(s1207_evtbenprrp_id, db_slug):
     #
     #
     if lista_validacoes:
-        executar_sql("UPDATE public.s1207_evtbenprrp SET validacoes='%s', status=3 WHERE id=%s;" % ('<br>'.join(lista_validacoes).replace("'","''"), s1207_evtbenprrp_id), False)
+
+        validacoes = '<br>'.join(lista_validacoes).replace("'","''")
+
+        s1207evtBenPrRP.objects.using( db_slug ).\
+            filter(id=s1207_evtbenprrp_id, excluido = False).\
+            update(validacoes=validacoes, status=3)
+
+        #executar_sql("UPDATE public.s1207_evtbenprrp SET validacoes='%s', status=3 WHERE id=%s;" % ('<br>'.join(lista_validacoes).replace("'","''"), s1207_evtbenprrp_id), False)
+
     else:
-        executar_sql("UPDATE public.s1207_evtbenprrp SET validacoes='', status=4 WHERE id=%s;" % (s1207_evtbenprrp_id), False)
+
+        s1207evtBenPrRP.objects.using( db_slug ).\
+            filter(id=s1207_evtbenprrp_id, excluido = False).\
+            update(validacoes='', status=4)
+
+        #executar_sql("UPDATE public.s1207_evtbenprrp SET validacoes='', status=4 WHERE id=%s;" % (s1207_evtbenprrp_id), False)
+
     return lista_validacoes
 
 
 
 @login_required
 def validar_evento(request, hash):
+
     from emensageriapro.funcoes_validacoes import VERSAO_ATUAL
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
     s1207_evtbenprrp_id = int(dict_hash['id'])
+
     if s1207_evtbenprrp_id:
-        lista_validacoes = []
-        s1207_evtbenprrp = get_object_or_404(s1207evtBenPrRP.objects.using(db_slug), excluido=False, id=s1207_evtbenprrp_id)
+
+        s1207_evtbenprrp = get_object_or_404(
+            s1207evtBenPrRP.objects.using(db_slug),
+            excluido=False,
+            id=s1207_evtbenprrp_id)
+
         if s1207_evtbenprrp.versao in VERSAO_ATUAL:
-            lista_validacoes = validar_evento_funcao(s1207_evtbenprrp_id, db_slug)
-            messages.success(request, 'Validações processadas com sucesso!')
+
+            validar_evento_funcao(s1207_evtbenprrp_id, db_slug)
+            messages.success(request, u'Validações processadas com sucesso!')
+
         else:
-            messages.error(request, 'Não foi possível validar o evento pois a versão do evento não é compatível com a versão do sistema!')
+       
+            messages.error(request, u'Não foi possível validar o evento pois a versão do evento não é compatível com a versão do sistema!')
     else:
-        messages.error(request, 'Não foi possível validar o evento pois o mesmo não foi identificado!')
+
+        messages.error(request, u'Não foi possível validar o evento pois o mesmo não foi identificado!')
+
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])

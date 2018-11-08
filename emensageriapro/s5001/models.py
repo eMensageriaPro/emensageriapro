@@ -1,37 +1,6 @@
 #coding: utf-8
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 from django.db import models
 from django.db.models import Sum
@@ -99,6 +68,7 @@ CHOICES_S5001_TPVALOR = (
 class s5001calcTerc(models.Model):
     s5001_infocategincid = models.ForeignKey('s5001infoCategIncid',
         related_name='%(class)s_s5001_infocategincid')
+    def evento(self): return self.s5001_infocategincid.evento()
     tpcr = models.IntegerField(choices=CHOICES_S5001_TPCR)
     vrcssegterc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrdescterc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -129,6 +99,7 @@ class s5001calcTercSerializer(ModelSerializer):
 class s5001ideEstabLot(models.Model):
     s5001_infocp = models.ForeignKey('s5001infoCp',
         related_name='%(class)s_s5001_infocp')
+    def evento(self): return self.s5001_infocp.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S5001_TPINSC)
     nrinsc = models.CharField(max_length=15)
     codlotacao = models.CharField(max_length=30)
@@ -159,6 +130,7 @@ class s5001ideEstabLotSerializer(ModelSerializer):
 class s5001infoBaseCS(models.Model):
     s5001_infocategincid = models.ForeignKey('s5001infoCategIncid',
         related_name='%(class)s_s5001_infocategincid')
+    def evento(self): return self.s5001_infocategincid.evento()
     ind13 = models.IntegerField(choices=CHOICES_S5001_IND13)
     tpvalor = models.IntegerField(choices=CHOICES_S5001_TPVALOR)
     valor = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -189,6 +161,7 @@ class s5001infoBaseCSSerializer(ModelSerializer):
 class s5001infoCategIncid(models.Model):
     s5001_ideestablot = models.ForeignKey('s5001ideEstabLot',
         related_name='%(class)s_s5001_ideestablot')
+    def evento(self): return self.s5001_ideestablot.evento()
     matricula = models.CharField(max_length=30, blank=True, null=True)
     codcateg = models.TextField(max_length=3)
     indsimples = models.IntegerField(choices=CHOICES_S5001_INDSIMPLES, blank=True, null=True)
@@ -219,6 +192,7 @@ class s5001infoCategIncidSerializer(ModelSerializer):
 class s5001infoCp(models.Model):
     s5001_evtbasestrab = models.OneToOneField('esocial.s5001evtBasesTrab',
         related_name='%(class)s_s5001_evtbasestrab')
+    def evento(self): return self.s5001_evtbasestrab.evento()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -246,6 +220,7 @@ class s5001infoCpSerializer(ModelSerializer):
 class s5001infoCpCalc(models.Model):
     s5001_evtbasestrab = models.ForeignKey('esocial.s5001evtBasesTrab',
         related_name='%(class)s_s5001_evtbasestrab')
+    def evento(self): return self.s5001_evtbasestrab.evento()
     tpcr = models.IntegerField(choices=CHOICES_S5001_TPCR)
     vrcpseg = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrdescseg = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -276,6 +251,7 @@ class s5001infoCpCalcSerializer(ModelSerializer):
 class s5001procJudTrab(models.Model):
     s5001_evtbasestrab = models.ForeignKey('esocial.s5001evtBasesTrab',
         related_name='%(class)s_s5001_evtbasestrab')
+    def evento(self): return self.s5001_evtbasestrab.evento()
     nrprocjud = models.CharField(max_length=20)
     codsusp = models.IntegerField()
     criado_em = models.DateTimeField(blank=True)

@@ -4,14 +4,14 @@ from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from emensageriapro.mensageiro.views import transmissor_lote_efdreinf_comunicacao as transmissor_lote_efdreinf_comunicacao_views
-from emensageriapro.mensageiro.views import automatizacao as automatizacao_views
+from emensageriapro.mensageiro.views import mapa_processamento as mapa_processamento_views
+from emensageriapro.mensageiro.views import arquivos_recuperacao as arquivos_recuperacao_views
 from emensageriapro.mensageiro.views import relatorios_imprimir as relatorios_imprimir_views
 from emensageriapro.mensageiro.views import transmissor_lote_esocial_comunicacao as transmissor_lote_esocial_comunicacao_views
 from emensageriapro.mensageiro.views import importacoes as importacoes_views
-from emensageriapro.mensageiro.views import mapa_processamento as mapa_processamento_views
+from emensageriapro.mensageiro.views import automatizacao as automatizacao_views
 from emensageriapro.mensageiro.views import processar_arquivos as processar_arquivos_views
-from emensageriapro.mensageiro.views import arquivos_recuperacao as arquivos_recuperacao_views
+from emensageriapro.mensageiro.views import transmissor_lote_efdreinf_comunicacao as transmissor_lote_efdreinf_comunicacao_views
 from emensageriapro.mensageiro.views import transmissor_esocial as transmissor_esocial_views
 from emensageriapro.mensageiro.views import transmissor_efdreinf as transmissor_efdreinf_views
 from emensageriapro.mensageiro.views import relatorios as relatorios_views
@@ -31,69 +31,25 @@ from emensageriapro.mensageiro.views import retornos_eventos_intervalos as retor
 
 
 
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 
 urlpatterns = [
 
-url(r'^scripts/enviar-lote-efdreinf/(?P<chave>.*)/(?P<transmissor_lote_efdreinf_id>\d+)/$',
-        transmissor_lote_efdreinf_comunicacao_views.scripts_enviar_lote,
-        name='scripts_enviar_efdreinf_lote'),
+url(r'^mapa-processamento/(?P<hash>.*)/$',
+        mapa_processamento_views.listar,
+        name='mapa_processamento'),
 
-url(r'^scripts/consultar-lote-efdreinf/(?P<chave>.*)/(?P<transmissor_lote_efdreinf_id>\d+)/$',
-        transmissor_lote_efdreinf_comunicacao_views.scripts_consultar_lote,
-        name='scripts_consultar_efdreinf_lote'),
+url(r'^recuperacao-de-arquivos/(?P<hash>.*)/$', 
+        arquivos_recuperacao_views.arquivos_recuperacao, 
+        name='arquivos_recuperacao'),
 
-url(r'^transmissor-lote-efdreinf/enviar/(?P<hash>.*)/$',
-        transmissor_lote_efdreinf_comunicacao_views.enviar,
-        name='transmissor_lote_efdreinf_enviar'),
-
-url(r'^transmissor-lote-efdreinf/consultar/(?P<hash>.*)/$',
-        transmissor_lote_efdreinf_comunicacao_views.consultar,
-        name='transmissor_lote_efdreinf_consultar'),
+url(r'^reprocessar-arquivos/(?P<hash>.*)/$',
+        arquivos_recuperacao_views.arquivos_reprocessar,
+        name='arquivos_reprocessar'),
         
-        
-url(r'^transmissor-lote-efdreinf/recibo/(?P<hash>.*)/$',
-        transmissor_lote_efdreinf_comunicacao_views.recibo,
-        name='transmissor_lote_efdreinf_recibo'),
-
-url(r'^validacao-automatica/$',
-        automatizacao_views.scripts_validacao_automatica,
-        name='scripts_validacao_automatica'),
-
-url(r'^transmissao-automatica/$',
-        automatizacao_views.scripts_transmissao_automatica,
-        name='scripts_transmissao_automatica'),
+url(r'^visualizacao-de-arquivos/(?P<hash>.*)/$', 
+        arquivos_recuperacao_views.arquivos_visualizacao,
+        name='arquivos_visualizacao'),
 
 url(r'^relatorios/imprimir/(?P<hash>.*)/$',
         relatorios_imprimir_views.imprimir,
@@ -124,9 +80,13 @@ url(r'^importacoes/listar/(?P<hash>.*)/$',
         importacoes_views.listar, 
         name='importacoes'),
 
-url(r'^mapa-processamento/(?P<hash>.*)/$',
-        mapa_processamento_views.listar,
-        name='mapa_processamento'),
+url(r'^validacao-automatica/$',
+        automatizacao_views.scripts_validacao_automatica,
+        name='scripts_validacao_automatica'),
+
+url(r'^transmissao-automatica/$',
+        automatizacao_views.scripts_transmissao_automatica,
+        name='scripts_transmissao_automatica'),
 
 url(r'^processar-arquivos/$',
         processar_arquivos_views.scripts_processar_arquivos,
@@ -141,17 +101,26 @@ url(r'^processar-arquivos-salvar/(?P<hash>.*)/$',
         processar_arquivos_views.scripts_salvar_arquivos,
         name='scripts_salvar_arquivos'),
 
-url(r'^recuperacao-de-arquivos/(?P<hash>.*)/$', 
-        arquivos_recuperacao_views.arquivos_recuperacao, 
-        name='arquivos_recuperacao'),
+url(r'^scripts/enviar-lote-efdreinf/(?P<chave>.*)/(?P<transmissor_lote_efdreinf_id>\d+)/$',
+        transmissor_lote_efdreinf_comunicacao_views.scripts_enviar_lote,
+        name='scripts_enviar_efdreinf_lote'),
 
-url(r'^reprocessar-arquivos/(?P<hash>.*)/$',
-        arquivos_recuperacao_views.arquivos_reprocessar,
-        name='arquivos_reprocessar'),
+url(r'^scripts/consultar-lote-efdreinf/(?P<chave>.*)/(?P<transmissor_lote_efdreinf_id>\d+)/$',
+        transmissor_lote_efdreinf_comunicacao_views.scripts_consultar_lote,
+        name='scripts_consultar_efdreinf_lote'),
+
+url(r'^transmissor-lote-efdreinf/enviar/(?P<hash>.*)/$',
+        transmissor_lote_efdreinf_comunicacao_views.enviar,
+        name='transmissor_lote_efdreinf_enviar'),
+
+url(r'^transmissor-lote-efdreinf/consultar/(?P<hash>.*)/$',
+        transmissor_lote_efdreinf_comunicacao_views.consultar,
+        name='transmissor_lote_efdreinf_consultar'),
         
-url(r'^visualizacao-de-arquivos/(?P<hash>.*)/$', 
-        arquivos_recuperacao_views.arquivos_visualizacao,
-        name='arquivos_visualizacao'),
+        
+url(r'^transmissor-lote-efdreinf/recibo/(?P<hash>.*)/$',
+        transmissor_lote_efdreinf_comunicacao_views.recibo,
+        name='transmissor_lote_efdreinf_recibo'),
 
 url(r'^transmissor-eventos-esocial/vincular/(?P<hash>.+)/$',
         transmissor_esocial_views.vincular_eventos_esocial,
