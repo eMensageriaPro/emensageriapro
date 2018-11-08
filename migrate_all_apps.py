@@ -161,8 +161,8 @@ def update_tables():
 
 
 if __name__ == "__main__":
-    #migrates()
-    #reset_sequences()
-    #cadastro_controle_acesso()
+    migrates()
+    reset_sequences()
+    cadastro_controle_acesso()
     update_tables()
 
