@@ -48,7 +48,7 @@ def scripts_validacao_automatica(request):
         filename = arquivo.arquivo
 
         arq_compl = filename
-        from emensageriapro.funcoes_importacao import importar_arquivo
+        from emensageriapro.mensageiro.functions.funcoes_importacao import importar_arquivo
         from emensageriapro.mensageiro.views.processar_arquivos import validar_arquivo
         dados_eventos = {}
         quant_erros, error_list = validar_arquivo(filename, request, lang='pt')
@@ -153,7 +153,7 @@ def scripts_transmissao_automatica(request):
         filename = arquivo.arquivo
 
         arq_compl = filename
-        from emensageriapro.funcoes_importacao import importar_arquivo
+        from emensageriapro.mensageiro.functions.funcoes_importacao import importar_arquivo
         from emensageriapro.mensageiro.views.processar_arquivos import validar_arquivo
         dados_eventos = {}
         quant_erros, error_list = validar_arquivo(filename, request, lang='pt')

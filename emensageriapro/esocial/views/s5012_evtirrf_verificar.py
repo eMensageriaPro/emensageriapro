@@ -313,9 +313,9 @@ def recibo(request, hash, tipo):
 
 def gerar_xml_assinado(s5012_evtirrf_id, db_slug):
     import os
-    from emensageriapro.funcoes_esocial import salvar_arquivo_esocial
+    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.funcoes_esocial import assinar_esocial
+    from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
 
     s5012_evtirrf = get_object_or_404(
         s5012evtIrrf.objects.using(db_slug),
@@ -532,7 +532,7 @@ def alterar_identidade(request, hash):
 @login_required
 def abrir_evento_para_edicao(request, hash):
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.funcoes_esocial import gravar_nome_arquivo
+    from emensageriapro.mensageiro.functions.funcoes_esocial import gravar_nome_arquivo
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
     s5012_evtirrf_id = int(dict_hash['id'])
@@ -573,9 +573,9 @@ def abrir_evento_para_edicao(request, hash):
 
 def validar_evento_funcao(s5012_evtirrf_id, db_slug):
     from emensageriapro.padrao import executar_sql
-    from emensageriapro.funcoes_importacao import get_versao_evento
-    from emensageriapro.funcoes_validacoes_precedencia import validar_precedencia
-    from emensageriapro.funcoes_validacoes import get_schema_name, validar_schema
+    from emensageriapro.mensageiro.functions.funcoes_importacao import get_versao_evento
+    from emensageriapro.mensageiro.functions.funcoes_validacoes_precedencia import validar_precedencia
+    from emensageriapro.mensageiro.functions.funcoes_validacoes import get_schema_name, validar_schema
     from emensageriapro.settings import BASE_DIR
     lista_validacoes = []
     s5012_evtirrf = get_object_or_404(s5012evtIrrf.objects.using(db_slug), excluido=False, id=s5012_evtirrf_id)
@@ -655,7 +655,7 @@ def validar_evento_funcao(s5012_evtirrf_id, db_slug):
 @login_required
 def validar_evento(request, hash):
 
-    from emensageriapro.funcoes_validacoes import VERSAO_ATUAL
+    from emensageriapro.mensageiro.functions.funcoes_validacoes import VERSAO_ATUAL
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
     s5012_evtirrf_id = int(dict_hash['id'])

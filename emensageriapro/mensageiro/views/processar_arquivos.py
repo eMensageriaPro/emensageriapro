@@ -18,7 +18,7 @@ from emensageriapro.mensageiro.models import *
 from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
 import base64
 from emensageriapro.padrao import executar_sql
-from emensageriapro.funcoes_esocial import gravar_nome_arquivo
+from emensageriapro.mensageiro.functions.funcoes_esocial import gravar_nome_arquivo
 
 
 @login_required
@@ -63,7 +63,7 @@ def atualizar_importador():
 
 @login_required
 def validar_arquivo(arquivo, request, lang=None):
-    from emensageriapro.funcoes_validacoes import validar_schema
+    from emensageriapro.mensageiro.functions.funcoes_validacoes import validar_schema
     from django.contrib import messages
     import untangle
     quant_erros = 0
@@ -79,7 +79,7 @@ def validar_arquivo(arquivo, request, lang=None):
         return dados, request, 1, ['Erro na importação. Arquivo XML inválido!']
 
     if dados['status'] == 1:
-        from emensageriapro.funcoes_validacoes import get_schema_name
+        from emensageriapro.mensageiro.functions.funcoes_validacoes import get_schema_name
         schema_filename = get_schema_name(arquivo)
         quant_erros, error_list = validar_schema(schema_filename, arquivo, lang=lang)
     return quant_erros, error_list
@@ -91,8 +91,8 @@ def scripts_processar_arquivos(request):
     #atualizar_importador()
     import os
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.funcoes_importacao import importar_arquivo, get_identidade_evento, get_versao_evento
-    from emensageriapro.funcoes_validacoes import VERSAO_ATUAL
+    from emensageriapro.mensageiro.functions.funcoes_importacao import importar_arquivo, get_identidade_evento, get_versao_evento
+    from emensageriapro.mensageiro.functions.funcoes_validacoes import VERSAO_ATUAL
     db_slug = 'default'
 
     for_print = 0
@@ -183,7 +183,7 @@ def scripts_salvar_arquivos(request, hash):
     for_print = 0
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url(hash)
         # retorno_pagina = dict_hash['retorno_pagina']
         # retorno_hash = dict_hash['retorno_hash']

@@ -39,7 +39,7 @@ from emensageriapro.padrao import ler_arquivo
 
 
 def validacoes_r2040_evtassocdesprep(arquivo):
-    from emensageriapro.funcoes_validacoes import validar_campo
+    from emensageriapro.mensageiro.functions.funcoes_validacoes import validar_campo
     import untangle
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)

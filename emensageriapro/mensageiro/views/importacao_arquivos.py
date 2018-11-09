@@ -91,7 +91,7 @@ def salvar(request, hash):
         importacao_arquivos_eventos_lista = None
         if importacao_arquivos_id:
             importacao_arquivos = get_object_or_404(ImportacaoArquivos.objects.using( db_slug ), excluido = False, id = importacao_arquivos_id)
-  
+   
             importacao_arquivos_eventos_form = form_importacao_arquivos_eventos(initial={ 'importacao_arquivos': importacao_arquivos }, slug=db_slug)
             importacao_arquivos_eventos_form.fields['importacao_arquivos'].widget.attrs['readonly'] = True
             importacao_arquivos_eventos_lista = ImportacaoArquivosEventos.objects.using( db_slug ).filter(excluido = False, importacao_arquivos_id=importacao_arquivos.id).all()
@@ -111,7 +111,7 @@ def salvar(request, hash):
             'usuario': usuario,
        
             'hash': hash,
-  
+   
             'importacao_arquivos_eventos_form': importacao_arquivos_eventos_form,
             'importacao_arquivos_eventos_lista': importacao_arquivos_eventos_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
@@ -276,7 +276,7 @@ def listar(request, hash):
             from emensageriapro.settings import BASE_DIR
             import os
             from django.core.files.storage import FileSystemStorage
-            from emensageriapro.funcoes_importacao import validar_arquivo, importar_arquivo
+            from emensageriapro.mensageiro.functions.funcoes_importacao import validar_arquivo, importar_arquivo
             myfile = request.FILES['arquivo']
             fs = FileSystemStorage(location=BASE_DIR+'/arquivos/Importacao/enviado/')
             nome_arquivo = myfile.name.replace(' ', '-')
@@ -389,7 +389,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-  
+   
             'importado_por_lista': importado_por_lista,
         }
         if for_print in (0,1):

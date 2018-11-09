@@ -44,7 +44,7 @@ from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
 from emensageriapro.padrao import *
-from emensageriapro.funcoes_esocial import *
+from emensageriapro.mensageiro.functions.funcoes_esocial import *
 from emensageriapro.mensageiro.forms import *
 from emensageriapro.mensageiro.models import *
 from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
@@ -90,10 +90,11 @@ def consultar(request, hash):
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
 
+@login_required
 def recibo(request, hash):
     db_slug = 'default'
     try:
-        usuario_id = request.session['usuario_id']
+        usuario_id = request.user.id
         dict_hash = get_hash_url(hash)
         transmissor_lote_esocial_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])

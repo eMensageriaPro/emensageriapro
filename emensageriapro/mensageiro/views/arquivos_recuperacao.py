@@ -102,7 +102,7 @@ def arquivos_recuperacao(request, hash):
 
     arquivos = get_object_or_404(Arquivos.objects.using( db_slug ), excluido = False, id = arquivos_id)
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.funcoes_importacao import importar_arquivo
+    from emensageriapro.mensageiro.functions.funcoes_importacao import importar_arquivo
     if arquivos.permite_recuperacao:
         dados = importar_arquivo(arquivos.arquivo, request, 0)
         if dados:
@@ -140,7 +140,7 @@ def arquivos_reprocessar(request, hash):
 
     arquivos = get_object_or_404(Arquivos.objects.using( db_slug ), excluido = False, id = arquivos_id)
     from emensageriapro.settings import BASE_DIR
-    from emensageriapro.funcoes_importacao import importar_arquivo
+    from emensageriapro.mensageiro.functions.funcoes_importacao import importar_arquivo
     import os
     texto = ''
     if not os.path.isfile(BASE_DIR + '/' + arquivos.arquivo):
@@ -151,18 +151,18 @@ def arquivos_reprocessar(request, hash):
     transmissor_id = int(b[0])
     if 'eSocial' in texto:
         if 'WsEnviarLoteEventos' in arquivos.arquivo:
-            from emensageriapro.funcoes_esocial_comunicacao import read_envioLoteEventos
+            from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_envioLoteEventos
             read_envioLoteEventos(arquivos.arquivo, transmissor_id)
         elif 'WsConsultarLoteEventos' in arquivos.arquivo:
-            from emensageriapro.funcoes_esocial_comunicacao import read_consultaLoteEventos
+            from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_consultaLoteEventos
             read_consultaLoteEventos(arquivos.arquivo, transmissor_id)
         messages.success(request, 'Arquivo processado com sucesso!')
     elif 'Reinf' in texto:
         if 'RecepcaoLoteReinf' in arquivos.arquivo:
-            from emensageriapro.funcoes_efdreinf_comunicacao import read_envioLoteEventos
+            from emensageriapro.mensageiro.functions.funcoes_efdreinf_comunicacao import read_envioLoteEventos
             read_envioLoteEventos(arquivos.arquivo, transmissor_id)
         elif 'ConsultasReinf' in arquivos.arquivo:
-            from emensageriapro.funcoes_efdreinf_comunicacao import read_consultaLoteEventos
+            from emensageriapro.mensageiro.functions.funcoes_efdreinf_comunicacao import read_consultaLoteEventos
             read_consultaLoteEventos(arquivos.arquivo, transmissor_id)
         messages.success(request, 'Arquivo processado com sucesso!')
     else:

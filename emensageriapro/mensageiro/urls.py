@@ -6,11 +6,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from emensageriapro.mensageiro.views import mapa_processamento as mapa_processamento_views
 from emensageriapro.mensageiro.views import arquivos_recuperacao as arquivos_recuperacao_views
-from emensageriapro.mensageiro.views import relatorios_imprimir as relatorios_imprimir_views
 from emensageriapro.mensageiro.views import transmissor_lote_esocial_comunicacao as transmissor_lote_esocial_comunicacao_views
 from emensageriapro.mensageiro.views import importacoes as importacoes_views
-from emensageriapro.mensageiro.views import automatizacao as automatizacao_views
 from emensageriapro.mensageiro.views import processar_arquivos as processar_arquivos_views
+from emensageriapro.mensageiro.views import automatizacao as automatizacao_views
+from emensageriapro.mensageiro.views import relatorios_imprimir as relatorios_imprimir_views
 from emensageriapro.mensageiro.views import transmissor_lote_efdreinf_comunicacao as transmissor_lote_efdreinf_comunicacao_views
 from emensageriapro.mensageiro.views import transmissor_esocial as transmissor_esocial_views
 from emensageriapro.mensageiro.views import transmissor_efdreinf as transmissor_efdreinf_views
@@ -51,10 +51,6 @@ url(r'^visualizacao-de-arquivos/(?P<hash>.*)/$',
         arquivos_recuperacao_views.arquivos_visualizacao,
         name='arquivos_visualizacao'),
 
-url(r'^relatorios/imprimir/(?P<hash>.*)/$',
-        relatorios_imprimir_views.imprimir,
-        name='relatorios_imprimir'),
-
 url(r'^scripts/enviar-lote-esocial/(?P<chave>.*)/(?P<transmissor_lote_esocial_id>\d+)/$',
         transmissor_lote_esocial_comunicacao_views.scripts_enviar_lote,
         name='scripts_enviar_esocial_lote'),
@@ -80,14 +76,6 @@ url(r'^importacoes/listar/(?P<hash>.*)/$',
         importacoes_views.listar, 
         name='importacoes'),
 
-url(r'^validacao-automatica/$',
-        automatizacao_views.scripts_validacao_automatica,
-        name='scripts_validacao_automatica'),
-
-url(r'^transmissao-automatica/$',
-        automatizacao_views.scripts_transmissao_automatica,
-        name='scripts_transmissao_automatica'),
-
 url(r'^processar-arquivos/$',
         processar_arquivos_views.scripts_processar_arquivos,
         name='scripts_processar_arquivos'),
@@ -100,6 +88,18 @@ url(r'^importacoes-imprimir/(?P<hash>.*)/$',
 url(r'^processar-arquivos-salvar/(?P<hash>.*)/$',
         processar_arquivos_views.scripts_salvar_arquivos,
         name='scripts_salvar_arquivos'),
+
+url(r'^validacao-automatica/$',
+        automatizacao_views.scripts_validacao_automatica,
+        name='scripts_validacao_automatica'),
+
+url(r'^transmissao-automatica/$',
+        automatizacao_views.scripts_transmissao_automatica,
+        name='scripts_transmissao_automatica'),
+
+url(r'^relatorios/imprimir/(?P<hash>.*)/$',
+        relatorios_imprimir_views.imprimir,
+        name='relatorios_imprimir'),
 
 url(r'^scripts/enviar-lote-efdreinf/(?P<chave>.*)/(?P<transmissor_lote_efdreinf_id>\d+)/$',
         transmissor_lote_efdreinf_comunicacao_views.scripts_enviar_lote,
