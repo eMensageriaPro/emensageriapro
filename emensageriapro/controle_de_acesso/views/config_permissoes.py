@@ -104,12 +104,12 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'config_permissoes_id': int(config_permissoes_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
             #[VARIAVEIS_SECUNDARIAS]
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -153,10 +153,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -195,10 +195,10 @@ def apagar(request, hash):
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-   
+        
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-   
+        
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -295,7 +295,7 @@ def listar(request, hash):
             filtrar = True
             config_permissoes_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+   
         config_paginas_lista = ConfigPaginas.objects.using( db_slug ).filter(excluido = False).all()
         config_perfis_lista = ConfigPerfis.objects.using( db_slug ).filter(excluido = False).all()
         #config_permissoes_listar_custom
@@ -303,11 +303,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 'config_permissoes'
         context = {
             'config_permissoes_lista': config_permissoes_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -317,7 +317,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-  
+       
             'config_paginas_lista': config_paginas_lista,
             'config_perfis_lista': config_perfis_lista,
         }
@@ -362,10 +362,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

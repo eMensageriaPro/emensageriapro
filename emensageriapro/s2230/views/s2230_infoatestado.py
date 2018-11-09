@@ -22,6 +22,65 @@ import base64
 
 
 @login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        s2230_infoatestado_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2230_infoatestado')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    s2230_infoatestado = get_object_or_404(s2230infoAtestado.objects.using( db_slug ), excluido = False, id = s2230_infoatestado_id)
+    dados_evento = {}
+    if s2230_infoatestado_id:
+        dados_evento = s2230_infoatestado.evento()
+        if dados_evento['status'] != 0:
+            dict_permissoes['s2230_infoatestado_apagar'] = 0
+            dict_permissoes['s2230_infoatestado_editar'] = 0
+    if request.method == 'POST':
+        if dados_evento['status'] == 0:
+            import json
+            from django.forms.models import model_to_dict
+            situacao_anterior = json.dumps(model_to_dict(s2230_infoatestado), indent=4, sort_keys=True, default=str)
+            s2230infoAtestado.objects.using( db_slug ).filter(id = s2230_infoatestado_id).delete()
+            #s2230_infoatestado_apagar_custom
+            #s2230_infoatestado_apagar_custom
+            messages.success(request, 'Apagado com sucesso!')
+            gravar_auditoria(situacao_anterior,
+                             '',
+                             's2230_infoatestado', s2230_infoatestado_id, usuario_id, 3)
+        else:
+            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+        
+        if request.session['retorno_pagina']== 's2230_infoatestado_salvar':
+            return redirect('s2230_infoatestado', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+        
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+        
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 's2230_infoatestado_apagar.html', context)
+
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
@@ -107,12 +166,12 @@ def salvar(request, hash):
             s2230_infoatestado_form.fields[field].widget.attrs['ng-model'] = 's2230_infoatestado_'+field
         if int(dict_hash['print']):
             s2230_infoatestado_form = disabled_form_for_print(s2230_infoatestado_form)
-
+   
         s2230_emitente_form = None
         s2230_emitente_lista = None
         if s2230_infoatestado_id:
             s2230_infoatestado = get_object_or_404(s2230infoAtestado.objects.using( db_slug ), excluido = False, id = s2230_infoatestado_id)
-  
+       
             s2230_emitente_form = form_s2230_emitente(initial={ 's2230_infoatestado': s2230_infoatestado }, slug=db_slug)
             s2230_emitente_form.fields['s2230_infoatestado'].widget.attrs['readonly'] = True
             s2230_emitente_lista = s2230emitente.objects.using( db_slug ).filter(excluido = False, s2230_infoatestado_id=s2230_infoatestado.id).all()
@@ -136,14 +195,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2230_infoatestado_id': int(s2230_infoatestado_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
-  
+       
             's2230_emitente_form': s2230_emitente_form,
             's2230_emitente_lista': s2230_emitente_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -187,75 +246,16 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
-
-@login_required
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2230_infoatestado_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2230_infoatestado')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    s2230_infoatestado = get_object_or_404(s2230infoAtestado.objects.using( db_slug ), excluido = False, id = s2230_infoatestado_id)
-    dados_evento = {}
-    if s2230_infoatestado_id:
-        dados_evento = s2230_infoatestado.evento()
-        if dados_evento['status'] != 0:
-            dict_permissoes['s2230_infoatestado_apagar'] = 0
-            dict_permissoes['s2230_infoatestado_editar'] = 0
-    if request.method == 'POST':
-        if dados_evento['status'] == 0:
-            import json
-            from django.forms.models import model_to_dict
-            situacao_anterior = json.dumps(model_to_dict(s2230_infoatestado), indent=4, sort_keys=True, default=str)
-            s2230infoAtestado.objects.using( db_slug ).filter(id = s2230_infoatestado_id).delete()
-            #s2230_infoatestado_apagar_custom
-            #s2230_infoatestado_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
-            gravar_auditoria(situacao_anterior,
-                             '',
-                             's2230_infoatestado', s2230_infoatestado_id, usuario_id, 3)
-        else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
-        if request.session['retorno_pagina']== 's2230_infoatestado_salvar':
-            return redirect('s2230_infoatestado', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 's2230_infoatestado_apagar.html', context)
 
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
@@ -347,17 +347,17 @@ def listar(request, hash):
             filtrar = True
             s2230_infoatestado_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+    
         #s2230_infoatestado_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2230_infoatestado'
         context = {
             's2230_infoatestado_lista': s2230_infoatestado_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -367,7 +367,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-   
+        
         }
         if for_print in (0,1):
             return render(request, 's2230_infoatestado_listar.html', context)
@@ -410,10 +410,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

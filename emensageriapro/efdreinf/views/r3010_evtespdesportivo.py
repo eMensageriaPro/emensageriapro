@@ -158,7 +158,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         r3010_evtespdesportivo_form = disabled_form_fields(r3010_evtespdesportivo_form, permissao.permite_editar)
-
+    
         if r3010_evtespdesportivo_id:
             if r3010_evtespdesportivo.status != 0:
                 r3010_evtespdesportivo_form = disabled_form_fields(r3010_evtespdesportivo_form, False)
@@ -168,12 +168,12 @@ def salvar(request, hash):
             r3010_evtespdesportivo_form.fields[field].widget.attrs['ng-model'] = 'r3010_evtespdesportivo_'+field
         if int(dict_hash['print']):
             r3010_evtespdesportivo_form = disabled_form_for_print(r3010_evtespdesportivo_form)
-
+   
         r3010_ideestab_form = None
         r3010_ideestab_lista = None
         if r3010_evtespdesportivo_id:
             r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo.objects.using( db_slug ), excluido = False, id = r3010_evtespdesportivo_id)
-  
+       
             r3010_ideestab_form = form_r3010_ideestab(initial={ 'r3010_evtespdesportivo': r3010_evtespdesportivo }, slug=db_slug)
             r3010_ideestab_form.fields['r3010_evtespdesportivo'].widget.attrs['readonly'] = True
             r3010_ideestab_lista = r3010ideEstab.objects.using( db_slug ).filter(excluido = False, r3010_evtespdesportivo_id=r3010_evtespdesportivo.id).all()
@@ -195,7 +195,7 @@ def salvar(request, hash):
             r3010_evtespdesportivo_form.fields['procemi'].value = 1
             r3010_evtespdesportivo_form.fields['verproc'].widget.attrs['readonly'] = True
             r3010_evtespdesportivo_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-
+    
         if dict_hash['tab'] or 'r3010_evtespdesportivo' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'r3010_evtespdesportivo_salvar'
@@ -208,14 +208,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r3010_evtespdesportivo_id': int(r3010_evtespdesportivo_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
-  
+       
             'r3010_ideestab_form': r3010_ideestab_form,
             'r3010_ideestab_lista': r3010_ideestab_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -225,7 +225,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #r3010_evtespdesportivo_salvar_custom_variaveis_context#
         }
-
+    
         if for_print in (0,1 ):
             return render(request, 'r3010_evtespdesportivo_salvar.html', context)
         elif for_print == 2:
@@ -259,10 +259,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -309,17 +309,17 @@ def apagar(request, hash):
                              'r3010_evtespdesportivo', r3010_evtespdesportivo_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
+        
         if request.session['retorno_pagina']== 'r3010_evtespdesportivo_salvar':
             return redirect('r3010_evtespdesportivo', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-   
+        
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-   
+        
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -462,18 +462,18 @@ def listar(request, hash):
             filtrar = True
             r3010_evtespdesportivo_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+   
         transmissor_lote_efdreinf_lista = TransmissorLoteEfdreinf.objects.using( db_slug ).filter(excluido = False).all()
         #r3010_evtespdesportivo_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r3010_evtespdesportivo'
         context = {
             'r3010_evtespdesportivo_lista': r3010_evtespdesportivo_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -483,7 +483,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-  
+       
             'transmissor_lote_efdreinf_lista': transmissor_lote_efdreinf_lista,
         }
         #return render(request, 'r3010_evtespdesportivo_listar.html', context)
@@ -528,10 +528,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

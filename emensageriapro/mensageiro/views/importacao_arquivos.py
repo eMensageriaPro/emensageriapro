@@ -86,12 +86,12 @@ def salvar(request, hash):
             importacao_arquivos_form.fields[field].widget.attrs['ng-model'] = 'importacao_arquivos_'+field
         if int(dict_hash['print']):
             importacao_arquivos_form = disabled_form_for_print(importacao_arquivos_form)
-
+   
         importacao_arquivos_eventos_form = None
         importacao_arquivos_eventos_lista = None
         if importacao_arquivos_id:
             importacao_arquivos = get_object_or_404(ImportacaoArquivos.objects.using( db_slug ), excluido = False, id = importacao_arquivos_id)
-   
+       
             importacao_arquivos_eventos_form = form_importacao_arquivos_eventos(initial={ 'importacao_arquivos': importacao_arquivos }, slug=db_slug)
             importacao_arquivos_eventos_form.fields['importacao_arquivos'].widget.attrs['readonly'] = True
             importacao_arquivos_eventos_lista = ImportacaoArquivosEventos.objects.using( db_slug ).filter(excluido = False, importacao_arquivos_id=importacao_arquivos.id).all()
@@ -109,14 +109,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'importacao_arquivos_id': int(importacao_arquivos_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
-   
+       
             'importacao_arquivos_eventos_form': importacao_arquivos_eventos_form,
             'importacao_arquivos_eventos_lista': importacao_arquivos_eventos_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -160,10 +160,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -202,10 +202,10 @@ def apagar(request, hash):
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-   
+        
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-   
+        
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -276,7 +276,7 @@ def listar(request, hash):
             from emensageriapro.settings import BASE_DIR
             import os
             from django.core.files.storage import FileSystemStorage
-            from emensageriapro.mensageiro.functions.funcoes_importacao import validar_arquivo, importar_arquivo
+            from emensageriapro.funcoes_importacao import validar_arquivo, importar_arquivo
             myfile = request.FILES['arquivo']
             fs = FileSystemStorage(location=BASE_DIR+'/arquivos/Importacao/enviado/')
             nome_arquivo = myfile.name.replace(' ', '-')
@@ -368,18 +368,18 @@ def listar(request, hash):
             filtrar = True
             importacao_arquivos_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+   
         importado_por_lista = Usuarios.objects.using( db_slug ).filter(excluido = False).all()
         #importacao_arquivos_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'importacao_arquivos'
         context = {
             'importacao_arquivos_lista': importacao_arquivos_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -389,7 +389,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-   
+       
             'importado_por_lista': importado_por_lista,
         }
         if for_print in (0,1):
@@ -433,10 +433,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

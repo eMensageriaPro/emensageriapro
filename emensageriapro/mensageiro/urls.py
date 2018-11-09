@@ -8,12 +8,12 @@ from emensageriapro.mensageiro.views import mapa_processamento as mapa_processam
 from emensageriapro.mensageiro.views import arquivos_recuperacao as arquivos_recuperacao_views
 from emensageriapro.mensageiro.views import transmissor_lote_esocial_comunicacao as transmissor_lote_esocial_comunicacao_views
 from emensageriapro.mensageiro.views import importacoes as importacoes_views
-from emensageriapro.mensageiro.views import processar_arquivos as processar_arquivos_views
 from emensageriapro.mensageiro.views import automatizacao as automatizacao_views
-from emensageriapro.mensageiro.views import relatorios_imprimir as relatorios_imprimir_views
 from emensageriapro.mensageiro.views import transmissor_lote_efdreinf_comunicacao as transmissor_lote_efdreinf_comunicacao_views
-from emensageriapro.mensageiro.views import transmissor_esocial as transmissor_esocial_views
 from emensageriapro.mensageiro.views import transmissor_efdreinf as transmissor_efdreinf_views
+from emensageriapro.mensageiro.views import processar_arquivos as processar_arquivos_views
+from emensageriapro.mensageiro.views import relatorios_imprimir as relatorios_imprimir_views
+from emensageriapro.mensageiro.views import transmissor_esocial as transmissor_esocial_views
 from emensageriapro.mensageiro.views import relatorios as relatorios_views
 from emensageriapro.mensageiro.views import transmissores as transmissores_views
 from emensageriapro.mensageiro.views import regras_validacao as regras_validacao_views
@@ -76,19 +76,6 @@ url(r'^importacoes/listar/(?P<hash>.*)/$',
         importacoes_views.listar, 
         name='importacoes'),
 
-url(r'^processar-arquivos/$',
-        processar_arquivos_views.scripts_processar_arquivos,
-        name='scripts_processar_arquivos'),
-
-url(r'^importacoes-imprimir/(?P<hash>.*)/$',
-        processar_arquivos_views.imprimir,
-        name='processar_arquivos_imprimir'),
-        
-
-url(r'^processar-arquivos-salvar/(?P<hash>.*)/$',
-        processar_arquivos_views.scripts_salvar_arquivos,
-        name='scripts_salvar_arquivos'),
-
 url(r'^validacao-automatica/$',
         automatizacao_views.scripts_validacao_automatica,
         name='scripts_validacao_automatica'),
@@ -96,10 +83,6 @@ url(r'^validacao-automatica/$',
 url(r'^transmissao-automatica/$',
         automatizacao_views.scripts_transmissao_automatica,
         name='scripts_transmissao_automatica'),
-
-url(r'^relatorios/imprimir/(?P<hash>.*)/$',
-        relatorios_imprimir_views.imprimir,
-        name='relatorios_imprimir'),
 
 url(r'^scripts/enviar-lote-efdreinf/(?P<chave>.*)/(?P<transmissor_lote_efdreinf_id>\d+)/$',
         transmissor_lote_efdreinf_comunicacao_views.scripts_enviar_lote,
@@ -122,14 +105,6 @@ url(r'^transmissor-lote-efdreinf/recibo/(?P<hash>.*)/$',
         transmissor_lote_efdreinf_comunicacao_views.recibo,
         name='transmissor_lote_efdreinf_recibo'),
 
-url(r'^transmissor-eventos-esocial/vincular/(?P<hash>.+)/$',
-        transmissor_esocial_views.vincular_eventos_esocial,
-        name='vincular_eventos_esocial'),
-        
-url(r'^transmissor-eventos-esocial/desvincular/(?P<hash>.+)/$',
-        transmissor_esocial_views.desvincular_eventos_esocial,
-        name='desvincular_eventos_esocial'),
-
 url(r'^transmissor-eventos-efdreinf/vincular/(?P<hash>.+)/$',
         transmissor_efdreinf_views.vincular_eventos_efdreinf,
         name='vincular_eventos_efdreinf'),
@@ -137,6 +112,31 @@ url(r'^transmissor-eventos-efdreinf/vincular/(?P<hash>.+)/$',
 url(r'^transmissor-eventos-efdreinf/desvincular/(?P<hash>.+)/$',
         transmissor_efdreinf_views.desvincular_eventos_efdreinf,
         name='desvincular_eventos_efdreinf'),
+
+url(r'^processar-arquivos/$',
+        processar_arquivos_views.scripts_processar_arquivos,
+        name='scripts_processar_arquivos'),
+
+url(r'^importacoes-imprimir/(?P<hash>.*)/$',
+        processar_arquivos_views.imprimir,
+        name='processar_arquivos_imprimir'),
+        
+
+url(r'^processar-arquivos-salvar/(?P<hash>.*)/$',
+        processar_arquivos_views.scripts_salvar_arquivos,
+        name='scripts_salvar_arquivos'),
+
+url(r'^relatorios/imprimir/(?P<hash>.*)/$',
+        relatorios_imprimir_views.imprimir,
+        name='relatorios_imprimir'),
+
+url(r'^transmissor-eventos-esocial/vincular/(?P<hash>.+)/$',
+        transmissor_esocial_views.vincular_eventos_esocial,
+        name='vincular_eventos_esocial'),
+        
+url(r'^transmissor-eventos-esocial/desvincular/(?P<hash>.+)/$',
+        transmissor_esocial_views.desvincular_eventos_esocial,
+        name='desvincular_eventos_esocial'),
 
 
 

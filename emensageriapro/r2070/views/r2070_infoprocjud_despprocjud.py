@@ -22,6 +22,65 @@ import base64
 
 
 @login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        r2070_infoprocjud_despprocjud_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='r2070_infoprocjud_despprocjud')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    r2070_infoprocjud_despprocjud = get_object_or_404(r2070infoProcJuddespProcJud.objects.using( db_slug ), excluido = False, id = r2070_infoprocjud_despprocjud_id)
+    dados_evento = {}
+    if r2070_infoprocjud_despprocjud_id:
+        dados_evento = r2070_infoprocjud_despprocjud.evento()
+        if dados_evento['status'] != 0:
+            dict_permissoes['r2070_infoprocjud_despprocjud_apagar'] = 0
+            dict_permissoes['r2070_infoprocjud_despprocjud_editar'] = 0
+    if request.method == 'POST':
+        if dados_evento['status'] == 0:
+            import json
+            from django.forms.models import model_to_dict
+            situacao_anterior = json.dumps(model_to_dict(r2070_infoprocjud_despprocjud), indent=4, sort_keys=True, default=str)
+            r2070infoProcJuddespProcJud.objects.using( db_slug ).filter(id = r2070_infoprocjud_despprocjud_id).delete()
+            #r2070_infoprocjud_despprocjud_apagar_custom
+            #r2070_infoprocjud_despprocjud_apagar_custom
+            messages.success(request, 'Apagado com sucesso!')
+            gravar_auditoria(situacao_anterior,
+                             '',
+                             'r2070_infoprocjud_despprocjud', r2070_infoprocjud_despprocjud_id, usuario_id, 3)
+        else:
+            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+        
+        if request.session['retorno_pagina']== 'r2070_infoprocjud_despprocjud_salvar':
+            return redirect('r2070_infoprocjud_despprocjud', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+        
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+        
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 'r2070_infoprocjud_despprocjud_apagar.html', context)
+
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
@@ -107,12 +166,12 @@ def salvar(request, hash):
             r2070_infoprocjud_despprocjud_form.fields[field].widget.attrs['ng-model'] = 'r2070_infoprocjud_despprocjud_'+field
         if int(dict_hash['print']):
             r2070_infoprocjud_despprocjud_form = disabled_form_for_print(r2070_infoprocjud_despprocjud_form)
-
+   
         r2070_infoprocjud_ideadvogado_form = None
         r2070_infoprocjud_ideadvogado_lista = None
         if r2070_infoprocjud_despprocjud_id:
             r2070_infoprocjud_despprocjud = get_object_or_404(r2070infoProcJuddespProcJud.objects.using( db_slug ), excluido = False, id = r2070_infoprocjud_despprocjud_id)
-  
+       
             r2070_infoprocjud_ideadvogado_form = form_r2070_infoprocjud_ideadvogado(initial={ 'r2070_infoprocjud_despprocjud': r2070_infoprocjud_despprocjud }, slug=db_slug)
             r2070_infoprocjud_ideadvogado_form.fields['r2070_infoprocjud_despprocjud'].widget.attrs['readonly'] = True
             r2070_infoprocjud_ideadvogado_lista = r2070infoProcJudideAdvogado.objects.using( db_slug ).filter(excluido = False, r2070_infoprocjud_despprocjud_id=r2070_infoprocjud_despprocjud.id).all()
@@ -136,14 +195,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r2070_infoprocjud_despprocjud_id': int(r2070_infoprocjud_despprocjud_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
-  
+       
             'r2070_infoprocjud_ideadvogado_form': r2070_infoprocjud_ideadvogado_form,
             'r2070_infoprocjud_ideadvogado_lista': r2070_infoprocjud_ideadvogado_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -187,75 +246,16 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
-
-@login_required
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r2070_infoprocjud_despprocjud_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='r2070_infoprocjud_despprocjud')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    r2070_infoprocjud_despprocjud = get_object_or_404(r2070infoProcJuddespProcJud.objects.using( db_slug ), excluido = False, id = r2070_infoprocjud_despprocjud_id)
-    dados_evento = {}
-    if r2070_infoprocjud_despprocjud_id:
-        dados_evento = r2070_infoprocjud_despprocjud.evento()
-        if dados_evento['status'] != 0:
-            dict_permissoes['r2070_infoprocjud_despprocjud_apagar'] = 0
-            dict_permissoes['r2070_infoprocjud_despprocjud_editar'] = 0
-    if request.method == 'POST':
-        if dados_evento['status'] == 0:
-            import json
-            from django.forms.models import model_to_dict
-            situacao_anterior = json.dumps(model_to_dict(r2070_infoprocjud_despprocjud), indent=4, sort_keys=True, default=str)
-            r2070infoProcJuddespProcJud.objects.using( db_slug ).filter(id = r2070_infoprocjud_despprocjud_id).delete()
-            #r2070_infoprocjud_despprocjud_apagar_custom
-            #r2070_infoprocjud_despprocjud_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
-            gravar_auditoria(situacao_anterior,
-                             '',
-                             'r2070_infoprocjud_despprocjud', r2070_infoprocjud_despprocjud_id, usuario_id, 3)
-        else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
-        if request.session['retorno_pagina']== 'r2070_infoprocjud_despprocjud_salvar':
-            return redirect('r2070_infoprocjud_despprocjud', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 'r2070_infoprocjud_despprocjud_apagar.html', context)
 
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
@@ -347,17 +347,17 @@ def listar(request, hash):
             filtrar = True
             r2070_infoprocjud_despprocjud_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+    
         #r2070_infoprocjud_despprocjud_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r2070_infoprocjud_despprocjud'
         context = {
             'r2070_infoprocjud_despprocjud_lista': r2070_infoprocjud_despprocjud_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -367,7 +367,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-   
+        
         }
         if for_print in (0,1):
             return render(request, 'r2070_infoprocjud_despprocjud_listar.html', context)
@@ -410,10 +410,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

@@ -88,14 +88,14 @@ def salvar(request, hash):
             config_perfis_form.fields[field].widget.attrs['ng-model'] = 'config_perfis_'+field
         if int(dict_hash['print']):
             config_perfis_form = disabled_form_for_print(config_perfis_form)
-
+   
         config_permissoes_form = None
         config_permissoes_lista = None
         usuarios_form = None
         usuarios_lista = None
         if config_perfis_id:
             config_perfis = get_object_or_404(ConfigPerfis.objects.using( db_slug ), excluido = False, id = config_perfis_id)
-  
+       
             config_permissoes_form = form_config_permissoes(initial={ 'config_perfis': config_perfis }, slug=db_slug)
             config_permissoes_form.fields['config_perfis'].widget.attrs['readonly'] = True
             config_permissoes_lista = ConfigPermissoes.objects.using( db_slug ).filter(excluido = False, config_perfis_id=config_perfis.id).all()
@@ -116,16 +116,16 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'config_perfis_id': int(config_perfis_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
-  
+       
             'config_permissoes_form': config_permissoes_form,
             'config_permissoes_lista': config_permissoes_lista,
             'usuarios_form': usuarios_form,
             'usuarios_lista': usuarios_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -169,10 +169,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -211,10 +211,10 @@ def apagar(request, hash):
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-   
+        
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-   
+        
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -296,17 +296,17 @@ def listar(request, hash):
             filtrar = True
             config_perfis_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+    
         #config_perfis_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'config_perfis'
         context = {
             'config_perfis_lista': config_perfis_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -316,7 +316,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-   
+        
         }
         if for_print in (0,1):
             return render(request, 'config_perfis_listar.html', context)
@@ -359,10 +359,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

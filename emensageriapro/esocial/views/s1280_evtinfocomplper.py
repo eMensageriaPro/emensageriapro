@@ -162,7 +162,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         s1280_evtinfocomplper_form = disabled_form_fields(s1280_evtinfocomplper_form, permissao.permite_editar)
-
+    
         if s1280_evtinfocomplper_id:
             if s1280_evtinfocomplper.status != 0:
                 s1280_evtinfocomplper_form = disabled_form_fields(s1280_evtinfocomplper_form, False)
@@ -172,7 +172,7 @@ def salvar(request, hash):
             s1280_evtinfocomplper_form.fields[field].widget.attrs['ng-model'] = 's1280_evtinfocomplper_'+field
         if int(dict_hash['print']):
             s1280_evtinfocomplper_form = disabled_form_for_print(s1280_evtinfocomplper_form)
-
+   
         s1280_infosubstpatr_form = None
         s1280_infosubstpatr_lista = None
         s1280_infosubstpatropport_form = None
@@ -181,7 +181,7 @@ def salvar(request, hash):
         s1280_infoativconcom_lista = None
         if s1280_evtinfocomplper_id:
             s1280_evtinfocomplper = get_object_or_404(s1280evtInfoComplPer.objects.using( db_slug ), excluido = False, id = s1280_evtinfocomplper_id)
-  
+       
             s1280_infosubstpatr_form = form_s1280_infosubstpatr(initial={ 's1280_evtinfocomplper': s1280_evtinfocomplper }, slug=db_slug)
             s1280_infosubstpatr_form.fields['s1280_evtinfocomplper'].widget.attrs['readonly'] = True
             s1280_infosubstpatr_lista = s1280infoSubstPatr.objects.using( db_slug ).filter(excluido = False, s1280_evtinfocomplper_id=s1280_evtinfocomplper.id).all()
@@ -209,7 +209,7 @@ def salvar(request, hash):
             s1280_evtinfocomplper_form.fields['procemi'].value = 1
             s1280_evtinfocomplper_form.fields['verproc'].widget.attrs['readonly'] = True
             s1280_evtinfocomplper_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-
+    
         if dict_hash['tab'] or 's1280_evtinfocomplper' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's1280_evtinfocomplper_salvar'
@@ -222,9 +222,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1280_evtinfocomplper_id': int(s1280_evtinfocomplper_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
-  
+       
             's1280_infosubstpatr_form': s1280_infosubstpatr_form,
             's1280_infosubstpatr_lista': s1280_infosubstpatr_lista,
             's1280_infosubstpatropport_form': s1280_infosubstpatropport_form,
@@ -233,7 +233,7 @@ def salvar(request, hash):
             's1280_infoativconcom_lista': s1280_infoativconcom_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -243,7 +243,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s1280_evtinfocomplper_salvar_custom_variaveis_context#
         }
-
+    
         if for_print in (0,1 ):
             return render(request, 's1280_evtinfocomplper_salvar.html', context)
         elif for_print == 2:
@@ -277,10 +277,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -327,17 +327,17 @@ def apagar(request, hash):
                              's1280_evtinfocomplper', s1280_evtinfocomplper_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
+        
         if request.session['retorno_pagina']== 's1280_evtinfocomplper_salvar':
             return redirect('s1280_evtinfocomplper', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-   
+        
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-   
+        
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -489,18 +489,18 @@ def listar(request, hash):
             filtrar = True
             s1280_evtinfocomplper_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+   
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s1280_evtinfocomplper_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1280_evtinfocomplper'
         context = {
             's1280_evtinfocomplper_lista': s1280_evtinfocomplper_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -510,7 +510,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-  
+       
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         #return render(request, 's1280_evtinfocomplper_listar.html', context)
@@ -555,10 +555,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

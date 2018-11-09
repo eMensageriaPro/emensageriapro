@@ -188,14 +188,14 @@ def salvar(request, hash):
             transmissor_lote_esocial_form.fields[field].widget.attrs['ng-model'] = 'transmissor_lote_esocial_'+field
         if int(dict_hash['print']):
             transmissor_lote_esocial_form = disabled_form_for_print(transmissor_lote_esocial_form)
-
+   
         transmissor_lote_esocial_ocorrencias_form = None
         transmissor_lote_esocial_ocorrencias_lista = None
         retornos_eventos_form = None
         retornos_eventos_lista = None
         if transmissor_lote_esocial_id:
             transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial.objects.using( db_slug ), excluido = False, id = transmissor_lote_esocial_id)
-  
+       
             transmissor_lote_esocial_ocorrencias_form = form_transmissor_lote_esocial_ocorrencias(initial={ 'transmissor_lote_esocial': transmissor_lote_esocial }, slug=db_slug)
             transmissor_lote_esocial_ocorrencias_form.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
             transmissor_lote_esocial_ocorrencias_lista = TransmissorLoteEsocialOcorrencias.objects.using( db_slug ).filter(excluido = False, transmissor_lote_esocial_id=transmissor_lote_esocial.id).all()
@@ -221,16 +221,16 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'transmissor_lote_esocial_id': int(transmissor_lote_esocial_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
-  
+       
             'transmissor_lote_esocial_ocorrencias_form': transmissor_lote_esocial_ocorrencias_form,
             'transmissor_lote_esocial_ocorrencias_lista': transmissor_lote_esocial_ocorrencias_lista,
             'retornos_eventos_form': retornos_eventos_form,
             'retornos_eventos_lista': retornos_eventos_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -275,10 +275,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -317,10 +317,10 @@ def apagar(request, hash):
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-   
+        
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-   
+        
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -430,18 +430,18 @@ def listar(request, hash):
             filtrar = True
             transmissor_lote_esocial_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+   
         transmissor_lista = TransmissorLote.objects.using( db_slug ).filter(excluido = False).all()
         #transmissor_lote_esocial_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'transmissor_lote_esocial'
         context = {
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -451,7 +451,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-  
+       
             'transmissor_lista': transmissor_lista,
         }
         if for_print in (0,1):
@@ -495,10 +495,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

@@ -160,7 +160,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         s5002_evtirrfbenef_form = disabled_form_fields(s5002_evtirrfbenef_form, permissao.permite_editar)
-
+    
         if s5002_evtirrfbenef_id:
             if s5002_evtirrfbenef.status != 0:
                 s5002_evtirrfbenef_form = disabled_form_fields(s5002_evtirrfbenef_form, False)
@@ -170,14 +170,14 @@ def salvar(request, hash):
             s5002_evtirrfbenef_form.fields[field].widget.attrs['ng-model'] = 's5002_evtirrfbenef_'+field
         if int(dict_hash['print']):
             s5002_evtirrfbenef_form = disabled_form_for_print(s5002_evtirrfbenef_form)
-
+   
         s5002_infodep_form = None
         s5002_infodep_lista = None
         s5002_infoirrf_form = None
         s5002_infoirrf_lista = None
         if s5002_evtirrfbenef_id:
             s5002_evtirrfbenef = get_object_or_404(s5002evtIrrfBenef.objects.using( db_slug ), excluido = False, id = s5002_evtirrfbenef_id)
-  
+       
             s5002_infodep_form = form_s5002_infodep(initial={ 's5002_evtirrfbenef': s5002_evtirrfbenef }, slug=db_slug)
             s5002_infodep_form.fields['s5002_evtirrfbenef'].widget.attrs['readonly'] = True
             s5002_infodep_lista = s5002infoDep.objects.using( db_slug ).filter(excluido = False, s5002_evtirrfbenef_id=s5002_evtirrfbenef.id).all()
@@ -202,7 +202,7 @@ def salvar(request, hash):
             s5002_evtirrfbenef_form.fields['procemi'].value = 1
             s5002_evtirrfbenef_form.fields['verproc'].widget.attrs['readonly'] = True
             s5002_evtirrfbenef_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-
+    
         if dict_hash['tab'] or 's5002_evtirrfbenef' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's5002_evtirrfbenef_salvar'
@@ -215,16 +215,16 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's5002_evtirrfbenef_id': int(s5002_evtirrfbenef_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
-  
+       
             's5002_infodep_form': s5002_infodep_form,
             's5002_infodep_lista': s5002_infodep_lista,
             's5002_infoirrf_form': s5002_infoirrf_form,
             's5002_infoirrf_lista': s5002_infoirrf_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -234,7 +234,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s5002_evtirrfbenef_salvar_custom_variaveis_context#
         }
-
+    
         if for_print in (0,1 ):
             return render(request, 's5002_evtirrfbenef_salvar.html', context)
         elif for_print == 2:
@@ -268,10 +268,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -318,17 +318,17 @@ def apagar(request, hash):
                              's5002_evtirrfbenef', s5002_evtirrfbenef_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
+        
         if request.session['retorno_pagina']== 's5002_evtirrfbenef_salvar':
             return redirect('s5002_evtirrfbenef', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-   
+        
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-   
+        
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -471,18 +471,18 @@ def listar(request, hash):
             filtrar = True
             s5002_evtirrfbenef_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+   
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s5002_evtirrfbenef_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's5002_evtirrfbenef'
         context = {
             's5002_evtirrfbenef_lista': s5002_evtirrfbenef_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -492,7 +492,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-  
+       
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         #return render(request, 's5002_evtirrfbenef_listar.html', context)
@@ -537,10 +537,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

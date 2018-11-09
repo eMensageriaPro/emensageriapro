@@ -160,7 +160,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         s2250_evtavprevio_form = disabled_form_fields(s2250_evtavprevio_form, permissao.permite_editar)
-
+    
         if s2250_evtavprevio_id:
             if s2250_evtavprevio.status != 0:
                 s2250_evtavprevio_form = disabled_form_fields(s2250_evtavprevio_form, False)
@@ -170,14 +170,14 @@ def salvar(request, hash):
             s2250_evtavprevio_form.fields[field].widget.attrs['ng-model'] = 's2250_evtavprevio_'+field
         if int(dict_hash['print']):
             s2250_evtavprevio_form = disabled_form_for_print(s2250_evtavprevio_form)
-
+   
         s2250_detavprevio_form = None
         s2250_detavprevio_lista = None
         s2250_cancavprevio_form = None
         s2250_cancavprevio_lista = None
         if s2250_evtavprevio_id:
             s2250_evtavprevio = get_object_or_404(s2250evtAvPrevio.objects.using( db_slug ), excluido = False, id = s2250_evtavprevio_id)
-  
+       
             s2250_detavprevio_form = form_s2250_detavprevio(initial={ 's2250_evtavprevio': s2250_evtavprevio }, slug=db_slug)
             s2250_detavprevio_form.fields['s2250_evtavprevio'].widget.attrs['readonly'] = True
             s2250_detavprevio_lista = s2250detAvPrevio.objects.using( db_slug ).filter(excluido = False, s2250_evtavprevio_id=s2250_evtavprevio.id).all()
@@ -202,7 +202,7 @@ def salvar(request, hash):
             s2250_evtavprevio_form.fields['procemi'].value = 1
             s2250_evtavprevio_form.fields['verproc'].widget.attrs['readonly'] = True
             s2250_evtavprevio_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-
+    
         if dict_hash['tab'] or 's2250_evtavprevio' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's2250_evtavprevio_salvar'
@@ -215,16 +215,16 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2250_evtavprevio_id': int(s2250_evtavprevio_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
-  
+       
             's2250_detavprevio_form': s2250_detavprevio_form,
             's2250_detavprevio_lista': s2250_detavprevio_lista,
             's2250_cancavprevio_form': s2250_cancavprevio_form,
             's2250_cancavprevio_lista': s2250_cancavprevio_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -234,7 +234,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s2250_evtavprevio_salvar_custom_variaveis_context#
         }
-
+    
         if for_print in (0,1 ):
             return render(request, 's2250_evtavprevio_salvar.html', context)
         elif for_print == 2:
@@ -268,10 +268,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -318,17 +318,17 @@ def apagar(request, hash):
                              's2250_evtavprevio', s2250_evtavprevio_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
+        
         if request.session['retorno_pagina']== 's2250_evtavprevio_salvar':
             return redirect('s2250_evtavprevio', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-   
+        
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-   
+        
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -489,18 +489,18 @@ def listar(request, hash):
             filtrar = True
             s2250_evtavprevio_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+   
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s2250_evtavprevio_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2250_evtavprevio'
         context = {
             's2250_evtavprevio_lista': s2250_evtavprevio_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -510,7 +510,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-  
+       
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         #return render(request, 's2250_evtavprevio_listar.html', context)
@@ -555,10 +555,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

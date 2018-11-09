@@ -22,6 +22,65 @@ import base64
 
 
 @login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        r2040_recursosrep_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='r2040_recursosrep')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    r2040_recursosrep = get_object_or_404(r2040recursosRep.objects.using( db_slug ), excluido = False, id = r2040_recursosrep_id)
+    dados_evento = {}
+    if r2040_recursosrep_id:
+        dados_evento = r2040_recursosrep.evento()
+        if dados_evento['status'] != 0:
+            dict_permissoes['r2040_recursosrep_apagar'] = 0
+            dict_permissoes['r2040_recursosrep_editar'] = 0
+    if request.method == 'POST':
+        if dados_evento['status'] == 0:
+            import json
+            from django.forms.models import model_to_dict
+            situacao_anterior = json.dumps(model_to_dict(r2040_recursosrep), indent=4, sort_keys=True, default=str)
+            r2040recursosRep.objects.using( db_slug ).filter(id = r2040_recursosrep_id).delete()
+            #r2040_recursosrep_apagar_custom
+            #r2040_recursosrep_apagar_custom
+            messages.success(request, 'Apagado com sucesso!')
+            gravar_auditoria(situacao_anterior,
+                             '',
+                             'r2040_recursosrep', r2040_recursosrep_id, usuario_id, 3)
+        else:
+            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+        
+        if request.session['retorno_pagina']== 'r2040_recursosrep_salvar':
+            return redirect('r2040_recursosrep', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+        
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+        
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 'r2040_recursosrep_apagar.html', context)
+
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
@@ -107,14 +166,14 @@ def salvar(request, hash):
             r2040_recursosrep_form.fields[field].widget.attrs['ng-model'] = 'r2040_recursosrep_'+field
         if int(dict_hash['print']):
             r2040_recursosrep_form = disabled_form_for_print(r2040_recursosrep_form)
-
+   
         r2040_inforecurso_form = None
         r2040_inforecurso_lista = None
         r2040_infoproc_form = None
         r2040_infoproc_lista = None
         if r2040_recursosrep_id:
             r2040_recursosrep = get_object_or_404(r2040recursosRep.objects.using( db_slug ), excluido = False, id = r2040_recursosrep_id)
-  
+       
             r2040_inforecurso_form = form_r2040_inforecurso(initial={ 'r2040_recursosrep': r2040_recursosrep }, slug=db_slug)
             r2040_inforecurso_form.fields['r2040_recursosrep'].widget.attrs['readonly'] = True
             r2040_inforecurso_lista = r2040infoRecurso.objects.using( db_slug ).filter(excluido = False, r2040_recursosrep_id=r2040_recursosrep.id).all()
@@ -141,16 +200,16 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r2040_recursosrep_id': int(r2040_recursosrep_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
-  
+       
             'r2040_inforecurso_form': r2040_inforecurso_form,
             'r2040_inforecurso_lista': r2040_inforecurso_lista,
             'r2040_infoproc_form': r2040_infoproc_form,
             'r2040_infoproc_lista': r2040_infoproc_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -194,75 +253,16 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
-
-@login_required
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r2040_recursosrep_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='r2040_recursosrep')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    r2040_recursosrep = get_object_or_404(r2040recursosRep.objects.using( db_slug ), excluido = False, id = r2040_recursosrep_id)
-    dados_evento = {}
-    if r2040_recursosrep_id:
-        dados_evento = r2040_recursosrep.evento()
-        if dados_evento['status'] != 0:
-            dict_permissoes['r2040_recursosrep_apagar'] = 0
-            dict_permissoes['r2040_recursosrep_editar'] = 0
-    if request.method == 'POST':
-        if dados_evento['status'] == 0:
-            import json
-            from django.forms.models import model_to_dict
-            situacao_anterior = json.dumps(model_to_dict(r2040_recursosrep), indent=4, sort_keys=True, default=str)
-            r2040recursosRep.objects.using( db_slug ).filter(id = r2040_recursosrep_id).delete()
-            #r2040_recursosrep_apagar_custom
-            #r2040_recursosrep_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
-            gravar_auditoria(situacao_anterior,
-                             '',
-                             'r2040_recursosrep', r2040_recursosrep_id, usuario_id, 3)
-        else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
-        if request.session['retorno_pagina']== 'r2040_recursosrep_salvar':
-            return redirect('r2040_recursosrep', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 'r2040_recursosrep_apagar.html', context)
 
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
@@ -360,17 +360,17 @@ def listar(request, hash):
             filtrar = True
             r2040_recursosrep_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+    
         #r2040_recursosrep_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r2040_recursosrep'
         context = {
             'r2040_recursosrep_lista': r2040_recursosrep_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -380,7 +380,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-   
+        
         }
         if for_print in (0,1):
             return render(request, 'r2040_recursosrep_listar.html', context)
@@ -423,10 +423,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

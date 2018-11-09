@@ -22,6 +22,65 @@ import base64
 
 
 @login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        s2205_documentos_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2205_documentos')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    s2205_documentos = get_object_or_404(s2205documentos.objects.using( db_slug ), excluido = False, id = s2205_documentos_id)
+    dados_evento = {}
+    if s2205_documentos_id:
+        dados_evento = s2205_documentos.evento()
+        if dados_evento['status'] != 0:
+            dict_permissoes['s2205_documentos_apagar'] = 0
+            dict_permissoes['s2205_documentos_editar'] = 0
+    if request.method == 'POST':
+        if dados_evento['status'] == 0:
+            import json
+            from django.forms.models import model_to_dict
+            situacao_anterior = json.dumps(model_to_dict(s2205_documentos), indent=4, sort_keys=True, default=str)
+            s2205documentos.objects.using( db_slug ).filter(id = s2205_documentos_id).delete()
+            #s2205_documentos_apagar_custom
+            #s2205_documentos_apagar_custom
+            messages.success(request, 'Apagado com sucesso!')
+            gravar_auditoria(situacao_anterior,
+                             '',
+                             's2205_documentos', s2205_documentos_id, usuario_id, 3)
+        else:
+            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+        
+        if request.session['retorno_pagina']== 's2205_documentos_salvar':
+            return redirect('s2205_documentos', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+        
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+        
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 's2205_documentos_apagar.html', context)
+
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
@@ -107,7 +166,7 @@ def salvar(request, hash):
             s2205_documentos_form.fields[field].widget.attrs['ng-model'] = 's2205_documentos_'+field
         if int(dict_hash['print']):
             s2205_documentos_form = disabled_form_for_print(s2205_documentos_form)
-
+   
         s2205_ctps_form = None
         s2205_ctps_lista = None
         s2205_ric_form = None
@@ -122,7 +181,7 @@ def salvar(request, hash):
         s2205_cnh_lista = None
         if s2205_documentos_id:
             s2205_documentos = get_object_or_404(s2205documentos.objects.using( db_slug ), excluido = False, id = s2205_documentos_id)
-  
+       
             s2205_ctps_form = form_s2205_ctps(initial={ 's2205_documentos': s2205_documentos }, slug=db_slug)
             s2205_ctps_form.fields['s2205_documentos'].widget.attrs['readonly'] = True
             s2205_ctps_lista = s2205CTPS.objects.using( db_slug ).filter(excluido = False, s2205_documentos_id=s2205_documentos.id).all()
@@ -161,9 +220,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2205_documentos_id': int(s2205_documentos_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
-  
+       
             's2205_ctps_form': s2205_ctps_form,
             's2205_ctps_lista': s2205_ctps_lista,
             's2205_ric_form': s2205_ric_form,
@@ -178,7 +237,7 @@ def salvar(request, hash):
             's2205_cnh_lista': s2205_cnh_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -222,75 +281,16 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
-
-@login_required
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2205_documentos_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2205_documentos')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    s2205_documentos = get_object_or_404(s2205documentos.objects.using( db_slug ), excluido = False, id = s2205_documentos_id)
-    dados_evento = {}
-    if s2205_documentos_id:
-        dados_evento = s2205_documentos.evento()
-        if dados_evento['status'] != 0:
-            dict_permissoes['s2205_documentos_apagar'] = 0
-            dict_permissoes['s2205_documentos_editar'] = 0
-    if request.method == 'POST':
-        if dados_evento['status'] == 0:
-            import json
-            from django.forms.models import model_to_dict
-            situacao_anterior = json.dumps(model_to_dict(s2205_documentos), indent=4, sort_keys=True, default=str)
-            s2205documentos.objects.using( db_slug ).filter(id = s2205_documentos_id).delete()
-            #s2205_documentos_apagar_custom
-            #s2205_documentos_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
-            gravar_auditoria(situacao_anterior,
-                             '',
-                             's2205_documentos', s2205_documentos_id, usuario_id, 3)
-        else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
-        if request.session['retorno_pagina']== 's2205_documentos_salvar':
-            return redirect('s2205_documentos', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 's2205_documentos_apagar.html', context)
 
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
@@ -376,17 +376,17 @@ def listar(request, hash):
             filtrar = True
             s2205_documentos_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+    
         #s2205_documentos_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2205_documentos'
         context = {
             's2205_documentos_lista': s2205_documentos_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -396,7 +396,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-   
+        
         }
         if for_print in (0,1):
             return render(request, 's2205_documentos_listar.html', context)
@@ -439,10 +439,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

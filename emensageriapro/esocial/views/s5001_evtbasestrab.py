@@ -162,7 +162,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         s5001_evtbasestrab_form = disabled_form_fields(s5001_evtbasestrab_form, permissao.permite_editar)
-
+    
         if s5001_evtbasestrab_id:
             if s5001_evtbasestrab.status != 0:
                 s5001_evtbasestrab_form = disabled_form_fields(s5001_evtbasestrab_form, False)
@@ -172,7 +172,7 @@ def salvar(request, hash):
             s5001_evtbasestrab_form.fields[field].widget.attrs['ng-model'] = 's5001_evtbasestrab_'+field
         if int(dict_hash['print']):
             s5001_evtbasestrab_form = disabled_form_for_print(s5001_evtbasestrab_form)
-
+   
         s5001_procjudtrab_form = None
         s5001_procjudtrab_lista = None
         s5001_infocpcalc_form = None
@@ -181,7 +181,7 @@ def salvar(request, hash):
         s5001_infocp_lista = None
         if s5001_evtbasestrab_id:
             s5001_evtbasestrab = get_object_or_404(s5001evtBasesTrab.objects.using( db_slug ), excluido = False, id = s5001_evtbasestrab_id)
-  
+       
             s5001_procjudtrab_form = form_s5001_procjudtrab(initial={ 's5001_evtbasestrab': s5001_evtbasestrab }, slug=db_slug)
             s5001_procjudtrab_form.fields['s5001_evtbasestrab'].widget.attrs['readonly'] = True
             s5001_procjudtrab_lista = s5001procJudTrab.objects.using( db_slug ).filter(excluido = False, s5001_evtbasestrab_id=s5001_evtbasestrab.id).all()
@@ -209,7 +209,7 @@ def salvar(request, hash):
             s5001_evtbasestrab_form.fields['procemi'].value = 1
             s5001_evtbasestrab_form.fields['verproc'].widget.attrs['readonly'] = True
             s5001_evtbasestrab_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-
+    
         if dict_hash['tab'] or 's5001_evtbasestrab' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's5001_evtbasestrab_salvar'
@@ -222,9 +222,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's5001_evtbasestrab_id': int(s5001_evtbasestrab_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
-  
+       
             's5001_procjudtrab_form': s5001_procjudtrab_form,
             's5001_procjudtrab_lista': s5001_procjudtrab_lista,
             's5001_infocpcalc_form': s5001_infocpcalc_form,
@@ -233,7 +233,7 @@ def salvar(request, hash):
             's5001_infocp_lista': s5001_infocp_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -243,7 +243,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s5001_evtbasestrab_salvar_custom_variaveis_context#
         }
-
+    
         if for_print in (0,1 ):
             return render(request, 's5001_evtbasestrab_salvar.html', context)
         elif for_print == 2:
@@ -277,10 +277,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -327,17 +327,17 @@ def apagar(request, hash):
                              's5001_evtbasestrab', s5001_evtbasestrab_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
+        
         if request.session['retorno_pagina']== 's5001_evtbasestrab_salvar':
             return redirect('s5001_evtbasestrab', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-   
+        
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-   
+        
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -483,18 +483,18 @@ def listar(request, hash):
             filtrar = True
             s5001_evtbasestrab_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+   
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s5001_evtbasestrab_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's5001_evtbasestrab'
         context = {
             's5001_evtbasestrab_lista': s5001_evtbasestrab_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -504,7 +504,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-  
+       
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         #return render(request, 's5001_evtbasestrab_listar.html', context)
@@ -549,10 +549,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

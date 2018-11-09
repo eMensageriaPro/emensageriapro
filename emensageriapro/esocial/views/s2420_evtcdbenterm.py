@@ -156,7 +156,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         s2420_evtcdbenterm_form = disabled_form_fields(s2420_evtcdbenterm_form, permissao.permite_editar)
-
+    
         if s2420_evtcdbenterm_id:
             if s2420_evtcdbenterm.status != 0:
                 s2420_evtcdbenterm_form = disabled_form_fields(s2420_evtcdbenterm_form, False)
@@ -188,7 +188,7 @@ def salvar(request, hash):
             s2420_evtcdbenterm_form.fields['procemi'].value = 1
             s2420_evtcdbenterm_form.fields['verproc'].widget.attrs['readonly'] = True
             s2420_evtcdbenterm_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-
+    
         if dict_hash['tab'] or 's2420_evtcdbenterm' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's2420_evtcdbenterm_salvar'
@@ -201,12 +201,12 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2420_evtcdbenterm_id': int(s2420_evtcdbenterm_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
             #[VARIAVEIS_SECUNDARIAS]
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -216,7 +216,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s2420_evtcdbenterm_salvar_custom_variaveis_context#
         }
-
+    
         if for_print in (0,1 ):
             return render(request, 's2420_evtcdbenterm_salvar.html', context)
         elif for_print == 2:
@@ -250,10 +250,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -300,17 +300,17 @@ def apagar(request, hash):
                              's2420_evtcdbenterm', s2420_evtcdbenterm_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
+        
         if request.session['retorno_pagina']== 's2420_evtcdbenterm_salvar':
             return redirect('s2420_evtcdbenterm', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-   
+        
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-   
+        
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -477,18 +477,18 @@ def listar(request, hash):
             filtrar = True
             s2420_evtcdbenterm_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+   
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s2420_evtcdbenterm_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2420_evtcdbenterm'
         context = {
             's2420_evtcdbenterm_lista': s2420_evtcdbenterm_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -498,7 +498,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-  
+       
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         #return render(request, 's2420_evtcdbenterm_listar.html', context)
@@ -543,10 +543,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

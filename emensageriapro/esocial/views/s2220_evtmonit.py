@@ -158,7 +158,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         s2220_evtmonit_form = disabled_form_fields(s2220_evtmonit_form, permissao.permite_editar)
-
+    
         if s2220_evtmonit_id:
             if s2220_evtmonit.status != 0:
                 s2220_evtmonit_form = disabled_form_fields(s2220_evtmonit_form, False)
@@ -168,12 +168,12 @@ def salvar(request, hash):
             s2220_evtmonit_form.fields[field].widget.attrs['ng-model'] = 's2220_evtmonit_'+field
         if int(dict_hash['print']):
             s2220_evtmonit_form = disabled_form_for_print(s2220_evtmonit_form)
-
+   
         s2220_exame_form = None
         s2220_exame_lista = None
         if s2220_evtmonit_id:
             s2220_evtmonit = get_object_or_404(s2220evtMonit.objects.using( db_slug ), excluido = False, id = s2220_evtmonit_id)
-  
+       
             s2220_exame_form = form_s2220_exame(initial={ 's2220_evtmonit': s2220_evtmonit }, slug=db_slug)
             s2220_exame_form.fields['s2220_evtmonit'].widget.attrs['readonly'] = True
             s2220_exame_lista = s2220exame.objects.using( db_slug ).filter(excluido = False, s2220_evtmonit_id=s2220_evtmonit.id).all()
@@ -195,7 +195,7 @@ def salvar(request, hash):
             s2220_evtmonit_form.fields['procemi'].value = 1
             s2220_evtmonit_form.fields['verproc'].widget.attrs['readonly'] = True
             s2220_evtmonit_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-
+    
         if dict_hash['tab'] or 's2220_evtmonit' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's2220_evtmonit_salvar'
@@ -208,14 +208,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2220_evtmonit_id': int(s2220_evtmonit_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
-  
+       
             's2220_exame_form': s2220_exame_form,
             's2220_exame_lista': s2220_exame_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -225,7 +225,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s2220_evtmonit_salvar_custom_variaveis_context#
         }
-
+    
         if for_print in (0,1 ):
             return render(request, 's2220_evtmonit_salvar.html', context)
         elif for_print == 2:
@@ -259,10 +259,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -309,17 +309,17 @@ def apagar(request, hash):
                              's2220_evtmonit', s2220_evtmonit_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
+        
         if request.session['retorno_pagina']== 's2220_evtmonit_salvar':
             return redirect('s2220_evtmonit', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-   
+        
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-   
+        
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -540,18 +540,18 @@ def listar(request, hash):
             filtrar = True
             s2220_evtmonit_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+   
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s2220_evtmonit_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2220_evtmonit'
         context = {
             's2220_evtmonit_lista': s2220_evtmonit_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -561,7 +561,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-  
+       
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         #return render(request, 's2220_evtmonit_listar.html', context)
@@ -606,10 +606,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

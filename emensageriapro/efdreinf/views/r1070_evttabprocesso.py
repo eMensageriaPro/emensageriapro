@@ -162,7 +162,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         r1070_evttabprocesso_form = disabled_form_fields(r1070_evttabprocesso_form, permissao.permite_editar)
-
+    
         if r1070_evttabprocesso_id:
             if r1070_evttabprocesso.status != 0:
                 r1070_evttabprocesso_form = disabled_form_fields(r1070_evttabprocesso_form, False)
@@ -172,7 +172,7 @@ def salvar(request, hash):
             r1070_evttabprocesso_form.fields[field].widget.attrs['ng-model'] = 'r1070_evttabprocesso_'+field
         if int(dict_hash['print']):
             r1070_evttabprocesso_form = disabled_form_for_print(r1070_evttabprocesso_form)
-
+   
         r1070_inclusao_form = None
         r1070_inclusao_lista = None
         r1070_alteracao_form = None
@@ -181,7 +181,7 @@ def salvar(request, hash):
         r1070_exclusao_lista = None
         if r1070_evttabprocesso_id:
             r1070_evttabprocesso = get_object_or_404(r1070evtTabProcesso.objects.using( db_slug ), excluido = False, id = r1070_evttabprocesso_id)
-  
+       
             r1070_inclusao_form = form_r1070_inclusao(initial={ 'r1070_evttabprocesso': r1070_evttabprocesso }, slug=db_slug)
             r1070_inclusao_form.fields['r1070_evttabprocesso'].widget.attrs['readonly'] = True
             r1070_inclusao_lista = r1070inclusao.objects.using( db_slug ).filter(excluido = False, r1070_evttabprocesso_id=r1070_evttabprocesso.id).all()
@@ -209,7 +209,7 @@ def salvar(request, hash):
             r1070_evttabprocesso_form.fields['procemi'].value = 1
             r1070_evttabprocesso_form.fields['verproc'].widget.attrs['readonly'] = True
             r1070_evttabprocesso_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-
+    
         if dict_hash['tab'] or 'r1070_evttabprocesso' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'r1070_evttabprocesso_salvar'
@@ -222,9 +222,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r1070_evttabprocesso_id': int(r1070_evttabprocesso_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
-  
+       
             'r1070_inclusao_form': r1070_inclusao_form,
             'r1070_inclusao_lista': r1070_inclusao_lista,
             'r1070_alteracao_form': r1070_alteracao_form,
@@ -233,7 +233,7 @@ def salvar(request, hash):
             'r1070_exclusao_lista': r1070_exclusao_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -243,7 +243,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #r1070_evttabprocesso_salvar_custom_variaveis_context#
         }
-
+    
         if for_print in (0,1 ):
             return render(request, 'r1070_evttabprocesso_salvar.html', context)
         elif for_print == 2:
@@ -277,10 +277,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -327,17 +327,17 @@ def apagar(request, hash):
                              'r1070_evttabprocesso', r1070_evttabprocesso_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
+        
         if request.session['retorno_pagina']== 'r1070_evttabprocesso_salvar':
             return redirect('r1070_evttabprocesso', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-   
+        
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-   
+        
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -477,18 +477,18 @@ def listar(request, hash):
             filtrar = True
             r1070_evttabprocesso_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+   
         transmissor_lote_efdreinf_lista = TransmissorLoteEfdreinf.objects.using( db_slug ).filter(excluido = False).all()
         #r1070_evttabprocesso_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r1070_evttabprocesso'
         context = {
             'r1070_evttabprocesso_lista': r1070_evttabprocesso_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -498,7 +498,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-  
+       
             'transmissor_lote_efdreinf_lista': transmissor_lote_efdreinf_lista,
         }
         #return render(request, 'r1070_evttabprocesso_listar.html', context)
@@ -543,10 +543,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

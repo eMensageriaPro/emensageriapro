@@ -22,6 +22,65 @@ import base64
 
 
 @login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        s5011_idelotacao_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s5011_idelotacao')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    s5011_idelotacao = get_object_or_404(s5011ideLotacao.objects.using( db_slug ), excluido = False, id = s5011_idelotacao_id)
+    dados_evento = {}
+    if s5011_idelotacao_id:
+        dados_evento = s5011_idelotacao.evento()
+        if dados_evento['status'] != 0:
+            dict_permissoes['s5011_idelotacao_apagar'] = 0
+            dict_permissoes['s5011_idelotacao_editar'] = 0
+    if request.method == 'POST':
+        if dados_evento['status'] == 0:
+            import json
+            from django.forms.models import model_to_dict
+            situacao_anterior = json.dumps(model_to_dict(s5011_idelotacao), indent=4, sort_keys=True, default=str)
+            s5011ideLotacao.objects.using( db_slug ).filter(id = s5011_idelotacao_id).delete()
+            #s5011_idelotacao_apagar_custom
+            #s5011_idelotacao_apagar_custom
+            messages.success(request, 'Apagado com sucesso!')
+            gravar_auditoria(situacao_anterior,
+                             '',
+                             's5011_idelotacao', s5011_idelotacao_id, usuario_id, 3)
+        else:
+            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+        
+        if request.session['retorno_pagina']== 's5011_idelotacao_salvar':
+            return redirect('s5011_idelotacao', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+        
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+        
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 's5011_idelotacao_apagar.html', context)
+
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
@@ -107,7 +166,7 @@ def salvar(request, hash):
             s5011_idelotacao_form.fields[field].widget.attrs['ng-model'] = 's5011_idelotacao_'+field
         if int(dict_hash['print']):
             s5011_idelotacao_form = disabled_form_for_print(s5011_idelotacao_form)
-
+   
         s5011_infotercsusp_form = None
         s5011_infotercsusp_lista = None
         s5011_infoemprparcial_form = None
@@ -122,7 +181,7 @@ def salvar(request, hash):
         s5011_infosubstpatropport_lista = None
         if s5011_idelotacao_id:
             s5011_idelotacao = get_object_or_404(s5011ideLotacao.objects.using( db_slug ), excluido = False, id = s5011_idelotacao_id)
-  
+       
             s5011_infotercsusp_form = form_s5011_infotercsusp(initial={ 's5011_idelotacao': s5011_idelotacao }, slug=db_slug)
             s5011_infotercsusp_form.fields['s5011_idelotacao'].widget.attrs['readonly'] = True
             s5011_infotercsusp_lista = s5011infoTercSusp.objects.using( db_slug ).filter(excluido = False, s5011_idelotacao_id=s5011_idelotacao.id).all()
@@ -161,9 +220,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's5011_idelotacao_id': int(s5011_idelotacao_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
-  
+       
             's5011_infotercsusp_form': s5011_infotercsusp_form,
             's5011_infotercsusp_lista': s5011_infotercsusp_lista,
             's5011_infoemprparcial_form': s5011_infoemprparcial_form,
@@ -178,7 +237,7 @@ def salvar(request, hash):
             's5011_infosubstpatropport_lista': s5011_infosubstpatropport_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -222,75 +281,16 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
-
-@login_required
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s5011_idelotacao_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s5011_idelotacao')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    s5011_idelotacao = get_object_or_404(s5011ideLotacao.objects.using( db_slug ), excluido = False, id = s5011_idelotacao_id)
-    dados_evento = {}
-    if s5011_idelotacao_id:
-        dados_evento = s5011_idelotacao.evento()
-        if dados_evento['status'] != 0:
-            dict_permissoes['s5011_idelotacao_apagar'] = 0
-            dict_permissoes['s5011_idelotacao_editar'] = 0
-    if request.method == 'POST':
-        if dados_evento['status'] == 0:
-            import json
-            from django.forms.models import model_to_dict
-            situacao_anterior = json.dumps(model_to_dict(s5011_idelotacao), indent=4, sort_keys=True, default=str)
-            s5011ideLotacao.objects.using( db_slug ).filter(id = s5011_idelotacao_id).delete()
-            #s5011_idelotacao_apagar_custom
-            #s5011_idelotacao_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
-            gravar_auditoria(situacao_anterior,
-                             '',
-                             's5011_idelotacao', s5011_idelotacao_id, usuario_id, 3)
-        else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
-        if request.session['retorno_pagina']== 's5011_idelotacao_salvar':
-            return redirect('s5011_idelotacao', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 's5011_idelotacao_apagar.html', context)
 
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
@@ -388,17 +388,17 @@ def listar(request, hash):
             filtrar = True
             s5011_idelotacao_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+    
         #s5011_idelotacao_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's5011_idelotacao'
         context = {
             's5011_idelotacao_lista': s5011_idelotacao_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -408,7 +408,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-   
+        
         }
         if for_print in (0,1):
             return render(request, 's5011_idelotacao_listar.html', context)
@@ -451,10 +451,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

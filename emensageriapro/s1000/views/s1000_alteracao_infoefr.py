@@ -22,6 +22,65 @@ import base64
 
 
 @login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        s1000_alteracao_infoefr_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s1000_alteracao_infoefr')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    s1000_alteracao_infoefr = get_object_or_404(s1000alteracaoinfoEFR.objects.using( db_slug ), excluido = False, id = s1000_alteracao_infoefr_id)
+    dados_evento = {}
+    if s1000_alteracao_infoefr_id:
+        dados_evento = s1000_alteracao_infoefr.evento()
+        if dados_evento['status'] != 0:
+            dict_permissoes['s1000_alteracao_infoefr_apagar'] = 0
+            dict_permissoes['s1000_alteracao_infoefr_editar'] = 0
+    if request.method == 'POST':
+        if dados_evento['status'] == 0:
+            import json
+            from django.forms.models import model_to_dict
+            situacao_anterior = json.dumps(model_to_dict(s1000_alteracao_infoefr), indent=4, sort_keys=True, default=str)
+            s1000alteracaoinfoEFR.objects.using( db_slug ).filter(id = s1000_alteracao_infoefr_id).delete()
+            #s1000_alteracao_infoefr_apagar_custom
+            #s1000_alteracao_infoefr_apagar_custom
+            messages.success(request, 'Apagado com sucesso!')
+            gravar_auditoria(situacao_anterior,
+                             '',
+                             's1000_alteracao_infoefr', s1000_alteracao_infoefr_id, usuario_id, 3)
+        else:
+            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+        
+        if request.session['retorno_pagina']== 's1000_alteracao_infoefr_salvar':
+            return redirect('s1000_alteracao_infoefr', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+        
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+        
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 's1000_alteracao_infoefr_apagar.html', context)
+
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
@@ -131,12 +190,12 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1000_alteracao_infoefr_id': int(s1000_alteracao_infoefr_id),
             'usuario': usuario,
-       
+            
             'hash': hash,
             #[VARIAVEIS_SECUNDARIAS]
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -180,75 +239,16 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
             'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)
-
-@login_required
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s1000_alteracao_infoefr_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s1000_alteracao_infoefr')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    s1000_alteracao_infoefr = get_object_or_404(s1000alteracaoinfoEFR.objects.using( db_slug ), excluido = False, id = s1000_alteracao_infoefr_id)
-    dados_evento = {}
-    if s1000_alteracao_infoefr_id:
-        dados_evento = s1000_alteracao_infoefr.evento()
-        if dados_evento['status'] != 0:
-            dict_permissoes['s1000_alteracao_infoefr_apagar'] = 0
-            dict_permissoes['s1000_alteracao_infoefr_editar'] = 0
-    if request.method == 'POST':
-        if dados_evento['status'] == 0:
-            import json
-            from django.forms.models import model_to_dict
-            situacao_anterior = json.dumps(model_to_dict(s1000_alteracao_infoefr), indent=4, sort_keys=True, default=str)
-            s1000alteracaoinfoEFR.objects.using( db_slug ).filter(id = s1000_alteracao_infoefr_id).delete()
-            #s1000_alteracao_infoefr_apagar_custom
-            #s1000_alteracao_infoefr_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
-            gravar_auditoria(situacao_anterior,
-                             '',
-                             's1000_alteracao_infoefr', s1000_alteracao_infoefr_id, usuario_id, 3)
-        else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-   
-        if request.session['retorno_pagina']== 's1000_alteracao_infoefr_salvar':
-            return redirect('s1000_alteracao_infoefr', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 's1000_alteracao_infoefr_apagar.html', context)
 
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
@@ -346,17 +346,17 @@ def listar(request, hash):
             filtrar = True
             s1000_alteracao_infoefr_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-
+    
         #s1000_alteracao_infoefr_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1000_alteracao_infoefr'
         context = {
             's1000_alteracao_infoefr_lista': s1000_alteracao_infoefr_lista,
-       
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -366,7 +366,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-   
+        
         }
         if for_print in (0,1):
             return render(request, 's1000_alteracao_infoefr_listar.html', context)
@@ -409,10 +409,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-       
+            
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-       
+            
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
