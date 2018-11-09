@@ -276,8 +276,8 @@ def send_xml(request, transmissor_id, service):
     dados['efdreinf_lote_min'] = tra.transmissor.efdreinf_lote_min
     dados['efdreinf_lote_max'] = tra.transmissor.efdreinf_lote_max
     dados['efdreinf_timeout'] = tra.transmissor.efdreinf_timeout
-    dados['efdreinf_certificado'] = 'uploads/'+tra.transmissor.efdreinf_certificado
-    dados['efdreinf_senha'] = tra.transmissor.efdreinf_senha
+    # dados['efdreinf_certificado'] = 'uploads/'+tra.transmissor.efdreinf_certificado
+    # dados['efdreinf_senha'] = tra.transmissor.efdreinf_senha
 
     cert_pem_file = BASE_DIR+'/'+ CERT_PEM_FILE
     key_pem_file = BASE_DIR+'/'+ KEY_PEM_FILE

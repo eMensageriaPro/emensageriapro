@@ -1,4 +1,6 @@
 #coding:utf-8
+from emensageriapro.mensageiro.functions.funcoes import create_insert, testar_importacao_xml
+
 
 """
 
@@ -39,38 +41,6 @@ import os
 from django.contrib import messages
 from emensageriapro.settings import BASE_DIR
 from emensageriapro.padrao import ler_arquivo, executar_sql
-versao_atual = 'v02_04_02'
-
-
-def testar_importacao_xml(dicionario, chave, valor):
-    try:
-        dicionario[chave] = valor
-    except:
-        pass
-    return dicionario
-
-def create_insert(tabela, dados):
-    variaveis = dados.keys()
-    campos_numericos = executar_sql("""
-        SELECT column_name FROM information_schema.columns 
-        WHERE table_name ='%s' 
-        AND data_type in ('numeric', 'integer');
-        """ % tabela, True)
-    campos_numericos_lista = []
-    for a in campos_numericos:
-        campos_numericos_lista.append(a[0])
-    valores = ''
-    for a in variaveis:
-        if dados[a] or dados[a] == 0:
-            if (a in campos_numericos_lista):
-                valores += "%s, " % str(dados[a]).replace('.','').replace(',','.')
-            else:
-                valores += "'%s', " % dados[a]
-        else:
-            valores += "Null, "
-    texto = "INSERT INTO public.%s (%s, criado_em, criado_por_id, excluido) VALUES (%s now(), 1, False) RETURNING id;" % (tabela, ', '.join(variaveis), valores)
-    return texto
-
 
 
 def read_envioLoteEventos(arquivo, transmissor_lote_esocial_id):

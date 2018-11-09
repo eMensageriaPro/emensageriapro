@@ -297,8 +297,8 @@ def send_xml(request, transmissor_id, service):
     transmissor_dados['esocial_lote_min'] = tle.transmissor.esocial_lote_min
     transmissor_dados['esocial_lote_max'] = tle.transmissor.esocial_lote_max
     transmissor_dados['esocial_timeout'] = tle.transmissor.esocial_timeout
-    transmissor_dados['esocial_certificado'] = BASE_DIR + 'uploads/' + tle.transmissor.esocial_certificado
-    transmissor_dados['esocial_senha'] = tle.transmissor.esocial_senha
+    # transmissor_dados['esocial_certificado'] = BASE_DIR + 'uploads/' + tle.transmissor.esocial_certificado
+    # transmissor_dados['esocial_senha'] = tle.transmissor.esocial_senha
 
     cert_pem_file = BASE_DIR + '/' + CERT_PEM_FILE
     key_pem_file = BASE_DIR + '/' + KEY_PEM_FILE
@@ -386,34 +386,34 @@ def send_xml(request, transmissor_id, service):
                 messages.warning(request, 'Retorno do servidor: ' + ler_arquivo(dados['header']) )
 
             if service == 'WsEnviarLoteEventos':
-                TransmissorEventosEsocial.objects.using('default').filter(id=transmissor_id).update(status=7)
+                TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=7)
                 # alterar_status_transmissor(transmissor_id, 7)
 
             elif service == 'WsConsultarLoteEventos':
-                TransmissorEventosEsocial.objects.using('default').filter(id=transmissor_id).update(status=9)
+                TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=9)
                 # alterar_status_transmissor(transmissor_id, 9)
 
         elif (quant_eventos < transmissor_dados['esocial_lote_min'] and \
                     service == 'WsEnviarLoteEventos'):
             messages.error(request, 'Lote com quantidade inferior a mínima permitida!')
-            TransmissorEventosEsocial.objects.using('default').filter(id=transmissor_id).update(status=0)
+            TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=0)
             #alterar_status_transmissor(transmissor_id, 0)
 
         elif (quant_eventos > transmissor_dados['esocial_lote_max'] and \
                   service == 'WsEnviarLoteEventos'):
             messages.error(request, 'Lote com quantidade de eventos superior a máxima permitida!')
-            TransmissorEventosEsocial.objects.using('default').filter(id=transmissor_id).update(status=0)
+            TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=0)
             #alterar_status_transmissor(transmissor_id, 0)
 
         else:
             messages.error(request, 'Erro ao enviar o lote!')
 
             if service == 'WsEnviarLoteEventos':
-                TransmissorEventosEsocial.objects.using('default').filter(id=transmissor_id).update(status=5)
+                TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=5)
                 # alterar_status_transmissor(transmissor_id, 5)
 
             elif service == 'WsConsultarLoteEventos':
-                TransmissorEventosEsocial.objects.using('default').filter(id=transmissor_id).update(status=8)
+                TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=8)
                 # alterar_status_transmissor(transmissor_id, 8)
 
     else:
