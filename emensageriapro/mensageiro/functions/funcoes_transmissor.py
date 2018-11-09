@@ -39,6 +39,7 @@ import os
 from django.contrib import messages
 from emensageriapro.settings import BASE_DIR
 from emensageriapro.padrao import executar_sql
+from emensageriapro.mensageiro.models import *
 
 
 

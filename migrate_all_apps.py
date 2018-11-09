@@ -141,6 +141,32 @@ def migrates():
     print 'Tempo decorrido:', data_fim - data_inicio
 
 
+def criar_diretorio_arquivos():
+
+    from emensageriapro.settings import BASE_DIR
+    lista = [
+        'arquivos/Comunicacao/',
+        'arquivos/Comunicacao/WsConsultarLoteEventos/',
+        'arquivos/Comunicacao/WsEnviarLoteEventos/',
+        'arquivos/Comunicacao/WsConsultarLoteEventos/header/',
+        'arquivos/Comunicacao/WsConsultarLoteEventos/request/',
+        'arquivos/Comunicacao/WsConsultarLoteEventos/response/',
+        'arquivos/Comunicacao/WsEnviarLoteEventos/header/',
+        'arquivos/Comunicacao/WsEnviarLoteEventos/request/',
+        'arquivos/Comunicacao/WsEnviarLoteEventos/response/',
+        'arquivos/Comunicacao/RecepcaoLoteReinf/',
+        'arquivos/Comunicacao/ConsultasReinf/',
+        'arquivos/Comunicacao/RecepcaoLoteReinf/header/',
+        'arquivos/Comunicacao/RecepcaoLoteReinf/request/',
+        'arquivos/Comunicacao/RecepcaoLoteReinf/response/',
+        'arquivos/Comunicacao/ConsultasReinf/header/',
+        'arquivos/Comunicacao/ConsultasReinf/request/',
+        'arquivos/Comunicacao/ConsultasReinf/response/',
+    ]
+    for a in lista:
+        if not os.path.isdir(a):
+            os.system('mkdir -p %s/%s' % (BASE_DIR,a ) )
+
 def update_tables():
 
     arquivos = os.listdir('sql_tabelas')
@@ -165,4 +191,5 @@ if __name__ == "__main__":
     reset_sequences()
     cadastro_controle_acesso()
     update_tables()
+    criar_diretorio_arquivos()
 

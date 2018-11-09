@@ -288,12 +288,17 @@ def get_schema_name(arquivo):
 
 
 def validar_campo(validacoes_lista, evento_campo, valor, obrigatorio, valores_validos):
+
     if obrigatorio:
+
         if not valor:
             validacoes_lista.append(u'O valor do campo %s é obrigatório' % (evento_campo))
+
         if valores_validos and valor not in valores_validos:
             validacoes_lista.append(u'O valor do campo %s é %s, não está dentro dos valores válidos permitidos (valores permitidos: %s) ' % (evento_campo, valor, valores_validos))
+
     if not obrigatorio and valor and valores_validos:
+
         if valor not in valores_validos:
             validacoes_lista.append(u'O valor do campo %s é %s, não está dentro dos valores válidos permitidos (valores permitidos: %s) ' % (evento_campo, valor, valores_validos))
 

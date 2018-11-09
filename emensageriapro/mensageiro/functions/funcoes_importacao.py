@@ -36,9 +36,12 @@
 import psycopg2
 import datetime
 import os
-from padrao import ler_arquivo
+from emensageriapro.padrao import ler_arquivo
 from emensageriapro.mensageiro.functions.funcoes_validacoes import validar_schema
-from emensageriapro.settings import CERT, CERT_HOST, CERT_PASS
+from emensageriapro.settings import CERT_HOST, CERT_PASS
+from emensageriapro.mensageiro.models import *
+from emensageriapro.esocial.models import *
+from emensageriapro.efdreinf.models import *
 
 
 
@@ -56,13 +59,6 @@ def get_identidade_evento(texto):
     a = texto.split('Id="')
     b = a[1].split('"')
     return b[0]
-
-
-
-
-
-
-
 
 
 def atualizar_tabela(tabela, dados, arquivo):

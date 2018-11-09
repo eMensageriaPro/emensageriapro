@@ -38,6 +38,7 @@ from emensageriapro.padrao import executar_sql
 
 def atualizar_status_esocial():
     executar_sql("""
+      
       UPDATE public.s1000_evtinfoempregador AS a
          SET recepcao_tp_amb=b.recepcao_tp_amb, recepcao_data_hora=b.recepcao_data_hora, recepcao_versao_app=b.recepcao_versao_app, 
              recepcao_protocolo_envio_lote=b.recepcao_protocolo_envio_lote, processamento_codigo_resposta=b.processamento_codigo_resposta, 
@@ -46,6 +47,7 @@ def atualizar_status_esocial():
         FROM public.retornos_eventos AS b WHERE a.retornos_eventos_id = b.id;UPDATE public.s1000_evtinfoempregador SET status=5 WHERE processamento_codigo_resposta IN (301,401,402,403,404,405,501,502,503,504,505);
       UPDATE public.s1000_evtinfoempregador SET status=14 WHERE processamento_codigo_resposta IN (201,202);
       UPDATE public.s1000_evtinfoempregador SET ocorrencias=Null WHERE retornos_eventos_id NOT IN (SELECT retornos_eventos_id FROM retornos_eventos_ocorrencias);
+      
       UPDATE public.s1005_evttabestab AS a
          SET recepcao_tp_amb=b.recepcao_tp_amb, recepcao_data_hora=b.recepcao_data_hora, recepcao_versao_app=b.recepcao_versao_app, 
              recepcao_protocolo_envio_lote=b.recepcao_protocolo_envio_lote, processamento_codigo_resposta=b.processamento_codigo_resposta, 
@@ -395,11 +397,17 @@ def atualizar_status_esocial():
 
 def atualizar_status_efdreinf():
     executar_sql("""
+
+
       UPDATE public.r1000_evtinfocontri AS a
    SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
-  FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r1000_evtinfocontri SET status=5 WHERE cdretorno IN ('1');
+  FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;
+  UPDATE public.r1000_evtinfocontri SET status=5 WHERE cdretorno IN ('1');
 UPDATE public.r1000_evtinfocontri SET status=14 WHERE cdretorno IN ('0','2');
 UPDATE public.r1000_evtinfocontri SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
+
+
+
 UPDATE public.r1070_evttabprocesso AS a
    SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
   FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r1070_evttabprocesso SET status=5 WHERE cdretorno IN ('1');
