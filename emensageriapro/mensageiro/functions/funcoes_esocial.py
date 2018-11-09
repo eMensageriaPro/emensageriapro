@@ -278,7 +278,7 @@ def send_xml(request, transmissor_id, service):
     transmissor_dados = {}
 
     tle = TransmissorLoteEsocial.objects.using('default').\
-                get(id=dados['transmissor_id'])
+                get(id=transmissor_id)
 
     # tra = executar_sql("""
     #     SELECT te.empregador_tpinsc, te.empregador_nrinsc,
