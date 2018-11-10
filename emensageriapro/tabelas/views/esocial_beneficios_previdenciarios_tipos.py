@@ -299,13 +299,15 @@ def listar(request, hash):
             'show_criado_por': 0,
             'show_criado_em': 0,
             'show_descricao': 1,
-            'show_codigo': 1, }
+            'show_codigo': 1,
+            'show_grupo': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
                 'descricao__icontains': 'descricao__icontains',
-                'codigo__icontains': 'codigo__icontains',}
+                'codigo__icontains': 'codigo__icontains',
+                'grupo': 'grupo',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
@@ -313,7 +315,8 @@ def listar(request, hash):
             if request.method == 'POST':
                 dict_fields = {
                 'descricao__icontains': 'descricao__icontains',
-                'codigo__icontains': 'codigo__icontains',}
+                'codigo__icontains': 'codigo__icontains',
+                'grupo': 'grupo',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

@@ -11,6 +11,21 @@ get_model = apps.get_model
 
 
 
+ESOCIAL_BENEFICIOS_PREVIDENCIARIOS_TIPOS_GRUPOS = (
+    (1, u'Grupo 01 - Aposentadoria por Idade e Tempo de Contribuição'),
+    (10, u'Grupo 10 - Benefícios Especiais com Vínculo Previdenciário'),
+    (11, u'Grupo 11 - Benefícios Especiais sem Vínculo Previdenciário'),
+    (12, u'Grupo 12 – Parlamentares'),
+    (2, u'Grupo 02 - Aposentadoria Especial'),
+    (3, u'Grupo 03 - Aposentadoria por Invalidez'),
+    (4, u'Grupo 04 - Militares (Reforma)'),
+    (5, u'Grupo 05 - Militares (Reserva)'),
+    (6, u'Grupo 06 - Pensão por Morte'),
+    (7, u'Grupo 07 - Auxílios Previdenciários'),
+    (8, u'Grupo 08 - Complementação do Benefício do Regime Geral de Previdência Social (RGPS)'),
+    (9, u'Grupo 09 - Benefícios Concedidos Antes da Obrigatoriedade de Envio dos Eventos Não Periódicos para Entes Públicos no eSocial (Carga Inicial)'),
+)
+
 GRUPOS_FATORES_RISCOS = (
     (1, u'FÍSICOS'),
     (10, u'PERICULOSO'),
@@ -82,7 +97,7 @@ GRUPO_CODIGO_ATIV_PROD_SERV = (
 )
 
 class CBO(models.Model):
-    codigo = models.CharField(max_length=4)
+    codigo = models.CharField(max_length=6)
     descricao = models.TextField()
     data_inicio = models.DateField()
     data_termino = models.DateField(blank=True, null=True)
@@ -513,7 +528,7 @@ class eSocialAfastamentosMotivos(models.Model):
     codigo = models.CharField(max_length=2)
     descricao = models.TextField()
     data_inicio = models.DateField()
-    data_termino = models.DateField()
+    data_termino = models.DateField(blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -675,7 +690,8 @@ class eSocialBeneficiosPrevidenciariosCessacaoMotivosSerializer(ModelSerializer)
             
 
 class eSocialBeneficiosPrevidenciariosTipos(models.Model):
-    codigo = models.CharField(max_length=2)
+    grupo = models.IntegerField(choices=ESOCIAL_BENEFICIOS_PREVIDENCIARIOS_TIPOS_GRUPOS)
+    codigo = models.CharField(max_length=4)
     descricao = models.TextField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -685,13 +701,13 @@ class eSocialBeneficiosPrevidenciariosTipos(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.codigo) + ' - ' + unicode(self.descricao)
+        return unicode(self.grupo) + ' - ' + unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_beneficios_previdenciarios_tipos_custom#
     #esocial_beneficios_previdenciarios_tipos_custom#
     class Meta:
         db_table = r'esocial_beneficios_previdenciarios_tipos'
         managed = True
-        ordering = ['codigo', 'descricao']
+        ordering = ['grupo', 'codigo', 'descricao']
 
 
 
@@ -950,7 +966,7 @@ class eSocialDesligamentosMotivos(models.Model):
     codigo = models.CharField(max_length=2)
     descricao = models.TextField()
     data_inicio = models.DateField()
-    data_termino = models.DateField()
+    data_termino = models.DateField(blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -1058,7 +1074,7 @@ class eSocialInscricoesTiposSerializer(ModelSerializer):
             
 
 class eSocialLogradourosTipos(models.Model):
-    codigo = models.CharField(max_length=3)
+    codigo = models.CharField(max_length=5)
     descricao = models.TextField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',

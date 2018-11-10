@@ -576,8 +576,6 @@ class form_esocial_afastamentos_motivos(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_esocial_afastamentos_motivos,self ).__init__(*args,**kwargs)
         
-        self.fields['data_termino'].widget.attrs['required'] = True
-        
         self.fields['data_inicio'].widget.attrs['required'] = True
         
         self.fields['descricao'].widget.attrs['required'] = True
@@ -601,8 +599,6 @@ class form_esocial_desligamentos_motivos(forms.ModelForm):
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_esocial_desligamentos_motivos,self ).__init__(*args,**kwargs)
-        
-        self.fields['data_termino'].widget.attrs['required'] = True
         
         self.fields['data_inicio'].widget.attrs['required'] = True
         
@@ -781,6 +777,8 @@ class form_esocial_beneficios_previdenciarios_tipos(forms.ModelForm):
         self.fields['descricao'].widget.attrs['required'] = True
         
         self.fields['codigo'].widget.attrs['required'] = True
+        
+        self.fields['grupo'].widget.attrs['required'] = True
 
     class Meta:
         model = eSocialBeneficiosPrevidenciariosTipos
