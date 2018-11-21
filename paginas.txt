@@ -1,6 +1,7 @@
 
 
 
+
 Controle de Acesso|controle_de_acesso|Módulos|config_modulos
 Controle de Acesso|controle_de_acesso|Páginas|config_paginas
 Controle de Acesso|controle_de_acesso|Perfis|config_perfis
@@ -68,7 +69,7 @@ Tabelas|tabelas|EFD-Reinf 07 – Países|efdreinf_paises
 Tabelas|tabelas|EFD-Reinf 08 - Classificação Tributária|efdreinf_classificacao_tributaria
 Tabelas|tabelas|EFD-Reinf 09 – Código de Atividades, Produtos e Serviços Sujeitos à CPRB|efdreinf_codigos_atividades_produtos_servicos_cprb
 Tabelas|tabelas|EFD-Reinf 10 - Eventos da EFD-Reinf|efdreinf_eventos
-#N/A
+
 EFD-Reinf|efdreinf|R-1000 - Informações do Contribuinte|r1000_evtinfocontri
 EFD-Reinf|efdreinf|R-1070 - Tabela de Processos Administrativos/Judiciais|r1070_evttabprocesso
 EFD-Reinf|efdreinf|R-2010 - Retenção Contribuição Previdenciária - Serviços Tomados|r2010_evtservtom
