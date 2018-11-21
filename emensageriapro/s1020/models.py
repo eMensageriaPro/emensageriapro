@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -36,6 +67,18 @@ PERIODOS = (
     ('2018-10', u'Outubro/2018'),
     ('2018-11', u'Novembro/2018'),
     ('2018-12', u'Dezembro/2018'),
+    ('2019-01', u'Janeiro/2019'),
+    ('2019-02', u'Fevereiro/2019'),
+    ('2019-03', u'Março/2019'),
+    ('2019-04', u'Abril/2019'),
+    ('2019-05', u'Maio/2019'),
+    ('2019-06', u'Junho/2019'),
+    ('2019-07', u'Julho/2019'),
+    ('2019-08', u'Agosto/2019'),
+    ('2019-09', u'Setembro/2019'),
+    ('2019-10', u'Outubro/2019'),
+    ('2019-11', u'Novembro/2019'),
+    ('2019-12', u'Dezembro/2019'),
 )
 
 CHOICES_S1020_ALTERACAO_TPINSC = (
@@ -135,13 +178,13 @@ class s1020alteracao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1020_evttablotacao) + ' - ' + unicode(self.codlotacao) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid) + ' - ' + unicode(self.tplotacao) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.fpas) + ' - ' + unicode(self.codtercs) + ' - ' + unicode(self.codtercssusp)
+        return unicode(self.s1020_evttablotacao) + ' - ' + unicode(self.codlotacao) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.tplotacao) + ' - ' + unicode(self.fpas) + ' - ' + unicode(self.codtercs)
     #s1020_alteracao_custom#
     #s1020_alteracao_custom#
     class Meta:
         db_table = r's1020_alteracao'
         managed = True
-        ordering = ['s1020_evttablotacao', 'codlotacao', 'inivalid', 'fimvalid', 'tplotacao', 'tpinsc', 'nrinsc', 'fpas', 'codtercs', 'codtercssusp']
+        ordering = ['s1020_evttablotacao', 'codlotacao', 'inivalid', 'tplotacao', 'fpas', 'codtercs']
 
 
 
@@ -183,34 +226,6 @@ class s1020alteracaoinfoEmprParcialSerializer(ModelSerializer):
         fields = '__all__'
             
 
-class s1020alteracaoinfoProcJudTerceiros(models.Model):
-    s1020_alteracao = models.OneToOneField('s1020alteracao',
-        related_name='%(class)s_s1020_alteracao')
-    def evento(self): return self.s1020_alteracao.evento()
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s1020_alteracao)
-    #s1020_alteracao_infoprocjudterceiros_custom#
-    #s1020_alteracao_infoprocjudterceiros_custom#
-    class Meta:
-        db_table = r's1020_alteracao_infoprocjudterceiros'
-        managed = True
-        ordering = ['s1020_alteracao']
-
-
-
-class s1020alteracaoinfoProcJudTerceirosSerializer(ModelSerializer):
-    class Meta:
-        model = s1020alteracaoinfoProcJudTerceiros
-        fields = '__all__'
-            
-
 class s1020alteracaonovaValidade(models.Model):
     s1020_alteracao = models.OneToOneField('s1020alteracao',
         related_name='%(class)s_s1020_alteracao')
@@ -225,13 +240,13 @@ class s1020alteracaonovaValidade(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1020_alteracao) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid)
+        return unicode(self.s1020_alteracao) + ' - ' + unicode(self.inivalid)
     #s1020_alteracao_novavalidade_custom#
     #s1020_alteracao_novavalidade_custom#
     class Meta:
         db_table = r's1020_alteracao_novavalidade'
         managed = True
-        ordering = ['s1020_alteracao', 'inivalid', 'fimvalid']
+        ordering = ['s1020_alteracao', 'inivalid']
 
 
 
@@ -242,9 +257,9 @@ class s1020alteracaonovaValidadeSerializer(ModelSerializer):
             
 
 class s1020alteracaoprocJudTerceiro(models.Model):
-    s1020_alteracao_infoprocjudterceiros = models.ForeignKey('s1020alteracaoinfoProcJudTerceiros',
-        related_name='%(class)s_s1020_alteracao_infoprocjudterceiros')
-    def evento(self): return self.s1020_alteracao_infoprocjudterceiros.evento()
+    s1020_alteracao = models.ForeignKey('s1020alteracao',
+        related_name='%(class)s_s1020_alteracao')
+    def evento(self): return self.s1020_alteracao.evento()
     codterc = models.CharField(max_length=4)
     nrprocjud = models.CharField(max_length=20)
     codsusp = models.IntegerField()
@@ -256,13 +271,13 @@ class s1020alteracaoprocJudTerceiro(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1020_alteracao_infoprocjudterceiros) + ' - ' + unicode(self.codterc) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.codsusp)
+        return unicode(self.s1020_alteracao) + ' - ' + unicode(self.codterc) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.codsusp)
     #s1020_alteracao_procjudterceiro_custom#
     #s1020_alteracao_procjudterceiro_custom#
     class Meta:
         db_table = r's1020_alteracao_procjudterceiro'
         managed = True
-        ordering = ['s1020_alteracao_infoprocjudterceiros', 'codterc', 'nrprocjud', 'codsusp']
+        ordering = ['s1020_alteracao', 'codterc', 'nrprocjud', 'codsusp']
 
 
 
@@ -287,13 +302,13 @@ class s1020exclusao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1020_evttablotacao) + ' - ' + unicode(self.codlotacao) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid)
+        return unicode(self.s1020_evttablotacao) + ' - ' + unicode(self.codlotacao) + ' - ' + unicode(self.inivalid)
     #s1020_exclusao_custom#
     #s1020_exclusao_custom#
     class Meta:
         db_table = r's1020_exclusao'
         managed = True
-        ordering = ['s1020_evttablotacao', 'codlotacao', 'inivalid', 'fimvalid']
+        ordering = ['s1020_evttablotacao', 'codlotacao', 'inivalid']
 
 
 
@@ -324,13 +339,13 @@ class s1020inclusao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1020_evttablotacao) + ' - ' + unicode(self.codlotacao) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid) + ' - ' + unicode(self.tplotacao) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.fpas) + ' - ' + unicode(self.codtercs) + ' - ' + unicode(self.codtercssusp)
+        return unicode(self.s1020_evttablotacao) + ' - ' + unicode(self.codlotacao) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.tplotacao) + ' - ' + unicode(self.fpas) + ' - ' + unicode(self.codtercs)
     #s1020_inclusao_custom#
     #s1020_inclusao_custom#
     class Meta:
         db_table = r's1020_inclusao'
         managed = True
-        ordering = ['s1020_evttablotacao', 'codlotacao', 'inivalid', 'fimvalid', 'tplotacao', 'tpinsc', 'nrinsc', 'fpas', 'codtercs', 'codtercssusp']
+        ordering = ['s1020_evttablotacao', 'codlotacao', 'inivalid', 'tplotacao', 'fpas', 'codtercs']
 
 
 
@@ -372,38 +387,10 @@ class s1020inclusaoinfoEmprParcialSerializer(ModelSerializer):
         fields = '__all__'
             
 
-class s1020inclusaoinfoProcJudTerceiros(models.Model):
-    s1020_inclusao = models.OneToOneField('s1020inclusao',
+class s1020inclusaoprocJudTerceiro(models.Model):
+    s1020_inclusao = models.ForeignKey('s1020inclusao',
         related_name='%(class)s_s1020_inclusao')
     def evento(self): return self.s1020_inclusao.evento()
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s1020_inclusao)
-    #s1020_inclusao_infoprocjudterceiros_custom#
-    #s1020_inclusao_infoprocjudterceiros_custom#
-    class Meta:
-        db_table = r's1020_inclusao_infoprocjudterceiros'
-        managed = True
-        ordering = ['s1020_inclusao']
-
-
-
-class s1020inclusaoinfoProcJudTerceirosSerializer(ModelSerializer):
-    class Meta:
-        model = s1020inclusaoinfoProcJudTerceiros
-        fields = '__all__'
-            
-
-class s1020inclusaoprocJudTerceiro(models.Model):
-    s1020_inclusao_infoprocjudterceiros = models.ForeignKey('s1020inclusaoinfoProcJudTerceiros',
-        related_name='%(class)s_s1020_inclusao_infoprocjudterceiros')
-    def evento(self): return self.s1020_inclusao_infoprocjudterceiros.evento()
     codterc = models.CharField(max_length=4)
     nrprocjud = models.CharField(max_length=20)
     codsusp = models.IntegerField()
@@ -415,13 +402,13 @@ class s1020inclusaoprocJudTerceiro(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1020_inclusao_infoprocjudterceiros) + ' - ' + unicode(self.codterc) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.codsusp)
+        return unicode(self.s1020_inclusao) + ' - ' + unicode(self.codterc) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.codsusp)
     #s1020_inclusao_procjudterceiro_custom#
     #s1020_inclusao_procjudterceiro_custom#
     class Meta:
         db_table = r's1020_inclusao_procjudterceiro'
         managed = True
-        ordering = ['s1020_inclusao_infoprocjudterceiros', 'codterc', 'nrprocjud', 'codsusp']
+        ordering = ['s1020_inclusao', 'codterc', 'nrprocjud', 'codsusp']
 
 
 

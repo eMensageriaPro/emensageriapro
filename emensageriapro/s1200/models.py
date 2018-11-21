@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -89,6 +120,11 @@ CHOICES_S1200_TPINSC = (
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1200_TPINSCANT = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
 )
 
 CHOICES_S1200_TPTRIB = (
@@ -216,38 +252,10 @@ class s1200infoMVSerializer(ModelSerializer):
         fields = '__all__'
             
 
-class s1200infoPerAnt(models.Model):
-    s1200_dmdev = models.OneToOneField('s1200dmDev',
+class s1200infoPerAntideADC(models.Model):
+    s1200_dmdev = models.ForeignKey('s1200dmDev',
         related_name='%(class)s_s1200_dmdev')
     def evento(self): return self.s1200_dmdev.evento()
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s1200_dmdev)
-    #s1200_infoperant_custom#
-    #s1200_infoperant_custom#
-    class Meta:
-        db_table = r's1200_infoperant'
-        managed = True
-        ordering = ['s1200_dmdev']
-
-
-
-class s1200infoPerAntSerializer(ModelSerializer):
-    class Meta:
-        model = s1200infoPerAnt
-        fields = '__all__'
-            
-
-class s1200infoPerAntideADC(models.Model):
-    s1200_infoperant = models.ForeignKey('s1200infoPerAnt',
-        related_name='%(class)s_s1200_infoperant')
-    def evento(self): return self.s1200_infoperant.evento()
     dtacconv = models.DateField(blank=True, null=True)
     tpacconv = models.CharField(choices=CHOICES_S1200_INFOPERANT_TPACCONV, max_length=1)
     compacconv = models.CharField(max_length=7, blank=True, null=True)
@@ -262,13 +270,13 @@ class s1200infoPerAntideADC(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1200_infoperant) + ' - ' + unicode(self.dtacconv) + ' - ' + unicode(self.tpacconv) + ' - ' + unicode(self.compacconv) + ' - ' + unicode(self.dtefacconv) + ' - ' + unicode(self.dsc) + ' - ' + unicode(self.remunsuc)
+        return unicode(self.s1200_dmdev) + ' - ' + unicode(self.tpacconv) + ' - ' + unicode(self.dsc) + ' - ' + unicode(self.remunsuc)
     #s1200_infoperant_ideadc_custom#
     #s1200_infoperant_ideadc_custom#
     class Meta:
         db_table = r's1200_infoperant_ideadc'
         managed = True
-        ordering = ['s1200_infoperant', 'dtacconv', 'tpacconv', 'compacconv', 'dtefacconv', 'dsc', 'remunsuc']
+        ordering = ['s1200_dmdev', 'tpacconv', 'dsc', 'remunsuc']
 
 
 
@@ -382,13 +390,13 @@ class s1200infoPerAntinfoComplCont(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1200_dmdev) + ' - ' + unicode(self.codcbo) + ' - ' + unicode(self.natatividade) + ' - ' + unicode(self.qtddiastrab)
+        return unicode(self.s1200_dmdev) + ' - ' + unicode(self.codcbo)
     #s1200_infoperant_infocomplcont_custom#
     #s1200_infoperant_infocomplcont_custom#
     class Meta:
         db_table = r's1200_infoperant_infocomplcont'
         managed = True
-        ordering = ['s1200_dmdev', 'codcbo', 'natatividade', 'qtddiastrab']
+        ordering = ['s1200_dmdev', 'codcbo']
 
 
 
@@ -445,13 +453,13 @@ class s1200infoPerAntitensRemun(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1200_infoperant_remunperant) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.qtdrubr) + ' - ' + unicode(self.fatorrubr) + ' - ' + unicode(self.vrunit) + ' - ' + unicode(self.vrrubr)
+        return unicode(self.s1200_infoperant_remunperant) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1200_infoperant_itensremun_custom#
     #s1200_infoperant_itensremun_custom#
     class Meta:
         db_table = r's1200_infoperant_itensremun'
         managed = True
-        ordering = ['s1200_infoperant_remunperant', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
+        ordering = ['s1200_infoperant_remunperant', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
 
@@ -475,13 +483,13 @@ class s1200infoPerAntremunPerAnt(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1200_infoperant_ideestablot) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.indsimples)
+        return unicode(self.s1200_infoperant_ideestablot)
     #s1200_infoperant_remunperant_custom#
     #s1200_infoperant_remunperant_custom#
     class Meta:
         db_table = r's1200_infoperant_remunperant'
         managed = True
-        ordering = ['s1200_infoperant_ideestablot', 'matricula', 'indsimples']
+        ordering = ['s1200_infoperant_ideestablot']
 
 
 
@@ -491,38 +499,10 @@ class s1200infoPerAntremunPerAntSerializer(ModelSerializer):
         fields = '__all__'
             
 
-class s1200infoPerApur(models.Model):
-    s1200_dmdev = models.OneToOneField('s1200dmDev',
-        related_name='%(class)s_s1200_dmdev')
-    def evento(self): return self.s1200_dmdev.evento()
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s1200_dmdev)
-    #s1200_infoperapur_custom#
-    #s1200_infoperapur_custom#
-    class Meta:
-        db_table = r's1200_infoperapur'
-        managed = True
-        ordering = ['s1200_dmdev']
-
-
-
-class s1200infoPerApurSerializer(ModelSerializer):
-    class Meta:
-        model = s1200infoPerApur
-        fields = '__all__'
-            
-
 class s1200infoPerApurdetOper(models.Model):
-    s1200_infoperapur_infosaudecolet = models.ForeignKey('s1200infoPerApurinfoSaudeColet',
-        related_name='%(class)s_s1200_infoperapur_infosaudecolet')
-    def evento(self): return self.s1200_infoperapur_infosaudecolet.evento()
+    s1200_infoperapur_remunperapur = models.ForeignKey('s1200infoPerApurremunPerApur',
+        related_name='%(class)s_s1200_infoperapur_remunperapur')
+    def evento(self): return self.s1200_infoperapur_remunperapur.evento()
     cnpjoper = models.CharField(max_length=14)
     regans = models.CharField(max_length=6)
     vrpgtit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -534,13 +514,13 @@ class s1200infoPerApurdetOper(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1200_infoperapur_infosaudecolet) + ' - ' + unicode(self.cnpjoper) + ' - ' + unicode(self.regans) + ' - ' + unicode(self.vrpgtit)
+        return unicode(self.s1200_infoperapur_remunperapur) + ' - ' + unicode(self.cnpjoper) + ' - ' + unicode(self.regans) + ' - ' + unicode(self.vrpgtit)
     #s1200_infoperapur_detoper_custom#
     #s1200_infoperapur_detoper_custom#
     class Meta:
         db_table = r's1200_infoperapur_detoper'
         managed = True
-        ordering = ['s1200_infoperapur_infosaudecolet', 'cnpjoper', 'regans', 'vrpgtit']
+        ordering = ['s1200_infoperapur_remunperapur', 'cnpjoper', 'regans', 'vrpgtit']
 
 
 
@@ -567,13 +547,13 @@ class s1200infoPerApurdetPlano(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1200_infoperapur_detoper) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.cpfdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.vlrpgdep)
+        return unicode(self.s1200_infoperapur_detoper) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.vlrpgdep)
     #s1200_infoperapur_detplano_custom#
     #s1200_infoperapur_detplano_custom#
     class Meta:
         db_table = r's1200_infoperapur_detplano'
         managed = True
-        ordering = ['s1200_infoperapur_detoper', 'tpdep', 'cpfdep', 'nmdep', 'dtnascto', 'vlrpgdep']
+        ordering = ['s1200_infoperapur_detoper', 'tpdep', 'nmdep', 'dtnascto', 'vlrpgdep']
 
 
 
@@ -584,9 +564,9 @@ class s1200infoPerApurdetPlanoSerializer(ModelSerializer):
             
 
 class s1200infoPerApurideEstabLot(models.Model):
-    s1200_infoperapur = models.ForeignKey('s1200infoPerApur',
-        related_name='%(class)s_s1200_infoperapur')
-    def evento(self): return self.s1200_infoperapur.evento()
+    s1200_dmdev = models.ForeignKey('s1200dmDev',
+        related_name='%(class)s_s1200_dmdev')
+    def evento(self): return self.s1200_dmdev.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S1200_INFOPERAPUR_TPINSC)
     nrinsc = models.CharField(max_length=15)
     codlotacao = models.CharField(max_length=30)
@@ -599,13 +579,13 @@ class s1200infoPerApurideEstabLot(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1200_infoperapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao) + ' - ' + unicode(self.qtddiasav)
+        return unicode(self.s1200_dmdev) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao)
     #s1200_infoperapur_ideestablot_custom#
     #s1200_infoperapur_ideestablot_custom#
     class Meta:
         db_table = r's1200_infoperapur_ideestablot'
         managed = True
-        ordering = ['s1200_infoperapur', 'tpinsc', 'nrinsc', 'codlotacao', 'qtddiasav']
+        ordering = ['s1200_dmdev', 'tpinsc', 'nrinsc', 'codlotacao']
 
 
 
@@ -641,34 +621,6 @@ class s1200infoPerApurinfoAgNocivo(models.Model):
 class s1200infoPerApurinfoAgNocivoSerializer(ModelSerializer):
     class Meta:
         model = s1200infoPerApurinfoAgNocivo
-        fields = '__all__'
-            
-
-class s1200infoPerApurinfoSaudeColet(models.Model):
-    s1200_infoperapur_remunperapur = models.OneToOneField('s1200infoPerApurremunPerApur',
-        related_name='%(class)s_s1200_infoperapur_remunperapur')
-    def evento(self): return self.s1200_infoperapur_remunperapur.evento()
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s1200_infoperapur_remunperapur)
-    #s1200_infoperapur_infosaudecolet_custom#
-    #s1200_infoperapur_infosaudecolet_custom#
-    class Meta:
-        db_table = r's1200_infoperapur_infosaudecolet'
-        managed = True
-        ordering = ['s1200_infoperapur_remunperapur']
-
-
-
-class s1200infoPerApurinfoSaudeColetSerializer(ModelSerializer):
-    class Meta:
-        model = s1200infoPerApurinfoSaudeColet
         fields = '__all__'
             
 
@@ -719,13 +671,13 @@ class s1200infoPerApuritensRemun(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1200_infoperapur_remunperapur) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.qtdrubr) + ' - ' + unicode(self.fatorrubr) + ' - ' + unicode(self.vrunit) + ' - ' + unicode(self.vrrubr)
+        return unicode(self.s1200_infoperapur_remunperapur) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1200_infoperapur_itensremun_custom#
     #s1200_infoperapur_itensremun_custom#
     class Meta:
         db_table = r's1200_infoperapur_itensremun'
         managed = True
-        ordering = ['s1200_infoperapur_remunperapur', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
+        ordering = ['s1200_infoperapur_remunperapur', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
 
@@ -749,13 +701,13 @@ class s1200infoPerApurremunPerApur(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1200_infoperapur_ideestablot) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.indsimples)
+        return unicode(self.s1200_infoperapur_ideestablot)
     #s1200_infoperapur_remunperapur_custom#
     #s1200_infoperapur_remunperapur_custom#
     class Meta:
         db_table = r's1200_infoperapur_remunperapur'
         managed = True
-        ordering = ['s1200_infoperapur_ideestablot', 'matricula', 'indsimples']
+        ordering = ['s1200_infoperapur_ideestablot']
 
 
 
@@ -780,13 +732,13 @@ class s1200procJudTrab(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1200_evtremun) + ' - ' + unicode(self.tptrib) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.codsusp)
+        return unicode(self.s1200_evtremun) + ' - ' + unicode(self.tptrib) + ' - ' + unicode(self.nrprocjud)
     #s1200_procjudtrab_custom#
     #s1200_procjudtrab_custom#
     class Meta:
         db_table = r's1200_procjudtrab'
         managed = True
-        ordering = ['s1200_evtremun', 'tptrib', 'nrprocjud', 'codsusp']
+        ordering = ['s1200_evtremun', 'tptrib', 'nrprocjud']
 
 
 
@@ -832,6 +784,7 @@ class s1200sucessaoVinc(models.Model):
     s1200_infocomplem = models.OneToOneField('s1200infoComplem',
         related_name='%(class)s_s1200_infocomplem')
     def evento(self): return self.s1200_infocomplem.evento()
+    tpinscant = models.IntegerField(choices=CHOICES_S1200_TPINSCANT)
     cnpjempregant = models.CharField(max_length=14)
     matricant = models.CharField(max_length=30, blank=True, null=True)
     dtadm = models.DateField()
@@ -844,13 +797,13 @@ class s1200sucessaoVinc(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1200_infocomplem) + ' - ' + unicode(self.cnpjempregant) + ' - ' + unicode(self.matricant) + ' - ' + unicode(self.dtadm) + ' - ' + unicode(self.observacao)
+        return unicode(self.s1200_infocomplem) + ' - ' + unicode(self.tpinscant) + ' - ' + unicode(self.cnpjempregant) + ' - ' + unicode(self.dtadm)
     #s1200_sucessaovinc_custom#
     #s1200_sucessaovinc_custom#
     class Meta:
         db_table = r's1200_sucessaovinc'
         managed = True
-        ordering = ['s1200_infocomplem', 'cnpjempregant', 'matricant', 'dtadm', 'observacao']
+        ordering = ['s1200_infocomplem', 'tpinscant', 'cnpjempregant', 'dtadm']
 
 
 

@@ -118,7 +118,7 @@
               
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtCPRB</td>
-            <td bgcolor="lightgray" colspan="3">Evento da contribuição previdenciária sobre a receita bruta - CPRB Regras de validação: REGRA_EVE_CONTRIB_CPRB REGRA_EVE_CPRB REGRA_EVE_IND_RETIFICACAO REGRA_EVE_VALIDO_ESTAB REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</td>
+            <td bgcolor="lightgray" colspan="3">Evento da contribuição previdenciária sobre a receita bruta - CPRB Regras de validação: REGRA_EVE_CPRB REGRA_EVE_IND_RETIFICACAO REGRA_EVE_VALIDO_ESTAB REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</td>
         </tr>
     {% for r2060_evtcprb in r2060_evtcprb_lista %}
     {% ifequal 1 1 %}
@@ -186,7 +186,7 @@
 
         <tr {% if r2060_evtcprb.tpamb|validacoes_esocial_efdreinf:"r2060_evtcprb.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita; Valores Válidos: 1, 2.</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if r2060_evtcprb.tpamb or r2060_evtcprb.tpamb == 0 %}{{ r2060_evtcprb.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -435,7 +435,7 @@
 
         <tr {% if r2060_tipocod.vlrexcrecbruta|validacoes_esocial_efdreinf:"r2060_tipocod.vlrexcrecbruta" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrExcRecBruta</td>
-            <td width="500px">Preencher com o Valor total das Exclusões da Receita Bruta previstas em lei. Validação: Deve ser igual a soma dos valores informados no campo {vlrAjuste} cujo {tpAjuste} seja igual a "0" - Ajuste de redução. Caso não haja ajuste de redução, preencher com 0 (zero). Não pode ser maior que {vlrRecBrutaAtiv}.</td>
+            <td width="500px">Preencher com o Valor total das Exclusões da Receita Bruta previstas em lei. Validação: Deve ser igual a soma dos valores informados no campo {vlrAjuste} cujo {tpAjuste} seja igual a '0' - Ajuste de redução. Caso não haja ajuste de redução, preencher com 0 (zero). Não pode ser maior que {vlrRecBrutaAtiv}.</td>
             <td width="200px"><b>{% if r2060_tipocod.vlrexcrecbruta or r2060_tipocod.vlrexcrecbruta == 0 %}{{ r2060_tipocod.vlrexcrecbruta|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -454,7 +454,7 @@
 
         <tr {% if r2060_tipocod.vlradicrecbruta|validacoes_esocial_efdreinf:"r2060_tipocod.vlradicrecbruta" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrAdicRecBruta</td>
-            <td width="500px">Preencher com o Valor total das Adições da Receita Bruta previstas em lei. Validação: Deve ser igual a soma dos valores informados no campo {vlrAjuste} cujo {tpAjuste} seja igual a "1" - Ajuste de adição. Caso não haja ajuste de adição, preencher com 0 (zero).</td>
+            <td width="500px">Preencher com o Valor total das Adições da Receita Bruta previstas em lei. Validação: Deve ser igual a soma dos valores informados no campo {vlrAjuste} cujo {tpAjuste} seja igual a '1' - Ajuste de adição. Caso não haja ajuste de adição, preencher com 0 (zero).</td>
             <td width="200px"><b>{% if r2060_tipocod.vlradicrecbruta or r2060_tipocod.vlradicrecbruta == 0 %}{{ r2060_tipocod.vlradicrecbruta|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">

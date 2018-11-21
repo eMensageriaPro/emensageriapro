@@ -59,6 +59,7 @@ def validacoes_s2245_evttreicap(arquivo):
     if 'matricula' in dir(evtTreiCap.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideVinculo.matricula', evtTreiCap.ideVinculo.matricula.cdata, 0, '')
     if 'codCateg' in dir(evtTreiCap.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideVinculo.codCateg', evtTreiCap.ideVinculo.codCateg.cdata, 0, '')
     if 'codTreiCap' in dir(evtTreiCap.treiCap): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.treiCap.codTreiCap', evtTreiCap.treiCap.codTreiCap.cdata, 1, '')
+    if 'obsTreiCap' in dir(evtTreiCap.treiCap): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.treiCap.obsTreiCap', evtTreiCap.treiCap.obsTreiCap.cdata, 0, '')
     if 'observacao' in dir(evtTreiCap.treiCap): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.treiCap.observacao', evtTreiCap.treiCap.observacao.cdata, 0, '')
     if 'infoComplem' in dir(evtTreiCap.treiCap):
         for infoComplem in evtTreiCap.treiCap.infoComplem:
@@ -71,10 +72,11 @@ def validacoes_s2245_evttreicap(arquivo):
             if 'ideProfResp' in dir(infoComplem):
                 for ideProfResp in infoComplem.ideProfResp:
                
-                    if 'cpfProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.cpfProf', ideProfResp.cpfProf.cdata, 1, '')
+                    if 'cpfProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.cpfProf', ideProfResp.cpfProf.cdata, 0, '')
                     if 'nmProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.nmProf', ideProfResp.nmProf.cdata, 1, '')
                     if 'tpProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.tpProf', ideProfResp.tpProf.cdata, 1, '1;2')
                     if 'formProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.formProf', ideProfResp.formProf.cdata, 1, '')
                     if 'codCBO' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.codCBO', ideProfResp.codCBO.cdata, 1, '')
+                    if 'nacProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.nacProf', ideProfResp.nacProf.cdata, 1, '1;2')
    
     return validacoes_lista

@@ -106,98 +106,88 @@ def read_s2205_evtaltcadastral_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtAltCadastral['Id']
     dados['status'] = 1
 
-    if 'documentos' in dir(evtAltCadastral.alteracao.dadosTrabalhador):
-        for documentos in evtAltCadastral.alteracao.dadosTrabalhador.documentos:
-            s2205_documentos_dados = {}
-            s2205_documentos_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
+    if 'CTPS' in dir(evtAltCadastral.alteracao.dadosTrabalhador.documentos):
+        for CTPS in evtAltCadastral.alteracao.dadosTrabalhador.documentos.CTPS:
+            s2205_ctps_dados = {}
+            s2205_ctps_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
        
-            insert = create_insert('s2205_documentos', s2205_documentos_dados)
+            if 'nrCtps' in dir(CTPS): s2205_ctps_dados['nrctps'] = CTPS.nrCtps.cdata
+            if 'serieCtps' in dir(CTPS): s2205_ctps_dados['seriectps'] = CTPS.serieCtps.cdata
+            if 'ufCtps' in dir(CTPS): s2205_ctps_dados['ufctps'] = CTPS.ufCtps.cdata
+            insert = create_insert('s2205_ctps', s2205_ctps_dados)
             resp = executar_sql(insert, True)
-            s2205_documentos_id = resp[0][0]
-            #print s2205_documentos_id
+            s2205_ctps_id = resp[0][0]
+            #print s2205_ctps_id
 
-            if 'CTPS' in dir(documentos):
-                for CTPS in documentos.CTPS:
-                    s2205_ctps_dados = {}
-                    s2205_ctps_dados['s2205_documentos_id'] = s2205_documentos_id
-               
-                    if 'nrCtps' in dir(CTPS): s2205_ctps_dados['nrctps'] = CTPS.nrCtps.cdata
-                    if 'serieCtps' in dir(CTPS): s2205_ctps_dados['seriectps'] = CTPS.serieCtps.cdata
-                    if 'ufCtps' in dir(CTPS): s2205_ctps_dados['ufctps'] = CTPS.ufCtps.cdata
-                    insert = create_insert('s2205_ctps', s2205_ctps_dados)
-                    resp = executar_sql(insert, True)
-                    s2205_ctps_id = resp[0][0]
-                    #print s2205_ctps_id
-   
-            if 'RIC' in dir(documentos):
-                for RIC in documentos.RIC:
-                    s2205_ric_dados = {}
-                    s2205_ric_dados['s2205_documentos_id'] = s2205_documentos_id
-               
-                    if 'nrRic' in dir(RIC): s2205_ric_dados['nrric'] = RIC.nrRic.cdata
-                    if 'orgaoEmissor' in dir(RIC): s2205_ric_dados['orgaoemissor'] = RIC.orgaoEmissor.cdata
-                    if 'dtExped' in dir(RIC): s2205_ric_dados['dtexped'] = RIC.dtExped.cdata
-                    insert = create_insert('s2205_ric', s2205_ric_dados)
-                    resp = executar_sql(insert, True)
-                    s2205_ric_id = resp[0][0]
-                    #print s2205_ric_id
-   
-            if 'RG' in dir(documentos):
-                for RG in documentos.RG:
-                    s2205_rg_dados = {}
-                    s2205_rg_dados['s2205_documentos_id'] = s2205_documentos_id
-               
-                    if 'nrRg' in dir(RG): s2205_rg_dados['nrrg'] = RG.nrRg.cdata
-                    if 'orgaoEmissor' in dir(RG): s2205_rg_dados['orgaoemissor'] = RG.orgaoEmissor.cdata
-                    if 'dtExped' in dir(RG): s2205_rg_dados['dtexped'] = RG.dtExped.cdata
-                    insert = create_insert('s2205_rg', s2205_rg_dados)
-                    resp = executar_sql(insert, True)
-                    s2205_rg_id = resp[0][0]
-                    #print s2205_rg_id
-   
-            if 'RNE' in dir(documentos):
-                for RNE in documentos.RNE:
-                    s2205_rne_dados = {}
-                    s2205_rne_dados['s2205_documentos_id'] = s2205_documentos_id
-               
-                    if 'nrRne' in dir(RNE): s2205_rne_dados['nrrne'] = RNE.nrRne.cdata
-                    if 'orgaoEmissor' in dir(RNE): s2205_rne_dados['orgaoemissor'] = RNE.orgaoEmissor.cdata
-                    if 'dtExped' in dir(RNE): s2205_rne_dados['dtexped'] = RNE.dtExped.cdata
-                    insert = create_insert('s2205_rne', s2205_rne_dados)
-                    resp = executar_sql(insert, True)
-                    s2205_rne_id = resp[0][0]
-                    #print s2205_rne_id
-   
-            if 'OC' in dir(documentos):
-                for OC in documentos.OC:
-                    s2205_oc_dados = {}
-                    s2205_oc_dados['s2205_documentos_id'] = s2205_documentos_id
-               
-                    if 'nrOc' in dir(OC): s2205_oc_dados['nroc'] = OC.nrOc.cdata
-                    if 'orgaoEmissor' in dir(OC): s2205_oc_dados['orgaoemissor'] = OC.orgaoEmissor.cdata
-                    if 'dtExped' in dir(OC): s2205_oc_dados['dtexped'] = OC.dtExped.cdata
-                    if 'dtValid' in dir(OC): s2205_oc_dados['dtvalid'] = OC.dtValid.cdata
-                    insert = create_insert('s2205_oc', s2205_oc_dados)
-                    resp = executar_sql(insert, True)
-                    s2205_oc_id = resp[0][0]
-                    #print s2205_oc_id
-   
-            if 'CNH' in dir(documentos):
-                for CNH in documentos.CNH:
-                    s2205_cnh_dados = {}
-                    s2205_cnh_dados['s2205_documentos_id'] = s2205_documentos_id
-               
-                    if 'nrRegCnh' in dir(CNH): s2205_cnh_dados['nrregcnh'] = CNH.nrRegCnh.cdata
-                    if 'dtExped' in dir(CNH): s2205_cnh_dados['dtexped'] = CNH.dtExped.cdata
-                    if 'ufCnh' in dir(CNH): s2205_cnh_dados['ufcnh'] = CNH.ufCnh.cdata
-                    if 'dtValid' in dir(CNH): s2205_cnh_dados['dtvalid'] = CNH.dtValid.cdata
-                    if 'dtPriHab' in dir(CNH): s2205_cnh_dados['dtprihab'] = CNH.dtPriHab.cdata
-                    if 'categoriaCnh' in dir(CNH): s2205_cnh_dados['categoriacnh'] = CNH.categoriaCnh.cdata
-                    insert = create_insert('s2205_cnh', s2205_cnh_dados)
-                    resp = executar_sql(insert, True)
-                    s2205_cnh_id = resp[0][0]
-                    #print s2205_cnh_id
-   
+    if 'RIC' in dir(evtAltCadastral.alteracao.dadosTrabalhador.documentos):
+        for RIC in evtAltCadastral.alteracao.dadosTrabalhador.documentos.RIC:
+            s2205_ric_dados = {}
+            s2205_ric_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
+       
+            if 'nrRic' in dir(RIC): s2205_ric_dados['nrric'] = RIC.nrRic.cdata
+            if 'orgaoEmissor' in dir(RIC): s2205_ric_dados['orgaoemissor'] = RIC.orgaoEmissor.cdata
+            if 'dtExped' in dir(RIC): s2205_ric_dados['dtexped'] = RIC.dtExped.cdata
+            insert = create_insert('s2205_ric', s2205_ric_dados)
+            resp = executar_sql(insert, True)
+            s2205_ric_id = resp[0][0]
+            #print s2205_ric_id
+
+    if 'RG' in dir(evtAltCadastral.alteracao.dadosTrabalhador.documentos):
+        for RG in evtAltCadastral.alteracao.dadosTrabalhador.documentos.RG:
+            s2205_rg_dados = {}
+            s2205_rg_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
+       
+            if 'nrRg' in dir(RG): s2205_rg_dados['nrrg'] = RG.nrRg.cdata
+            if 'orgaoEmissor' in dir(RG): s2205_rg_dados['orgaoemissor'] = RG.orgaoEmissor.cdata
+            if 'dtExped' in dir(RG): s2205_rg_dados['dtexped'] = RG.dtExped.cdata
+            insert = create_insert('s2205_rg', s2205_rg_dados)
+            resp = executar_sql(insert, True)
+            s2205_rg_id = resp[0][0]
+            #print s2205_rg_id
+
+    if 'RNE' in dir(evtAltCadastral.alteracao.dadosTrabalhador.documentos):
+        for RNE in evtAltCadastral.alteracao.dadosTrabalhador.documentos.RNE:
+            s2205_rne_dados = {}
+            s2205_rne_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
+       
+            if 'nrRne' in dir(RNE): s2205_rne_dados['nrrne'] = RNE.nrRne.cdata
+            if 'orgaoEmissor' in dir(RNE): s2205_rne_dados['orgaoemissor'] = RNE.orgaoEmissor.cdata
+            if 'dtExped' in dir(RNE): s2205_rne_dados['dtexped'] = RNE.dtExped.cdata
+            insert = create_insert('s2205_rne', s2205_rne_dados)
+            resp = executar_sql(insert, True)
+            s2205_rne_id = resp[0][0]
+            #print s2205_rne_id
+
+    if 'OC' in dir(evtAltCadastral.alteracao.dadosTrabalhador.documentos):
+        for OC in evtAltCadastral.alteracao.dadosTrabalhador.documentos.OC:
+            s2205_oc_dados = {}
+            s2205_oc_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
+       
+            if 'nrOc' in dir(OC): s2205_oc_dados['nroc'] = OC.nrOc.cdata
+            if 'orgaoEmissor' in dir(OC): s2205_oc_dados['orgaoemissor'] = OC.orgaoEmissor.cdata
+            if 'dtExped' in dir(OC): s2205_oc_dados['dtexped'] = OC.dtExped.cdata
+            if 'dtValid' in dir(OC): s2205_oc_dados['dtvalid'] = OC.dtValid.cdata
+            insert = create_insert('s2205_oc', s2205_oc_dados)
+            resp = executar_sql(insert, True)
+            s2205_oc_id = resp[0][0]
+            #print s2205_oc_id
+
+    if 'CNH' in dir(evtAltCadastral.alteracao.dadosTrabalhador.documentos):
+        for CNH in evtAltCadastral.alteracao.dadosTrabalhador.documentos.CNH:
+            s2205_cnh_dados = {}
+            s2205_cnh_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
+       
+            if 'nrRegCnh' in dir(CNH): s2205_cnh_dados['nrregcnh'] = CNH.nrRegCnh.cdata
+            if 'dtExped' in dir(CNH): s2205_cnh_dados['dtexped'] = CNH.dtExped.cdata
+            if 'ufCnh' in dir(CNH): s2205_cnh_dados['ufcnh'] = CNH.ufCnh.cdata
+            if 'dtValid' in dir(CNH): s2205_cnh_dados['dtvalid'] = CNH.dtValid.cdata
+            if 'dtPriHab' in dir(CNH): s2205_cnh_dados['dtprihab'] = CNH.dtPriHab.cdata
+            if 'categoriaCnh' in dir(CNH): s2205_cnh_dados['categoriacnh'] = CNH.categoriaCnh.cdata
+            insert = create_insert('s2205_cnh', s2205_cnh_dados)
+            resp = executar_sql(insert, True)
+            s2205_cnh_id = resp[0][0]
+            #print s2205_cnh_id
+
     if 'brasil' in dir(evtAltCadastral.alteracao.dadosTrabalhador.endereco):
         for brasil in evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil:
             s2205_brasil_dados = {}

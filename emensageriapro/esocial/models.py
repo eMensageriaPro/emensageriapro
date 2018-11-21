@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -16,22 +47,19 @@ SIM_NAO = (
     (1, u'Sim'),
 )
 
-TRANSMISSOR_STATUS = (
+EVENTO_STATUS = (
     (0, u'Cadastrado'),
     (1, u'Importado'),
-    (10, u'Assinado'),
-    (11, u'Gerado'),
+    (10, u'XML Assinado'),
+    (11, u'XML Gerado'),
     (12, u'Retorno'),
     (13, u'Erro - Ocorrências'),
     (14, u'Processado'),
+    (15, u'Aguardando consulta'),
     (2, u'Duplicado'),
     (3, u'Erro na validação'),
     (4, u'Validado'),
-    (5, u'Erro no envio'),
     (6, u'Aguardando envio'),
-    (7, u'Enviado'),
-    (8, u'Erro na consulta'),
-    (9, u'Consultado'),
 )
 
 CODIGO_RESPOSTA = (
@@ -74,6 +102,7 @@ OPERACOES_INSALPERIC_APOSENTESP = (
 
 ESOCIAL_VERSOES = (
     ('v02_04_02', u'Versão 2.04.02'),
+    ('v02_05', u'Versão 2.05'),
 )
 
 ESTADOS = (
@@ -1556,6 +1585,12 @@ CHOICES_S2399_MTVDESLIGTSV = (
     ('99', u'99 - Outros'),
 )
 
+CHOICES_S2399_PENSALIM = (
+    (1, u'1 - Percentual de pensão alimentícia'),
+    (2, u'2 - Valor de pensão alimentícia'),
+    (3, u'3 - Percentual e valor de pensão alimentícia'),
+)
+
 CHOICES_S2399_PROCEMI = (
     (1, u'1 - Aplicativo do empregador'),
     (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
@@ -1871,6 +1906,11 @@ CHOICES_S5002_TPINSC = (
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
+CHOICES_S5003_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+)
+
 CHOICES_S5011_CLASSTRIB = (
     ('01', u'01 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída'),
     ('02', u'02 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária não substituída'),
@@ -1924,31 +1964,34 @@ CHOICES_S5012_TPINSC = (
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
+CHOICES_S5013_INDEXISTINFO = (
+    (1, u'1 - Há informações de FGTS'),
+    (2, u'2 - Há movimento'),
+)
+
+CHOICES_S5013_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+)
+
 class s1000evtInfoEmpregador(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1000_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1000_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S1000_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1000_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -1960,6 +2003,13 @@ class s1000evtInfoEmpregador(models.Model):
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1000_evtinfoempregador_custom#
@@ -1984,25 +2034,18 @@ class s1005evtTabEstab(models.Model):
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1005_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1005_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S1005_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1005_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -2014,6 +2057,13 @@ class s1005evtTabEstab(models.Model):
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1005_evttabestab_custom#
@@ -2038,25 +2088,18 @@ class s1010evtTabRubrica(models.Model):
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1010_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1010_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S1010_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1010_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -2068,6 +2111,13 @@ class s1010evtTabRubrica(models.Model):
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1010_evttabrubrica_custom#
@@ -2090,27 +2140,20 @@ class s1020evtTabLotacao(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1020_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1020_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S1020_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1020_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -2122,6 +2165,13 @@ class s1020evtTabLotacao(models.Model):
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1020_evttablotacao_custom#
@@ -2144,27 +2194,20 @@ class s1030evtTabCargo(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1030_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1030_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S1030_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1030_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -2176,6 +2219,13 @@ class s1030evtTabCargo(models.Model):
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1030_evttabcargo_custom#
@@ -2198,27 +2248,20 @@ class s1035evtTabCarreira(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1035_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1035_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S1035_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1035_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -2230,6 +2273,13 @@ class s1035evtTabCarreira(models.Model):
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1035_evttabcarreira_custom#
@@ -2252,27 +2302,20 @@ class s1040evtTabFuncao(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1040_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1040_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S1040_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1040_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -2284,6 +2327,13 @@ class s1040evtTabFuncao(models.Model):
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1040_evttabfuncao_custom#
@@ -2306,27 +2356,20 @@ class s1050evtTabHorTur(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1050_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1050_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S1050_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1050_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -2338,6 +2381,13 @@ class s1050evtTabHorTur(models.Model):
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1050_evttabhortur_custom#
@@ -2360,27 +2410,20 @@ class s1060evtTabAmbiente(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1060_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1060_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S1060_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1060_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -2392,6 +2435,13 @@ class s1060evtTabAmbiente(models.Model):
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1060_evttabambiente_custom#
@@ -2414,27 +2464,20 @@ class s1070evtTabProcesso(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1070_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1070_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S1070_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1070_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -2446,6 +2489,13 @@ class s1070evtTabProcesso(models.Model):
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1070_evttabprocesso_custom#
@@ -2468,27 +2518,20 @@ class s1080evtTabOperPort(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1080_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1080_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S1080_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1080_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -2500,6 +2543,13 @@ class s1080evtTabOperPort(models.Model):
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1080_evttaboperport_custom#
@@ -2522,33 +2572,26 @@ class s1200evtRemun(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
-    identidade = models.CharField(max_length=36, blank=True, null=True)
-    indretif = models.IntegerField(choices=CHOICES_S1200_INDRETIF)
-    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
-    indapuracao = models.IntegerField(choices=CHOICES_S1200_INDAPURACAO)
-    perapur = models.CharField(max_length=7)
-    tpamb = models.IntegerField(choices=CHOICES_S1200_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1200_PROCEMI, default=1)
-    verproc = models.CharField(max_length=20)
-    tpinsc = models.IntegerField(choices=CHOICES_S1200_TPINSC)
-    nrinsc = models.CharField(max_length=15)
-    cpftrab = models.CharField(max_length=11)
-    nistrab = models.CharField(max_length=11, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    indretif = models.IntegerField(choices=CHOICES_S1200_INDRETIF)
+    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
+    indapuracao = models.IntegerField(choices=CHOICES_S1200_INDAPURACAO)
+    perapur = models.CharField(max_length=7)
+    tpamb = models.IntegerField(choices=CHOICES_S1200_TPAMB)
+    procemi = models.IntegerField(choices=CHOICES_S1200_PROCEMI)
+    verproc = models.CharField(max_length=20)
+    tpinsc = models.IntegerField(choices=CHOICES_S1200_TPINSC)
+    nrinsc = models.CharField(max_length=15)
+    cpftrab = models.CharField(max_length=11)
+    nistrab = models.CharField(max_length=11, blank=True, null=True)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -2559,15 +2602,22 @@ class s1200evtRemun(models.Model):
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s1200_evtremun_custom#
     #s1200_evtremun_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's1200_evtremun'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab']
+        ordering = ['identidade', 'indretif', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab']
 
 
 
@@ -2581,34 +2631,27 @@ class s1202evtRmnRPPS(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S1202_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     indapuracao = models.IntegerField(choices=CHOICES_S1202_INDAPURACAO)
     perapur = models.CharField(max_length=7)
     tpamb = models.IntegerField(choices=CHOICES_S1202_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1202_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S1202_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1202_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
     qtddepfp = models.IntegerField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -2619,15 +2662,22 @@ class s1202evtRmnRPPS(models.Model):
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.qtddepfp)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s1202_evtrmnrpps_custom#
     #s1202_evtrmnrpps_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's1202_evtrmnrpps'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'qtddepfp']
+        ordering = ['identidade', 'indretif', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab']
 
 
 
@@ -2641,32 +2691,25 @@ class s1207evtBenPrRP(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
-    identidade = models.CharField(max_length=36, blank=True, null=True)
-    indretif = models.IntegerField(choices=CHOICES_S1207_INDRETIF)
-    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
-    indapuracao = models.IntegerField(choices=CHOICES_S1207_INDAPURACAO)
-    perapur = models.CharField(max_length=7)
-    tpamb = models.IntegerField(choices=CHOICES_S1207_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1207_PROCEMI, default=1)
-    verproc = models.CharField(max_length=20)
-    tpinsc = models.IntegerField(choices=CHOICES_S1207_TPINSC)
-    nrinsc = models.CharField(max_length=15)
-    cpfbenef = models.CharField(max_length=11)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    indretif = models.IntegerField(choices=CHOICES_S1207_INDRETIF)
+    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
+    indapuracao = models.IntegerField(choices=CHOICES_S1207_INDAPURACAO)
+    perapur = models.CharField(max_length=7)
+    tpamb = models.IntegerField(choices=CHOICES_S1207_TPAMB)
+    procemi = models.IntegerField(choices=CHOICES_S1207_PROCEMI)
+    verproc = models.CharField(max_length=20)
+    tpinsc = models.IntegerField(choices=CHOICES_S1207_TPINSC)
+    nrinsc = models.CharField(max_length=15)
+    cpfbenef = models.CharField(max_length=11)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -2677,15 +2720,22 @@ class s1207evtBenPrRP(models.Model):
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef)
     #s1207_evtbenprrp_custom#
     #s1207_evtbenprrp_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's1207_evtbenprrp'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef']
+        ordering = ['identidade', 'indretif', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef']
 
 
 
@@ -2699,13 +2749,31 @@ class s1210evtPgtos(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S1210_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     indapuracao = models.IntegerField(choices=CHOICES_S1210_INDAPURACAO)
     perapur = models.CharField(max_length=7)
     tpamb = models.IntegerField(choices=CHOICES_S1210_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1210_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S1210_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1210_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -2717,33 +2785,15 @@ class s1210evtPgtos(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    validacoes = models.TextField(blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef)
     #s1210_evtpgtos_custom#
     #s1210_evtpgtos_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's1210_evtpgtos'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef']
+        ordering = ['identidade', 'indretif', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef']
 
 
 
@@ -2757,13 +2807,31 @@ class s1250evtAqProd(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S1250_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     indapuracao = models.IntegerField(choices=CHOICES_S1250_INDAPURACAO)
     perapur = models.CharField(max_length=7)
     tpamb = models.IntegerField(choices=CHOICES_S1250_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1250_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S1250_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1250_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -2776,33 +2844,15 @@ class s1250evtAqProd(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscadq) + ' - ' + unicode(self.nrinscadq)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscadq) + ' - ' + unicode(self.nrinscadq)
     #s1250_evtaqprod_custom#
     #s1250_evtaqprod_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's1250_evtaqprod'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscadq', 'nrinscadq']
+        ordering = ['identidade', 'indretif', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscadq', 'nrinscadq']
 
 
 
@@ -2816,13 +2866,31 @@ class s1260evtComProd(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S1260_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     indapuracao = models.IntegerField(choices=CHOICES_S1260_INDAPURACAO)
     perapur = models.CharField(max_length=7)
     tpamb = models.IntegerField(choices=CHOICES_S1260_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1260_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S1260_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1260_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -2834,33 +2902,15 @@ class s1260evtComProd(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    validacoes = models.TextField(blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.nrinscestabrural)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.nrinscestabrural)
     #s1260_evtcomprod_custom#
     #s1260_evtcomprod_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's1260_evtcomprod'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'nrinscestabrural']
+        ordering = ['identidade', 'indretif', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'nrinscestabrural']
 
 
 
@@ -2874,31 +2924,14 @@ class s1270evtContratAvNP(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
-    identidade = models.CharField(max_length=36, blank=True, null=True)
-    indretif = models.IntegerField(choices=CHOICES_S1270_INDRETIF)
-    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
-    indapuracao = models.IntegerField(choices=CHOICES_S1270_INDAPURACAO)
-    perapur = models.CharField(max_length=7)
-    tpamb = models.IntegerField(choices=CHOICES_S1270_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1270_PROCEMI, default=1)
-    verproc = models.CharField(max_length=20)
-    tpinsc = models.IntegerField(choices=CHOICES_S1270_TPINSC)
-    nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -2909,15 +2942,32 @@ class s1270evtContratAvNP(models.Model):
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    indretif = models.IntegerField(choices=CHOICES_S1270_INDRETIF)
+    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
+    indapuracao = models.IntegerField(choices=CHOICES_S1270_INDAPURACAO)
+    perapur = models.CharField(max_length=7)
+    tpamb = models.IntegerField(choices=CHOICES_S1270_TPAMB)
+    procemi = models.IntegerField(choices=CHOICES_S1270_PROCEMI)
+    verproc = models.CharField(max_length=20)
+    tpinsc = models.IntegerField(choices=CHOICES_S1270_TPINSC)
+    nrinsc = models.CharField(max_length=15)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1270_evtcontratavnp_custom#
     #s1270_evtcontratavnp_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's1270_evtcontratavnp'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
+        ordering = ['identidade', 'indretif', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
 
 
@@ -2931,31 +2981,14 @@ class s1280evtInfoComplPer(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
-    identidade = models.CharField(max_length=36, blank=True, null=True)
-    indretif = models.IntegerField(choices=CHOICES_S1280_INDRETIF)
-    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
-    indapuracao = models.IntegerField(choices=CHOICES_S1280_INDAPURACAO)
-    perapur = models.CharField(max_length=7)
-    tpamb = models.IntegerField(choices=CHOICES_S1280_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1280_PROCEMI, default=1)
-    verproc = models.CharField(max_length=20)
-    tpinsc = models.IntegerField(choices=CHOICES_S1280_TPINSC)
-    nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -2966,15 +2999,32 @@ class s1280evtInfoComplPer(models.Model):
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    indretif = models.IntegerField(choices=CHOICES_S1280_INDRETIF)
+    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
+    indapuracao = models.IntegerField(choices=CHOICES_S1280_INDAPURACAO)
+    perapur = models.CharField(max_length=7)
+    tpamb = models.IntegerField(choices=CHOICES_S1280_TPAMB)
+    procemi = models.IntegerField(choices=CHOICES_S1280_PROCEMI)
+    verproc = models.CharField(max_length=20)
+    tpinsc = models.IntegerField(choices=CHOICES_S1280_TPINSC)
+    nrinsc = models.CharField(max_length=15)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1280_evtinfocomplper_custom#
     #s1280_evtinfocomplper_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's1280_evtinfocomplper'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
+        ordering = ['identidade', 'indretif', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
 
 
@@ -2988,29 +3038,14 @@ class s1295evtTotConting(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
-    identidade = models.CharField(max_length=36, blank=True, null=True)
-    indapuracao = models.IntegerField(choices=CHOICES_S1295_INDAPURACAO)
-    perapur = models.CharField(max_length=7)
-    tpamb = models.IntegerField(choices=CHOICES_S1295_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1295_PROCEMI, default=1)
-    verproc = models.CharField(max_length=20)
-    tpinsc = models.IntegerField(choices=CHOICES_S1295_TPINSC)
-    nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -3021,6 +3056,21 @@ class s1295evtTotConting(models.Model):
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    indapuracao = models.IntegerField(choices=CHOICES_S1295_INDAPURACAO)
+    perapur = models.CharField(max_length=7)
+    tpamb = models.IntegerField(choices=CHOICES_S1295_TPAMB)
+    procemi = models.IntegerField(choices=CHOICES_S1295_PROCEMI)
+    verproc = models.CharField(max_length=20)
+    tpinsc = models.IntegerField(choices=CHOICES_S1295_TPINSC)
+    nrinsc = models.CharField(max_length=15)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1295_evttotconting_custom#
@@ -3043,29 +3093,14 @@ class s1298evtReabreEvPer(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
-    identidade = models.CharField(max_length=36, blank=True, null=True)
-    indapuracao = models.IntegerField(choices=CHOICES_S1298_INDAPURACAO)
-    perapur = models.CharField(max_length=7)
-    tpamb = models.IntegerField(choices=CHOICES_S1298_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1298_PROCEMI, default=1)
-    verproc = models.CharField(max_length=20)
-    tpinsc = models.IntegerField(choices=CHOICES_S1298_TPINSC)
-    nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -3076,6 +3111,21 @@ class s1298evtReabreEvPer(models.Model):
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    indapuracao = models.IntegerField(choices=CHOICES_S1298_INDAPURACAO)
+    perapur = models.CharField(max_length=7)
+    tpamb = models.IntegerField(choices=CHOICES_S1298_TPAMB)
+    procemi = models.IntegerField(choices=CHOICES_S1298_PROCEMI)
+    verproc = models.CharField(max_length=20)
+    tpinsc = models.IntegerField(choices=CHOICES_S1298_TPINSC)
+    nrinsc = models.CharField(max_length=15)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1298_evtreabreevper_custom#
@@ -3098,11 +3148,29 @@ class s1299evtFechaEvPer(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indapuracao = models.IntegerField(choices=CHOICES_S1299_INDAPURACAO)
     perapur = models.CharField(max_length=7)
     tpamb = models.IntegerField(choices=CHOICES_S1299_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1299_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S1299_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1299_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -3120,33 +3188,15 @@ class s1299evtFechaEvPer(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.evtremun) + ' - ' + unicode(self.evtpgtos) + ' - ' + unicode(self.evtaqprod) + ' - ' + unicode(self.evtcomprod) + ' - ' + unicode(self.evtcontratavnp) + ' - ' + unicode(self.evtinfocomplper) + ' - ' + unicode(self.compsemmovto)
+        return unicode(self.identidade) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.evtremun) + ' - ' + unicode(self.evtpgtos) + ' - ' + unicode(self.evtaqprod) + ' - ' + unicode(self.evtcomprod) + ' - ' + unicode(self.evtcontratavnp) + ' - ' + unicode(self.evtinfocomplper)
     #s1299_evtfechaevper_custom#
     #s1299_evtfechaevper_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's1299_evtfechaevper'
         managed = True
-        ordering = ['identidade', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'evtremun', 'evtpgtos', 'evtaqprod', 'evtcomprod', 'evtcontratavnp', 'evtinfocomplper', 'compsemmovto']
+        ordering = ['identidade', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'evtremun', 'evtpgtos', 'evtaqprod', 'evtcomprod', 'evtcontratavnp', 'evtinfocomplper']
 
 
 
@@ -3160,31 +3210,14 @@ class s1300evtContrSindPatr(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
-    identidade = models.CharField(max_length=36, blank=True, null=True)
-    indretif = models.IntegerField(choices=CHOICES_S1300_INDRETIF)
-    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
-    indapuracao = models.IntegerField(choices=CHOICES_S1300_INDAPURACAO)
-    perapur = models.CharField(max_length=7)
-    tpamb = models.IntegerField(choices=CHOICES_S1300_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S1300_PROCEMI, default=1)
-    verproc = models.CharField(max_length=20)
-    tpinsc = models.IntegerField(choices=CHOICES_S1300_TPINSC)
-    nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -3195,15 +3228,32 @@ class s1300evtContrSindPatr(models.Model):
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    indretif = models.IntegerField(choices=CHOICES_S1300_INDRETIF)
+    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
+    indapuracao = models.IntegerField(choices=CHOICES_S1300_INDAPURACAO)
+    perapur = models.CharField(max_length=7)
+    tpamb = models.IntegerField(choices=CHOICES_S1300_TPAMB)
+    procemi = models.IntegerField(choices=CHOICES_S1300_PROCEMI)
+    verproc = models.CharField(max_length=20)
+    tpinsc = models.IntegerField(choices=CHOICES_S1300_TPINSC)
+    nrinsc = models.CharField(max_length=15)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1300_evtcontrsindpatr_custom#
     #s1300_evtcontrsindpatr_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's1300_evtcontrsindpatr'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
+        ordering = ['identidade', 'indretif', 'indapuracao', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
 
 
@@ -3217,9 +3267,27 @@ class s2190evtAdmPrelim(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2190_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2190_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2190_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2190_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -3233,24 +3301,6 @@ class s2190evtAdmPrelim(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.dtadm)
     #s2190_evtadmprelim_custom#
@@ -3271,13 +3321,31 @@ class s2190evtAdmPrelimSerializer(ModelSerializer):
 
 class s2200evtAdmissao(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
-    identidade = models.CharField(max_length=36, blank=True, null=True)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2200_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2200_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2200_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2200_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2200_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -3314,6 +3382,7 @@ class s2200evtAdmissao(models.Model):
     tpcontr = models.IntegerField(choices=CHOICES_S2200_TPCONTR)
     dtterm = models.DateField(blank=True, null=True)
     clauassec = models.CharField(choices=CHOICES_S2200_CLAUASSEC, max_length=1, blank=True, null=True)
+    objdet = models.CharField(max_length=255, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3321,33 +3390,15 @@ class s2200evtAdmissao(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.nmtrab) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.estciv) + ' - ' + unicode(self.grauinstr) + ' - ' + unicode(self.indpriempr) + ' - ' + unicode(self.nmsoc) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.paisnascto) + ' - ' + unicode(self.paisnac) + ' - ' + unicode(self.nmmae) + ' - ' + unicode(self.nmpai) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.tpregtrab) + ' - ' + unicode(self.tpregprev) + ' - ' + unicode(self.nrrecinfprelim) + ' - ' + unicode(self.cadini) + ' - ' + unicode(self.codcargo) + ' - ' + unicode(self.dtingrcargo) + ' - ' + unicode(self.codfuncao) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.codcarreira) + ' - ' + unicode(self.dtingrcarr) + ' - ' + unicode(self.vrsalfx) + ' - ' + unicode(self.undsalfixo) + ' - ' + unicode(self.dscsalvar) + ' - ' + unicode(self.tpcontr) + ' - ' + unicode(self.dtterm) + ' - ' + unicode(self.clauassec)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.nmtrab) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.grauinstr) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.paisnascto) + ' - ' + unicode(self.paisnac) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.tpregtrab) + ' - ' + unicode(self.tpregprev) + ' - ' + unicode(self.cadini) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.vrsalfx) + ' - ' + unicode(self.undsalfixo) + ' - ' + unicode(self.tpcontr)
     #s2200_evtadmissao_custom#
     #s2200_evtadmissao_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2200_evtadmissao'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'nmtrab', 'sexo', 'racacor', 'estciv', 'grauinstr', 'indpriempr', 'nmsoc', 'dtnascto', 'codmunic', 'uf', 'paisnascto', 'paisnac', 'nmmae', 'nmpai', 'matricula', 'tpregtrab', 'tpregprev', 'nrrecinfprelim', 'cadini', 'codcargo', 'dtingrcargo', 'codfuncao', 'codcateg', 'codcarreira', 'dtingrcarr', 'vrsalfx', 'undsalfixo', 'dscsalvar', 'tpcontr', 'dtterm', 'clauassec']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'nmtrab', 'sexo', 'racacor', 'grauinstr', 'dtnascto', 'paisnascto', 'paisnac', 'matricula', 'tpregtrab', 'tpregprev', 'cadini', 'codcateg', 'vrsalfx', 'undsalfixo', 'tpcontr']
 
 
 
@@ -3361,11 +3412,29 @@ class s2205evtAltCadastral(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2205_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2205_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2205_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2205_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2205_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -3392,33 +3461,15 @@ class s2205evtAltCadastral(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.dtalteracao) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.nmtrab) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.estciv) + ' - ' + unicode(self.grauinstr) + ' - ' + unicode(self.nmsoc) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.paisnascto) + ' - ' + unicode(self.paisnac) + ' - ' + unicode(self.nmmae) + ' - ' + unicode(self.nmpai)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.dtalteracao) + ' - ' + unicode(self.nmtrab) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.grauinstr) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.paisnascto) + ' - ' + unicode(self.paisnac)
     #s2205_evtaltcadastral_custom#
     #s2205_evtaltcadastral_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2205_evtaltcadastral'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'dtalteracao', 'nistrab', 'nmtrab', 'sexo', 'racacor', 'estciv', 'grauinstr', 'nmsoc', 'dtnascto', 'codmunic', 'uf', 'paisnascto', 'paisnac', 'nmmae', 'nmpai']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'dtalteracao', 'nmtrab', 'sexo', 'racacor', 'grauinstr', 'dtnascto', 'paisnascto', 'paisnac']
 
 
 
@@ -3432,11 +3483,29 @@ class s2206evtAltContratual(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2206_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2206_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2206_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2206_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2206_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -3457,6 +3526,7 @@ class s2206evtAltContratual(models.Model):
     dscsalvar = models.CharField(max_length=255, blank=True, null=True)
     tpcontr = models.IntegerField(choices=CHOICES_S2206_TPCONTR)
     dtterm = models.DateField(blank=True, null=True)
+    objdet = models.CharField(max_length=255, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3464,33 +3534,15 @@ class s2206evtAltContratual(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.dtalteracao) + ' - ' + unicode(self.dtef) + ' - ' + unicode(self.dscalt) + ' - ' + unicode(self.tpregprev) + ' - ' + unicode(self.codcargo) + ' - ' + unicode(self.codfuncao) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.codcarreira) + ' - ' + unicode(self.dtingrcarr) + ' - ' + unicode(self.vrsalfx) + ' - ' + unicode(self.undsalfixo) + ' - ' + unicode(self.dscsalvar) + ' - ' + unicode(self.tpcontr) + ' - ' + unicode(self.dtterm)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.dtalteracao) + ' - ' + unicode(self.tpregprev) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.vrsalfx) + ' - ' + unicode(self.undsalfixo) + ' - ' + unicode(self.tpcontr)
     #s2206_evtaltcontratual_custom#
     #s2206_evtaltcontratual_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2206_evtaltcontratual'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'dtalteracao', 'dtef', 'dscalt', 'tpregprev', 'codcargo', 'codfuncao', 'codcateg', 'codcarreira', 'dtingrcarr', 'vrsalfx', 'undsalfixo', 'dscsalvar', 'tpcontr', 'dtterm']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'dtalteracao', 'tpregprev', 'codcateg', 'vrsalfx', 'undsalfixo', 'tpcontr']
 
 
 
@@ -3502,13 +3554,31 @@ class s2206evtAltContratualSerializer(ModelSerializer):
 
 class s2210evtCAT(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
-    identidade = models.CharField(max_length=36, blank=True, null=True)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2210_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2210_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2210_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2210_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2210_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -3518,7 +3588,7 @@ class s2210evtCAT(models.Model):
     codcateg = models.TextField(max_length=3, blank=True, null=True)
     dtacid = models.DateField()
     tpacid = models.CharField(choices=CHOICES_S2210_TPACID, max_length=6)
-    hracid = models.CharField(max_length=4)
+    hracid = models.CharField(max_length=4, blank=True, null=True)
     hrstrabantesacid = models.CharField(max_length=4)
     tpcat = models.IntegerField(choices=CHOICES_S2210_TPCAT)
     indcatobito = models.CharField(choices=CHOICES_S2210_INDCATOBITO, max_length=1)
@@ -3526,10 +3596,12 @@ class s2210evtCAT(models.Model):
     indcomunpolicia = models.CharField(choices=CHOICES_S2210_INDCOMUNPOLICIA, max_length=1)
     codsitgeradora = models.IntegerField(choices=CHOICES_S2210_CODSITGERADORA)
     iniciatcat = models.IntegerField(choices=CHOICES_S2210_INICIATCAT)
+    obscat = models.CharField(max_length=999, blank=True, null=True)
     observacao = models.CharField(max_length=999, blank=True, null=True)
     tplocal = models.IntegerField(choices=CHOICES_S2210_TPLOCAL)
     dsclocal = models.CharField(max_length=255, blank=True, null=True)
     codamb = models.CharField(max_length=30, blank=True, null=True)
+    tplograd = models.TextField(max_length=4)
     dsclograd = models.CharField(max_length=100)
     nrlograd = models.CharField(max_length=10)
     complemento = models.CharField(max_length=30, blank=True, null=True)
@@ -3546,33 +3618,15 @@ class s2210evtCAT(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtacid) + ' - ' + unicode(self.tpacid) + ' - ' + unicode(self.hracid) + ' - ' + unicode(self.hrstrabantesacid) + ' - ' + unicode(self.tpcat) + ' - ' + unicode(self.indcatobito) + ' - ' + unicode(self.dtobito) + ' - ' + unicode(self.indcomunpolicia) + ' - ' + unicode(self.codsitgeradora) + ' - ' + unicode(self.iniciatcat) + ' - ' + unicode(self.observacao) + ' - ' + unicode(self.tplocal) + ' - ' + unicode(self.dsclocal) + ' - ' + unicode(self.codamb) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.complemento) + ' - ' + unicode(self.bairro) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.pais) + ' - ' + unicode(self.codpostal)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.dtacid) + ' - ' + unicode(self.tpacid) + ' - ' + unicode(self.hrstrabantesacid) + ' - ' + unicode(self.tpcat) + ' - ' + unicode(self.indcatobito) + ' - ' + unicode(self.indcomunpolicia) + ' - ' + unicode(self.codsitgeradora) + ' - ' + unicode(self.iniciatcat) + ' - ' + unicode(self.tplocal) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd)
     #s2210_evtcat_custom#
     #s2210_evtcat_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2210_evtcat'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'dtacid', 'tpacid', 'hracid', 'hrstrabantesacid', 'tpcat', 'indcatobito', 'dtobito', 'indcomunpolicia', 'codsitgeradora', 'iniciatcat', 'observacao', 'tplocal', 'dsclocal', 'codamb', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'cep', 'codmunic', 'uf', 'pais', 'codpostal']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'dtacid', 'tpacid', 'hrstrabantesacid', 'tpcat', 'indcatobito', 'indcomunpolicia', 'codsitgeradora', 'iniciatcat', 'tplocal', 'tplograd', 'dsclograd', 'nrlograd']
 
 
 
@@ -3586,11 +3640,29 @@ class s2220evtMonit(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2220_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2220_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2220_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2220_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2220_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -3621,33 +3693,15 @@ class s2220evtMonit(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.tpexameocup) + ' - ' + unicode(self.dtaso) + ' - ' + unicode(self.tpaso) + ' - ' + unicode(self.resaso) + ' - ' + unicode(self.cpfmed) + ' - ' + unicode(self.nismed) + ' - ' + unicode(self.nmmed) + ' - ' + unicode(self.nrcrm) + ' - ' + unicode(self.ufcrm) + ' - ' + unicode(self.nisresp) + ' - ' + unicode(self.nrconsclasse) + ' - ' + unicode(self.ufconsclasse) + ' - ' + unicode(self.cpfresp) + ' - ' + unicode(self.nmresp) + ' - ' + unicode(self.nrcrm) + ' - ' + unicode(self.ufcrm)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.tpexameocup) + ' - ' + unicode(self.dtaso) + ' - ' + unicode(self.tpaso) + ' - ' + unicode(self.resaso) + ' - ' + unicode(self.nmmed) + ' - ' + unicode(self.nrcrm) + ' - ' + unicode(self.ufcrm) + ' - ' + unicode(self.nisresp) + ' - ' + unicode(self.nrconsclasse) + ' - ' + unicode(self.nmresp) + ' - ' + unicode(self.nrcrm) + ' - ' + unicode(self.ufcrm)
     #s2220_evtmonit_custom#
     #s2220_evtmonit_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2220_evtmonit'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'tpexameocup', 'dtaso', 'tpaso', 'resaso', 'cpfmed', 'nismed', 'nmmed', 'nrcrm', 'ufcrm', 'nisresp', 'nrconsclasse', 'ufconsclasse', 'cpfresp', 'nmresp', 'nrcrm', 'ufcrm']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'tpexameocup', 'dtaso', 'tpaso', 'resaso', 'nmmed', 'nrcrm', 'ufcrm', 'nisresp', 'nrconsclasse', 'nmresp', 'nrcrm', 'ufcrm']
 
 
 
@@ -3661,39 +3715,14 @@ class s2221evtToxic(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
-    identidade = models.CharField(max_length=36, blank=True, null=True)
-    indretif = models.IntegerField(choices=CHOICES_S2221_INDRETIF)
-    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
-    tpamb = models.IntegerField(choices=CHOICES_S2221_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2221_PROCEMI, default=1)
-    verproc = models.CharField(max_length=20)
-    tpinsc = models.IntegerField(choices=CHOICES_S2221_TPINSC)
-    nrinsc = models.CharField(max_length=15)
-    cpftrab = models.CharField(max_length=11)
-    nistrab = models.CharField(max_length=11, blank=True, null=True)
-    matricula = models.CharField(max_length=30, blank=True, null=True)
-    codcateg = models.TextField(max_length=3, blank=True, null=True)
-    dtexame = models.DateField()
-    cnpjlab = models.CharField(max_length=14)
-    codseqexame = models.CharField(max_length=11)
-    nmmed = models.CharField(max_length=70)
-    nrcrm = models.CharField(max_length=8)
-    ufcrm = models.CharField(choices=ESTADOS, max_length=2)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -3704,15 +3733,41 @@ class s2221evtToxic(models.Model):
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    indretif = models.IntegerField(choices=CHOICES_S2221_INDRETIF)
+    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
+    tpamb = models.IntegerField(choices=CHOICES_S2221_TPAMB)
+    procemi = models.IntegerField(choices=CHOICES_S2221_PROCEMI)
+    verproc = models.CharField(max_length=20)
+    tpinsc = models.IntegerField(choices=CHOICES_S2221_TPINSC)
+    nrinsc = models.CharField(max_length=15)
+    cpftrab = models.CharField(max_length=11)
+    nistrab = models.CharField(max_length=11, blank=True, null=True)
+    matricula = models.CharField(max_length=30, blank=True, null=True)
+    codcateg = models.TextField(max_length=3, blank=True, null=True)
+    dtexame = models.DateField()
+    cnpjlab = models.CharField(max_length=14, blank=True, null=True)
+    codseqexame = models.CharField(max_length=11, blank=True, null=True)
+    nmmed = models.CharField(max_length=70, blank=True, null=True)
+    nrcrm = models.CharField(max_length=8, blank=True, null=True)
+    ufcrm = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
+    indrecusa = models.CharField(max_length=1)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtexame) + ' - ' + unicode(self.cnpjlab) + ' - ' + unicode(self.codseqexame) + ' - ' + unicode(self.nmmed) + ' - ' + unicode(self.nrcrm) + ' - ' + unicode(self.ufcrm)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.dtexame) + ' - ' + unicode(self.indrecusa)
     #s2221_evttoxic_custom#
     #s2221_evttoxic_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2221_evttoxic'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'dtexame', 'cnpjlab', 'codseqexame', 'nmmed', 'nrcrm', 'ufcrm']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'dtexame', 'indrecusa']
 
 
 
@@ -3726,11 +3781,29 @@ class s2230evtAfastTemp(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2230_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2230_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2230_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2230_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2230_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -3745,33 +3818,15 @@ class s2230evtAfastTemp(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s2230_evtafasttemp_custom#
     #s2230_evtafasttemp_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2230_evtafasttemp'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab']
 
 
 
@@ -3786,7 +3841,7 @@ class s2231evtCessao(models.Model):
     indretif = models.IntegerField(choices=CHOICES_S2231_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2231_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2231_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2231_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField()
     nrinsc = models.CharField(max_length=15)
@@ -3801,14 +3856,14 @@ class s2231evtCessao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula)
     #s2231_evtcessao_custom#
     #s2231_evtcessao_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2231_evtcessao'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula']
 
 
 
@@ -3822,11 +3877,30 @@ class s2240evtExpRisco(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    operacao = models.IntegerField(choices=OPERACOES)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2240_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2240_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2240_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2240_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2240_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -3843,34 +3917,15 @@ class s2240evtExpRisco(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtinicondicao) + ' - ' + unicode(self.dscativdes)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.dtinicondicao) + ' - ' + unicode(self.dscativdes)
     #s2240_evtexprisco_custom#
     #s2240_evtexprisco_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2240_evtexprisco'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'dtinicondicao', 'dscativdes']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'dtinicondicao', 'dscativdes']
 
 
 
@@ -3884,11 +3939,30 @@ class s2241evtInsApo(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    operacao = models.IntegerField(choices=OPERACOES_INSALPERIC_APOSENTESP)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2241_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2241_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2241_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2241_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2241_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -3902,34 +3976,15 @@ class s2241evtInsApo(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES_INSALPERIC_APOSENTESP)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s2241_evtinsapo_custom#
     #s2241_evtinsapo_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2241_evtinsapo'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab']
 
 
 
@@ -3943,35 +3998,14 @@ class s2245evtTreiCap(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
-    identidade = models.CharField(max_length=36, blank=True, null=True)
-    indretif = models.IntegerField(choices=CHOICES_S2245_INDRETIF)
-    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
-    tpamb = models.IntegerField(choices=CHOICES_S2245_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2245_PROCEMI, default=1)
-    verproc = models.CharField(max_length=20)
-    tpinsc = models.IntegerField(choices=CHOICES_S2245_TPINSC)
-    nrinsc = models.CharField(max_length=15)
-    cpftrab = models.CharField(max_length=11)
-    nistrab = models.CharField(max_length=11, blank=True, null=True)
-    matricula = models.CharField(max_length=30, blank=True, null=True)
-    codcateg = models.TextField(max_length=3, blank=True, null=True)
-    codtreicap = models.CharField(max_length=4)
-    observacao = models.CharField(max_length=999, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -3983,15 +4017,37 @@ class s2245evtTreiCap(models.Model):
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES_INSALPERIC_APOSENTESP)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    indretif = models.IntegerField(choices=CHOICES_S2245_INDRETIF)
+    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
+    tpamb = models.IntegerField(choices=CHOICES_S2245_TPAMB)
+    procemi = models.IntegerField(choices=CHOICES_S2245_PROCEMI)
+    verproc = models.CharField(max_length=20)
+    tpinsc = models.IntegerField(choices=CHOICES_S2245_TPINSC)
+    nrinsc = models.CharField(max_length=15)
+    cpftrab = models.CharField(max_length=11)
+    nistrab = models.CharField(max_length=11, blank=True, null=True)
+    matricula = models.CharField(max_length=30, blank=True, null=True)
+    codcateg = models.TextField(max_length=3, blank=True, null=True)
+    codtreicap = models.CharField(max_length=4)
+    obstreicap = models.CharField(max_length=999, blank=True, null=True)
+    observacao = models.CharField(max_length=999, blank=True, null=True)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.codtreicap) + ' - ' + unicode(self.observacao)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.codtreicap)
     #s2245_evttreicap_custom#
     #s2245_evttreicap_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2245_evttreicap'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codcateg', 'codtreicap', 'observacao']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'codtreicap']
 
 
 
@@ -4005,11 +4061,29 @@ class s2250evtAvPrevio(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2250_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2250_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2250_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2250_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2250_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -4023,33 +4097,15 @@ class s2250evtAvPrevio(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    validacoes = models.TextField(blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula)
     #s2250_evtavprevio_custom#
     #s2250_evtavprevio_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2250_evtavprevio'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula']
 
 
 
@@ -4061,13 +4117,31 @@ class s2250evtAvPrevioSerializer(ModelSerializer):
 
 class s2260evtConvInterm(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
-    identidade = models.CharField(max_length=36, blank=True, null=True)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2260_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2260_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2260_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2260_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2260_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -4088,33 +4162,15 @@ class s2260evtConvInterm(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codconv) + ' - ' + unicode(self.dtinicio) + ' - ' + unicode(self.dtfim) + ' - ' + unicode(self.dtprevpgto) + ' - ' + unicode(self.codhorcontrat) + ' - ' + unicode(self.dscjornada) + ' - ' + unicode(self.indlocal)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codconv) + ' - ' + unicode(self.dtinicio) + ' - ' + unicode(self.dtfim) + ' - ' + unicode(self.dtprevpgto) + ' - ' + unicode(self.indlocal)
     #s2260_evtconvinterm_custom#
     #s2260_evtconvinterm_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2260_evtconvinterm'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codconv', 'dtinicio', 'dtfim', 'dtprevpgto', 'codhorcontrat', 'dscjornada', 'indlocal']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'codconv', 'dtinicio', 'dtfim', 'dtprevpgto', 'indlocal']
 
 
 
@@ -4128,11 +4184,29 @@ class s2298evtReintegr(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2298_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2298_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2298_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2298_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2298_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -4152,33 +4226,15 @@ class s2298evtReintegr(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.tpreint) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.nrleianistia) + ' - ' + unicode(self.dtefetretorno) + ' - ' + unicode(self.dtefeito) + ' - ' + unicode(self.indpagtojuizo)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.tpreint) + ' - ' + unicode(self.dtefetretorno) + ' - ' + unicode(self.dtefeito) + ' - ' + unicode(self.indpagtojuizo)
     #s2298_evtreintegr_custom#
     #s2298_evtreintegr_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2298_evtreintegr'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'tpreint', 'nrprocjud', 'nrleianistia', 'dtefetretorno', 'dtefeito', 'indpagtojuizo']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'tpreint', 'dtefetretorno', 'dtefeito', 'indpagtojuizo']
 
 
 
@@ -4190,13 +4246,31 @@ class s2298evtReintegrSerializer(ModelSerializer):
 
 class s2299evtDeslig(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
-    identidade = models.CharField(max_length=36, blank=True, null=True)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2299_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2299_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2299_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2299_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2299_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -4221,33 +4295,15 @@ class s2299evtDeslig(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.mtvdeslig) + ' - ' + unicode(self.dtdeslig) + ' - ' + unicode(self.indpagtoapi) + ' - ' + unicode(self.dtprojfimapi) + ' - ' + unicode(self.pensalim) + ' - ' + unicode(self.percaliment) + ' - ' + unicode(self.vralim) + ' - ' + unicode(self.nrcertobito) + ' - ' + unicode(self.nrproctrab) + ' - ' + unicode(self.indcumprparc) + ' - ' + unicode(self.qtddiasinterm)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.mtvdeslig) + ' - ' + unicode(self.dtdeslig) + ' - ' + unicode(self.indpagtoapi) + ' - ' + unicode(self.pensalim) + ' - ' + unicode(self.indcumprparc)
     #s2299_evtdeslig_custom#
     #s2299_evtdeslig_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2299_evtdeslig'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'mtvdeslig', 'dtdeslig', 'indpagtoapi', 'dtprojfimapi', 'pensalim', 'percaliment', 'vralim', 'nrcertobito', 'nrproctrab', 'indcumprparc', 'qtddiasinterm']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'matricula', 'mtvdeslig', 'dtdeslig', 'indpagtoapi', 'pensalim', 'indcumprparc']
 
 
 
@@ -4261,11 +4317,29 @@ class s2300evtTSVInicio(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2300_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2300_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2300_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2300_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2300_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -4295,33 +4369,15 @@ class s2300evtTSVInicio(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.nmtrab) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.estciv) + ' - ' + unicode(self.grauinstr) + ' - ' + unicode(self.nmsoc) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.paisnascto) + ' - ' + unicode(self.paisnac) + ' - ' + unicode(self.nmmae) + ' - ' + unicode(self.nmpai) + ' - ' + unicode(self.cadini) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtinicio) + ' - ' + unicode(self.natatividade)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nmtrab) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.grauinstr) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.paisnascto) + ' - ' + unicode(self.paisnac) + ' - ' + unicode(self.cadini) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtinicio)
     #s2300_evttsvinicio_custom#
     #s2300_evttsvinicio_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2300_evttsvinicio'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'nmtrab', 'sexo', 'racacor', 'estciv', 'grauinstr', 'nmsoc', 'dtnascto', 'codmunic', 'uf', 'paisnascto', 'paisnac', 'nmmae', 'nmpai', 'cadini', 'codcateg', 'dtinicio', 'natatividade']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nmtrab', 'sexo', 'racacor', 'grauinstr', 'dtnascto', 'paisnascto', 'paisnac', 'cadini', 'codcateg', 'dtinicio']
 
 
 
@@ -4335,11 +4391,29 @@ class s2306evtTSVAltContr(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2306_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2306_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2306_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2306_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2306_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -4355,33 +4429,15 @@ class s2306evtTSVAltContr(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtalteracao) + ' - ' + unicode(self.natatividade)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtalteracao)
     #s2306_evttsvaltcontr_custom#
     #s2306_evttsvaltcontr_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2306_evttsvaltcontr'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'codcateg', 'dtalteracao', 'natatividade']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'codcateg', 'dtalteracao']
 
 
 
@@ -4395,34 +4451,14 @@ class s2399evtTSVTermino(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
-    identidade = models.CharField(max_length=36, blank=True, null=True)
-    indretif = models.IntegerField(choices=CHOICES_S2399_INDRETIF)
-    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
-    tpamb = models.IntegerField(choices=CHOICES_S2399_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2399_PROCEMI, default=1)
-    verproc = models.CharField(max_length=20)
-    tpinsc = models.IntegerField(choices=CHOICES_S2399_TPINSC)
-    nrinsc = models.CharField(max_length=15)
-    cpftrab = models.CharField(max_length=11)
-    nistrab = models.CharField(max_length=11, blank=True, null=True)
-    codcateg = models.TextField(max_length=3)
-    dtterm = models.DateField()
-    mtvdesligtsv = models.CharField(choices=CHOICES_S2399_MTVDESLIGTSV, max_length=2, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -4433,15 +4469,38 @@ class s2399evtTSVTermino(models.Model):
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    indretif = models.IntegerField(choices=CHOICES_S2399_INDRETIF)
+    nrrecibo = models.CharField(max_length=40, blank=True, null=True)
+    tpamb = models.IntegerField(choices=CHOICES_S2399_TPAMB)
+    procemi = models.IntegerField(choices=CHOICES_S2399_PROCEMI)
+    verproc = models.CharField(max_length=20)
+    tpinsc = models.IntegerField(choices=CHOICES_S2399_TPINSC)
+    nrinsc = models.CharField(max_length=15)
+    cpftrab = models.CharField(max_length=11)
+    nistrab = models.CharField(max_length=11, blank=True, null=True)
+    codcateg = models.TextField(max_length=3)
+    dtterm = models.DateField()
+    mtvdesligtsv = models.CharField(choices=CHOICES_S2399_MTVDESLIGTSV, max_length=2, blank=True, null=True)
+    pensalim = models.IntegerField(choices=CHOICES_S2399_PENSALIM, blank=True, null=True)
+    percaliment = models.DecimalField(max_digits=15, decimal_places=2, max_length=5, blank=True, null=True)
+    vralim = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtterm) + ' - ' + unicode(self.mtvdesligtsv)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtterm)
     #s2399_evttsvtermino_custom#
     #s2399_evttsvtermino_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2399_evttsvtermino'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'nistrab', 'codcateg', 'dtterm', 'mtvdesligtsv']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpftrab', 'codcateg', 'dtterm']
 
 
 
@@ -4453,13 +4512,31 @@ class s2399evtTSVTerminoSerializer(ModelSerializer):
 
 class s2400evtCdBenefIn(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
-    identidade = models.CharField(max_length=36, blank=True, null=True)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2400_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2400_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2400_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2400_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2400_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -4486,33 +4563,15 @@ class s2400evtCdBenefIn(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nisbenef) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.dtinicio) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.estciv) + ' - ' + unicode(self.incfismen) + ' - ' + unicode(self.dtincfismen) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.paisnascto) + ' - ' + unicode(self.paisnac) + ' - ' + unicode(self.nmmae) + ' - ' + unicode(self.nmpai)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.dtinicio) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.incfismen) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.paisnac)
     #s2400_evtcdbenefin_custom#
     #s2400_evtcdbenefin_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2400_evtcdbenefin'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'nisbenef', 'nmbenefic', 'dtinicio', 'sexo', 'racacor', 'estciv', 'incfismen', 'dtincfismen', 'dtnascto', 'codmunic', 'uf', 'paisnascto', 'paisnac', 'nmmae', 'nmpai']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'nmbenefic', 'dtinicio', 'sexo', 'racacor', 'incfismen', 'dtnascto', 'paisnac']
 
 
 
@@ -4524,13 +4583,31 @@ class s2400evtCdBenefInSerializer(ModelSerializer):
 
 class s2405evtCdBenefAlt(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
-    identidade = models.CharField(max_length=36, blank=True, null=True)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2405_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2405_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2405_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2405_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2405_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -4553,33 +4630,15 @@ class s2405evtCdBenefAlt(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.dtalteracao) + ' - ' + unicode(self.nisbenef) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.estciv) + ' - ' + unicode(self.incfismen) + ' - ' + unicode(self.dtincfismen) + ' - ' + unicode(self.paisnac) + ' - ' + unicode(self.nmmae) + ' - ' + unicode(self.nmpai)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.dtalteracao) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.incfismen) + ' - ' + unicode(self.paisnac)
     #s2405_evtcdbenefalt_custom#
     #s2405_evtcdbenefalt_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2405_evtcdbenefalt'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'dtalteracao', 'nisbenef', 'nmbenefic', 'sexo', 'racacor', 'estciv', 'incfismen', 'dtincfismen', 'paisnac', 'nmmae', 'nmpai']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'dtalteracao', 'nmbenefic', 'sexo', 'racacor', 'incfismen', 'paisnac']
 
 
 
@@ -4591,13 +4650,31 @@ class s2405evtCdBenefAltSerializer(ModelSerializer):
 
 class s2410evtCdBenIn(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
-    identidade = models.CharField(max_length=36, blank=True, null=True)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2410_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2410_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2410_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2410_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2410_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -4620,33 +4697,15 @@ class s2410evtCdBenIn(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.cnpjorigem) + ' - ' + unicode(self.cadini) + ' - ' + unicode(self.nrbeneficio) + ' - ' + unicode(self.dtinibeneficio) + ' - ' + unicode(self.tpbeneficio) + ' - ' + unicode(self.vrbeneficio) + ' - ' + unicode(self.tpplanrp) + ' - ' + unicode(self.dsc) + ' - ' + unicode(self.inddecjud) + ' - ' + unicode(self.indhomologtc)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.cadini) + ' - ' + unicode(self.nrbeneficio) + ' - ' + unicode(self.dtinibeneficio) + ' - ' + unicode(self.tpbeneficio) + ' - ' + unicode(self.vrbeneficio) + ' - ' + unicode(self.tpplanrp) + ' - ' + unicode(self.inddecjud) + ' - ' + unicode(self.indhomologtc)
     #s2410_evtcdbenin_custom#
     #s2410_evtcdbenin_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2410_evtcdbenin'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'matricula', 'cnpjorigem', 'cadini', 'nrbeneficio', 'dtinibeneficio', 'tpbeneficio', 'vrbeneficio', 'tpplanrp', 'dsc', 'inddecjud', 'indhomologtc']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'cadini', 'nrbeneficio', 'dtinibeneficio', 'tpbeneficio', 'vrbeneficio', 'tpplanrp', 'inddecjud', 'indhomologtc']
 
 
 
@@ -4658,13 +4717,32 @@ class s2410evtCdBenInSerializer(ModelSerializer):
 
 class s2416evtCdBenAlt(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
-    identidade = models.CharField(max_length=36, blank=True, null=True)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    operacao = models.IntegerField(choices=OPERACOES)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2416_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2416_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2416_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2416_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2416_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -4684,34 +4762,15 @@ class s2416evtCdBenAlt(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nrbeneficio) + ' - ' + unicode(self.dtaltbeneficio) + ' - ' + unicode(self.tpbeneficio) + ' - ' + unicode(self.tpplanrp) + ' - ' + unicode(self.dsc) + ' - ' + unicode(self.inddecjud) + ' - ' + unicode(self.indhomologtc) + ' - ' + unicode(self.indsuspensao)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nrbeneficio) + ' - ' + unicode(self.dtaltbeneficio) + ' - ' + unicode(self.tpbeneficio) + ' - ' + unicode(self.tpplanrp) + ' - ' + unicode(self.inddecjud) + ' - ' + unicode(self.indhomologtc) + ' - ' + unicode(self.indsuspensao)
     #s2416_evtcdbenalt_custom#
     #s2416_evtcdbenalt_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2416_evtcdbenalt'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'nrbeneficio', 'dtaltbeneficio', 'tpbeneficio', 'tpplanrp', 'dsc', 'inddecjud', 'indhomologtc', 'indsuspensao']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'nrbeneficio', 'dtaltbeneficio', 'tpbeneficio', 'tpplanrp', 'inddecjud', 'indhomologtc', 'indsuspensao']
 
 
 
@@ -4725,11 +4784,30 @@ class s2420evtCdBenTerm(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    operacao = models.IntegerField(choices=OPERACOES)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2420_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2420_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S2420_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S2420_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S2420_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -4744,34 +4822,15 @@ class s2420evtCdBenTerm(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nrbeneficio) + ' - ' + unicode(self.dttermbeneficio) + ' - ' + unicode(self.mtvtermino)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nrbeneficio) + ' - ' + unicode(self.dttermbeneficio) + ' - ' + unicode(self.mtvtermino)
     #s2420_evtcdbenterm_custom#
     #s2420_evtcdbenterm_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r's2420_evtcdbenterm'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'nrbeneficio', 'dttermbeneficio', 'mtvtermino']
+        ordering = ['identidade', 'indretif', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'cpfbenef', 'nrbeneficio', 'dttermbeneficio', 'mtvtermino']
 
 
 
@@ -4785,9 +4844,27 @@ class s3000evtExclusao(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S3000_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_S3000_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_S3000_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S3000_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -4800,24 +4877,6 @@ class s3000evtExclusao(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpevento) + ' - ' + unicode(self.nrrecevt)
     #s3000_evtexclusao_custom#
@@ -4840,8 +4899,26 @@ class s5001evtBasesTrab(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
-    nrrecarqbase = models.CharField(max_length=40, blank=True, null=True)
+    nrrecarqbase = models.CharField(max_length=40)
     indapuracao = models.IntegerField(choices=CHOICES_S5001_INDAPURACAO)
     perapur = models.CharField(max_length=7)
     tpinsc = models.IntegerField(choices=CHOICES_S5001_TPINSC)
@@ -4854,24 +4931,6 @@ class s5001evtBasesTrab(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s5001_evtbasestrab_custom#
@@ -4894,8 +4953,26 @@ class s5002evtIrrfBenef(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
-    nrrecarqbase = models.CharField(max_length=40, blank=True, null=True)
+    nrrecarqbase = models.CharField(max_length=40)
     perapur = models.CharField(max_length=7)
     tpinsc = models.IntegerField(choices=CHOICES_S5002_TPINSC)
     nrinsc = models.CharField(max_length=15)
@@ -4907,24 +4984,6 @@ class s5002evtIrrfBenef(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
-    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
-    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
-    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
-    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
-    processamento_data_hora = models.DateTimeField(blank=True, null=True)
-    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
-    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s5002_evtirrfbenef_custom#
@@ -4943,33 +5002,18 @@ class s5002evtIrrfBenefSerializer(ModelSerializer):
         fields = '__all__'
             
 
-class s5011evtCS(models.Model):
+class s5003evtBasesFGTS(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
-    identidade = models.CharField(max_length=36, blank=True, null=True)
-    indapuracao = models.IntegerField(choices=CHOICES_S5011_INDAPURACAO)
-    perapur = models.CharField(max_length=7)
-    tpinsc = models.IntegerField(choices=CHOICES_S5011_TPINSC)
-    nrinsc = models.CharField(max_length=15)
-    nrrecarqbase = models.CharField(max_length=40, blank=True, null=True)
-    indexistinfo = models.IntegerField(choices=CHOICES_S5011_INDEXISTINFO)
-    classtrib = models.CharField(choices=CHOICES_S5011_CLASSTRIB, max_length=2)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -4980,6 +5024,75 @@ class s5011evtCS(models.Model):
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    nrrecarqbase = models.CharField(max_length=40)
+    perapur = models.CharField(max_length=7)
+    tpinsc = models.IntegerField(choices=CHOICES_S5003_TPINSC)
+    nrinsc = models.CharField(max_length=15)
+    cpftrab = models.CharField(max_length=11)
+    nistrab = models.CharField(max_length=11, blank=True, null=True)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.identidade) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
+    #s5003_evtbasesfgts_custom#
+    #s5003_evtbasesfgts_custom#
+    def evento(self): return self.__dict__
+    class Meta:
+        db_table = r's5003_evtbasesfgts'
+        managed = True
+        ordering = ['identidade', 'nrrecarqbase', 'perapur', 'tpinsc', 'nrinsc', 'cpftrab']
+
+
+
+class s5003evtBasesFGTSSerializer(ModelSerializer):
+    class Meta:
+        model = s5003evtBasesFGTS
+        fields = '__all__'
+            
+
+class s5011evtCS(models.Model):
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    indapuracao = models.IntegerField(choices=CHOICES_S5011_INDAPURACAO)
+    perapur = models.CharField(max_length=7)
+    tpinsc = models.IntegerField(choices=CHOICES_S5011_TPINSC)
+    nrinsc = models.CharField(max_length=15)
+    nrrecarqbase = models.CharField(max_length=40)
+    indexistinfo = models.IntegerField(choices=CHOICES_S5011_INDEXISTINFO)
+    classtrib = models.CharField(choices=CHOICES_S5011_CLASSTRIB, max_length=2)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.indexistinfo) + ' - ' + unicode(self.classtrib)
     #s5011_evtcs_custom#
@@ -5002,27 +5115,14 @@ class s5012evtIrrf(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
-    identidade = models.CharField(max_length=36, blank=True, null=True)
-    perapur = models.CharField(max_length=7)
-    tpinsc = models.IntegerField(choices=CHOICES_S5012_TPINSC)
-    nrinsc = models.CharField(max_length=15)
-    nrrecarqbase = models.CharField(max_length=40, blank=True, null=True)
-    indexistinfo = models.IntegerField(choices=CHOICES_S5012_INDEXISTINFO)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
@@ -5033,6 +5133,19 @@ class s5012evtIrrf(models.Model):
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    perapur = models.CharField(max_length=7)
+    tpinsc = models.IntegerField(choices=CHOICES_S5012_TPINSC)
+    nrinsc = models.CharField(max_length=15)
+    nrrecarqbase = models.CharField(max_length=40)
+    indexistinfo = models.IntegerField(choices=CHOICES_S5012_INDEXISTINFO)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.indexistinfo)
     #s5012_evtirrf_custom#
@@ -5048,6 +5161,59 @@ class s5012evtIrrf(models.Model):
 class s5012evtIrrfSerializer(ModelSerializer):
     class Meta:
         model = s5012evtIrrf
+        fields = '__all__'
+            
+
+class s5013evtFGTS(models.Model):
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
+    recepcao_data_hora = models.DateTimeField(blank=True, null=True)
+    recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
+    recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
+    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_descricao_resposta = models.TextField(blank=True, null=True)
+    processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
+    processamento_data_hora = models.DateTimeField(blank=True, null=True)
+    recibo_numero = models.CharField(max_length=100, blank=True, null=True)
+    recibo_hash = models.CharField(max_length=100, blank=True, null=True)
+    identidade = models.CharField(max_length=36, blank=True, null=True)
+    perapur = models.CharField(max_length=7)
+    tpinsc = models.IntegerField(choices=CHOICES_S5013_TPINSC)
+    nrinsc = models.CharField(max_length=15)
+    nrrecarqbase = models.CharField(max_length=40)
+    indexistinfo = models.IntegerField(choices=CHOICES_S5013_INDEXISTINFO)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.indexistinfo)
+    #s5013_evtfgts_custom#
+    #s5013_evtfgts_custom#
+    def evento(self): return self.__dict__
+    class Meta:
+        db_table = r's5013_evtfgts'
+        managed = True
+        ordering = ['identidade', 'perapur', 'tpinsc', 'nrinsc', 'nrrecarqbase', 'indexistinfo']
+
+
+
+class s5013evtFGTSSerializer(ModelSerializer):
+    class Meta:
+        model = s5013evtFGTS
         fields = '__all__'
             
 

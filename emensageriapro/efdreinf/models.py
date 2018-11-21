@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -34,6 +65,11 @@ CHOICES_R5011_TPINSC = (
 CHOICES_R5001_TPINSC = (
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
+    (4, u'4 - CNO'),
+)
+
+CHOICES_R3010_TPINSCESTAB = (
+    (1, u'1 - CNPJ'),
 )
 
 CHOICES_R3010_TPINSC = (
@@ -128,8 +164,6 @@ CHOICES_R2070_TPINSCBENEF = (
 
 CHOICES_R2070_TPINSC = (
     (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
     (2, u'2 - CPF'),
 )
 
@@ -348,6 +382,7 @@ CHOICES_R1000_PROCEMI = (
 
 EFDREINF_VERSOES = (
     ('v1_03_02', u'Versão 1.03.02'),
+    ('v1_04', u'Versão 1.04'),
 )
 
 OPERACOES = (
@@ -356,22 +391,19 @@ OPERACOES = (
     (3, u'Excluir'),
 )
 
-TRANSMISSOR_STATUS = (
+EVENTO_STATUS = (
     (0, u'Cadastrado'),
     (1, u'Importado'),
-    (10, u'Assinado'),
-    (11, u'Gerado'),
+    (10, u'XML Assinado'),
+    (11, u'XML Gerado'),
     (12, u'Retorno'),
     (13, u'Erro - Ocorrências'),
     (14, u'Processado'),
+    (15, u'Aguardando consulta'),
     (2, u'Duplicado'),
     (3, u'Erro na validação'),
     (4, u'Validado'),
-    (5, u'Erro no envio'),
     (6, u'Aguardando envio'),
-    (7, u'Enviado'),
-    (8, u'Erro na consulta'),
-    (9, u'Consultado'),
 )
 
 SIM_NAO = (
@@ -383,9 +415,23 @@ class r1000evtInfoContri(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
+    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
+        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    retornos_evttotal = models.ForeignKey('r5001evtTotal',
+        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    cdretorno = models.CharField(max_length=6, blank=True, null=True)
+    descretorno = models.CharField(max_length=255, blank=True, null=True)
+    dhprocess = models.DateTimeField(blank=True, null=True)
+    operacao = models.IntegerField(choices=OPERACOES)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_R1000_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_R1000_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_R1000_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_R1000_TPINSC)
     nrinsc = models.CharField(max_length=14)
@@ -396,20 +442,6 @@ class r1000evtInfoContri(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_evttotal = models.ForeignKey('r5001evtTotal',
-        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
-        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    descretorno = models.CharField(max_length=255, blank=True, null=True)
-    dhprocess = models.DateTimeField(blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #r1000_evtinfocontri_custom#
@@ -432,9 +464,23 @@ class r1070evtTabProcesso(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
+    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
+        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    retornos_evttotal = models.ForeignKey('r5001evtTotal',
+        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    cdretorno = models.CharField(max_length=6, blank=True, null=True)
+    descretorno = models.CharField(max_length=255, blank=True, null=True)
+    dhprocess = models.DateTimeField(blank=True, null=True)
+    operacao = models.IntegerField(choices=OPERACOES)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_R1070_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_R1070_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_R1070_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_R1070_TPINSC)
     nrinsc = models.CharField(max_length=14)
@@ -445,20 +491,6 @@ class r1070evtTabProcesso(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_evttotal = models.ForeignKey('r5001evtTotal',
-        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
-        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    descretorno = models.CharField(max_length=255, blank=True, null=True)
-    dhprocess = models.DateTimeField(blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #r1070_evttabprocesso_custom#
@@ -481,12 +513,25 @@ class r2010evtServTom(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
+    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
+        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    retornos_evttotal = models.ForeignKey('r5001evtTotal',
+        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    cdretorno = models.CharField(max_length=6, blank=True, null=True)
+    descretorno = models.CharField(max_length=255, blank=True, null=True)
+    dhprocess = models.DateTimeField(blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_R2010_INDRETIF)
     nrrecibo = models.CharField(max_length=52, blank=True, null=True)
     perapur = models.CharField(max_length=10)
     tpamb = models.IntegerField(choices=CHOICES_R2010_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_R2010_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_R2010_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_R2010_TPINSC)
     nrinsc = models.CharField(max_length=14)
@@ -508,28 +553,15 @@ class r2010evtServTom(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_evttotal = models.ForeignKey('r5001evtTotal',
-        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
-        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    descretorno = models.CharField(max_length=255, blank=True, null=True)
-    dhprocess = models.DateTimeField(blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab) + ' - ' + unicode(self.indobra) + ' - ' + unicode(self.cnpjprestador) + ' - ' + unicode(self.vlrtotalbruto) + ' - ' + unicode(self.vlrtotalbaseret) + ' - ' + unicode(self.vlrtotalretprinc) + ' - ' + unicode(self.vlrtotalretadic) + ' - ' + unicode(self.vlrtotalnretprinc) + ' - ' + unicode(self.vlrtotalnretadic) + ' - ' + unicode(self.indcprb)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab) + ' - ' + unicode(self.indobra) + ' - ' + unicode(self.cnpjprestador) + ' - ' + unicode(self.vlrtotalbruto) + ' - ' + unicode(self.vlrtotalbaseret) + ' - ' + unicode(self.vlrtotalretprinc) + ' - ' + unicode(self.indcprb)
     #r2010_evtservtom_custom#
     #r2010_evtservtom_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r'r2010_evtservtom'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab', 'indobra', 'cnpjprestador', 'vlrtotalbruto', 'vlrtotalbaseret', 'vlrtotalretprinc', 'vlrtotalretadic', 'vlrtotalnretprinc', 'vlrtotalnretadic', 'indcprb']
+        ordering = ['identidade', 'indretif', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab', 'indobra', 'cnpjprestador', 'vlrtotalbruto', 'vlrtotalbaseret', 'vlrtotalretprinc', 'indcprb']
 
 
 
@@ -543,12 +575,25 @@ class r2020evtServPrest(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
+    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
+        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    retornos_evttotal = models.ForeignKey('r5001evtTotal',
+        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    cdretorno = models.CharField(max_length=6, blank=True, null=True)
+    descretorno = models.CharField(max_length=255, blank=True, null=True)
+    dhprocess = models.DateTimeField(blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_R2020_INDRETIF)
     nrrecibo = models.CharField(max_length=52, blank=True, null=True)
     perapur = models.CharField(max_length=10)
     tpamb = models.IntegerField(choices=CHOICES_R2020_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_R2020_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_R2020_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_R2020_TPINSC)
     nrinsc = models.CharField(max_length=14)
@@ -570,28 +615,15 @@ class r2020evtServPrest(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_evttotal = models.ForeignKey('r5001evtTotal',
-        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
-        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    descretorno = models.CharField(max_length=255, blank=True, null=True)
-    dhprocess = models.DateTimeField(blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestabprest) + ' - ' + unicode(self.nrinscestabprest) + ' - ' + unicode(self.tpinsctomador) + ' - ' + unicode(self.nrinsctomador) + ' - ' + unicode(self.indobra) + ' - ' + unicode(self.vlrtotalbruto) + ' - ' + unicode(self.vlrtotalbaseret) + ' - ' + unicode(self.vlrtotalretprinc) + ' - ' + unicode(self.vlrtotalretadic) + ' - ' + unicode(self.vlrtotalnretprinc) + ' - ' + unicode(self.vlrtotalnretadic)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestabprest) + ' - ' + unicode(self.nrinscestabprest) + ' - ' + unicode(self.tpinsctomador) + ' - ' + unicode(self.nrinsctomador) + ' - ' + unicode(self.indobra) + ' - ' + unicode(self.vlrtotalbruto) + ' - ' + unicode(self.vlrtotalbaseret) + ' - ' + unicode(self.vlrtotalretprinc)
     #r2020_evtservprest_custom#
     #r2020_evtservprest_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r'r2020_evtservprest'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestabprest', 'nrinscestabprest', 'tpinsctomador', 'nrinsctomador', 'indobra', 'vlrtotalbruto', 'vlrtotalbaseret', 'vlrtotalretprinc', 'vlrtotalretadic', 'vlrtotalnretprinc', 'vlrtotalnretadic']
+        ordering = ['identidade', 'indretif', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestabprest', 'nrinscestabprest', 'tpinsctomador', 'nrinsctomador', 'indobra', 'vlrtotalbruto', 'vlrtotalbaseret', 'vlrtotalretprinc']
 
 
 
@@ -605,12 +637,25 @@ class r2030evtAssocDespRec(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
+    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
+        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    retornos_evttotal = models.ForeignKey('r5001evtTotal',
+        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    cdretorno = models.CharField(max_length=6, blank=True, null=True)
+    descretorno = models.CharField(max_length=255, blank=True, null=True)
+    dhprocess = models.DateTimeField(blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_R2030_INDRETIF)
     nrrecibo = models.CharField(max_length=52, blank=True, null=True)
     perapur = models.CharField(max_length=10)
     tpamb = models.IntegerField(choices=CHOICES_R2030_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_R2030_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_R2030_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_R2030_TPINSC)
     nrinsc = models.CharField(max_length=14)
@@ -623,28 +668,15 @@ class r2030evtAssocDespRec(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_evttotal = models.ForeignKey('r5001evtTotal',
-        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
-        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    descretorno = models.CharField(max_length=255, blank=True, null=True)
-    dhprocess = models.DateTimeField(blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab)
     #r2030_evtassocdesprec_custom#
     #r2030_evtassocdesprec_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r'r2030_evtassocdesprec'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab']
+        ordering = ['identidade', 'indretif', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab']
 
 
 
@@ -658,12 +690,25 @@ class r2040evtAssocDespRep(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
+    retornos_evttotal = models.ForeignKey('r5001evtTotal',
+        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
+    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
+        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    cdretorno = models.CharField(max_length=6, blank=True, null=True)
+    descretorno = models.CharField(max_length=255, blank=True, null=True)
+    dhprocess = models.DateTimeField(blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_R2040_INDRETIF)
     nrrecibo = models.CharField(max_length=52, blank=True, null=True)
     perapur = models.CharField(max_length=10)
     tpamb = models.IntegerField(choices=CHOICES_R2040_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_R2040_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_R2040_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_R2040_TPINSC)
     nrinsc = models.CharField(max_length=14)
@@ -676,28 +721,15 @@ class r2040evtAssocDespRep(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_evttotal = models.ForeignKey('r5001evtTotal',
-        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
-        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    descretorno = models.CharField(max_length=255, blank=True, null=True)
-    dhprocess = models.DateTimeField(blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab)
     #r2040_evtassocdesprep_custom#
     #r2040_evtassocdesprep_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r'r2040_evtassocdesprep'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab']
+        ordering = ['identidade', 'indretif', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab']
 
 
 
@@ -711,12 +743,25 @@ class r2050evtComProd(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
+    retornos_evttotal = models.ForeignKey('r5001evtTotal',
+        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
+    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
+        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    cdretorno = models.CharField(max_length=6, blank=True, null=True)
+    descretorno = models.CharField(max_length=255, blank=True, null=True)
+    dhprocess = models.DateTimeField(blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_R2050_INDRETIF)
     nrrecibo = models.CharField(max_length=52, blank=True, null=True)
     perapur = models.CharField(max_length=10)
     tpamb = models.IntegerField(choices=CHOICES_R2050_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_R2050_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_R2050_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_R2050_TPINSC)
     nrinsc = models.CharField(max_length=14)
@@ -736,28 +781,15 @@ class r2050evtComProd(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_evttotal = models.ForeignKey('r5001evtTotal',
-        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
-        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    descretorno = models.CharField(max_length=255, blank=True, null=True)
-    dhprocess = models.DateTimeField(blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab) + ' - ' + unicode(self.vlrrecbrutatotal) + ' - ' + unicode(self.vlrcpapur) + ' - ' + unicode(self.vlrratapur) + ' - ' + unicode(self.vlrsenarapur) + ' - ' + unicode(self.vlrcpsusptotal) + ' - ' + unicode(self.vlrratsusptotal) + ' - ' + unicode(self.vlrsenarsusptotal)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab) + ' - ' + unicode(self.vlrrecbrutatotal) + ' - ' + unicode(self.vlrcpapur) + ' - ' + unicode(self.vlrratapur) + ' - ' + unicode(self.vlrsenarapur)
     #r2050_evtcomprod_custom#
     #r2050_evtcomprod_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r'r2050_evtcomprod'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab', 'vlrrecbrutatotal', 'vlrcpapur', 'vlrratapur', 'vlrsenarapur', 'vlrcpsusptotal', 'vlrratsusptotal', 'vlrsenarsusptotal']
+        ordering = ['identidade', 'indretif', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab', 'vlrrecbrutatotal', 'vlrcpapur', 'vlrratapur', 'vlrsenarapur']
 
 
 
@@ -771,12 +803,25 @@ class r2060evtCPRB(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
+    retornos_evttotal = models.ForeignKey('r5001evtTotal',
+        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
+    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
+        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    cdretorno = models.CharField(max_length=6, blank=True, null=True)
+    descretorno = models.CharField(max_length=255, blank=True, null=True)
+    dhprocess = models.DateTimeField(blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_R2060_INDRETIF)
     nrrecibo = models.CharField(max_length=52, blank=True, null=True)
     perapur = models.CharField(max_length=10)
     tpamb = models.IntegerField(choices=CHOICES_R2060_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_R2060_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_R2060_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_R2060_TPINSC)
     nrinsc = models.CharField(max_length=14)
@@ -792,28 +837,15 @@ class r2060evtCPRB(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_evttotal = models.ForeignKey('r5001evtTotal',
-        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
-        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    descretorno = models.CharField(max_length=255, blank=True, null=True)
-    dhprocess = models.DateTimeField(blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab) + ' - ' + unicode(self.vlrrecbrutatotal) + ' - ' + unicode(self.vlrcpapurtotal) + ' - ' + unicode(self.vlrcprbsusptotal)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab) + ' - ' + unicode(self.vlrrecbrutatotal) + ' - ' + unicode(self.vlrcpapurtotal)
     #r2060_evtcprb_custom#
     #r2060_evtcprb_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r'r2060_evtcprb'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab', 'vlrrecbrutatotal', 'vlrcpapurtotal', 'vlrcprbsusptotal']
+        ordering = ['identidade', 'indretif', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab', 'vlrrecbrutatotal', 'vlrcpapurtotal']
 
 
 
@@ -827,12 +859,25 @@ class r2070evtPgtosDivs(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
+    retornos_evttotal = models.ForeignKey('r5001evtTotal',
+        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
+    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
+        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    cdretorno = models.CharField(max_length=6, blank=True, null=True)
+    descretorno = models.CharField(max_length=255, blank=True, null=True)
+    dhprocess = models.DateTimeField(blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_R2070_INDRETIF)
     nrrecibo = models.CharField(max_length=52, blank=True, null=True)
     perapur = models.CharField(max_length=10)
     tpamb = models.IntegerField(choices=CHOICES_R2070_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_R2070_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_R2070_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_R2070_TPINSC)
     nrinsc = models.CharField(max_length=14)
@@ -847,28 +892,15 @@ class r2070evtPgtosDivs(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_evttotal = models.ForeignKey('r5001evtTotal',
-        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
-        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    descretorno = models.CharField(max_length=255, blank=True, null=True)
-    dhprocess = models.DateTimeField(blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codpgto) + ' - ' + unicode(self.tpinscbenef) + ' - ' + unicode(self.nrinscbenef) + ' - ' + unicode(self.nmrazaobenef)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codpgto) + ' - ' + unicode(self.nmrazaobenef)
     #r2070_evtpgtosdivs_custom#
     #r2070_evtpgtosdivs_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r'r2070_evtpgtosdivs'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'codpgto', 'tpinscbenef', 'nrinscbenef', 'nmrazaobenef']
+        ordering = ['identidade', 'indretif', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'codpgto', 'nmrazaobenef']
 
 
 
@@ -882,10 +914,23 @@ class r2098evtReabreEvPer(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
+    retornos_evttotal = models.ForeignKey('r5001evtTotal',
+        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
+    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
+        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    cdretorno = models.CharField(max_length=6, blank=True, null=True)
+    descretorno = models.CharField(max_length=255, blank=True, null=True)
+    dhprocess = models.DateTimeField(blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     perapur = models.CharField(max_length=10)
     tpamb = models.IntegerField(choices=CHOICES_R2098_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_R2098_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_R2098_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_R2098_TPINSC)
     nrinsc = models.CharField(max_length=14)
@@ -896,19 +941,6 @@ class r2098evtReabreEvPer(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_evttotal = models.ForeignKey('r5001evtTotal',
-        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
-        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    descretorno = models.CharField(max_length=255, blank=True, null=True)
-    dhprocess = models.DateTimeField(blank=True, null=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #r2098_evtreabreevper_custom#
@@ -931,10 +963,23 @@ class r2099evtFechaEvPer(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
+    retornos_evttotal = models.ForeignKey('r5001evtTotal',
+        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
+    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
+        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    cdretorno = models.CharField(max_length=6, blank=True, null=True)
+    descretorno = models.CharField(max_length=255, blank=True, null=True)
+    dhprocess = models.DateTimeField(blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     perapur = models.CharField(max_length=10)
     tpamb = models.IntegerField(choices=CHOICES_R2099_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_R2099_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_R2099_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_R2099_TPINSC)
     nrinsc = models.CharField(max_length=14)
@@ -944,7 +989,7 @@ class r2099evtFechaEvPer(models.Model):
     evtassdesprep = models.CharField(choices=CHOICES_R2099_EVTASSDESPREP, max_length=1)
     evtcomprod = models.CharField(choices=CHOICES_R2099_EVTCOMPROD, max_length=1)
     evtcprb = models.CharField(choices=CHOICES_R2099_EVTCPRB, max_length=1)
-    evtpgtos = models.CharField(choices=CHOICES_R2099_EVTPGTOS, max_length=1)
+    evtpgtos = models.CharField(choices=CHOICES_R2099_EVTPGTOS, max_length=1, blank=True, null=True)
     compsemmovto = models.CharField(max_length=7, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -953,28 +998,15 @@ class r2099evtFechaEvPer(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_evttotal = models.ForeignKey('r5001evtTotal',
-        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
-        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    descretorno = models.CharField(max_length=255, blank=True, null=True)
-    dhprocess = models.DateTimeField(blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.evtservtm) + ' - ' + unicode(self.evtservpr) + ' - ' + unicode(self.evtassdesprec) + ' - ' + unicode(self.evtassdesprep) + ' - ' + unicode(self.evtcomprod) + ' - ' + unicode(self.evtcprb) + ' - ' + unicode(self.evtpgtos) + ' - ' + unicode(self.compsemmovto)
+        return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.evtservtm) + ' - ' + unicode(self.evtservpr) + ' - ' + unicode(self.evtassdesprec) + ' - ' + unicode(self.evtassdesprep) + ' - ' + unicode(self.evtcomprod) + ' - ' + unicode(self.evtcprb)
     #r2099_evtfechaevper_custom#
     #r2099_evtfechaevper_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r'r2099_evtfechaevper'
         managed = True
-        ordering = ['identidade', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'evtservtm', 'evtservpr', 'evtassdesprec', 'evtassdesprep', 'evtcomprod', 'evtcprb', 'evtpgtos', 'compsemmovto']
+        ordering = ['identidade', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'evtservtm', 'evtservpr', 'evtassdesprec', 'evtassdesprep', 'evtcomprod', 'evtcprb']
 
 
 
@@ -988,15 +1020,35 @@ class r3010evtEspDesportivo(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
+    retornos_evttotal = models.ForeignKey('r5001evtTotal',
+        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
+    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
+        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    cdretorno = models.CharField(max_length=6, blank=True, null=True)
+    descretorno = models.CharField(max_length=255, blank=True, null=True)
+    dhprocess = models.DateTimeField(blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_R3010_INDRETIF)
     nrrecibo = models.CharField(max_length=52, blank=True, null=True)
     dtapuracao = models.DateField()
     tpamb = models.IntegerField(choices=CHOICES_R3010_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_R3010_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_R3010_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_R3010_TPINSC)
     nrinsc = models.CharField(max_length=14)
+    tpinscestab = models.IntegerField(choices=CHOICES_R3010_TPINSCESTAB)
+    nrinscestab = models.CharField(max_length=14)
+    vlrreceitatotal = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+    vlrcp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+    vlrcpsusptotal = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
+    vlrreceitaclubes = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+    vlrretparc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -1004,28 +1056,15 @@ class r3010evtEspDesportivo(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_evttotal = models.ForeignKey('r5001evtTotal',
-        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
-        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    descretorno = models.CharField(max_length=255, blank=True, null=True)
-    dhprocess = models.DateTimeField(blank=True, null=True)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.nrrecibo) + ' - ' + unicode(self.dtapuracao) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
+        return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.dtapuracao) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab) + ' - ' + unicode(self.vlrreceitatotal) + ' - ' + unicode(self.vlrcp) + ' - ' + unicode(self.vlrreceitaclubes) + ' - ' + unicode(self.vlrretparc)
     #r3010_evtespdesportivo_custom#
     #r3010_evtespdesportivo_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r'r3010_evtespdesportivo'
         managed = True
-        ordering = ['identidade', 'indretif', 'nrrecibo', 'dtapuracao', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
+        ordering = ['identidade', 'indretif', 'dtapuracao', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab', 'vlrreceitatotal', 'vlrcp', 'vlrreceitaclubes', 'vlrretparc']
 
 
 
@@ -1039,12 +1078,22 @@ class r5001evtTotal(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
+    retornos_evttotal = models.ForeignKey('r5001evtTotal',
+        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
+    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
+        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     perapur = models.CharField(max_length=10)
     tpinsc = models.IntegerField(choices=CHOICES_R5001_TPINSC)
     nrinsc = models.CharField(max_length=14)
-    cdretorno = models.CharField(max_length=6)
-    descretorno = models.CharField(max_length=255)
+    cdretorno = models.CharField(max_length=1)
+    descretorno = models.CharField(max_length=1000)
     nrprotentr = models.CharField(max_length=49, blank=True, null=True)
     dhprocess = models.DateField()
     tpev = models.CharField(max_length=6)
@@ -1057,25 +1106,15 @@ class r5001evtTotal(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_evttotal = models.ForeignKey('r5001evtTotal',
-        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
-        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
     def __unicode__(self):
-        return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cdretorno) + ' - ' + unicode(self.descretorno) + ' - ' + unicode(self.nrprotentr) + ' - ' + unicode(self.dhprocess) + ' - ' + unicode(self.tpev) + ' - ' + unicode(self.idev) + ' - ' + unicode(self.hash)
+        return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cdretorno) + ' - ' + unicode(self.descretorno) + ' - ' + unicode(self.dhprocess) + ' - ' + unicode(self.tpev) + ' - ' + unicode(self.idev) + ' - ' + unicode(self.hash)
     #r5001_evttotal_custom#
     #r5001_evttotal_custom#
     def evento(self): return self.__dict__
     class Meta:
         db_table = r'r5001_evttotal'
         managed = True
-        ordering = ['identidade', 'perapur', 'tpinsc', 'nrinsc', 'cdretorno', 'descretorno', 'nrprotentr', 'dhprocess', 'tpev', 'idev', 'hash']
+        ordering = ['identidade', 'perapur', 'tpinsc', 'nrinsc', 'cdretorno', 'descretorno', 'dhprocess', 'tpev', 'idev', 'hash']
 
 
 
@@ -1089,12 +1128,22 @@ class r5011evtTotalContrib(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
+    retornos_evttotal = models.ForeignKey('r5001evtTotal',
+        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
+    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
+        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     perapur = models.CharField(max_length=10)
     tpinsc = models.IntegerField(choices=CHOICES_R5011_TPINSC)
     nrinsc = models.CharField(max_length=14)
-    cdretorno = models.CharField(max_length=6)
-    descretorno = models.CharField(max_length=255)
+    cdretorno = models.CharField(max_length=1)
+    descretorno = models.CharField(max_length=1000)
     nrprotentr = models.CharField(max_length=49)
     dhprocess = models.DateField()
     tpev = models.CharField(max_length=6)
@@ -1107,16 +1156,6 @@ class r5011evtTotalContrib(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_evttotal = models.ForeignKey('r5001evtTotal',
-        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
-        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cdretorno) + ' - ' + unicode(self.descretorno) + ' - ' + unicode(self.nrprotentr) + ' - ' + unicode(self.dhprocess) + ' - ' + unicode(self.tpev) + ' - ' + unicode(self.idev) + ' - ' + unicode(self.hash)
     #r5011_evttotalcontrib_custom#
@@ -1139,9 +1178,22 @@ class r9000evtExclusao(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
+    retornos_evttotal = models.ForeignKey('r5001evtTotal',
+        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
+    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
+        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
+    cdretorno = models.CharField(max_length=6, blank=True, null=True)
+    descretorno = models.CharField(max_length=255, blank=True, null=True)
+    dhprocess = models.DateTimeField(blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_R9000_TPAMB)
-    procemi = models.IntegerField(choices=CHOICES_R9000_PROCEMI, default=1)
+    procemi = models.IntegerField(choices=CHOICES_R9000_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_R9000_TPINSC)
     nrinsc = models.CharField(max_length=14)
@@ -1155,19 +1207,6 @@ class r9000evtExclusao(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
-    retornos_evttotal = models.ForeignKey('r5001evtTotal',
-        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
-    validacoes = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
-        related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
-    cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    descretorno = models.CharField(max_length=255, blank=True, null=True)
-    dhprocess = models.DateTimeField(blank=True, null=True)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpevento) + ' - ' + unicode(self.nrrecevt) + ' - ' + unicode(self.perapur)
     #r9000_evtexclusao_custom#

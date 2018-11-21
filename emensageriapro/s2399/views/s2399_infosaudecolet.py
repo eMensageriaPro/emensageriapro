@@ -61,17 +61,17 @@ def apagar(request, hash):
                              's2399_infosaudecolet', s2399_infosaudecolet_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's2399_infosaudecolet_salvar':
             return redirect('s2399_infosaudecolet', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -114,7 +114,7 @@ def salvar(request, hash):
         if s2399_infosaudecolet_id:
             s2399_infosaudecolet_form = form_s2399_infosaudecolet(request.POST or None, instance = s2399_infosaudecolet, slug = db_slug)
         else:
-            s2399_infosaudecolet_form = form_s2399_infosaudecolet(request.POST or None, slug = db_slug, initial={})
+            s2399_infosaudecolet_form = form_s2399_infosaudecolet(request.POST or None, slug = db_slug, initial={'s2399_ideestablot': '1'})
         if request.method == 'POST':
             if s2399_infosaudecolet_form.is_valid():
                 dados = s2399_infosaudecolet_form.cleaned_data
@@ -166,13 +166,13 @@ def salvar(request, hash):
             s2399_infosaudecolet_form.fields[field].widget.attrs['ng-model'] = 's2399_infosaudecolet_'+field
         if int(dict_hash['print']):
             s2399_infosaudecolet_form = disabled_form_for_print(s2399_infosaudecolet_form)
-   
+
         s2399_detoper_form = None
         s2399_detoper_lista = None
         if s2399_infosaudecolet_id:
             s2399_infosaudecolet = get_object_or_404(s2399infoSaudeColet.objects.using( db_slug ), excluido = False, id = s2399_infosaudecolet_id)
-       
-            s2399_detoper_form = form_s2399_detoper(initial={ 's2399_infosaudecolet': s2399_infosaudecolet }, slug=db_slug)
+
+            s2399_detoper_form = form_s2399_detoper(initial={ 's2399_infosaudecolet': s2399_infosaudecolet , 's2399_infosaudecolet': 1}, slug=db_slug)
             s2399_detoper_form.fields['s2399_infosaudecolet'].widget.attrs['readonly'] = True
             s2399_detoper_lista = s2399detOper.objects.using( db_slug ).filter(excluido = False, s2399_infosaudecolet_id=s2399_infosaudecolet.id).all()
         else:
@@ -195,14 +195,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2399_infosaudecolet_id': int(s2399_infosaudecolet_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             's2399_detoper_form': s2399_detoper_form,
             's2399_detoper_lista': s2399_detoper_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -246,10 +246,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -315,11 +315,6 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
             'show_s2399_ideestablot': 1, }
         post = False
         if request.method == 'POST':
@@ -341,17 +336,17 @@ def listar(request, hash):
             filtrar = True
             s2399_infosaudecolet_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s2399_infosaudecolet_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2399_infosaudecolet'
         context = {
             's2399_infosaudecolet_lista': s2399_infosaudecolet_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -361,7 +356,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 's2399_infosaudecolet_listar.html', context)
@@ -404,10 +399,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

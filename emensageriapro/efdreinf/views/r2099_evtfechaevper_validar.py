@@ -59,7 +59,7 @@ def validacoes_r2099_evtfechaevper(arquivo):
     if 'evtAssDespRep' in dir(evtFechaEvPer.infoFech): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.infoFech.evtAssDespRep', evtFechaEvPer.infoFech.evtAssDespRep.cdata, 1, 'S;N')
     if 'evtComProd' in dir(evtFechaEvPer.infoFech): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.infoFech.evtComProd', evtFechaEvPer.infoFech.evtComProd.cdata, 1, 'S;N')
     if 'evtCPRB' in dir(evtFechaEvPer.infoFech): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.infoFech.evtCPRB', evtFechaEvPer.infoFech.evtCPRB.cdata, 1, 'S;N')
-    if 'evtPgtos' in dir(evtFechaEvPer.infoFech): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.infoFech.evtPgtos', evtFechaEvPer.infoFech.evtPgtos.cdata, 1, 'S;N')
+    if 'evtPgtos' in dir(evtFechaEvPer.infoFech): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.infoFech.evtPgtos', evtFechaEvPer.infoFech.evtPgtos.cdata, 0, 'S;N')
     if 'compSemMovto' in dir(evtFechaEvPer.infoFech): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.infoFech.compSemMovto', evtFechaEvPer.infoFech.compSemMovto.cdata, 0, '')
     if 'ideRespInf' in dir(evtFechaEvPer):
         for ideRespInf in evtFechaEvPer.ideRespInf:

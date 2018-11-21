@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -42,14 +73,15 @@ from emensageriapro.esocial.models import s1299evtFechaEvPer
 from emensageriapro.esocial.models import s1300evtContrSindPatr
 from emensageriapro.esocial.models import s2190evtAdmPrelim
 from emensageriapro.esocial.models import s2200evtAdmissao
-from emensageriapro.esocial.models import s2221evtToxic
 from emensageriapro.esocial.models import s2205evtAltCadastral
 from emensageriapro.esocial.models import s2206evtAltContratual
 from emensageriapro.esocial.models import s2210evtCAT
 from emensageriapro.esocial.models import s2220evtMonit
+from emensageriapro.esocial.models import s2221evtToxic
 from emensageriapro.esocial.models import s2230evtAfastTemp
 from emensageriapro.esocial.models import s2240evtExpRisco
 from emensageriapro.esocial.models import s2241evtInsApo
+from emensageriapro.esocial.models import s2245evtTreiCap
 from emensageriapro.esocial.models import s2250evtAvPrevio
 from emensageriapro.esocial.models import s2260evtConvInterm
 from emensageriapro.esocial.models import s2298evtReintegr
@@ -58,16 +90,17 @@ from emensageriapro.esocial.models import s2300evtTSVInicio
 from emensageriapro.esocial.models import s2306evtTSVAltContr
 from emensageriapro.esocial.models import s2399evtTSVTermino
 from emensageriapro.esocial.models import s2400evtCdBenefIn
-from emensageriapro.esocial.models import s3000evtExclusao
-from emensageriapro.esocial.models import s5001evtBasesTrab
-from emensageriapro.esocial.models import s5002evtIrrfBenef
-from emensageriapro.esocial.models import s5011evtCS
-from emensageriapro.esocial.models import s5012evtIrrf
-from emensageriapro.esocial.models import s2245evtTreiCap
 from emensageriapro.esocial.models import s2405evtCdBenefAlt
 from emensageriapro.esocial.models import s2410evtCdBenIn
 from emensageriapro.esocial.models import s2416evtCdBenAlt
 from emensageriapro.esocial.models import s2420evtCdBenTerm
+from emensageriapro.esocial.models import s3000evtExclusao
+from emensageriapro.esocial.models import s5001evtBasesTrab
+from emensageriapro.esocial.models import s5002evtIrrfBenef
+from emensageriapro.esocial.models import s5003evtBasesFGTS
+from emensageriapro.esocial.models import s5011evtCS
+from emensageriapro.esocial.models import s5012evtIrrf
+from emensageriapro.esocial.models import s5013evtFGTS
 from emensageriapro.esocial.forms import form_s1000_evtinfoempregador
 from emensageriapro.esocial.forms import form_s1005_evttabestab
 from emensageriapro.esocial.forms import form_s1010_evttabrubrica
@@ -93,14 +126,15 @@ from emensageriapro.esocial.forms import form_s1299_evtfechaevper
 from emensageriapro.esocial.forms import form_s1300_evtcontrsindpatr
 from emensageriapro.esocial.forms import form_s2190_evtadmprelim
 from emensageriapro.esocial.forms import form_s2200_evtadmissao
-from emensageriapro.esocial.forms import form_s2221_evttoxic
 from emensageriapro.esocial.forms import form_s2205_evtaltcadastral
 from emensageriapro.esocial.forms import form_s2206_evtaltcontratual
 from emensageriapro.esocial.forms import form_s2210_evtcat
 from emensageriapro.esocial.forms import form_s2220_evtmonit
+from emensageriapro.esocial.forms import form_s2221_evttoxic
 from emensageriapro.esocial.forms import form_s2230_evtafasttemp
 from emensageriapro.esocial.forms import form_s2240_evtexprisco
 from emensageriapro.esocial.forms import form_s2241_evtinsapo
+from emensageriapro.esocial.forms import form_s2245_evttreicap
 from emensageriapro.esocial.forms import form_s2250_evtavprevio
 from emensageriapro.esocial.forms import form_s2260_evtconvinterm
 from emensageriapro.esocial.forms import form_s2298_evtreintegr
@@ -109,16 +143,17 @@ from emensageriapro.esocial.forms import form_s2300_evttsvinicio
 from emensageriapro.esocial.forms import form_s2306_evttsvaltcontr
 from emensageriapro.esocial.forms import form_s2399_evttsvtermino
 from emensageriapro.esocial.forms import form_s2400_evtcdbenefin
-from emensageriapro.esocial.forms import form_s3000_evtexclusao
-from emensageriapro.esocial.forms import form_s5001_evtbasestrab
-from emensageriapro.esocial.forms import form_s5002_evtirrfbenef
-from emensageriapro.esocial.forms import form_s5011_evtcs
-from emensageriapro.esocial.forms import form_s5012_evtirrf
-from emensageriapro.esocial.forms import form_s2245_evttreicap
 from emensageriapro.esocial.forms import form_s2405_evtcdbenefalt
 from emensageriapro.esocial.forms import form_s2410_evtcdbenin
 from emensageriapro.esocial.forms import form_s2416_evtcdbenalt
 from emensageriapro.esocial.forms import form_s2420_evtcdbenterm
+from emensageriapro.esocial.forms import form_s3000_evtexclusao
+from emensageriapro.esocial.forms import form_s5001_evtbasestrab
+from emensageriapro.esocial.forms import form_s5002_evtirrfbenef
+from emensageriapro.esocial.forms import form_s5003_evtbasesfgts
+from emensageriapro.esocial.forms import form_s5011_evtcs
+from emensageriapro.esocial.forms import form_s5012_evtirrf
+from emensageriapro.esocial.forms import form_s5013_evtfgts
 
 #IMPORTACOES
 
@@ -359,211 +394,206 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
-            'show_tmpparc': 0,
-            'show_dsctpjorn': 0,
-            'show_tpjornada': 0,
-            'show_qtdhrssem': 0,
-            'show_horarios_contratuais': 0,
-            'show_local_cnae': 0,
-            'show_local_nrinsc': 0,
-            'show_local_tpinsc': 0,
-            'show_local_trab': 0,
-            'show_clauasseg': 0,
-            'show_dtterm': 0,
-            'show_tpcontr': 0,
-            'show_duracao': 0,
-            'show_dscsalvar': 0,
-            'show_undsalfixo': 0,
-            'show_vrsalfx': 0,
-            'show_remuneracao': 0,
-            'show_codcateg': 0,
-            'show_categoria': 0,
-            'show_codcbofuncao': 0,
-            'show_dscfuncao': 0,
-            'show_codfuncao': 0,
-            'show_funcao': 0,
-            'show_codcbocargo': 0,
-            'show_nmcargo': 0,
-            'show_codcargo': 0,
-            'show_cargo': 0,
-            'show_dtexercicio': 0,
-            'show_dtposse': 0,
-            'show_estatutario': 0,
-            'show_cnpjsindcategprof': 0,
-            'show_dtbase': 0,
-            'show_tpregjor': 0,
-            'show_dtadm': 0,
-            'show_celetista': 0,
-            'show_matricula': 0,
-            'show_vinculo': 0,
-            'show_infocota': 0,
-            'show_deficiencia': 0,
-            'show_nmtrab': 1,
-            'show_nistrab': 0,
-            'show_cpftrab': 1,
-            'show_trabalhador': 0,
-            'show_empregador_nrinsc': 1,
-            'show_empregador_tpinsc': 1,
-            'show_empregador': 0,
-            'show_recibo_hash': 0,
-            'show_recibo_numero': 0,
-            'show_recibo': 0,
-            'show_nrinsc': 1,
-            'show_tpinsc': 1,
-            'show_processamento_data_hora': 0,
-            'show_processamento_versao_app_processamento': 0,
-            'show_processamento_descricao_resposta': 0,
-            'show_processamento_codigo_resposta': 1,
-            'show_processamento': 0,
-            'show_recepcao_protocolo_envio_lote': 0,
-            'show_recepcao_versao_app': 0,
-            'show_recepcao_data_hora': 0,
-            'show_recepcao_tp_amb': 0,
-            'show_processamento': 0,
+            'show_transmissor_lote_esocial': 1,
             'show_identidade': 1,
-            'show_transmissor_lote_esocial': 1, }
+            'show_processamento': 0,
+            'show_recepcao_tp_amb': 0,
+            'show_recepcao_data_hora': 0,
+            'show_recepcao_versao_app': 0,
+            'show_recepcao_protocolo_envio_lote': 0,
+            'show_processamento': 0,
+            'show_processamento_codigo_resposta': 1,
+            'show_processamento_descricao_resposta': 0,
+            'show_processamento_versao_app_processamento': 0,
+            'show_processamento_data_hora': 0,
+            'show_recibo': 0,
+            'show_recibo_numero': 0,
+            'show_recibo_hash': 0,
+            'show_empregador': 0,
+            'show_tpinsc': 1,
+            'show_empregador_tpinsc': 1,
+            'show_nrinsc': 1,
+            'show_empregador_nrinsc': 1,
+            'show_trabalhador': 0,
+            'show_cpftrab': 1,
+            'show_nistrab': 0,
+            'show_nmtrab': 1,
+            'show_deficiencia': 0,
+            'show_infocota': 0,
+            'show_vinculo': 0,
+            'show_matricula': 0,
+            'show_celetista': 0,
+            'show_dtadm': 0,
+            'show_tpregjor': 0,
+            'show_dtbase': 0,
+            'show_cnpjsindcategprof': 0,
+            'show_estatutario': 0,
+            'show_dtposse': 0,
+            'show_dtexercicio': 0,
+            'show_cargo': 0,
+            'show_codcargo': 0,
+            'show_nmcargo': 0,
+            'show_codcbocargo': 0,
+            'show_funcao': 0,
+            'show_codfuncao': 0,
+            'show_dscfuncao': 0,
+            'show_codcbofuncao': 0,
+            'show_categoria': 0,
+            'show_codcateg': 0,
+            'show_remuneracao': 0,
+            'show_vrsalfx': 0,
+            'show_undsalfixo': 0,
+            'show_dscsalvar': 0,
+            'show_duracao': 0,
+            'show_tpcontr': 0,
+            'show_dtterm': 0,
+            'show_clauasseg': 0,
+            'show_local_trab': 0,
+            'show_local_tpinsc': 0,
+            'show_local_nrinsc': 0,
+            'show_local_cnae': 0,
+            'show_horarios_contratuais': 0,
+            'show_qtdhrssem': 0,
+            'show_tpjornada': 0,
+            'show_dsctpjorn': 0,
+            'show_tmpparc': 0, }
         post = False
         #ANTES-POST-LISTAGEM
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'tmpparc': 'tmpparc',
-                'dsctpjorn__icontains': 'dsctpjorn__icontains',
-                'tpjornada': 'tpjornada',
-                'qtdhrssem': 'qtdhrssem',
-                'horarios_contratuais': 'horarios_contratuais',
-                'local_cnae': 'local_cnae',
-                'local_nrinsc__icontains': 'local_nrinsc__icontains',
-                'local_tpinsc': 'local_tpinsc',
-                'local_trab': 'local_trab',
-                'clauasseg__icontains': 'clauasseg__icontains',
-                'dtterm__range': 'dtterm__range',
-                'tpcontr': 'tpcontr',
-                'duracao': 'duracao',
-                'dscsalvar__icontains': 'dscsalvar__icontains',
-                'undsalfixo': 'undsalfixo',
-                'vrsalfx': 'vrsalfx',
-                'remuneracao': 'remuneracao',
-                'codcateg': 'codcateg',
-                'categoria': 'categoria',
-                'codcbofuncao__icontains': 'codcbofuncao__icontains',
-                'dscfuncao__icontains': 'dscfuncao__icontains',
-                'codfuncao__icontains': 'codfuncao__icontains',
-                'funcao': 'funcao',
-                'codcbocargo__icontains': 'codcbocargo__icontains',
-                'nmcargo__icontains': 'nmcargo__icontains',
-                'codcargo__icontains': 'codcargo__icontains',
-                'cargo': 'cargo',
-                'dtexercicio__range': 'dtexercicio__range',
-                'dtposse__range': 'dtposse__range',
-                'estatutario': 'estatutario',
-                'cnpjsindcategprof__icontains': 'cnpjsindcategprof__icontains',
-                'dtbase': 'dtbase',
-                'tpregjor': 'tpregjor',
-                'dtadm__range': 'dtadm__range',
-                'celetista': 'celetista',
-                'matricula__icontains': 'matricula__icontains',
-                'vinculo': 'vinculo',
-                'infocota__icontains': 'infocota__icontains',
-                'deficiencia': 'deficiencia',
-                'nmtrab__icontains': 'nmtrab__icontains',
-                'nistrab__icontains': 'nistrab__icontains',
-                'cpftrab__icontains': 'cpftrab__icontains',
-                'trabalhador': 'trabalhador',
-                'empregador_nrinsc__icontains': 'empregador_nrinsc__icontains',
-                'empregador_tpinsc': 'empregador_tpinsc',
-                'empregador': 'empregador',
-                'recibo_hash__icontains': 'recibo_hash__icontains',
-                'recibo_numero__icontains': 'recibo_numero__icontains',
-                'recibo': 'recibo',
-                'nrinsc__icontains': 'nrinsc__icontains',
-                'tpinsc': 'tpinsc',
-                'processamento_data_hora__range': 'processamento_data_hora__range',
-                'processamento_versao_app_processamento__icontains': 'processamento_versao_app_processamento__icontains',
-                'processamento_descricao_resposta__icontains': 'processamento_descricao_resposta__icontains',
-                'processamento_codigo_resposta': 'processamento_codigo_resposta',
-                'processamento': 'processamento',
-                'recepcao_protocolo_envio_lote__icontains': 'recepcao_protocolo_envio_lote__icontains',
-                'recepcao_versao_app__icontains': 'recepcao_versao_app__icontains',
-                'recepcao_data_hora__range': 'recepcao_data_hora__range',
-                'recepcao_tp_amb': 'recepcao_tp_amb',
-                'processamento': 'processamento',
+                'transmissor_lote_esocial': 'transmissor_lote_esocial',
                 'identidade__icontains': 'identidade__icontains',
-                'transmissor_lote_esocial': 'transmissor_lote_esocial',}
+                'processamento': 'processamento',
+                'recepcao_tp_amb': 'recepcao_tp_amb',
+                'recepcao_data_hora__range': 'recepcao_data_hora__range',
+                'recepcao_versao_app__icontains': 'recepcao_versao_app__icontains',
+                'recepcao_protocolo_envio_lote__icontains': 'recepcao_protocolo_envio_lote__icontains',
+                'processamento': 'processamento',
+                'processamento_codigo_resposta': 'processamento_codigo_resposta',
+                'processamento_descricao_resposta__icontains': 'processamento_descricao_resposta__icontains',
+                'processamento_versao_app_processamento__icontains': 'processamento_versao_app_processamento__icontains',
+                'processamento_data_hora__range': 'processamento_data_hora__range',
+                'recibo': 'recibo',
+                'recibo_numero__icontains': 'recibo_numero__icontains',
+                'recibo_hash__icontains': 'recibo_hash__icontains',
+                'empregador': 'empregador',
+                'tpinsc': 'tpinsc',
+                'empregador_tpinsc': 'empregador_tpinsc',
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'empregador_nrinsc__icontains': 'empregador_nrinsc__icontains',
+                'trabalhador': 'trabalhador',
+                'cpftrab__icontains': 'cpftrab__icontains',
+                'nistrab__icontains': 'nistrab__icontains',
+                'nmtrab__icontains': 'nmtrab__icontains',
+                'deficiencia': 'deficiencia',
+                'infocota__icontains': 'infocota__icontains',
+                'vinculo': 'vinculo',
+                'matricula__icontains': 'matricula__icontains',
+                'celetista': 'celetista',
+                'dtadm__range': 'dtadm__range',
+                'tpregjor': 'tpregjor',
+                'dtbase': 'dtbase',
+                'cnpjsindcategprof__icontains': 'cnpjsindcategprof__icontains',
+                'estatutario': 'estatutario',
+                'dtposse__range': 'dtposse__range',
+                'dtexercicio__range': 'dtexercicio__range',
+                'cargo': 'cargo',
+                'codcargo__icontains': 'codcargo__icontains',
+                'nmcargo__icontains': 'nmcargo__icontains',
+                'codcbocargo__icontains': 'codcbocargo__icontains',
+                'funcao': 'funcao',
+                'codfuncao__icontains': 'codfuncao__icontains',
+                'dscfuncao__icontains': 'dscfuncao__icontains',
+                'codcbofuncao__icontains': 'codcbofuncao__icontains',
+                'categoria': 'categoria',
+                'codcateg': 'codcateg',
+                'remuneracao': 'remuneracao',
+                'vrsalfx': 'vrsalfx',
+                'undsalfixo': 'undsalfixo',
+                'dscsalvar__icontains': 'dscsalvar__icontains',
+                'duracao': 'duracao',
+                'tpcontr': 'tpcontr',
+                'dtterm__range': 'dtterm__range',
+                'clauasseg__icontains': 'clauasseg__icontains',
+                'local_trab': 'local_trab',
+                'local_tpinsc': 'local_tpinsc',
+                'local_nrinsc__icontains': 'local_nrinsc__icontains',
+                'local_cnae': 'local_cnae',
+                'horarios_contratuais': 'horarios_contratuais',
+                'qtdhrssem': 'qtdhrssem',
+                'tpjornada': 'tpjornada',
+                'dsctpjorn__icontains': 'dsctpjorn__icontains',
+                'tmpparc': 'tmpparc',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'tmpparc': 'tmpparc',
-                'dsctpjorn__icontains': 'dsctpjorn__icontains',
-                'tpjornada': 'tpjornada',
-                'qtdhrssem': 'qtdhrssem',
-                'horarios_contratuais': 'horarios_contratuais',
-                'local_cnae': 'local_cnae',
-                'local_nrinsc__icontains': 'local_nrinsc__icontains',
-                'local_tpinsc': 'local_tpinsc',
-                'local_trab': 'local_trab',
-                'clauasseg__icontains': 'clauasseg__icontains',
-                'dtterm__range': 'dtterm__range',
-                'tpcontr': 'tpcontr',
-                'duracao': 'duracao',
-                'dscsalvar__icontains': 'dscsalvar__icontains',
-                'undsalfixo': 'undsalfixo',
-                'vrsalfx': 'vrsalfx',
-                'remuneracao': 'remuneracao',
-                'codcateg': 'codcateg',
-                'categoria': 'categoria',
-                'codcbofuncao__icontains': 'codcbofuncao__icontains',
-                'dscfuncao__icontains': 'dscfuncao__icontains',
-                'codfuncao__icontains': 'codfuncao__icontains',
-                'funcao': 'funcao',
-                'codcbocargo__icontains': 'codcbocargo__icontains',
-                'nmcargo__icontains': 'nmcargo__icontains',
-                'codcargo__icontains': 'codcargo__icontains',
-                'cargo': 'cargo',
-                'dtexercicio__range': 'dtexercicio__range',
-                'dtposse__range': 'dtposse__range',
-                'estatutario': 'estatutario',
-                'cnpjsindcategprof__icontains': 'cnpjsindcategprof__icontains',
-                'dtbase': 'dtbase',
-                'tpregjor': 'tpregjor',
-                'dtadm__range': 'dtadm__range',
-                'celetista': 'celetista',
-                'matricula__icontains': 'matricula__icontains',
-                'vinculo': 'vinculo',
-                'infocota__icontains': 'infocota__icontains',
-                'deficiencia': 'deficiencia',
-                'nmtrab__icontains': 'nmtrab__icontains',
-                'nistrab__icontains': 'nistrab__icontains',
-                'cpftrab__icontains': 'cpftrab__icontains',
-                'trabalhador': 'trabalhador',
-                'empregador_nrinsc__icontains': 'empregador_nrinsc__icontains',
-                'empregador_tpinsc': 'empregador_tpinsc',
-                'empregador': 'empregador',
-                'recibo_hash__icontains': 'recibo_hash__icontains',
-                'recibo_numero__icontains': 'recibo_numero__icontains',
-                'recibo': 'recibo',
-                'nrinsc__icontains': 'nrinsc__icontains',
-                'tpinsc': 'tpinsc',
-                'processamento_data_hora__range': 'processamento_data_hora__range',
-                'processamento_versao_app_processamento__icontains': 'processamento_versao_app_processamento__icontains',
-                'processamento_descricao_resposta__icontains': 'processamento_descricao_resposta__icontains',
-                'processamento_codigo_resposta': 'processamento_codigo_resposta',
-                'processamento': 'processamento',
-                'recepcao_protocolo_envio_lote__icontains': 'recepcao_protocolo_envio_lote__icontains',
-                'recepcao_versao_app__icontains': 'recepcao_versao_app__icontains',
-                'recepcao_data_hora__range': 'recepcao_data_hora__range',
-                'recepcao_tp_amb': 'recepcao_tp_amb',
-                'processamento': 'processamento',
+                'transmissor_lote_esocial': 'transmissor_lote_esocial',
                 'identidade__icontains': 'identidade__icontains',
-                'transmissor_lote_esocial': 'transmissor_lote_esocial',}
+                'processamento': 'processamento',
+                'recepcao_tp_amb': 'recepcao_tp_amb',
+                'recepcao_data_hora__range': 'recepcao_data_hora__range',
+                'recepcao_versao_app__icontains': 'recepcao_versao_app__icontains',
+                'recepcao_protocolo_envio_lote__icontains': 'recepcao_protocolo_envio_lote__icontains',
+                'processamento': 'processamento',
+                'processamento_codigo_resposta': 'processamento_codigo_resposta',
+                'processamento_descricao_resposta__icontains': 'processamento_descricao_resposta__icontains',
+                'processamento_versao_app_processamento__icontains': 'processamento_versao_app_processamento__icontains',
+                'processamento_data_hora__range': 'processamento_data_hora__range',
+                'recibo': 'recibo',
+                'recibo_numero__icontains': 'recibo_numero__icontains',
+                'recibo_hash__icontains': 'recibo_hash__icontains',
+                'empregador': 'empregador',
+                'tpinsc': 'tpinsc',
+                'empregador_tpinsc': 'empregador_tpinsc',
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'empregador_nrinsc__icontains': 'empregador_nrinsc__icontains',
+                'trabalhador': 'trabalhador',
+                'cpftrab__icontains': 'cpftrab__icontains',
+                'nistrab__icontains': 'nistrab__icontains',
+                'nmtrab__icontains': 'nmtrab__icontains',
+                'deficiencia': 'deficiencia',
+                'infocota__icontains': 'infocota__icontains',
+                'vinculo': 'vinculo',
+                'matricula__icontains': 'matricula__icontains',
+                'celetista': 'celetista',
+                'dtadm__range': 'dtadm__range',
+                'tpregjor': 'tpregjor',
+                'dtbase': 'dtbase',
+                'cnpjsindcategprof__icontains': 'cnpjsindcategprof__icontains',
+                'estatutario': 'estatutario',
+                'dtposse__range': 'dtposse__range',
+                'dtexercicio__range': 'dtexercicio__range',
+                'cargo': 'cargo',
+                'codcargo__icontains': 'codcargo__icontains',
+                'nmcargo__icontains': 'nmcargo__icontains',
+                'codcbocargo__icontains': 'codcbocargo__icontains',
+                'funcao': 'funcao',
+                'codfuncao__icontains': 'codfuncao__icontains',
+                'dscfuncao__icontains': 'dscfuncao__icontains',
+                'codcbofuncao__icontains': 'codcbofuncao__icontains',
+                'categoria': 'categoria',
+                'codcateg': 'codcateg',
+                'remuneracao': 'remuneracao',
+                'vrsalfx': 'vrsalfx',
+                'undsalfixo': 'undsalfixo',
+                'dscsalvar__icontains': 'dscsalvar__icontains',
+                'duracao': 'duracao',
+                'tpcontr': 'tpcontr',
+                'dtterm__range': 'dtterm__range',
+                'clauasseg__icontains': 'clauasseg__icontains',
+                'local_trab': 'local_trab',
+                'local_tpinsc': 'local_tpinsc',
+                'local_nrinsc__icontains': 'local_nrinsc__icontains',
+                'local_cnae': 'local_cnae',
+                'horarios_contratuais': 'horarios_contratuais',
+                'qtdhrssem': 'qtdhrssem',
+                'tpjornada': 'tpjornada',
+                'dsctpjorn__icontains': 'dsctpjorn__icontains',
+                'tmpparc': 'tmpparc',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

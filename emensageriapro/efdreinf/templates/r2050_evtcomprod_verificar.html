@@ -186,7 +186,7 @@
 
         <tr {% if r2050_evtcomprod.tpamb|validacoes_esocial_efdreinf:"r2050_evtcomprod.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita; Valores Válidos: 1, 2.</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if r2050_evtcomprod.tpamb or r2050_evtcomprod.tpamb == 0 %}{{ r2050_evtcomprod.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -467,13 +467,13 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">tipoCom</td>
-            <td bgcolor="lightgray" colspan="3">Registro que apresenta o valor total da Receita Bruta por "tipo" de comercialização.</td>
+            <td bgcolor="lightgray" colspan="3">Registro que apresenta o valor total da Receita Bruta por 'tipo' de comercialização.</td>
         </tr>
     {% for r2050_tipocom in r2050_tipocom_lista %}
     {% ifequal r2050_tipocom.r2050_evtcomprod.id r2050_evtcomprod.id %}
         <tr {% if r2050_tipocom.indcom|validacoes_esocial_efdreinf:"r2050_tipocom.indcom" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indCom</td>
-            <td width="500px">Indicativo de Comercialização: 1 - Comercialização da Produção por Prod. Rural PJ/Agroindústria, exceto para entidades executoras do PAA; 8 - Comercialização da Produção para Entidade do Programa de Aquisição de Alimentos - PAA; 9 - Comercialização direta da Produção no Mercado Externo. Valores Válidos: 1, 8, 9.</td>
+            <td width="500px">Indicativo de Comercialização: 1 - Comercialização da Produção por Prod. Rural PJ/Agroindústria, exceto para entidades executoras do PAA; 7 - Comercialização da Produção com Isenção de Contribuição Previdenciária, de acordo com a Lei n° 13.606/2018; 8 - Comercialização da Produção para Entidade do Programa de Aquisição de Alimentos - PAA; 9 - Comercialização direta da Produção no Mercado Externo. Valores Válidos: 1, 7, 8, 9.</td>
             <td width="200px"><b>{% if r2050_tipocom.indcom or r2050_tipocom.indcom == 0 %}{{ r2050_tipocom.indcom|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -492,7 +492,7 @@
 
         <tr {% if r2050_tipocom.vlrrecbruta|validacoes_esocial_efdreinf:"r2050_tipocom.vlrrecbruta" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrRecBruta</td>
-            <td width="500px">Preencher com o valor total da comercialização. Validação: Deve ser maior que "0" e não pode ser maior que {vlrRecBrutaTotal}.</td>
+            <td width="500px">Preencher com o valor total da comercialização. Validação: Deve ser maior que '0' e não pode ser maior que {vlrRecBrutaTotal}.</td>
             <td width="200px"><b>{% if r2050_tipocom.vlrrecbruta or r2050_tipocom.vlrrecbruta == 0 %}{{ r2050_tipocom.vlrrecbruta|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">

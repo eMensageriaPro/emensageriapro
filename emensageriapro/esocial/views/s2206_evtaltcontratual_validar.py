@@ -71,6 +71,7 @@ def validacoes_s2206_evtaltcontratual(arquivo):
     if 'dscSalVar' in dir(evtAltContratual.altContratual.infoContrato.remuneracao): validacoes_lista = validar_campo(validacoes_lista,'evtAltContratual.altContratual.infoContrato.remuneracao.dscSalVar', evtAltContratual.altContratual.infoContrato.remuneracao.dscSalVar.cdata, 0, '')
     if 'tpContr' in dir(evtAltContratual.altContratual.infoContrato.duracao): validacoes_lista = validar_campo(validacoes_lista,'evtAltContratual.altContratual.infoContrato.duracao.tpContr', evtAltContratual.altContratual.infoContrato.duracao.tpContr.cdata, 1, '1;2')
     if 'dtTerm' in dir(evtAltContratual.altContratual.infoContrato.duracao): validacoes_lista = validar_campo(validacoes_lista,'evtAltContratual.altContratual.infoContrato.duracao.dtTerm', evtAltContratual.altContratual.infoContrato.duracao.dtTerm.cdata, 0, '')
+    if 'objDet' in dir(evtAltContratual.altContratual.infoContrato.duracao): validacoes_lista = validar_campo(validacoes_lista,'evtAltContratual.altContratual.infoContrato.duracao.objDet', evtAltContratual.altContratual.infoContrato.duracao.objDet.cdata, 0, '')
     if 'infoCeletista' in dir(evtAltContratual.altContratual.infoRegimeTrab):
         for infoCeletista in evtAltContratual.altContratual.infoRegimeTrab.infoCeletista:
        

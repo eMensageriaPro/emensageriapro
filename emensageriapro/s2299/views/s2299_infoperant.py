@@ -61,17 +61,17 @@ def apagar(request, hash):
                              's2299_infoperant', s2299_infoperant_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's2299_infoperant_salvar':
             return redirect('s2299_infoperant', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -114,7 +114,7 @@ def salvar(request, hash):
         if s2299_infoperant_id:
             s2299_infoperant_form = form_s2299_infoperant(request.POST or None, instance = s2299_infoperant, slug = db_slug)
         else:
-            s2299_infoperant_form = form_s2299_infoperant(request.POST or None, slug = db_slug, initial={})
+            s2299_infoperant_form = form_s2299_infoperant(request.POST or None, slug = db_slug, initial={'s2299_dmdev': '1'})
         if request.method == 'POST':
             if s2299_infoperant_form.is_valid():
                 dados = s2299_infoperant_form.cleaned_data
@@ -166,13 +166,13 @@ def salvar(request, hash):
             s2299_infoperant_form.fields[field].widget.attrs['ng-model'] = 's2299_infoperant_'+field
         if int(dict_hash['print']):
             s2299_infoperant_form = disabled_form_for_print(s2299_infoperant_form)
-   
+
         s2299_infoperant_ideadc_form = None
         s2299_infoperant_ideadc_lista = None
         if s2299_infoperant_id:
             s2299_infoperant = get_object_or_404(s2299infoPerAnt.objects.using( db_slug ), excluido = False, id = s2299_infoperant_id)
-       
-            s2299_infoperant_ideadc_form = form_s2299_infoperant_ideadc(initial={ 's2299_infoperant': s2299_infoperant }, slug=db_slug)
+
+            s2299_infoperant_ideadc_form = form_s2299_infoperant_ideadc(initial={ 's2299_infoperant': s2299_infoperant , 's2299_infoperant': 1}, slug=db_slug)
             s2299_infoperant_ideadc_form.fields['s2299_infoperant'].widget.attrs['readonly'] = True
             s2299_infoperant_ideadc_lista = s2299infoPerAntideADC.objects.using( db_slug ).filter(excluido = False, s2299_infoperant_id=s2299_infoperant.id).all()
         else:
@@ -195,14 +195,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2299_infoperant_id': int(s2299_infoperant_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             's2299_infoperant_ideadc_form': s2299_infoperant_ideadc_form,
             's2299_infoperant_ideadc_lista': s2299_infoperant_ideadc_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -246,10 +246,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -315,11 +315,6 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
             'show_s2299_dmdev': 1, }
         post = False
         if request.method == 'POST':
@@ -341,17 +336,17 @@ def listar(request, hash):
             filtrar = True
             s2299_infoperant_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s2299_infoperant_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2299_infoperant'
         context = {
             's2299_infoperant_lista': s2299_infoperant_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -361,7 +356,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 's2299_infoperant_listar.html', context)
@@ -404,10 +399,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

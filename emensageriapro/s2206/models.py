@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -217,13 +248,13 @@ class s2206horContratual(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.qtdhrssem) + ' - ' + unicode(self.tpjornada) + ' - ' + unicode(self.dsctpjorn) + ' - ' + unicode(self.tmpparc)
+        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpjornada) + ' - ' + unicode(self.tmpparc)
     #s2206_horcontratual_custom#
     #s2206_horcontratual_custom#
     class Meta:
         db_table = r's2206_horcontratual'
         managed = True
-        ordering = ['s2206_evtaltcontratual', 'qtdhrssem', 'tpjornada', 'dsctpjorn', 'tmpparc']
+        ordering = ['s2206_evtaltcontratual', 'tpjornada', 'tmpparc']
 
 
 
@@ -279,13 +310,13 @@ class s2206infoCeletista(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpregjor) + ' - ' + unicode(self.natatividade) + ' - ' + unicode(self.dtbase) + ' - ' + unicode(self.cnpjsindcategprof)
+        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpregjor) + ' - ' + unicode(self.natatividade) + ' - ' + unicode(self.cnpjsindcategprof)
     #s2206_infoceletista_custom#
     #s2206_infoceletista_custom#
     class Meta:
         db_table = r's2206_infoceletista'
         managed = True
-        ordering = ['s2206_evtaltcontratual', 'tpregjor', 'natatividade', 'dtbase', 'cnpjsindcategprof']
+        ordering = ['s2206_evtaltcontratual', 'tpregjor', 'natatividade', 'cnpjsindcategprof']
 
 
 
@@ -311,13 +342,13 @@ class s2206infoEstatutario(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpplanrp) + ' - ' + unicode(self.indtetorgps) + ' - ' + unicode(self.indabonoperm) + ' - ' + unicode(self.indparcremun)
+        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpplanrp)
     #s2206_infoestatutario_custom#
     #s2206_infoestatutario_custom#
     class Meta:
         db_table = r's2206_infoestatutario'
         managed = True
-        ordering = ['s2206_evtaltcontratual', 'tpplanrp', 'indtetorgps', 'indabonoperm', 'indparcremun']
+        ordering = ['s2206_evtaltcontratual', 'tpplanrp']
 
 
 
@@ -347,13 +378,13 @@ class s2206localTrabDom(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.complemento) + ' - ' + unicode(self.bairro) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
+        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
     #s2206_localtrabdom_custom#
     #s2206_localtrabdom_custom#
     class Meta:
         db_table = r's2206_localtrabdom'
         managed = True
-        ordering = ['s2206_evtaltcontratual', 'tplograd', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'cep', 'codmunic', 'uf']
+        ordering = ['s2206_evtaltcontratual', 'tplograd', 'dsclograd', 'nrlograd', 'cep', 'codmunic', 'uf']
 
 
 
@@ -378,13 +409,13 @@ class s2206localTrabGeral(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.desccomp)
+        return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s2206_localtrabgeral_custom#
     #s2206_localtrabgeral_custom#
     class Meta:
         db_table = r's2206_localtrabgeral'
         managed = True
-        ordering = ['s2206_evtaltcontratual', 'tpinsc', 'nrinsc', 'desccomp']
+        ordering = ['s2206_evtaltcontratual', 'tpinsc', 'nrinsc']
 
 
 

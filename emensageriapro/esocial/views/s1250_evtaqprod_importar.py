@@ -99,8 +99,6 @@ def read_s1250_evtaqprod_obj(doc, status, validar=False):
             s1250_tpaquis_dados = {}
             s1250_tpaquis_dados['s1250_evtaqprod_id'] = s1250_evtaqprod_id
        
-            if 'indAquis' in dir(tpAquis): s1250_tpaquis_dados['indaquis'] = tpAquis.indAquis.cdata
-            if 'vlrTotAquis' in dir(tpAquis): s1250_tpaquis_dados['vlrtotaquis'] = tpAquis.vlrTotAquis.cdata
             insert = create_insert('s1250_tpaquis', s1250_tpaquis_dados)
             resp = executar_sql(insert, True)
             s1250_tpaquis_id = resp[0][0]
@@ -111,16 +109,20 @@ def read_s1250_evtaqprod_obj(doc, status, validar=False):
                     s1250_ideprodutor_dados = {}
                     s1250_ideprodutor_dados['s1250_tpaquis_id'] = s1250_tpaquis_id
                
-                    if 'tpInscProd' in dir(ideProdutor): s1250_ideprodutor_dados['tpinscprod'] = ideProdutor.tpInscProd.cdata
-                    if 'nrInscProd' in dir(ideProdutor): s1250_ideprodutor_dados['nrinscprod'] = ideProdutor.nrInscProd.cdata
-                    if 'vlrBruto' in dir(ideProdutor): s1250_ideprodutor_dados['vlrbruto'] = ideProdutor.vlrBruto.cdata
-                    if 'vrCPDescPR' in dir(ideProdutor): s1250_ideprodutor_dados['vrcpdescpr'] = ideProdutor.vrCPDescPR.cdata
-                    if 'vrRatDescPR' in dir(ideProdutor): s1250_ideprodutor_dados['vrratdescpr'] = ideProdutor.vrRatDescPR.cdata
-                    if 'vrSenarDesc' in dir(ideProdutor): s1250_ideprodutor_dados['vrsenardesc'] = ideProdutor.vrSenarDesc.cdata
                     insert = create_insert('s1250_ideprodutor', s1250_ideprodutor_dados)
                     resp = executar_sql(insert, True)
                     s1250_ideprodutor_id = resp[0][0]
                     #print s1250_ideprodutor_id
+   
+            if 'infoProcJ' in dir(tpAquis):
+                for infoProcJ in tpAquis.infoProcJ:
+                    s1250_infoprocj_dados = {}
+                    s1250_infoprocj_dados['s1250_tpaquis_id'] = s1250_tpaquis_id
+               
+                    insert = create_insert('s1250_infoprocj', s1250_infoprocj_dados)
+                    resp = executar_sql(insert, True)
+                    s1250_infoprocj_id = resp[0][0]
+                    #print s1250_infoprocj_id
    
     from emensageriapro.esocial.views.s1250_evtaqprod_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(s1250_evtaqprod_id, 'default')

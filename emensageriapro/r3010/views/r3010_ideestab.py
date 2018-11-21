@@ -61,17 +61,17 @@ def apagar(request, hash):
                              'r3010_ideestab', r3010_ideestab_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 'r3010_ideestab_salvar':
             return redirect('r3010_ideestab', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -166,14 +166,14 @@ def salvar(request, hash):
             r3010_ideestab_form.fields[field].widget.attrs['ng-model'] = 'r3010_ideestab_'+field
         if int(dict_hash['print']):
             r3010_ideestab_form = disabled_form_for_print(r3010_ideestab_form)
-   
+
         r3010_boletim_form = None
         r3010_boletim_lista = None
         r3010_infoproc_form = None
         r3010_infoproc_lista = None
         if r3010_ideestab_id:
             r3010_ideestab = get_object_or_404(r3010ideEstab.objects.using( db_slug ), excluido = False, id = r3010_ideestab_id)
-       
+
             r3010_boletim_form = form_r3010_boletim(initial={ 'r3010_ideestab': r3010_ideestab }, slug=db_slug)
             r3010_boletim_form.fields['r3010_ideestab'].widget.attrs['readonly'] = True
             r3010_boletim_lista = r3010boletim.objects.using( db_slug ).filter(excluido = False, r3010_ideestab_id=r3010_ideestab.id).all()
@@ -200,16 +200,16 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r3010_ideestab_id': int(r3010_ideestab_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             'r3010_boletim_form': r3010_boletim_form,
             'r3010_boletim_lista': r3010_boletim_lista,
             'r3010_infoproc_form': r3010_infoproc_form,
             'r3010_infoproc_lista': r3010_infoproc_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -253,10 +253,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -372,17 +372,17 @@ def listar(request, hash):
             filtrar = True
             r3010_ideestab_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #r3010_ideestab_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r3010_ideestab'
         context = {
             'r3010_ideestab_lista': r3010_ideestab_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -392,7 +392,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 'r3010_ideestab_listar.html', context)
@@ -435,10 +435,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

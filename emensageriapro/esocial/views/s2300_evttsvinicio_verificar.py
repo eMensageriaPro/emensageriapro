@@ -107,28 +107,27 @@ def verificar(request, hash):
         s2300_evttsvinicio_lista = s2300evtTSVInicio.objects.using( db_slug ).filter(id=s2300_evttsvinicio_id, excluido = False).all()
    
 
-        s2300_documentos_lista = s2300documentos.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
-        s2300_ctps_lista = s2300CTPS.objects.using(db_slug).filter(s2300_documentos_id__in = listar_ids(s2300_documentos_lista) ).filter(excluido=False).all()
-        s2300_ric_lista = s2300RIC.objects.using(db_slug).filter(s2300_documentos_id__in = listar_ids(s2300_documentos_lista) ).filter(excluido=False).all()
-        s2300_rg_lista = s2300RG.objects.using(db_slug).filter(s2300_documentos_id__in = listar_ids(s2300_documentos_lista) ).filter(excluido=False).all()
-        s2300_rne_lista = s2300RNE.objects.using(db_slug).filter(s2300_documentos_id__in = listar_ids(s2300_documentos_lista) ).filter(excluido=False).all()
-        s2300_oc_lista = s2300OC.objects.using(db_slug).filter(s2300_documentos_id__in = listar_ids(s2300_documentos_lista) ).filter(excluido=False).all()
-        s2300_cnh_lista = s2300CNH.objects.using(db_slug).filter(s2300_documentos_id__in = listar_ids(s2300_documentos_lista) ).filter(excluido=False).all()
+        s2300_ctps_lista = s2300CTPS.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_ric_lista = s2300RIC.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_rg_lista = s2300RG.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_rne_lista = s2300RNE.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_oc_lista = s2300OC.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_cnh_lista = s2300CNH.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_brasil_lista = s2300brasil.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_exterior_lista = s2300exterior.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_trabestrangeiro_lista = s2300trabEstrangeiro.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_infodeficiencia_lista = s2300infoDeficiencia.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_dependente_lista = s2300dependente.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_contato_lista = s2300contato.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
-        s2300_infocomplementares_lista = s2300infoComplementares.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
-        s2300_cargofuncao_lista = s2300cargoFuncao.objects.using(db_slug).filter(s2300_infocomplementares_id__in = listar_ids(s2300_infocomplementares_lista) ).filter(excluido=False).all()
-        s2300_remuneracao_lista = s2300remuneracao.objects.using(db_slug).filter(s2300_infocomplementares_id__in = listar_ids(s2300_infocomplementares_lista) ).filter(excluido=False).all()
-        s2300_fgts_lista = s2300fgts.objects.using(db_slug).filter(s2300_infocomplementares_id__in = listar_ids(s2300_infocomplementares_lista) ).filter(excluido=False).all()
-        s2300_infodirigentesindical_lista = s2300infoDirigenteSindical.objects.using(db_slug).filter(s2300_infocomplementares_id__in = listar_ids(s2300_infocomplementares_lista) ).filter(excluido=False).all()
-        s2300_infotrabcedido_lista = s2300infoTrabCedido.objects.using(db_slug).filter(s2300_infocomplementares_id__in = listar_ids(s2300_infocomplementares_lista) ).filter(excluido=False).all()
-        s2300_infoestagiario_lista = s2300infoEstagiario.objects.using(db_slug).filter(s2300_infocomplementares_id__in = listar_ids(s2300_infocomplementares_lista) ).filter(excluido=False).all()
+        s2300_cargofuncao_lista = s2300cargoFuncao.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_remuneracao_lista = s2300remuneracao.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_fgts_lista = s2300fgts.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_infodirigentesindical_lista = s2300infoDirigenteSindical.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_infotrabcedido_lista = s2300infoTrabCedido.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_infoestagiario_lista = s2300infoEstagiario.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_ageintegracao_lista = s2300ageIntegracao.objects.using(db_slug).filter(s2300_infoestagiario_id__in = listar_ids(s2300_infoestagiario_lista) ).filter(excluido=False).all()
         s2300_supervisorestagio_lista = s2300supervisorEstagio.objects.using(db_slug).filter(s2300_infoestagiario_id__in = listar_ids(s2300_infoestagiario_lista) ).filter(excluido=False).all()
+        s2300_mudancacpf_lista = s2300mudancaCPF.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_afastamento_lista = s2300afastamento.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_termino_lista = s2300termino.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         request.session["retorno_hash"] = hash
@@ -149,7 +148,6 @@ def verificar(request, hash):
             'for_print': for_print,
             'hash': hash,
 
-            's2300_documentos_lista': s2300_documentos_lista,
             's2300_ctps_lista': s2300_ctps_lista,
             's2300_ric_lista': s2300_ric_lista,
             's2300_rg_lista': s2300_rg_lista,
@@ -162,7 +160,6 @@ def verificar(request, hash):
             's2300_infodeficiencia_lista': s2300_infodeficiencia_lista,
             's2300_dependente_lista': s2300_dependente_lista,
             's2300_contato_lista': s2300_contato_lista,
-            's2300_infocomplementares_lista': s2300_infocomplementares_lista,
             's2300_cargofuncao_lista': s2300_cargofuncao_lista,
             's2300_remuneracao_lista': s2300_remuneracao_lista,
             's2300_fgts_lista': s2300_fgts_lista,
@@ -171,6 +168,7 @@ def verificar(request, hash):
             's2300_infoestagiario_lista': s2300_infoestagiario_lista,
             's2300_ageintegracao_lista': s2300_ageintegracao_lista,
             's2300_supervisorestagio_lista': s2300_supervisorestagio_lista,
+            's2300_mudancacpf_lista': s2300_mudancacpf_lista,
             's2300_afastamento_lista': s2300_afastamento_lista,
             's2300_termino_lista': s2300_termino_lista,
         }
@@ -243,28 +241,27 @@ def gerar_xml_s2300(s2300_evttsvinicio_id, db_slug, versao=None):
         s2300_evttsvinicio_lista = s2300evtTSVInicio.objects.using( db_slug ).filter(id=s2300_evttsvinicio_id, excluido = False).all()
    
 
-        s2300_documentos_lista = s2300documentos.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
-        s2300_ctps_lista = s2300CTPS.objects.using(db_slug).filter(s2300_documentos_id__in = listar_ids(s2300_documentos_lista) ).filter(excluido=False).all()
-        s2300_ric_lista = s2300RIC.objects.using(db_slug).filter(s2300_documentos_id__in = listar_ids(s2300_documentos_lista) ).filter(excluido=False).all()
-        s2300_rg_lista = s2300RG.objects.using(db_slug).filter(s2300_documentos_id__in = listar_ids(s2300_documentos_lista) ).filter(excluido=False).all()
-        s2300_rne_lista = s2300RNE.objects.using(db_slug).filter(s2300_documentos_id__in = listar_ids(s2300_documentos_lista) ).filter(excluido=False).all()
-        s2300_oc_lista = s2300OC.objects.using(db_slug).filter(s2300_documentos_id__in = listar_ids(s2300_documentos_lista) ).filter(excluido=False).all()
-        s2300_cnh_lista = s2300CNH.objects.using(db_slug).filter(s2300_documentos_id__in = listar_ids(s2300_documentos_lista) ).filter(excluido=False).all()
+        s2300_ctps_lista = s2300CTPS.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_ric_lista = s2300RIC.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_rg_lista = s2300RG.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_rne_lista = s2300RNE.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_oc_lista = s2300OC.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_cnh_lista = s2300CNH.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_brasil_lista = s2300brasil.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_exterior_lista = s2300exterior.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_trabestrangeiro_lista = s2300trabEstrangeiro.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_infodeficiencia_lista = s2300infoDeficiencia.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_dependente_lista = s2300dependente.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_contato_lista = s2300contato.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
-        s2300_infocomplementares_lista = s2300infoComplementares.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
-        s2300_cargofuncao_lista = s2300cargoFuncao.objects.using(db_slug).filter(s2300_infocomplementares_id__in = listar_ids(s2300_infocomplementares_lista) ).filter(excluido=False).all()
-        s2300_remuneracao_lista = s2300remuneracao.objects.using(db_slug).filter(s2300_infocomplementares_id__in = listar_ids(s2300_infocomplementares_lista) ).filter(excluido=False).all()
-        s2300_fgts_lista = s2300fgts.objects.using(db_slug).filter(s2300_infocomplementares_id__in = listar_ids(s2300_infocomplementares_lista) ).filter(excluido=False).all()
-        s2300_infodirigentesindical_lista = s2300infoDirigenteSindical.objects.using(db_slug).filter(s2300_infocomplementares_id__in = listar_ids(s2300_infocomplementares_lista) ).filter(excluido=False).all()
-        s2300_infotrabcedido_lista = s2300infoTrabCedido.objects.using(db_slug).filter(s2300_infocomplementares_id__in = listar_ids(s2300_infocomplementares_lista) ).filter(excluido=False).all()
-        s2300_infoestagiario_lista = s2300infoEstagiario.objects.using(db_slug).filter(s2300_infocomplementares_id__in = listar_ids(s2300_infocomplementares_lista) ).filter(excluido=False).all()
+        s2300_cargofuncao_lista = s2300cargoFuncao.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_remuneracao_lista = s2300remuneracao.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_fgts_lista = s2300fgts.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_infodirigentesindical_lista = s2300infoDirigenteSindical.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_infotrabcedido_lista = s2300infoTrabCedido.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
+        s2300_infoestagiario_lista = s2300infoEstagiario.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_ageintegracao_lista = s2300ageIntegracao.objects.using(db_slug).filter(s2300_infoestagiario_id__in = listar_ids(s2300_infoestagiario_lista) ).filter(excluido=False).all()
         s2300_supervisorestagio_lista = s2300supervisorEstagio.objects.using(db_slug).filter(s2300_infoestagiario_id__in = listar_ids(s2300_infoestagiario_lista) ).filter(excluido=False).all()
+        s2300_mudancacpf_lista = s2300mudancaCPF.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_afastamento_lista = s2300afastamento.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_termino_lista = s2300termino.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
    
@@ -276,7 +273,6 @@ def gerar_xml_s2300(s2300_evttsvinicio_id, db_slug, versao=None):
             's2300_evttsvinicio': s2300_evttsvinicio,
 
 
-            's2300_documentos_lista': s2300_documentos_lista,
             's2300_ctps_lista': s2300_ctps_lista,
             's2300_ric_lista': s2300_ric_lista,
             's2300_rg_lista': s2300_rg_lista,
@@ -289,7 +285,6 @@ def gerar_xml_s2300(s2300_evttsvinicio_id, db_slug, versao=None):
             's2300_infodeficiencia_lista': s2300_infodeficiencia_lista,
             's2300_dependente_lista': s2300_dependente_lista,
             's2300_contato_lista': s2300_contato_lista,
-            's2300_infocomplementares_lista': s2300_infocomplementares_lista,
             's2300_cargofuncao_lista': s2300_cargofuncao_lista,
             's2300_remuneracao_lista': s2300_remuneracao_lista,
             's2300_fgts_lista': s2300_fgts_lista,
@@ -298,6 +293,7 @@ def gerar_xml_s2300(s2300_evttsvinicio_id, db_slug, versao=None):
             's2300_infoestagiario_lista': s2300_infoestagiario_lista,
             's2300_ageintegracao_lista': s2300_ageintegracao_lista,
             's2300_supervisorestagio_lista': s2300_supervisorestagio_lista,
+            's2300_mudancacpf_lista': s2300_mudancacpf_lista,
             's2300_afastamento_lista': s2300_afastamento_lista,
             's2300_termino_lista': s2300_termino_lista,
 

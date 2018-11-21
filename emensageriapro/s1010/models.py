@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -36,6 +67,18 @@ PERIODOS = (
     ('2018-10', u'Outubro/2018'),
     ('2018-11', u'Novembro/2018'),
     ('2018-12', u'Dezembro/2018'),
+    ('2019-01', u'Janeiro/2019'),
+    ('2019-02', u'Fevereiro/2019'),
+    ('2019-03', u'Março/2019'),
+    ('2019-04', u'Abril/2019'),
+    ('2019-05', u'Maio/2019'),
+    ('2019-06', u'Junho/2019'),
+    ('2019-07', u'Julho/2019'),
+    ('2019-08', u'Agosto/2019'),
+    ('2019-09', u'Setembro/2019'),
+    ('2019-10', u'Outubro/2019'),
+    ('2019-11', u'Novembro/2019'),
+    ('2019-12', u'Dezembro/2019'),
 )
 
 CHOICES_S1010_ALTERACAO_CODINCCP = (
@@ -174,10 +217,10 @@ CHOICES_S1010_ALTERACAO_CODINCSIND = (
 )
 
 CHOICES_S1010_ALTERACAO_EXTDECISAO = (
-    (1, u'1 - Contribuição Previdenciária Patronal'),
     (1, u'1 - Contribuição Previdenciária do Ente Público'),
-    (2, u'2 - Contribuição Previdenciária Patronal + Descontada dos Segurados'),
+    (1, u'1 - Contribuição Previdenciária Patronal'),
     (2, u'2 - Contribuição Previdenciária do Ente Público + Descontada dos Segurados'),
+    (2, u'2 - Contribuição Previdenciária Patronal + Descontada dos Segurados'),
     (3, u'3 - Contribuição Previdenciária Descontada dos Segurados'),
 )
 
@@ -334,8 +377,8 @@ CHOICES_S1010_INCLUSAO_CODINCSIND = (
 )
 
 CHOICES_S1010_INCLUSAO_EXTDECISAO = (
-    (1, u'1 - Contribuição Previdenciária Patronal'),
     (1, u'1 - Contribuição Previdenciária do Ente Público'),
+    (1, u'1 - Contribuição Previdenciária Patronal'),
     (2, u'2 - Contribuição Previdenciária do Ente Público + Descontada dos Segurados'),
     (2, u'2 - Contribuição Previdenciária Patronal + Descontada dos Segurados'),
     (3, u'3 - Contribuição Previdenciária Descontada dos Segurados'),
@@ -384,13 +427,13 @@ class s1010alteracao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1010_evttabrubrica) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid) + ' - ' + unicode(self.dscrubr) + ' - ' + unicode(self.natrubr) + ' - ' + unicode(self.tprubr) + ' - ' + unicode(self.codinccp) + ' - ' + unicode(self.codincirrf) + ' - ' + unicode(self.codincfgts) + ' - ' + unicode(self.codincsind) + ' - ' + unicode(self.codinccprp) + ' - ' + unicode(self.tetoremun) + ' - ' + unicode(self.observacao)
+        return unicode(self.s1010_evttabrubrica) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.dscrubr) + ' - ' + unicode(self.natrubr) + ' - ' + unicode(self.tprubr) + ' - ' + unicode(self.codinccp) + ' - ' + unicode(self.codincirrf) + ' - ' + unicode(self.codincfgts) + ' - ' + unicode(self.codincsind)
     #s1010_alteracao_custom#
     #s1010_alteracao_custom#
     class Meta:
         db_table = r's1010_alteracao'
         managed = True
-        ordering = ['s1010_evttabrubrica', 'codrubr', 'idetabrubr', 'inivalid', 'fimvalid', 'dscrubr', 'natrubr', 'tprubr', 'codinccp', 'codincirrf', 'codincfgts', 'codincsind', 'codinccprp', 'tetoremun', 'observacao']
+        ordering = ['s1010_evttabrubrica', 'codrubr', 'idetabrubr', 'inivalid', 'dscrubr', 'natrubr', 'tprubr', 'codinccp', 'codincirrf', 'codincfgts', 'codincsind']
 
 
 
@@ -408,9 +451,6 @@ class s1010alteracaoideProcessoCP(models.Model):
     nrproc = models.CharField(max_length=21)
     extdecisao = models.IntegerField(choices=CHOICES_S1010_ALTERACAO_EXTDECISAO)
     codsusp = models.IntegerField()
-    tpproc = models.IntegerField(choices=CHOICES_S1010_ALTERACAO_TPPROC)
-    nrproc = models.CharField(max_length=21)
-    extdecisao = models.IntegerField(choices=CHOICES_S1010_ALTERACAO_EXTDECISAO)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -419,13 +459,13 @@ class s1010alteracaoideProcessoCP(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1010_alteracao) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.extdecisao) + ' - ' + unicode(self.codsusp) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.extdecisao)
+        return unicode(self.s1010_alteracao) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.extdecisao) + ' - ' + unicode(self.codsusp)
     #s1010_alteracao_ideprocessocp_custom#
     #s1010_alteracao_ideprocessocp_custom#
     class Meta:
         db_table = r's1010_alteracao_ideprocessocp'
         managed = True
-        ordering = ['s1010_alteracao', 'tpproc', 'nrproc', 'extdecisao', 'codsusp', 'tpproc', 'nrproc', 'extdecisao']
+        ordering = ['s1010_alteracao', 'tpproc', 'nrproc', 'extdecisao', 'codsusp']
 
 
 
@@ -439,6 +479,9 @@ class s1010alteracaoideProcessoCPRP(models.Model):
     s1010_alteracao = models.ForeignKey('s1010alteracao',
         related_name='%(class)s_s1010_alteracao')
     def evento(self): return self.s1010_alteracao.evento()
+    tpproc = models.IntegerField(choices=CHOICES_S1010_ALTERACAO_TPPROC)
+    nrproc = models.CharField(max_length=21)
+    extdecisao = models.IntegerField(choices=CHOICES_S1010_ALTERACAO_EXTDECISAO)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -447,13 +490,13 @@ class s1010alteracaoideProcessoCPRP(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1010_alteracao)
+        return unicode(self.s1010_alteracao) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.extdecisao)
     #s1010_alteracao_ideprocessocprp_custom#
     #s1010_alteracao_ideprocessocprp_custom#
     class Meta:
         db_table = r's1010_alteracao_ideprocessocprp'
         managed = True
-        ordering = ['s1010_alteracao']
+        ordering = ['s1010_alteracao', 'tpproc', 'nrproc', 'extdecisao']
 
 
 
@@ -565,13 +608,13 @@ class s1010alteracaonovaValidade(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1010_alteracao) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid)
+        return unicode(self.s1010_alteracao) + ' - ' + unicode(self.inivalid)
     #s1010_alteracao_novavalidade_custom#
     #s1010_alteracao_novavalidade_custom#
     class Meta:
         db_table = r's1010_alteracao_novavalidade'
         managed = True
-        ordering = ['s1010_alteracao', 'inivalid', 'fimvalid']
+        ordering = ['s1010_alteracao', 'inivalid']
 
 
 
@@ -597,13 +640,13 @@ class s1010exclusao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1010_evttabrubrica) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid)
+        return unicode(self.s1010_evttabrubrica) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.inivalid)
     #s1010_exclusao_custom#
     #s1010_exclusao_custom#
     class Meta:
         db_table = r's1010_exclusao'
         managed = True
-        ordering = ['s1010_evttabrubrica', 'codrubr', 'idetabrubr', 'inivalid', 'fimvalid']
+        ordering = ['s1010_evttabrubrica', 'codrubr', 'idetabrubr', 'inivalid']
 
 
 
@@ -639,13 +682,13 @@ class s1010inclusao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1010_evttabrubrica) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid) + ' - ' + unicode(self.dscrubr) + ' - ' + unicode(self.natrubr) + ' - ' + unicode(self.tprubr) + ' - ' + unicode(self.codinccp) + ' - ' + unicode(self.codincirrf) + ' - ' + unicode(self.codincfgts) + ' - ' + unicode(self.codincsind) + ' - ' + unicode(self.codinccprp) + ' - ' + unicode(self.tetoremun) + ' - ' + unicode(self.observacao)
+        return unicode(self.s1010_evttabrubrica) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.dscrubr) + ' - ' + unicode(self.natrubr) + ' - ' + unicode(self.tprubr) + ' - ' + unicode(self.codinccp) + ' - ' + unicode(self.codincirrf) + ' - ' + unicode(self.codincfgts) + ' - ' + unicode(self.codincsind)
     #s1010_inclusao_custom#
     #s1010_inclusao_custom#
     class Meta:
         db_table = r's1010_inclusao'
         managed = True
-        ordering = ['s1010_evttabrubrica', 'codrubr', 'idetabrubr', 'inivalid', 'fimvalid', 'dscrubr', 'natrubr', 'tprubr', 'codinccp', 'codincirrf', 'codincfgts', 'codincsind', 'codinccprp', 'tetoremun', 'observacao']
+        ordering = ['s1010_evttabrubrica', 'codrubr', 'idetabrubr', 'inivalid', 'dscrubr', 'natrubr', 'tprubr', 'codinccp', 'codincirrf', 'codincfgts', 'codincsind']
 
 
 
@@ -663,9 +706,6 @@ class s1010inclusaoideProcessoCP(models.Model):
     nrproc = models.CharField(max_length=21)
     extdecisao = models.IntegerField(choices=CHOICES_S1010_INCLUSAO_EXTDECISAO)
     codsusp = models.IntegerField()
-    tpproc = models.IntegerField(choices=CHOICES_S1010_INCLUSAO_TPPROC)
-    nrproc = models.CharField(max_length=21)
-    extdecisao = models.IntegerField(choices=CHOICES_S1010_INCLUSAO_EXTDECISAO)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -674,13 +714,13 @@ class s1010inclusaoideProcessoCP(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1010_inclusao) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.extdecisao) + ' - ' + unicode(self.codsusp) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.extdecisao)
+        return unicode(self.s1010_inclusao) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.extdecisao) + ' - ' + unicode(self.codsusp)
     #s1010_inclusao_ideprocessocp_custom#
     #s1010_inclusao_ideprocessocp_custom#
     class Meta:
         db_table = r's1010_inclusao_ideprocessocp'
         managed = True
-        ordering = ['s1010_inclusao', 'tpproc', 'nrproc', 'extdecisao', 'codsusp', 'tpproc', 'nrproc', 'extdecisao']
+        ordering = ['s1010_inclusao', 'tpproc', 'nrproc', 'extdecisao', 'codsusp']
 
 
 
@@ -694,6 +734,9 @@ class s1010inclusaoideProcessoCPRP(models.Model):
     s1010_inclusao = models.ForeignKey('s1010inclusao',
         related_name='%(class)s_s1010_inclusao')
     def evento(self): return self.s1010_inclusao.evento()
+    tpproc = models.IntegerField(choices=CHOICES_S1010_INCLUSAO_TPPROC)
+    nrproc = models.CharField(max_length=21)
+    extdecisao = models.IntegerField(choices=CHOICES_S1010_INCLUSAO_EXTDECISAO)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -702,13 +745,13 @@ class s1010inclusaoideProcessoCPRP(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1010_inclusao)
+        return unicode(self.s1010_inclusao) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.extdecisao)
     #s1010_inclusao_ideprocessocprp_custom#
     #s1010_inclusao_ideprocessocprp_custom#
     class Meta:
         db_table = r's1010_inclusao_ideprocessocprp'
         managed = True
-        ordering = ['s1010_inclusao']
+        ordering = ['s1010_inclusao', 'tpproc', 'nrproc', 'extdecisao']
 
 
 

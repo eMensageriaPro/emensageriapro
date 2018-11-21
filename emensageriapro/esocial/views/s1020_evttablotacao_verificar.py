@@ -108,12 +108,10 @@ def verificar(request, hash):
    
 
         s1020_inclusao_lista = s1020inclusao.objects.using(db_slug).filter(s1020_evttablotacao_id__in = listar_ids(s1020_evttablotacao_lista) ).filter(excluido=False).all()
-        s1020_inclusao_infoprocjudterceiros_lista = s1020inclusaoinfoProcJudTerceiros.objects.using(db_slug).filter(s1020_inclusao_id__in = listar_ids(s1020_inclusao_lista) ).filter(excluido=False).all()
-        s1020_inclusao_procjudterceiro_lista = s1020inclusaoprocJudTerceiro.objects.using(db_slug).filter(s1020_inclusao_infoprocjudterceiros_id__in = listar_ids(s1020_inclusao_infoprocjudterceiros_lista) ).filter(excluido=False).all()
+        s1020_inclusao_procjudterceiro_lista = s1020inclusaoprocJudTerceiro.objects.using(db_slug).filter(s1020_inclusao_id__in = listar_ids(s1020_inclusao_lista) ).filter(excluido=False).all()
         s1020_inclusao_infoemprparcial_lista = s1020inclusaoinfoEmprParcial.objects.using(db_slug).filter(s1020_inclusao_id__in = listar_ids(s1020_inclusao_lista) ).filter(excluido=False).all()
         s1020_alteracao_lista = s1020alteracao.objects.using(db_slug).filter(s1020_evttablotacao_id__in = listar_ids(s1020_evttablotacao_lista) ).filter(excluido=False).all()
-        s1020_alteracao_infoprocjudterceiros_lista = s1020alteracaoinfoProcJudTerceiros.objects.using(db_slug).filter(s1020_alteracao_id__in = listar_ids(s1020_alteracao_lista) ).filter(excluido=False).all()
-        s1020_alteracao_procjudterceiro_lista = s1020alteracaoprocJudTerceiro.objects.using(db_slug).filter(s1020_alteracao_infoprocjudterceiros_id__in = listar_ids(s1020_alteracao_infoprocjudterceiros_lista) ).filter(excluido=False).all()
+        s1020_alteracao_procjudterceiro_lista = s1020alteracaoprocJudTerceiro.objects.using(db_slug).filter(s1020_alteracao_id__in = listar_ids(s1020_alteracao_lista) ).filter(excluido=False).all()
         s1020_alteracao_infoemprparcial_lista = s1020alteracaoinfoEmprParcial.objects.using(db_slug).filter(s1020_alteracao_id__in = listar_ids(s1020_alteracao_lista) ).filter(excluido=False).all()
         s1020_alteracao_novavalidade_lista = s1020alteracaonovaValidade.objects.using(db_slug).filter(s1020_alteracao_id__in = listar_ids(s1020_alteracao_lista) ).filter(excluido=False).all()
         s1020_exclusao_lista = s1020exclusao.objects.using(db_slug).filter(s1020_evttablotacao_id__in = listar_ids(s1020_evttablotacao_lista) ).filter(excluido=False).all()
@@ -136,11 +134,9 @@ def verificar(request, hash):
             'hash': hash,
 
             's1020_inclusao_lista': s1020_inclusao_lista,
-            's1020_inclusao_infoprocjudterceiros_lista': s1020_inclusao_infoprocjudterceiros_lista,
             's1020_inclusao_procjudterceiro_lista': s1020_inclusao_procjudterceiro_lista,
             's1020_inclusao_infoemprparcial_lista': s1020_inclusao_infoemprparcial_lista,
             's1020_alteracao_lista': s1020_alteracao_lista,
-            's1020_alteracao_infoprocjudterceiros_lista': s1020_alteracao_infoprocjudterceiros_lista,
             's1020_alteracao_procjudterceiro_lista': s1020_alteracao_procjudterceiro_lista,
             's1020_alteracao_infoemprparcial_lista': s1020_alteracao_infoemprparcial_lista,
             's1020_alteracao_novavalidade_lista': s1020_alteracao_novavalidade_lista,
@@ -216,12 +212,10 @@ def gerar_xml_s1020(s1020_evttablotacao_id, db_slug, versao=None):
    
 
         s1020_inclusao_lista = s1020inclusao.objects.using(db_slug).filter(s1020_evttablotacao_id__in = listar_ids(s1020_evttablotacao_lista) ).filter(excluido=False).all()
-        s1020_inclusao_infoprocjudterceiros_lista = s1020inclusaoinfoProcJudTerceiros.objects.using(db_slug).filter(s1020_inclusao_id__in = listar_ids(s1020_inclusao_lista) ).filter(excluido=False).all()
-        s1020_inclusao_procjudterceiro_lista = s1020inclusaoprocJudTerceiro.objects.using(db_slug).filter(s1020_inclusao_infoprocjudterceiros_id__in = listar_ids(s1020_inclusao_infoprocjudterceiros_lista) ).filter(excluido=False).all()
+        s1020_inclusao_procjudterceiro_lista = s1020inclusaoprocJudTerceiro.objects.using(db_slug).filter(s1020_inclusao_id__in = listar_ids(s1020_inclusao_lista) ).filter(excluido=False).all()
         s1020_inclusao_infoemprparcial_lista = s1020inclusaoinfoEmprParcial.objects.using(db_slug).filter(s1020_inclusao_id__in = listar_ids(s1020_inclusao_lista) ).filter(excluido=False).all()
         s1020_alteracao_lista = s1020alteracao.objects.using(db_slug).filter(s1020_evttablotacao_id__in = listar_ids(s1020_evttablotacao_lista) ).filter(excluido=False).all()
-        s1020_alteracao_infoprocjudterceiros_lista = s1020alteracaoinfoProcJudTerceiros.objects.using(db_slug).filter(s1020_alteracao_id__in = listar_ids(s1020_alteracao_lista) ).filter(excluido=False).all()
-        s1020_alteracao_procjudterceiro_lista = s1020alteracaoprocJudTerceiro.objects.using(db_slug).filter(s1020_alteracao_infoprocjudterceiros_id__in = listar_ids(s1020_alteracao_infoprocjudterceiros_lista) ).filter(excluido=False).all()
+        s1020_alteracao_procjudterceiro_lista = s1020alteracaoprocJudTerceiro.objects.using(db_slug).filter(s1020_alteracao_id__in = listar_ids(s1020_alteracao_lista) ).filter(excluido=False).all()
         s1020_alteracao_infoemprparcial_lista = s1020alteracaoinfoEmprParcial.objects.using(db_slug).filter(s1020_alteracao_id__in = listar_ids(s1020_alteracao_lista) ).filter(excluido=False).all()
         s1020_alteracao_novavalidade_lista = s1020alteracaonovaValidade.objects.using(db_slug).filter(s1020_alteracao_id__in = listar_ids(s1020_alteracao_lista) ).filter(excluido=False).all()
         s1020_exclusao_lista = s1020exclusao.objects.using(db_slug).filter(s1020_evttablotacao_id__in = listar_ids(s1020_evttablotacao_lista) ).filter(excluido=False).all()
@@ -235,11 +229,9 @@ def gerar_xml_s1020(s1020_evttablotacao_id, db_slug, versao=None):
 
 
             's1020_inclusao_lista': s1020_inclusao_lista,
-            's1020_inclusao_infoprocjudterceiros_lista': s1020_inclusao_infoprocjudterceiros_lista,
             's1020_inclusao_procjudterceiro_lista': s1020_inclusao_procjudterceiro_lista,
             's1020_inclusao_infoemprparcial_lista': s1020_inclusao_infoemprparcial_lista,
             's1020_alteracao_lista': s1020_alteracao_lista,
-            's1020_alteracao_infoprocjudterceiros_lista': s1020_alteracao_infoprocjudterceiros_lista,
             's1020_alteracao_procjudterceiro_lista': s1020_alteracao_procjudterceiro_lista,
             's1020_alteracao_infoemprparcial_lista': s1020_alteracao_infoemprparcial_lista,
             's1020_alteracao_novavalidade_lista': s1020_alteracao_novavalidade_lista,

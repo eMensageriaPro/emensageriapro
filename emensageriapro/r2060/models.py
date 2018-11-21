@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -51,13 +82,13 @@ class r2060infoProc(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r2060_tipocod) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.codsusp) + ' - ' + unicode(self.vlrcprbsusp)
+        return unicode(self.r2060_tipocod) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.vlrcprbsusp)
     #r2060_infoproc_custom#
     #r2060_infoproc_custom#
     class Meta:
         db_table = r'r2060_infoproc'
         managed = True
-        ordering = ['r2060_tipocod', 'tpproc', 'nrproc', 'codsusp', 'vlrcprbsusp']
+        ordering = ['r2060_tipocod', 'tpproc', 'nrproc', 'vlrcprbsusp']
 
 
 
@@ -118,13 +149,13 @@ class r2060tipoCod(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r2060_evtcprb) + ' - ' + unicode(self.codativecon) + ' - ' + unicode(self.vlrrecbrutaativ) + ' - ' + unicode(self.vlrexcrecbruta) + ' - ' + unicode(self.vlradicrecbruta) + ' - ' + unicode(self.vlrbccprb) + ' - ' + unicode(self.vlrcprbapur)
+        return unicode(self.r2060_evtcprb) + ' - ' + unicode(self.codativecon) + ' - ' + unicode(self.vlrrecbrutaativ) + ' - ' + unicode(self.vlrexcrecbruta) + ' - ' + unicode(self.vlradicrecbruta) + ' - ' + unicode(self.vlrbccprb)
     #r2060_tipocod_custom#
     #r2060_tipocod_custom#
     class Meta:
         db_table = r'r2060_tipocod'
         managed = True
-        ordering = ['r2060_evtcprb', 'codativecon', 'vlrrecbrutaativ', 'vlrexcrecbruta', 'vlradicrecbruta', 'vlrbccprb', 'vlrcprbapur']
+        ordering = ['r2060_evtcprb', 'codativecon', 'vlrrecbrutaativ', 'vlrexcrecbruta', 'vlradicrecbruta', 'vlrbccprb']
 
 
 

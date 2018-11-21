@@ -111,6 +111,7 @@ def verificar(request, hash):
         s1250_ideprodutor_lista = s1250ideProdutor.objects.using(db_slug).filter(s1250_tpaquis_id__in = listar_ids(s1250_tpaquis_lista) ).filter(excluido=False).all()
         s1250_nfs_lista = s1250nfs.objects.using(db_slug).filter(s1250_ideprodutor_id__in = listar_ids(s1250_ideprodutor_lista) ).filter(excluido=False).all()
         s1250_infoprocjud_lista = s1250infoProcJud.objects.using(db_slug).filter(s1250_ideprodutor_id__in = listar_ids(s1250_ideprodutor_lista) ).filter(excluido=False).all()
+        s1250_infoprocj_lista = s1250infoProcJ.objects.using(db_slug).filter(s1250_tpaquis_id__in = listar_ids(s1250_tpaquis_lista) ).filter(excluido=False).all()
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1250_evtaqprod'
         context = {
@@ -133,6 +134,7 @@ def verificar(request, hash):
             's1250_ideprodutor_lista': s1250_ideprodutor_lista,
             's1250_nfs_lista': s1250_nfs_lista,
             's1250_infoprocjud_lista': s1250_infoprocjud_lista,
+            's1250_infoprocj_lista': s1250_infoprocj_lista,
         }
         if for_print == 2:
 
@@ -207,6 +209,7 @@ def gerar_xml_s1250(s1250_evtaqprod_id, db_slug, versao=None):
         s1250_ideprodutor_lista = s1250ideProdutor.objects.using(db_slug).filter(s1250_tpaquis_id__in = listar_ids(s1250_tpaquis_lista) ).filter(excluido=False).all()
         s1250_nfs_lista = s1250nfs.objects.using(db_slug).filter(s1250_ideprodutor_id__in = listar_ids(s1250_ideprodutor_lista) ).filter(excluido=False).all()
         s1250_infoprocjud_lista = s1250infoProcJud.objects.using(db_slug).filter(s1250_ideprodutor_id__in = listar_ids(s1250_ideprodutor_lista) ).filter(excluido=False).all()
+        s1250_infoprocj_lista = s1250infoProcJ.objects.using(db_slug).filter(s1250_tpaquis_id__in = listar_ids(s1250_tpaquis_lista) ).filter(excluido=False).all()
    
         context = {
             'versao': versao,
@@ -220,6 +223,7 @@ def gerar_xml_s1250(s1250_evtaqprod_id, db_slug, versao=None):
             's1250_ideprodutor_lista': s1250_ideprodutor_lista,
             's1250_nfs_lista': s1250_nfs_lista,
             's1250_infoprocjud_lista': s1250_infoprocjud_lista,
+            's1250_infoprocj_lista': s1250_infoprocj_lista,
 
         }
    

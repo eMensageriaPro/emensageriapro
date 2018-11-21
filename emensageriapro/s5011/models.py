@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -174,13 +205,13 @@ class s5011basesComerc(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s5011_ideestab) + ' - ' + unicode(self.indcomerc) + ' - ' + unicode(self.vrbccompr) + ' - ' + unicode(self.vrcpsusp) + ' - ' + unicode(self.vrratsusp) + ' - ' + unicode(self.vrsenarsusp)
+        return unicode(self.s5011_ideestab) + ' - ' + unicode(self.indcomerc) + ' - ' + unicode(self.vrbccompr)
     #s5011_basescomerc_custom#
     #s5011_basescomerc_custom#
     class Meta:
         db_table = r's5011_basescomerc'
         managed = True
-        ordering = ['s5011_ideestab', 'indcomerc', 'vrbccompr', 'vrcpsusp', 'vrratsusp', 'vrsenarsusp']
+        ordering = ['s5011_ideestab', 'indcomerc', 'vrbccompr']
 
 
 
@@ -312,13 +343,13 @@ class s5011ideLotacao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s5011_ideestab) + ' - ' + unicode(self.codlotacao) + ' - ' + unicode(self.fpas) + ' - ' + unicode(self.codtercs) + ' - ' + unicode(self.codtercssusp)
+        return unicode(self.s5011_ideestab) + ' - ' + unicode(self.codlotacao) + ' - ' + unicode(self.fpas) + ' - ' + unicode(self.codtercs)
     #s5011_idelotacao_custom#
     #s5011_idelotacao_custom#
     class Meta:
         db_table = r's5011_idelotacao'
         managed = True
-        ordering = ['s5011_ideestab', 'codlotacao', 'fpas', 'codtercs', 'codtercssusp']
+        ordering = ['s5011_ideestab', 'codlotacao', 'fpas', 'codtercs']
 
 
 
@@ -394,7 +425,7 @@ class s5011infoCRContrib(models.Model):
     def evento(self): return self.s5011_evtcs.evento()
     tpcr = models.IntegerField()
     vrcr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrcrsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+    vrcrsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -403,13 +434,13 @@ class s5011infoCRContrib(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s5011_evtcs) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrcr) + ' - ' + unicode(self.vrcrsusp)
+        return unicode(self.s5011_evtcs) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrcr)
     #s5011_infocrcontrib_custom#
     #s5011_infocrcontrib_custom#
     class Meta:
         db_table = r's5011_infocrcontrib'
         managed = True
-        ordering = ['s5011_evtcs', 'tpcr', 'vrcr', 'vrcrsusp']
+        ordering = ['s5011_evtcs', 'tpcr', 'vrcr']
 
 
 
@@ -425,7 +456,7 @@ class s5011infoCREstab(models.Model):
     def evento(self): return self.s5011_ideestab.evento()
     tpcr = models.IntegerField()
     vrcr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrsuspcr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+    vrsuspcr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -434,13 +465,13 @@ class s5011infoCREstab(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s5011_ideestab) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrcr) + ' - ' + unicode(self.vrsuspcr)
+        return unicode(self.s5011_ideestab) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrcr)
     #s5011_infocrestab_custom#
     #s5011_infocrestab_custom#
     class Meta:
         db_table = r's5011_infocrestab'
         managed = True
-        ordering = ['s5011_ideestab', 'tpcr', 'vrcr', 'vrsuspcr']
+        ordering = ['s5011_ideestab', 'tpcr', 'vrcr']
 
 
 
@@ -559,13 +590,13 @@ class s5011infoPJ(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s5011_evtcs) + ' - ' + unicode(self.indcoop) + ' - ' + unicode(self.indconstr) + ' - ' + unicode(self.indsubstpatr) + ' - ' + unicode(self.percredcontrib)
+        return unicode(self.s5011_evtcs) + ' - ' + unicode(self.indconstr)
     #s5011_infopj_custom#
     #s5011_infopj_custom#
     class Meta:
         db_table = r's5011_infopj'
         managed = True
-        ordering = ['s5011_evtcs', 'indcoop', 'indconstr', 'indsubstpatr', 'percredcontrib']
+        ordering = ['s5011_evtcs', 'indconstr']
 
 
 

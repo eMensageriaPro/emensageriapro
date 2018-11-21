@@ -118,13 +118,13 @@
               
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtBenPrRP</td>
-            <td bgcolor="lightgray" colspan="3">Evento remuneração de trabalhadores vinculados a Regime Próprio dePrevidência Social</td>
+            <td bgcolor="lightgray" colspan="3">Evento remuneração de trabalhadores vinculados a Regime Próprio de Previdência Social.</td>
         </tr>
     {% for s1207_evtbenprrp in s1207_evtbenprrp_lista %}
     {% ifequal 1 1 %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do evento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do evento.</td>
         </tr>
 
         <tr {% if s1207_evtbenprrp.indretif|validacoes_esocial_efdreinf:"s1207_evtbenprrp.indretif" %}bgcolor="lightcoral"{% endif %}>
@@ -148,7 +148,7 @@
 
         <tr {% if s1207_evtbenprrp.nrrecibo|validacoes_esocial_efdreinf:"s1207_evtbenprrp.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrRecibo</td>
-            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2].Deve ser um recibo de entrega válido, correspondente ao arquivo que estásendo retificado.</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
             <td width="200px"><b>{% if s1207_evtbenprrp.nrrecibo or s1207_evtbenprrp.nrrecibo == 0 %}{{ s1207_evtbenprrp.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -167,7 +167,7 @@
 
         <tr {% if s1207_evtbenprrp.indapuracao|validacoes_esocial_efdreinf:"s1207_evtbenprrp.indapuracao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indApuracao</td>
-            <td width="500px">Indicativo de período de apuração:1 - Mensal;2 - Anual (13° salário). Valores Válidos: 1, 2</td>
+            <td width="500px">Indicativo de período de apuração: 1 - Mensal; 2 - Anual (13° salário). Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1207_evtbenprrp.indapuracao or s1207_evtbenprrp.indapuracao == 0 %}{{ s1207_evtbenprrp.indapuracao|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -186,7 +186,7 @@
 
         <tr {% if s1207_evtbenprrp.perapur|validacoes_esocial_efdreinf:"s1207_evtbenprrp.perapur" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">perApur</td>
-            <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência das informações, se{indApuracao} for igual a [1], ou apenas o ano (formato AAAA), se{indApuracao} for igual a [2]Validação: Deve ser um mês/ano ou ano válido, igual ou posterior a implementação do eSocial.</td>
+            <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência das informações, se {indApuracao} for igual a [1], ou apenas o ano (formato AAAA), se {indApuracao} for igual a [2]. Validação: Deve ser um mês/ano ou ano válido, igual ou posterior a implementação do eSocial.</td>
             <td width="200px"><b>{% if s1207_evtbenprrp.perapur or s1207_evtbenprrp.perapur == 0 %}{{ s1207_evtbenprrp.perapur }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -205,7 +205,7 @@
 
         <tr {% if s1207_evtbenprrp.tpamb|validacoes_esocial_efdreinf:"s1207_evtbenprrp.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente: 1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1207_evtbenprrp.tpamb or s1207_evtbenprrp.tpamb == 0 %}{{ s1207_evtbenprrp.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -224,7 +224,7 @@
 
         <tr {% if s1207_evtbenprrp.procemi|validacoes_esocial_efdreinf:"s1207_evtbenprrp.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1207_evtbenprrp.procemi or s1207_evtbenprrp.procemi == 0 %}{{ s1207_evtbenprrp.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -262,12 +262,12 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
         </tr>
 
         <tr {% if s1207_evtbenprrp.tpinsc|validacoes_esocial_efdreinf:"s1207_evtbenprrp.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) Valores Válidos: 1</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. Validação: Deve ser igual a [1] (CNPJ). Valores Válidos: 1.</td>
             <td width="200px"><b>{% if s1207_evtbenprrp.tpinsc or s1207_evtbenprrp.tpinsc == 0 %}{{ s1207_evtbenprrp.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -286,7 +286,7 @@
 
         <tr {% if s1207_evtbenprrp.nrinsc|validacoes_esocial_efdreinf:"s1207_evtbenprrp.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o CNPJ apenas com a Raiz/Base de oito posições, exceto se natureza jurídica do declarante for de administração pública direta federal ([101-5], [104-0], [107-4] e [116-3]), situação em que o campo deve ser preenchidocom o CNPJ completo com 14 posições. Validação: Deve ser um número de CNPJ válido.</td>
+            <td width="500px">Informar o CNPJ apenas com a Raiz/Base de oito posições, exceto se natureza jurídica do declarante for de administração pública direta federal ([101-5], [104-0], [107-4] e [116-3]), situação em que o campo deve ser preenchido com o CNPJ completo com 14 posições. Validação: Deve ser um número de CNPJ válido.</td>
             <td width="200px"><b>{% if s1207_evtbenprrp.nrinsc or s1207_evtbenprrp.nrinsc == 0 %}{{ s1207_evtbenprrp.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -392,13 +392,13 @@
     {% endifequal %}{% endfor %} 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dmDev</td>
-            <td bgcolor="lightgray" colspan="3">Identificação de cada um dos demonstrativos de valores devidos ao beneficiário antes das retenções de pensão alimentícia e IRRF. (As retenções de pensão alimentícia e IRRF devem ser realizadas no ato do pagamento e, portanto, são informadas no evento S-1210).O somatório de cada uma das rubricas cujo {codIncCP} = [31, 32, 34, 35] não pode ser negativo.O somatório dos Vencimentos deve ser maior ou igual ao somatório dosDescontos.</td>
+            <td bgcolor="lightgray" colspan="3">Identificação de cada um dos demonstrativos de valores devidos ao beneficiário antes das retenções de pensão alimentícia e IRRF. (As retenções de pensão alimentícia e IRRF devem ser realizadas no ato do pagamento e, portanto, são informadas no evento S-1210). O somatório de cada uma das rubricas cujo {codIncCP} = [31, 32, 34, 35] não pode ser negativo. O somatório dos Vencimentos deve ser maior ou igual ao somatório dos Descontos.</td>
         </tr>
     {% for s1207_dmdev in s1207_dmdev_lista %}
     {% ifequal s1207_dmdev.s1207_evtbenprrp.id s1207_evtbenprrp.id %}
         <tr {% if s1207_dmdev.tpbenef|validacoes_esocial_efdreinf:"s1207_dmdev.tpbenef" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpBenef</td>
-            <td width="500px">Tipo de benefício previdenciário, conforme tabela 25Validação: Deve ser um código existente na tabela 25</td>
+            <td width="500px">Tipo de benefício previdenciário, conforme tabela 25. Validação: Deve ser um código existente na tabela 25.</td>
             <td width="200px"><b>{% if s1207_dmdev.tpbenef or s1207_dmdev.tpbenef == 0 %}{{ s1207_dmdev.tpbenef|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -417,7 +417,7 @@
 
         <tr {% if s1207_dmdev.nrbenefic|validacoes_esocial_efdreinf:"s1207_dmdev.nrbenefic" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrBenefic</td>
-            <td width="500px">Número do benefício previdenciárioValidação: Deve estar previamente cadastrado através do evento S-2400 e estar ativo no período definido em {perApur}.</td>
+            <td width="500px">Número do benefício previdenciário. Validação: Deve estar previamente cadastrado através do evento S-2400 e estar ativo no período definido em {perApur}.</td>
             <td width="200px"><b>{% if s1207_dmdev.nrbenefic or s1207_dmdev.nrbenefic == 0 %}{{ s1207_dmdev.nrbenefic }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -455,7 +455,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">itens</td>
-            <td bgcolor="lightgray" colspan="3">Detalhamento dos valores devidos ao beneficiário</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento dos valores devidos ao beneficiário.</td>
         </tr>
     {% for s1207_itens in s1207_itens_lista %}
     {% ifequal s1207_itens.s1207_dmdev.id s1207_dmdev.id %}
@@ -480,7 +480,7 @@
 
         <tr {% if s1207_itens.idetabrubr|validacoes_esocial_efdreinf:"s1207_itens.idetabrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">ideTabRubr</td>
-            <td width="500px">Preencher com o identificador da tabela de rubricas, conforme informado emS-1010 para a rubrica definida em {codRubr}.Validação: Deve existir na tabela S-1010 (em conjunto com {codRubr})vigente no período indicado em {perApur}.</td>
+            <td width="500px">Preencher com o identificador da tabela de rubricas, conforme informado em S-1010 para a rubrica definida em {codRubr}. Validação: Deve existir na tabela S-1010 (em conjunto com {codRubr}) vigente no período indicado em {perApur}.</td>
             <td width="200px"><b>{% if s1207_itens.idetabrubr or s1207_itens.idetabrubr == 0 %}{{ s1207_itens.idetabrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -499,7 +499,7 @@
 
         <tr {% if s1207_itens.vrrubr|validacoes_esocial_efdreinf:"s1207_itens.vrrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrRubr</td>
-            <td width="500px">Valor total da rubricaValidação: Deve ser maior que zero.</td>
+            <td width="500px">Valor total da rubrica. Validação: Deve ser maior que zero.</td>
             <td width="200px"><b>{% if s1207_itens.vrrubr or s1207_itens.vrrubr == 0 %}{{ s1207_itens.vrrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -520,14 +520,13 @@
             <td bgcolor="lightgray" colspan="1" width="130px">infoPerApur</td>
             <td bgcolor="lightgray" colspan="3">Informações relativas ao período de apuração</td>
         </tr>
-    {% for s1207_infoperapur in s1207_infoperapur_lista %}
-    {% ifequal s1207_infoperapur.s1207_dmdev.id s1207_dmdev.id %}
+
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEstab</td>
             <td bgcolor="lightgray" colspan="3">Registro que identifica a Unidade do Órgão Público na qual o beneficiário possui provento ou pensão</td>
         </tr>
     {% for s1207_infoperapur_ideestab in s1207_infoperapur_ideestab_lista %}
-    {% ifequal s1207_infoperapur_ideestab.s1207_infoperapur.id s1207_infoperapur.id %}
+    {% ifequal s1207_infoperapur_ideestab.s1207_dmdev.id s1207_dmdev.id %}
         <tr {% if s1207_infoperapur_ideestab.tpinsc|validacoes_esocial_efdreinf:"s1207_infoperapur_ideestab.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. Valores Válidos: 1.</td>
@@ -570,14 +569,13 @@
             <td bgcolor="lightgray" colspan="1" width="130px">remunPerApur</td>
             <td bgcolor="lightgray" colspan="3">Informações relativas a provento ou pensão do beneficiário no período de apuração</td>
         </tr>
-    {% for s1207_infoperapur_remunperapur in s1207_infoperapur_remunperapur_lista %}
-    {% ifequal s1207_infoperapur_remunperapur.s1207_infoperapur_ideestab.id s1207_infoperapur_ideestab.id %}
+
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">itensRemun</td>
             <td bgcolor="lightgray" colspan="3">Registro que relaciona as rubricas que compõem o provento ou pensão do beneficiário</td>
         </tr>
     {% for s1207_infoperapur_itensremun in s1207_infoperapur_itensremun_lista %}
-    {% ifequal s1207_infoperapur_itensremun.s1207_infoperapur_remunperapur.id s1207_infoperapur_remunperapur.id %}
+    {% ifequal s1207_infoperapur_itensremun.s1207_infoperapur_ideestab.id s1207_infoperapur_ideestab.id %}
         <tr {% if s1207_infoperapur_itensremun.codrubr|validacoes_esocial_efdreinf:"s1207_infoperapur_itensremun.codrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codRubr</td>
             <td width="500px">Informar o código atribuído pelo empregador e que identifica a rubrica em sua folha de pagamento. Validação: O código informado deve existir na tabela S-1010 - Tabela de Rubricas, com o campo {codIncCPRP} preenchido, vigente no período indicado em: a) {perApur} se vinculado a {remunPerApur}; b) {perRef} se vinculado a {remunPerAnt}. Não pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83].</td>
@@ -691,19 +689,18 @@
             </td>
             {% endif %}
         </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+    {% endifequal %}{% endfor %}     {% endifequal %}{% endfor %} 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoPerAnt</td>
             <td bgcolor="lightgray" colspan="3">Registro destinado às informações relativas a períodos anteriores. Somente preencher esse grupo se houver proventos ou pensões retroativos, por um dos motivos abaixo elencados.</td>
         </tr>
-    {% for s1207_infoperant in s1207_infoperant_lista %}
-    {% ifequal s1207_infoperant.s1207_dmdev.id s1207_dmdev.id %}
+
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideADC</td>
             <td bgcolor="lightgray" colspan="3">Identificação da lei ou situação ensejadora de provento ou pensão relativo a Períodos de Apuração Anteriores</td>
         </tr>
     {% for s1207_infoperant_ideadc in s1207_infoperant_ideadc_lista %}
-    {% ifequal s1207_infoperant_ideadc.s1207_infoperant.id s1207_infoperant.id %}
+    {% ifequal s1207_infoperant_ideadc.s1207_dmdev.id s1207_dmdev.id %}
         <tr {% if s1207_infoperant_ideadc.dtacconv|validacoes_esocial_efdreinf:"s1207_infoperant_ideadc.dtacconv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtAcConv</td>
             <td width="500px">Data da lei ou da decisão judicial. Validação: Deve ser uma data igual ou anterior ao período de apuração, informado em {perApur}. Preenchimento obrigatório se {tpAcConv} = [B, H].</td>
@@ -872,14 +869,13 @@
             <td bgcolor="lightgray" colspan="1" width="130px">remunPerAnt</td>
             <td bgcolor="lightgray" colspan="3">Informações relativas a provento ou pensão do beneficiário, na unidade do órgão público e período identificados nos registros superiores</td>
         </tr>
-    {% for s1207_infoperant_remunperant in s1207_infoperant_remunperant_lista %}
-    {% ifequal s1207_infoperant_remunperant.s1207_infoperant_ideestab.id s1207_infoperant_ideestab.id %}
+
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">itensRemun</td>
             <td bgcolor="lightgray" colspan="3">Registro que relaciona as rubricas que compõem o provento ou pensão do beneficiário</td>
         </tr>
     {% for s1207_infoperant_itensremun in s1207_infoperant_itensremun_lista %}
-    {% ifequal s1207_infoperant_itensremun.s1207_infoperant_remunperant.id s1207_infoperant_remunperant.id %}
+    {% ifequal s1207_infoperant_itensremun.s1207_infoperant_ideestab.id s1207_infoperant_ideestab.id %}
         <tr {% if s1207_infoperant_itensremun.codrubr|validacoes_esocial_efdreinf:"s1207_infoperant_itensremun.codrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codRubr</td>
             <td width="500px">Informar o código atribuído pelo empregador e que identifica a rubrica em sua folha de pagamento. Validação: O código informado deve existir na tabela S-1010 - Tabela de Rubricas, com o campo {codIncCPRP} preenchido, vigente no período indicado em: a) {perApur} se vinculado a {remunPerApur}; b) {perRef} se vinculado a {remunPerAnt}. Não pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83].</td>
@@ -993,7 +989,7 @@
             </td>
             {% endif %}
         </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}{% endifequal %}{% endfor %}
+    {% endifequal %}{% endfor %}     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}     {% endifequal %}{% endfor %}{% endifequal %}{% endfor %}
 </table>
 {% if not for_print %}
             </div>

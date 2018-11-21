@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -73,8 +104,6 @@ CHOICES_R2070_PGTOPJ_TPINSCADVOGADO = (
 
 CHOICES_R2070_TPINSC = (
     (1, u'1 - CNPJ'),
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
     (2, u'2 - CPF'),
 )
 
@@ -106,13 +135,13 @@ class r2070compJud(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r2070_pgtopf) + ' - ' + unicode(self.vlrcompanocalend) + ' - ' + unicode(self.vlrcompanoant)
+        return unicode(self.r2070_pgtopf)
     #r2070_compjud_custom#
     #r2070_compjud_custom#
     class Meta:
         db_table = r'r2070_compjud'
         managed = True
-        ordering = ['r2070_pgtopf', 'vlrcompanocalend', 'vlrcompanoant']
+        ordering = ['r2070_pgtopf']
 
 
 
@@ -135,13 +164,13 @@ class r2070depJudicial(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r2070_pgtopf) + ' - ' + unicode(self.vlrdepjudicial)
+        return unicode(self.r2070_pgtopf)
     #r2070_depjudicial_custom#
     #r2070_depjudicial_custom#
     class Meta:
         db_table = r'r2070_depjudicial'
         managed = True
-        ordering = ['r2070_pgtopf', 'vlrdepjudicial']
+        ordering = ['r2070_pgtopf']
 
 
 
@@ -286,13 +315,13 @@ class r2070infoProcJud(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r2070_pgtopf) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.codsusp) + ' - ' + unicode(self.indorigemrecursos)
+        return unicode(self.r2070_pgtopf) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.indorigemrecursos)
     #r2070_infoprocjud_custom#
     #r2070_infoprocjud_custom#
     class Meta:
         db_table = r'r2070_infoprocjud'
         managed = True
-        ordering = ['r2070_pgtopf', 'nrprocjud', 'codsusp', 'indorigemrecursos']
+        ordering = ['r2070_pgtopf', 'nrprocjud', 'indorigemrecursos']
 
 
 
@@ -409,13 +438,13 @@ class r2070infoRRA(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r2070_pgtopf) + ' - ' + unicode(self.tpprocrra) + ' - ' + unicode(self.nrprocrra) + ' - ' + unicode(self.codsusp) + ' - ' + unicode(self.natrra) + ' - ' + unicode(self.qtdmesesrra)
+        return unicode(self.r2070_pgtopf)
     #r2070_inforra_custom#
     #r2070_inforra_custom#
     class Meta:
         db_table = r'r2070_inforra'
         managed = True
-        ordering = ['r2070_pgtopf', 'tpprocrra', 'nrprocrra', 'codsusp', 'natrra', 'qtdmesesrra']
+        ordering = ['r2070_pgtopf']
 
 
 
@@ -508,13 +537,13 @@ class r2070infoResidExt(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r2070_evtpgtosdivs) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.complem) + ' - ' + unicode(self.bairro) + ' - ' + unicode(self.cidade) + ' - ' + unicode(self.codpostal) + ' - ' + unicode(self.indnif) + ' - ' + unicode(self.nifbenef) + ' - ' + unicode(self.relfontepagad)
+        return unicode(self.r2070_evtpgtosdivs) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.indnif)
     #r2070_inforesidext_custom#
     #r2070_inforesidext_custom#
     class Meta:
         db_table = r'r2070_inforesidext'
         managed = True
-        ordering = ['r2070_evtpgtosdivs', 'paisresid', 'dsclograd', 'nrlograd', 'complem', 'bairro', 'cidade', 'codpostal', 'indnif', 'nifbenef', 'relfontepagad']
+        ordering = ['r2070_evtpgtosdivs', 'paisresid', 'dsclograd', 'indnif']
 
 
 
@@ -525,9 +554,9 @@ class r2070infoResidExtSerializer(ModelSerializer):
             
 
 class r2070pgtoPF(models.Model):
-    r2070_pgtoresidbr = models.ForeignKey('r2070pgtoResidBR',
-        related_name='%(class)s_r2070_pgtoresidbr')
-    def evento(self): return self.r2070_pgtoresidbr.evento()
+    r2070_ideestab = models.ForeignKey('r2070ideEstab',
+        related_name='%(class)s_r2070_ideestab')
+    def evento(self): return self.r2070_ideestab.evento()
     dtpgto = models.DateField()
     indsuspexig = models.CharField(choices=CHOICES_R2070_INDSUSPEXIG, max_length=1)
     inddecterceiro = models.CharField(choices=CHOICES_R2070_INDDECTERCEIRO, max_length=1)
@@ -541,13 +570,13 @@ class r2070pgtoPF(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r2070_pgtoresidbr) + ' - ' + unicode(self.dtpgto) + ' - ' + unicode(self.indsuspexig) + ' - ' + unicode(self.inddecterceiro) + ' - ' + unicode(self.vlrrendtributavel) + ' - ' + unicode(self.vlrirrf)
+        return unicode(self.r2070_ideestab) + ' - ' + unicode(self.dtpgto) + ' - ' + unicode(self.indsuspexig) + ' - ' + unicode(self.inddecterceiro) + ' - ' + unicode(self.vlrrendtributavel) + ' - ' + unicode(self.vlrirrf)
     #r2070_pgtopf_custom#
     #r2070_pgtopf_custom#
     class Meta:
         db_table = r'r2070_pgtopf'
         managed = True
-        ordering = ['r2070_pgtoresidbr', 'dtpgto', 'indsuspexig', 'inddecterceiro', 'vlrrendtributavel', 'vlrirrf']
+        ordering = ['r2070_ideestab', 'dtpgto', 'indsuspexig', 'inddecterceiro', 'vlrrendtributavel', 'vlrirrf']
 
 
 
@@ -558,9 +587,9 @@ class r2070pgtoPFSerializer(ModelSerializer):
             
 
 class r2070pgtoPJ(models.Model):
-    r2070_pgtoresidbr = models.ForeignKey('r2070pgtoResidBR',
-        related_name='%(class)s_r2070_pgtoresidbr')
-    def evento(self): return self.r2070_pgtoresidbr.evento()
+    r2070_ideestab = models.ForeignKey('r2070ideEstab',
+        related_name='%(class)s_r2070_ideestab')
+    def evento(self): return self.r2070_ideestab.evento()
     dtpagto = models.DateField()
     vlrrendtributavel = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrret = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -572,13 +601,13 @@ class r2070pgtoPJ(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r2070_pgtoresidbr) + ' - ' + unicode(self.dtpagto) + ' - ' + unicode(self.vlrrendtributavel) + ' - ' + unicode(self.vlrret)
+        return unicode(self.r2070_ideestab) + ' - ' + unicode(self.dtpagto) + ' - ' + unicode(self.vlrrendtributavel) + ' - ' + unicode(self.vlrret)
     #r2070_pgtopj_custom#
     #r2070_pgtopj_custom#
     class Meta:
         db_table = r'r2070_pgtopj'
         managed = True
-        ordering = ['r2070_pgtoresidbr', 'dtpagto', 'vlrrendtributavel', 'vlrret']
+        ordering = ['r2070_ideestab', 'dtpagto', 'vlrrendtributavel', 'vlrret']
 
 
 
@@ -664,13 +693,13 @@ class r2070pgtoPJinfoProcJud(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r2070_pgtopj) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.codsusp) + ' - ' + unicode(self.indorigemrecursos)
+        return unicode(self.r2070_pgtopj) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.indorigemrecursos)
     #r2070_pgtopj_infoprocjud_custom#
     #r2070_pgtopj_infoprocjud_custom#
     class Meta:
         db_table = r'r2070_pgtopj_infoprocjud'
         managed = True
-        ordering = ['r2070_pgtopj', 'nrprocjud', 'codsusp', 'indorigemrecursos']
+        ordering = ['r2070_pgtopj', 'nrprocjud', 'indorigemrecursos']
 
 
 
@@ -706,34 +735,6 @@ class r2070pgtoPJorigemRecursos(models.Model):
 class r2070pgtoPJorigemRecursosSerializer(ModelSerializer):
     class Meta:
         model = r2070pgtoPJorigemRecursos
-        fields = '__all__'
-            
-
-class r2070pgtoResidBR(models.Model):
-    r2070_ideestab = models.OneToOneField('r2070ideEstab',
-        related_name='%(class)s_r2070_ideestab')
-    def evento(self): return self.r2070_ideestab.evento()
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.r2070_ideestab)
-    #r2070_pgtoresidbr_custom#
-    #r2070_pgtoresidbr_custom#
-    class Meta:
-        db_table = r'r2070_pgtoresidbr'
-        managed = True
-        ordering = ['r2070_ideestab']
-
-
-
-class r2070pgtoResidBRSerializer(ModelSerializer):
-    class Meta:
-        model = r2070pgtoResidBR
         fields = '__all__'
             
 
@@ -785,13 +786,13 @@ class r2070rendIsento(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r2070_pgtopf) + ' - ' + unicode(self.tpisencao) + ' - ' + unicode(self.vlrisento) + ' - ' + unicode(self.descrendimento)
+        return unicode(self.r2070_pgtopf) + ' - ' + unicode(self.tpisencao) + ' - ' + unicode(self.vlrisento)
     #r2070_rendisento_custom#
     #r2070_rendisento_custom#
     class Meta:
         db_table = r'r2070_rendisento'
         managed = True
-        ordering = ['r2070_pgtopf', 'tpisencao', 'vlrisento', 'descrendimento']
+        ordering = ['r2070_pgtopf', 'tpisencao', 'vlrisento']
 
 
 

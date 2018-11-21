@@ -84,8 +84,10 @@ urlpatterns = [
     url(r'^s3000/', include('emensageriapro.s3000.urls')),
     url(r'^s5001/', include('emensageriapro.s5001.urls')),
     url(r'^s5002/', include('emensageriapro.s5002.urls')),
+    url(r'^s5003/', include('emensageriapro.s5003.urls')),
     url(r'^s5011/', include('emensageriapro.s5011.urls')),
     url(r'^s5012/', include('emensageriapro.s5012.urls')),
+    url(r'^s5013/', include('emensageriapro.s5013.urls')),
     url(r'^tabelas/', include('emensageriapro.tabelas.urls')),
     url(r'^esocial/', include('emensageriapro.esocial.urls')),
 

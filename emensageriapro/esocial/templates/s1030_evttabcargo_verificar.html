@@ -118,18 +118,18 @@
               
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtTabCargo</td>
-            <td bgcolor="lightgray" colspan="3">Evento utilizado para inclusão, alteração e exclusão de registros na tabela de cargos.Regras de validação: REGRA_EXISTE_INFO_EMPREGADORREGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTEREGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_DT_FUTURA</td>
+            <td bgcolor="lightgray" colspan="3">Evento utilizado para inclusão, alteração e exclusão de registros na tabela de cargos. Regras de validação: REGRA_EXISTE_INFO_EMPREGADOR REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_DT_FUTURA</td>
         </tr>
     {% for s1030_evttabcargo in s1030_evttabcargo_lista %}
     {% ifequal 1 1 %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
         </tr>
 
         <tr {% if s1030_evttabcargo.tpamb|validacoes_esocial_efdreinf:"s1030_evttabcargo.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1030_evttabcargo.tpamb or s1030_evttabcargo.tpamb == 0 %}{{ s1030_evttabcargo.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -148,7 +148,7 @@
 
         <tr {% if s1030_evttabcargo.procemi|validacoes_esocial_efdreinf:"s1030_evttabcargo.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1030_evttabcargo.procemi or s1030_evttabcargo.procemi == 0 %}{{ s1030_evttabcargo.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -186,12 +186,12 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
         </tr>
 
         <tr {% if s1030_evttabcargo.tpinsc|validacoes_esocial_efdreinf:"s1030_evttabcargo.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
             <td width="200px"><b>{% if s1030_evttabcargo.tpinsc or s1030_evttabcargo.tpinsc == 0 %}{{ s1030_evttabcargo.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -210,7 +210,7 @@
 
         <tr {% if s1030_evttabcargo.nrinsc|validacoes_esocial_efdreinf:"s1030_evttabcargo.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s1030_evttabcargo.nrinsc or s1030_evttabcargo.nrinsc == 0 %}{{ s1030_evttabcargo.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -234,18 +234,18 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">inclusao</td>
-            <td bgcolor="lightgray" colspan="3">Inclusão de novas informações</td>
+            <td bgcolor="lightgray" colspan="3">Inclusão de novas informações.</td>
         </tr>
     {% for s1030_inclusao in s1030_inclusao_lista %}
     {% ifequal s1030_inclusao.s1030_evttabcargo.id s1030_evttabcargo.id %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideCargo</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do cargo e validade das informações que estão sendo incluídas</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do cargo e validade das informações que estão sendo incluídas.</td>
         </tr>
 
         <tr {% if s1030_inclusao.codcargo|validacoes_esocial_efdreinf:"s1030_inclusao.codcargo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codCargo</td>
-            <td width="500px">Preencher com o código do cargo.Validação: O código atribuído não pode conter a expressão "eSocial" nas 7 (sete) primeiras posições.</td>
+            <td width="500px">Preencher com o código do cargo. Validação: O código atribuído não pode conter a expressão 'eSocial' nas 7 (sete) primeiras posições.</td>
             <td width="200px"><b>{% if s1030_inclusao.codcargo or s1030_inclusao.codcargo == 0 %}{{ s1030_inclusao.codcargo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -264,7 +264,7 @@
 
         <tr {% if s1030_inclusao.inivalid|validacoes_esocial_efdreinf:"s1030_inclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial deimplantação do eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1030_inclusao.inivalid or s1030_inclusao.inivalid == 0 %}{{ s1030_inclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -283,7 +283,7 @@
 
         <tr {% if s1030_inclusao.fimvalid|validacoes_esocial_efdreinf:"s1030_inclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser um períodoigual ou posterior a {iniValid}</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1030_inclusao.fimvalid or s1030_inclusao.fimvalid == 0 %}{{ s1030_inclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -302,12 +302,12 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dadosCargo</td>
-            <td bgcolor="lightgray" colspan="3">Detalhamento das informações do cargo que está sendo incluído</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento das informações do cargo que está sendo incluído.</td>
         </tr>
 
         <tr {% if s1030_inclusao.nmcargo|validacoes_esocial_efdreinf:"s1030_inclusao.nmcargo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nmCargo</td>
-            <td width="500px">Preencher com o nome do cargo</td>
+            <td width="500px">Preencher com o nome do cargo.</td>
             <td width="200px"><b>{% if s1030_inclusao.nmcargo or s1030_inclusao.nmcargo == 0 %}{{ s1030_inclusao.nmcargo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -326,7 +326,7 @@
 
         <tr {% if s1030_inclusao.codcbo|validacoes_esocial_efdreinf:"s1030_inclusao.codcbo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codCBO</td>
-            <td width="500px">Classificação Brasileira de Ocupação - CBO.Validação: Deve ser um código existente na tabela de CBO, com 6 (seis)posições.</td>
+            <td width="500px">Classificação Brasileira de Ocupação - CBO. Validação: Deve ser um código existente na tabela de CBO, com 6 (seis) posições.</td>
             <td width="200px"><b>{% if s1030_inclusao.codcbo or s1030_inclusao.codcbo == 0 %}{{ s1030_inclusao.codcbo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -345,13 +345,13 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">cargoPublico</td>
-            <td bgcolor="lightgray" colspan="3">Detalhamento de informações exclusivas para Cargos e Empregos Públicos</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento de informações exclusivas para Cargos e Empregos Públicos.</td>
         </tr>
     {% for s1030_inclusao_cargopublico in s1030_inclusao_cargopublico_lista %}
     {% ifequal s1030_inclusao_cargopublico.s1030_inclusao.id s1030_inclusao.id %}
         <tr {% if s1030_inclusao_cargopublico.acumcargo|validacoes_esocial_efdreinf:"s1030_inclusao_cargopublico.acumcargo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">acumCargo</td>
-            <td width="500px">Preencher com o código correspondente à possibilidade de acumulação de cargos:1 - Não acumulável;2 - Profissional de Saúde;3 - Professor;4 - Técnico/Científico. Valores Válidos: 1, 2, 3, 4.</td>
+            <td width="500px">Preencher com o código correspondente à possibilidade de acumulação de cargos: 1 - Não acumulável; 2 - Profissional de Saúde; 3 - Professor; 4 - Técnico/Científico. Valores Válidos: 1, 2, 3, 4.</td>
             <td width="200px"><b>{% if s1030_inclusao_cargopublico.acumcargo or s1030_inclusao_cargopublico.acumcargo == 0 %}{{ s1030_inclusao_cargopublico.acumcargo|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -370,7 +370,7 @@
 
         <tr {% if s1030_inclusao_cargopublico.contagemesp|validacoes_esocial_efdreinf:"s1030_inclusao_cargopublico.contagemesp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">contagemEsp</td>
-            <td width="500px">Preencher com o código correspondente a possibilidade de contagem de tempo especial: 1 - Não;2 - Professor (Infantil, Fundamental e Médio);3 - Professor de Ensino Superior, Magistrado, Membro de Ministério Público, Membro do Tribunal de Contas (com ingresso anterior a 16/12/1998 EC nr.20/98);4 - Atividade de risco. Valores Válidos: 1, 2, 3, 4.</td>
+            <td width="500px">Preencher com o código correspondente a possibilidade de contagem de tempo especial: 1 - Não; 2 - Professor (Infantil, Fundamental e Médio); 3 - Professor de Ensino Superior, Magistrado, Membro de Ministério Público, Membro do Tribunal de Contas (com ingresso anterior a 16/12/1998 EC nr. 20/98); 4 - Atividade de risco. Valores Válidos: 1, 2, 3, 4.</td>
             <td width="200px"><b>{% if s1030_inclusao_cargopublico.contagemesp or s1030_inclusao_cargopublico.contagemesp == 0 %}{{ s1030_inclusao_cargopublico.contagemesp|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -389,7 +389,7 @@
 
         <tr {% if s1030_inclusao_cargopublico.dedicexcl|validacoes_esocial_efdreinf:"s1030_inclusao_cargopublico.dedicexcl" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dedicExcl</td>
-            <td width="500px">Indicar se é cargo de dedicação exclusiva: S - Sim;N - Não.Valores Válidos: S, N</td>
+            <td width="500px">Indicar se é cargo de dedicação exclusiva: S - Sim; N - Não. Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s1030_inclusao_cargopublico.dedicexcl or s1030_inclusao_cargopublico.dedicexcl == 0 %}{{ s1030_inclusao_cargopublico.dedicexcl }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -427,12 +427,12 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">leiCargo</td>
-            <td bgcolor="lightgray" colspan="3">Lei que criou/extinguiu/reestruturou o cargo</td>
+            <td bgcolor="lightgray" colspan="3">Lei que criou/extinguiu/reestruturou o cargo.</td>
         </tr>
 
         <tr {% if s1030_inclusao_cargopublico.nrlei|validacoes_esocial_efdreinf:"s1030_inclusao_cargopublico.nrlei" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrLei</td>
-            <td width="500px">Número da Lei</td>
+            <td width="500px">Número da Lei.</td>
             <td width="200px"><b>{% if s1030_inclusao_cargopublico.nrlei or s1030_inclusao_cargopublico.nrlei == 0 %}{{ s1030_inclusao_cargopublico.nrlei }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -451,7 +451,7 @@
 
         <tr {% if s1030_inclusao_cargopublico.dtlei|validacoes_esocial_efdreinf:"s1030_inclusao_cargopublico.dtlei" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtLei</td>
-            <td width="500px">Data da Lei</td>
+            <td width="500px">Data da Lei.</td>
             <td width="200px"><b>{% if s1030_inclusao_cargopublico.dtlei or s1030_inclusao_cargopublico.dtlei == 0 %}{{ s1030_inclusao_cargopublico.dtlei|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -470,7 +470,7 @@
 
         <tr {% if s1030_inclusao_cargopublico.sitcargo|validacoes_esocial_efdreinf:"s1030_inclusao_cargopublico.sitcargo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">sitCargo</td>
-            <td width="500px">Situação gerada pela Lei. Preencher com uma das opções:1 - Criação;2 - Extinção;3 - Reestruturação. Valores Válidos: 1, 2, 3</td>
+            <td width="500px">Situação gerada pela Lei. Preencher com uma das opções: 1 - Criação; 2 - Extinção; 3 - Reestruturação. Valores Válidos: 1, 2, 3.</td>
             <td width="200px"><b>{% if s1030_inclusao_cargopublico.sitcargo or s1030_inclusao_cargopublico.sitcargo == 0 %}{{ s1030_inclusao_cargopublico.sitcargo|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -489,7 +489,7 @@
      {% endifequal %}{% endfor %}     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">alteracao</td>
-            <td bgcolor="lightgray" colspan="3">Alteração de informações já existentes</td>
+            <td bgcolor="lightgray" colspan="3">Alteração de informações já existentes.</td>
         </tr>
     {% for s1030_alteracao in s1030_alteracao_lista %}
     {% ifequal s1030_alteracao.s1030_evttabcargo.id s1030_evttabcargo.id %}
@@ -500,7 +500,7 @@
 
         <tr {% if s1030_alteracao.codcargo|validacoes_esocial_efdreinf:"s1030_alteracao.codcargo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codCargo</td>
-            <td width="500px">Preencher com o código do cargo.Validação: O código atribuído não pode conter a expressão "eSocial" nas 7 (sete) primeiras posições.</td>
+            <td width="500px">Preencher com o código do cargo. Validação: O código atribuído não pode conter a expressão 'eSocial' nas 7 (sete) primeiras posições.</td>
             <td width="200px"><b>{% if s1030_alteracao.codcargo or s1030_alteracao.codcargo == 0 %}{{ s1030_alteracao.codcargo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -519,7 +519,7 @@
 
         <tr {% if s1030_alteracao.inivalid|validacoes_esocial_efdreinf:"s1030_alteracao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial deimplantação do eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1030_alteracao.inivalid or s1030_alteracao.inivalid == 0 %}{{ s1030_alteracao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -538,7 +538,7 @@
 
         <tr {% if s1030_alteracao.fimvalid|validacoes_esocial_efdreinf:"s1030_alteracao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1030_alteracao.fimvalid or s1030_alteracao.fimvalid == 0 %}{{ s1030_alteracao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -557,12 +557,12 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dadosCargo</td>
-            <td bgcolor="lightgray" colspan="3">Informações do cargo</td>
+            <td bgcolor="lightgray" colspan="3">Informações do cargo.</td>
         </tr>
 
         <tr {% if s1030_alteracao.nmcargo|validacoes_esocial_efdreinf:"s1030_alteracao.nmcargo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nmCargo</td>
-            <td width="500px">Preencher com o nome do cargo</td>
+            <td width="500px">Preencher com o nome do cargo.</td>
             <td width="200px"><b>{% if s1030_alteracao.nmcargo or s1030_alteracao.nmcargo == 0 %}{{ s1030_alteracao.nmcargo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -581,7 +581,7 @@
 
         <tr {% if s1030_alteracao.codcbo|validacoes_esocial_efdreinf:"s1030_alteracao.codcbo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codCBO</td>
-            <td width="500px">Classificação Brasileira de Ocupação - CBO.Validação: Deve ser um código existente na tabela de CBO, com 6 (seis)posições.</td>
+            <td width="500px">Classificação Brasileira de Ocupação - CBO. Validação: Deve ser um código existente na tabela de CBO, com 6 (seis) posições.</td>
             <td width="200px"><b>{% if s1030_alteracao.codcbo or s1030_alteracao.codcbo == 0 %}{{ s1030_alteracao.codcbo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -600,13 +600,13 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">cargoPublico</td>
-            <td bgcolor="lightgray" colspan="3">Detalhamento de informações exclusivas para Cargos e Empregos Públicos</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento de informações exclusivas para Cargos e Empregos Públicos.</td>
         </tr>
     {% for s1030_alteracao_cargopublico in s1030_alteracao_cargopublico_lista %}
     {% ifequal s1030_alteracao_cargopublico.s1030_alteracao.id s1030_alteracao.id %}
         <tr {% if s1030_alteracao_cargopublico.acumcargo|validacoes_esocial_efdreinf:"s1030_alteracao_cargopublico.acumcargo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">acumCargo</td>
-            <td width="500px">Preencher com o código correspondente à possibilidade de acumulação de cargos:1 - Não acumulável;2 - Profissional de Saúde;3 - Professor;4 - Técnico/Científico. Valores Válidos: 1, 2, 3, 4.</td>
+            <td width="500px">Preencher com o código correspondente à possibilidade de acumulação de cargos: 1 - Não acumulável; 2 - Profissional de Saúde; 3 - Professor; 4 - Técnico/Científico. Valores Válidos: 1, 2, 3, 4.</td>
             <td width="200px"><b>{% if s1030_alteracao_cargopublico.acumcargo or s1030_alteracao_cargopublico.acumcargo == 0 %}{{ s1030_alteracao_cargopublico.acumcargo|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -625,7 +625,7 @@
 
         <tr {% if s1030_alteracao_cargopublico.contagemesp|validacoes_esocial_efdreinf:"s1030_alteracao_cargopublico.contagemesp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">contagemEsp</td>
-            <td width="500px">Preencher com o código correspondente a possibilidade de contagem de tempo especial:1 - Não;2 - Professor (Infantil, Fundamental e Médio);3 - Professor de Ensino Superior, Magistrado, Membro de Ministério Público, Membro do Tribunal de Contas (com ingresso anterior a 16/12/1998 EC nr.20/98);4 - Atividade de risco. Valores Válidos: 1, 2, 3, 4.</td>
+            <td width="500px">Preencher com o código correspondente a possibilidade de contagem de tempo especial: 1 - Não; 2 - Professor (Infantil, Fundamental e Médio); 3 - Professor de Ensino Superior, Magistrado, Membro de Ministério Público, Membro do Tribunal de Contas (com ingresso anterior a 16/12/1998 EC nr. 20/98); 4 - Atividade de risco. Valores Válidos: 1, 2, 3, 4.</td>
             <td width="200px"><b>{% if s1030_alteracao_cargopublico.contagemesp or s1030_alteracao_cargopublico.contagemesp == 0 %}{{ s1030_alteracao_cargopublico.contagemesp|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -644,7 +644,7 @@
 
         <tr {% if s1030_alteracao_cargopublico.dedicexcl|validacoes_esocial_efdreinf:"s1030_alteracao_cargopublico.dedicexcl" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dedicExcl</td>
-            <td width="500px">Indicar se é cargo de dedicação exclusiva: S - Sim;N - Não.Valores Válidos: S, N</td>
+            <td width="500px">Indicar se é cargo de dedicação exclusiva: S - Sim; N - Não. Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s1030_alteracao_cargopublico.dedicexcl or s1030_alteracao_cargopublico.dedicexcl == 0 %}{{ s1030_alteracao_cargopublico.dedicexcl }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -682,12 +682,12 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">leiCargo</td>
-            <td bgcolor="lightgray" colspan="3">Lei que criou/extinguiu/reestruturou o cargo</td>
+            <td bgcolor="lightgray" colspan="3">Lei que criou/extinguiu/reestruturou o cargo.</td>
         </tr>
 
         <tr {% if s1030_alteracao_cargopublico.nrlei|validacoes_esocial_efdreinf:"s1030_alteracao_cargopublico.nrlei" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrLei</td>
-            <td width="500px">Número da Lei</td>
+            <td width="500px">Número da Lei.</td>
             <td width="200px"><b>{% if s1030_alteracao_cargopublico.nrlei or s1030_alteracao_cargopublico.nrlei == 0 %}{{ s1030_alteracao_cargopublico.nrlei }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -706,7 +706,7 @@
 
         <tr {% if s1030_alteracao_cargopublico.dtlei|validacoes_esocial_efdreinf:"s1030_alteracao_cargopublico.dtlei" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtLei</td>
-            <td width="500px">Data da Lei</td>
+            <td width="500px">Data da Lei.</td>
             <td width="200px"><b>{% if s1030_alteracao_cargopublico.dtlei or s1030_alteracao_cargopublico.dtlei == 0 %}{{ s1030_alteracao_cargopublico.dtlei|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -725,7 +725,7 @@
 
         <tr {% if s1030_alteracao_cargopublico.sitcargo|validacoes_esocial_efdreinf:"s1030_alteracao_cargopublico.sitcargo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">sitCargo</td>
-            <td width="500px">Situação gerada pela Lei. Preencher com uma das opções:1 - Criação;2 - Extinção;3 - Reestruturação. Valores Válidos: 1, 2, 3</td>
+            <td width="500px">Situação gerada pela Lei. Preencher com uma das opções: 1 - Criação; 2 - Extinção; 3 - Reestruturação. Valores Válidos: 1, 2, 3.</td>
             <td width="200px"><b>{% if s1030_alteracao_cargopublico.sitcargo or s1030_alteracao_cargopublico.sitcargo == 0 %}{{ s1030_alteracao_cargopublico.sitcargo|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -750,7 +750,7 @@
     {% ifequal s1030_alteracao_novavalidade.s1030_alteracao.id s1030_alteracao.id %}
         <tr {% if s1030_alteracao_novavalidade.inivalid|validacoes_esocial_efdreinf:"s1030_alteracao_novavalidade.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial deimplantação do eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1030_alteracao_novavalidade.inivalid or s1030_alteracao_novavalidade.inivalid == 0 %}{{ s1030_alteracao_novavalidade.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -769,7 +769,7 @@
 
         <tr {% if s1030_alteracao_novavalidade.fimvalid|validacoes_esocial_efdreinf:"s1030_alteracao_novavalidade.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1030_alteracao_novavalidade.fimvalid or s1030_alteracao_novavalidade.fimvalid == 0 %}{{ s1030_alteracao_novavalidade.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -788,18 +788,18 @@
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">exclusao</td>
-            <td bgcolor="lightgray" colspan="3">Exclusão de informações</td>
+            <td bgcolor="lightgray" colspan="3">Exclusão de informações.</td>
         </tr>
     {% for s1030_exclusao in s1030_exclusao_lista %}
     {% ifequal s1030_exclusao.s1030_evttabcargo.id s1030_evttabcargo.id %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideCargo</td>
-            <td bgcolor="lightgray" colspan="3">Identificação do registro que será excluído</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do registro que será excluído.</td>
         </tr>
 
         <tr {% if s1030_exclusao.codcargo|validacoes_esocial_efdreinf:"s1030_exclusao.codcargo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codCargo</td>
-            <td width="500px">Preencher com o código do cargo.Validação: O código atribuído não pode conter a expressão "eSocial" nas 7 (sete) primeiras posições.</td>
+            <td width="500px">Preencher com o código do cargo. Validação: O código atribuído não pode conter a expressão 'eSocial' nas 7 (sete) primeiras posições.</td>
             <td width="200px"><b>{% if s1030_exclusao.codcargo or s1030_exclusao.codcargo == 0 %}{{ s1030_exclusao.codcargo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -818,7 +818,7 @@
 
         <tr {% if s1030_exclusao.inivalid|validacoes_esocial_efdreinf:"s1030_exclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1030_exclusao.inivalid or s1030_exclusao.inivalid == 0 %}{{ s1030_exclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -837,7 +837,7 @@
 
         <tr {% if s1030_exclusao.fimvalid|validacoes_esocial_efdreinf:"s1030_exclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1030_exclusao.fimvalid or s1030_exclusao.fimvalid == 0 %}{{ s1030_exclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">

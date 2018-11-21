@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -232,9 +263,9 @@ CHOICES_S2300_UNDSALFIXO = (
 )
 
 class s2300CNH(models.Model):
-    s2300_documentos = models.OneToOneField('s2300documentos',
-        related_name='%(class)s_s2300_documentos')
-    def evento(self): return self.s2300_documentos.evento()
+    s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
+        related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     nrregcnh = models.CharField(max_length=12)
     dtexped = models.DateField(blank=True, null=True)
     ufcnh = models.CharField(choices=ESTADOS, max_length=2)
@@ -249,13 +280,13 @@ class s2300CNH(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_documentos) + ' - ' + unicode(self.nrregcnh) + ' - ' + unicode(self.dtexped) + ' - ' + unicode(self.ufcnh) + ' - ' + unicode(self.dtvalid) + ' - ' + unicode(self.dtprihab) + ' - ' + unicode(self.categoriacnh)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.nrregcnh) + ' - ' + unicode(self.ufcnh) + ' - ' + unicode(self.dtvalid) + ' - ' + unicode(self.categoriacnh)
     #s2300_cnh_custom#
     #s2300_cnh_custom#
     class Meta:
         db_table = r's2300_cnh'
         managed = True
-        ordering = ['s2300_documentos', 'nrregcnh', 'dtexped', 'ufcnh', 'dtvalid', 'dtprihab', 'categoriacnh']
+        ordering = ['s2300_evttsvinicio', 'nrregcnh', 'ufcnh', 'dtvalid', 'categoriacnh']
 
 
 
@@ -266,9 +297,9 @@ class s2300CNHSerializer(ModelSerializer):
             
 
 class s2300CTPS(models.Model):
-    s2300_documentos = models.OneToOneField('s2300documentos',
-        related_name='%(class)s_s2300_documentos')
-    def evento(self): return self.s2300_documentos.evento()
+    s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
+        related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     nrctps = models.CharField(max_length=11)
     seriectps = models.CharField(max_length=5)
     ufctps = models.CharField(choices=ESTADOS, max_length=2)
@@ -280,13 +311,13 @@ class s2300CTPS(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_documentos) + ' - ' + unicode(self.nrctps) + ' - ' + unicode(self.seriectps) + ' - ' + unicode(self.ufctps)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.nrctps) + ' - ' + unicode(self.seriectps) + ' - ' + unicode(self.ufctps)
     #s2300_ctps_custom#
     #s2300_ctps_custom#
     class Meta:
         db_table = r's2300_ctps'
         managed = True
-        ordering = ['s2300_documentos', 'nrctps', 'seriectps', 'ufctps']
+        ordering = ['s2300_evttsvinicio', 'nrctps', 'seriectps', 'ufctps']
 
 
 
@@ -297,9 +328,9 @@ class s2300CTPSSerializer(ModelSerializer):
             
 
 class s2300OC(models.Model):
-    s2300_documentos = models.OneToOneField('s2300documentos',
-        related_name='%(class)s_s2300_documentos')
-    def evento(self): return self.s2300_documentos.evento()
+    s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
+        related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     nroc = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -312,13 +343,13 @@ class s2300OC(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_documentos) + ' - ' + unicode(self.nroc) + ' - ' + unicode(self.orgaoemissor) + ' - ' + unicode(self.dtexped) + ' - ' + unicode(self.dtvalid)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.nroc) + ' - ' + unicode(self.orgaoemissor)
     #s2300_oc_custom#
     #s2300_oc_custom#
     class Meta:
         db_table = r's2300_oc'
         managed = True
-        ordering = ['s2300_documentos', 'nroc', 'orgaoemissor', 'dtexped', 'dtvalid']
+        ordering = ['s2300_evttsvinicio', 'nroc', 'orgaoemissor']
 
 
 
@@ -329,9 +360,9 @@ class s2300OCSerializer(ModelSerializer):
             
 
 class s2300RG(models.Model):
-    s2300_documentos = models.OneToOneField('s2300documentos',
-        related_name='%(class)s_s2300_documentos')
-    def evento(self): return self.s2300_documentos.evento()
+    s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
+        related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     nrrg = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -343,13 +374,13 @@ class s2300RG(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_documentos) + ' - ' + unicode(self.nrrg) + ' - ' + unicode(self.orgaoemissor) + ' - ' + unicode(self.dtexped)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.nrrg) + ' - ' + unicode(self.orgaoemissor)
     #s2300_rg_custom#
     #s2300_rg_custom#
     class Meta:
         db_table = r's2300_rg'
         managed = True
-        ordering = ['s2300_documentos', 'nrrg', 'orgaoemissor', 'dtexped']
+        ordering = ['s2300_evttsvinicio', 'nrrg', 'orgaoemissor']
 
 
 
@@ -360,9 +391,9 @@ class s2300RGSerializer(ModelSerializer):
             
 
 class s2300RIC(models.Model):
-    s2300_documentos = models.OneToOneField('s2300documentos',
-        related_name='%(class)s_s2300_documentos')
-    def evento(self): return self.s2300_documentos.evento()
+    s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
+        related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     nrric = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -374,13 +405,13 @@ class s2300RIC(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_documentos) + ' - ' + unicode(self.nrric) + ' - ' + unicode(self.orgaoemissor) + ' - ' + unicode(self.dtexped)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.nrric) + ' - ' + unicode(self.orgaoemissor)
     #s2300_ric_custom#
     #s2300_ric_custom#
     class Meta:
         db_table = r's2300_ric'
         managed = True
-        ordering = ['s2300_documentos', 'nrric', 'orgaoemissor', 'dtexped']
+        ordering = ['s2300_evttsvinicio', 'nrric', 'orgaoemissor']
 
 
 
@@ -391,9 +422,9 @@ class s2300RICSerializer(ModelSerializer):
             
 
 class s2300RNE(models.Model):
-    s2300_documentos = models.OneToOneField('s2300documentos',
-        related_name='%(class)s_s2300_documentos')
-    def evento(self): return self.s2300_documentos.evento()
+    s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
+        related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     nrrne = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -405,13 +436,13 @@ class s2300RNE(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_documentos) + ' - ' + unicode(self.nrrne) + ' - ' + unicode(self.orgaoemissor) + ' - ' + unicode(self.dtexped)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.nrrne) + ' - ' + unicode(self.orgaoemissor)
     #s2300_rne_custom#
     #s2300_rne_custom#
     class Meta:
         db_table = r's2300_rne'
         managed = True
-        ordering = ['s2300_documentos', 'nrrne', 'orgaoemissor', 'dtexped']
+        ordering = ['s2300_evttsvinicio', 'nrrne', 'orgaoemissor']
 
 
 
@@ -471,13 +502,13 @@ class s2300ageIntegracao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_infoestagiario) + ' - ' + unicode(self.cnpjagntinteg) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.bairro) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
+        return unicode(self.s2300_infoestagiario) + ' - ' + unicode(self.cnpjagntinteg) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.uf)
     #s2300_ageintegracao_custom#
     #s2300_ageintegracao_custom#
     class Meta:
         db_table = r's2300_ageintegracao'
         managed = True
-        ordering = ['s2300_infoestagiario', 'cnpjagntinteg', 'nmrazao', 'dsclograd', 'nrlograd', 'bairro', 'cep', 'codmunic', 'uf']
+        ordering = ['s2300_infoestagiario', 'cnpjagntinteg', 'nmrazao', 'dsclograd', 'nrlograd', 'cep', 'uf']
 
 
 
@@ -507,13 +538,13 @@ class s2300brasil(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.complemento) + ' - ' + unicode(self.bairro) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
     #s2300_brasil_custom#
     #s2300_brasil_custom#
     class Meta:
         db_table = r's2300_brasil'
         managed = True
-        ordering = ['s2300_evttsvinicio', 'tplograd', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'cep', 'codmunic', 'uf']
+        ordering = ['s2300_evttsvinicio', 'tplograd', 'dsclograd', 'nrlograd', 'cep', 'codmunic', 'uf']
 
 
 
@@ -524,9 +555,9 @@ class s2300brasilSerializer(ModelSerializer):
             
 
 class s2300cargoFuncao(models.Model):
-    s2300_infocomplementares = models.OneToOneField('s2300infoComplementares',
-        related_name='%(class)s_s2300_infocomplementares')
-    def evento(self): return self.s2300_infocomplementares.evento()
+    s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
+        related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     codcargo = models.CharField(max_length=30)
     codfuncao = models.CharField(max_length=30, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -537,13 +568,13 @@ class s2300cargoFuncao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_infocomplementares) + ' - ' + unicode(self.codcargo) + ' - ' + unicode(self.codfuncao)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.codcargo)
     #s2300_cargofuncao_custom#
     #s2300_cargofuncao_custom#
     class Meta:
         db_table = r's2300_cargofuncao'
         managed = True
-        ordering = ['s2300_infocomplementares', 'codcargo', 'codfuncao']
+        ordering = ['s2300_evttsvinicio', 'codcargo']
 
 
 
@@ -569,13 +600,13 @@ class s2300contato(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.foneprinc) + ' - ' + unicode(self.fonealternat) + ' - ' + unicode(self.emailprinc) + ' - ' + unicode(self.emailalternat)
+        return unicode(self.s2300_evttsvinicio)
     #s2300_contato_custom#
     #s2300_contato_custom#
     class Meta:
         db_table = r's2300_contato'
         managed = True
-        ordering = ['s2300_evttsvinicio', 'foneprinc', 'fonealternat', 'emailprinc', 'emailalternat']
+        ordering = ['s2300_evttsvinicio']
 
 
 
@@ -606,47 +637,19 @@ class s2300dependente(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.cpfdep) + ' - ' + unicode(self.sexodep) + ' - ' + unicode(self.depirrf) + ' - ' + unicode(self.depsf) + ' - ' + unicode(self.inctrab) + ' - ' + unicode(self.depfinsprev)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.depirrf) + ' - ' + unicode(self.depsf) + ' - ' + unicode(self.inctrab)
     #s2300_dependente_custom#
     #s2300_dependente_custom#
     class Meta:
         db_table = r's2300_dependente'
         managed = True
-        ordering = ['s2300_evttsvinicio', 'tpdep', 'nmdep', 'dtnascto', 'cpfdep', 'sexodep', 'depirrf', 'depsf', 'inctrab', 'depfinsprev']
+        ordering = ['s2300_evttsvinicio', 'tpdep', 'nmdep', 'dtnascto', 'depirrf', 'depsf', 'inctrab']
 
 
 
 class s2300dependenteSerializer(ModelSerializer):
     class Meta:
         model = s2300dependente
-        fields = '__all__'
-            
-
-class s2300documentos(models.Model):
-    s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
-        related_name='%(class)s_s2300_evttsvinicio')
-    def evento(self): return self.s2300_evttsvinicio.evento()
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s2300_evttsvinicio)
-    #s2300_documentos_custom#
-    #s2300_documentos_custom#
-    class Meta:
-        db_table = r's2300_documentos'
-        managed = True
-        ordering = ['s2300_evttsvinicio']
-
-
-
-class s2300documentosSerializer(ModelSerializer):
-    class Meta:
-        model = s2300documentos
         fields = '__all__'
             
 
@@ -669,13 +672,13 @@ class s2300exterior(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.complemento) + ' - ' + unicode(self.bairro) + ' - ' + unicode(self.nmcid) + ' - ' + unicode(self.codpostal)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.nmcid)
     #s2300_exterior_custom#
     #s2300_exterior_custom#
     class Meta:
         db_table = r's2300_exterior'
         managed = True
-        ordering = ['s2300_evttsvinicio', 'paisresid', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'nmcid', 'codpostal']
+        ordering = ['s2300_evttsvinicio', 'paisresid', 'dsclograd', 'nrlograd', 'nmcid']
 
 
 
@@ -686,9 +689,9 @@ class s2300exteriorSerializer(ModelSerializer):
             
 
 class s2300fgts(models.Model):
-    s2300_infocomplementares = models.OneToOneField('s2300infoComplementares',
-        related_name='%(class)s_s2300_infocomplementares')
-    def evento(self): return self.s2300_infocomplementares.evento()
+    s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
+        related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     opcfgts = models.IntegerField(choices=CHOICES_S2300_OPCFGTS)
     dtopcfgts = models.DateField(blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
@@ -699,47 +702,19 @@ class s2300fgts(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_infocomplementares) + ' - ' + unicode(self.opcfgts) + ' - ' + unicode(self.dtopcfgts)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.opcfgts)
     #s2300_fgts_custom#
     #s2300_fgts_custom#
     class Meta:
         db_table = r's2300_fgts'
         managed = True
-        ordering = ['s2300_infocomplementares', 'opcfgts', 'dtopcfgts']
+        ordering = ['s2300_evttsvinicio', 'opcfgts']
 
 
 
 class s2300fgtsSerializer(ModelSerializer):
     class Meta:
         model = s2300fgts
-        fields = '__all__'
-            
-
-class s2300infoComplementares(models.Model):
-    s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
-        related_name='%(class)s_s2300_evttsvinicio')
-    def evento(self): return self.s2300_evttsvinicio.evento()
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s2300_evttsvinicio)
-    #s2300_infocomplementares_custom#
-    #s2300_infocomplementares_custom#
-    class Meta:
-        db_table = r's2300_infocomplementares'
-        managed = True
-        ordering = ['s2300_evttsvinicio']
-
-
-
-class s2300infoComplementaresSerializer(ModelSerializer):
-    class Meta:
-        model = s2300infoComplementares
         fields = '__all__'
             
 
@@ -762,13 +737,13 @@ class s2300infoDeficiencia(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.deffisica) + ' - ' + unicode(self.defvisual) + ' - ' + unicode(self.defauditiva) + ' - ' + unicode(self.defmental) + ' - ' + unicode(self.defintelectual) + ' - ' + unicode(self.reabreadap) + ' - ' + unicode(self.observacao)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.deffisica) + ' - ' + unicode(self.defvisual) + ' - ' + unicode(self.defauditiva) + ' - ' + unicode(self.defmental) + ' - ' + unicode(self.defintelectual) + ' - ' + unicode(self.reabreadap)
     #s2300_infodeficiencia_custom#
     #s2300_infodeficiencia_custom#
     class Meta:
         db_table = r's2300_infodeficiencia'
         managed = True
-        ordering = ['s2300_evttsvinicio', 'deffisica', 'defvisual', 'defauditiva', 'defmental', 'defintelectual', 'reabreadap', 'observacao']
+        ordering = ['s2300_evttsvinicio', 'deffisica', 'defvisual', 'defauditiva', 'defmental', 'defintelectual', 'reabreadap']
 
 
 
@@ -779,9 +754,9 @@ class s2300infoDeficienciaSerializer(ModelSerializer):
             
 
 class s2300infoDirigenteSindical(models.Model):
-    s2300_infocomplementares = models.OneToOneField('s2300infoComplementares',
-        related_name='%(class)s_s2300_infocomplementares')
-    def evento(self): return self.s2300_infocomplementares.evento()
+    s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
+        related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     categorig = models.IntegerField()
     cnpjorigem = models.CharField(max_length=14, blank=True, null=True)
     dtadmorig = models.DateField(blank=True, null=True)
@@ -794,13 +769,13 @@ class s2300infoDirigenteSindical(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_infocomplementares) + ' - ' + unicode(self.categorig) + ' - ' + unicode(self.cnpjorigem) + ' - ' + unicode(self.dtadmorig) + ' - ' + unicode(self.matricorig)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.categorig)
     #s2300_infodirigentesindical_custom#
     #s2300_infodirigentesindical_custom#
     class Meta:
         db_table = r's2300_infodirigentesindical'
         managed = True
-        ordering = ['s2300_infocomplementares', 'categorig', 'cnpjorigem', 'dtadmorig', 'matricorig']
+        ordering = ['s2300_evttsvinicio', 'categorig']
 
 
 
@@ -811,9 +786,9 @@ class s2300infoDirigenteSindicalSerializer(ModelSerializer):
             
 
 class s2300infoEstagiario(models.Model):
-    s2300_infocomplementares = models.OneToOneField('s2300infoComplementares',
-        related_name='%(class)s_s2300_infocomplementares')
-    def evento(self): return self.s2300_infocomplementares.evento()
+    s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
+        related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     natestagio = models.CharField(choices=CHOICES_S2300_NATESTAGIO, max_length=1)
     nivestagio = models.IntegerField(choices=CHOICES_S2300_NIVESTAGIO)
     areaatuacao = models.CharField(max_length=50, blank=True, null=True)
@@ -836,13 +811,13 @@ class s2300infoEstagiario(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_infocomplementares) + ' - ' + unicode(self.natestagio) + ' - ' + unicode(self.nivestagio) + ' - ' + unicode(self.areaatuacao) + ' - ' + unicode(self.nrapol) + ' - ' + unicode(self.vlrbolsa) + ' - ' + unicode(self.dtprevterm) + ' - ' + unicode(self.cnpjinstensino) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.bairro) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.natestagio) + ' - ' + unicode(self.nivestagio) + ' - ' + unicode(self.dtprevterm) + ' - ' + unicode(self.nmrazao)
     #s2300_infoestagiario_custom#
     #s2300_infoestagiario_custom#
     class Meta:
         db_table = r's2300_infoestagiario'
         managed = True
-        ordering = ['s2300_infocomplementares', 'natestagio', 'nivestagio', 'areaatuacao', 'nrapol', 'vlrbolsa', 'dtprevterm', 'cnpjinstensino', 'nmrazao', 'dsclograd', 'nrlograd', 'bairro', 'cep', 'codmunic', 'uf']
+        ordering = ['s2300_evttsvinicio', 'natestagio', 'nivestagio', 'dtprevterm', 'nmrazao']
 
 
 
@@ -853,9 +828,9 @@ class s2300infoEstagiarioSerializer(ModelSerializer):
             
 
 class s2300infoTrabCedido(models.Model):
-    s2300_infocomplementares = models.OneToOneField('s2300infoComplementares',
-        related_name='%(class)s_s2300_infocomplementares')
-    def evento(self): return self.s2300_infocomplementares.evento()
+    s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
+        related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     categorig = models.IntegerField()
     cnpjcednt = models.CharField(max_length=14)
     matricced = models.CharField(max_length=30)
@@ -872,13 +847,13 @@ class s2300infoTrabCedido(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_infocomplementares) + ' - ' + unicode(self.categorig) + ' - ' + unicode(self.cnpjcednt) + ' - ' + unicode(self.matricced) + ' - ' + unicode(self.dtadmced) + ' - ' + unicode(self.tpregtrab) + ' - ' + unicode(self.tpregprev) + ' - ' + unicode(self.infonus) + ' - ' + unicode(self.indremuncargo)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.categorig) + ' - ' + unicode(self.cnpjcednt) + ' - ' + unicode(self.matricced) + ' - ' + unicode(self.dtadmced) + ' - ' + unicode(self.tpregtrab) + ' - ' + unicode(self.tpregprev) + ' - ' + unicode(self.infonus)
     #s2300_infotrabcedido_custom#
     #s2300_infotrabcedido_custom#
     class Meta:
         db_table = r's2300_infotrabcedido'
         managed = True
-        ordering = ['s2300_infocomplementares', 'categorig', 'cnpjcednt', 'matricced', 'dtadmced', 'tpregtrab', 'tpregprev', 'infonus', 'indremuncargo']
+        ordering = ['s2300_evttsvinicio', 'categorig', 'cnpjcednt', 'matricced', 'dtadmced', 'tpregtrab', 'tpregprev', 'infonus']
 
 
 
@@ -888,10 +863,41 @@ class s2300infoTrabCedidoSerializer(ModelSerializer):
         fields = '__all__'
             
 
+class s2300mudancaCPF(models.Model):
+    s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
+        related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
+    cpfant = models.CharField(max_length=11)
+    dtaltcpf = models.DateField()
+    observacao = models.CharField(max_length=255, blank=True, null=True)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.cpfant) + ' - ' + unicode(self.dtaltcpf)
+    #s2300_mudancacpf_custom#
+    #s2300_mudancacpf_custom#
+    class Meta:
+        db_table = r's2300_mudancacpf'
+        managed = True
+        ordering = ['s2300_evttsvinicio', 'cpfant', 'dtaltcpf']
+
+
+
+class s2300mudancaCPFSerializer(ModelSerializer):
+    class Meta:
+        model = s2300mudancaCPF
+        fields = '__all__'
+            
+
 class s2300remuneracao(models.Model):
-    s2300_infocomplementares = models.OneToOneField('s2300infoComplementares',
-        related_name='%(class)s_s2300_infocomplementares')
-    def evento(self): return self.s2300_infocomplementares.evento()
+    s2300_evttsvinicio = models.OneToOneField('esocial.s2300evtTSVInicio',
+        related_name='%(class)s_s2300_evttsvinicio')
+    def evento(self): return self.s2300_evttsvinicio.evento()
     vrsalfx = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     undsalfixo = models.IntegerField(choices=CHOICES_S2300_UNDSALFIXO)
     dscsalvar = models.CharField(max_length=255, blank=True, null=True)
@@ -903,13 +909,13 @@ class s2300remuneracao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_infocomplementares) + ' - ' + unicode(self.vrsalfx) + ' - ' + unicode(self.undsalfixo) + ' - ' + unicode(self.dscsalvar)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.vrsalfx) + ' - ' + unicode(self.undsalfixo)
     #s2300_remuneracao_custom#
     #s2300_remuneracao_custom#
     class Meta:
         db_table = r's2300_remuneracao'
         managed = True
-        ordering = ['s2300_infocomplementares', 'vrsalfx', 'undsalfixo', 'dscsalvar']
+        ordering = ['s2300_evttsvinicio', 'vrsalfx', 'undsalfixo']
 
 
 
@@ -994,13 +1000,13 @@ class s2300trabEstrangeiro(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.dtchegada) + ' - ' + unicode(self.classtrabestrang) + ' - ' + unicode(self.casadobr) + ' - ' + unicode(self.filhosbr)
+        return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.classtrabestrang) + ' - ' + unicode(self.casadobr) + ' - ' + unicode(self.filhosbr)
     #s2300_trabestrangeiro_custom#
     #s2300_trabestrangeiro_custom#
     class Meta:
         db_table = r's2300_trabestrangeiro'
         managed = True
-        ordering = ['s2300_evttsvinicio', 'dtchegada', 'classtrabestrang', 'casadobr', 'filhosbr']
+        ordering = ['s2300_evttsvinicio', 'classtrabestrang', 'casadobr', 'filhosbr']
 
 
 

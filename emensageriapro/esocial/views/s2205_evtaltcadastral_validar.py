@@ -70,56 +70,52 @@ def validacoes_s2205_evtaltcadastral(arquivo):
     if 'paisNac' in dir(evtAltCadastral.alteracao.dadosTrabalhador.nascimento): validacoes_lista = validar_campo(validacoes_lista,'evtAltCadastral.alteracao.dadosTrabalhador.nascimento.paisNac', evtAltCadastral.alteracao.dadosTrabalhador.nascimento.paisNac.cdata, 1, '008;040;329;331;334;337;341;345;351;355;357;358;041;359;361;365;367;369;372;375;379;383;386;043;388;391;395;396;399;403;411;420;423;426;047;427;431;434;438;440;442;445;447;449;450;053;452;455;458;461;464;467;472;474;476;477;059;485;488;490;493;494;495;497;499;501;505;063;507;508;511;517;521;525;528;531;535;538;064;542;545;548;551;556;563;566;569;573;575;065;576;578;580;583;586;589;593;599;603;607;069;611;623;625;628;640;647;660;665;670;675;009;072;676;677;678;685;687;690;691;695;697;700;073;705;710;715;720;728;731;735;738;741;744;077;748;750;754;756;759;764;767;770;772;776;080;780;782;783;785;788;790;791;795;800;805;081;810;815;820;823;824;827;828;831;833;840;083;845;847;848;850;855;858;863;866;870;873;085;875;888;890;087;088;090;013;093;097;098;100;101;105;106;108;111;115;017;119;127;131;137;141;145;149;150;151;152;020;153;154;158;160;161;163;165;169;173;177;023;183;187;190;193;195;196;198;199;229;232;025;235;237;239;240;243;244;245;246;247;249;031;251;253;255;259;263;267;271;275;281;285;037;289;291;293;297;301;305;309;313;317;325')
     if 'nmMae' in dir(evtAltCadastral.alteracao.dadosTrabalhador.nascimento): validacoes_lista = validar_campo(validacoes_lista,'evtAltCadastral.alteracao.dadosTrabalhador.nascimento.nmMae', evtAltCadastral.alteracao.dadosTrabalhador.nascimento.nmMae.cdata, 0, '')
     if 'nmPai' in dir(evtAltCadastral.alteracao.dadosTrabalhador.nascimento): validacoes_lista = validar_campo(validacoes_lista,'evtAltCadastral.alteracao.dadosTrabalhador.nascimento.nmPai', evtAltCadastral.alteracao.dadosTrabalhador.nascimento.nmPai.cdata, 0, '')
-    if 'documentos' in dir(evtAltCadastral.alteracao.dadosTrabalhador):
-        for documentos in evtAltCadastral.alteracao.dadosTrabalhador.documentos:
+    if 'CTPS' in dir(evtAltCadastral.alteracao.dadosTrabalhador.documentos):
+        for CTPS in evtAltCadastral.alteracao.dadosTrabalhador.documentos.CTPS:
        
+            if 'nrCtps' in dir(CTPS): validacoes_lista = validar_campo(validacoes_lista,'CTPS.nrCtps', CTPS.nrCtps.cdata, 1, '')
+            if 'serieCtps' in dir(CTPS): validacoes_lista = validar_campo(validacoes_lista,'CTPS.serieCtps', CTPS.serieCtps.cdata, 1, '')
+            if 'ufCtps' in dir(CTPS): validacoes_lista = validar_campo(validacoes_lista,'CTPS.ufCtps', CTPS.ufCtps.cdata, 1, '')
 
-            if 'CTPS' in dir(documentos):
-                for CTPS in documentos.CTPS:
-               
-                    if 'nrCtps' in dir(CTPS): validacoes_lista = validar_campo(validacoes_lista,'CTPS.nrCtps', CTPS.nrCtps.cdata, 1, '')
-                    if 'serieCtps' in dir(CTPS): validacoes_lista = validar_campo(validacoes_lista,'CTPS.serieCtps', CTPS.serieCtps.cdata, 1, '')
-                    if 'ufCtps' in dir(CTPS): validacoes_lista = validar_campo(validacoes_lista,'CTPS.ufCtps', CTPS.ufCtps.cdata, 1, '')
-   
-            if 'RIC' in dir(documentos):
-                for RIC in documentos.RIC:
-               
-                    if 'nrRic' in dir(RIC): validacoes_lista = validar_campo(validacoes_lista,'RIC.nrRic', RIC.nrRic.cdata, 1, '')
-                    if 'orgaoEmissor' in dir(RIC): validacoes_lista = validar_campo(validacoes_lista,'RIC.orgaoEmissor', RIC.orgaoEmissor.cdata, 1, '')
-                    if 'dtExped' in dir(RIC): validacoes_lista = validar_campo(validacoes_lista,'RIC.dtExped', RIC.dtExped.cdata, 0, '')
-   
-            if 'RG' in dir(documentos):
-                for RG in documentos.RG:
-               
-                    if 'nrRg' in dir(RG): validacoes_lista = validar_campo(validacoes_lista,'RG.nrRg', RG.nrRg.cdata, 1, '')
-                    if 'orgaoEmissor' in dir(RG): validacoes_lista = validar_campo(validacoes_lista,'RG.orgaoEmissor', RG.orgaoEmissor.cdata, 1, '')
-                    if 'dtExped' in dir(RG): validacoes_lista = validar_campo(validacoes_lista,'RG.dtExped', RG.dtExped.cdata, 0, '')
-   
-            if 'RNE' in dir(documentos):
-                for RNE in documentos.RNE:
-               
-                    if 'nrRne' in dir(RNE): validacoes_lista = validar_campo(validacoes_lista,'RNE.nrRne', RNE.nrRne.cdata, 1, '')
-                    if 'orgaoEmissor' in dir(RNE): validacoes_lista = validar_campo(validacoes_lista,'RNE.orgaoEmissor', RNE.orgaoEmissor.cdata, 1, '')
-                    if 'dtExped' in dir(RNE): validacoes_lista = validar_campo(validacoes_lista,'RNE.dtExped', RNE.dtExped.cdata, 0, '')
-   
-            if 'OC' in dir(documentos):
-                for OC in documentos.OC:
-               
-                    if 'nrOc' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.nrOc', OC.nrOc.cdata, 1, '')
-                    if 'orgaoEmissor' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.orgaoEmissor', OC.orgaoEmissor.cdata, 1, '')
-                    if 'dtExped' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.dtExped', OC.dtExped.cdata, 0, '')
-                    if 'dtValid' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.dtValid', OC.dtValid.cdata, 0, '')
-   
-            if 'CNH' in dir(documentos):
-                for CNH in documentos.CNH:
-               
-                    if 'nrRegCnh' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.nrRegCnh', CNH.nrRegCnh.cdata, 1, '')
-                    if 'dtExped' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.dtExped', CNH.dtExped.cdata, 0, '')
-                    if 'ufCnh' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.ufCnh', CNH.ufCnh.cdata, 1, '')
-                    if 'dtValid' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.dtValid', CNH.dtValid.cdata, 1, '')
-                    if 'dtPriHab' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.dtPriHab', CNH.dtPriHab.cdata, 0, '')
-                    if 'categoriaCnh' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.categoriaCnh', CNH.categoriaCnh.cdata, 1, 'A;B;C;D;E;AB;AC;AD;AE')
-   
+    if 'RIC' in dir(evtAltCadastral.alteracao.dadosTrabalhador.documentos):
+        for RIC in evtAltCadastral.alteracao.dadosTrabalhador.documentos.RIC:
+       
+            if 'nrRic' in dir(RIC): validacoes_lista = validar_campo(validacoes_lista,'RIC.nrRic', RIC.nrRic.cdata, 1, '')
+            if 'orgaoEmissor' in dir(RIC): validacoes_lista = validar_campo(validacoes_lista,'RIC.orgaoEmissor', RIC.orgaoEmissor.cdata, 1, '')
+            if 'dtExped' in dir(RIC): validacoes_lista = validar_campo(validacoes_lista,'RIC.dtExped', RIC.dtExped.cdata, 0, '')
+
+    if 'RG' in dir(evtAltCadastral.alteracao.dadosTrabalhador.documentos):
+        for RG in evtAltCadastral.alteracao.dadosTrabalhador.documentos.RG:
+       
+            if 'nrRg' in dir(RG): validacoes_lista = validar_campo(validacoes_lista,'RG.nrRg', RG.nrRg.cdata, 1, '')
+            if 'orgaoEmissor' in dir(RG): validacoes_lista = validar_campo(validacoes_lista,'RG.orgaoEmissor', RG.orgaoEmissor.cdata, 1, '')
+            if 'dtExped' in dir(RG): validacoes_lista = validar_campo(validacoes_lista,'RG.dtExped', RG.dtExped.cdata, 0, '')
+
+    if 'RNE' in dir(evtAltCadastral.alteracao.dadosTrabalhador.documentos):
+        for RNE in evtAltCadastral.alteracao.dadosTrabalhador.documentos.RNE:
+       
+            if 'nrRne' in dir(RNE): validacoes_lista = validar_campo(validacoes_lista,'RNE.nrRne', RNE.nrRne.cdata, 1, '')
+            if 'orgaoEmissor' in dir(RNE): validacoes_lista = validar_campo(validacoes_lista,'RNE.orgaoEmissor', RNE.orgaoEmissor.cdata, 1, '')
+            if 'dtExped' in dir(RNE): validacoes_lista = validar_campo(validacoes_lista,'RNE.dtExped', RNE.dtExped.cdata, 0, '')
+
+    if 'OC' in dir(evtAltCadastral.alteracao.dadosTrabalhador.documentos):
+        for OC in evtAltCadastral.alteracao.dadosTrabalhador.documentos.OC:
+       
+            if 'nrOc' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.nrOc', OC.nrOc.cdata, 1, '')
+            if 'orgaoEmissor' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.orgaoEmissor', OC.orgaoEmissor.cdata, 1, '')
+            if 'dtExped' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.dtExped', OC.dtExped.cdata, 0, '')
+            if 'dtValid' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.dtValid', OC.dtValid.cdata, 0, '')
+
+    if 'CNH' in dir(evtAltCadastral.alteracao.dadosTrabalhador.documentos):
+        for CNH in evtAltCadastral.alteracao.dadosTrabalhador.documentos.CNH:
+       
+            if 'nrRegCnh' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.nrRegCnh', CNH.nrRegCnh.cdata, 1, '')
+            if 'dtExped' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.dtExped', CNH.dtExped.cdata, 0, '')
+            if 'ufCnh' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.ufCnh', CNH.ufCnh.cdata, 1, '')
+            if 'dtValid' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.dtValid', CNH.dtValid.cdata, 1, '')
+            if 'dtPriHab' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.dtPriHab', CNH.dtPriHab.cdata, 0, '')
+            if 'categoriaCnh' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.categoriaCnh', CNH.categoriaCnh.cdata, 1, 'A;B;C;D;E;AB;AC;AD;AE')
+
     if 'brasil' in dir(evtAltCadastral.alteracao.dadosTrabalhador.endereco):
         for brasil in evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil:
        

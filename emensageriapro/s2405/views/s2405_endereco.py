@@ -61,17 +61,17 @@ def apagar(request, hash):
                              's2405_endereco', s2405_endereco_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's2405_endereco_salvar':
             return redirect('s2405_endereco', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -114,7 +114,7 @@ def salvar(request, hash):
         if s2405_endereco_id:
             s2405_endereco_form = form_s2405_endereco(request.POST or None, instance = s2405_endereco, slug = db_slug)
         else:
-            s2405_endereco_form = form_s2405_endereco(request.POST or None, slug = db_slug, initial={})
+            s2405_endereco_form = form_s2405_endereco(request.POST or None, slug = db_slug, initial={'s2405_evtcdbenefalt': '1'})
         if request.method == 'POST':
             if s2405_endereco_form.is_valid():
                 dados = s2405_endereco_form.cleaned_data
@@ -166,18 +166,18 @@ def salvar(request, hash):
             s2405_endereco_form.fields[field].widget.attrs['ng-model'] = 's2405_endereco_'+field
         if int(dict_hash['print']):
             s2405_endereco_form = disabled_form_for_print(s2405_endereco_form)
-   
+
         s2405_brasil_form = None
         s2405_brasil_lista = None
         s2405_exterior_form = None
         s2405_exterior_lista = None
         if s2405_endereco_id:
             s2405_endereco = get_object_or_404(s2405endereco.objects.using( db_slug ), excluido = False, id = s2405_endereco_id)
-       
-            s2405_brasil_form = form_s2405_brasil(initial={ 's2405_endereco': s2405_endereco }, slug=db_slug)
+
+            s2405_brasil_form = form_s2405_brasil(initial={ 's2405_endereco': s2405_endereco , 's2405_endereco': '1'}, slug=db_slug)
             s2405_brasil_form.fields['s2405_endereco'].widget.attrs['readonly'] = True
             s2405_brasil_lista = s2405brasil.objects.using( db_slug ).filter(excluido = False, s2405_endereco_id=s2405_endereco.id).all()
-            s2405_exterior_form = form_s2405_exterior(initial={ 's2405_endereco': s2405_endereco }, slug=db_slug)
+            s2405_exterior_form = form_s2405_exterior(initial={ 's2405_endereco': s2405_endereco , 's2405_endereco': '1'}, slug=db_slug)
             s2405_exterior_form.fields['s2405_endereco'].widget.attrs['readonly'] = True
             s2405_exterior_lista = s2405exterior.objects.using( db_slug ).filter(excluido = False, s2405_endereco_id=s2405_endereco.id).all()
         else:
@@ -200,16 +200,16 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2405_endereco_id': int(s2405_endereco_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             's2405_brasil_form': s2405_brasil_form,
             's2405_brasil_lista': s2405_brasil_lista,
             's2405_exterior_form': s2405_exterior_form,
             's2405_exterior_lista': s2405_exterior_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -253,10 +253,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -322,11 +322,6 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
             'show_s2405_evtcdbenefalt': 1, }
         post = False
         if request.method == 'POST':
@@ -348,17 +343,17 @@ def listar(request, hash):
             filtrar = True
             s2405_endereco_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s2405_endereco_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2405_endereco'
         context = {
             's2405_endereco_lista': s2405_endereco_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -368,7 +363,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 's2405_endereco_listar.html', context)
@@ -411,10 +406,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

@@ -107,11 +107,10 @@ def verificar(request, hash):
         r3010_evtespdesportivo_lista = r3010evtEspDesportivo.objects.using( db_slug ).filter(id=r3010_evtespdesportivo_id, excluido = False).all()
    
 
-        r3010_ideestab_lista = r3010ideEstab.objects.using(db_slug).filter(r3010_evtespdesportivo_id__in = listar_ids(r3010_evtespdesportivo_lista) ).filter(excluido=False).all()
-        r3010_boletim_lista = r3010boletim.objects.using(db_slug).filter(r3010_ideestab_id__in = listar_ids(r3010_ideestab_lista) ).filter(excluido=False).all()
+        r3010_boletim_lista = r3010boletim.objects.using(db_slug).filter(r3010_evtespdesportivo_id__in = listar_ids(r3010_evtespdesportivo_lista) ).filter(excluido=False).all()
         r3010_receitaingressos_lista = r3010receitaIngressos.objects.using(db_slug).filter(r3010_boletim_id__in = listar_ids(r3010_boletim_lista) ).filter(excluido=False).all()
         r3010_outrasreceitas_lista = r3010outrasReceitas.objects.using(db_slug).filter(r3010_boletim_id__in = listar_ids(r3010_boletim_lista) ).filter(excluido=False).all()
-        r3010_infoproc_lista = r3010infoProc.objects.using(db_slug).filter(r3010_ideestab_id__in = listar_ids(r3010_ideestab_lista) ).filter(excluido=False).all()
+        r3010_infoproc_lista = r3010infoProc.objects.using(db_slug).filter(r3010_evtespdesportivo_id__in = listar_ids(r3010_evtespdesportivo_lista) ).filter(excluido=False).all()
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r3010_evtespdesportivo'
         context = {
@@ -130,7 +129,6 @@ def verificar(request, hash):
             'for_print': for_print,
             'hash': hash,
 
-            'r3010_ideestab_lista': r3010_ideestab_lista,
             'r3010_boletim_lista': r3010_boletim_lista,
             'r3010_receitaingressos_lista': r3010_receitaingressos_lista,
             'r3010_outrasreceitas_lista': r3010_outrasreceitas_lista,
@@ -205,11 +203,10 @@ def gerar_xml_r3010(r3010_evtespdesportivo_id, db_slug, versao=None):
         r3010_evtespdesportivo_lista = r3010evtEspDesportivo.objects.using( db_slug ).filter(id=r3010_evtespdesportivo_id, excluido = False).all()
    
 
-        r3010_ideestab_lista = r3010ideEstab.objects.using(db_slug).filter(r3010_evtespdesportivo_id__in = listar_ids(r3010_evtespdesportivo_lista) ).filter(excluido=False).all()
-        r3010_boletim_lista = r3010boletim.objects.using(db_slug).filter(r3010_ideestab_id__in = listar_ids(r3010_ideestab_lista) ).filter(excluido=False).all()
+        r3010_boletim_lista = r3010boletim.objects.using(db_slug).filter(r3010_evtespdesportivo_id__in = listar_ids(r3010_evtespdesportivo_lista) ).filter(excluido=False).all()
         r3010_receitaingressos_lista = r3010receitaIngressos.objects.using(db_slug).filter(r3010_boletim_id__in = listar_ids(r3010_boletim_lista) ).filter(excluido=False).all()
         r3010_outrasreceitas_lista = r3010outrasReceitas.objects.using(db_slug).filter(r3010_boletim_id__in = listar_ids(r3010_boletim_lista) ).filter(excluido=False).all()
-        r3010_infoproc_lista = r3010infoProc.objects.using(db_slug).filter(r3010_ideestab_id__in = listar_ids(r3010_ideestab_lista) ).filter(excluido=False).all()
+        r3010_infoproc_lista = r3010infoProc.objects.using(db_slug).filter(r3010_evtespdesportivo_id__in = listar_ids(r3010_evtespdesportivo_lista) ).filter(excluido=False).all()
    
         context = {
             'versao': versao,
@@ -219,7 +216,6 @@ def gerar_xml_r3010(r3010_evtespdesportivo_id, db_slug, versao=None):
             'r3010_evtespdesportivo': r3010_evtespdesportivo,
 
 
-            'r3010_ideestab_lista': r3010_ideestab_lista,
             'r3010_boletim_lista': r3010_boletim_lista,
             'r3010_receitaingressos_lista': r3010_receitaingressos_lista,
             'r3010_outrasreceitas_lista': r3010_outrasreceitas_lista,

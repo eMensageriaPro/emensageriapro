@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -20,13 +51,21 @@ import base64
 from emensageriapro.s2299.models import s2299observacoes
 from emensageriapro.s2299.models import s2299sucessaoVinc
 from emensageriapro.s2299.models import s2299transfTit
-from emensageriapro.s2299.models import s2299verbasResc
+from emensageriapro.s2299.models import s2299mudancaCPF
+from emensageriapro.s2299.models import s2299dmDev
+from emensageriapro.s2299.models import s2299infoTrabIntermprocJudTrab
+from emensageriapro.s2299.models import s2299infoTrabInterminfoMV
+from emensageriapro.s2299.models import s2299infoTrabIntermprocCS
 from emensageriapro.s2299.models import s2299infoTrabIntermquarentena
 from emensageriapro.s2299.models import s2299infoTrabIntermconsigFGTS
 from emensageriapro.s2299.forms import form_s2299_observacoes
 from emensageriapro.s2299.forms import form_s2299_sucessaovinc
 from emensageriapro.s2299.forms import form_s2299_transftit
-from emensageriapro.s2299.forms import form_s2299_verbasresc
+from emensageriapro.s2299.forms import form_s2299_mudancacpf
+from emensageriapro.s2299.forms import form_s2299_dmdev
+from emensageriapro.s2299.forms import form_s2299_infotrabinterm_procjudtrab
+from emensageriapro.s2299.forms import form_s2299_infotrabinterm_infomv
+from emensageriapro.s2299.forms import form_s2299_infotrabinterm_proccs
 from emensageriapro.s2299.forms import form_s2299_infotrabinterm_quarentena
 from emensageriapro.s2299.forms import form_s2299_infotrabinterm_consigfgts
 
@@ -144,7 +183,6 @@ def salvar(request, hash):
                         messages.error(request, 'Não é possível salvar o evento, pois o mesmo não está com o status "Cadastrado"!')
 
                 else:
-                    dados['arquivo_original'] = 0
 
                     dados['criado_por_id'] = usuario_id
                     dados['criado_em'] = datetime.datetime.now()
@@ -185,8 +223,16 @@ def salvar(request, hash):
         s2299_sucessaovinc_lista = None
         s2299_transftit_form = None
         s2299_transftit_lista = None
-        s2299_verbasresc_form = None
-        s2299_verbasresc_lista = None
+        s2299_mudancacpf_form = None
+        s2299_mudancacpf_lista = None
+        s2299_dmdev_form = None
+        s2299_dmdev_lista = None
+        s2299_infotrabinterm_procjudtrab_form = None
+        s2299_infotrabinterm_procjudtrab_lista = None
+        s2299_infotrabinterm_infomv_form = None
+        s2299_infotrabinterm_infomv_lista = None
+        s2299_infotrabinterm_proccs_form = None
+        s2299_infotrabinterm_proccs_lista = None
         s2299_infotrabinterm_quarentena_form = None
         s2299_infotrabinterm_quarentena_lista = None
         s2299_infotrabinterm_consigfgts_form = None
@@ -203,9 +249,21 @@ def salvar(request, hash):
             s2299_transftit_form = form_s2299_transftit(initial={ 's2299_evtdeslig': s2299_evtdeslig }, slug=db_slug)
             s2299_transftit_form.fields['s2299_evtdeslig'].widget.attrs['readonly'] = True
             s2299_transftit_lista = s2299transfTit.objects.using( db_slug ).filter(excluido = False, s2299_evtdeslig_id=s2299_evtdeslig.id).all()
-            s2299_verbasresc_form = form_s2299_verbasresc(initial={ 's2299_evtdeslig': s2299_evtdeslig }, slug=db_slug)
-            s2299_verbasresc_form.fields['s2299_evtdeslig'].widget.attrs['readonly'] = True
-            s2299_verbasresc_lista = s2299verbasResc.objects.using( db_slug ).filter(excluido = False, s2299_evtdeslig_id=s2299_evtdeslig.id).all()
+            s2299_mudancacpf_form = form_s2299_mudancacpf(initial={ 's2299_evtdeslig': s2299_evtdeslig }, slug=db_slug)
+            s2299_mudancacpf_form.fields['s2299_evtdeslig'].widget.attrs['readonly'] = True
+            s2299_mudancacpf_lista = s2299mudancaCPF.objects.using( db_slug ).filter(excluido = False, s2299_evtdeslig_id=s2299_evtdeslig.id).all()
+            s2299_dmdev_form = form_s2299_dmdev(initial={ 's2299_evtdeslig': s2299_evtdeslig }, slug=db_slug)
+            s2299_dmdev_form.fields['s2299_evtdeslig'].widget.attrs['readonly'] = True
+            s2299_dmdev_lista = s2299dmDev.objects.using( db_slug ).filter(excluido = False, s2299_evtdeslig_id=s2299_evtdeslig.id).all()
+            s2299_infotrabinterm_procjudtrab_form = form_s2299_infotrabinterm_procjudtrab(initial={ 's2299_evtdeslig': s2299_evtdeslig }, slug=db_slug)
+            s2299_infotrabinterm_procjudtrab_form.fields['s2299_evtdeslig'].widget.attrs['readonly'] = True
+            s2299_infotrabinterm_procjudtrab_lista = s2299infoTrabIntermprocJudTrab.objects.using( db_slug ).filter(excluido = False, s2299_evtdeslig_id=s2299_evtdeslig.id).all()
+            s2299_infotrabinterm_infomv_form = form_s2299_infotrabinterm_infomv(initial={ 's2299_evtdeslig': s2299_evtdeslig }, slug=db_slug)
+            s2299_infotrabinterm_infomv_form.fields['s2299_evtdeslig'].widget.attrs['readonly'] = True
+            s2299_infotrabinterm_infomv_lista = s2299infoTrabInterminfoMV.objects.using( db_slug ).filter(excluido = False, s2299_evtdeslig_id=s2299_evtdeslig.id).all()
+            s2299_infotrabinterm_proccs_form = form_s2299_infotrabinterm_proccs(initial={ 's2299_evtdeslig': s2299_evtdeslig }, slug=db_slug)
+            s2299_infotrabinterm_proccs_form.fields['s2299_evtdeslig'].widget.attrs['readonly'] = True
+            s2299_infotrabinterm_proccs_lista = s2299infoTrabIntermprocCS.objects.using( db_slug ).filter(excluido = False, s2299_evtdeslig_id=s2299_evtdeslig.id).all()
             s2299_infotrabinterm_quarentena_form = form_s2299_infotrabinterm_quarentena(initial={ 's2299_evtdeslig': s2299_evtdeslig }, slug=db_slug)
             s2299_infotrabinterm_quarentena_form.fields['s2299_evtdeslig'].widget.attrs['readonly'] = True
             s2299_infotrabinterm_quarentena_lista = s2299infoTrabIntermquarentena.objects.using( db_slug ).filter(excluido = False, s2299_evtdeslig_id=s2299_evtdeslig.id).all()
@@ -252,8 +310,16 @@ def salvar(request, hash):
             's2299_sucessaovinc_lista': s2299_sucessaovinc_lista,
             's2299_transftit_form': s2299_transftit_form,
             's2299_transftit_lista': s2299_transftit_lista,
-            's2299_verbasresc_form': s2299_verbasresc_form,
-            's2299_verbasresc_lista': s2299_verbasresc_lista,
+            's2299_mudancacpf_form': s2299_mudancacpf_form,
+            's2299_mudancacpf_lista': s2299_mudancacpf_lista,
+            's2299_dmdev_form': s2299_dmdev_form,
+            's2299_dmdev_lista': s2299_dmdev_lista,
+            's2299_infotrabinterm_procjudtrab_form': s2299_infotrabinterm_procjudtrab_form,
+            's2299_infotrabinterm_procjudtrab_lista': s2299_infotrabinterm_procjudtrab_lista,
+            's2299_infotrabinterm_infomv_form': s2299_infotrabinterm_infomv_form,
+            's2299_infotrabinterm_infomv_lista': s2299_infotrabinterm_infomv_lista,
+            's2299_infotrabinterm_proccs_form': s2299_infotrabinterm_proccs_form,
+            's2299_infotrabinterm_proccs_lista': s2299_infotrabinterm_proccs_lista,
             's2299_infotrabinterm_quarentena_form': s2299_infotrabinterm_quarentena_form,
             's2299_infotrabinterm_quarentena_lista': s2299_infotrabinterm_quarentena_lista,
             's2299_infotrabinterm_consigfgts_form': s2299_infotrabinterm_consigfgts_form,
@@ -429,127 +495,122 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
-            'show_qtddiasinterm': 0,
-            'show_indcumprparc': 1,
-            'show_nrproctrab': 0,
-            'show_nrcertobito': 0,
-            'show_vralim': 0,
-            'show_percaliment': 0,
-            'show_pensalim': 1,
-            'show_dtprojfimapi': 0,
-            'show_indpagtoapi': 1,
-            'show_dtdeslig': 1,
-            'show_mtvdeslig': 1,
-            'show_infodeslig': 0,
-            'show_matricula': 1,
-            'show_nistrab': 1,
-            'show_cpftrab': 1,
-            'show_idevinculo': 0,
-            'show_nrinsc': 0,
-            'show_tpinsc': 0,
-            'show_ideempregador': 0,
-            'show_verproc': 0,
-            'show_procemi': 0,
-            'show_tpamb': 0,
-            'show_nrrecibo': 0,
-            'show_indretif': 1,
-            'show_ideevento': 0,
-            'show_identidade': 1,
-            'show_evtdeslig': 0,
-            'show_recibo_hash': 0,
-            'show_recibo_numero': 0,
-            'show_processamento_data_hora': 0,
-            'show_processamento_versao_app_processamento': 0,
-            'show_processamento_descricao_resposta': 0,
-            'show_processamento_codigo_resposta': 1,
-            'show_recepcao_protocolo_envio_lote': 0,
-            'show_recepcao_versao_app': 0,
-            'show_recepcao_data_hora': 0,
-            'show_recepcao_tp_amb': 0,
-            'show_status': 1,
             'show_versao': 0,
             'show_transmissor_lote_esocial': 0,
-            'show_arquivo': 0,
-            'show_arquivo_original': 0,
-            'show_validacoes': 0,
-            'show_validacao_precedencia': 0,
+            'show_retornos_eventos': 0,
             'show_ocorrencias': 0,
-            'show_retornos_eventos': 0, }
+            'show_validacao_precedencia': 0,
+            'show_validacoes': 0,
+            'show_arquivo_original': 0,
+            'show_arquivo': 0,
+            'show_status': 1,
+            'show_recepcao_tp_amb': 0,
+            'show_recepcao_data_hora': 0,
+            'show_recepcao_versao_app': 0,
+            'show_recepcao_protocolo_envio_lote': 0,
+            'show_processamento_codigo_resposta': 1,
+            'show_processamento_descricao_resposta': 0,
+            'show_processamento_versao_app_processamento': 0,
+            'show_processamento_data_hora': 0,
+            'show_recibo_numero': 0,
+            'show_recibo_hash': 0,
+            'show_evtdeslig': 0,
+            'show_identidade': 1,
+            'show_ideevento': 0,
+            'show_indretif': 1,
+            'show_nrrecibo': 0,
+            'show_tpamb': 0,
+            'show_procemi': 0,
+            'show_verproc': 0,
+            'show_ideempregador': 0,
+            'show_tpinsc': 0,
+            'show_nrinsc': 0,
+            'show_idevinculo': 0,
+            'show_cpftrab': 1,
+            'show_nistrab': 1,
+            'show_matricula': 1,
+            'show_infodeslig': 0,
+            'show_mtvdeslig': 1,
+            'show_dtdeslig': 1,
+            'show_indpagtoapi': 1,
+            'show_dtprojfimapi': 0,
+            'show_pensalim': 1,
+            'show_percaliment': 0,
+            'show_vralim': 0,
+            'show_nrcertobito': 0,
+            'show_nrproctrab': 0,
+            'show_indcumprparc': 1,
+            'show_qtddiasinterm': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'qtddiasinterm': 'qtddiasinterm',
-                'indcumprparc': 'indcumprparc',
-                'nrproctrab__icontains': 'nrproctrab__icontains',
-                'nrcertobito__icontains': 'nrcertobito__icontains',
-                'vralim': 'vralim',
-                'percaliment': 'percaliment',
-                'pensalim': 'pensalim',
-                'dtprojfimapi__range': 'dtprojfimapi__range',
-                'indpagtoapi__icontains': 'indpagtoapi__icontains',
-                'dtdeslig__range': 'dtdeslig__range',
-                'mtvdeslig__icontains': 'mtvdeslig__icontains',
-                'infodeslig': 'infodeslig',
-                'matricula__icontains': 'matricula__icontains',
-                'nistrab__icontains': 'nistrab__icontains',
-                'cpftrab__icontains': 'cpftrab__icontains',
-                'idevinculo': 'idevinculo',
-                'nrinsc__icontains': 'nrinsc__icontains',
-                'tpinsc': 'tpinsc',
-                'ideempregador': 'ideempregador',
-                'verproc__icontains': 'verproc__icontains',
-                'procemi': 'procemi',
-                'tpamb': 'tpamb',
-                'nrrecibo__icontains': 'nrrecibo__icontains',
-                'indretif': 'indretif',
-                'ideevento': 'ideevento',
-                'identidade__icontains': 'identidade__icontains',
-                'evtdeslig': 'evtdeslig',
-                'status': 'status',
                 'versao__icontains': 'versao__icontains',
-                'transmissor_lote_esocial': 'transmissor_lote_esocial',}
+                'transmissor_lote_esocial': 'transmissor_lote_esocial',
+                'status': 'status',
+                'evtdeslig': 'evtdeslig',
+                'identidade__icontains': 'identidade__icontains',
+                'ideevento': 'ideevento',
+                'indretif': 'indretif',
+                'nrrecibo__icontains': 'nrrecibo__icontains',
+                'tpamb': 'tpamb',
+                'procemi': 'procemi',
+                'verproc__icontains': 'verproc__icontains',
+                'ideempregador': 'ideempregador',
+                'tpinsc': 'tpinsc',
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'idevinculo': 'idevinculo',
+                'cpftrab__icontains': 'cpftrab__icontains',
+                'nistrab__icontains': 'nistrab__icontains',
+                'matricula__icontains': 'matricula__icontains',
+                'infodeslig': 'infodeslig',
+                'mtvdeslig__icontains': 'mtvdeslig__icontains',
+                'dtdeslig__range': 'dtdeslig__range',
+                'indpagtoapi__icontains': 'indpagtoapi__icontains',
+                'dtprojfimapi__range': 'dtprojfimapi__range',
+                'pensalim': 'pensalim',
+                'percaliment': 'percaliment',
+                'vralim': 'vralim',
+                'nrcertobito__icontains': 'nrcertobito__icontains',
+                'nrproctrab__icontains': 'nrproctrab__icontains',
+                'indcumprparc': 'indcumprparc',
+                'qtddiasinterm': 'qtddiasinterm',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'qtddiasinterm': 'qtddiasinterm',
-                'indcumprparc': 'indcumprparc',
-                'nrproctrab__icontains': 'nrproctrab__icontains',
-                'nrcertobito__icontains': 'nrcertobito__icontains',
-                'vralim': 'vralim',
-                'percaliment': 'percaliment',
-                'pensalim': 'pensalim',
-                'dtprojfimapi__range': 'dtprojfimapi__range',
-                'indpagtoapi__icontains': 'indpagtoapi__icontains',
-                'dtdeslig__range': 'dtdeslig__range',
-                'mtvdeslig__icontains': 'mtvdeslig__icontains',
-                'infodeslig': 'infodeslig',
-                'matricula__icontains': 'matricula__icontains',
-                'nistrab__icontains': 'nistrab__icontains',
-                'cpftrab__icontains': 'cpftrab__icontains',
-                'idevinculo': 'idevinculo',
-                'nrinsc__icontains': 'nrinsc__icontains',
-                'tpinsc': 'tpinsc',
-                'ideempregador': 'ideempregador',
-                'verproc__icontains': 'verproc__icontains',
-                'procemi': 'procemi',
-                'tpamb': 'tpamb',
-                'nrrecibo__icontains': 'nrrecibo__icontains',
-                'indretif': 'indretif',
-                'ideevento': 'ideevento',
-                'identidade__icontains': 'identidade__icontains',
-                'evtdeslig': 'evtdeslig',
-                'status': 'status',
                 'versao__icontains': 'versao__icontains',
-                'transmissor_lote_esocial': 'transmissor_lote_esocial',}
+                'transmissor_lote_esocial': 'transmissor_lote_esocial',
+                'status': 'status',
+                'evtdeslig': 'evtdeslig',
+                'identidade__icontains': 'identidade__icontains',
+                'ideevento': 'ideevento',
+                'indretif': 'indretif',
+                'nrrecibo__icontains': 'nrrecibo__icontains',
+                'tpamb': 'tpamb',
+                'procemi': 'procemi',
+                'verproc__icontains': 'verproc__icontains',
+                'ideempregador': 'ideempregador',
+                'tpinsc': 'tpinsc',
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'idevinculo': 'idevinculo',
+                'cpftrab__icontains': 'cpftrab__icontains',
+                'nistrab__icontains': 'nistrab__icontains',
+                'matricula__icontains': 'matricula__icontains',
+                'infodeslig': 'infodeslig',
+                'mtvdeslig__icontains': 'mtvdeslig__icontains',
+                'dtdeslig__range': 'dtdeslig__range',
+                'indpagtoapi__icontains': 'indpagtoapi__icontains',
+                'dtprojfimapi__range': 'dtprojfimapi__range',
+                'pensalim': 'pensalim',
+                'percaliment': 'percaliment',
+                'vralim': 'vralim',
+                'nrcertobito__icontains': 'nrcertobito__icontains',
+                'nrproctrab__icontains': 'nrproctrab__icontains',
+                'indcumprparc': 'indcumprparc',
+                'qtddiasinterm': 'qtddiasinterm',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

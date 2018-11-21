@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -17,17 +48,27 @@ from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
 import base64
-from emensageriapro.s2205.models import s2205exterior
-from emensageriapro.s2205.models import s2205documentos
+from emensageriapro.s2205.models import s2205CTPS
+from emensageriapro.s2205.models import s2205RIC
+from emensageriapro.s2205.models import s2205RG
+from emensageriapro.s2205.models import s2205RNE
+from emensageriapro.s2205.models import s2205OC
+from emensageriapro.s2205.models import s2205CNH
 from emensageriapro.s2205.models import s2205brasil
+from emensageriapro.s2205.models import s2205exterior
 from emensageriapro.s2205.models import s2205trabEstrangeiro
 from emensageriapro.s2205.models import s2205infoDeficiencia
 from emensageriapro.s2205.models import s2205dependente
 from emensageriapro.s2205.models import s2205aposentadoria
 from emensageriapro.s2205.models import s2205contato
-from emensageriapro.s2205.forms import form_s2205_exterior
-from emensageriapro.s2205.forms import form_s2205_documentos
+from emensageriapro.s2205.forms import form_s2205_ctps
+from emensageriapro.s2205.forms import form_s2205_ric
+from emensageriapro.s2205.forms import form_s2205_rg
+from emensageriapro.s2205.forms import form_s2205_rne
+from emensageriapro.s2205.forms import form_s2205_oc
+from emensageriapro.s2205.forms import form_s2205_cnh
 from emensageriapro.s2205.forms import form_s2205_brasil
+from emensageriapro.s2205.forms import form_s2205_exterior
 from emensageriapro.s2205.forms import form_s2205_trabestrangeiro
 from emensageriapro.s2205.forms import form_s2205_infodeficiencia
 from emensageriapro.s2205.forms import form_s2205_dependente
@@ -148,7 +189,6 @@ def salvar(request, hash):
                         messages.error(request, 'Não é possível salvar o evento, pois o mesmo não está com o status "Cadastrado"!')
 
                 else:
-                    dados['arquivo_original'] = 0
 
                     dados['criado_por_id'] = usuario_id
                     dados['criado_em'] = datetime.datetime.now()
@@ -183,12 +223,22 @@ def salvar(request, hash):
         if int(dict_hash['print']):
             s2205_evtaltcadastral_form = disabled_form_for_print(s2205_evtaltcadastral_form)
    
-        s2205_exterior_form = None
-        s2205_exterior_lista = None
-        s2205_documentos_form = None
-        s2205_documentos_lista = None
+        s2205_ctps_form = None
+        s2205_ctps_lista = None
+        s2205_ric_form = None
+        s2205_ric_lista = None
+        s2205_rg_form = None
+        s2205_rg_lista = None
+        s2205_rne_form = None
+        s2205_rne_lista = None
+        s2205_oc_form = None
+        s2205_oc_lista = None
+        s2205_cnh_form = None
+        s2205_cnh_lista = None
         s2205_brasil_form = None
         s2205_brasil_lista = None
+        s2205_exterior_form = None
+        s2205_exterior_lista = None
         s2205_trabestrangeiro_form = None
         s2205_trabestrangeiro_lista = None
         s2205_infodeficiencia_form = None
@@ -202,15 +252,30 @@ def salvar(request, hash):
         if s2205_evtaltcadastral_id:
             s2205_evtaltcadastral = get_object_or_404(s2205evtAltCadastral.objects.using( db_slug ), excluido = False, id = s2205_evtaltcadastral_id)
        
-            s2205_exterior_form = form_s2205_exterior(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
-            s2205_exterior_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
-            s2205_exterior_lista = s2205exterior.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
-            s2205_documentos_form = form_s2205_documentos(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
-            s2205_documentos_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
-            s2205_documentos_lista = s2205documentos.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
+            s2205_ctps_form = form_s2205_ctps(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
+            s2205_ctps_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
+            s2205_ctps_lista = s2205CTPS.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
+            s2205_ric_form = form_s2205_ric(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
+            s2205_ric_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
+            s2205_ric_lista = s2205RIC.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
+            s2205_rg_form = form_s2205_rg(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
+            s2205_rg_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
+            s2205_rg_lista = s2205RG.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
+            s2205_rne_form = form_s2205_rne(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
+            s2205_rne_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
+            s2205_rne_lista = s2205RNE.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
+            s2205_oc_form = form_s2205_oc(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
+            s2205_oc_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
+            s2205_oc_lista = s2205OC.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
+            s2205_cnh_form = form_s2205_cnh(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
+            s2205_cnh_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
+            s2205_cnh_lista = s2205CNH.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
             s2205_brasil_form = form_s2205_brasil(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
             s2205_brasil_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
             s2205_brasil_lista = s2205brasil.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
+            s2205_exterior_form = form_s2205_exterior(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
+            s2205_exterior_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
+            s2205_exterior_lista = s2205exterior.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
             s2205_trabestrangeiro_form = form_s2205_trabestrangeiro(initial={ 's2205_evtaltcadastral': s2205_evtaltcadastral }, slug=db_slug)
             s2205_trabestrangeiro_form.fields['s2205_evtaltcadastral'].widget.attrs['readonly'] = True
             s2205_trabestrangeiro_lista = s2205trabEstrangeiro.objects.using( db_slug ).filter(excluido = False, s2205_evtaltcadastral_id=s2205_evtaltcadastral.id).all()
@@ -260,12 +325,22 @@ def salvar(request, hash):
             
             'hash': hash,
        
-            's2205_exterior_form': s2205_exterior_form,
-            's2205_exterior_lista': s2205_exterior_lista,
-            's2205_documentos_form': s2205_documentos_form,
-            's2205_documentos_lista': s2205_documentos_lista,
+            's2205_ctps_form': s2205_ctps_form,
+            's2205_ctps_lista': s2205_ctps_lista,
+            's2205_ric_form': s2205_ric_form,
+            's2205_ric_lista': s2205_ric_lista,
+            's2205_rg_form': s2205_rg_form,
+            's2205_rg_lista': s2205_rg_lista,
+            's2205_rne_form': s2205_rne_form,
+            's2205_rne_lista': s2205_rne_lista,
+            's2205_oc_form': s2205_oc_form,
+            's2205_oc_lista': s2205_oc_lista,
+            's2205_cnh_form': s2205_cnh_form,
+            's2205_cnh_lista': s2205_cnh_lista,
             's2205_brasil_form': s2205_brasil_form,
             's2205_brasil_lista': s2205_brasil_lista,
+            's2205_exterior_form': s2205_exterior_form,
+            's2205_exterior_lista': s2205_exterior_lista,
             's2205_trabestrangeiro_form': s2205_trabestrangeiro_form,
             's2205_trabestrangeiro_lista': s2205_trabestrangeiro_lista,
             's2205_infodeficiencia_form': s2205_infodeficiencia_form,
@@ -447,142 +522,137 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
-            'show_endereco': 0,
-            'show_nmpai': 0,
-            'show_nmmae': 0,
-            'show_paisnac': 1,
-            'show_paisnascto': 1,
-            'show_uf': 0,
-            'show_codmunic': 0,
-            'show_dtnascto': 1,
-            'show_nascimento': 0,
-            'show_nmsoc': 0,
-            'show_grauinstr': 1,
-            'show_estciv': 0,
-            'show_racacor': 1,
-            'show_sexo': 1,
-            'show_nmtrab': 1,
-            'show_nistrab': 0,
-            'show_dadostrabalhador': 0,
-            'show_dtalteracao': 1,
-            'show_alteracao': 0,
-            'show_cpftrab': 1,
-            'show_idetrabalhador': 0,
-            'show_nrinsc': 0,
-            'show_tpinsc': 0,
-            'show_ideempregador': 0,
-            'show_verproc': 0,
-            'show_procemi': 0,
-            'show_tpamb': 0,
-            'show_nrrecibo': 0,
-            'show_indretif': 1,
-            'show_ideevento': 0,
-            'show_identidade': 1,
-            'show_evtaltcadastral': 0,
-            'show_recibo_hash': 0,
-            'show_recibo_numero': 0,
-            'show_processamento_data_hora': 0,
-            'show_processamento_versao_app_processamento': 0,
-            'show_processamento_descricao_resposta': 0,
-            'show_processamento_codigo_resposta': 1,
-            'show_recepcao_protocolo_envio_lote': 0,
-            'show_recepcao_versao_app': 0,
-            'show_recepcao_data_hora': 0,
-            'show_recepcao_tp_amb': 0,
-            'show_status': 1,
             'show_versao': 0,
             'show_transmissor_lote_esocial': 0,
-            'show_arquivo': 0,
-            'show_arquivo_original': 0,
-            'show_validacoes': 0,
-            'show_validacao_precedencia': 0,
+            'show_retornos_eventos': 0,
             'show_ocorrencias': 0,
-            'show_retornos_eventos': 0, }
+            'show_validacao_precedencia': 0,
+            'show_validacoes': 0,
+            'show_arquivo_original': 0,
+            'show_arquivo': 0,
+            'show_status': 1,
+            'show_recepcao_tp_amb': 0,
+            'show_recepcao_data_hora': 0,
+            'show_recepcao_versao_app': 0,
+            'show_recepcao_protocolo_envio_lote': 0,
+            'show_processamento_codigo_resposta': 1,
+            'show_processamento_descricao_resposta': 0,
+            'show_processamento_versao_app_processamento': 0,
+            'show_processamento_data_hora': 0,
+            'show_recibo_numero': 0,
+            'show_recibo_hash': 0,
+            'show_evtaltcadastral': 0,
+            'show_identidade': 1,
+            'show_ideevento': 0,
+            'show_indretif': 1,
+            'show_nrrecibo': 0,
+            'show_tpamb': 0,
+            'show_procemi': 0,
+            'show_verproc': 0,
+            'show_ideempregador': 0,
+            'show_tpinsc': 0,
+            'show_nrinsc': 0,
+            'show_idetrabalhador': 0,
+            'show_cpftrab': 1,
+            'show_alteracao': 0,
+            'show_dtalteracao': 1,
+            'show_dadostrabalhador': 0,
+            'show_nistrab': 0,
+            'show_nmtrab': 1,
+            'show_sexo': 1,
+            'show_racacor': 1,
+            'show_estciv': 0,
+            'show_grauinstr': 1,
+            'show_nmsoc': 0,
+            'show_nascimento': 0,
+            'show_dtnascto': 1,
+            'show_codmunic': 0,
+            'show_uf': 0,
+            'show_paisnascto': 1,
+            'show_paisnac': 1,
+            'show_nmmae': 0,
+            'show_nmpai': 0,
+            'show_endereco': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'endereco': 'endereco',
-                'nmpai__icontains': 'nmpai__icontains',
-                'nmmae__icontains': 'nmmae__icontains',
-                'paisnac__icontains': 'paisnac__icontains',
-                'paisnascto__icontains': 'paisnascto__icontains',
-                'uf__icontains': 'uf__icontains',
-                'codmunic__icontains': 'codmunic__icontains',
-                'dtnascto__range': 'dtnascto__range',
-                'nascimento': 'nascimento',
-                'nmsoc__icontains': 'nmsoc__icontains',
-                'grauinstr__icontains': 'grauinstr__icontains',
-                'estciv': 'estciv',
-                'racacor': 'racacor',
-                'sexo__icontains': 'sexo__icontains',
-                'nmtrab__icontains': 'nmtrab__icontains',
-                'nistrab__icontains': 'nistrab__icontains',
-                'dadostrabalhador': 'dadostrabalhador',
-                'dtalteracao__range': 'dtalteracao__range',
-                'alteracao': 'alteracao',
-                'cpftrab__icontains': 'cpftrab__icontains',
-                'idetrabalhador': 'idetrabalhador',
-                'nrinsc__icontains': 'nrinsc__icontains',
-                'tpinsc': 'tpinsc',
-                'ideempregador': 'ideempregador',
-                'verproc__icontains': 'verproc__icontains',
-                'procemi': 'procemi',
-                'tpamb': 'tpamb',
-                'nrrecibo__icontains': 'nrrecibo__icontains',
-                'indretif': 'indretif',
-                'ideevento': 'ideevento',
-                'identidade__icontains': 'identidade__icontains',
-                'evtaltcadastral': 'evtaltcadastral',
-                'status': 'status',
                 'versao__icontains': 'versao__icontains',
-                'transmissor_lote_esocial': 'transmissor_lote_esocial',}
+                'transmissor_lote_esocial': 'transmissor_lote_esocial',
+                'status': 'status',
+                'evtaltcadastral': 'evtaltcadastral',
+                'identidade__icontains': 'identidade__icontains',
+                'ideevento': 'ideevento',
+                'indretif': 'indretif',
+                'nrrecibo__icontains': 'nrrecibo__icontains',
+                'tpamb': 'tpamb',
+                'procemi': 'procemi',
+                'verproc__icontains': 'verproc__icontains',
+                'ideempregador': 'ideempregador',
+                'tpinsc': 'tpinsc',
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'idetrabalhador': 'idetrabalhador',
+                'cpftrab__icontains': 'cpftrab__icontains',
+                'alteracao': 'alteracao',
+                'dtalteracao__range': 'dtalteracao__range',
+                'dadostrabalhador': 'dadostrabalhador',
+                'nistrab__icontains': 'nistrab__icontains',
+                'nmtrab__icontains': 'nmtrab__icontains',
+                'sexo__icontains': 'sexo__icontains',
+                'racacor': 'racacor',
+                'estciv': 'estciv',
+                'grauinstr__icontains': 'grauinstr__icontains',
+                'nmsoc__icontains': 'nmsoc__icontains',
+                'nascimento': 'nascimento',
+                'dtnascto__range': 'dtnascto__range',
+                'codmunic__icontains': 'codmunic__icontains',
+                'uf__icontains': 'uf__icontains',
+                'paisnascto__icontains': 'paisnascto__icontains',
+                'paisnac__icontains': 'paisnac__icontains',
+                'nmmae__icontains': 'nmmae__icontains',
+                'nmpai__icontains': 'nmpai__icontains',
+                'endereco': 'endereco',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'endereco': 'endereco',
-                'nmpai__icontains': 'nmpai__icontains',
-                'nmmae__icontains': 'nmmae__icontains',
-                'paisnac__icontains': 'paisnac__icontains',
-                'paisnascto__icontains': 'paisnascto__icontains',
-                'uf__icontains': 'uf__icontains',
-                'codmunic__icontains': 'codmunic__icontains',
-                'dtnascto__range': 'dtnascto__range',
-                'nascimento': 'nascimento',
-                'nmsoc__icontains': 'nmsoc__icontains',
-                'grauinstr__icontains': 'grauinstr__icontains',
-                'estciv': 'estciv',
-                'racacor': 'racacor',
-                'sexo__icontains': 'sexo__icontains',
-                'nmtrab__icontains': 'nmtrab__icontains',
-                'nistrab__icontains': 'nistrab__icontains',
-                'dadostrabalhador': 'dadostrabalhador',
-                'dtalteracao__range': 'dtalteracao__range',
-                'alteracao': 'alteracao',
-                'cpftrab__icontains': 'cpftrab__icontains',
-                'idetrabalhador': 'idetrabalhador',
-                'nrinsc__icontains': 'nrinsc__icontains',
-                'tpinsc': 'tpinsc',
-                'ideempregador': 'ideempregador',
-                'verproc__icontains': 'verproc__icontains',
-                'procemi': 'procemi',
-                'tpamb': 'tpamb',
-                'nrrecibo__icontains': 'nrrecibo__icontains',
-                'indretif': 'indretif',
-                'ideevento': 'ideevento',
-                'identidade__icontains': 'identidade__icontains',
-                'evtaltcadastral': 'evtaltcadastral',
-                'status': 'status',
                 'versao__icontains': 'versao__icontains',
-                'transmissor_lote_esocial': 'transmissor_lote_esocial',}
+                'transmissor_lote_esocial': 'transmissor_lote_esocial',
+                'status': 'status',
+                'evtaltcadastral': 'evtaltcadastral',
+                'identidade__icontains': 'identidade__icontains',
+                'ideevento': 'ideevento',
+                'indretif': 'indretif',
+                'nrrecibo__icontains': 'nrrecibo__icontains',
+                'tpamb': 'tpamb',
+                'procemi': 'procemi',
+                'verproc__icontains': 'verproc__icontains',
+                'ideempregador': 'ideempregador',
+                'tpinsc': 'tpinsc',
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'idetrabalhador': 'idetrabalhador',
+                'cpftrab__icontains': 'cpftrab__icontains',
+                'alteracao': 'alteracao',
+                'dtalteracao__range': 'dtalteracao__range',
+                'dadostrabalhador': 'dadostrabalhador',
+                'nistrab__icontains': 'nistrab__icontains',
+                'nmtrab__icontains': 'nmtrab__icontains',
+                'sexo__icontains': 'sexo__icontains',
+                'racacor': 'racacor',
+                'estciv': 'estciv',
+                'grauinstr__icontains': 'grauinstr__icontains',
+                'nmsoc__icontains': 'nmsoc__icontains',
+                'nascimento': 'nascimento',
+                'dtnascto__range': 'dtnascto__range',
+                'codmunic__icontains': 'codmunic__icontains',
+                'uf__icontains': 'uf__icontains',
+                'paisnascto__icontains': 'paisnascto__icontains',
+                'paisnac__icontains': 'paisnac__icontains',
+                'nmmae__icontains': 'nmmae__icontains',
+                'nmpai__icontains': 'nmpai__icontains',
+                'endereco': 'endereco',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

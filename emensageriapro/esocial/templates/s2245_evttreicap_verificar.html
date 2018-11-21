@@ -118,13 +118,13 @@
               
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtTreiCap</td>
-            <td bgcolor="lightgray" colspan="3">Evento Treinamentos, Capacitações e Exercícios Simulados Regras de validação: REGRA_EVENTOS_EXTEMP REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXTEMP_REINTEGRACAO REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_TRABALHADOR_BASE_CNIS</td>
+            <td bgcolor="lightgray" colspan="3">Evento Treinamentos, Capacitações, Exercícios Simulados e Outras Anotações. Regras de validação: REGRA_EVENTOS_EXTEMP REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXTEMP_REINTEGRACAO REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_TRABALHADOR_BASE_CNIS</td>
         </tr>
     {% for s2245_evttreicap in s2245_evttreicap_lista %}
     {% ifequal 1 1 %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
         </tr>
 
         <tr {% if s2245_evttreicap.indretif|validacoes_esocial_efdreinf:"s2245_evttreicap.indretif" %}bgcolor="lightcoral"{% endif %}>
@@ -186,7 +186,7 @@
 
         <tr {% if s2245_evttreicap.procemi|validacoes_esocial_efdreinf:"s2245_evttreicap.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2245_evttreicap.procemi or s2245_evttreicap.procemi == 0 %}{{ s2245_evttreicap.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -224,7 +224,7 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
         </tr>
 
         <tr {% if s2245_evttreicap.tpinsc|validacoes_esocial_efdreinf:"s2245_evttreicap.tpinsc" %}bgcolor="lightcoral"{% endif %}>
@@ -267,7 +267,7 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideVinculo</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador e do Vínculo Regras de validação: REGRA_TSV_ATIVO_NA_DTEVENTO REGRA_VINCULO_ATIVO_NA_DTEVENTO</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador e do Vínculo. Regras de validação: REGRA_TSV_ATIVO_NA_DTEVENTO REGRA_VINCULO_ATIVO_NA_DTEVENTO</td>
         </tr>
 
         <tr {% if s2245_evttreicap.cpftrab|validacoes_esocial_efdreinf:"s2245_evttreicap.cpftrab" %}bgcolor="lightcoral"{% endif %}>
@@ -310,7 +310,7 @@
 
         <tr {% if s2245_evttreicap.matricula|validacoes_esocial_efdreinf:"s2245_evttreicap.matricula" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">matricula</td>
-            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: A matrícula deve corresponder à informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista ativo. Se o trabalhador não está sujeito a esse evento (S-2200), a matrícula não deve ser informada, porém, o trabalhador deve ter sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300.</td>
+            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: A matrícula deve corresponder à informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista. Se o trabalhador não está sujeito a esse evento (S-2200), a matrícula não deve ser informada, porém, o trabalhador deve ter sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300.</td>
             <td width="200px"><b>{% if s2245_evttreicap.matricula or s2245_evttreicap.matricula == 0 %}{{ s2245_evttreicap.matricula }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -348,13 +348,32 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">treiCap</td>
-            <td bgcolor="lightgray" colspan="3">Treinamentos, Capacitações e Exercícios Simulados Específicos para Trabalho</td>
+            <td bgcolor="lightgray" colspan="3">Treinamentos, Capacitações e Exercícios Simulados Específicos para Trabalho.</td>
         </tr>
 
         <tr {% if s2245_evttreicap.codtreicap|validacoes_esocial_efdreinf:"s2245_evttreicap.codtreicap" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codTreiCap</td>
-            <td width="500px">Informar o código do treinamento/capacitação/exercício simulado, conforme Tabela 29. Validação: Deve ser um código existente na Tabela 29 - Treinamentos, Capacitações e Exercícios Simulados.</td>
+            <td width="500px">Informar o código do treinamento/capacitação/exercício simulado, conforme Tabela 29. Validação: Deve ser um código existente na Tabela 29 - Treinamentos, Capacitações, Exercícios Simulados e Outras Anotações.</td>
             <td width="200px"><b>{% if s2245_evttreicap.codtreicap or s2245_evttreicap.codtreicap == 0 %}{{ s2245_evttreicap.codtreicap }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_evttreicap_visualizar' %}
+                <a href="{% url 's2245_evttreicap_salvar'  hash='{}'|json_id:s2245_evttreicap.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2245_evttreicap.obstreicap|validacoes_esocial_efdreinf:"s2245_evttreicap.obstreicap" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">obsTreiCap</td>
+            <td width="500px">Observação referente ao treinamento/capacitação/exercício simulado.</td>
+            <td width="200px"><b>{% if s2245_evttreicap.obstreicap or s2245_evttreicap.obstreicap == 0 %}{{ s2245_evttreicap.obstreicap }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -391,7 +410,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoComplem</td>
-            <td bgcolor="lightgray" colspan="3">Informações complementares referentes ao treinamento/capacitação/exercício simulado</td>
+            <td bgcolor="lightgray" colspan="3">Informações complementares referentes ao treinamento/capacitação/exercício simulado.</td>
         </tr>
     {% for s2245_infocomplem in s2245_infocomplem_lista %}
     {% ifequal s2245_infocomplem.s2245_evttreicap.id s2245_evttreicap.id %}
@@ -473,13 +492,13 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideProfResp</td>
-            <td bgcolor="lightgray" colspan="3">Informações relativas ao profissional responsável pelo treinamento/capacitação/exercício simulado</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas ao profissional responsável pelo treinamento/capacitação/exercício simulado.</td>
         </tr>
     {% for s2245_ideprofresp in s2245_ideprofresp_lista %}
     {% ifequal s2245_ideprofresp.s2245_infocomplem.id s2245_infocomplem.id %}
         <tr {% if s2245_ideprofresp.cpfprof|validacoes_esocial_efdreinf:"s2245_ideprofresp.cpfprof" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cpfProf</td>
-            <td width="500px">Preencher com o CPF do profissional responsável pelo treinamento/capacitação/exercício simulado. Validação: Deve ser um CPF válido.</td>
+            <td width="500px">Preencher com o CPF do profissional responsável pelo treinamento/capacitação/exercício simulado. Validação: Preenchimento obrigatório se {nacProf} = [1]. Se informado, deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2245_ideprofresp.cpfprof or s2245_ideprofresp.cpfprof == 0 %}{{ s2245_ideprofresp.cpfprof }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -557,6 +576,25 @@
             <td width="130px">codCBO</td>
             <td width="500px">Informar a Classificação Brasileira de Ocupação - CBO referente à formação do profissional responsável pelo treinamento/capacitação/exercício simulado. Validação: Deve ser um código existente na tabela de CBO, com 6 (seis) posições.</td>
             <td width="200px"><b>{% if s2245_ideprofresp.codcbo or s2245_ideprofresp.codcbo == 0 %}{{ s2245_ideprofresp.codcbo }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2245_ideprofresp_visualizar' %}
+                <a href="{% url 's2245_ideprofresp_salvar'  hash='{}'|json_id:s2245_ideprofresp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2245_ideprofresp.nacprof|validacoes_esocial_efdreinf:"s2245_ideprofresp.nacprof" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nacProf</td>
+            <td width="500px">Indicativo da nacionalidade do profissional responsável pelo treinamento/capacitação/exercício simulado: 1 - Brasileiro; 2 - Estrangeiro. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2245_ideprofresp.nacprof or s2245_ideprofresp.nacprof == 0 %}{{ s2245_ideprofresp.nacprof|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>

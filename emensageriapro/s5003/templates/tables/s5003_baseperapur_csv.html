@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações sobre bases de cálculo do FGTS referentes à remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E]. Origem: S-1200, S-2299 ou S-2399."
+{% if show_fields.show_s5003_infotrabfgts or not s5003_infotrabfgts_id and 1 %}"Informações relativas à matrícula e categoria do trabalhador.";{% endif %}{% if show_fields.show_tpvalor or 1 %}"Tipo de Valor";{% endif %}{% if show_fields.show_remfgts or 1 %}"Remuneração (valor da base de cálculo) do FGTS, conforme definido no campo {tpValor}. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {vrRubr} em S-1200 e S-2299, nos grupos {infoPerApur} ou {infoPerAn (...)";{% endif %}
+{% for a in s5003_baseperapur_lista %}{% if show_fields.show_s5003_infotrabfgts or  not s5003_infotrabfgts_id and 1 %}"{{ a.s5003_infotrabfgts }}";{% endif %}{% if show_fields.show_tpvalor or 1 %}"{{ a.get_tpvalor_display }}";{% endif %}{% if show_fields.show_remfgts or 1 %}"{{ a.remfgts }}";{% endif %}
+{% endfor %}

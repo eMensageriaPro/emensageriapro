@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -17,6 +48,13 @@ from emensageriapro.tabelas.forms import *
 from emensageriapro.tabelas.models import *
 from emensageriapro.controle_de_acesso.models import *
 import base64
+from emensageriapro.s1200.models import s1200remunOutrEmpr
+from emensageriapro.s1200.models import s1200dmDev
+from emensageriapro.s1202.models import s1202dmDev
+from emensageriapro.s1202.models import s1202infoPerApurremunPerApur
+from emensageriapro.s1202.models import s1202infoPerAntremunPerAnt
+from emensageriapro.s1210.models import s1210detPgtoFer
+from emensageriapro.s1210.models import s1210detPgtoAnt
 from emensageriapro.esocial.models import s2200evtAdmissao
 from emensageriapro.esocial.models import s2206evtAltContratual
 from emensageriapro.esocial.models import s2210evtCAT
@@ -25,21 +63,23 @@ from emensageriapro.esocial.models import s2221evtToxic
 from emensageriapro.esocial.models import s2230evtAfastTemp
 from emensageriapro.esocial.models import s2240evtExpRisco
 from emensageriapro.esocial.models import s2245evtTreiCap
+from emensageriapro.s2299.models import s2299infoTrabIntermremunOutrEmpr
 from emensageriapro.esocial.models import s2300evtTSVInicio
 from emensageriapro.esocial.models import s2306evtTSVAltContr
 from emensageriapro.esocial.models import s2399evtTSVTermino
-from emensageriapro.s1200.models import s1200remunOutrEmpr
-from emensageriapro.s1200.models import s1200dmDev
-from emensageriapro.s1202.models import s1202dmDev
-from emensageriapro.s1202.models import s1202infoPerApurremunPerApur
-from emensageriapro.s1202.models import s1202infoPerAntremunPerAnt
-from emensageriapro.s1210.models import s1210detPgtoFer
-from emensageriapro.s1210.models import s1210detPgtoAnt
-from emensageriapro.s2299.models import s2299infoTrabIntermremunOutrEmpr
 from emensageriapro.s2399.models import s2399remunOutrEmpr
 from emensageriapro.s5001.models import s5001infoCategIncid
 from emensageriapro.s5002.models import s5002infoIrrf
+from emensageriapro.s5003.models import s5003infoTrabFGTS
+from emensageriapro.s5003.models import s5003infoTrabDps
 from emensageriapro.s5011.models import s5011basesRemun
+from emensageriapro.s1200.forms import form_s1200_remunoutrempr
+from emensageriapro.s1200.forms import form_s1200_dmdev
+from emensageriapro.s1202.forms import form_s1202_dmdev
+from emensageriapro.s1202.forms import form_s1202_infoperapur_remunperapur
+from emensageriapro.s1202.forms import form_s1202_infoperant_remunperant
+from emensageriapro.s1210.forms import form_s1210_detpgtofer
+from emensageriapro.s1210.forms import form_s1210_detpgtoant
 from emensageriapro.esocial.forms import form_s2200_evtadmissao
 from emensageriapro.esocial.forms import form_s2206_evtaltcontratual
 from emensageriapro.esocial.forms import form_s2210_evtcat
@@ -48,20 +88,15 @@ from emensageriapro.esocial.forms import form_s2221_evttoxic
 from emensageriapro.esocial.forms import form_s2230_evtafasttemp
 from emensageriapro.esocial.forms import form_s2240_evtexprisco
 from emensageriapro.esocial.forms import form_s2245_evttreicap
+from emensageriapro.s2299.forms import form_s2299_infotrabinterm_remunoutrempr
 from emensageriapro.esocial.forms import form_s2300_evttsvinicio
 from emensageriapro.esocial.forms import form_s2306_evttsvaltcontr
 from emensageriapro.esocial.forms import form_s2399_evttsvtermino
-from emensageriapro.s1200.forms import form_s1200_remunoutrempr
-from emensageriapro.s1200.forms import form_s1200_dmdev
-from emensageriapro.s1202.forms import form_s1202_dmdev
-from emensageriapro.s1202.forms import form_s1202_infoperapur_remunperapur
-from emensageriapro.s1202.forms import form_s1202_infoperant_remunperant
-from emensageriapro.s1210.forms import form_s1210_detpgtofer
-from emensageriapro.s1210.forms import form_s1210_detpgtoant
-from emensageriapro.s2299.forms import form_s2299_infotrabinterm_remunoutrempr
 from emensageriapro.s2399.forms import form_s2399_remunoutrempr
 from emensageriapro.s5001.forms import form_s5001_infocategincid
 from emensageriapro.s5002.forms import form_s5002_infoirrf
+from emensageriapro.s5003.forms import form_s5003_infotrabfgts
+from emensageriapro.s5003.forms import form_s5003_infotrabdps
 from emensageriapro.s5011.forms import form_s5011_basesremun
 
 #IMPORTACOES
@@ -339,30 +374,25 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
-            'show_descricao': 1,
+            'show_grupo': 1,
             'show_codigo': 1,
-            'show_grupo': 1, }
+            'show_descricao': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'descricao__icontains': 'descricao__icontains',
+                'grupo': 'grupo',
                 'codigo__icontains': 'codigo__icontains',
-                'grupo': 'grupo',}
+                'descricao__icontains': 'descricao__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'descricao__icontains': 'descricao__icontains',
+                'grupo': 'grupo',
                 'codigo__icontains': 'codigo__icontains',
-                'grupo': 'grupo',}
+                'descricao__icontains': 'descricao__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

@@ -47,7 +47,7 @@ def validacoes_s5002_evtirrfbenef(arquivo):
     xmlns = doc.eSocial['xmlns'].split('/')
     evtIrrfBenef = doc.eSocial.evtIrrfBenef
 
-    if 'nrRecArqBase' in dir(evtIrrfBenef.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtIrrfBenef.ideEvento.nrRecArqBase', evtIrrfBenef.ideEvento.nrRecArqBase.cdata, 0, '')
+    if 'nrRecArqBase' in dir(evtIrrfBenef.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtIrrfBenef.ideEvento.nrRecArqBase', evtIrrfBenef.ideEvento.nrRecArqBase.cdata, 1, '')
     if 'perApur' in dir(evtIrrfBenef.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtIrrfBenef.ideEvento.perApur', evtIrrfBenef.ideEvento.perApur.cdata, 1, '')
     if 'tpInsc' in dir(evtIrrfBenef.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtIrrfBenef.ideEmpregador.tpInsc', evtIrrfBenef.ideEmpregador.tpInsc.cdata, 1, '1;2;3;4')
     if 'nrInsc' in dir(evtIrrfBenef.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtIrrfBenef.ideEmpregador.nrInsc', evtIrrfBenef.ideEmpregador.nrInsc.cdata, 1, '')

@@ -60,10 +60,6 @@ def validacoes_s2240_evtexprisco(arquivo):
     if 'codCateg' in dir(evtExpRisco.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtExpRisco.ideVinculo.codCateg', evtExpRisco.ideVinculo.codCateg.cdata, 0, '')
     if 'dtIniCondicao' in dir(evtExpRisco.infoExpRisco): validacoes_lista = validar_campo(validacoes_lista,'evtExpRisco.infoExpRisco.dtIniCondicao', evtExpRisco.infoExpRisco.dtIniCondicao.cdata, 1, '')
     if 'dscAtivDes' in dir(evtExpRisco.infoExpRisco.infoAtiv): validacoes_lista = validar_campo(validacoes_lista,'evtExpRisco.infoExpRisco.infoAtiv.dscAtivDes', evtExpRisco.infoExpRisco.infoAtiv.dscAtivDes.cdata, 1, '')
-    if 'iniExpRisco' in dir(evtExpRisco.infoExpRisco):
-        for iniExpRisco in evtExpRisco.infoExpRisco.iniExpRisco:
-       
-
     if 'infoAmb' in dir(evtExpRisco.infoExpRisco):
         for infoAmb in evtExpRisco.infoExpRisco.infoAmb:
        
@@ -87,7 +83,7 @@ def validacoes_s2240_evtexprisco(arquivo):
             if 'periculosidade' in dir(fatRisco): validacoes_lista = validar_campo(validacoes_lista,'fatRisco.periculosidade', fatRisco.periculosidade.cdata, 0, 'S;N')
             if 'aposentEsp' in dir(fatRisco): validacoes_lista = validar_campo(validacoes_lista,'fatRisco.aposentEsp', fatRisco.aposentEsp.cdata, 0, 'S;N')
             if 'utilizEPC' in dir(fatRisco.epcEpi): validacoes_lista = validar_campo(validacoes_lista,'fatRisco.epcEpi.utilizEPC', fatRisco.epcEpi.utilizEPC.cdata, 1, '0;1;2')
-            if 'eficEpc' in dir(fatRisco.epcEpi): validacoes_lista = validar_campo(validacoes_lista,'fatRisco.epcEpi.eficEpc', fatRisco.epcEpi.eficEpc.cdata, 1, 'S;N')
+            if 'eficEpc' in dir(fatRisco.epcEpi): validacoes_lista = validar_campo(validacoes_lista,'fatRisco.epcEpi.eficEpc', fatRisco.epcEpi.eficEpc.cdata, 0, 'S;N')
             if 'utilizEPI' in dir(fatRisco.epcEpi): validacoes_lista = validar_campo(validacoes_lista,'fatRisco.epcEpi.utilizEPI', fatRisco.epcEpi.utilizEPI.cdata, 1, '0;1;2')
 
             if 'epc' in dir(fatRisco.epcEpi):
@@ -125,6 +121,7 @@ def validacoes_s2240_evtexprisco(arquivo):
         for obs in evtExpRisco.infoExpRisco.obs:
        
             if 'metErg' in dir(obs): validacoes_lista = validar_campo(validacoes_lista,'obs.metErg', obs.metErg.cdata, 0, '')
+            if 'obsCompl' in dir(obs): validacoes_lista = validar_campo(validacoes_lista,'obs.obsCompl', obs.obsCompl.cdata, 0, '')
             if 'observacao' in dir(obs): validacoes_lista = validar_campo(validacoes_lista,'obs.observacao', obs.observacao.cdata, 0, '')
 
     if 'altExpRisco' in dir(evtExpRisco.infoExpRisco):

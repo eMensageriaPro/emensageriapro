@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -66,6 +97,18 @@ PERIODOS = (
     ('2018-10', u'Outubro/2018'),
     ('2018-11', u'Novembro/2018'),
     ('2018-12', u'Dezembro/2018'),
+    ('2019-01', u'Janeiro/2019'),
+    ('2019-02', u'Fevereiro/2019'),
+    ('2019-03', u'Março/2019'),
+    ('2019-04', u'Abril/2019'),
+    ('2019-05', u'Maio/2019'),
+    ('2019-06', u'Junho/2019'),
+    ('2019-07', u'Julho/2019'),
+    ('2019-08', u'Agosto/2019'),
+    ('2019-09', u'Setembro/2019'),
+    ('2019-10', u'Outubro/2019'),
+    ('2019-11', u'Novembro/2019'),
+    ('2019-12', u'Dezembro/2019'),
 )
 
 CHOICES_S1000_ALTERACAO_CLASSTRIB = (
@@ -131,6 +174,11 @@ CHOICES_S1000_ALTERACAO_INDENTED = (
 CHOICES_S1000_ALTERACAO_INDETT = (
     ('N', u'N - Não é Empresa de Trabalho Temporário'),
     ('S', u'S - Empresa de Trabalho Temporário'),
+)
+
+CHOICES_S1000_ALTERACAO_INDOPCCP = (
+    (1, u'1 - Sobre a comercialização da sua produção'),
+    (2, u'2 - Sobre a folha de pagamento'),
 )
 
 CHOICES_S1000_ALTERACAO_INDOPTREGELETRON = (
@@ -248,6 +296,11 @@ CHOICES_S1000_INCLUSAO_INDETT = (
     ('S', u'S - Empresa de Trabalho Temporário'),
 )
 
+CHOICES_S1000_INCLUSAO_INDOPCCP = (
+    (1, u'1 - Sobre a comercialização da sua produção'),
+    (2, u'2 - Sobre a folha de pagamento'),
+)
+
 CHOICES_S1000_INCLUSAO_INDOPTREGELETRON = (
     (0, u'0 - Não optou pelo registro eletrônico de empregados'),
     (1, u'1 - Optou pelo registro eletrônico de empregados'),
@@ -310,6 +363,7 @@ class s1000alteracao(models.Model):
     indcoop = models.IntegerField(choices=CHOICES_S1000_ALTERACAO_INDCOOP, blank=True, null=True)
     indconstr = models.IntegerField(choices=CHOICES_S1000_ALTERACAO_INDCONSTR, blank=True, null=True)
     inddesfolha = models.IntegerField(choices=CHOICES_S1000_ALTERACAO_INDDESFOLHA)
+    indopccp = models.IntegerField(choices=CHOICES_S1000_ALTERACAO_INDOPCCP, blank=True, null=True)
     indoptregeletron = models.IntegerField(choices=CHOICES_S1000_ALTERACAO_INDOPTREGELETRON)
     indented = models.CharField(choices=CHOICES_S1000_ALTERACAO_INDENTED, max_length=1, blank=True, null=True)
     indett = models.CharField(choices=CHOICES_S1000_ALTERACAO_INDETT, max_length=1)
@@ -327,13 +381,13 @@ class s1000alteracao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1000_evtinfoempregador) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.classtrib) + ' - ' + unicode(self.natjurid) + ' - ' + unicode(self.indcoop) + ' - ' + unicode(self.indconstr) + ' - ' + unicode(self.inddesfolha) + ' - ' + unicode(self.indoptregeletron) + ' - ' + unicode(self.indented) + ' - ' + unicode(self.indett) + ' - ' + unicode(self.nrregett) + ' - ' + unicode(self.nmctt) + ' - ' + unicode(self.cpfctt) + ' - ' + unicode(self.fonefixo) + ' - ' + unicode(self.fonecel) + ' - ' + unicode(self.email)
+        return unicode(self.s1000_evtinfoempregador) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.classtrib) + ' - ' + unicode(self.inddesfolha) + ' - ' + unicode(self.indoptregeletron) + ' - ' + unicode(self.indett) + ' - ' + unicode(self.nmctt) + ' - ' + unicode(self.cpfctt)
     #s1000_alteracao_custom#
     #s1000_alteracao_custom#
     class Meta:
         db_table = r's1000_alteracao'
         managed = True
-        ordering = ['s1000_evtinfoempregador', 'inivalid', 'fimvalid', 'nmrazao', 'classtrib', 'natjurid', 'indcoop', 'indconstr', 'inddesfolha', 'indoptregeletron', 'indented', 'indett', 'nrregett', 'nmctt', 'cpfctt', 'fonefixo', 'fonecel', 'email']
+        ordering = ['s1000_evtinfoempregador', 'inivalid', 'nmrazao', 'classtrib', 'inddesfolha', 'indoptregeletron', 'indett', 'nmctt', 'cpfctt']
 
 
 
@@ -363,13 +417,13 @@ class s1000alteracaodadosIsencao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1000_alteracao) + ' - ' + unicode(self.ideminlei) + ' - ' + unicode(self.nrcertif) + ' - ' + unicode(self.dtemiscertif) + ' - ' + unicode(self.dtvenccertif) + ' - ' + unicode(self.nrprotrenov) + ' - ' + unicode(self.dtprotrenov) + ' - ' + unicode(self.dtdou) + ' - ' + unicode(self.pagdou)
+        return unicode(self.s1000_alteracao) + ' - ' + unicode(self.ideminlei) + ' - ' + unicode(self.nrcertif) + ' - ' + unicode(self.dtemiscertif) + ' - ' + unicode(self.dtvenccertif)
     #s1000_alteracao_dadosisencao_custom#
     #s1000_alteracao_dadosisencao_custom#
     class Meta:
         db_table = r's1000_alteracao_dadosisencao'
         managed = True
-        ordering = ['s1000_alteracao', 'ideminlei', 'nrcertif', 'dtemiscertif', 'dtvenccertif', 'nrprotrenov', 'dtprotrenov', 'dtdou', 'pagdou']
+        ordering = ['s1000_alteracao', 'ideminlei', 'nrcertif', 'dtemiscertif', 'dtvenccertif']
 
 
 
@@ -395,13 +449,13 @@ class s1000alteracaoinfoEFR(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1000_alteracao_infoop) + ' - ' + unicode(self.ideefr) + ' - ' + unicode(self.cnpjefr) + ' - ' + unicode(self.indrpps) + ' - ' + unicode(self.prevcomp)
+        return unicode(self.s1000_alteracao_infoop) + ' - ' + unicode(self.ideefr) + ' - ' + unicode(self.indrpps) + ' - ' + unicode(self.prevcomp)
     #s1000_alteracao_infoefr_custom#
     #s1000_alteracao_infoefr_custom#
     class Meta:
         db_table = r's1000_alteracao_infoefr'
         managed = True
-        ordering = ['s1000_alteracao_infoop', 'ideefr', 'cnpjefr', 'indrpps', 'prevcomp']
+        ordering = ['s1000_alteracao_infoop', 'ideefr', 'indrpps', 'prevcomp']
 
 
 
@@ -429,13 +483,13 @@ class s1000alteracaoinfoEnte(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1000_alteracao_infoop) + ' - ' + unicode(self.nmente) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.indrpps) + ' - ' + unicode(self.subteto) + ' - ' + unicode(self.vrsubteto)
+        return unicode(self.s1000_alteracao_infoop) + ' - ' + unicode(self.nmente) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.indrpps) + ' - ' + unicode(self.subteto) + ' - ' + unicode(self.vrsubteto)
     #s1000_alteracao_infoente_custom#
     #s1000_alteracao_infoente_custom#
     class Meta:
         db_table = r's1000_alteracao_infoente'
         managed = True
-        ordering = ['s1000_alteracao_infoop', 'nmente', 'uf', 'codmunic', 'indrpps', 'subteto', 'vrsubteto']
+        ordering = ['s1000_alteracao_infoop', 'nmente', 'uf', 'indrpps', 'subteto', 'vrsubteto']
 
 
 
@@ -464,13 +518,13 @@ class s1000alteracaoinfoOP(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1000_alteracao) + ' - ' + unicode(self.nrsiafi) + ' - ' + unicode(self.indugrpps) + ' - ' + unicode(self.esferaop) + ' - ' + unicode(self.poderop) + ' - ' + unicode(self.vrtetorem) + ' - ' + unicode(self.ideefr) + ' - ' + unicode(self.cnpjefr)
+        return unicode(self.s1000_alteracao) + ' - ' + unicode(self.nrsiafi) + ' - ' + unicode(self.indugrpps) + ' - ' + unicode(self.poderop) + ' - ' + unicode(self.vrtetorem) + ' - ' + unicode(self.ideefr)
     #s1000_alteracao_infoop_custom#
     #s1000_alteracao_infoop_custom#
     class Meta:
         db_table = r's1000_alteracao_infoop'
         managed = True
-        ordering = ['s1000_alteracao', 'nrsiafi', 'indugrpps', 'esferaop', 'poderop', 'vrtetorem', 'ideefr', 'cnpjefr']
+        ordering = ['s1000_alteracao', 'nrsiafi', 'indugrpps', 'poderop', 'vrtetorem', 'ideefr']
 
 
 
@@ -523,13 +577,13 @@ class s1000alteracaonovaValidade(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1000_alteracao) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid)
+        return unicode(self.s1000_alteracao) + ' - ' + unicode(self.inivalid)
     #s1000_alteracao_novavalidade_custom#
     #s1000_alteracao_novavalidade_custom#
     class Meta:
         db_table = r's1000_alteracao_novavalidade'
         managed = True
-        ordering = ['s1000_alteracao', 'inivalid', 'fimvalid']
+        ordering = ['s1000_alteracao', 'inivalid']
 
 
 
@@ -614,13 +668,13 @@ class s1000alteracaosoftwareHouse(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1000_alteracao) + ' - ' + unicode(self.cnpjsofthouse) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.nmcont) + ' - ' + unicode(self.telefone) + ' - ' + unicode(self.email)
+        return unicode(self.s1000_alteracao) + ' - ' + unicode(self.cnpjsofthouse) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.nmcont) + ' - ' + unicode(self.telefone)
     #s1000_alteracao_softwarehouse_custom#
     #s1000_alteracao_softwarehouse_custom#
     class Meta:
         db_table = r's1000_alteracao_softwarehouse'
         managed = True
-        ordering = ['s1000_alteracao', 'cnpjsofthouse', 'nmrazao', 'nmcont', 'telefone', 'email']
+        ordering = ['s1000_alteracao', 'cnpjsofthouse', 'nmrazao', 'nmcont', 'telefone']
 
 
 
@@ -644,13 +698,13 @@ class s1000exclusao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1000_evtinfoempregador) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid)
+        return unicode(self.s1000_evtinfoempregador) + ' - ' + unicode(self.inivalid)
     #s1000_exclusao_custom#
     #s1000_exclusao_custom#
     class Meta:
         db_table = r's1000_exclusao'
         managed = True
-        ordering = ['s1000_evtinfoempregador', 'inivalid', 'fimvalid']
+        ordering = ['s1000_evtinfoempregador', 'inivalid']
 
 
 
@@ -672,6 +726,7 @@ class s1000inclusao(models.Model):
     indcoop = models.IntegerField(choices=CHOICES_S1000_INCLUSAO_INDCOOP, blank=True, null=True)
     indconstr = models.IntegerField(choices=CHOICES_S1000_INCLUSAO_INDCONSTR, blank=True, null=True)
     inddesfolha = models.IntegerField(choices=CHOICES_S1000_INCLUSAO_INDDESFOLHA)
+    indopccp = models.IntegerField(choices=CHOICES_S1000_INCLUSAO_INDOPCCP, blank=True, null=True)
     indoptregeletron = models.IntegerField(choices=CHOICES_S1000_INCLUSAO_INDOPTREGELETRON)
     indented = models.CharField(choices=CHOICES_S1000_INCLUSAO_INDENTED, max_length=1, blank=True, null=True)
     indett = models.CharField(choices=CHOICES_S1000_INCLUSAO_INDETT, max_length=1)
@@ -689,13 +744,13 @@ class s1000inclusao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1000_evtinfoempregador) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.classtrib) + ' - ' + unicode(self.natjurid) + ' - ' + unicode(self.indcoop) + ' - ' + unicode(self.indconstr) + ' - ' + unicode(self.inddesfolha) + ' - ' + unicode(self.indoptregeletron) + ' - ' + unicode(self.indented) + ' - ' + unicode(self.indett) + ' - ' + unicode(self.nrregett) + ' - ' + unicode(self.nmctt) + ' - ' + unicode(self.cpfctt) + ' - ' + unicode(self.fonefixo) + ' - ' + unicode(self.fonecel) + ' - ' + unicode(self.email)
+        return unicode(self.s1000_evtinfoempregador) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.classtrib) + ' - ' + unicode(self.inddesfolha) + ' - ' + unicode(self.indoptregeletron) + ' - ' + unicode(self.indett) + ' - ' + unicode(self.nmctt) + ' - ' + unicode(self.cpfctt)
     #s1000_inclusao_custom#
     #s1000_inclusao_custom#
     class Meta:
         db_table = r's1000_inclusao'
         managed = True
-        ordering = ['s1000_evtinfoempregador', 'inivalid', 'fimvalid', 'nmrazao', 'classtrib', 'natjurid', 'indcoop', 'indconstr', 'inddesfolha', 'indoptregeletron', 'indented', 'indett', 'nrregett', 'nmctt', 'cpfctt', 'fonefixo', 'fonecel', 'email']
+        ordering = ['s1000_evtinfoempregador', 'inivalid', 'nmrazao', 'classtrib', 'inddesfolha', 'indoptregeletron', 'indett', 'nmctt', 'cpfctt']
 
 
 
@@ -725,13 +780,13 @@ class s1000inclusaodadosIsencao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1000_inclusao) + ' - ' + unicode(self.ideminlei) + ' - ' + unicode(self.nrcertif) + ' - ' + unicode(self.dtemiscertif) + ' - ' + unicode(self.dtvenccertif) + ' - ' + unicode(self.nrprotrenov) + ' - ' + unicode(self.dtprotrenov) + ' - ' + unicode(self.dtdou) + ' - ' + unicode(self.pagdou)
+        return unicode(self.s1000_inclusao) + ' - ' + unicode(self.ideminlei) + ' - ' + unicode(self.nrcertif) + ' - ' + unicode(self.dtemiscertif) + ' - ' + unicode(self.dtvenccertif)
     #s1000_inclusao_dadosisencao_custom#
     #s1000_inclusao_dadosisencao_custom#
     class Meta:
         db_table = r's1000_inclusao_dadosisencao'
         managed = True
-        ordering = ['s1000_inclusao', 'ideminlei', 'nrcertif', 'dtemiscertif', 'dtvenccertif', 'nrprotrenov', 'dtprotrenov', 'dtdou', 'pagdou']
+        ordering = ['s1000_inclusao', 'ideminlei', 'nrcertif', 'dtemiscertif', 'dtvenccertif']
 
 
 
@@ -757,13 +812,13 @@ class s1000inclusaoinfoEFR(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1000_inclusao_infoop) + ' - ' + unicode(self.ideefr) + ' - ' + unicode(self.cnpjefr) + ' - ' + unicode(self.indrpps) + ' - ' + unicode(self.prevcomp)
+        return unicode(self.s1000_inclusao_infoop) + ' - ' + unicode(self.ideefr) + ' - ' + unicode(self.indrpps) + ' - ' + unicode(self.prevcomp)
     #s1000_inclusao_infoefr_custom#
     #s1000_inclusao_infoefr_custom#
     class Meta:
         db_table = r's1000_inclusao_infoefr'
         managed = True
-        ordering = ['s1000_inclusao_infoop', 'ideefr', 'cnpjefr', 'indrpps', 'prevcomp']
+        ordering = ['s1000_inclusao_infoop', 'ideefr', 'indrpps', 'prevcomp']
 
 
 
@@ -791,13 +846,13 @@ class s1000inclusaoinfoEnte(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1000_inclusao_infoop) + ' - ' + unicode(self.nmente) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.indrpps) + ' - ' + unicode(self.subteto) + ' - ' + unicode(self.vrsubteto)
+        return unicode(self.s1000_inclusao_infoop) + ' - ' + unicode(self.nmente) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.indrpps) + ' - ' + unicode(self.subteto) + ' - ' + unicode(self.vrsubteto)
     #s1000_inclusao_infoente_custom#
     #s1000_inclusao_infoente_custom#
     class Meta:
         db_table = r's1000_inclusao_infoente'
         managed = True
-        ordering = ['s1000_inclusao_infoop', 'nmente', 'uf', 'codmunic', 'indrpps', 'subteto', 'vrsubteto']
+        ordering = ['s1000_inclusao_infoop', 'nmente', 'uf', 'indrpps', 'subteto', 'vrsubteto']
 
 
 
@@ -826,13 +881,13 @@ class s1000inclusaoinfoOP(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1000_inclusao) + ' - ' + unicode(self.nrsiafi) + ' - ' + unicode(self.indugrpps) + ' - ' + unicode(self.esferaop) + ' - ' + unicode(self.poderop) + ' - ' + unicode(self.vrtetorem) + ' - ' + unicode(self.ideefr) + ' - ' + unicode(self.cnpjefr)
+        return unicode(self.s1000_inclusao) + ' - ' + unicode(self.nrsiafi) + ' - ' + unicode(self.indugrpps) + ' - ' + unicode(self.poderop) + ' - ' + unicode(self.vrtetorem) + ' - ' + unicode(self.ideefr)
     #s1000_inclusao_infoop_custom#
     #s1000_inclusao_infoop_custom#
     class Meta:
         db_table = r's1000_inclusao_infoop'
         managed = True
-        ordering = ['s1000_inclusao', 'nrsiafi', 'indugrpps', 'esferaop', 'poderop', 'vrtetorem', 'ideefr', 'cnpjefr']
+        ordering = ['s1000_inclusao', 'nrsiafi', 'indugrpps', 'poderop', 'vrtetorem', 'ideefr']
 
 
 
@@ -946,13 +1001,13 @@ class s1000inclusaosoftwareHouse(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1000_inclusao) + ' - ' + unicode(self.cnpjsofthouse) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.nmcont) + ' - ' + unicode(self.telefone) + ' - ' + unicode(self.email)
+        return unicode(self.s1000_inclusao) + ' - ' + unicode(self.cnpjsofthouse) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.nmcont) + ' - ' + unicode(self.telefone)
     #s1000_inclusao_softwarehouse_custom#
     #s1000_inclusao_softwarehouse_custom#
     class Meta:
         db_table = r's1000_inclusao_softwarehouse'
         managed = True
-        ordering = ['s1000_inclusao', 'cnpjsofthouse', 'nmrazao', 'nmcont', 'telefone', 'email']
+        ordering = ['s1000_inclusao', 'cnpjsofthouse', 'nmrazao', 'nmcont', 'telefone']
 
 
 

@@ -96,16 +96,6 @@ def read_s2240_evtexprisco_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtExpRisco['Id']
     dados['status'] = 1
 
-    if 'iniExpRisco' in dir(evtExpRisco.infoExpRisco):
-        for iniExpRisco in evtExpRisco.infoExpRisco.iniExpRisco:
-            s2240_iniexprisco_dados = {}
-            s2240_iniexprisco_dados['s2240_evtexprisco_id'] = s2240_evtexprisco_id
-       
-            insert = create_insert('s2240_iniexprisco', s2240_iniexprisco_dados)
-            resp = executar_sql(insert, True)
-            s2240_iniexprisco_id = resp[0][0]
-            #print s2240_iniexprisco_id
-
     if 'infoAmb' in dir(evtExpRisco.infoExpRisco):
         for infoAmb in evtExpRisco.infoExpRisco.infoAmb:
             s2240_iniexprisco_infoamb_dados = {}
@@ -205,6 +195,7 @@ def read_s2240_evtexprisco_obj(doc, status, validar=False):
             s2240_iniexprisco_obs_dados['s2240_evtexprisco_id'] = s2240_evtexprisco_id
        
             if 'metErg' in dir(obs): s2240_iniexprisco_obs_dados['meterg'] = obs.metErg.cdata
+            if 'obsCompl' in dir(obs): s2240_iniexprisco_obs_dados['obscompl'] = obs.obsCompl.cdata
             if 'observacao' in dir(obs): s2240_iniexprisco_obs_dados['observacao'] = obs.observacao.cdata
             insert = create_insert('s2240_iniexprisco_obs', s2240_iniexprisco_obs_dados)
             resp = executar_sql(insert, True)

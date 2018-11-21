@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -36,17 +67,7 @@ CODIGO_STATUS_EFDREINF = (
 
 TRANSMISSOR_STATUS = (
     (0, u'Cadastrado'),
-    (1, u'Importado'),
-    (10, u'Assinado'),
-    (11, u'Gerado'),
-    (12, u'Retorno'),
-    (13, u'Erro - Ocorrências'),
-    (14, u'Processado'),
-    (2, u'Duplicado'),
-    (3, u'Erro na validação'),
-    (4, u'Validado'),
     (5, u'Erro no envio'),
-    (6, u'Aguardando envio'),
     (7, u'Enviado'),
     (8, u'Erro na consulta'),
     (9, u'Consultado'),
@@ -57,8 +78,7 @@ IMPORTACAO_STATUS = (
     (1, u'Sucesso!'),
     (2, u'Erro!'),
     (3, u'Arquivo inválido!'),
-    (4, u'Validado'),
-    (5, u'ID do evento já está cadastrada em nossa base'),
+    (5, u'Identidade do evento já está cadastrada em nossa base'),
     (6, u'Processado'),
     (7, u'Processando'),
     (8, u'Processado com erros'),
@@ -349,8 +369,8 @@ class RetornosEventos(models.Model):
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     tpinsc = models.IntegerField(choices=CHOICES_S1000_TPINSC, blank=True, null=True)
     empregador_tpinsc = models.IntegerField(choices=CHOICES_S1000_TPINSC, blank=True, null=True)
-    empregador_nrinsc = models.CharField(max_length=15, blank=True, null=True)
     nrinsc = models.CharField(max_length=15, blank=True, null=True)
+    empregador_nrinsc = models.CharField(max_length=15, blank=True, null=True)
     cpftrab = models.CharField(max_length=11, blank=True, null=True)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
     nmtrab = models.CharField(max_length=70, blank=True, null=True)
@@ -498,8 +518,8 @@ class TransmissorLote(models.Model):
     nome_empresa = models.CharField(max_length=200, unique=True)
     data_abertura = models.DateField()
     validar_eventos = models.IntegerField(choices=SIM_NAO)
-    envio_automatico = models.IntegerField(choices=SIM_NAO)
     verificar_predecessao = models.IntegerField(choices=SIM_NAO)
+    envio_automatico = models.IntegerField(choices=SIM_NAO)
     logotipo = models.FileField(upload_to="logotipo", blank=True, null=True)
     endereco_completo = models.TextField()
     empregador_tpinsc = models.CharField(max_length=20)
@@ -693,7 +713,7 @@ TIPO_TRANSMISSOR_EVENTOS = (
 
 
 class TransmissorEventosEsocial(models.Model):
-    from emensageriapro.esocial.models import TRANSMISSOR_STATUS
+    from emensageriapro.esocial.models import EVENTO_STATUS
     evento = models.CharField(max_length=10)
     identidade = models.CharField(max_length=36)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -711,7 +731,7 @@ class TransmissorEventosEsocial(models.Model):
     url_recibo = models.CharField(max_length=100, blank=True, null=True)
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -738,7 +758,7 @@ class TransmissorEventosEsocial(models.Model):
 
 
 class TransmissorEventosEfdreinf(models.Model):
-    from emensageriapro.esocial.models import TRANSMISSOR_STATUS
+    from emensageriapro.esocial.models import EVENTO_STATUS
     evento = models.CharField(max_length=10)
     identidade = models.CharField(max_length=36)
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
@@ -752,7 +772,7 @@ class TransmissorEventosEfdreinf(models.Model):
     url_recibo = models.CharField(max_length=100, blank=True, null=True)
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     retornos_evttotal = models.ForeignKey('efdreinf.r5001evtTotal',
         related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('efdreinf.r5011evtTotalContrib',
@@ -784,7 +804,7 @@ class TransmissorEventosEfdreinf(models.Model):
         
 
 class TransmissorEventosEsocialTotalizacoes(models.Model):
-    from emensageriapro.esocial.models import TRANSMISSOR_STATUS
+    from emensageriapro.esocial.models import EVENTO_STATUS
     evento = models.CharField(max_length=10)
     identidade = models.CharField(max_length=36)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -802,7 +822,7 @@ class TransmissorEventosEsocialTotalizacoes(models.Model):
     url_recibo = models.CharField(max_length=100, blank=True, null=True)
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -829,7 +849,7 @@ class TransmissorEventosEsocialTotalizacoes(models.Model):
 
 
 class TransmissorEventosEfdreinfTotalizacoes(models.Model):
-    from emensageriapro.esocial.models import TRANSMISSOR_STATUS
+    from emensageriapro.esocial.models import EVENTO_STATUS
     evento = models.CharField(max_length=10)
     identidade = models.CharField(max_length=36)
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
@@ -843,7 +863,7 @@ class TransmissorEventosEfdreinfTotalizacoes(models.Model):
     url_recibo = models.CharField(max_length=100, blank=True, null=True)
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    status = models.IntegerField(choices=EVENTO_STATUS, default=0)
     retornos_evttotal = models.ForeignKey('efdreinf.r5001evtTotal',
         related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('efdreinf.r5011evtTotalContrib',

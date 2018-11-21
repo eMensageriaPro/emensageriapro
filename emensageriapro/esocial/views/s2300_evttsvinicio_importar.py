@@ -109,98 +109,88 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtTSVInicio['Id']
     dados['status'] = 1
 
-    if 'documentos' in dir(evtTSVInicio.trabalhador):
-        for documentos in evtTSVInicio.trabalhador.documentos:
-            s2300_documentos_dados = {}
-            s2300_documentos_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
+    if 'CTPS' in dir(evtTSVInicio.trabalhador.documentos):
+        for CTPS in evtTSVInicio.trabalhador.documentos.CTPS:
+            s2300_ctps_dados = {}
+            s2300_ctps_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
        
-            insert = create_insert('s2300_documentos', s2300_documentos_dados)
+            if 'nrCtps' in dir(CTPS): s2300_ctps_dados['nrctps'] = CTPS.nrCtps.cdata
+            if 'serieCtps' in dir(CTPS): s2300_ctps_dados['seriectps'] = CTPS.serieCtps.cdata
+            if 'ufCtps' in dir(CTPS): s2300_ctps_dados['ufctps'] = CTPS.ufCtps.cdata
+            insert = create_insert('s2300_ctps', s2300_ctps_dados)
             resp = executar_sql(insert, True)
-            s2300_documentos_id = resp[0][0]
-            #print s2300_documentos_id
+            s2300_ctps_id = resp[0][0]
+            #print s2300_ctps_id
 
-            if 'CTPS' in dir(documentos):
-                for CTPS in documentos.CTPS:
-                    s2300_ctps_dados = {}
-                    s2300_ctps_dados['s2300_documentos_id'] = s2300_documentos_id
-               
-                    if 'nrCtps' in dir(CTPS): s2300_ctps_dados['nrctps'] = CTPS.nrCtps.cdata
-                    if 'serieCtps' in dir(CTPS): s2300_ctps_dados['seriectps'] = CTPS.serieCtps.cdata
-                    if 'ufCtps' in dir(CTPS): s2300_ctps_dados['ufctps'] = CTPS.ufCtps.cdata
-                    insert = create_insert('s2300_ctps', s2300_ctps_dados)
-                    resp = executar_sql(insert, True)
-                    s2300_ctps_id = resp[0][0]
-                    #print s2300_ctps_id
-   
-            if 'RIC' in dir(documentos):
-                for RIC in documentos.RIC:
-                    s2300_ric_dados = {}
-                    s2300_ric_dados['s2300_documentos_id'] = s2300_documentos_id
-               
-                    if 'nrRic' in dir(RIC): s2300_ric_dados['nrric'] = RIC.nrRic.cdata
-                    if 'orgaoEmissor' in dir(RIC): s2300_ric_dados['orgaoemissor'] = RIC.orgaoEmissor.cdata
-                    if 'dtExped' in dir(RIC): s2300_ric_dados['dtexped'] = RIC.dtExped.cdata
-                    insert = create_insert('s2300_ric', s2300_ric_dados)
-                    resp = executar_sql(insert, True)
-                    s2300_ric_id = resp[0][0]
-                    #print s2300_ric_id
-   
-            if 'RG' in dir(documentos):
-                for RG in documentos.RG:
-                    s2300_rg_dados = {}
-                    s2300_rg_dados['s2300_documentos_id'] = s2300_documentos_id
-               
-                    if 'nrRg' in dir(RG): s2300_rg_dados['nrrg'] = RG.nrRg.cdata
-                    if 'orgaoEmissor' in dir(RG): s2300_rg_dados['orgaoemissor'] = RG.orgaoEmissor.cdata
-                    if 'dtExped' in dir(RG): s2300_rg_dados['dtexped'] = RG.dtExped.cdata
-                    insert = create_insert('s2300_rg', s2300_rg_dados)
-                    resp = executar_sql(insert, True)
-                    s2300_rg_id = resp[0][0]
-                    #print s2300_rg_id
-   
-            if 'RNE' in dir(documentos):
-                for RNE in documentos.RNE:
-                    s2300_rne_dados = {}
-                    s2300_rne_dados['s2300_documentos_id'] = s2300_documentos_id
-               
-                    if 'nrRne' in dir(RNE): s2300_rne_dados['nrrne'] = RNE.nrRne.cdata
-                    if 'orgaoEmissor' in dir(RNE): s2300_rne_dados['orgaoemissor'] = RNE.orgaoEmissor.cdata
-                    if 'dtExped' in dir(RNE): s2300_rne_dados['dtexped'] = RNE.dtExped.cdata
-                    insert = create_insert('s2300_rne', s2300_rne_dados)
-                    resp = executar_sql(insert, True)
-                    s2300_rne_id = resp[0][0]
-                    #print s2300_rne_id
-   
-            if 'OC' in dir(documentos):
-                for OC in documentos.OC:
-                    s2300_oc_dados = {}
-                    s2300_oc_dados['s2300_documentos_id'] = s2300_documentos_id
-               
-                    if 'nrOc' in dir(OC): s2300_oc_dados['nroc'] = OC.nrOc.cdata
-                    if 'orgaoEmissor' in dir(OC): s2300_oc_dados['orgaoemissor'] = OC.orgaoEmissor.cdata
-                    if 'dtExped' in dir(OC): s2300_oc_dados['dtexped'] = OC.dtExped.cdata
-                    if 'dtValid' in dir(OC): s2300_oc_dados['dtvalid'] = OC.dtValid.cdata
-                    insert = create_insert('s2300_oc', s2300_oc_dados)
-                    resp = executar_sql(insert, True)
-                    s2300_oc_id = resp[0][0]
-                    #print s2300_oc_id
-   
-            if 'CNH' in dir(documentos):
-                for CNH in documentos.CNH:
-                    s2300_cnh_dados = {}
-                    s2300_cnh_dados['s2300_documentos_id'] = s2300_documentos_id
-               
-                    if 'nrRegCnh' in dir(CNH): s2300_cnh_dados['nrregcnh'] = CNH.nrRegCnh.cdata
-                    if 'dtExped' in dir(CNH): s2300_cnh_dados['dtexped'] = CNH.dtExped.cdata
-                    if 'ufCnh' in dir(CNH): s2300_cnh_dados['ufcnh'] = CNH.ufCnh.cdata
-                    if 'dtValid' in dir(CNH): s2300_cnh_dados['dtvalid'] = CNH.dtValid.cdata
-                    if 'dtPriHab' in dir(CNH): s2300_cnh_dados['dtprihab'] = CNH.dtPriHab.cdata
-                    if 'categoriaCnh' in dir(CNH): s2300_cnh_dados['categoriacnh'] = CNH.categoriaCnh.cdata
-                    insert = create_insert('s2300_cnh', s2300_cnh_dados)
-                    resp = executar_sql(insert, True)
-                    s2300_cnh_id = resp[0][0]
-                    #print s2300_cnh_id
-   
+    if 'RIC' in dir(evtTSVInicio.trabalhador.documentos):
+        for RIC in evtTSVInicio.trabalhador.documentos.RIC:
+            s2300_ric_dados = {}
+            s2300_ric_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
+       
+            if 'nrRic' in dir(RIC): s2300_ric_dados['nrric'] = RIC.nrRic.cdata
+            if 'orgaoEmissor' in dir(RIC): s2300_ric_dados['orgaoemissor'] = RIC.orgaoEmissor.cdata
+            if 'dtExped' in dir(RIC): s2300_ric_dados['dtexped'] = RIC.dtExped.cdata
+            insert = create_insert('s2300_ric', s2300_ric_dados)
+            resp = executar_sql(insert, True)
+            s2300_ric_id = resp[0][0]
+            #print s2300_ric_id
+
+    if 'RG' in dir(evtTSVInicio.trabalhador.documentos):
+        for RG in evtTSVInicio.trabalhador.documentos.RG:
+            s2300_rg_dados = {}
+            s2300_rg_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
+       
+            if 'nrRg' in dir(RG): s2300_rg_dados['nrrg'] = RG.nrRg.cdata
+            if 'orgaoEmissor' in dir(RG): s2300_rg_dados['orgaoemissor'] = RG.orgaoEmissor.cdata
+            if 'dtExped' in dir(RG): s2300_rg_dados['dtexped'] = RG.dtExped.cdata
+            insert = create_insert('s2300_rg', s2300_rg_dados)
+            resp = executar_sql(insert, True)
+            s2300_rg_id = resp[0][0]
+            #print s2300_rg_id
+
+    if 'RNE' in dir(evtTSVInicio.trabalhador.documentos):
+        for RNE in evtTSVInicio.trabalhador.documentos.RNE:
+            s2300_rne_dados = {}
+            s2300_rne_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
+       
+            if 'nrRne' in dir(RNE): s2300_rne_dados['nrrne'] = RNE.nrRne.cdata
+            if 'orgaoEmissor' in dir(RNE): s2300_rne_dados['orgaoemissor'] = RNE.orgaoEmissor.cdata
+            if 'dtExped' in dir(RNE): s2300_rne_dados['dtexped'] = RNE.dtExped.cdata
+            insert = create_insert('s2300_rne', s2300_rne_dados)
+            resp = executar_sql(insert, True)
+            s2300_rne_id = resp[0][0]
+            #print s2300_rne_id
+
+    if 'OC' in dir(evtTSVInicio.trabalhador.documentos):
+        for OC in evtTSVInicio.trabalhador.documentos.OC:
+            s2300_oc_dados = {}
+            s2300_oc_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
+       
+            if 'nrOc' in dir(OC): s2300_oc_dados['nroc'] = OC.nrOc.cdata
+            if 'orgaoEmissor' in dir(OC): s2300_oc_dados['orgaoemissor'] = OC.orgaoEmissor.cdata
+            if 'dtExped' in dir(OC): s2300_oc_dados['dtexped'] = OC.dtExped.cdata
+            if 'dtValid' in dir(OC): s2300_oc_dados['dtvalid'] = OC.dtValid.cdata
+            insert = create_insert('s2300_oc', s2300_oc_dados)
+            resp = executar_sql(insert, True)
+            s2300_oc_id = resp[0][0]
+            #print s2300_oc_id
+
+    if 'CNH' in dir(evtTSVInicio.trabalhador.documentos):
+        for CNH in evtTSVInicio.trabalhador.documentos.CNH:
+            s2300_cnh_dados = {}
+            s2300_cnh_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
+       
+            if 'nrRegCnh' in dir(CNH): s2300_cnh_dados['nrregcnh'] = CNH.nrRegCnh.cdata
+            if 'dtExped' in dir(CNH): s2300_cnh_dados['dtexped'] = CNH.dtExped.cdata
+            if 'ufCnh' in dir(CNH): s2300_cnh_dados['ufcnh'] = CNH.ufCnh.cdata
+            if 'dtValid' in dir(CNH): s2300_cnh_dados['dtvalid'] = CNH.dtValid.cdata
+            if 'dtPriHab' in dir(CNH): s2300_cnh_dados['dtprihab'] = CNH.dtPriHab.cdata
+            if 'categoriaCnh' in dir(CNH): s2300_cnh_dados['categoriacnh'] = CNH.categoriaCnh.cdata
+            insert = create_insert('s2300_cnh', s2300_cnh_dados)
+            resp = executar_sql(insert, True)
+            s2300_cnh_id = resp[0][0]
+            #print s2300_cnh_id
+
     if 'brasil' in dir(evtTSVInicio.trabalhador.endereco):
         for brasil in evtTSVInicio.trabalhador.endereco.brasil:
             s2300_brasil_dados = {}
@@ -300,109 +290,142 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
             s2300_contato_id = resp[0][0]
             #print s2300_contato_id
 
-    if 'infoComplementares' in dir(evtTSVInicio.infoTSVInicio):
-        for infoComplementares in evtTSVInicio.infoTSVInicio.infoComplementares:
-            s2300_infocomplementares_dados = {}
-            s2300_infocomplementares_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
+    if 'cargoFuncao' in dir(evtTSVInicio.infoTSVInicio.infoComplementares):
+        for cargoFuncao in evtTSVInicio.infoTSVInicio.infoComplementares.cargoFuncao:
+            s2300_cargofuncao_dados = {}
+            s2300_cargofuncao_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
        
-            insert = create_insert('s2300_infocomplementares', s2300_infocomplementares_dados)
+            if 'codCargo' in dir(cargoFuncao): s2300_cargofuncao_dados['codcargo'] = cargoFuncao.codCargo.cdata
+            if 'codFuncao' in dir(cargoFuncao): s2300_cargofuncao_dados['codfuncao'] = cargoFuncao.codFuncao.cdata
+            insert = create_insert('s2300_cargofuncao', s2300_cargofuncao_dados)
             resp = executar_sql(insert, True)
-            s2300_infocomplementares_id = resp[0][0]
-            #print s2300_infocomplementares_id
+            s2300_cargofuncao_id = resp[0][0]
+            #print s2300_cargofuncao_id
 
-            if 'cargoFuncao' in dir(infoComplementares):
-                for cargoFuncao in infoComplementares.cargoFuncao:
-                    s2300_cargofuncao_dados = {}
-                    s2300_cargofuncao_dados['s2300_infocomplementares_id'] = s2300_infocomplementares_id
+    if 'remuneracao' in dir(evtTSVInicio.infoTSVInicio.infoComplementares):
+        for remuneracao in evtTSVInicio.infoTSVInicio.infoComplementares.remuneracao:
+            s2300_remuneracao_dados = {}
+            s2300_remuneracao_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
+       
+            if 'vrSalFx' in dir(remuneracao): s2300_remuneracao_dados['vrsalfx'] = remuneracao.vrSalFx.cdata
+            if 'undSalFixo' in dir(remuneracao): s2300_remuneracao_dados['undsalfixo'] = remuneracao.undSalFixo.cdata
+            if 'dscSalVar' in dir(remuneracao): s2300_remuneracao_dados['dscsalvar'] = remuneracao.dscSalVar.cdata
+            insert = create_insert('s2300_remuneracao', s2300_remuneracao_dados)
+            resp = executar_sql(insert, True)
+            s2300_remuneracao_id = resp[0][0]
+            #print s2300_remuneracao_id
+
+    if 'fgts' in dir(evtTSVInicio.infoTSVInicio.infoComplementares):
+        for fgts in evtTSVInicio.infoTSVInicio.infoComplementares.fgts:
+            s2300_fgts_dados = {}
+            s2300_fgts_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
+       
+            if 'opcFGTS' in dir(fgts): s2300_fgts_dados['opcfgts'] = fgts.opcFGTS.cdata
+            if 'dtOpcFGTS' in dir(fgts): s2300_fgts_dados['dtopcfgts'] = fgts.dtOpcFGTS.cdata
+            insert = create_insert('s2300_fgts', s2300_fgts_dados)
+            resp = executar_sql(insert, True)
+            s2300_fgts_id = resp[0][0]
+            #print s2300_fgts_id
+
+    if 'infoDirigenteSindical' in dir(evtTSVInicio.infoTSVInicio.infoComplementares):
+        for infoDirigenteSindical in evtTSVInicio.infoTSVInicio.infoComplementares.infoDirigenteSindical:
+            s2300_infodirigentesindical_dados = {}
+            s2300_infodirigentesindical_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
+       
+            if 'categOrig' in dir(infoDirigenteSindical): s2300_infodirigentesindical_dados['categorig'] = infoDirigenteSindical.categOrig.cdata
+            if 'cnpjOrigem' in dir(infoDirigenteSindical): s2300_infodirigentesindical_dados['cnpjorigem'] = infoDirigenteSindical.cnpjOrigem.cdata
+            if 'dtAdmOrig' in dir(infoDirigenteSindical): s2300_infodirigentesindical_dados['dtadmorig'] = infoDirigenteSindical.dtAdmOrig.cdata
+            if 'matricOrig' in dir(infoDirigenteSindical): s2300_infodirigentesindical_dados['matricorig'] = infoDirigenteSindical.matricOrig.cdata
+            insert = create_insert('s2300_infodirigentesindical', s2300_infodirigentesindical_dados)
+            resp = executar_sql(insert, True)
+            s2300_infodirigentesindical_id = resp[0][0]
+            #print s2300_infodirigentesindical_id
+
+    if 'infoTrabCedido' in dir(evtTSVInicio.infoTSVInicio.infoComplementares):
+        for infoTrabCedido in evtTSVInicio.infoTSVInicio.infoComplementares.infoTrabCedido:
+            s2300_infotrabcedido_dados = {}
+            s2300_infotrabcedido_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
+       
+            if 'categOrig' in dir(infoTrabCedido): s2300_infotrabcedido_dados['categorig'] = infoTrabCedido.categOrig.cdata
+            if 'cnpjCednt' in dir(infoTrabCedido): s2300_infotrabcedido_dados['cnpjcednt'] = infoTrabCedido.cnpjCednt.cdata
+            if 'matricCed' in dir(infoTrabCedido): s2300_infotrabcedido_dados['matricced'] = infoTrabCedido.matricCed.cdata
+            if 'dtAdmCed' in dir(infoTrabCedido): s2300_infotrabcedido_dados['dtadmced'] = infoTrabCedido.dtAdmCed.cdata
+            if 'tpRegTrab' in dir(infoTrabCedido): s2300_infotrabcedido_dados['tpregtrab'] = infoTrabCedido.tpRegTrab.cdata
+            if 'tpRegPrev' in dir(infoTrabCedido): s2300_infotrabcedido_dados['tpregprev'] = infoTrabCedido.tpRegPrev.cdata
+            if 'infOnus' in dir(infoTrabCedido): s2300_infotrabcedido_dados['infonus'] = infoTrabCedido.infOnus.cdata
+            if 'indRemunCargo' in dir(infoTrabCedido): s2300_infotrabcedido_dados['indremuncargo'] = infoTrabCedido.indRemunCargo.cdata
+            insert = create_insert('s2300_infotrabcedido', s2300_infotrabcedido_dados)
+            resp = executar_sql(insert, True)
+            s2300_infotrabcedido_id = resp[0][0]
+            #print s2300_infotrabcedido_id
+
+    if 'infoEstagiario' in dir(evtTSVInicio.infoTSVInicio.infoComplementares):
+        for infoEstagiario in evtTSVInicio.infoTSVInicio.infoComplementares.infoEstagiario:
+            s2300_infoestagiario_dados = {}
+            s2300_infoestagiario_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
+       
+            if 'natEstagio' in dir(infoEstagiario): s2300_infoestagiario_dados['natestagio'] = infoEstagiario.natEstagio.cdata
+            if 'nivEstagio' in dir(infoEstagiario): s2300_infoestagiario_dados['nivestagio'] = infoEstagiario.nivEstagio.cdata
+            if 'areaAtuacao' in dir(infoEstagiario): s2300_infoestagiario_dados['areaatuacao'] = infoEstagiario.areaAtuacao.cdata
+            if 'nrApol' in dir(infoEstagiario): s2300_infoestagiario_dados['nrapol'] = infoEstagiario.nrApol.cdata
+            if 'vlrBolsa' in dir(infoEstagiario): s2300_infoestagiario_dados['vlrbolsa'] = infoEstagiario.vlrBolsa.cdata
+            if 'dtPrevTerm' in dir(infoEstagiario): s2300_infoestagiario_dados['dtprevterm'] = infoEstagiario.dtPrevTerm.cdata
+            if 'cnpjInstEnsino' in dir(infoEstagiario.instEnsino): s2300_infoestagiario_dados['cnpjinstensino'] = infoEstagiario.instEnsino.cnpjInstEnsino.cdata
+            if 'nmRazao' in dir(infoEstagiario.instEnsino): s2300_infoestagiario_dados['nmrazao'] = infoEstagiario.instEnsino.nmRazao.cdata
+            if 'dscLograd' in dir(infoEstagiario.instEnsino): s2300_infoestagiario_dados['dsclograd'] = infoEstagiario.instEnsino.dscLograd.cdata
+            if 'nrLograd' in dir(infoEstagiario.instEnsino): s2300_infoestagiario_dados['nrlograd'] = infoEstagiario.instEnsino.nrLograd.cdata
+            if 'bairro' in dir(infoEstagiario.instEnsino): s2300_infoestagiario_dados['bairro'] = infoEstagiario.instEnsino.bairro.cdata
+            if 'cep' in dir(infoEstagiario.instEnsino): s2300_infoestagiario_dados['cep'] = infoEstagiario.instEnsino.cep.cdata
+            if 'codMunic' in dir(infoEstagiario.instEnsino): s2300_infoestagiario_dados['codmunic'] = infoEstagiario.instEnsino.codMunic.cdata
+            if 'uf' in dir(infoEstagiario.instEnsino): s2300_infoestagiario_dados['uf'] = infoEstagiario.instEnsino.uf.cdata
+            insert = create_insert('s2300_infoestagiario', s2300_infoestagiario_dados)
+            resp = executar_sql(insert, True)
+            s2300_infoestagiario_id = resp[0][0]
+            #print s2300_infoestagiario_id
+
+            if 'ageIntegracao' in dir(infoEstagiario):
+                for ageIntegracao in infoEstagiario.ageIntegracao:
+                    s2300_ageintegracao_dados = {}
+                    s2300_ageintegracao_dados['s2300_infoestagiario_id'] = s2300_infoestagiario_id
                
-                    if 'codCargo' in dir(cargoFuncao): s2300_cargofuncao_dados['codcargo'] = cargoFuncao.codCargo.cdata
-                    if 'codFuncao' in dir(cargoFuncao): s2300_cargofuncao_dados['codfuncao'] = cargoFuncao.codFuncao.cdata
-                    insert = create_insert('s2300_cargofuncao', s2300_cargofuncao_dados)
+                    if 'cnpjAgntInteg' in dir(ageIntegracao): s2300_ageintegracao_dados['cnpjagntinteg'] = ageIntegracao.cnpjAgntInteg.cdata
+                    if 'nmRazao' in dir(ageIntegracao): s2300_ageintegracao_dados['nmrazao'] = ageIntegracao.nmRazao.cdata
+                    if 'dscLograd' in dir(ageIntegracao): s2300_ageintegracao_dados['dsclograd'] = ageIntegracao.dscLograd.cdata
+                    if 'nrLograd' in dir(ageIntegracao): s2300_ageintegracao_dados['nrlograd'] = ageIntegracao.nrLograd.cdata
+                    if 'bairro' in dir(ageIntegracao): s2300_ageintegracao_dados['bairro'] = ageIntegracao.bairro.cdata
+                    if 'cep' in dir(ageIntegracao): s2300_ageintegracao_dados['cep'] = ageIntegracao.cep.cdata
+                    if 'codMunic' in dir(ageIntegracao): s2300_ageintegracao_dados['codmunic'] = ageIntegracao.codMunic.cdata
+                    if 'uf' in dir(ageIntegracao): s2300_ageintegracao_dados['uf'] = ageIntegracao.uf.cdata
+                    insert = create_insert('s2300_ageintegracao', s2300_ageintegracao_dados)
                     resp = executar_sql(insert, True)
-                    s2300_cargofuncao_id = resp[0][0]
-                    #print s2300_cargofuncao_id
+                    s2300_ageintegracao_id = resp[0][0]
+                    #print s2300_ageintegracao_id
    
-            if 'remuneracao' in dir(infoComplementares):
-                for remuneracao in infoComplementares.remuneracao:
-                    s2300_remuneracao_dados = {}
-                    s2300_remuneracao_dados['s2300_infocomplementares_id'] = s2300_infocomplementares_id
+            if 'supervisorEstagio' in dir(infoEstagiario):
+                for supervisorEstagio in infoEstagiario.supervisorEstagio:
+                    s2300_supervisorestagio_dados = {}
+                    s2300_supervisorestagio_dados['s2300_infoestagiario_id'] = s2300_infoestagiario_id
                
-                    if 'vrSalFx' in dir(remuneracao): s2300_remuneracao_dados['vrsalfx'] = remuneracao.vrSalFx.cdata
-                    if 'undSalFixo' in dir(remuneracao): s2300_remuneracao_dados['undsalfixo'] = remuneracao.undSalFixo.cdata
-                    if 'dscSalVar' in dir(remuneracao): s2300_remuneracao_dados['dscsalvar'] = remuneracao.dscSalVar.cdata
-                    insert = create_insert('s2300_remuneracao', s2300_remuneracao_dados)
+                    if 'cpfSupervisor' in dir(supervisorEstagio): s2300_supervisorestagio_dados['cpfsupervisor'] = supervisorEstagio.cpfSupervisor.cdata
+                    if 'nmSuperv' in dir(supervisorEstagio): s2300_supervisorestagio_dados['nmsuperv'] = supervisorEstagio.nmSuperv.cdata
+                    insert = create_insert('s2300_supervisorestagio', s2300_supervisorestagio_dados)
                     resp = executar_sql(insert, True)
-                    s2300_remuneracao_id = resp[0][0]
-                    #print s2300_remuneracao_id
+                    s2300_supervisorestagio_id = resp[0][0]
+                    #print s2300_supervisorestagio_id
    
-            if 'fgts' in dir(infoComplementares):
-                for fgts in infoComplementares.fgts:
-                    s2300_fgts_dados = {}
-                    s2300_fgts_dados['s2300_infocomplementares_id'] = s2300_infocomplementares_id
-               
-                    if 'opcFGTS' in dir(fgts): s2300_fgts_dados['opcfgts'] = fgts.opcFGTS.cdata
-                    if 'dtOpcFGTS' in dir(fgts): s2300_fgts_dados['dtopcfgts'] = fgts.dtOpcFGTS.cdata
-                    insert = create_insert('s2300_fgts', s2300_fgts_dados)
-                    resp = executar_sql(insert, True)
-                    s2300_fgts_id = resp[0][0]
-                    #print s2300_fgts_id
-   
-            if 'infoDirigenteSindical' in dir(infoComplementares):
-                for infoDirigenteSindical in infoComplementares.infoDirigenteSindical:
-                    s2300_infodirigentesindical_dados = {}
-                    s2300_infodirigentesindical_dados['s2300_infocomplementares_id'] = s2300_infocomplementares_id
-               
-                    if 'categOrig' in dir(infoDirigenteSindical): s2300_infodirigentesindical_dados['categorig'] = infoDirigenteSindical.categOrig.cdata
-                    if 'cnpjOrigem' in dir(infoDirigenteSindical): s2300_infodirigentesindical_dados['cnpjorigem'] = infoDirigenteSindical.cnpjOrigem.cdata
-                    if 'dtAdmOrig' in dir(infoDirigenteSindical): s2300_infodirigentesindical_dados['dtadmorig'] = infoDirigenteSindical.dtAdmOrig.cdata
-                    if 'matricOrig' in dir(infoDirigenteSindical): s2300_infodirigentesindical_dados['matricorig'] = infoDirigenteSindical.matricOrig.cdata
-                    insert = create_insert('s2300_infodirigentesindical', s2300_infodirigentesindical_dados)
-                    resp = executar_sql(insert, True)
-                    s2300_infodirigentesindical_id = resp[0][0]
-                    #print s2300_infodirigentesindical_id
-   
-            if 'infoTrabCedido' in dir(infoComplementares):
-                for infoTrabCedido in infoComplementares.infoTrabCedido:
-                    s2300_infotrabcedido_dados = {}
-                    s2300_infotrabcedido_dados['s2300_infocomplementares_id'] = s2300_infocomplementares_id
-               
-                    if 'categOrig' in dir(infoTrabCedido): s2300_infotrabcedido_dados['categorig'] = infoTrabCedido.categOrig.cdata
-                    if 'cnpjCednt' in dir(infoTrabCedido): s2300_infotrabcedido_dados['cnpjcednt'] = infoTrabCedido.cnpjCednt.cdata
-                    if 'matricCed' in dir(infoTrabCedido): s2300_infotrabcedido_dados['matricced'] = infoTrabCedido.matricCed.cdata
-                    if 'dtAdmCed' in dir(infoTrabCedido): s2300_infotrabcedido_dados['dtadmced'] = infoTrabCedido.dtAdmCed.cdata
-                    if 'tpRegTrab' in dir(infoTrabCedido): s2300_infotrabcedido_dados['tpregtrab'] = infoTrabCedido.tpRegTrab.cdata
-                    if 'tpRegPrev' in dir(infoTrabCedido): s2300_infotrabcedido_dados['tpregprev'] = infoTrabCedido.tpRegPrev.cdata
-                    if 'infOnus' in dir(infoTrabCedido): s2300_infotrabcedido_dados['infonus'] = infoTrabCedido.infOnus.cdata
-                    if 'indRemunCargo' in dir(infoTrabCedido): s2300_infotrabcedido_dados['indremuncargo'] = infoTrabCedido.indRemunCargo.cdata
-                    insert = create_insert('s2300_infotrabcedido', s2300_infotrabcedido_dados)
-                    resp = executar_sql(insert, True)
-                    s2300_infotrabcedido_id = resp[0][0]
-                    #print s2300_infotrabcedido_id
-   
-            if 'infoEstagiario' in dir(infoComplementares):
-                for infoEstagiario in infoComplementares.infoEstagiario:
-                    s2300_infoestagiario_dados = {}
-                    s2300_infoestagiario_dados['s2300_infocomplementares_id'] = s2300_infocomplementares_id
-               
-                    if 'natEstagio' in dir(infoEstagiario): s2300_infoestagiario_dados['natestagio'] = infoEstagiario.natEstagio.cdata
-                    if 'nivEstagio' in dir(infoEstagiario): s2300_infoestagiario_dados['nivestagio'] = infoEstagiario.nivEstagio.cdata
-                    if 'areaAtuacao' in dir(infoEstagiario): s2300_infoestagiario_dados['areaatuacao'] = infoEstagiario.areaAtuacao.cdata
-                    if 'nrApol' in dir(infoEstagiario): s2300_infoestagiario_dados['nrapol'] = infoEstagiario.nrApol.cdata
-                    if 'vlrBolsa' in dir(infoEstagiario): s2300_infoestagiario_dados['vlrbolsa'] = infoEstagiario.vlrBolsa.cdata
-                    if 'dtPrevTerm' in dir(infoEstagiario): s2300_infoestagiario_dados['dtprevterm'] = infoEstagiario.dtPrevTerm.cdata
-                    if 'cnpjInstEnsino' in dir(infoEstagiario): s2300_infoestagiario_dados['cnpjinstensino'] = infoEstagiario.instEnsino.cnpjInstEnsino.cdata
-                    if 'nmRazao' in dir(infoEstagiario): s2300_infoestagiario_dados['nmrazao'] = infoEstagiario.instEnsino.nmRazao.cdata
-                    if 'dscLograd' in dir(infoEstagiario): s2300_infoestagiario_dados['dsclograd'] = infoEstagiario.instEnsino.dscLograd.cdata
-                    if 'nrLograd' in dir(infoEstagiario): s2300_infoestagiario_dados['nrlograd'] = infoEstagiario.instEnsino.nrLograd.cdata
-                    if 'bairro' in dir(infoEstagiario): s2300_infoestagiario_dados['bairro'] = infoEstagiario.instEnsino.bairro.cdata
-                    if 'cep' in dir(infoEstagiario): s2300_infoestagiario_dados['cep'] = infoEstagiario.instEnsino.cep.cdata
-                    if 'codMunic' in dir(infoEstagiario): s2300_infoestagiario_dados['codmunic'] = infoEstagiario.instEnsino.codMunic.cdata
-                    if 'uf' in dir(infoEstagiario): s2300_infoestagiario_dados['uf'] = infoEstagiario.instEnsino.uf.cdata
-                    insert = create_insert('s2300_infoestagiario', s2300_infoestagiario_dados)
-                    resp = executar_sql(insert, True)
-                    s2300_infoestagiario_id = resp[0][0]
-                    #print s2300_infoestagiario_id
-   
+    if 'mudancaCPF' in dir(evtTSVInicio.infoTSVInicio):
+        for mudancaCPF in evtTSVInicio.infoTSVInicio.mudancaCPF:
+            s2300_mudancacpf_dados = {}
+            s2300_mudancacpf_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
+       
+            if 'cpfAnt' in dir(mudancaCPF): s2300_mudancacpf_dados['cpfant'] = mudancaCPF.cpfAnt.cdata
+            if 'dtAltCPF' in dir(mudancaCPF): s2300_mudancacpf_dados['dtaltcpf'] = mudancaCPF.dtAltCPF.cdata
+            if 'observacao' in dir(mudancaCPF): s2300_mudancacpf_dados['observacao'] = mudancaCPF.observacao.cdata
+            insert = create_insert('s2300_mudancacpf', s2300_mudancacpf_dados)
+            resp = executar_sql(insert, True)
+            s2300_mudancacpf_id = resp[0][0]
+            #print s2300_mudancacpf_id
+
     if 'afastamento' in dir(evtTSVInicio.infoTSVInicio):
         for afastamento in evtTSVInicio.infoTSVInicio.afastamento:
             s2300_afastamento_dados = {}

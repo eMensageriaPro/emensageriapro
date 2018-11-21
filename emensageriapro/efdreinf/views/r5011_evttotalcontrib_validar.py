@@ -75,6 +75,7 @@ def validacoes_r5011_evttotalcontrib(arquivo):
                 for RTom in infoTotalContrib.RTom:
                
                     if 'cnpjPrestador' in dir(RTom): validacoes_lista = validar_campo(validacoes_lista,'RTom.cnpjPrestador', RTom.cnpjPrestador.cdata, 1, '')
+                    if 'cno' in dir(RTom): validacoes_lista = validar_campo(validacoes_lista,'RTom.cno', RTom.cno.cdata, 0, '')
                     if 'vlrTotalBaseRet' in dir(RTom): validacoes_lista = validar_campo(validacoes_lista,'RTom.vlrTotalBaseRet', RTom.vlrTotalBaseRet.cdata, 1, '')
    
             if 'RPrest' in dir(infoTotalContrib):

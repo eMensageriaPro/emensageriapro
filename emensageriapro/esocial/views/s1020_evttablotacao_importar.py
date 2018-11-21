@@ -107,15 +107,18 @@ def read_s1020_evttablotacao_obj(doc, status, validar=False):
             s1020_inclusao_id = resp[0][0]
             #print s1020_inclusao_id
 
-            if 'infoProcJudTerceiros' in dir(inclusao.dadosLotacao.fpasLotacao):
-                for infoProcJudTerceiros in inclusao.dadosLotacao.fpasLotacao.infoProcJudTerceiros:
-                    s1020_inclusao_infoprocjudterceiros_dados = {}
-                    s1020_inclusao_infoprocjudterceiros_dados['s1020_inclusao_id'] = s1020_inclusao_id
+            if 'procJudTerceiro' in dir(inclusao.dadosLotacao.fpasLotacao.infoProcJudTerceiros):
+                for procJudTerceiro in inclusao.dadosLotacao.fpasLotacao.infoProcJudTerceiros.procJudTerceiro:
+                    s1020_inclusao_procjudterceiro_dados = {}
+                    s1020_inclusao_procjudterceiro_dados['s1020_inclusao_id'] = s1020_inclusao_id
                
-                    insert = create_insert('s1020_inclusao_infoprocjudterceiros', s1020_inclusao_infoprocjudterceiros_dados)
+                    if 'codTerc' in dir(procJudTerceiro): s1020_inclusao_procjudterceiro_dados['codterc'] = procJudTerceiro.codTerc.cdata
+                    if 'nrProcJud' in dir(procJudTerceiro): s1020_inclusao_procjudterceiro_dados['nrprocjud'] = procJudTerceiro.nrProcJud.cdata
+                    if 'codSusp' in dir(procJudTerceiro): s1020_inclusao_procjudterceiro_dados['codsusp'] = procJudTerceiro.codSusp.cdata
+                    insert = create_insert('s1020_inclusao_procjudterceiro', s1020_inclusao_procjudterceiro_dados)
                     resp = executar_sql(insert, True)
-                    s1020_inclusao_infoprocjudterceiros_id = resp[0][0]
-                    #print s1020_inclusao_infoprocjudterceiros_id
+                    s1020_inclusao_procjudterceiro_id = resp[0][0]
+                    #print s1020_inclusao_procjudterceiro_id
    
             if 'infoEmprParcial' in dir(inclusao.dadosLotacao):
                 for infoEmprParcial in inclusao.dadosLotacao.infoEmprParcial:
@@ -150,15 +153,18 @@ def read_s1020_evttablotacao_obj(doc, status, validar=False):
             s1020_alteracao_id = resp[0][0]
             #print s1020_alteracao_id
 
-            if 'infoProcJudTerceiros' in dir(alteracao.dadosLotacao.fpasLotacao):
-                for infoProcJudTerceiros in alteracao.dadosLotacao.fpasLotacao.infoProcJudTerceiros:
-                    s1020_alteracao_infoprocjudterceiros_dados = {}
-                    s1020_alteracao_infoprocjudterceiros_dados['s1020_alteracao_id'] = s1020_alteracao_id
+            if 'procJudTerceiro' in dir(alteracao.dadosLotacao.fpasLotacao.infoProcJudTerceiros):
+                for procJudTerceiro in alteracao.dadosLotacao.fpasLotacao.infoProcJudTerceiros.procJudTerceiro:
+                    s1020_alteracao_procjudterceiro_dados = {}
+                    s1020_alteracao_procjudterceiro_dados['s1020_alteracao_id'] = s1020_alteracao_id
                
-                    insert = create_insert('s1020_alteracao_infoprocjudterceiros', s1020_alteracao_infoprocjudterceiros_dados)
+                    if 'codTerc' in dir(procJudTerceiro): s1020_alteracao_procjudterceiro_dados['codterc'] = procJudTerceiro.codTerc.cdata
+                    if 'nrProcJud' in dir(procJudTerceiro): s1020_alteracao_procjudterceiro_dados['nrprocjud'] = procJudTerceiro.nrProcJud.cdata
+                    if 'codSusp' in dir(procJudTerceiro): s1020_alteracao_procjudterceiro_dados['codsusp'] = procJudTerceiro.codSusp.cdata
+                    insert = create_insert('s1020_alteracao_procjudterceiro', s1020_alteracao_procjudterceiro_dados)
                     resp = executar_sql(insert, True)
-                    s1020_alteracao_infoprocjudterceiros_id = resp[0][0]
-                    #print s1020_alteracao_infoprocjudterceiros_id
+                    s1020_alteracao_procjudterceiro_id = resp[0][0]
+                    #print s1020_alteracao_procjudterceiro_id
    
             if 'infoEmprParcial' in dir(alteracao.dadosLotacao):
                 for infoEmprParcial in alteracao.dadosLotacao.infoEmprParcial:

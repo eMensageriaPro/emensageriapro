@@ -120,25 +120,35 @@ def read_s1202_evtrmnrpps_obj(doc, status, validar=False):
             s1202_dmdev_id = resp[0][0]
             #print s1202_dmdev_id
 
-            if 'infoPerApur' in dir(dmDev):
-                for infoPerApur in dmDev.infoPerApur:
-                    s1202_infoperapur_dados = {}
-                    s1202_infoperapur_dados['s1202_dmdev_id'] = s1202_dmdev_id
+            if 'ideEstab' in dir(dmDev.infoPerApur):
+                for ideEstab in dmDev.infoPerApur.ideEstab:
+                    s1202_infoperapur_ideestab_dados = {}
+                    s1202_infoperapur_ideestab_dados['s1202_dmdev_id'] = s1202_dmdev_id
                
-                    insert = create_insert('s1202_infoperapur', s1202_infoperapur_dados)
+                    if 'tpInsc' in dir(ideEstab): s1202_infoperapur_ideestab_dados['tpinsc'] = ideEstab.tpInsc.cdata
+                    if 'nrInsc' in dir(ideEstab): s1202_infoperapur_ideestab_dados['nrinsc'] = ideEstab.nrInsc.cdata
+                    insert = create_insert('s1202_infoperapur_ideestab', s1202_infoperapur_ideestab_dados)
                     resp = executar_sql(insert, True)
-                    s1202_infoperapur_id = resp[0][0]
-                    #print s1202_infoperapur_id
+                    s1202_infoperapur_ideestab_id = resp[0][0]
+                    #print s1202_infoperapur_ideestab_id
    
-            if 'infoPerAnt' in dir(dmDev):
-                for infoPerAnt in dmDev.infoPerAnt:
-                    s1202_infoperant_dados = {}
-                    s1202_infoperant_dados['s1202_dmdev_id'] = s1202_dmdev_id
+            if 'ideADC' in dir(dmDev.infoPerAnt):
+                for ideADC in dmDev.infoPerAnt.ideADC:
+                    s1202_infoperant_ideadc_dados = {}
+                    s1202_infoperant_ideadc_dados['s1202_dmdev_id'] = s1202_dmdev_id
                
-                    insert = create_insert('s1202_infoperant', s1202_infoperant_dados)
+                    if 'dtLei' in dir(ideADC): s1202_infoperant_ideadc_dados['dtlei'] = ideADC.dtLei.cdata
+                    if 'nrLei' in dir(ideADC): s1202_infoperant_ideadc_dados['nrlei'] = ideADC.nrLei.cdata
+                    if 'dtEf' in dir(ideADC): s1202_infoperant_ideadc_dados['dtef'] = ideADC.dtEf.cdata
+                    if 'dtAcConv' in dir(ideADC): s1202_infoperant_ideadc_dados['dtacconv'] = ideADC.dtAcConv.cdata
+                    if 'tpAcConv' in dir(ideADC): s1202_infoperant_ideadc_dados['tpacconv'] = ideADC.tpAcConv.cdata
+                    if 'compAcConv' in dir(ideADC): s1202_infoperant_ideadc_dados['compacconv'] = ideADC.compAcConv.cdata
+                    if 'dtEfAcConv' in dir(ideADC): s1202_infoperant_ideadc_dados['dtefacconv'] = ideADC.dtEfAcConv.cdata
+                    if 'dsc' in dir(ideADC): s1202_infoperant_ideadc_dados['dsc'] = ideADC.dsc.cdata
+                    insert = create_insert('s1202_infoperant_ideadc', s1202_infoperant_ideadc_dados)
                     resp = executar_sql(insert, True)
-                    s1202_infoperant_id = resp[0][0]
-                    #print s1202_infoperant_id
+                    s1202_infoperant_ideadc_id = resp[0][0]
+                    #print s1202_infoperant_ideadc_id
    
     from emensageriapro.esocial.views.s1202_evtrmnrpps_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(s1202_evtrmnrpps_id, 'default')

@@ -107,11 +107,10 @@ def verificar(request, hash):
         s2306_evttsvaltcontr_lista = s2306evtTSVAltContr.objects.using( db_slug ).filter(id=s2306_evttsvaltcontr_id, excluido = False).all()
    
 
-        s2306_infocomplementares_lista = s2306infoComplementares.objects.using(db_slug).filter(s2306_evttsvaltcontr_id__in = listar_ids(s2306_evttsvaltcontr_lista) ).filter(excluido=False).all()
-        s2306_cargofuncao_lista = s2306cargoFuncao.objects.using(db_slug).filter(s2306_infocomplementares_id__in = listar_ids(s2306_infocomplementares_lista) ).filter(excluido=False).all()
-        s2306_remuneracao_lista = s2306remuneracao.objects.using(db_slug).filter(s2306_infocomplementares_id__in = listar_ids(s2306_infocomplementares_lista) ).filter(excluido=False).all()
-        s2306_infotrabcedido_lista = s2306infoTrabCedido.objects.using(db_slug).filter(s2306_infocomplementares_id__in = listar_ids(s2306_infocomplementares_lista) ).filter(excluido=False).all()
-        s2306_infoestagiario_lista = s2306infoEstagiario.objects.using(db_slug).filter(s2306_infocomplementares_id__in = listar_ids(s2306_infocomplementares_lista) ).filter(excluido=False).all()
+        s2306_cargofuncao_lista = s2306cargoFuncao.objects.using(db_slug).filter(s2306_evttsvaltcontr_id__in = listar_ids(s2306_evttsvaltcontr_lista) ).filter(excluido=False).all()
+        s2306_remuneracao_lista = s2306remuneracao.objects.using(db_slug).filter(s2306_evttsvaltcontr_id__in = listar_ids(s2306_evttsvaltcontr_lista) ).filter(excluido=False).all()
+        s2306_infotrabcedido_lista = s2306infoTrabCedido.objects.using(db_slug).filter(s2306_evttsvaltcontr_id__in = listar_ids(s2306_evttsvaltcontr_lista) ).filter(excluido=False).all()
+        s2306_infoestagiario_lista = s2306infoEstagiario.objects.using(db_slug).filter(s2306_evttsvaltcontr_id__in = listar_ids(s2306_evttsvaltcontr_lista) ).filter(excluido=False).all()
         s2306_ageintegracao_lista = s2306ageIntegracao.objects.using(db_slug).filter(s2306_infoestagiario_id__in = listar_ids(s2306_infoestagiario_lista) ).filter(excluido=False).all()
         s2306_supervisorestagio_lista = s2306supervisorEstagio.objects.using(db_slug).filter(s2306_infoestagiario_id__in = listar_ids(s2306_infoestagiario_lista) ).filter(excluido=False).all()
         request.session["retorno_hash"] = hash
@@ -132,7 +131,6 @@ def verificar(request, hash):
             'for_print': for_print,
             'hash': hash,
 
-            's2306_infocomplementares_lista': s2306_infocomplementares_lista,
             's2306_cargofuncao_lista': s2306_cargofuncao_lista,
             's2306_remuneracao_lista': s2306_remuneracao_lista,
             's2306_infotrabcedido_lista': s2306_infotrabcedido_lista,
@@ -209,11 +207,10 @@ def gerar_xml_s2306(s2306_evttsvaltcontr_id, db_slug, versao=None):
         s2306_evttsvaltcontr_lista = s2306evtTSVAltContr.objects.using( db_slug ).filter(id=s2306_evttsvaltcontr_id, excluido = False).all()
    
 
-        s2306_infocomplementares_lista = s2306infoComplementares.objects.using(db_slug).filter(s2306_evttsvaltcontr_id__in = listar_ids(s2306_evttsvaltcontr_lista) ).filter(excluido=False).all()
-        s2306_cargofuncao_lista = s2306cargoFuncao.objects.using(db_slug).filter(s2306_infocomplementares_id__in = listar_ids(s2306_infocomplementares_lista) ).filter(excluido=False).all()
-        s2306_remuneracao_lista = s2306remuneracao.objects.using(db_slug).filter(s2306_infocomplementares_id__in = listar_ids(s2306_infocomplementares_lista) ).filter(excluido=False).all()
-        s2306_infotrabcedido_lista = s2306infoTrabCedido.objects.using(db_slug).filter(s2306_infocomplementares_id__in = listar_ids(s2306_infocomplementares_lista) ).filter(excluido=False).all()
-        s2306_infoestagiario_lista = s2306infoEstagiario.objects.using(db_slug).filter(s2306_infocomplementares_id__in = listar_ids(s2306_infocomplementares_lista) ).filter(excluido=False).all()
+        s2306_cargofuncao_lista = s2306cargoFuncao.objects.using(db_slug).filter(s2306_evttsvaltcontr_id__in = listar_ids(s2306_evttsvaltcontr_lista) ).filter(excluido=False).all()
+        s2306_remuneracao_lista = s2306remuneracao.objects.using(db_slug).filter(s2306_evttsvaltcontr_id__in = listar_ids(s2306_evttsvaltcontr_lista) ).filter(excluido=False).all()
+        s2306_infotrabcedido_lista = s2306infoTrabCedido.objects.using(db_slug).filter(s2306_evttsvaltcontr_id__in = listar_ids(s2306_evttsvaltcontr_lista) ).filter(excluido=False).all()
+        s2306_infoestagiario_lista = s2306infoEstagiario.objects.using(db_slug).filter(s2306_evttsvaltcontr_id__in = listar_ids(s2306_evttsvaltcontr_lista) ).filter(excluido=False).all()
         s2306_ageintegracao_lista = s2306ageIntegracao.objects.using(db_slug).filter(s2306_infoestagiario_id__in = listar_ids(s2306_infoestagiario_lista) ).filter(excluido=False).all()
         s2306_supervisorestagio_lista = s2306supervisorEstagio.objects.using(db_slug).filter(s2306_infoestagiario_id__in = listar_ids(s2306_infoestagiario_lista) ).filter(excluido=False).all()
    
@@ -225,7 +222,6 @@ def gerar_xml_s2306(s2306_evttsvaltcontr_id, db_slug, versao=None):
             's2306_evttsvaltcontr': s2306_evttsvaltcontr,
 
 
-            's2306_infocomplementares_lista': s2306_infocomplementares_lista,
             's2306_cargofuncao_lista': s2306_cargofuncao_lista,
             's2306_remuneracao_lista': s2306_remuneracao_lista,
             's2306_infotrabcedido_lista': s2306_infotrabcedido_lista,

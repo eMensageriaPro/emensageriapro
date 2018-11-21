@@ -61,17 +61,13 @@ def validacoes_s1250_evtaqprod(arquivo):
     if 'tpAquis' in dir(evtAqProd.infoAquisProd.ideEstabAdquir):
         for tpAquis in evtAqProd.infoAquisProd.ideEstabAdquir.tpAquis:
        
-            if 'indAquis' in dir(tpAquis): validacoes_lista = validar_campo(validacoes_lista,'tpAquis.indAquis', tpAquis.indAquis.cdata, 1, '1;2;3;4;5;6')
-            if 'vlrTotAquis' in dir(tpAquis): validacoes_lista = validar_campo(validacoes_lista,'tpAquis.vlrTotAquis', tpAquis.vlrTotAquis.cdata, 1, '')
 
             if 'ideProdutor' in dir(tpAquis):
                 for ideProdutor in tpAquis.ideProdutor:
                
-                    if 'tpInscProd' in dir(ideProdutor): validacoes_lista = validar_campo(validacoes_lista,'ideProdutor.tpInscProd', ideProdutor.tpInscProd.cdata, 1, '1;2;3;4')
-                    if 'nrInscProd' in dir(ideProdutor): validacoes_lista = validar_campo(validacoes_lista,'ideProdutor.nrInscProd', ideProdutor.nrInscProd.cdata, 1, '')
-                    if 'vlrBruto' in dir(ideProdutor): validacoes_lista = validar_campo(validacoes_lista,'ideProdutor.vlrBruto', ideProdutor.vlrBruto.cdata, 1, '')
-                    if 'vrCPDescPR' in dir(ideProdutor): validacoes_lista = validar_campo(validacoes_lista,'ideProdutor.vrCPDescPR', ideProdutor.vrCPDescPR.cdata, 1, '')
-                    if 'vrRatDescPR' in dir(ideProdutor): validacoes_lista = validar_campo(validacoes_lista,'ideProdutor.vrRatDescPR', ideProdutor.vrRatDescPR.cdata, 1, '')
-                    if 'vrSenarDesc' in dir(ideProdutor): validacoes_lista = validar_campo(validacoes_lista,'ideProdutor.vrSenarDesc', ideProdutor.vrSenarDesc.cdata, 1, '')
+   
+            if 'infoProcJ' in dir(tpAquis):
+                for infoProcJ in tpAquis.infoProcJ:
+               
    
     return validacoes_lista

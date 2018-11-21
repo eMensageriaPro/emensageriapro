@@ -94,6 +94,7 @@ def read_s2206_evtaltcontratual_obj(doc, status, validar=False):
     if 'dscSalVar' in dir(evtAltContratual.altContratual.infoContrato.remuneracao): s2206_evtaltcontratual_dados['dscsalvar'] = evtAltContratual.altContratual.infoContrato.remuneracao.dscSalVar.cdata
     if 'tpContr' in dir(evtAltContratual.altContratual.infoContrato.duracao): s2206_evtaltcontratual_dados['tpcontr'] = evtAltContratual.altContratual.infoContrato.duracao.tpContr.cdata
     if 'dtTerm' in dir(evtAltContratual.altContratual.infoContrato.duracao): s2206_evtaltcontratual_dados['dtterm'] = evtAltContratual.altContratual.infoContrato.duracao.dtTerm.cdata
+    if 'objDet' in dir(evtAltContratual.altContratual.infoContrato.duracao): s2206_evtaltcontratual_dados['objdet'] = evtAltContratual.altContratual.infoContrato.duracao.objDet.cdata
     if 'inclusao' in dir(evtAltContratual.altContratual): s2206_evtaltcontratual_dados['operacao'] = 1
     elif 'alteracao' in dir(evtAltContratual.altContratual): s2206_evtaltcontratual_dados['operacao'] = 2
     elif 'exclusao' in dir(evtAltContratual.altContratual): s2206_evtaltcontratual_dados['operacao'] = 3

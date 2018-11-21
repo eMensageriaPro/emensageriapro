@@ -109,15 +109,12 @@ def verificar(request, hash):
 
         s1202_procjudtrab_lista = s1202procJudTrab.objects.using(db_slug).filter(s1202_evtrmnrpps_id__in = listar_ids(s1202_evtrmnrpps_lista) ).filter(excluido=False).all()
         s1202_dmdev_lista = s1202dmDev.objects.using(db_slug).filter(s1202_evtrmnrpps_id__in = listar_ids(s1202_evtrmnrpps_lista) ).filter(excluido=False).all()
-        s1202_infoperapur_lista = s1202infoPerApur.objects.using(db_slug).filter(s1202_dmdev_id__in = listar_ids(s1202_dmdev_lista) ).filter(excluido=False).all()
-        s1202_infoperapur_ideestab_lista = s1202infoPerApurideEstab.objects.using(db_slug).filter(s1202_infoperapur_id__in = listar_ids(s1202_infoperapur_lista) ).filter(excluido=False).all()
+        s1202_infoperapur_ideestab_lista = s1202infoPerApurideEstab.objects.using(db_slug).filter(s1202_dmdev_id__in = listar_ids(s1202_dmdev_lista) ).filter(excluido=False).all()
         s1202_infoperapur_remunperapur_lista = s1202infoPerApurremunPerApur.objects.using(db_slug).filter(s1202_infoperapur_ideestab_id__in = listar_ids(s1202_infoperapur_ideestab_lista) ).filter(excluido=False).all()
         s1202_infoperapur_itensremun_lista = s1202infoPerApuritensRemun.objects.using(db_slug).filter(s1202_infoperapur_remunperapur_id__in = listar_ids(s1202_infoperapur_remunperapur_lista) ).filter(excluido=False).all()
-        s1202_infoperapur_infosaudecolet_lista = s1202infoPerApurinfoSaudeColet.objects.using(db_slug).filter(s1202_infoperapur_remunperapur_id__in = listar_ids(s1202_infoperapur_remunperapur_lista) ).filter(excluido=False).all()
-        s1202_infoperapur_detoper_lista = s1202infoPerApurdetOper.objects.using(db_slug).filter(s1202_infoperapur_infosaudecolet_id__in = listar_ids(s1202_infoperapur_infosaudecolet_lista) ).filter(excluido=False).all()
+        s1202_infoperapur_detoper_lista = s1202infoPerApurdetOper.objects.using(db_slug).filter(s1202_infoperapur_remunperapur_id__in = listar_ids(s1202_infoperapur_remunperapur_lista) ).filter(excluido=False).all()
         s1202_infoperapur_detplano_lista = s1202infoPerApurdetPlano.objects.using(db_slug).filter(s1202_infoperapur_detoper_id__in = listar_ids(s1202_infoperapur_detoper_lista) ).filter(excluido=False).all()
-        s1202_infoperant_lista = s1202infoPerAnt.objects.using(db_slug).filter(s1202_dmdev_id__in = listar_ids(s1202_dmdev_lista) ).filter(excluido=False).all()
-        s1202_infoperant_ideadc_lista = s1202infoPerAntideADC.objects.using(db_slug).filter(s1202_infoperant_id__in = listar_ids(s1202_infoperant_lista) ).filter(excluido=False).all()
+        s1202_infoperant_ideadc_lista = s1202infoPerAntideADC.objects.using(db_slug).filter(s1202_dmdev_id__in = listar_ids(s1202_dmdev_lista) ).filter(excluido=False).all()
         s1202_infoperant_ideperiodo_lista = s1202infoPerAntidePeriodo.objects.using(db_slug).filter(s1202_infoperant_ideadc_id__in = listar_ids(s1202_infoperant_ideadc_lista) ).filter(excluido=False).all()
         s1202_infoperant_ideestab_lista = s1202infoPerAntideEstab.objects.using(db_slug).filter(s1202_infoperant_ideperiodo_id__in = listar_ids(s1202_infoperant_ideperiodo_lista) ).filter(excluido=False).all()
         s1202_infoperant_remunperant_lista = s1202infoPerAntremunPerAnt.objects.using(db_slug).filter(s1202_infoperant_ideestab_id__in = listar_ids(s1202_infoperant_ideestab_lista) ).filter(excluido=False).all()
@@ -142,14 +139,11 @@ def verificar(request, hash):
 
             's1202_procjudtrab_lista': s1202_procjudtrab_lista,
             's1202_dmdev_lista': s1202_dmdev_lista,
-            's1202_infoperapur_lista': s1202_infoperapur_lista,
             's1202_infoperapur_ideestab_lista': s1202_infoperapur_ideestab_lista,
             's1202_infoperapur_remunperapur_lista': s1202_infoperapur_remunperapur_lista,
             's1202_infoperapur_itensremun_lista': s1202_infoperapur_itensremun_lista,
-            's1202_infoperapur_infosaudecolet_lista': s1202_infoperapur_infosaudecolet_lista,
             's1202_infoperapur_detoper_lista': s1202_infoperapur_detoper_lista,
             's1202_infoperapur_detplano_lista': s1202_infoperapur_detplano_lista,
-            's1202_infoperant_lista': s1202_infoperant_lista,
             's1202_infoperant_ideadc_lista': s1202_infoperant_ideadc_lista,
             's1202_infoperant_ideperiodo_lista': s1202_infoperant_ideperiodo_lista,
             's1202_infoperant_ideestab_lista': s1202_infoperant_ideestab_lista,
@@ -227,15 +221,12 @@ def gerar_xml_s1202(s1202_evtrmnrpps_id, db_slug, versao=None):
 
         s1202_procjudtrab_lista = s1202procJudTrab.objects.using(db_slug).filter(s1202_evtrmnrpps_id__in = listar_ids(s1202_evtrmnrpps_lista) ).filter(excluido=False).all()
         s1202_dmdev_lista = s1202dmDev.objects.using(db_slug).filter(s1202_evtrmnrpps_id__in = listar_ids(s1202_evtrmnrpps_lista) ).filter(excluido=False).all()
-        s1202_infoperapur_lista = s1202infoPerApur.objects.using(db_slug).filter(s1202_dmdev_id__in = listar_ids(s1202_dmdev_lista) ).filter(excluido=False).all()
-        s1202_infoperapur_ideestab_lista = s1202infoPerApurideEstab.objects.using(db_slug).filter(s1202_infoperapur_id__in = listar_ids(s1202_infoperapur_lista) ).filter(excluido=False).all()
+        s1202_infoperapur_ideestab_lista = s1202infoPerApurideEstab.objects.using(db_slug).filter(s1202_dmdev_id__in = listar_ids(s1202_dmdev_lista) ).filter(excluido=False).all()
         s1202_infoperapur_remunperapur_lista = s1202infoPerApurremunPerApur.objects.using(db_slug).filter(s1202_infoperapur_ideestab_id__in = listar_ids(s1202_infoperapur_ideestab_lista) ).filter(excluido=False).all()
         s1202_infoperapur_itensremun_lista = s1202infoPerApuritensRemun.objects.using(db_slug).filter(s1202_infoperapur_remunperapur_id__in = listar_ids(s1202_infoperapur_remunperapur_lista) ).filter(excluido=False).all()
-        s1202_infoperapur_infosaudecolet_lista = s1202infoPerApurinfoSaudeColet.objects.using(db_slug).filter(s1202_infoperapur_remunperapur_id__in = listar_ids(s1202_infoperapur_remunperapur_lista) ).filter(excluido=False).all()
-        s1202_infoperapur_detoper_lista = s1202infoPerApurdetOper.objects.using(db_slug).filter(s1202_infoperapur_infosaudecolet_id__in = listar_ids(s1202_infoperapur_infosaudecolet_lista) ).filter(excluido=False).all()
+        s1202_infoperapur_detoper_lista = s1202infoPerApurdetOper.objects.using(db_slug).filter(s1202_infoperapur_remunperapur_id__in = listar_ids(s1202_infoperapur_remunperapur_lista) ).filter(excluido=False).all()
         s1202_infoperapur_detplano_lista = s1202infoPerApurdetPlano.objects.using(db_slug).filter(s1202_infoperapur_detoper_id__in = listar_ids(s1202_infoperapur_detoper_lista) ).filter(excluido=False).all()
-        s1202_infoperant_lista = s1202infoPerAnt.objects.using(db_slug).filter(s1202_dmdev_id__in = listar_ids(s1202_dmdev_lista) ).filter(excluido=False).all()
-        s1202_infoperant_ideadc_lista = s1202infoPerAntideADC.objects.using(db_slug).filter(s1202_infoperant_id__in = listar_ids(s1202_infoperant_lista) ).filter(excluido=False).all()
+        s1202_infoperant_ideadc_lista = s1202infoPerAntideADC.objects.using(db_slug).filter(s1202_dmdev_id__in = listar_ids(s1202_dmdev_lista) ).filter(excluido=False).all()
         s1202_infoperant_ideperiodo_lista = s1202infoPerAntidePeriodo.objects.using(db_slug).filter(s1202_infoperant_ideadc_id__in = listar_ids(s1202_infoperant_ideadc_lista) ).filter(excluido=False).all()
         s1202_infoperant_ideestab_lista = s1202infoPerAntideEstab.objects.using(db_slug).filter(s1202_infoperant_ideperiodo_id__in = listar_ids(s1202_infoperant_ideperiodo_lista) ).filter(excluido=False).all()
         s1202_infoperant_remunperant_lista = s1202infoPerAntremunPerAnt.objects.using(db_slug).filter(s1202_infoperant_ideestab_id__in = listar_ids(s1202_infoperant_ideestab_lista) ).filter(excluido=False).all()
@@ -251,14 +242,11 @@ def gerar_xml_s1202(s1202_evtrmnrpps_id, db_slug, versao=None):
 
             's1202_procjudtrab_lista': s1202_procjudtrab_lista,
             's1202_dmdev_lista': s1202_dmdev_lista,
-            's1202_infoperapur_lista': s1202_infoperapur_lista,
             's1202_infoperapur_ideestab_lista': s1202_infoperapur_ideestab_lista,
             's1202_infoperapur_remunperapur_lista': s1202_infoperapur_remunperapur_lista,
             's1202_infoperapur_itensremun_lista': s1202_infoperapur_itensremun_lista,
-            's1202_infoperapur_infosaudecolet_lista': s1202_infoperapur_infosaudecolet_lista,
             's1202_infoperapur_detoper_lista': s1202_infoperapur_detoper_lista,
             's1202_infoperapur_detplano_lista': s1202_infoperapur_detplano_lista,
-            's1202_infoperant_lista': s1202_infoperant_lista,
             's1202_infoperant_ideadc_lista': s1202_infoperant_ideadc_lista,
             's1202_infoperant_ideperiodo_lista': s1202_infoperant_ideperiodo_lista,
             's1202_infoperant_ideestab_lista': s1202_infoperant_ideestab_lista,

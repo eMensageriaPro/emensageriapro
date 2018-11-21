@@ -1,5 +1,5 @@
 {% load templatetags %}"{{ conta.nome_empresa }}"
-"S-2399 - Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual."
-{% if show_fields.show_s2399_evttsvtermino or not s2399_evttsvtermino_id and 1 %}"S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término";{% endif %}{% if show_fields.show_criado_em or 0 %}"Criado em";{% endif %}{% if show_fields.show_criado_por or not usuarios_id and 0 %}"Criado por";{% endif %}{% if show_fields.show_modificado_em or 0 %}"Modificado em";{% endif %}{% if show_fields.show_modificado_por or not usuarios_id and 0 %}"Modificado por";{% endif %}{% if show_fields.show_excluido or 0 %}"Excluido";{% endif %}
-{% for a in s2399_verbasresc_lista %}{% if show_fields.show_s2399_evttsvtermino or  not s2399_evttsvtermino_id and 1 %}"{{ a.s2399_evttsvtermino }}";{% endif %}{% if show_fields.show_criado_em or 0 %}"{{ a.criado_em }}";{% endif %}{% if show_fields.show_criado_por or  not usuarios_id and 0 %}"{{ a.criado_por }}";{% endif %}{% if show_fields.show_modificado_em or 0 %}"{{ a.modificado_em }}";{% endif %}{% if show_fields.show_modificado_por or  not usuarios_id and 0 %}"{{ a.modificado_por }}";{% endif %}{% if show_fields.show_excluido or 0 %}"{{ a.excluido }}";{% endif %}
+"Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Término"
+{% if show_fields.show_s2399_evttsvtermino or not s2399_evttsvtermino_id and 1 %}"Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Término";{% endif %}
+{% for a in s2399_verbasresc_lista %}{% if show_fields.show_s2399_evttsvtermino or  not s2399_evttsvtermino_id and 1 %}"{{ a.s2399_evttsvtermino }}";{% endif %}
 {% endfor %}

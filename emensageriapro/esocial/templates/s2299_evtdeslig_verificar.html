@@ -118,13 +118,13 @@
               
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtDeslig</td>
-            <td bgcolor="lightgray" colspan="3">Evento Desligamento Regras de validação: REGRA_DESLIG_EXCLUI_DESLIGAMENTO_REINTEG REGRA_DESLIG_EXCLUSAO_EVENTO REGRA_DESLIG_EXISTE_EVENTO_POSTERIOR REGRA_DESLIG_TRABALHADOR_AFASTADO REGRA_DESLIG_VALIDA_DT_DESLIGAMENTO REGRA_EVENTOS_EXTEMP REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXISTE_VINCULO REGRA_EXTEMP_REINTEGRACAO REGRA_GERAL_VALIDA_DADOS_TABCONTRIB REGRA_REMUN_IND_RETIFICACAO REGRA_REMUN_PERMITE_EXCLUSAO REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_EMPREGADOR REGRA_VALIDA_PERIODO_APURACAO REGRA_VALIDA_TRABALHADOR_BASE_CNIS REGRA_VINCULO_ATIVO_NA_DTEVENTO</td>
+            <td bgcolor="lightgray" colspan="3">Evento Desligamento. Regras de validação: REGRA_DESLIG_EXCLUI_DESLIGAMENTO_REINTEG REGRA_DESLIG_EXCLUSAO_EVENTO REGRA_DESLIG_EXISTE_EVENTO_POSTERIOR REGRA_DESLIG_TRABALHADOR_AFASTADO REGRA_DESLIG_VALIDA_DT_DESLIGAMENTO REGRA_EVENTOS_EXTEMP REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXISTE_VINCULO REGRA_EXTEMP_REINTEGRACAO REGRA_GERAL_VALIDA_DADOS_TABCONTRIB REGRA_MUDANCA_CPF REGRA_REMUN_IND_RETIFICACAO REGRA_REMUN_PERMITE_EXCLUSAO REGRA_RETIFICA_MESMO_VINCULO REGRA_RUBRICA_SIMPLIF_TAB_PADRAO REGRA_VALIDA_EMPREGADOR REGRA_VALIDA_PERIODO_APURACAO REGRA_VALIDA_TRABALHADOR_BASE_CNIS REGRA_VINCULO_ATIVO_NA_DTEVENTO</td>
         </tr>
     {% for s2299_evtdeslig in s2299_evtdeslig_lista %}
     {% ifequal 1 1 %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
         </tr>
 
         <tr {% if s2299_evtdeslig.indretif|validacoes_esocial_efdreinf:"s2299_evtdeslig.indretif" %}bgcolor="lightcoral"{% endif %}>
@@ -148,7 +148,7 @@
 
         <tr {% if s2299_evtdeslig.nrrecibo|validacoes_esocial_efdreinf:"s2299_evtdeslig.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrRecibo</td>
-            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2].Deve ser um recibo de entrega válido, correspondente ao arquivo que estásendo retificado.</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
             <td width="200px"><b>{% if s2299_evtdeslig.nrrecibo or s2299_evtdeslig.nrrecibo == 0 %}{{ s2299_evtdeslig.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -167,7 +167,7 @@
 
         <tr {% if s2299_evtdeslig.tpamb|validacoes_esocial_efdreinf:"s2299_evtdeslig.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s2299_evtdeslig.tpamb or s2299_evtdeslig.tpamb == 0 %}{{ s2299_evtdeslig.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -186,7 +186,7 @@
 
         <tr {% if s2299_evtdeslig.procemi|validacoes_esocial_efdreinf:"s2299_evtdeslig.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2299_evtdeslig.procemi or s2299_evtdeslig.procemi == 0 %}{{ s2299_evtdeslig.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -224,12 +224,12 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
         </tr>
 
         <tr {% if s2299_evtdeslig.tpinsc|validacoes_esocial_efdreinf:"s2299_evtdeslig.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
             <td width="200px"><b>{% if s2299_evtdeslig.tpinsc or s2299_evtdeslig.tpinsc == 0 %}{{ s2299_evtdeslig.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -248,7 +248,7 @@
 
         <tr {% if s2299_evtdeslig.nrinsc|validacoes_esocial_efdreinf:"s2299_evtdeslig.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2299_evtdeslig.nrinsc or s2299_evtdeslig.nrinsc == 0 %}{{ s2299_evtdeslig.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -267,7 +267,7 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideVinculo</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador e do Vínculo</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador e do Vínculo.</td>
         </tr>
 
         <tr {% if s2299_evtdeslig.cpftrab|validacoes_esocial_efdreinf:"s2299_evtdeslig.cpftrab" %}bgcolor="lightcoral"{% endif %}>
@@ -310,7 +310,7 @@
 
         <tr {% if s2299_evtdeslig.matricula|validacoes_esocial_efdreinf:"s2299_evtdeslig.matricula" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">matricula</td>
-            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.Validação: Deve corresponder à matrícula informada pelo empregador noevento S-2200 do respectivo vínculo trabalhista.</td>
+            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista.</td>
             <td width="200px"><b>{% if s2299_evtdeslig.matricula or s2299_evtdeslig.matricula == 0 %}{{ s2299_evtdeslig.matricula }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -334,7 +334,7 @@
 
         <tr {% if s2299_evtdeslig.mtvdeslig|validacoes_esocial_efdreinf:"s2299_evtdeslig.mtvdeslig" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">mtvDeslig</td>
-            <td width="500px">Código de Motivo do Desligamento, conforme tabela 19. Validação: Deve ser um código existente na tabela. Os códigos [18,19,20,21,22,23,24,25] só podem ser utilizados para desligamento de trabalhador pertencente à categoria de agente público (301 a 309).O código [34] só pode ser utilizado para desligamento de trabalhador doméstico (código de categoria [104]).</td>
+            <td width="500px">Código de Motivo do Desligamento, conforme Tabela 19. Validação: Deve ser um código existente na tabela. Os códigos [18,19,20,21,22,23,24,25] só podem ser utilizados para desligamento de trabalhador pertencente à categoria de agente público (301 a 309). O código [34] só pode ser utilizado para desligamento de trabalhador doméstico (código de categoria [104]).</td>
             <td width="200px"><b>{% if s2299_evtdeslig.mtvdeslig or s2299_evtdeslig.mtvdeslig == 0 %}{{ s2299_evtdeslig.mtvdeslig }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -353,7 +353,7 @@
 
         <tr {% if s2299_evtdeslig.dtdeslig|validacoes_esocial_efdreinf:"s2299_evtdeslig.dtdeslig" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtDeslig</td>
-            <td width="500px">Preencher com a data do último dia trabalhado para o respectivo vínculo. Validação: Deve ser uma data igual ou posterior a data de admissão do trabalhador (no caso de sucessão, igual ou posterior à data da transferência) e não superior à data atual (data do envio do evento) acrescida de 10 dias corridos.</td>
+            <td width="500px">Preencher com a data do último dia trabalhado para o respectivo vínculo. Validação: Deve ser uma data igual ou posterior a data de admissão do trabalhador (no caso de sucessão ou de mudança de CPF, igual ou posterior à data da transferência ou à data de alteração do CPF, respectivamente) e não superior à data atual (data do envio do evento) acrescida de 10 dias corridos.</td>
             <td width="200px"><b>{% if s2299_evtdeslig.dtdeslig or s2299_evtdeslig.dtdeslig == 0 %}{{ s2299_evtdeslig.dtdeslig|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -372,7 +372,7 @@
 
         <tr {% if s2299_evtdeslig.indpagtoapi|validacoes_esocial_efdreinf:"s2299_evtdeslig.indpagtoapi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indPagtoAPI</td>
-            <td width="500px">Indicativo de pagamento de Aviso Prévio Indenizado pelo empregador, ao empregado:S - Sim; N - Não.Valores Válidos: S, N.</td>
+            <td width="500px">Indicativo de pagamento de Aviso Prévio Indenizado pelo empregador, ao empregado: S - Sim; N - Não. Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if s2299_evtdeslig.indpagtoapi or s2299_evtdeslig.indpagtoapi == 0 %}{{ s2299_evtdeslig.indpagtoapi }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -391,7 +391,7 @@
 
         <tr {% if s2299_evtdeslig.dtprojfimapi|validacoes_esocial_efdreinf:"s2299_evtdeslig.dtprojfimapi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtProjFimAPI</td>
-            <td width="500px">Data projetada para o término do aviso prévio indenizado.Validação: Obrigatório se {indPagtoAPI} for igual a [S], devendo ser igual ou posterior a {dtDeslig}</td>
+            <td width="500px">Data projetada para o término do aviso prévio indenizado. Validação: Obrigatório se {indPagtoAPI} for igual a [S], devendo ser igual ou posterior a {dtDeslig}.</td>
             <td width="200px"><b>{% if s2299_evtdeslig.dtprojfimapi or s2299_evtdeslig.dtprojfimapi == 0 %}{{ s2299_evtdeslig.dtprojfimapi|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -410,7 +410,7 @@
 
         <tr {% if s2299_evtdeslig.pensalim|validacoes_esocial_efdreinf:"s2299_evtdeslig.pensalim" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">pensAlim</td>
-            <td width="500px">Indicativo de pensão alimentícia:0 - Não existe pensão alimentícia;1 - Percentual de pensão alimentícia;2 - Valor de pensão alimentícia;3 - Percentual e valor de pensão alimentícia. Valores Válidos: 0, 1, 2, 3</td>
+            <td width="500px">Indicativo de pensão alimentícia para fins de retenção de FGTS: 0 - Não existe pensão alimentícia; 1 - Percentual de pensão alimentícia; 2 - Valor de pensão alimentícia; 3 - Percentual e valor de pensão alimentícia. Valores Válidos: 0, 1, 2, 3.</td>
             <td width="200px"><b>{% if s2299_evtdeslig.pensalim or s2299_evtdeslig.pensalim == 0 %}{{ s2299_evtdeslig.pensalim|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -429,7 +429,7 @@
 
         <tr {% if s2299_evtdeslig.percaliment|validacoes_esocial_efdreinf:"s2299_evtdeslig.percaliment" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">percAliment</td>
-            <td width="500px">Percentual a ser destinado a pensão alimentícia.Validação: Deve ser maior que 0 (zero) e menor ou igual a 100 (cem). Informação obrigatória se {pensAlim} = [1,3]. Não pode ser preenchido nos demais casos.</td>
+            <td width="500px">Percentual a ser destinado a pensão alimentícia. Validação: Deve ser maior que 0 (zero) e menor ou igual a 100 (cem). Informação obrigatória se {pensAlim} = [1,3]. Não pode ser preenchido nos demais casos.</td>
             <td width="200px"><b>{% if s2299_evtdeslig.percaliment or s2299_evtdeslig.percaliment == 0 %}{{ s2299_evtdeslig.percaliment|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -448,7 +448,7 @@
 
         <tr {% if s2299_evtdeslig.vralim|validacoes_esocial_efdreinf:"s2299_evtdeslig.vralim" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrAlim</td>
-            <td width="500px">Valor da pensão alimentíciaValidação: Informação obrigatória se {pensAlim} = [2,3]. Não pode ser preenchido nos demais casos.</td>
+            <td width="500px">Valor da pensão alimentícia. Validação: Informação obrigatória se {pensAlim} = [2,3]. Não pode ser preenchido nos demais casos.</td>
             <td width="200px"><b>{% if s2299_evtdeslig.vralim or s2299_evtdeslig.vralim == 0 %}{{ s2299_evtdeslig.vralim|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -467,7 +467,7 @@
 
         <tr {% if s2299_evtdeslig.nrcertobito|validacoes_esocial_efdreinf:"s2299_evtdeslig.nrcertobito" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrCertObito</td>
-            <td width="500px">Número da certidão de óbito. Campo preenchido no caso de desligamento por morteValidação: Deve ser preenchido se {mtvDeslig} for igual a [09,10].Deve ser uma certidão de óbito válida, de acordo com o padrão de certidões estabelecido para Registro Civil das Pessoas Naturais.O 15° dígito deve ser igual a [4, 7].</td>
+            <td width="500px">Número da certidão de óbito. Campo preenchido no caso de desligamento por morte. Validação: Não preencher se {mtvDeslig} for diferente de [10]. Se informado, deve ser uma certidão de óbito válida, de acordo com o padrão de certidões estabelecido para Registro Civil das Pessoas Naturais. O 15° dígito deve ser igual a [4, 7].</td>
             <td width="200px"><b>{% if s2299_evtdeslig.nrcertobito or s2299_evtdeslig.nrcertobito == 0 %}{{ s2299_evtdeslig.nrcertobito }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -486,7 +486,7 @@
 
         <tr {% if s2299_evtdeslig.nrproctrab|validacoes_esocial_efdreinf:"s2299_evtdeslig.nrproctrab" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProcTrab</td>
-            <td width="500px">Número que identifica o processo trabalhista, quando o desligamento se der por decisão judicial.</td>
+            <td width="500px">Número que identifica o processo trabalhista, quando o desligamento se der por decisão judicial. Validação: Se preenchido, deve ser um processo judicial válido, com 20 (vinte) algarismos.</td>
             <td width="200px"><b>{% if s2299_evtdeslig.nrproctrab or s2299_evtdeslig.nrproctrab == 0 %}{{ s2299_evtdeslig.nrproctrab }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -505,7 +505,7 @@
 
         <tr {% if s2299_evtdeslig.indcumprparc|validacoes_esocial_efdreinf:"s2299_evtdeslig.indcumprparc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indCumprParc</td>
-            <td width="500px">Indicador de cumprimento de aviso prévio:0 - Cumprimento total;1 - Cumprimento parcial em razão de obtenção de novo emprego pelo empregado;2 - Cumprimento parcial por iniciativa do empregador;3 - Outras hipóteses de cumprimento parcial do aviso prévio;4 - Aviso prévio indenizado ou não exigível. Valores Válidos: 0, 1, 2, 3, 4.</td>
+            <td width="500px">Indicador de cumprimento de aviso prévio: 0 - Cumprimento total; 1 - Cumprimento parcial em razão de obtenção de novo emprego pelo empregado; 2 - Cumprimento parcial por iniciativa do empregador; 3 - Outras hipóteses de cumprimento parcial do aviso prévio; 4 - Aviso prévio indenizado ou não exigível. Valores Válidos: 0, 1, 2, 3, 4.</td>
             <td width="200px"><b>{% if s2299_evtdeslig.indcumprparc or s2299_evtdeslig.indcumprparc == 0 %}{{ s2299_evtdeslig.indcumprparc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -524,7 +524,7 @@
 
         <tr {% if s2299_evtdeslig.qtddiasinterm|validacoes_esocial_efdreinf:"s2299_evtdeslig.qtddiasinterm" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">qtdDiasInterm</td>
-            <td width="500px">Quantidade de dias trabalhados no mês pelo empregado com contrato de trabalho intermitente. Cada dia, total ou parcial, em que o trabalhador tenha prestado serviços deve ser considerado.Validação: Informação obrigatória se o código de categoria do trabalhador for igual a [111]. Nesse caso, informar um número entre 0 e 31. Não informar nos demais casos.</td>
+            <td width="500px">Quantidade de dias trabalhados no mês pelo empregado com contrato de trabalho intermitente. Cada dia, total ou parcial, em que o trabalhador tenha prestado serviços deve ser considerado. Validação: Informação obrigatória se o código de categoria do trabalhador for igual a [111]. Nesse caso, informar um número entre 0 e 31. Não informar nos demais casos.</td>
             <td width="200px"><b>{% if s2299_evtdeslig.qtddiasinterm or s2299_evtdeslig.qtddiasinterm == 0 %}{{ s2299_evtdeslig.qtddiasinterm|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -543,7 +543,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">observacoes</td>
-            <td bgcolor="lightgray" colspan="3">Observações sobre o desligamento</td>
+            <td bgcolor="lightgray" colspan="3">Observações sobre o desligamento.</td>
         </tr>
     {% for s2299_observacoes in s2299_observacoes_lista %}
     {% ifequal s2299_observacoes.s2299_evtdeslig.id s2299_evtdeslig.id %}
@@ -572,9 +572,28 @@
         </tr>
     {% for s2299_sucessaovinc in s2299_sucessaovinc_lista %}
     {% ifequal s2299_sucessaovinc.s2299_evtdeslig.id s2299_evtdeslig.id %}
+        <tr {% if s2299_sucessaovinc.tpinscsuc|validacoes_esocial_efdreinf:"s2299_sucessaovinc.tpinscsuc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInscSuc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF). Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2299_sucessaovinc.tpinscsuc or s2299_sucessaovinc.tpinscsuc == 0 %}{{ s2299_sucessaovinc.tpinscsuc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2299_sucessaovinc_visualizar' %}
+                <a href="{% url 's2299_sucessaovinc_salvar'  hash='{}'|json_id:s2299_sucessaovinc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
         <tr {% if s2299_sucessaovinc.cnpjsucessora|validacoes_esocial_efdreinf:"s2299_sucessaovinc.cnpjsucessora" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnpjSucessora</td>
-            <td width="500px">Preencher com o número do CPF/CNPJ do empregador sucessor. Validação: Deve ser um CPF/CNPJ válido diferente do CPF/CNPJ do declarante, considerando as particularidades aplicadas à informação de CNPJ de órgão público em S-1000. Se for informado CPF, deve possuir 11 (onze) algarismos. Se for informado CNPJ, deve possuir 14 (catorze) algarismos e ser diferente do CNPJ base do empregador e dos estabelecimentos informados através do evento S-1005.</td>
+            <td width="500px">Informar o número de inscrição do empregador sucessor, de acordo com o tipo de inscrição indicado no campo {tpInscSuc}. Validação: Deve ser um número de inscrição válido diferente da inscrição do declarante, considerando as particularidades aplicadas à informação de CNPJ de órgão público em S-1000. Se {tpInscSuc} = [1], deve possuir 14 (catorze) algarismos e ser diferente do CNPJ base do empregador e dos estabelecimentos informados através do evento S-1005. Se {tpInscSuc} = [2], deve possuir 11 (onze) algarismos.</td>
             <td width="200px"><b>{% if s2299_sucessaovinc.cnpjsucessora or s2299_sucessaovinc.cnpjsucessora == 0 %}{{ s2299_sucessaovinc.cnpjsucessora }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -593,13 +612,13 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">transfTit</td>
-            <td bgcolor="lightgray" colspan="3">Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar</td>
+            <td bgcolor="lightgray" colspan="3">Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar.</td>
         </tr>
     {% for s2299_transftit in s2299_transftit_lista %}
     {% ifequal s2299_transftit.s2299_evtdeslig.id s2299_evtdeslig.id %}
         <tr {% if s2299_transftit.cpfsubstituto|validacoes_esocial_efdreinf:"s2299_transftit.cpfsubstituto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cpfSubstituto</td>
-            <td width="500px">Preencher com o CPF do novo titular.Validação: Deve ser um CPF válido e diferente do CPF do declarante e do empregado.</td>
+            <td width="500px">Preencher com o CPF do novo titular. Validação: Deve ser um CPF válido e diferente do CPF do declarante e do empregado.</td>
             <td width="200px"><b>{% if s2299_transftit.cpfsubstituto or s2299_transftit.cpfsubstituto == 0 %}{{ s2299_transftit.cpfsubstituto }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -618,7 +637,7 @@
 
         <tr {% if s2299_transftit.dtnascto|validacoes_esocial_efdreinf:"s2299_transftit.dtnascto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtNascto</td>
-            <td width="500px">Preencher com a data de nascimento do novo titular.Validação: Deve corresponder à data de nascimento cadastrada na base de dados do CPF do {cpfSubstituto}.</td>
+            <td width="500px">Preencher com a data de nascimento do novo titular. Validação: Deve corresponder à data de nascimento cadastrada na base de dados do CPF do {cpfSubstituto}.</td>
             <td width="200px"><b>{% if s2299_transftit.dtnascto or s2299_transftit.dtnascto == 0 %}{{ s2299_transftit.dtnascto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -636,20 +655,44 @@
         </tr>
     {% endifequal %}{% endfor %}
         <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">mudancaCPF</td>
+            <td bgcolor="lightgray" colspan="3">Informação do novo CPF do trabalhador.</td>
+        </tr>
+    {% for s2299_mudancacpf in s2299_mudancacpf_lista %}
+    {% ifequal s2299_mudancacpf.s2299_evtdeslig.id s2299_evtdeslig.id %}
+        <tr {% if s2299_mudancacpf.novocpf|validacoes_esocial_efdreinf:"s2299_mudancacpf.novocpf" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">novoCPF</td>
+            <td width="500px">Preencher com o novo CPF do trabalhador. Validação: Deve ser um CPF válido e diferente do CPF do empregador e do antigo CPF do trabalhador.</td>
+            <td width="200px"><b>{% if s2299_mudancacpf.novocpf or s2299_mudancacpf.novocpf == 0 %}{{ s2299_mudancacpf.novocpf }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2299_mudancacpf_visualizar' %}
+                <a href="{% url 's2299_mudancacpf_salvar'  hash='{}'|json_id:s2299_mudancacpf.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">verbasResc</td>
             <td bgcolor="lightgray" colspan="3">Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.</td>
         </tr>
-    {% for s2299_verbasresc in s2299_verbasresc_lista %}
-    {% ifequal s2299_verbasresc.s2299_evtdeslig.id s2299_evtdeslig.id %}
+
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dmDev</td>
-            <td bgcolor="lightgray" colspan="3">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF. (As retenções de pensão alimentícia e IRRF devem ser realizadas no ato do pagamento e, portanto, são informadas no evento S-1210).Para as rubricas cujo {codIncCP} = [31, 32, 34, 35], o somatório do valor das rubricas cujo ({tpRubr} = [2,4]) deverá ser maior ou igual ao somatório do valor das rubricas cujo ({tpRubr} = [1,3]), considerando cada um dos códigos {codIncCP} individualmente.O somatório dos Vencimentos deve ser maior ou igual ao somatório dosDescontos.As informações dos campos {ideEstabLot/nrInsc}, {detVerbas/codRubr},{ideEstabLot/codLotacao} vinculadas a este registro, devem constar nas respectivas tabelas S-1005, S-1010 e S-1020, no mês:a) da data do desligamento, informada no campo {dtDeslig} se as informações pertencerem ao grupo {infoPerApur};b) informado em {perRef} se as informações pertencerem ao grupo{infoPerAnt}.</td>
+            <td bgcolor="lightgray" colspan="3">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF. (As retenções de pensão alimentícia e IRRF devem ser realizadas no ato do pagamento e, portanto, são informadas no evento S-1210). Para as rubricas cujo {codIncCP} = [31, 32, 34, 35], o somatório do valor das rubricas cujo ({tpRubr} = [2,4]) deverá ser maior ou igual ao somatório do valor das rubricas cujo ({tpRubr} = [1,3]), considerando cada um dos códigos {codIncCP} individualmente. O somatório dos Vencimentos deve ser maior ou igual ao somatório dos Descontos. As informações dos campos {ideEstabLot/nrInsc}, {detVerbas/codRubr}, {ideEstabLot/codLotacao} vinculadas a este registro, devem constar nas respectivas tabelas S-1005, S-1010 e S-1020, no mês: a) da data do desligamento, informada no campo {dtDeslig} se as informações pertencerem ao grupo {infoPerApur}; b) informado em {perRef} se as informações pertencerem ao grupo {infoPerAnt}.</td>
         </tr>
     {% for s2299_dmdev in s2299_dmdev_lista %}
-    {% ifequal s2299_dmdev.s2299_verbasresc.id s2299_verbasresc.id %}
+    {% ifequal s2299_dmdev.s2299_evtdeslig.id s2299_evtdeslig.id %}
         <tr {% if s2299_dmdev.idedmdev|validacoes_esocial_efdreinf:"s2299_dmdev.idedmdev" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">ideDmDev</td>
-            <td width="500px">Identificador atribuído pela empresa para o demonstrativo de valores devidos ao trabalhador relativo a verbas rescisórias.Validação: Deve ser um identificador único dentro da mesma competênciapara cada um dos demonstrativos de pagamento gerados no presente arquivo de rescisão contratual.</td>
+            <td width="500px">Identificador atribuído pela empresa para o demonstrativo de valores devidos ao trabalhador relativo a verbas rescisórias. Validação: Deve ser um identificador único dentro da mesma competência para cada um dos demonstrativos de pagamento gerados no presente arquivo de rescisão contratual.</td>
             <td width="200px"><b>{% if s2299_dmdev.idedmdev or s2299_dmdev.idedmdev == 0 %}{{ s2299_dmdev.idedmdev }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -668,19 +711,18 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoPerApur</td>
-            <td bgcolor="lightgray" colspan="3">Verbas rescisórias relativas ao mês da data do desligamento</td>
+            <td bgcolor="lightgray" colspan="3">Verbas rescisórias relativas ao mês da data do desligamento.</td>
         </tr>
-    {% for s2299_infoperapur in s2299_infoperapur_lista %}
-    {% ifequal s2299_infoperapur.s2299_dmdev.id s2299_dmdev.id %}
+
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEstabLot</td>
             <td bgcolor="lightgray" colspan="3">Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o número da obra (própria) no CNO, ou o número do CAEPF (no caso de pessoa física obrigada a inscrição no cadastro de atividades específicas da pessoa física). No caso específico do trabalhador doméstico, o estabelecimento deve ser o próprio CPF do empregador.</td>
         </tr>
     {% for s2299_infoperapur_ideestablot in s2299_infoperapur_ideestablot_lista %}
-    {% ifequal s2299_infoperapur_ideestablot.s2299_infoperapur.id s2299_infoperapur.id %}
+    {% ifequal s2299_infoperapur_ideestablot.s2299_dmdev.id s2299_dmdev.id %}
         <tr {% if s2299_infoperapur_ideestablot.tpinsc|validacoes_esocial_efdreinf:"s2299_infoperapur_ideestablot.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, de acordo com as opções da tabela 5.Validação: Se {classTrib} igual a [21], deve ser igual a [3,4], exceto se empregador doméstico.Se empregador doméstico deve ser igual a [2].Se {classTrib} igual a [22], deve ser igual a [3] e o CAEPF deve constar na tabela S-1005 como sendo de segurado especial.Nos demais casos ({classTrib} <> [21,22]) deve ser igual a [1,4].Valores Válidos: 1, 2, 3, 4.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, de acordo com as opções da tabela 5. Validação: Se {classTrib} igual a [21], deve ser igual a [3,4], exceto se empregador doméstico. Se empregador doméstico deve ser igual a [2]. Se {classTrib} igual a [22], deve ser igual a [3] e o CAEPF deve constar na tabela S-1005 como sendo de segurado especial. Nos demais casos ({classTrib} <> [21,22]) deve ser igual a [1,4]. Valores Válidos: 1, 2, 3, 4.</td>
             <td width="200px"><b>{% if s2299_infoperapur_ideestablot.tpinsc or s2299_infoperapur_ideestablot.tpinsc == 0 %}{{ s2299_infoperapur_ideestablot.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -699,7 +741,7 @@
 
         <tr {% if s2299_infoperapur_ideestablot.nrinsc|validacoes_esocial_efdreinf:"s2299_infoperapur_ideestablot.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}.Validação: A inscrição informada deve ser compatível com {tpInsc}. Se{tpInsc} igual a [1, 3, 4] deve constar na tabela S-1005.</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Validação: A inscrição informada deve ser compatível com {tpInsc}. Se {tpInsc} igual a [1, 3, 4] deve constar na tabela S-1005.</td>
             <td width="200px"><b>{% if s2299_infoperapur_ideestablot.nrinsc or s2299_infoperapur_ideestablot.nrinsc == 0 %}{{ s2299_infoperapur_ideestablot.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -737,13 +779,13 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">detVerbas</td>
-            <td bgcolor="lightgray" colspan="3">Detalhamento das verbas rescisórias devidas ao trabalhador. Deve haver, pelo menos uma rubrica de folha, mesmo que o valor líquido a ser pago aotrabalhador seja 0 (zero) em função de descontos.</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento das verbas rescisórias devidas ao trabalhador. Deve haver, pelo menos uma rubrica de folha, mesmo que o valor líquido a ser pago ao trabalhador seja 0 (zero) em função de descontos.</td>
         </tr>
     {% for s2299_infoperapur_detverbas in s2299_infoperapur_detverbas_lista %}
     {% ifequal s2299_infoperapur_detverbas.s2299_infoperapur_ideestablot.id s2299_infoperapur_ideestablot.id %}
         <tr {% if s2299_infoperapur_detverbas.codrubr|validacoes_esocial_efdreinf:"s2299_infoperapur_detverbas.codrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codRubr</td>
-            <td width="500px">Informar o código atribuído pelo empregador e que identifica a rubrica em sua folha de pagamento.Validação: O código informado deve existir na tabela S-1010 - Tabela deRubricas, vigente no mês da data do desligamento, informada no campo{dtDeslig}.Rubrica cujo {codIncCP} em S-1010 seja igual a [23, 24, 61] só pode ser utilizada se {tpRegPrev} do vínculo for igual a [2];Não pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [31,32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83].</td>
+            <td width="500px">Informar o código atribuído pelo empregador e que identifica a rubrica em sua folha de pagamento. Validação: O código informado deve existir na tabela S-1010 - Tabela de Rubricas, vigente no mês da data do desligamento, informada no campo {dtDeslig}. Rubrica cujo {codIncCP} em S-1010 seja igual a [23, 24, 61] só pode ser utilizada se {tpRegPrev} do vínculo for igual a [2]; Não pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83].</td>
             <td width="200px"><b>{% if s2299_infoperapur_detverbas.codrubr or s2299_infoperapur_detverbas.codrubr == 0 %}{{ s2299_infoperapur_detverbas.codrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -762,7 +804,7 @@
 
         <tr {% if s2299_infoperapur_detverbas.idetabrubr|validacoes_esocial_efdreinf:"s2299_infoperapur_detverbas.idetabrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">ideTabRubr</td>
-            <td width="500px">Preencher com o identificador da tabela de rubricas, conforme informado em S-1010 para a rubrica definida em {codRubr}. Não utilizar rubricas que correspondam a desconto de pensão alimentícia ou IRRF.Validação: Deve existir na tabela S-1010 (em conjunto com {codRubr})vigente no período indicado em {perApur}.</td>
+            <td width="500px">Preencher com o identificador da tabela de rubricas, conforme informado em S-1010 para a rubrica definida em {codRubr}. Não utilizar rubricas que correspondam a desconto de pensão alimentícia ou IRRF. Validação: Deve existir na tabela S-1010 (em conjunto com {codRubr}) vigente no período indicado em {perApur}.</td>
             <td width="200px"><b>{% if s2299_infoperapur_detverbas.idetabrubr or s2299_infoperapur_detverbas.idetabrubr == 0 %}{{ s2299_infoperapur_detverbas.idetabrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -781,7 +823,7 @@
 
         <tr {% if s2299_infoperapur_detverbas.qtdrubr|validacoes_esocial_efdreinf:"s2299_infoperapur_detverbas.qtdrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">qtdRubr</td>
-            <td width="500px">Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.).Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica desalário. etc.</td>
+            <td width="500px">Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc.</td>
             <td width="200px"><b>{% if s2299_infoperapur_detverbas.qtdrubr or s2299_infoperapur_detverbas.qtdrubr == 0 %}{{ s2299_infoperapur_detverbas.qtdrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -800,7 +842,7 @@
 
         <tr {% if s2299_infoperapur_detverbas.fatorrubr|validacoes_esocial_efdreinf:"s2299_infoperapur_detverbas.fatorrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fatorRubr</td>
-            <td width="500px">Informar o fator, percentual, etc, da rubrica, quando necessário.Exs: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50, percentual de contribuição previdenciária de 11% relacionado a uma rubrica de desconto de contribuição previdenciária: Fator =11.</td>
+            <td width="500px">Informar o fator, percentual, etc, da rubrica, quando necessário. Exs: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50, percentual de contribuição previdenciária de 11% relacionado a uma rubrica de desconto de contribuição previdenciária: Fator = 11.</td>
             <td width="200px"><b>{% if s2299_infoperapur_detverbas.fatorrubr or s2299_infoperapur_detverbas.fatorrubr == 0 %}{{ s2299_infoperapur_detverbas.fatorrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -838,7 +880,7 @@
 
         <tr {% if s2299_infoperapur_detverbas.vrrubr|validacoes_esocial_efdreinf:"s2299_infoperapur_detverbas.vrrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrRubr</td>
-            <td width="500px">Valor total da rubricaValidação: Deve ser maior que zero.</td>
+            <td width="500px">Valor total da rubrica. Validação: Deve ser maior que zero.</td>
             <td width="200px"><b>{% if s2299_infoperapur_detverbas.vrrubr or s2299_infoperapur_detverbas.vrrubr == 0 %}{{ s2299_infoperapur_detverbas.vrrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -857,19 +899,18 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoSaudeColet</td>
-            <td bgcolor="lightgray" colspan="3">Informações de plano privado coletivo empresarial de assistência à saúde. Sópreencher se houver {codRubr} em {itensRemun}, cuja natureza de rubrica{natRubr} indicada em S-1010 seja igual a [9219]. Não preencher nos demais casos.</td>
+            <td bgcolor="lightgray" colspan="3">Informações de plano privado coletivo empresarial de assistência à saúde. Só preencher se houver {codRubr} em {itensRemun}, cuja natureza de rubrica {natRubr} indicada em S-1010 seja igual a [9219]. Não preencher nos demais casos.</td>
         </tr>
-    {% for s2299_infoperapur_infosaudecolet in s2299_infoperapur_infosaudecolet_lista %}
-    {% ifequal s2299_infoperapur_infosaudecolet.s2299_infoperapur_ideestablot.id s2299_infoperapur_ideestablot.id %}
+
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">detOper</td>
             <td bgcolor="lightgray" colspan="3">Detalhamento dos valores pagos a Operadoras de Planos de Saúde.</td>
         </tr>
     {% for s2299_infoperapur_detoper in s2299_infoperapur_detoper_lista %}
-    {% ifequal s2299_infoperapur_detoper.s2299_infoperapur_infosaudecolet.id s2299_infoperapur_infosaudecolet.id %}
+    {% ifequal s2299_infoperapur_detoper.s2299_infoperapur_ideestablot.id s2299_infoperapur_ideestablot.id %}
         <tr {% if s2299_infoperapur_detoper.cnpjoper|validacoes_esocial_efdreinf:"s2299_infoperapur_detoper.cnpjoper" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnpjOper</td>
-            <td width="500px">CNPJ de Operadora do Plano de SaúdeValidação: Deve ser um CNPJ válido.</td>
+            <td width="500px">CNPJ de Operadora do Plano de Saúde. Validação: Deve ser um CNPJ válido.</td>
             <td width="200px"><b>{% if s2299_infoperapur_detoper.cnpjoper or s2299_infoperapur_detoper.cnpjoper == 0 %}{{ s2299_infoperapur_detoper.cnpjoper }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -907,7 +948,7 @@
 
         <tr {% if s2299_infoperapur_detoper.vrpgtit|validacoes_esocial_efdreinf:"s2299_infoperapur_detoper.vrpgtit" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrPgTit</td>
-            <td width="500px">Valor pago pelo Titular</td>
+            <td width="500px">Valor pago pelo Titular.</td>
             <td width="200px"><b>{% if s2299_infoperapur_detoper.vrpgtit or s2299_infoperapur_detoper.vrpgtit == 0 %}{{ s2299_infoperapur_detoper.vrpgtit|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -951,7 +992,7 @@
 
         <tr {% if s2299_infoperapur_detplano.cpfdep|validacoes_esocial_efdreinf:"s2299_infoperapur_detplano.cpfdep" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cpfDep</td>
-            <td width="500px">Número de Inscrição no CPFValidação: Deve ser um número de CPF válido, observando o que segue: a) O preenchimento é obrigatório para maior ou igual a 12 (doze) anos e {depIRRF} = [S]; b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPFinformado em {ideEmpregador};c) Não pode haver mais de um dependente com um mesmo número do CPF.</td>
+            <td width="500px">Número de Inscrição no CPF. Validação: Deve ser um número de CPF válido, observando o que segue: a) O preenchimento é obrigatório; b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em {ideEmpregador}; c) Não pode haver mais de um dependente com um mesmo número do CPF.</td>
             <td width="200px"><b>{% if s2299_infoperapur_detplano.cpfdep or s2299_infoperapur_detplano.cpfdep == 0 %}{{ s2299_infoperapur_detplano.cpfdep }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -970,7 +1011,7 @@
 
         <tr {% if s2299_infoperapur_detplano.nmdep|validacoes_esocial_efdreinf:"s2299_infoperapur_detplano.nmdep" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nmDep</td>
-            <td width="500px">Nome do dependente</td>
+            <td width="500px">Nome do dependente.</td>
             <td width="200px"><b>{% if s2299_infoperapur_detplano.nmdep or s2299_infoperapur_detplano.nmdep == 0 %}{{ s2299_infoperapur_detplano.nmdep }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -989,7 +1030,7 @@
 
         <tr {% if s2299_infoperapur_detplano.dtnascto|validacoes_esocial_efdreinf:"s2299_infoperapur_detplano.dtnascto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtNascto</td>
-            <td width="500px">Preencher com a data de nascimento</td>
+            <td width="500px">Preencher com a data de nascimento.</td>
             <td width="200px"><b>{% if s2299_infoperapur_detplano.dtnascto or s2299_infoperapur_detplano.dtnascto == 0 %}{{ s2299_infoperapur_detplano.dtnascto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1024,7 +1065,7 @@
             </td>
             {% endif %}
         </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %} 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoAgNocivo</td>
             <td bgcolor="lightgray" colspan="3">Registro preenchido exclusivamente em relação a remuneração de trabalhador amparado pelo RGPS - Regime Geral de Previdência Social.</td>
@@ -1033,7 +1074,7 @@
     {% ifequal s2299_infoperapur_infoagnocivo.s2299_infoperapur_ideestablot.id s2299_infoperapur_ideestablot.id %}
         <tr {% if s2299_infoperapur_infoagnocivo.grauexp|validacoes_esocial_efdreinf:"s2299_infoperapur_infoagnocivo.grauexp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">grauExp</td>
-            <td width="500px">Preencher com o código que representa o grau de exposição a agentes nocivos, conforme tabela 2.Valores Válidos: 1, 2, 3, 4.</td>
+            <td width="500px">Preencher com o código que representa o grau de exposição a agentes nocivos, conforme tabela 2. Valores Válidos: 1, 2, 3, 4.</td>
             <td width="200px"><b>{% if s2299_infoperapur_infoagnocivo.grauexp or s2299_infoperapur_infoagnocivo.grauexp == 0 %}{{ s2299_infoperapur_infoagnocivo.grauexp|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1052,13 +1093,13 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoSimples</td>
-            <td bgcolor="lightgray" colspan="3">Informação relativa a empresas enquadradas no Regime de TributaçãoSimples</td>
+            <td bgcolor="lightgray" colspan="3">Informação relativa a empresas enquadradas no Regime de Tributação Simples.</td>
         </tr>
     {% for s2299_infoperapur_infosimples in s2299_infoperapur_infosimples_lista %}
     {% ifequal s2299_infoperapur_infosimples.s2299_infoperapur_ideestablot.id s2299_infoperapur_ideestablot.id %}
         <tr {% if s2299_infoperapur_infosimples.indsimples|validacoes_esocial_efdreinf:"s2299_infoperapur_infosimples.indsimples" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indSimples</td>
-            <td width="500px">Indicador de Contribuição Substituída:1 - Contribuição Substituída Integralmente;2 - Contribuição não substituída;3 - Contribuição não substituída concomitante com contribuição substituída. Valores Válidos: 1, 2, 3.</td>
+            <td width="500px">Indicador de Contribuição Substituída: 1 - Contribuição Substituída Integralmente; 2 - Contribuição não substituída; 3 - Contribuição não substituída concomitante com contribuição substituída. Valores Válidos: 1, 2, 3.</td>
             <td width="200px"><b>{% if s2299_infoperapur_infosimples.indsimples or s2299_infoperapur_infosimples.indsimples == 0 %}{{ s2299_infoperapur_infosimples.indsimples|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1074,22 +1115,21 @@
             </td>
             {% endif %}
         </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %} 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoPerAnt</td>
             <td bgcolor="lightgray" colspan="3">Remuneração relativa a Períodos Anteriores, devida em função de acordos coletivos, legislação específica, convenção coletiva de trabalho, dissídio ou Conversão de Licença Saúde em Acidente de Trabalho.</td>
         </tr>
-    {% for s2299_infoperant in s2299_infoperant_lista %}
-    {% ifequal s2299_infoperant.s2299_dmdev.id s2299_dmdev.id %}
+
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideADC</td>
             <td bgcolor="lightgray" colspan="3">Identificação do Acordo coletivo, Legislação, Convenção Coletiva, Dissídio ou Conversão da licença saúde em acidente de trabalho.</td>
         </tr>
     {% for s2299_infoperant_ideadc in s2299_infoperant_ideadc_lista %}
-    {% ifequal s2299_infoperant_ideadc.s2299_infoperant.id s2299_infoperant.id %}
+    {% ifequal s2299_infoperant_ideadc.s2299_dmdev.id s2299_dmdev.id %}
         <tr {% if s2299_infoperant_ideadc.dtacconv|validacoes_esocial_efdreinf:"s2299_infoperant_ideadc.dtacconv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtAcConv</td>
-            <td width="500px">Data da assinatura do acordo, convenção coletiva, sentença normativa ou da conversão da licença saúde em acidente de trabalho.Validação: Deve ser uma data compreendida no mês em que ocorreu odesligamento conforme informado no campo {dtDeslig} ou em mês anterior.</td>
+            <td width="500px">Data da assinatura do acordo, convenção coletiva, sentença normativa ou da conversão da licença saúde em acidente de trabalho. Validação: Deve ser uma data compreendida no mês em que ocorreu o desligamento conforme informado no campo {dtDeslig} ou em mês anterior.</td>
             <td width="200px"><b>{% if s2299_infoperant_ideadc.dtacconv or s2299_infoperant_ideadc.dtacconv == 0 %}{{ s2299_infoperant_ideadc.dtacconv|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1108,7 +1148,7 @@
 
         <tr {% if s2299_infoperant_ideadc.tpacconv|validacoes_esocial_efdreinf:"s2299_infoperant_ideadc.tpacconv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAcConv</td>
-            <td width="500px">Tipo do instrumento ou situação ensejadora da remuneração relativa aPeríodos de Apuração Anteriores: A - Acordo Coletivo de Trabalho;B - Legislação federal, estadual, municipal ou distrital;C - Convenção Coletiva de Trabalho; D - Sentença Normativa - Dissídio;E - Conversão de Licença Saúde em Acidente de Trabalho.Valores Válidos: A, B, C, D, E.</td>
+            <td width="500px">Tipo do instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores: A - Acordo Coletivo de Trabalho; B - Legislação federal, estadual, municipal ou distrital; C - Convenção Coletiva de Trabalho; D - Sentença Normativa - Dissídio; E - Conversão de Licença Saúde em Acidente de Trabalho. Valores Válidos: A, B, C, D, E.</td>
             <td width="200px"><b>{% if s2299_infoperant_ideadc.tpacconv or s2299_infoperant_ideadc.tpacconv == 0 %}{{ s2299_infoperant_ideadc.tpacconv }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1127,7 +1167,7 @@
 
         <tr {% if s2299_infoperant_ideadc.compacconv|validacoes_esocial_efdreinf:"s2299_infoperant_ideadc.compacconv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">compAcConv</td>
-            <td width="500px">Competência (formato AAAA-MM) em que é devida a obrigação de pagar os efeitos remuneratórios de lei, acordo coletivo, convenção coletiva ou sentençanormativa.Validação: Deve ser maior ou igual ao mês/ano informado em {dtDeslig}. Preenchimento obrigatório se {tpAcConv} = [A, B, C, D].</td>
+            <td width="500px">Competência (formato AAAA-MM) em que é devida a obrigação de pagar os efeitos remuneratórios de lei, acordo coletivo, convenção coletiva ou sentença normativa. Validação: Deve ser maior ou igual ao mês/ano informado em {dtDeslig}. Preenchimento obrigatório se {tpAcConv} = [A, B, C, D].</td>
             <td width="200px"><b>{% if s2299_infoperant_ideadc.compacconv or s2299_infoperant_ideadc.compacconv == 0 %}{{ s2299_infoperant_ideadc.compacconv }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1146,7 +1186,7 @@
 
         <tr {% if s2299_infoperant_ideadc.dtefacconv|validacoes_esocial_efdreinf:"s2299_infoperant_ideadc.dtefacconv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtEfAcConv</td>
-            <td width="500px">Data a partir da qual o instrumento ou legislação mencionada em {tpAcConv}passa a produzir seus efeitos.</td>
+            <td width="500px">Data a partir da qual o instrumento ou legislação mencionada em {tpAcConv} passa a produzir seus efeitos.</td>
             <td width="200px"><b>{% if s2299_infoperant_ideadc.dtefacconv or s2299_infoperant_ideadc.dtefacconv == 0 %}{{ s2299_infoperant_ideadc.dtefacconv|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1190,7 +1230,7 @@
     {% ifequal s2299_infoperant_ideperiodo.s2299_infoperant_ideadc.id s2299_infoperant_ideadc.id %}
         <tr {% if s2299_infoperant_ideperiodo.perref|validacoes_esocial_efdreinf:"s2299_infoperant_ideperiodo.perref" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">perRef</td>
-            <td width="500px">Informar o período ao qual se refere o complemento de remuneração no formato AAAA-MM.Validação: Deve ser igual ou anterior ao mês da data do desligamento, informada em {dtDeslig}.Deve ser informado no formato AAAA-MM.</td>
+            <td width="500px">Informar o período ao qual se refere o complemento de remuneração no formato AAAA-MM. Validação: Deve ser igual ou anterior ao mês da data do desligamento, informada em {dtDeslig}. Deve ser informado no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s2299_infoperant_ideperiodo.perref or s2299_infoperant_ideperiodo.perref == 0 %}{{ s2299_infoperant_ideperiodo.perref }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1215,7 +1255,7 @@
     {% ifequal s2299_infoperant_ideestablot.s2299_infoperant_ideperiodo.id s2299_infoperant_ideperiodo.id %}
         <tr {% if s2299_infoperant_ideestablot.tpinsc|validacoes_esocial_efdreinf:"s2299_infoperant_ideestablot.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição do estabelecimento, de acordo com as opções da tabela 5Validação: Se {classTrib} igual a [21], deve ser igual a [3,4], exceto se empregador doméstico.Se empregador doméstico deve ser igual a [2].Se {classTrib} igual a [22], deve ser igual a [3] e o CAEPF deve constar na tabela S-1005 como sendo de segurado especial.Nos demais casos ({classTrib} <> [21,22]) deve ser igual a [1,4]. Valores Válidos: 1, 2, 3, 4.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição do estabelecimento, de acordo com as opções da tabela 5. Validação: Se {classTrib} igual a [21], deve ser igual a [3,4], exceto se empregador doméstico. Se empregador doméstico deve ser igual a [2]. Se {classTrib} igual a [22], deve ser igual a [3] e o CAEPF deve constar na tabela S-1005 como sendo de segurado especial. Nos demais casos ({classTrib} <> [21,22]) deve ser igual a [1,4]. Valores Válidos: 1, 2, 3, 4.</td>
             <td width="200px"><b>{% if s2299_infoperant_ideestablot.tpinsc or s2299_infoperant_ideestablot.tpinsc == 0 %}{{ s2299_infoperant_ideestablot.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1234,7 +1274,7 @@
 
         <tr {% if s2299_infoperant_ideestablot.nrinsc|validacoes_esocial_efdreinf:"s2299_infoperant_ideestablot.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do estabelecimento do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}.Validação: A inscrição informada deve ser compatível com {tpInsc}. Se{tpInsc} igual a [1, 3, 4] deve constar na tabela S-1005.</td>
+            <td width="500px">Informar o número de inscrição do estabelecimento do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Validação: A inscrição informada deve ser compatível com {tpInsc}. Se {tpInsc} igual a [1, 3, 4] deve constar na tabela S-1005.</td>
             <td width="200px"><b>{% if s2299_infoperant_ideestablot.nrinsc or s2299_infoperant_ideestablot.nrinsc == 0 %}{{ s2299_infoperant_ideestablot.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1278,7 +1318,7 @@
     {% ifequal s2299_infoperant_detverbas.s2299_infoperant_ideestablot.id s2299_infoperant_ideestablot.id %}
         <tr {% if s2299_infoperant_detverbas.codrubr|validacoes_esocial_efdreinf:"s2299_infoperant_detverbas.codrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codRubr</td>
-            <td width="500px">Informar o código atribuído pelo empregador e que identifica a rubrica em sua folha de pagamento.Validação: O código informado deve existir na tabela S-1010 - Tabela deRubricas vigente no mês de referência, informado em {perRef}.Rubrica cujo {codIncCP} em S-1010 seja igual a [23, 24, 61] só pode ser utilizada se {tpRegPrev} do vínculo for igual a [2].Não pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [31,32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83].</td>
+            <td width="500px">Informar o código atribuído pelo empregador e que identifica a rubrica em sua folha de pagamento. Validação: O código informado deve existir na tabela S-1010 - Tabela de Rubricas vigente no mês de referência, informado em {perRef}. Rubrica cujo {codIncCP} em S-1010 seja igual a [23, 24, 61] só pode ser utilizada se {tpRegPrev} do vínculo for igual a [2]. Não pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83].</td>
             <td width="200px"><b>{% if s2299_infoperant_detverbas.codrubr or s2299_infoperant_detverbas.codrubr == 0 %}{{ s2299_infoperant_detverbas.codrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1297,7 +1337,7 @@
 
         <tr {% if s2299_infoperant_detverbas.idetabrubr|validacoes_esocial_efdreinf:"s2299_infoperant_detverbas.idetabrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">ideTabRubr</td>
-            <td width="500px">Preencher com o identificador da tabela de rubricas, conforme informado emS-1010 para a rubrica definida em {codRubr}.Validação: Deve existir na tabela S-1010 (em conjunto com {codRubr})vigente no período indicado em {perRef}.</td>
+            <td width="500px">Preencher com o identificador da tabela de rubricas, conforme informado em S-1010 para a rubrica definida em {codRubr}. Validação: Deve existir na tabela S-1010 (em conjunto com {codRubr}) vigente no período indicado em {perRef}.</td>
             <td width="200px"><b>{% if s2299_infoperant_detverbas.idetabrubr or s2299_infoperant_detverbas.idetabrubr == 0 %}{{ s2299_infoperant_detverbas.idetabrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1316,7 +1356,7 @@
 
         <tr {% if s2299_infoperant_detverbas.qtdrubr|validacoes_esocial_efdreinf:"s2299_infoperant_detverbas.qtdrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">qtdRubr</td>
-            <td width="500px">Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.).Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica desalário. etc.</td>
+            <td width="500px">Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc.</td>
             <td width="200px"><b>{% if s2299_infoperant_detverbas.qtdrubr or s2299_infoperant_detverbas.qtdrubr == 0 %}{{ s2299_infoperant_detverbas.qtdrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1335,7 +1375,7 @@
 
         <tr {% if s2299_infoperant_detverbas.fatorrubr|validacoes_esocial_efdreinf:"s2299_infoperant_detverbas.fatorrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fatorRubr</td>
-            <td width="500px">Informar o fator, percentual, etc, da rubrica, quando necessário.Exs: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50, percentual de contribuição previdenciária de 11% relacionado a uma rubrica de desconto de contribuição previdenciária: Fator =11.</td>
+            <td width="500px">Informar o fator, percentual, etc, da rubrica, quando necessário. Exs: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50, percentual de contribuição previdenciária de 11% relacionado a uma rubrica de desconto de contribuição previdenciária: Fator = 11.</td>
             <td width="200px"><b>{% if s2299_infoperant_detverbas.fatorrubr or s2299_infoperant_detverbas.fatorrubr == 0 %}{{ s2299_infoperant_detverbas.fatorrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1373,7 +1413,7 @@
 
         <tr {% if s2299_infoperant_detverbas.vrrubr|validacoes_esocial_efdreinf:"s2299_infoperant_detverbas.vrrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrRubr</td>
-            <td width="500px">Valor total da rubricaValidação: Deve ser maior que zero.</td>
+            <td width="500px">Valor total da rubrica. Validação: Deve ser maior que zero.</td>
             <td width="200px"><b>{% if s2299_infoperant_detverbas.vrrubr or s2299_infoperant_detverbas.vrrubr == 0 %}{{ s2299_infoperant_detverbas.vrrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1398,7 +1438,7 @@
     {% ifequal s2299_infoperant_infoagnocivo.s2299_infoperant_ideestablot.id s2299_infoperant_ideestablot.id %}
         <tr {% if s2299_infoperant_infoagnocivo.grauexp|validacoes_esocial_efdreinf:"s2299_infoperant_infoagnocivo.grauexp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">grauExp</td>
-            <td width="500px">Preencher com o código que representa o grau de exposição a agentes nocivos, conforme tabela 2.Valores Válidos: 1, 2, 3, 4.</td>
+            <td width="500px">Preencher com o código que representa o grau de exposição a agentes nocivos, conforme tabela 2. Valores Válidos: 1, 2, 3, 4.</td>
             <td width="200px"><b>{% if s2299_infoperant_infoagnocivo.grauexp or s2299_infoperant_infoagnocivo.grauexp == 0 %}{{ s2299_infoperant_infoagnocivo.grauexp|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1417,13 +1457,13 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoSimples</td>
-            <td bgcolor="lightgray" colspan="3">Informação relativa a empresas enquadradas no Regime de TributaçãoSimples</td>
+            <td bgcolor="lightgray" colspan="3">Informação relativa a empresas enquadradas no Regime de Tributação Simples.</td>
         </tr>
     {% for s2299_infoperant_infosimples in s2299_infoperant_infosimples_lista %}
     {% ifequal s2299_infoperant_infosimples.s2299_infoperant_ideestablot.id s2299_infoperant_ideestablot.id %}
         <tr {% if s2299_infoperant_infosimples.indsimples|validacoes_esocial_efdreinf:"s2299_infoperant_infosimples.indsimples" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indSimples</td>
-            <td width="500px">Indicador de Contribuição Substituída:1 - Contribuição Substituída Integralmente;2 - Contribuição não substituída;3 - Contribuição não substituída concomitante com contribuição substituída. Valores Válidos: 1, 2, 3.</td>
+            <td width="500px">Indicador de Contribuição Substituída: 1 - Contribuição Substituída Integralmente; 2 - Contribuição não substituída; 3 - Contribuição não substituída concomitante com contribuição substituída. Valores Válidos: 1, 2, 3.</td>
             <td width="200px"><b>{% if s2299_infoperant_infosimples.indsimples or s2299_infoperant_infosimples.indsimples == 0 %}{{ s2299_infoperant_infosimples.indsimples|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1439,16 +1479,16 @@
             </td>
             {% endif %}
         </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %} 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoTrabInterm</td>
-            <td bgcolor="lightgray" colspan="3">Informações da(s) convocação(ões) de trabalho intermitente</td>
+            <td bgcolor="lightgray" colspan="3">Informações da(s) convocação(ões) de trabalho intermitente.</td>
         </tr>
     {% for s2299_infotrabinterm in s2299_infotrabinterm_lista %}
     {% ifequal s2299_infotrabinterm.s2299_dmdev.id s2299_dmdev.id %}
         <tr {% if s2299_infotrabinterm.codconv|validacoes_esocial_efdreinf:"s2299_infotrabinterm.codconv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codConv</td>
-            <td width="500px">Preencher com o código atribuído pela empresa que identifica a convocação para trabalho intermitente.Validação: O valor informado deve existir no evento "Convocação paraTrabalho Intermitente - S-2260".</td>
+            <td width="500px">Preencher com o código atribuído pela empresa que identifica a convocação para trabalho intermitente. Validação: O valor informado deve existir no evento 'Convocação para Trabalho Intermitente - S-2260'.</td>
             <td width="200px"><b>{% if s2299_infotrabinterm.codconv or s2299_infotrabinterm.codconv == 0 %}{{ s2299_infotrabinterm.codconv }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1467,13 +1507,13 @@
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">procJudTrab</td>
-            <td bgcolor="lightgray" colspan="3">Informações sobre a existência de processos judiciais do trabalhador comdecisão favorável quanto à não incidência de contribuição previdenciária e/ouImposto de Renda</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência de contribuição previdenciária e/ou Imposto de Renda.</td>
         </tr>
     {% for s2299_infotrabinterm_procjudtrab in s2299_infotrabinterm_procjudtrab_lista %}
-    {% ifequal s2299_infotrabinterm_procjudtrab.s2299_verbasresc.id s2299_verbasresc.id %}
+    {% ifequal s2299_infotrabinterm_procjudtrab.s2299_evtdeslig.id s2299_evtdeslig.id %}
         <tr {% if s2299_infotrabinterm_procjudtrab.tptrib|validacoes_esocial_efdreinf:"s2299_infotrabinterm_procjudtrab.tptrib" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpTrib</td>
-            <td width="500px">Abrangência da decisão:1 - IRRF;2 - Contribuições sociais do trabalhador;3 - FGTS;4 - Contribuição sindical. Valores Válidos: 1, 2, 3, 4.</td>
+            <td width="500px">Abrangência da decisão: 1 - IRRF; 2 - Contribuições sociais do trabalhador; 3 - FGTS; 4 - Contribuição sindical. Valores Válidos: 1, 2, 3, 4.</td>
             <td width="200px"><b>{% if s2299_infotrabinterm_procjudtrab.tptrib or s2299_infotrabinterm_procjudtrab.tptrib == 0 %}{{ s2299_infotrabinterm_procjudtrab.tptrib|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1492,7 +1532,7 @@
 
         <tr {% if s2299_infotrabinterm_procjudtrab.nrprocjud|validacoes_esocial_efdreinf:"s2299_infotrabinterm_procjudtrab.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProcJud</td>
-            <td width="500px">Informar um número de processo judicial cadastrado através do evento S-1070, cujo {indMatProc} seja igual a:- [1] se {tpTrib} = [1, 2];- [7] se {tpTrib} = [3];- [8] se {tpTrib} = [4].Validação: O processo deve existir na tabela de processos.</td>
+            <td width="500px">Informar um número de processo judicial cadastrado através do evento S- 1070, cujo {indMatProc} seja igual a: - [1] se {tpTrib} = [1, 2]; - [1, 7] se {tpTrib} = [3]; - [8] se {tpTrib} = [4]. Validação: O processo deve existir na tabela de processos.</td>
             <td width="200px"><b>{% if s2299_infotrabinterm_procjudtrab.nrprocjud or s2299_infotrabinterm_procjudtrab.nrprocjud == 0 %}{{ s2299_infotrabinterm_procjudtrab.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1511,7 +1551,7 @@
 
         <tr {% if s2299_infotrabinterm_procjudtrab.codsusp|validacoes_esocial_efdreinf:"s2299_infotrabinterm_procjudtrab.codsusp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codSusp</td>
-            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. Validação: Preenchimento obrigatório se {tpTrib} = [1, 2]..A informação prestada deve estar de acordo com o que foi informado em S-1070.</td>
+            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. Validação: Preenchimento obrigatório se {tpTrib} = [1, 2].. A informação prestada deve estar de acordo com o que foi informado em S- 1070.</td>
             <td width="200px"><b>{% if s2299_infotrabinterm_procjudtrab.codsusp or s2299_infotrabinterm_procjudtrab.codsusp == 0 %}{{ s2299_infotrabinterm_procjudtrab.codsusp|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1530,10 +1570,10 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoMV</td>
-            <td bgcolor="lightgray" colspan="3">Registro preenchido exclusivamente em caso de trabalhador que possua outrosvínculos/atividades nos quais já tenha ocorrido desconto de contribuição previdenciária.</td>
+            <td bgcolor="lightgray" colspan="3">Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades nos quais já tenha ocorrido desconto de contribuição previdenciária.</td>
         </tr>
     {% for s2299_infotrabinterm_infomv in s2299_infotrabinterm_infomv_lista %}
-    {% ifequal s2299_infotrabinterm_infomv.s2299_verbasresc.id s2299_verbasresc.id %}
+    {% ifequal s2299_infotrabinterm_infomv.s2299_evtdeslig.id s2299_evtdeslig.id %}
         <tr {% if s2299_infotrabinterm_infomv.indmv|validacoes_esocial_efdreinf:"s2299_infotrabinterm_infomv.indmv" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indMV</td>
             <td width="500px">Indicador de desconto da contribuição previdenciária do trabalhador, de acordo com as seguintes opções: 1 - O declarante aplica a alíquota de desconto do segurado sobre a remuneração por ele informada (o percentual da alíquota será obtido considerando a remuneração total do trabalhador); 2 - O declarante aplica a alíquota de desconto do segurado sobre a diferença entre o limite máximo do salário de contribuição e a remuneração de outra(s) empresa(s) para as quais o trabalhador informou que houve o desconto; 3 - O declarante não realiza desconto do segurado, uma vez que houve desconto sobre o limite máximo de salário de contribuição em outra(s) empresa(s). Valores Válidos: 1, 2, 3.</td>
@@ -1561,7 +1601,7 @@
     {% ifequal s2299_infotrabinterm_remunoutrempr.s2299_infotrabinterm_infomv.id s2299_infotrabinterm_infomv.id %}
         <tr {% if s2299_infotrabinterm_remunoutrempr.tpinsc|validacoes_esocial_efdreinf:"s2299_infotrabinterm_remunoutrempr.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Pode ser preenchido com [1] (CNPJ) ou [2] (CPF).</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. Validação: Pode ser preenchido com [1] (CNPJ) ou [2] (CPF).</td>
             <td width="200px"><b>{% if s2299_infotrabinterm_remunoutrempr.tpinsc or s2299_infotrabinterm_remunoutrempr.tpinsc == 0 %}{{ s2299_infotrabinterm_remunoutrempr.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1580,7 +1620,7 @@
 
         <tr {% if s2299_infotrabinterm_remunoutrempr.nrinsc|validacoes_esocial_efdreinf:"s2299_infotrabinterm_remunoutrempr.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}.Validação: a) Se {tpInsc} for igual a [1], deve ser um CNPJ válido, diferente do CNPJ base indicado no registro de Informações do Empregador (S-1000) e dos estabelecimentos informados através do evento S-1005.b) Se {tpInsc} for igual a [2], deve ser um CPF válido e diferente do CPF do trabalhador e ainda, caso o empregador seja pessoa física, diferente do CPF do empregador.</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Validação: a) Se {tpInsc} for igual a [1], deve ser um CNPJ válido, diferente do CNPJ base indicado no registro de Informações do Empregador (S-1000) e dos estabelecimentos informados através do evento S-1005. b) Se {tpInsc} for igual a [2], deve ser um CPF válido e diferente do CPF do trabalhador e ainda, caso o empregador seja pessoa física, diferente do CPF do empregador.</td>
             <td width="200px"><b>{% if s2299_infotrabinterm_remunoutrempr.nrinsc or s2299_infotrabinterm_remunoutrempr.nrinsc == 0 %}{{ s2299_infotrabinterm_remunoutrempr.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1599,7 +1639,7 @@
 
         <tr {% if s2299_infotrabinterm_remunoutrempr.codcateg|validacoes_esocial_efdreinf:"s2299_infotrabinterm_remunoutrempr.codcateg" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codCateg</td>
-            <td width="500px">Preencher com o código da categoria do trabalhador na qual houve a remuneração, conforme Tabela 1Validação: Deve existir na Tabela de Categorias de Trabalhadores (tabela 1)</td>
+            <td width="500px">Preencher com o código da categoria do trabalhador na qual houve a remuneração, conforme Tabela 1. Validação: Deve existir na Tabela de Categorias de Trabalhadores (tabela 1).</td>
             <td width="200px"><b>{% if s2299_infotrabinterm_remunoutrempr.codcateg or s2299_infotrabinterm_remunoutrempr.codcateg == 0 %}{{ s2299_infotrabinterm_remunoutrempr.codcateg|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1637,13 +1677,13 @@
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">procCS</td>
-            <td bgcolor="lightgray" colspan="3">Informação sobre processo judicial que suspende a exigibilidade da Contribuição Social Rescisória</td>
+            <td bgcolor="lightgray" colspan="3">Informação sobre processo judicial que suspende a exigibilidade da Contribuição Social Rescisória.</td>
         </tr>
     {% for s2299_infotrabinterm_proccs in s2299_infotrabinterm_proccs_lista %}
-    {% ifequal s2299_infotrabinterm_proccs.s2299_verbasresc.id s2299_verbasresc.id %}
+    {% ifequal s2299_infotrabinterm_proccs.s2299_evtdeslig.id s2299_evtdeslig.id %}
         <tr {% if s2299_infotrabinterm_proccs.nrprocjud|validacoes_esocial_efdreinf:"s2299_infotrabinterm_proccs.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProcJud</td>
-            <td width="500px">Informar um número de processo judicial cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [7].Validação: Deve ser um número de processo judicial válido e existente naTabela de Processos (S-1070), com {indMatProc} = [7].</td>
+            <td width="500px">Informar um número de processo judicial cadastrado através do evento S- 1070, cujo {indMatProc} seja igual a [1, 7]. Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com {indMatProc} = [1, 7].</td>
             <td width="200px"><b>{% if s2299_infotrabinterm_proccs.nrprocjud or s2299_infotrabinterm_proccs.nrprocjud == 0 %}{{ s2299_infotrabinterm_proccs.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1659,16 +1699,16 @@
             </td>
             {% endif %}
         </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+    {% endifequal %}{% endfor %} 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">quarentena</td>
-            <td bgcolor="lightgray" colspan="3">Informações sobre a "quarentena" remunerada de trabalhador desligado. O registro deve ser preenchido apenas no caso do trabalhador que recebe remuneração após o desligamento por estar impossibilitado de exercer atividade remunerada.</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre a 'quarentena' remunerada de trabalhador desligado. O registro deve ser preenchido apenas no caso do trabalhador que recebe remuneração após o desligamento por estar impossibilitado de exercer atividade remunerada.</td>
         </tr>
     {% for s2299_infotrabinterm_quarentena in s2299_infotrabinterm_quarentena_lista %}
     {% ifequal s2299_infotrabinterm_quarentena.s2299_evtdeslig.id s2299_evtdeslig.id %}
         <tr {% if s2299_infotrabinterm_quarentena.dtfimquar|validacoes_esocial_efdreinf:"s2299_infotrabinterm_quarentena.dtfimquar" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtFimQuar</td>
-            <td width="500px">Preencher com a data final da quarentena a que está sujeito o trabalhadorValidação: Deve ser uma data posterior a data de término do contrato.</td>
+            <td width="500px">Preencher com a data final da quarentena a que está sujeito o trabalhador. Validação: Deve ser uma data posterior a data de término do contrato.</td>
             <td width="200px"><b>{% if s2299_infotrabinterm_quarentena.dtfimquar or s2299_infotrabinterm_quarentena.dtfimquar == 0 %}{{ s2299_infotrabinterm_quarentena.dtfimquar|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1687,13 +1727,13 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">consigFGTS</td>
-            <td bgcolor="lightgray" colspan="3">Informações sobre operação de crédito consignado com garantia de FGTS</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre operação de crédito consignado com garantia de FGTS.</td>
         </tr>
     {% for s2299_infotrabinterm_consigfgts in s2299_infotrabinterm_consigfgts_lista %}
     {% ifequal s2299_infotrabinterm_consigfgts.s2299_evtdeslig.id s2299_evtdeslig.id %}
         <tr {% if s2299_infotrabinterm_consigfgts.insconsig|validacoes_esocial_efdreinf:"s2299_infotrabinterm_consigfgts.insconsig" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">insConsig</td>
-            <td width="500px">Matrícula da Instituição Consignatária, cadastrada na Caixa EconômicaFederal</td>
+            <td width="500px">Matrícula da Instituição Consignatária, cadastrada na Caixa Econômica Federal.</td>
             <td width="200px"><b>{% if s2299_infotrabinterm_consigfgts.insconsig or s2299_infotrabinterm_consigfgts.insconsig == 0 %}{{ s2299_infotrabinterm_consigfgts.insconsig }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1712,7 +1752,7 @@
 
         <tr {% if s2299_infotrabinterm_consigfgts.nrcontr|validacoes_esocial_efdreinf:"s2299_infotrabinterm_consigfgts.nrcontr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrContr</td>
-            <td width="500px">Número do contrato de empréstimo consignado existente na InstituiçãoConsignatária.</td>
+            <td width="500px">Número do contrato de empréstimo consignado existente na Instituição Consignatária.</td>
             <td width="200px"><b>{% if s2299_infotrabinterm_consigfgts.nrcontr or s2299_infotrabinterm_consigfgts.nrcontr == 0 %}{{ s2299_infotrabinterm_consigfgts.nrcontr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">

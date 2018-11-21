@@ -107,7 +107,6 @@ def verificar(request, hash):
         s2240_evtexprisco_lista = s2240evtExpRisco.objects.using( db_slug ).filter(id=s2240_evtexprisco_id, excluido = False).all()
    
 
-        s2240_iniexprisco_lista = s2240iniExpRisco.objects.using(db_slug).filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).filter(excluido=False).all()
         s2240_iniexprisco_infoamb_lista = s2240iniExpRiscoinfoAmb.objects.using(db_slug).filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).filter(excluido=False).all()
         s2240_iniexprisco_ativpericinsal_lista = s2240iniExpRiscoativPericInsal.objects.using(db_slug).filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).filter(excluido=False).all()
         s2240_iniexprisco_fatrisco_lista = s2240iniExpRiscofatRisco.objects.using(db_slug).filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).filter(excluido=False).all()
@@ -141,7 +140,6 @@ def verificar(request, hash):
             'for_print': for_print,
             'hash': hash,
 
-            's2240_iniexprisco_lista': s2240_iniexprisco_lista,
             's2240_iniexprisco_infoamb_lista': s2240_iniexprisco_infoamb_lista,
             's2240_iniexprisco_ativpericinsal_lista': s2240_iniexprisco_ativpericinsal_lista,
             's2240_iniexprisco_fatrisco_lista': s2240_iniexprisco_fatrisco_lista,
@@ -227,7 +225,6 @@ def gerar_xml_s2240(s2240_evtexprisco_id, db_slug, versao=None):
         s2240_evtexprisco_lista = s2240evtExpRisco.objects.using( db_slug ).filter(id=s2240_evtexprisco_id, excluido = False).all()
    
 
-        s2240_iniexprisco_lista = s2240iniExpRisco.objects.using(db_slug).filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).filter(excluido=False).all()
         s2240_iniexprisco_infoamb_lista = s2240iniExpRiscoinfoAmb.objects.using(db_slug).filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).filter(excluido=False).all()
         s2240_iniexprisco_ativpericinsal_lista = s2240iniExpRiscoativPericInsal.objects.using(db_slug).filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).filter(excluido=False).all()
         s2240_iniexprisco_fatrisco_lista = s2240iniExpRiscofatRisco.objects.using(db_slug).filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).filter(excluido=False).all()
@@ -252,7 +249,6 @@ def gerar_xml_s2240(s2240_evtexprisco_id, db_slug, versao=None):
             's2240_evtexprisco': s2240_evtexprisco,
 
 
-            's2240_iniexprisco_lista': s2240_iniexprisco_lista,
             's2240_iniexprisco_infoamb_lista': s2240_iniexprisco_infoamb_lista,
             's2240_iniexprisco_ativpericinsal_lista': s2240_iniexprisco_ativpericinsal_lista,
             's2240_iniexprisco_fatrisco_lista': s2240_iniexprisco_fatrisco_lista,

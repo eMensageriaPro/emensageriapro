@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -240,14 +271,14 @@ class EFDReinfClassificacaoTributariaSerializer(ModelSerializer):
             
 
 class EFDReinfCodigosAtividadesProdutosServicosCPRB(models.Model):
-    codigo = models.CharField(max_length=4)
     grupo = models.IntegerField(choices=GRUPO_CODIGO_ATIV_PROD_SERV)
+    codigo = models.CharField(max_length=4)
+    descricao = models.TextField()
+    incidencia = models.TextField(blank=True, null=True)
+    cr = models.CharField(max_length=12, blank=True, null=True)
+    ncm = models.CharField(max_length=12, blank=True, null=True)
     aliquota = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True)
     inicio_escrituracao = models.DateField(blank=True, null=True)
-    ncm = models.CharField(max_length=12, blank=True, null=True)
-    cr = models.CharField(max_length=12, blank=True, null=True)
-    incidencia = models.TextField(blank=True, null=True)
-    descricao = models.TextField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -256,13 +287,13 @@ class EFDReinfCodigosAtividadesProdutosServicosCPRB(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.codigo) + ' - ' + unicode(self.grupo) + ' - ' + unicode(self.aliquota) + ' - ' + unicode(self.inicio_escrituracao) + ' - ' + unicode(self.ncm) + ' - ' + unicode(self.cr) + ' - ' + unicode(self.incidencia) + ' - ' + unicode(self.descricao)
+        return unicode(self.grupo) + ' - ' + unicode(self.codigo) + ' - ' + unicode(self.descricao) + ' - ' + unicode(self.incidencia) + ' - ' + unicode(self.cr) + ' - ' + unicode(self.ncm) + ' - ' + unicode(self.aliquota) + ' - ' + unicode(self.inicio_escrituracao)
     #efdreinf_codigos_atividades_produtos_servicos_cprb_custom#
     #efdreinf_codigos_atividades_produtos_servicos_cprb_custom#
     class Meta:
         db_table = r'efdreinf_codigos_atividades_produtos_servicos_cprb'
         managed = True
-        ordering = ['codigo', 'grupo', 'aliquota', 'inicio_escrituracao', 'ncm', 'cr', 'incidencia', 'descricao']
+        ordering = ['grupo', 'codigo', 'descricao', 'incidencia', 'cr', 'ncm', 'aliquota', 'inicio_escrituracao']
 
 
 
@@ -328,9 +359,9 @@ class EFDReinfInformacoesBeneficiariosExteriorSerializer(ModelSerializer):
 
 class EFDReinfPagamentosCodigos(models.Model):
     grupo = models.IntegerField(choices=GRUPO_PAGAMENTOS_CODIGOS)
-    beneficiario_pf = models.CharField(choices=SIM_NAO_TXT, max_length=1)
-    beneficiario_pj = models.CharField(choices=SIM_NAO_TXT, max_length=1)
     codigo = models.CharField(max_length=4)
+    beneficiario_pj = models.CharField(choices=SIM_NAO_TXT, max_length=1)
+    beneficiario_pf = models.CharField(choices=SIM_NAO_TXT, max_length=1)
     descricao = models.TextField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -340,13 +371,13 @@ class EFDReinfPagamentosCodigos(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.grupo) + ' - ' + unicode(self.beneficiario_pf) + ' - ' + unicode(self.beneficiario_pj) + ' - ' + unicode(self.codigo) + ' - ' + unicode(self.descricao)
+        return unicode(self.grupo) + ' - ' + unicode(self.codigo) + ' - ' + unicode(self.beneficiario_pj) + ' - ' + unicode(self.beneficiario_pf) + ' - ' + unicode(self.descricao)
     #efdreinf_pagamentos_codigos_custom#
     #efdreinf_pagamentos_codigos_custom#
     class Meta:
         db_table = r'efdreinf_pagamentos_codigos'
         managed = True
-        ordering = ['grupo', 'beneficiario_pf', 'beneficiario_pj', 'codigo', 'descricao']
+        ordering = ['grupo', 'codigo', 'beneficiario_pj', 'beneficiario_pf', 'descricao']
 
 
 
@@ -385,12 +416,12 @@ class EFDReinfPaisesSerializer(ModelSerializer):
 
 class EFDReinfRegrasPagamentosCodigos(models.Model):
     classificacao = models.IntegerField(choices=CLASSIFICACAO_REGRAS_PAGAMENTOS_CODIGOS)
-    tributacao_com_exigibilidade_suspensa = models.CharField(choices=SIM_NAO_TXT, max_length=1, blank=True, null=True)
-    compensacao_imposto_por_decisao_judicial = models.CharField(choices=SIM_NAO_TXT, max_length=1, blank=True, null=True)
-    rendimentos_isentos = models.CharField(max_length=10, blank=True, null=True)
-    deducoes = models.CharField(max_length=10, blank=True, null=True)
-    decimo_terceiro = models.CharField(choices=SIM_NAO_TXT, max_length=1, blank=True, null=True)
     codigo = models.CharField(max_length=4)
+    decimo_terceiro = models.CharField(choices=SIM_NAO_TXT, max_length=1, blank=True, null=True)
+    deducoes = models.CharField(max_length=10, blank=True, null=True)
+    rendimentos_isentos = models.CharField(max_length=10, blank=True, null=True)
+    compensacao_imposto_por_decisao_judicial = models.CharField(choices=SIM_NAO_TXT, max_length=1, blank=True, null=True)
+    tributacao_com_exigibilidade_suspensa = models.CharField(choices=SIM_NAO_TXT, max_length=1, blank=True, null=True)
     descricao = models.TextField()
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -400,13 +431,13 @@ class EFDReinfRegrasPagamentosCodigos(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.classificacao) + ' - ' + unicode(self.tributacao_com_exigibilidade_suspensa) + ' - ' + unicode(self.compensacao_imposto_por_decisao_judicial) + ' - ' + unicode(self.rendimentos_isentos) + ' - ' + unicode(self.deducoes) + ' - ' + unicode(self.decimo_terceiro) + ' - ' + unicode(self.codigo) + ' - ' + unicode(self.descricao)
+        return unicode(self.classificacao) + ' - ' + unicode(self.codigo) + ' - ' + unicode(self.decimo_terceiro) + ' - ' + unicode(self.deducoes) + ' - ' + unicode(self.rendimentos_isentos) + ' - ' + unicode(self.compensacao_imposto_por_decisao_judicial) + ' - ' + unicode(self.tributacao_com_exigibilidade_suspensa) + ' - ' + unicode(self.descricao)
     #efdreinf_regras_pagamentos_codigos_custom#
     #efdreinf_regras_pagamentos_codigos_custom#
     class Meta:
         db_table = r'efdreinf_regras_pagamentos_codigos'
         managed = True
-        ordering = ['classificacao', 'tributacao_com_exigibilidade_suspensa', 'compensacao_imposto_por_decisao_judicial', 'rendimentos_isentos', 'deducoes', 'decimo_terceiro', 'codigo', 'descricao']
+        ordering = ['classificacao', 'codigo', 'decimo_terceiro', 'deducoes', 'rendimentos_isentos', 'compensacao_imposto_por_decisao_judicial', 'tributacao_com_exigibilidade_suspensa', 'descricao']
 
 
 

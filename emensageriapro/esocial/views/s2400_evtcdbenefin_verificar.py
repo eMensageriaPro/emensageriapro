@@ -107,9 +107,8 @@ def verificar(request, hash):
         s2400_evtcdbenefin_lista = s2400evtCdBenefIn.objects.using( db_slug ).filter(id=s2400_evtcdbenefin_id, excluido = False).all()
    
 
-        s2400_endereco_lista = s2400endereco.objects.using(db_slug).filter(s2400_evtcdbenefin_id__in = listar_ids(s2400_evtcdbenefin_lista) ).filter(excluido=False).all()
-        s2400_brasil_lista = s2400brasil.objects.using(db_slug).filter(s2400_endereco_id__in = listar_ids(s2400_endereco_lista) ).filter(excluido=False).all()
-        s2400_exterior_lista = s2400exterior.objects.using(db_slug).filter(s2400_endereco_id__in = listar_ids(s2400_endereco_lista) ).filter(excluido=False).all()
+        s2400_brasil_lista = s2400brasil.objects.using(db_slug).filter(s2400_evtcdbenefin_id__in = listar_ids(s2400_evtcdbenefin_lista) ).filter(excluido=False).all()
+        s2400_exterior_lista = s2400exterior.objects.using(db_slug).filter(s2400_evtcdbenefin_id__in = listar_ids(s2400_evtcdbenefin_lista) ).filter(excluido=False).all()
         s2400_dependente_lista = s2400dependente.objects.using(db_slug).filter(s2400_evtcdbenefin_id__in = listar_ids(s2400_evtcdbenefin_lista) ).filter(excluido=False).all()
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2400_evtcdbenefin'
@@ -129,7 +128,6 @@ def verificar(request, hash):
             'for_print': for_print,
             'hash': hash,
 
-            's2400_endereco_lista': s2400_endereco_lista,
             's2400_brasil_lista': s2400_brasil_lista,
             's2400_exterior_lista': s2400_exterior_lista,
             's2400_dependente_lista': s2400_dependente_lista,
@@ -203,9 +201,8 @@ def gerar_xml_s2400(s2400_evtcdbenefin_id, db_slug, versao=None):
         s2400_evtcdbenefin_lista = s2400evtCdBenefIn.objects.using( db_slug ).filter(id=s2400_evtcdbenefin_id, excluido = False).all()
    
 
-        s2400_endereco_lista = s2400endereco.objects.using(db_slug).filter(s2400_evtcdbenefin_id__in = listar_ids(s2400_evtcdbenefin_lista) ).filter(excluido=False).all()
-        s2400_brasil_lista = s2400brasil.objects.using(db_slug).filter(s2400_endereco_id__in = listar_ids(s2400_endereco_lista) ).filter(excluido=False).all()
-        s2400_exterior_lista = s2400exterior.objects.using(db_slug).filter(s2400_endereco_id__in = listar_ids(s2400_endereco_lista) ).filter(excluido=False).all()
+        s2400_brasil_lista = s2400brasil.objects.using(db_slug).filter(s2400_evtcdbenefin_id__in = listar_ids(s2400_evtcdbenefin_lista) ).filter(excluido=False).all()
+        s2400_exterior_lista = s2400exterior.objects.using(db_slug).filter(s2400_evtcdbenefin_id__in = listar_ids(s2400_evtcdbenefin_lista) ).filter(excluido=False).all()
         s2400_dependente_lista = s2400dependente.objects.using(db_slug).filter(s2400_evtcdbenefin_id__in = listar_ids(s2400_evtcdbenefin_lista) ).filter(excluido=False).all()
    
         context = {
@@ -216,7 +213,6 @@ def gerar_xml_s2400(s2400_evtcdbenefin_id, db_slug, versao=None):
             's2400_evtcdbenefin': s2400_evtcdbenefin,
 
 
-            's2400_endereco_lista': s2400_endereco_lista,
             's2400_brasil_lista': s2400_brasil_lista,
             's2400_exterior_lista': s2400_exterior_lista,
             's2400_dependente_lista': s2400_dependente_lista,

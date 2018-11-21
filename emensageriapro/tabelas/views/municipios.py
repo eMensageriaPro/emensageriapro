@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -17,54 +48,54 @@ from emensageriapro.tabelas.forms import *
 from emensageriapro.tabelas.models import *
 from emensageriapro.controle_de_acesso.models import *
 import base64
-from emensageriapro.r1070.models import r1070inclusaodadosProcJud
-from emensageriapro.r1070.models import r1070alteracaodadosProcJud
-from emensageriapro.r3010.models import r3010boletim
-from emensageriapro.esocial.models import s2200evtAdmissao
-from emensageriapro.esocial.models import s2205evtAltCadastral
-from emensageriapro.esocial.models import s2210evtCAT
-from emensageriapro.esocial.models import s2300evtTSVInicio
-from emensageriapro.esocial.models import s2400evtCdBenefIn
 from emensageriapro.s1000.models import s1000inclusaoinfoEnte
 from emensageriapro.s1000.models import s1000alteracaoinfoEnte
 from emensageriapro.s1070.models import s1070inclusaodadosProcJud
 from emensageriapro.s1070.models import s1070alteracaodadosProcJud
+from emensageriapro.esocial.models import s2200evtAdmissao
 from emensageriapro.s2200.models import s2200brasil
 from emensageriapro.s2200.models import s2200localTrabDom
+from emensageriapro.esocial.models import s2205evtAltCadastral
 from emensageriapro.s2205.models import s2205brasil
 from emensageriapro.s2206.models import s2206localTrabDom
+from emensageriapro.esocial.models import s2210evtCAT
 from emensageriapro.s2260.models import s2260localTrabInterm
+from emensageriapro.esocial.models import s2300evtTSVInicio
 from emensageriapro.s2300.models import s2300brasil
 from emensageriapro.s2300.models import s2300infoEstagiario
 from emensageriapro.s2300.models import s2300ageIntegracao
 from emensageriapro.s2306.models import s2306infoEstagiario
 from emensageriapro.s2306.models import s2306ageIntegracao
+from emensageriapro.esocial.models import s2400evtCdBenefIn
 from emensageriapro.s2400.models import s2400brasil
 from emensageriapro.s2405.models import s2405brasil
-from emensageriapro.r1070.forms import form_r1070_inclusao_dadosprocjud
-from emensageriapro.r1070.forms import form_r1070_alteracao_dadosprocjud
-from emensageriapro.r3010.forms import form_r3010_boletim
-from emensageriapro.esocial.forms import form_s2200_evtadmissao
-from emensageriapro.esocial.forms import form_s2205_evtaltcadastral
-from emensageriapro.esocial.forms import form_s2210_evtcat
-from emensageriapro.esocial.forms import form_s2300_evttsvinicio
-from emensageriapro.esocial.forms import form_s2400_evtcdbenefin
+from emensageriapro.r1070.models import r1070inclusaodadosProcJud
+from emensageriapro.r1070.models import r1070alteracaodadosProcJud
+from emensageriapro.r3010.models import r3010boletim
 from emensageriapro.s1000.forms import form_s1000_inclusao_infoente
 from emensageriapro.s1000.forms import form_s1000_alteracao_infoente
 from emensageriapro.s1070.forms import form_s1070_inclusao_dadosprocjud
 from emensageriapro.s1070.forms import form_s1070_alteracao_dadosprocjud
+from emensageriapro.esocial.forms import form_s2200_evtadmissao
 from emensageriapro.s2200.forms import form_s2200_brasil
 from emensageriapro.s2200.forms import form_s2200_localtrabdom
+from emensageriapro.esocial.forms import form_s2205_evtaltcadastral
 from emensageriapro.s2205.forms import form_s2205_brasil
 from emensageriapro.s2206.forms import form_s2206_localtrabdom
+from emensageriapro.esocial.forms import form_s2210_evtcat
 from emensageriapro.s2260.forms import form_s2260_localtrabinterm
+from emensageriapro.esocial.forms import form_s2300_evttsvinicio
 from emensageriapro.s2300.forms import form_s2300_brasil
 from emensageriapro.s2300.forms import form_s2300_infoestagiario
 from emensageriapro.s2300.forms import form_s2300_ageintegracao
 from emensageriapro.s2306.forms import form_s2306_infoestagiario
 from emensageriapro.s2306.forms import form_s2306_ageintegracao
+from emensageriapro.esocial.forms import form_s2400_evtcdbenefin
 from emensageriapro.s2400.forms import form_s2400_brasil
 from emensageriapro.s2405.forms import form_s2405_brasil
+from emensageriapro.r1070.forms import form_r1070_inclusao_dadosprocjud
+from emensageriapro.r1070.forms import form_r1070_alteracao_dadosprocjud
+from emensageriapro.r3010.forms import form_r3010_boletim
 
 #IMPORTACOES
 
@@ -341,27 +372,22 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
-            'show_titulo': 1,
-            'show_codigo': 1, }
+            'show_codigo': 1,
+            'show_titulo': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'titulo__icontains': 'titulo__icontains',
-                'codigo__icontains': 'codigo__icontains',}
+                'codigo__icontains': 'codigo__icontains',
+                'titulo__icontains': 'titulo__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'titulo__icontains': 'titulo__icontains',
-                'codigo__icontains': 'codigo__icontains',}
+                'codigo__icontains': 'codigo__icontains',
+                'titulo__icontains': 'titulo__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

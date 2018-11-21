@@ -107,13 +107,12 @@ def verificar(request, hash):
         s2200_evtadmissao_lista = s2200evtAdmissao.objects.using( db_slug ).filter(id=s2200_evtadmissao_id, excluido = False).all()
    
 
-        s2200_documentos_lista = s2200documentos.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
-        s2200_ctps_lista = s2200CTPS.objects.using(db_slug).filter(s2200_documentos_id__in = listar_ids(s2200_documentos_lista) ).filter(excluido=False).all()
-        s2200_ric_lista = s2200RIC.objects.using(db_slug).filter(s2200_documentos_id__in = listar_ids(s2200_documentos_lista) ).filter(excluido=False).all()
-        s2200_rg_lista = s2200RG.objects.using(db_slug).filter(s2200_documentos_id__in = listar_ids(s2200_documentos_lista) ).filter(excluido=False).all()
-        s2200_rne_lista = s2200RNE.objects.using(db_slug).filter(s2200_documentos_id__in = listar_ids(s2200_documentos_lista) ).filter(excluido=False).all()
-        s2200_oc_lista = s2200OC.objects.using(db_slug).filter(s2200_documentos_id__in = listar_ids(s2200_documentos_lista) ).filter(excluido=False).all()
-        s2200_cnh_lista = s2200CNH.objects.using(db_slug).filter(s2200_documentos_id__in = listar_ids(s2200_documentos_lista) ).filter(excluido=False).all()
+        s2200_ctps_lista = s2200CTPS.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
+        s2200_ric_lista = s2200RIC.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
+        s2200_rg_lista = s2200RG.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
+        s2200_rne_lista = s2200RNE.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
+        s2200_oc_lista = s2200OC.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
+        s2200_cnh_lista = s2200CNH.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
         s2200_brasil_lista = s2200brasil.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
         s2200_exterior_lista = s2200exterior.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
         s2200_trabestrangeiro_lista = s2200trabEstrangeiro.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
@@ -137,6 +136,7 @@ def verificar(request, hash):
         s2200_observacoes_lista = s2200observacoes.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
         s2200_sucessaovinc_lista = s2200sucessaoVinc.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
         s2200_transfdom_lista = s2200transfDom.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
+        s2200_mudancacpf_lista = s2200mudancaCPF.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
         s2200_afastamento_lista = s2200afastamento.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
         s2200_desligamento_lista = s2200desligamento.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
         s2200_cessao_lista = s2200cessao.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
@@ -158,7 +158,6 @@ def verificar(request, hash):
             'for_print': for_print,
             'hash': hash,
 
-            's2200_documentos_lista': s2200_documentos_lista,
             's2200_ctps_lista': s2200_ctps_lista,
             's2200_ric_lista': s2200_ric_lista,
             's2200_rg_lista': s2200_rg_lista,
@@ -188,6 +187,7 @@ def verificar(request, hash):
             's2200_observacoes_lista': s2200_observacoes_lista,
             's2200_sucessaovinc_lista': s2200_sucessaovinc_lista,
             's2200_transfdom_lista': s2200_transfdom_lista,
+            's2200_mudancacpf_lista': s2200_mudancacpf_lista,
             's2200_afastamento_lista': s2200_afastamento_lista,
             's2200_desligamento_lista': s2200_desligamento_lista,
             's2200_cessao_lista': s2200_cessao_lista,
@@ -261,13 +261,12 @@ def gerar_xml_s2200(s2200_evtadmissao_id, db_slug, versao=None):
         s2200_evtadmissao_lista = s2200evtAdmissao.objects.using( db_slug ).filter(id=s2200_evtadmissao_id, excluido = False).all()
    
 
-        s2200_documentos_lista = s2200documentos.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
-        s2200_ctps_lista = s2200CTPS.objects.using(db_slug).filter(s2200_documentos_id__in = listar_ids(s2200_documentos_lista) ).filter(excluido=False).all()
-        s2200_ric_lista = s2200RIC.objects.using(db_slug).filter(s2200_documentos_id__in = listar_ids(s2200_documentos_lista) ).filter(excluido=False).all()
-        s2200_rg_lista = s2200RG.objects.using(db_slug).filter(s2200_documentos_id__in = listar_ids(s2200_documentos_lista) ).filter(excluido=False).all()
-        s2200_rne_lista = s2200RNE.objects.using(db_slug).filter(s2200_documentos_id__in = listar_ids(s2200_documentos_lista) ).filter(excluido=False).all()
-        s2200_oc_lista = s2200OC.objects.using(db_slug).filter(s2200_documentos_id__in = listar_ids(s2200_documentos_lista) ).filter(excluido=False).all()
-        s2200_cnh_lista = s2200CNH.objects.using(db_slug).filter(s2200_documentos_id__in = listar_ids(s2200_documentos_lista) ).filter(excluido=False).all()
+        s2200_ctps_lista = s2200CTPS.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
+        s2200_ric_lista = s2200RIC.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
+        s2200_rg_lista = s2200RG.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
+        s2200_rne_lista = s2200RNE.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
+        s2200_oc_lista = s2200OC.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
+        s2200_cnh_lista = s2200CNH.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
         s2200_brasil_lista = s2200brasil.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
         s2200_exterior_lista = s2200exterior.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
         s2200_trabestrangeiro_lista = s2200trabEstrangeiro.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
@@ -291,6 +290,7 @@ def gerar_xml_s2200(s2200_evtadmissao_id, db_slug, versao=None):
         s2200_observacoes_lista = s2200observacoes.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
         s2200_sucessaovinc_lista = s2200sucessaoVinc.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
         s2200_transfdom_lista = s2200transfDom.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
+        s2200_mudancacpf_lista = s2200mudancaCPF.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
         s2200_afastamento_lista = s2200afastamento.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
         s2200_desligamento_lista = s2200desligamento.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
         s2200_cessao_lista = s2200cessao.objects.using(db_slug).filter(s2200_evtadmissao_id__in = listar_ids(s2200_evtadmissao_lista) ).filter(excluido=False).all()
@@ -303,7 +303,6 @@ def gerar_xml_s2200(s2200_evtadmissao_id, db_slug, versao=None):
             's2200_evtadmissao': s2200_evtadmissao,
 
 
-            's2200_documentos_lista': s2200_documentos_lista,
             's2200_ctps_lista': s2200_ctps_lista,
             's2200_ric_lista': s2200_ric_lista,
             's2200_rg_lista': s2200_rg_lista,
@@ -333,6 +332,7 @@ def gerar_xml_s2200(s2200_evtadmissao_id, db_slug, versao=None):
             's2200_observacoes_lista': s2200_observacoes_lista,
             's2200_sucessaovinc_lista': s2200_sucessaovinc_lista,
             's2200_transfdom_lista': s2200_transfdom_lista,
+            's2200_mudancacpf_lista': s2200_mudancacpf_lista,
             's2200_afastamento_lista': s2200_afastamento_lista,
             's2200_desligamento_lista': s2200_desligamento_lista,
             's2200_cessao_lista': s2200_cessao_lista,

@@ -107,13 +107,12 @@ def verificar(request, hash):
         s2205_evtaltcadastral_lista = s2205evtAltCadastral.objects.using( db_slug ).filter(id=s2205_evtaltcadastral_id, excluido = False).all()
    
 
-        s2205_documentos_lista = s2205documentos.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
-        s2205_ctps_lista = s2205CTPS.objects.using(db_slug).filter(s2205_documentos_id__in = listar_ids(s2205_documentos_lista) ).filter(excluido=False).all()
-        s2205_ric_lista = s2205RIC.objects.using(db_slug).filter(s2205_documentos_id__in = listar_ids(s2205_documentos_lista) ).filter(excluido=False).all()
-        s2205_rg_lista = s2205RG.objects.using(db_slug).filter(s2205_documentos_id__in = listar_ids(s2205_documentos_lista) ).filter(excluido=False).all()
-        s2205_rne_lista = s2205RNE.objects.using(db_slug).filter(s2205_documentos_id__in = listar_ids(s2205_documentos_lista) ).filter(excluido=False).all()
-        s2205_oc_lista = s2205OC.objects.using(db_slug).filter(s2205_documentos_id__in = listar_ids(s2205_documentos_lista) ).filter(excluido=False).all()
-        s2205_cnh_lista = s2205CNH.objects.using(db_slug).filter(s2205_documentos_id__in = listar_ids(s2205_documentos_lista) ).filter(excluido=False).all()
+        s2205_ctps_lista = s2205CTPS.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
+        s2205_ric_lista = s2205RIC.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
+        s2205_rg_lista = s2205RG.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
+        s2205_rne_lista = s2205RNE.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
+        s2205_oc_lista = s2205OC.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
+        s2205_cnh_lista = s2205CNH.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
         s2205_brasil_lista = s2205brasil.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
         s2205_exterior_lista = s2205exterior.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
         s2205_trabestrangeiro_lista = s2205trabEstrangeiro.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
@@ -139,7 +138,6 @@ def verificar(request, hash):
             'for_print': for_print,
             'hash': hash,
 
-            's2205_documentos_lista': s2205_documentos_lista,
             's2205_ctps_lista': s2205_ctps_lista,
             's2205_ric_lista': s2205_ric_lista,
             's2205_rg_lista': s2205_rg_lista,
@@ -223,13 +221,12 @@ def gerar_xml_s2205(s2205_evtaltcadastral_id, db_slug, versao=None):
         s2205_evtaltcadastral_lista = s2205evtAltCadastral.objects.using( db_slug ).filter(id=s2205_evtaltcadastral_id, excluido = False).all()
    
 
-        s2205_documentos_lista = s2205documentos.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
-        s2205_ctps_lista = s2205CTPS.objects.using(db_slug).filter(s2205_documentos_id__in = listar_ids(s2205_documentos_lista) ).filter(excluido=False).all()
-        s2205_ric_lista = s2205RIC.objects.using(db_slug).filter(s2205_documentos_id__in = listar_ids(s2205_documentos_lista) ).filter(excluido=False).all()
-        s2205_rg_lista = s2205RG.objects.using(db_slug).filter(s2205_documentos_id__in = listar_ids(s2205_documentos_lista) ).filter(excluido=False).all()
-        s2205_rne_lista = s2205RNE.objects.using(db_slug).filter(s2205_documentos_id__in = listar_ids(s2205_documentos_lista) ).filter(excluido=False).all()
-        s2205_oc_lista = s2205OC.objects.using(db_slug).filter(s2205_documentos_id__in = listar_ids(s2205_documentos_lista) ).filter(excluido=False).all()
-        s2205_cnh_lista = s2205CNH.objects.using(db_slug).filter(s2205_documentos_id__in = listar_ids(s2205_documentos_lista) ).filter(excluido=False).all()
+        s2205_ctps_lista = s2205CTPS.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
+        s2205_ric_lista = s2205RIC.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
+        s2205_rg_lista = s2205RG.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
+        s2205_rne_lista = s2205RNE.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
+        s2205_oc_lista = s2205OC.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
+        s2205_cnh_lista = s2205CNH.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
         s2205_brasil_lista = s2205brasil.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
         s2205_exterior_lista = s2205exterior.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
         s2205_trabestrangeiro_lista = s2205trabEstrangeiro.objects.using(db_slug).filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).filter(excluido=False).all()
@@ -246,7 +243,6 @@ def gerar_xml_s2205(s2205_evtaltcadastral_id, db_slug, versao=None):
             's2205_evtaltcadastral': s2205_evtaltcadastral,
 
 
-            's2205_documentos_lista': s2205_documentos_lista,
             's2205_ctps_lista': s2205_ctps_lista,
             's2205_ric_lista': s2205_ric_lista,
             's2205_rg_lista': s2205_rg_lista,

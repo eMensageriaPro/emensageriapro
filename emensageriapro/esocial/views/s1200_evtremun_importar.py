@@ -136,6 +136,7 @@ def read_s1200_evtremun_obj(doc, status, validar=False):
                     s1200_sucessaovinc_dados = {}
                     s1200_sucessaovinc_dados['s1200_infocomplem_id'] = s1200_infocomplem_id
                
+                    if 'tpInscAnt' in dir(sucessaoVinc): s1200_sucessaovinc_dados['tpinscant'] = sucessaoVinc.tpInscAnt.cdata
                     if 'cnpjEmpregAnt' in dir(sucessaoVinc): s1200_sucessaovinc_dados['cnpjempregant'] = sucessaoVinc.cnpjEmpregAnt.cdata
                     if 'matricAnt' in dir(sucessaoVinc): s1200_sucessaovinc_dados['matricant'] = sucessaoVinc.matricAnt.cdata
                     if 'dtAdm' in dir(sucessaoVinc): s1200_sucessaovinc_dados['dtadm'] = sucessaoVinc.dtAdm.cdata
@@ -181,25 +182,35 @@ def read_s1200_evtremun_obj(doc, status, validar=False):
             s1200_dmdev_id = resp[0][0]
             #print s1200_dmdev_id
 
-            if 'infoPerApur' in dir(dmDev):
-                for infoPerApur in dmDev.infoPerApur:
-                    s1200_infoperapur_dados = {}
-                    s1200_infoperapur_dados['s1200_dmdev_id'] = s1200_dmdev_id
+            if 'ideEstabLot' in dir(dmDev.infoPerApur):
+                for ideEstabLot in dmDev.infoPerApur.ideEstabLot:
+                    s1200_infoperapur_ideestablot_dados = {}
+                    s1200_infoperapur_ideestablot_dados['s1200_dmdev_id'] = s1200_dmdev_id
                
-                    insert = create_insert('s1200_infoperapur', s1200_infoperapur_dados)
+                    if 'tpInsc' in dir(ideEstabLot): s1200_infoperapur_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
+                    if 'nrInsc' in dir(ideEstabLot): s1200_infoperapur_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
+                    if 'codLotacao' in dir(ideEstabLot): s1200_infoperapur_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
+                    if 'qtdDiasAv' in dir(ideEstabLot): s1200_infoperapur_ideestablot_dados['qtddiasav'] = ideEstabLot.qtdDiasAv.cdata
+                    insert = create_insert('s1200_infoperapur_ideestablot', s1200_infoperapur_ideestablot_dados)
                     resp = executar_sql(insert, True)
-                    s1200_infoperapur_id = resp[0][0]
-                    #print s1200_infoperapur_id
+                    s1200_infoperapur_ideestablot_id = resp[0][0]
+                    #print s1200_infoperapur_ideestablot_id
    
-            if 'infoPerAnt' in dir(dmDev):
-                for infoPerAnt in dmDev.infoPerAnt:
-                    s1200_infoperant_dados = {}
-                    s1200_infoperant_dados['s1200_dmdev_id'] = s1200_dmdev_id
+            if 'ideADC' in dir(dmDev.infoPerAnt):
+                for ideADC in dmDev.infoPerAnt.ideADC:
+                    s1200_infoperant_ideadc_dados = {}
+                    s1200_infoperant_ideadc_dados['s1200_dmdev_id'] = s1200_dmdev_id
                
-                    insert = create_insert('s1200_infoperant', s1200_infoperant_dados)
+                    if 'dtAcConv' in dir(ideADC): s1200_infoperant_ideadc_dados['dtacconv'] = ideADC.dtAcConv.cdata
+                    if 'tpAcConv' in dir(ideADC): s1200_infoperant_ideadc_dados['tpacconv'] = ideADC.tpAcConv.cdata
+                    if 'compAcConv' in dir(ideADC): s1200_infoperant_ideadc_dados['compacconv'] = ideADC.compAcConv.cdata
+                    if 'dtEfAcConv' in dir(ideADC): s1200_infoperant_ideadc_dados['dtefacconv'] = ideADC.dtEfAcConv.cdata
+                    if 'dsc' in dir(ideADC): s1200_infoperant_ideadc_dados['dsc'] = ideADC.dsc.cdata
+                    if 'remunSuc' in dir(ideADC): s1200_infoperant_ideadc_dados['remunsuc'] = ideADC.remunSuc.cdata
+                    insert = create_insert('s1200_infoperant_ideadc', s1200_infoperant_ideadc_dados)
                     resp = executar_sql(insert, True)
-                    s1200_infoperant_id = resp[0][0]
-                    #print s1200_infoperant_id
+                    s1200_infoperant_ideadc_id = resp[0][0]
+                    #print s1200_infoperant_ideadc_id
    
             if 'infoComplCont' in dir(dmDev):
                 for infoComplCont in dmDev.infoComplCont:

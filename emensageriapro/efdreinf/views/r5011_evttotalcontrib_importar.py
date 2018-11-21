@@ -125,6 +125,7 @@ def read_r5011_evttotalcontrib_obj(doc, status, validar=False):
                     r5011_rtom_dados['r5011_infototalcontrib_id'] = r5011_infototalcontrib_id
                
                     if 'cnpjPrestador' in dir(RTom): r5011_rtom_dados['cnpjprestador'] = RTom.cnpjPrestador.cdata
+                    if 'cno' in dir(RTom): r5011_rtom_dados['cno'] = RTom.cno.cdata
                     if 'vlrTotalBaseRet' in dir(RTom): r5011_rtom_dados['vlrtotalbaseret'] = RTom.vlrTotalBaseRet.cdata
                     insert = create_insert('r5011_rtom', r5011_rtom_dados)
                     resp = executar_sql(insert, True)

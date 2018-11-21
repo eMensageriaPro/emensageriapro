@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -17,8 +48,10 @@ from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
 from emensageriapro.controle_de_acesso.models import *
 import base64
-from emensageriapro.r3010.models import r3010ideEstab
-from emensageriapro.r3010.forms import form_r3010_ideestab
+from emensageriapro.r3010.models import r3010boletim
+from emensageriapro.r3010.models import r3010infoProc
+from emensageriapro.r3010.forms import form_r3010_boletim
+from emensageriapro.r3010.forms import form_r3010_infoproc
 
 #IMPORTACOES
 
@@ -134,7 +167,6 @@ def salvar(request, hash):
                         messages.error(request, 'Não é possível salvar o evento, pois o mesmo não está com o status "Cadastrado"!')
 
                 else:
-                    dados['arquivo_original'] = 0
 
                     dados['criado_por_id'] = usuario_id
                     dados['criado_em'] = datetime.datetime.now()
@@ -169,14 +201,19 @@ def salvar(request, hash):
         if int(dict_hash['print']):
             r3010_evtespdesportivo_form = disabled_form_for_print(r3010_evtespdesportivo_form)
    
-        r3010_ideestab_form = None
-        r3010_ideestab_lista = None
+        r3010_boletim_form = None
+        r3010_boletim_lista = None
+        r3010_infoproc_form = None
+        r3010_infoproc_lista = None
         if r3010_evtespdesportivo_id:
             r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo.objects.using( db_slug ), excluido = False, id = r3010_evtespdesportivo_id)
        
-            r3010_ideestab_form = form_r3010_ideestab(initial={ 'r3010_evtespdesportivo': r3010_evtespdesportivo }, slug=db_slug)
-            r3010_ideestab_form.fields['r3010_evtespdesportivo'].widget.attrs['readonly'] = True
-            r3010_ideestab_lista = r3010ideEstab.objects.using( db_slug ).filter(excluido = False, r3010_evtespdesportivo_id=r3010_evtespdesportivo.id).all()
+            r3010_boletim_form = form_r3010_boletim(initial={ 'r3010_evtespdesportivo': r3010_evtespdesportivo }, slug=db_slug)
+            r3010_boletim_form.fields['r3010_evtespdesportivo'].widget.attrs['readonly'] = True
+            r3010_boletim_lista = r3010boletim.objects.using( db_slug ).filter(excluido = False, r3010_evtespdesportivo_id=r3010_evtespdesportivo.id).all()
+            r3010_infoproc_form = form_r3010_infoproc(initial={ 'r3010_evtespdesportivo': r3010_evtespdesportivo }, slug=db_slug)
+            r3010_infoproc_form.fields['r3010_evtespdesportivo'].widget.attrs['readonly'] = True
+            r3010_infoproc_lista = r3010infoProc.objects.using( db_slug ).filter(excluido = False, r3010_evtespdesportivo_id=r3010_evtespdesportivo.id).all()
         else:
             r3010_evtespdesportivo = None
         #r3010_evtespdesportivo_salvar_custom_variaveis#
@@ -211,8 +248,10 @@ def salvar(request, hash):
             
             'hash': hash,
        
-            'r3010_ideestab_form': r3010_ideestab_form,
-            'r3010_ideestab_lista': r3010_ideestab_lista,
+            'r3010_boletim_form': r3010_boletim_form,
+            'r3010_boletim_lista': r3010_boletim_lista,
+            'r3010_infoproc_form': r3010_infoproc_form,
+            'r3010_infoproc_lista': r3010_infoproc_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
@@ -384,76 +423,98 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
-            'show_nrinsc': 0,
-            'show_tpinsc': 0,
-            'show_idecontri': 0,
-            'show_verproc': 0,
-            'show_procemi': 0,
-            'show_tpamb': 0,
-            'show_dtapuracao': 1,
-            'show_nrrecibo': 0,
-            'show_indretif': 1,
-            'show_ideevento': 0,
-            'show_identidade': 1,
-            'show_evtespdesportivo': 0,
-            'show_dhprocess': 0,
-            'show_descretorno': 0,
-            'show_cdretorno': 1,
-            'show_status': 1,
             'show_versao': 0,
             'show_transmissor_lote_efdreinf': 0,
-            'show_arquivo': 0,
-            'show_arquivo_original': 0,
-            'show_validacoes': 0,
-            'show_validacao_precedencia': 0,
-            'show_ocorrencias': 0,
+            'show_retornos_evttotal': 0,
             'show_retornos_evttotalcontrib': 0,
-            'show_retornos_evttotal': 0, }
+            'show_ocorrencias': 0,
+            'show_validacao_precedencia': 0,
+            'show_validacoes': 0,
+            'show_arquivo_original': 0,
+            'show_arquivo': 0,
+            'show_status': 1,
+            'show_cdretorno': 1,
+            'show_descretorno': 0,
+            'show_dhprocess': 0,
+            'show_evtespdesportivo': 0,
+            'show_identidade': 1,
+            'show_ideevento': 0,
+            'show_indretif': 1,
+            'show_nrrecibo': 0,
+            'show_dtapuracao': 1,
+            'show_tpamb': 0,
+            'show_procemi': 0,
+            'show_verproc': 0,
+            'show_idecontri': 0,
+            'show_tpinsc': 0,
+            'show_nrinsc': 0,
+            'show_ideestab': 0,
+            'show_tpinscestab': 1,
+            'show_nrinscestab': 1,
+            'show_receitatotal': 0,
+            'show_vlrreceitatotal': 1,
+            'show_vlrcp': 1,
+            'show_vlrcpsusptotal': 0,
+            'show_vlrreceitaclubes': 1,
+            'show_vlrretparc': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'nrinsc__icontains': 'nrinsc__icontains',
-                'tpinsc': 'tpinsc',
-                'idecontri': 'idecontri',
-                'verproc__icontains': 'verproc__icontains',
-                'procemi': 'procemi',
-                'tpamb': 'tpamb',
-                'dtapuracao__range': 'dtapuracao__range',
-                'nrrecibo__icontains': 'nrrecibo__icontains',
-                'indretif': 'indretif',
-                'ideevento': 'ideevento',
-                'identidade__icontains': 'identidade__icontains',
-                'evtespdesportivo': 'evtespdesportivo',
-                'status': 'status',
                 'versao__icontains': 'versao__icontains',
-                'transmissor_lote_efdreinf': 'transmissor_lote_efdreinf',}
+                'transmissor_lote_efdreinf': 'transmissor_lote_efdreinf',
+                'status': 'status',
+                'evtespdesportivo': 'evtespdesportivo',
+                'identidade__icontains': 'identidade__icontains',
+                'ideevento': 'ideevento',
+                'indretif': 'indretif',
+                'nrrecibo__icontains': 'nrrecibo__icontains',
+                'dtapuracao__range': 'dtapuracao__range',
+                'tpamb': 'tpamb',
+                'procemi': 'procemi',
+                'verproc__icontains': 'verproc__icontains',
+                'idecontri': 'idecontri',
+                'tpinsc': 'tpinsc',
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'ideestab': 'ideestab',
+                'tpinscestab': 'tpinscestab',
+                'nrinscestab__icontains': 'nrinscestab__icontains',
+                'receitatotal': 'receitatotal',
+                'vlrreceitatotal': 'vlrreceitatotal',
+                'vlrcp': 'vlrcp',
+                'vlrcpsusptotal': 'vlrcpsusptotal',
+                'vlrreceitaclubes': 'vlrreceitaclubes',
+                'vlrretparc': 'vlrretparc',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'nrinsc__icontains': 'nrinsc__icontains',
-                'tpinsc': 'tpinsc',
-                'idecontri': 'idecontri',
-                'verproc__icontains': 'verproc__icontains',
-                'procemi': 'procemi',
-                'tpamb': 'tpamb',
-                'dtapuracao__range': 'dtapuracao__range',
-                'nrrecibo__icontains': 'nrrecibo__icontains',
-                'indretif': 'indretif',
-                'ideevento': 'ideevento',
-                'identidade__icontains': 'identidade__icontains',
-                'evtespdesportivo': 'evtespdesportivo',
-                'status': 'status',
                 'versao__icontains': 'versao__icontains',
-                'transmissor_lote_efdreinf': 'transmissor_lote_efdreinf',}
+                'transmissor_lote_efdreinf': 'transmissor_lote_efdreinf',
+                'status': 'status',
+                'evtespdesportivo': 'evtespdesportivo',
+                'identidade__icontains': 'identidade__icontains',
+                'ideevento': 'ideevento',
+                'indretif': 'indretif',
+                'nrrecibo__icontains': 'nrrecibo__icontains',
+                'dtapuracao__range': 'dtapuracao__range',
+                'tpamb': 'tpamb',
+                'procemi': 'procemi',
+                'verproc__icontains': 'verproc__icontains',
+                'idecontri': 'idecontri',
+                'tpinsc': 'tpinsc',
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'ideestab': 'ideestab',
+                'tpinscestab': 'tpinscestab',
+                'nrinscestab__icontains': 'nrinscestab__icontains',
+                'receitatotal': 'receitatotal',
+                'vlrreceitatotal': 'vlrreceitatotal',
+                'vlrcp': 'vlrcp',
+                'vlrcpsusptotal': 'vlrcpsusptotal',
+                'vlrreceitaclubes': 'vlrreceitaclubes',
+                'vlrretparc': 'vlrretparc',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

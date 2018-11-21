@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -42,13 +73,13 @@ class r5011RCPRB(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r5011_infototalcontrib) + ' - ' + unicode(self.crcprb) + ' - ' + unicode(self.vlrcrcprb) + ' - ' + unicode(self.vlrcrcprbsusp)
+        return unicode(self.r5011_infototalcontrib) + ' - ' + unicode(self.crcprb) + ' - ' + unicode(self.vlrcrcprb)
     #r5011_rcprb_custom#
     #r5011_rcprb_custom#
     class Meta:
         db_table = r'r5011_rcprb'
         managed = True
-        ordering = ['r5011_infototalcontrib', 'crcprb', 'vlrcrcprb', 'vlrcrcprbsusp']
+        ordering = ['r5011_infototalcontrib', 'crcprb', 'vlrcrcprb']
 
 
 
@@ -73,13 +104,13 @@ class r5011RComl(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r5011_infototalcontrib) + ' - ' + unicode(self.crcoml) + ' - ' + unicode(self.vlrcrcoml) + ' - ' + unicode(self.vlrcrcomlsusp)
+        return unicode(self.r5011_infototalcontrib) + ' - ' + unicode(self.crcoml) + ' - ' + unicode(self.vlrcrcoml)
     #r5011_rcoml_custom#
     #r5011_rcoml_custom#
     class Meta:
         db_table = r'r5011_rcoml'
         managed = True
-        ordering = ['r5011_infototalcontrib', 'crcoml', 'vlrcrcoml', 'vlrcrcomlsusp']
+        ordering = ['r5011_infototalcontrib', 'crcoml', 'vlrcrcoml']
 
 
 
@@ -108,13 +139,13 @@ class r5011RPrest(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r5011_infototalcontrib) + ' - ' + unicode(self.tpinsctomador) + ' - ' + unicode(self.nrinsctomador) + ' - ' + unicode(self.vlrtotalbaseret) + ' - ' + unicode(self.vlrtotalretprinc) + ' - ' + unicode(self.vlrtotalretadic) + ' - ' + unicode(self.vlrtotalnretprinc) + ' - ' + unicode(self.vlrtotalnretadic)
+        return unicode(self.r5011_infototalcontrib) + ' - ' + unicode(self.tpinsctomador) + ' - ' + unicode(self.nrinsctomador) + ' - ' + unicode(self.vlrtotalbaseret) + ' - ' + unicode(self.vlrtotalretprinc)
     #r5011_rprest_custom#
     #r5011_rprest_custom#
     class Meta:
         db_table = r'r5011_rprest'
         managed = True
-        ordering = ['r5011_infototalcontrib', 'tpinsctomador', 'nrinsctomador', 'vlrtotalbaseret', 'vlrtotalretprinc', 'vlrtotalretadic', 'vlrtotalnretprinc', 'vlrtotalnretadic']
+        ordering = ['r5011_infototalcontrib', 'tpinsctomador', 'nrinsctomador', 'vlrtotalbaseret', 'vlrtotalretprinc']
 
 
 
@@ -125,7 +156,7 @@ class r5011RPrestSerializer(ModelSerializer):
             
 
 class r5011RRecRepAD(models.Model):
-    r5011_infototalcontrib = models.ForeignKey('r5011infoTotalContrib',
+    r5011_infototalcontrib = models.OneToOneField('r5011infoTotalContrib',
         related_name='%(class)s_r5011_infototalcontrib')
     def evento(self): return self.r5011_infototalcontrib.evento()
     cnpjassocdesp = models.CharField(max_length=14)
@@ -141,13 +172,13 @@ class r5011RRecRepAD(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r5011_infototalcontrib) + ' - ' + unicode(self.cnpjassocdesp) + ' - ' + unicode(self.vlrtotalrep) + ' - ' + unicode(self.crrecrepad) + ' - ' + unicode(self.vlrcrrecrepad) + ' - ' + unicode(self.vlrcrrecrepadsusp)
+        return unicode(self.r5011_infototalcontrib) + ' - ' + unicode(self.cnpjassocdesp) + ' - ' + unicode(self.vlrtotalrep) + ' - ' + unicode(self.crrecrepad) + ' - ' + unicode(self.vlrcrrecrepad)
     #r5011_rrecrepad_custom#
     #r5011_rrecrepad_custom#
     class Meta:
         db_table = r'r5011_rrecrepad'
         managed = True
-        ordering = ['r5011_infototalcontrib', 'cnpjassocdesp', 'vlrtotalrep', 'crrecrepad', 'vlrcrrecrepad', 'vlrcrrecrepadsusp']
+        ordering = ['r5011_infototalcontrib', 'cnpjassocdesp', 'vlrtotalrep', 'crrecrepad', 'vlrcrrecrepad']
 
 
 
@@ -162,6 +193,7 @@ class r5011RTom(models.Model):
         related_name='%(class)s_r5011_infototalcontrib')
     def evento(self): return self.r5011_infototalcontrib.evento()
     cnpjprestador = models.CharField(max_length=14)
+    cno = models.CharField(max_length=12, blank=True, null=True)
     vlrtotalbaseret = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -202,13 +234,13 @@ class r5011infoCRTom(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r5011_rtom) + ' - ' + unicode(self.crtom) + ' - ' + unicode(self.vlrcrtom) + ' - ' + unicode(self.vlrcrtomsusp)
+        return unicode(self.r5011_rtom) + ' - ' + unicode(self.crtom)
     #r5011_infocrtom_custom#
     #r5011_infocrtom_custom#
     class Meta:
         db_table = r'r5011_infocrtom'
         managed = True
-        ordering = ['r5011_rtom', 'crtom', 'vlrcrtom', 'vlrcrtomsusp']
+        ordering = ['r5011_rtom', 'crtom']
 
 
 
@@ -219,7 +251,7 @@ class r5011infoCRTomSerializer(ModelSerializer):
             
 
 class r5011infoTotalContrib(models.Model):
-    r5011_evttotalcontrib = models.ForeignKey('efdreinf.r5011evtTotalContrib',
+    r5011_evttotalcontrib = models.OneToOneField('efdreinf.r5011evtTotalContrib',
         related_name='%(class)s_r5011_evttotalcontrib')
     def evento(self): return self.r5011_evttotalcontrib.evento()
     nrrecarqbase = models.CharField(max_length=52, blank=True, null=True)
@@ -232,13 +264,13 @@ class r5011infoTotalContrib(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r5011_evttotalcontrib) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.indexistinfo)
+        return unicode(self.r5011_evttotalcontrib) + ' - ' + unicode(self.indexistinfo)
     #r5011_infototalcontrib_custom#
     #r5011_infototalcontrib_custom#
     class Meta:
         db_table = r'r5011_infototalcontrib'
         managed = True
-        ordering = ['r5011_evttotalcontrib', 'nrrecarqbase', 'indexistinfo']
+        ordering = ['r5011_evttotalcontrib', 'indexistinfo']
 
 
 
@@ -253,7 +285,7 @@ class r5011regOcorrs(models.Model):
         related_name='%(class)s_r5011_evttotalcontrib')
     def evento(self): return self.r5011_evttotalcontrib.evento()
     tpocorr = models.IntegerField(choices=CHOICES_R5011_TPOCORR)
-    localerroaviso = models.CharField(max_length=100)
+    localerroaviso = models.CharField(max_length=200)
     codresp = models.CharField(max_length=6)
     dscresp = models.CharField(max_length=999)
     criado_em = models.DateTimeField(blank=True)

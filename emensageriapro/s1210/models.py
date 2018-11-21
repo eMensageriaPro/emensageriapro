@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -491,13 +522,13 @@ class s1210detPgtoBenPrinfoPgtoParc(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1210_detpgtobenpr) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.qtdrubr) + ' - ' + unicode(self.fatorrubr) + ' - ' + unicode(self.vrunit) + ' - ' + unicode(self.vrrubr)
+        return unicode(self.s1210_detpgtobenpr) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1210_detpgtobenpr_infopgtoparc_custom#
     #s1210_detpgtobenpr_infopgtoparc_custom#
     class Meta:
         db_table = r's1210_detpgtobenpr_infopgtoparc'
         managed = True
-        ordering = ['s1210_detpgtobenpr', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
+        ordering = ['s1210_detpgtobenpr', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
 
@@ -525,13 +556,13 @@ class s1210detPgtoBenPrretPgtoTot(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1210_detpgtobenpr) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.qtdrubr) + ' - ' + unicode(self.fatorrubr) + ' - ' + unicode(self.vrunit) + ' - ' + unicode(self.vrrubr)
+        return unicode(self.s1210_detpgtobenpr) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1210_detpgtobenpr_retpgtotot_custom#
     #s1210_detpgtobenpr_retpgtotot_custom#
     class Meta:
         db_table = r's1210_detpgtobenpr_retpgtotot'
         managed = True
-        ordering = ['s1210_detpgtobenpr', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
+        ordering = ['s1210_detpgtobenpr', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
 
@@ -558,13 +589,13 @@ class s1210detPgtoFer(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1210_infopgto) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.dtinigoz) + ' - ' + unicode(self.qtdias) + ' - ' + unicode(self.vrliq)
+        return unicode(self.s1210_infopgto) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtinigoz) + ' - ' + unicode(self.qtdias) + ' - ' + unicode(self.vrliq)
     #s1210_detpgtofer_custom#
     #s1210_detpgtofer_custom#
     class Meta:
         db_table = r's1210_detpgtofer'
         managed = True
-        ordering = ['s1210_infopgto', 'codcateg', 'matricula', 'dtinigoz', 'qtdias', 'vrliq']
+        ordering = ['s1210_infopgto', 'codcateg', 'dtinigoz', 'qtdias', 'vrliq']
 
 
 
@@ -592,13 +623,13 @@ class s1210detPgtoFerdetRubrFer(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1210_detpgtofer) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.qtdrubr) + ' - ' + unicode(self.fatorrubr) + ' - ' + unicode(self.vrunit) + ' - ' + unicode(self.vrrubr)
+        return unicode(self.s1210_detpgtofer) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1210_detpgtofer_detrubrfer_custom#
     #s1210_detpgtofer_detrubrfer_custom#
     class Meta:
         db_table = r's1210_detpgtofer_detrubrfer'
         managed = True
-        ordering = ['s1210_detpgtofer', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
+        ordering = ['s1210_detpgtofer', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
 
@@ -624,13 +655,13 @@ class s1210detPgtoFerpenAlim(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1210_detpgtofer_detrubrfer) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.dtnasctobenef) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.vlrpensao)
+        return unicode(self.s1210_detpgtofer_detrubrfer) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.vlrpensao)
     #s1210_detpgtofer_penalim_custom#
     #s1210_detpgtofer_penalim_custom#
     class Meta:
         db_table = r's1210_detpgtofer_penalim'
         managed = True
-        ordering = ['s1210_detpgtofer_detrubrfer', 'cpfbenef', 'dtnasctobenef', 'nmbenefic', 'vlrpensao']
+        ordering = ['s1210_detpgtofer_detrubrfer', 'cpfbenef', 'nmbenefic', 'vlrpensao']
 
 
 
@@ -657,13 +688,13 @@ class s1210detPgtoFl(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1210_infopgto) + ' - ' + unicode(self.perref) + ' - ' + unicode(self.idedmdev) + ' - ' + unicode(self.indpgtott) + ' - ' + unicode(self.vrliq) + ' - ' + unicode(self.nrrecarq)
+        return unicode(self.s1210_infopgto) + ' - ' + unicode(self.idedmdev) + ' - ' + unicode(self.indpgtott) + ' - ' + unicode(self.vrliq)
     #s1210_detpgtofl_custom#
     #s1210_detpgtofl_custom#
     class Meta:
         db_table = r's1210_detpgtofl'
         managed = True
-        ordering = ['s1210_infopgto', 'perref', 'idedmdev', 'indpgtott', 'vrliq', 'nrrecarq']
+        ordering = ['s1210_infopgto', 'idedmdev', 'indpgtott', 'vrliq']
 
 
 
@@ -692,13 +723,13 @@ class s1210detPgtoFlinfoPgtoParc(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1210_detpgtofl) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.qtdrubr) + ' - ' + unicode(self.fatorrubr) + ' - ' + unicode(self.vrunit) + ' - ' + unicode(self.vrrubr)
+        return unicode(self.s1210_detpgtofl) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1210_detpgtofl_infopgtoparc_custom#
     #s1210_detpgtofl_infopgtoparc_custom#
     class Meta:
         db_table = r's1210_detpgtofl_infopgtoparc'
         managed = True
-        ordering = ['s1210_detpgtofl', 'matricula', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
+        ordering = ['s1210_detpgtofl', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
 
@@ -724,13 +755,13 @@ class s1210detPgtoFlpenAlim(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1210_detpgtofl_retpgtotot) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.dtnasctobenef) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.vlrpensao)
+        return unicode(self.s1210_detpgtofl_retpgtotot) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.vlrpensao)
     #s1210_detpgtofl_penalim_custom#
     #s1210_detpgtofl_penalim_custom#
     class Meta:
         db_table = r's1210_detpgtofl_penalim'
         managed = True
-        ordering = ['s1210_detpgtofl_retpgtotot', 'cpfbenef', 'dtnasctobenef', 'nmbenefic', 'vlrpensao']
+        ordering = ['s1210_detpgtofl_retpgtotot', 'cpfbenef', 'nmbenefic', 'vlrpensao']
 
 
 
@@ -758,13 +789,13 @@ class s1210detPgtoFlretPgtoTot(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1210_detpgtofl) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.qtdrubr) + ' - ' + unicode(self.fatorrubr) + ' - ' + unicode(self.vrunit) + ' - ' + unicode(self.vrrubr)
+        return unicode(self.s1210_detpgtofl) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1210_detpgtofl_retpgtotot_custom#
     #s1210_detpgtofl_retpgtotot_custom#
     class Meta:
         db_table = r's1210_detpgtofl_retpgtotot'
         managed = True
-        ordering = ['s1210_detpgtofl', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
+        ordering = ['s1210_detpgtofl', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
 
@@ -795,13 +826,13 @@ class s1210idePgtoExt(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1210_infopgto) + ' - ' + unicode(self.codpais) + ' - ' + unicode(self.indnif) + ' - ' + unicode(self.nifbenef) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.complem) + ' - ' + unicode(self.bairro) + ' - ' + unicode(self.nmcid) + ' - ' + unicode(self.codpostal)
+        return unicode(self.s1210_infopgto) + ' - ' + unicode(self.codpais) + ' - ' + unicode(self.indnif) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nmcid)
     #s1210_idepgtoext_custom#
     #s1210_idepgtoext_custom#
     class Meta:
         db_table = r's1210_idepgtoext'
         managed = True
-        ordering = ['s1210_infopgto', 'codpais', 'indnif', 'nifbenef', 'dsclograd', 'nrlograd', 'complem', 'bairro', 'nmcid', 'codpostal']
+        ordering = ['s1210_infopgto', 'codpais', 'indnif', 'dsclograd', 'nmcid']
 
 
 

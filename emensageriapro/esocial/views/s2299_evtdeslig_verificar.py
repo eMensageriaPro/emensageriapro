@@ -110,28 +110,25 @@ def verificar(request, hash):
         s2299_observacoes_lista = s2299observacoes.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
         s2299_sucessaovinc_lista = s2299sucessaoVinc.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
         s2299_transftit_lista = s2299transfTit.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_verbasresc_lista = s2299verbasResc.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_dmdev_lista = s2299dmDev.objects.using(db_slug).filter(s2299_verbasresc_id__in = listar_ids(s2299_verbasresc_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_lista = s2299infoPerApur.objects.using(db_slug).filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_ideestablot_lista = s2299infoPerApurideEstabLot.objects.using(db_slug).filter(s2299_infoperapur_id__in = listar_ids(s2299_infoperapur_lista) ).filter(excluido=False).all()
+        s2299_mudancacpf_lista = s2299mudancaCPF.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
+        s2299_dmdev_lista = s2299dmDev.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
+        s2299_infoperapur_ideestablot_lista = s2299infoPerApurideEstabLot.objects.using(db_slug).filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).filter(excluido=False).all()
         s2299_infoperapur_detverbas_lista = s2299infoPerApurdetVerbas.objects.using(db_slug).filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_infosaudecolet_lista = s2299infoPerApurinfoSaudeColet.objects.using(db_slug).filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_detoper_lista = s2299infoPerApurdetOper.objects.using(db_slug).filter(s2299_infoperapur_infosaudecolet_id__in = listar_ids(s2299_infoperapur_infosaudecolet_lista) ).filter(excluido=False).all()
+        s2299_infoperapur_detoper_lista = s2299infoPerApurdetOper.objects.using(db_slug).filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).filter(excluido=False).all()
         s2299_infoperapur_detplano_lista = s2299infoPerApurdetPlano.objects.using(db_slug).filter(s2299_infoperapur_detoper_id__in = listar_ids(s2299_infoperapur_detoper_lista) ).filter(excluido=False).all()
         s2299_infoperapur_infoagnocivo_lista = s2299infoPerApurinfoAgNocivo.objects.using(db_slug).filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).filter(excluido=False).all()
         s2299_infoperapur_infosimples_lista = s2299infoPerApurinfoSimples.objects.using(db_slug).filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infoperant_lista = s2299infoPerAnt.objects.using(db_slug).filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).filter(excluido=False).all()
-        s2299_infoperant_ideadc_lista = s2299infoPerAntideADC.objects.using(db_slug).filter(s2299_infoperant_id__in = listar_ids(s2299_infoperant_lista) ).filter(excluido=False).all()
+        s2299_infoperant_ideadc_lista = s2299infoPerAntideADC.objects.using(db_slug).filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).filter(excluido=False).all()
         s2299_infoperant_ideperiodo_lista = s2299infoPerAntidePeriodo.objects.using(db_slug).filter(s2299_infoperant_ideadc_id__in = listar_ids(s2299_infoperant_ideadc_lista) ).filter(excluido=False).all()
         s2299_infoperant_ideestablot_lista = s2299infoPerAntideEstabLot.objects.using(db_slug).filter(s2299_infoperant_ideperiodo_id__in = listar_ids(s2299_infoperant_ideperiodo_lista) ).filter(excluido=False).all()
         s2299_infoperant_detverbas_lista = s2299infoPerAntdetVerbas.objects.using(db_slug).filter(s2299_infoperant_ideestablot_id__in = listar_ids(s2299_infoperant_ideestablot_lista) ).filter(excluido=False).all()
         s2299_infoperant_infoagnocivo_lista = s2299infoPerAntinfoAgNocivo.objects.using(db_slug).filter(s2299_infoperant_ideestablot_id__in = listar_ids(s2299_infoperant_ideestablot_lista) ).filter(excluido=False).all()
         s2299_infoperant_infosimples_lista = s2299infoPerAntinfoSimples.objects.using(db_slug).filter(s2299_infoperant_ideestablot_id__in = listar_ids(s2299_infoperant_ideestablot_lista) ).filter(excluido=False).all()
         s2299_infotrabinterm_lista = s2299infoTrabInterm.objects.using(db_slug).filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_procjudtrab_lista = s2299infoTrabIntermprocJudTrab.objects.using(db_slug).filter(s2299_verbasresc_id__in = listar_ids(s2299_verbasresc_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_infomv_lista = s2299infoTrabInterminfoMV.objects.using(db_slug).filter(s2299_verbasresc_id__in = listar_ids(s2299_verbasresc_lista) ).filter(excluido=False).all()
+        s2299_infotrabinterm_procjudtrab_lista = s2299infoTrabIntermprocJudTrab.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
+        s2299_infotrabinterm_infomv_lista = s2299infoTrabInterminfoMV.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
         s2299_infotrabinterm_remunoutrempr_lista = s2299infoTrabIntermremunOutrEmpr.objects.using(db_slug).filter(s2299_infotrabinterm_infomv_id__in = listar_ids(s2299_infotrabinterm_infomv_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_proccs_lista = s2299infoTrabIntermprocCS.objects.using(db_slug).filter(s2299_verbasresc_id__in = listar_ids(s2299_verbasresc_lista) ).filter(excluido=False).all()
+        s2299_infotrabinterm_proccs_lista = s2299infoTrabIntermprocCS.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
         s2299_infotrabinterm_quarentena_lista = s2299infoTrabIntermquarentena.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
         s2299_infotrabinterm_consigfgts_lista = s2299infoTrabIntermconsigFGTS.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
         request.session["retorno_hash"] = hash
@@ -155,17 +152,14 @@ def verificar(request, hash):
             's2299_observacoes_lista': s2299_observacoes_lista,
             's2299_sucessaovinc_lista': s2299_sucessaovinc_lista,
             's2299_transftit_lista': s2299_transftit_lista,
-            's2299_verbasresc_lista': s2299_verbasresc_lista,
+            's2299_mudancacpf_lista': s2299_mudancacpf_lista,
             's2299_dmdev_lista': s2299_dmdev_lista,
-            's2299_infoperapur_lista': s2299_infoperapur_lista,
             's2299_infoperapur_ideestablot_lista': s2299_infoperapur_ideestablot_lista,
             's2299_infoperapur_detverbas_lista': s2299_infoperapur_detverbas_lista,
-            's2299_infoperapur_infosaudecolet_lista': s2299_infoperapur_infosaudecolet_lista,
             's2299_infoperapur_detoper_lista': s2299_infoperapur_detoper_lista,
             's2299_infoperapur_detplano_lista': s2299_infoperapur_detplano_lista,
             's2299_infoperapur_infoagnocivo_lista': s2299_infoperapur_infoagnocivo_lista,
             's2299_infoperapur_infosimples_lista': s2299_infoperapur_infosimples_lista,
-            's2299_infoperant_lista': s2299_infoperant_lista,
             's2299_infoperant_ideadc_lista': s2299_infoperant_ideadc_lista,
             's2299_infoperant_ideperiodo_lista': s2299_infoperant_ideperiodo_lista,
             's2299_infoperant_ideestablot_lista': s2299_infoperant_ideestablot_lista,
@@ -252,28 +246,25 @@ def gerar_xml_s2299(s2299_evtdeslig_id, db_slug, versao=None):
         s2299_observacoes_lista = s2299observacoes.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
         s2299_sucessaovinc_lista = s2299sucessaoVinc.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
         s2299_transftit_lista = s2299transfTit.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_verbasresc_lista = s2299verbasResc.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_dmdev_lista = s2299dmDev.objects.using(db_slug).filter(s2299_verbasresc_id__in = listar_ids(s2299_verbasresc_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_lista = s2299infoPerApur.objects.using(db_slug).filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_ideestablot_lista = s2299infoPerApurideEstabLot.objects.using(db_slug).filter(s2299_infoperapur_id__in = listar_ids(s2299_infoperapur_lista) ).filter(excluido=False).all()
+        s2299_mudancacpf_lista = s2299mudancaCPF.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
+        s2299_dmdev_lista = s2299dmDev.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
+        s2299_infoperapur_ideestablot_lista = s2299infoPerApurideEstabLot.objects.using(db_slug).filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).filter(excluido=False).all()
         s2299_infoperapur_detverbas_lista = s2299infoPerApurdetVerbas.objects.using(db_slug).filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_infosaudecolet_lista = s2299infoPerApurinfoSaudeColet.objects.using(db_slug).filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_detoper_lista = s2299infoPerApurdetOper.objects.using(db_slug).filter(s2299_infoperapur_infosaudecolet_id__in = listar_ids(s2299_infoperapur_infosaudecolet_lista) ).filter(excluido=False).all()
+        s2299_infoperapur_detoper_lista = s2299infoPerApurdetOper.objects.using(db_slug).filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).filter(excluido=False).all()
         s2299_infoperapur_detplano_lista = s2299infoPerApurdetPlano.objects.using(db_slug).filter(s2299_infoperapur_detoper_id__in = listar_ids(s2299_infoperapur_detoper_lista) ).filter(excluido=False).all()
         s2299_infoperapur_infoagnocivo_lista = s2299infoPerApurinfoAgNocivo.objects.using(db_slug).filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).filter(excluido=False).all()
         s2299_infoperapur_infosimples_lista = s2299infoPerApurinfoSimples.objects.using(db_slug).filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infoperant_lista = s2299infoPerAnt.objects.using(db_slug).filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).filter(excluido=False).all()
-        s2299_infoperant_ideadc_lista = s2299infoPerAntideADC.objects.using(db_slug).filter(s2299_infoperant_id__in = listar_ids(s2299_infoperant_lista) ).filter(excluido=False).all()
+        s2299_infoperant_ideadc_lista = s2299infoPerAntideADC.objects.using(db_slug).filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).filter(excluido=False).all()
         s2299_infoperant_ideperiodo_lista = s2299infoPerAntidePeriodo.objects.using(db_slug).filter(s2299_infoperant_ideadc_id__in = listar_ids(s2299_infoperant_ideadc_lista) ).filter(excluido=False).all()
         s2299_infoperant_ideestablot_lista = s2299infoPerAntideEstabLot.objects.using(db_slug).filter(s2299_infoperant_ideperiodo_id__in = listar_ids(s2299_infoperant_ideperiodo_lista) ).filter(excluido=False).all()
         s2299_infoperant_detverbas_lista = s2299infoPerAntdetVerbas.objects.using(db_slug).filter(s2299_infoperant_ideestablot_id__in = listar_ids(s2299_infoperant_ideestablot_lista) ).filter(excluido=False).all()
         s2299_infoperant_infoagnocivo_lista = s2299infoPerAntinfoAgNocivo.objects.using(db_slug).filter(s2299_infoperant_ideestablot_id__in = listar_ids(s2299_infoperant_ideestablot_lista) ).filter(excluido=False).all()
         s2299_infoperant_infosimples_lista = s2299infoPerAntinfoSimples.objects.using(db_slug).filter(s2299_infoperant_ideestablot_id__in = listar_ids(s2299_infoperant_ideestablot_lista) ).filter(excluido=False).all()
         s2299_infotrabinterm_lista = s2299infoTrabInterm.objects.using(db_slug).filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_procjudtrab_lista = s2299infoTrabIntermprocJudTrab.objects.using(db_slug).filter(s2299_verbasresc_id__in = listar_ids(s2299_verbasresc_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_infomv_lista = s2299infoTrabInterminfoMV.objects.using(db_slug).filter(s2299_verbasresc_id__in = listar_ids(s2299_verbasresc_lista) ).filter(excluido=False).all()
+        s2299_infotrabinterm_procjudtrab_lista = s2299infoTrabIntermprocJudTrab.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
+        s2299_infotrabinterm_infomv_lista = s2299infoTrabInterminfoMV.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
         s2299_infotrabinterm_remunoutrempr_lista = s2299infoTrabIntermremunOutrEmpr.objects.using(db_slug).filter(s2299_infotrabinterm_infomv_id__in = listar_ids(s2299_infotrabinterm_infomv_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_proccs_lista = s2299infoTrabIntermprocCS.objects.using(db_slug).filter(s2299_verbasresc_id__in = listar_ids(s2299_verbasresc_lista) ).filter(excluido=False).all()
+        s2299_infotrabinterm_proccs_lista = s2299infoTrabIntermprocCS.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
         s2299_infotrabinterm_quarentena_lista = s2299infoTrabIntermquarentena.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
         s2299_infotrabinterm_consigfgts_lista = s2299infoTrabIntermconsigFGTS.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
    
@@ -288,17 +279,14 @@ def gerar_xml_s2299(s2299_evtdeslig_id, db_slug, versao=None):
             's2299_observacoes_lista': s2299_observacoes_lista,
             's2299_sucessaovinc_lista': s2299_sucessaovinc_lista,
             's2299_transftit_lista': s2299_transftit_lista,
-            's2299_verbasresc_lista': s2299_verbasresc_lista,
+            's2299_mudancacpf_lista': s2299_mudancacpf_lista,
             's2299_dmdev_lista': s2299_dmdev_lista,
-            's2299_infoperapur_lista': s2299_infoperapur_lista,
             's2299_infoperapur_ideestablot_lista': s2299_infoperapur_ideestablot_lista,
             's2299_infoperapur_detverbas_lista': s2299_infoperapur_detverbas_lista,
-            's2299_infoperapur_infosaudecolet_lista': s2299_infoperapur_infosaudecolet_lista,
             's2299_infoperapur_detoper_lista': s2299_infoperapur_detoper_lista,
             's2299_infoperapur_detplano_lista': s2299_infoperapur_detplano_lista,
             's2299_infoperapur_infoagnocivo_lista': s2299_infoperapur_infoagnocivo_lista,
             's2299_infoperapur_infosimples_lista': s2299_infoperapur_infosimples_lista,
-            's2299_infoperant_lista': s2299_infoperant_lista,
             's2299_infoperant_ideadc_lista': s2299_infoperant_ideadc_lista,
             's2299_infoperant_ideperiodo_lista': s2299_infoperant_ideperiodo_lista,
             's2299_infoperant_ideestablot_lista': s2299_infoperant_ideestablot_lista,

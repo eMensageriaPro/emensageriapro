@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -230,13 +261,13 @@ class s2240altExpRiscoepc(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2240_altexprisco_fatrisco) + ' - ' + unicode(self.dscepc) + ' - ' + unicode(self.eficepc)
+        return unicode(self.s2240_altexprisco_fatrisco) + ' - ' + unicode(self.dscepc)
     #s2240_altexprisco_epc_custom#
     #s2240_altexprisco_epc_custom#
     class Meta:
         db_table = r's2240_altexprisco_epc'
         managed = True
-        ordering = ['s2240_altexprisco_fatrisco', 'dscepc', 'eficepc']
+        ordering = ['s2240_altexprisco_fatrisco', 'dscepc']
 
 
 
@@ -265,13 +296,13 @@ class s2240altExpRiscoepi(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2240_altexprisco_fatrisco) + ' - ' + unicode(self.caepi) + ' - ' + unicode(self.eficepi) + ' - ' + unicode(self.medprotecao) + ' - ' + unicode(self.condfuncto) + ' - ' + unicode(self.przvalid) + ' - ' + unicode(self.periodictroca) + ' - ' + unicode(self.higienizacao)
+        return unicode(self.s2240_altexprisco_fatrisco) + ' - ' + unicode(self.eficepi) + ' - ' + unicode(self.medprotecao) + ' - ' + unicode(self.condfuncto) + ' - ' + unicode(self.przvalid) + ' - ' + unicode(self.periodictroca) + ' - ' + unicode(self.higienizacao)
     #s2240_altexprisco_epi_custom#
     #s2240_altexprisco_epi_custom#
     class Meta:
         db_table = r's2240_altexprisco_epi'
         managed = True
-        ordering = ['s2240_altexprisco_fatrisco', 'caepi', 'eficepi', 'medprotecao', 'condfuncto', 'przvalid', 'periodictroca', 'higienizacao']
+        ordering = ['s2240_altexprisco_fatrisco', 'eficepi', 'medprotecao', 'condfuncto', 'przvalid', 'periodictroca', 'higienizacao']
 
 
 
@@ -298,13 +329,13 @@ class s2240altExpRiscofatRisco(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2240_altexprisco_infoamb) + ' - ' + unicode(self.codfatris) + ' - ' + unicode(self.intconc) + ' - ' + unicode(self.tecmedicao) + ' - ' + unicode(self.utilizepc) + ' - ' + unicode(self.utilizepi)
+        return unicode(self.s2240_altexprisco_infoamb) + ' - ' + unicode(self.codfatris) + ' - ' + unicode(self.utilizepc) + ' - ' + unicode(self.utilizepi)
     #s2240_altexprisco_fatrisco_custom#
     #s2240_altexprisco_fatrisco_custom#
     class Meta:
         db_table = r's2240_altexprisco_fatrisco'
         managed = True
-        ordering = ['s2240_altexprisco_infoamb', 'codfatris', 'intconc', 'tecmedicao', 'utilizepc', 'utilizepi']
+        ordering = ['s2240_altexprisco_infoamb', 'codfatris', 'utilizepc', 'utilizepi']
 
 
 
@@ -419,47 +450,19 @@ class s2240fimExpRiscorespReg(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.dtini) + ' - ' + unicode(self.dtfim) + ' - ' + unicode(self.nisresp) + ' - ' + unicode(self.nroc) + ' - ' + unicode(self.ufoc)
+        return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.dtini) + ' - ' + unicode(self.nisresp) + ' - ' + unicode(self.nroc)
     #s2240_fimexprisco_respreg_custom#
     #s2240_fimexprisco_respreg_custom#
     class Meta:
         db_table = r's2240_fimexprisco_respreg'
         managed = True
-        ordering = ['s2240_evtexprisco', 'dtini', 'dtfim', 'nisresp', 'nroc', 'ufoc']
+        ordering = ['s2240_evtexprisco', 'dtini', 'nisresp', 'nroc']
 
 
 
 class s2240fimExpRiscorespRegSerializer(ModelSerializer):
     class Meta:
         model = s2240fimExpRiscorespReg
-        fields = '__all__'
-            
-
-class s2240iniExpRisco(models.Model):
-    s2240_evtexprisco = models.OneToOneField('esocial.s2240evtExpRisco',
-        related_name='%(class)s_s2240_evtexprisco')
-    def evento(self): return self.s2240_evtexprisco.evento()
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s2240_evtexprisco)
-    #s2240_iniexprisco_custom#
-    #s2240_iniexprisco_custom#
-    class Meta:
-        db_table = r's2240_iniexprisco'
-        managed = True
-        ordering = ['s2240_evtexprisco']
-
-
-
-class s2240iniExpRiscoSerializer(ModelSerializer):
-    class Meta:
-        model = s2240iniExpRisco
         fields = '__all__'
             
 
@@ -507,13 +510,13 @@ class s2240iniExpRiscoepc(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2240_iniexprisco_fatrisco) + ' - ' + unicode(self.codep) + ' - ' + unicode(self.dscepc) + ' - ' + unicode(self.eficepc)
+        return unicode(self.s2240_iniexprisco_fatrisco) + ' - ' + unicode(self.codep) + ' - ' + unicode(self.dscepc)
     #s2240_iniexprisco_epc_custom#
     #s2240_iniexprisco_epc_custom#
     class Meta:
         db_table = r's2240_iniexprisco_epc'
         managed = True
-        ordering = ['s2240_iniexprisco_fatrisco', 'codep', 'dscepc', 'eficepc']
+        ordering = ['s2240_iniexprisco_fatrisco', 'codep', 'dscepc']
 
 
 
@@ -544,13 +547,13 @@ class s2240iniExpRiscoepi(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2240_iniexprisco_fatrisco) + ' - ' + unicode(self.caepi) + ' - ' + unicode(self.dscepi) + ' - ' + unicode(self.eficepi) + ' - ' + unicode(self.medprotecao) + ' - ' + unicode(self.condfuncto) + ' - ' + unicode(self.usoinint) + ' - ' + unicode(self.przvalid) + ' - ' + unicode(self.periodictroca) + ' - ' + unicode(self.higienizacao)
+        return unicode(self.s2240_iniexprisco_fatrisco) + ' - ' + unicode(self.eficepi) + ' - ' + unicode(self.medprotecao) + ' - ' + unicode(self.condfuncto) + ' - ' + unicode(self.usoinint) + ' - ' + unicode(self.przvalid) + ' - ' + unicode(self.periodictroca) + ' - ' + unicode(self.higienizacao)
     #s2240_iniexprisco_epi_custom#
     #s2240_iniexprisco_epi_custom#
     class Meta:
         db_table = r's2240_iniexprisco_epi'
         managed = True
-        ordering = ['s2240_iniexprisco_fatrisco', 'caepi', 'dscepi', 'eficepi', 'medprotecao', 'condfuncto', 'usoinint', 'przvalid', 'periodictroca', 'higienizacao']
+        ordering = ['s2240_iniexprisco_fatrisco', 'eficepi', 'medprotecao', 'condfuncto', 'usoinint', 'przvalid', 'periodictroca', 'higienizacao']
 
 
 
@@ -574,7 +577,7 @@ class s2240iniExpRiscofatRisco(models.Model):
     periculosidade = models.CharField(choices=CHOICES_S2240_INIEXPRISCO_PERICULOSIDADE, max_length=1, blank=True, null=True)
     aposentesp = models.CharField(choices=CHOICES_S2240_INIEXPRISCO_APOSENTESP, max_length=1, blank=True, null=True)
     utilizepc = models.IntegerField(choices=CHOICES_S2240_INIEXPRISCO_UTILIZEPC)
-    eficepc = models.CharField(choices=CHOICES_S2240_INIEXPRISCO_EFICEPC, max_length=1)
+    eficepc = models.CharField(choices=CHOICES_S2240_INIEXPRISCO_EFICEPC, max_length=1, blank=True, null=True)
     utilizepi = models.IntegerField(choices=CHOICES_S2240_INIEXPRISCO_UTILIZEPI)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -584,13 +587,13 @@ class s2240iniExpRiscofatRisco(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.codfatris) + ' - ' + unicode(self.tpaval) + ' - ' + unicode(self.intconc) + ' - ' + unicode(self.limtol) + ' - ' + unicode(self.unmed) + ' - ' + unicode(self.tecmedicao) + ' - ' + unicode(self.insalubridade) + ' - ' + unicode(self.periculosidade) + ' - ' + unicode(self.aposentesp) + ' - ' + unicode(self.utilizepc) + ' - ' + unicode(self.eficepc) + ' - ' + unicode(self.utilizepi)
+        return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.codfatris) + ' - ' + unicode(self.tpaval) + ' - ' + unicode(self.utilizepc) + ' - ' + unicode(self.utilizepi)
     #s2240_iniexprisco_fatrisco_custom#
     #s2240_iniexprisco_fatrisco_custom#
     class Meta:
         db_table = r's2240_iniexprisco_fatrisco'
         managed = True
-        ordering = ['s2240_evtexprisco', 'codfatris', 'tpaval', 'intconc', 'limtol', 'unmed', 'tecmedicao', 'insalubridade', 'periculosidade', 'aposentesp', 'utilizepc', 'eficepc', 'utilizepi']
+        ordering = ['s2240_evtexprisco', 'codfatris', 'tpaval', 'utilizepc', 'utilizepi']
 
 
 
@@ -634,6 +637,7 @@ class s2240iniExpRiscoobs(models.Model):
         related_name='%(class)s_s2240_evtexprisco')
     def evento(self): return self.s2240_evtexprisco.evento()
     meterg = models.CharField(max_length=999, blank=True, null=True)
+    obscompl = models.CharField(max_length=999, blank=True, null=True)
     observacao = models.CharField(max_length=999, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -643,13 +647,13 @@ class s2240iniExpRiscoobs(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.meterg) + ' - ' + unicode(self.observacao)
+        return unicode(self.s2240_evtexprisco)
     #s2240_iniexprisco_obs_custom#
     #s2240_iniexprisco_obs_custom#
     class Meta:
         db_table = r's2240_iniexprisco_obs'
         managed = True
-        ordering = ['s2240_evtexprisco', 'meterg', 'observacao']
+        ordering = ['s2240_evtexprisco']
 
 
 
@@ -678,13 +682,13 @@ class s2240iniExpRiscorespReg(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.cpfresp) + ' - ' + unicode(self.nisresp) + ' - ' + unicode(self.nmresp) + ' - ' + unicode(self.ideoc) + ' - ' + unicode(self.dscoc) + ' - ' + unicode(self.nroc) + ' - ' + unicode(self.ufoc)
+        return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.cpfresp) + ' - ' + unicode(self.nisresp) + ' - ' + unicode(self.nmresp) + ' - ' + unicode(self.ideoc) + ' - ' + unicode(self.nroc) + ' - ' + unicode(self.ufoc)
     #s2240_iniexprisco_respreg_custom#
     #s2240_iniexprisco_respreg_custom#
     class Meta:
         db_table = r's2240_iniexprisco_respreg'
         managed = True
-        ordering = ['s2240_evtexprisco', 'cpfresp', 'nisresp', 'nmresp', 'ideoc', 'dscoc', 'nroc', 'ufoc']
+        ordering = ['s2240_evtexprisco', 'cpfresp', 'nisresp', 'nmresp', 'ideoc', 'nroc', 'ufoc']
 
 
 

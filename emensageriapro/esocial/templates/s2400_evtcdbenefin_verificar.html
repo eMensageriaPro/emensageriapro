@@ -583,14 +583,13 @@
             <td bgcolor="lightgray" colspan="1" width="130px">endereco</td>
             <td bgcolor="lightgray" colspan="3">Grupo de informações do endereço do beneficiário</td>
         </tr>
-    {% for s2400_endereco in s2400_endereco_lista %}
-    {% ifequal s2400_endereco.s2400_evtcdbenefin.id s2400_evtcdbenefin.id %}
+
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">brasil</td>
             <td bgcolor="lightgray" colspan="3">Preenchimento em caso de beneficiário residente no Brasil</td>
         </tr>
     {% for s2400_brasil in s2400_brasil_lista %}
-    {% ifequal s2400_brasil.s2400_endereco.id s2400_endereco.id %}
+    {% ifequal s2400_brasil.s2400_evtcdbenefin.id s2400_evtcdbenefin.id %}
         <tr {% if s2400_brasil.tplograd|validacoes_esocial_efdreinf:"s2400_brasil.tplograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpLograd</td>
             <td width="500px">Tipo de Logradouro, conforme tabela 20. Validação: Deve ser um código válido, existente na tabela 20.</td>
@@ -631,7 +630,7 @@
 
         <tr {% if s2400_brasil.nrlograd|validacoes_esocial_efdreinf:"s2400_brasil.nrlograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrLograd</td>
-            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com "S/N"</td>
+            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com 'S/N'</td>
             <td width="200px"><b>{% if s2400_brasil.nrlograd or s2400_brasil.nrlograd == 0 %}{{ s2400_brasil.nrlograd }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -748,7 +747,7 @@
             <td bgcolor="lightgray" colspan="3">Preenchimento em caso de beneficiário residente no exterior</td>
         </tr>
     {% for s2400_exterior in s2400_exterior_lista %}
-    {% ifequal s2400_exterior.s2400_endereco.id s2400_endereco.id %}
+    {% ifequal s2400_exterior.s2400_evtcdbenefin.id s2400_evtcdbenefin.id %}
         <tr {% if s2400_exterior.paisresid|validacoes_esocial_efdreinf:"s2400_exterior.paisresid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">paisResid</td>
             <td width="500px">Preencher com o código do país, conforme tabela 6. Validação: Deve ser um código existente na tabela</td>
@@ -789,7 +788,7 @@
 
         <tr {% if s2400_exterior.nrlograd|validacoes_esocial_efdreinf:"s2400_exterior.nrlograd" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrLograd</td>
-            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com "S/N"</td>
+            <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com 'S/N'</td>
             <td width="200px"><b>{% if s2400_exterior.nrlograd or s2400_exterior.nrlograd == 0 %}{{ s2400_exterior.nrlograd }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -881,7 +880,7 @@
             </td>
             {% endif %}
         </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+    {% endifequal %}{% endfor %} 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dependente</td>
             <td bgcolor="lightgray" colspan="3">Informações dos dependentes</td>

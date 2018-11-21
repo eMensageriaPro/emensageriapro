@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -300,9 +331,9 @@ CHOICES_S2200_TRABAPOSENT = (
 )
 
 class s2200CNH(models.Model):
-    s2200_documentos = models.OneToOneField('s2200documentos',
-        related_name='%(class)s_s2200_documentos')
-    def evento(self): return self.s2200_documentos.evento()
+    s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
+        related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     nrregcnh = models.CharField(max_length=12)
     dtexped = models.DateField(blank=True, null=True)
     ufcnh = models.CharField(choices=ESTADOS, max_length=2)
@@ -317,13 +348,13 @@ class s2200CNH(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_documentos) + ' - ' + unicode(self.nrregcnh) + ' - ' + unicode(self.dtexped) + ' - ' + unicode(self.ufcnh) + ' - ' + unicode(self.dtvalid) + ' - ' + unicode(self.dtprihab) + ' - ' + unicode(self.categoriacnh)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nrregcnh) + ' - ' + unicode(self.ufcnh) + ' - ' + unicode(self.dtvalid) + ' - ' + unicode(self.categoriacnh)
     #s2200_cnh_custom#
     #s2200_cnh_custom#
     class Meta:
         db_table = r's2200_cnh'
         managed = True
-        ordering = ['s2200_documentos', 'nrregcnh', 'dtexped', 'ufcnh', 'dtvalid', 'dtprihab', 'categoriacnh']
+        ordering = ['s2200_evtadmissao', 'nrregcnh', 'ufcnh', 'dtvalid', 'categoriacnh']
 
 
 
@@ -334,9 +365,9 @@ class s2200CNHSerializer(ModelSerializer):
             
 
 class s2200CTPS(models.Model):
-    s2200_documentos = models.OneToOneField('s2200documentos',
-        related_name='%(class)s_s2200_documentos')
-    def evento(self): return self.s2200_documentos.evento()
+    s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
+        related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     nrctps = models.CharField(max_length=11)
     seriectps = models.CharField(max_length=5)
     ufctps = models.CharField(choices=ESTADOS, max_length=2)
@@ -348,13 +379,13 @@ class s2200CTPS(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_documentos) + ' - ' + unicode(self.nrctps) + ' - ' + unicode(self.seriectps) + ' - ' + unicode(self.ufctps)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nrctps) + ' - ' + unicode(self.seriectps) + ' - ' + unicode(self.ufctps)
     #s2200_ctps_custom#
     #s2200_ctps_custom#
     class Meta:
         db_table = r's2200_ctps'
         managed = True
-        ordering = ['s2200_documentos', 'nrctps', 'seriectps', 'ufctps']
+        ordering = ['s2200_evtadmissao', 'nrctps', 'seriectps', 'ufctps']
 
 
 
@@ -365,9 +396,9 @@ class s2200CTPSSerializer(ModelSerializer):
             
 
 class s2200OC(models.Model):
-    s2200_documentos = models.OneToOneField('s2200documentos',
-        related_name='%(class)s_s2200_documentos')
-    def evento(self): return self.s2200_documentos.evento()
+    s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
+        related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     nroc = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -380,13 +411,13 @@ class s2200OC(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_documentos) + ' - ' + unicode(self.nroc) + ' - ' + unicode(self.orgaoemissor) + ' - ' + unicode(self.dtexped) + ' - ' + unicode(self.dtvalid)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nroc) + ' - ' + unicode(self.orgaoemissor)
     #s2200_oc_custom#
     #s2200_oc_custom#
     class Meta:
         db_table = r's2200_oc'
         managed = True
-        ordering = ['s2200_documentos', 'nroc', 'orgaoemissor', 'dtexped', 'dtvalid']
+        ordering = ['s2200_evtadmissao', 'nroc', 'orgaoemissor']
 
 
 
@@ -397,9 +428,9 @@ class s2200OCSerializer(ModelSerializer):
             
 
 class s2200RG(models.Model):
-    s2200_documentos = models.OneToOneField('s2200documentos',
-        related_name='%(class)s_s2200_documentos')
-    def evento(self): return self.s2200_documentos.evento()
+    s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
+        related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     nrrg = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -411,13 +442,13 @@ class s2200RG(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_documentos) + ' - ' + unicode(self.nrrg) + ' - ' + unicode(self.orgaoemissor) + ' - ' + unicode(self.dtexped)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nrrg) + ' - ' + unicode(self.orgaoemissor)
     #s2200_rg_custom#
     #s2200_rg_custom#
     class Meta:
         db_table = r's2200_rg'
         managed = True
-        ordering = ['s2200_documentos', 'nrrg', 'orgaoemissor', 'dtexped']
+        ordering = ['s2200_evtadmissao', 'nrrg', 'orgaoemissor']
 
 
 
@@ -428,9 +459,9 @@ class s2200RGSerializer(ModelSerializer):
             
 
 class s2200RIC(models.Model):
-    s2200_documentos = models.OneToOneField('s2200documentos',
-        related_name='%(class)s_s2200_documentos')
-    def evento(self): return self.s2200_documentos.evento()
+    s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
+        related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     nrric = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -442,13 +473,13 @@ class s2200RIC(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_documentos) + ' - ' + unicode(self.nrric) + ' - ' + unicode(self.orgaoemissor) + ' - ' + unicode(self.dtexped)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nrric) + ' - ' + unicode(self.orgaoemissor)
     #s2200_ric_custom#
     #s2200_ric_custom#
     class Meta:
         db_table = r's2200_ric'
         managed = True
-        ordering = ['s2200_documentos', 'nrric', 'orgaoemissor', 'dtexped']
+        ordering = ['s2200_evtadmissao', 'nrric', 'orgaoemissor']
 
 
 
@@ -459,9 +490,9 @@ class s2200RICSerializer(ModelSerializer):
             
 
 class s2200RNE(models.Model):
-    s2200_documentos = models.OneToOneField('s2200documentos',
-        related_name='%(class)s_s2200_documentos')
-    def evento(self): return self.s2200_documentos.evento()
+    s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
+        related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
     nrrne = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -473,13 +504,13 @@ class s2200RNE(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_documentos) + ' - ' + unicode(self.nrrne) + ' - ' + unicode(self.orgaoemissor) + ' - ' + unicode(self.dtexped)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nrrne) + ' - ' + unicode(self.orgaoemissor)
     #s2200_rne_custom#
     #s2200_rne_custom#
     class Meta:
         db_table = r's2200_rne'
         managed = True
-        ordering = ['s2200_documentos', 'nrrne', 'orgaoemissor', 'dtexped']
+        ordering = ['s2200_evtadmissao', 'nrrne', 'orgaoemissor']
 
 
 
@@ -627,13 +658,13 @@ class s2200brasil(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.complemento) + ' - ' + unicode(self.bairro) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
     #s2200_brasil_custom#
     #s2200_brasil_custom#
     class Meta:
         db_table = r's2200_brasil'
         managed = True
-        ordering = ['s2200_evtadmissao', 'tplograd', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'cep', 'codmunic', 'uf']
+        ordering = ['s2200_evtadmissao', 'tplograd', 'dsclograd', 'nrlograd', 'cep', 'codmunic', 'uf']
 
 
 
@@ -688,13 +719,13 @@ class s2200contato(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.foneprinc) + ' - ' + unicode(self.fonealternat) + ' - ' + unicode(self.emailprinc) + ' - ' + unicode(self.emailalternat)
+        return unicode(self.s2200_evtadmissao)
     #s2200_contato_custom#
     #s2200_contato_custom#
     class Meta:
         db_table = r's2200_contato'
         managed = True
-        ordering = ['s2200_evtadmissao', 'foneprinc', 'fonealternat', 'emailprinc', 'emailalternat']
+        ordering = ['s2200_evtadmissao']
 
 
 
@@ -725,13 +756,13 @@ class s2200dependente(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.cpfdep) + ' - ' + unicode(self.sexodep) + ' - ' + unicode(self.depirrf) + ' - ' + unicode(self.depsf) + ' - ' + unicode(self.inctrab) + ' - ' + unicode(self.depfinsprev)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.depirrf) + ' - ' + unicode(self.depsf) + ' - ' + unicode(self.inctrab)
     #s2200_dependente_custom#
     #s2200_dependente_custom#
     class Meta:
         db_table = r's2200_dependente'
         managed = True
-        ordering = ['s2200_evtadmissao', 'tpdep', 'nmdep', 'dtnascto', 'cpfdep', 'sexodep', 'depirrf', 'depsf', 'inctrab', 'depfinsprev']
+        ordering = ['s2200_evtadmissao', 'tpdep', 'nmdep', 'dtnascto', 'depirrf', 'depsf', 'inctrab']
 
 
 
@@ -770,34 +801,6 @@ class s2200desligamentoSerializer(ModelSerializer):
         fields = '__all__'
             
 
-class s2200documentos(models.Model):
-    s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
-        related_name='%(class)s_s2200_evtadmissao')
-    def evento(self): return self.s2200_evtadmissao.evento()
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s2200_evtadmissao)
-    #s2200_documentos_custom#
-    #s2200_documentos_custom#
-    class Meta:
-        db_table = r's2200_documentos'
-        managed = True
-        ordering = ['s2200_evtadmissao']
-
-
-
-class s2200documentosSerializer(ModelSerializer):
-    class Meta:
-        model = s2200documentos
-        fields = '__all__'
-            
-
 class s2200exterior(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
@@ -817,13 +820,13 @@ class s2200exterior(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.complemento) + ' - ' + unicode(self.bairro) + ' - ' + unicode(self.nmcid) + ' - ' + unicode(self.codpostal)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.nmcid)
     #s2200_exterior_custom#
     #s2200_exterior_custom#
     class Meta:
         db_table = r's2200_exterior'
         managed = True
-        ordering = ['s2200_evtadmissao', 'paisresid', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'nmcid', 'codpostal']
+        ordering = ['s2200_evtadmissao', 'paisresid', 'dsclograd', 'nrlograd', 'nmcid']
 
 
 
@@ -878,13 +881,13 @@ class s2200horContratual(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.qtdhrssem) + ' - ' + unicode(self.tpjornada) + ' - ' + unicode(self.dsctpjorn) + ' - ' + unicode(self.tmpparc)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tpjornada) + ' - ' + unicode(self.tmpparc)
     #s2200_horcontratual_custom#
     #s2200_horcontratual_custom#
     class Meta:
         db_table = r's2200_horcontratual'
         managed = True
-        ordering = ['s2200_evtadmissao', 'qtdhrssem', 'tpjornada', 'dsctpjorn', 'tmpparc']
+        ordering = ['s2200_evtadmissao', 'tpjornada', 'tmpparc']
 
 
 
@@ -1004,13 +1007,13 @@ class s2200infoCeletista(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.dtadm) + ' - ' + unicode(self.tpadmissao) + ' - ' + unicode(self.indadmissao) + ' - ' + unicode(self.tpregjor) + ' - ' + unicode(self.natatividade) + ' - ' + unicode(self.dtbase) + ' - ' + unicode(self.cnpjsindcategprof) + ' - ' + unicode(self.opcfgts) + ' - ' + unicode(self.dtopcfgts)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.dtadm) + ' - ' + unicode(self.tpadmissao) + ' - ' + unicode(self.indadmissao) + ' - ' + unicode(self.tpregjor) + ' - ' + unicode(self.natatividade) + ' - ' + unicode(self.cnpjsindcategprof) + ' - ' + unicode(self.opcfgts)
     #s2200_infoceletista_custom#
     #s2200_infoceletista_custom#
     class Meta:
         db_table = r's2200_infoceletista'
         managed = True
-        ordering = ['s2200_evtadmissao', 'dtadm', 'tpadmissao', 'indadmissao', 'tpregjor', 'natatividade', 'dtbase', 'cnpjsindcategprof', 'opcfgts', 'dtopcfgts']
+        ordering = ['s2200_evtadmissao', 'dtadm', 'tpadmissao', 'indadmissao', 'tpregjor', 'natatividade', 'cnpjsindcategprof', 'opcfgts']
 
 
 
@@ -1069,13 +1072,13 @@ class s2200infoDeficiencia(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.deffisica) + ' - ' + unicode(self.defvisual) + ' - ' + unicode(self.defauditiva) + ' - ' + unicode(self.defmental) + ' - ' + unicode(self.defintelectual) + ' - ' + unicode(self.reabreadap) + ' - ' + unicode(self.infocota) + ' - ' + unicode(self.observacao)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.deffisica) + ' - ' + unicode(self.defvisual) + ' - ' + unicode(self.defauditiva) + ' - ' + unicode(self.defmental) + ' - ' + unicode(self.defintelectual) + ' - ' + unicode(self.reabreadap) + ' - ' + unicode(self.infocota)
     #s2200_infodeficiencia_custom#
     #s2200_infodeficiencia_custom#
     class Meta:
         db_table = r's2200_infodeficiencia'
         managed = True
-        ordering = ['s2200_evtadmissao', 'deffisica', 'defvisual', 'defauditiva', 'defmental', 'defintelectual', 'reabreadap', 'infocota', 'observacao']
+        ordering = ['s2200_evtadmissao', 'deffisica', 'defvisual', 'defauditiva', 'defmental', 'defintelectual', 'reabreadap', 'infocota']
 
 
 
@@ -1109,13 +1112,13 @@ class s2200infoEstatutario(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.indprovim) + ' - ' + unicode(self.tpprov) + ' - ' + unicode(self.dtnomeacao) + ' - ' + unicode(self.dtposse) + ' - ' + unicode(self.dtexercicio) + ' - ' + unicode(self.dtingsvpub) + ' - ' + unicode(self.tpplanrp) + ' - ' + unicode(self.indtetorgps) + ' - ' + unicode(self.indabonoperm) + ' - ' + unicode(self.dtiniabono) + ' - ' + unicode(self.indparcremun) + ' - ' + unicode(self.dtiniparc)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.indprovim) + ' - ' + unicode(self.tpprov) + ' - ' + unicode(self.dtnomeacao) + ' - ' + unicode(self.dtposse) + ' - ' + unicode(self.dtexercicio) + ' - ' + unicode(self.dtingsvpub)
     #s2200_infoestatutario_custom#
     #s2200_infoestatutario_custom#
     class Meta:
         db_table = r's2200_infoestatutario'
         managed = True
-        ordering = ['s2200_evtadmissao', 'indprovim', 'tpprov', 'dtnomeacao', 'dtposse', 'dtexercicio', 'dtingsvpub', 'tpplanrp', 'indtetorgps', 'indabonoperm', 'dtiniabono', 'indparcremun', 'dtiniparc']
+        ordering = ['s2200_evtadmissao', 'indprovim', 'tpprov', 'dtnomeacao', 'dtposse', 'dtexercicio', 'dtingsvpub']
 
 
 
@@ -1145,13 +1148,13 @@ class s2200localTrabDom(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.complemento) + ' - ' + unicode(self.bairro) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
     #s2200_localtrabdom_custom#
     #s2200_localtrabdom_custom#
     class Meta:
         db_table = r's2200_localtrabdom'
         managed = True
-        ordering = ['s2200_evtadmissao', 'tplograd', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'cep', 'codmunic', 'uf']
+        ordering = ['s2200_evtadmissao', 'tplograd', 'dsclograd', 'nrlograd', 'cep', 'codmunic', 'uf']
 
 
 
@@ -1176,19 +1179,51 @@ class s2200localTrabGeral(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.desccomp)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s2200_localtrabgeral_custom#
     #s2200_localtrabgeral_custom#
     class Meta:
         db_table = r's2200_localtrabgeral'
         managed = True
-        ordering = ['s2200_evtadmissao', 'tpinsc', 'nrinsc', 'desccomp']
+        ordering = ['s2200_evtadmissao', 'tpinsc', 'nrinsc']
 
 
 
 class s2200localTrabGeralSerializer(ModelSerializer):
     class Meta:
         model = s2200localTrabGeral
+        fields = '__all__'
+            
+
+class s2200mudancaCPF(models.Model):
+    s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
+        related_name='%(class)s_s2200_evtadmissao')
+    def evento(self): return self.s2200_evtadmissao.evento()
+    cpfant = models.CharField(max_length=11)
+    matricant = models.CharField(max_length=30)
+    dtaltcpf = models.DateField()
+    observacao = models.CharField(max_length=255, blank=True, null=True)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.cpfant) + ' - ' + unicode(self.matricant) + ' - ' + unicode(self.dtaltcpf)
+    #s2200_mudancacpf_custom#
+    #s2200_mudancacpf_custom#
+    class Meta:
+        db_table = r's2200_mudancacpf'
+        managed = True
+        ordering = ['s2200_evtadmissao', 'cpfant', 'matricant', 'dtaltcpf']
+
+
+
+class s2200mudancaCPFSerializer(ModelSerializer):
+    class Meta:
+        model = s2200mudancaCPF
         fields = '__all__'
             
 
@@ -1225,6 +1260,7 @@ class s2200sucessaoVinc(models.Model):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
+    tpinscant = models.IntegerField()
     cnpjempregant = models.CharField(max_length=14)
     matricant = models.CharField(max_length=30, blank=True, null=True)
     dttransf = models.DateField()
@@ -1237,13 +1273,13 @@ class s2200sucessaoVinc(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.cnpjempregant) + ' - ' + unicode(self.matricant) + ' - ' + unicode(self.dttransf) + ' - ' + unicode(self.observacao)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tpinscant) + ' - ' + unicode(self.cnpjempregant) + ' - ' + unicode(self.dttransf)
     #s2200_sucessaovinc_custom#
     #s2200_sucessaovinc_custom#
     class Meta:
         db_table = r's2200_sucessaovinc'
         managed = True
-        ordering = ['s2200_evtadmissao', 'cnpjempregant', 'matricant', 'dttransf', 'observacao']
+        ordering = ['s2200_evtadmissao', 'tpinscant', 'cnpjempregant', 'dttransf']
 
 
 
@@ -1269,13 +1305,13 @@ class s2200trabEstrangeiro(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.dtchegada) + ' - ' + unicode(self.classtrabestrang) + ' - ' + unicode(self.casadobr) + ' - ' + unicode(self.filhosbr)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.classtrabestrang) + ' - ' + unicode(self.casadobr) + ' - ' + unicode(self.filhosbr)
     #s2200_trabestrangeiro_custom#
     #s2200_trabestrangeiro_custom#
     class Meta:
         db_table = r's2200_trabestrangeiro'
         managed = True
-        ordering = ['s2200_evtadmissao', 'dtchegada', 'classtrabestrang', 'casadobr', 'filhosbr']
+        ordering = ['s2200_evtadmissao', 'classtrabestrang', 'casadobr', 'filhosbr']
 
 
 
@@ -1333,13 +1369,13 @@ class s2200transfDom(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.cpfsubstituido) + ' - ' + unicode(self.matricant) + ' - ' + unicode(self.dttransf)
+        return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.cpfsubstituido) + ' - ' + unicode(self.dttransf)
     #s2200_transfdom_custom#
     #s2200_transfdom_custom#
     class Meta:
         db_table = r's2200_transfdom'
         managed = True
-        ordering = ['s2200_evtadmissao', 'cpfsubstituido', 'matricant', 'dttransf']
+        ordering = ['s2200_evtadmissao', 'cpfsubstituido', 'dttransf']
 
 
 

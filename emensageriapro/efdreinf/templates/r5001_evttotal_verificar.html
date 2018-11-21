@@ -201,7 +201,7 @@
 
         <tr {% if r5001_evttotal.cdretorno|validacoes_esocial_efdreinf:"r5001_evttotal.cdretorno" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cdRetorno</td>
-            <td width="500px">Código do Retorno</td>
+            <td width="500px">Código do Retorno: 0 - Sucesso 1 - Erro 2 - Em processamento</td>
             <td width="200px"><b>{% if r5001_evttotal.cdretorno or r5001_evttotal.cdretorno == 0 %}{{ r5001_evttotal.cdretorno }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -245,7 +245,7 @@
     {% ifequal r5001_regocorrs.r5001_evttotal.id r5001_evttotal.id %}
         <tr {% if r5001_regocorrs.tpocorr|validacoes_esocial_efdreinf:"r5001_regocorrs.tpocorr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpOcorr</td>
-            <td width="500px">Tipo da ocorrência: 1 - Aviso; 2 - Erro.</td>
+            <td width="500px">Tipo da ocorrência: 1 - Erro 2 - Aviso</td>
             <td width="200px"><b>{% if r5001_regocorrs.tpocorr or r5001_regocorrs.tpocorr == 0 %}{{ r5001_regocorrs.tpocorr|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -445,6 +445,49 @@
         </tr>
 
         <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEstab</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do estabelecimento</td>
+        </tr>
+
+        <tr {% if r5001_infototal.tpinsc|validacoes_esocial_efdreinf:"r5001_infototal.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ) ou [4] (CNO) Valores Válidos: 1, 4.</td>
+            <td width="200px"><b>{% if r5001_infototal.tpinsc or r5001_infototal.tpinsc == 0 %}{{ r5001_infototal.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_infototal_visualizar' %}
+                <a href="{% url 'r5001_infototal_salvar'  hash='{}'|json_id:r5001_infototal.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_infototal.nrinsc|validacoes_esocial_efdreinf:"r5001_infototal.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Validação: O número de inscrição informado deve ser válido e compatível com {tpInsc}.</td>
+            <td width="200px"><b>{% if r5001_infototal.nrinsc or r5001_infototal.nrinsc == 0 %}{{ r5001_infototal.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_infototal_visualizar' %}
+                <a href="{% url 'r5001_infototal_salvar'  hash='{}'|json_id:r5001_infototal.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">RTom</td>
             <td bgcolor="lightgray" colspan="3">Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010</td>
         </tr>
@@ -454,6 +497,25 @@
             <td width="130px">cnpjPrestador</td>
             <td width="500px">CNPJ do Prestador de Serviços. Origem: R-2010.</td>
             <td width="200px"><b>{% if r5001_rtom.cnpjprestador or r5001_rtom.cnpjprestador == 0 %}{{ r5001_rtom.cnpjprestador }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r5001_rtom_visualizar' %}
+                <a href="{% url 'r5001_rtom_salvar'  hash='{}'|json_id:r5001_rtom.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r5001_rtom.cno|validacoes_esocial_efdreinf:"r5001_rtom.cno" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cno</td>
+            <td width="500px">Número de inscrição no Cadastro Nacional de Obras - CNO. Origem: Preencher com a informação do campo {nrInscestab} do R-2010, apenas de {indObra} for igual a [1,2].</td>
+            <td width="200px"><b>{% if r5001_rtom.cno or r5001_rtom.cno == 0 %}{{ r5001_rtom.cno }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -799,7 +861,7 @@
     {% ifequal r5001_rcoml.r5001_infototal.id r5001_infototal.id %}
         <tr {% if r5001_rcoml.crcoml|validacoes_esocial_efdreinf:"r5001_rcoml.crcoml" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">CRComl</td>
-            <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Comercialização de Produção, calculada segundo as regras estabelecidas na legislação em vigor. Validação: Deve ser um código válido, compatível com as informações prestadas nos demais eventos, observando o que segue: a) 1657-01 se {classTrib} <> [6] ou 1657-02 se {classTrib} = [6], b) 1646-05 se {classTrib} = [7] ou 1646-06 se {classTrib} = [6}, c) 1213-02 se {classTrib} = [7] ou 1213-04 se {classTrib} = [6]. Valores Válidos: 1657-01, 1657-02, 1646-05, 1646-06, 1213-02, 1213-04.</td>
+            <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Comercialização de Produção, calculada segundo as regras estabelecidas na legislação em vigor. Validação: Deve ser um código válido, compatível com as informações prestadas nos demais eventos, observando o que segue: a) 1657-01 se {classTrib} = [7] b) 1657-02 se {classTrib} <> [7], c) 1646-05 se {classTrib} = [7], d) 1646-06 se {classTrib} <> [7], e) 1213-02 se {classTrib} = [7], f) 1213-04 se {classTrib} <> [7]. Valores Válidos: 1657-01, 1657-02, 1646-05, 1646-06, 1213-02, 1213-04.</td>
             <td width="200px"><b>{% if r5001_rcoml.crcoml or r5001_rcoml.crcoml == 0 %}{{ r5001_rcoml.crcoml|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -998,7 +1060,7 @@
             </td>
             {% endif %}
         </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}{% endifequal %}{% endfor %}
+    {% endifequal %}{% endfor %}     {% endifequal %}{% endfor %}{% endifequal %}{% endfor %}
 </table>
 {% if not for_print %}
             </div>

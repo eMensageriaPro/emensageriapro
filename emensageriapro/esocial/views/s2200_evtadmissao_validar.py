@@ -87,56 +87,53 @@ def validacoes_s2200_evtadmissao(arquivo):
     if 'tpContr' in dir(evtAdmissao.vinculo.infoContrato.duracao): validacoes_lista = validar_campo(validacoes_lista,'evtAdmissao.vinculo.infoContrato.duracao.tpContr', evtAdmissao.vinculo.infoContrato.duracao.tpContr.cdata, 1, '1;2')
     if 'dtTerm' in dir(evtAdmissao.vinculo.infoContrato.duracao): validacoes_lista = validar_campo(validacoes_lista,'evtAdmissao.vinculo.infoContrato.duracao.dtTerm', evtAdmissao.vinculo.infoContrato.duracao.dtTerm.cdata, 0, '')
     if 'clauAssec' in dir(evtAdmissao.vinculo.infoContrato.duracao): validacoes_lista = validar_campo(validacoes_lista,'evtAdmissao.vinculo.infoContrato.duracao.clauAssec', evtAdmissao.vinculo.infoContrato.duracao.clauAssec.cdata, 0, 'S;N')
-    if 'documentos' in dir(evtAdmissao.trabalhador):
-        for documentos in evtAdmissao.trabalhador.documentos:
+    if 'objDet' in dir(evtAdmissao.vinculo.infoContrato.duracao): validacoes_lista = validar_campo(validacoes_lista,'evtAdmissao.vinculo.infoContrato.duracao.objDet', evtAdmissao.vinculo.infoContrato.duracao.objDet.cdata, 0, '')
+    if 'CTPS' in dir(evtAdmissao.trabalhador.documentos):
+        for CTPS in evtAdmissao.trabalhador.documentos.CTPS:
        
+            if 'nrCtps' in dir(CTPS): validacoes_lista = validar_campo(validacoes_lista,'CTPS.nrCtps', CTPS.nrCtps.cdata, 1, '')
+            if 'serieCtps' in dir(CTPS): validacoes_lista = validar_campo(validacoes_lista,'CTPS.serieCtps', CTPS.serieCtps.cdata, 1, '')
+            if 'ufCtps' in dir(CTPS): validacoes_lista = validar_campo(validacoes_lista,'CTPS.ufCtps', CTPS.ufCtps.cdata, 1, '')
 
-            if 'CTPS' in dir(documentos):
-                for CTPS in documentos.CTPS:
-               
-                    if 'nrCtps' in dir(CTPS): validacoes_lista = validar_campo(validacoes_lista,'CTPS.nrCtps', CTPS.nrCtps.cdata, 1, '')
-                    if 'serieCtps' in dir(CTPS): validacoes_lista = validar_campo(validacoes_lista,'CTPS.serieCtps', CTPS.serieCtps.cdata, 1, '')
-                    if 'ufCtps' in dir(CTPS): validacoes_lista = validar_campo(validacoes_lista,'CTPS.ufCtps', CTPS.ufCtps.cdata, 1, '')
-   
-            if 'RIC' in dir(documentos):
-                for RIC in documentos.RIC:
-               
-                    if 'nrRic' in dir(RIC): validacoes_lista = validar_campo(validacoes_lista,'RIC.nrRic', RIC.nrRic.cdata, 1, '')
-                    if 'orgaoEmissor' in dir(RIC): validacoes_lista = validar_campo(validacoes_lista,'RIC.orgaoEmissor', RIC.orgaoEmissor.cdata, 1, '')
-                    if 'dtExped' in dir(RIC): validacoes_lista = validar_campo(validacoes_lista,'RIC.dtExped', RIC.dtExped.cdata, 0, '')
-   
-            if 'RG' in dir(documentos):
-                for RG in documentos.RG:
-               
-                    if 'nrRg' in dir(RG): validacoes_lista = validar_campo(validacoes_lista,'RG.nrRg', RG.nrRg.cdata, 1, '')
-                    if 'orgaoEmissor' in dir(RG): validacoes_lista = validar_campo(validacoes_lista,'RG.orgaoEmissor', RG.orgaoEmissor.cdata, 1, '')
-                    if 'dtExped' in dir(RG): validacoes_lista = validar_campo(validacoes_lista,'RG.dtExped', RG.dtExped.cdata, 0, '')
-   
-            if 'RNE' in dir(documentos):
-                for RNE in documentos.RNE:
-               
-                    if 'nrRne' in dir(RNE): validacoes_lista = validar_campo(validacoes_lista,'RNE.nrRne', RNE.nrRne.cdata, 1, '')
-                    if 'orgaoEmissor' in dir(RNE): validacoes_lista = validar_campo(validacoes_lista,'RNE.orgaoEmissor', RNE.orgaoEmissor.cdata, 1, '')
-                    if 'dtExped' in dir(RNE): validacoes_lista = validar_campo(validacoes_lista,'RNE.dtExped', RNE.dtExped.cdata, 0, '')
-   
-            if 'OC' in dir(documentos):
-                for OC in documentos.OC:
-               
-                    if 'nrOc' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.nrOc', OC.nrOc.cdata, 1, '')
-                    if 'orgaoEmissor' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.orgaoEmissor', OC.orgaoEmissor.cdata, 1, '')
-                    if 'dtExped' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.dtExped', OC.dtExped.cdata, 0, '')
-                    if 'dtValid' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.dtValid', OC.dtValid.cdata, 0, '')
-   
-            if 'CNH' in dir(documentos):
-                for CNH in documentos.CNH:
-               
-                    if 'nrRegCnh' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.nrRegCnh', CNH.nrRegCnh.cdata, 1, '')
-                    if 'dtExped' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.dtExped', CNH.dtExped.cdata, 0, '')
-                    if 'ufCnh' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.ufCnh', CNH.ufCnh.cdata, 1, '')
-                    if 'dtValid' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.dtValid', CNH.dtValid.cdata, 1, '')
-                    if 'dtPriHab' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.dtPriHab', CNH.dtPriHab.cdata, 0, '')
-                    if 'categoriaCnh' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.categoriaCnh', CNH.categoriaCnh.cdata, 1, 'A;B;C;D;E;AB;AC;AD;AE')
-   
+    if 'RIC' in dir(evtAdmissao.trabalhador.documentos):
+        for RIC in evtAdmissao.trabalhador.documentos.RIC:
+       
+            if 'nrRic' in dir(RIC): validacoes_lista = validar_campo(validacoes_lista,'RIC.nrRic', RIC.nrRic.cdata, 1, '')
+            if 'orgaoEmissor' in dir(RIC): validacoes_lista = validar_campo(validacoes_lista,'RIC.orgaoEmissor', RIC.orgaoEmissor.cdata, 1, '')
+            if 'dtExped' in dir(RIC): validacoes_lista = validar_campo(validacoes_lista,'RIC.dtExped', RIC.dtExped.cdata, 0, '')
+
+    if 'RG' in dir(evtAdmissao.trabalhador.documentos):
+        for RG in evtAdmissao.trabalhador.documentos.RG:
+       
+            if 'nrRg' in dir(RG): validacoes_lista = validar_campo(validacoes_lista,'RG.nrRg', RG.nrRg.cdata, 1, '')
+            if 'orgaoEmissor' in dir(RG): validacoes_lista = validar_campo(validacoes_lista,'RG.orgaoEmissor', RG.orgaoEmissor.cdata, 1, '')
+            if 'dtExped' in dir(RG): validacoes_lista = validar_campo(validacoes_lista,'RG.dtExped', RG.dtExped.cdata, 0, '')
+
+    if 'RNE' in dir(evtAdmissao.trabalhador.documentos):
+        for RNE in evtAdmissao.trabalhador.documentos.RNE:
+       
+            if 'nrRne' in dir(RNE): validacoes_lista = validar_campo(validacoes_lista,'RNE.nrRne', RNE.nrRne.cdata, 1, '')
+            if 'orgaoEmissor' in dir(RNE): validacoes_lista = validar_campo(validacoes_lista,'RNE.orgaoEmissor', RNE.orgaoEmissor.cdata, 1, '')
+            if 'dtExped' in dir(RNE): validacoes_lista = validar_campo(validacoes_lista,'RNE.dtExped', RNE.dtExped.cdata, 0, '')
+
+    if 'OC' in dir(evtAdmissao.trabalhador.documentos):
+        for OC in evtAdmissao.trabalhador.documentos.OC:
+       
+            if 'nrOc' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.nrOc', OC.nrOc.cdata, 1, '')
+            if 'orgaoEmissor' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.orgaoEmissor', OC.orgaoEmissor.cdata, 1, '')
+            if 'dtExped' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.dtExped', OC.dtExped.cdata, 0, '')
+            if 'dtValid' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.dtValid', OC.dtValid.cdata, 0, '')
+
+    if 'CNH' in dir(evtAdmissao.trabalhador.documentos):
+        for CNH in evtAdmissao.trabalhador.documentos.CNH:
+       
+            if 'nrRegCnh' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.nrRegCnh', CNH.nrRegCnh.cdata, 1, '')
+            if 'dtExped' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.dtExped', CNH.dtExped.cdata, 0, '')
+            if 'ufCnh' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.ufCnh', CNH.ufCnh.cdata, 1, '')
+            if 'dtValid' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.dtValid', CNH.dtValid.cdata, 1, '')
+            if 'dtPriHab' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.dtPriHab', CNH.dtPriHab.cdata, 0, '')
+            if 'categoriaCnh' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.categoriaCnh', CNH.categoriaCnh.cdata, 1, 'A;B;C;D;E;AB;AC;AD;AE')
+
     if 'brasil' in dir(evtAdmissao.trabalhador.endereco):
         for brasil in evtAdmissao.trabalhador.endereco.brasil:
        
@@ -306,6 +303,7 @@ def validacoes_s2200_evtadmissao(arquivo):
     if 'sucessaoVinc' in dir(evtAdmissao.vinculo):
         for sucessaoVinc in evtAdmissao.vinculo.sucessaoVinc:
        
+            if 'tpInscAnt' in dir(sucessaoVinc): validacoes_lista = validar_campo(validacoes_lista,'sucessaoVinc.tpInscAnt', sucessaoVinc.tpInscAnt.cdata, 1, '')
             if 'cnpjEmpregAnt' in dir(sucessaoVinc): validacoes_lista = validar_campo(validacoes_lista,'sucessaoVinc.cnpjEmpregAnt', sucessaoVinc.cnpjEmpregAnt.cdata, 1, '')
             if 'matricAnt' in dir(sucessaoVinc): validacoes_lista = validar_campo(validacoes_lista,'sucessaoVinc.matricAnt', sucessaoVinc.matricAnt.cdata, 0, '')
             if 'dtTransf' in dir(sucessaoVinc): validacoes_lista = validar_campo(validacoes_lista,'sucessaoVinc.dtTransf', sucessaoVinc.dtTransf.cdata, 1, '')
@@ -317,6 +315,14 @@ def validacoes_s2200_evtadmissao(arquivo):
             if 'cpfSubstituido' in dir(transfDom): validacoes_lista = validar_campo(validacoes_lista,'transfDom.cpfSubstituido', transfDom.cpfSubstituido.cdata, 1, '')
             if 'matricAnt' in dir(transfDom): validacoes_lista = validar_campo(validacoes_lista,'transfDom.matricAnt', transfDom.matricAnt.cdata, 0, '')
             if 'dtTransf' in dir(transfDom): validacoes_lista = validar_campo(validacoes_lista,'transfDom.dtTransf', transfDom.dtTransf.cdata, 1, '')
+
+    if 'mudancaCPF' in dir(evtAdmissao.vinculo):
+        for mudancaCPF in evtAdmissao.vinculo.mudancaCPF:
+       
+            if 'cpfAnt' in dir(mudancaCPF): validacoes_lista = validar_campo(validacoes_lista,'mudancaCPF.cpfAnt', mudancaCPF.cpfAnt.cdata, 1, '')
+            if 'matricAnt' in dir(mudancaCPF): validacoes_lista = validar_campo(validacoes_lista,'mudancaCPF.matricAnt', mudancaCPF.matricAnt.cdata, 1, '')
+            if 'dtAltCPF' in dir(mudancaCPF): validacoes_lista = validar_campo(validacoes_lista,'mudancaCPF.dtAltCPF', mudancaCPF.dtAltCPF.cdata, 1, '')
+            if 'observacao' in dir(mudancaCPF): validacoes_lista = validar_campo(validacoes_lista,'mudancaCPF.observacao', mudancaCPF.observacao.cdata, 0, '')
 
     if 'afastamento' in dir(evtAdmissao.vinculo):
         for afastamento in evtAdmissao.vinculo.afastamento:

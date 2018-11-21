@@ -114,28 +114,31 @@ def read_s5001_evtbasestrab_obj(doc, status, validar=False):
             s5001_infocpcalc_id = resp[0][0]
             #print s5001_infocpcalc_id
 
-    if 'infoCp' in dir(evtBasesTrab):
-        for infoCp in evtBasesTrab.infoCp:
-            s5001_infocp_dados = {}
-            s5001_infocp_dados['s5001_evtbasestrab_id'] = s5001_evtbasestrab_id
+    if 'ideEstabLot' in dir(evtBasesTrab.infoCp):
+        for ideEstabLot in evtBasesTrab.infoCp.ideEstabLot:
+            s5001_ideestablot_dados = {}
+            s5001_ideestablot_dados['s5001_evtbasestrab_id'] = s5001_evtbasestrab_id
        
-            insert = create_insert('s5001_infocp', s5001_infocp_dados)
+            if 'tpInsc' in dir(ideEstabLot): s5001_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
+            if 'nrInsc' in dir(ideEstabLot): s5001_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
+            if 'codLotacao' in dir(ideEstabLot): s5001_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
+            insert = create_insert('s5001_ideestablot', s5001_ideestablot_dados)
             resp = executar_sql(insert, True)
-            s5001_infocp_id = resp[0][0]
-            #print s5001_infocp_id
+            s5001_ideestablot_id = resp[0][0]
+            #print s5001_ideestablot_id
 
-            if 'ideEstabLot' in dir(infoCp):
-                for ideEstabLot in infoCp.ideEstabLot:
-                    s5001_ideestablot_dados = {}
-                    s5001_ideestablot_dados['s5001_infocp_id'] = s5001_infocp_id
+            if 'infoCategIncid' in dir(ideEstabLot):
+                for infoCategIncid in ideEstabLot.infoCategIncid:
+                    s5001_infocategincid_dados = {}
+                    s5001_infocategincid_dados['s5001_ideestablot_id'] = s5001_ideestablot_id
                
-                    if 'tpInsc' in dir(ideEstabLot): s5001_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
-                    if 'nrInsc' in dir(ideEstabLot): s5001_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
-                    if 'codLotacao' in dir(ideEstabLot): s5001_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
-                    insert = create_insert('s5001_ideestablot', s5001_ideestablot_dados)
+                    if 'matricula' in dir(infoCategIncid): s5001_infocategincid_dados['matricula'] = infoCategIncid.matricula.cdata
+                    if 'codCateg' in dir(infoCategIncid): s5001_infocategincid_dados['codcateg'] = infoCategIncid.codCateg.cdata
+                    if 'indSimples' in dir(infoCategIncid): s5001_infocategincid_dados['indsimples'] = infoCategIncid.indSimples.cdata
+                    insert = create_insert('s5001_infocategincid', s5001_infocategincid_dados)
                     resp = executar_sql(insert, True)
-                    s5001_ideestablot_id = resp[0][0]
-                    #print s5001_ideestablot_id
+                    s5001_infocategincid_id = resp[0][0]
+                    #print s5001_infocategincid_id
    
     from emensageriapro.esocial.views.s5001_evtbasestrab_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(s5001_evtbasestrab_id, 'default')

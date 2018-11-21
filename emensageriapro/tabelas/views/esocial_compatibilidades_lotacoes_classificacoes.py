@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -293,81 +324,76 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
-            'show_tipo_classificacao_tributaria_99': 1,
-            'show_tipo_classificacao_tributaria_85': 1,
-            'show_tipo_classificacao_tributaria_80': 1,
-            'show_tipo_classificacao_tributaria_70': 1,
-            'show_tipo_classificacao_tributaria_60': 1,
-            'show_tipo_classificacao_tributaria_22': 1,
-            'show_tipo_classificacao_tributaria_21': 1,
-            'show_tipo_classificacao_tributaria_14': 1,
-            'show_tipo_classificacao_tributaria_13': 1,
-            'show_tipo_classificacao_tributaria_11': 1,
-            'show_tipo_classificacao_tributaria_10': 1,
-            'show_tipo_classificacao_tributaria_09': 1,
-            'show_tipo_classificacao_tributaria_08': 1,
-            'show_tipo_classificacao_tributaria_07': 1,
-            'show_tipo_classificacao_tributaria_06': 1,
-            'show_tipo_classificacao_tributaria_04': 1,
-            'show_tipo_classificacao_tributaria_03': 1,
-            'show_tipo_classificacao_tributaria_02': 1,
+            'show_codigo': 1,
             'show_tipo_classificacao_tributaria_01': 1,
-            'show_codigo': 1, }
+            'show_tipo_classificacao_tributaria_02': 1,
+            'show_tipo_classificacao_tributaria_03': 1,
+            'show_tipo_classificacao_tributaria_04': 1,
+            'show_tipo_classificacao_tributaria_06': 1,
+            'show_tipo_classificacao_tributaria_07': 1,
+            'show_tipo_classificacao_tributaria_08': 1,
+            'show_tipo_classificacao_tributaria_09': 1,
+            'show_tipo_classificacao_tributaria_10': 1,
+            'show_tipo_classificacao_tributaria_11': 1,
+            'show_tipo_classificacao_tributaria_13': 1,
+            'show_tipo_classificacao_tributaria_14': 1,
+            'show_tipo_classificacao_tributaria_21': 1,
+            'show_tipo_classificacao_tributaria_22': 1,
+            'show_tipo_classificacao_tributaria_60': 1,
+            'show_tipo_classificacao_tributaria_70': 1,
+            'show_tipo_classificacao_tributaria_80': 1,
+            'show_tipo_classificacao_tributaria_85': 1,
+            'show_tipo_classificacao_tributaria_99': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'tipo_classificacao_tributaria_99__icontains': 'tipo_classificacao_tributaria_99__icontains',
-                'tipo_classificacao_tributaria_85__icontains': 'tipo_classificacao_tributaria_85__icontains',
-                'tipo_classificacao_tributaria_80__icontains': 'tipo_classificacao_tributaria_80__icontains',
-                'tipo_classificacao_tributaria_70__icontains': 'tipo_classificacao_tributaria_70__icontains',
-                'tipo_classificacao_tributaria_60__icontains': 'tipo_classificacao_tributaria_60__icontains',
-                'tipo_classificacao_tributaria_22__icontains': 'tipo_classificacao_tributaria_22__icontains',
-                'tipo_classificacao_tributaria_21__icontains': 'tipo_classificacao_tributaria_21__icontains',
-                'tipo_classificacao_tributaria_14__icontains': 'tipo_classificacao_tributaria_14__icontains',
-                'tipo_classificacao_tributaria_13__icontains': 'tipo_classificacao_tributaria_13__icontains',
-                'tipo_classificacao_tributaria_11__icontains': 'tipo_classificacao_tributaria_11__icontains',
-                'tipo_classificacao_tributaria_10__icontains': 'tipo_classificacao_tributaria_10__icontains',
-                'tipo_classificacao_tributaria_09__icontains': 'tipo_classificacao_tributaria_09__icontains',
-                'tipo_classificacao_tributaria_08__icontains': 'tipo_classificacao_tributaria_08__icontains',
-                'tipo_classificacao_tributaria_07__icontains': 'tipo_classificacao_tributaria_07__icontains',
-                'tipo_classificacao_tributaria_06__icontains': 'tipo_classificacao_tributaria_06__icontains',
-                'tipo_classificacao_tributaria_04__icontains': 'tipo_classificacao_tributaria_04__icontains',
-                'tipo_classificacao_tributaria_03__icontains': 'tipo_classificacao_tributaria_03__icontains',
-                'tipo_classificacao_tributaria_02__icontains': 'tipo_classificacao_tributaria_02__icontains',
+                'codigo__icontains': 'codigo__icontains',
                 'tipo_classificacao_tributaria_01__icontains': 'tipo_classificacao_tributaria_01__icontains',
-                'codigo__icontains': 'codigo__icontains',}
+                'tipo_classificacao_tributaria_02__icontains': 'tipo_classificacao_tributaria_02__icontains',
+                'tipo_classificacao_tributaria_03__icontains': 'tipo_classificacao_tributaria_03__icontains',
+                'tipo_classificacao_tributaria_04__icontains': 'tipo_classificacao_tributaria_04__icontains',
+                'tipo_classificacao_tributaria_06__icontains': 'tipo_classificacao_tributaria_06__icontains',
+                'tipo_classificacao_tributaria_07__icontains': 'tipo_classificacao_tributaria_07__icontains',
+                'tipo_classificacao_tributaria_08__icontains': 'tipo_classificacao_tributaria_08__icontains',
+                'tipo_classificacao_tributaria_09__icontains': 'tipo_classificacao_tributaria_09__icontains',
+                'tipo_classificacao_tributaria_10__icontains': 'tipo_classificacao_tributaria_10__icontains',
+                'tipo_classificacao_tributaria_11__icontains': 'tipo_classificacao_tributaria_11__icontains',
+                'tipo_classificacao_tributaria_13__icontains': 'tipo_classificacao_tributaria_13__icontains',
+                'tipo_classificacao_tributaria_14__icontains': 'tipo_classificacao_tributaria_14__icontains',
+                'tipo_classificacao_tributaria_21__icontains': 'tipo_classificacao_tributaria_21__icontains',
+                'tipo_classificacao_tributaria_22__icontains': 'tipo_classificacao_tributaria_22__icontains',
+                'tipo_classificacao_tributaria_60__icontains': 'tipo_classificacao_tributaria_60__icontains',
+                'tipo_classificacao_tributaria_70__icontains': 'tipo_classificacao_tributaria_70__icontains',
+                'tipo_classificacao_tributaria_80__icontains': 'tipo_classificacao_tributaria_80__icontains',
+                'tipo_classificacao_tributaria_85__icontains': 'tipo_classificacao_tributaria_85__icontains',
+                'tipo_classificacao_tributaria_99__icontains': 'tipo_classificacao_tributaria_99__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'tipo_classificacao_tributaria_99__icontains': 'tipo_classificacao_tributaria_99__icontains',
-                'tipo_classificacao_tributaria_85__icontains': 'tipo_classificacao_tributaria_85__icontains',
-                'tipo_classificacao_tributaria_80__icontains': 'tipo_classificacao_tributaria_80__icontains',
-                'tipo_classificacao_tributaria_70__icontains': 'tipo_classificacao_tributaria_70__icontains',
-                'tipo_classificacao_tributaria_60__icontains': 'tipo_classificacao_tributaria_60__icontains',
-                'tipo_classificacao_tributaria_22__icontains': 'tipo_classificacao_tributaria_22__icontains',
-                'tipo_classificacao_tributaria_21__icontains': 'tipo_classificacao_tributaria_21__icontains',
-                'tipo_classificacao_tributaria_14__icontains': 'tipo_classificacao_tributaria_14__icontains',
-                'tipo_classificacao_tributaria_13__icontains': 'tipo_classificacao_tributaria_13__icontains',
-                'tipo_classificacao_tributaria_11__icontains': 'tipo_classificacao_tributaria_11__icontains',
-                'tipo_classificacao_tributaria_10__icontains': 'tipo_classificacao_tributaria_10__icontains',
-                'tipo_classificacao_tributaria_09__icontains': 'tipo_classificacao_tributaria_09__icontains',
-                'tipo_classificacao_tributaria_08__icontains': 'tipo_classificacao_tributaria_08__icontains',
-                'tipo_classificacao_tributaria_07__icontains': 'tipo_classificacao_tributaria_07__icontains',
-                'tipo_classificacao_tributaria_06__icontains': 'tipo_classificacao_tributaria_06__icontains',
-                'tipo_classificacao_tributaria_04__icontains': 'tipo_classificacao_tributaria_04__icontains',
-                'tipo_classificacao_tributaria_03__icontains': 'tipo_classificacao_tributaria_03__icontains',
-                'tipo_classificacao_tributaria_02__icontains': 'tipo_classificacao_tributaria_02__icontains',
+                'codigo__icontains': 'codigo__icontains',
                 'tipo_classificacao_tributaria_01__icontains': 'tipo_classificacao_tributaria_01__icontains',
-                'codigo__icontains': 'codigo__icontains',}
+                'tipo_classificacao_tributaria_02__icontains': 'tipo_classificacao_tributaria_02__icontains',
+                'tipo_classificacao_tributaria_03__icontains': 'tipo_classificacao_tributaria_03__icontains',
+                'tipo_classificacao_tributaria_04__icontains': 'tipo_classificacao_tributaria_04__icontains',
+                'tipo_classificacao_tributaria_06__icontains': 'tipo_classificacao_tributaria_06__icontains',
+                'tipo_classificacao_tributaria_07__icontains': 'tipo_classificacao_tributaria_07__icontains',
+                'tipo_classificacao_tributaria_08__icontains': 'tipo_classificacao_tributaria_08__icontains',
+                'tipo_classificacao_tributaria_09__icontains': 'tipo_classificacao_tributaria_09__icontains',
+                'tipo_classificacao_tributaria_10__icontains': 'tipo_classificacao_tributaria_10__icontains',
+                'tipo_classificacao_tributaria_11__icontains': 'tipo_classificacao_tributaria_11__icontains',
+                'tipo_classificacao_tributaria_13__icontains': 'tipo_classificacao_tributaria_13__icontains',
+                'tipo_classificacao_tributaria_14__icontains': 'tipo_classificacao_tributaria_14__icontains',
+                'tipo_classificacao_tributaria_21__icontains': 'tipo_classificacao_tributaria_21__icontains',
+                'tipo_classificacao_tributaria_22__icontains': 'tipo_classificacao_tributaria_22__icontains',
+                'tipo_classificacao_tributaria_60__icontains': 'tipo_classificacao_tributaria_60__icontains',
+                'tipo_classificacao_tributaria_70__icontains': 'tipo_classificacao_tributaria_70__icontains',
+                'tipo_classificacao_tributaria_80__icontains': 'tipo_classificacao_tributaria_80__icontains',
+                'tipo_classificacao_tributaria_85__icontains': 'tipo_classificacao_tributaria_85__icontains',
+                'tipo_classificacao_tributaria_99__icontains': 'tipo_classificacao_tributaria_99__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

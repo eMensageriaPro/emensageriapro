@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -158,9 +189,9 @@ CHOICES_S2205_TRABAPOSENT = (
 )
 
 class s2205CNH(models.Model):
-    s2205_documentos = models.OneToOneField('s2205documentos',
-        related_name='%(class)s_s2205_documentos')
-    def evento(self): return self.s2205_documentos.evento()
+    s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
+        related_name='%(class)s_s2205_evtaltcadastral')
+    def evento(self): return self.s2205_evtaltcadastral.evento()
     nrregcnh = models.CharField(max_length=12)
     dtexped = models.DateField(blank=True, null=True)
     ufcnh = models.CharField(choices=ESTADOS, max_length=2)
@@ -175,13 +206,13 @@ class s2205CNH(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2205_documentos) + ' - ' + unicode(self.nrregcnh) + ' - ' + unicode(self.dtexped) + ' - ' + unicode(self.ufcnh) + ' - ' + unicode(self.dtvalid) + ' - ' + unicode(self.dtprihab) + ' - ' + unicode(self.categoriacnh)
+        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.nrregcnh) + ' - ' + unicode(self.ufcnh) + ' - ' + unicode(self.dtvalid) + ' - ' + unicode(self.categoriacnh)
     #s2205_cnh_custom#
     #s2205_cnh_custom#
     class Meta:
         db_table = r's2205_cnh'
         managed = True
-        ordering = ['s2205_documentos', 'nrregcnh', 'dtexped', 'ufcnh', 'dtvalid', 'dtprihab', 'categoriacnh']
+        ordering = ['s2205_evtaltcadastral', 'nrregcnh', 'ufcnh', 'dtvalid', 'categoriacnh']
 
 
 
@@ -192,9 +223,9 @@ class s2205CNHSerializer(ModelSerializer):
             
 
 class s2205CTPS(models.Model):
-    s2205_documentos = models.OneToOneField('s2205documentos',
-        related_name='%(class)s_s2205_documentos')
-    def evento(self): return self.s2205_documentos.evento()
+    s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
+        related_name='%(class)s_s2205_evtaltcadastral')
+    def evento(self): return self.s2205_evtaltcadastral.evento()
     nrctps = models.CharField(max_length=11)
     seriectps = models.CharField(max_length=5)
     ufctps = models.CharField(choices=ESTADOS, max_length=2)
@@ -206,13 +237,13 @@ class s2205CTPS(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2205_documentos) + ' - ' + unicode(self.nrctps) + ' - ' + unicode(self.seriectps) + ' - ' + unicode(self.ufctps)
+        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.nrctps) + ' - ' + unicode(self.seriectps) + ' - ' + unicode(self.ufctps)
     #s2205_ctps_custom#
     #s2205_ctps_custom#
     class Meta:
         db_table = r's2205_ctps'
         managed = True
-        ordering = ['s2205_documentos', 'nrctps', 'seriectps', 'ufctps']
+        ordering = ['s2205_evtaltcadastral', 'nrctps', 'seriectps', 'ufctps']
 
 
 
@@ -223,9 +254,9 @@ class s2205CTPSSerializer(ModelSerializer):
             
 
 class s2205OC(models.Model):
-    s2205_documentos = models.OneToOneField('s2205documentos',
-        related_name='%(class)s_s2205_documentos')
-    def evento(self): return self.s2205_documentos.evento()
+    s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
+        related_name='%(class)s_s2205_evtaltcadastral')
+    def evento(self): return self.s2205_evtaltcadastral.evento()
     nroc = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -238,13 +269,13 @@ class s2205OC(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2205_documentos) + ' - ' + unicode(self.nroc) + ' - ' + unicode(self.orgaoemissor) + ' - ' + unicode(self.dtexped) + ' - ' + unicode(self.dtvalid)
+        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.nroc) + ' - ' + unicode(self.orgaoemissor)
     #s2205_oc_custom#
     #s2205_oc_custom#
     class Meta:
         db_table = r's2205_oc'
         managed = True
-        ordering = ['s2205_documentos', 'nroc', 'orgaoemissor', 'dtexped', 'dtvalid']
+        ordering = ['s2205_evtaltcadastral', 'nroc', 'orgaoemissor']
 
 
 
@@ -255,9 +286,9 @@ class s2205OCSerializer(ModelSerializer):
             
 
 class s2205RG(models.Model):
-    s2205_documentos = models.OneToOneField('s2205documentos',
-        related_name='%(class)s_s2205_documentos')
-    def evento(self): return self.s2205_documentos.evento()
+    s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
+        related_name='%(class)s_s2205_evtaltcadastral')
+    def evento(self): return self.s2205_evtaltcadastral.evento()
     nrrg = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -269,13 +300,13 @@ class s2205RG(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2205_documentos) + ' - ' + unicode(self.nrrg) + ' - ' + unicode(self.orgaoemissor) + ' - ' + unicode(self.dtexped)
+        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.nrrg) + ' - ' + unicode(self.orgaoemissor)
     #s2205_rg_custom#
     #s2205_rg_custom#
     class Meta:
         db_table = r's2205_rg'
         managed = True
-        ordering = ['s2205_documentos', 'nrrg', 'orgaoemissor', 'dtexped']
+        ordering = ['s2205_evtaltcadastral', 'nrrg', 'orgaoemissor']
 
 
 
@@ -286,9 +317,9 @@ class s2205RGSerializer(ModelSerializer):
             
 
 class s2205RIC(models.Model):
-    s2205_documentos = models.OneToOneField('s2205documentos',
-        related_name='%(class)s_s2205_documentos')
-    def evento(self): return self.s2205_documentos.evento()
+    s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
+        related_name='%(class)s_s2205_evtaltcadastral')
+    def evento(self): return self.s2205_evtaltcadastral.evento()
     nrric = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -300,13 +331,13 @@ class s2205RIC(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2205_documentos) + ' - ' + unicode(self.nrric) + ' - ' + unicode(self.orgaoemissor) + ' - ' + unicode(self.dtexped)
+        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.nrric) + ' - ' + unicode(self.orgaoemissor)
     #s2205_ric_custom#
     #s2205_ric_custom#
     class Meta:
         db_table = r's2205_ric'
         managed = True
-        ordering = ['s2205_documentos', 'nrric', 'orgaoemissor', 'dtexped']
+        ordering = ['s2205_evtaltcadastral', 'nrric', 'orgaoemissor']
 
 
 
@@ -317,9 +348,9 @@ class s2205RICSerializer(ModelSerializer):
             
 
 class s2205RNE(models.Model):
-    s2205_documentos = models.OneToOneField('s2205documentos',
-        related_name='%(class)s_s2205_documentos')
-    def evento(self): return self.s2205_documentos.evento()
+    s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
+        related_name='%(class)s_s2205_evtaltcadastral')
+    def evento(self): return self.s2205_evtaltcadastral.evento()
     nrrne = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
@@ -331,13 +362,13 @@ class s2205RNE(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2205_documentos) + ' - ' + unicode(self.nrrne) + ' - ' + unicode(self.orgaoemissor) + ' - ' + unicode(self.dtexped)
+        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.nrrne) + ' - ' + unicode(self.orgaoemissor)
     #s2205_rne_custom#
     #s2205_rne_custom#
     class Meta:
         db_table = r's2205_rne'
         managed = True
-        ordering = ['s2205_documentos', 'nrrne', 'orgaoemissor', 'dtexped']
+        ordering = ['s2205_evtaltcadastral', 'nrrne', 'orgaoemissor']
 
 
 
@@ -396,13 +427,13 @@ class s2205brasil(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.complemento) + ' - ' + unicode(self.bairro) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
+        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
     #s2205_brasil_custom#
     #s2205_brasil_custom#
     class Meta:
         db_table = r's2205_brasil'
         managed = True
-        ordering = ['s2205_evtaltcadastral', 'tplograd', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'cep', 'codmunic', 'uf']
+        ordering = ['s2205_evtaltcadastral', 'tplograd', 'dsclograd', 'nrlograd', 'cep', 'codmunic', 'uf']
 
 
 
@@ -428,13 +459,13 @@ class s2205contato(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.foneprinc) + ' - ' + unicode(self.fonealternat) + ' - ' + unicode(self.emailprinc) + ' - ' + unicode(self.emailalternat)
+        return unicode(self.s2205_evtaltcadastral)
     #s2205_contato_custom#
     #s2205_contato_custom#
     class Meta:
         db_table = r's2205_contato'
         managed = True
-        ordering = ['s2205_evtaltcadastral', 'foneprinc', 'fonealternat', 'emailprinc', 'emailalternat']
+        ordering = ['s2205_evtaltcadastral']
 
 
 
@@ -465,47 +496,19 @@ class s2205dependente(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.cpfdep) + ' - ' + unicode(self.sexodep) + ' - ' + unicode(self.depirrf) + ' - ' + unicode(self.depsf) + ' - ' + unicode(self.inctrab) + ' - ' + unicode(self.depfinsprev)
+        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.depirrf) + ' - ' + unicode(self.depsf) + ' - ' + unicode(self.inctrab)
     #s2205_dependente_custom#
     #s2205_dependente_custom#
     class Meta:
         db_table = r's2205_dependente'
         managed = True
-        ordering = ['s2205_evtaltcadastral', 'tpdep', 'nmdep', 'dtnascto', 'cpfdep', 'sexodep', 'depirrf', 'depsf', 'inctrab', 'depfinsprev']
+        ordering = ['s2205_evtaltcadastral', 'tpdep', 'nmdep', 'dtnascto', 'depirrf', 'depsf', 'inctrab']
 
 
 
 class s2205dependenteSerializer(ModelSerializer):
     class Meta:
         model = s2205dependente
-        fields = '__all__'
-            
-
-class s2205documentos(models.Model):
-    s2205_evtaltcadastral = models.OneToOneField('esocial.s2205evtAltCadastral',
-        related_name='%(class)s_s2205_evtaltcadastral')
-    def evento(self): return self.s2205_evtaltcadastral.evento()
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s2205_evtaltcadastral)
-    #s2205_documentos_custom#
-    #s2205_documentos_custom#
-    class Meta:
-        db_table = r's2205_documentos'
-        managed = True
-        ordering = ['s2205_evtaltcadastral']
-
-
-
-class s2205documentosSerializer(ModelSerializer):
-    class Meta:
-        model = s2205documentos
         fields = '__all__'
             
 
@@ -528,13 +531,13 @@ class s2205exterior(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.complemento) + ' - ' + unicode(self.bairro) + ' - ' + unicode(self.nmcid) + ' - ' + unicode(self.codpostal)
+        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.nmcid)
     #s2205_exterior_custom#
     #s2205_exterior_custom#
     class Meta:
         db_table = r's2205_exterior'
         managed = True
-        ordering = ['s2205_evtaltcadastral', 'paisresid', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'nmcid', 'codpostal']
+        ordering = ['s2205_evtaltcadastral', 'paisresid', 'dsclograd', 'nrlograd', 'nmcid']
 
 
 
@@ -564,13 +567,13 @@ class s2205infoDeficiencia(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.deffisica) + ' - ' + unicode(self.defvisual) + ' - ' + unicode(self.defauditiva) + ' - ' + unicode(self.defmental) + ' - ' + unicode(self.defintelectual) + ' - ' + unicode(self.reabreadap) + ' - ' + unicode(self.infocota) + ' - ' + unicode(self.observacao)
+        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.deffisica) + ' - ' + unicode(self.defvisual) + ' - ' + unicode(self.defauditiva) + ' - ' + unicode(self.defmental) + ' - ' + unicode(self.defintelectual) + ' - ' + unicode(self.reabreadap)
     #s2205_infodeficiencia_custom#
     #s2205_infodeficiencia_custom#
     class Meta:
         db_table = r's2205_infodeficiencia'
         managed = True
-        ordering = ['s2205_evtaltcadastral', 'deffisica', 'defvisual', 'defauditiva', 'defmental', 'defintelectual', 'reabreadap', 'infocota', 'observacao']
+        ordering = ['s2205_evtaltcadastral', 'deffisica', 'defvisual', 'defauditiva', 'defmental', 'defintelectual', 'reabreadap']
 
 
 
@@ -596,13 +599,13 @@ class s2205trabEstrangeiro(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.dtchegada) + ' - ' + unicode(self.classtrabestrang) + ' - ' + unicode(self.casadobr) + ' - ' + unicode(self.filhosbr)
+        return unicode(self.s2205_evtaltcadastral) + ' - ' + unicode(self.classtrabestrang) + ' - ' + unicode(self.casadobr) + ' - ' + unicode(self.filhosbr)
     #s2205_trabestrangeiro_custom#
     #s2205_trabestrangeiro_custom#
     class Meta:
         db_table = r's2205_trabestrangeiro'
         managed = True
-        ordering = ['s2205_evtaltcadastral', 'dtchegada', 'classtrabestrang', 'casadobr', 'filhosbr']
+        ordering = ['s2205_evtaltcadastral', 'classtrabestrang', 'casadobr', 'filhosbr']
 
 
 

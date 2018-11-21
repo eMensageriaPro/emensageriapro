@@ -50,7 +50,7 @@ def validacoes_s5012_evtirrf(arquivo):
     if 'perApur' in dir(evtIrrf.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtIrrf.ideEvento.perApur', evtIrrf.ideEvento.perApur.cdata, 1, '')
     if 'tpInsc' in dir(evtIrrf.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtIrrf.ideEmpregador.tpInsc', evtIrrf.ideEmpregador.tpInsc.cdata, 1, '1;2;3;4')
     if 'nrInsc' in dir(evtIrrf.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtIrrf.ideEmpregador.nrInsc', evtIrrf.ideEmpregador.nrInsc.cdata, 1, '')
-    if 'nrRecArqBase' in dir(evtIrrf.infoIRRF): validacoes_lista = validar_campo(validacoes_lista,'evtIrrf.infoIRRF.nrRecArqBase', evtIrrf.infoIRRF.nrRecArqBase.cdata, 0, '')
+    if 'nrRecArqBase' in dir(evtIrrf.infoIRRF): validacoes_lista = validar_campo(validacoes_lista,'evtIrrf.infoIRRF.nrRecArqBase', evtIrrf.infoIRRF.nrRecArqBase.cdata, 1, '')
     if 'indExistInfo' in dir(evtIrrf.infoIRRF): validacoes_lista = validar_campo(validacoes_lista,'evtIrrf.infoIRRF.indExistInfo', evtIrrf.infoIRRF.indExistInfo.cdata, 1, '1;2;3')
     if 'infoCRContrib' in dir(evtIrrf.infoIRRF):
         for infoCRContrib in evtIrrf.infoIRRF.infoCRContrib:

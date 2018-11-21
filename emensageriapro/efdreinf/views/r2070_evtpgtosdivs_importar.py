@@ -138,15 +138,33 @@ def read_r2070_evtpgtosdivs_obj(doc, status, validar=False):
             r2070_ideestab_id = resp[0][0]
             #print r2070_ideestab_id
 
-            if 'pgtoResidBR' in dir(ideEstab):
-                for pgtoResidBR in ideEstab.pgtoResidBR:
-                    r2070_pgtoresidbr_dados = {}
-                    r2070_pgtoresidbr_dados['r2070_ideestab_id'] = r2070_ideestab_id
+            if 'pgtoPF' in dir(ideEstab.pgtoResidBR):
+                for pgtoPF in ideEstab.pgtoResidBR.pgtoPF:
+                    r2070_pgtopf_dados = {}
+                    r2070_pgtopf_dados['r2070_ideestab_id'] = r2070_ideestab_id
                
-                    insert = create_insert('r2070_pgtoresidbr', r2070_pgtoresidbr_dados)
+                    if 'dtPgto' in dir(pgtoPF): r2070_pgtopf_dados['dtpgto'] = pgtoPF.dtPgto.cdata
+                    if 'indSuspExig' in dir(pgtoPF): r2070_pgtopf_dados['indsuspexig'] = pgtoPF.indSuspExig.cdata
+                    if 'indDecTerceiro' in dir(pgtoPF): r2070_pgtopf_dados['inddecterceiro'] = pgtoPF.indDecTerceiro.cdata
+                    if 'vlrRendTributavel' in dir(pgtoPF): r2070_pgtopf_dados['vlrrendtributavel'] = pgtoPF.vlrRendTributavel.cdata
+                    if 'vlrIRRF' in dir(pgtoPF): r2070_pgtopf_dados['vlrirrf'] = pgtoPF.vlrIRRF.cdata
+                    insert = create_insert('r2070_pgtopf', r2070_pgtopf_dados)
                     resp = executar_sql(insert, True)
-                    r2070_pgtoresidbr_id = resp[0][0]
-                    #print r2070_pgtoresidbr_id
+                    r2070_pgtopf_id = resp[0][0]
+                    #print r2070_pgtopf_id
+   
+            if 'pgtoPJ' in dir(ideEstab.pgtoResidBR):
+                for pgtoPJ in ideEstab.pgtoResidBR.pgtoPJ:
+                    r2070_pgtopj_dados = {}
+                    r2070_pgtopj_dados['r2070_ideestab_id'] = r2070_ideestab_id
+               
+                    if 'dtPagto' in dir(pgtoPJ): r2070_pgtopj_dados['dtpagto'] = pgtoPJ.dtPagto.cdata
+                    if 'vlrRendTributavel' in dir(pgtoPJ): r2070_pgtopj_dados['vlrrendtributavel'] = pgtoPJ.vlrRendTributavel.cdata
+                    if 'vlrRet' in dir(pgtoPJ): r2070_pgtopj_dados['vlrret'] = pgtoPJ.vlrRet.cdata
+                    insert = create_insert('r2070_pgtopj', r2070_pgtopj_dados)
+                    resp = executar_sql(insert, True)
+                    r2070_pgtopj_id = resp[0][0]
+                    #print r2070_pgtopj_id
    
             if 'pgtoResidExt' in dir(ideEstab):
                 for pgtoResidExt in ideEstab.pgtoResidExt:

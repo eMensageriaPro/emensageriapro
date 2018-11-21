@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -169,8 +200,8 @@ def salvar(request, hash):
    
         s1200_infoperapur_itensremun_form = None
         s1200_infoperapur_itensremun_lista = None
-        s1200_infoperapur_infosaudecolet_form = None
-        s1200_infoperapur_infosaudecolet_lista = None
+        s1200_infoperapur_detoper_form = None
+        s1200_infoperapur_detoper_lista = None
         s1200_infoperapur_infoagnocivo_form = None
         s1200_infoperapur_infoagnocivo_lista = None
         s1200_infoperapur_infotrabinterm_form = None
@@ -181,9 +212,9 @@ def salvar(request, hash):
             s1200_infoperapur_itensremun_form = form_s1200_infoperapur_itensremun(initial={ 's1200_infoperapur_remunperapur': s1200_infoperapur_remunperapur }, slug=db_slug)
             s1200_infoperapur_itensremun_form.fields['s1200_infoperapur_remunperapur'].widget.attrs['readonly'] = True
             s1200_infoperapur_itensremun_lista = s1200infoPerApuritensRemun.objects.using( db_slug ).filter(excluido = False, s1200_infoperapur_remunperapur_id=s1200_infoperapur_remunperapur.id).all()
-            s1200_infoperapur_infosaudecolet_form = form_s1200_infoperapur_infosaudecolet(initial={ 's1200_infoperapur_remunperapur': s1200_infoperapur_remunperapur }, slug=db_slug)
-            s1200_infoperapur_infosaudecolet_form.fields['s1200_infoperapur_remunperapur'].widget.attrs['readonly'] = True
-            s1200_infoperapur_infosaudecolet_lista = s1200infoPerApurinfoSaudeColet.objects.using( db_slug ).filter(excluido = False, s1200_infoperapur_remunperapur_id=s1200_infoperapur_remunperapur.id).all()
+            s1200_infoperapur_detoper_form = form_s1200_infoperapur_detoper(initial={ 's1200_infoperapur_remunperapur': s1200_infoperapur_remunperapur }, slug=db_slug)
+            s1200_infoperapur_detoper_form.fields['s1200_infoperapur_remunperapur'].widget.attrs['readonly'] = True
+            s1200_infoperapur_detoper_lista = s1200infoPerApurdetOper.objects.using( db_slug ).filter(excluido = False, s1200_infoperapur_remunperapur_id=s1200_infoperapur_remunperapur.id).all()
             s1200_infoperapur_infoagnocivo_form = form_s1200_infoperapur_infoagnocivo(initial={ 's1200_infoperapur_remunperapur': s1200_infoperapur_remunperapur }, slug=db_slug)
             s1200_infoperapur_infoagnocivo_form.fields['s1200_infoperapur_remunperapur'].widget.attrs['readonly'] = True
             s1200_infoperapur_infoagnocivo_lista = s1200infoPerApurinfoAgNocivo.objects.using( db_slug ).filter(excluido = False, s1200_infoperapur_remunperapur_id=s1200_infoperapur_remunperapur.id).all()
@@ -215,8 +246,8 @@ def salvar(request, hash):
        
             's1200_infoperapur_itensremun_form': s1200_infoperapur_itensremun_form,
             's1200_infoperapur_itensremun_lista': s1200_infoperapur_itensremun_lista,
-            's1200_infoperapur_infosaudecolet_form': s1200_infoperapur_infosaudecolet_form,
-            's1200_infoperapur_infosaudecolet_lista': s1200_infoperapur_infosaudecolet_lista,
+            's1200_infoperapur_detoper_form': s1200_infoperapur_detoper_form,
+            's1200_infoperapur_detoper_lista': s1200_infoperapur_detoper_lista,
             's1200_infoperapur_infoagnocivo_form': s1200_infoperapur_infoagnocivo_form,
             's1200_infoperapur_infoagnocivo_lista': s1200_infoperapur_infoagnocivo_lista,
             's1200_infoperapur_infotrabinterm_form': s1200_infoperapur_infotrabinterm_form,
@@ -336,30 +367,25 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
-            'show_indsimples': 0,
+            'show_s1200_infoperapur_ideestablot': 1,
             'show_matricula': 0,
-            'show_s1200_infoperapur_ideestablot': 1, }
+            'show_indsimples': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'indsimples': 'indsimples',
+                's1200_infoperapur_ideestablot': 's1200_infoperapur_ideestablot',
                 'matricula__icontains': 'matricula__icontains',
-                's1200_infoperapur_ideestablot': 's1200_infoperapur_ideestablot',}
+                'indsimples': 'indsimples',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'indsimples': 'indsimples',
+                's1200_infoperapur_ideestablot': 's1200_infoperapur_ideestablot',
                 'matricula__icontains': 'matricula__icontains',
-                's1200_infoperapur_ideestablot': 's1200_infoperapur_ideestablot',}
+                'indsimples': 'indsimples',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

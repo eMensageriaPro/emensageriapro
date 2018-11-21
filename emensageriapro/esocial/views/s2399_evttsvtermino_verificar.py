@@ -107,17 +107,16 @@ def verificar(request, hash):
         s2399_evttsvtermino_lista = s2399evtTSVTermino.objects.using( db_slug ).filter(id=s2399_evttsvtermino_id, excluido = False).all()
    
 
-        s2399_verbasresc_lista = s2399verbasResc.objects.using(db_slug).filter(s2399_evttsvtermino_id__in = listar_ids(s2399_evttsvtermino_lista) ).filter(excluido=False).all()
-        s2399_dmdev_lista = s2399dmDev.objects.using(db_slug).filter(s2399_verbasresc_id__in = listar_ids(s2399_verbasresc_lista) ).filter(excluido=False).all()
+        s2399_mudancacpf_lista = s2399mudancaCPF.objects.using(db_slug).filter(s2399_evttsvtermino_id__in = listar_ids(s2399_evttsvtermino_lista) ).filter(excluido=False).all()
+        s2399_dmdev_lista = s2399dmDev.objects.using(db_slug).filter(s2399_evttsvtermino_id__in = listar_ids(s2399_evttsvtermino_lista) ).filter(excluido=False).all()
         s2399_ideestablot_lista = s2399ideEstabLot.objects.using(db_slug).filter(s2399_dmdev_id__in = listar_ids(s2399_dmdev_lista) ).filter(excluido=False).all()
         s2399_detverbas_lista = s2399detVerbas.objects.using(db_slug).filter(s2399_ideestablot_id__in = listar_ids(s2399_ideestablot_lista) ).filter(excluido=False).all()
-        s2399_infosaudecolet_lista = s2399infoSaudeColet.objects.using(db_slug).filter(s2399_ideestablot_id__in = listar_ids(s2399_ideestablot_lista) ).filter(excluido=False).all()
-        s2399_detoper_lista = s2399detOper.objects.using(db_slug).filter(s2399_infosaudecolet_id__in = listar_ids(s2399_infosaudecolet_lista) ).filter(excluido=False).all()
+        s2399_detoper_lista = s2399detOper.objects.using(db_slug).filter(s2399_ideestablot_id__in = listar_ids(s2399_ideestablot_lista) ).filter(excluido=False).all()
         s2399_detplano_lista = s2399detPlano.objects.using(db_slug).filter(s2399_detoper_id__in = listar_ids(s2399_detoper_lista) ).filter(excluido=False).all()
         s2399_infoagnocivo_lista = s2399infoAgNocivo.objects.using(db_slug).filter(s2399_ideestablot_id__in = listar_ids(s2399_ideestablot_lista) ).filter(excluido=False).all()
         s2399_infosimples_lista = s2399infoSimples.objects.using(db_slug).filter(s2399_ideestablot_id__in = listar_ids(s2399_ideestablot_lista) ).filter(excluido=False).all()
-        s2399_procjudtrab_lista = s2399procJudTrab.objects.using(db_slug).filter(s2399_verbasresc_id__in = listar_ids(s2399_verbasresc_lista) ).filter(excluido=False).all()
-        s2399_infomv_lista = s2399infoMV.objects.using(db_slug).filter(s2399_verbasresc_id__in = listar_ids(s2399_verbasresc_lista) ).filter(excluido=False).all()
+        s2399_procjudtrab_lista = s2399procJudTrab.objects.using(db_slug).filter(s2399_evttsvtermino_id__in = listar_ids(s2399_evttsvtermino_lista) ).filter(excluido=False).all()
+        s2399_infomv_lista = s2399infoMV.objects.using(db_slug).filter(s2399_evttsvtermino_id__in = listar_ids(s2399_evttsvtermino_lista) ).filter(excluido=False).all()
         s2399_remunoutrempr_lista = s2399remunOutrEmpr.objects.using(db_slug).filter(s2399_infomv_id__in = listar_ids(s2399_infomv_lista) ).filter(excluido=False).all()
         s2399_quarentena_lista = s2399quarentena.objects.using(db_slug).filter(s2399_evttsvtermino_id__in = listar_ids(s2399_evttsvtermino_lista) ).filter(excluido=False).all()
         request.session["retorno_hash"] = hash
@@ -138,11 +137,10 @@ def verificar(request, hash):
             'for_print': for_print,
             'hash': hash,
 
-            's2399_verbasresc_lista': s2399_verbasresc_lista,
+            's2399_mudancacpf_lista': s2399_mudancacpf_lista,
             's2399_dmdev_lista': s2399_dmdev_lista,
             's2399_ideestablot_lista': s2399_ideestablot_lista,
             's2399_detverbas_lista': s2399_detverbas_lista,
-            's2399_infosaudecolet_lista': s2399_infosaudecolet_lista,
             's2399_detoper_lista': s2399_detoper_lista,
             's2399_detplano_lista': s2399_detplano_lista,
             's2399_infoagnocivo_lista': s2399_infoagnocivo_lista,
@@ -221,17 +219,16 @@ def gerar_xml_s2399(s2399_evttsvtermino_id, db_slug, versao=None):
         s2399_evttsvtermino_lista = s2399evtTSVTermino.objects.using( db_slug ).filter(id=s2399_evttsvtermino_id, excluido = False).all()
    
 
-        s2399_verbasresc_lista = s2399verbasResc.objects.using(db_slug).filter(s2399_evttsvtermino_id__in = listar_ids(s2399_evttsvtermino_lista) ).filter(excluido=False).all()
-        s2399_dmdev_lista = s2399dmDev.objects.using(db_slug).filter(s2399_verbasresc_id__in = listar_ids(s2399_verbasresc_lista) ).filter(excluido=False).all()
+        s2399_mudancacpf_lista = s2399mudancaCPF.objects.using(db_slug).filter(s2399_evttsvtermino_id__in = listar_ids(s2399_evttsvtermino_lista) ).filter(excluido=False).all()
+        s2399_dmdev_lista = s2399dmDev.objects.using(db_slug).filter(s2399_evttsvtermino_id__in = listar_ids(s2399_evttsvtermino_lista) ).filter(excluido=False).all()
         s2399_ideestablot_lista = s2399ideEstabLot.objects.using(db_slug).filter(s2399_dmdev_id__in = listar_ids(s2399_dmdev_lista) ).filter(excluido=False).all()
         s2399_detverbas_lista = s2399detVerbas.objects.using(db_slug).filter(s2399_ideestablot_id__in = listar_ids(s2399_ideestablot_lista) ).filter(excluido=False).all()
-        s2399_infosaudecolet_lista = s2399infoSaudeColet.objects.using(db_slug).filter(s2399_ideestablot_id__in = listar_ids(s2399_ideestablot_lista) ).filter(excluido=False).all()
-        s2399_detoper_lista = s2399detOper.objects.using(db_slug).filter(s2399_infosaudecolet_id__in = listar_ids(s2399_infosaudecolet_lista) ).filter(excluido=False).all()
+        s2399_detoper_lista = s2399detOper.objects.using(db_slug).filter(s2399_ideestablot_id__in = listar_ids(s2399_ideestablot_lista) ).filter(excluido=False).all()
         s2399_detplano_lista = s2399detPlano.objects.using(db_slug).filter(s2399_detoper_id__in = listar_ids(s2399_detoper_lista) ).filter(excluido=False).all()
         s2399_infoagnocivo_lista = s2399infoAgNocivo.objects.using(db_slug).filter(s2399_ideestablot_id__in = listar_ids(s2399_ideestablot_lista) ).filter(excluido=False).all()
         s2399_infosimples_lista = s2399infoSimples.objects.using(db_slug).filter(s2399_ideestablot_id__in = listar_ids(s2399_ideestablot_lista) ).filter(excluido=False).all()
-        s2399_procjudtrab_lista = s2399procJudTrab.objects.using(db_slug).filter(s2399_verbasresc_id__in = listar_ids(s2399_verbasresc_lista) ).filter(excluido=False).all()
-        s2399_infomv_lista = s2399infoMV.objects.using(db_slug).filter(s2399_verbasresc_id__in = listar_ids(s2399_verbasresc_lista) ).filter(excluido=False).all()
+        s2399_procjudtrab_lista = s2399procJudTrab.objects.using(db_slug).filter(s2399_evttsvtermino_id__in = listar_ids(s2399_evttsvtermino_lista) ).filter(excluido=False).all()
+        s2399_infomv_lista = s2399infoMV.objects.using(db_slug).filter(s2399_evttsvtermino_id__in = listar_ids(s2399_evttsvtermino_lista) ).filter(excluido=False).all()
         s2399_remunoutrempr_lista = s2399remunOutrEmpr.objects.using(db_slug).filter(s2399_infomv_id__in = listar_ids(s2399_infomv_lista) ).filter(excluido=False).all()
         s2399_quarentena_lista = s2399quarentena.objects.using(db_slug).filter(s2399_evttsvtermino_id__in = listar_ids(s2399_evttsvtermino_lista) ).filter(excluido=False).all()
    
@@ -243,11 +240,10 @@ def gerar_xml_s2399(s2399_evttsvtermino_id, db_slug, versao=None):
             's2399_evttsvtermino': s2399_evttsvtermino,
 
 
-            's2399_verbasresc_lista': s2399_verbasresc_lista,
+            's2399_mudancacpf_lista': s2399_mudancacpf_lista,
             's2399_dmdev_lista': s2399_dmdev_lista,
             's2399_ideestablot_lista': s2399_ideestablot_lista,
             's2399_detverbas_lista': s2399_detverbas_lista,
-            's2399_infosaudecolet_lista': s2399_infosaudecolet_lista,
             's2399_detoper_lista': s2399_detoper_lista,
             's2399_detplano_lista': s2399_detplano_lista,
             's2399_infoagnocivo_lista': s2399_infoagnocivo_lista,

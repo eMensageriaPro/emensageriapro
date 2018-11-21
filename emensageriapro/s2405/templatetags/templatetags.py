@@ -1,7 +1,38 @@
 #coding: utf-8
 #templatetags.py
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django import template
@@ -333,6 +364,25 @@ def mes_ano(var):
     if mes == '12': mes = 'Dez/'
     return mes+ano
 
+@register.filter(name='ano_mes_extenso')
+def ano_mes_extenso(value):
+    a = value.split('-')
+    ano = a[0]
+    mes = a[1]
+    if mes == '01': mes_extenso=u'Janeiro'
+    elif mes == '02': mes_extenso=u'Fevereiro'
+    elif mes == '03': mes_extenso=u'Março'
+    elif mes == '04': mes_extenso=u'Abril'
+    elif mes == '05': mes_extenso=u'Maio'
+    elif mes == '06': mes_extenso=u'Junho'
+    elif mes == '07': mes_extenso=u'Julho'
+    elif mes == '08': mes_extenso=u'Agosto'
+    elif mes == '09': mes_extenso=u'Setembro'
+    elif mes == '10': mes_extenso=u'Outubro'
+    elif mes == '11': mes_extenso=u'Novembro'
+    elif mes == '12': mes_extenso=u'Dezembro'
+    return mes_extenso + '/' + ano
+    
 # @register.filter(name='total')
 # def total(list, arg):
 #     soma = sum(d[arg] for d in list)

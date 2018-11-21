@@ -80,6 +80,7 @@ def validacoes_s1200_evtremun(arquivo):
             if 'sucessaoVinc' in dir(infoComplem):
                 for sucessaoVinc in infoComplem.sucessaoVinc:
                
+                    if 'tpInscAnt' in dir(sucessaoVinc): validacoes_lista = validar_campo(validacoes_lista,'sucessaoVinc.tpInscAnt', sucessaoVinc.tpInscAnt.cdata, 1, '1;2')
                     if 'cnpjEmpregAnt' in dir(sucessaoVinc): validacoes_lista = validar_campo(validacoes_lista,'sucessaoVinc.cnpjEmpregAnt', sucessaoVinc.cnpjEmpregAnt.cdata, 1, '')
                     if 'matricAnt' in dir(sucessaoVinc): validacoes_lista = validar_campo(validacoes_lista,'sucessaoVinc.matricAnt', sucessaoVinc.matricAnt.cdata, 0, '')
                     if 'dtAdm' in dir(sucessaoVinc): validacoes_lista = validar_campo(validacoes_lista,'sucessaoVinc.dtAdm', sucessaoVinc.dtAdm.cdata, 1, '')
@@ -103,13 +104,23 @@ def validacoes_s1200_evtremun(arquivo):
             if 'ideDmDev' in dir(dmDev): validacoes_lista = validar_campo(validacoes_lista,'dmDev.ideDmDev', dmDev.ideDmDev.cdata, 1, '')
             if 'codCateg' in dir(dmDev): validacoes_lista = validar_campo(validacoes_lista,'dmDev.codCateg', dmDev.codCateg.cdata, 1, '101;102;103;104;105;106;111;201;202;301;302;303;305;306;307;308;309;401;410;701;711;712;721;722;723;731;734;738;741;751;761;771;781;901;902;903;904;905')
 
-            if 'infoPerApur' in dir(dmDev):
-                for infoPerApur in dmDev.infoPerApur:
+            if 'ideEstabLot' in dir(dmDev.infoPerApur):
+                for ideEstabLot in dmDev.infoPerApur.ideEstabLot:
                
+                    if 'tpInsc' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.tpInsc', ideEstabLot.tpInsc.cdata, 1, '1;2;3;4')
+                    if 'nrInsc' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.nrInsc', ideEstabLot.nrInsc.cdata, 1, '')
+                    if 'codLotacao' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.codLotacao', ideEstabLot.codLotacao.cdata, 1, '')
+                    if 'qtdDiasAv' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.qtdDiasAv', ideEstabLot.qtdDiasAv.cdata, 0, '')
    
-            if 'infoPerAnt' in dir(dmDev):
-                for infoPerAnt in dmDev.infoPerAnt:
+            if 'ideADC' in dir(dmDev.infoPerAnt):
+                for ideADC in dmDev.infoPerAnt.ideADC:
                
+                    if 'dtAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dtAcConv', ideADC.dtAcConv.cdata, 0, '')
+                    if 'tpAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.tpAcConv', ideADC.tpAcConv.cdata, 1, 'A;B;C;D;E')
+                    if 'compAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.compAcConv', ideADC.compAcConv.cdata, 0, '')
+                    if 'dtEfAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dtEfAcConv', ideADC.dtEfAcConv.cdata, 0, '')
+                    if 'dsc' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dsc', ideADC.dsc.cdata, 1, '')
+                    if 'remunSuc' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.remunSuc', ideADC.remunSuc.cdata, 1, 'S;N')
    
             if 'infoComplCont' in dir(dmDev):
                 for infoComplCont in dmDev.infoComplCont:

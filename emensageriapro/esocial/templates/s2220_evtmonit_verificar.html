@@ -118,13 +118,13 @@
               
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtMonit</td>
-            <td bgcolor="lightgray" colspan="3">Evento Monitoramento da Saúde do Trabalhador Regras de validação: REGRA_EVENTOS_EXTEMP REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXTEMP_REINTEGRACAO REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_TRABALHADOR_BASE_CNIS</td>
+            <td bgcolor="lightgray" colspan="3">Evento Monitoramento da Saúde do Trabalhador. Regras de validação: REGRA_EVENTOS_EXTEMP REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXTEMP_REINTEGRACAO REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_TRABALHADOR_BASE_CNIS</td>
         </tr>
     {% for s2220_evtmonit in s2220_evtmonit_lista %}
     {% ifequal 1 1 %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
         </tr>
 
         <tr {% if s2220_evtmonit.indretif|validacoes_esocial_efdreinf:"s2220_evtmonit.indretif" %}bgcolor="lightcoral"{% endif %}>
@@ -224,7 +224,7 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
         </tr>
 
         <tr {% if s2220_evtmonit.tpinsc|validacoes_esocial_efdreinf:"s2220_evtmonit.tpinsc" %}bgcolor="lightcoral"{% endif %}>
@@ -267,7 +267,7 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideVinculo</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador e do Vínculo</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador e do Vínculo.</td>
         </tr>
 
         <tr {% if s2220_evtmonit.cpftrab|validacoes_esocial_efdreinf:"s2220_evtmonit.cpftrab" %}bgcolor="lightcoral"{% endif %}>
@@ -348,7 +348,7 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">exMedOcup</td>
-            <td bgcolor="lightgray" colspan="3">Detalhamento das informações do exame médico ocupacional</td>
+            <td bgcolor="lightgray" colspan="3">Informações do exame médico ocupacional.</td>
         </tr>
 
         <tr {% if s2220_evtmonit.tpexameocup|validacoes_esocial_efdreinf:"s2220_evtmonit.tpexameocup" %}bgcolor="lightcoral"{% endif %}>
@@ -372,7 +372,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">aso</td>
-            <td bgcolor="lightgray" colspan="3">Detalhamento das informações do Atestado de Saúde Ocupacional (ASO)</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento das informações do ASO.</td>
         </tr>
 
         <tr {% if s2220_evtmonit.dtaso|validacoes_esocial_efdreinf:"s2220_evtmonit.dtaso" %}bgcolor="lightcoral"{% endif %}>
@@ -434,7 +434,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">exame</td>
-            <td bgcolor="lightgray" colspan="3">Registro que detalha as avaliações clínicas e os exames complementares porventura realizados pelo trabalhador em virtude do determinado nos Quadros I e II da NR7 do MTb, além de outros solicitados pelo médico e os referentes ao ASO. O não preenchimento sinaliza a não realização de avaliações clínicas e exames complementares.</td>
+            <td bgcolor="lightgray" colspan="3">Registro que detalha as avaliações clínicas e os exames complementares porventura realizados pelo trabalhador em virtude do determinado nos Quadros I e II da NR7 do MTb, além de outros solicitados pelo médico e os referentes ao ASO. O não preenchimento sinaliza a não realização de avaliações clínicas ou exames complementares.</td>
         </tr>
     {% for s2220_exame in s2220_exame_lista %}
     {% ifequal s2220_exame.s2220_evtmonit.id s2220_evtmonit.id %}
@@ -516,7 +516,7 @@
 
         <tr {% if s2220_exame.ordexame|validacoes_esocial_efdreinf:"s2220_exame.ordexame" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">ordExame</td>
-            <td width="500px">Ordem do Exame: 1 - Referencial; 2 - Sequencial. Valores Válidos: 1, 2.</td>
+            <td width="500px">Ordem do Exame: 1 - Inicial; 2 - Sequencial. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s2220_exame.ordexame or s2220_exame.ordexame == 0 %}{{ s2220_exame.ordexame|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -592,7 +592,7 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">medico</td>
-            <td bgcolor="lightgray" colspan="3">Informações sobre o médico emitente do ASO</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre o médico emitente do ASO.</td>
         </tr>
 
         <tr {% if s2220_evtmonit.cpfmed|validacoes_esocial_efdreinf:"s2220_evtmonit.cpfmed" %}bgcolor="lightcoral"{% endif %}>
@@ -692,7 +692,7 @@
   
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">respMonit</td>
-            <td bgcolor="lightgray" colspan="3">Informações sobre o médico responsável/coordenador do PCMSO</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre o médico responsável/coordenador do PCMSO.</td>
         </tr>
 
         <tr {% if s2220_evtmonit.nisresp|validacoes_esocial_efdreinf:"s2220_evtmonit.nisresp" %}bgcolor="lightcoral"{% endif %}>

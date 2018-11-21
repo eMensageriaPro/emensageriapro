@@ -61,17 +61,17 @@ def apagar(request, hash):
                              's2306_infocomplementares', s2306_infocomplementares_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's2306_infocomplementares_salvar':
             return redirect('s2306_infocomplementares', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -114,7 +114,7 @@ def salvar(request, hash):
         if s2306_infocomplementares_id:
             s2306_infocomplementares_form = form_s2306_infocomplementares(request.POST or None, instance = s2306_infocomplementares, slug = db_slug)
         else:
-            s2306_infocomplementares_form = form_s2306_infocomplementares(request.POST or None, slug = db_slug, initial={})
+            s2306_infocomplementares_form = form_s2306_infocomplementares(request.POST or None, slug = db_slug, initial={'s2306_evttsvaltcontr': '1'})
         if request.method == 'POST':
             if s2306_infocomplementares_form.is_valid():
                 dados = s2306_infocomplementares_form.cleaned_data
@@ -166,7 +166,7 @@ def salvar(request, hash):
             s2306_infocomplementares_form.fields[field].widget.attrs['ng-model'] = 's2306_infocomplementares_'+field
         if int(dict_hash['print']):
             s2306_infocomplementares_form = disabled_form_for_print(s2306_infocomplementares_form)
-   
+
         s2306_cargofuncao_form = None
         s2306_cargofuncao_lista = None
         s2306_remuneracao_form = None
@@ -177,17 +177,17 @@ def salvar(request, hash):
         s2306_infoestagiario_lista = None
         if s2306_infocomplementares_id:
             s2306_infocomplementares = get_object_or_404(s2306infoComplementares.objects.using( db_slug ), excluido = False, id = s2306_infocomplementares_id)
-       
-            s2306_cargofuncao_form = form_s2306_cargofuncao(initial={ 's2306_infocomplementares': s2306_infocomplementares }, slug=db_slug)
+
+            s2306_cargofuncao_form = form_s2306_cargofuncao(initial={ 's2306_infocomplementares': s2306_infocomplementares , 's2306_infocomplementares': '1'}, slug=db_slug)
             s2306_cargofuncao_form.fields['s2306_infocomplementares'].widget.attrs['readonly'] = True
             s2306_cargofuncao_lista = s2306cargoFuncao.objects.using( db_slug ).filter(excluido = False, s2306_infocomplementares_id=s2306_infocomplementares.id).all()
-            s2306_remuneracao_form = form_s2306_remuneracao(initial={ 's2306_infocomplementares': s2306_infocomplementares }, slug=db_slug)
+            s2306_remuneracao_form = form_s2306_remuneracao(initial={ 's2306_infocomplementares': s2306_infocomplementares , 's2306_infocomplementares': '1'}, slug=db_slug)
             s2306_remuneracao_form.fields['s2306_infocomplementares'].widget.attrs['readonly'] = True
             s2306_remuneracao_lista = s2306remuneracao.objects.using( db_slug ).filter(excluido = False, s2306_infocomplementares_id=s2306_infocomplementares.id).all()
-            s2306_infotrabcedido_form = form_s2306_infotrabcedido(initial={ 's2306_infocomplementares': s2306_infocomplementares }, slug=db_slug)
+            s2306_infotrabcedido_form = form_s2306_infotrabcedido(initial={ 's2306_infocomplementares': s2306_infocomplementares , 's2306_infocomplementares': '1'}, slug=db_slug)
             s2306_infotrabcedido_form.fields['s2306_infocomplementares'].widget.attrs['readonly'] = True
             s2306_infotrabcedido_lista = s2306infoTrabCedido.objects.using( db_slug ).filter(excluido = False, s2306_infocomplementares_id=s2306_infocomplementares.id).all()
-            s2306_infoestagiario_form = form_s2306_infoestagiario(initial={ 's2306_infocomplementares': s2306_infocomplementares }, slug=db_slug)
+            s2306_infoestagiario_form = form_s2306_infoestagiario(initial={ 's2306_infocomplementares': s2306_infocomplementares , 's2306_infocomplementares': '1', 'instensino': '1'}, slug=db_slug)
             s2306_infoestagiario_form.fields['s2306_infocomplementares'].widget.attrs['readonly'] = True
             s2306_infoestagiario_lista = s2306infoEstagiario.objects.using( db_slug ).filter(excluido = False, s2306_infocomplementares_id=s2306_infocomplementares.id).all()
         else:
@@ -210,9 +210,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2306_infocomplementares_id': int(s2306_infocomplementares_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             's2306_cargofuncao_form': s2306_cargofuncao_form,
             's2306_cargofuncao_lista': s2306_cargofuncao_lista,
             's2306_remuneracao_form': s2306_remuneracao_form,
@@ -223,7 +223,7 @@ def salvar(request, hash):
             's2306_infoestagiario_lista': s2306_infoestagiario_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -267,10 +267,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -336,11 +336,6 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
             'show_s2306_evttsvaltcontr': 1, }
         post = False
         if request.method == 'POST':
@@ -362,17 +357,17 @@ def listar(request, hash):
             filtrar = True
             s2306_infocomplementares_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s2306_infocomplementares_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2306_infocomplementares'
         context = {
             's2306_infocomplementares_lista': s2306_infocomplementares_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -382,7 +377,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 's2306_infocomplementares_listar.html', context)
@@ -425,10 +420,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

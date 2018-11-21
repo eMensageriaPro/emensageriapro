@@ -61,17 +61,17 @@ def apagar(request, hash):
                              's2241_aposentesp', s2241_aposentesp_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's2241_aposentesp_salvar':
             return redirect('s2241_aposentesp', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -114,7 +114,7 @@ def salvar(request, hash):
         if s2241_aposentesp_id:
             s2241_aposentesp_form = form_s2241_aposentesp(request.POST or None, instance = s2241_aposentesp, slug = db_slug)
         else:
-            s2241_aposentesp_form = form_s2241_aposentesp(request.POST or None, slug = db_slug, initial={})
+            s2241_aposentesp_form = form_s2241_aposentesp(request.POST or None, slug = db_slug, initial={'s2241_evtinsapo': '1'})
         if request.method == 'POST':
             if s2241_aposentesp_form.is_valid():
                 dados = s2241_aposentesp_form.cleaned_data
@@ -166,7 +166,7 @@ def salvar(request, hash):
             s2241_aposentesp_form.fields[field].widget.attrs['ng-model'] = 's2241_aposentesp_'+field
         if int(dict_hash['print']):
             s2241_aposentesp_form = disabled_form_for_print(s2241_aposentesp_form)
-   
+
         s2241_iniaposentesp_form = None
         s2241_iniaposentesp_lista = None
         s2241_altaposentesp_form = None
@@ -175,14 +175,14 @@ def salvar(request, hash):
         s2241_fimaposentesp_lista = None
         if s2241_aposentesp_id:
             s2241_aposentesp = get_object_or_404(s2241aposentEsp.objects.using( db_slug ), excluido = False, id = s2241_aposentesp_id)
-       
-            s2241_iniaposentesp_form = form_s2241_iniaposentesp(initial={ 's2241_aposentesp': s2241_aposentesp }, slug=db_slug)
+
+            s2241_iniaposentesp_form = form_s2241_iniaposentesp(initial={ 's2241_aposentesp': s2241_aposentesp , 's2241_aposentesp': '1'}, slug=db_slug)
             s2241_iniaposentesp_form.fields['s2241_aposentesp'].widget.attrs['readonly'] = True
             s2241_iniaposentesp_lista = s2241iniAposentEsp.objects.using( db_slug ).filter(excluido = False, s2241_aposentesp_id=s2241_aposentesp.id).all()
-            s2241_altaposentesp_form = form_s2241_altaposentesp(initial={ 's2241_aposentesp': s2241_aposentesp }, slug=db_slug)
+            s2241_altaposentesp_form = form_s2241_altaposentesp(initial={ 's2241_aposentesp': s2241_aposentesp , 's2241_aposentesp': '1'}, slug=db_slug)
             s2241_altaposentesp_form.fields['s2241_aposentesp'].widget.attrs['readonly'] = True
             s2241_altaposentesp_lista = s2241altAposentEsp.objects.using( db_slug ).filter(excluido = False, s2241_aposentesp_id=s2241_aposentesp.id).all()
-            s2241_fimaposentesp_form = form_s2241_fimaposentesp(initial={ 's2241_aposentesp': s2241_aposentesp }, slug=db_slug)
+            s2241_fimaposentesp_form = form_s2241_fimaposentesp(initial={ 's2241_aposentesp': s2241_aposentesp , 's2241_aposentesp': '1'}, slug=db_slug)
             s2241_fimaposentesp_form.fields['s2241_aposentesp'].widget.attrs['readonly'] = True
             s2241_fimaposentesp_lista = s2241fimAposentEsp.objects.using( db_slug ).filter(excluido = False, s2241_aposentesp_id=s2241_aposentesp.id).all()
         else:
@@ -205,9 +205,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2241_aposentesp_id': int(s2241_aposentesp_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             's2241_iniaposentesp_form': s2241_iniaposentesp_form,
             's2241_iniaposentesp_lista': s2241_iniaposentesp_lista,
             's2241_altaposentesp_form': s2241_altaposentesp_form,
@@ -216,7 +216,7 @@ def salvar(request, hash):
             's2241_fimaposentesp_lista': s2241_fimaposentesp_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -260,10 +260,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -329,11 +329,6 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
             'show_s2241_evtinsapo': 1, }
         post = False
         if request.method == 'POST':
@@ -355,17 +350,17 @@ def listar(request, hash):
             filtrar = True
             s2241_aposentesp_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s2241_aposentesp_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2241_aposentesp'
         context = {
             's2241_aposentesp_lista': s2241_aposentesp_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -375,7 +370,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 's2241_aposentesp_listar.html', context)
@@ -418,10 +413,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

@@ -129,7 +129,7 @@
 
         <tr {% if r1070_evttabprocesso.tpamb|validacoes_esocial_efdreinf:"r1070_evttabprocesso.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita; Valores Válidos: 1, 2.</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if r1070_evttabprocesso.tpamb or r1070_evttabprocesso.tpamb == 0 %}{{ r1070_evttabprocesso.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">

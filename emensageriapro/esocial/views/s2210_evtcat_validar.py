@@ -60,7 +60,7 @@ def validacoes_s2210_evtcat(arquivo):
     if 'codCateg' in dir(evtCAT.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.ideVinculo.codCateg', evtCAT.ideVinculo.codCateg.cdata, 0, '')
     if 'dtAcid' in dir(evtCAT.cat): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.dtAcid', evtCAT.cat.dtAcid.cdata, 1, '')
     if 'tpAcid' in dir(evtCAT.cat): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.tpAcid', evtCAT.cat.tpAcid.cdata, 1, '1.0.01;1.0.02;2.0.01;2.0.02;2.0.03;2.0.04;2.0.05;2.0.06;3.0.01;3.0.02;3.0.03;3.0.04;3.0.05;3.0.06;3.0.07;3.0.08;3.0.09;3.0.10;3.0.11;4.0.01;4.0.02;5.0.01')
-    if 'hrAcid' in dir(evtCAT.cat): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.hrAcid', evtCAT.cat.hrAcid.cdata, 1, '')
+    if 'hrAcid' in dir(evtCAT.cat): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.hrAcid', evtCAT.cat.hrAcid.cdata, 0, '')
     if 'hrsTrabAntesAcid' in dir(evtCAT.cat): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.hrsTrabAntesAcid', evtCAT.cat.hrsTrabAntesAcid.cdata, 1, '')
     if 'tpCat' in dir(evtCAT.cat): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.tpCat', evtCAT.cat.tpCat.cdata, 1, '1;2;3')
     if 'indCatObito' in dir(evtCAT.cat): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.indCatObito', evtCAT.cat.indCatObito.cdata, 1, 'S;N')
@@ -68,10 +68,12 @@ def validacoes_s2210_evtcat(arquivo):
     if 'indComunPolicia' in dir(evtCAT.cat): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.indComunPolicia', evtCAT.cat.indComunPolicia.cdata, 1, 'S;N')
     if 'codSitGeradora' in dir(evtCAT.cat): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.codSitGeradora', evtCAT.cat.codSitGeradora.cdata, 1, '200004300;200004600;200008300;200008600;200008900;200012200;200012300;200012400;200012500;200012600;200012700;200012900;200016300;200016600;200016900;200020100;200020300;200020500;200020700;200020900;200024300;200024400;200024500;200024600;200024700;200024900;200028300;200028600;200032200;200032400;200032600;200032900;200036000;200040300;200040600;200044300;200044600;200048200;200048400;200048600;200048900;200052000;200056000;200060000;200064000;200068000;200072000;200072300;200072600;200076200;200076400;200076600;200076900;200080200;200080400;200080600;200080900;209000000;209500000')
     if 'iniciatCAT' in dir(evtCAT.cat): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.iniciatCAT', evtCAT.cat.iniciatCAT.cdata, 1, '1;2;3')
+    if 'obsCAT' in dir(evtCAT.cat): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.obsCAT', evtCAT.cat.obsCAT.cdata, 0, '')
     if 'observacao' in dir(evtCAT.cat): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.observacao', evtCAT.cat.observacao.cdata, 0, '')
     if 'tpLocal' in dir(evtCAT.cat.localAcidente): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.localAcidente.tpLocal', evtCAT.cat.localAcidente.tpLocal.cdata, 1, '1;2;3;4;5;6;9')
     if 'dscLocal' in dir(evtCAT.cat.localAcidente): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.localAcidente.dscLocal', evtCAT.cat.localAcidente.dscLocal.cdata, 0, '')
     if 'codAmb' in dir(evtCAT.cat.localAcidente): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.localAcidente.codAmb', evtCAT.cat.localAcidente.codAmb.cdata, 0, '')
+    if 'tpLograd' in dir(evtCAT.cat.localAcidente): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.localAcidente.tpLograd', evtCAT.cat.localAcidente.tpLograd.cdata, 1, '')
     if 'dscLograd' in dir(evtCAT.cat.localAcidente): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.localAcidente.dscLograd', evtCAT.cat.localAcidente.dscLograd.cdata, 1, '')
     if 'nrLograd' in dir(evtCAT.cat.localAcidente): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.localAcidente.nrLograd', evtCAT.cat.localAcidente.nrLograd.cdata, 1, '')
     if 'complemento' in dir(evtCAT.cat.localAcidente): validacoes_lista = validar_campo(validacoes_lista,'evtCAT.cat.localAcidente.complemento', evtCAT.cat.localAcidente.complemento.cdata, 0, '')
@@ -121,6 +123,6 @@ def validacoes_s2210_evtcat(arquivo):
         for catOrigem in evtCAT.cat.catOrigem:
        
             if 'dtCatOrig' in dir(catOrigem): validacoes_lista = validar_campo(validacoes_lista,'catOrigem.dtCatOrig', catOrigem.dtCatOrig.cdata, 1, '')
-            if 'nrRecCatOrig' in dir(catOrigem): validacoes_lista = validar_campo(validacoes_lista,'catOrigem.nrRecCatOrig', catOrigem.nrRecCatOrig.cdata, 0, '')
+            if 'nrRecCatOrig' in dir(catOrigem): validacoes_lista = validar_campo(validacoes_lista,'catOrigem.nrRecCatOrig', catOrigem.nrRecCatOrig.cdata, 1, '')
 
     return validacoes_lista

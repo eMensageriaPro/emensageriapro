@@ -186,7 +186,7 @@
 
         <tr {% if r2020_evtservprest.tpamb|validacoes_esocial_efdreinf:"r2020_evtservprest.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita; Valores Válidos: 1, 2.</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if r2020_evtservprest.tpamb or r2020_evtservprest.tpamb == 0 %}{{ r2020_evtservprest.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -291,7 +291,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEstabPrest</td>
-            <td bgcolor="lightgray" colspan="3">Registro que identifica o estabelecimento "prestador" de serviços mediante cessão de mão de obra.</td>
+            <td bgcolor="lightgray" colspan="3">Registro que identifica o estabelecimento 'prestador' de serviços mediante cessão de mão de obra.</td>
         </tr>
 
         <tr {% if r2020_evtservprest.tpinscestabprest|validacoes_esocial_efdreinf:"r2020_evtservprest.tpinscestabprest" %}bgcolor="lightcoral"{% endif %}>
@@ -516,7 +516,7 @@
     {% ifequal r2020_nfs.r2020_evtservprest.id r2020_evtservprest.id %}
         <tr {% if r2020_nfs.serie|validacoes_esocial_efdreinf:"r2020_nfs.serie" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">serie</td>
-            <td width="500px">Informar o número de série da nota fiscal/fatura ou do Recibo Provisório de Serviço - RPS. Preencher com 0 (zero) caso não exista número de série.</td>
+            <td width="500px">Informar o número de série da nota fiscal/fatura ou do Recibo Provisório de Serviço - RPS ou de outro documento fiscal válido. Preencher com 0 (zero) caso não exista número de série.</td>
             <td width="200px"><b>{% if r2020_nfs.serie or r2020_nfs.serie == 0 %}{{ r2020_nfs.serie }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -535,7 +535,7 @@
 
         <tr {% if r2020_nfs.numdocto|validacoes_esocial_efdreinf:"r2020_nfs.numdocto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">numDocto</td>
-            <td width="500px">Número da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS.</td>
+            <td width="500px">Número da Nota Fiscal/Fatura ou outro documento fiscal válido, como Recibo Provisório de Serviço - RPS, CT-e OS, entre outros.</td>
             <td width="200px"><b>{% if r2020_nfs.numdocto or r2020_nfs.numdocto == 0 %}{{ r2020_nfs.numdocto }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -554,7 +554,7 @@
 
         <tr {% if r2020_nfs.dtemissaonf|validacoes_esocial_efdreinf:"r2020_nfs.dtemissaonf" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtEmissaoNF</td>
-            <td width="500px">Data de Emissão da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço. Validação: O mês/ano informado deve ser igual ao mês/ano indicado no registro de abertura do arquivo.</td>
+            <td width="500px">Data de Emissão da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço ou de outro documento fiscal válido. Validação: O mês/ano informado deve ser igual ao mês/ano indicado no registro de abertura do arquivo.</td>
             <td width="200px"><b>{% if r2020_nfs.dtemissaonf or r2020_nfs.dtemissaonf == 0 %}{{ r2020_nfs.dtemissaonf|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -573,7 +573,7 @@
 
         <tr {% if r2020_nfs.vlrbruto|validacoes_esocial_efdreinf:"r2020_nfs.vlrbruto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrBruto</td>
-            <td width="500px">Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS. Validação: Deve ser maior que 0 (zero).</td>
+            <td width="500px">Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS ou de outro documento fiscal válido. Validação: Deve ser maior que 0 (zero).</td>
             <td width="200px"><b>{% if r2020_nfs.vlrbruto or r2020_nfs.vlrbruto == 0 %}{{ r2020_nfs.vlrbruto|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -731,7 +731,7 @@
 
         <tr {% if r2020_infotpserv.vlrservicos20|validacoes_esocial_efdreinf:"r2020_infotpserv.vlrservicos20" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrServicos20</td>
-            <td width="500px">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal .</td>
+            <td width="500px">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal.</td>
             <td width="200px"><b>{% if r2020_infotpserv.vlrservicos20 or r2020_infotpserv.vlrservicos20 == 0 %}{{ r2020_infotpserv.vlrservicos20|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -750,7 +750,7 @@
 
         <tr {% if r2020_infotpserv.vlrservicos25|validacoes_esocial_efdreinf:"r2020_infotpserv.vlrservicos25" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrServicos25</td>
-            <td width="500px">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal .</td>
+            <td width="500px">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal.</td>
             <td width="200px"><b>{% if r2020_infotpserv.vlrservicos25 or r2020_infotpserv.vlrservicos25 == 0 %}{{ r2020_infotpserv.vlrservicos25|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">

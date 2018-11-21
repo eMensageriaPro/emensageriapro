@@ -148,7 +148,7 @@
 
         <tr {% if r2099_evtfechaevper.tpamb|validacoes_esocial_efdreinf:"r2099_evtfechaevper.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita; Valores Válidos: 1, 2 .</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if r2099_evtfechaevper.tpamb or r2099_evtfechaevper.tpamb == 0 %}{{ r2099_evtfechaevper.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -311,7 +311,7 @@
 
         <tr {% if r2099_iderespinf.email|validacoes_esocial_efdreinf:"r2099_iderespinf.email" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">email</td>
-            <td width="500px">Endereço eletrônico Validação: O e-mail deve possuir o caractere "@" e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no final do endereço informado.</td>
+            <td width="500px">Endereço eletrônico Validação: O e-mail deve possuir o caractere '@' e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere '.' depois do @ e não pode estar no final do endereço informado.</td>
             <td width="200px"><b>{% if r2099_iderespinf.email or r2099_iderespinf.email == 0 %}{{ r2099_iderespinf.email }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -449,7 +449,7 @@
 
         <tr {% if r2099_evtfechaevper.evtpgtos|validacoes_esocial_efdreinf:"r2099_evtfechaevper.evtpgtos" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">evtPgtos</td>
-            <td width="500px">Possui informações de pagamentos diversos no período de apuração? S - Sim; N - Não. Validação: Se for igual a [S], deve existir evento R-2070 válido para o período de apuração. Caso contrário, não deve existir o referido evento. Valores Válidos: S, N.</td>
+            <td width="500px">Possui informações de pagamentos diversos no período de apuração? S - Sim; N - Não. Validação: Só preencher este campo se {perApur} <= [2018-10]. Não preencher nos demais casos. Valores Válidos: S, N.</td>
             <td width="200px"><b>{% if r2099_evtfechaevper.evtpgtos or r2099_evtfechaevper.evtpgtos == 0 %}{{ r2099_evtfechaevper.evtpgtos }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -468,7 +468,7 @@
 
         <tr {% if r2099_evtfechaevper.compsemmovto|validacoes_esocial_efdreinf:"r2099_evtfechaevper.compsemmovto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">compSemMovto</td>
-            <td width="500px">Informar a primeira competência a partir da qual não houve movimento, cuja situação perdura até a competência atual. Validação: Preenchimento obrigatório se todos os campos a seguir mencionados forem preenchidos com [N]: {evtServTm}, {evtServPr}, {evtAssDespRec}, {evtAssDespRep}, {evtComProd}, {evtCPRB}, {evtPgtos}.</td>
+            <td width="500px">Informar a primeira competência a partir da qual não houve movimento, cuja situação perdura até a competência atual. Validação: Preenchimento opcional se {perApur} <= [2018-10]. Não pode ser preenchido nos demais casos.</td>
             <td width="200px"><b>{% if r2099_evtfechaevper.compsemmovto or r2099_evtfechaevper.compsemmovto == 0 %}{{ r2099_evtfechaevper.compsemmovto }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">

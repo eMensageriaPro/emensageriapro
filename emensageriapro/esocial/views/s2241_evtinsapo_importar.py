@@ -93,91 +93,137 @@ def read_s2241_evtinsapo_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtInsApo['Id']
     dados['status'] = 1
 
-    if 'insalPeric' in dir(evtInsApo):
-        for insalPeric in evtInsApo.insalPeric:
-            s2241_insalperic_dados = {}
-            s2241_insalperic_dados['s2241_evtinsapo_id'] = s2241_evtinsapo_id
+    if 'iniInsalPeric' in dir(evtInsApo.insalPeric):
+        for iniInsalPeric in evtInsApo.insalPeric.iniInsalPeric:
+            s2241_iniinsalperic_dados = {}
+            s2241_iniinsalperic_dados['s2241_evtinsapo_id'] = s2241_evtinsapo_id
        
-            insert = create_insert('s2241_insalperic', s2241_insalperic_dados)
+            if 'dtIniCondicao' in dir(iniInsalPeric): s2241_iniinsalperic_dados['dtinicondicao'] = iniInsalPeric.dtIniCondicao.cdata
+            insert = create_insert('s2241_iniinsalperic', s2241_iniinsalperic_dados)
             resp = executar_sql(insert, True)
-            s2241_insalperic_id = resp[0][0]
-            #print s2241_insalperic_id
+            s2241_iniinsalperic_id = resp[0][0]
+            #print s2241_iniinsalperic_id
 
-            if 'iniInsalPeric' in dir(insalPeric):
-                for iniInsalPeric in insalPeric.iniInsalPeric:
-                    s2241_iniinsalperic_dados = {}
-                    s2241_iniinsalperic_dados['s2241_insalperic_id'] = s2241_insalperic_id
+            if 'infoAmb' in dir(iniInsalPeric):
+                for infoAmb in iniInsalPeric.infoAmb:
+                    s2241_iniinsalperic_infoamb_dados = {}
+                    s2241_iniinsalperic_infoamb_dados['s2241_iniinsalperic_id'] = s2241_iniinsalperic_id
                
-                    if 'dtIniCondicao' in dir(iniInsalPeric): s2241_iniinsalperic_dados['dtinicondicao'] = iniInsalPeric.dtIniCondicao.cdata
-                    insert = create_insert('s2241_iniinsalperic', s2241_iniinsalperic_dados)
+                    if 'codAmb' in dir(infoAmb): s2241_iniinsalperic_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                    insert = create_insert('s2241_iniinsalperic_infoamb', s2241_iniinsalperic_infoamb_dados)
                     resp = executar_sql(insert, True)
-                    s2241_iniinsalperic_id = resp[0][0]
-                    #print s2241_iniinsalperic_id
+                    s2241_iniinsalperic_infoamb_id = resp[0][0]
+                    #print s2241_iniinsalperic_infoamb_id
    
-            if 'altInsalPeric' in dir(insalPeric):
-                for altInsalPeric in insalPeric.altInsalPeric:
-                    s2241_altinsalperic_dados = {}
-                    s2241_altinsalperic_dados['s2241_insalperic_id'] = s2241_insalperic_id
-               
-                    if 'dtAltCondicao' in dir(altInsalPeric): s2241_altinsalperic_dados['dtaltcondicao'] = altInsalPeric.dtAltCondicao.cdata
-                    insert = create_insert('s2241_altinsalperic', s2241_altinsalperic_dados)
-                    resp = executar_sql(insert, True)
-                    s2241_altinsalperic_id = resp[0][0]
-                    #print s2241_altinsalperic_id
-   
-            if 'fimInsalPeric' in dir(insalPeric):
-                for fimInsalPeric in insalPeric.fimInsalPeric:
-                    s2241_fiminsalperic_dados = {}
-                    s2241_fiminsalperic_dados['s2241_insalperic_id'] = s2241_insalperic_id
-               
-                    if 'dtFimCondicao' in dir(fimInsalPeric): s2241_fiminsalperic_dados['dtfimcondicao'] = fimInsalPeric.dtFimCondicao.cdata
-                    insert = create_insert('s2241_fiminsalperic', s2241_fiminsalperic_dados)
-                    resp = executar_sql(insert, True)
-                    s2241_fiminsalperic_id = resp[0][0]
-                    #print s2241_fiminsalperic_id
-   
-    if 'aposentEsp' in dir(evtInsApo):
-        for aposentEsp in evtInsApo.aposentEsp:
-            s2241_aposentesp_dados = {}
-            s2241_aposentesp_dados['s2241_evtinsapo_id'] = s2241_evtinsapo_id
+    if 'altInsalPeric' in dir(evtInsApo.insalPeric):
+        for altInsalPeric in evtInsApo.insalPeric.altInsalPeric:
+            s2241_altinsalperic_dados = {}
+            s2241_altinsalperic_dados['s2241_evtinsapo_id'] = s2241_evtinsapo_id
        
-            insert = create_insert('s2241_aposentesp', s2241_aposentesp_dados)
+            if 'dtAltCondicao' in dir(altInsalPeric): s2241_altinsalperic_dados['dtaltcondicao'] = altInsalPeric.dtAltCondicao.cdata
+            insert = create_insert('s2241_altinsalperic', s2241_altinsalperic_dados)
             resp = executar_sql(insert, True)
-            s2241_aposentesp_id = resp[0][0]
-            #print s2241_aposentesp_id
+            s2241_altinsalperic_id = resp[0][0]
+            #print s2241_altinsalperic_id
 
-            if 'iniAposentEsp' in dir(aposentEsp):
-                for iniAposentEsp in aposentEsp.iniAposentEsp:
-                    s2241_iniaposentesp_dados = {}
-                    s2241_iniaposentesp_dados['s2241_aposentesp_id'] = s2241_aposentesp_id
+            if 'infoamb' in dir(altInsalPeric):
+                for infoamb in altInsalPeric.infoamb:
+                    s2241_altinsalperic_infoamb_dados = {}
+                    s2241_altinsalperic_infoamb_dados['s2241_altinsalperic_id'] = s2241_altinsalperic_id
                
-                    if 'dtIniCondicao' in dir(iniAposentEsp): s2241_iniaposentesp_dados['dtinicondicao'] = iniAposentEsp.dtIniCondicao.cdata
-                    insert = create_insert('s2241_iniaposentesp', s2241_iniaposentesp_dados)
+                    if 'codAmb' in dir(infoamb): s2241_altinsalperic_infoamb_dados['codamb'] = infoamb.codAmb.cdata
+                    insert = create_insert('s2241_altinsalperic_infoamb', s2241_altinsalperic_infoamb_dados)
                     resp = executar_sql(insert, True)
-                    s2241_iniaposentesp_id = resp[0][0]
-                    #print s2241_iniaposentesp_id
+                    s2241_altinsalperic_infoamb_id = resp[0][0]
+                    #print s2241_altinsalperic_infoamb_id
    
-            if 'altAposentEsp' in dir(aposentEsp):
-                for altAposentEsp in aposentEsp.altAposentEsp:
-                    s2241_altaposentesp_dados = {}
-                    s2241_altaposentesp_dados['s2241_aposentesp_id'] = s2241_aposentesp_id
+    if 'fimInsalPeric' in dir(evtInsApo.insalPeric):
+        for fimInsalPeric in evtInsApo.insalPeric.fimInsalPeric:
+            s2241_fiminsalperic_dados = {}
+            s2241_fiminsalperic_dados['s2241_evtinsapo_id'] = s2241_evtinsapo_id
+       
+            if 'dtFimCondicao' in dir(fimInsalPeric): s2241_fiminsalperic_dados['dtfimcondicao'] = fimInsalPeric.dtFimCondicao.cdata
+            insert = create_insert('s2241_fiminsalperic', s2241_fiminsalperic_dados)
+            resp = executar_sql(insert, True)
+            s2241_fiminsalperic_id = resp[0][0]
+            #print s2241_fiminsalperic_id
+
+            if 'infoAmb' in dir(fimInsalPeric):
+                for infoAmb in fimInsalPeric.infoAmb:
+                    s2241_fiminsalperic_infoamb_dados = {}
+                    s2241_fiminsalperic_infoamb_dados['s2241_fiminsalperic_id'] = s2241_fiminsalperic_id
                
-                    if 'dtAltCondicao' in dir(altAposentEsp): s2241_altaposentesp_dados['dtaltcondicao'] = altAposentEsp.dtAltCondicao.cdata
-                    insert = create_insert('s2241_altaposentesp', s2241_altaposentesp_dados)
+                    if 'codAmb' in dir(infoAmb): s2241_fiminsalperic_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                    insert = create_insert('s2241_fiminsalperic_infoamb', s2241_fiminsalperic_infoamb_dados)
                     resp = executar_sql(insert, True)
-                    s2241_altaposentesp_id = resp[0][0]
-                    #print s2241_altaposentesp_id
+                    s2241_fiminsalperic_infoamb_id = resp[0][0]
+                    #print s2241_fiminsalperic_infoamb_id
    
-            if 'fimAposentEsp' in dir(aposentEsp):
-                for fimAposentEsp in aposentEsp.fimAposentEsp:
-                    s2241_fimaposentesp_dados = {}
-                    s2241_fimaposentesp_dados['s2241_aposentesp_id'] = s2241_aposentesp_id
+    if 'iniAposentEsp' in dir(evtInsApo.aposentEsp):
+        for iniAposentEsp in evtInsApo.aposentEsp.iniAposentEsp:
+            s2241_iniaposentesp_dados = {}
+            s2241_iniaposentesp_dados['s2241_evtinsapo_id'] = s2241_evtinsapo_id
+       
+            if 'dtIniCondicao' in dir(iniAposentEsp): s2241_iniaposentesp_dados['dtinicondicao'] = iniAposentEsp.dtIniCondicao.cdata
+            insert = create_insert('s2241_iniaposentesp', s2241_iniaposentesp_dados)
+            resp = executar_sql(insert, True)
+            s2241_iniaposentesp_id = resp[0][0]
+            #print s2241_iniaposentesp_id
+
+            if 'infoAmb' in dir(iniAposentEsp):
+                for infoAmb in iniAposentEsp.infoAmb:
+                    s2241_iniaposentesp_infoamb_dados = {}
+                    s2241_iniaposentesp_infoamb_dados['s2241_iniaposentesp_id'] = s2241_iniaposentesp_id
                
-                    if 'dtFimCondicao' in dir(fimAposentEsp): s2241_fimaposentesp_dados['dtfimcondicao'] = fimAposentEsp.dtFimCondicao.cdata
-                    insert = create_insert('s2241_fimaposentesp', s2241_fimaposentesp_dados)
+                    if 'codAmb' in dir(infoAmb): s2241_iniaposentesp_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                    insert = create_insert('s2241_iniaposentesp_infoamb', s2241_iniaposentesp_infoamb_dados)
                     resp = executar_sql(insert, True)
-                    s2241_fimaposentesp_id = resp[0][0]
-                    #print s2241_fimaposentesp_id
+                    s2241_iniaposentesp_infoamb_id = resp[0][0]
+                    #print s2241_iniaposentesp_infoamb_id
+   
+    if 'altAposentEsp' in dir(evtInsApo.aposentEsp):
+        for altAposentEsp in evtInsApo.aposentEsp.altAposentEsp:
+            s2241_altaposentesp_dados = {}
+            s2241_altaposentesp_dados['s2241_evtinsapo_id'] = s2241_evtinsapo_id
+       
+            if 'dtAltCondicao' in dir(altAposentEsp): s2241_altaposentesp_dados['dtaltcondicao'] = altAposentEsp.dtAltCondicao.cdata
+            insert = create_insert('s2241_altaposentesp', s2241_altaposentesp_dados)
+            resp = executar_sql(insert, True)
+            s2241_altaposentesp_id = resp[0][0]
+            #print s2241_altaposentesp_id
+
+            if 'infoamb' in dir(altAposentEsp):
+                for infoamb in altAposentEsp.infoamb:
+                    s2241_altaposentesp_infoamb_dados = {}
+                    s2241_altaposentesp_infoamb_dados['s2241_altaposentesp_id'] = s2241_altaposentesp_id
+               
+                    if 'codAmb' in dir(infoamb): s2241_altaposentesp_infoamb_dados['codamb'] = infoamb.codAmb.cdata
+                    insert = create_insert('s2241_altaposentesp_infoamb', s2241_altaposentesp_infoamb_dados)
+                    resp = executar_sql(insert, True)
+                    s2241_altaposentesp_infoamb_id = resp[0][0]
+                    #print s2241_altaposentesp_infoamb_id
+   
+    if 'fimAposentEsp' in dir(evtInsApo.aposentEsp):
+        for fimAposentEsp in evtInsApo.aposentEsp.fimAposentEsp:
+            s2241_fimaposentesp_dados = {}
+            s2241_fimaposentesp_dados['s2241_evtinsapo_id'] = s2241_evtinsapo_id
+       
+            if 'dtFimCondicao' in dir(fimAposentEsp): s2241_fimaposentesp_dados['dtfimcondicao'] = fimAposentEsp.dtFimCondicao.cdata
+            insert = create_insert('s2241_fimaposentesp', s2241_fimaposentesp_dados)
+            resp = executar_sql(insert, True)
+            s2241_fimaposentesp_id = resp[0][0]
+            #print s2241_fimaposentesp_id
+
+            if 'infoAmb' in dir(fimAposentEsp):
+                for infoAmb in fimAposentEsp.infoAmb:
+                    s2241_fimaposentesp_infoamb_dados = {}
+                    s2241_fimaposentesp_infoamb_dados['s2241_fimaposentesp_id'] = s2241_fimaposentesp_id
+               
+                    if 'codAmb' in dir(infoAmb): s2241_fimaposentesp_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                    insert = create_insert('s2241_fimaposentesp_infoamb', s2241_fimaposentesp_infoamb_dados)
+                    resp = executar_sql(insert, True)
+                    s2241_fimaposentesp_infoamb_id = resp[0][0]
+                    #print s2241_fimaposentesp_infoamb_id
    
     from emensageriapro.esocial.views.s2241_evtinsapo_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(s2241_evtinsapo_id, 'default')

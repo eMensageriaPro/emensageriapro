@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -134,7 +165,6 @@ def salvar(request, hash):
                         messages.error(request, 'Não é possível salvar o evento, pois o mesmo não está com o status "Cadastrado"!')
 
                 else:
-                    dados['arquivo_original'] = 0
 
                     dados['criado_por_id'] = usuario_id
                     dados['criado_em'] = datetime.datetime.now()
@@ -384,109 +414,104 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
-            'show_vlrsenarsusptotal': 0,
-            'show_vlrratsusptotal': 0,
-            'show_vlrcpsusptotal': 0,
-            'show_vlrsenarapur': 1,
-            'show_vlrratapur': 1,
-            'show_vlrcpapur': 1,
-            'show_vlrrecbrutatotal': 1,
-            'show_nrinscestab': 1,
-            'show_tpinscestab': 1,
-            'show_ideestab': 0,
-            'show_infocomprod': 0,
-            'show_nrinsc': 0,
-            'show_tpinsc': 0,
-            'show_idecontri': 0,
-            'show_verproc': 0,
-            'show_procemi': 0,
-            'show_tpamb': 0,
-            'show_perapur': 1,
-            'show_nrrecibo': 0,
-            'show_indretif': 1,
-            'show_ideevento': 0,
-            'show_identidade': 1,
-            'show_evtcomprod': 0,
-            'show_dhprocess': 0,
-            'show_descretorno': 0,
-            'show_cdretorno': 1,
-            'show_status': 1,
             'show_versao': 0,
             'show_transmissor_lote_efdreinf': 0,
-            'show_arquivo': 0,
-            'show_arquivo_original': 0,
-            'show_validacoes': 0,
-            'show_validacao_precedencia': 0,
-            'show_ocorrencias': 0,
+            'show_retornos_evttotal': 0,
             'show_retornos_evttotalcontrib': 0,
-            'show_retornos_evttotal': 0, }
+            'show_ocorrencias': 0,
+            'show_validacao_precedencia': 0,
+            'show_validacoes': 0,
+            'show_arquivo_original': 0,
+            'show_arquivo': 0,
+            'show_status': 1,
+            'show_cdretorno': 1,
+            'show_descretorno': 0,
+            'show_dhprocess': 0,
+            'show_evtcomprod': 0,
+            'show_identidade': 1,
+            'show_ideevento': 0,
+            'show_indretif': 1,
+            'show_nrrecibo': 0,
+            'show_perapur': 1,
+            'show_tpamb': 0,
+            'show_procemi': 0,
+            'show_verproc': 0,
+            'show_idecontri': 0,
+            'show_tpinsc': 0,
+            'show_nrinsc': 0,
+            'show_infocomprod': 0,
+            'show_ideestab': 0,
+            'show_tpinscestab': 1,
+            'show_nrinscestab': 1,
+            'show_vlrrecbrutatotal': 1,
+            'show_vlrcpapur': 1,
+            'show_vlrratapur': 1,
+            'show_vlrsenarapur': 1,
+            'show_vlrcpsusptotal': 0,
+            'show_vlrratsusptotal': 0,
+            'show_vlrsenarsusptotal': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'vlrsenarsusptotal': 'vlrsenarsusptotal',
-                'vlrratsusptotal': 'vlrratsusptotal',
-                'vlrcpsusptotal': 'vlrcpsusptotal',
-                'vlrsenarapur': 'vlrsenarapur',
-                'vlrratapur': 'vlrratapur',
-                'vlrcpapur': 'vlrcpapur',
-                'vlrrecbrutatotal': 'vlrrecbrutatotal',
-                'nrinscestab__icontains': 'nrinscestab__icontains',
-                'tpinscestab': 'tpinscestab',
-                'ideestab': 'ideestab',
-                'infocomprod': 'infocomprod',
-                'nrinsc__icontains': 'nrinsc__icontains',
-                'tpinsc': 'tpinsc',
-                'idecontri': 'idecontri',
-                'verproc__icontains': 'verproc__icontains',
-                'procemi': 'procemi',
-                'tpamb': 'tpamb',
-                'perapur__icontains': 'perapur__icontains',
-                'nrrecibo__icontains': 'nrrecibo__icontains',
-                'indretif': 'indretif',
-                'ideevento': 'ideevento',
-                'identidade__icontains': 'identidade__icontains',
-                'evtcomprod': 'evtcomprod',
-                'status': 'status',
                 'versao__icontains': 'versao__icontains',
-                'transmissor_lote_efdreinf': 'transmissor_lote_efdreinf',}
+                'transmissor_lote_efdreinf': 'transmissor_lote_efdreinf',
+                'status': 'status',
+                'evtcomprod': 'evtcomprod',
+                'identidade__icontains': 'identidade__icontains',
+                'ideevento': 'ideevento',
+                'indretif': 'indretif',
+                'nrrecibo__icontains': 'nrrecibo__icontains',
+                'perapur__icontains': 'perapur__icontains',
+                'tpamb': 'tpamb',
+                'procemi': 'procemi',
+                'verproc__icontains': 'verproc__icontains',
+                'idecontri': 'idecontri',
+                'tpinsc': 'tpinsc',
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'infocomprod': 'infocomprod',
+                'ideestab': 'ideestab',
+                'tpinscestab': 'tpinscestab',
+                'nrinscestab__icontains': 'nrinscestab__icontains',
+                'vlrrecbrutatotal': 'vlrrecbrutatotal',
+                'vlrcpapur': 'vlrcpapur',
+                'vlrratapur': 'vlrratapur',
+                'vlrsenarapur': 'vlrsenarapur',
+                'vlrcpsusptotal': 'vlrcpsusptotal',
+                'vlrratsusptotal': 'vlrratsusptotal',
+                'vlrsenarsusptotal': 'vlrsenarsusptotal',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'vlrsenarsusptotal': 'vlrsenarsusptotal',
-                'vlrratsusptotal': 'vlrratsusptotal',
-                'vlrcpsusptotal': 'vlrcpsusptotal',
-                'vlrsenarapur': 'vlrsenarapur',
-                'vlrratapur': 'vlrratapur',
-                'vlrcpapur': 'vlrcpapur',
-                'vlrrecbrutatotal': 'vlrrecbrutatotal',
-                'nrinscestab__icontains': 'nrinscestab__icontains',
-                'tpinscestab': 'tpinscestab',
-                'ideestab': 'ideestab',
-                'infocomprod': 'infocomprod',
-                'nrinsc__icontains': 'nrinsc__icontains',
-                'tpinsc': 'tpinsc',
-                'idecontri': 'idecontri',
-                'verproc__icontains': 'verproc__icontains',
-                'procemi': 'procemi',
-                'tpamb': 'tpamb',
-                'perapur__icontains': 'perapur__icontains',
-                'nrrecibo__icontains': 'nrrecibo__icontains',
-                'indretif': 'indretif',
-                'ideevento': 'ideevento',
-                'identidade__icontains': 'identidade__icontains',
-                'evtcomprod': 'evtcomprod',
-                'status': 'status',
                 'versao__icontains': 'versao__icontains',
-                'transmissor_lote_efdreinf': 'transmissor_lote_efdreinf',}
+                'transmissor_lote_efdreinf': 'transmissor_lote_efdreinf',
+                'status': 'status',
+                'evtcomprod': 'evtcomprod',
+                'identidade__icontains': 'identidade__icontains',
+                'ideevento': 'ideevento',
+                'indretif': 'indretif',
+                'nrrecibo__icontains': 'nrrecibo__icontains',
+                'perapur__icontains': 'perapur__icontains',
+                'tpamb': 'tpamb',
+                'procemi': 'procemi',
+                'verproc__icontains': 'verproc__icontains',
+                'idecontri': 'idecontri',
+                'tpinsc': 'tpinsc',
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'infocomprod': 'infocomprod',
+                'ideestab': 'ideestab',
+                'tpinscestab': 'tpinscestab',
+                'nrinscestab__icontains': 'nrinscestab__icontains',
+                'vlrrecbrutatotal': 'vlrrecbrutatotal',
+                'vlrcpapur': 'vlrcpapur',
+                'vlrratapur': 'vlrratapur',
+                'vlrsenarapur': 'vlrsenarapur',
+                'vlrcpsusptotal': 'vlrcpsusptotal',
+                'vlrratsusptotal': 'vlrratsusptotal',
+                'vlrsenarsusptotal': 'vlrsenarsusptotal',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

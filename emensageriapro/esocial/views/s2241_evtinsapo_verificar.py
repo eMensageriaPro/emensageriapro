@@ -107,23 +107,21 @@ def verificar(request, hash):
         s2241_evtinsapo_lista = s2241evtInsApo.objects.using( db_slug ).filter(id=s2241_evtinsapo_id, excluido = False).all()
    
 
-        s2241_insalperic_lista = s2241insalPeric.objects.using(db_slug).filter(s2241_evtinsapo_id__in = listar_ids(s2241_evtinsapo_lista) ).filter(excluido=False).all()
-        s2241_iniinsalperic_lista = s2241iniInsalPeric.objects.using(db_slug).filter(s2241_insalperic_id__in = listar_ids(s2241_insalperic_lista) ).filter(excluido=False).all()
+        s2241_iniinsalperic_lista = s2241iniInsalPeric.objects.using(db_slug).filter(s2241_evtinsapo_id__in = listar_ids(s2241_evtinsapo_lista) ).filter(excluido=False).all()
         s2241_iniinsalperic_infoamb_lista = s2241iniInsalPericinfoAmb.objects.using(db_slug).filter(s2241_iniinsalperic_id__in = listar_ids(s2241_iniinsalperic_lista) ).filter(excluido=False).all()
         s2241_iniinsalperic_fatrisco_lista = s2241iniInsalPericfatRisco.objects.using(db_slug).filter(s2241_iniinsalperic_infoamb_id__in = listar_ids(s2241_iniinsalperic_infoamb_lista) ).filter(excluido=False).all()
-        s2241_altinsalperic_lista = s2241altInsalPeric.objects.using(db_slug).filter(s2241_insalperic_id__in = listar_ids(s2241_insalperic_lista) ).filter(excluido=False).all()
+        s2241_altinsalperic_lista = s2241altInsalPeric.objects.using(db_slug).filter(s2241_evtinsapo_id__in = listar_ids(s2241_evtinsapo_lista) ).filter(excluido=False).all()
         s2241_altinsalperic_infoamb_lista = s2241altInsalPericinfoamb.objects.using(db_slug).filter(s2241_altinsalperic_id__in = listar_ids(s2241_altinsalperic_lista) ).filter(excluido=False).all()
         s2241_altinsalperic_fatrisco_lista = s2241altInsalPericfatRisco.objects.using(db_slug).filter(s2241_altinsalperic_infoamb_id__in = listar_ids(s2241_altinsalperic_infoamb_lista) ).filter(excluido=False).all()
-        s2241_fiminsalperic_lista = s2241fimInsalPeric.objects.using(db_slug).filter(s2241_insalperic_id__in = listar_ids(s2241_insalperic_lista) ).filter(excluido=False).all()
+        s2241_fiminsalperic_lista = s2241fimInsalPeric.objects.using(db_slug).filter(s2241_evtinsapo_id__in = listar_ids(s2241_evtinsapo_lista) ).filter(excluido=False).all()
         s2241_fiminsalperic_infoamb_lista = s2241fimInsalPericinfoAmb.objects.using(db_slug).filter(s2241_fiminsalperic_id__in = listar_ids(s2241_fiminsalperic_lista) ).filter(excluido=False).all()
-        s2241_aposentesp_lista = s2241aposentEsp.objects.using(db_slug).filter(s2241_evtinsapo_id__in = listar_ids(s2241_evtinsapo_lista) ).filter(excluido=False).all()
-        s2241_iniaposentesp_lista = s2241iniAposentEsp.objects.using(db_slug).filter(s2241_aposentesp_id__in = listar_ids(s2241_aposentesp_lista) ).filter(excluido=False).all()
+        s2241_iniaposentesp_lista = s2241iniAposentEsp.objects.using(db_slug).filter(s2241_evtinsapo_id__in = listar_ids(s2241_evtinsapo_lista) ).filter(excluido=False).all()
         s2241_iniaposentesp_infoamb_lista = s2241iniAposentEspinfoAmb.objects.using(db_slug).filter(s2241_iniaposentesp_id__in = listar_ids(s2241_iniaposentesp_lista) ).filter(excluido=False).all()
         s2241_iniaposentesp_fatrisco_lista = s2241iniAposentEspfatRisco.objects.using(db_slug).filter(s2241_iniaposentesp_infoamb_id__in = listar_ids(s2241_iniaposentesp_infoamb_lista) ).filter(excluido=False).all()
-        s2241_altaposentesp_lista = s2241altAposentEsp.objects.using(db_slug).filter(s2241_aposentesp_id__in = listar_ids(s2241_aposentesp_lista) ).filter(excluido=False).all()
+        s2241_altaposentesp_lista = s2241altAposentEsp.objects.using(db_slug).filter(s2241_evtinsapo_id__in = listar_ids(s2241_evtinsapo_lista) ).filter(excluido=False).all()
         s2241_altaposentesp_infoamb_lista = s2241altAposentEspinfoamb.objects.using(db_slug).filter(s2241_altaposentesp_id__in = listar_ids(s2241_altaposentesp_lista) ).filter(excluido=False).all()
         s2241_altaposentesp_fatrisco_lista = s2241altAposentEspfatRisco.objects.using(db_slug).filter(s2241_altaposentesp_infoamb_id__in = listar_ids(s2241_altaposentesp_infoamb_lista) ).filter(excluido=False).all()
-        s2241_fimaposentesp_lista = s2241fimAposentEsp.objects.using(db_slug).filter(s2241_aposentesp_id__in = listar_ids(s2241_aposentesp_lista) ).filter(excluido=False).all()
+        s2241_fimaposentesp_lista = s2241fimAposentEsp.objects.using(db_slug).filter(s2241_evtinsapo_id__in = listar_ids(s2241_evtinsapo_lista) ).filter(excluido=False).all()
         s2241_fimaposentesp_infoamb_lista = s2241fimAposentEspinfoAmb.objects.using(db_slug).filter(s2241_fimaposentesp_id__in = listar_ids(s2241_fimaposentesp_lista) ).filter(excluido=False).all()
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2241_evtinsapo'
@@ -143,7 +141,6 @@ def verificar(request, hash):
             'for_print': for_print,
             'hash': hash,
 
-            's2241_insalperic_lista': s2241_insalperic_lista,
             's2241_iniinsalperic_lista': s2241_iniinsalperic_lista,
             's2241_iniinsalperic_infoamb_lista': s2241_iniinsalperic_infoamb_lista,
             's2241_iniinsalperic_fatrisco_lista': s2241_iniinsalperic_fatrisco_lista,
@@ -152,7 +149,6 @@ def verificar(request, hash):
             's2241_altinsalperic_fatrisco_lista': s2241_altinsalperic_fatrisco_lista,
             's2241_fiminsalperic_lista': s2241_fiminsalperic_lista,
             's2241_fiminsalperic_infoamb_lista': s2241_fiminsalperic_infoamb_lista,
-            's2241_aposentesp_lista': s2241_aposentesp_lista,
             's2241_iniaposentesp_lista': s2241_iniaposentesp_lista,
             's2241_iniaposentesp_infoamb_lista': s2241_iniaposentesp_infoamb_lista,
             's2241_iniaposentesp_fatrisco_lista': s2241_iniaposentesp_fatrisco_lista,
@@ -231,23 +227,21 @@ def gerar_xml_s2241(s2241_evtinsapo_id, db_slug, versao=None):
         s2241_evtinsapo_lista = s2241evtInsApo.objects.using( db_slug ).filter(id=s2241_evtinsapo_id, excluido = False).all()
    
 
-        s2241_insalperic_lista = s2241insalPeric.objects.using(db_slug).filter(s2241_evtinsapo_id__in = listar_ids(s2241_evtinsapo_lista) ).filter(excluido=False).all()
-        s2241_iniinsalperic_lista = s2241iniInsalPeric.objects.using(db_slug).filter(s2241_insalperic_id__in = listar_ids(s2241_insalperic_lista) ).filter(excluido=False).all()
+        s2241_iniinsalperic_lista = s2241iniInsalPeric.objects.using(db_slug).filter(s2241_evtinsapo_id__in = listar_ids(s2241_evtinsapo_lista) ).filter(excluido=False).all()
         s2241_iniinsalperic_infoamb_lista = s2241iniInsalPericinfoAmb.objects.using(db_slug).filter(s2241_iniinsalperic_id__in = listar_ids(s2241_iniinsalperic_lista) ).filter(excluido=False).all()
         s2241_iniinsalperic_fatrisco_lista = s2241iniInsalPericfatRisco.objects.using(db_slug).filter(s2241_iniinsalperic_infoamb_id__in = listar_ids(s2241_iniinsalperic_infoamb_lista) ).filter(excluido=False).all()
-        s2241_altinsalperic_lista = s2241altInsalPeric.objects.using(db_slug).filter(s2241_insalperic_id__in = listar_ids(s2241_insalperic_lista) ).filter(excluido=False).all()
+        s2241_altinsalperic_lista = s2241altInsalPeric.objects.using(db_slug).filter(s2241_evtinsapo_id__in = listar_ids(s2241_evtinsapo_lista) ).filter(excluido=False).all()
         s2241_altinsalperic_infoamb_lista = s2241altInsalPericinfoamb.objects.using(db_slug).filter(s2241_altinsalperic_id__in = listar_ids(s2241_altinsalperic_lista) ).filter(excluido=False).all()
         s2241_altinsalperic_fatrisco_lista = s2241altInsalPericfatRisco.objects.using(db_slug).filter(s2241_altinsalperic_infoamb_id__in = listar_ids(s2241_altinsalperic_infoamb_lista) ).filter(excluido=False).all()
-        s2241_fiminsalperic_lista = s2241fimInsalPeric.objects.using(db_slug).filter(s2241_insalperic_id__in = listar_ids(s2241_insalperic_lista) ).filter(excluido=False).all()
+        s2241_fiminsalperic_lista = s2241fimInsalPeric.objects.using(db_slug).filter(s2241_evtinsapo_id__in = listar_ids(s2241_evtinsapo_lista) ).filter(excluido=False).all()
         s2241_fiminsalperic_infoamb_lista = s2241fimInsalPericinfoAmb.objects.using(db_slug).filter(s2241_fiminsalperic_id__in = listar_ids(s2241_fiminsalperic_lista) ).filter(excluido=False).all()
-        s2241_aposentesp_lista = s2241aposentEsp.objects.using(db_slug).filter(s2241_evtinsapo_id__in = listar_ids(s2241_evtinsapo_lista) ).filter(excluido=False).all()
-        s2241_iniaposentesp_lista = s2241iniAposentEsp.objects.using(db_slug).filter(s2241_aposentesp_id__in = listar_ids(s2241_aposentesp_lista) ).filter(excluido=False).all()
+        s2241_iniaposentesp_lista = s2241iniAposentEsp.objects.using(db_slug).filter(s2241_evtinsapo_id__in = listar_ids(s2241_evtinsapo_lista) ).filter(excluido=False).all()
         s2241_iniaposentesp_infoamb_lista = s2241iniAposentEspinfoAmb.objects.using(db_slug).filter(s2241_iniaposentesp_id__in = listar_ids(s2241_iniaposentesp_lista) ).filter(excluido=False).all()
         s2241_iniaposentesp_fatrisco_lista = s2241iniAposentEspfatRisco.objects.using(db_slug).filter(s2241_iniaposentesp_infoamb_id__in = listar_ids(s2241_iniaposentesp_infoamb_lista) ).filter(excluido=False).all()
-        s2241_altaposentesp_lista = s2241altAposentEsp.objects.using(db_slug).filter(s2241_aposentesp_id__in = listar_ids(s2241_aposentesp_lista) ).filter(excluido=False).all()
+        s2241_altaposentesp_lista = s2241altAposentEsp.objects.using(db_slug).filter(s2241_evtinsapo_id__in = listar_ids(s2241_evtinsapo_lista) ).filter(excluido=False).all()
         s2241_altaposentesp_infoamb_lista = s2241altAposentEspinfoamb.objects.using(db_slug).filter(s2241_altaposentesp_id__in = listar_ids(s2241_altaposentesp_lista) ).filter(excluido=False).all()
         s2241_altaposentesp_fatrisco_lista = s2241altAposentEspfatRisco.objects.using(db_slug).filter(s2241_altaposentesp_infoamb_id__in = listar_ids(s2241_altaposentesp_infoamb_lista) ).filter(excluido=False).all()
-        s2241_fimaposentesp_lista = s2241fimAposentEsp.objects.using(db_slug).filter(s2241_aposentesp_id__in = listar_ids(s2241_aposentesp_lista) ).filter(excluido=False).all()
+        s2241_fimaposentesp_lista = s2241fimAposentEsp.objects.using(db_slug).filter(s2241_evtinsapo_id__in = listar_ids(s2241_evtinsapo_lista) ).filter(excluido=False).all()
         s2241_fimaposentesp_infoamb_lista = s2241fimAposentEspinfoAmb.objects.using(db_slug).filter(s2241_fimaposentesp_id__in = listar_ids(s2241_fimaposentesp_lista) ).filter(excluido=False).all()
    
         context = {
@@ -258,7 +252,6 @@ def gerar_xml_s2241(s2241_evtinsapo_id, db_slug, versao=None):
             's2241_evtinsapo': s2241_evtinsapo,
 
 
-            's2241_insalperic_lista': s2241_insalperic_lista,
             's2241_iniinsalperic_lista': s2241_iniinsalperic_lista,
             's2241_iniinsalperic_infoamb_lista': s2241_iniinsalperic_infoamb_lista,
             's2241_iniinsalperic_fatrisco_lista': s2241_iniinsalperic_fatrisco_lista,
@@ -267,7 +260,6 @@ def gerar_xml_s2241(s2241_evtinsapo_id, db_slug, versao=None):
             's2241_altinsalperic_fatrisco_lista': s2241_altinsalperic_fatrisco_lista,
             's2241_fiminsalperic_lista': s2241_fiminsalperic_lista,
             's2241_fiminsalperic_infoamb_lista': s2241_fiminsalperic_infoamb_lista,
-            's2241_aposentesp_lista': s2241_aposentesp_lista,
             's2241_iniaposentesp_lista': s2241_iniaposentesp_lista,
             's2241_iniaposentesp_infoamb_lista': s2241_iniaposentesp_infoamb_lista,
             's2241_iniaposentesp_fatrisco_lista': s2241_iniaposentesp_fatrisco_lista,

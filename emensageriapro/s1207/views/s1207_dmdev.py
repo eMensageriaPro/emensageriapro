@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -169,22 +200,22 @@ def salvar(request, hash):
    
         s1207_itens_form = None
         s1207_itens_lista = None
-        s1207_infoperapur_form = None
-        s1207_infoperapur_lista = None
-        s1207_infoperant_form = None
-        s1207_infoperant_lista = None
+        s1207_infoperapur_ideestab_form = None
+        s1207_infoperapur_ideestab_lista = None
+        s1207_infoperant_ideadc_form = None
+        s1207_infoperant_ideadc_lista = None
         if s1207_dmdev_id:
             s1207_dmdev = get_object_or_404(s1207dmDev.objects.using( db_slug ), excluido = False, id = s1207_dmdev_id)
        
             s1207_itens_form = form_s1207_itens(initial={ 's1207_dmdev': s1207_dmdev }, slug=db_slug)
             s1207_itens_form.fields['s1207_dmdev'].widget.attrs['readonly'] = True
             s1207_itens_lista = s1207itens.objects.using( db_slug ).filter(excluido = False, s1207_dmdev_id=s1207_dmdev.id).all()
-            s1207_infoperapur_form = form_s1207_infoperapur(initial={ 's1207_dmdev': s1207_dmdev }, slug=db_slug)
-            s1207_infoperapur_form.fields['s1207_dmdev'].widget.attrs['readonly'] = True
-            s1207_infoperapur_lista = s1207infoPerApur.objects.using( db_slug ).filter(excluido = False, s1207_dmdev_id=s1207_dmdev.id).all()
-            s1207_infoperant_form = form_s1207_infoperant(initial={ 's1207_dmdev': s1207_dmdev }, slug=db_slug)
-            s1207_infoperant_form.fields['s1207_dmdev'].widget.attrs['readonly'] = True
-            s1207_infoperant_lista = s1207infoPerAnt.objects.using( db_slug ).filter(excluido = False, s1207_dmdev_id=s1207_dmdev.id).all()
+            s1207_infoperapur_ideestab_form = form_s1207_infoperapur_ideestab(initial={ 's1207_dmdev': s1207_dmdev }, slug=db_slug)
+            s1207_infoperapur_ideestab_form.fields['s1207_dmdev'].widget.attrs['readonly'] = True
+            s1207_infoperapur_ideestab_lista = s1207infoPerApurideEstab.objects.using( db_slug ).filter(excluido = False, s1207_dmdev_id=s1207_dmdev.id).all()
+            s1207_infoperant_ideadc_form = form_s1207_infoperant_ideadc(initial={ 's1207_dmdev': s1207_dmdev }, slug=db_slug)
+            s1207_infoperant_ideadc_form.fields['s1207_dmdev'].widget.attrs['readonly'] = True
+            s1207_infoperant_ideadc_lista = s1207infoPerAntideADC.objects.using( db_slug ).filter(excluido = False, s1207_dmdev_id=s1207_dmdev.id).all()
         else:
             s1207_dmdev = None
         #s1207_dmdev_salvar_custom_variaveis#
@@ -210,10 +241,10 @@ def salvar(request, hash):
        
             's1207_itens_form': s1207_itens_form,
             's1207_itens_lista': s1207_itens_lista,
-            's1207_infoperapur_form': s1207_infoperapur_form,
-            's1207_infoperapur_lista': s1207_infoperapur_lista,
-            's1207_infoperant_form': s1207_infoperant_form,
-            's1207_infoperant_lista': s1207_infoperant_lista,
+            's1207_infoperapur_ideestab_form': s1207_infoperapur_ideestab_form,
+            's1207_infoperapur_ideestab_lista': s1207_infoperapur_ideestab_lista,
+            's1207_infoperant_ideadc_form': s1207_infoperant_ideadc_form,
+            's1207_infoperant_ideadc_lista': s1207_infoperant_ideadc_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
@@ -329,33 +360,28 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
-            'show_idedmdev': 1,
-            'show_nrbenefic': 1,
+            'show_s1207_evtbenprrp': 1,
             'show_tpbenef': 1,
-            'show_s1207_evtbenprrp': 1, }
+            'show_nrbenefic': 1,
+            'show_idedmdev': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'idedmdev__icontains': 'idedmdev__icontains',
-                'nrbenefic__icontains': 'nrbenefic__icontains',
+                's1207_evtbenprrp': 's1207_evtbenprrp',
                 'tpbenef': 'tpbenef',
-                's1207_evtbenprrp': 's1207_evtbenprrp',}
+                'nrbenefic__icontains': 'nrbenefic__icontains',
+                'idedmdev__icontains': 'idedmdev__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'idedmdev__icontains': 'idedmdev__icontains',
-                'nrbenefic__icontains': 'nrbenefic__icontains',
+                's1207_evtbenprrp': 's1207_evtbenprrp',
                 'tpbenef': 'tpbenef',
-                's1207_evtbenprrp': 's1207_evtbenprrp',}
+                'nrbenefic__icontains': 'nrbenefic__icontains',
+                'idedmdev__icontains': 'idedmdev__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

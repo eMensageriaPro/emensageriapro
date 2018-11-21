@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -33,15 +64,18 @@ class Auditoria(models.Model):
     situacao_anterior = models.TextField()
     situacao_posterior = models.TextField()
     tipo = models.IntegerField(choices=AUDITORIA_TIPO)
+    operador = models.ForeignKey('Usuarios',
+        related_name='%(class)s_operador')
+    data_hora = models.DateTimeField()
     criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('Usuarios',
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
     modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('Usuarios',
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.tabela) + ' - ' + unicode(self.identidade) + ' - ' + unicode(self.tipo)
+        return unicode(self.tabela) + ' - ' + unicode(self.identidade) + ' - ' + unicode(self.tipo) + ' - ' + unicode(self.data_hora)
     #auditoria_custom#
     #auditoria_custom#
     class Meta:
@@ -64,10 +98,10 @@ class ConfigModulos(models.Model):
         related_name='%(class)s_modulo_pai', blank=True, null=True)
     ordem = models.IntegerField()
     criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('Usuarios',
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
     modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('Usuarios',
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
@@ -96,10 +130,10 @@ class ConfigPaginas(models.Model):
     tipo = models.IntegerField(choices=TIPOS_CONFIG_PAGINAS)
     ordem = models.IntegerField()
     criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('Usuarios',
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
     modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('Usuarios',
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
@@ -125,10 +159,10 @@ class ConfigPerfis(models.Model):
     modulos_permitidos = models.TextField(blank=True, null=True)
     paginas_permitidas = models.TextField(blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('Usuarios',
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
     modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('Usuarios',
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
@@ -159,10 +193,10 @@ class ConfigPermissoes(models.Model):
     permite_visualizar = models.IntegerField(choices=SIM_NAO)
     permite_apagar = models.IntegerField(choices=SIM_NAO)
     criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('Usuarios',
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
     modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('Usuarios',
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
@@ -199,10 +233,10 @@ class Usuarios(User):
     config_perfis = models.ForeignKey('ConfigPerfis',
         related_name='%(class)s_config_perfis')
     criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('Usuarios',
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
     modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('Usuarios',
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):

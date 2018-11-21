@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -60,10 +91,6 @@ CHOICES_R3010_TPINGRESSO = (
     (4, u'4 - Camarote'),
 )
 
-CHOICES_R3010_TPINSCESTAB = (
-    (1, u'1 - CNPJ'),
-)
-
 CHOICES_R3010_TPPROC = (
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial'),
@@ -78,9 +105,9 @@ CHOICES_R3010_TPRECEITA = (
 )
 
 class r3010boletim(models.Model):
-    r3010_ideestab = models.ForeignKey('r3010ideEstab',
-        related_name='%(class)s_r3010_ideestab')
-    def evento(self): return self.r3010_ideestab.evento()
+    r3010_evtespdesportivo = models.ForeignKey('efdreinf.r3010evtEspDesportivo',
+        related_name='%(class)s_r3010_evtespdesportivo')
+    def evento(self): return self.r3010_evtespdesportivo.evento()
     nrboletim = models.CharField(max_length=4)
     tpcompeticao = models.IntegerField(choices=CHOICES_R3010_TPCOMPETICAO)
     categevento = models.IntegerField(choices=CHOICES_R3010_CATEGEVENTO)
@@ -102,13 +129,13 @@ class r3010boletim(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r3010_ideestab) + ' - ' + unicode(self.nrboletim) + ' - ' + unicode(self.tpcompeticao) + ' - ' + unicode(self.categevento) + ' - ' + unicode(self.moddesportiva) + ' - ' + unicode(self.nomecompeticao) + ' - ' + unicode(self.cnpjmandante) + ' - ' + unicode(self.cnpjvisitante) + ' - ' + unicode(self.nomevisitante) + ' - ' + unicode(self.pracadesportiva) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.qtdepagantes) + ' - ' + unicode(self.qtdenaopagantes)
+        return unicode(self.r3010_evtespdesportivo) + ' - ' + unicode(self.nrboletim) + ' - ' + unicode(self.tpcompeticao) + ' - ' + unicode(self.categevento) + ' - ' + unicode(self.moddesportiva) + ' - ' + unicode(self.nomecompeticao) + ' - ' + unicode(self.cnpjmandante) + ' - ' + unicode(self.pracadesportiva) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.qtdepagantes) + ' - ' + unicode(self.qtdenaopagantes)
     #r3010_boletim_custom#
     #r3010_boletim_custom#
     class Meta:
         db_table = r'r3010_boletim'
         managed = True
-        ordering = ['r3010_ideestab', 'nrboletim', 'tpcompeticao', 'categevento', 'moddesportiva', 'nomecompeticao', 'cnpjmandante', 'cnpjvisitante', 'nomevisitante', 'pracadesportiva', 'codmunic', 'uf', 'qtdepagantes', 'qtdenaopagantes']
+        ordering = ['r3010_evtespdesportivo', 'nrboletim', 'tpcompeticao', 'categevento', 'moddesportiva', 'nomecompeticao', 'cnpjmandante', 'pracadesportiva', 'uf', 'qtdepagantes', 'qtdenaopagantes']
 
 
 
@@ -118,45 +145,10 @@ class r3010boletimSerializer(ModelSerializer):
         fields = '__all__'
             
 
-class r3010ideEstab(models.Model):
+class r3010infoProc(models.Model):
     r3010_evtespdesportivo = models.ForeignKey('efdreinf.r3010evtEspDesportivo',
         related_name='%(class)s_r3010_evtespdesportivo')
     def evento(self): return self.r3010_evtespdesportivo.evento()
-    tpinscestab = models.IntegerField(choices=CHOICES_R3010_TPINSCESTAB)
-    nrinscestab = models.CharField(max_length=14)
-    vlrreceitatotal = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vlrcp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vlrcpsusptotal = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    vlrreceitaclubes = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vlrretparc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.r3010_evtespdesportivo) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab) + ' - ' + unicode(self.vlrreceitatotal) + ' - ' + unicode(self.vlrcp) + ' - ' + unicode(self.vlrcpsusptotal) + ' - ' + unicode(self.vlrreceitaclubes) + ' - ' + unicode(self.vlrretparc)
-    #r3010_ideestab_custom#
-    #r3010_ideestab_custom#
-    class Meta:
-        db_table = r'r3010_ideestab'
-        managed = True
-        ordering = ['r3010_evtespdesportivo', 'tpinscestab', 'nrinscestab', 'vlrreceitatotal', 'vlrcp', 'vlrcpsusptotal', 'vlrreceitaclubes', 'vlrretparc']
-
-
-
-class r3010ideEstabSerializer(ModelSerializer):
-    class Meta:
-        model = r3010ideEstab
-        fields = '__all__'
-            
-
-class r3010infoProc(models.Model):
-    r3010_ideestab = models.ForeignKey('r3010ideEstab',
-        related_name='%(class)s_r3010_ideestab')
-    def evento(self): return self.r3010_ideestab.evento()
     tpproc = models.IntegerField(choices=CHOICES_R3010_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField(blank=True, null=True)
@@ -169,13 +161,13 @@ class r3010infoProc(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r3010_ideestab) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.codsusp) + ' - ' + unicode(self.vlrcpsusp)
+        return unicode(self.r3010_evtespdesportivo) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.vlrcpsusp)
     #r3010_infoproc_custom#
     #r3010_infoproc_custom#
     class Meta:
         db_table = r'r3010_infoproc'
         managed = True
-        ordering = ['r3010_ideestab', 'tpproc', 'nrproc', 'codsusp', 'vlrcpsusp']
+        ordering = ['r3010_evtespdesportivo', 'tpproc', 'nrproc', 'vlrcpsusp']
 
 
 

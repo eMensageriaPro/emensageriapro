@@ -107,9 +107,8 @@ def verificar(request, hash):
         s2405_evtcdbenefalt_lista = s2405evtCdBenefAlt.objects.using( db_slug ).filter(id=s2405_evtcdbenefalt_id, excluido = False).all()
    
 
-        s2405_endereco_lista = s2405endereco.objects.using(db_slug).filter(s2405_evtcdbenefalt_id__in = listar_ids(s2405_evtcdbenefalt_lista) ).filter(excluido=False).all()
-        s2405_brasil_lista = s2405brasil.objects.using(db_slug).filter(s2405_endereco_id__in = listar_ids(s2405_endereco_lista) ).filter(excluido=False).all()
-        s2405_exterior_lista = s2405exterior.objects.using(db_slug).filter(s2405_endereco_id__in = listar_ids(s2405_endereco_lista) ).filter(excluido=False).all()
+        s2405_brasil_lista = s2405brasil.objects.using(db_slug).filter(s2405_evtcdbenefalt_id__in = listar_ids(s2405_evtcdbenefalt_lista) ).filter(excluido=False).all()
+        s2405_exterior_lista = s2405exterior.objects.using(db_slug).filter(s2405_evtcdbenefalt_id__in = listar_ids(s2405_evtcdbenefalt_lista) ).filter(excluido=False).all()
         s2405_dependente_lista = s2405dependente.objects.using(db_slug).filter(s2405_evtcdbenefalt_id__in = listar_ids(s2405_evtcdbenefalt_lista) ).filter(excluido=False).all()
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2405_evtcdbenefalt'
@@ -129,7 +128,6 @@ def verificar(request, hash):
             'for_print': for_print,
             'hash': hash,
 
-            's2405_endereco_lista': s2405_endereco_lista,
             's2405_brasil_lista': s2405_brasil_lista,
             's2405_exterior_lista': s2405_exterior_lista,
             's2405_dependente_lista': s2405_dependente_lista,
@@ -203,9 +201,8 @@ def gerar_xml_s2405(s2405_evtcdbenefalt_id, db_slug, versao=None):
         s2405_evtcdbenefalt_lista = s2405evtCdBenefAlt.objects.using( db_slug ).filter(id=s2405_evtcdbenefalt_id, excluido = False).all()
    
 
-        s2405_endereco_lista = s2405endereco.objects.using(db_slug).filter(s2405_evtcdbenefalt_id__in = listar_ids(s2405_evtcdbenefalt_lista) ).filter(excluido=False).all()
-        s2405_brasil_lista = s2405brasil.objects.using(db_slug).filter(s2405_endereco_id__in = listar_ids(s2405_endereco_lista) ).filter(excluido=False).all()
-        s2405_exterior_lista = s2405exterior.objects.using(db_slug).filter(s2405_endereco_id__in = listar_ids(s2405_endereco_lista) ).filter(excluido=False).all()
+        s2405_brasil_lista = s2405brasil.objects.using(db_slug).filter(s2405_evtcdbenefalt_id__in = listar_ids(s2405_evtcdbenefalt_lista) ).filter(excluido=False).all()
+        s2405_exterior_lista = s2405exterior.objects.using(db_slug).filter(s2405_evtcdbenefalt_id__in = listar_ids(s2405_evtcdbenefalt_lista) ).filter(excluido=False).all()
         s2405_dependente_lista = s2405dependente.objects.using(db_slug).filter(s2405_evtcdbenefalt_id__in = listar_ids(s2405_evtcdbenefalt_lista) ).filter(excluido=False).all()
    
         context = {
@@ -216,7 +213,6 @@ def gerar_xml_s2405(s2405_evtcdbenefalt_id, db_slug, versao=None):
             's2405_evtcdbenefalt': s2405_evtcdbenefalt,
 
 
-            's2405_endereco_lista': s2405_endereco_lista,
             's2405_brasil_lista': s2405_brasil_lista,
             's2405_exterior_lista': s2405_exterior_lista,
             's2405_dependente_lista': s2405_dependente_lista,

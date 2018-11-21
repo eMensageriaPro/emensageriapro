@@ -1,5 +1,5 @@
 {% load templatetags %}"{{ conta.nome_empresa }}"
 "Municipios"
-{% if show_fields.show_codigo or 1 %}"Código IBGE";{% endif %}{% if show_fields.show_titulo or 1 %}"Titulo";{% endif %}{% if show_fields.show_criado_em or 0 %}"Criado em";{% endif %}{% if show_fields.show_criado_por or not usuarios_id and 0 %}"Criado por";{% endif %}{% if show_fields.show_modificado_em or 0 %}"Modificado em";{% endif %}{% if show_fields.show_modificado_por or not usuarios_id and 0 %}"Modificado por";{% endif %}{% if show_fields.show_excluido or 0 %}"Excluido";{% endif %}
-{% for a in municipios_lista %}{% if show_fields.show_codigo or 1 %}"{{ a.codigo }}";{% endif %}{% if show_fields.show_titulo or 1 %}"{{ a.titulo }}";{% endif %}{% if show_fields.show_criado_em or 0 %}"{{ a.criado_em }}";{% endif %}{% if show_fields.show_criado_por or  not usuarios_id and 0 %}"{{ a.criado_por }}";{% endif %}{% if show_fields.show_modificado_em or 0 %}"{{ a.modificado_em }}";{% endif %}{% if show_fields.show_modificado_por or  not usuarios_id and 0 %}"{{ a.modificado_por }}";{% endif %}{% if show_fields.show_excluido or 0 %}"{{ a.excluido }}";{% endif %}
+{% if show_fields.show_codigo or 1 %}"Código IBGE";{% endif %}{% if show_fields.show_titulo or 1 %}"Titulo";{% endif %}
+{% for a in municipios_lista %}{% if show_fields.show_codigo or 1 %}"{{ a.codigo }}";{% endif %}{% if show_fields.show_titulo or 1 %}"{{ a.titulo }}";{% endif %}
 {% endfor %}

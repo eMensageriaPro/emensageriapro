@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -66,6 +97,18 @@ PERIODOS = (
     ('2018-10', u'Outubro/2018'),
     ('2018-11', u'Novembro/2018'),
     ('2018-12', u'Dezembro/2018'),
+    ('2019-01', u'Janeiro/2019'),
+    ('2019-02', u'Fevereiro/2019'),
+    ('2019-03', u'Março/2019'),
+    ('2019-04', u'Abril/2019'),
+    ('2019-05', u'Maio/2019'),
+    ('2019-06', u'Junho/2019'),
+    ('2019-07', u'Julho/2019'),
+    ('2019-08', u'Agosto/2019'),
+    ('2019-09', u'Setembro/2019'),
+    ('2019-10', u'Outubro/2019'),
+    ('2019-11', u'Novembro/2019'),
+    ('2019-12', u'Dezembro/2019'),
 )
 
 CHOICES_R1070_ALTERACAO_INDAUTORIA = (
@@ -152,13 +195,13 @@ class r1070alteracao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid) + ' - ' + unicode(self.indautoria)
+        return unicode(self.r1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.indautoria)
     #r1070_alteracao_custom#
     #r1070_alteracao_custom#
     class Meta:
         db_table = r'r1070_alteracao'
         managed = True
-        ordering = ['r1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid', 'fimvalid', 'indautoria']
+        ordering = ['r1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid', 'indautoria']
 
 
 
@@ -174,7 +217,7 @@ class r1070alteracaodadosProcJud(models.Model):
     def evento(self): return self.r1070_alteracao.evento()
     ufvara = models.CharField(choices=ESTADOS, max_length=2)
     codmunic = models.TextField(max_length=7)
-    idvara = models.CharField(max_length=2)
+    idvara = models.CharField(max_length=4)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -215,13 +258,13 @@ class r1070alteracaoinfoSusp(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r1070_alteracao) + ' - ' + unicode(self.codsusp) + ' - ' + unicode(self.indsusp) + ' - ' + unicode(self.dtdecisao) + ' - ' + unicode(self.inddeposito)
+        return unicode(self.r1070_alteracao) + ' - ' + unicode(self.indsusp) + ' - ' + unicode(self.dtdecisao) + ' - ' + unicode(self.inddeposito)
     #r1070_alteracao_infosusp_custom#
     #r1070_alteracao_infosusp_custom#
     class Meta:
         db_table = r'r1070_alteracao_infosusp'
         managed = True
-        ordering = ['r1070_alteracao', 'codsusp', 'indsusp', 'dtdecisao', 'inddeposito']
+        ordering = ['r1070_alteracao', 'indsusp', 'dtdecisao', 'inddeposito']
 
 
 
@@ -245,13 +288,13 @@ class r1070alteracaonovaValidade(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r1070_alteracao) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid)
+        return unicode(self.r1070_alteracao) + ' - ' + unicode(self.inivalid)
     #r1070_alteracao_novavalidade_custom#
     #r1070_alteracao_novavalidade_custom#
     class Meta:
         db_table = r'r1070_alteracao_novavalidade'
         managed = True
-        ordering = ['r1070_alteracao', 'inivalid', 'fimvalid']
+        ordering = ['r1070_alteracao', 'inivalid']
 
 
 
@@ -277,13 +320,13 @@ class r1070exclusao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid)
+        return unicode(self.r1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid)
     #r1070_exclusao_custom#
     #r1070_exclusao_custom#
     class Meta:
         db_table = r'r1070_exclusao'
         managed = True
-        ordering = ['r1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid', 'fimvalid']
+        ordering = ['r1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid']
 
 
 
@@ -310,13 +353,13 @@ class r1070inclusao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid) + ' - ' + unicode(self.indautoria)
+        return unicode(self.r1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.indautoria)
     #r1070_inclusao_custom#
     #r1070_inclusao_custom#
     class Meta:
         db_table = r'r1070_inclusao'
         managed = True
-        ordering = ['r1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid', 'fimvalid', 'indautoria']
+        ordering = ['r1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid', 'indautoria']
 
 
 
@@ -332,7 +375,7 @@ class r1070inclusaodadosProcJud(models.Model):
     def evento(self): return self.r1070_inclusao.evento()
     ufvara = models.CharField(choices=ESTADOS, max_length=2)
     codmunic = models.TextField(max_length=7)
-    idvara = models.CharField(max_length=2)
+    idvara = models.CharField(max_length=4)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -373,13 +416,13 @@ class r1070inclusaoinfoSusp(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r1070_inclusao) + ' - ' + unicode(self.codsusp) + ' - ' + unicode(self.indsusp) + ' - ' + unicode(self.dtdecisao) + ' - ' + unicode(self.inddeposito)
+        return unicode(self.r1070_inclusao) + ' - ' + unicode(self.indsusp) + ' - ' + unicode(self.dtdecisao) + ' - ' + unicode(self.inddeposito)
     #r1070_inclusao_infosusp_custom#
     #r1070_inclusao_infosusp_custom#
     class Meta:
         db_table = r'r1070_inclusao_infosusp'
         managed = True
-        ordering = ['r1070_inclusao', 'codsusp', 'indsusp', 'dtdecisao', 'inddeposito']
+        ordering = ['r1070_inclusao', 'indsusp', 'dtdecisao', 'inddeposito']
 
 
 

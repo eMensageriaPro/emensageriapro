@@ -102,51 +102,41 @@ def read_s2405_evtcdbenefalt_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtCdBenefAlt['Id']
     dados['status'] = 1
 
-    if 'endereco' in dir(evtCdBenefAlt.alteracao.dadosBenef):
-        for endereco in evtCdBenefAlt.alteracao.dadosBenef.endereco:
-            s2405_endereco_dados = {}
-            s2405_endereco_dados['s2405_evtcdbenefalt_id'] = s2405_evtcdbenefalt_id
+    if 'brasil' in dir(evtCdBenefAlt.alteracao.dadosBenef.endereco):
+        for brasil in evtCdBenefAlt.alteracao.dadosBenef.endereco.brasil:
+            s2405_brasil_dados = {}
+            s2405_brasil_dados['s2405_evtcdbenefalt_id'] = s2405_evtcdbenefalt_id
        
-            insert = create_insert('s2405_endereco', s2405_endereco_dados)
+            if 'tpLograd' in dir(brasil): s2405_brasil_dados['tplograd'] = brasil.tpLograd.cdata
+            if 'dscLograd' in dir(brasil): s2405_brasil_dados['dsclograd'] = brasil.dscLograd.cdata
+            if 'nrLograd' in dir(brasil): s2405_brasil_dados['nrlograd'] = brasil.nrLograd.cdata
+            if 'complemento' in dir(brasil): s2405_brasil_dados['complemento'] = brasil.complemento.cdata
+            if 'bairro' in dir(brasil): s2405_brasil_dados['bairro'] = brasil.bairro.cdata
+            if 'cep' in dir(brasil): s2405_brasil_dados['cep'] = brasil.cep.cdata
+            if 'codMunic' in dir(brasil): s2405_brasil_dados['codmunic'] = brasil.codMunic.cdata
+            if 'uf' in dir(brasil): s2405_brasil_dados['uf'] = brasil.uf.cdata
+            insert = create_insert('s2405_brasil', s2405_brasil_dados)
             resp = executar_sql(insert, True)
-            s2405_endereco_id = resp[0][0]
-            #print s2405_endereco_id
+            s2405_brasil_id = resp[0][0]
+            #print s2405_brasil_id
 
-            if 'brasil' in dir(endereco):
-                for brasil in endereco.brasil:
-                    s2405_brasil_dados = {}
-                    s2405_brasil_dados['s2405_endereco_id'] = s2405_endereco_id
-               
-                    if 'tpLograd' in dir(brasil): s2405_brasil_dados['tplograd'] = brasil.tpLograd.cdata
-                    if 'dscLograd' in dir(brasil): s2405_brasil_dados['dsclograd'] = brasil.dscLograd.cdata
-                    if 'nrLograd' in dir(brasil): s2405_brasil_dados['nrlograd'] = brasil.nrLograd.cdata
-                    if 'complemento' in dir(brasil): s2405_brasil_dados['complemento'] = brasil.complemento.cdata
-                    if 'bairro' in dir(brasil): s2405_brasil_dados['bairro'] = brasil.bairro.cdata
-                    if 'cep' in dir(brasil): s2405_brasil_dados['cep'] = brasil.cep.cdata
-                    if 'codMunic' in dir(brasil): s2405_brasil_dados['codmunic'] = brasil.codMunic.cdata
-                    if 'uf' in dir(brasil): s2405_brasil_dados['uf'] = brasil.uf.cdata
-                    insert = create_insert('s2405_brasil', s2405_brasil_dados)
-                    resp = executar_sql(insert, True)
-                    s2405_brasil_id = resp[0][0]
-                    #print s2405_brasil_id
-   
-            if 'exterior' in dir(endereco):
-                for exterior in endereco.exterior:
-                    s2405_exterior_dados = {}
-                    s2405_exterior_dados['s2405_endereco_id'] = s2405_endereco_id
-               
-                    if 'paisResid' in dir(exterior): s2405_exterior_dados['paisresid'] = exterior.paisResid.cdata
-                    if 'dscLograd' in dir(exterior): s2405_exterior_dados['dsclograd'] = exterior.dscLograd.cdata
-                    if 'nrLograd' in dir(exterior): s2405_exterior_dados['nrlograd'] = exterior.nrLograd.cdata
-                    if 'complemento' in dir(exterior): s2405_exterior_dados['complemento'] = exterior.complemento.cdata
-                    if 'bairro' in dir(exterior): s2405_exterior_dados['bairro'] = exterior.bairro.cdata
-                    if 'nmCid' in dir(exterior): s2405_exterior_dados['nmcid'] = exterior.nmCid.cdata
-                    if 'codPostal' in dir(exterior): s2405_exterior_dados['codpostal'] = exterior.codPostal.cdata
-                    insert = create_insert('s2405_exterior', s2405_exterior_dados)
-                    resp = executar_sql(insert, True)
-                    s2405_exterior_id = resp[0][0]
-                    #print s2405_exterior_id
-   
+    if 'exterior' in dir(evtCdBenefAlt.alteracao.dadosBenef.endereco):
+        for exterior in evtCdBenefAlt.alteracao.dadosBenef.endereco.exterior:
+            s2405_exterior_dados = {}
+            s2405_exterior_dados['s2405_evtcdbenefalt_id'] = s2405_evtcdbenefalt_id
+       
+            if 'paisResid' in dir(exterior): s2405_exterior_dados['paisresid'] = exterior.paisResid.cdata
+            if 'dscLograd' in dir(exterior): s2405_exterior_dados['dsclograd'] = exterior.dscLograd.cdata
+            if 'nrLograd' in dir(exterior): s2405_exterior_dados['nrlograd'] = exterior.nrLograd.cdata
+            if 'complemento' in dir(exterior): s2405_exterior_dados['complemento'] = exterior.complemento.cdata
+            if 'bairro' in dir(exterior): s2405_exterior_dados['bairro'] = exterior.bairro.cdata
+            if 'nmCid' in dir(exterior): s2405_exterior_dados['nmcid'] = exterior.nmCid.cdata
+            if 'codPostal' in dir(exterior): s2405_exterior_dados['codpostal'] = exterior.codPostal.cdata
+            insert = create_insert('s2405_exterior', s2405_exterior_dados)
+            resp = executar_sql(insert, True)
+            s2405_exterior_id = resp[0][0]
+            #print s2405_exterior_id
+
     if 'dependente' in dir(evtCdBenefAlt.alteracao.dadosBenef):
         for dependente in evtCdBenefAlt.alteracao.dadosBenef.dependente:
             s2405_dependente_dados = {}

@@ -73,56 +73,52 @@ def validacoes_s2300_evttsvinicio(arquivo):
     if 'codCateg' in dir(evtTSVInicio.infoTSVInicio): validacoes_lista = validar_campo(validacoes_lista,'evtTSVInicio.infoTSVInicio.codCateg', evtTSVInicio.infoTSVInicio.codCateg.cdata, 1, '101;102;103;104;105;106;111;201;202;301;302;303;305;306;307;308;309;401;410;701;711;712;721;722;723;731;734;738;741;751;761;771;781;901;902;903;904;905')
     if 'dtInicio' in dir(evtTSVInicio.infoTSVInicio): validacoes_lista = validar_campo(validacoes_lista,'evtTSVInicio.infoTSVInicio.dtInicio', evtTSVInicio.infoTSVInicio.dtInicio.cdata, 1, '')
     if 'natAtividade' in dir(evtTSVInicio.infoTSVInicio): validacoes_lista = validar_campo(validacoes_lista,'evtTSVInicio.infoTSVInicio.natAtividade', evtTSVInicio.infoTSVInicio.natAtividade.cdata, 0, '1;2')
-    if 'documentos' in dir(evtTSVInicio.trabalhador):
-        for documentos in evtTSVInicio.trabalhador.documentos:
+    if 'CTPS' in dir(evtTSVInicio.trabalhador.documentos):
+        for CTPS in evtTSVInicio.trabalhador.documentos.CTPS:
        
+            if 'nrCtps' in dir(CTPS): validacoes_lista = validar_campo(validacoes_lista,'CTPS.nrCtps', CTPS.nrCtps.cdata, 1, '')
+            if 'serieCtps' in dir(CTPS): validacoes_lista = validar_campo(validacoes_lista,'CTPS.serieCtps', CTPS.serieCtps.cdata, 1, '')
+            if 'ufCtps' in dir(CTPS): validacoes_lista = validar_campo(validacoes_lista,'CTPS.ufCtps', CTPS.ufCtps.cdata, 1, '')
 
-            if 'CTPS' in dir(documentos):
-                for CTPS in documentos.CTPS:
-               
-                    if 'nrCtps' in dir(CTPS): validacoes_lista = validar_campo(validacoes_lista,'CTPS.nrCtps', CTPS.nrCtps.cdata, 1, '')
-                    if 'serieCtps' in dir(CTPS): validacoes_lista = validar_campo(validacoes_lista,'CTPS.serieCtps', CTPS.serieCtps.cdata, 1, '')
-                    if 'ufCtps' in dir(CTPS): validacoes_lista = validar_campo(validacoes_lista,'CTPS.ufCtps', CTPS.ufCtps.cdata, 1, '')
-   
-            if 'RIC' in dir(documentos):
-                for RIC in documentos.RIC:
-               
-                    if 'nrRic' in dir(RIC): validacoes_lista = validar_campo(validacoes_lista,'RIC.nrRic', RIC.nrRic.cdata, 1, '')
-                    if 'orgaoEmissor' in dir(RIC): validacoes_lista = validar_campo(validacoes_lista,'RIC.orgaoEmissor', RIC.orgaoEmissor.cdata, 1, '')
-                    if 'dtExped' in dir(RIC): validacoes_lista = validar_campo(validacoes_lista,'RIC.dtExped', RIC.dtExped.cdata, 0, '')
-   
-            if 'RG' in dir(documentos):
-                for RG in documentos.RG:
-               
-                    if 'nrRg' in dir(RG): validacoes_lista = validar_campo(validacoes_lista,'RG.nrRg', RG.nrRg.cdata, 1, '')
-                    if 'orgaoEmissor' in dir(RG): validacoes_lista = validar_campo(validacoes_lista,'RG.orgaoEmissor', RG.orgaoEmissor.cdata, 1, '')
-                    if 'dtExped' in dir(RG): validacoes_lista = validar_campo(validacoes_lista,'RG.dtExped', RG.dtExped.cdata, 0, '')
-   
-            if 'RNE' in dir(documentos):
-                for RNE in documentos.RNE:
-               
-                    if 'nrRne' in dir(RNE): validacoes_lista = validar_campo(validacoes_lista,'RNE.nrRne', RNE.nrRne.cdata, 1, '')
-                    if 'orgaoEmissor' in dir(RNE): validacoes_lista = validar_campo(validacoes_lista,'RNE.orgaoEmissor', RNE.orgaoEmissor.cdata, 1, '')
-                    if 'dtExped' in dir(RNE): validacoes_lista = validar_campo(validacoes_lista,'RNE.dtExped', RNE.dtExped.cdata, 0, '')
-   
-            if 'OC' in dir(documentos):
-                for OC in documentos.OC:
-               
-                    if 'nrOc' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.nrOc', OC.nrOc.cdata, 1, '')
-                    if 'orgaoEmissor' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.orgaoEmissor', OC.orgaoEmissor.cdata, 1, '')
-                    if 'dtExped' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.dtExped', OC.dtExped.cdata, 0, '')
-                    if 'dtValid' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.dtValid', OC.dtValid.cdata, 0, '')
-   
-            if 'CNH' in dir(documentos):
-                for CNH in documentos.CNH:
-               
-                    if 'nrRegCnh' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.nrRegCnh', CNH.nrRegCnh.cdata, 1, '')
-                    if 'dtExped' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.dtExped', CNH.dtExped.cdata, 0, '')
-                    if 'ufCnh' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.ufCnh', CNH.ufCnh.cdata, 1, '')
-                    if 'dtValid' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.dtValid', CNH.dtValid.cdata, 1, '')
-                    if 'dtPriHab' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.dtPriHab', CNH.dtPriHab.cdata, 0, '')
-                    if 'categoriaCnh' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.categoriaCnh', CNH.categoriaCnh.cdata, 1, 'A;B;C;D;E;AB;AC;AD;AE')
-   
+    if 'RIC' in dir(evtTSVInicio.trabalhador.documentos):
+        for RIC in evtTSVInicio.trabalhador.documentos.RIC:
+       
+            if 'nrRic' in dir(RIC): validacoes_lista = validar_campo(validacoes_lista,'RIC.nrRic', RIC.nrRic.cdata, 1, '')
+            if 'orgaoEmissor' in dir(RIC): validacoes_lista = validar_campo(validacoes_lista,'RIC.orgaoEmissor', RIC.orgaoEmissor.cdata, 1, '')
+            if 'dtExped' in dir(RIC): validacoes_lista = validar_campo(validacoes_lista,'RIC.dtExped', RIC.dtExped.cdata, 0, '')
+
+    if 'RG' in dir(evtTSVInicio.trabalhador.documentos):
+        for RG in evtTSVInicio.trabalhador.documentos.RG:
+       
+            if 'nrRg' in dir(RG): validacoes_lista = validar_campo(validacoes_lista,'RG.nrRg', RG.nrRg.cdata, 1, '')
+            if 'orgaoEmissor' in dir(RG): validacoes_lista = validar_campo(validacoes_lista,'RG.orgaoEmissor', RG.orgaoEmissor.cdata, 1, '')
+            if 'dtExped' in dir(RG): validacoes_lista = validar_campo(validacoes_lista,'RG.dtExped', RG.dtExped.cdata, 0, '')
+
+    if 'RNE' in dir(evtTSVInicio.trabalhador.documentos):
+        for RNE in evtTSVInicio.trabalhador.documentos.RNE:
+       
+            if 'nrRne' in dir(RNE): validacoes_lista = validar_campo(validacoes_lista,'RNE.nrRne', RNE.nrRne.cdata, 1, '')
+            if 'orgaoEmissor' in dir(RNE): validacoes_lista = validar_campo(validacoes_lista,'RNE.orgaoEmissor', RNE.orgaoEmissor.cdata, 1, '')
+            if 'dtExped' in dir(RNE): validacoes_lista = validar_campo(validacoes_lista,'RNE.dtExped', RNE.dtExped.cdata, 0, '')
+
+    if 'OC' in dir(evtTSVInicio.trabalhador.documentos):
+        for OC in evtTSVInicio.trabalhador.documentos.OC:
+       
+            if 'nrOc' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.nrOc', OC.nrOc.cdata, 1, '')
+            if 'orgaoEmissor' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.orgaoEmissor', OC.orgaoEmissor.cdata, 1, '')
+            if 'dtExped' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.dtExped', OC.dtExped.cdata, 0, '')
+            if 'dtValid' in dir(OC): validacoes_lista = validar_campo(validacoes_lista,'OC.dtValid', OC.dtValid.cdata, 0, '')
+
+    if 'CNH' in dir(evtTSVInicio.trabalhador.documentos):
+        for CNH in evtTSVInicio.trabalhador.documentos.CNH:
+       
+            if 'nrRegCnh' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.nrRegCnh', CNH.nrRegCnh.cdata, 1, '')
+            if 'dtExped' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.dtExped', CNH.dtExped.cdata, 0, '')
+            if 'ufCnh' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.ufCnh', CNH.ufCnh.cdata, 1, '')
+            if 'dtValid' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.dtValid', CNH.dtValid.cdata, 1, '')
+            if 'dtPriHab' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.dtPriHab', CNH.dtPriHab.cdata, 0, '')
+            if 'categoriaCnh' in dir(CNH): validacoes_lista = validar_campo(validacoes_lista,'CNH.categoriaCnh', CNH.categoriaCnh.cdata, 1, 'A;B;C;D;E;AB;AC;AD;AE')
+
     if 'brasil' in dir(evtTSVInicio.trabalhador.endereco):
         for brasil in evtTSVInicio.trabalhador.endereco.brasil:
        
@@ -186,67 +182,88 @@ def validacoes_s2300_evttsvinicio(arquivo):
             if 'emailPrinc' in dir(contato): validacoes_lista = validar_campo(validacoes_lista,'contato.emailPrinc', contato.emailPrinc.cdata, 0, '')
             if 'emailAlternat' in dir(contato): validacoes_lista = validar_campo(validacoes_lista,'contato.emailAlternat', contato.emailAlternat.cdata, 0, '')
 
-    if 'infoComplementares' in dir(evtTSVInicio.infoTSVInicio):
-        for infoComplementares in evtTSVInicio.infoTSVInicio.infoComplementares:
+    if 'cargoFuncao' in dir(evtTSVInicio.infoTSVInicio.infoComplementares):
+        for cargoFuncao in evtTSVInicio.infoTSVInicio.infoComplementares.cargoFuncao:
        
+            if 'codCargo' in dir(cargoFuncao): validacoes_lista = validar_campo(validacoes_lista,'cargoFuncao.codCargo', cargoFuncao.codCargo.cdata, 1, '')
+            if 'codFuncao' in dir(cargoFuncao): validacoes_lista = validar_campo(validacoes_lista,'cargoFuncao.codFuncao', cargoFuncao.codFuncao.cdata, 0, '')
 
-            if 'cargoFuncao' in dir(infoComplementares):
-                for cargoFuncao in infoComplementares.cargoFuncao:
+    if 'remuneracao' in dir(evtTSVInicio.infoTSVInicio.infoComplementares):
+        for remuneracao in evtTSVInicio.infoTSVInicio.infoComplementares.remuneracao:
+       
+            if 'vrSalFx' in dir(remuneracao): validacoes_lista = validar_campo(validacoes_lista,'remuneracao.vrSalFx', remuneracao.vrSalFx.cdata, 1, '')
+            if 'undSalFixo' in dir(remuneracao): validacoes_lista = validar_campo(validacoes_lista,'remuneracao.undSalFixo', remuneracao.undSalFixo.cdata, 1, '1;2;3;4;5;6;7')
+            if 'dscSalVar' in dir(remuneracao): validacoes_lista = validar_campo(validacoes_lista,'remuneracao.dscSalVar', remuneracao.dscSalVar.cdata, 0, '')
+
+    if 'fgts' in dir(evtTSVInicio.infoTSVInicio.infoComplementares):
+        for fgts in evtTSVInicio.infoTSVInicio.infoComplementares.fgts:
+       
+            if 'opcFGTS' in dir(fgts): validacoes_lista = validar_campo(validacoes_lista,'fgts.opcFGTS', fgts.opcFGTS.cdata, 1, '1;2')
+            if 'dtOpcFGTS' in dir(fgts): validacoes_lista = validar_campo(validacoes_lista,'fgts.dtOpcFGTS', fgts.dtOpcFGTS.cdata, 0, '')
+
+    if 'infoDirigenteSindical' in dir(evtTSVInicio.infoTSVInicio.infoComplementares):
+        for infoDirigenteSindical in evtTSVInicio.infoTSVInicio.infoComplementares.infoDirigenteSindical:
+       
+            if 'categOrig' in dir(infoDirigenteSindical): validacoes_lista = validar_campo(validacoes_lista,'infoDirigenteSindical.categOrig', infoDirigenteSindical.categOrig.cdata, 1, '')
+            if 'cnpjOrigem' in dir(infoDirigenteSindical): validacoes_lista = validar_campo(validacoes_lista,'infoDirigenteSindical.cnpjOrigem', infoDirigenteSindical.cnpjOrigem.cdata, 0, '')
+            if 'dtAdmOrig' in dir(infoDirigenteSindical): validacoes_lista = validar_campo(validacoes_lista,'infoDirigenteSindical.dtAdmOrig', infoDirigenteSindical.dtAdmOrig.cdata, 0, '')
+            if 'matricOrig' in dir(infoDirigenteSindical): validacoes_lista = validar_campo(validacoes_lista,'infoDirigenteSindical.matricOrig', infoDirigenteSindical.matricOrig.cdata, 0, '')
+
+    if 'infoTrabCedido' in dir(evtTSVInicio.infoTSVInicio.infoComplementares):
+        for infoTrabCedido in evtTSVInicio.infoTSVInicio.infoComplementares.infoTrabCedido:
+       
+            if 'categOrig' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.categOrig', infoTrabCedido.categOrig.cdata, 1, '')
+            if 'cnpjCednt' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.cnpjCednt', infoTrabCedido.cnpjCednt.cdata, 1, '')
+            if 'matricCed' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.matricCed', infoTrabCedido.matricCed.cdata, 1, '')
+            if 'dtAdmCed' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.dtAdmCed', infoTrabCedido.dtAdmCed.cdata, 1, '')
+            if 'tpRegTrab' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.tpRegTrab', infoTrabCedido.tpRegTrab.cdata, 1, '1;2')
+            if 'tpRegPrev' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.tpRegPrev', infoTrabCedido.tpRegPrev.cdata, 1, '1;2;3')
+            if 'infOnus' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.infOnus', infoTrabCedido.infOnus.cdata, 1, '1;2;3')
+            if 'indRemunCargo' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.indRemunCargo', infoTrabCedido.indRemunCargo.cdata, 0, 'S;N')
+
+    if 'infoEstagiario' in dir(evtTSVInicio.infoTSVInicio.infoComplementares):
+        for infoEstagiario in evtTSVInicio.infoTSVInicio.infoComplementares.infoEstagiario:
+       
+            if 'natEstagio' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.natEstagio', infoEstagiario.natEstagio.cdata, 1, 'O;N')
+            if 'nivEstagio' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.nivEstagio', infoEstagiario.nivEstagio.cdata, 1, '1;2;3;4;8;9')
+            if 'areaAtuacao' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.areaAtuacao', infoEstagiario.areaAtuacao.cdata, 0, '')
+            if 'nrApol' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.nrApol', infoEstagiario.nrApol.cdata, 0, '')
+            if 'vlrBolsa' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.vlrBolsa', infoEstagiario.vlrBolsa.cdata, 0, '')
+            if 'dtPrevTerm' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.dtPrevTerm', infoEstagiario.dtPrevTerm.cdata, 1, '')
+            if 'cnpjInstEnsino' in dir(infoEstagiario.instEnsino): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.instEnsino.cnpjInstEnsino', infoEstagiario.instEnsino.cnpjInstEnsino.cdata, 0, '')
+            if 'nmRazao' in dir(infoEstagiario.instEnsino): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.instEnsino.nmRazao', infoEstagiario.instEnsino.nmRazao.cdata, 1, '')
+            if 'dscLograd' in dir(infoEstagiario.instEnsino): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.instEnsino.dscLograd', infoEstagiario.instEnsino.dscLograd.cdata, 0, '')
+            if 'nrLograd' in dir(infoEstagiario.instEnsino): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.instEnsino.nrLograd', infoEstagiario.instEnsino.nrLograd.cdata, 0, '')
+            if 'bairro' in dir(infoEstagiario.instEnsino): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.instEnsino.bairro', infoEstagiario.instEnsino.bairro.cdata, 0, '')
+            if 'cep' in dir(infoEstagiario.instEnsino): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.instEnsino.cep', infoEstagiario.instEnsino.cep.cdata, 0, '')
+            if 'codMunic' in dir(infoEstagiario.instEnsino): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.instEnsino.codMunic', infoEstagiario.instEnsino.codMunic.cdata, 0, '')
+            if 'uf' in dir(infoEstagiario.instEnsino): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.instEnsino.uf', infoEstagiario.instEnsino.uf.cdata, 0, '')
+
+            if 'ageIntegracao' in dir(infoEstagiario):
+                for ageIntegracao in infoEstagiario.ageIntegracao:
                
-                    if 'codCargo' in dir(cargoFuncao): validacoes_lista = validar_campo(validacoes_lista,'cargoFuncao.codCargo', cargoFuncao.codCargo.cdata, 1, '')
-                    if 'codFuncao' in dir(cargoFuncao): validacoes_lista = validar_campo(validacoes_lista,'cargoFuncao.codFuncao', cargoFuncao.codFuncao.cdata, 0, '')
+                    if 'cnpjAgntInteg' in dir(ageIntegracao): validacoes_lista = validar_campo(validacoes_lista,'ageIntegracao.cnpjAgntInteg', ageIntegracao.cnpjAgntInteg.cdata, 1, '')
+                    if 'nmRazao' in dir(ageIntegracao): validacoes_lista = validar_campo(validacoes_lista,'ageIntegracao.nmRazao', ageIntegracao.nmRazao.cdata, 1, '')
+                    if 'dscLograd' in dir(ageIntegracao): validacoes_lista = validar_campo(validacoes_lista,'ageIntegracao.dscLograd', ageIntegracao.dscLograd.cdata, 1, '')
+                    if 'nrLograd' in dir(ageIntegracao): validacoes_lista = validar_campo(validacoes_lista,'ageIntegracao.nrLograd', ageIntegracao.nrLograd.cdata, 1, '')
+                    if 'bairro' in dir(ageIntegracao): validacoes_lista = validar_campo(validacoes_lista,'ageIntegracao.bairro', ageIntegracao.bairro.cdata, 0, '')
+                    if 'cep' in dir(ageIntegracao): validacoes_lista = validar_campo(validacoes_lista,'ageIntegracao.cep', ageIntegracao.cep.cdata, 1, '')
+                    if 'codMunic' in dir(ageIntegracao): validacoes_lista = validar_campo(validacoes_lista,'ageIntegracao.codMunic', ageIntegracao.codMunic.cdata, 0, '')
+                    if 'uf' in dir(ageIntegracao): validacoes_lista = validar_campo(validacoes_lista,'ageIntegracao.uf', ageIntegracao.uf.cdata, 1, '')
    
-            if 'remuneracao' in dir(infoComplementares):
-                for remuneracao in infoComplementares.remuneracao:
+            if 'supervisorEstagio' in dir(infoEstagiario):
+                for supervisorEstagio in infoEstagiario.supervisorEstagio:
                
-                    if 'vrSalFx' in dir(remuneracao): validacoes_lista = validar_campo(validacoes_lista,'remuneracao.vrSalFx', remuneracao.vrSalFx.cdata, 1, '')
-                    if 'undSalFixo' in dir(remuneracao): validacoes_lista = validar_campo(validacoes_lista,'remuneracao.undSalFixo', remuneracao.undSalFixo.cdata, 1, '1;2;3;4;5;6;7')
-                    if 'dscSalVar' in dir(remuneracao): validacoes_lista = validar_campo(validacoes_lista,'remuneracao.dscSalVar', remuneracao.dscSalVar.cdata, 0, '')
+                    if 'cpfSupervisor' in dir(supervisorEstagio): validacoes_lista = validar_campo(validacoes_lista,'supervisorEstagio.cpfSupervisor', supervisorEstagio.cpfSupervisor.cdata, 1, '')
+                    if 'nmSuperv' in dir(supervisorEstagio): validacoes_lista = validar_campo(validacoes_lista,'supervisorEstagio.nmSuperv', supervisorEstagio.nmSuperv.cdata, 1, '')
    
-            if 'fgts' in dir(infoComplementares):
-                for fgts in infoComplementares.fgts:
-               
-                    if 'opcFGTS' in dir(fgts): validacoes_lista = validar_campo(validacoes_lista,'fgts.opcFGTS', fgts.opcFGTS.cdata, 1, '1;2')
-                    if 'dtOpcFGTS' in dir(fgts): validacoes_lista = validar_campo(validacoes_lista,'fgts.dtOpcFGTS', fgts.dtOpcFGTS.cdata, 0, '')
-   
-            if 'infoDirigenteSindical' in dir(infoComplementares):
-                for infoDirigenteSindical in infoComplementares.infoDirigenteSindical:
-               
-                    if 'categOrig' in dir(infoDirigenteSindical): validacoes_lista = validar_campo(validacoes_lista,'infoDirigenteSindical.categOrig', infoDirigenteSindical.categOrig.cdata, 1, '')
-                    if 'cnpjOrigem' in dir(infoDirigenteSindical): validacoes_lista = validar_campo(validacoes_lista,'infoDirigenteSindical.cnpjOrigem', infoDirigenteSindical.cnpjOrigem.cdata, 0, '')
-                    if 'dtAdmOrig' in dir(infoDirigenteSindical): validacoes_lista = validar_campo(validacoes_lista,'infoDirigenteSindical.dtAdmOrig', infoDirigenteSindical.dtAdmOrig.cdata, 0, '')
-                    if 'matricOrig' in dir(infoDirigenteSindical): validacoes_lista = validar_campo(validacoes_lista,'infoDirigenteSindical.matricOrig', infoDirigenteSindical.matricOrig.cdata, 0, '')
-   
-            if 'infoTrabCedido' in dir(infoComplementares):
-                for infoTrabCedido in infoComplementares.infoTrabCedido:
-               
-                    if 'categOrig' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.categOrig', infoTrabCedido.categOrig.cdata, 1, '')
-                    if 'cnpjCednt' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.cnpjCednt', infoTrabCedido.cnpjCednt.cdata, 1, '')
-                    if 'matricCed' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.matricCed', infoTrabCedido.matricCed.cdata, 1, '')
-                    if 'dtAdmCed' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.dtAdmCed', infoTrabCedido.dtAdmCed.cdata, 1, '')
-                    if 'tpRegTrab' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.tpRegTrab', infoTrabCedido.tpRegTrab.cdata, 1, '1;2')
-                    if 'tpRegPrev' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.tpRegPrev', infoTrabCedido.tpRegPrev.cdata, 1, '1;2;3')
-                    if 'infOnus' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.infOnus', infoTrabCedido.infOnus.cdata, 1, '1;2;3')
-                    if 'indRemunCargo' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.indRemunCargo', infoTrabCedido.indRemunCargo.cdata, 0, 'S;N')
-   
-            if 'infoEstagiario' in dir(infoComplementares):
-                for infoEstagiario in infoComplementares.infoEstagiario:
-               
-                    if 'natEstagio' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.natEstagio', infoEstagiario.natEstagio.cdata, 1, 'O;N')
-                    if 'nivEstagio' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.nivEstagio', infoEstagiario.nivEstagio.cdata, 1, '1;2;3;4;8;9')
-                    if 'areaAtuacao' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.areaAtuacao', infoEstagiario.areaAtuacao.cdata, 0, '')
-                    if 'nrApol' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.nrApol', infoEstagiario.nrApol.cdata, 0, '')
-                    if 'vlrBolsa' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.vlrBolsa', infoEstagiario.vlrBolsa.cdata, 0, '')
-                    if 'dtPrevTerm' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.dtPrevTerm', infoEstagiario.dtPrevTerm.cdata, 1, '')
-                    if 'cnpjInstEnsino' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.cnpjInstEnsino', infoEstagiario.cnpjInstEnsino.cdata, 0, '')
-                    if 'nmRazao' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.nmRazao', infoEstagiario.nmRazao.cdata, 1, '')
-                    if 'dscLograd' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.dscLograd', infoEstagiario.dscLograd.cdata, 0, '')
-                    if 'nrLograd' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.nrLograd', infoEstagiario.nrLograd.cdata, 0, '')
-                    if 'bairro' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.bairro', infoEstagiario.bairro.cdata, 0, '')
-                    if 'cep' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.cep', infoEstagiario.cep.cdata, 0, '')
-                    if 'codMunic' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.codMunic', infoEstagiario.codMunic.cdata, 0, '')
-                    if 'uf' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.uf', infoEstagiario.uf.cdata, 0, '')
-   
+    if 'mudancaCPF' in dir(evtTSVInicio.infoTSVInicio):
+        for mudancaCPF in evtTSVInicio.infoTSVInicio.mudancaCPF:
+       
+            if 'cpfAnt' in dir(mudancaCPF): validacoes_lista = validar_campo(validacoes_lista,'mudancaCPF.cpfAnt', mudancaCPF.cpfAnt.cdata, 1, '')
+            if 'dtAltCPF' in dir(mudancaCPF): validacoes_lista = validar_campo(validacoes_lista,'mudancaCPF.dtAltCPF', mudancaCPF.dtAltCPF.cdata, 1, '')
+            if 'observacao' in dir(mudancaCPF): validacoes_lista = validar_campo(validacoes_lista,'mudancaCPF.observacao', mudancaCPF.observacao.cdata, 0, '')
+
     if 'afastamento' in dir(evtTSVInicio.infoTSVInicio):
         for afastamento in evtTSVInicio.infoTSVInicio.afastamento:
        

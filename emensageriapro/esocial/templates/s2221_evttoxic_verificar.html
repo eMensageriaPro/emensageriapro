@@ -118,13 +118,13 @@
               
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtToxic</td>
-            <td bgcolor="lightgray" colspan="3">Evento Exame Toxicológico do Motorista Profissional Regras de validação: REGRA_EVENTOS_EXTEMP REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXTEMP_REINTEGRACAO REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_TRABALHADOR_BASE_CNIS</td>
+            <td bgcolor="lightgray" colspan="3">Evento Exame Toxicológico do Motorista Profissional. Regras de validação: REGRA_EVENTOS_EXTEMP REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXTEMP_REINTEGRACAO REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_TRABALHADOR_BASE_CNIS</td>
         </tr>
     {% for s2221_evttoxic in s2221_evttoxic_lista %}
     {% ifequal 1 1 %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
         </tr>
 
         <tr {% if s2221_evttoxic.indretif|validacoes_esocial_efdreinf:"s2221_evttoxic.indretif" %}bgcolor="lightcoral"{% endif %}>
@@ -224,7 +224,7 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
         </tr>
 
         <tr {% if s2221_evttoxic.tpinsc|validacoes_esocial_efdreinf:"s2221_evttoxic.tpinsc" %}bgcolor="lightcoral"{% endif %}>
@@ -267,7 +267,7 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideVinculo</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador e do Vínculo</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador e do Vínculo.</td>
         </tr>
 
         <tr {% if s2221_evttoxic.cpftrab|validacoes_esocial_efdreinf:"s2221_evttoxic.cpftrab" %}bgcolor="lightcoral"{% endif %}>
@@ -348,12 +348,12 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">toxicologico</td>
-            <td bgcolor="lightgray" colspan="3">Detalhamento das informações do exame toxicológico do motorista profissional</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento das informações do exame toxicológico do motorista profissional.</td>
         </tr>
 
         <tr {% if s2221_evttoxic.dtexame|validacoes_esocial_efdreinf:"s2221_evttoxic.dtexame" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtExame</td>
-            <td width="500px">Data da realização do exame toxicológico. Validação: Deve ser uma data válida, igual ou anterior à data atual e igual ou posterior à data de início da obrigatoriedade deste evento para o empregador no eSocial.</td>
+            <td width="500px">Data da realização do exame toxicológico. Se {indRecusa} = [S], informar a data do desligamento. Validação: Deve ser uma data válida, igual ou anterior à data atual e igual ou posterior à data de início da obrigatoriedade deste evento para o empregador no eSocial.</td>
             <td width="200px"><b>{% if s2221_evttoxic.dtexame or s2221_evttoxic.dtexame == 0 %}{{ s2221_evttoxic.dtexame|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -372,7 +372,7 @@
 
         <tr {% if s2221_evttoxic.cnpjlab|validacoes_esocial_efdreinf:"s2221_evttoxic.cnpjlab" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnpjLab</td>
-            <td width="500px">CNPJ do laboratório responsável pela realização do exame. Validação: Deve ser um CNPJ válido.</td>
+            <td width="500px">CNPJ do laboratório responsável pela realização do exame. Validação: Preenchimento obrigatório e exclusivo se {indRecusa} = [N]. Se informado, deve ser um CNPJ válido.</td>
             <td width="200px"><b>{% if s2221_evttoxic.cnpjlab or s2221_evttoxic.cnpjlab == 0 %}{{ s2221_evttoxic.cnpjlab }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -391,7 +391,7 @@
 
         <tr {% if s2221_evttoxic.codseqexame|validacoes_esocial_efdreinf:"s2221_evttoxic.codseqexame" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codSeqExame</td>
-            <td width="500px">Código do exame toxicológico. Deve ser informado no formato AA999999999, sendo AA o serial do sequencial e 999999999 o número sequencial do exame. Validação: Deve possuir 11 (onze) caracteres, composto por duas letras (dois primeiros caracteres) e nove algarismos (últimos nove caracteres).</td>
+            <td width="500px">Código do exame toxicológico. Deve ser informado no formato AA999999999, sendo AA o serial do sequencial e 999999999 o número sequencial do exame. Validação: Preenchimento obrigatório e exclusivo se {indRecusa} = [N]. Se informado, deve possuir 11 (onze) caracteres, composto por duas letras (dois primeiros caracteres) e nove algarismos (últimos nove caracteres).</td>
             <td width="200px"><b>{% if s2221_evttoxic.codseqexame or s2221_evttoxic.codseqexame == 0 %}{{ s2221_evttoxic.codseqexame }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -410,7 +410,7 @@
 
         <tr {% if s2221_evttoxic.nmmed|validacoes_esocial_efdreinf:"s2221_evttoxic.nmmed" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nmMed</td>
-            <td width="500px">Preencher com o nome do médico.</td>
+            <td width="500px">Preencher com o nome do médico. Validação: Preenchimento obrigatório e exclusivo se {indRecusa} = [N].</td>
             <td width="200px"><b>{% if s2221_evttoxic.nmmed or s2221_evttoxic.nmmed == 0 %}{{ s2221_evttoxic.nmmed }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -429,7 +429,7 @@
 
         <tr {% if s2221_evttoxic.nrcrm|validacoes_esocial_efdreinf:"s2221_evttoxic.nrcrm" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrCRM</td>
-            <td width="500px">Número de inscrição do médico no CRM.</td>
+            <td width="500px">Número de inscrição do médico no CRM. Validação: Preenchimento obrigatório e exclusivo se {indRecusa} = [N].</td>
             <td width="200px"><b>{% if s2221_evttoxic.nrcrm or s2221_evttoxic.nrcrm == 0 %}{{ s2221_evttoxic.nrcrm }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -448,8 +448,27 @@
 
         <tr {% if s2221_evttoxic.ufcrm|validacoes_esocial_efdreinf:"s2221_evttoxic.ufcrm" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">ufCRM</td>
-            <td width="500px">Preencher com a sigla da UF de expedição do CRM. Validação: Deve ser uma UF válida.</td>
+            <td width="500px">Preencher com a sigla da UF de expedição do CRM. Validação: Preenchimento obrigatório e exclusivo se {indRecusa} = [N]. Se informada, deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2221_evttoxic.ufcrm or s2221_evttoxic.ufcrm == 0 %}{{ s2221_evttoxic.ufcrm }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2221_evttoxic_visualizar' %}
+                <a href="{% url 's2221_evttoxic_salvar'  hash='{}'|json_id:s2221_evttoxic.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2221_evttoxic.indrecusa|validacoes_esocial_efdreinf:"s2221_evttoxic.indrecusa" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indRecusa</td>
+            <td width="500px">Indicar se o trabalhador se recusou a realizar o exame toxicológico no desligamento: S - Sim; N - Não. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2221_evttoxic.indrecusa or s2221_evttoxic.indrecusa == 0 %}{{ s2221_evttoxic.indrecusa }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>

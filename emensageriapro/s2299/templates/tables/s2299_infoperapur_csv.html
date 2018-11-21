@@ -1,5 +1,5 @@
 {% load templatetags %}"{{ conta.nome_empresa }}"
-"S-2299 - Remuneração no período de apuração"
-{% if show_fields.show_s2299_dmdev or not s2299_dmdev_id and 1 %}"S-2299 - Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF";{% endif %}{% if show_fields.show_criado_em or 0 %}"Criado em";{% endif %}{% if show_fields.show_criado_por or not usuarios_id and 0 %}"Criado por";{% endif %}{% if show_fields.show_modificado_em or 0 %}"Modificado em";{% endif %}{% if show_fields.show_modificado_por or not usuarios_id and 0 %}"Modificado por";{% endif %}{% if show_fields.show_excluido or 0 %}"Excluido";{% endif %}
-{% for a in s2299_infoperapur_lista %}{% if show_fields.show_s2299_dmdev or  not s2299_dmdev_id and 1 %}"{{ a.s2299_dmdev }}";{% endif %}{% if show_fields.show_criado_em or 0 %}"{{ a.criado_em }}";{% endif %}{% if show_fields.show_criado_por or  not usuarios_id and 0 %}"{{ a.criado_por }}";{% endif %}{% if show_fields.show_modificado_em or 0 %}"{{ a.modificado_em }}";{% endif %}{% if show_fields.show_modificado_por or  not usuarios_id and 0 %}"{{ a.modificado_por }}";{% endif %}{% if show_fields.show_excluido or 0 %}"{{ a.excluido }}";{% endif %}
+"Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF"
+{% if show_fields.show_s2299_dmdev or not s2299_dmdev_id and 1 %}"Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF";{% endif %}
+{% for a in s2299_infoperapur_lista %}{% if show_fields.show_s2299_dmdev or  not s2299_dmdev_id and 1 %}"{{ a.s2299_dmdev }}";{% endif %}
 {% endfor %}

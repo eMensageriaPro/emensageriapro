@@ -118,13 +118,13 @@
               
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtComProd</td>
-            <td bgcolor="lightgray" colspan="3">Evento Comercialização da Produção Rural Pessoa FísicaRegras de validação: REGRA_EVENTOS_EXTEMP REGRA_EVE_FOPAG_COMERC_PROD REGRA_EVE_FOPAG_INCOMPAT_ DECTERCEIRO REGRA_EVE_FOPAG_IND_RETIFICACAO REGRA_EVE_FOPAG_INFO_COMPAT_CLASSTRIB REGRA_EVE_FOPAG_PERMITE_EXCLUSAO REGRA_EXISTE_INFO_EMPREGADOR</td>
+            <td bgcolor="lightgray" colspan="3">Evento Comercialização da Produção Rural Pessoa Física. Regras de validação: REGRA_EVENTOS_EXTEMP REGRA_EVE_FOPAG_COMERC_PROD REGRA_EVE_FOPAG_INCOMPAT_ DECTERCEIRO REGRA_EVE_FOPAG_IND_RETIFICACAO REGRA_EVE_FOPAG_INFO_COMPAT_CLASSTRIB REGRA_EVE_FOPAG_PERMITE_EXCLUSAO REGRA_EXISTE_INFO_EMPREGADOR</td>
         </tr>
     {% for s1260_evtcomprod in s1260_evtcomprod_lista %}
     {% ifequal 1 1 %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do evento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do evento.</td>
         </tr>
 
         <tr {% if s1260_evtcomprod.indretif|validacoes_esocial_efdreinf:"s1260_evtcomprod.indretif" %}bgcolor="lightcoral"{% endif %}>
@@ -148,7 +148,7 @@
 
         <tr {% if s1260_evtcomprod.nrrecibo|validacoes_esocial_efdreinf:"s1260_evtcomprod.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrRecibo</td>
-            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2].Deve ser um recibo de entrega válido, correspondente ao arquivo que estásendo retificado.</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
             <td width="200px"><b>{% if s1260_evtcomprod.nrrecibo or s1260_evtcomprod.nrrecibo == 0 %}{{ s1260_evtcomprod.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -167,7 +167,7 @@
 
         <tr {% if s1260_evtcomprod.indapuracao|validacoes_esocial_efdreinf:"s1260_evtcomprod.indapuracao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indApuracao</td>
-            <td width="500px">Indicativo de período de apuração:1 - Mensal.Valores Válidos: 1</td>
+            <td width="500px">Indicativo de período de apuração: 1 - Mensal. Valores Válidos: 1.</td>
             <td width="200px"><b>{% if s1260_evtcomprod.indapuracao or s1260_evtcomprod.indapuracao == 0 %}{{ s1260_evtcomprod.indapuracao|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -205,7 +205,7 @@
 
         <tr {% if s1260_evtcomprod.tpamb|validacoes_esocial_efdreinf:"s1260_evtcomprod.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1260_evtcomprod.tpamb or s1260_evtcomprod.tpamb == 0 %}{{ s1260_evtcomprod.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -224,7 +224,7 @@
 
         <tr {% if s1260_evtcomprod.procemi|validacoes_esocial_efdreinf:"s1260_evtcomprod.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1260_evtcomprod.procemi or s1260_evtcomprod.procemi == 0 %}{{ s1260_evtcomprod.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -262,12 +262,12 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
         </tr>
 
         <tr {% if s1260_evtcomprod.tpinsc|validacoes_esocial_efdreinf:"s1260_evtcomprod.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [2] (CPF).</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. Validação: Deve ser igual a [2] (CPF).</td>
             <td width="200px"><b>{% if s1260_evtcomprod.tpinsc or s1260_evtcomprod.tpinsc == 0 %}{{ s1260_evtcomprod.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -305,12 +305,12 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoComProd</td>
-            <td bgcolor="lightgray" colspan="3">Informação da Comercialização de Produção</td>
+            <td bgcolor="lightgray" colspan="3">Informação da Comercialização de Produção.</td>
         </tr>
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEstabel</td>
-            <td bgcolor="lightgray" colspan="3">Identificação do estabelecimento que comercializou a produção</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do estabelecimento que comercializou a produção.</td>
         </tr>
 
         <tr {% if s1260_evtcomprod.nrinscestabrural|validacoes_esocial_efdreinf:"s1260_evtcomprod.nrinscestabrural" %}bgcolor="lightcoral"{% endif %}>
@@ -334,13 +334,13 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">tpComerc</td>
-            <td bgcolor="lightgray" colspan="3">Registro que apresenta o valor total da comercialização por "tipo" de comercialização</td>
+            <td bgcolor="lightgray" colspan="3">Registro que apresenta o valor total da comercialização por 'tipo' de comercialização.</td>
         </tr>
     {% for s1260_tpcomerc in s1260_tpcomerc_lista %}
     {% ifequal s1260_tpcomerc.s1260_evtcomprod.id s1260_evtcomprod.id %}
         <tr {% if s1260_tpcomerc.indcomerc|validacoes_esocial_efdreinf:"s1260_tpcomerc.indcomerc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indComerc</td>
-            <td width="500px">Indicativo de Comercialização: 2 - Comercialização da Produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por Produtor Rural Pessoa Física, inclusive por Segurado Especial ou por Pessoa Física não produtor rural; 3 - Comercialização da Produção por Prod. Rural PF/Seg. Especial - Vendas a PJ (exceto Entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a Intermediário PF; 7 - Comercialização da Produção Isenta de acordo com a Lei no 13.606/2018; 8 - Comercialização da Produção da Pessoa Física/Segurado Especial para Entidade inscrita no Programa de Aquisição de Alimentos - PAA; 9 - Comercialização da Produção no Mercado Externo. Valores Válidos: 2, 3, 7, 8, 9.</td>
+            <td width="500px">Indicativo de Comercialização: 2 - Comercialização da Produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por Produtor Rural Pessoa Física, inclusive por Segurado Especial ou por Pessoa Física não produtor rural; 3 - Comercialização da Produção por Prod. Rural PF/Seg. Especial - Vendas a PJ (exceto Entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a Intermediário PF; 7 - Comercialização da Produção Isenta de acordo com a Lei n° 13.606/2018; 8 - Comercialização da Produção da Pessoa Física/Segurado Especial para Entidade inscrita no Programa de Aquisição de Alimentos - PAA; 9 - Comercialização da Produção no Mercado Externo. Valores Válidos: 2, 3, 7, 8, 9.</td>
             <td width="200px"><b>{% if s1260_tpcomerc.indcomerc or s1260_tpcomerc.indcomerc == 0 %}{{ s1260_tpcomerc.indcomerc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -359,7 +359,7 @@
 
         <tr {% if s1260_tpcomerc.vrtotcom|validacoes_esocial_efdreinf:"s1260_tpcomerc.vrtotcom" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrTotCom</td>
-            <td width="500px">Preencher com o valor total da comercialização.Validação: Deve ser maior que zero. Se {indComerc} for igual a [3], deve corresponder a soma do campo {vrComerc} dos registros vinculados.</td>
+            <td width="500px">Preencher com o valor total da comercialização. Validação: Deve ser maior que zero. Se {indComerc} for igual a [3, 7], deve corresponder a soma do campo {vrComerc} dos registros vinculados.</td>
             <td width="200px"><b>{% if s1260_tpcomerc.vrtotcom or s1260_tpcomerc.vrtotcom == 0 %}{{ s1260_tpcomerc.vrtotcom|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -384,7 +384,7 @@
     {% ifequal s1260_ideadquir.s1260_tpcomerc.id s1260_tpcomerc.id %}
         <tr {% if s1260_ideadquir.tpinsc|validacoes_esocial_efdreinf:"s1260_ideadquir.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Se {indComerc} for igual a [3], deve ser igual a [1,2]. Se{indComerc} for igual a [8], deve ser igual a [1].</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. Validação: Se {indComerc} for igual a [3, 7], deve ser igual a [1,2]. Se {indComerc} for igual a [8], deve ser igual a [1].</td>
             <td width="200px"><b>{% if s1260_ideadquir.tpinsc or s1260_ideadquir.tpinsc == 0 %}{{ s1260_ideadquir.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -403,7 +403,7 @@
 
         <tr {% if s1260_ideadquir.nrinsc|validacoes_esocial_efdreinf:"s1260_ideadquir.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}.Validação: A inscrição informada deve ser compatível com o {tpInsc} ediferente da inscrição do declarante.</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Validação: A inscrição informada deve ser compatível com o {tpInsc} e diferente da inscrição do declarante.</td>
             <td width="200px"><b>{% if s1260_ideadquir.nrinsc or s1260_ideadquir.nrinsc == 0 %}{{ s1260_ideadquir.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -466,7 +466,7 @@
 
         <tr {% if s1260_nfs.nrdocto|validacoes_esocial_efdreinf:"s1260_nfs.nrdocto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrDocto</td>
-            <td width="500px">Número da Nota Fiscal/Fatura</td>
+            <td width="500px">Número da Nota Fiscal/Fatura.</td>
             <td width="200px"><b>{% if s1260_nfs.nrdocto or s1260_nfs.nrdocto == 0 %}{{ s1260_nfs.nrdocto }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -485,7 +485,7 @@
 
         <tr {% if s1260_nfs.dtemisnf|validacoes_esocial_efdreinf:"s1260_nfs.dtemisnf" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtEmisNF</td>
-            <td width="500px">Data de Emissão da Nota Fiscal/FaturaValidação: O mês/ano da emissão da nota fiscal deve ser igual ao mês/ano indicado no registro de abertura do arquivo.</td>
+            <td width="500px">Data de Emissão da Nota Fiscal/Fatura. Validação: O mês/ano da emissão da nota fiscal deve ser igual ao mês/ano indicado no registro de abertura do arquivo.</td>
             <td width="200px"><b>{% if s1260_nfs.dtemisnf or s1260_nfs.dtemisnf == 0 %}{{ s1260_nfs.dtemisnf|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -504,7 +504,7 @@
 
         <tr {% if s1260_nfs.vlrbruto|validacoes_esocial_efdreinf:"s1260_nfs.vlrbruto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrBruto</td>
-            <td width="500px">Preencher com o valor bruto da(s) nota(s) fiscal(is)</td>
+            <td width="500px">Preencher com o valor bruto da(s) nota(s) fiscal(is).</td>
             <td width="200px"><b>{% if s1260_nfs.vlrbruto or s1260_nfs.vlrbruto == 0 %}{{ s1260_nfs.vlrbruto|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -542,7 +542,7 @@
 
         <tr {% if s1260_nfs.vrratdescpr|validacoes_esocial_efdreinf:"s1260_nfs.vrratdescpr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrRatDescPR</td>
-            <td width="500px">Valor da contribuição destinada ao financiamento dos benefícios concedidos em razão do grau de incidência da incapacidade laborativa decorrente dos riscos ambientais do trabalho, incidente sobre a comercialização de produção rural de produtor rural.Se não houver informação, preencher com 0 (zero).</td>
+            <td width="500px">Valor da contribuição destinada ao financiamento dos benefícios concedidos em razão do grau de incidência da incapacidade laborativa decorrente dos riscos ambientais do trabalho, incidente sobre a comercialização de produção rural de produtor rural. Se não houver informação, preencher com 0 (zero).</td>
             <td width="200px"><b>{% if s1260_nfs.vrratdescpr or s1260_nfs.vrratdescpr == 0 %}{{ s1260_nfs.vrratdescpr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -586,7 +586,7 @@
     {% ifequal s1260_infoprocjud.s1260_tpcomerc.id s1260_tpcomerc.id %}
         <tr {% if s1260_infoprocjud.tpproc|validacoes_esocial_efdreinf:"s1260_infoprocjud.tpproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpProc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de processo:1 - Administrativo;2 - Judicial.Valores Válidos: 1, 2.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1260_infoprocjud.tpproc or s1260_infoprocjud.tpproc == 0 %}{{ s1260_infoprocjud.tpproc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -605,7 +605,7 @@
 
         <tr {% if s1260_infoprocjud.nrproc|validacoes_esocial_efdreinf:"s1260_infoprocjud.nrproc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProc</td>
-            <td width="500px">Informar um número de processo cadastrado através do evento S-1070, cujo{indMatProc} seja igual a [1].Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070).</td>
+            <td width="500px">Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070).</td>
             <td width="200px"><b>{% if s1260_infoprocjud.nrproc or s1260_infoprocjud.nrproc == 0 %}{{ s1260_infoprocjud.nrproc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -643,7 +643,7 @@
 
         <tr {% if s1260_infoprocjud.vrcpsusp|validacoes_esocial_efdreinf:"s1260_infoprocjud.vrcpsusp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrCPSusp</td>
-            <td width="500px">Valor da Contribuição Previdenciária com exigibilidade suspensa. Validação: Preenchimento obrigatório se {vrRatSusp} e {vrSenarSusp} não tiverem sido preenchidos.Deve ser um valor maior que zero.</td>
+            <td width="500px">Valor da Contribuição Previdenciária com exigibilidade suspensa. Validação: Preenchimento obrigatório se {vrRatSusp} e {vrSenarSusp} não tiverem sido preenchidos. Deve ser um valor maior que zero.</td>
             <td width="200px"><b>{% if s1260_infoprocjud.vrcpsusp or s1260_infoprocjud.vrcpsusp == 0 %}{{ s1260_infoprocjud.vrcpsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -662,7 +662,7 @@
 
         <tr {% if s1260_infoprocjud.vrratsusp|validacoes_esocial_efdreinf:"s1260_infoprocjud.vrratsusp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrRatSusp</td>
-            <td width="500px">Valor da contribuição para Gilrat com exigibilidade suspensa.Validação: Preenchimento obrigatório se {vrCPSusp} e {vrSenarSusp} não tiverem sido preenchidos.Deve ser um valor maior que zero.</td>
+            <td width="500px">Valor da contribuição para Gilrat com exigibilidade suspensa. Validação: Preenchimento obrigatório se {vrCPSusp} e {vrSenarSusp} não tiverem sido preenchidos. Deve ser um valor maior que zero.</td>
             <td width="200px"><b>{% if s1260_infoprocjud.vrratsusp or s1260_infoprocjud.vrratsusp == 0 %}{{ s1260_infoprocjud.vrratsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -681,7 +681,7 @@
 
         <tr {% if s1260_infoprocjud.vrsenarsusp|validacoes_esocial_efdreinf:"s1260_infoprocjud.vrsenarsusp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrSenarSusp</td>
-            <td width="500px">Valor da contribuição para o Senar com exigibilidade suspensa. Validação: Preenchimento obrigatório se {vrCPSusp} e {vrRatSusp} não tiverem sido preenchidos.Deve ser um valor maior que zero.</td>
+            <td width="500px">Valor da contribuição para o Senar com exigibilidade suspensa. Validação: Preenchimento obrigatório se {vrCPSusp} e {vrRatSusp} não tiverem sido preenchidos. Deve ser um valor maior que zero.</td>
             <td width="200px"><b>{% if s1260_infoprocjud.vrsenarsusp or s1260_infoprocjud.vrsenarsusp == 0 %}{{ s1260_infoprocjud.vrsenarsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">

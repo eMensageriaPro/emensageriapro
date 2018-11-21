@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -62,9 +93,9 @@ CHOICES_S2400_SEXODEP = (
 )
 
 class s2400brasil(models.Model):
-    s2400_endereco = models.OneToOneField('s2400endereco',
-        related_name='%(class)s_s2400_endereco')
-    def evento(self): return self.s2400_endereco.evento()
+    s2400_evtcdbenefin = models.OneToOneField('esocial.s2400evtCdBenefIn',
+        related_name='%(class)s_s2400_evtcdbenefin')
+    def evento(self): return self.s2400_evtcdbenefin.evento()
     tplograd = models.TextField(max_length=4)
     dsclograd = models.CharField(max_length=80)
     nrlograd = models.CharField(max_length=10)
@@ -81,13 +112,13 @@ class s2400brasil(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2400_endereco) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.complemento) + ' - ' + unicode(self.bairro) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
+        return unicode(self.s2400_evtcdbenefin) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
     #s2400_brasil_custom#
     #s2400_brasil_custom#
     class Meta:
         db_table = r's2400_brasil'
         managed = True
-        ordering = ['s2400_endereco', 'tplograd', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'cep', 'codmunic', 'uf']
+        ordering = ['s2400_evtcdbenefin', 'tplograd', 'dsclograd', 'nrlograd', 'cep', 'codmunic', 'uf']
 
 
 
@@ -117,13 +148,13 @@ class s2400dependente(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2400_evtcdbenefin) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.cpfdep) + ' - ' + unicode(self.sexodep) + ' - ' + unicode(self.depirrf) + ' - ' + unicode(self.incfismen) + ' - ' + unicode(self.depfinsprev)
+        return unicode(self.s2400_evtcdbenefin) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.sexodep) + ' - ' + unicode(self.depirrf) + ' - ' + unicode(self.incfismen) + ' - ' + unicode(self.depfinsprev)
     #s2400_dependente_custom#
     #s2400_dependente_custom#
     class Meta:
         db_table = r's2400_dependente'
         managed = True
-        ordering = ['s2400_evtcdbenefin', 'tpdep', 'nmdep', 'dtnascto', 'cpfdep', 'sexodep', 'depirrf', 'incfismen', 'depfinsprev']
+        ordering = ['s2400_evtcdbenefin', 'tpdep', 'nmdep', 'dtnascto', 'sexodep', 'depirrf', 'incfismen', 'depfinsprev']
 
 
 
@@ -133,38 +164,10 @@ class s2400dependenteSerializer(ModelSerializer):
         fields = '__all__'
             
 
-class s2400endereco(models.Model):
+class s2400exterior(models.Model):
     s2400_evtcdbenefin = models.OneToOneField('esocial.s2400evtCdBenefIn',
         related_name='%(class)s_s2400_evtcdbenefin')
     def evento(self): return self.s2400_evtcdbenefin.evento()
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s2400_evtcdbenefin)
-    #s2400_endereco_custom#
-    #s2400_endereco_custom#
-    class Meta:
-        db_table = r's2400_endereco'
-        managed = True
-        ordering = ['s2400_evtcdbenefin']
-
-
-
-class s2400enderecoSerializer(ModelSerializer):
-    class Meta:
-        model = s2400endereco
-        fields = '__all__'
-            
-
-class s2400exterior(models.Model):
-    s2400_endereco = models.OneToOneField('s2400endereco',
-        related_name='%(class)s_s2400_endereco')
-    def evento(self): return self.s2400_endereco.evento()
     paisresid = models.TextField(max_length=3)
     dsclograd = models.CharField(max_length=80)
     nrlograd = models.CharField(max_length=10)
@@ -180,13 +183,13 @@ class s2400exterior(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2400_endereco) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.complemento) + ' - ' + unicode(self.bairro) + ' - ' + unicode(self.nmcid) + ' - ' + unicode(self.codpostal)
+        return unicode(self.s2400_evtcdbenefin) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.nmcid)
     #s2400_exterior_custom#
     #s2400_exterior_custom#
     class Meta:
         db_table = r's2400_exterior'
         managed = True
-        ordering = ['s2400_endereco', 'paisresid', 'dsclograd', 'nrlograd', 'complemento', 'bairro', 'nmcid', 'codpostal']
+        ordering = ['s2400_evtcdbenefin', 'paisresid', 'dsclograd', 'nrlograd', 'nmcid']
 
 
 

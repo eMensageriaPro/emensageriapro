@@ -87,6 +87,7 @@ def read_s2221_evttoxic_obj(doc, status, validar=False):
     if 'nmMed' in dir(evtToxic.toxicologico): s2221_evttoxic_dados['nmmed'] = evtToxic.toxicologico.nmMed.cdata
     if 'nrCRM' in dir(evtToxic.toxicologico): s2221_evttoxic_dados['nrcrm'] = evtToxic.toxicologico.nrCRM.cdata
     if 'ufCRM' in dir(evtToxic.toxicologico): s2221_evttoxic_dados['ufcrm'] = evtToxic.toxicologico.ufCRM.cdata
+    if 'indRecusa' in dir(evtToxic.toxicologico): s2221_evttoxic_dados['indrecusa'] = evtToxic.toxicologico.indRecusa.cdata
     if 'inclusao' in dir(evtToxic.toxicologico): s2221_evttoxic_dados['operacao'] = 1
     elif 'alteracao' in dir(evtToxic.toxicologico): s2221_evttoxic_dados['operacao'] = 2
     elif 'exclusao' in dir(evtToxic.toxicologico): s2221_evttoxic_dados['operacao'] = 3

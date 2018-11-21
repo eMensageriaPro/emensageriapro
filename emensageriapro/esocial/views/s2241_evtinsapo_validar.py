@@ -57,42 +57,64 @@ def validacoes_s2241_evtinsapo(arquivo):
     if 'cpfTrab' in dir(evtInsApo.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtInsApo.ideVinculo.cpfTrab', evtInsApo.ideVinculo.cpfTrab.cdata, 1, '')
     if 'nisTrab' in dir(evtInsApo.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtInsApo.ideVinculo.nisTrab', evtInsApo.ideVinculo.nisTrab.cdata, 0, '')
     if 'matricula' in dir(evtInsApo.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtInsApo.ideVinculo.matricula', evtInsApo.ideVinculo.matricula.cdata, 0, '')
-    if 'insalPeric' in dir(evtInsApo):
-        for insalPeric in evtInsApo.insalPeric:
+    if 'iniInsalPeric' in dir(evtInsApo.insalPeric):
+        for iniInsalPeric in evtInsApo.insalPeric.iniInsalPeric:
        
+            if 'dtIniCondicao' in dir(iniInsalPeric): validacoes_lista = validar_campo(validacoes_lista,'iniInsalPeric.dtIniCondicao', iniInsalPeric.dtIniCondicao.cdata, 1, '')
 
-            if 'iniInsalPeric' in dir(insalPeric):
-                for iniInsalPeric in insalPeric.iniInsalPeric:
+            if 'infoAmb' in dir(iniInsalPeric):
+                for infoAmb in iniInsalPeric.infoAmb:
                
-                    if 'dtIniCondicao' in dir(iniInsalPeric): validacoes_lista = validar_campo(validacoes_lista,'iniInsalPeric.dtIniCondicao', iniInsalPeric.dtIniCondicao.cdata, 1, '')
+                    if 'codAmb' in dir(infoAmb): validacoes_lista = validar_campo(validacoes_lista,'infoAmb.codAmb', infoAmb.codAmb.cdata, 1, '')
    
-            if 'altInsalPeric' in dir(insalPeric):
-                for altInsalPeric in insalPeric.altInsalPeric:
-               
-                    if 'dtAltCondicao' in dir(altInsalPeric): validacoes_lista = validar_campo(validacoes_lista,'altInsalPeric.dtAltCondicao', altInsalPeric.dtAltCondicao.cdata, 1, '')
-   
-            if 'fimInsalPeric' in dir(insalPeric):
-                for fimInsalPeric in insalPeric.fimInsalPeric:
-               
-                    if 'dtFimCondicao' in dir(fimInsalPeric): validacoes_lista = validar_campo(validacoes_lista,'fimInsalPeric.dtFimCondicao', fimInsalPeric.dtFimCondicao.cdata, 1, '')
-   
-    if 'aposentEsp' in dir(evtInsApo):
-        for aposentEsp in evtInsApo.aposentEsp:
+    if 'altInsalPeric' in dir(evtInsApo.insalPeric):
+        for altInsalPeric in evtInsApo.insalPeric.altInsalPeric:
        
+            if 'dtAltCondicao' in dir(altInsalPeric): validacoes_lista = validar_campo(validacoes_lista,'altInsalPeric.dtAltCondicao', altInsalPeric.dtAltCondicao.cdata, 1, '')
 
-            if 'iniAposentEsp' in dir(aposentEsp):
-                for iniAposentEsp in aposentEsp.iniAposentEsp:
+            if 'infoamb' in dir(altInsalPeric):
+                for infoamb in altInsalPeric.infoamb:
                
-                    if 'dtIniCondicao' in dir(iniAposentEsp): validacoes_lista = validar_campo(validacoes_lista,'iniAposentEsp.dtIniCondicao', iniAposentEsp.dtIniCondicao.cdata, 1, '')
+                    if 'codAmb' in dir(infoamb): validacoes_lista = validar_campo(validacoes_lista,'infoamb.codAmb', infoamb.codAmb.cdata, 1, '')
    
-            if 'altAposentEsp' in dir(aposentEsp):
-                for altAposentEsp in aposentEsp.altAposentEsp:
+    if 'fimInsalPeric' in dir(evtInsApo.insalPeric):
+        for fimInsalPeric in evtInsApo.insalPeric.fimInsalPeric:
+       
+            if 'dtFimCondicao' in dir(fimInsalPeric): validacoes_lista = validar_campo(validacoes_lista,'fimInsalPeric.dtFimCondicao', fimInsalPeric.dtFimCondicao.cdata, 1, '')
+
+            if 'infoAmb' in dir(fimInsalPeric):
+                for infoAmb in fimInsalPeric.infoAmb:
                
-                    if 'dtAltCondicao' in dir(altAposentEsp): validacoes_lista = validar_campo(validacoes_lista,'altAposentEsp.dtAltCondicao', altAposentEsp.dtAltCondicao.cdata, 1, '')
+                    if 'codAmb' in dir(infoAmb): validacoes_lista = validar_campo(validacoes_lista,'infoAmb.codAmb', infoAmb.codAmb.cdata, 1, '')
    
-            if 'fimAposentEsp' in dir(aposentEsp):
-                for fimAposentEsp in aposentEsp.fimAposentEsp:
+    if 'iniAposentEsp' in dir(evtInsApo.aposentEsp):
+        for iniAposentEsp in evtInsApo.aposentEsp.iniAposentEsp:
+       
+            if 'dtIniCondicao' in dir(iniAposentEsp): validacoes_lista = validar_campo(validacoes_lista,'iniAposentEsp.dtIniCondicao', iniAposentEsp.dtIniCondicao.cdata, 1, '')
+
+            if 'infoAmb' in dir(iniAposentEsp):
+                for infoAmb in iniAposentEsp.infoAmb:
                
-                    if 'dtFimCondicao' in dir(fimAposentEsp): validacoes_lista = validar_campo(validacoes_lista,'fimAposentEsp.dtFimCondicao', fimAposentEsp.dtFimCondicao.cdata, 1, '')
+                    if 'codAmb' in dir(infoAmb): validacoes_lista = validar_campo(validacoes_lista,'infoAmb.codAmb', infoAmb.codAmb.cdata, 1, '')
+   
+    if 'altAposentEsp' in dir(evtInsApo.aposentEsp):
+        for altAposentEsp in evtInsApo.aposentEsp.altAposentEsp:
+       
+            if 'dtAltCondicao' in dir(altAposentEsp): validacoes_lista = validar_campo(validacoes_lista,'altAposentEsp.dtAltCondicao', altAposentEsp.dtAltCondicao.cdata, 1, '')
+
+            if 'infoamb' in dir(altAposentEsp):
+                for infoamb in altAposentEsp.infoamb:
+               
+                    if 'codAmb' in dir(infoamb): validacoes_lista = validar_campo(validacoes_lista,'infoamb.codAmb', infoamb.codAmb.cdata, 1, '')
+   
+    if 'fimAposentEsp' in dir(evtInsApo.aposentEsp):
+        for fimAposentEsp in evtInsApo.aposentEsp.fimAposentEsp:
+       
+            if 'dtFimCondicao' in dir(fimAposentEsp): validacoes_lista = validar_campo(validacoes_lista,'fimAposentEsp.dtFimCondicao', fimAposentEsp.dtFimCondicao.cdata, 1, '')
+
+            if 'infoAmb' in dir(fimAposentEsp):
+                for infoAmb in fimAposentEsp.infoAmb:
+               
+                    if 'codAmb' in dir(infoAmb): validacoes_lista = validar_campo(validacoes_lista,'infoAmb.codAmb', infoAmb.codAmb.cdata, 1, '')
    
     return validacoes_lista

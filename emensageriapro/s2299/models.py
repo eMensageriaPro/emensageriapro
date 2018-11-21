@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -88,15 +119,20 @@ CHOICES_S2299_INFOTRABINTERM_TPINSC = (
 
 CHOICES_S2299_INFOTRABINTERM_TPTRIB = (
     (2, u'2 - Contribuições sociais do trabalhador'),
-    (3, u'3 - FGTS'),
     (3, u'3 - IRRF'),
+    (3, u'3 - FGTS'),
     (4, u'4 - Contribuição sindical'),
 )
 
+CHOICES_S2299_TPINSCSUC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+)
+
 class s2299dmDev(models.Model):
-    s2299_verbasresc = models.ForeignKey('s2299verbasResc',
-        related_name='%(class)s_s2299_verbasresc')
-    def evento(self): return self.s2299_verbasresc.evento()
+    s2299_evtdeslig = models.ForeignKey('esocial.s2299evtDeslig',
+        related_name='%(class)s_s2299_evtdeslig')
+    def evento(self): return self.s2299_evtdeslig.evento()
     idedmdev = models.CharField(max_length=30)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -106,47 +142,19 @@ class s2299dmDev(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2299_verbasresc) + ' - ' + unicode(self.idedmdev)
+        return unicode(self.s2299_evtdeslig) + ' - ' + unicode(self.idedmdev)
     #s2299_dmdev_custom#
     #s2299_dmdev_custom#
     class Meta:
         db_table = r's2299_dmdev'
         managed = True
-        ordering = ['s2299_verbasresc', 'idedmdev']
+        ordering = ['s2299_evtdeslig', 'idedmdev']
 
 
 
 class s2299dmDevSerializer(ModelSerializer):
     class Meta:
         model = s2299dmDev
-        fields = '__all__'
-            
-
-class s2299infoPerAnt(models.Model):
-    s2299_dmdev = models.OneToOneField('s2299dmDev',
-        related_name='%(class)s_s2299_dmdev')
-    def evento(self): return self.s2299_dmdev.evento()
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s2299_dmdev)
-    #s2299_infoperant_custom#
-    #s2299_infoperant_custom#
-    class Meta:
-        db_table = r's2299_infoperant'
-        managed = True
-        ordering = ['s2299_dmdev']
-
-
-
-class s2299infoPerAntSerializer(ModelSerializer):
-    class Meta:
-        model = s2299infoPerAnt
         fields = '__all__'
             
 
@@ -168,13 +176,13 @@ class s2299infoPerAntdetVerbas(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2299_infoperant_ideestablot) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.qtdrubr) + ' - ' + unicode(self.fatorrubr) + ' - ' + unicode(self.vrunit) + ' - ' + unicode(self.vrrubr)
+        return unicode(self.s2299_infoperant_ideestablot) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s2299_infoperant_detverbas_custom#
     #s2299_infoperant_detverbas_custom#
     class Meta:
         db_table = r's2299_infoperant_detverbas'
         managed = True
-        ordering = ['s2299_infoperant_ideestablot', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
+        ordering = ['s2299_infoperant_ideestablot', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
 
@@ -185,9 +193,9 @@ class s2299infoPerAntdetVerbasSerializer(ModelSerializer):
             
 
 class s2299infoPerAntideADC(models.Model):
-    s2299_infoperant = models.ForeignKey('s2299infoPerAnt',
-        related_name='%(class)s_s2299_infoperant')
-    def evento(self): return self.s2299_infoperant.evento()
+    s2299_dmdev = models.ForeignKey('s2299dmDev',
+        related_name='%(class)s_s2299_dmdev')
+    def evento(self): return self.s2299_dmdev.evento()
     dtacconv = models.DateField()
     tpacconv = models.CharField(choices=CHOICES_S2299_INFOPERANT_TPACCONV, max_length=1)
     compacconv = models.CharField(max_length=7, blank=True, null=True)
@@ -201,13 +209,13 @@ class s2299infoPerAntideADC(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2299_infoperant) + ' - ' + unicode(self.dtacconv) + ' - ' + unicode(self.tpacconv) + ' - ' + unicode(self.compacconv) + ' - ' + unicode(self.dtefacconv) + ' - ' + unicode(self.dsc)
+        return unicode(self.s2299_dmdev) + ' - ' + unicode(self.dtacconv) + ' - ' + unicode(self.tpacconv) + ' - ' + unicode(self.dtefacconv) + ' - ' + unicode(self.dsc)
     #s2299_infoperant_ideadc_custom#
     #s2299_infoperant_ideadc_custom#
     class Meta:
         db_table = r's2299_infoperant_ideadc'
         managed = True
-        ordering = ['s2299_infoperant', 'dtacconv', 'tpacconv', 'compacconv', 'dtefacconv', 'dsc']
+        ordering = ['s2299_dmdev', 'dtacconv', 'tpacconv', 'dtefacconv', 'dsc']
 
 
 
@@ -335,38 +343,10 @@ class s2299infoPerAntinfoSimplesSerializer(ModelSerializer):
         fields = '__all__'
             
 
-class s2299infoPerApur(models.Model):
-    s2299_dmdev = models.OneToOneField('s2299dmDev',
-        related_name='%(class)s_s2299_dmdev')
-    def evento(self): return self.s2299_dmdev.evento()
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s2299_dmdev)
-    #s2299_infoperapur_custom#
-    #s2299_infoperapur_custom#
-    class Meta:
-        db_table = r's2299_infoperapur'
-        managed = True
-        ordering = ['s2299_dmdev']
-
-
-
-class s2299infoPerApurSerializer(ModelSerializer):
-    class Meta:
-        model = s2299infoPerApur
-        fields = '__all__'
-            
-
 class s2299infoPerApurdetOper(models.Model):
-    s2299_infoperapur_infosaudecolet = models.ForeignKey('s2299infoPerApurinfoSaudeColet',
-        related_name='%(class)s_s2299_infoperapur_infosaudecolet')
-    def evento(self): return self.s2299_infoperapur_infosaudecolet.evento()
+    s2299_infoperapur_ideestablot = models.ForeignKey('s2299infoPerApurideEstabLot',
+        related_name='%(class)s_s2299_infoperapur_ideestablot')
+    def evento(self): return self.s2299_infoperapur_ideestablot.evento()
     cnpjoper = models.CharField(max_length=14)
     regans = models.CharField(max_length=6)
     vrpgtit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
@@ -378,13 +358,13 @@ class s2299infoPerApurdetOper(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2299_infoperapur_infosaudecolet) + ' - ' + unicode(self.cnpjoper) + ' - ' + unicode(self.regans) + ' - ' + unicode(self.vrpgtit)
+        return unicode(self.s2299_infoperapur_ideestablot) + ' - ' + unicode(self.cnpjoper) + ' - ' + unicode(self.regans) + ' - ' + unicode(self.vrpgtit)
     #s2299_infoperapur_detoper_custom#
     #s2299_infoperapur_detoper_custom#
     class Meta:
         db_table = r's2299_infoperapur_detoper'
         managed = True
-        ordering = ['s2299_infoperapur_infosaudecolet', 'cnpjoper', 'regans', 'vrpgtit']
+        ordering = ['s2299_infoperapur_ideestablot', 'cnpjoper', 'regans', 'vrpgtit']
 
 
 
@@ -411,13 +391,13 @@ class s2299infoPerApurdetPlano(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2299_infoperapur_detoper) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.cpfdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.vlrpgdep)
+        return unicode(self.s2299_infoperapur_detoper) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.vlrpgdep)
     #s2299_infoperapur_detplano_custom#
     #s2299_infoperapur_detplano_custom#
     class Meta:
         db_table = r's2299_infoperapur_detplano'
         managed = True
-        ordering = ['s2299_infoperapur_detoper', 'tpdep', 'cpfdep', 'nmdep', 'dtnascto', 'vlrpgdep']
+        ordering = ['s2299_infoperapur_detoper', 'tpdep', 'nmdep', 'dtnascto', 'vlrpgdep']
 
 
 
@@ -445,13 +425,13 @@ class s2299infoPerApurdetVerbas(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2299_infoperapur_ideestablot) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.qtdrubr) + ' - ' + unicode(self.fatorrubr) + ' - ' + unicode(self.vrunit) + ' - ' + unicode(self.vrrubr)
+        return unicode(self.s2299_infoperapur_ideestablot) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s2299_infoperapur_detverbas_custom#
     #s2299_infoperapur_detverbas_custom#
     class Meta:
         db_table = r's2299_infoperapur_detverbas'
         managed = True
-        ordering = ['s2299_infoperapur_ideestablot', 'codrubr', 'idetabrubr', 'qtdrubr', 'fatorrubr', 'vrunit', 'vrrubr']
+        ordering = ['s2299_infoperapur_ideestablot', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
 
@@ -462,9 +442,9 @@ class s2299infoPerApurdetVerbasSerializer(ModelSerializer):
             
 
 class s2299infoPerApurideEstabLot(models.Model):
-    s2299_infoperapur = models.ForeignKey('s2299infoPerApur',
-        related_name='%(class)s_s2299_infoperapur')
-    def evento(self): return self.s2299_infoperapur.evento()
+    s2299_dmdev = models.ForeignKey('s2299dmDev',
+        related_name='%(class)s_s2299_dmdev')
+    def evento(self): return self.s2299_dmdev.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S2299_INFOPERAPUR_TPINSC)
     nrinsc = models.CharField(max_length=15)
     codlotacao = models.CharField(max_length=30)
@@ -476,13 +456,13 @@ class s2299infoPerApurideEstabLot(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2299_infoperapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao)
+        return unicode(self.s2299_dmdev) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao)
     #s2299_infoperapur_ideestablot_custom#
     #s2299_infoperapur_ideestablot_custom#
     class Meta:
         db_table = r's2299_infoperapur_ideestablot'
         managed = True
-        ordering = ['s2299_infoperapur', 'tpinsc', 'nrinsc', 'codlotacao']
+        ordering = ['s2299_dmdev', 'tpinsc', 'nrinsc', 'codlotacao']
 
 
 
@@ -518,34 +498,6 @@ class s2299infoPerApurinfoAgNocivo(models.Model):
 class s2299infoPerApurinfoAgNocivoSerializer(ModelSerializer):
     class Meta:
         model = s2299infoPerApurinfoAgNocivo
-        fields = '__all__'
-            
-
-class s2299infoPerApurinfoSaudeColet(models.Model):
-    s2299_infoperapur_ideestablot = models.OneToOneField('s2299infoPerApurideEstabLot',
-        related_name='%(class)s_s2299_infoperapur_ideestablot')
-    def evento(self): return self.s2299_infoperapur_ideestablot.evento()
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s2299_infoperapur_ideestablot)
-    #s2299_infoperapur_infosaudecolet_custom#
-    #s2299_infoperapur_infosaudecolet_custom#
-    class Meta:
-        db_table = r's2299_infoperapur_infosaudecolet'
-        managed = True
-        ordering = ['s2299_infoperapur_ideestablot']
-
-
-
-class s2299infoPerApurinfoSaudeColetSerializer(ModelSerializer):
-    class Meta:
-        model = s2299infoPerApurinfoSaudeColet
         fields = '__all__'
             
 
@@ -638,9 +590,9 @@ class s2299infoTrabIntermconsigFGTSSerializer(ModelSerializer):
             
 
 class s2299infoTrabInterminfoMV(models.Model):
-    s2299_verbasresc = models.OneToOneField('s2299verbasResc',
-        related_name='%(class)s_s2299_verbasresc')
-    def evento(self): return self.s2299_verbasresc.evento()
+    s2299_evtdeslig = models.OneToOneField('esocial.s2299evtDeslig',
+        related_name='%(class)s_s2299_evtdeslig')
+    def evento(self): return self.s2299_evtdeslig.evento()
     indmv = models.IntegerField(choices=CHOICES_S2299_INFOTRABINTERM_INDMV)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -650,13 +602,13 @@ class s2299infoTrabInterminfoMV(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2299_verbasresc) + ' - ' + unicode(self.indmv)
+        return unicode(self.s2299_evtdeslig) + ' - ' + unicode(self.indmv)
     #s2299_infotrabinterm_infomv_custom#
     #s2299_infotrabinterm_infomv_custom#
     class Meta:
         db_table = r's2299_infotrabinterm_infomv'
         managed = True
-        ordering = ['s2299_verbasresc', 'indmv']
+        ordering = ['s2299_evtdeslig', 'indmv']
 
 
 
@@ -667,9 +619,9 @@ class s2299infoTrabInterminfoMVSerializer(ModelSerializer):
             
 
 class s2299infoTrabIntermprocCS(models.Model):
-    s2299_verbasresc = models.OneToOneField('s2299verbasResc',
-        related_name='%(class)s_s2299_verbasresc')
-    def evento(self): return self.s2299_verbasresc.evento()
+    s2299_evtdeslig = models.OneToOneField('esocial.s2299evtDeslig',
+        related_name='%(class)s_s2299_evtdeslig')
+    def evento(self): return self.s2299_evtdeslig.evento()
     nrprocjud = models.CharField(max_length=20)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -679,13 +631,13 @@ class s2299infoTrabIntermprocCS(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2299_verbasresc) + ' - ' + unicode(self.nrprocjud)
+        return unicode(self.s2299_evtdeslig) + ' - ' + unicode(self.nrprocjud)
     #s2299_infotrabinterm_proccs_custom#
     #s2299_infotrabinterm_proccs_custom#
     class Meta:
         db_table = r's2299_infotrabinterm_proccs'
         managed = True
-        ordering = ['s2299_verbasresc', 'nrprocjud']
+        ordering = ['s2299_evtdeslig', 'nrprocjud']
 
 
 
@@ -696,9 +648,9 @@ class s2299infoTrabIntermprocCSSerializer(ModelSerializer):
             
 
 class s2299infoTrabIntermprocJudTrab(models.Model):
-    s2299_verbasresc = models.ForeignKey('s2299verbasResc',
-        related_name='%(class)s_s2299_verbasresc')
-    def evento(self): return self.s2299_verbasresc.evento()
+    s2299_evtdeslig = models.ForeignKey('esocial.s2299evtDeslig',
+        related_name='%(class)s_s2299_evtdeslig')
+    def evento(self): return self.s2299_evtdeslig.evento()
     tptrib = models.IntegerField(choices=CHOICES_S2299_INFOTRABINTERM_TPTRIB)
     nrprocjud = models.CharField(max_length=20)
     codsusp = models.IntegerField(blank=True, null=True)
@@ -710,13 +662,13 @@ class s2299infoTrabIntermprocJudTrab(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2299_verbasresc) + ' - ' + unicode(self.tptrib) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.codsusp)
+        return unicode(self.s2299_evtdeslig) + ' - ' + unicode(self.tptrib) + ' - ' + unicode(self.nrprocjud)
     #s2299_infotrabinterm_procjudtrab_custom#
     #s2299_infotrabinterm_procjudtrab_custom#
     class Meta:
         db_table = r's2299_infotrabinterm_procjudtrab'
         managed = True
-        ordering = ['s2299_verbasresc', 'tptrib', 'nrprocjud', 'codsusp']
+        ordering = ['s2299_evtdeslig', 'tptrib', 'nrprocjud']
 
 
 
@@ -787,6 +739,35 @@ class s2299infoTrabIntermremunOutrEmprSerializer(ModelSerializer):
         fields = '__all__'
             
 
+class s2299mudancaCPF(models.Model):
+    s2299_evtdeslig = models.OneToOneField('esocial.s2299evtDeslig',
+        related_name='%(class)s_s2299_evtdeslig')
+    def evento(self): return self.s2299_evtdeslig.evento()
+    novocpf = models.CharField(max_length=11)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.s2299_evtdeslig) + ' - ' + unicode(self.novocpf)
+    #s2299_mudancacpf_custom#
+    #s2299_mudancacpf_custom#
+    class Meta:
+        db_table = r's2299_mudancacpf'
+        managed = True
+        ordering = ['s2299_evtdeslig', 'novocpf']
+
+
+
+class s2299mudancaCPFSerializer(ModelSerializer):
+    class Meta:
+        model = s2299mudancaCPF
+        fields = '__all__'
+            
+
 class s2299observacoes(models.Model):
     s2299_evtdeslig = models.ForeignKey('esocial.s2299evtDeslig',
         related_name='%(class)s_s2299_evtdeslig')
@@ -820,6 +801,7 @@ class s2299sucessaoVinc(models.Model):
     s2299_evtdeslig = models.OneToOneField('esocial.s2299evtDeslig',
         related_name='%(class)s_s2299_evtdeslig')
     def evento(self): return self.s2299_evtdeslig.evento()
+    tpinscsuc = models.IntegerField(choices=CHOICES_S2299_TPINSCSUC)
     cnpjsucessora = models.CharField(max_length=14)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -829,13 +811,13 @@ class s2299sucessaoVinc(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s2299_evtdeslig) + ' - ' + unicode(self.cnpjsucessora)
+        return unicode(self.s2299_evtdeslig) + ' - ' + unicode(self.tpinscsuc) + ' - ' + unicode(self.cnpjsucessora)
     #s2299_sucessaovinc_custom#
     #s2299_sucessaovinc_custom#
     class Meta:
         db_table = r's2299_sucessaovinc'
         managed = True
-        ordering = ['s2299_evtdeslig', 'cnpjsucessora']
+        ordering = ['s2299_evtdeslig', 'tpinscsuc', 'cnpjsucessora']
 
 
 
@@ -872,34 +854,6 @@ class s2299transfTit(models.Model):
 class s2299transfTitSerializer(ModelSerializer):
     class Meta:
         model = s2299transfTit
-        fields = '__all__'
-            
-
-class s2299verbasResc(models.Model):
-    s2299_evtdeslig = models.OneToOneField('esocial.s2299evtDeslig',
-        related_name='%(class)s_s2299_evtdeslig')
-    def evento(self): return self.s2299_evtdeslig.evento()
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    def __unicode__(self):
-        return unicode(self.s2299_evtdeslig)
-    #s2299_verbasresc_custom#
-    #s2299_verbasresc_custom#
-    class Meta:
-        db_table = r's2299_verbasresc'
-        managed = True
-        ordering = ['s2299_evtdeslig']
-
-
-
-class s2299verbasRescSerializer(ModelSerializer):
-    class Meta:
-        model = s2299verbasResc
         fields = '__all__'
             
 

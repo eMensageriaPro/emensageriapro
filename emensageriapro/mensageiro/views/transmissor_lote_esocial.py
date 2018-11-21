@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -66,8 +97,10 @@ from emensageriapro.esocial.models import s2420evtCdBenTerm
 from emensageriapro.esocial.models import s3000evtExclusao
 from emensageriapro.esocial.models import s5001evtBasesTrab
 from emensageriapro.esocial.models import s5002evtIrrfBenef
+from emensageriapro.esocial.models import s5003evtBasesFGTS
 from emensageriapro.esocial.models import s5011evtCS
 from emensageriapro.esocial.models import s5012evtIrrf
+from emensageriapro.esocial.models import s5013evtFGTS
 from emensageriapro.esocial.forms import form_s1000_evtinfoempregador
 from emensageriapro.esocial.forms import form_s1005_evttabestab
 from emensageriapro.esocial.forms import form_s1010_evttabrubrica
@@ -117,8 +150,10 @@ from emensageriapro.esocial.forms import form_s2420_evtcdbenterm
 from emensageriapro.esocial.forms import form_s3000_evtexclusao
 from emensageriapro.esocial.forms import form_s5001_evtbasestrab
 from emensageriapro.esocial.forms import form_s5002_evtirrfbenef
+from emensageriapro.esocial.forms import form_s5003_evtbasesfgts
 from emensageriapro.esocial.forms import form_s5011_evtcs
 from emensageriapro.esocial.forms import form_s5012_evtirrf
+from emensageriapro.esocial.forms import form_s5013_evtfgts
 
 #IMPORTACOES
 
@@ -150,7 +185,7 @@ def salvar(request, hash):
         if transmissor_lote_esocial_id:
             transmissor_lote_esocial_form = form_transmissor_lote_esocial(request.POST or None, instance = transmissor_lote_esocial, slug = db_slug)
         else:
-            transmissor_lote_esocial_form = form_transmissor_lote_esocial(request.POST or None, slug = db_slug, initial={'status': 0})
+            transmissor_lote_esocial_form = form_transmissor_lote_esocial(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if transmissor_lote_esocial_form.is_valid():
                 dados = transmissor_lote_esocial_form.cleaned_data
@@ -372,56 +407,51 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
-            'show_tempo_estimado_conclusao': 0,
-            'show_processamento_versao_aplicativo': 0,
-            'show_protocolo': 0,
-            'show_recepcao_versao_aplicativo': 0,
-            'show_recepcao_data_hora': 0,
-            'show_resposta_descricao': 0,
-            'show_resposta_codigo': 1,
-            'show_status': 1,
-            'show_grupo': 1,
-            'show_empregador_nrinsc': 1,
+            'show_transmissor': 0,
             'show_empregador_tpinsc': 1,
-            'show_transmissor': 0, }
+            'show_empregador_nrinsc': 1,
+            'show_grupo': 1,
+            'show_status': 1,
+            'show_resposta_codigo': 1,
+            'show_resposta_descricao': 0,
+            'show_recepcao_data_hora': 0,
+            'show_recepcao_versao_aplicativo': 0,
+            'show_protocolo': 0,
+            'show_processamento_versao_aplicativo': 0,
+            'show_tempo_estimado_conclusao': 0, }
         post = False
         #ANTES-POST-LISTAGEM
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'tempo_estimado_conclusao': 'tempo_estimado_conclusao',
-                'processamento_versao_aplicativo__icontains': 'processamento_versao_aplicativo__icontains',
-                'protocolo__icontains': 'protocolo__icontains',
-                'recepcao_versao_aplicativo__icontains': 'recepcao_versao_aplicativo__icontains',
-                'recepcao_data_hora__range': 'recepcao_data_hora__range',
-                'resposta_codigo': 'resposta_codigo',
-                'status': 'status',
-                'grupo': 'grupo',
-                'empregador_nrinsc__icontains': 'empregador_nrinsc__icontains',
+                'transmissor': 'transmissor',
                 'empregador_tpinsc': 'empregador_tpinsc',
-                'transmissor': 'transmissor',}
+                'empregador_nrinsc__icontains': 'empregador_nrinsc__icontains',
+                'grupo': 'grupo',
+                'status': 'status',
+                'resposta_codigo': 'resposta_codigo',
+                'recepcao_data_hora__range': 'recepcao_data_hora__range',
+                'recepcao_versao_aplicativo__icontains': 'recepcao_versao_aplicativo__icontains',
+                'protocolo__icontains': 'protocolo__icontains',
+                'processamento_versao_aplicativo__icontains': 'processamento_versao_aplicativo__icontains',
+                'tempo_estimado_conclusao': 'tempo_estimado_conclusao',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'tempo_estimado_conclusao': 'tempo_estimado_conclusao',
-                'processamento_versao_aplicativo__icontains': 'processamento_versao_aplicativo__icontains',
-                'protocolo__icontains': 'protocolo__icontains',
-                'recepcao_versao_aplicativo__icontains': 'recepcao_versao_aplicativo__icontains',
-                'recepcao_data_hora__range': 'recepcao_data_hora__range',
-                'resposta_codigo': 'resposta_codigo',
-                'status': 'status',
-                'grupo': 'grupo',
-                'empregador_nrinsc__icontains': 'empregador_nrinsc__icontains',
+                'transmissor': 'transmissor',
                 'empregador_tpinsc': 'empregador_tpinsc',
-                'transmissor': 'transmissor',}
+                'empregador_nrinsc__icontains': 'empregador_nrinsc__icontains',
+                'grupo': 'grupo',
+                'status': 'status',
+                'resposta_codigo': 'resposta_codigo',
+                'recepcao_data_hora__range': 'recepcao_data_hora__range',
+                'recepcao_versao_aplicativo__icontains': 'recepcao_versao_aplicativo__icontains',
+                'protocolo__icontains': 'protocolo__icontains',
+                'processamento_versao_aplicativo__icontains': 'processamento_versao_aplicativo__icontains',
+                'tempo_estimado_conclusao': 'tempo_estimado_conclusao',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

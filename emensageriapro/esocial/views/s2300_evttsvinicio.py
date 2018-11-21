@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -17,24 +48,46 @@ from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
 import base64
-from emensageriapro.s2300.models import s2300documentos
+from emensageriapro.s2300.models import s2300CTPS
+from emensageriapro.s2300.models import s2300RIC
+from emensageriapro.s2300.models import s2300RG
+from emensageriapro.s2300.models import s2300RNE
+from emensageriapro.s2300.models import s2300OC
+from emensageriapro.s2300.models import s2300CNH
 from emensageriapro.s2300.models import s2300brasil
 from emensageriapro.s2300.models import s2300exterior
 from emensageriapro.s2300.models import s2300trabEstrangeiro
 from emensageriapro.s2300.models import s2300infoDeficiencia
 from emensageriapro.s2300.models import s2300dependente
 from emensageriapro.s2300.models import s2300contato
-from emensageriapro.s2300.models import s2300infoComplementares
+from emensageriapro.s2300.models import s2300cargoFuncao
+from emensageriapro.s2300.models import s2300remuneracao
+from emensageriapro.s2300.models import s2300fgts
+from emensageriapro.s2300.models import s2300infoDirigenteSindical
+from emensageriapro.s2300.models import s2300infoTrabCedido
+from emensageriapro.s2300.models import s2300infoEstagiario
+from emensageriapro.s2300.models import s2300mudancaCPF
 from emensageriapro.s2300.models import s2300afastamento
 from emensageriapro.s2300.models import s2300termino
-from emensageriapro.s2300.forms import form_s2300_documentos
+from emensageriapro.s2300.forms import form_s2300_ctps
+from emensageriapro.s2300.forms import form_s2300_ric
+from emensageriapro.s2300.forms import form_s2300_rg
+from emensageriapro.s2300.forms import form_s2300_rne
+from emensageriapro.s2300.forms import form_s2300_oc
+from emensageriapro.s2300.forms import form_s2300_cnh
 from emensageriapro.s2300.forms import form_s2300_brasil
 from emensageriapro.s2300.forms import form_s2300_exterior
 from emensageriapro.s2300.forms import form_s2300_trabestrangeiro
 from emensageriapro.s2300.forms import form_s2300_infodeficiencia
 from emensageriapro.s2300.forms import form_s2300_dependente
 from emensageriapro.s2300.forms import form_s2300_contato
-from emensageriapro.s2300.forms import form_s2300_infocomplementares
+from emensageriapro.s2300.forms import form_s2300_cargofuncao
+from emensageriapro.s2300.forms import form_s2300_remuneracao
+from emensageriapro.s2300.forms import form_s2300_fgts
+from emensageriapro.s2300.forms import form_s2300_infodirigentesindical
+from emensageriapro.s2300.forms import form_s2300_infotrabcedido
+from emensageriapro.s2300.forms import form_s2300_infoestagiario
+from emensageriapro.s2300.forms import form_s2300_mudancacpf
 from emensageriapro.s2300.forms import form_s2300_afastamento
 from emensageriapro.s2300.forms import form_s2300_termino
 
@@ -152,7 +205,6 @@ def salvar(request, hash):
                         messages.error(request, 'Não é possível salvar o evento, pois o mesmo não está com o status "Cadastrado"!')
 
                 else:
-                    dados['arquivo_original'] = 0
 
                     dados['criado_por_id'] = usuario_id
                     dados['criado_em'] = datetime.datetime.now()
@@ -187,8 +239,18 @@ def salvar(request, hash):
         if int(dict_hash['print']):
             s2300_evttsvinicio_form = disabled_form_for_print(s2300_evttsvinicio_form)
    
-        s2300_documentos_form = None
-        s2300_documentos_lista = None
+        s2300_ctps_form = None
+        s2300_ctps_lista = None
+        s2300_ric_form = None
+        s2300_ric_lista = None
+        s2300_rg_form = None
+        s2300_rg_lista = None
+        s2300_rne_form = None
+        s2300_rne_lista = None
+        s2300_oc_form = None
+        s2300_oc_lista = None
+        s2300_cnh_form = None
+        s2300_cnh_lista = None
         s2300_brasil_form = None
         s2300_brasil_lista = None
         s2300_exterior_form = None
@@ -201,8 +263,20 @@ def salvar(request, hash):
         s2300_dependente_lista = None
         s2300_contato_form = None
         s2300_contato_lista = None
-        s2300_infocomplementares_form = None
-        s2300_infocomplementares_lista = None
+        s2300_cargofuncao_form = None
+        s2300_cargofuncao_lista = None
+        s2300_remuneracao_form = None
+        s2300_remuneracao_lista = None
+        s2300_fgts_form = None
+        s2300_fgts_lista = None
+        s2300_infodirigentesindical_form = None
+        s2300_infodirigentesindical_lista = None
+        s2300_infotrabcedido_form = None
+        s2300_infotrabcedido_lista = None
+        s2300_infoestagiario_form = None
+        s2300_infoestagiario_lista = None
+        s2300_mudancacpf_form = None
+        s2300_mudancacpf_lista = None
         s2300_afastamento_form = None
         s2300_afastamento_lista = None
         s2300_termino_form = None
@@ -210,9 +284,24 @@ def salvar(request, hash):
         if s2300_evttsvinicio_id:
             s2300_evttsvinicio = get_object_or_404(s2300evtTSVInicio.objects.using( db_slug ), excluido = False, id = s2300_evttsvinicio_id)
        
-            s2300_documentos_form = form_s2300_documentos(initial={ 's2300_evttsvinicio': s2300_evttsvinicio }, slug=db_slug)
-            s2300_documentos_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
-            s2300_documentos_lista = s2300documentos.objects.using( db_slug ).filter(excluido = False, s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
+            s2300_ctps_form = form_s2300_ctps(initial={ 's2300_evttsvinicio': s2300_evttsvinicio }, slug=db_slug)
+            s2300_ctps_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
+            s2300_ctps_lista = s2300CTPS.objects.using( db_slug ).filter(excluido = False, s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
+            s2300_ric_form = form_s2300_ric(initial={ 's2300_evttsvinicio': s2300_evttsvinicio }, slug=db_slug)
+            s2300_ric_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
+            s2300_ric_lista = s2300RIC.objects.using( db_slug ).filter(excluido = False, s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
+            s2300_rg_form = form_s2300_rg(initial={ 's2300_evttsvinicio': s2300_evttsvinicio }, slug=db_slug)
+            s2300_rg_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
+            s2300_rg_lista = s2300RG.objects.using( db_slug ).filter(excluido = False, s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
+            s2300_rne_form = form_s2300_rne(initial={ 's2300_evttsvinicio': s2300_evttsvinicio }, slug=db_slug)
+            s2300_rne_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
+            s2300_rne_lista = s2300RNE.objects.using( db_slug ).filter(excluido = False, s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
+            s2300_oc_form = form_s2300_oc(initial={ 's2300_evttsvinicio': s2300_evttsvinicio }, slug=db_slug)
+            s2300_oc_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
+            s2300_oc_lista = s2300OC.objects.using( db_slug ).filter(excluido = False, s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
+            s2300_cnh_form = form_s2300_cnh(initial={ 's2300_evttsvinicio': s2300_evttsvinicio }, slug=db_slug)
+            s2300_cnh_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
+            s2300_cnh_lista = s2300CNH.objects.using( db_slug ).filter(excluido = False, s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
             s2300_brasil_form = form_s2300_brasil(initial={ 's2300_evttsvinicio': s2300_evttsvinicio }, slug=db_slug)
             s2300_brasil_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
             s2300_brasil_lista = s2300brasil.objects.using( db_slug ).filter(excluido = False, s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
@@ -231,9 +320,27 @@ def salvar(request, hash):
             s2300_contato_form = form_s2300_contato(initial={ 's2300_evttsvinicio': s2300_evttsvinicio }, slug=db_slug)
             s2300_contato_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
             s2300_contato_lista = s2300contato.objects.using( db_slug ).filter(excluido = False, s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
-            s2300_infocomplementares_form = form_s2300_infocomplementares(initial={ 's2300_evttsvinicio': s2300_evttsvinicio }, slug=db_slug)
-            s2300_infocomplementares_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
-            s2300_infocomplementares_lista = s2300infoComplementares.objects.using( db_slug ).filter(excluido = False, s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
+            s2300_cargofuncao_form = form_s2300_cargofuncao(initial={ 's2300_evttsvinicio': s2300_evttsvinicio }, slug=db_slug)
+            s2300_cargofuncao_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
+            s2300_cargofuncao_lista = s2300cargoFuncao.objects.using( db_slug ).filter(excluido = False, s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
+            s2300_remuneracao_form = form_s2300_remuneracao(initial={ 's2300_evttsvinicio': s2300_evttsvinicio }, slug=db_slug)
+            s2300_remuneracao_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
+            s2300_remuneracao_lista = s2300remuneracao.objects.using( db_slug ).filter(excluido = False, s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
+            s2300_fgts_form = form_s2300_fgts(initial={ 's2300_evttsvinicio': s2300_evttsvinicio }, slug=db_slug)
+            s2300_fgts_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
+            s2300_fgts_lista = s2300fgts.objects.using( db_slug ).filter(excluido = False, s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
+            s2300_infodirigentesindical_form = form_s2300_infodirigentesindical(initial={ 's2300_evttsvinicio': s2300_evttsvinicio }, slug=db_slug)
+            s2300_infodirigentesindical_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
+            s2300_infodirigentesindical_lista = s2300infoDirigenteSindical.objects.using( db_slug ).filter(excluido = False, s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
+            s2300_infotrabcedido_form = form_s2300_infotrabcedido(initial={ 's2300_evttsvinicio': s2300_evttsvinicio }, slug=db_slug)
+            s2300_infotrabcedido_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
+            s2300_infotrabcedido_lista = s2300infoTrabCedido.objects.using( db_slug ).filter(excluido = False, s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
+            s2300_infoestagiario_form = form_s2300_infoestagiario(initial={ 's2300_evttsvinicio': s2300_evttsvinicio }, slug=db_slug)
+            s2300_infoestagiario_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
+            s2300_infoestagiario_lista = s2300infoEstagiario.objects.using( db_slug ).filter(excluido = False, s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
+            s2300_mudancacpf_form = form_s2300_mudancacpf(initial={ 's2300_evttsvinicio': s2300_evttsvinicio }, slug=db_slug)
+            s2300_mudancacpf_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
+            s2300_mudancacpf_lista = s2300mudancaCPF.objects.using( db_slug ).filter(excluido = False, s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
             s2300_afastamento_form = form_s2300_afastamento(initial={ 's2300_evttsvinicio': s2300_evttsvinicio }, slug=db_slug)
             s2300_afastamento_form.fields['s2300_evttsvinicio'].widget.attrs['readonly'] = True
             s2300_afastamento_lista = s2300afastamento.objects.using( db_slug ).filter(excluido = False, s2300_evttsvinicio_id=s2300_evttsvinicio.id).all()
@@ -274,8 +381,18 @@ def salvar(request, hash):
             
             'hash': hash,
        
-            's2300_documentos_form': s2300_documentos_form,
-            's2300_documentos_lista': s2300_documentos_lista,
+            's2300_ctps_form': s2300_ctps_form,
+            's2300_ctps_lista': s2300_ctps_lista,
+            's2300_ric_form': s2300_ric_form,
+            's2300_ric_lista': s2300_ric_lista,
+            's2300_rg_form': s2300_rg_form,
+            's2300_rg_lista': s2300_rg_lista,
+            's2300_rne_form': s2300_rne_form,
+            's2300_rne_lista': s2300_rne_lista,
+            's2300_oc_form': s2300_oc_form,
+            's2300_oc_lista': s2300_oc_lista,
+            's2300_cnh_form': s2300_cnh_form,
+            's2300_cnh_lista': s2300_cnh_lista,
             's2300_brasil_form': s2300_brasil_form,
             's2300_brasil_lista': s2300_brasil_lista,
             's2300_exterior_form': s2300_exterior_form,
@@ -288,8 +405,20 @@ def salvar(request, hash):
             's2300_dependente_lista': s2300_dependente_lista,
             's2300_contato_form': s2300_contato_form,
             's2300_contato_lista': s2300_contato_lista,
-            's2300_infocomplementares_form': s2300_infocomplementares_form,
-            's2300_infocomplementares_lista': s2300_infocomplementares_lista,
+            's2300_cargofuncao_form': s2300_cargofuncao_form,
+            's2300_cargofuncao_lista': s2300_cargofuncao_lista,
+            's2300_remuneracao_form': s2300_remuneracao_form,
+            's2300_remuneracao_lista': s2300_remuneracao_lista,
+            's2300_fgts_form': s2300_fgts_form,
+            's2300_fgts_lista': s2300_fgts_lista,
+            's2300_infodirigentesindical_form': s2300_infodirigentesindical_form,
+            's2300_infodirigentesindical_lista': s2300_infodirigentesindical_lista,
+            's2300_infotrabcedido_form': s2300_infotrabcedido_form,
+            's2300_infotrabcedido_lista': s2300_infotrabcedido_lista,
+            's2300_infoestagiario_form': s2300_infoestagiario_form,
+            's2300_infoestagiario_lista': s2300_infoestagiario_lista,
+            's2300_mudancacpf_form': s2300_mudancacpf_form,
+            's2300_mudancacpf_lista': s2300_mudancacpf_lista,
             's2300_afastamento_form': s2300_afastamento_form,
             's2300_afastamento_lista': s2300_afastamento_lista,
             's2300_termino_form': s2300_termino_form,
@@ -465,148 +594,143 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
-            'show_natatividade': 0,
-            'show_dtinicio': 1,
-            'show_codcateg': 1,
-            'show_cadini': 1,
-            'show_infotsvinicio': 0,
-            'show_endereco': 0,
-            'show_nmpai': 0,
-            'show_nmmae': 0,
-            'show_paisnac': 1,
-            'show_paisnascto': 1,
-            'show_uf': 0,
-            'show_codmunic': 0,
-            'show_dtnascto': 1,
-            'show_nascimento': 0,
-            'show_nmsoc': 0,
-            'show_grauinstr': 1,
-            'show_estciv': 0,
-            'show_racacor': 1,
-            'show_sexo': 1,
-            'show_nmtrab': 1,
-            'show_nistrab': 0,
-            'show_cpftrab': 1,
-            'show_trabalhador': 0,
-            'show_nrinsc': 0,
-            'show_tpinsc': 0,
-            'show_ideempregador': 0,
-            'show_verproc': 0,
-            'show_procemi': 0,
-            'show_tpamb': 0,
-            'show_nrrecibo': 0,
-            'show_indretif': 1,
-            'show_ideevento': 0,
-            'show_identidade': 1,
-            'show_evttsvinicio': 0,
-            'show_recibo_hash': 0,
-            'show_recibo_numero': 0,
-            'show_processamento_data_hora': 0,
-            'show_processamento_versao_app_processamento': 0,
-            'show_processamento_descricao_resposta': 0,
-            'show_processamento_codigo_resposta': 1,
-            'show_recepcao_protocolo_envio_lote': 0,
-            'show_recepcao_versao_app': 0,
-            'show_recepcao_data_hora': 0,
-            'show_recepcao_tp_amb': 0,
-            'show_status': 1,
             'show_versao': 0,
             'show_transmissor_lote_esocial': 0,
-            'show_arquivo': 0,
-            'show_arquivo_original': 0,
-            'show_validacoes': 0,
-            'show_validacao_precedencia': 0,
+            'show_retornos_eventos': 0,
             'show_ocorrencias': 0,
-            'show_retornos_eventos': 0, }
+            'show_validacao_precedencia': 0,
+            'show_validacoes': 0,
+            'show_arquivo_original': 0,
+            'show_arquivo': 0,
+            'show_status': 1,
+            'show_recepcao_tp_amb': 0,
+            'show_recepcao_data_hora': 0,
+            'show_recepcao_versao_app': 0,
+            'show_recepcao_protocolo_envio_lote': 0,
+            'show_processamento_codigo_resposta': 1,
+            'show_processamento_descricao_resposta': 0,
+            'show_processamento_versao_app_processamento': 0,
+            'show_processamento_data_hora': 0,
+            'show_recibo_numero': 0,
+            'show_recibo_hash': 0,
+            'show_evttsvinicio': 0,
+            'show_identidade': 1,
+            'show_ideevento': 0,
+            'show_indretif': 1,
+            'show_nrrecibo': 0,
+            'show_tpamb': 0,
+            'show_procemi': 0,
+            'show_verproc': 0,
+            'show_ideempregador': 0,
+            'show_tpinsc': 0,
+            'show_nrinsc': 0,
+            'show_trabalhador': 0,
+            'show_cpftrab': 1,
+            'show_nistrab': 0,
+            'show_nmtrab': 1,
+            'show_sexo': 1,
+            'show_racacor': 1,
+            'show_estciv': 0,
+            'show_grauinstr': 1,
+            'show_nmsoc': 0,
+            'show_nascimento': 0,
+            'show_dtnascto': 1,
+            'show_codmunic': 0,
+            'show_uf': 0,
+            'show_paisnascto': 1,
+            'show_paisnac': 1,
+            'show_nmmae': 0,
+            'show_nmpai': 0,
+            'show_endereco': 0,
+            'show_infotsvinicio': 0,
+            'show_cadini': 1,
+            'show_codcateg': 1,
+            'show_dtinicio': 1,
+            'show_natatividade': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'natatividade': 'natatividade',
-                'dtinicio__range': 'dtinicio__range',
-                'codcateg__icontains': 'codcateg__icontains',
-                'cadini__icontains': 'cadini__icontains',
-                'infotsvinicio': 'infotsvinicio',
-                'endereco': 'endereco',
-                'nmpai__icontains': 'nmpai__icontains',
-                'nmmae__icontains': 'nmmae__icontains',
-                'paisnac__icontains': 'paisnac__icontains',
-                'paisnascto__icontains': 'paisnascto__icontains',
-                'uf__icontains': 'uf__icontains',
-                'codmunic__icontains': 'codmunic__icontains',
-                'dtnascto__range': 'dtnascto__range',
-                'nascimento': 'nascimento',
-                'nmsoc__icontains': 'nmsoc__icontains',
-                'grauinstr__icontains': 'grauinstr__icontains',
-                'estciv': 'estciv',
-                'racacor': 'racacor',
-                'sexo__icontains': 'sexo__icontains',
-                'nmtrab__icontains': 'nmtrab__icontains',
-                'nistrab__icontains': 'nistrab__icontains',
-                'cpftrab__icontains': 'cpftrab__icontains',
-                'trabalhador': 'trabalhador',
-                'nrinsc__icontains': 'nrinsc__icontains',
-                'tpinsc': 'tpinsc',
-                'ideempregador': 'ideempregador',
-                'verproc__icontains': 'verproc__icontains',
-                'procemi': 'procemi',
-                'tpamb': 'tpamb',
-                'nrrecibo__icontains': 'nrrecibo__icontains',
-                'indretif': 'indretif',
-                'ideevento': 'ideevento',
-                'identidade__icontains': 'identidade__icontains',
-                'evttsvinicio': 'evttsvinicio',
-                'status': 'status',
                 'versao__icontains': 'versao__icontains',
-                'transmissor_lote_esocial': 'transmissor_lote_esocial',}
+                'transmissor_lote_esocial': 'transmissor_lote_esocial',
+                'status': 'status',
+                'evttsvinicio': 'evttsvinicio',
+                'identidade__icontains': 'identidade__icontains',
+                'ideevento': 'ideevento',
+                'indretif': 'indretif',
+                'nrrecibo__icontains': 'nrrecibo__icontains',
+                'tpamb': 'tpamb',
+                'procemi': 'procemi',
+                'verproc__icontains': 'verproc__icontains',
+                'ideempregador': 'ideempregador',
+                'tpinsc': 'tpinsc',
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'trabalhador': 'trabalhador',
+                'cpftrab__icontains': 'cpftrab__icontains',
+                'nistrab__icontains': 'nistrab__icontains',
+                'nmtrab__icontains': 'nmtrab__icontains',
+                'sexo__icontains': 'sexo__icontains',
+                'racacor': 'racacor',
+                'estciv': 'estciv',
+                'grauinstr__icontains': 'grauinstr__icontains',
+                'nmsoc__icontains': 'nmsoc__icontains',
+                'nascimento': 'nascimento',
+                'dtnascto__range': 'dtnascto__range',
+                'codmunic__icontains': 'codmunic__icontains',
+                'uf__icontains': 'uf__icontains',
+                'paisnascto__icontains': 'paisnascto__icontains',
+                'paisnac__icontains': 'paisnac__icontains',
+                'nmmae__icontains': 'nmmae__icontains',
+                'nmpai__icontains': 'nmpai__icontains',
+                'endereco': 'endereco',
+                'infotsvinicio': 'infotsvinicio',
+                'cadini__icontains': 'cadini__icontains',
+                'codcateg__icontains': 'codcateg__icontains',
+                'dtinicio__range': 'dtinicio__range',
+                'natatividade': 'natatividade',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'natatividade': 'natatividade',
-                'dtinicio__range': 'dtinicio__range',
-                'codcateg__icontains': 'codcateg__icontains',
-                'cadini__icontains': 'cadini__icontains',
-                'infotsvinicio': 'infotsvinicio',
-                'endereco': 'endereco',
-                'nmpai__icontains': 'nmpai__icontains',
-                'nmmae__icontains': 'nmmae__icontains',
-                'paisnac__icontains': 'paisnac__icontains',
-                'paisnascto__icontains': 'paisnascto__icontains',
-                'uf__icontains': 'uf__icontains',
-                'codmunic__icontains': 'codmunic__icontains',
-                'dtnascto__range': 'dtnascto__range',
-                'nascimento': 'nascimento',
-                'nmsoc__icontains': 'nmsoc__icontains',
-                'grauinstr__icontains': 'grauinstr__icontains',
-                'estciv': 'estciv',
-                'racacor': 'racacor',
-                'sexo__icontains': 'sexo__icontains',
-                'nmtrab__icontains': 'nmtrab__icontains',
-                'nistrab__icontains': 'nistrab__icontains',
-                'cpftrab__icontains': 'cpftrab__icontains',
-                'trabalhador': 'trabalhador',
-                'nrinsc__icontains': 'nrinsc__icontains',
-                'tpinsc': 'tpinsc',
-                'ideempregador': 'ideempregador',
-                'verproc__icontains': 'verproc__icontains',
-                'procemi': 'procemi',
-                'tpamb': 'tpamb',
-                'nrrecibo__icontains': 'nrrecibo__icontains',
-                'indretif': 'indretif',
-                'ideevento': 'ideevento',
-                'identidade__icontains': 'identidade__icontains',
-                'evttsvinicio': 'evttsvinicio',
-                'status': 'status',
                 'versao__icontains': 'versao__icontains',
-                'transmissor_lote_esocial': 'transmissor_lote_esocial',}
+                'transmissor_lote_esocial': 'transmissor_lote_esocial',
+                'status': 'status',
+                'evttsvinicio': 'evttsvinicio',
+                'identidade__icontains': 'identidade__icontains',
+                'ideevento': 'ideevento',
+                'indretif': 'indretif',
+                'nrrecibo__icontains': 'nrrecibo__icontains',
+                'tpamb': 'tpamb',
+                'procemi': 'procemi',
+                'verproc__icontains': 'verproc__icontains',
+                'ideempregador': 'ideempregador',
+                'tpinsc': 'tpinsc',
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'trabalhador': 'trabalhador',
+                'cpftrab__icontains': 'cpftrab__icontains',
+                'nistrab__icontains': 'nistrab__icontains',
+                'nmtrab__icontains': 'nmtrab__icontains',
+                'sexo__icontains': 'sexo__icontains',
+                'racacor': 'racacor',
+                'estciv': 'estciv',
+                'grauinstr__icontains': 'grauinstr__icontains',
+                'nmsoc__icontains': 'nmsoc__icontains',
+                'nascimento': 'nascimento',
+                'dtnascto__range': 'dtnascto__range',
+                'codmunic__icontains': 'codmunic__icontains',
+                'uf__icontains': 'uf__icontains',
+                'paisnascto__icontains': 'paisnascto__icontains',
+                'paisnac__icontains': 'paisnac__icontains',
+                'nmmae__icontains': 'nmmae__icontains',
+                'nmpai__icontains': 'nmpai__icontains',
+                'endereco': 'endereco',
+                'infotsvinicio': 'infotsvinicio',
+                'cadini__icontains': 'cadini__icontains',
+                'codcateg__icontains': 'codcateg__icontains',
+                'dtinicio__range': 'dtinicio__range',
+                'natatividade': 'natatividade',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

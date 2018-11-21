@@ -113,25 +113,28 @@ def read_r5001_evttotal_obj(doc, status, validar=False):
             r5001_infototal_dados['r5001_evttotal_id'] = r5001_evttotal_id
        
             if 'nrRecArqBase' in dir(infoTotal): r5001_infototal_dados['nrrecarqbase'] = infoTotal.nrRecArqBase.cdata
+            if 'tpInsc' in dir(infoTotal.ideEstab): r5001_infototal_dados['tpinsc'] = infoTotal.ideEstab.tpInsc.cdata
+            if 'nrInsc' in dir(infoTotal.ideEstab): r5001_infototal_dados['nrinsc'] = infoTotal.ideEstab.nrInsc.cdata
             insert = create_insert('r5001_infototal', r5001_infototal_dados)
             resp = executar_sql(insert, True)
             r5001_infototal_id = resp[0][0]
             #print r5001_infototal_id
 
-            if 'RTom' in dir(infoTotal):
-                for RTom in infoTotal.RTom:
+            if 'RTom' in dir(infoTotal.ideEstab):
+                for RTom in infoTotal.ideEstab.RTom:
                     r5001_rtom_dados = {}
                     r5001_rtom_dados['r5001_infototal_id'] = r5001_infototal_id
                
                     if 'cnpjPrestador' in dir(RTom): r5001_rtom_dados['cnpjprestador'] = RTom.cnpjPrestador.cdata
+                    if 'cno' in dir(RTom): r5001_rtom_dados['cno'] = RTom.cno.cdata
                     if 'vlrTotalBaseRet' in dir(RTom): r5001_rtom_dados['vlrtotalbaseret'] = RTom.vlrTotalBaseRet.cdata
                     insert = create_insert('r5001_rtom', r5001_rtom_dados)
                     resp = executar_sql(insert, True)
                     r5001_rtom_id = resp[0][0]
                     #print r5001_rtom_id
    
-            if 'RPrest' in dir(infoTotal):
-                for RPrest in infoTotal.RPrest:
+            if 'RPrest' in dir(infoTotal.ideEstab):
+                for RPrest in infoTotal.ideEstab.RPrest:
                     r5001_rprest_dados = {}
                     r5001_rprest_dados['r5001_infototal_id'] = r5001_infototal_id
                
@@ -147,8 +150,8 @@ def read_r5001_evttotal_obj(doc, status, validar=False):
                     r5001_rprest_id = resp[0][0]
                     #print r5001_rprest_id
    
-            if 'RRecRepAD' in dir(infoTotal):
-                for RRecRepAD in infoTotal.RRecRepAD:
+            if 'RRecRepAD' in dir(infoTotal.ideEstab):
+                for RRecRepAD in infoTotal.ideEstab.RRecRepAD:
                     r5001_rrecrepad_dados = {}
                     r5001_rrecrepad_dados['r5001_infototal_id'] = r5001_infototal_id
                
@@ -162,8 +165,8 @@ def read_r5001_evttotal_obj(doc, status, validar=False):
                     r5001_rrecrepad_id = resp[0][0]
                     #print r5001_rrecrepad_id
    
-            if 'RComl' in dir(infoTotal):
-                for RComl in infoTotal.RComl:
+            if 'RComl' in dir(infoTotal.ideEstab):
+                for RComl in infoTotal.ideEstab.RComl:
                     r5001_rcoml_dados = {}
                     r5001_rcoml_dados['r5001_infototal_id'] = r5001_infototal_id
                
@@ -175,8 +178,8 @@ def read_r5001_evttotal_obj(doc, status, validar=False):
                     r5001_rcoml_id = resp[0][0]
                     #print r5001_rcoml_id
    
-            if 'RCPRB' in dir(infoTotal):
-                for RCPRB in infoTotal.RCPRB:
+            if 'RCPRB' in dir(infoTotal.ideEstab):
+                for RCPRB in infoTotal.ideEstab.RCPRB:
                     r5001_rcprb_dados = {}
                     r5001_rcprb_dados['r5001_infototal_id'] = r5001_infototal_id
                
@@ -188,8 +191,8 @@ def read_r5001_evttotal_obj(doc, status, validar=False):
                     r5001_rcprb_id = resp[0][0]
                     #print r5001_rcprb_id
    
-            if 'RRecEspetDesp' in dir(infoTotal):
-                for RRecEspetDesp in infoTotal.RRecEspetDesp:
+            if 'RRecEspetDesp' in dir(infoTotal.ideEstab):
+                for RRecEspetDesp in infoTotal.ideEstab.RRecEspetDesp:
                     r5001_rrecespetdesp_dados = {}
                     r5001_rrecespetdesp_dados['r5001_infototal_id'] = r5001_infototal_id
                

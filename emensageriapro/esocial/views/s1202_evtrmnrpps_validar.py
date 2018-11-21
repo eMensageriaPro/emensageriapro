@@ -72,12 +72,22 @@ def validacoes_s1202_evtrmnrpps(arquivo):
             if 'ideDmDev' in dir(dmDev): validacoes_lista = validar_campo(validacoes_lista,'dmDev.ideDmDev', dmDev.ideDmDev.cdata, 1, '')
             if 'codCateg' in dir(dmDev): validacoes_lista = validar_campo(validacoes_lista,'dmDev.codCateg', dmDev.codCateg.cdata, 1, '')
 
-            if 'infoPerApur' in dir(dmDev):
-                for infoPerApur in dmDev.infoPerApur:
+            if 'ideEstab' in dir(dmDev.infoPerApur):
+                for ideEstab in dmDev.infoPerApur.ideEstab:
                
+                    if 'tpInsc' in dir(ideEstab): validacoes_lista = validar_campo(validacoes_lista,'ideEstab.tpInsc', ideEstab.tpInsc.cdata, 1, '1;2;3;4')
+                    if 'nrInsc' in dir(ideEstab): validacoes_lista = validar_campo(validacoes_lista,'ideEstab.nrInsc', ideEstab.nrInsc.cdata, 1, '')
    
-            if 'infoPerAnt' in dir(dmDev):
-                for infoPerAnt in dmDev.infoPerAnt:
+            if 'ideADC' in dir(dmDev.infoPerAnt):
+                for ideADC in dmDev.infoPerAnt.ideADC:
                
+                    if 'dtLei' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dtLei', ideADC.dtLei.cdata, 1, '')
+                    if 'nrLei' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.nrLei', ideADC.nrLei.cdata, 1, '')
+                    if 'dtEf' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dtEf', ideADC.dtEf.cdata, 0, '')
+                    if 'dtAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dtAcConv', ideADC.dtAcConv.cdata, 0, '')
+                    if 'tpAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.tpAcConv', ideADC.tpAcConv.cdata, 1, 'B;F;G;H')
+                    if 'compAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.compAcConv', ideADC.compAcConv.cdata, 0, '')
+                    if 'dtEfAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dtEfAcConv', ideADC.dtEfAcConv.cdata, 0, '')
+                    if 'dsc' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dsc', ideADC.dsc.cdata, 1, '')
    
     return validacoes_lista

@@ -61,17 +61,17 @@ def apagar(request, hash):
                              'r2070_pgtoresidbr', r2070_pgtoresidbr_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 'r2070_pgtoresidbr_salvar':
             return redirect('r2070_pgtoresidbr', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -114,7 +114,7 @@ def salvar(request, hash):
         if r2070_pgtoresidbr_id:
             r2070_pgtoresidbr_form = form_r2070_pgtoresidbr(request.POST or None, instance = r2070_pgtoresidbr, slug = db_slug)
         else:
-            r2070_pgtoresidbr_form = form_r2070_pgtoresidbr(request.POST or None, slug = db_slug, initial={})
+            r2070_pgtoresidbr_form = form_r2070_pgtoresidbr(request.POST or None, slug = db_slug, initial={'r2070_ideestab': '1'})
         if request.method == 'POST':
             if r2070_pgtoresidbr_form.is_valid():
                 dados = r2070_pgtoresidbr_form.cleaned_data
@@ -166,18 +166,18 @@ def salvar(request, hash):
             r2070_pgtoresidbr_form.fields[field].widget.attrs['ng-model'] = 'r2070_pgtoresidbr_'+field
         if int(dict_hash['print']):
             r2070_pgtoresidbr_form = disabled_form_for_print(r2070_pgtoresidbr_form)
-   
+
         r2070_pgtopf_form = None
         r2070_pgtopf_lista = None
         r2070_pgtopj_form = None
         r2070_pgtopj_lista = None
         if r2070_pgtoresidbr_id:
             r2070_pgtoresidbr = get_object_or_404(r2070pgtoResidBR.objects.using( db_slug ), excluido = False, id = r2070_pgtoresidbr_id)
-       
-            r2070_pgtopf_form = form_r2070_pgtopf(initial={ 'r2070_pgtoresidbr': r2070_pgtoresidbr }, slug=db_slug)
+
+            r2070_pgtopf_form = form_r2070_pgtopf(initial={ 'r2070_pgtoresidbr': r2070_pgtoresidbr , 'r2070_pgtoresidbr': 1}, slug=db_slug)
             r2070_pgtopf_form.fields['r2070_pgtoresidbr'].widget.attrs['readonly'] = True
             r2070_pgtopf_lista = r2070pgtoPF.objects.using( db_slug ).filter(excluido = False, r2070_pgtoresidbr_id=r2070_pgtoresidbr.id).all()
-            r2070_pgtopj_form = form_r2070_pgtopj(initial={ 'r2070_pgtoresidbr': r2070_pgtoresidbr }, slug=db_slug)
+            r2070_pgtopj_form = form_r2070_pgtopj(initial={ 'r2070_pgtoresidbr': r2070_pgtoresidbr , 'r2070_pgtoresidbr': 1}, slug=db_slug)
             r2070_pgtopj_form.fields['r2070_pgtoresidbr'].widget.attrs['readonly'] = True
             r2070_pgtopj_lista = r2070pgtoPJ.objects.using( db_slug ).filter(excluido = False, r2070_pgtoresidbr_id=r2070_pgtoresidbr.id).all()
         else:
@@ -200,16 +200,16 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r2070_pgtoresidbr_id': int(r2070_pgtoresidbr_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             'r2070_pgtopf_form': r2070_pgtopf_form,
             'r2070_pgtopf_lista': r2070_pgtopf_lista,
             'r2070_pgtopj_form': r2070_pgtopj_form,
             'r2070_pgtopj_lista': r2070_pgtopj_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -253,10 +253,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -322,11 +322,6 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
             'show_r2070_ideestab': 1, }
         post = False
         if request.method == 'POST':
@@ -348,17 +343,17 @@ def listar(request, hash):
             filtrar = True
             r2070_pgtoresidbr_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #r2070_pgtoresidbr_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r2070_pgtoresidbr'
         context = {
             'r2070_pgtoresidbr_lista': r2070_pgtoresidbr_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -368,7 +363,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 'r2070_pgtoresidbr_listar.html', context)
@@ -411,10 +406,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

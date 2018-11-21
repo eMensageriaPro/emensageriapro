@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -322,51 +353,46 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
-            'show_perhorflexivel': 1,
-            'show_durjornada': 1,
-            'show_hrsaida': 1,
-            'show_hrentr': 1,
-            'show_dadoshorcontratual': 0,
-            'show_fimvalid': 0,
-            'show_inivalid': 1,
-            'show_codhorcontrat': 1,
+            'show_s1050_evttabhortur': 1,
             'show_idehorcontratual': 0,
-            'show_s1050_evttabhortur': 1, }
+            'show_codhorcontrat': 1,
+            'show_inivalid': 1,
+            'show_fimvalid': 0,
+            'show_dadoshorcontratual': 0,
+            'show_hrentr': 1,
+            'show_hrsaida': 1,
+            'show_durjornada': 1,
+            'show_perhorflexivel': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'perhorflexivel__icontains': 'perhorflexivel__icontains',
-                'durjornada': 'durjornada',
-                'hrsaida__icontains': 'hrsaida__icontains',
-                'hrentr__icontains': 'hrentr__icontains',
-                'dadoshorcontratual': 'dadoshorcontratual',
-                'fimvalid__icontains': 'fimvalid__icontains',
-                'inivalid__icontains': 'inivalid__icontains',
-                'codhorcontrat__icontains': 'codhorcontrat__icontains',
+                's1050_evttabhortur': 's1050_evttabhortur',
                 'idehorcontratual': 'idehorcontratual',
-                's1050_evttabhortur': 's1050_evttabhortur',}
+                'codhorcontrat__icontains': 'codhorcontrat__icontains',
+                'inivalid__icontains': 'inivalid__icontains',
+                'fimvalid__icontains': 'fimvalid__icontains',
+                'dadoshorcontratual': 'dadoshorcontratual',
+                'hrentr__icontains': 'hrentr__icontains',
+                'hrsaida__icontains': 'hrsaida__icontains',
+                'durjornada': 'durjornada',
+                'perhorflexivel__icontains': 'perhorflexivel__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'perhorflexivel__icontains': 'perhorflexivel__icontains',
-                'durjornada': 'durjornada',
-                'hrsaida__icontains': 'hrsaida__icontains',
-                'hrentr__icontains': 'hrentr__icontains',
-                'dadoshorcontratual': 'dadoshorcontratual',
-                'fimvalid__icontains': 'fimvalid__icontains',
-                'inivalid__icontains': 'inivalid__icontains',
-                'codhorcontrat__icontains': 'codhorcontrat__icontains',
+                's1050_evttabhortur': 's1050_evttabhortur',
                 'idehorcontratual': 'idehorcontratual',
-                's1050_evttabhortur': 's1050_evttabhortur',}
+                'codhorcontrat__icontains': 'codhorcontrat__icontains',
+                'inivalid__icontains': 'inivalid__icontains',
+                'fimvalid__icontains': 'fimvalid__icontains',
+                'dadoshorcontratual': 'dadoshorcontratual',
+                'hrentr__icontains': 'hrentr__icontains',
+                'hrsaida__icontains': 'hrsaida__icontains',
+                'durjornada': 'durjornada',
+                'perhorflexivel__icontains': 'perhorflexivel__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

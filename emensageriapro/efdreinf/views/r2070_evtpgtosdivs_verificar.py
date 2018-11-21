@@ -110,8 +110,7 @@ def verificar(request, hash):
         r2070_inforesidext_lista = r2070infoResidExt.objects.using(db_slug).filter(r2070_evtpgtosdivs_id__in = listar_ids(r2070_evtpgtosdivs_lista) ).filter(excluido=False).all()
         r2070_infomolestia_lista = r2070infoMolestia.objects.using(db_slug).filter(r2070_evtpgtosdivs_id__in = listar_ids(r2070_evtpgtosdivs_lista) ).filter(excluido=False).all()
         r2070_ideestab_lista = r2070ideEstab.objects.using(db_slug).filter(r2070_evtpgtosdivs_id__in = listar_ids(r2070_evtpgtosdivs_lista) ).filter(excluido=False).all()
-        r2070_pgtoresidbr_lista = r2070pgtoResidBR.objects.using(db_slug).filter(r2070_ideestab_id__in = listar_ids(r2070_ideestab_lista) ).filter(excluido=False).all()
-        r2070_pgtopf_lista = r2070pgtoPF.objects.using(db_slug).filter(r2070_pgtoresidbr_id__in = listar_ids(r2070_pgtoresidbr_lista) ).filter(excluido=False).all()
+        r2070_pgtopf_lista = r2070pgtoPF.objects.using(db_slug).filter(r2070_ideestab_id__in = listar_ids(r2070_ideestab_lista) ).filter(excluido=False).all()
         r2070_detdeducao_lista = r2070detDeducao.objects.using(db_slug).filter(r2070_pgtopf_id__in = listar_ids(r2070_pgtopf_lista) ).filter(excluido=False).all()
         r2070_rendisento_lista = r2070rendIsento.objects.using(db_slug).filter(r2070_pgtopf_id__in = listar_ids(r2070_pgtopf_lista) ).filter(excluido=False).all()
         r2070_detcompet_lista = r2070detCompet.objects.using(db_slug).filter(r2070_pgtopf_id__in = listar_ids(r2070_pgtopf_lista) ).filter(excluido=False).all()
@@ -124,7 +123,7 @@ def verificar(request, hash):
         r2070_infoprocjud_ideadvogado_lista = r2070infoProcJudideAdvogado.objects.using(db_slug).filter(r2070_infoprocjud_despprocjud_id__in = listar_ids(r2070_infoprocjud_despprocjud_lista) ).filter(excluido=False).all()
         r2070_infoprocjud_origemrecursos_lista = r2070infoProcJudorigemRecursos.objects.using(db_slug).filter(r2070_infoprocjud_id__in = listar_ids(r2070_infoprocjud_lista) ).filter(excluido=False).all()
         r2070_depjudicial_lista = r2070depJudicial.objects.using(db_slug).filter(r2070_pgtopf_id__in = listar_ids(r2070_pgtopf_lista) ).filter(excluido=False).all()
-        r2070_pgtopj_lista = r2070pgtoPJ.objects.using(db_slug).filter(r2070_pgtoresidbr_id__in = listar_ids(r2070_pgtoresidbr_lista) ).filter(excluido=False).all()
+        r2070_pgtopj_lista = r2070pgtoPJ.objects.using(db_slug).filter(r2070_ideestab_id__in = listar_ids(r2070_ideestab_lista) ).filter(excluido=False).all()
         r2070_pgtopj_infoprocjud_lista = r2070pgtoPJinfoProcJud.objects.using(db_slug).filter(r2070_pgtopj_id__in = listar_ids(r2070_pgtopj_lista) ).filter(excluido=False).all()
         r2070_pgtopj_despprocjud_lista = r2070pgtoPJdespProcJud.objects.using(db_slug).filter(r2070_pgtopj_infoprocjud_id__in = listar_ids(r2070_pgtopj_infoprocjud_lista) ).filter(excluido=False).all()
         r2070_pgtopj_ideadvogado_lista = r2070pgtoPJideAdvogado.objects.using(db_slug).filter(r2070_pgtopj_despprocjud_id__in = listar_ids(r2070_pgtopj_despprocjud_lista) ).filter(excluido=False).all()
@@ -151,7 +150,6 @@ def verificar(request, hash):
             'r2070_inforesidext_lista': r2070_inforesidext_lista,
             'r2070_infomolestia_lista': r2070_infomolestia_lista,
             'r2070_ideestab_lista': r2070_ideestab_lista,
-            'r2070_pgtoresidbr_lista': r2070_pgtoresidbr_lista,
             'r2070_pgtopf_lista': r2070_pgtopf_lista,
             'r2070_detdeducao_lista': r2070_detdeducao_lista,
             'r2070_rendisento_lista': r2070_rendisento_lista,
@@ -244,8 +242,7 @@ def gerar_xml_r2070(r2070_evtpgtosdivs_id, db_slug, versao=None):
         r2070_inforesidext_lista = r2070infoResidExt.objects.using(db_slug).filter(r2070_evtpgtosdivs_id__in = listar_ids(r2070_evtpgtosdivs_lista) ).filter(excluido=False).all()
         r2070_infomolestia_lista = r2070infoMolestia.objects.using(db_slug).filter(r2070_evtpgtosdivs_id__in = listar_ids(r2070_evtpgtosdivs_lista) ).filter(excluido=False).all()
         r2070_ideestab_lista = r2070ideEstab.objects.using(db_slug).filter(r2070_evtpgtosdivs_id__in = listar_ids(r2070_evtpgtosdivs_lista) ).filter(excluido=False).all()
-        r2070_pgtoresidbr_lista = r2070pgtoResidBR.objects.using(db_slug).filter(r2070_ideestab_id__in = listar_ids(r2070_ideestab_lista) ).filter(excluido=False).all()
-        r2070_pgtopf_lista = r2070pgtoPF.objects.using(db_slug).filter(r2070_pgtoresidbr_id__in = listar_ids(r2070_pgtoresidbr_lista) ).filter(excluido=False).all()
+        r2070_pgtopf_lista = r2070pgtoPF.objects.using(db_slug).filter(r2070_ideestab_id__in = listar_ids(r2070_ideestab_lista) ).filter(excluido=False).all()
         r2070_detdeducao_lista = r2070detDeducao.objects.using(db_slug).filter(r2070_pgtopf_id__in = listar_ids(r2070_pgtopf_lista) ).filter(excluido=False).all()
         r2070_rendisento_lista = r2070rendIsento.objects.using(db_slug).filter(r2070_pgtopf_id__in = listar_ids(r2070_pgtopf_lista) ).filter(excluido=False).all()
         r2070_detcompet_lista = r2070detCompet.objects.using(db_slug).filter(r2070_pgtopf_id__in = listar_ids(r2070_pgtopf_lista) ).filter(excluido=False).all()
@@ -258,7 +255,7 @@ def gerar_xml_r2070(r2070_evtpgtosdivs_id, db_slug, versao=None):
         r2070_infoprocjud_ideadvogado_lista = r2070infoProcJudideAdvogado.objects.using(db_slug).filter(r2070_infoprocjud_despprocjud_id__in = listar_ids(r2070_infoprocjud_despprocjud_lista) ).filter(excluido=False).all()
         r2070_infoprocjud_origemrecursos_lista = r2070infoProcJudorigemRecursos.objects.using(db_slug).filter(r2070_infoprocjud_id__in = listar_ids(r2070_infoprocjud_lista) ).filter(excluido=False).all()
         r2070_depjudicial_lista = r2070depJudicial.objects.using(db_slug).filter(r2070_pgtopf_id__in = listar_ids(r2070_pgtopf_lista) ).filter(excluido=False).all()
-        r2070_pgtopj_lista = r2070pgtoPJ.objects.using(db_slug).filter(r2070_pgtoresidbr_id__in = listar_ids(r2070_pgtoresidbr_lista) ).filter(excluido=False).all()
+        r2070_pgtopj_lista = r2070pgtoPJ.objects.using(db_slug).filter(r2070_ideestab_id__in = listar_ids(r2070_ideestab_lista) ).filter(excluido=False).all()
         r2070_pgtopj_infoprocjud_lista = r2070pgtoPJinfoProcJud.objects.using(db_slug).filter(r2070_pgtopj_id__in = listar_ids(r2070_pgtopj_lista) ).filter(excluido=False).all()
         r2070_pgtopj_despprocjud_lista = r2070pgtoPJdespProcJud.objects.using(db_slug).filter(r2070_pgtopj_infoprocjud_id__in = listar_ids(r2070_pgtopj_infoprocjud_lista) ).filter(excluido=False).all()
         r2070_pgtopj_ideadvogado_lista = r2070pgtoPJideAdvogado.objects.using(db_slug).filter(r2070_pgtopj_despprocjud_id__in = listar_ids(r2070_pgtopj_despprocjud_lista) ).filter(excluido=False).all()
@@ -276,7 +273,6 @@ def gerar_xml_r2070(r2070_evtpgtosdivs_id, db_slug, versao=None):
             'r2070_inforesidext_lista': r2070_inforesidext_lista,
             'r2070_infomolestia_lista': r2070_infomolestia_lista,
             'r2070_ideestab_lista': r2070_ideestab_lista,
-            'r2070_pgtoresidbr_lista': r2070_pgtoresidbr_lista,
             'r2070_pgtopf_lista': r2070_pgtopf_lista,
             'r2070_detdeducao_lista': r2070_detdeducao_lista,
             'r2070_rendisento_lista': r2070_rendisento_lista,

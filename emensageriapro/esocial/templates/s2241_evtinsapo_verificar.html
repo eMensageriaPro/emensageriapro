@@ -310,7 +310,7 @@
 
         <tr {% if s2241_evtinsapo.matricula|validacoes_esocial_efdreinf:"s2241_evtinsapo.matricula" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">matricula</td>
-            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.Validação: A matrícula deve corresponder à informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista ativo.A informação é obrigatória apenas para trabalhadores das categorias"empregados" e "agentes públicos".</td>
+            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.Validação: A matrícula deve corresponder à informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista ativo.A informação é obrigatória apenas para trabalhadores das categorias'empregados' e 'agentes públicos'.</td>
             <td width="200px"><b>{% if s2241_evtinsapo.matricula or s2241_evtinsapo.matricula == 0 %}{{ s2241_evtinsapo.matricula }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -331,14 +331,13 @@
             <td bgcolor="lightgray" colspan="1" width="130px">insalPeric</td>
             <td bgcolor="lightgray" colspan="3">Informações sobre o ambiente de trabalho insalubre/periculoso.</td>
         </tr>
-    {% for s2241_insalperic in s2241_insalperic_lista %}
-    {% ifequal s2241_insalperic.s2241_evtinsapo.id s2241_evtinsapo.id %}
+
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">iniInsalPeric</td>
             <td bgcolor="lightgray" colspan="3">Condições do ambiente de trabalho insalubre/periculoso - Início</td>
         </tr>
     {% for s2241_iniinsalperic in s2241_iniinsalperic_lista %}
-    {% ifequal s2241_iniinsalperic.s2241_insalperic.id s2241_insalperic.id %}
+    {% ifequal s2241_iniinsalperic.s2241_evtinsapo.id s2241_evtinsapo.id %}
         <tr {% if s2241_iniinsalperic.dtinicondicao|validacoes_esocial_efdreinf:"s2241_iniinsalperic.dtinicondicao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtIniCondicao</td>
             <td width="500px">Informar a data em que o trabalhador iniciou as atividades no ambiente de trabalho e na condição de exposição ao(s) fator(es) de risco ou a data de início de vigência do eSocial para o empregador, a que for mais recente.Validação: Deve ser uma data igual ou posterior à data de admissão do vínculoa que se refere. Não pode ser anterior à data de início de vigência do eSocial para o empregador.</td>
@@ -413,7 +412,7 @@
             <td bgcolor="lightgray" colspan="3">Condições do ambiente de trabalho insalubre/periculoso - AlteraçãoRegra de validação: REGRA_EXISTE_EVENTO_INICIO_INS</td>
         </tr>
     {% for s2241_altinsalperic in s2241_altinsalperic_lista %}
-    {% ifequal s2241_altinsalperic.s2241_insalperic.id s2241_insalperic.id %}
+    {% ifequal s2241_altinsalperic.s2241_evtinsapo.id s2241_evtinsapo.id %}
         <tr {% if s2241_altinsalperic.dtaltcondicao|validacoes_esocial_efdreinf:"s2241_altinsalperic.dtaltcondicao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtAltCondicao</td>
             <td width="500px">Informar a data em que ocorreu alteração na condição de exposição ao(s) fator(es) de risco para o trabalhador. A data informada deve ser igual ou posterior à data de início na condição de exposição que se pretende alterar. Validação: Deve ser uma data igual ou posterior à data de início das atividades exercidas pelo trabalhador, sujeitas ao(s) fator(es) de risco.</td>
@@ -488,10 +487,10 @@
             <td bgcolor="lightgray" colspan="3">Condições do ambiente de trabalho insalubre/periculoso - Fim Regra de validação: REGRA_EXISTE_EVENTO_INICIO_INS</td>
         </tr>
     {% for s2241_fiminsalperic in s2241_fiminsalperic_lista %}
-    {% ifequal s2241_fiminsalperic.s2241_insalperic.id s2241_insalperic.id %}
+    {% ifequal s2241_fiminsalperic.s2241_evtinsapo.id s2241_evtinsapo.id %}
         <tr {% if s2241_fiminsalperic.dtfimcondicao|validacoes_esocial_efdreinf:"s2241_fiminsalperic.dtfimcondicao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtFimCondicao</td>
-            <td width="500px">Informar a data até a qual o trabalhador esteve sujeito às condições do ambiente de trabalho insalubre/periculoso indicadas nos registros de início e/ou alteração encaminhados anteriormente.Validação: Deve ser uma data igual ou posterior a data de início da condiçãoinsalubre ou, quando também existir evento de "alteração" da condição, a data deve ser posterior a data de alteração indicada no último evento recebido.</td>
+            <td width="500px">Informar a data até a qual o trabalhador esteve sujeito às condições do ambiente de trabalho insalubre/periculoso indicadas nos registros de início e/ou alteração encaminhados anteriormente.Validação: Deve ser uma data igual ou posterior a data de início da condiçãoinsalubre ou, quando também existir evento de 'alteração' da condição, a data deve ser posterior a data de alteração indicada no último evento recebido.</td>
             <td width="200px"><b>{% if s2241_fiminsalperic.dtfimcondicao or s2241_fiminsalperic.dtfimcondicao == 0 %}{{ s2241_fiminsalperic.dtfimcondicao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -532,19 +531,18 @@
             </td>
             {% endif %}
         </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %} 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">aposentEsp</td>
             <td bgcolor="lightgray" colspan="3">Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.</td>
         </tr>
-    {% for s2241_aposentesp in s2241_aposentesp_lista %}
-    {% ifequal s2241_aposentesp.s2241_evtinsapo.id s2241_evtinsapo.id %}
+
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">iniAposentEsp</td>
             <td bgcolor="lightgray" colspan="3">Condições do ambiente de trabalho que ensejam aposentadoria especial - Início</td>
         </tr>
     {% for s2241_iniaposentesp in s2241_iniaposentesp_lista %}
-    {% ifequal s2241_iniaposentesp.s2241_aposentesp.id s2241_aposentesp.id %}
+    {% ifequal s2241_iniaposentesp.s2241_evtinsapo.id s2241_evtinsapo.id %}
         <tr {% if s2241_iniaposentesp.dtinicondicao|validacoes_esocial_efdreinf:"s2241_iniaposentesp.dtinicondicao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtIniCondicao</td>
             <td width="500px">Informar a data em que o trabalhador iniciou as atividades no ambiente de trabalho e na condição de exposição ao(s) fator(es) de risco ou a data de início de vigência do eSocial para o empregador, a que for mais recente.Validação: Deve ser uma data igual ou posterior à data de admissão do vínculoa que se refere. Não pode ser anterior à data de início de vigência do eSocial para o empregador.</td>
@@ -619,7 +617,7 @@
             <td bgcolor="lightgray" colspan="3">Condições do ambiente de trabalho que ensejam aposentadoria especial - AlteraçãoRegra de validação: REGRA_EXISTE_EVENTO_INICIO_INS</td>
         </tr>
     {% for s2241_altaposentesp in s2241_altaposentesp_lista %}
-    {% ifequal s2241_altaposentesp.s2241_aposentesp.id s2241_aposentesp.id %}
+    {% ifequal s2241_altaposentesp.s2241_evtinsapo.id s2241_evtinsapo.id %}
         <tr {% if s2241_altaposentesp.dtaltcondicao|validacoes_esocial_efdreinf:"s2241_altaposentesp.dtaltcondicao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtAltCondicao</td>
             <td width="500px">Informar a data em que ocorreu alteração na condição de exposição ao(s) fator(es) de risco para o trabalhador. A data informada deve ser igual ou posterior à data de início na condição de exposição que se pretende alterar. Validação: Deve ser uma data igual ou posterior à data de início das atividades exercidas pelo trabalhador, sujeitas ao(s) fator(es) de risco.</td>
@@ -694,10 +692,10 @@
             <td bgcolor="lightgray" colspan="3">Condições do ambiente de trabalho que ensejam aposentadoria especial - TérminoRegra de validação: REGRA_EXISTE_EVENTO_INICIO_INS</td>
         </tr>
     {% for s2241_fimaposentesp in s2241_fimaposentesp_lista %}
-    {% ifequal s2241_fimaposentesp.s2241_aposentesp.id s2241_aposentesp.id %}
+    {% ifequal s2241_fimaposentesp.s2241_evtinsapo.id s2241_evtinsapo.id %}
         <tr {% if s2241_fimaposentesp.dtfimcondicao|validacoes_esocial_efdreinf:"s2241_fimaposentesp.dtfimcondicao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtFimCondicao</td>
-            <td width="500px">Informar a data até a qual o trabalhador esteve sujeito às condições do ambiente de trabalho indicadas nos eventos de início e/ou alteração encaminhados anteriormente.Validação: Deve ser uma data igual ou posterior a data de início da condiçãode trabalho que enseja aposentadoria especial ao trabalhador ou, quando também existir evento de "alteração" da condição, a data deve ser posterior a data de alteração indicada no último evento recebido.</td>
+            <td width="500px">Informar a data até a qual o trabalhador esteve sujeito às condições do ambiente de trabalho indicadas nos eventos de início e/ou alteração encaminhados anteriormente.Validação: Deve ser uma data igual ou posterior a data de início da condiçãode trabalho que enseja aposentadoria especial ao trabalhador ou, quando também existir evento de 'alteração' da condição, a data deve ser posterior a data de alteração indicada no último evento recebido.</td>
             <td width="200px"><b>{% if s2241_fimaposentesp.dtfimcondicao or s2241_fimaposentesp.dtfimcondicao == 0 %}{{ s2241_fimaposentesp.dtfimcondicao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -738,7 +736,7 @@
             </td>
             {% endif %}
         </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}{% endifequal %}{% endfor %}
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %} {% endifequal %}{% endfor %}
 </table>
 {% if not for_print %}
             </div>

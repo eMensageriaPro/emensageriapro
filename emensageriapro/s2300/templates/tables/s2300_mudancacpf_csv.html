@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações de mudança de CPF do trabalhador."
+{% if show_fields.show_s2300_evttsvinicio or not s2300_evttsvinicio_id and 1 %}"Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Início";{% endif %}{% if show_fields.show_cpfant or 1 %}"Preencher com o número do CPF antigo do trabalhador.";{% endif %}{% if show_fields.show_dtaltcpf or 1 %}"Data de alteração do CPF.";{% endif %}{% if show_fields.show_observacao or 0 %}"Observações";{% endif %}
+{% for a in s2300_mudancacpf_lista %}{% if show_fields.show_s2300_evttsvinicio or  not s2300_evttsvinicio_id and 1 %}"{{ a.s2300_evttsvinicio }}";{% endif %}{% if show_fields.show_cpfant or 1 %}"{{ a.cpfant }}";{% endif %}{% if show_fields.show_dtaltcpf or 1 %}"{{ a.dtaltcpf|date:"d/m/Y" }}";{% endif %}{% if show_fields.show_observacao or 0 %}"{{ a.observacao }}";{% endif %}
+{% endfor %}

@@ -118,13 +118,13 @@
               
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtTabEstab</td>
-            <td bgcolor="lightgray" colspan="3">Evento tabela de estabelecimentos, obras de construção civil ou Órgãos Públicos Regras de validação: REGRA_EXISTE_INFO_EMPREGADOR REGRA_TABESTAB_VALIDA_ESTABELECIMENTO REGRA_TABESTAB_VALIDA_GILRAT REGRA_TABESTAB_VALIDA_INFO_CNO REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_DT_FUTURA REGRA_VALIDA_FAP</td>
+            <td bgcolor="lightgray" colspan="3">Evento tabela de estabelecimentos, obras de construção civil ou Órgãos Públicos. Regras de validação: REGRA_EXISTE_INFO_EMPREGADOR REGRA_TABESTAB_VALIDA_ESTABELECIMENTO REGRA_TABESTAB_VALIDA_GILRAT REGRA_TABESTAB_VALIDA_INFO_CNO REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_DT_FUTURA REGRA_VALIDA_FAP</td>
         </tr>
     {% for s1005_evttabestab in s1005_evttabestab_lista %}
     {% ifequal 1 1 %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
         </tr>
 
         <tr {% if s1005_evttabestab.tpamb|validacoes_esocial_efdreinf:"s1005_evttabestab.tpamb" %}bgcolor="lightcoral"{% endif %}>
@@ -186,12 +186,12 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
         </tr>
 
         <tr {% if s1005_evttabestab.tpinsc|validacoes_esocial_efdreinf:"s1005_evttabestab.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5 Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
             <td width="200px"><b>{% if s1005_evttabestab.tpinsc or s1005_evttabestab.tpinsc == 0 %}{{ s1005_evttabestab.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -229,23 +229,23 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoEstab</td>
-            <td bgcolor="lightgray" colspan="3">Informações do Estabelecimento ou obra</td>
+            <td bgcolor="lightgray" colspan="3">Informações do Estabelecimento ou obra.</td>
         </tr>
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">inclusao</td>
-            <td bgcolor="lightgray" colspan="3">Inclusão de novas informações</td>
+            <td bgcolor="lightgray" colspan="3">Inclusão de novas informações.</td>
         </tr>
     {% for s1005_inclusao in s1005_inclusao_lista %}
     {% ifequal s1005_inclusao.s1005_evttabestab.id s1005_evttabestab.id %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEstab</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas.</td>
         </tr>
 
         <tr {% if s1005_inclusao.tpinsc|validacoes_esocial_efdreinf:"s1005_inclusao.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5 Valores Válidos: 1, 3, 4.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. Valores Válidos: 1, 3, 4.</td>
             <td width="200px"><b>{% if s1005_inclusao.tpinsc or s1005_inclusao.tpinsc == 0 %}{{ s1005_inclusao.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -283,7 +283,7 @@
 
         <tr {% if s1005_inclusao.inivalid|validacoes_esocial_efdreinf:"s1005_inclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1005_inclusao.inivalid or s1005_inclusao.inivalid == 0 %}{{ s1005_inclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -302,7 +302,7 @@
 
         <tr {% if s1005_inclusao.fimvalid|validacoes_esocial_efdreinf:"s1005_inclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1005_inclusao.fimvalid or s1005_inclusao.fimvalid == 0 %}{{ s1005_inclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -345,12 +345,12 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">aliqGilrat</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Apuração da alíquota Gilrat do Estabelecimento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Apuração da alíquota Gilrat do Estabelecimento.</td>
         </tr>
 
         <tr {% if s1005_inclusao.aliqrat|validacoes_esocial_efdreinf:"s1005_inclusao.aliqrat" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">aliqRat</td>
-            <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. A divergência só é permitida se existir o registro complementar com informações sobre o processo administrativo/judicial que permite a aplicação de alíquotas diferentes. Validação: Deve ser igual a 1, 2 ou 3. Se a alíquota informada for diferente da definida na legislação vigente para o CNAE informado deverá haver informações de processo em {procAdmJudRat}</td>
+            <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. A divergência só é permitida se existir o registro complementar com informações sobre o processo administrativo/judicial que permite a aplicação de alíquotas diferentes. Validação: Deve ser igual a 1, 2 ou 3. Se a alíquota informada for diferente da definida na legislação vigente para o CNAE informado deverá haver informações de processo em {procAdmJudRat}.</td>
             <td width="200px"><b>{% if s1005_inclusao.aliqrat or s1005_inclusao.aliqrat == 0 %}{{ s1005_inclusao.aliqrat|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -369,7 +369,7 @@
 
         <tr {% if s1005_inclusao.fap|validacoes_esocial_efdreinf:"s1005_inclusao.fap" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fap</td>
-            <td width="500px">Fator Acidentário de Prevenção - FAP. Validação: Preenchimento obrigatório pela Pessoa Jurídica. Não preencher para Pessoa Física. O FAP informado deve corresponder àquele definido pelo Órgão Governamental Competente para o estabelecimento, exceto se {ideEstab/tpInsc} = [4]. A divergência só é permitida se houver processo informado em {procAdmJudFap}. Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000.</td>
+            <td width="500px">Fator Acidentário de Prevenção - FAP. Validação: Preenchimento obrigatório por Pessoa Jurídica. Não pode ser preenchido por Pessoa Física. O FAP informado deve corresponder àquele definido pelo Órgão Governamental Competente para o estabelecimento, exceto se {ideEstab/tpInsc} = [4]. A divergência só é permitida se houver processo informado em {procAdmJudFap}. Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000.</td>
             <td width="200px"><b>{% if s1005_inclusao.fap or s1005_inclusao.fap == 0 %}{{ s1005_inclusao.fap|format_number_4dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -388,7 +388,7 @@
 
         <tr {% if s1005_inclusao.aliqratajust|validacoes_esocial_efdreinf:"s1005_inclusao.aliqratajust" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">aliqRatAjust</td>
-            <td width="500px">Alíquota do RAT após ajuste pelo FAP Validação: Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}. Preenchimento obrigatório pela Pessoa Jurídica.</td>
+            <td width="500px">Alíquota do RAT após ajuste pelo FAP. Validação: Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}. Preenchimento obrigatório pela Pessoa Jurídica.</td>
             <td width="200px"><b>{% if s1005_inclusao.aliqratajust or s1005_inclusao.aliqratajust == 0 %}{{ s1005_inclusao.aliqratajust|format_number_4dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -583,12 +583,12 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoTrab</td>
-            <td bgcolor="lightgray" colspan="3">Informações Trabalhistas relativas ao estabelecimento</td>
+            <td bgcolor="lightgray" colspan="3">Informações Trabalhistas relativas ao estabelecimento.</td>
         </tr>
 
         <tr {% if s1005_inclusao.regpt|validacoes_esocial_efdreinf:"s1005_inclusao.regpt" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">regPt</td>
-            <td width="500px">Opção de registro de ponto (jornada) adotada pelo estabelecimento. Indicar o sistema de controle de ponto preponderante, conforme opções: 0 - Não utiliza; 1 - Manual; 2 - Mecânico; 3 - Eletrônico (portaria MTE 1.510/2009); 4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011); 5 - Eletrônico alternativo (art. 2° da Portaria MTE 373/2011); 6 - Eletrônico - outros. Valores Válidos: 0, 1, 2, 3, 4, 5, 6.</td>
+            <td width="500px">Opção de registro de ponto (jornada) adotada pelo estabelecimento. Indicar o sistema de controle de ponto preponderante, conforme opções: 0 - Não utiliza; 1 - Manual; 2 - Mecânico; 3 - Eletrônico (portaria MTE 1.510/2009); 4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011); 5 - Eletrônico alternativo ( art. 2° da Portaria MTE 373/2011); 6 - Eletrônico - outros. Valores Válidos: 0, 1, 2, 3, 4, 5, 6.</td>
             <td width="200px"><b>{% if s1005_inclusao.regpt or s1005_inclusao.regpt == 0 %}{{ s1005_inclusao.regpt|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -607,7 +607,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoApr</td>
-            <td bgcolor="lightgray" colspan="3">Informações relacionadas à contratação de aprendiz</td>
+            <td bgcolor="lightgray" colspan="3">Informações relacionadas à contratação de aprendiz.</td>
         </tr>
 
         <tr {% if s1005_inclusao.contapr|validacoes_esocial_efdreinf:"s1005_inclusao.contapr" %}bgcolor="lightcoral"{% endif %}>
@@ -669,7 +669,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoEntEduc</td>
-            <td bgcolor="lightgray" colspan="3">Identificação da(s) entidade(s) educativa(s) ou de prática desportiva</td>
+            <td bgcolor="lightgray" colspan="3">Identificação da(s) entidade(s) educativa(s) ou de prática desportiva.</td>
         </tr>
     {% for s1005_inclusao_infoenteduc in s1005_inclusao_infoenteduc_lista %}
     {% ifequal s1005_inclusao_infoenteduc.s1005_inclusao.id s1005_inclusao.id %}
@@ -694,7 +694,7 @@
     {% endifequal %}{% endfor %} 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoPCD</td>
-            <td bgcolor="lightgray" colspan="3">Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento "Matriz".</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.</td>
         </tr>
     {% for s1005_inclusao_infopcd in s1005_inclusao_infopcd_lista %}
     {% ifequal s1005_inclusao_infopcd.s1005_inclusao.id s1005_inclusao.id %}
@@ -738,7 +738,7 @@
     {% endifequal %}{% endfor %}      {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">alteracao</td>
-            <td bgcolor="lightgray" colspan="3">Alteração de informações já existentes</td>
+            <td bgcolor="lightgray" colspan="3">Alteração de informações já existentes.</td>
         </tr>
     {% for s1005_alteracao in s1005_alteracao_lista %}
     {% ifequal s1005_alteracao.s1005_evttabestab.id s1005_evttabestab.id %}
@@ -749,7 +749,7 @@
 
         <tr {% if s1005_alteracao.tpinsc|validacoes_esocial_efdreinf:"s1005_alteracao.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5 Valores Válidos: 1, 3, 4.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. Valores Válidos: 1, 3, 4.</td>
             <td width="200px"><b>{% if s1005_alteracao.tpinsc or s1005_alteracao.tpinsc == 0 %}{{ s1005_alteracao.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -787,7 +787,7 @@
 
         <tr {% if s1005_alteracao.inivalid|validacoes_esocial_efdreinf:"s1005_alteracao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1005_alteracao.inivalid or s1005_alteracao.inivalid == 0 %}{{ s1005_alteracao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -806,7 +806,7 @@
 
         <tr {% if s1005_alteracao.fimvalid|validacoes_esocial_efdreinf:"s1005_alteracao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1005_alteracao.fimvalid or s1005_alteracao.fimvalid == 0 %}{{ s1005_alteracao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -825,7 +825,7 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dadosEstab</td>
-            <td bgcolor="lightgray" colspan="3">Detalhamento das informações do estabelecimento, obra ou órgão público que está sendo alterado</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento das informações do estabelecimento, obra ou órgão público que está sendo alterado.</td>
         </tr>
 
         <tr {% if s1005_alteracao.cnaeprep|validacoes_esocial_efdreinf:"s1005_alteracao.cnaeprep" %}bgcolor="lightcoral"{% endif %}>
@@ -849,12 +849,12 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">aliqGilrat</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Apuração da alíquota Gilrat do Estabelecimento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Apuração da alíquota Gilrat do Estabelecimento.</td>
         </tr>
 
         <tr {% if s1005_alteracao.aliqrat|validacoes_esocial_efdreinf:"s1005_alteracao.aliqrat" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">aliqRat</td>
-            <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. A divergência só é permitida se existir o registro complementar com informações sobre o processo administrativo/judicial que permite a aplicação de alíquotas diferentes. Validação: Deve ser igual a 1, 2 ou 3. Se a alíquota informada for diferente da definida na legislação vigente para o CNAE informado deverá haver informações de processo em {procAdmJudRat}</td>
+            <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. A divergência só é permitida se existir o registro complementar com informações sobre o processo administrativo/judicial que permite a aplicação de alíquotas diferentes. Validação: Deve ser igual a 1, 2 ou 3. Se a alíquota informada for diferente da definida na legislação vigente para o CNAE informado deverá haver informações de processo em {procAdmJudRat}.</td>
             <td width="200px"><b>{% if s1005_alteracao.aliqrat or s1005_alteracao.aliqrat == 0 %}{{ s1005_alteracao.aliqrat|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -873,7 +873,7 @@
 
         <tr {% if s1005_alteracao.fap|validacoes_esocial_efdreinf:"s1005_alteracao.fap" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fap</td>
-            <td width="500px">Fator Acidentário de Prevenção - FAP. Validação: Preenchimento obrigatório pela Pessoa Jurídica. Não preencher para Pessoa Física. O FAP informado deve corresponder àquele definido pelo Órgão Governamental Competente para o estabelecimento, exceto se {ideEstab/tpInsc} = [4]. A divergência só é permitida se houver processo informado em {procAdmJudFap}. Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000.</td>
+            <td width="500px">Fator Acidentário de Prevenção - FAP. Validação: Preenchimento obrigatório por Pessoa Jurídica. Não pode ser preenchido por Pessoa Física. O FAP informado deve corresponder àquele definido pelo Órgão Governamental Competente para o estabelecimento, exceto se {ideEstab/tpInsc} = [4]. A divergência só é permitida se houver processo informado em {procAdmJudFap}. Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000.</td>
             <td width="200px"><b>{% if s1005_alteracao.fap or s1005_alteracao.fap == 0 %}{{ s1005_alteracao.fap|format_number_4dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -892,7 +892,7 @@
 
         <tr {% if s1005_alteracao.aliqratajust|validacoes_esocial_efdreinf:"s1005_alteracao.aliqratajust" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">aliqRatAjust</td>
-            <td width="500px">Alíquota do RAT após ajuste pelo FAP Validação: Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}. Preenchimento obrigatório pela Pessoa Jurídica.</td>
+            <td width="500px">Alíquota do RAT após ajuste pelo FAP. Validação: Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}. Preenchimento obrigatório pela Pessoa Jurídica.</td>
             <td width="200px"><b>{% if s1005_alteracao.aliqratajust or s1005_alteracao.aliqratajust == 0 %}{{ s1005_alteracao.aliqratajust|format_number_4dec_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1087,12 +1087,12 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoTrab</td>
-            <td bgcolor="lightgray" colspan="3">Informações Trabalhistas relativas ao estabelecimento</td>
+            <td bgcolor="lightgray" colspan="3">Informações Trabalhistas relativas ao estabelecimento.</td>
         </tr>
 
         <tr {% if s1005_alteracao.regpt|validacoes_esocial_efdreinf:"s1005_alteracao.regpt" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">regPt</td>
-            <td width="500px">Opção de registro de ponto (jornada) adotada pelo estabelecimento. Indicar o sistema de controle de ponto preponderante, conforme opções: 0 - Não utiliza; 1 - Manual; 2 - Mecânico; 3 - Eletrônico (portaria MTE 1.510/2009); 4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011); 5 - Eletrônico alternativo (art. 2° da Portaria MTE 373/2011); 6 - Eletrônico - outros. Valores Válidos: 0, 1, 2, 3, 4, 5, 6.</td>
+            <td width="500px">Opção de registro de ponto (jornada) adotada pelo estabelecimento. Indicar o sistema de controle de ponto preponderante, conforme opções: 0 - Não utiliza; 1 - Manual; 2 - Mecânico; 3 - Eletrônico (portaria MTE 1.510/2009); 4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011); 5 - Eletrônico alternativo ( art. 2° da Portaria MTE 373/2011); 6 - Eletrônico - outros. Valores Válidos: 0, 1, 2, 3, 4, 5, 6.</td>
             <td width="200px"><b>{% if s1005_alteracao.regpt or s1005_alteracao.regpt == 0 %}{{ s1005_alteracao.regpt|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1111,7 +1111,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoApr</td>
-            <td bgcolor="lightgray" colspan="3">Informações relacionadas à contratação de aprendiz</td>
+            <td bgcolor="lightgray" colspan="3">Informações relacionadas à contratação de aprendiz.</td>
         </tr>
 
         <tr {% if s1005_alteracao.contapr|validacoes_esocial_efdreinf:"s1005_alteracao.contapr" %}bgcolor="lightcoral"{% endif %}>
@@ -1173,7 +1173,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoEntEduc</td>
-            <td bgcolor="lightgray" colspan="3">Identificação da(s) entidade(s) educativa(s) ou de prática desportiva</td>
+            <td bgcolor="lightgray" colspan="3">Identificação da(s) entidade(s) educativa(s) ou de prática desportiva.</td>
         </tr>
     {% for s1005_alteracao_infoenteduc in s1005_alteracao_infoenteduc_lista %}
     {% ifequal s1005_alteracao_infoenteduc.s1005_alteracao.id s1005_alteracao.id %}
@@ -1198,7 +1198,7 @@
     {% endifequal %}{% endfor %} 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoPCD</td>
-            <td bgcolor="lightgray" colspan="3">Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento "Matriz".</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.</td>
         </tr>
     {% for s1005_alteracao_infopcd in s1005_alteracao_infopcd_lista %}
     {% ifequal s1005_alteracao_infopcd.s1005_alteracao.id s1005_alteracao.id %}
@@ -1248,7 +1248,7 @@
     {% ifequal s1005_alteracao_novavalidade.s1005_alteracao.id s1005_alteracao.id %}
         <tr {% if s1005_alteracao_novavalidade.inivalid|validacoes_esocial_efdreinf:"s1005_alteracao_novavalidade.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1005_alteracao_novavalidade.inivalid or s1005_alteracao_novavalidade.inivalid == 0 %}{{ s1005_alteracao_novavalidade.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1267,7 +1267,7 @@
 
         <tr {% if s1005_alteracao_novavalidade.fimvalid|validacoes_esocial_efdreinf:"s1005_alteracao_novavalidade.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1005_alteracao_novavalidade.fimvalid or s1005_alteracao_novavalidade.fimvalid == 0 %}{{ s1005_alteracao_novavalidade.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1286,7 +1286,7 @@
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">exclusao</td>
-            <td bgcolor="lightgray" colspan="3">Exclusão de informações</td>
+            <td bgcolor="lightgray" colspan="3">Exclusão de informações.</td>
         </tr>
     {% for s1005_exclusao in s1005_exclusao_lista %}
     {% ifequal s1005_exclusao.s1005_evttabestab.id s1005_evttabestab.id %}
@@ -1297,7 +1297,7 @@
 
         <tr {% if s1005_exclusao.tpinsc|validacoes_esocial_efdreinf:"s1005_exclusao.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5 Valores Válidos: 1, 3, 4.</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. Valores Válidos: 1, 3, 4.</td>
             <td width="200px"><b>{% if s1005_exclusao.tpinsc or s1005_exclusao.tpinsc == 0 %}{{ s1005_exclusao.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1335,7 +1335,7 @@
 
         <tr {% if s1005_exclusao.inivalid|validacoes_esocial_efdreinf:"s1005_exclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1005_exclusao.inivalid or s1005_exclusao.inivalid == 0 %}{{ s1005_exclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1354,7 +1354,7 @@
 
         <tr {% if s1005_exclusao.fimvalid|validacoes_esocial_efdreinf:"s1005_exclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1005_exclusao.fimvalid or s1005_exclusao.fimvalid == 0 %}{{ s1005_exclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">

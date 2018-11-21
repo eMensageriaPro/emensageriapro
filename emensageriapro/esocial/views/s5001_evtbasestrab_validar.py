@@ -47,7 +47,7 @@ def validacoes_s5001_evtbasestrab(arquivo):
     xmlns = doc.eSocial['xmlns'].split('/')
     evtBasesTrab = doc.eSocial.evtBasesTrab
 
-    if 'nrRecArqBase' in dir(evtBasesTrab.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtBasesTrab.ideEvento.nrRecArqBase', evtBasesTrab.ideEvento.nrRecArqBase.cdata, 0, '')
+    if 'nrRecArqBase' in dir(evtBasesTrab.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtBasesTrab.ideEvento.nrRecArqBase', evtBasesTrab.ideEvento.nrRecArqBase.cdata, 1, '')
     if 'indApuracao' in dir(evtBasesTrab.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtBasesTrab.ideEvento.indApuracao', evtBasesTrab.ideEvento.indApuracao.cdata, 1, '1;2')
     if 'perApur' in dir(evtBasesTrab.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtBasesTrab.ideEvento.perApur', evtBasesTrab.ideEvento.perApur.cdata, 1, '')
     if 'tpInsc' in dir(evtBasesTrab.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtBasesTrab.ideEmpregador.tpInsc', evtBasesTrab.ideEmpregador.tpInsc.cdata, 1, '1;2;3;4')
@@ -66,15 +66,18 @@ def validacoes_s5001_evtbasestrab(arquivo):
             if 'vrCpSeg' in dir(infoCpCalc): validacoes_lista = validar_campo(validacoes_lista,'infoCpCalc.vrCpSeg', infoCpCalc.vrCpSeg.cdata, 1, '')
             if 'vrDescSeg' in dir(infoCpCalc): validacoes_lista = validar_campo(validacoes_lista,'infoCpCalc.vrDescSeg', infoCpCalc.vrDescSeg.cdata, 1, '')
 
-    if 'infoCp' in dir(evtBasesTrab):
-        for infoCp in evtBasesTrab.infoCp:
+    if 'ideEstabLot' in dir(evtBasesTrab.infoCp):
+        for ideEstabLot in evtBasesTrab.infoCp.ideEstabLot:
        
+            if 'tpInsc' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.tpInsc', ideEstabLot.tpInsc.cdata, 1, '1;2;3;4')
+            if 'nrInsc' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.nrInsc', ideEstabLot.nrInsc.cdata, 1, '')
+            if 'codLotacao' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.codLotacao', ideEstabLot.codLotacao.cdata, 1, '')
 
-            if 'ideEstabLot' in dir(infoCp):
-                for ideEstabLot in infoCp.ideEstabLot:
+            if 'infoCategIncid' in dir(ideEstabLot):
+                for infoCategIncid in ideEstabLot.infoCategIncid:
                
-                    if 'tpInsc' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.tpInsc', ideEstabLot.tpInsc.cdata, 1, '1;2;3;4')
-                    if 'nrInsc' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.nrInsc', ideEstabLot.nrInsc.cdata, 1, '')
-                    if 'codLotacao' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.codLotacao', ideEstabLot.codLotacao.cdata, 1, '')
+                    if 'matricula' in dir(infoCategIncid): validacoes_lista = validar_campo(validacoes_lista,'infoCategIncid.matricula', infoCategIncid.matricula.cdata, 0, '')
+                    if 'codCateg' in dir(infoCategIncid): validacoes_lista = validar_campo(validacoes_lista,'infoCategIncid.codCateg', infoCategIncid.codCateg.cdata, 1, '101;102;103;104;105;106;111;201;202;301;302;303;305;306;307;308;309;401;410;701;711;712;721;722;723;731;734;738;741;751;761;771;781;901;902;903;904;905')
+                    if 'indSimples' in dir(infoCategIncid): validacoes_lista = validar_campo(validacoes_lista,'infoCategIncid.indSimples', infoCategIncid.indSimples.cdata, 0, '1;2;3')
    
     return validacoes_lista

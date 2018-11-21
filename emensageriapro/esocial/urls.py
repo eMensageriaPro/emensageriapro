@@ -104,14 +104,49 @@ from emensageriapro.esocial.views import s5001_evtbasestrab as s5001_evtbasestra
 from emensageriapro.esocial.views import s5001_evtbasestrab_verificar as s5001_evtbasestrab_verificar_views
 from emensageriapro.esocial.views import s5002_evtirrfbenef as s5002_evtirrfbenef_views
 from emensageriapro.esocial.views import s5002_evtirrfbenef_verificar as s5002_evtirrfbenef_verificar_views
+from emensageriapro.esocial.views import s5003_evtbasesfgts as s5003_evtbasesfgts_views
+from emensageriapro.esocial.views import s5003_evtbasesfgts_verificar as s5003_evtbasesfgts_verificar_views
 from emensageriapro.esocial.views import s5011_evtcs as s5011_evtcs_views
 from emensageriapro.esocial.views import s5011_evtcs_verificar as s5011_evtcs_verificar_views
 from emensageriapro.esocial.views import s5012_evtirrf as s5012_evtirrf_views
 from emensageriapro.esocial.views import s5012_evtirrf_verificar as s5012_evtirrf_verificar_views
+from emensageriapro.esocial.views import s5013_evtfgts as s5013_evtfgts_views
+from emensageriapro.esocial.views import s5013_evtfgts_verificar as s5013_evtfgts_verificar_views
 
 
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 urlpatterns = [
 
@@ -3267,6 +3302,69 @@ url(r'^scripts/gerar-identidade/s5002-evtirrfbenef/(?P<chave>.*)/(?P<evento_id>\
 
 
 
+url(r'^s5003-evtbasesfgts/apagar/(?P<hash>.*)/$', 
+        s5003_evtbasesfgts_views.apagar, 
+        name='s5003_evtbasesfgts_apagar'),
+
+url(r'^s5003-evtbasesfgts/api/$',
+            s5003_evtbasesfgts_views.s5003evtBasesFGTSList.as_view() ),
+
+        url(r'^s5003-evtbasesfgts/api/(?P<pk>[0-9]+)/$',
+            s5003_evtbasesfgts_views.s5003evtBasesFGTSDetail.as_view() ),
+
+url(r'^s5003-evtbasesfgts/listar/(?P<hash>.*)/$', 
+        s5003_evtbasesfgts_views.listar, 
+        name='s5003_evtbasesfgts'),
+        
+url(r'^s5003-evtbasesfgts/verificar/(?P<hash>.*)/$', 
+        s5003_evtbasesfgts_verificar_views.verificar, 
+        name='s5003_evtbasesfgts_verificar'),
+        
+url(r'^s5003-evtbasesfgts/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+        s5003_evtbasesfgts_verificar_views.recibo, 
+        name='s5003_evtbasesfgts_recibo'),
+        
+        
+url(r'^s5003-evtbasesfgts/duplicar/(?P<hash>.*)/$',
+        s5003_evtbasesfgts_verificar_views.duplicar,
+        name='s5003_evtbasesfgts_duplicar'),
+
+url(r'^s5003-evtbasesfgts/criar-alteracao/(?P<hash>.*)/$',
+        s5003_evtbasesfgts_verificar_views.criar_alteracao,
+        name='s5003_evtbasesfgts_criar_alteracao'),
+
+url(r'^s5003-evtbasesfgts/criar-exclusao/(?P<hash>.*)/$',
+        s5003_evtbasesfgts_verificar_views.criar_exclusao,
+        name='s5003_evtbasesfgts_criar_exclusao'),
+        
+url(r'^s5003-evtbasesfgts/xml/(?P<hash>.*)/$', 
+        s5003_evtbasesfgts_verificar_views.gerar_xml, 
+                name='s5003_evtbasesfgts_xml'),
+                
+
+url(r'^s5003-evtbasesfgts/alterar-identidade/(?P<hash>.*)/$',
+        s5003_evtbasesfgts_verificar_views.alterar_identidade,
+        name='s5003_evtbasesfgts_alterar_identidade'),
+
+url(r'^s5003-evtbasesfgts/abrir-evento-para-edicao/(?P<hash>.*)/$',
+        s5003_evtbasesfgts_verificar_views.abrir_evento_para_edicao,
+        name='s5003_evtbasesfgts_abrir_evento_para_edicao'),
+
+url(r'^s5003-evtbasesfgts/validar-evento/(?P<hash>.*)/$',
+        s5003_evtbasesfgts_verificar_views.validar_evento,
+        name='s5003_evtbasesfgts_validar_evento'),
+
+url(r'^s5003-evtbasesfgts/salvar/(?P<hash>.*)/$', 
+        s5003_evtbasesfgts_views.salvar, 
+        name='s5003_evtbasesfgts_salvar'),
+        
+
+url(r'^scripts/gerar-identidade/s5003-evtbasesfgts/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+        s5003_evtbasesfgts_views.gerar_identidade, 
+        name='s5003_evtbasesfgts_gerar_identidade'),
+
+
+
 url(r'^s5011-evtcs/apagar/(?P<hash>.*)/$', 
         s5011_evtcs_views.apagar, 
         name='s5011_evtcs_apagar'),
@@ -3390,6 +3488,69 @@ url(r'^s5012-evtirrf/salvar/(?P<hash>.*)/$',
 url(r'^scripts/gerar-identidade/s5012-evtirrf/(?P<chave>.*)/(?P<evento_id>\d+)/$',
         s5012_evtirrf_views.gerar_identidade, 
         name='s5012_evtirrf_gerar_identidade'),
+
+
+
+url(r'^s5013-evtfgts/apagar/(?P<hash>.*)/$', 
+        s5013_evtfgts_views.apagar, 
+        name='s5013_evtfgts_apagar'),
+
+url(r'^s5013-evtfgts/api/$',
+            s5013_evtfgts_views.s5013evtFGTSList.as_view() ),
+
+        url(r'^s5013-evtfgts/api/(?P<pk>[0-9]+)/$',
+            s5013_evtfgts_views.s5013evtFGTSDetail.as_view() ),
+
+url(r'^s5013-evtfgts/listar/(?P<hash>.*)/$', 
+        s5013_evtfgts_views.listar, 
+        name='s5013_evtfgts'),
+        
+url(r'^s5013-evtfgts/verificar/(?P<hash>.*)/$', 
+        s5013_evtfgts_verificar_views.verificar, 
+        name='s5013_evtfgts_verificar'),
+        
+url(r'^s5013-evtfgts/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+        s5013_evtfgts_verificar_views.recibo, 
+        name='s5013_evtfgts_recibo'),
+        
+        
+url(r'^s5013-evtfgts/duplicar/(?P<hash>.*)/$',
+        s5013_evtfgts_verificar_views.duplicar,
+        name='s5013_evtfgts_duplicar'),
+
+url(r'^s5013-evtfgts/criar-alteracao/(?P<hash>.*)/$',
+        s5013_evtfgts_verificar_views.criar_alteracao,
+        name='s5013_evtfgts_criar_alteracao'),
+
+url(r'^s5013-evtfgts/criar-exclusao/(?P<hash>.*)/$',
+        s5013_evtfgts_verificar_views.criar_exclusao,
+        name='s5013_evtfgts_criar_exclusao'),
+        
+url(r'^s5013-evtfgts/xml/(?P<hash>.*)/$', 
+        s5013_evtfgts_verificar_views.gerar_xml, 
+                name='s5013_evtfgts_xml'),
+                
+
+url(r'^s5013-evtfgts/alterar-identidade/(?P<hash>.*)/$',
+        s5013_evtfgts_verificar_views.alterar_identidade,
+        name='s5013_evtfgts_alterar_identidade'),
+
+url(r'^s5013-evtfgts/abrir-evento-para-edicao/(?P<hash>.*)/$',
+        s5013_evtfgts_verificar_views.abrir_evento_para_edicao,
+        name='s5013_evtfgts_abrir_evento_para_edicao'),
+
+url(r'^s5013-evtfgts/validar-evento/(?P<hash>.*)/$',
+        s5013_evtfgts_verificar_views.validar_evento,
+        name='s5013_evtfgts_validar_evento'),
+
+url(r'^s5013-evtfgts/salvar/(?P<hash>.*)/$', 
+        s5013_evtfgts_views.salvar, 
+        name='s5013_evtfgts_salvar'),
+        
+
+url(r'^scripts/gerar-identidade/s5013-evtfgts/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+        s5013_evtfgts_views.gerar_identidade, 
+        name='s5013_evtfgts_gerar_identidade'),
 
 
 

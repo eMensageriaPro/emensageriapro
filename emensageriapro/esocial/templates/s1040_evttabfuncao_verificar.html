@@ -118,18 +118,18 @@
               
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtTabFuncao</td>
-            <td bgcolor="lightgray" colspan="3">Evento utilizado para inclusão, alteração e exclusão de registros na tabela de funções. A utilização desta tabela é opcional.Regras de validação: REGRA_EXISTE_INFO_EMPREGADOR REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_DT_FUTURA</td>
+            <td bgcolor="lightgray" colspan="3">Evento utilizado para inclusão, alteração e exclusão de registros na tabela de funções. A utilização desta tabela é opcional. Regras de validação: REGRA_EXISTE_INFO_EMPREGADOR REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_DT_FUTURA</td>
         </tr>
     {% for s1040_evttabfuncao in s1040_evttabfuncao_lista %}
     {% ifequal 1 1 %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
         </tr>
 
         <tr {% if s1040_evttabfuncao.tpamb|validacoes_esocial_efdreinf:"s1040_evttabfuncao.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente:1 - Produção;2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
             <td width="200px"><b>{% if s1040_evttabfuncao.tpamb or s1040_evttabfuncao.tpamb == 0 %}{{ s1040_evttabfuncao.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -148,7 +148,7 @@
 
         <tr {% if s1040_evttabfuncao.procemi|validacoes_esocial_efdreinf:"s1040_evttabfuncao.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual(MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1040_evttabfuncao.procemi or s1040_evttabfuncao.procemi == 0 %}{{ s1040_evttabfuncao.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -186,12 +186,12 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
         </tr>
 
         <tr {% if s1040_evttabfuncao.tpinsc|validacoes_esocial_efdreinf:"s1040_evttabfuncao.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela5Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF)</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
             <td width="200px"><b>{% if s1040_evttabfuncao.tpinsc or s1040_evttabfuncao.tpinsc == 0 %}{{ s1040_evttabfuncao.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -210,7 +210,7 @@
 
         <tr {% if s1040_evttabfuncao.nrinsc|validacoes_esocial_efdreinf:"s1040_evttabfuncao.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições).Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s1040_evttabfuncao.nrinsc or s1040_evttabfuncao.nrinsc == 0 %}{{ s1040_evttabfuncao.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -234,18 +234,18 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">inclusao</td>
-            <td bgcolor="lightgray" colspan="3">Inclusão de novas informações</td>
+            <td bgcolor="lightgray" colspan="3">Inclusão de novas informações.</td>
         </tr>
     {% for s1040_inclusao in s1040_inclusao_lista %}
     {% ifequal s1040_inclusao.s1040_evttabfuncao.id s1040_evttabfuncao.id %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideFuncao</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação da função e validade das informações que estão sendo incluídas</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação da função e validade das informações que estão sendo incluídas.</td>
         </tr>
 
         <tr {% if s1040_inclusao.codfuncao|validacoes_esocial_efdreinf:"s1040_inclusao.codfuncao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codFuncao</td>
-            <td width="500px">Preencher com o código da função, se utilizado pelo empregador. Validação: O código atribuído não pode conter a expressão "eSocial" nas 7 (sete) primeiras posições.</td>
+            <td width="500px">Preencher com o código da função, se utilizado pelo empregador. Validação: O código atribuído não pode conter a expressão 'eSocial' nas 7 (sete) primeiras posições.</td>
             <td width="200px"><b>{% if s1040_inclusao.codfuncao or s1040_inclusao.codfuncao == 0 %}{{ s1040_inclusao.codfuncao }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -264,7 +264,7 @@
 
         <tr {% if s1040_inclusao.inivalid|validacoes_esocial_efdreinf:"s1040_inclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1040_inclusao.inivalid or s1040_inclusao.inivalid == 0 %}{{ s1040_inclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -283,7 +283,7 @@
 
         <tr {% if s1040_inclusao.fimvalid|validacoes_esocial_efdreinf:"s1040_inclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1040_inclusao.fimvalid or s1040_inclusao.fimvalid == 0 %}{{ s1040_inclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -302,12 +302,12 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dadosFuncao</td>
-            <td bgcolor="lightgray" colspan="3">Detalhamento das informações da função que está sendo incluída</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento das informações da função que está sendo incluída.</td>
         </tr>
 
         <tr {% if s1040_inclusao.dscfuncao|validacoes_esocial_efdreinf:"s1040_inclusao.dscfuncao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dscFuncao</td>
-            <td width="500px">Nome da Função de confiança/Cargo em Comissão</td>
+            <td width="500px">Nome da Função de confiança/Cargo em Comissão.</td>
             <td width="200px"><b>{% if s1040_inclusao.dscfuncao or s1040_inclusao.dscfuncao == 0 %}{{ s1040_inclusao.dscfuncao }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -326,7 +326,7 @@
 
         <tr {% if s1040_inclusao.codcbo|validacoes_esocial_efdreinf:"s1040_inclusao.codcbo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codCBO</td>
-            <td width="500px">Classificação Brasileira de Ocupação - CBO.Validação: Deve ser um código existente na tabela de CBO com 6 (seis)posições.</td>
+            <td width="500px">Classificação Brasileira de Ocupação - CBO. Validação: Deve ser um código existente na tabela de CBO com 6 (seis) posições.</td>
             <td width="200px"><b>{% if s1040_inclusao.codcbo or s1040_inclusao.codcbo == 0 %}{{ s1040_inclusao.codcbo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -345,7 +345,7 @@
      {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">alteracao</td>
-            <td bgcolor="lightgray" colspan="3">Alteração de informações já existentes</td>
+            <td bgcolor="lightgray" colspan="3">Alteração de informações já existentes.</td>
         </tr>
     {% for s1040_alteracao in s1040_alteracao_lista %}
     {% ifequal s1040_alteracao.s1040_evttabfuncao.id s1040_evttabfuncao.id %}
@@ -356,7 +356,7 @@
 
         <tr {% if s1040_alteracao.codfuncao|validacoes_esocial_efdreinf:"s1040_alteracao.codfuncao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codFuncao</td>
-            <td width="500px">Preencher com o código da função, se utilizado pelo empregador. Validação: O código atribuído não pode conter a expressão "eSocial" nas 7 (sete) primeiras posições.</td>
+            <td width="500px">Preencher com o código da função, se utilizado pelo empregador. Validação: O código atribuído não pode conter a expressão 'eSocial' nas 7 (sete) primeiras posições.</td>
             <td width="200px"><b>{% if s1040_alteracao.codfuncao or s1040_alteracao.codfuncao == 0 %}{{ s1040_alteracao.codfuncao }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -375,7 +375,7 @@
 
         <tr {% if s1040_alteracao.inivalid|validacoes_esocial_efdreinf:"s1040_alteracao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação do eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1040_alteracao.inivalid or s1040_alteracao.inivalid == 0 %}{{ s1040_alteracao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -394,7 +394,7 @@
 
         <tr {% if s1040_alteracao.fimvalid|validacoes_esocial_efdreinf:"s1040_alteracao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser umperíodo igual ou posterior a {iniValid}</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1040_alteracao.fimvalid or s1040_alteracao.fimvalid == 0 %}{{ s1040_alteracao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -413,12 +413,12 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dadosFuncao</td>
-            <td bgcolor="lightgray" colspan="3">Informações da função</td>
+            <td bgcolor="lightgray" colspan="3">Informações da função.</td>
         </tr>
 
         <tr {% if s1040_alteracao.dscfuncao|validacoes_esocial_efdreinf:"s1040_alteracao.dscfuncao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dscFuncao</td>
-            <td width="500px">Nome da Função de confiança/Cargo em Comissão</td>
+            <td width="500px">Nome da Função de confiança/Cargo em Comissão.</td>
             <td width="200px"><b>{% if s1040_alteracao.dscfuncao or s1040_alteracao.dscfuncao == 0 %}{{ s1040_alteracao.dscfuncao }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -437,7 +437,7 @@
 
         <tr {% if s1040_alteracao.codcbo|validacoes_esocial_efdreinf:"s1040_alteracao.codcbo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codCBO</td>
-            <td width="500px">Classificação Brasileira de Ocupação - CBO.Validação: Deve ser um código existente na tabela de CBO com 6 (seis)posições.</td>
+            <td width="500px">Classificação Brasileira de Ocupação - CBO. Validação: Deve ser um código existente na tabela de CBO com 6 (seis) posições.</td>
             <td width="200px"><b>{% if s1040_alteracao.codcbo or s1040_alteracao.codcbo == 0 %}{{ s1040_alteracao.codcbo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -462,7 +462,7 @@
     {% ifequal s1040_alteracao_novavalidade.s1040_alteracao.id s1040_alteracao.id %}
         <tr {% if s1040_alteracao_novavalidade.inivalid|validacoes_esocial_efdreinf:"s1040_alteracao_novavalidade.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial deimplantação do eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1040_alteracao_novavalidade.inivalid or s1040_alteracao_novavalidade.inivalid == 0 %}{{ s1040_alteracao_novavalidade.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -481,7 +481,7 @@
 
         <tr {% if s1040_alteracao_novavalidade.fimvalid|validacoes_esocial_efdreinf:"s1040_alteracao_novavalidade.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser umperíodo igual ou posterior a {iniValid}</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1040_alteracao_novavalidade.fimvalid or s1040_alteracao_novavalidade.fimvalid == 0 %}{{ s1040_alteracao_novavalidade.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -500,7 +500,7 @@
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">exclusao</td>
-            <td bgcolor="lightgray" colspan="3">Exclusão de informações</td>
+            <td bgcolor="lightgray" colspan="3">Exclusão de informações.</td>
         </tr>
     {% for s1040_exclusao in s1040_exclusao_lista %}
     {% ifequal s1040_exclusao.s1040_evttabfuncao.id s1040_evttabfuncao.id %}
@@ -511,7 +511,7 @@
 
         <tr {% if s1040_exclusao.codfuncao|validacoes_esocial_efdreinf:"s1040_exclusao.codfuncao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codFuncao</td>
-            <td width="500px">Preencher com o código da função, se utilizado pelo empregador. Validação: O código atribuído não pode conter a expressão "eSocial" nas 7 (sete) primeiras posições.</td>
+            <td width="500px">Preencher com o código da função, se utilizado pelo empregador. Validação: O código atribuído não pode conter a expressão 'eSocial' nas 7 (sete) primeiras posições.</td>
             <td width="200px"><b>{% if s1040_exclusao.codfuncao or s1040_exclusao.codfuncao == 0 %}{{ s1040_exclusao.codfuncao }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -530,7 +530,7 @@
 
         <tr {% if s1040_exclusao.inivalid|validacoes_esocial_efdreinf:"s1040_exclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.Validação: Deve ser uma data válida, igual ou posterior à data inicial deimplantação do eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1040_exclusao.inivalid or s1040_exclusao.inivalid == 0 %}{{ s1040_exclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -549,7 +549,7 @@
 
         <tr {% if s1040_exclusao.fimvalid|validacoes_esocial_efdreinf:"s1040_exclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver.Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1040_exclusao.fimvalid or s1040_exclusao.fimvalid == 0 %}{{ s1040_exclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">

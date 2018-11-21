@@ -109,8 +109,7 @@ def verificar(request, hash):
 
         s5001_procjudtrab_lista = s5001procJudTrab.objects.using(db_slug).filter(s5001_evtbasestrab_id__in = listar_ids(s5001_evtbasestrab_lista) ).filter(excluido=False).all()
         s5001_infocpcalc_lista = s5001infoCpCalc.objects.using(db_slug).filter(s5001_evtbasestrab_id__in = listar_ids(s5001_evtbasestrab_lista) ).filter(excluido=False).all()
-        s5001_infocp_lista = s5001infoCp.objects.using(db_slug).filter(s5001_evtbasestrab_id__in = listar_ids(s5001_evtbasestrab_lista) ).filter(excluido=False).all()
-        s5001_ideestablot_lista = s5001ideEstabLot.objects.using(db_slug).filter(s5001_infocp_id__in = listar_ids(s5001_infocp_lista) ).filter(excluido=False).all()
+        s5001_ideestablot_lista = s5001ideEstabLot.objects.using(db_slug).filter(s5001_evtbasestrab_id__in = listar_ids(s5001_evtbasestrab_lista) ).filter(excluido=False).all()
         s5001_infocategincid_lista = s5001infoCategIncid.objects.using(db_slug).filter(s5001_ideestablot_id__in = listar_ids(s5001_ideestablot_lista) ).filter(excluido=False).all()
         s5001_infobasecs_lista = s5001infoBaseCS.objects.using(db_slug).filter(s5001_infocategincid_id__in = listar_ids(s5001_infocategincid_lista) ).filter(excluido=False).all()
         s5001_calcterc_lista = s5001calcTerc.objects.using(db_slug).filter(s5001_infocategincid_id__in = listar_ids(s5001_infocategincid_lista) ).filter(excluido=False).all()
@@ -134,7 +133,6 @@ def verificar(request, hash):
 
             's5001_procjudtrab_lista': s5001_procjudtrab_lista,
             's5001_infocpcalc_lista': s5001_infocpcalc_lista,
-            's5001_infocp_lista': s5001_infocp_lista,
             's5001_ideestablot_lista': s5001_ideestablot_lista,
             's5001_infocategincid_lista': s5001_infocategincid_lista,
             's5001_infobasecs_lista': s5001_infobasecs_lista,
@@ -211,8 +209,7 @@ def gerar_xml_s5001(s5001_evtbasestrab_id, db_slug, versao=None):
 
         s5001_procjudtrab_lista = s5001procJudTrab.objects.using(db_slug).filter(s5001_evtbasestrab_id__in = listar_ids(s5001_evtbasestrab_lista) ).filter(excluido=False).all()
         s5001_infocpcalc_lista = s5001infoCpCalc.objects.using(db_slug).filter(s5001_evtbasestrab_id__in = listar_ids(s5001_evtbasestrab_lista) ).filter(excluido=False).all()
-        s5001_infocp_lista = s5001infoCp.objects.using(db_slug).filter(s5001_evtbasestrab_id__in = listar_ids(s5001_evtbasestrab_lista) ).filter(excluido=False).all()
-        s5001_ideestablot_lista = s5001ideEstabLot.objects.using(db_slug).filter(s5001_infocp_id__in = listar_ids(s5001_infocp_lista) ).filter(excluido=False).all()
+        s5001_ideestablot_lista = s5001ideEstabLot.objects.using(db_slug).filter(s5001_evtbasestrab_id__in = listar_ids(s5001_evtbasestrab_lista) ).filter(excluido=False).all()
         s5001_infocategincid_lista = s5001infoCategIncid.objects.using(db_slug).filter(s5001_ideestablot_id__in = listar_ids(s5001_ideestablot_lista) ).filter(excluido=False).all()
         s5001_infobasecs_lista = s5001infoBaseCS.objects.using(db_slug).filter(s5001_infocategincid_id__in = listar_ids(s5001_infocategincid_lista) ).filter(excluido=False).all()
         s5001_calcterc_lista = s5001calcTerc.objects.using(db_slug).filter(s5001_infocategincid_id__in = listar_ids(s5001_infocategincid_lista) ).filter(excluido=False).all()
@@ -227,7 +224,6 @@ def gerar_xml_s5001(s5001_evtbasestrab_id, db_slug, versao=None):
 
             's5001_procjudtrab_lista': s5001_procjudtrab_lista,
             's5001_infocpcalc_lista': s5001_infocpcalc_lista,
-            's5001_infocp_lista': s5001_infocp_lista,
             's5001_ideestablot_lista': s5001_ideestablot_lista,
             's5001_infocategincid_lista': s5001_infocategincid_lista,
             's5001_infobasecs_lista': s5001_infobasecs_lista,

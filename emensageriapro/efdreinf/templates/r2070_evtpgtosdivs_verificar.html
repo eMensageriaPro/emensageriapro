@@ -649,14 +649,13 @@
             <td bgcolor="lightgray" colspan="1" width="130px">pgtoResidBR</td>
             <td bgcolor="lightgray" colspan="3">Pagamento a Pessoa Física ou Jurídica residente ou domiciliada no Brasil</td>
         </tr>
-    {% for r2070_pgtoresidbr in r2070_pgtoresidbr_lista %}
-    {% ifequal r2070_pgtoresidbr.r2070_ideestab.id r2070_ideestab.id %}
+
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">pgtoPF</td>
             <td bgcolor="lightgray" colspan="3">Beneficiário Pessoa Física - Residente no Brasil</td>
         </tr>
     {% for r2070_pgtopf in r2070_pgtopf_lista %}
-    {% ifequal r2070_pgtopf.r2070_pgtoresidbr.id r2070_pgtoresidbr.id %}
+    {% ifequal r2070_pgtopf.r2070_ideestab.id r2070_ideestab.id %}
         <tr {% if r2070_pgtopf.dtpgto|validacoes_esocial_efdreinf:"r2070_pgtopf.dtpgto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtPgto</td>
             <td width="500px">Informar a data de pagamento ou crédito, base para retenção. Validação: Deve estar compreendida no período de apuração ao qual se refere o arquivo</td>
@@ -1399,7 +1398,7 @@
             <td bgcolor="lightgray" colspan="3">Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil</td>
         </tr>
     {% for r2070_pgtopj in r2070_pgtopj_lista %}
-    {% ifequal r2070_pgtopj.r2070_pgtoresidbr.id r2070_pgtoresidbr.id %}
+    {% ifequal r2070_pgtopj.r2070_ideestab.id r2070_ideestab.id %}
         <tr {% if r2070_pgtopj.dtpagto|validacoes_esocial_efdreinf:"r2070_pgtopj.dtpagto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtPagto</td>
             <td width="500px">Informar a data de pagamento ou crédito, base para retenção. Validação: Deve ser igual ou anterior à data atual e deve estar compreendida dentro do período de apuração.</td>
@@ -1651,7 +1650,7 @@
             </td>
             {% endif %}
         </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %} 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">pgtoResidExt</td>
             <td bgcolor="lightgray" colspan="3">Pagamento a não residente ou domiciliado no exterior</td>

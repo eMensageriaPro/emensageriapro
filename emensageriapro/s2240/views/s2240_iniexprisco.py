@@ -61,17 +61,17 @@ def apagar(request, hash):
                              's2240_iniexprisco', s2240_iniexprisco_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's2240_iniexprisco_salvar':
             return redirect('s2240_iniexprisco', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -190,12 +190,12 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2240_iniexprisco_id': int(s2240_iniexprisco_id),
             'usuario': usuario,
-            
+
             'hash': hash,
             #[VARIAVEIS_SECUNDARIAS]
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -239,10 +239,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -308,24 +308,19 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
-            'show_s2240_evtexprisco': 1, }
+            'show_iniexprisco': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's2240_evtexprisco': 's2240_evtexprisco',}
+                'iniexprisco': 'iniexprisco',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's2240_evtexprisco': 's2240_evtexprisco',}
+                'iniexprisco': 'iniexprisco',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)
@@ -334,17 +329,17 @@ def listar(request, hash):
             filtrar = True
             s2240_iniexprisco_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s2240_iniexprisco_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2240_iniexprisco'
         context = {
             's2240_iniexprisco_lista': s2240_iniexprisco_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -354,7 +349,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 's2240_iniexprisco_listar.html', context)
@@ -397,10 +392,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

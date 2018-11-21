@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -308,54 +339,49 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
-            'show_vrdesccp': 1,
-            'show_vrbcfgts': 1,
-            'show_vrbccp13': 1,
-            'show_vrbccp25': 1,
-            'show_vrbccp20': 1,
-            'show_vrbccp15': 1,
-            'show_vrbccp00': 1,
-            'show_codlotacao': 1,
-            'show_nrinsc': 1,
+            'show_s1270_evtcontratavnp': 1,
             'show_tpinsc': 1,
-            'show_s1270_evtcontratavnp': 1, }
+            'show_nrinsc': 1,
+            'show_codlotacao': 1,
+            'show_vrbccp00': 1,
+            'show_vrbccp15': 1,
+            'show_vrbccp20': 1,
+            'show_vrbccp25': 1,
+            'show_vrbccp13': 1,
+            'show_vrbcfgts': 1,
+            'show_vrdesccp': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'vrdesccp': 'vrdesccp',
-                'vrbcfgts': 'vrbcfgts',
-                'vrbccp13': 'vrbccp13',
-                'vrbccp25': 'vrbccp25',
-                'vrbccp20': 'vrbccp20',
-                'vrbccp15': 'vrbccp15',
-                'vrbccp00': 'vrbccp00',
-                'codlotacao__icontains': 'codlotacao__icontains',
-                'nrinsc__icontains': 'nrinsc__icontains',
+                's1270_evtcontratavnp': 's1270_evtcontratavnp',
                 'tpinsc': 'tpinsc',
-                's1270_evtcontratavnp': 's1270_evtcontratavnp',}
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'codlotacao__icontains': 'codlotacao__icontains',
+                'vrbccp00': 'vrbccp00',
+                'vrbccp15': 'vrbccp15',
+                'vrbccp20': 'vrbccp20',
+                'vrbccp25': 'vrbccp25',
+                'vrbccp13': 'vrbccp13',
+                'vrbcfgts': 'vrbcfgts',
+                'vrdesccp': 'vrdesccp',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'vrdesccp': 'vrdesccp',
-                'vrbcfgts': 'vrbcfgts',
-                'vrbccp13': 'vrbccp13',
-                'vrbccp25': 'vrbccp25',
-                'vrbccp20': 'vrbccp20',
-                'vrbccp15': 'vrbccp15',
-                'vrbccp00': 'vrbccp00',
-                'codlotacao__icontains': 'codlotacao__icontains',
-                'nrinsc__icontains': 'nrinsc__icontains',
+                's1270_evtcontratavnp': 's1270_evtcontratavnp',
                 'tpinsc': 'tpinsc',
-                's1270_evtcontratavnp': 's1270_evtcontratavnp',}
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'codlotacao__icontains': 'codlotacao__icontains',
+                'vrbccp00': 'vrbccp00',
+                'vrbccp15': 'vrbccp15',
+                'vrbccp20': 'vrbccp20',
+                'vrbccp25': 'vrbccp25',
+                'vrbccp13': 'vrbccp13',
+                'vrbcfgts': 'vrbcfgts',
+                'vrdesccp': 'vrdesccp',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

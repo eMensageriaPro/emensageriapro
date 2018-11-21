@@ -110,6 +110,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
     if 'tpContr' in dir(evtAdmissao.vinculo.infoContrato.duracao): s2200_evtadmissao_dados['tpcontr'] = evtAdmissao.vinculo.infoContrato.duracao.tpContr.cdata
     if 'dtTerm' in dir(evtAdmissao.vinculo.infoContrato.duracao): s2200_evtadmissao_dados['dtterm'] = evtAdmissao.vinculo.infoContrato.duracao.dtTerm.cdata
     if 'clauAssec' in dir(evtAdmissao.vinculo.infoContrato.duracao): s2200_evtadmissao_dados['clauassec'] = evtAdmissao.vinculo.infoContrato.duracao.clauAssec.cdata
+    if 'objDet' in dir(evtAdmissao.vinculo.infoContrato.duracao): s2200_evtadmissao_dados['objdet'] = evtAdmissao.vinculo.infoContrato.duracao.objDet.cdata
     if 'inclusao' in dir(evtAdmissao.vinculo): s2200_evtadmissao_dados['operacao'] = 1
     elif 'alteracao' in dir(evtAdmissao.vinculo): s2200_evtadmissao_dados['operacao'] = 2
     elif 'exclusao' in dir(evtAdmissao.vinculo): s2200_evtadmissao_dados['operacao'] = 3
@@ -123,98 +124,88 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtAdmissao['Id']
     dados['status'] = 1
 
-    if 'documentos' in dir(evtAdmissao.trabalhador):
-        for documentos in evtAdmissao.trabalhador.documentos:
-            s2200_documentos_dados = {}
-            s2200_documentos_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
+    if 'CTPS' in dir(evtAdmissao.trabalhador.documentos):
+        for CTPS in evtAdmissao.trabalhador.documentos.CTPS:
+            s2200_ctps_dados = {}
+            s2200_ctps_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
        
-            insert = create_insert('s2200_documentos', s2200_documentos_dados)
+            if 'nrCtps' in dir(CTPS): s2200_ctps_dados['nrctps'] = CTPS.nrCtps.cdata
+            if 'serieCtps' in dir(CTPS): s2200_ctps_dados['seriectps'] = CTPS.serieCtps.cdata
+            if 'ufCtps' in dir(CTPS): s2200_ctps_dados['ufctps'] = CTPS.ufCtps.cdata
+            insert = create_insert('s2200_ctps', s2200_ctps_dados)
             resp = executar_sql(insert, True)
-            s2200_documentos_id = resp[0][0]
-            #print s2200_documentos_id
+            s2200_ctps_id = resp[0][0]
+            #print s2200_ctps_id
 
-            if 'CTPS' in dir(documentos):
-                for CTPS in documentos.CTPS:
-                    s2200_ctps_dados = {}
-                    s2200_ctps_dados['s2200_documentos_id'] = s2200_documentos_id
-               
-                    if 'nrCtps' in dir(CTPS): s2200_ctps_dados['nrctps'] = CTPS.nrCtps.cdata
-                    if 'serieCtps' in dir(CTPS): s2200_ctps_dados['seriectps'] = CTPS.serieCtps.cdata
-                    if 'ufCtps' in dir(CTPS): s2200_ctps_dados['ufctps'] = CTPS.ufCtps.cdata
-                    insert = create_insert('s2200_ctps', s2200_ctps_dados)
-                    resp = executar_sql(insert, True)
-                    s2200_ctps_id = resp[0][0]
-                    #print s2200_ctps_id
-   
-            if 'RIC' in dir(documentos):
-                for RIC in documentos.RIC:
-                    s2200_ric_dados = {}
-                    s2200_ric_dados['s2200_documentos_id'] = s2200_documentos_id
-               
-                    if 'nrRic' in dir(RIC): s2200_ric_dados['nrric'] = RIC.nrRic.cdata
-                    if 'orgaoEmissor' in dir(RIC): s2200_ric_dados['orgaoemissor'] = RIC.orgaoEmissor.cdata
-                    if 'dtExped' in dir(RIC): s2200_ric_dados['dtexped'] = RIC.dtExped.cdata
-                    insert = create_insert('s2200_ric', s2200_ric_dados)
-                    resp = executar_sql(insert, True)
-                    s2200_ric_id = resp[0][0]
-                    #print s2200_ric_id
-   
-            if 'RG' in dir(documentos):
-                for RG in documentos.RG:
-                    s2200_rg_dados = {}
-                    s2200_rg_dados['s2200_documentos_id'] = s2200_documentos_id
-               
-                    if 'nrRg' in dir(RG): s2200_rg_dados['nrrg'] = RG.nrRg.cdata
-                    if 'orgaoEmissor' in dir(RG): s2200_rg_dados['orgaoemissor'] = RG.orgaoEmissor.cdata
-                    if 'dtExped' in dir(RG): s2200_rg_dados['dtexped'] = RG.dtExped.cdata
-                    insert = create_insert('s2200_rg', s2200_rg_dados)
-                    resp = executar_sql(insert, True)
-                    s2200_rg_id = resp[0][0]
-                    #print s2200_rg_id
-   
-            if 'RNE' in dir(documentos):
-                for RNE in documentos.RNE:
-                    s2200_rne_dados = {}
-                    s2200_rne_dados['s2200_documentos_id'] = s2200_documentos_id
-               
-                    if 'nrRne' in dir(RNE): s2200_rne_dados['nrrne'] = RNE.nrRne.cdata
-                    if 'orgaoEmissor' in dir(RNE): s2200_rne_dados['orgaoemissor'] = RNE.orgaoEmissor.cdata
-                    if 'dtExped' in dir(RNE): s2200_rne_dados['dtexped'] = RNE.dtExped.cdata
-                    insert = create_insert('s2200_rne', s2200_rne_dados)
-                    resp = executar_sql(insert, True)
-                    s2200_rne_id = resp[0][0]
-                    #print s2200_rne_id
-   
-            if 'OC' in dir(documentos):
-                for OC in documentos.OC:
-                    s2200_oc_dados = {}
-                    s2200_oc_dados['s2200_documentos_id'] = s2200_documentos_id
-               
-                    if 'nrOc' in dir(OC): s2200_oc_dados['nroc'] = OC.nrOc.cdata
-                    if 'orgaoEmissor' in dir(OC): s2200_oc_dados['orgaoemissor'] = OC.orgaoEmissor.cdata
-                    if 'dtExped' in dir(OC): s2200_oc_dados['dtexped'] = OC.dtExped.cdata
-                    if 'dtValid' in dir(OC): s2200_oc_dados['dtvalid'] = OC.dtValid.cdata
-                    insert = create_insert('s2200_oc', s2200_oc_dados)
-                    resp = executar_sql(insert, True)
-                    s2200_oc_id = resp[0][0]
-                    #print s2200_oc_id
-   
-            if 'CNH' in dir(documentos):
-                for CNH in documentos.CNH:
-                    s2200_cnh_dados = {}
-                    s2200_cnh_dados['s2200_documentos_id'] = s2200_documentos_id
-               
-                    if 'nrRegCnh' in dir(CNH): s2200_cnh_dados['nrregcnh'] = CNH.nrRegCnh.cdata
-                    if 'dtExped' in dir(CNH): s2200_cnh_dados['dtexped'] = CNH.dtExped.cdata
-                    if 'ufCnh' in dir(CNH): s2200_cnh_dados['ufcnh'] = CNH.ufCnh.cdata
-                    if 'dtValid' in dir(CNH): s2200_cnh_dados['dtvalid'] = CNH.dtValid.cdata
-                    if 'dtPriHab' in dir(CNH): s2200_cnh_dados['dtprihab'] = CNH.dtPriHab.cdata
-                    if 'categoriaCnh' in dir(CNH): s2200_cnh_dados['categoriacnh'] = CNH.categoriaCnh.cdata
-                    insert = create_insert('s2200_cnh', s2200_cnh_dados)
-                    resp = executar_sql(insert, True)
-                    s2200_cnh_id = resp[0][0]
-                    #print s2200_cnh_id
-   
+    if 'RIC' in dir(evtAdmissao.trabalhador.documentos):
+        for RIC in evtAdmissao.trabalhador.documentos.RIC:
+            s2200_ric_dados = {}
+            s2200_ric_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
+       
+            if 'nrRic' in dir(RIC): s2200_ric_dados['nrric'] = RIC.nrRic.cdata
+            if 'orgaoEmissor' in dir(RIC): s2200_ric_dados['orgaoemissor'] = RIC.orgaoEmissor.cdata
+            if 'dtExped' in dir(RIC): s2200_ric_dados['dtexped'] = RIC.dtExped.cdata
+            insert = create_insert('s2200_ric', s2200_ric_dados)
+            resp = executar_sql(insert, True)
+            s2200_ric_id = resp[0][0]
+            #print s2200_ric_id
+
+    if 'RG' in dir(evtAdmissao.trabalhador.documentos):
+        for RG in evtAdmissao.trabalhador.documentos.RG:
+            s2200_rg_dados = {}
+            s2200_rg_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
+       
+            if 'nrRg' in dir(RG): s2200_rg_dados['nrrg'] = RG.nrRg.cdata
+            if 'orgaoEmissor' in dir(RG): s2200_rg_dados['orgaoemissor'] = RG.orgaoEmissor.cdata
+            if 'dtExped' in dir(RG): s2200_rg_dados['dtexped'] = RG.dtExped.cdata
+            insert = create_insert('s2200_rg', s2200_rg_dados)
+            resp = executar_sql(insert, True)
+            s2200_rg_id = resp[0][0]
+            #print s2200_rg_id
+
+    if 'RNE' in dir(evtAdmissao.trabalhador.documentos):
+        for RNE in evtAdmissao.trabalhador.documentos.RNE:
+            s2200_rne_dados = {}
+            s2200_rne_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
+       
+            if 'nrRne' in dir(RNE): s2200_rne_dados['nrrne'] = RNE.nrRne.cdata
+            if 'orgaoEmissor' in dir(RNE): s2200_rne_dados['orgaoemissor'] = RNE.orgaoEmissor.cdata
+            if 'dtExped' in dir(RNE): s2200_rne_dados['dtexped'] = RNE.dtExped.cdata
+            insert = create_insert('s2200_rne', s2200_rne_dados)
+            resp = executar_sql(insert, True)
+            s2200_rne_id = resp[0][0]
+            #print s2200_rne_id
+
+    if 'OC' in dir(evtAdmissao.trabalhador.documentos):
+        for OC in evtAdmissao.trabalhador.documentos.OC:
+            s2200_oc_dados = {}
+            s2200_oc_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
+       
+            if 'nrOc' in dir(OC): s2200_oc_dados['nroc'] = OC.nrOc.cdata
+            if 'orgaoEmissor' in dir(OC): s2200_oc_dados['orgaoemissor'] = OC.orgaoEmissor.cdata
+            if 'dtExped' in dir(OC): s2200_oc_dados['dtexped'] = OC.dtExped.cdata
+            if 'dtValid' in dir(OC): s2200_oc_dados['dtvalid'] = OC.dtValid.cdata
+            insert = create_insert('s2200_oc', s2200_oc_dados)
+            resp = executar_sql(insert, True)
+            s2200_oc_id = resp[0][0]
+            #print s2200_oc_id
+
+    if 'CNH' in dir(evtAdmissao.trabalhador.documentos):
+        for CNH in evtAdmissao.trabalhador.documentos.CNH:
+            s2200_cnh_dados = {}
+            s2200_cnh_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
+       
+            if 'nrRegCnh' in dir(CNH): s2200_cnh_dados['nrregcnh'] = CNH.nrRegCnh.cdata
+            if 'dtExped' in dir(CNH): s2200_cnh_dados['dtexped'] = CNH.dtExped.cdata
+            if 'ufCnh' in dir(CNH): s2200_cnh_dados['ufcnh'] = CNH.ufCnh.cdata
+            if 'dtValid' in dir(CNH): s2200_cnh_dados['dtvalid'] = CNH.dtValid.cdata
+            if 'dtPriHab' in dir(CNH): s2200_cnh_dados['dtprihab'] = CNH.dtPriHab.cdata
+            if 'categoriaCnh' in dir(CNH): s2200_cnh_dados['categoriacnh'] = CNH.categoriaCnh.cdata
+            insert = create_insert('s2200_cnh', s2200_cnh_dados)
+            resp = executar_sql(insert, True)
+            s2200_cnh_id = resp[0][0]
+            #print s2200_cnh_id
+
     if 'brasil' in dir(evtAdmissao.trabalhador.endereco):
         for brasil in evtAdmissao.trabalhador.endereco.brasil:
             s2200_brasil_dados = {}
@@ -500,6 +491,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
             s2200_sucessaovinc_dados = {}
             s2200_sucessaovinc_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
        
+            if 'tpInscAnt' in dir(sucessaoVinc): s2200_sucessaovinc_dados['tpinscant'] = sucessaoVinc.tpInscAnt.cdata
             if 'cnpjEmpregAnt' in dir(sucessaoVinc): s2200_sucessaovinc_dados['cnpjempregant'] = sucessaoVinc.cnpjEmpregAnt.cdata
             if 'matricAnt' in dir(sucessaoVinc): s2200_sucessaovinc_dados['matricant'] = sucessaoVinc.matricAnt.cdata
             if 'dtTransf' in dir(sucessaoVinc): s2200_sucessaovinc_dados['dttransf'] = sucessaoVinc.dtTransf.cdata
@@ -521,6 +513,20 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
             resp = executar_sql(insert, True)
             s2200_transfdom_id = resp[0][0]
             #print s2200_transfdom_id
+
+    if 'mudancaCPF' in dir(evtAdmissao.vinculo):
+        for mudancaCPF in evtAdmissao.vinculo.mudancaCPF:
+            s2200_mudancacpf_dados = {}
+            s2200_mudancacpf_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
+       
+            if 'cpfAnt' in dir(mudancaCPF): s2200_mudancacpf_dados['cpfant'] = mudancaCPF.cpfAnt.cdata
+            if 'matricAnt' in dir(mudancaCPF): s2200_mudancacpf_dados['matricant'] = mudancaCPF.matricAnt.cdata
+            if 'dtAltCPF' in dir(mudancaCPF): s2200_mudancacpf_dados['dtaltcpf'] = mudancaCPF.dtAltCPF.cdata
+            if 'observacao' in dir(mudancaCPF): s2200_mudancacpf_dados['observacao'] = mudancaCPF.observacao.cdata
+            insert = create_insert('s2200_mudancacpf', s2200_mudancacpf_dados)
+            resp = executar_sql(insert, True)
+            s2200_mudancacpf_id = resp[0][0]
+            #print s2200_mudancacpf_id
 
     if 'afastamento' in dir(evtAdmissao.vinculo):
         for afastamento in evtAdmissao.vinculo.afastamento:

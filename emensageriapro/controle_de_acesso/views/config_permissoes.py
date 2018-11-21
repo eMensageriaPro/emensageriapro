@@ -4,7 +4,38 @@ __author__ = "Marcelo Medeiros de Vasconcellos"
 __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 import datetime
 from django.contrib import messages
@@ -250,43 +281,38 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
-            'show_permite_apagar': 0,
-            'show_permite_visualizar': 0,
-            'show_permite_editar': 0,
-            'show_permite_cadastrar': 0,
-            'show_permite_listar': 0,
+            'show_config_perfis': 1,
             'show_config_paginas': 1,
-            'show_config_perfis': 1, }
+            'show_permite_listar': 0,
+            'show_permite_cadastrar': 0,
+            'show_permite_editar': 0,
+            'show_permite_visualizar': 0,
+            'show_permite_apagar': 0, }
         post = False
         #ANTES-POST-LISTAGEM
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'permite_apagar': 'permite_apagar',
-                'permite_visualizar': 'permite_visualizar',
-                'permite_editar': 'permite_editar',
-                'permite_cadastrar': 'permite_cadastrar',
-                'permite_listar': 'permite_listar',
+                'config_perfis': 'config_perfis',
                 'config_paginas': 'config_paginas',
-                'config_perfis': 'config_perfis',}
+                'permite_listar': 'permite_listar',
+                'permite_cadastrar': 'permite_cadastrar',
+                'permite_editar': 'permite_editar',
+                'permite_visualizar': 'permite_visualizar',
+                'permite_apagar': 'permite_apagar',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'permite_apagar': 'permite_apagar',
-                'permite_visualizar': 'permite_visualizar',
-                'permite_editar': 'permite_editar',
-                'permite_cadastrar': 'permite_cadastrar',
-                'permite_listar': 'permite_listar',
+                'config_perfis': 'config_perfis',
                 'config_paginas': 'config_paginas',
-                'config_perfis': 'config_perfis',}
+                'permite_listar': 'permite_listar',
+                'permite_cadastrar': 'permite_cadastrar',
+                'permite_editar': 'permite_editar',
+                'permite_visualizar': 'permite_visualizar',
+                'permite_apagar': 'permite_apagar',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)
@@ -296,8 +322,8 @@ def listar(request, hash):
             config_permissoes_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
    
-        config_paginas_lista = ConfigPaginas.objects.using( db_slug ).filter(excluido = False).all()
         config_perfis_lista = ConfigPerfis.objects.using( db_slug ).filter(excluido = False).all()
+        config_paginas_lista = ConfigPaginas.objects.using( db_slug ).filter(excluido = False).all()
         #config_permissoes_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'config_permissoes'
@@ -318,8 +344,8 @@ def listar(request, hash):
             'hash': hash,
             'filtrar': filtrar,
        
-            'config_paginas_lista': config_paginas_lista,
             'config_perfis_lista': config_perfis_lista,
+            'config_paginas_lista': config_paginas_lista,
         }
         if for_print in (0,1):
             return render(request, 'config_permissoes_listar.html', context)

@@ -77,9 +77,6 @@ def validacoes_s1010_evttabrubrica(arquivo):
                     if 'nrProc' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.nrProc', ideProcessoCP.nrProc.cdata, 1, '')
                     if 'extDecisao' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.extDecisao', ideProcessoCP.extDecisao.cdata, 1, '1;2')
                     if 'codSusp' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.codSusp', ideProcessoCP.codSusp.cdata, 1, '')
-                    if 'tpProc' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.tpProc', ideProcessoCP.tpProc.cdata, 1, '1;2')
-                    if 'nrProc' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.nrProc', ideProcessoCP.nrProc.cdata, 1, '')
-                    if 'extDecisao' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.extDecisao', ideProcessoCP.extDecisao.cdata, 1, '1;2;3')
    
             if 'ideProcessoIRRF' in dir(inclusao.dadosRubrica):
                 for ideProcessoIRRF in inclusao.dadosRubrica.ideProcessoIRRF:
@@ -100,6 +97,9 @@ def validacoes_s1010_evttabrubrica(arquivo):
             if 'ideProcessoCPRP' in dir(inclusao.dadosRubrica):
                 for ideProcessoCPRP in inclusao.dadosRubrica.ideProcessoCPRP:
                
+                    if 'tpProc' in dir(ideProcessoCPRP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCPRP.tpProc', ideProcessoCPRP.tpProc.cdata, 1, '1;2')
+                    if 'nrProc' in dir(ideProcessoCPRP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCPRP.nrProc', ideProcessoCPRP.nrProc.cdata, 1, '')
+                    if 'extDecisao' in dir(ideProcessoCPRP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCPRP.extDecisao', ideProcessoCPRP.extDecisao.cdata, 1, '1;2;3')
    
     if 'alteracao' in dir(evtTabRubrica.infoRubrica):
         for alteracao in evtTabRubrica.infoRubrica.alteracao:
@@ -126,9 +126,6 @@ def validacoes_s1010_evttabrubrica(arquivo):
                     if 'nrProc' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.nrProc', ideProcessoCP.nrProc.cdata, 1, '')
                     if 'extDecisao' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.extDecisao', ideProcessoCP.extDecisao.cdata, 1, '1;2')
                     if 'codSusp' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.codSusp', ideProcessoCP.codSusp.cdata, 1, '')
-                    if 'tpProc' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.tpProc', ideProcessoCP.tpProc.cdata, 1, '1;2')
-                    if 'nrProc' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.nrProc', ideProcessoCP.nrProc.cdata, 1, '')
-                    if 'extDecisao' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.extDecisao', ideProcessoCP.extDecisao.cdata, 1, '1;2;3')
    
             if 'ideProcessoIRRF' in dir(alteracao.dadosRubrica):
                 for ideProcessoIRRF in alteracao.dadosRubrica.ideProcessoIRRF:
@@ -149,6 +146,9 @@ def validacoes_s1010_evttabrubrica(arquivo):
             if 'ideProcessoCPRP' in dir(alteracao.dadosRubrica):
                 for ideProcessoCPRP in alteracao.dadosRubrica.ideProcessoCPRP:
                
+                    if 'tpProc' in dir(ideProcessoCPRP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCPRP.tpProc', ideProcessoCPRP.tpProc.cdata, 1, '1;2')
+                    if 'nrProc' in dir(ideProcessoCPRP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCPRP.nrProc', ideProcessoCPRP.nrProc.cdata, 1, '')
+                    if 'extDecisao' in dir(ideProcessoCPRP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCPRP.extDecisao', ideProcessoCPRP.extDecisao.cdata, 1, '1;2;3')
    
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:

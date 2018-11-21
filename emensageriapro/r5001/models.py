@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -10,6 +41,12 @@ from django.apps import apps
 get_model = apps.get_model
 
 
+
+CHOICES_R5001_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (4, u'4 - CNO'),
+)
 
 CHOICES_R5001_TPINSCTOMADOR = (
     (1, u'1 - CNPJ'),
@@ -36,13 +73,13 @@ class r5001RCPRB(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r5001_infototal) + ' - ' + unicode(self.crcprb) + ' - ' + unicode(self.vlrcrcprb) + ' - ' + unicode(self.vlrcrcprbsusp)
+        return unicode(self.r5001_infototal) + ' - ' + unicode(self.crcprb) + ' - ' + unicode(self.vlrcrcprb)
     #r5001_rcprb_custom#
     #r5001_rcprb_custom#
     class Meta:
         db_table = r'r5001_rcprb'
         managed = True
-        ordering = ['r5001_infototal', 'crcprb', 'vlrcrcprb', 'vlrcrcprbsusp']
+        ordering = ['r5001_infototal', 'crcprb', 'vlrcrcprb']
 
 
 
@@ -67,13 +104,13 @@ class r5001RComl(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r5001_infototal) + ' - ' + unicode(self.crcoml) + ' - ' + unicode(self.vlrcrcoml) + ' - ' + unicode(self.vlrcrcomlsusp)
+        return unicode(self.r5001_infototal) + ' - ' + unicode(self.crcoml) + ' - ' + unicode(self.vlrcrcoml)
     #r5001_rcoml_custom#
     #r5001_rcoml_custom#
     class Meta:
         db_table = r'r5001_rcoml'
         managed = True
-        ordering = ['r5001_infototal', 'crcoml', 'vlrcrcoml', 'vlrcrcomlsusp']
+        ordering = ['r5001_infototal', 'crcoml', 'vlrcrcoml']
 
 
 
@@ -102,13 +139,13 @@ class r5001RPrest(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r5001_infototal) + ' - ' + unicode(self.tpinsctomador) + ' - ' + unicode(self.nrinsctomador) + ' - ' + unicode(self.vlrtotalbaseret) + ' - ' + unicode(self.vlrtotalretprinc) + ' - ' + unicode(self.vlrtotalretadic) + ' - ' + unicode(self.vlrtotalnretprinc) + ' - ' + unicode(self.vlrtotalnretadic)
+        return unicode(self.r5001_infototal) + ' - ' + unicode(self.tpinsctomador) + ' - ' + unicode(self.nrinsctomador) + ' - ' + unicode(self.vlrtotalbaseret) + ' - ' + unicode(self.vlrtotalretprinc)
     #r5001_rprest_custom#
     #r5001_rprest_custom#
     class Meta:
         db_table = r'r5001_rprest'
         managed = True
-        ordering = ['r5001_infototal', 'tpinsctomador', 'nrinsctomador', 'vlrtotalbaseret', 'vlrtotalretprinc', 'vlrtotalretadic', 'vlrtotalnretprinc', 'vlrtotalnretadic']
+        ordering = ['r5001_infototal', 'tpinsctomador', 'nrinsctomador', 'vlrtotalbaseret', 'vlrtotalretprinc']
 
 
 
@@ -134,13 +171,13 @@ class r5001RRecEspetDesp(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r5001_infototal) + ' - ' + unicode(self.crrecespetdesp) + ' - ' + unicode(self.vlrreceitatotal) + ' - ' + unicode(self.vlrcrrecespetdesp) + ' - ' + unicode(self.vlrcrrecespetdespsusp)
+        return unicode(self.r5001_infototal) + ' - ' + unicode(self.crrecespetdesp) + ' - ' + unicode(self.vlrreceitatotal) + ' - ' + unicode(self.vlrcrrecespetdesp)
     #r5001_rrecespetdesp_custom#
     #r5001_rrecespetdesp_custom#
     class Meta:
         db_table = r'r5001_rrecespetdesp'
         managed = True
-        ordering = ['r5001_infototal', 'crrecespetdesp', 'vlrreceitatotal', 'vlrcrrecespetdesp', 'vlrcrrecespetdespsusp']
+        ordering = ['r5001_infototal', 'crrecespetdesp', 'vlrreceitatotal', 'vlrcrrecespetdesp']
 
 
 
@@ -167,13 +204,13 @@ class r5001RRecRepAD(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r5001_infototal) + ' - ' + unicode(self.cnpjassocdesp) + ' - ' + unicode(self.vlrtotalrep) + ' - ' + unicode(self.crrecrepad) + ' - ' + unicode(self.vlrcrrecrepad) + ' - ' + unicode(self.vlrcrrecrepadsusp)
+        return unicode(self.r5001_infototal) + ' - ' + unicode(self.cnpjassocdesp) + ' - ' + unicode(self.vlrtotalrep) + ' - ' + unicode(self.crrecrepad) + ' - ' + unicode(self.vlrcrrecrepad)
     #r5001_rrecrepad_custom#
     #r5001_rrecrepad_custom#
     class Meta:
         db_table = r'r5001_rrecrepad'
         managed = True
-        ordering = ['r5001_infototal', 'cnpjassocdesp', 'vlrtotalrep', 'crrecrepad', 'vlrcrrecrepad', 'vlrcrrecrepadsusp']
+        ordering = ['r5001_infototal', 'cnpjassocdesp', 'vlrtotalrep', 'crrecrepad', 'vlrcrrecrepad']
 
 
 
@@ -188,6 +225,7 @@ class r5001RTom(models.Model):
         related_name='%(class)s_r5001_infototal')
     def evento(self): return self.r5001_infototal.evento()
     cnpjprestador = models.CharField(max_length=14)
+    cno = models.CharField(max_length=12, blank=True, null=True)
     vlrtotalbaseret = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -228,13 +266,13 @@ class r5001infoCRTom(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r5001_rtom) + ' - ' + unicode(self.crtom) + ' - ' + unicode(self.vlrcrtom) + ' - ' + unicode(self.vlrcrtomsusp)
+        return unicode(self.r5001_rtom) + ' - ' + unicode(self.crtom)
     #r5001_infocrtom_custom#
     #r5001_infocrtom_custom#
     class Meta:
         db_table = r'r5001_infocrtom'
         managed = True
-        ordering = ['r5001_rtom', 'crtom', 'vlrcrtom', 'vlrcrtomsusp']
+        ordering = ['r5001_rtom', 'crtom']
 
 
 
@@ -249,6 +287,8 @@ class r5001infoTotal(models.Model):
         related_name='%(class)s_r5001_evttotal')
     def evento(self): return self.r5001_evttotal.evento()
     nrrecarqbase = models.CharField(max_length=52, blank=True, null=True)
+    tpinsc = models.IntegerField(choices=CHOICES_R5001_TPINSC)
+    nrinsc = models.CharField(max_length=14)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -257,13 +297,13 @@ class r5001infoTotal(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.r5001_evttotal) + ' - ' + unicode(self.nrrecarqbase)
+        return unicode(self.r5001_evttotal) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #r5001_infototal_custom#
     #r5001_infototal_custom#
     class Meta:
         db_table = r'r5001_infototal'
         managed = True
-        ordering = ['r5001_evttotal', 'nrrecarqbase']
+        ordering = ['r5001_evttotal', 'tpinsc', 'nrinsc']
 
 
 
@@ -278,7 +318,7 @@ class r5001regOcorrs(models.Model):
         related_name='%(class)s_r5001_evttotal')
     def evento(self): return self.r5001_evttotal.evento()
     tpocorr = models.IntegerField(choices=CHOICES_R5001_TPOCORR)
-    localerroaviso = models.CharField(max_length=100)
+    localerroaviso = models.CharField(max_length=200)
     codresp = models.CharField(max_length=6)
     dscresp = models.CharField(max_length=999)
     criado_em = models.DateTimeField(blank=True)

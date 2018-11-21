@@ -1,6 +1,37 @@
 #coding: utf-8
 
+"""
 
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 from django.db import models
 from django.db.models import Sum
@@ -36,6 +67,18 @@ PERIODOS = (
     ('2018-10', u'Outubro/2018'),
     ('2018-11', u'Novembro/2018'),
     ('2018-12', u'Dezembro/2018'),
+    ('2019-01', u'Janeiro/2019'),
+    ('2019-02', u'Fevereiro/2019'),
+    ('2019-03', u'Março/2019'),
+    ('2019-04', u'Abril/2019'),
+    ('2019-05', u'Maio/2019'),
+    ('2019-06', u'Junho/2019'),
+    ('2019-07', u'Julho/2019'),
+    ('2019-08', u'Agosto/2019'),
+    ('2019-09', u'Setembro/2019'),
+    ('2019-10', u'Outubro/2019'),
+    ('2019-11', u'Novembro/2019'),
+    ('2019-12', u'Dezembro/2019'),
 )
 
 CHOICES_S1030_ALTERACAO_ACUMCARGO = (
@@ -105,13 +148,13 @@ class s1030alteracao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1030_evttabcargo) + ' - ' + unicode(self.codcargo) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid) + ' - ' + unicode(self.nmcargo) + ' - ' + unicode(self.codcbo)
+        return unicode(self.s1030_evttabcargo) + ' - ' + unicode(self.codcargo) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.nmcargo) + ' - ' + unicode(self.codcbo)
     #s1030_alteracao_custom#
     #s1030_alteracao_custom#
     class Meta:
         db_table = r's1030_alteracao'
         managed = True
-        ordering = ['s1030_evttabcargo', 'codcargo', 'inivalid', 'fimvalid', 'nmcargo', 'codcbo']
+        ordering = ['s1030_evttabcargo', 'codcargo', 'inivalid', 'nmcargo', 'codcbo']
 
 
 
@@ -140,13 +183,13 @@ class s1030alteracaocargoPublico(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1030_alteracao) + ' - ' + unicode(self.acumcargo) + ' - ' + unicode(self.contagemesp) + ' - ' + unicode(self.dedicexcl) + ' - ' + unicode(self.codcarreira) + ' - ' + unicode(self.nrlei) + ' - ' + unicode(self.dtlei) + ' - ' + unicode(self.sitcargo)
+        return unicode(self.s1030_alteracao) + ' - ' + unicode(self.acumcargo) + ' - ' + unicode(self.contagemesp) + ' - ' + unicode(self.dedicexcl) + ' - ' + unicode(self.nrlei) + ' - ' + unicode(self.dtlei) + ' - ' + unicode(self.sitcargo)
     #s1030_alteracao_cargopublico_custom#
     #s1030_alteracao_cargopublico_custom#
     class Meta:
         db_table = r's1030_alteracao_cargopublico'
         managed = True
-        ordering = ['s1030_alteracao', 'acumcargo', 'contagemesp', 'dedicexcl', 'codcarreira', 'nrlei', 'dtlei', 'sitcargo']
+        ordering = ['s1030_alteracao', 'acumcargo', 'contagemesp', 'dedicexcl', 'nrlei', 'dtlei', 'sitcargo']
 
 
 
@@ -170,13 +213,13 @@ class s1030alteracaonovaValidade(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1030_alteracao) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid)
+        return unicode(self.s1030_alteracao) + ' - ' + unicode(self.inivalid)
     #s1030_alteracao_novavalidade_custom#
     #s1030_alteracao_novavalidade_custom#
     class Meta:
         db_table = r's1030_alteracao_novavalidade'
         managed = True
-        ordering = ['s1030_alteracao', 'inivalid', 'fimvalid']
+        ordering = ['s1030_alteracao', 'inivalid']
 
 
 
@@ -201,13 +244,13 @@ class s1030exclusao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1030_evttabcargo) + ' - ' + unicode(self.codcargo) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid)
+        return unicode(self.s1030_evttabcargo) + ' - ' + unicode(self.codcargo) + ' - ' + unicode(self.inivalid)
     #s1030_exclusao_custom#
     #s1030_exclusao_custom#
     class Meta:
         db_table = r's1030_exclusao'
         managed = True
-        ordering = ['s1030_evttabcargo', 'codcargo', 'inivalid', 'fimvalid']
+        ordering = ['s1030_evttabcargo', 'codcargo', 'inivalid']
 
 
 
@@ -234,13 +277,13 @@ class s1030inclusao(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1030_evttabcargo) + ' - ' + unicode(self.codcargo) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.fimvalid) + ' - ' + unicode(self.nmcargo) + ' - ' + unicode(self.codcbo)
+        return unicode(self.s1030_evttabcargo) + ' - ' + unicode(self.codcargo) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.nmcargo) + ' - ' + unicode(self.codcbo)
     #s1030_inclusao_custom#
     #s1030_inclusao_custom#
     class Meta:
         db_table = r's1030_inclusao'
         managed = True
-        ordering = ['s1030_evttabcargo', 'codcargo', 'inivalid', 'fimvalid', 'nmcargo', 'codcbo']
+        ordering = ['s1030_evttabcargo', 'codcargo', 'inivalid', 'nmcargo', 'codcbo']
 
 
 
@@ -269,13 +312,13 @@ class s1030inclusaocargoPublico(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.s1030_inclusao) + ' - ' + unicode(self.acumcargo) + ' - ' + unicode(self.contagemesp) + ' - ' + unicode(self.dedicexcl) + ' - ' + unicode(self.codcarreira) + ' - ' + unicode(self.nrlei) + ' - ' + unicode(self.dtlei) + ' - ' + unicode(self.sitcargo)
+        return unicode(self.s1030_inclusao) + ' - ' + unicode(self.acumcargo) + ' - ' + unicode(self.contagemesp) + ' - ' + unicode(self.dedicexcl) + ' - ' + unicode(self.nrlei) + ' - ' + unicode(self.dtlei) + ' - ' + unicode(self.sitcargo)
     #s1030_inclusao_cargopublico_custom#
     #s1030_inclusao_cargopublico_custom#
     class Meta:
         db_table = r's1030_inclusao_cargopublico'
         managed = True
-        ordering = ['s1030_inclusao', 'acumcargo', 'contagemesp', 'dedicexcl', 'codcarreira', 'nrlei', 'dtlei', 'sitcargo']
+        ordering = ['s1030_inclusao', 'acumcargo', 'contagemesp', 'dedicexcl', 'nrlei', 'dtlei', 'sitcargo']
 
 
 

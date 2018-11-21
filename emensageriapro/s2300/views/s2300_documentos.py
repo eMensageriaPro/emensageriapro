@@ -61,17 +61,17 @@ def apagar(request, hash):
                              's2300_documentos', s2300_documentos_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's2300_documentos_salvar':
             return redirect('s2300_documentos', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -114,7 +114,7 @@ def salvar(request, hash):
         if s2300_documentos_id:
             s2300_documentos_form = form_s2300_documentos(request.POST or None, instance = s2300_documentos, slug = db_slug)
         else:
-            s2300_documentos_form = form_s2300_documentos(request.POST or None, slug = db_slug, initial={})
+            s2300_documentos_form = form_s2300_documentos(request.POST or None, slug = db_slug, initial={'s2300_evttsvinicio': '1'})
         if request.method == 'POST':
             if s2300_documentos_form.is_valid():
                 dados = s2300_documentos_form.cleaned_data
@@ -166,7 +166,7 @@ def salvar(request, hash):
             s2300_documentos_form.fields[field].widget.attrs['ng-model'] = 's2300_documentos_'+field
         if int(dict_hash['print']):
             s2300_documentos_form = disabled_form_for_print(s2300_documentos_form)
-   
+
         s2300_ctps_form = None
         s2300_ctps_lista = None
         s2300_ric_form = None
@@ -181,23 +181,23 @@ def salvar(request, hash):
         s2300_cnh_lista = None
         if s2300_documentos_id:
             s2300_documentos = get_object_or_404(s2300documentos.objects.using( db_slug ), excluido = False, id = s2300_documentos_id)
-       
-            s2300_ctps_form = form_s2300_ctps(initial={ 's2300_documentos': s2300_documentos }, slug=db_slug)
+
+            s2300_ctps_form = form_s2300_ctps(initial={ 's2300_documentos': s2300_documentos , 's2300_documentos': '1'}, slug=db_slug)
             s2300_ctps_form.fields['s2300_documentos'].widget.attrs['readonly'] = True
             s2300_ctps_lista = s2300CTPS.objects.using( db_slug ).filter(excluido = False, s2300_documentos_id=s2300_documentos.id).all()
-            s2300_ric_form = form_s2300_ric(initial={ 's2300_documentos': s2300_documentos }, slug=db_slug)
+            s2300_ric_form = form_s2300_ric(initial={ 's2300_documentos': s2300_documentos , 's2300_documentos': '1'}, slug=db_slug)
             s2300_ric_form.fields['s2300_documentos'].widget.attrs['readonly'] = True
             s2300_ric_lista = s2300RIC.objects.using( db_slug ).filter(excluido = False, s2300_documentos_id=s2300_documentos.id).all()
-            s2300_rg_form = form_s2300_rg(initial={ 's2300_documentos': s2300_documentos }, slug=db_slug)
+            s2300_rg_form = form_s2300_rg(initial={ 's2300_documentos': s2300_documentos , 's2300_documentos': '1'}, slug=db_slug)
             s2300_rg_form.fields['s2300_documentos'].widget.attrs['readonly'] = True
             s2300_rg_lista = s2300RG.objects.using( db_slug ).filter(excluido = False, s2300_documentos_id=s2300_documentos.id).all()
-            s2300_rne_form = form_s2300_rne(initial={ 's2300_documentos': s2300_documentos }, slug=db_slug)
+            s2300_rne_form = form_s2300_rne(initial={ 's2300_documentos': s2300_documentos , 's2300_documentos': '1'}, slug=db_slug)
             s2300_rne_form.fields['s2300_documentos'].widget.attrs['readonly'] = True
             s2300_rne_lista = s2300RNE.objects.using( db_slug ).filter(excluido = False, s2300_documentos_id=s2300_documentos.id).all()
-            s2300_oc_form = form_s2300_oc(initial={ 's2300_documentos': s2300_documentos }, slug=db_slug)
+            s2300_oc_form = form_s2300_oc(initial={ 's2300_documentos': s2300_documentos , 's2300_documentos': '1'}, slug=db_slug)
             s2300_oc_form.fields['s2300_documentos'].widget.attrs['readonly'] = True
             s2300_oc_lista = s2300OC.objects.using( db_slug ).filter(excluido = False, s2300_documentos_id=s2300_documentos.id).all()
-            s2300_cnh_form = form_s2300_cnh(initial={ 's2300_documentos': s2300_documentos }, slug=db_slug)
+            s2300_cnh_form = form_s2300_cnh(initial={ 's2300_documentos': s2300_documentos , 's2300_documentos': '1'}, slug=db_slug)
             s2300_cnh_form.fields['s2300_documentos'].widget.attrs['readonly'] = True
             s2300_cnh_lista = s2300CNH.objects.using( db_slug ).filter(excluido = False, s2300_documentos_id=s2300_documentos.id).all()
         else:
@@ -220,9 +220,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2300_documentos_id': int(s2300_documentos_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             's2300_ctps_form': s2300_ctps_form,
             's2300_ctps_lista': s2300_ctps_lista,
             's2300_ric_form': s2300_ric_form,
@@ -237,7 +237,7 @@ def salvar(request, hash):
             's2300_cnh_lista': s2300_cnh_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -281,10 +281,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -350,11 +350,6 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
             'show_s2300_evttsvinicio': 1, }
         post = False
         if request.method == 'POST':
@@ -376,17 +371,17 @@ def listar(request, hash):
             filtrar = True
             s2300_documentos_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s2300_documentos_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2300_documentos'
         context = {
             's2300_documentos_lista': s2300_documentos_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -396,7 +391,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 's2300_documentos_listar.html', context)
@@ -439,10 +434,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

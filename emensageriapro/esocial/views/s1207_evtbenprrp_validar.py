@@ -78,12 +78,19 @@ def validacoes_s1207_evtbenprrp(arquivo):
                     if 'ideTabRubr' in dir(itens): validacoes_lista = validar_campo(validacoes_lista,'itens.ideTabRubr', itens.ideTabRubr.cdata, 1, '')
                     if 'vrRubr' in dir(itens): validacoes_lista = validar_campo(validacoes_lista,'itens.vrRubr', itens.vrRubr.cdata, 1, '')
    
-            if 'infoPerApur' in dir(dmDev):
-                for infoPerApur in dmDev.infoPerApur:
+            if 'ideEstab' in dir(dmDev.infoPerApur):
+                for ideEstab in dmDev.infoPerApur.ideEstab:
                
+                    if 'tpInsc' in dir(ideEstab): validacoes_lista = validar_campo(validacoes_lista,'ideEstab.tpInsc', ideEstab.tpInsc.cdata, 1, '')
+                    if 'nrInsc' in dir(ideEstab): validacoes_lista = validar_campo(validacoes_lista,'ideEstab.nrInsc', ideEstab.nrInsc.cdata, 1, '')
    
-            if 'infoPerAnt' in dir(dmDev):
-                for infoPerAnt in dmDev.infoPerAnt:
+            if 'ideADC' in dir(dmDev.infoPerAnt):
+                for ideADC in dmDev.infoPerAnt.ideADC:
                
+                    if 'dtAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dtAcConv', ideADC.dtAcConv.cdata, 0, '')
+                    if 'tpAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.tpAcConv', ideADC.tpAcConv.cdata, 1, 'B;G;H')
+                    if 'compAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.compAcConv', ideADC.compAcConv.cdata, 0, '')
+                    if 'dtEfAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dtEfAcConv', ideADC.dtEfAcConv.cdata, 0, '')
+                    if 'dsc' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dsc', ideADC.dsc.cdata, 1, '')
    
     return validacoes_lista

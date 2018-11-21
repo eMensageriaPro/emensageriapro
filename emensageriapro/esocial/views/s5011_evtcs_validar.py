@@ -51,7 +51,7 @@ def validacoes_s5011_evtcs(arquivo):
     if 'perApur' in dir(evtCS.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtCS.ideEvento.perApur', evtCS.ideEvento.perApur.cdata, 1, '')
     if 'tpInsc' in dir(evtCS.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtCS.ideEmpregador.tpInsc', evtCS.ideEmpregador.tpInsc.cdata, 1, '1;2;3;4')
     if 'nrInsc' in dir(evtCS.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtCS.ideEmpregador.nrInsc', evtCS.ideEmpregador.nrInsc.cdata, 1, '')
-    if 'nrRecArqBase' in dir(evtCS.infoCS): validacoes_lista = validar_campo(validacoes_lista,'evtCS.infoCS.nrRecArqBase', evtCS.infoCS.nrRecArqBase.cdata, 0, '')
+    if 'nrRecArqBase' in dir(evtCS.infoCS): validacoes_lista = validar_campo(validacoes_lista,'evtCS.infoCS.nrRecArqBase', evtCS.infoCS.nrRecArqBase.cdata, 1, '')
     if 'indExistInfo' in dir(evtCS.infoCS): validacoes_lista = validar_campo(validacoes_lista,'evtCS.infoCS.indExistInfo', evtCS.infoCS.indExistInfo.cdata, 1, '1;2;3')
     if 'classTrib' in dir(evtCS.infoCS.infoContrib): validacoes_lista = validar_campo(validacoes_lista,'evtCS.infoCS.infoContrib.classTrib', evtCS.infoCS.infoContrib.classTrib.cdata, 1, '01;02;03;04;06;07;08;09;10;11;13;14;21;22;60;70;80;85;99')
     if 'infoCPSeg' in dir(evtCS.infoCS):
@@ -125,13 +125,13 @@ def validacoes_s5011_evtcs(arquivo):
                
                     if 'tpCR' in dir(infoCREstab): validacoes_lista = validar_campo(validacoes_lista,'infoCREstab.tpCR', infoCREstab.tpCR.cdata, 1, '')
                     if 'vrCR' in dir(infoCREstab): validacoes_lista = validar_campo(validacoes_lista,'infoCREstab.vrCR', infoCREstab.vrCR.cdata, 1, '')
-                    if 'vrSuspCR' in dir(infoCREstab): validacoes_lista = validar_campo(validacoes_lista,'infoCREstab.vrSuspCR', infoCREstab.vrSuspCR.cdata, 1, '')
+                    if 'vrSuspCR' in dir(infoCREstab): validacoes_lista = validar_campo(validacoes_lista,'infoCREstab.vrSuspCR', infoCREstab.vrSuspCR.cdata, 0, '')
    
     if 'infoCRContrib' in dir(evtCS.infoCS):
         for infoCRContrib in evtCS.infoCS.infoCRContrib:
        
             if 'tpCR' in dir(infoCRContrib): validacoes_lista = validar_campo(validacoes_lista,'infoCRContrib.tpCR', infoCRContrib.tpCR.cdata, 1, '')
             if 'vrCR' in dir(infoCRContrib): validacoes_lista = validar_campo(validacoes_lista,'infoCRContrib.vrCR', infoCRContrib.vrCR.cdata, 1, '')
-            if 'vrCRSusp' in dir(infoCRContrib): validacoes_lista = validar_campo(validacoes_lista,'infoCRContrib.vrCRSusp', infoCRContrib.vrCRSusp.cdata, 1, '')
+            if 'vrCRSusp' in dir(infoCRContrib): validacoes_lista = validar_campo(validacoes_lista,'infoCRContrib.vrCRSusp', infoCRContrib.vrCRSusp.cdata, 0, '')
 
     return validacoes_lista

@@ -95,75 +95,95 @@ def read_s2306_evttsvaltcontr_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtTSVAltContr['Id']
     dados['status'] = 1
 
-    if 'infoComplementares' in dir(evtTSVAltContr.infoTSVAlteracao):
-        for infoComplementares in evtTSVAltContr.infoTSVAlteracao.infoComplementares:
-            s2306_infocomplementares_dados = {}
-            s2306_infocomplementares_dados['s2306_evttsvaltcontr_id'] = s2306_evttsvaltcontr_id
+    if 'cargoFuncao' in dir(evtTSVAltContr.infoTSVAlteracao.infoComplementares):
+        for cargoFuncao in evtTSVAltContr.infoTSVAlteracao.infoComplementares.cargoFuncao:
+            s2306_cargofuncao_dados = {}
+            s2306_cargofuncao_dados['s2306_evttsvaltcontr_id'] = s2306_evttsvaltcontr_id
        
-            insert = create_insert('s2306_infocomplementares', s2306_infocomplementares_dados)
+            if 'codCargo' in dir(cargoFuncao): s2306_cargofuncao_dados['codcargo'] = cargoFuncao.codCargo.cdata
+            if 'codFuncao' in dir(cargoFuncao): s2306_cargofuncao_dados['codfuncao'] = cargoFuncao.codFuncao.cdata
+            insert = create_insert('s2306_cargofuncao', s2306_cargofuncao_dados)
             resp = executar_sql(insert, True)
-            s2306_infocomplementares_id = resp[0][0]
-            #print s2306_infocomplementares_id
+            s2306_cargofuncao_id = resp[0][0]
+            #print s2306_cargofuncao_id
 
-            if 'cargoFuncao' in dir(infoComplementares):
-                for cargoFuncao in infoComplementares.cargoFuncao:
-                    s2306_cargofuncao_dados = {}
-                    s2306_cargofuncao_dados['s2306_infocomplementares_id'] = s2306_infocomplementares_id
+    if 'remuneracao' in dir(evtTSVAltContr.infoTSVAlteracao.infoComplementares):
+        for remuneracao in evtTSVAltContr.infoTSVAlteracao.infoComplementares.remuneracao:
+            s2306_remuneracao_dados = {}
+            s2306_remuneracao_dados['s2306_evttsvaltcontr_id'] = s2306_evttsvaltcontr_id
+       
+            if 'vrSalFx' in dir(remuneracao): s2306_remuneracao_dados['vrsalfx'] = remuneracao.vrSalFx.cdata
+            if 'undSalFixo' in dir(remuneracao): s2306_remuneracao_dados['undsalfixo'] = remuneracao.undSalFixo.cdata
+            if 'dscSalVar' in dir(remuneracao): s2306_remuneracao_dados['dscsalvar'] = remuneracao.dscSalVar.cdata
+            insert = create_insert('s2306_remuneracao', s2306_remuneracao_dados)
+            resp = executar_sql(insert, True)
+            s2306_remuneracao_id = resp[0][0]
+            #print s2306_remuneracao_id
+
+    if 'infoTrabCedido' in dir(evtTSVAltContr.infoTSVAlteracao.infoComplementares):
+        for infoTrabCedido in evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoTrabCedido:
+            s2306_infotrabcedido_dados = {}
+            s2306_infotrabcedido_dados['s2306_evttsvaltcontr_id'] = s2306_evttsvaltcontr_id
+       
+            if 'indRemunCargo' in dir(infoTrabCedido): s2306_infotrabcedido_dados['indremuncargo'] = infoTrabCedido.indRemunCargo.cdata
+            insert = create_insert('s2306_infotrabcedido', s2306_infotrabcedido_dados)
+            resp = executar_sql(insert, True)
+            s2306_infotrabcedido_id = resp[0][0]
+            #print s2306_infotrabcedido_id
+
+    if 'infoEstagiario' in dir(evtTSVAltContr.infoTSVAlteracao.infoComplementares):
+        for infoEstagiario in evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario:
+            s2306_infoestagiario_dados = {}
+            s2306_infoestagiario_dados['s2306_evttsvaltcontr_id'] = s2306_evttsvaltcontr_id
+       
+            if 'natEstagio' in dir(infoEstagiario): s2306_infoestagiario_dados['natestagio'] = infoEstagiario.natEstagio.cdata
+            if 'nivEstagio' in dir(infoEstagiario): s2306_infoestagiario_dados['nivestagio'] = infoEstagiario.nivEstagio.cdata
+            if 'areaAtuacao' in dir(infoEstagiario): s2306_infoestagiario_dados['areaatuacao'] = infoEstagiario.areaAtuacao.cdata
+            if 'nrApol' in dir(infoEstagiario): s2306_infoestagiario_dados['nrapol'] = infoEstagiario.nrApol.cdata
+            if 'vlrBolsa' in dir(infoEstagiario): s2306_infoestagiario_dados['vlrbolsa'] = infoEstagiario.vlrBolsa.cdata
+            if 'dtPrevTerm' in dir(infoEstagiario): s2306_infoestagiario_dados['dtprevterm'] = infoEstagiario.dtPrevTerm.cdata
+            if 'cnpjInstEnsino' in dir(infoEstagiario.instEnsino): s2306_infoestagiario_dados['cnpjinstensino'] = infoEstagiario.instEnsino.cnpjInstEnsino.cdata
+            if 'nmRazao' in dir(infoEstagiario.instEnsino): s2306_infoestagiario_dados['nmrazao'] = infoEstagiario.instEnsino.nmRazao.cdata
+            if 'dscLograd' in dir(infoEstagiario.instEnsino): s2306_infoestagiario_dados['dsclograd'] = infoEstagiario.instEnsino.dscLograd.cdata
+            if 'nrLograd' in dir(infoEstagiario.instEnsino): s2306_infoestagiario_dados['nrlograd'] = infoEstagiario.instEnsino.nrLograd.cdata
+            if 'bairro' in dir(infoEstagiario.instEnsino): s2306_infoestagiario_dados['bairro'] = infoEstagiario.instEnsino.bairro.cdata
+            if 'cep' in dir(infoEstagiario.instEnsino): s2306_infoestagiario_dados['cep'] = infoEstagiario.instEnsino.cep.cdata
+            if 'codMunic' in dir(infoEstagiario.instEnsino): s2306_infoestagiario_dados['codmunic'] = infoEstagiario.instEnsino.codMunic.cdata
+            if 'uf' in dir(infoEstagiario.instEnsino): s2306_infoestagiario_dados['uf'] = infoEstagiario.instEnsino.uf.cdata
+            insert = create_insert('s2306_infoestagiario', s2306_infoestagiario_dados)
+            resp = executar_sql(insert, True)
+            s2306_infoestagiario_id = resp[0][0]
+            #print s2306_infoestagiario_id
+
+            if 'ageIntegracao' in dir(infoEstagiario):
+                for ageIntegracao in infoEstagiario.ageIntegracao:
+                    s2306_ageintegracao_dados = {}
+                    s2306_ageintegracao_dados['s2306_infoestagiario_id'] = s2306_infoestagiario_id
                
-                    if 'codCargo' in dir(cargoFuncao): s2306_cargofuncao_dados['codcargo'] = cargoFuncao.codCargo.cdata
-                    if 'codFuncao' in dir(cargoFuncao): s2306_cargofuncao_dados['codfuncao'] = cargoFuncao.codFuncao.cdata
-                    insert = create_insert('s2306_cargofuncao', s2306_cargofuncao_dados)
+                    if 'cnpjAgntInteg' in dir(ageIntegracao): s2306_ageintegracao_dados['cnpjagntinteg'] = ageIntegracao.cnpjAgntInteg.cdata
+                    if 'nmRazao' in dir(ageIntegracao): s2306_ageintegracao_dados['nmrazao'] = ageIntegracao.nmRazao.cdata
+                    if 'dscLograd' in dir(ageIntegracao): s2306_ageintegracao_dados['dsclograd'] = ageIntegracao.dscLograd.cdata
+                    if 'nrLograd' in dir(ageIntegracao): s2306_ageintegracao_dados['nrlograd'] = ageIntegracao.nrLograd.cdata
+                    if 'bairro' in dir(ageIntegracao): s2306_ageintegracao_dados['bairro'] = ageIntegracao.bairro.cdata
+                    if 'cep' in dir(ageIntegracao): s2306_ageintegracao_dados['cep'] = ageIntegracao.cep.cdata
+                    if 'codMunic' in dir(ageIntegracao): s2306_ageintegracao_dados['codmunic'] = ageIntegracao.codMunic.cdata
+                    if 'uf' in dir(ageIntegracao): s2306_ageintegracao_dados['uf'] = ageIntegracao.uf.cdata
+                    insert = create_insert('s2306_ageintegracao', s2306_ageintegracao_dados)
                     resp = executar_sql(insert, True)
-                    s2306_cargofuncao_id = resp[0][0]
-                    #print s2306_cargofuncao_id
+                    s2306_ageintegracao_id = resp[0][0]
+                    #print s2306_ageintegracao_id
    
-            if 'remuneracao' in dir(infoComplementares):
-                for remuneracao in infoComplementares.remuneracao:
-                    s2306_remuneracao_dados = {}
-                    s2306_remuneracao_dados['s2306_infocomplementares_id'] = s2306_infocomplementares_id
+            if 'supervisorEstagio' in dir(infoEstagiario):
+                for supervisorEstagio in infoEstagiario.supervisorEstagio:
+                    s2306_supervisorestagio_dados = {}
+                    s2306_supervisorestagio_dados['s2306_infoestagiario_id'] = s2306_infoestagiario_id
                
-                    if 'vrSalFx' in dir(remuneracao): s2306_remuneracao_dados['vrsalfx'] = remuneracao.vrSalFx.cdata
-                    if 'undSalFixo' in dir(remuneracao): s2306_remuneracao_dados['undsalfixo'] = remuneracao.undSalFixo.cdata
-                    if 'dscSalVar' in dir(remuneracao): s2306_remuneracao_dados['dscsalvar'] = remuneracao.dscSalVar.cdata
-                    insert = create_insert('s2306_remuneracao', s2306_remuneracao_dados)
+                    if 'cpfSupervisor' in dir(supervisorEstagio): s2306_supervisorestagio_dados['cpfsupervisor'] = supervisorEstagio.cpfSupervisor.cdata
+                    if 'nmSuperv' in dir(supervisorEstagio): s2306_supervisorestagio_dados['nmsuperv'] = supervisorEstagio.nmSuperv.cdata
+                    insert = create_insert('s2306_supervisorestagio', s2306_supervisorestagio_dados)
                     resp = executar_sql(insert, True)
-                    s2306_remuneracao_id = resp[0][0]
-                    #print s2306_remuneracao_id
-   
-            if 'infoTrabCedido' in dir(infoComplementares):
-                for infoTrabCedido in infoComplementares.infoTrabCedido:
-                    s2306_infotrabcedido_dados = {}
-                    s2306_infotrabcedido_dados['s2306_infocomplementares_id'] = s2306_infocomplementares_id
-               
-                    if 'indRemunCargo' in dir(infoTrabCedido): s2306_infotrabcedido_dados['indremuncargo'] = infoTrabCedido.indRemunCargo.cdata
-                    insert = create_insert('s2306_infotrabcedido', s2306_infotrabcedido_dados)
-                    resp = executar_sql(insert, True)
-                    s2306_infotrabcedido_id = resp[0][0]
-                    #print s2306_infotrabcedido_id
-   
-            if 'infoEstagiario' in dir(infoComplementares):
-                for infoEstagiario in infoComplementares.infoEstagiario:
-                    s2306_infoestagiario_dados = {}
-                    s2306_infoestagiario_dados['s2306_infocomplementares_id'] = s2306_infocomplementares_id
-               
-                    if 'natEstagio' in dir(infoEstagiario): s2306_infoestagiario_dados['natestagio'] = infoEstagiario.natEstagio.cdata
-                    if 'nivEstagio' in dir(infoEstagiario): s2306_infoestagiario_dados['nivestagio'] = infoEstagiario.nivEstagio.cdata
-                    if 'areaAtuacao' in dir(infoEstagiario): s2306_infoestagiario_dados['areaatuacao'] = infoEstagiario.areaAtuacao.cdata
-                    if 'nrApol' in dir(infoEstagiario): s2306_infoestagiario_dados['nrapol'] = infoEstagiario.nrApol.cdata
-                    if 'vlrBolsa' in dir(infoEstagiario): s2306_infoestagiario_dados['vlrbolsa'] = infoEstagiario.vlrBolsa.cdata
-                    if 'dtPrevTerm' in dir(infoEstagiario): s2306_infoestagiario_dados['dtprevterm'] = infoEstagiario.dtPrevTerm.cdata
-                    if 'cnpjInstEnsino' in dir(infoEstagiario): s2306_infoestagiario_dados['cnpjinstensino'] = infoEstagiario.instEnsino.cnpjInstEnsino.cdata
-                    if 'nmRazao' in dir(infoEstagiario): s2306_infoestagiario_dados['nmrazao'] = infoEstagiario.instEnsino.nmRazao.cdata
-                    if 'dscLograd' in dir(infoEstagiario): s2306_infoestagiario_dados['dsclograd'] = infoEstagiario.instEnsino.dscLograd.cdata
-                    if 'nrLograd' in dir(infoEstagiario): s2306_infoestagiario_dados['nrlograd'] = infoEstagiario.instEnsino.nrLograd.cdata
-                    if 'bairro' in dir(infoEstagiario): s2306_infoestagiario_dados['bairro'] = infoEstagiario.instEnsino.bairro.cdata
-                    if 'cep' in dir(infoEstagiario): s2306_infoestagiario_dados['cep'] = infoEstagiario.instEnsino.cep.cdata
-                    if 'codMunic' in dir(infoEstagiario): s2306_infoestagiario_dados['codmunic'] = infoEstagiario.instEnsino.codMunic.cdata
-                    if 'uf' in dir(infoEstagiario): s2306_infoestagiario_dados['uf'] = infoEstagiario.instEnsino.uf.cdata
-                    insert = create_insert('s2306_infoestagiario', s2306_infoestagiario_dados)
-                    resp = executar_sql(insert, True)
-                    s2306_infoestagiario_id = resp[0][0]
-                    #print s2306_infoestagiario_id
+                    s2306_supervisorestagio_id = resp[0][0]
+                    #print s2306_supervisorestagio_id
    
     from emensageriapro.esocial.views.s2306_evttsvaltcontr_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(s2306_evttsvaltcontr_id, 'default')
