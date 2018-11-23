@@ -339,46 +339,46 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s2300_evttsvinicio': 1,
-            'show_tpdep': 1,
-            'show_nmdep': 1,
-            'show_dtnascto': 1,
-            'show_cpfdep': 0,
-            'show_sexodep': 0,
-            'show_depirrf': 1,
-            'show_depsf': 1,
+            'show_depfinsprev': 0,
             'show_inctrab': 1,
-            'show_depfinsprev': 0, }
+            'show_depsf': 1,
+            'show_depirrf': 1,
+            'show_sexodep': 0,
+            'show_cpfdep': 0,
+            'show_dtnascto': 1,
+            'show_nmdep': 1,
+            'show_tpdep': 1,
+            'show_s2300_evttsvinicio': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's2300_evttsvinicio': 's2300_evttsvinicio',
-                'tpdep__icontains': 'tpdep__icontains',
-                'nmdep__icontains': 'nmdep__icontains',
-                'dtnascto__range': 'dtnascto__range',
-                'cpfdep__icontains': 'cpfdep__icontains',
-                'sexodep__icontains': 'sexodep__icontains',
-                'depirrf__icontains': 'depirrf__icontains',
-                'depsf__icontains': 'depsf__icontains',
+                'depfinsprev__icontains': 'depfinsprev__icontains',
                 'inctrab__icontains': 'inctrab__icontains',
-                'depfinsprev__icontains': 'depfinsprev__icontains',}
+                'depsf__icontains': 'depsf__icontains',
+                'depirrf__icontains': 'depirrf__icontains',
+                'sexodep__icontains': 'sexodep__icontains',
+                'cpfdep__icontains': 'cpfdep__icontains',
+                'dtnascto__range': 'dtnascto__range',
+                'nmdep__icontains': 'nmdep__icontains',
+                'tpdep__icontains': 'tpdep__icontains',
+                's2300_evttsvinicio': 's2300_evttsvinicio',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's2300_evttsvinicio': 's2300_evttsvinicio',
-                'tpdep__icontains': 'tpdep__icontains',
-                'nmdep__icontains': 'nmdep__icontains',
-                'dtnascto__range': 'dtnascto__range',
-                'cpfdep__icontains': 'cpfdep__icontains',
-                'sexodep__icontains': 'sexodep__icontains',
-                'depirrf__icontains': 'depirrf__icontains',
-                'depsf__icontains': 'depsf__icontains',
+                'depfinsprev__icontains': 'depfinsprev__icontains',
                 'inctrab__icontains': 'inctrab__icontains',
-                'depfinsprev__icontains': 'depfinsprev__icontains',}
+                'depsf__icontains': 'depsf__icontains',
+                'depirrf__icontains': 'depirrf__icontains',
+                'sexodep__icontains': 'sexodep__icontains',
+                'cpfdep__icontains': 'cpfdep__icontains',
+                'dtnascto__range': 'dtnascto__range',
+                'nmdep__icontains': 'nmdep__icontains',
+                'tpdep__icontains': 'tpdep__icontains',
+                's2300_evttsvinicio': 's2300_evttsvinicio',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

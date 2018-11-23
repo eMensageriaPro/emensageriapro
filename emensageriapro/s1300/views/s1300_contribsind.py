@@ -339,28 +339,28 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s1300_evtcontrsindpatr': 1,
-            'show_cnpjsindic': 1,
+            'show_vlrcontribsind': 1,
             'show_tpcontribsind': 1,
-            'show_vlrcontribsind': 1, }
+            'show_cnpjsindic': 1,
+            'show_s1300_evtcontrsindpatr': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's1300_evtcontrsindpatr': 's1300_evtcontrsindpatr',
-                'cnpjsindic__icontains': 'cnpjsindic__icontains',
+                'vlrcontribsind': 'vlrcontribsind',
                 'tpcontribsind': 'tpcontribsind',
-                'vlrcontribsind': 'vlrcontribsind',}
+                'cnpjsindic__icontains': 'cnpjsindic__icontains',
+                's1300_evtcontrsindpatr': 's1300_evtcontrsindpatr',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's1300_evtcontrsindpatr': 's1300_evtcontrsindpatr',
-                'cnpjsindic__icontains': 'cnpjsindic__icontains',
+                'vlrcontribsind': 'vlrcontribsind',
                 'tpcontribsind': 'tpcontribsind',
-                'vlrcontribsind': 'vlrcontribsind',}
+                'cnpjsindic__icontains': 'cnpjsindic__icontains',
+                's1300_evtcontrsindpatr': 's1300_evtcontrsindpatr',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

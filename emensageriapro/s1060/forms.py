@@ -49,17 +49,25 @@ class form_s1060_inclusao(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s1060_inclusao,self ).__init__(*args,**kwargs)
         
-        self.fields['s1060_evttabambiente'].widget.attrs['required'] = True
+        self.fields['codlotacao'].widget.attrs['required'] = True
         
-        self.fields['codamb'].widget.attrs['required'] = True
+        self.fields['nrinsc'].widget.attrs['required'] = True
         
-        self.fields['inivalid'].widget.attrs['required'] = True
+        self.fields['tpinsc'].widget.attrs['required'] = True
         
-        self.fields['nmamb'].widget.attrs['required'] = True
+        self.fields['localamb'].widget.attrs['required'] = True
         
         self.fields['dscamb'].widget.attrs['required'] = True
         
-        self.fields['localamb'].widget.attrs['required'] = True
+        self.fields['nmamb'].widget.attrs['required'] = True
+        
+        self.fields['fimvalid'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['codamb'].widget.attrs['required'] = True
+        
+        self.fields['s1060_evttabambiente'].widget.attrs['required'] = True
 
     class Meta:
         model = s1060inclusao
@@ -77,11 +85,13 @@ class form_s1060_exclusao(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s1060_exclusao,self ).__init__(*args,**kwargs)
         
-        self.fields['s1060_evttabambiente'].widget.attrs['required'] = True
+        self.fields['fimvalid'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
         
         self.fields['codamb'].widget.attrs['required'] = True
         
-        self.fields['inivalid'].widget.attrs['required'] = True
+        self.fields['s1060_evttabambiente'].widget.attrs['required'] = True
 
     class Meta:
         model = s1060exclusao
@@ -99,9 +109,11 @@ class form_s1060_alteracao_novavalidade(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s1060_alteracao_novavalidade,self ).__init__(*args,**kwargs)
         
-        self.fields['s1060_alteracao'].widget.attrs['required'] = True
+        self.fields['fimvalid'].widget.attrs['required'] = True
         
         self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['s1060_alteracao'].widget.attrs['required'] = True
 
     class Meta:
         model = s1060alteracaonovaValidade
@@ -119,17 +131,25 @@ class form_s1060_alteracao(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s1060_alteracao,self ).__init__(*args,**kwargs)
         
-        self.fields['s1060_evttabambiente'].widget.attrs['required'] = True
+        self.fields['codlotacao'].widget.attrs['required'] = True
         
-        self.fields['codamb'].widget.attrs['required'] = True
+        self.fields['nrinsc'].widget.attrs['required'] = True
         
-        self.fields['inivalid'].widget.attrs['required'] = True
+        self.fields['tpinsc'].widget.attrs['required'] = True
         
-        self.fields['nmamb'].widget.attrs['required'] = True
+        self.fields['localamb'].widget.attrs['required'] = True
         
         self.fields['dscamb'].widget.attrs['required'] = True
         
-        self.fields['localamb'].widget.attrs['required'] = True
+        self.fields['nmamb'].widget.attrs['required'] = True
+        
+        self.fields['fimvalid'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['codamb'].widget.attrs['required'] = True
+        
+        self.fields['s1060_evttabambiente'].widget.attrs['required'] = True
 
     class Meta:
         model = s1060alteracao

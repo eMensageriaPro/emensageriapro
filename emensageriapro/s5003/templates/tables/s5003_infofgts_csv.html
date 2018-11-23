@@ -1,5 +1,5 @@
 {% load templatetags %}"{{ conta.nome_empresa }}"
 "Informações relativas ao FGTS."
-{% if show_fields.show_s5003_evtbasesfgts or not s5003_evtbasesfgts_id and 1 %}"Evento Bases FGTS por Trabalhador.";{% endif %}{% if show_fields.show_dtvenc or 0 %}"Data de vencimento do FGTS mensal. Validação: Preencher somente em uma das situações abaixo: a) Caso tenha origem no evento S-2299 e {mtvDeslig} = [02, 03, 05, 06, 14, 17, 26, 27, 33]; ou b) Caso tenha origem no evento S-2399, {codCateg} = [721] e {mtvDesl (...)";{% endif %}
+{% if show_fields.show_s5003_evtbasesfgts or not s5003_evtbasesfgts_id and 1 %}"Evento Bases FGTS por Trabalhador.";{% endif %}{% if show_fields.show_dtvenc or 0 %}"Data de vencimento do FGTS mensal";{% endif %}
 {% for a in s5003_infofgts_lista %}{% if show_fields.show_s5003_evtbasesfgts or  not s5003_evtbasesfgts_id and 1 %}"{{ a.s5003_evtbasesfgts }}";{% endif %}{% if show_fields.show_dtvenc or 0 %}"{{ a.dtvenc|date:"d/m/Y" }}";{% endif %}
 {% endfor %}

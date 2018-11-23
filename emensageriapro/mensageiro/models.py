@@ -42,47 +42,94 @@ get_model = apps.get_model
 
 
 
-SIM_NAO = (
-    (0, u'Não'),
-    (1, u'Sim'),
+CHOICES_S2200_TMPPARC = (
+    (0, u'0 - Não é contrato em tempo parcial'),
+    (1, u'1 - Limitado a 25 horas semanais'),
+    (2, u'2 - Limitado a 30 horas semanais'),
+    (3, u'3 - Limitado a 26 horas semanais'),
 )
 
-TIPO_INSCRICAO = (
+CHOICES_S2200_INFOCOTA = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2200_DIA = (
+    (1, u'1 - Segunda-Feira'),
+    (2, u'2 - Terça-Feira'),
+    (3, u'3 - Quarta-Feira'),
+    (4, u'4 - Quinta-Feira'),
+    (5, u'5 - Sexta-Feira'),
+    (6, u'6 - Sábado'),
+    (7, u'7 - Domingo'),
+    (8, u'8 - Dia variável'),
+)
+
+CHOICES_S1050_INCLUSAO_TPINTERV = (
+    (1, u'1 - Intervalo em Horário Fixo'),
+    (2, u'2 - Intervalo em Horário Variável'),
+)
+
+CHOICES_S1050_INCLUSAO_PERHORFLEXIVEL = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1000_TPINSC = (
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
-EVENTOS_OCORRENCIAS_TIPO_EFDREINF = (
-    (1, u'1 - Aviso'),
-    (2, u'2 - Erro'),
+CHOICES_S2200_UNDSALFIXO = (
+    (1, u'1 - Por Hora'),
+    (2, u'2 - Por Dia'),
+    (3, u'3 - Por Semana'),
+    (4, u'4 - Por Quinzena'),
+    (5, u'5 - Por Mês'),
+    (6, u'6 - Por Tarefa'),
+    (7, u'7 - Não aplicável - salário exclusivamente variável'),
 )
 
-CODIGO_STATUS_EFDREINF = (
-    (0, u'0 - Sucesso'),
+CHOICES_S2200_TPREGJOR = (
+    (1, u'1 - Submetidos a Horário de Trabalho (Cap. II da CLT)'),
+    (2, u'2 - Atividade Externa especificada no Inciso I do Art. 62 da CLT'),
+    (3, u'3 - Funções especificadas no Inciso II do Art. 62 da CLT'),
+    (4, u'4 - Teletrabalho, previsto no Inciso III do Art. 62 da CLT'),
+)
+
+CHOICES_S2200_TPJORNADA = (
+    (1, u'1 - Jornada com horário diário e folga fixos'),
+    (2, u'2 - Jornada 12 x 36 (12 horas de trabalho seguidas de 36 horas ininterruptas de descanso)'),
+    (3, u'3 - Jornada com horário diário fixo e folga variável'),
+    (9, u'9 - Demais tipos de jornada'),
+)
+
+CHOICES_S2200_TPCONTR = (
+    (1, u'1 - Prazo indeterminado'),
+    (2, u'2 - Prazo determinado'),
+)
+
+EVENTOS_GRUPOS = (
+    (1, u'1 - Eventos de Tabelas'),
+    (2, u'2 - Eventos Não Periódicos'),
+    (3, u'3 - Eventos Periódicos'),
+)
+
+EVENTOS_OCORRENCIAS_TIPO = (
     (1, u'1 - Erro'),
-    (2, u'2 - Em Processamento'),
+    (2, u'2 - Advertência'),
 )
 
-TRANSMISSOR_STATUS = (
-    (0, u'Cadastrado'),
-    (5, u'Erro no envio'),
-    (7, u'Enviado'),
-    (8, u'Erro na consulta'),
-    (9, u'Consultado'),
+TIPO_AMBIENTE = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
 )
 
-IMPORTACAO_STATUS = (
-    (0, u'Aguardando!'),
-    (1, u'Sucesso!'),
-    (2, u'Erro!'),
-    (3, u'Arquivo inválido!'),
-    (5, u'Identidade do evento já está cadastrada em nossa base'),
-    (6, u'Processado'),
-    (7, u'Processando'),
-    (8, u'Processado com erros'),
-    (9, u'Versão incompatível'),
+TIPO_OCORRENCIA = (
+    (1, u'1 - Erro'),
+    (2, u'2 - Advertência'),
 )
 
 CODIGO_RESPOSTA = (
@@ -103,94 +150,47 @@ CODIGO_RESPOSTA = (
     (505, u'505 - Solicitação de Consulta Incorreta - Consulta nula ou vazia.'),
 )
 
-TIPO_OCORRENCIA = (
+IMPORTACAO_STATUS = (
+    (0, u'Aguardando!'),
+    (1, u'Sucesso!'),
+    (2, u'Erro!'),
+    (3, u'Arquivo inválido!'),
+    (5, u'Identidade do evento já está cadastrada em nossa base'),
+    (6, u'Processado'),
+    (7, u'Processando'),
+    (8, u'Processado com erros'),
+    (9, u'Versão incompatível'),
+)
+
+TRANSMISSOR_STATUS = (
+    (0, u'Cadastrado'),
+    (5, u'Erro no envio'),
+    (7, u'Enviado'),
+    (8, u'Erro na consulta'),
+    (9, u'Consultado'),
+)
+
+CODIGO_STATUS_EFDREINF = (
+    (0, u'0 - Sucesso'),
     (1, u'1 - Erro'),
-    (2, u'2 - Advertência'),
+    (2, u'2 - Em Processamento'),
 )
 
-TIPO_AMBIENTE = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
+EVENTOS_OCORRENCIAS_TIPO_EFDREINF = (
+    (1, u'1 - Aviso'),
+    (2, u'2 - Erro'),
 )
 
-EVENTOS_OCORRENCIAS_TIPO = (
-    (1, u'1 - Erro'),
-    (2, u'2 - Advertência'),
-)
-
-EVENTOS_GRUPOS = (
-    (1, u'1 - Eventos de Tabelas'),
-    (2, u'2 - Eventos Não Periódicos'),
-    (3, u'3 - Eventos Periódicos'),
-)
-
-CHOICES_S1000_TPINSC = (
+TIPO_INSCRICAO = (
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
-CHOICES_S1050_INCLUSAO_PERHORFLEXIVEL = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1050_INCLUSAO_TPINTERV = (
-    (1, u'1 - Intervalo em Horário Fixo'),
-    (2, u'2 - Intervalo em Horário Variável'),
-)
-
-CHOICES_S2200_DIA = (
-    (1, u'1 - Segunda-Feira'),
-    (2, u'2 - Terça-Feira'),
-    (3, u'3 - Quarta-Feira'),
-    (4, u'4 - Quinta-Feira'),
-    (5, u'5 - Sexta-Feira'),
-    (6, u'6 - Sábado'),
-    (7, u'7 - Domingo'),
-    (8, u'8 - Dia variável'),
-)
-
-CHOICES_S2200_INFOCOTA = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2200_TMPPARC = (
-    (0, u'0 - Não é contrato em tempo parcial'),
-    (1, u'1 - Limitado a 25 horas semanais'),
-    (2, u'2 - Limitado a 30 horas semanais'),
-    (3, u'3 - Limitado a 26 horas semanais'),
-)
-
-CHOICES_S2200_TPCONTR = (
-    (1, u'1 - Prazo indeterminado'),
-    (2, u'2 - Prazo determinado'),
-)
-
-CHOICES_S2200_TPJORNADA = (
-    (1, u'1 - Jornada com horário diário e folga fixos'),
-    (2, u'2 - Jornada 12 x 36 (12 horas de trabalho seguidas de 36 horas ininterruptas de descanso)'),
-    (3, u'3 - Jornada com horário diário fixo e folga variável'),
-    (9, u'9 - Demais tipos de jornada'),
-)
-
-CHOICES_S2200_TPREGJOR = (
-    (1, u'1 - Submetidos a Horário de Trabalho (Cap. II da CLT)'),
-    (2, u'2 - Atividade Externa especificada no Inciso I do Art. 62 da CLT'),
-    (3, u'3 - Funções especificadas no Inciso II do Art. 62 da CLT'),
-    (4, u'4 - Teletrabalho, previsto no Inciso III do Art. 62 da CLT'),
-)
-
-CHOICES_S2200_UNDSALFIXO = (
-    (1, u'1 - Por Hora'),
-    (2, u'2 - Por Dia'),
-    (3, u'3 - Por Semana'),
-    (4, u'4 - Por Quinzena'),
-    (5, u'5 - Por Mês'),
-    (6, u'6 - Por Tarefa'),
-    (7, u'7 - Não aplicável - salário exclusivamente variável'),
+SIM_NAO = (
+    (0, u'Não'),
+    (1, u'Sim'),
 )
 
 class Arquivos(models.Model):
@@ -219,9 +219,9 @@ class ArquivosSerializer(ModelSerializer):
             
 
 class ImportacaoArquivos(models.Model):
-    arquivo = models.CharField(max_length=200)
-    status = models.IntegerField(choices=IMPORTACAO_STATUS)
-    data_hora = models.DateTimeField()
+    arquivo = models.CharField(max_length=200, blank=True)
+    status = models.IntegerField(choices=IMPORTACAO_STATUS, blank=True)
+    data_hora = models.DateTimeField(blank=True)
     importado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_importado_por', blank=True, null=True)
     quant_total = models.IntegerField(blank=True, null=True)
@@ -255,7 +255,7 @@ class ImportacaoArquivosSerializer(ModelSerializer):
 
 class ImportacaoArquivosEventos(models.Model):
     importacao_arquivos = models.ForeignKey('ImportacaoArquivos',
-        related_name='%(class)s_importacao_arquivos')
+        related_name='%(class)s_importacao_arquivos', blank=True)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
     evento = models.CharField(max_length=100, blank=True, null=True)
     versao = models.CharField(max_length=30, blank=True, null=True)
@@ -290,7 +290,7 @@ class ImportacaoArquivosEventosSerializer(ModelSerializer):
 
 class RegrasDeValidacao(models.Model):
     evento = models.CharField(max_length=5000)
-    versao = models.CharField(max_length=20)
+    versao = models.CharField(max_length=20, blank=True)
     numero = models.IntegerField()
     registro_campo = models.CharField(max_length=100)
     registro_pai = models.CharField(max_length=100)
@@ -299,8 +299,8 @@ class RegrasDeValidacao(models.Model):
     ocorrencias = models.CharField(max_length=10)
     tamanho = models.CharField(max_length=10)
     casas_decimais = models.CharField(max_length=10)
-    obrigatorio = models.IntegerField(choices=SIM_NAO)
-    descricao = models.TextField()
+    obrigatorio = models.IntegerField(choices=SIM_NAO, blank=True)
+    descricao = models.TextField(blank=True)
     tabela = models.CharField(max_length=200, blank=True, null=True)
     valores_validos = models.TextField(blank=True, null=True)
     validacoes_precedencia = models.TextField(blank=True, null=True)
@@ -369,8 +369,8 @@ class RetornosEventos(models.Model):
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
     tpinsc = models.IntegerField(choices=CHOICES_S1000_TPINSC, blank=True, null=True)
     empregador_tpinsc = models.IntegerField(choices=CHOICES_S1000_TPINSC, blank=True, null=True)
-    nrinsc = models.CharField(max_length=15, blank=True, null=True)
     empregador_nrinsc = models.CharField(max_length=15, blank=True, null=True)
+    nrinsc = models.CharField(max_length=15, blank=True, null=True)
     cpftrab = models.CharField(max_length=11, blank=True, null=True)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
     nmtrab = models.CharField(max_length=70, blank=True, null=True)
@@ -486,10 +486,10 @@ class RetornosEventosIntervalosSerializer(ModelSerializer):
 
 class RetornosEventosOcorrencias(models.Model):
     retornos_eventos = models.ForeignKey('RetornosEventos',
-        related_name='%(class)s_retornos_eventos')
-    tipo = models.IntegerField(choices=TIPO_OCORRENCIA)
-    codigo = models.IntegerField()
-    descricao = models.TextField()
+        related_name='%(class)s_retornos_eventos', blank=True)
+    tipo = models.IntegerField(choices=TIPO_OCORRENCIA, blank=True)
+    codigo = models.IntegerField(blank=True)
+    descricao = models.TextField(blank=True)
     localizacao = models.TextField(max_length=30, blank=True, null=True)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -518,8 +518,8 @@ class TransmissorLote(models.Model):
     nome_empresa = models.CharField(max_length=200, unique=True)
     data_abertura = models.DateField()
     validar_eventos = models.IntegerField(choices=SIM_NAO)
-    verificar_predecessao = models.IntegerField(choices=SIM_NAO)
     envio_automatico = models.IntegerField(choices=SIM_NAO)
+    verificar_predecessao = models.IntegerField(choices=SIM_NAO)
     logotipo = models.FileField(upload_to="logotipo", blank=True, null=True)
     endereco_completo = models.TextField()
     empregador_tpinsc = models.CharField(max_length=20)
@@ -571,7 +571,7 @@ class TransmissorLoteEfdreinf(models.Model):
     contribuinte_tpinsc = models.IntegerField(choices=TIPO_INSCRICAO)
     contribuinte_nrinsc = models.CharField(max_length=15)
     grupo = models.IntegerField(choices=EVENTOS_GRUPOS)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    status = models.IntegerField(choices=TRANSMISSOR_STATUS, blank=True, default=0)
     identidade_transmissor = models.CharField(max_length=20, blank=True, null=True)
     codigo_status = models.IntegerField(choices=CODIGO_STATUS_EFDREINF, blank=True, null=True)
     retorno_descricao = models.TextField(blank=True, null=True)
@@ -638,7 +638,7 @@ class TransmissorLoteEsocial(models.Model):
     empregador_tpinsc = models.IntegerField(choices=TIPO_INSCRICAO)
     empregador_nrinsc = models.CharField(max_length=15)
     grupo = models.IntegerField(choices=EVENTOS_GRUPOS)
-    status = models.IntegerField(choices=TRANSMISSOR_STATUS, default=0)
+    status = models.IntegerField(choices=TRANSMISSOR_STATUS, blank=True, default=0)
     resposta_codigo = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
     resposta_descricao = models.TextField(blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(max_length=50, blank=True, null=True)

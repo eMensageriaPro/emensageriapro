@@ -339,40 +339,40 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s2400_evtcdbenefin': 1,
-            'show_paisresid': 1,
-            'show_dsclograd': 1,
-            'show_nrlograd': 1,
-            'show_complemento': 0,
-            'show_bairro': 0,
+            'show_codpostal': 0,
             'show_nmcid': 1,
-            'show_codpostal': 0, }
+            'show_bairro': 0,
+            'show_complemento': 0,
+            'show_nrlograd': 1,
+            'show_dsclograd': 1,
+            'show_paisresid': 1,
+            'show_s2400_evtcdbenefin': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's2400_evtcdbenefin': 's2400_evtcdbenefin',
-                'paisresid__icontains': 'paisresid__icontains',
-                'dsclograd__icontains': 'dsclograd__icontains',
-                'nrlograd__icontains': 'nrlograd__icontains',
-                'complemento__icontains': 'complemento__icontains',
-                'bairro__icontains': 'bairro__icontains',
+                'codpostal__icontains': 'codpostal__icontains',
                 'nmcid__icontains': 'nmcid__icontains',
-                'codpostal__icontains': 'codpostal__icontains',}
+                'bairro__icontains': 'bairro__icontains',
+                'complemento__icontains': 'complemento__icontains',
+                'nrlograd__icontains': 'nrlograd__icontains',
+                'dsclograd__icontains': 'dsclograd__icontains',
+                'paisresid__icontains': 'paisresid__icontains',
+                's2400_evtcdbenefin': 's2400_evtcdbenefin',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's2400_evtcdbenefin': 's2400_evtcdbenefin',
-                'paisresid__icontains': 'paisresid__icontains',
-                'dsclograd__icontains': 'dsclograd__icontains',
-                'nrlograd__icontains': 'nrlograd__icontains',
-                'complemento__icontains': 'complemento__icontains',
-                'bairro__icontains': 'bairro__icontains',
+                'codpostal__icontains': 'codpostal__icontains',
                 'nmcid__icontains': 'nmcid__icontains',
-                'codpostal__icontains': 'codpostal__icontains',}
+                'bairro__icontains': 'bairro__icontains',
+                'complemento__icontains': 'complemento__icontains',
+                'nrlograd__icontains': 'nrlograd__icontains',
+                'dsclograd__icontains': 'dsclograd__icontains',
+                'paisresid__icontains': 'paisresid__icontains',
+                's2400_evtcdbenefin': 's2400_evtcdbenefin',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

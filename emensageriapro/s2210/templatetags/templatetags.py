@@ -148,10 +148,13 @@ def to_xml(texto):
 @register.filter(name='auditoria_json')
 def auditoria_json(texto):
     html = ''
-    dados = json_to_dict(texto)
-    for a in dados.keys():
-        html += '<strong>%s:</strong> %s<br>' % (a, dados[a])
-    return html
+    if texto:
+        dados = json_to_dict(texto)
+        for a in dados.keys():
+            html += '<strong>%s:</strong> %s<br>' % (a, dados[a])
+        return html
+    else:
+        return ''
 
 
 @register.filter(name='dec_to_int')
@@ -382,7 +385,7 @@ def ano_mes_extenso(value):
     elif mes == '11': mes_extenso=u'Novembro'
     elif mes == '12': mes_extenso=u'Dezembro'
     return mes_extenso + '/' + ano
-    
+
 # @register.filter(name='total')
 # def total(list, arg):
 #     soma = sum(d[arg] for d in list)
@@ -390,6 +393,24 @@ def ano_mes_extenso(value):
 #     soma = soma*1.00
 #     valor = real(soma)
 #     return valor
+
+
+@register.filter(name='inteiro')
+def inteiro(var):
+    #print var
+    a = str(var).split('.')
+    b = a[0]
+    #print b
+    return int(b)
+
+
+@register.filter(name='padrao_americano')
+def padrao_americano(var):
+    #print var
+    #a = str(var).replace('.','')
+    #print a
+    return str(var)
+
 
 @register.filter(name='total_quant') 
 def total_quant(list, arg):

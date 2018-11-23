@@ -339,67 +339,67 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s2210_evtcat': 1,
-            'show_codcnes': 0,
-            'show_dtatendimento': 1,
-            'show_hratendimento': 1,
-            'show_indinternacao': 1,
-            'show_durtrat': 1,
-            'show_indafast': 1,
-            'show_dsclesao': 1,
-            'show_dsccomplesao': 0,
-            'show_diagprovavel': 0,
-            'show_codcid': 1,
-            'show_observacao': 0,
-            'show_emitente': 0,
-            'show_nmemit': 1,
-            'show_ideoc': 1,
+            'show_ufoc': 0,
             'show_nroc': 1,
-            'show_ufoc': 0, }
+            'show_ideoc': 1,
+            'show_nmemit': 1,
+            'show_emitente': 0,
+            'show_observacao': 0,
+            'show_codcid': 1,
+            'show_diagprovavel': 0,
+            'show_dsccomplesao': 0,
+            'show_dsclesao': 1,
+            'show_indafast': 1,
+            'show_durtrat': 1,
+            'show_indinternacao': 1,
+            'show_hratendimento': 1,
+            'show_dtatendimento': 1,
+            'show_codcnes': 0,
+            'show_s2210_evtcat': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's2210_evtcat': 's2210_evtcat',
-                'codcnes__icontains': 'codcnes__icontains',
-                'dtatendimento__range': 'dtatendimento__range',
-                'hratendimento__icontains': 'hratendimento__icontains',
-                'indinternacao__icontains': 'indinternacao__icontains',
-                'durtrat': 'durtrat',
-                'indafast__icontains': 'indafast__icontains',
-                'dsclesao': 'dsclesao',
-                'dsccomplesao__icontains': 'dsccomplesao__icontains',
-                'diagprovavel__icontains': 'diagprovavel__icontains',
-                'codcid__icontains': 'codcid__icontains',
-                'observacao__icontains': 'observacao__icontains',
-                'emitente': 'emitente',
-                'nmemit__icontains': 'nmemit__icontains',
-                'ideoc': 'ideoc',
+                'ufoc__icontains': 'ufoc__icontains',
                 'nroc__icontains': 'nroc__icontains',
-                'ufoc__icontains': 'ufoc__icontains',}
+                'ideoc': 'ideoc',
+                'nmemit__icontains': 'nmemit__icontains',
+                'emitente': 'emitente',
+                'observacao__icontains': 'observacao__icontains',
+                'codcid__icontains': 'codcid__icontains',
+                'diagprovavel__icontains': 'diagprovavel__icontains',
+                'dsccomplesao__icontains': 'dsccomplesao__icontains',
+                'dsclesao': 'dsclesao',
+                'indafast__icontains': 'indafast__icontains',
+                'durtrat': 'durtrat',
+                'indinternacao__icontains': 'indinternacao__icontains',
+                'hratendimento__icontains': 'hratendimento__icontains',
+                'dtatendimento__range': 'dtatendimento__range',
+                'codcnes__icontains': 'codcnes__icontains',
+                's2210_evtcat': 's2210_evtcat',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's2210_evtcat': 's2210_evtcat',
-                'codcnes__icontains': 'codcnes__icontains',
-                'dtatendimento__range': 'dtatendimento__range',
-                'hratendimento__icontains': 'hratendimento__icontains',
-                'indinternacao__icontains': 'indinternacao__icontains',
-                'durtrat': 'durtrat',
-                'indafast__icontains': 'indafast__icontains',
-                'dsclesao': 'dsclesao',
-                'dsccomplesao__icontains': 'dsccomplesao__icontains',
-                'diagprovavel__icontains': 'diagprovavel__icontains',
-                'codcid__icontains': 'codcid__icontains',
-                'observacao__icontains': 'observacao__icontains',
-                'emitente': 'emitente',
-                'nmemit__icontains': 'nmemit__icontains',
-                'ideoc': 'ideoc',
+                'ufoc__icontains': 'ufoc__icontains',
                 'nroc__icontains': 'nroc__icontains',
-                'ufoc__icontains': 'ufoc__icontains',}
+                'ideoc': 'ideoc',
+                'nmemit__icontains': 'nmemit__icontains',
+                'emitente': 'emitente',
+                'observacao__icontains': 'observacao__icontains',
+                'codcid__icontains': 'codcid__icontains',
+                'diagprovavel__icontains': 'diagprovavel__icontains',
+                'dsccomplesao__icontains': 'dsccomplesao__icontains',
+                'dsclesao': 'dsclesao',
+                'indafast__icontains': 'indafast__icontains',
+                'durtrat': 'durtrat',
+                'indinternacao__icontains': 'indinternacao__icontains',
+                'hratendimento__icontains': 'hratendimento__icontains',
+                'dtatendimento__range': 'dtatendimento__range',
+                'codcnes__icontains': 'codcnes__icontains',
+                's2210_evtcat': 's2210_evtcat',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

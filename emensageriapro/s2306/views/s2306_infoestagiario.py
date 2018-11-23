@@ -353,64 +353,64 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s2306_evttsvaltcontr': 1,
-            'show_natestagio': 1,
-            'show_nivestagio': 1,
-            'show_areaatuacao': 0,
-            'show_nrapol': 0,
-            'show_vlrbolsa': 0,
-            'show_dtprevterm': 1,
-            'show_instensino': 0,
-            'show_cnpjinstensino': 0,
-            'show_nmrazao': 1,
-            'show_dsclograd': 0,
-            'show_nrlograd': 0,
-            'show_bairro': 0,
-            'show_cep': 0,
+            'show_uf': 0,
             'show_codmunic': 0,
-            'show_uf': 0, }
+            'show_cep': 0,
+            'show_bairro': 0,
+            'show_nrlograd': 0,
+            'show_dsclograd': 0,
+            'show_nmrazao': 1,
+            'show_cnpjinstensino': 0,
+            'show_instensino': 0,
+            'show_dtprevterm': 1,
+            'show_vlrbolsa': 0,
+            'show_nrapol': 0,
+            'show_areaatuacao': 0,
+            'show_nivestagio': 1,
+            'show_natestagio': 1,
+            'show_s2306_evttsvaltcontr': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's2306_evttsvaltcontr': 's2306_evttsvaltcontr',
-                'natestagio__icontains': 'natestagio__icontains',
-                'nivestagio': 'nivestagio',
-                'areaatuacao__icontains': 'areaatuacao__icontains',
-                'nrapol__icontains': 'nrapol__icontains',
-                'vlrbolsa': 'vlrbolsa',
-                'dtprevterm__range': 'dtprevterm__range',
-                'instensino': 'instensino',
-                'cnpjinstensino__icontains': 'cnpjinstensino__icontains',
-                'nmrazao__icontains': 'nmrazao__icontains',
-                'dsclograd__icontains': 'dsclograd__icontains',
-                'nrlograd__icontains': 'nrlograd__icontains',
-                'bairro__icontains': 'bairro__icontains',
-                'cep__icontains': 'cep__icontains',
+                'uf__icontains': 'uf__icontains',
                 'codmunic__icontains': 'codmunic__icontains',
-                'uf__icontains': 'uf__icontains',}
+                'cep__icontains': 'cep__icontains',
+                'bairro__icontains': 'bairro__icontains',
+                'nrlograd__icontains': 'nrlograd__icontains',
+                'dsclograd__icontains': 'dsclograd__icontains',
+                'nmrazao__icontains': 'nmrazao__icontains',
+                'cnpjinstensino__icontains': 'cnpjinstensino__icontains',
+                'instensino': 'instensino',
+                'dtprevterm__range': 'dtprevterm__range',
+                'vlrbolsa': 'vlrbolsa',
+                'nrapol__icontains': 'nrapol__icontains',
+                'areaatuacao__icontains': 'areaatuacao__icontains',
+                'nivestagio': 'nivestagio',
+                'natestagio__icontains': 'natestagio__icontains',
+                's2306_evttsvaltcontr': 's2306_evttsvaltcontr',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's2306_evttsvaltcontr': 's2306_evttsvaltcontr',
-                'natestagio__icontains': 'natestagio__icontains',
-                'nivestagio': 'nivestagio',
-                'areaatuacao__icontains': 'areaatuacao__icontains',
-                'nrapol__icontains': 'nrapol__icontains',
-                'vlrbolsa': 'vlrbolsa',
-                'dtprevterm__range': 'dtprevterm__range',
-                'instensino': 'instensino',
-                'cnpjinstensino__icontains': 'cnpjinstensino__icontains',
-                'nmrazao__icontains': 'nmrazao__icontains',
-                'dsclograd__icontains': 'dsclograd__icontains',
-                'nrlograd__icontains': 'nrlograd__icontains',
-                'bairro__icontains': 'bairro__icontains',
-                'cep__icontains': 'cep__icontains',
+                'uf__icontains': 'uf__icontains',
                 'codmunic__icontains': 'codmunic__icontains',
-                'uf__icontains': 'uf__icontains',}
+                'cep__icontains': 'cep__icontains',
+                'bairro__icontains': 'bairro__icontains',
+                'nrlograd__icontains': 'nrlograd__icontains',
+                'dsclograd__icontains': 'dsclograd__icontains',
+                'nmrazao__icontains': 'nmrazao__icontains',
+                'cnpjinstensino__icontains': 'cnpjinstensino__icontains',
+                'instensino': 'instensino',
+                'dtprevterm__range': 'dtprevterm__range',
+                'vlrbolsa': 'vlrbolsa',
+                'nrapol__icontains': 'nrapol__icontains',
+                'areaatuacao__icontains': 'areaatuacao__icontains',
+                'nivestagio': 'nivestagio',
+                'natestagio__icontains': 'natestagio__icontains',
+                's2306_evttsvaltcontr': 's2306_evttsvaltcontr',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

@@ -50,15 +50,15 @@ class form_s2245_infocomplem(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2245_infocomplem,self ).__init__(*args,**kwargs)
         
-        self.fields['s2245_evttreicap'].widget.attrs['required'] = True
-        
-        self.fields['dttreicap'].widget.attrs['required'] = True
-        
-        self.fields['durtreicap'].widget.attrs['required'] = True
+        self.fields['tptreicap'].widget.attrs['required'] = True
         
         self.fields['modtreicap'].widget.attrs['required'] = True
         
-        self.fields['tptreicap'].widget.attrs['required'] = True
+        self.fields['durtreicap'].widget.attrs['required'] = True
+        
+        self.fields['dttreicap'].widget.attrs['required'] = True
+        
+        self.fields['s2245_evttreicap'].widget.attrs['required'] = True
 
     class Meta:
         model = s2245infoComplem
@@ -75,18 +75,20 @@ class form_s2245_ideprofresp(forms.ModelForm):
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_s2245_ideprofresp,self ).__init__(*args,**kwargs)
-        self.fields['s2245_infocomplem'].queryset = s2245infoComplem.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2245_infocomplem'].widget.attrs['required'] = True
         
-        self.fields['nmprof'].widget.attrs['required'] = True
-        
-        self.fields['tpprof'].widget.attrs['required'] = True
-        
-        self.fields['formprof'].widget.attrs['required'] = True
+        self.fields['nacprof'].widget.attrs['required'] = True
         
         self.fields['codcbo'].widget.attrs['required'] = True
         
-        self.fields['nacprof'].widget.attrs['required'] = True
+        self.fields['formprof'].widget.attrs['required'] = True
+        
+        self.fields['tpprof'].widget.attrs['required'] = True
+        
+        self.fields['nmprof'].widget.attrs['required'] = True
+        
+        self.fields['cpfprof'].widget.attrs['required'] = True
+        self.fields['s2245_infocomplem'].queryset = s2245infoComplem.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s2245_infocomplem'].widget.attrs['required'] = True
 
     class Meta:
         model = s2245ideProfResp

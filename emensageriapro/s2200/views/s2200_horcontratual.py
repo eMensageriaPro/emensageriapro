@@ -346,31 +346,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s2200_evtadmissao': 1,
-            'show_qtdhrssem': 0,
-            'show_tpjornada': 1,
+            'show_tmpparc': 1,
             'show_dsctpjorn': 0,
-            'show_tmpparc': 1, }
+            'show_tpjornada': 1,
+            'show_qtdhrssem': 0,
+            'show_s2200_evtadmissao': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's2200_evtadmissao': 's2200_evtadmissao',
-                'qtdhrssem': 'qtdhrssem',
-                'tpjornada': 'tpjornada',
+                'tmpparc': 'tmpparc',
                 'dsctpjorn__icontains': 'dsctpjorn__icontains',
-                'tmpparc': 'tmpparc',}
+                'tpjornada': 'tpjornada',
+                'qtdhrssem': 'qtdhrssem',
+                's2200_evtadmissao': 's2200_evtadmissao',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's2200_evtadmissao': 's2200_evtadmissao',
-                'qtdhrssem': 'qtdhrssem',
-                'tpjornada': 'tpjornada',
+                'tmpparc': 'tmpparc',
                 'dsctpjorn__icontains': 'dsctpjorn__icontains',
-                'tmpparc': 'tmpparc',}
+                'tpjornada': 'tpjornada',
+                'qtdhrssem': 'qtdhrssem',
+                's2200_evtadmissao': 's2200_evtadmissao',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

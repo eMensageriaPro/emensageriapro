@@ -44,142 +44,24 @@ __author__ = 'marcelovasconcellos'
 
 
 
-class form_r1070_alteracao(forms.ModelForm):
+class form_r1070_inclusao_infosusp(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r1070_alteracao,self ).__init__(*args,**kwargs)
+        super (form_r1070_inclusao_infosusp,self ).__init__(*args,**kwargs)
         
-        self.fields['r1070_evttabprocesso'].widget.attrs['required'] = True
-        
-        self.fields['tpproc'].widget.attrs['required'] = True
-        
-        self.fields['nrproc'].widget.attrs['required'] = True
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
-        
-        self.fields['indautoria'].widget.attrs['required'] = True
-
-    class Meta:
-        model = r1070alteracao
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_r1070_alteracao_dadosprocjud(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_r1070_alteracao_dadosprocjud,self ).__init__(*args,**kwargs)
-        
-        self.fields['r1070_alteracao'].widget.attrs['required'] = True
-        
-        self.fields['ufvara'].widget.attrs['required'] = True
-        
-        self.fields['codmunic'].widget.attrs['required'] = True
-        
-        self.fields['idvara'].widget.attrs['required'] = True
-
-    class Meta:
-        model = r1070alteracaodadosProcJud
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_r1070_alteracao_infosusp(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_r1070_alteracao_infosusp,self ).__init__(*args,**kwargs)
-        self.fields['r1070_alteracao'].queryset = r1070alteracao.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r1070_alteracao'].widget.attrs['required'] = True
-        
-        self.fields['indsusp'].widget.attrs['required'] = True
+        self.fields['inddeposito'].widget.attrs['required'] = True
         
         self.fields['dtdecisao'].widget.attrs['required'] = True
         
-        self.fields['inddeposito'].widget.attrs['required'] = True
+        self.fields['indsusp'].widget.attrs['required'] = True
+        
+        self.fields['codsusp'].widget.attrs['required'] = True
+        self.fields['r1070_inclusao'].queryset = r1070inclusao.objects.using( slug ).filter(excluido=False).all()
+        self.fields['r1070_inclusao'].widget.attrs['required'] = True
 
     class Meta:
-        model = r1070alteracaoinfoSusp
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_r1070_alteracao_novavalidade(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_r1070_alteracao_novavalidade,self ).__init__(*args,**kwargs)
-        
-        self.fields['r1070_alteracao'].widget.attrs['required'] = True
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
-
-    class Meta:
-        model = r1070alteracaonovaValidade
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_r1070_exclusao(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_r1070_exclusao,self ).__init__(*args,**kwargs)
-        
-        self.fields['r1070_evttabprocesso'].widget.attrs['required'] = True
-        
-        self.fields['tpproc'].widget.attrs['required'] = True
-        
-        self.fields['nrproc'].widget.attrs['required'] = True
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
-
-    class Meta:
-        model = r1070exclusao
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_r1070_inclusao(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_r1070_inclusao,self ).__init__(*args,**kwargs)
-        
-        self.fields['r1070_evttabprocesso'].widget.attrs['required'] = True
-        
-        self.fields['tpproc'].widget.attrs['required'] = True
-        
-        self.fields['nrproc'].widget.attrs['required'] = True
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
-        
-        self.fields['indautoria'].widget.attrs['required'] = True
-
-    class Meta:
-        model = r1070inclusao
+        model = r1070inclusaoinfoSusp
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
@@ -194,13 +76,13 @@ class form_r1070_inclusao_dadosprocjud(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_r1070_inclusao_dadosprocjud,self ).__init__(*args,**kwargs)
         
-        self.fields['r1070_inclusao'].widget.attrs['required'] = True
-        
-        self.fields['ufvara'].widget.attrs['required'] = True
+        self.fields['idvara'].widget.attrs['required'] = True
         
         self.fields['codmunic'].widget.attrs['required'] = True
         
-        self.fields['idvara'].widget.attrs['required'] = True
+        self.fields['ufvara'].widget.attrs['required'] = True
+        
+        self.fields['r1070_inclusao'].widget.attrs['required'] = True
 
     class Meta:
         model = r1070inclusaodadosProcJud
@@ -212,22 +94,152 @@ class form_r1070_inclusao_dadosprocjud(forms.ModelForm):
         ]
 
 
-class form_r1070_inclusao_infosusp(forms.ModelForm):
+class form_r1070_inclusao(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r1070_inclusao_infosusp,self ).__init__(*args,**kwargs)
-        self.fields['r1070_inclusao'].queryset = r1070inclusao.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r1070_inclusao'].widget.attrs['required'] = True
+        super (form_r1070_inclusao,self ).__init__(*args,**kwargs)
         
-        self.fields['indsusp'].widget.attrs['required'] = True
+        self.fields['indautoria'].widget.attrs['required'] = True
+        
+        self.fields['fimvalid'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['nrproc'].widget.attrs['required'] = True
+        
+        self.fields['tpproc'].widget.attrs['required'] = True
+        
+        self.fields['r1070_evttabprocesso'].widget.attrs['required'] = True
+
+    class Meta:
+        model = r1070inclusao
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_r1070_exclusao(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_r1070_exclusao,self ).__init__(*args,**kwargs)
+        
+        self.fields['fimvalid'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['nrproc'].widget.attrs['required'] = True
+        
+        self.fields['tpproc'].widget.attrs['required'] = True
+        
+        self.fields['r1070_evttabprocesso'].widget.attrs['required'] = True
+
+    class Meta:
+        model = r1070exclusao
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_r1070_alteracao_novavalidade(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_r1070_alteracao_novavalidade,self ).__init__(*args,**kwargs)
+        
+        self.fields['fimvalid'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['r1070_alteracao'].widget.attrs['required'] = True
+
+    class Meta:
+        model = r1070alteracaonovaValidade
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_r1070_alteracao_infosusp(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_r1070_alteracao_infosusp,self ).__init__(*args,**kwargs)
+        
+        self.fields['inddeposito'].widget.attrs['required'] = True
         
         self.fields['dtdecisao'].widget.attrs['required'] = True
         
-        self.fields['inddeposito'].widget.attrs['required'] = True
+        self.fields['indsusp'].widget.attrs['required'] = True
+        
+        self.fields['codsusp'].widget.attrs['required'] = True
+        self.fields['r1070_alteracao'].queryset = r1070alteracao.objects.using( slug ).filter(excluido=False).all()
+        self.fields['r1070_alteracao'].widget.attrs['required'] = True
 
     class Meta:
-        model = r1070inclusaoinfoSusp
+        model = r1070alteracaoinfoSusp
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_r1070_alteracao_dadosprocjud(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_r1070_alteracao_dadosprocjud,self ).__init__(*args,**kwargs)
+        
+        self.fields['idvara'].widget.attrs['required'] = True
+        
+        self.fields['codmunic'].widget.attrs['required'] = True
+        
+        self.fields['ufvara'].widget.attrs['required'] = True
+        
+        self.fields['r1070_alteracao'].widget.attrs['required'] = True
+
+    class Meta:
+        model = r1070alteracaodadosProcJud
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_r1070_alteracao(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_r1070_alteracao,self ).__init__(*args,**kwargs)
+        
+        self.fields['indautoria'].widget.attrs['required'] = True
+        
+        self.fields['fimvalid'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['nrproc'].widget.attrs['required'] = True
+        
+        self.fields['tpproc'].widget.attrs['required'] = True
+        
+        self.fields['r1070_evttabprocesso'].widget.attrs['required'] = True
+
+    class Meta:
+        model = r1070alteracao
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',

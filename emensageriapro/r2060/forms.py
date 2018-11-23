@@ -44,27 +44,29 @@ __author__ = 'marcelovasconcellos'
 
 
 class form_r2060_tipocod(forms.ModelForm):
-    vlrrecbrutaativ = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    vlrexcrecbruta = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    vlradicrecbruta = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    vlrbccprb = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrcprbapur = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vlrbccprb = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vlradicrecbruta = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vlrexcrecbruta = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vlrrecbrutaativ = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_r2060_tipocod,self ).__init__(*args,**kwargs)
-        self.fields['r2060_evtcprb'].queryset = r2060evtCPRB.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2060_evtcprb'].widget.attrs['required'] = True
         
-        self.fields['codativecon'].widget.attrs['required'] = True
+        self.fields['vlrcprbapur'].widget.attrs['required'] = True
         
-        self.fields['vlrrecbrutaativ'].widget.attrs['required'] = True
-        
-        self.fields['vlrexcrecbruta'].widget.attrs['required'] = True
+        self.fields['vlrbccprb'].widget.attrs['required'] = True
         
         self.fields['vlradicrecbruta'].widget.attrs['required'] = True
         
-        self.fields['vlrbccprb'].widget.attrs['required'] = True
+        self.fields['vlrexcrecbruta'].widget.attrs['required'] = True
+        
+        self.fields['vlrrecbrutaativ'].widget.attrs['required'] = True
+        
+        self.fields['codativecon'].widget.attrs['required'] = True
+        self.fields['r2060_evtcprb'].queryset = r2060evtCPRB.objects.using( slug ).filter(excluido=False).all()
+        self.fields['r2060_evtcprb'].widget.attrs['required'] = True
 
     class Meta:
         model = r2060tipoCod
@@ -82,18 +84,18 @@ class form_r2060_tipoajuste(forms.ModelForm):
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_r2060_tipoajuste,self ).__init__(*args,**kwargs)
-        self.fields['r2060_tipocod'].queryset = r2060tipoCod.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2060_tipocod'].widget.attrs['required'] = True
         
-        self.fields['tpajuste'].widget.attrs['required'] = True
-        
-        self.fields['codajuste'].widget.attrs['required'] = True
-        
-        self.fields['vlrajuste'].widget.attrs['required'] = True
+        self.fields['dtajuste'].widget.attrs['required'] = True
         
         self.fields['descajuste'].widget.attrs['required'] = True
         
-        self.fields['dtajuste'].widget.attrs['required'] = True
+        self.fields['vlrajuste'].widget.attrs['required'] = True
+        
+        self.fields['codajuste'].widget.attrs['required'] = True
+        
+        self.fields['tpajuste'].widget.attrs['required'] = True
+        self.fields['r2060_tipocod'].queryset = r2060tipoCod.objects.using( slug ).filter(excluido=False).all()
+        self.fields['r2060_tipocod'].widget.attrs['required'] = True
 
     class Meta:
         model = r2060tipoAjuste
@@ -111,14 +113,16 @@ class form_r2060_infoproc(forms.ModelForm):
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_r2060_infoproc,self ).__init__(*args,**kwargs)
-        self.fields['r2060_tipocod'].queryset = r2060tipoCod.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2060_tipocod'].widget.attrs['required'] = True
         
-        self.fields['tpproc'].widget.attrs['required'] = True
+        self.fields['vlrcprbsusp'].widget.attrs['required'] = True
+        
+        self.fields['codsusp'].widget.attrs['required'] = True
         
         self.fields['nrproc'].widget.attrs['required'] = True
         
-        self.fields['vlrcprbsusp'].widget.attrs['required'] = True
+        self.fields['tpproc'].widget.attrs['required'] = True
+        self.fields['r2060_tipocod'].queryset = r2060tipoCod.objects.using( slug ).filter(excluido=False).all()
+        self.fields['r2060_tipocod'].widget.attrs['required'] = True
 
     class Meta:
         model = r2060infoProc

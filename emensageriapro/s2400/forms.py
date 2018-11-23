@@ -52,15 +52,21 @@ class form_s2400_exterior(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2400_exterior,self ).__init__(*args,**kwargs)
         
-        self.fields['s2400_evtcdbenefin'].widget.attrs['required'] = True
+        self.fields['codpostal'].widget.attrs['required'] = True
         
-        self.fields['paisresid'].widget.attrs['required'] = True
+        self.fields['nmcid'].widget.attrs['required'] = True
         
-        self.fields['dsclograd'].widget.attrs['required'] = True
+        self.fields['bairro'].widget.attrs['required'] = True
+        
+        self.fields['complemento'].widget.attrs['required'] = True
         
         self.fields['nrlograd'].widget.attrs['required'] = True
         
-        self.fields['nmcid'].widget.attrs['required'] = True
+        self.fields['dsclograd'].widget.attrs['required'] = True
+        
+        self.fields['paisresid'].widget.attrs['required'] = True
+        
+        self.fields['s2400_evtcdbenefin'].widget.attrs['required'] = True
 
     class Meta:
         model = s2400exterior
@@ -77,22 +83,24 @@ class form_s2400_dependente(forms.ModelForm):
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_s2400_dependente,self ).__init__(*args,**kwargs)
-        self.fields['s2400_evtcdbenefin'].queryset = s2400evtCdBenefIn.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2400_evtcdbenefin'].widget.attrs['required'] = True
         
-        self.fields['tpdep'].widget.attrs['required'] = True
-        
-        self.fields['nmdep'].widget.attrs['required'] = True
-        
-        self.fields['dtnascto'].widget.attrs['required'] = True
-        
-        self.fields['sexodep'].widget.attrs['required'] = True
-        
-        self.fields['depirrf'].widget.attrs['required'] = True
+        self.fields['depfinsprev'].widget.attrs['required'] = True
         
         self.fields['incfismen'].widget.attrs['required'] = True
         
-        self.fields['depfinsprev'].widget.attrs['required'] = True
+        self.fields['depirrf'].widget.attrs['required'] = True
+        
+        self.fields['sexodep'].widget.attrs['required'] = True
+        
+        self.fields['cpfdep'].widget.attrs['required'] = True
+        
+        self.fields['dtnascto'].widget.attrs['required'] = True
+        
+        self.fields['nmdep'].widget.attrs['required'] = True
+        
+        self.fields['tpdep'].widget.attrs['required'] = True
+        self.fields['s2400_evtcdbenefin'].queryset = s2400evtCdBenefIn.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s2400_evtcdbenefin'].widget.attrs['required'] = True
 
     class Meta:
         model = s2400dependente
@@ -110,19 +118,23 @@ class form_s2400_brasil(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2400_brasil,self ).__init__(*args,**kwargs)
         
-        self.fields['s2400_evtcdbenefin'].widget.attrs['required'] = True
-        
-        self.fields['tplograd'].widget.attrs['required'] = True
-        
-        self.fields['dsclograd'].widget.attrs['required'] = True
-        
-        self.fields['nrlograd'].widget.attrs['required'] = True
-        
-        self.fields['cep'].widget.attrs['required'] = True
+        self.fields['uf'].widget.attrs['required'] = True
         
         self.fields['codmunic'].widget.attrs['required'] = True
         
-        self.fields['uf'].widget.attrs['required'] = True
+        self.fields['cep'].widget.attrs['required'] = True
+        
+        self.fields['bairro'].widget.attrs['required'] = True
+        
+        self.fields['complemento'].widget.attrs['required'] = True
+        
+        self.fields['nrlograd'].widget.attrs['required'] = True
+        
+        self.fields['dsclograd'].widget.attrs['required'] = True
+        
+        self.fields['tplograd'].widget.attrs['required'] = True
+        
+        self.fields['s2400_evtcdbenefin'].widget.attrs['required'] = True
 
     class Meta:
         model = s2400brasil

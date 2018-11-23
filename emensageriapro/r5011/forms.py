@@ -43,151 +43,24 @@ __author__ = 'marcelovasconcellos'
 
 
 
-class form_r5011_rcprb(forms.ModelForm):
-    vlrcrcprb = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    vlrcrcprbsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+class form_r5011_regocorrs(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r5011_rcprb,self ).__init__(*args,**kwargs)
-        self.fields['r5011_infototalcontrib'].queryset = r5011infoTotalContrib.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r5011_infototalcontrib'].widget.attrs['required'] = True
+        super (form_r5011_regocorrs,self ).__init__(*args,**kwargs)
         
-        self.fields['crcprb'].widget.attrs['required'] = True
+        self.fields['dscresp'].widget.attrs['required'] = True
         
-        self.fields['vlrcrcprb'].widget.attrs['required'] = True
+        self.fields['codresp'].widget.attrs['required'] = True
+        
+        self.fields['localerroaviso'].widget.attrs['required'] = True
+        
+        self.fields['tpocorr'].widget.attrs['required'] = True
+        self.fields['r5011_evttotalcontrib'].queryset = r5011evtTotalContrib.objects.using( slug ).filter(excluido=False).all()
+        self.fields['r5011_evttotalcontrib'].widget.attrs['required'] = True
 
     class Meta:
-        model = r5011RCPRB
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_r5011_rcoml(forms.ModelForm):
-    vlrcrcoml = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    vlrcrcomlsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_r5011_rcoml,self ).__init__(*args,**kwargs)
-        self.fields['r5011_infototalcontrib'].queryset = r5011infoTotalContrib.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r5011_infototalcontrib'].widget.attrs['required'] = True
-        
-        self.fields['crcoml'].widget.attrs['required'] = True
-        
-        self.fields['vlrcrcoml'].widget.attrs['required'] = True
-
-    class Meta:
-        model = r5011RComl
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_r5011_rprest(forms.ModelForm):
-    vlrtotalbaseret = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    vlrtotalretprinc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    vlrtotalretadic = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    vlrtotalnretprinc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    vlrtotalnretadic = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_r5011_rprest,self ).__init__(*args,**kwargs)
-        self.fields['r5011_infototalcontrib'].queryset = r5011infoTotalContrib.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r5011_infototalcontrib'].widget.attrs['required'] = True
-        
-        self.fields['tpinsctomador'].widget.attrs['required'] = True
-        
-        self.fields['nrinsctomador'].widget.attrs['required'] = True
-        
-        self.fields['vlrtotalbaseret'].widget.attrs['required'] = True
-        
-        self.fields['vlrtotalretprinc'].widget.attrs['required'] = True
-
-    class Meta:
-        model = r5011RPrest
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_r5011_rrecrepad(forms.ModelForm):
-    vlrtotalrep = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    vlrcrrecrepad = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    vlrcrrecrepadsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_r5011_rrecrepad,self ).__init__(*args,**kwargs)
-        
-        self.fields['r5011_infototalcontrib'].widget.attrs['required'] = True
-        
-        self.fields['cnpjassocdesp'].widget.attrs['required'] = True
-        
-        self.fields['vlrtotalrep'].widget.attrs['required'] = True
-        
-        self.fields['crrecrepad'].widget.attrs['required'] = True
-        
-        self.fields['vlrcrrecrepad'].widget.attrs['required'] = True
-
-    class Meta:
-        model = r5011RRecRepAD
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_r5011_rtom(forms.ModelForm):
-    vlrtotalbaseret = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_r5011_rtom,self ).__init__(*args,**kwargs)
-        self.fields['r5011_infototalcontrib'].queryset = r5011infoTotalContrib.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r5011_infototalcontrib'].widget.attrs['required'] = True
-        
-        self.fields['cnpjprestador'].widget.attrs['required'] = True
-        
-        self.fields['vlrtotalbaseret'].widget.attrs['required'] = True
-
-    class Meta:
-        model = r5011RTom
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_r5011_infocrtom(forms.ModelForm):
-    vlrcrtom = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    vlrcrtomsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_r5011_infocrtom,self ).__init__(*args,**kwargs)
-        self.fields['r5011_rtom'].queryset = r5011RTom.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r5011_rtom'].widget.attrs['required'] = True
-        
-        self.fields['crtom'].widget.attrs['required'] = True
-
-    class Meta:
-        model = r5011infoCRTom
+        model = r5011regOcorrs
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
@@ -202,9 +75,11 @@ class form_r5011_infototalcontrib(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_r5011_infototalcontrib,self ).__init__(*args,**kwargs)
         
-        self.fields['r5011_evttotalcontrib'].widget.attrs['required'] = True
-        
         self.fields['indexistinfo'].widget.attrs['required'] = True
+        
+        self.fields['nrrecarqbase'].widget.attrs['required'] = True
+        
+        self.fields['r5011_evttotalcontrib'].widget.attrs['required'] = True
 
     class Meta:
         model = r5011infoTotalContrib
@@ -216,24 +91,169 @@ class form_r5011_infototalcontrib(forms.ModelForm):
         ]
 
 
-class form_r5011_regocorrs(forms.ModelForm):
+class form_r5011_infocrtom(forms.ModelForm):
+    vlrcrtomsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vlrcrtom = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r5011_regocorrs,self ).__init__(*args,**kwargs)
-        self.fields['r5011_evttotalcontrib'].queryset = r5011evtTotalContrib.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r5011_evttotalcontrib'].widget.attrs['required'] = True
+        super (form_r5011_infocrtom,self ).__init__(*args,**kwargs)
         
-        self.fields['tpocorr'].widget.attrs['required'] = True
+        self.fields['vlrcrtomsusp'].widget.attrs['required'] = True
         
-        self.fields['localerroaviso'].widget.attrs['required'] = True
+        self.fields['vlrcrtom'].widget.attrs['required'] = True
         
-        self.fields['codresp'].widget.attrs['required'] = True
-        
-        self.fields['dscresp'].widget.attrs['required'] = True
+        self.fields['crtom'].widget.attrs['required'] = True
+        self.fields['r5011_rtom'].queryset = r5011RTom.objects.using( slug ).filter(excluido=False).all()
+        self.fields['r5011_rtom'].widget.attrs['required'] = True
 
     class Meta:
-        model = r5011regOcorrs
+        model = r5011infoCRTom
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_r5011_rtom(forms.ModelForm):
+    vlrtotalbaseret = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_r5011_rtom,self ).__init__(*args,**kwargs)
+        
+        self.fields['vlrtotalbaseret'].widget.attrs['required'] = True
+        
+        self.fields['cno'].widget.attrs['required'] = True
+        
+        self.fields['cnpjprestador'].widget.attrs['required'] = True
+        self.fields['r5011_infototalcontrib'].queryset = r5011infoTotalContrib.objects.using( slug ).filter(excluido=False).all()
+        self.fields['r5011_infototalcontrib'].widget.attrs['required'] = True
+
+    class Meta:
+        model = r5011RTom
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_r5011_rrecrepad(forms.ModelForm):
+    vlrcrrecrepadsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vlrcrrecrepad = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vlrtotalrep = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_r5011_rrecrepad,self ).__init__(*args,**kwargs)
+        
+        self.fields['vlrcrrecrepadsusp'].widget.attrs['required'] = True
+        
+        self.fields['vlrcrrecrepad'].widget.attrs['required'] = True
+        
+        self.fields['crrecrepad'].widget.attrs['required'] = True
+        
+        self.fields['vlrtotalrep'].widget.attrs['required'] = True
+        
+        self.fields['cnpjassocdesp'].widget.attrs['required'] = True
+        
+        self.fields['r5011_infototalcontrib'].widget.attrs['required'] = True
+
+    class Meta:
+        model = r5011RRecRepAD
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_r5011_rprest(forms.ModelForm):
+    vlrtotalnretadic = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vlrtotalnretprinc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vlrtotalretadic = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vlrtotalretprinc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vlrtotalbaseret = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_r5011_rprest,self ).__init__(*args,**kwargs)
+        
+        self.fields['vlrtotalnretadic'].widget.attrs['required'] = True
+        
+        self.fields['vlrtotalnretprinc'].widget.attrs['required'] = True
+        
+        self.fields['vlrtotalretadic'].widget.attrs['required'] = True
+        
+        self.fields['vlrtotalretprinc'].widget.attrs['required'] = True
+        
+        self.fields['vlrtotalbaseret'].widget.attrs['required'] = True
+        
+        self.fields['nrinsctomador'].widget.attrs['required'] = True
+        
+        self.fields['tpinsctomador'].widget.attrs['required'] = True
+        self.fields['r5011_infototalcontrib'].queryset = r5011infoTotalContrib.objects.using( slug ).filter(excluido=False).all()
+        self.fields['r5011_infototalcontrib'].widget.attrs['required'] = True
+
+    class Meta:
+        model = r5011RPrest
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_r5011_rcoml(forms.ModelForm):
+    vlrcrcomlsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vlrcrcoml = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_r5011_rcoml,self ).__init__(*args,**kwargs)
+        
+        self.fields['vlrcrcomlsusp'].widget.attrs['required'] = True
+        
+        self.fields['vlrcrcoml'].widget.attrs['required'] = True
+        
+        self.fields['crcoml'].widget.attrs['required'] = True
+        self.fields['r5011_infototalcontrib'].queryset = r5011infoTotalContrib.objects.using( slug ).filter(excluido=False).all()
+        self.fields['r5011_infototalcontrib'].widget.attrs['required'] = True
+
+    class Meta:
+        model = r5011RComl
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_r5011_rcprb(forms.ModelForm):
+    vlrcrcprbsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vlrcrcprb = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_r5011_rcprb,self ).__init__(*args,**kwargs)
+        
+        self.fields['vlrcrcprbsusp'].widget.attrs['required'] = True
+        
+        self.fields['vlrcrcprb'].widget.attrs['required'] = True
+        
+        self.fields['crcprb'].widget.attrs['required'] = True
+        self.fields['r5011_infototalcontrib'].queryset = r5011infoTotalContrib.objects.using( slug ).filter(excluido=False).all()
+        self.fields['r5011_infototalcontrib'].widget.attrs['required'] = True
+
+    class Meta:
+        model = r5011RCPRB
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',

@@ -353,58 +353,58 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_r3010_evtespdesportivo': 1,
-            'show_nrboletim': 1,
-            'show_tpcompeticao': 1,
-            'show_categevento': 1,
-            'show_moddesportiva': 1,
-            'show_nomecompeticao': 1,
-            'show_cnpjmandante': 1,
-            'show_cnpjvisitante': 0,
-            'show_nomevisitante': 0,
-            'show_pracadesportiva': 1,
-            'show_codmunic': 0,
-            'show_uf': 1,
+            'show_qtdenaopagantes': 1,
             'show_qtdepagantes': 1,
-            'show_qtdenaopagantes': 1, }
+            'show_uf': 1,
+            'show_codmunic': 0,
+            'show_pracadesportiva': 1,
+            'show_nomevisitante': 0,
+            'show_cnpjvisitante': 0,
+            'show_cnpjmandante': 1,
+            'show_nomecompeticao': 1,
+            'show_moddesportiva': 1,
+            'show_categevento': 1,
+            'show_tpcompeticao': 1,
+            'show_nrboletim': 1,
+            'show_r3010_evtespdesportivo': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'r3010_evtespdesportivo': 'r3010_evtespdesportivo',
-                'nrboletim__icontains': 'nrboletim__icontains',
-                'tpcompeticao': 'tpcompeticao',
-                'categevento': 'categevento',
-                'moddesportiva__icontains': 'moddesportiva__icontains',
-                'nomecompeticao__icontains': 'nomecompeticao__icontains',
-                'cnpjmandante__icontains': 'cnpjmandante__icontains',
-                'cnpjvisitante__icontains': 'cnpjvisitante__icontains',
-                'nomevisitante__icontains': 'nomevisitante__icontains',
-                'pracadesportiva__icontains': 'pracadesportiva__icontains',
-                'codmunic__icontains': 'codmunic__icontains',
-                'uf__icontains': 'uf__icontains',
+                'qtdenaopagantes': 'qtdenaopagantes',
                 'qtdepagantes': 'qtdepagantes',
-                'qtdenaopagantes': 'qtdenaopagantes',}
+                'uf__icontains': 'uf__icontains',
+                'codmunic__icontains': 'codmunic__icontains',
+                'pracadesportiva__icontains': 'pracadesportiva__icontains',
+                'nomevisitante__icontains': 'nomevisitante__icontains',
+                'cnpjvisitante__icontains': 'cnpjvisitante__icontains',
+                'cnpjmandante__icontains': 'cnpjmandante__icontains',
+                'nomecompeticao__icontains': 'nomecompeticao__icontains',
+                'moddesportiva__icontains': 'moddesportiva__icontains',
+                'categevento': 'categevento',
+                'tpcompeticao': 'tpcompeticao',
+                'nrboletim__icontains': 'nrboletim__icontains',
+                'r3010_evtespdesportivo': 'r3010_evtespdesportivo',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'r3010_evtespdesportivo': 'r3010_evtespdesportivo',
-                'nrboletim__icontains': 'nrboletim__icontains',
-                'tpcompeticao': 'tpcompeticao',
-                'categevento': 'categevento',
-                'moddesportiva__icontains': 'moddesportiva__icontains',
-                'nomecompeticao__icontains': 'nomecompeticao__icontains',
-                'cnpjmandante__icontains': 'cnpjmandante__icontains',
-                'cnpjvisitante__icontains': 'cnpjvisitante__icontains',
-                'nomevisitante__icontains': 'nomevisitante__icontains',
-                'pracadesportiva__icontains': 'pracadesportiva__icontains',
-                'codmunic__icontains': 'codmunic__icontains',
-                'uf__icontains': 'uf__icontains',
+                'qtdenaopagantes': 'qtdenaopagantes',
                 'qtdepagantes': 'qtdepagantes',
-                'qtdenaopagantes': 'qtdenaopagantes',}
+                'uf__icontains': 'uf__icontains',
+                'codmunic__icontains': 'codmunic__icontains',
+                'pracadesportiva__icontains': 'pracadesportiva__icontains',
+                'nomevisitante__icontains': 'nomevisitante__icontains',
+                'cnpjvisitante__icontains': 'cnpjvisitante__icontains',
+                'cnpjmandante__icontains': 'cnpjmandante__icontains',
+                'nomecompeticao__icontains': 'nomecompeticao__icontains',
+                'moddesportiva__icontains': 'moddesportiva__icontains',
+                'categevento': 'categevento',
+                'tpcompeticao': 'tpcompeticao',
+                'nrboletim__icontains': 'nrboletim__icontains',
+                'r3010_evtespdesportivo': 'r3010_evtespdesportivo',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

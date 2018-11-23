@@ -339,28 +339,28 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s2240_evtexprisco': 1,
-            'show_meterg': 0,
+            'show_observacao': 0,
             'show_obscompl': 0,
-            'show_observacao': 0, }
+            'show_meterg': 0,
+            'show_s2240_evtexprisco': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's2240_evtexprisco': 's2240_evtexprisco',
-                'meterg__icontains': 'meterg__icontains',
+                'observacao__icontains': 'observacao__icontains',
                 'obscompl__icontains': 'obscompl__icontains',
-                'observacao__icontains': 'observacao__icontains',}
+                'meterg__icontains': 'meterg__icontains',
+                's2240_evtexprisco': 's2240_evtexprisco',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's2240_evtexprisco': 's2240_evtexprisco',
-                'meterg__icontains': 'meterg__icontains',
+                'observacao__icontains': 'observacao__icontains',
                 'obscompl__icontains': 'obscompl__icontains',
-                'observacao__icontains': 'observacao__icontains',}
+                'meterg__icontains': 'meterg__icontains',
+                's2240_evtexprisco': 's2240_evtexprisco',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

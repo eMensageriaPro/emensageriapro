@@ -339,31 +339,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_r2010_evtservtom': 1,
-            'show_tpprocretprinc': 1,
-            'show_nrprocretprinc': 1,
+            'show_valorprinc': 1,
             'show_codsuspprinc': 0,
-            'show_valorprinc': 1, }
+            'show_nrprocretprinc': 1,
+            'show_tpprocretprinc': 1,
+            'show_r2010_evtservtom': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'r2010_evtservtom': 'r2010_evtservtom',
-                'tpprocretprinc': 'tpprocretprinc',
-                'nrprocretprinc__icontains': 'nrprocretprinc__icontains',
+                'valorprinc': 'valorprinc',
                 'codsuspprinc': 'codsuspprinc',
-                'valorprinc': 'valorprinc',}
+                'nrprocretprinc__icontains': 'nrprocretprinc__icontains',
+                'tpprocretprinc': 'tpprocretprinc',
+                'r2010_evtservtom': 'r2010_evtservtom',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'r2010_evtservtom': 'r2010_evtservtom',
-                'tpprocretprinc': 'tpprocretprinc',
-                'nrprocretprinc__icontains': 'nrprocretprinc__icontains',
+                'valorprinc': 'valorprinc',
                 'codsuspprinc': 'codsuspprinc',
-                'valorprinc': 'valorprinc',}
+                'nrprocretprinc__icontains': 'nrprocretprinc__icontains',
+                'tpprocretprinc': 'tpprocretprinc',
+                'r2010_evtservtom': 'r2010_evtservtom',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

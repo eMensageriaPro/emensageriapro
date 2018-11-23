@@ -50,11 +50,11 @@ class form_s2306_supervisorestagio(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2306_supervisorestagio,self ).__init__(*args,**kwargs)
         
-        self.fields['s2306_infoestagiario'].widget.attrs['required'] = True
+        self.fields['nmsuperv'].widget.attrs['required'] = True
         
         self.fields['cpfsupervisor'].widget.attrs['required'] = True
         
-        self.fields['nmsuperv'].widget.attrs['required'] = True
+        self.fields['s2306_infoestagiario'].widget.attrs['required'] = True
 
     class Meta:
         model = s2306supervisorEstagio
@@ -73,11 +73,13 @@ class form_s2306_remuneracao(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2306_remuneracao,self ).__init__(*args,**kwargs)
         
-        self.fields['s2306_evttsvaltcontr'].widget.attrs['required'] = True
+        self.fields['dscsalvar'].widget.attrs['required'] = True
+        
+        self.fields['undsalfixo'].widget.attrs['required'] = True
         
         self.fields['vrsalfx'].widget.attrs['required'] = True
         
-        self.fields['undsalfixo'].widget.attrs['required'] = True
+        self.fields['s2306_evttsvaltcontr'].widget.attrs['required'] = True
 
     class Meta:
         model = s2306remuneracao
@@ -95,9 +97,9 @@ class form_s2306_infotrabcedido(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2306_infotrabcedido,self ).__init__(*args,**kwargs)
         
-        self.fields['s2306_evttsvaltcontr'].widget.attrs['required'] = True
-        
         self.fields['indremuncargo'].widget.attrs['required'] = True
+        
+        self.fields['s2306_evttsvaltcontr'].widget.attrs['required'] = True
 
     class Meta:
         model = s2306infoTrabCedido
@@ -116,15 +118,35 @@ class form_s2306_infoestagiario(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2306_infoestagiario,self ).__init__(*args,**kwargs)
         
-        self.fields['s2306_evttsvaltcontr'].widget.attrs['required'] = True
+        self.fields['uf'].widget.attrs['required'] = True
         
-        self.fields['natestagio'].widget.attrs['required'] = True
+        self.fields['codmunic'].widget.attrs['required'] = True
         
-        self.fields['nivestagio'].widget.attrs['required'] = True
+        self.fields['cep'].widget.attrs['required'] = True
+        
+        self.fields['bairro'].widget.attrs['required'] = True
+        
+        self.fields['nrlograd'].widget.attrs['required'] = True
+        
+        self.fields['dsclograd'].widget.attrs['required'] = True
+        
+        self.fields['nmrazao'].widget.attrs['required'] = True
+        
+        self.fields['cnpjinstensino'].widget.attrs['required'] = True
         
         self.fields['dtprevterm'].widget.attrs['required'] = True
         
-        self.fields['nmrazao'].widget.attrs['required'] = True
+        self.fields['vlrbolsa'].widget.attrs['required'] = True
+        
+        self.fields['nrapol'].widget.attrs['required'] = True
+        
+        self.fields['areaatuacao'].widget.attrs['required'] = True
+        
+        self.fields['nivestagio'].widget.attrs['required'] = True
+        
+        self.fields['natestagio'].widget.attrs['required'] = True
+        
+        self.fields['s2306_evttsvaltcontr'].widget.attrs['required'] = True
 
     class Meta:
         model = s2306infoEstagiario
@@ -142,9 +164,11 @@ class form_s2306_cargofuncao(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2306_cargofuncao,self ).__init__(*args,**kwargs)
         
-        self.fields['s2306_evttsvaltcontr'].widget.attrs['required'] = True
+        self.fields['codfuncao'].widget.attrs['required'] = True
         
         self.fields['codcargo'].widget.attrs['required'] = True
+        
+        self.fields['s2306_evttsvaltcontr'].widget.attrs['required'] = True
 
     class Meta:
         model = s2306cargoFuncao
@@ -162,19 +186,23 @@ class form_s2306_ageintegracao(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2306_ageintegracao,self ).__init__(*args,**kwargs)
         
-        self.fields['s2306_infoestagiario'].widget.attrs['required'] = True
+        self.fields['uf'].widget.attrs['required'] = True
         
-        self.fields['cnpjagntinteg'].widget.attrs['required'] = True
-        
-        self.fields['nmrazao'].widget.attrs['required'] = True
-        
-        self.fields['dsclograd'].widget.attrs['required'] = True
-        
-        self.fields['nrlograd'].widget.attrs['required'] = True
+        self.fields['codmunic'].widget.attrs['required'] = True
         
         self.fields['cep'].widget.attrs['required'] = True
         
-        self.fields['uf'].widget.attrs['required'] = True
+        self.fields['bairro'].widget.attrs['required'] = True
+        
+        self.fields['nrlograd'].widget.attrs['required'] = True
+        
+        self.fields['dsclograd'].widget.attrs['required'] = True
+        
+        self.fields['nmrazao'].widget.attrs['required'] = True
+        
+        self.fields['cnpjagntinteg'].widget.attrs['required'] = True
+        
+        self.fields['s2306_infoestagiario'].widget.attrs['required'] = True
 
     class Meta:
         model = s2306ageIntegracao

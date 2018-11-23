@@ -59,14 +59,14 @@ SIM_NAO = (
 )
 
 class Auditoria(models.Model):
-    tabela = models.CharField(max_length=200)
-    identidade = models.IntegerField()
-    situacao_anterior = models.TextField()
-    situacao_posterior = models.TextField()
-    tipo = models.IntegerField(choices=AUDITORIA_TIPO)
+    tabela = models.CharField(max_length=200, blank=True)
+    identidade = models.IntegerField(blank=True)
+    situacao_anterior = models.TextField(blank=True)
+    situacao_posterior = models.TextField(blank=True)
+    tipo = models.IntegerField(choices=AUDITORIA_TIPO, blank=True)
     operador = models.ForeignKey('Usuarios',
-        related_name='%(class)s_operador')
-    data_hora = models.DateTimeField()
+        related_name='%(class)s_operador', blank=True)
+    data_hora = models.DateTimeField(blank=True)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -224,11 +224,11 @@ class Usuarios(User):
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
     email = models.EmailField(max_length=60)
-    is_superuser = models.BooleanField()
-    is_staff = models.BooleanField()
-    is_active = models.BooleanField()
-    last_login = models.DateTimeField()
-    date_joined = models.DateField()
+    is_superuser = models.BooleanField(blank=True)
+    is_staff = models.BooleanField(blank=True)
+    is_active = models.BooleanField(blank=True)
+    last_login = models.DateTimeField(blank=True)
+    date_joined = models.DateField(blank=True)
     """
     config_perfis = models.ForeignKey('ConfigPerfis',
         related_name='%(class)s_config_perfis')

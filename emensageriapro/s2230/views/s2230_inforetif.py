@@ -339,28 +339,28 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s2230_evtafasttemp': 1,
-            'show_origretif': 1,
+            'show_nrproc': 0,
             'show_tpproc': 0,
-            'show_nrproc': 0, }
+            'show_origretif': 1,
+            'show_s2230_evtafasttemp': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's2230_evtafasttemp': 's2230_evtafasttemp',
-                'origretif': 'origretif',
+                'nrproc__icontains': 'nrproc__icontains',
                 'tpproc': 'tpproc',
-                'nrproc__icontains': 'nrproc__icontains',}
+                'origretif': 'origretif',
+                's2230_evtafasttemp': 's2230_evtafasttemp',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's2230_evtafasttemp': 's2230_evtafasttemp',
-                'origretif': 'origretif',
+                'nrproc__icontains': 'nrproc__icontains',
                 'tpproc': 'tpproc',
-                'nrproc__icontains': 'nrproc__icontains',}
+                'origretif': 'origretif',
+                's2230_evtafasttemp': 's2230_evtafasttemp',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

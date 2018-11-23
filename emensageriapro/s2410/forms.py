@@ -49,13 +49,13 @@ class form_s2410_instpenmorte(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2410_instpenmorte,self ).__init__(*args,**kwargs)
         
-        self.fields['s2410_infopenmorte'].widget.attrs['required'] = True
-        
-        self.fields['cpfinst'].widget.attrs['required'] = True
+        self.fields['intaposentado'].widget.attrs['required'] = True
         
         self.fields['dtinst'].widget.attrs['required'] = True
         
-        self.fields['intaposentado'].widget.attrs['required'] = True
+        self.fields['cpfinst'].widget.attrs['required'] = True
+        
+        self.fields['s2410_infopenmorte'].widget.attrs['required'] = True
 
     class Meta:
         model = s2410instPenMorte
@@ -73,9 +73,9 @@ class form_s2410_infopenmorte(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2410_infopenmorte,self ).__init__(*args,**kwargs)
         
-        self.fields['s2410_evtcdbenin'].widget.attrs['required'] = True
-        
         self.fields['tppenmorte'].widget.attrs['required'] = True
+        
+        self.fields['s2410_evtcdbenin'].widget.attrs['required'] = True
 
     class Meta:
         model = s2410infoPenMorte
@@ -93,11 +93,11 @@ class form_s2410_homologtc(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2410_homologtc,self ).__init__(*args,**kwargs)
         
-        self.fields['s2410_evtcdbenin'].widget.attrs['required'] = True
+        self.fields['nratolegal'].widget.attrs['required'] = True
         
         self.fields['dthomol'].widget.attrs['required'] = True
         
-        self.fields['nratolegal'].widget.attrs['required'] = True
+        self.fields['s2410_evtcdbenin'].widget.attrs['required'] = True
 
     class Meta:
         model = s2410homologTC

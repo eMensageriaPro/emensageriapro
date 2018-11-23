@@ -339,28 +339,28 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s2410_infopenmorte': 1,
-            'show_cpfinst': 1,
+            'show_intaposentado': 1,
             'show_dtinst': 1,
-            'show_intaposentado': 1, }
+            'show_cpfinst': 1,
+            'show_s2410_infopenmorte': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's2410_infopenmorte': 's2410_infopenmorte',
-                'cpfinst__icontains': 'cpfinst__icontains',
+                'intaposentado__icontains': 'intaposentado__icontains',
                 'dtinst__range': 'dtinst__range',
-                'intaposentado__icontains': 'intaposentado__icontains',}
+                'cpfinst__icontains': 'cpfinst__icontains',
+                's2410_infopenmorte': 's2410_infopenmorte',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's2410_infopenmorte': 's2410_infopenmorte',
-                'cpfinst__icontains': 'cpfinst__icontains',
+                'intaposentado__icontains': 'intaposentado__icontains',
                 'dtinst__range': 'dtinst__range',
-                'intaposentado__icontains': 'intaposentado__icontains',}
+                'cpfinst__icontains': 'cpfinst__icontains',
+                's2410_infopenmorte': 's2410_infopenmorte',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

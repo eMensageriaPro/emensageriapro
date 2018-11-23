@@ -360,46 +360,46 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s1070_evttabprocesso': 1,
-            'show_ideprocesso': 0,
-            'show_tpproc': 1,
-            'show_nrproc': 1,
-            'show_inivalid': 1,
-            'show_fimvalid': 0,
-            'show_dadosproc': 0,
-            'show_indautoria': 0,
+            'show_observacao': 0,
             'show_indmatproc': 1,
-            'show_observacao': 0, }
+            'show_indautoria': 0,
+            'show_dadosproc': 0,
+            'show_fimvalid': 0,
+            'show_inivalid': 1,
+            'show_nrproc': 1,
+            'show_tpproc': 1,
+            'show_ideprocesso': 0,
+            'show_s1070_evttabprocesso': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's1070_evttabprocesso': 's1070_evttabprocesso',
-                'ideprocesso': 'ideprocesso',
-                'tpproc': 'tpproc',
-                'nrproc__icontains': 'nrproc__icontains',
-                'inivalid__icontains': 'inivalid__icontains',
-                'fimvalid__icontains': 'fimvalid__icontains',
-                'dadosproc': 'dadosproc',
-                'indautoria': 'indautoria',
+                'observacao__icontains': 'observacao__icontains',
                 'indmatproc': 'indmatproc',
-                'observacao__icontains': 'observacao__icontains',}
+                'indautoria': 'indautoria',
+                'dadosproc': 'dadosproc',
+                'fimvalid__icontains': 'fimvalid__icontains',
+                'inivalid__icontains': 'inivalid__icontains',
+                'nrproc__icontains': 'nrproc__icontains',
+                'tpproc': 'tpproc',
+                'ideprocesso': 'ideprocesso',
+                's1070_evttabprocesso': 's1070_evttabprocesso',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's1070_evttabprocesso': 's1070_evttabprocesso',
-                'ideprocesso': 'ideprocesso',
-                'tpproc': 'tpproc',
-                'nrproc__icontains': 'nrproc__icontains',
-                'inivalid__icontains': 'inivalid__icontains',
-                'fimvalid__icontains': 'fimvalid__icontains',
-                'dadosproc': 'dadosproc',
-                'indautoria': 'indautoria',
+                'observacao__icontains': 'observacao__icontains',
                 'indmatproc': 'indmatproc',
-                'observacao__icontains': 'observacao__icontains',}
+                'indautoria': 'indautoria',
+                'dadosproc': 'dadosproc',
+                'fimvalid__icontains': 'fimvalid__icontains',
+                'inivalid__icontains': 'inivalid__icontains',
+                'nrproc__icontains': 'nrproc__icontains',
+                'tpproc': 'tpproc',
+                'ideprocesso': 'ideprocesso',
+                's1070_evttabprocesso': 's1070_evttabprocesso',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

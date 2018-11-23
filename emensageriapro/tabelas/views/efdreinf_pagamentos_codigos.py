@@ -324,31 +324,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_grupo': 1,
-            'show_codigo': 1,
-            'show_beneficiario_pj': 1,
+            'show_descricao': 1,
             'show_beneficiario_pf': 1,
-            'show_descricao': 1, }
+            'show_beneficiario_pj': 1,
+            'show_codigo': 1,
+            'show_grupo': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'grupo': 'grupo',
-                'codigo__icontains': 'codigo__icontains',
-                'beneficiario_pj__icontains': 'beneficiario_pj__icontains',
+                'descricao__icontains': 'descricao__icontains',
                 'beneficiario_pf__icontains': 'beneficiario_pf__icontains',
-                'descricao__icontains': 'descricao__icontains',}
+                'beneficiario_pj__icontains': 'beneficiario_pj__icontains',
+                'codigo__icontains': 'codigo__icontains',
+                'grupo': 'grupo',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'grupo': 'grupo',
-                'codigo__icontains': 'codigo__icontains',
-                'beneficiario_pj__icontains': 'beneficiario_pj__icontains',
+                'descricao__icontains': 'descricao__icontains',
                 'beneficiario_pf__icontains': 'beneficiario_pf__icontains',
-                'descricao__icontains': 'descricao__icontains',}
+                'beneficiario_pj__icontains': 'beneficiario_pj__icontains',
+                'codigo__icontains': 'codigo__icontains',
+                'grupo': 'grupo',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

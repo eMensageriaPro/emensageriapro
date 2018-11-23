@@ -49,19 +49,21 @@ class form_s1030_inclusao_cargopublico(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s1030_inclusao_cargopublico,self ).__init__(*args,**kwargs)
         
-        self.fields['s1030_inclusao'].widget.attrs['required'] = True
-        
-        self.fields['acumcargo'].widget.attrs['required'] = True
-        
-        self.fields['contagemesp'].widget.attrs['required'] = True
-        
-        self.fields['dedicexcl'].widget.attrs['required'] = True
-        
-        self.fields['nrlei'].widget.attrs['required'] = True
+        self.fields['sitcargo'].widget.attrs['required'] = True
         
         self.fields['dtlei'].widget.attrs['required'] = True
         
-        self.fields['sitcargo'].widget.attrs['required'] = True
+        self.fields['nrlei'].widget.attrs['required'] = True
+        
+        self.fields['codcarreira'].widget.attrs['required'] = True
+        
+        self.fields['dedicexcl'].widget.attrs['required'] = True
+        
+        self.fields['contagemesp'].widget.attrs['required'] = True
+        
+        self.fields['acumcargo'].widget.attrs['required'] = True
+        
+        self.fields['s1030_inclusao'].widget.attrs['required'] = True
 
     class Meta:
         model = s1030inclusaocargoPublico
@@ -79,15 +81,17 @@ class form_s1030_inclusao(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s1030_inclusao,self ).__init__(*args,**kwargs)
         
-        self.fields['s1030_evttabcargo'].widget.attrs['required'] = True
-        
-        self.fields['codcargo'].widget.attrs['required'] = True
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
+        self.fields['codcbo'].widget.attrs['required'] = True
         
         self.fields['nmcargo'].widget.attrs['required'] = True
         
-        self.fields['codcbo'].widget.attrs['required'] = True
+        self.fields['fimvalid'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['codcargo'].widget.attrs['required'] = True
+        
+        self.fields['s1030_evttabcargo'].widget.attrs['required'] = True
 
     class Meta:
         model = s1030inclusao
@@ -105,11 +109,13 @@ class form_s1030_exclusao(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s1030_exclusao,self ).__init__(*args,**kwargs)
         
-        self.fields['s1030_evttabcargo'].widget.attrs['required'] = True
+        self.fields['fimvalid'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
         
         self.fields['codcargo'].widget.attrs['required'] = True
         
-        self.fields['inivalid'].widget.attrs['required'] = True
+        self.fields['s1030_evttabcargo'].widget.attrs['required'] = True
 
     class Meta:
         model = s1030exclusao
@@ -127,9 +133,11 @@ class form_s1030_alteracao_novavalidade(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s1030_alteracao_novavalidade,self ).__init__(*args,**kwargs)
         
-        self.fields['s1030_alteracao'].widget.attrs['required'] = True
+        self.fields['fimvalid'].widget.attrs['required'] = True
         
         self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['s1030_alteracao'].widget.attrs['required'] = True
 
     class Meta:
         model = s1030alteracaonovaValidade
@@ -147,19 +155,21 @@ class form_s1030_alteracao_cargopublico(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s1030_alteracao_cargopublico,self ).__init__(*args,**kwargs)
         
-        self.fields['s1030_alteracao'].widget.attrs['required'] = True
-        
-        self.fields['acumcargo'].widget.attrs['required'] = True
-        
-        self.fields['contagemesp'].widget.attrs['required'] = True
-        
-        self.fields['dedicexcl'].widget.attrs['required'] = True
-        
-        self.fields['nrlei'].widget.attrs['required'] = True
+        self.fields['sitcargo'].widget.attrs['required'] = True
         
         self.fields['dtlei'].widget.attrs['required'] = True
         
-        self.fields['sitcargo'].widget.attrs['required'] = True
+        self.fields['nrlei'].widget.attrs['required'] = True
+        
+        self.fields['codcarreira'].widget.attrs['required'] = True
+        
+        self.fields['dedicexcl'].widget.attrs['required'] = True
+        
+        self.fields['contagemesp'].widget.attrs['required'] = True
+        
+        self.fields['acumcargo'].widget.attrs['required'] = True
+        
+        self.fields['s1030_alteracao'].widget.attrs['required'] = True
 
     class Meta:
         model = s1030alteracaocargoPublico
@@ -177,15 +187,17 @@ class form_s1030_alteracao(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s1030_alteracao,self ).__init__(*args,**kwargs)
         
-        self.fields['s1030_evttabcargo'].widget.attrs['required'] = True
-        
-        self.fields['codcargo'].widget.attrs['required'] = True
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
+        self.fields['codcbo'].widget.attrs['required'] = True
         
         self.fields['nmcargo'].widget.attrs['required'] = True
         
-        self.fields['codcbo'].widget.attrs['required'] = True
+        self.fields['fimvalid'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['codcargo'].widget.attrs['required'] = True
+        
+        self.fields['s1030_evttabcargo'].widget.attrs['required'] = True
 
     class Meta:
         model = s1030alteracao

@@ -48,26 +48,26 @@ class form_auditoria(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_auditoria,self ).__init__(*args,**kwargs)
         
-        self.fields['tabela'].widget.attrs['required'] = True
-        self.fields['tabela'].widget.attrs['readonly'] = True
-        
-        self.fields['identidade'].widget.attrs['required'] = True
-        self.fields['identidade'].widget.attrs['readonly'] = True
-        
-        self.fields['situacao_anterior'].widget.attrs['required'] = True
-        self.fields['situacao_anterior'].widget.attrs['readonly'] = True
-        
-        self.fields['situacao_posterior'].widget.attrs['required'] = True
-        self.fields['situacao_posterior'].widget.attrs['readonly'] = True
-        self.fields['operador'].queryset = Usuarios.objects.using( slug ).filter(excluido=False).all()
-        self.fields['operador'].widget.attrs['required'] = True
-        self.fields['operador'].widget.attrs['readonly'] = True
-        
-        self.fields['data_hora'].widget.attrs['required'] = True
-        self.fields['data_hora'].widget.attrs['readonly'] = True
-        
-        self.fields['tipo'].widget.attrs['required'] = True
         self.fields['tipo'].widget.attrs['readonly'] = True
+        self.fields['tipo'].widget.attrs['disabled'] = True
+        
+        self.fields['data_hora'].widget.attrs['readonly'] = True
+        self.fields['data_hora'].widget.attrs['disabled'] = True
+        self.fields['operador'].queryset = Usuarios.objects.using( slug ).filter(excluido=False).all()
+        self.fields['operador'].widget.attrs['readonly'] = True
+        self.fields['operador'].widget.attrs['disabled'] = True
+        
+        self.fields['situacao_posterior'].widget.attrs['readonly'] = True
+        self.fields['situacao_posterior'].widget.attrs['disabled'] = True
+        
+        self.fields['situacao_anterior'].widget.attrs['readonly'] = True
+        self.fields['situacao_anterior'].widget.attrs['disabled'] = True
+        
+        self.fields['identidade'].widget.attrs['readonly'] = True
+        self.fields['identidade'].widget.attrs['disabled'] = True
+        
+        self.fields['tabela'].widget.attrs['readonly'] = True
+        self.fields['tabela'].widget.attrs['disabled'] = True
 
     class Meta:
         model = Auditoria
@@ -84,16 +84,16 @@ class form_usuarios(forms.ModelForm):
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_usuarios,self ).__init__(*args,**kwargs)
+        self.fields['config_perfis'].queryset = ConfigPerfis.objects.using( slug ).filter(excluido=False).all()
+        self.fields['config_perfis'].widget.attrs['required'] = True
         
-        self.fields['username'].widget.attrs['required'] = True
-        
-        self.fields['first_name'].widget.attrs['required'] = True
+        self.fields['email'].widget.attrs['required'] = True
         
         self.fields['last_name'].widget.attrs['required'] = True
         
-        self.fields['email'].widget.attrs['required'] = True
-        self.fields['config_perfis'].queryset = ConfigPerfis.objects.using( slug ).filter(excluido=False).all()
-        self.fields['config_perfis'].widget.attrs['required'] = True
+        self.fields['first_name'].widget.attrs['required'] = True
+        
+        self.fields['username'].widget.attrs['required'] = True
 
     class Meta:
         model = Usuarios
@@ -101,12 +101,12 @@ class form_usuarios(forms.ModelForm):
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
             'excluido',
-            'password',
-            'is_superuser',
-            'is_staff',
-            'is_active',
-            'last_login',
             'date_joined',
+            'last_login',
+            'is_active',
+            'is_staff',
+            'is_superuser',
+            'password',
  
         ]
 
@@ -116,20 +116,20 @@ class form_config_permissoes(forms.ModelForm):
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_config_permissoes,self ).__init__(*args,**kwargs)
-        self.fields['config_perfis'].queryset = ConfigPerfis.objects.using( slug ).filter(excluido=False).all()
-        self.fields['config_perfis'].widget.attrs['required'] = True
-        self.fields['config_paginas'].queryset = ConfigPaginas.objects.using( slug ).filter(excluido=False).all()
-        self.fields['config_paginas'].widget.attrs['required'] = True
         
-        self.fields['permite_listar'].widget.attrs['required'] = True
-        
-        self.fields['permite_cadastrar'].widget.attrs['required'] = True
-        
-        self.fields['permite_editar'].widget.attrs['required'] = True
+        self.fields['permite_apagar'].widget.attrs['required'] = True
         
         self.fields['permite_visualizar'].widget.attrs['required'] = True
         
-        self.fields['permite_apagar'].widget.attrs['required'] = True
+        self.fields['permite_editar'].widget.attrs['required'] = True
+        
+        self.fields['permite_cadastrar'].widget.attrs['required'] = True
+        
+        self.fields['permite_listar'].widget.attrs['required'] = True
+        self.fields['config_paginas'].queryset = ConfigPaginas.objects.using( slug ).filter(excluido=False).all()
+        self.fields['config_paginas'].widget.attrs['required'] = True
+        self.fields['config_perfis'].queryset = ConfigPerfis.objects.using( slug ).filter(excluido=False).all()
+        self.fields['config_perfis'].widget.attrs['required'] = True
 
     class Meta:
         model = ConfigPermissoes
@@ -155,9 +155,9 @@ class form_config_perfis(forms.ModelForm):
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
             'excluido',
-            'permissoes',
-            'modulos_permitidos',
             'paginas_permitidas',
+            'modulos_permitidos',
+            'permissoes',
  
         ]
 
@@ -167,18 +167,18 @@ class form_config_paginas(forms.ModelForm):
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_config_paginas,self ).__init__(*args,**kwargs)
-        self.fields['config_modulos'].queryset = ConfigModulos.objects.using( slug ).filter(excluido=False).all()
-        self.fields['config_modulos'].widget.attrs['required'] = True
         
-        self.fields['titulo'].widget.attrs['required'] = True
-        
-        self.fields['endereco'].widget.attrs['required'] = True
-        
-        self.fields['exibe_menu'].widget.attrs['required'] = True
+        self.fields['ordem'].widget.attrs['required'] = True
         
         self.fields['tipo'].widget.attrs['required'] = True
         
-        self.fields['ordem'].widget.attrs['required'] = True
+        self.fields['exibe_menu'].widget.attrs['required'] = True
+        
+        self.fields['endereco'].widget.attrs['required'] = True
+        
+        self.fields['titulo'].widget.attrs['required'] = True
+        self.fields['config_modulos'].queryset = ConfigModulos.objects.using( slug ).filter(excluido=False).all()
+        self.fields['config_modulos'].widget.attrs['required'] = True
 
     class Meta:
         model = ConfigPaginas
@@ -196,12 +196,13 @@ class form_config_modulos(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_config_modulos,self ).__init__(*args,**kwargs)
         
-        self.fields['titulo'].widget.attrs['required'] = True
+        self.fields['ordem'].widget.attrs['required'] = True
+        self.fields['modulo_pai'].queryset = ConfigModulos.objects.using( slug ).filter(excluido=False).all()
+        self.fields['modulo_pai'].widget.attrs['required'] = True
         
         self.fields['slug'].widget.attrs['required'] = True
-        self.fields['modulo_pai'].queryset = ConfigModulos.objects.using( slug ).filter(excluido=False).all()
         
-        self.fields['ordem'].widget.attrs['required'] = True
+        self.fields['titulo'].widget.attrs['required'] = True
 
     class Meta:
         model = ConfigModulos

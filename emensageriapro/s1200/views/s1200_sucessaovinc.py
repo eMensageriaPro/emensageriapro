@@ -339,34 +339,34 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s1200_infocomplem': 1,
-            'show_tpinscant': 1,
-            'show_cnpjempregant': 1,
-            'show_matricant': 0,
+            'show_observacao': 0,
             'show_dtadm': 1,
-            'show_observacao': 0, }
+            'show_matricant': 0,
+            'show_cnpjempregant': 1,
+            'show_tpinscant': 1,
+            'show_s1200_infocomplem': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's1200_infocomplem': 's1200_infocomplem',
-                'tpinscant': 'tpinscant',
-                'cnpjempregant__icontains': 'cnpjempregant__icontains',
-                'matricant__icontains': 'matricant__icontains',
+                'observacao__icontains': 'observacao__icontains',
                 'dtadm__range': 'dtadm__range',
-                'observacao__icontains': 'observacao__icontains',}
+                'matricant__icontains': 'matricant__icontains',
+                'cnpjempregant__icontains': 'cnpjempregant__icontains',
+                'tpinscant': 'tpinscant',
+                's1200_infocomplem': 's1200_infocomplem',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's1200_infocomplem': 's1200_infocomplem',
-                'tpinscant': 'tpinscant',
-                'cnpjempregant__icontains': 'cnpjempregant__icontains',
-                'matricant__icontains': 'matricant__icontains',
+                'observacao__icontains': 'observacao__icontains',
                 'dtadm__range': 'dtadm__range',
-                'observacao__icontains': 'observacao__icontains',}
+                'matricant__icontains': 'matricant__icontains',
+                'cnpjempregant__icontains': 'cnpjempregant__icontains',
+                'tpinscant': 'tpinscant',
+                's1200_infocomplem': 's1200_infocomplem',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

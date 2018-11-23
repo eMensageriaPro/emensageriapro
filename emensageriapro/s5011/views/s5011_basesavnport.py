@@ -339,40 +339,40 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s5011_idelotacao': 1,
-            'show_vrbccp00': 1,
-            'show_vrbccp15': 1,
-            'show_vrbccp20': 1,
-            'show_vrbccp25': 1,
-            'show_vrbccp13': 1,
+            'show_vrdesccp': 1,
             'show_vrbcfgts': 1,
-            'show_vrdesccp': 1, }
+            'show_vrbccp13': 1,
+            'show_vrbccp25': 1,
+            'show_vrbccp20': 1,
+            'show_vrbccp15': 1,
+            'show_vrbccp00': 1,
+            'show_s5011_idelotacao': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's5011_idelotacao': 's5011_idelotacao',
-                'vrbccp00': 'vrbccp00',
-                'vrbccp15': 'vrbccp15',
-                'vrbccp20': 'vrbccp20',
-                'vrbccp25': 'vrbccp25',
-                'vrbccp13': 'vrbccp13',
+                'vrdesccp': 'vrdesccp',
                 'vrbcfgts': 'vrbcfgts',
-                'vrdesccp': 'vrdesccp',}
+                'vrbccp13': 'vrbccp13',
+                'vrbccp25': 'vrbccp25',
+                'vrbccp20': 'vrbccp20',
+                'vrbccp15': 'vrbccp15',
+                'vrbccp00': 'vrbccp00',
+                's5011_idelotacao': 's5011_idelotacao',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's5011_idelotacao': 's5011_idelotacao',
-                'vrbccp00': 'vrbccp00',
-                'vrbccp15': 'vrbccp15',
-                'vrbccp20': 'vrbccp20',
-                'vrbccp25': 'vrbccp25',
-                'vrbccp13': 'vrbccp13',
+                'vrdesccp': 'vrdesccp',
                 'vrbcfgts': 'vrbcfgts',
-                'vrdesccp': 'vrdesccp',}
+                'vrbccp13': 'vrbccp13',
+                'vrbccp25': 'vrbccp25',
+                'vrbccp20': 'vrbccp20',
+                'vrbccp15': 'vrbccp15',
+                'vrbccp00': 'vrbccp00',
+                's5011_idelotacao': 's5011_idelotacao',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

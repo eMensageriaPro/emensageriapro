@@ -339,40 +339,40 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_r3010_boletim': 1,
-            'show_tpingresso': 1,
-            'show_descingr': 1,
-            'show_qtdeingrvenda': 1,
-            'show_qtdeingrvendidos': 1,
-            'show_qtdeingrdev': 1,
+            'show_vlrtotal': 1,
             'show_precoindiv': 1,
-            'show_vlrtotal': 1, }
+            'show_qtdeingrdev': 1,
+            'show_qtdeingrvendidos': 1,
+            'show_qtdeingrvenda': 1,
+            'show_descingr': 1,
+            'show_tpingresso': 1,
+            'show_r3010_boletim': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'r3010_boletim': 'r3010_boletim',
-                'tpingresso': 'tpingresso',
-                'descingr__icontains': 'descingr__icontains',
-                'qtdeingrvenda': 'qtdeingrvenda',
-                'qtdeingrvendidos': 'qtdeingrvendidos',
-                'qtdeingrdev': 'qtdeingrdev',
+                'vlrtotal': 'vlrtotal',
                 'precoindiv': 'precoindiv',
-                'vlrtotal': 'vlrtotal',}
+                'qtdeingrdev': 'qtdeingrdev',
+                'qtdeingrvendidos': 'qtdeingrvendidos',
+                'qtdeingrvenda': 'qtdeingrvenda',
+                'descingr__icontains': 'descingr__icontains',
+                'tpingresso': 'tpingresso',
+                'r3010_boletim': 'r3010_boletim',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'r3010_boletim': 'r3010_boletim',
-                'tpingresso': 'tpingresso',
-                'descingr__icontains': 'descingr__icontains',
-                'qtdeingrvenda': 'qtdeingrvenda',
-                'qtdeingrvendidos': 'qtdeingrvendidos',
-                'qtdeingrdev': 'qtdeingrdev',
+                'vlrtotal': 'vlrtotal',
                 'precoindiv': 'precoindiv',
-                'vlrtotal': 'vlrtotal',}
+                'qtdeingrdev': 'qtdeingrdev',
+                'qtdeingrvendidos': 'qtdeingrvendidos',
+                'qtdeingrvenda': 'qtdeingrvenda',
+                'descingr__icontains': 'descingr__icontains',
+                'tpingresso': 'tpingresso',
+                'r3010_boletim': 'r3010_boletim',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

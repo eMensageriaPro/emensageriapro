@@ -43,146 +43,22 @@ __author__ = 'marcelovasconcellos'
 
 
 
-class form_s1020_alteracao(forms.ModelForm):
+class form_s1020_inclusao_procjudterceiro(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1020_alteracao,self ).__init__(*args,**kwargs)
+        super (form_s1020_inclusao_procjudterceiro,self ).__init__(*args,**kwargs)
         
-        self.fields['s1020_evttablotacao'].widget.attrs['required'] = True
-        
-        self.fields['codlotacao'].widget.attrs['required'] = True
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
-        
-        self.fields['tplotacao'].widget.attrs['required'] = True
-        
-        self.fields['fpas'].widget.attrs['required'] = True
-        
-        self.fields['codtercs'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1020alteracao
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_s1020_alteracao_infoemprparcial(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1020_alteracao_infoemprparcial,self ).__init__(*args,**kwargs)
-        
-        self.fields['s1020_alteracao'].widget.attrs['required'] = True
-        
-        self.fields['tpinsccontrat'].widget.attrs['required'] = True
-        
-        self.fields['nrinsccontrat'].widget.attrs['required'] = True
-        
-        self.fields['tpinscprop'].widget.attrs['required'] = True
-        
-        self.fields['nrinscprop'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1020alteracaoinfoEmprParcial
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_s1020_alteracao_novavalidade(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1020_alteracao_novavalidade,self ).__init__(*args,**kwargs)
-        
-        self.fields['s1020_alteracao'].widget.attrs['required'] = True
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1020alteracaonovaValidade
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_s1020_alteracao_procjudterceiro(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1020_alteracao_procjudterceiro,self ).__init__(*args,**kwargs)
-        self.fields['s1020_alteracao'].queryset = s1020alteracao.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1020_alteracao'].widget.attrs['required'] = True
-        
-        self.fields['codterc'].widget.attrs['required'] = True
+        self.fields['codsusp'].widget.attrs['required'] = True
         
         self.fields['nrprocjud'].widget.attrs['required'] = True
         
-        self.fields['codsusp'].widget.attrs['required'] = True
+        self.fields['codterc'].widget.attrs['required'] = True
+        self.fields['s1020_inclusao'].queryset = s1020inclusao.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s1020_inclusao'].widget.attrs['required'] = True
 
     class Meta:
-        model = s1020alteracaoprocJudTerceiro
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_s1020_exclusao(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1020_exclusao,self ).__init__(*args,**kwargs)
-        
-        self.fields['s1020_evttablotacao'].widget.attrs['required'] = True
-        
-        self.fields['codlotacao'].widget.attrs['required'] = True
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1020exclusao
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_s1020_inclusao(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1020_inclusao,self ).__init__(*args,**kwargs)
-        
-        self.fields['s1020_evttablotacao'].widget.attrs['required'] = True
-        
-        self.fields['codlotacao'].widget.attrs['required'] = True
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
-        
-        self.fields['tplotacao'].widget.attrs['required'] = True
-        
-        self.fields['fpas'].widget.attrs['required'] = True
-        
-        self.fields['codtercs'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1020inclusao
+        model = s1020inclusaoprocJudTerceiro
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
@@ -197,15 +73,15 @@ class form_s1020_inclusao_infoemprparcial(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s1020_inclusao_infoemprparcial,self ).__init__(*args,**kwargs)
         
-        self.fields['s1020_inclusao'].widget.attrs['required'] = True
-        
-        self.fields['tpinsccontrat'].widget.attrs['required'] = True
-        
-        self.fields['nrinsccontrat'].widget.attrs['required'] = True
+        self.fields['nrinscprop'].widget.attrs['required'] = True
         
         self.fields['tpinscprop'].widget.attrs['required'] = True
         
-        self.fields['nrinscprop'].widget.attrs['required'] = True
+        self.fields['nrinsccontrat'].widget.attrs['required'] = True
+        
+        self.fields['tpinsccontrat'].widget.attrs['required'] = True
+        
+        self.fields['s1020_inclusao'].widget.attrs['required'] = True
 
     class Meta:
         model = s1020inclusaoinfoEmprParcial
@@ -217,22 +93,166 @@ class form_s1020_inclusao_infoemprparcial(forms.ModelForm):
         ]
 
 
-class form_s1020_inclusao_procjudterceiro(forms.ModelForm):
+class form_s1020_inclusao(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1020_inclusao_procjudterceiro,self ).__init__(*args,**kwargs)
-        self.fields['s1020_inclusao'].queryset = s1020inclusao.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1020_inclusao'].widget.attrs['required'] = True
+        super (form_s1020_inclusao,self ).__init__(*args,**kwargs)
         
-        self.fields['codterc'].widget.attrs['required'] = True
+        self.fields['codtercssusp'].widget.attrs['required'] = True
+        
+        self.fields['codtercs'].widget.attrs['required'] = True
+        
+        self.fields['fpas'].widget.attrs['required'] = True
+        
+        self.fields['nrinsc'].widget.attrs['required'] = True
+        
+        self.fields['tpinsc'].widget.attrs['required'] = True
+        
+        self.fields['tplotacao'].widget.attrs['required'] = True
+        
+        self.fields['fimvalid'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['codlotacao'].widget.attrs['required'] = True
+        
+        self.fields['s1020_evttablotacao'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1020inclusao
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_s1020_exclusao(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1020_exclusao,self ).__init__(*args,**kwargs)
+        
+        self.fields['fimvalid'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['codlotacao'].widget.attrs['required'] = True
+        
+        self.fields['s1020_evttablotacao'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1020exclusao
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_s1020_alteracao_procjudterceiro(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1020_alteracao_procjudterceiro,self ).__init__(*args,**kwargs)
+        
+        self.fields['codsusp'].widget.attrs['required'] = True
         
         self.fields['nrprocjud'].widget.attrs['required'] = True
         
-        self.fields['codsusp'].widget.attrs['required'] = True
+        self.fields['codterc'].widget.attrs['required'] = True
+        self.fields['s1020_alteracao'].queryset = s1020alteracao.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s1020_alteracao'].widget.attrs['required'] = True
 
     class Meta:
-        model = s1020inclusaoprocJudTerceiro
+        model = s1020alteracaoprocJudTerceiro
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_s1020_alteracao_novavalidade(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1020_alteracao_novavalidade,self ).__init__(*args,**kwargs)
+        
+        self.fields['fimvalid'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['s1020_alteracao'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1020alteracaonovaValidade
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_s1020_alteracao_infoemprparcial(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1020_alteracao_infoemprparcial,self ).__init__(*args,**kwargs)
+        
+        self.fields['nrinscprop'].widget.attrs['required'] = True
+        
+        self.fields['tpinscprop'].widget.attrs['required'] = True
+        
+        self.fields['nrinsccontrat'].widget.attrs['required'] = True
+        
+        self.fields['tpinsccontrat'].widget.attrs['required'] = True
+        
+        self.fields['s1020_alteracao'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1020alteracaoinfoEmprParcial
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_s1020_alteracao(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1020_alteracao,self ).__init__(*args,**kwargs)
+        
+        self.fields['codtercssusp'].widget.attrs['required'] = True
+        
+        self.fields['codtercs'].widget.attrs['required'] = True
+        
+        self.fields['fpas'].widget.attrs['required'] = True
+        
+        self.fields['nrinsc'].widget.attrs['required'] = True
+        
+        self.fields['tpinsc'].widget.attrs['required'] = True
+        
+        self.fields['tplotacao'].widget.attrs['required'] = True
+        
+        self.fields['fimvalid'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['codlotacao'].widget.attrs['required'] = True
+        
+        self.fields['s1020_evttablotacao'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1020alteracao
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',

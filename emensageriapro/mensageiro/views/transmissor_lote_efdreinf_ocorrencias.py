@@ -281,30 +281,30 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_transmissor_lote_efdreinf': 1,
-            'show_resposta_codigo': 1,
-            'show_descricao': 0,
+            'show_localizacao': 0,
             'show_tipo': 1,
-            'show_localizacao': 0, }
+            'show_descricao': 0,
+            'show_resposta_codigo': 1,
+            'show_transmissor_lote_efdreinf': 1, }
         post = False
         #ANTES-POST-LISTAGEM
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'transmissor_lote_efdreinf': 'transmissor_lote_efdreinf',
-                'resposta_codigo__icontains': 'resposta_codigo__icontains',
+                'localizacao__icontains': 'localizacao__icontains',
                 'tipo': 'tipo',
-                'localizacao__icontains': 'localizacao__icontains',}
+                'resposta_codigo__icontains': 'resposta_codigo__icontains',
+                'transmissor_lote_efdreinf': 'transmissor_lote_efdreinf',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'transmissor_lote_efdreinf': 'transmissor_lote_efdreinf',
-                'resposta_codigo__icontains': 'resposta_codigo__icontains',
+                'localizacao__icontains': 'localizacao__icontains',
                 'tipo': 'tipo',
-                'localizacao__icontains': 'localizacao__icontains',}
+                'resposta_codigo__icontains': 'resposta_codigo__icontains',
+                'transmissor_lote_efdreinf': 'transmissor_lote_efdreinf',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

@@ -339,22 +339,22 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s2241_altaposentesp_infoamb': 1,
-            'show_codfatris': 1, }
+            'show_codfatris': 1,
+            'show_s2241_altaposentesp_infoamb': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's2241_altaposentesp_infoamb': 's2241_altaposentesp_infoamb',
-                'codfatris__icontains': 'codfatris__icontains',}
+                'codfatris__icontains': 'codfatris__icontains',
+                's2241_altaposentesp_infoamb': 's2241_altaposentesp_infoamb',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's2241_altaposentesp_infoamb': 's2241_altaposentesp_infoamb',
-                'codfatris__icontains': 'codfatris__icontains',}
+                'codfatris__icontains': 'codfatris__icontains',
+                's2241_altaposentesp_infoamb': 's2241_altaposentesp_infoamb',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

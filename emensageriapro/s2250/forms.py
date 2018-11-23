@@ -49,13 +49,15 @@ class form_s2250_detavprevio(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2250_detavprevio,self ).__init__(*args,**kwargs)
         
-        self.fields['s2250_evtavprevio'].widget.attrs['required'] = True
+        self.fields['observacao'].widget.attrs['required'] = True
         
-        self.fields['dtavprv'].widget.attrs['required'] = True
+        self.fields['tpavprevio'].widget.attrs['required'] = True
         
         self.fields['dtprevdeslig'].widget.attrs['required'] = True
         
-        self.fields['tpavprevio'].widget.attrs['required'] = True
+        self.fields['dtavprv'].widget.attrs['required'] = True
+        
+        self.fields['s2250_evtavprevio'].widget.attrs['required'] = True
 
     class Meta:
         model = s2250detAvPrevio
@@ -73,11 +75,13 @@ class form_s2250_cancavprevio(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2250_cancavprevio,self ).__init__(*args,**kwargs)
         
-        self.fields['s2250_evtavprevio'].widget.attrs['required'] = True
+        self.fields['mtvcancavprevio'].widget.attrs['required'] = True
+        
+        self.fields['observacao'].widget.attrs['required'] = True
         
         self.fields['dtcancavprv'].widget.attrs['required'] = True
         
-        self.fields['mtvcancavprevio'].widget.attrs['required'] = True
+        self.fields['s2250_evtavprevio'].widget.attrs['required'] = True
 
     class Meta:
         model = s2250cancAvPrevio

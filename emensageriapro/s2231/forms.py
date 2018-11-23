@@ -49,15 +49,17 @@ class form_s2231_inicessao(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2231_inicessao,self ).__init__(*args,**kwargs)
         
-        self.fields['s2231_evtcessao'].widget.attrs['required'] = True
+        self.fields['dscsituacao'].widget.attrs['required'] = True
         
-        self.fields['dtinicessao'].widget.attrs['required'] = True
-        
-        self.fields['cnpjcess'].widget.attrs['required'] = True
+        self.fields['indcessao'].widget.attrs['required'] = True
         
         self.fields['infonus'].widget.attrs['required'] = True
         
-        self.fields['indcessao'].widget.attrs['required'] = True
+        self.fields['cnpjcess'].widget.attrs['required'] = True
+        
+        self.fields['dtinicessao'].widget.attrs['required'] = True
+        
+        self.fields['s2231_evtcessao'].widget.attrs['required'] = True
 
     class Meta:
         model = s2231iniCessao
@@ -75,9 +77,9 @@ class form_s2231_fimcessao(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2231_fimcessao,self ).__init__(*args,**kwargs)
         
-        self.fields['s2231_evtcessao'].widget.attrs['required'] = True
-        
         self.fields['dttermcessao'].widget.attrs['required'] = True
+        
+        self.fields['s2231_evtcessao'].widget.attrs['required'] = True
 
     class Meta:
         model = s2231fimCessao

@@ -353,31 +353,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_r2040_evtassocdesprep': 1,
-            'show_cnpjassocdesp': 1,
-            'show_vlrtotalrep': 1,
+            'show_vlrtotalnret': 0,
             'show_vlrtotalret': 1,
-            'show_vlrtotalnret': 0, }
+            'show_vlrtotalrep': 1,
+            'show_cnpjassocdesp': 1,
+            'show_r2040_evtassocdesprep': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'r2040_evtassocdesprep': 'r2040_evtassocdesprep',
-                'cnpjassocdesp__icontains': 'cnpjassocdesp__icontains',
-                'vlrtotalrep': 'vlrtotalrep',
+                'vlrtotalnret': 'vlrtotalnret',
                 'vlrtotalret': 'vlrtotalret',
-                'vlrtotalnret': 'vlrtotalnret',}
+                'vlrtotalrep': 'vlrtotalrep',
+                'cnpjassocdesp__icontains': 'cnpjassocdesp__icontains',
+                'r2040_evtassocdesprep': 'r2040_evtassocdesprep',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'r2040_evtassocdesprep': 'r2040_evtassocdesprep',
-                'cnpjassocdesp__icontains': 'cnpjassocdesp__icontains',
-                'vlrtotalrep': 'vlrtotalrep',
+                'vlrtotalnret': 'vlrtotalnret',
                 'vlrtotalret': 'vlrtotalret',
-                'vlrtotalnret': 'vlrtotalnret',}
+                'vlrtotalrep': 'vlrtotalrep',
+                'cnpjassocdesp__icontains': 'cnpjassocdesp__icontains',
+                'r2040_evtassocdesprep': 'r2040_evtassocdesprep',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

@@ -49,9 +49,11 @@ class form_s3000_idetrabalhador(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s3000_idetrabalhador,self ).__init__(*args,**kwargs)
         
-        self.fields['s3000_evtexclusao'].widget.attrs['required'] = True
+        self.fields['nistrab'].widget.attrs['required'] = True
         
         self.fields['cpftrab'].widget.attrs['required'] = True
+        
+        self.fields['s3000_evtexclusao'].widget.attrs['required'] = True
 
     class Meta:
         model = s3000ideTrabalhador
@@ -69,11 +71,11 @@ class form_s3000_idefolhapagto(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s3000_idefolhapagto,self ).__init__(*args,**kwargs)
         
-        self.fields['s3000_evtexclusao'].widget.attrs['required'] = True
+        self.fields['perapur'].widget.attrs['required'] = True
         
         self.fields['indapuracao'].widget.attrs['required'] = True
         
-        self.fields['perapur'].widget.attrs['required'] = True
+        self.fields['s3000_evtexclusao'].widget.attrs['required'] = True
 
     class Meta:
         model = s3000ideFolhaPagto

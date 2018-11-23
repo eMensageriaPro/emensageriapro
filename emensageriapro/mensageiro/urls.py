@@ -4,11 +4,11 @@ from django.conf.urls import include, url
 # from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from emensageriapro.mensageiro.views import transmissor_lote_esocial_comunicacao as transmissor_lote_esocial_comunicacao_views
 from emensageriapro.mensageiro.views import mapa_processamento as mapa_processamento_views
 from emensageriapro.mensageiro.views import arquivos_recuperacao as arquivos_recuperacao_views
-from emensageriapro.mensageiro.views import transmissor_lote_esocial_comunicacao as transmissor_lote_esocial_comunicacao_views
-from emensageriapro.mensageiro.views import transmissor_lote_efdreinf_comunicacao as transmissor_lote_efdreinf_comunicacao_views
 from emensageriapro.mensageiro.views import importacoes as importacoes_views
+from emensageriapro.mensageiro.views import transmissor_lote_efdreinf_comunicacao as transmissor_lote_efdreinf_comunicacao_views
 from emensageriapro.mensageiro.views import automatizacao as automatizacao_views
 from emensageriapro.mensageiro.views import relatorios_imprimir as relatorios_imprimir_views
 from emensageriapro.mensageiro.views import processar_arquivos as processar_arquivos_views
@@ -66,22 +66,6 @@ from emensageriapro.mensageiro.views import retornos_eventos_intervalos as retor
 
 urlpatterns = [
 
-url(r'^mapa-processamento/(?P<hash>.*)/$',
-        mapa_processamento_views.listar,
-        name='mapa_processamento'),
-
-url(r'^recuperacao-de-arquivos/(?P<hash>.*)/$', 
-        arquivos_recuperacao_views.arquivos_recuperacao, 
-        name='arquivos_recuperacao'),
-
-url(r'^reprocessar-arquivos/(?P<hash>.*)/$',
-        arquivos_recuperacao_views.arquivos_reprocessar,
-        name='arquivos_reprocessar'),
-        
-url(r'^visualizacao-de-arquivos/(?P<hash>.*)/$', 
-        arquivos_recuperacao_views.arquivos_visualizacao,
-        name='arquivos_visualizacao'),
-
 url(r'^scripts/enviar-lote-esocial/(?P<chave>.*)/(?P<transmissor_lote_esocial_id>\d+)/$',
         transmissor_lote_esocial_comunicacao_views.scripts_enviar_lote,
         name='scripts_enviar_esocial_lote'),
@@ -103,6 +87,26 @@ url(r'^transmissor-lote-esocial/recibo/(?P<hash>.*)/$',
         transmissor_lote_esocial_comunicacao_views.recibo,
         name='transmissor_lote_esocial_recibo'),
 
+url(r'^mapa-processamento/(?P<hash>.*)/$',
+        mapa_processamento_views.listar,
+        name='mapa_processamento'),
+
+url(r'^recuperacao-de-arquivos/(?P<hash>.*)/$', 
+        arquivos_recuperacao_views.arquivos_recuperacao, 
+        name='arquivos_recuperacao'),
+
+url(r'^reprocessar-arquivos/(?P<hash>.*)/$',
+        arquivos_recuperacao_views.arquivos_reprocessar,
+        name='arquivos_reprocessar'),
+        
+url(r'^visualizacao-de-arquivos/(?P<hash>.*)/$', 
+        arquivos_recuperacao_views.arquivos_visualizacao,
+        name='arquivos_visualizacao'),
+
+url(r'^importacoes/listar/(?P<hash>.*)/$', 
+        importacoes_views.listar, 
+        name='importacoes'),
+
 url(r'^scripts/enviar-lote-efdreinf/(?P<chave>.*)/(?P<transmissor_lote_efdreinf_id>\d+)/$',
         transmissor_lote_efdreinf_comunicacao_views.scripts_enviar_lote,
         name='scripts_enviar_efdreinf_lote'),
@@ -123,10 +127,6 @@ url(r'^transmissor-lote-efdreinf/consultar/(?P<hash>.*)/$',
 url(r'^transmissor-lote-efdreinf/recibo/(?P<hash>.*)/$',
         transmissor_lote_efdreinf_comunicacao_views.recibo,
         name='transmissor_lote_efdreinf_recibo'),
-
-url(r'^importacoes/listar/(?P<hash>.*)/$', 
-        importacoes_views.listar, 
-        name='importacoes'),
 
 url(r'^validacao-automatica/$',
         automatizacao_views.scripts_validacao_automatica,

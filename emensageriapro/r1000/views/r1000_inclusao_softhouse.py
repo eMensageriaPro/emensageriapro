@@ -339,34 +339,34 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_r1000_inclusao': 1,
-            'show_cnpjsofthouse': 1,
-            'show_nmrazao': 1,
-            'show_nmcont': 1,
+            'show_email': 0,
             'show_telefone': 0,
-            'show_email': 0, }
+            'show_nmcont': 1,
+            'show_nmrazao': 1,
+            'show_cnpjsofthouse': 1,
+            'show_r1000_inclusao': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'r1000_inclusao': 'r1000_inclusao',
-                'cnpjsofthouse__icontains': 'cnpjsofthouse__icontains',
-                'nmrazao__icontains': 'nmrazao__icontains',
-                'nmcont__icontains': 'nmcont__icontains',
+                'email__icontains': 'email__icontains',
                 'telefone__icontains': 'telefone__icontains',
-                'email__icontains': 'email__icontains',}
+                'nmcont__icontains': 'nmcont__icontains',
+                'nmrazao__icontains': 'nmrazao__icontains',
+                'cnpjsofthouse__icontains': 'cnpjsofthouse__icontains',
+                'r1000_inclusao': 'r1000_inclusao',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'r1000_inclusao': 'r1000_inclusao',
-                'cnpjsofthouse__icontains': 'cnpjsofthouse__icontains',
-                'nmrazao__icontains': 'nmrazao__icontains',
-                'nmcont__icontains': 'nmcont__icontains',
+                'email__icontains': 'email__icontains',
                 'telefone__icontains': 'telefone__icontains',
-                'email__icontains': 'email__icontains',}
+                'nmcont__icontains': 'nmcont__icontains',
+                'nmrazao__icontains': 'nmrazao__icontains',
+                'cnpjsofthouse__icontains': 'cnpjsofthouse__icontains',
+                'r1000_inclusao': 'r1000_inclusao',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

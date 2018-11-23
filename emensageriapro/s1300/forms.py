@@ -49,14 +49,14 @@ class form_s1300_contribsind(forms.ModelForm):
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_s1300_contribsind,self ).__init__(*args,**kwargs)
-        self.fields['s1300_evtcontrsindpatr'].queryset = s1300evtContrSindPatr.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1300_evtcontrsindpatr'].widget.attrs['required'] = True
         
-        self.fields['cnpjsindic'].widget.attrs['required'] = True
+        self.fields['vlrcontribsind'].widget.attrs['required'] = True
         
         self.fields['tpcontribsind'].widget.attrs['required'] = True
         
-        self.fields['vlrcontribsind'].widget.attrs['required'] = True
+        self.fields['cnpjsindic'].widget.attrs['required'] = True
+        self.fields['s1300_evtcontrsindpatr'].queryset = s1300evtContrSindPatr.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s1300_evtcontrsindpatr'].widget.attrs['required'] = True
 
     class Meta:
         model = s1300contribSind

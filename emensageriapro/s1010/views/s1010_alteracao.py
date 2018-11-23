@@ -381,67 +381,67 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s1010_evttabrubrica': 1,
-            'show_iderubrica': 0,
-            'show_codrubr': 1,
-            'show_idetabrubr': 1,
-            'show_inivalid': 1,
-            'show_fimvalid': 0,
-            'show_dadosrubrica': 0,
-            'show_dscrubr': 1,
-            'show_natrubr': 1,
-            'show_tprubr': 1,
-            'show_codinccp': 1,
-            'show_codincirrf': 1,
-            'show_codincfgts': 1,
-            'show_codincsind': 1,
-            'show_codinccprp': 0,
+            'show_observacao': 0,
             'show_tetoremun': 0,
-            'show_observacao': 0, }
+            'show_codinccprp': 0,
+            'show_codincsind': 1,
+            'show_codincfgts': 1,
+            'show_codincirrf': 1,
+            'show_codinccp': 1,
+            'show_tprubr': 1,
+            'show_natrubr': 1,
+            'show_dscrubr': 1,
+            'show_dadosrubrica': 0,
+            'show_fimvalid': 0,
+            'show_inivalid': 1,
+            'show_idetabrubr': 1,
+            'show_codrubr': 1,
+            'show_iderubrica': 0,
+            'show_s1010_evttabrubrica': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's1010_evttabrubrica': 's1010_evttabrubrica',
-                'iderubrica': 'iderubrica',
-                'codrubr__icontains': 'codrubr__icontains',
-                'idetabrubr__icontains': 'idetabrubr__icontains',
-                'inivalid__icontains': 'inivalid__icontains',
-                'fimvalid__icontains': 'fimvalid__icontains',
-                'dadosrubrica': 'dadosrubrica',
-                'dscrubr__icontains': 'dscrubr__icontains',
-                'natrubr__icontains': 'natrubr__icontains',
-                'tprubr': 'tprubr',
-                'codinccp__icontains': 'codinccp__icontains',
-                'codincirrf__icontains': 'codincirrf__icontains',
-                'codincfgts__icontains': 'codincfgts__icontains',
-                'codincsind__icontains': 'codincsind__icontains',
-                'codinccprp__icontains': 'codinccprp__icontains',
+                'observacao__icontains': 'observacao__icontains',
                 'tetoremun__icontains': 'tetoremun__icontains',
-                'observacao__icontains': 'observacao__icontains',}
+                'codinccprp__icontains': 'codinccprp__icontains',
+                'codincsind__icontains': 'codincsind__icontains',
+                'codincfgts__icontains': 'codincfgts__icontains',
+                'codincirrf__icontains': 'codincirrf__icontains',
+                'codinccp__icontains': 'codinccp__icontains',
+                'tprubr': 'tprubr',
+                'natrubr__icontains': 'natrubr__icontains',
+                'dscrubr__icontains': 'dscrubr__icontains',
+                'dadosrubrica': 'dadosrubrica',
+                'fimvalid__icontains': 'fimvalid__icontains',
+                'inivalid__icontains': 'inivalid__icontains',
+                'idetabrubr__icontains': 'idetabrubr__icontains',
+                'codrubr__icontains': 'codrubr__icontains',
+                'iderubrica': 'iderubrica',
+                's1010_evttabrubrica': 's1010_evttabrubrica',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's1010_evttabrubrica': 's1010_evttabrubrica',
-                'iderubrica': 'iderubrica',
-                'codrubr__icontains': 'codrubr__icontains',
-                'idetabrubr__icontains': 'idetabrubr__icontains',
-                'inivalid__icontains': 'inivalid__icontains',
-                'fimvalid__icontains': 'fimvalid__icontains',
-                'dadosrubrica': 'dadosrubrica',
-                'dscrubr__icontains': 'dscrubr__icontains',
-                'natrubr__icontains': 'natrubr__icontains',
-                'tprubr': 'tprubr',
-                'codinccp__icontains': 'codinccp__icontains',
-                'codincirrf__icontains': 'codincirrf__icontains',
-                'codincfgts__icontains': 'codincfgts__icontains',
-                'codincsind__icontains': 'codincsind__icontains',
-                'codinccprp__icontains': 'codinccprp__icontains',
+                'observacao__icontains': 'observacao__icontains',
                 'tetoremun__icontains': 'tetoremun__icontains',
-                'observacao__icontains': 'observacao__icontains',}
+                'codinccprp__icontains': 'codinccprp__icontains',
+                'codincsind__icontains': 'codincsind__icontains',
+                'codincfgts__icontains': 'codincfgts__icontains',
+                'codincirrf__icontains': 'codincirrf__icontains',
+                'codinccp__icontains': 'codinccp__icontains',
+                'tprubr': 'tprubr',
+                'natrubr__icontains': 'natrubr__icontains',
+                'dscrubr__icontains': 'dscrubr__icontains',
+                'dadosrubrica': 'dadosrubrica',
+                'fimvalid__icontains': 'fimvalid__icontains',
+                'inivalid__icontains': 'inivalid__icontains',
+                'idetabrubr__icontains': 'idetabrubr__icontains',
+                'codrubr__icontains': 'codrubr__icontains',
+                'iderubrica': 'iderubrica',
+                's1010_evttabrubrica': 's1010_evttabrubrica',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

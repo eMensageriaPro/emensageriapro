@@ -353,58 +353,58 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s2240_evtexprisco': 1,
-            'show_codfatris': 1,
-            'show_tpaval': 1,
-            'show_intconc': 0,
-            'show_limtol': 0,
-            'show_unmed': 0,
-            'show_tecmedicao': 0,
-            'show_insalubridade': 0,
-            'show_periculosidade': 0,
-            'show_aposentesp': 0,
-            'show_epcepi': 0,
-            'show_utilizepc': 1,
+            'show_utilizepi': 1,
             'show_eficepc': 0,
-            'show_utilizepi': 1, }
+            'show_utilizepc': 1,
+            'show_epcepi': 0,
+            'show_aposentesp': 0,
+            'show_periculosidade': 0,
+            'show_insalubridade': 0,
+            'show_tecmedicao': 0,
+            'show_unmed': 0,
+            'show_limtol': 0,
+            'show_intconc': 0,
+            'show_tpaval': 1,
+            'show_codfatris': 1,
+            'show_s2240_evtexprisco': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's2240_evtexprisco': 's2240_evtexprisco',
-                'codfatris__icontains': 'codfatris__icontains',
-                'tpaval': 'tpaval',
-                'intconc': 'intconc',
-                'limtol': 'limtol',
-                'unmed': 'unmed',
-                'tecmedicao__icontains': 'tecmedicao__icontains',
-                'insalubridade__icontains': 'insalubridade__icontains',
-                'periculosidade__icontains': 'periculosidade__icontains',
-                'aposentesp__icontains': 'aposentesp__icontains',
-                'epcepi': 'epcepi',
-                'utilizepc': 'utilizepc',
+                'utilizepi': 'utilizepi',
                 'eficepc__icontains': 'eficepc__icontains',
-                'utilizepi': 'utilizepi',}
+                'utilizepc': 'utilizepc',
+                'epcepi': 'epcepi',
+                'aposentesp__icontains': 'aposentesp__icontains',
+                'periculosidade__icontains': 'periculosidade__icontains',
+                'insalubridade__icontains': 'insalubridade__icontains',
+                'tecmedicao__icontains': 'tecmedicao__icontains',
+                'unmed': 'unmed',
+                'limtol': 'limtol',
+                'intconc': 'intconc',
+                'tpaval': 'tpaval',
+                'codfatris__icontains': 'codfatris__icontains',
+                's2240_evtexprisco': 's2240_evtexprisco',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's2240_evtexprisco': 's2240_evtexprisco',
-                'codfatris__icontains': 'codfatris__icontains',
-                'tpaval': 'tpaval',
-                'intconc': 'intconc',
-                'limtol': 'limtol',
-                'unmed': 'unmed',
-                'tecmedicao__icontains': 'tecmedicao__icontains',
-                'insalubridade__icontains': 'insalubridade__icontains',
-                'periculosidade__icontains': 'periculosidade__icontains',
-                'aposentesp__icontains': 'aposentesp__icontains',
-                'epcepi': 'epcepi',
-                'utilizepc': 'utilizepc',
+                'utilizepi': 'utilizepi',
                 'eficepc__icontains': 'eficepc__icontains',
-                'utilizepi': 'utilizepi',}
+                'utilizepc': 'utilizepc',
+                'epcepi': 'epcepi',
+                'aposentesp__icontains': 'aposentesp__icontains',
+                'periculosidade__icontains': 'periculosidade__icontains',
+                'insalubridade__icontains': 'insalubridade__icontains',
+                'tecmedicao__icontains': 'tecmedicao__icontains',
+                'unmed': 'unmed',
+                'limtol': 'limtol',
+                'intconc': 'intconc',
+                'tpaval': 'tpaval',
+                'codfatris__icontains': 'codfatris__icontains',
+                's2240_evtexprisco': 's2240_evtexprisco',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

@@ -324,38 +324,38 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_classificacao': 1,
-            'show_codigo': 1,
-            'show_decimo_terceiro': 1,
-            'show_deducoes': 1,
-            'show_rendimentos_isentos': 1,
-            'show_compensacao_imposto_por_decisao_judicial': 1,
+            'show_descricao': 0,
             'show_tributacao_com_exigibilidade_suspensa': 1,
-            'show_descricao': 0, }
+            'show_compensacao_imposto_por_decisao_judicial': 1,
+            'show_rendimentos_isentos': 1,
+            'show_deducoes': 1,
+            'show_decimo_terceiro': 1,
+            'show_codigo': 1,
+            'show_classificacao': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'classificacao': 'classificacao',
-                'codigo__icontains': 'codigo__icontains',
-                'decimo_terceiro__icontains': 'decimo_terceiro__icontains',
-                'deducoes__icontains': 'deducoes__icontains',
-                'rendimentos_isentos__icontains': 'rendimentos_isentos__icontains',
+                'tributacao_com_exigibilidade_suspensa__icontains': 'tributacao_com_exigibilidade_suspensa__icontains',
                 'compensacao_imposto_por_decisao_judicial__icontains': 'compensacao_imposto_por_decisao_judicial__icontains',
-                'tributacao_com_exigibilidade_suspensa__icontains': 'tributacao_com_exigibilidade_suspensa__icontains',}
+                'rendimentos_isentos__icontains': 'rendimentos_isentos__icontains',
+                'deducoes__icontains': 'deducoes__icontains',
+                'decimo_terceiro__icontains': 'decimo_terceiro__icontains',
+                'codigo__icontains': 'codigo__icontains',
+                'classificacao': 'classificacao',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'classificacao': 'classificacao',
-                'codigo__icontains': 'codigo__icontains',
-                'decimo_terceiro__icontains': 'decimo_terceiro__icontains',
-                'deducoes__icontains': 'deducoes__icontains',
-                'rendimentos_isentos__icontains': 'rendimentos_isentos__icontains',
+                'tributacao_com_exigibilidade_suspensa__icontains': 'tributacao_com_exigibilidade_suspensa__icontains',
                 'compensacao_imposto_por_decisao_judicial__icontains': 'compensacao_imposto_por_decisao_judicial__icontains',
-                'tributacao_com_exigibilidade_suspensa__icontains': 'tributacao_com_exigibilidade_suspensa__icontains',}
+                'rendimentos_isentos__icontains': 'rendimentos_isentos__icontains',
+                'deducoes__icontains': 'deducoes__icontains',
+                'decimo_terceiro__icontains': 'decimo_terceiro__icontains',
+                'codigo__icontains': 'codigo__icontains',
+                'classificacao': 'classificacao',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

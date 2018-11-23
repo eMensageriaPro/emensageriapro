@@ -339,31 +339,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_r5001_infototal': 1,
-            'show_crrecespetdesp': 1,
-            'show_vlrreceitatotal': 1,
+            'show_vlrcrrecespetdespsusp': 0,
             'show_vlrcrrecespetdesp': 1,
-            'show_vlrcrrecespetdespsusp': 0, }
+            'show_vlrreceitatotal': 1,
+            'show_crrecespetdesp': 1,
+            'show_r5001_infototal': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'r5001_infototal': 'r5001_infototal',
-                'crrecespetdesp': 'crrecespetdesp',
-                'vlrreceitatotal': 'vlrreceitatotal',
+                'vlrcrrecespetdespsusp': 'vlrcrrecespetdespsusp',
                 'vlrcrrecespetdesp': 'vlrcrrecespetdesp',
-                'vlrcrrecespetdespsusp': 'vlrcrrecespetdespsusp',}
+                'vlrreceitatotal': 'vlrreceitatotal',
+                'crrecespetdesp': 'crrecespetdesp',
+                'r5001_infototal': 'r5001_infototal',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'r5001_infototal': 'r5001_infototal',
-                'crrecespetdesp': 'crrecespetdesp',
-                'vlrreceitatotal': 'vlrreceitatotal',
+                'vlrcrrecespetdespsusp': 'vlrcrrecespetdespsusp',
                 'vlrcrrecespetdesp': 'vlrcrrecespetdesp',
-                'vlrcrrecespetdespsusp': 'vlrcrrecespetdespsusp',}
+                'vlrreceitatotal': 'vlrreceitatotal',
+                'crrecespetdesp': 'crrecespetdesp',
+                'r5001_infototal': 'r5001_infototal',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

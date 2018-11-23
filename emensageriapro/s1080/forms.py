@@ -44,24 +44,26 @@ __author__ = 'marcelovasconcellos'
 
 
 class form_s1080_inclusao(forms.ModelForm):
-    fap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     aliqratajust = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    fap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_s1080_inclusao,self ).__init__(*args,**kwargs)
         
-        self.fields['s1080_evttaboperport'].widget.attrs['required'] = True
-        
-        self.fields['cnpjopportuario'].widget.attrs['required'] = True
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
-        
-        self.fields['aliqrat'].widget.attrs['required'] = True
+        self.fields['aliqratajust'].widget.attrs['required'] = True
         
         self.fields['fap'].widget.attrs['required'] = True
         
-        self.fields['aliqratajust'].widget.attrs['required'] = True
+        self.fields['aliqrat'].widget.attrs['required'] = True
+        
+        self.fields['fimvalid'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['cnpjopportuario'].widget.attrs['required'] = True
+        
+        self.fields['s1080_evttaboperport'].widget.attrs['required'] = True
 
     class Meta:
         model = s1080inclusao
@@ -79,11 +81,13 @@ class form_s1080_exclusao(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s1080_exclusao,self ).__init__(*args,**kwargs)
         
-        self.fields['s1080_evttaboperport'].widget.attrs['required'] = True
+        self.fields['fimvalid'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
         
         self.fields['cnpjopportuario'].widget.attrs['required'] = True
         
-        self.fields['inivalid'].widget.attrs['required'] = True
+        self.fields['s1080_evttaboperport'].widget.attrs['required'] = True
 
     class Meta:
         model = s1080exclusao
@@ -101,9 +105,11 @@ class form_s1080_alteracao_novavalidade(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s1080_alteracao_novavalidade,self ).__init__(*args,**kwargs)
         
-        self.fields['s1080_alteracao'].widget.attrs['required'] = True
+        self.fields['fimvalid'].widget.attrs['required'] = True
         
         self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['s1080_alteracao'].widget.attrs['required'] = True
 
     class Meta:
         model = s1080alteracaonovaValidade
@@ -116,24 +122,26 @@ class form_s1080_alteracao_novavalidade(forms.ModelForm):
 
 
 class form_s1080_alteracao(forms.ModelForm):
-    fap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     aliqratajust = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    fap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_s1080_alteracao,self ).__init__(*args,**kwargs)
         
-        self.fields['s1080_evttaboperport'].widget.attrs['required'] = True
-        
-        self.fields['cnpjopportuario'].widget.attrs['required'] = True
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
-        
-        self.fields['aliqrat'].widget.attrs['required'] = True
+        self.fields['aliqratajust'].widget.attrs['required'] = True
         
         self.fields['fap'].widget.attrs['required'] = True
         
-        self.fields['aliqratajust'].widget.attrs['required'] = True
+        self.fields['aliqrat'].widget.attrs['required'] = True
+        
+        self.fields['fimvalid'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['cnpjopportuario'].widget.attrs['required'] = True
+        
+        self.fields['s1080_evttaboperport'].widget.attrs['required'] = True
 
     class Meta:
         model = s1080alteracao

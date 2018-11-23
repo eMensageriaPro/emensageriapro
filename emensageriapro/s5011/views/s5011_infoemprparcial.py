@@ -339,31 +339,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s5011_idelotacao': 1,
-            'show_tpinsccontrat': 1,
-            'show_nrinsccontrat': 1,
+            'show_nrinscprop': 1,
             'show_tpinscprop': 1,
-            'show_nrinscprop': 1, }
+            'show_nrinsccontrat': 1,
+            'show_tpinsccontrat': 1,
+            'show_s5011_idelotacao': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's5011_idelotacao': 's5011_idelotacao',
-                'tpinsccontrat': 'tpinsccontrat',
-                'nrinsccontrat__icontains': 'nrinsccontrat__icontains',
+                'nrinscprop__icontains': 'nrinscprop__icontains',
                 'tpinscprop': 'tpinscprop',
-                'nrinscprop__icontains': 'nrinscprop__icontains',}
+                'nrinsccontrat__icontains': 'nrinsccontrat__icontains',
+                'tpinsccontrat': 'tpinsccontrat',
+                's5011_idelotacao': 's5011_idelotacao',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's5011_idelotacao': 's5011_idelotacao',
-                'tpinsccontrat': 'tpinsccontrat',
-                'nrinsccontrat__icontains': 'nrinsccontrat__icontains',
+                'nrinscprop__icontains': 'nrinscprop__icontains',
                 'tpinscprop': 'tpinscprop',
-                'nrinscprop__icontains': 'nrinscprop__icontains',}
+                'nrinsccontrat__icontains': 'nrinsccontrat__icontains',
+                'tpinsccontrat': 'tpinsccontrat',
+                's5011_idelotacao': 's5011_idelotacao',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)
