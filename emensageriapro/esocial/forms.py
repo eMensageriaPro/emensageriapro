@@ -65,16 +65,12 @@ class form_s5013_evtfgts(forms.ModelForm):
         self.fields['perapur'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s5013evtFGTS
@@ -119,16 +115,12 @@ class form_s5012_evtirrf(forms.ModelForm):
         self.fields['perapur'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s5012evtIrrf
@@ -177,16 +169,12 @@ class form_s5011_evtcs(forms.ModelForm):
         self.fields['indapuracao'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s5011evtCS
@@ -233,16 +221,12 @@ class form_s5003_evtbasesfgts(forms.ModelForm):
         self.fields['nrrecarqbase'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s5003evtBasesFGTS
@@ -287,16 +271,12 @@ class form_s5002_evtirrfbenef(forms.ModelForm):
         self.fields['nrrecarqbase'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s5002evtIrrfBenef
@@ -343,16 +323,12 @@ class form_s5001_evtbasestrab(forms.ModelForm):
         self.fields['nrrecarqbase'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s5001evtBasesTrab
@@ -401,16 +377,12 @@ class form_s3000_evtexclusao(forms.ModelForm):
         self.fields['tpamb'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s3000evtExclusao
@@ -467,18 +439,14 @@ class form_s2420_evtcdbenterm(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['operacao'].widget.attrs['required'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s2420evtCdBenTerm
@@ -545,18 +513,14 @@ class form_s2416_evtcdbenalt(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['operacao'].widget.attrs['required'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s2416evtCdBenAlt
@@ -630,16 +594,12 @@ class form_s2410_evtcdbenin(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s2410evtCdBenIn
@@ -712,16 +672,12 @@ class form_s2405_evtcdbenefalt(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s2405evtCdBenefAlt
@@ -756,16 +712,12 @@ class form_s2400_evtcdbenefin(forms.ModelForm):
         super (form_s2400_evtcdbenefin,self ).__init__(*args,**kwargs)
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['indretif'].widget.attrs['required'] = True
         
@@ -878,16 +830,12 @@ class form_s2399_evttsvtermino(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s2399evtTSVTermino
@@ -946,16 +894,12 @@ class form_s2306_evttsvaltcontr(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s2306evtTSVAltContr
@@ -990,18 +934,14 @@ class form_s2300_evttsvinicio(forms.ModelForm):
         super (form_s2300_evttsvinicio,self ).__init__(*args,**kwargs)
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         
         self.fields['nistrab'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['indretif'].widget.attrs['required'] = True
         
@@ -1130,16 +1070,12 @@ class form_s2299_evtdeslig(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s2299evtDeslig
@@ -1206,16 +1142,12 @@ class form_s2298_evtreintegr(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s2298evtReintegr
@@ -1284,16 +1216,12 @@ class form_s2260_evtconvinterm(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s2260evtConvInterm
@@ -1348,16 +1276,12 @@ class form_s2250_evtavprevio(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s2250evtAvPrevio
@@ -1420,18 +1344,14 @@ class form_s2245_evttreicap(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['operacao'].widget.attrs['required'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s2245evtTreiCap
@@ -1486,18 +1406,14 @@ class form_s2241_evtinsapo(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['operacao'].widget.attrs['required'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s2241evtInsApo
@@ -1558,18 +1474,14 @@ class form_s2240_evtexprisco(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['operacao'].widget.attrs['required'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s2240evtExpRisco
@@ -1624,7 +1536,6 @@ class form_s2231_evtcessao(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s2231evtCessao
@@ -1665,16 +1576,12 @@ class form_s2230_evtafasttemp(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s2230evtAfastTemp
@@ -1745,16 +1652,12 @@ class form_s2221_evttoxic(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s2221evtToxic
@@ -1789,16 +1692,12 @@ class form_s2220_evtmonit(forms.ModelForm):
         super (form_s2220_evtmonit,self ).__init__(*args,**kwargs)
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['indretif'].widget.attrs['required'] = True
         
@@ -1887,16 +1786,12 @@ class form_s2210_evtcat(forms.ModelForm):
         super (form_s2210_evtcat,self ).__init__(*args,**kwargs)
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['indretif'].widget.attrs['required'] = True
         
@@ -2004,16 +1899,12 @@ class form_s2206_evtaltcontratual(forms.ModelForm):
         super (form_s2206_evtaltcontratual,self ).__init__(*args,**kwargs)
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['indretif'].widget.attrs['required'] = True
         
@@ -2098,16 +1989,12 @@ class form_s2205_evtaltcadastral(forms.ModelForm):
         super (form_s2205_evtaltcadastral,self ).__init__(*args,**kwargs)
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['indretif'].widget.attrs['required'] = True
         
@@ -2189,13 +2076,10 @@ class form_s2200_evtadmissao(forms.ModelForm):
         super (form_s2200_evtadmissao,self ).__init__(*args,**kwargs)
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         
         self.fields['nistrab'].widget.attrs['required'] = True
         
@@ -2206,7 +2090,6 @@ class form_s2200_evtadmissao(forms.ModelForm):
         self.fields['cpftrab'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['indretif'].widget.attrs['required'] = True
         
@@ -2331,16 +2214,12 @@ class form_s2190_evtadmprelim(forms.ModelForm):
         self.fields['tpamb'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s2190evtAdmPrelim
@@ -2393,16 +2272,12 @@ class form_s1300_evtcontrsindpatr(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1300evtContrSindPatr
@@ -2465,16 +2340,12 @@ class form_s1299_evtfechaevper(forms.ModelForm):
         self.fields['indapuracao'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1299evtFechaEvPer
@@ -2523,16 +2394,12 @@ class form_s1298_evtreabreevper(forms.ModelForm):
         self.fields['indapuracao'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1298evtReabreEvPer
@@ -2581,16 +2448,12 @@ class form_s1295_evttotconting(forms.ModelForm):
         self.fields['indapuracao'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1295evtTotConting
@@ -2643,16 +2506,12 @@ class form_s1280_evtinfocomplper(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1280evtInfoComplPer
@@ -2705,16 +2564,12 @@ class form_s1270_evtcontratavnp(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1270evtContratAvNP
@@ -2769,16 +2624,12 @@ class form_s1260_evtcomprod(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1260evtComProd
@@ -2835,16 +2686,12 @@ class form_s1250_evtaqprod(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1250evtAqProd
@@ -2899,16 +2746,12 @@ class form_s1210_evtpgtos(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1210evtPgtos
@@ -2963,16 +2806,12 @@ class form_s1207_evtbenprrp(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1207evtBenPrRP
@@ -3031,16 +2870,12 @@ class form_s1202_evtrmnrpps(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1202evtRmnRPPS
@@ -3097,16 +2932,12 @@ class form_s1200_evtremun(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1200evtRemun
@@ -3151,18 +2982,14 @@ class form_s1080_evttaboperport(forms.ModelForm):
         self.fields['tpamb'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['operacao'].widget.attrs['required'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1080evtTabOperPort
@@ -3207,18 +3034,14 @@ class form_s1070_evttabprocesso(forms.ModelForm):
         self.fields['tpamb'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['operacao'].widget.attrs['required'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1070evtTabProcesso
@@ -3263,18 +3086,14 @@ class form_s1060_evttabambiente(forms.ModelForm):
         self.fields['tpamb'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['operacao'].widget.attrs['required'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1060evtTabAmbiente
@@ -3319,18 +3138,14 @@ class form_s1050_evttabhortur(forms.ModelForm):
         self.fields['tpamb'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['operacao'].widget.attrs['required'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1050evtTabHorTur
@@ -3375,18 +3190,14 @@ class form_s1040_evttabfuncao(forms.ModelForm):
         self.fields['tpamb'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['operacao'].widget.attrs['required'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1040evtTabFuncao
@@ -3431,18 +3242,14 @@ class form_s1035_evttabcarreira(forms.ModelForm):
         self.fields['tpamb'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['operacao'].widget.attrs['required'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1035evtTabCarreira
@@ -3487,18 +3294,14 @@ class form_s1030_evttabcargo(forms.ModelForm):
         self.fields['tpamb'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['operacao'].widget.attrs['required'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1030evtTabCargo
@@ -3543,18 +3346,14 @@ class form_s1020_evttablotacao(forms.ModelForm):
         self.fields['tpamb'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['operacao'].widget.attrs['required'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1020evtTabLotacao
@@ -3599,18 +3398,14 @@ class form_s1010_evttabrubrica(forms.ModelForm):
         self.fields['tpamb'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['operacao'].widget.attrs['required'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1010evtTabRubrica
@@ -3655,18 +3450,14 @@ class form_s1005_evttabestab(forms.ModelForm):
         self.fields['tpamb'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['operacao'].widget.attrs['required'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1005evtTabEstab
@@ -3711,18 +3502,14 @@ class form_s1000_evtinfoempregador(forms.ModelForm):
         self.fields['tpamb'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['operacao'].widget.attrs['required'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = s1000evtInfoEmpregador

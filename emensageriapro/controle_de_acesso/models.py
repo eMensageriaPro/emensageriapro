@@ -42,9 +42,9 @@ get_model = apps.get_model
 
 
 
-TIPOS_CONFIG_PAGINAS = (
-    (0, u'Manual'),
-    (1, u'Automático'),
+SIM_NAO = (
+    (0, u'Não'),
+    (1, u'Sim'),
 )
 
 AUDITORIA_TIPO = (
@@ -53,9 +53,9 @@ AUDITORIA_TIPO = (
     (3, u'Exclusão'),
 )
 
-SIM_NAO = (
-    (0, u'Não'),
-    (1, u'Sim'),
+TIPOS_CONFIG_PAGINAS = (
+    (0, u'Manual'),
+    (1, u'Automático'),
 )
 
 class Auditoria(models.Model):

@@ -66,16 +66,12 @@ class form_r9000_evtexclusao(forms.ModelForm):
         self.fields['tpamb'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = r9000evtExclusao
@@ -124,16 +120,12 @@ class form_r5011_evttotalcontrib(forms.ModelForm):
         self.fields['perapur'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = r5011evtTotalContrib
@@ -163,10 +155,8 @@ class form_r5001_evttotal(forms.ModelForm):
         self.fields['perapur'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         
         self.fields['hash'].widget.attrs['required'] = True
         
@@ -185,10 +175,8 @@ class form_r5001_evttotal(forms.ModelForm):
         self.fields['nrinsc'].widget.attrs['required'] = True
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = r5001evtTotal
@@ -249,16 +237,12 @@ class form_r3010_evtespdesportivo(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = r3010evtEspDesportivo
@@ -315,16 +299,12 @@ class form_r2099_evtfechaevper(forms.ModelForm):
         self.fields['perapur'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = r2099evtFechaEvPer
@@ -365,16 +345,12 @@ class form_r2098_evtreabreevper(forms.ModelForm):
         self.fields['perapur'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = r2098evtReabreEvPer
@@ -427,16 +403,12 @@ class form_r2070_evtpgtosdivs(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = r2070evtPgtosDivs
@@ -494,16 +466,12 @@ class form_r2060_evtcprb(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = r2060evtCPRB
@@ -573,16 +541,12 @@ class form_r2050_evtcomprod(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = r2050evtComProd
@@ -631,16 +595,12 @@ class form_r2040_evtassocdesprep(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = r2040evtAssocDespRep
@@ -689,16 +649,12 @@ class form_r2030_evtassocdesprec(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = r2030evtAssocDespRec
@@ -771,16 +727,12 @@ class form_r2020_evtservprest(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = r2020evtServPrest
@@ -853,16 +805,12 @@ class form_r2010_evtservtom(forms.ModelForm):
         self.fields['indretif'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = r2010evtServTom
@@ -901,18 +849,14 @@ class form_r1070_evttabprocesso(forms.ModelForm):
         self.fields['tpamb'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['operacao'].widget.attrs['required'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = r1070evtTabProcesso
@@ -951,18 +895,14 @@ class form_r1000_evtinfocontri(forms.ModelForm):
         self.fields['tpamb'].widget.attrs['required'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['operacao'].widget.attrs['required'] = True
         
         self.fields['status'].widget.attrs['readonly'] = True
-        self.fields['status'].widget.attrs['disabled'] = True
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
-        self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
         
         self.fields['versao'].widget.attrs['readonly'] = True
-        self.fields['versao'].widget.attrs['disabled'] = True
 
     class Meta:
         model = r1000evtInfoContri

@@ -49,25 +49,18 @@ class form_auditoria(forms.ModelForm):
         super (form_auditoria,self ).__init__(*args,**kwargs)
         
         self.fields['tipo'].widget.attrs['readonly'] = True
-        self.fields['tipo'].widget.attrs['disabled'] = True
         
         self.fields['data_hora'].widget.attrs['readonly'] = True
-        self.fields['data_hora'].widget.attrs['disabled'] = True
         self.fields['operador'].queryset = Usuarios.objects.using( slug ).filter(excluido=False).all()
         self.fields['operador'].widget.attrs['readonly'] = True
-        self.fields['operador'].widget.attrs['disabled'] = True
         
         self.fields['situacao_posterior'].widget.attrs['readonly'] = True
-        self.fields['situacao_posterior'].widget.attrs['disabled'] = True
         
         self.fields['situacao_anterior'].widget.attrs['readonly'] = True
-        self.fields['situacao_anterior'].widget.attrs['disabled'] = True
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['identidade'].widget.attrs['disabled'] = True
         
         self.fields['tabela'].widget.attrs['readonly'] = True
-        self.fields['tabela'].widget.attrs['disabled'] = True
 
     class Meta:
         model = Auditoria
