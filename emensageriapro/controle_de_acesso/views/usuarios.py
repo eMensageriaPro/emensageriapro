@@ -284,38 +284,38 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_config_perfis': 1,
-            'show_date_joined': 0,
-            'show_last_login': 0,
-            'show_is_active': 0,
-            'show_is_staff': 0,
-            'show_is_superuser': 0,
-            'show_email': 1,
-            'show_last_name': 1,
-            'show_first_name': 1,
+            'show_username': 1,
             'show_password': 0,
-            'show_username': 1, }
+            'show_first_name': 1,
+            'show_last_name': 1,
+            'show_email': 1,
+            'show_is_superuser': 0,
+            'show_is_staff': 0,
+            'show_is_active': 0,
+            'show_last_login': 0,
+            'show_date_joined': 0,
+            'show_config_perfis': 1, }
         post = False
         #ANTES-POST-LISTAGEM
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'config_perfis': 'config_perfis',
-                'email__icontains': 'email__icontains',
-                'last_name__icontains': 'last_name__icontains',
+                'username__icontains': 'username__icontains',
                 'first_name__icontains': 'first_name__icontains',
-                'username__icontains': 'username__icontains',}
+                'last_name__icontains': 'last_name__icontains',
+                'email__icontains': 'email__icontains',
+                'config_perfis': 'config_perfis',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'config_perfis': 'config_perfis',
-                'email__icontains': 'email__icontains',
-                'last_name__icontains': 'last_name__icontains',
+                'username__icontains': 'username__icontains',
                 'first_name__icontains': 'first_name__icontains',
-                'username__icontains': 'username__icontains',}
+                'last_name__icontains': 'last_name__icontains',
+                'email__icontains': 'email__icontains',
+                'config_perfis': 'config_perfis',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

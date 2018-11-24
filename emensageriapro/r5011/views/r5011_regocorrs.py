@@ -339,31 +339,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_dscresp': 1,
-            'show_codresp': 1,
-            'show_localerroaviso': 1,
+            'show_r5011_evttotalcontrib': 1,
             'show_tpocorr': 1,
-            'show_r5011_evttotalcontrib': 1, }
+            'show_localerroaviso': 1,
+            'show_codresp': 1,
+            'show_dscresp': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'dscresp__icontains': 'dscresp__icontains',
-                'codresp__icontains': 'codresp__icontains',
-                'localerroaviso__icontains': 'localerroaviso__icontains',
+                'r5011_evttotalcontrib': 'r5011_evttotalcontrib',
                 'tpocorr': 'tpocorr',
-                'r5011_evttotalcontrib': 'r5011_evttotalcontrib',}
+                'localerroaviso__icontains': 'localerroaviso__icontains',
+                'codresp__icontains': 'codresp__icontains',
+                'dscresp__icontains': 'dscresp__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'dscresp__icontains': 'dscresp__icontains',
-                'codresp__icontains': 'codresp__icontains',
-                'localerroaviso__icontains': 'localerroaviso__icontains',
+                'r5011_evttotalcontrib': 'r5011_evttotalcontrib',
                 'tpocorr': 'tpocorr',
-                'r5011_evttotalcontrib': 'r5011_evttotalcontrib',}
+                'localerroaviso__icontains': 'localerroaviso__icontains',
+                'codresp__icontains': 'codresp__icontains',
+                'dscresp__icontains': 'dscresp__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

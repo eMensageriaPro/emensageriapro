@@ -324,57 +324,57 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_tempo_estimado_conclusao': 0,
-            'show_processamento_versao_aplicativo': 0,
-            'show_numero_protocolo_fechamento': 0,
-            'show_protocolo': 0,
-            'show_recepcao_versao_aplicativo': 0,
-            'show_recepcao_data_hora': 0,
-            'show_retorno_descricao': 0,
-            'show_codigo_status': 1,
-            'show_identidade_transmissor': 1,
-            'show_status': 1,
-            'show_grupo': 1,
-            'show_contribuinte_nrinsc': 1,
+            'show_transmissor': 0,
             'show_contribuinte_tpinsc': 1,
-            'show_transmissor': 0, }
+            'show_contribuinte_nrinsc': 1,
+            'show_grupo': 1,
+            'show_status': 1,
+            'show_identidade_transmissor': 1,
+            'show_codigo_status': 1,
+            'show_retorno_descricao': 0,
+            'show_recepcao_data_hora': 0,
+            'show_recepcao_versao_aplicativo': 0,
+            'show_protocolo': 0,
+            'show_numero_protocolo_fechamento': 0,
+            'show_processamento_versao_aplicativo': 0,
+            'show_tempo_estimado_conclusao': 0, }
         post = False
         #ANTES-POST-LISTAGEM
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'tempo_estimado_conclusao': 'tempo_estimado_conclusao',
-                'processamento_versao_aplicativo__icontains': 'processamento_versao_aplicativo__icontains',
-                'numero_protocolo_fechamento__icontains': 'numero_protocolo_fechamento__icontains',
-                'protocolo__icontains': 'protocolo__icontains',
-                'recepcao_versao_aplicativo__icontains': 'recepcao_versao_aplicativo__icontains',
-                'recepcao_data_hora__range': 'recepcao_data_hora__range',
-                'codigo_status': 'codigo_status',
-                'identidade_transmissor__icontains': 'identidade_transmissor__icontains',
-                'status': 'status',
-                'grupo': 'grupo',
-                'contribuinte_nrinsc__icontains': 'contribuinte_nrinsc__icontains',
+                'transmissor': 'transmissor',
                 'contribuinte_tpinsc': 'contribuinte_tpinsc',
-                'transmissor': 'transmissor',}
+                'contribuinte_nrinsc__icontains': 'contribuinte_nrinsc__icontains',
+                'grupo': 'grupo',
+                'status': 'status',
+                'identidade_transmissor__icontains': 'identidade_transmissor__icontains',
+                'codigo_status': 'codigo_status',
+                'recepcao_data_hora__range': 'recepcao_data_hora__range',
+                'recepcao_versao_aplicativo__icontains': 'recepcao_versao_aplicativo__icontains',
+                'protocolo__icontains': 'protocolo__icontains',
+                'numero_protocolo_fechamento__icontains': 'numero_protocolo_fechamento__icontains',
+                'processamento_versao_aplicativo__icontains': 'processamento_versao_aplicativo__icontains',
+                'tempo_estimado_conclusao': 'tempo_estimado_conclusao',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'tempo_estimado_conclusao': 'tempo_estimado_conclusao',
-                'processamento_versao_aplicativo__icontains': 'processamento_versao_aplicativo__icontains',
-                'numero_protocolo_fechamento__icontains': 'numero_protocolo_fechamento__icontains',
-                'protocolo__icontains': 'protocolo__icontains',
-                'recepcao_versao_aplicativo__icontains': 'recepcao_versao_aplicativo__icontains',
-                'recepcao_data_hora__range': 'recepcao_data_hora__range',
-                'codigo_status': 'codigo_status',
-                'identidade_transmissor__icontains': 'identidade_transmissor__icontains',
-                'status': 'status',
-                'grupo': 'grupo',
-                'contribuinte_nrinsc__icontains': 'contribuinte_nrinsc__icontains',
+                'transmissor': 'transmissor',
                 'contribuinte_tpinsc': 'contribuinte_tpinsc',
-                'transmissor': 'transmissor',}
+                'contribuinte_nrinsc__icontains': 'contribuinte_nrinsc__icontains',
+                'grupo': 'grupo',
+                'status': 'status',
+                'identidade_transmissor__icontains': 'identidade_transmissor__icontains',
+                'codigo_status': 'codigo_status',
+                'recepcao_data_hora__range': 'recepcao_data_hora__range',
+                'recepcao_versao_aplicativo__icontains': 'recepcao_versao_aplicativo__icontains',
+                'protocolo__icontains': 'protocolo__icontains',
+                'numero_protocolo_fechamento__icontains': 'numero_protocolo_fechamento__icontains',
+                'processamento_versao_aplicativo__icontains': 'processamento_versao_aplicativo__icontains',
+                'tempo_estimado_conclusao': 'tempo_estimado_conclusao',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

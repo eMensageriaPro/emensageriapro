@@ -339,34 +339,34 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_dtajuste': 1,
-            'show_descajuste': 1,
-            'show_vlrajuste': 1,
-            'show_codajuste': 1,
+            'show_r2060_tipocod': 1,
             'show_tpajuste': 1,
-            'show_r2060_tipocod': 1, }
+            'show_codajuste': 1,
+            'show_vlrajuste': 1,
+            'show_descajuste': 1,
+            'show_dtajuste': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'dtajuste__icontains': 'dtajuste__icontains',
-                'descajuste__icontains': 'descajuste__icontains',
-                'vlrajuste': 'vlrajuste',
-                'codajuste': 'codajuste',
+                'r2060_tipocod': 'r2060_tipocod',
                 'tpajuste': 'tpajuste',
-                'r2060_tipocod': 'r2060_tipocod',}
+                'codajuste': 'codajuste',
+                'vlrajuste': 'vlrajuste',
+                'descajuste__icontains': 'descajuste__icontains',
+                'dtajuste__icontains': 'dtajuste__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'dtajuste__icontains': 'dtajuste__icontains',
-                'descajuste__icontains': 'descajuste__icontains',
-                'vlrajuste': 'vlrajuste',
-                'codajuste': 'codajuste',
+                'r2060_tipocod': 'r2060_tipocod',
                 'tpajuste': 'tpajuste',
-                'r2060_tipocod': 'r2060_tipocod',}
+                'codajuste': 'codajuste',
+                'vlrajuste': 'vlrajuste',
+                'descajuste__icontains': 'descajuste__icontains',
+                'dtajuste__icontains': 'dtajuste__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

@@ -281,30 +281,30 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_localizacao': 0,
-            'show_descricao': 0,
-            'show_codigo': 1,
+            'show_retornos_eventos': 1,
             'show_tipo': 1,
-            'show_retornos_eventos': 1, }
+            'show_codigo': 1,
+            'show_descricao': 0,
+            'show_localizacao': 0, }
         post = False
         #ANTES-POST-LISTAGEM
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'localizacao__icontains': 'localizacao__icontains',
-                'codigo': 'codigo',
+                'retornos_eventos': 'retornos_eventos',
                 'tipo': 'tipo',
-                'retornos_eventos': 'retornos_eventos',}
+                'codigo': 'codigo',
+                'localizacao__icontains': 'localizacao__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'localizacao__icontains': 'localizacao__icontains',
-                'codigo': 'codigo',
+                'retornos_eventos': 'retornos_eventos',
                 'tipo': 'tipo',
-                'retornos_eventos': 'retornos_eventos',}
+                'codigo': 'codigo',
+                'localizacao__icontains': 'localizacao__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

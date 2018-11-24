@@ -281,44 +281,44 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_validacoes': 0,
-            'show_data_hora': 1,
-            'show_status': 1,
-            'show_identidade': 0,
-            'show_identidade_evento': 1,
-            'show_versao': 0,
-            'show_evento': 1,
+            'show_importacao_arquivos': 0,
             'show_arquivo': 1,
-            'show_importacao_arquivos': 0, }
+            'show_evento': 1,
+            'show_versao': 0,
+            'show_identidade_evento': 1,
+            'show_identidade': 0,
+            'show_status': 1,
+            'show_data_hora': 1,
+            'show_validacoes': 0, }
         post = False
         #ANTES-POST-LISTAGEM
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'validacoes__icontains': 'validacoes__icontains',
-                'data_hora__range': 'data_hora__range',
-                'status': 'status',
-                'identidade': 'identidade',
-                'identidade_evento__icontains': 'identidade_evento__icontains',
-                'versao__icontains': 'versao__icontains',
-                'evento__icontains': 'evento__icontains',
+                'importacao_arquivos': 'importacao_arquivos',
                 'arquivo__icontains': 'arquivo__icontains',
-                'importacao_arquivos': 'importacao_arquivos',}
+                'evento__icontains': 'evento__icontains',
+                'versao__icontains': 'versao__icontains',
+                'identidade_evento__icontains': 'identidade_evento__icontains',
+                'identidade': 'identidade',
+                'status': 'status',
+                'data_hora__range': 'data_hora__range',
+                'validacoes__icontains': 'validacoes__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'validacoes__icontains': 'validacoes__icontains',
-                'data_hora__range': 'data_hora__range',
-                'status': 'status',
-                'identidade': 'identidade',
-                'identidade_evento__icontains': 'identidade_evento__icontains',
-                'versao__icontains': 'versao__icontains',
-                'evento__icontains': 'evento__icontains',
+                'importacao_arquivos': 'importacao_arquivos',
                 'arquivo__icontains': 'arquivo__icontains',
-                'importacao_arquivos': 'importacao_arquivos',}
+                'evento__icontains': 'evento__icontains',
+                'versao__icontains': 'versao__icontains',
+                'identidade_evento__icontains': 'identidade_evento__icontains',
+                'identidade': 'identidade',
+                'status': 'status',
+                'data_hora__range': 'data_hora__range',
+                'validacoes__icontains': 'validacoes__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

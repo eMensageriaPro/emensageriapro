@@ -346,31 +346,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_tptreicap': 1,
-            'show_modtreicap': 1,
-            'show_durtreicap': 1,
+            'show_s2245_evttreicap': 1,
             'show_dttreicap': 1,
-            'show_s2245_evttreicap': 1, }
+            'show_durtreicap': 1,
+            'show_modtreicap': 1,
+            'show_tptreicap': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'tptreicap': 'tptreicap',
-                'modtreicap': 'modtreicap',
-                'durtreicap': 'durtreicap',
+                's2245_evttreicap': 's2245_evttreicap',
                 'dttreicap__range': 'dttreicap__range',
-                's2245_evttreicap': 's2245_evttreicap',}
+                'durtreicap': 'durtreicap',
+                'modtreicap': 'modtreicap',
+                'tptreicap': 'tptreicap',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'tptreicap': 'tptreicap',
-                'modtreicap': 'modtreicap',
-                'durtreicap': 'durtreicap',
+                's2245_evttreicap': 's2245_evttreicap',
                 'dttreicap__range': 'dttreicap__range',
-                's2245_evttreicap': 's2245_evttreicap',}
+                'durtreicap': 'durtreicap',
+                'modtreicap': 'modtreicap',
+                'tptreicap': 'tptreicap',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

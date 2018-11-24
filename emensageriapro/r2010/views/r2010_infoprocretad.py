@@ -339,31 +339,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_valoradic': 1,
-            'show_codsuspadic': 0,
-            'show_nrprocretadic': 1,
+            'show_r2010_evtservtom': 1,
             'show_tpprocretadic': 1,
-            'show_r2010_evtservtom': 1, }
+            'show_nrprocretadic': 1,
+            'show_codsuspadic': 0,
+            'show_valoradic': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'valoradic': 'valoradic',
-                'codsuspadic': 'codsuspadic',
-                'nrprocretadic__icontains': 'nrprocretadic__icontains',
+                'r2010_evtservtom': 'r2010_evtservtom',
                 'tpprocretadic': 'tpprocretadic',
-                'r2010_evtservtom': 'r2010_evtservtom',}
+                'nrprocretadic__icontains': 'nrprocretadic__icontains',
+                'codsuspadic': 'codsuspadic',
+                'valoradic': 'valoradic',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'valoradic': 'valoradic',
-                'codsuspadic': 'codsuspadic',
-                'nrprocretadic__icontains': 'nrprocretadic__icontains',
+                'r2010_evtservtom': 'r2010_evtservtom',
                 'tpprocretadic': 'tpprocretadic',
-                'r2010_evtservtom': 'r2010_evtservtom',}
+                'nrprocretadic__icontains': 'nrprocretadic__icontains',
+                'codsuspadic': 'codsuspadic',
+                'valoradic': 'valoradic',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

@@ -346,31 +346,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_percredcontrib': 0,
-            'show_indsubstpatr': 0,
-            'show_indconstr': 1,
+            'show_s5011_evtcs': 1,
             'show_indcoop': 0,
-            'show_s5011_evtcs': 1, }
+            'show_indconstr': 1,
+            'show_indsubstpatr': 0,
+            'show_percredcontrib': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'percredcontrib': 'percredcontrib',
-                'indsubstpatr': 'indsubstpatr',
-                'indconstr': 'indconstr',
+                's5011_evtcs': 's5011_evtcs',
                 'indcoop': 'indcoop',
-                's5011_evtcs': 's5011_evtcs',}
+                'indconstr': 'indconstr',
+                'indsubstpatr': 'indsubstpatr',
+                'percredcontrib': 'percredcontrib',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'percredcontrib': 'percredcontrib',
-                'indsubstpatr': 'indsubstpatr',
-                'indconstr': 'indconstr',
+                's5011_evtcs': 's5011_evtcs',
                 'indcoop': 'indcoop',
-                's5011_evtcs': 's5011_evtcs',}
+                'indconstr': 'indconstr',
+                'indsubstpatr': 'indsubstpatr',
+                'percredcontrib': 'percredcontrib',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

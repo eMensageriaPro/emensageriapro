@@ -48,24 +48,18 @@ class form_s2220_exame(forms.ModelForm):
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_s2220_exame,self ).__init__(*args,**kwargs)
+        self.fields['s2220_evtmonit'].queryset = s2220evtMonit.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s2220_evtmonit'].widget.attrs['required'] = True
         
-        self.fields['indresult'].widget.attrs['required'] = True
-        
-        self.fields['dtfimmonit'].widget.attrs['required'] = True
-        
-        self.fields['dtinimonit'].widget.attrs['required'] = True
-        
-        self.fields['ordexame'].widget.attrs['required'] = True
-        
-        self.fields['interprexm'].widget.attrs['required'] = True
-        
-        self.fields['obsproc'].widget.attrs['required'] = True
+        self.fields['dtexm'].widget.attrs['required'] = True
         
         self.fields['procrealizado'].widget.attrs['required'] = True
         
-        self.fields['dtexm'].widget.attrs['required'] = True
-        self.fields['s2220_evtmonit'].queryset = s2220evtMonit.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2220_evtmonit'].widget.attrs['required'] = True
+        self.fields['interprexm'].widget.attrs['required'] = True
+        
+        self.fields['ordexame'].widget.attrs['required'] = True
+        
+        self.fields['dtinimonit'].widget.attrs['required'] = True
 
     class Meta:
         model = s2220exame

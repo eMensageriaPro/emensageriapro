@@ -46,30 +46,28 @@ __author__ = 'marcelovasconcellos'
 
 
 
-class form_s2405_exterior(forms.ModelForm):
+class form_s2405_brasil(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s2405_exterior,self ).__init__(*args,**kwargs)
+        super (form_s2405_brasil,self ).__init__(*args,**kwargs)
         
-        self.fields['codpostal'].widget.attrs['required'] = True
+        self.fields['s2405_evtcdbenefalt'].widget.attrs['required'] = True
         
-        self.fields['nmcid'].widget.attrs['required'] = True
-        
-        self.fields['bairro'].widget.attrs['required'] = True
-        
-        self.fields['complemento'].widget.attrs['required'] = True
-        
-        self.fields['nrlograd'].widget.attrs['required'] = True
+        self.fields['tplograd'].widget.attrs['required'] = True
         
         self.fields['dsclograd'].widget.attrs['required'] = True
         
-        self.fields['paisresid'].widget.attrs['required'] = True
+        self.fields['nrlograd'].widget.attrs['required'] = True
         
-        self.fields['s2405_evtcdbenefalt'].widget.attrs['required'] = True
+        self.fields['cep'].widget.attrs['required'] = True
+        
+        self.fields['codmunic'].widget.attrs['required'] = True
+        
+        self.fields['uf'].widget.attrs['required'] = True
 
     class Meta:
-        model = s2405exterior
+        model = s2405brasil
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
@@ -83,24 +81,22 @@ class form_s2405_dependente(forms.ModelForm):
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_s2405_dependente,self ).__init__(*args,**kwargs)
+        self.fields['s2405_evtcdbenefalt'].queryset = s2405evtCdBenefAlt.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s2405_evtcdbenefalt'].widget.attrs['required'] = True
         
-        self.fields['depfinsprev'].widget.attrs['required'] = True
-        
-        self.fields['incfismen'].widget.attrs['required'] = True
-        
-        self.fields['depirrf'].widget.attrs['required'] = True
-        
-        self.fields['sexodep'].widget.attrs['required'] = True
-        
-        self.fields['cpfdep'].widget.attrs['required'] = True
-        
-        self.fields['dtnascto'].widget.attrs['required'] = True
+        self.fields['tpdep'].widget.attrs['required'] = True
         
         self.fields['nmdep'].widget.attrs['required'] = True
         
-        self.fields['tpdep'].widget.attrs['required'] = True
-        self.fields['s2405_evtcdbenefalt'].queryset = s2405evtCdBenefAlt.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2405_evtcdbenefalt'].widget.attrs['required'] = True
+        self.fields['dtnascto'].widget.attrs['required'] = True
+        
+        self.fields['sexodep'].widget.attrs['required'] = True
+        
+        self.fields['depirrf'].widget.attrs['required'] = True
+        
+        self.fields['incfismen'].widget.attrs['required'] = True
+        
+        self.fields['depfinsprev'].widget.attrs['required'] = True
 
     class Meta:
         model = s2405dependente
@@ -112,32 +108,24 @@ class form_s2405_dependente(forms.ModelForm):
         ]
 
 
-class form_s2405_brasil(forms.ModelForm):
+class form_s2405_exterior(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s2405_brasil,self ).__init__(*args,**kwargs)
+        super (form_s2405_exterior,self ).__init__(*args,**kwargs)
         
-        self.fields['uf'].widget.attrs['required'] = True
+        self.fields['s2405_evtcdbenefalt'].widget.attrs['required'] = True
         
-        self.fields['codmunic'].widget.attrs['required'] = True
-        
-        self.fields['cep'].widget.attrs['required'] = True
-        
-        self.fields['bairro'].widget.attrs['required'] = True
-        
-        self.fields['complemento'].widget.attrs['required'] = True
-        
-        self.fields['nrlograd'].widget.attrs['required'] = True
+        self.fields['paisresid'].widget.attrs['required'] = True
         
         self.fields['dsclograd'].widget.attrs['required'] = True
         
-        self.fields['tplograd'].widget.attrs['required'] = True
+        self.fields['nrlograd'].widget.attrs['required'] = True
         
-        self.fields['s2405_evtcdbenefalt'].widget.attrs['required'] = True
+        self.fields['nmcid'].widget.attrs['required'] = True
 
     class Meta:
-        model = s2405brasil
+        model = s2405exterior
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',

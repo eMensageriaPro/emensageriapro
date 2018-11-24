@@ -43,20 +43,18 @@ __author__ = 'marcelovasconcellos'
 
 
 
-class form_s2416_suspensao(forms.ModelForm):
+class form_s2416_homologtc(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s2416_suspensao,self ).__init__(*args,**kwargs)
-        
-        self.fields['dscsuspensao'].widget.attrs['required'] = True
-        
-        self.fields['mtvsuspensao'].widget.attrs['required'] = True
+        super (form_s2416_homologtc,self ).__init__(*args,**kwargs)
         
         self.fields['s2416_evtcdbenalt'].widget.attrs['required'] = True
+        
+        self.fields['nratolegal'].widget.attrs['required'] = True
 
     class Meta:
-        model = s2416suspensao
+        model = s2416homologTC
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
@@ -71,9 +69,9 @@ class form_s2416_infopenmorte(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2416_infopenmorte,self ).__init__(*args,**kwargs)
         
-        self.fields['tppenmorte'].widget.attrs['required'] = True
-        
         self.fields['s2416_evtcdbenalt'].widget.attrs['required'] = True
+        
+        self.fields['tppenmorte'].widget.attrs['required'] = True
 
     class Meta:
         model = s2416infoPenMorte
@@ -85,18 +83,18 @@ class form_s2416_infopenmorte(forms.ModelForm):
         ]
 
 
-class form_s2416_homologtc(forms.ModelForm):
+class form_s2416_suspensao(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s2416_homologtc,self ).__init__(*args,**kwargs)
-        
-        self.fields['nratolegal'].widget.attrs['required'] = True
+        super (form_s2416_suspensao,self ).__init__(*args,**kwargs)
         
         self.fields['s2416_evtcdbenalt'].widget.attrs['required'] = True
+        
+        self.fields['mtvsuspensao'].widget.attrs['required'] = True
 
     class Meta:
-        model = s2416homologTC
+        model = s2416suspensao
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',

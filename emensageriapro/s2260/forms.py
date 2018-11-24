@@ -51,23 +51,19 @@ class form_s2260_localtrabinterm(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s2260_localtrabinterm,self ).__init__(*args,**kwargs)
         
-        self.fields['uf'].widget.attrs['required'] = True
-        
-        self.fields['codmunic'].widget.attrs['required'] = True
-        
-        self.fields['cep'].widget.attrs['required'] = True
-        
-        self.fields['bairro'].widget.attrs['required'] = True
-        
-        self.fields['complem'].widget.attrs['required'] = True
-        
-        self.fields['nrlograd'].widget.attrs['required'] = True
-        
-        self.fields['dsclograd'].widget.attrs['required'] = True
+        self.fields['s2260_evtconvinterm'].widget.attrs['required'] = True
         
         self.fields['tplograd'].widget.attrs['required'] = True
         
-        self.fields['s2260_evtconvinterm'].widget.attrs['required'] = True
+        self.fields['dsclograd'].widget.attrs['required'] = True
+        
+        self.fields['nrlograd'].widget.attrs['required'] = True
+        
+        self.fields['cep'].widget.attrs['required'] = True
+        
+        self.fields['codmunic'].widget.attrs['required'] = True
+        
+        self.fields['uf'].widget.attrs['required'] = True
 
     class Meta:
         model = s2260localTrabInterm

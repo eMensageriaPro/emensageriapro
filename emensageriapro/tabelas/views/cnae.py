@@ -324,31 +324,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_aliquota': 1,
-            'show_data_termino': 1,
-            'show_data_inicio': 1,
+            'show_codigo': 1,
             'show_descricao': 1,
-            'show_codigo': 1, }
+            'show_data_inicio': 1,
+            'show_data_termino': 1,
+            'show_aliquota': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'aliquota': 'aliquota',
-                'data_termino__range': 'data_termino__range',
-                'data_inicio__range': 'data_inicio__range',
+                'codigo__icontains': 'codigo__icontains',
                 'descricao__icontains': 'descricao__icontains',
-                'codigo__icontains': 'codigo__icontains',}
+                'data_inicio__range': 'data_inicio__range',
+                'data_termino__range': 'data_termino__range',
+                'aliquota': 'aliquota',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'aliquota': 'aliquota',
-                'data_termino__range': 'data_termino__range',
-                'data_inicio__range': 'data_inicio__range',
+                'codigo__icontains': 'codigo__icontains',
                 'descricao__icontains': 'descricao__icontains',
-                'codigo__icontains': 'codigo__icontains',}
+                'data_inicio__range': 'data_inicio__range',
+                'data_termino__range': 'data_termino__range',
+                'aliquota': 'aliquota',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

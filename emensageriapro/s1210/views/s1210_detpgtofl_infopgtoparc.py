@@ -339,40 +339,40 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_vrrubr': 1,
-            'show_vrunit': 0,
-            'show_fatorrubr': 0,
-            'show_qtdrubr': 0,
-            'show_idetabrubr': 1,
-            'show_codrubr': 1,
+            'show_s1210_detpgtofl': 1,
             'show_matricula': 0,
-            'show_s1210_detpgtofl': 1, }
+            'show_codrubr': 1,
+            'show_idetabrubr': 1,
+            'show_qtdrubr': 0,
+            'show_fatorrubr': 0,
+            'show_vrunit': 0,
+            'show_vrrubr': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'vrrubr': 'vrrubr',
-                'vrunit': 'vrunit',
-                'fatorrubr': 'fatorrubr',
-                'qtdrubr': 'qtdrubr',
-                'idetabrubr__icontains': 'idetabrubr__icontains',
-                'codrubr__icontains': 'codrubr__icontains',
+                's1210_detpgtofl': 's1210_detpgtofl',
                 'matricula__icontains': 'matricula__icontains',
-                's1210_detpgtofl': 's1210_detpgtofl',}
+                'codrubr__icontains': 'codrubr__icontains',
+                'idetabrubr__icontains': 'idetabrubr__icontains',
+                'qtdrubr': 'qtdrubr',
+                'fatorrubr': 'fatorrubr',
+                'vrunit': 'vrunit',
+                'vrrubr': 'vrrubr',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'vrrubr': 'vrrubr',
-                'vrunit': 'vrunit',
-                'fatorrubr': 'fatorrubr',
-                'qtdrubr': 'qtdrubr',
-                'idetabrubr__icontains': 'idetabrubr__icontains',
-                'codrubr__icontains': 'codrubr__icontains',
+                's1210_detpgtofl': 's1210_detpgtofl',
                 'matricula__icontains': 'matricula__icontains',
-                's1210_detpgtofl': 's1210_detpgtofl',}
+                'codrubr__icontains': 'codrubr__icontains',
+                'idetabrubr__icontains': 'idetabrubr__icontains',
+                'qtdrubr': 'qtdrubr',
+                'fatorrubr': 'fatorrubr',
+                'vrunit': 'vrunit',
+                'vrrubr': 'vrrubr',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

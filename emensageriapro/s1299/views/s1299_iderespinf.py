@@ -339,31 +339,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_email': 0,
-            'show_telefone': 1,
-            'show_cpfresp': 1,
+            'show_s1299_evtfechaevper': 1,
             'show_nmresp': 1,
-            'show_s1299_evtfechaevper': 1, }
+            'show_cpfresp': 1,
+            'show_telefone': 1,
+            'show_email': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'email__icontains': 'email__icontains',
-                'telefone__icontains': 'telefone__icontains',
-                'cpfresp__icontains': 'cpfresp__icontains',
+                's1299_evtfechaevper': 's1299_evtfechaevper',
                 'nmresp__icontains': 'nmresp__icontains',
-                's1299_evtfechaevper': 's1299_evtfechaevper',}
+                'cpfresp__icontains': 'cpfresp__icontains',
+                'telefone__icontains': 'telefone__icontains',
+                'email__icontains': 'email__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'email__icontains': 'email__icontains',
-                'telefone__icontains': 'telefone__icontains',
-                'cpfresp__icontains': 'cpfresp__icontains',
+                's1299_evtfechaevper': 's1299_evtfechaevper',
                 'nmresp__icontains': 'nmresp__icontains',
-                's1299_evtfechaevper': 's1299_evtfechaevper',}
+                'cpfresp__icontains': 'cpfresp__icontains',
+                'telefone__icontains': 'telefone__icontains',
+                'email__icontains': 'email__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

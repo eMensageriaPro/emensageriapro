@@ -353,40 +353,40 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_cnpjefr': 0,
-            'show_ideefr': 1,
-            'show_vrtetorem': 1,
-            'show_poderop': 1,
-            'show_esferaop': 0,
-            'show_indugrpps': 1,
+            'show_s1000_inclusao': 1,
             'show_nrsiafi': 1,
-            'show_s1000_inclusao': 1, }
+            'show_indugrpps': 1,
+            'show_esferaop': 0,
+            'show_poderop': 1,
+            'show_vrtetorem': 1,
+            'show_ideefr': 1,
+            'show_cnpjefr': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'cnpjefr__icontains': 'cnpjefr__icontains',
-                'ideefr__icontains': 'ideefr__icontains',
-                'vrtetorem': 'vrtetorem',
-                'poderop': 'poderop',
-                'esferaop': 'esferaop',
-                'indugrpps__icontains': 'indugrpps__icontains',
+                's1000_inclusao': 's1000_inclusao',
                 'nrsiafi__icontains': 'nrsiafi__icontains',
-                's1000_inclusao': 's1000_inclusao',}
+                'indugrpps__icontains': 'indugrpps__icontains',
+                'esferaop': 'esferaop',
+                'poderop': 'poderop',
+                'vrtetorem': 'vrtetorem',
+                'ideefr__icontains': 'ideefr__icontains',
+                'cnpjefr__icontains': 'cnpjefr__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'cnpjefr__icontains': 'cnpjefr__icontains',
-                'ideefr__icontains': 'ideefr__icontains',
-                'vrtetorem': 'vrtetorem',
-                'poderop': 'poderop',
-                'esferaop': 'esferaop',
-                'indugrpps__icontains': 'indugrpps__icontains',
+                's1000_inclusao': 's1000_inclusao',
                 'nrsiafi__icontains': 'nrsiafi__icontains',
-                's1000_inclusao': 's1000_inclusao',}
+                'indugrpps__icontains': 'indugrpps__icontains',
+                'esferaop': 'esferaop',
+                'poderop': 'poderop',
+                'vrtetorem': 'vrtetorem',
+                'ideefr__icontains': 'ideefr__icontains',
+                'cnpjefr__icontains': 'cnpjefr__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

@@ -339,31 +339,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_observacao': 0,
-            'show_tpavprevio': 1,
-            'show_dtprevdeslig': 1,
+            'show_s2250_evtavprevio': 1,
             'show_dtavprv': 1,
-            'show_s2250_evtavprevio': 1, }
+            'show_dtprevdeslig': 1,
+            'show_tpavprevio': 1,
+            'show_observacao': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'observacao__icontains': 'observacao__icontains',
-                'tpavprevio': 'tpavprevio',
-                'dtprevdeslig__range': 'dtprevdeslig__range',
+                's2250_evtavprevio': 's2250_evtavprevio',
                 'dtavprv__range': 'dtavprv__range',
-                's2250_evtavprevio': 's2250_evtavprevio',}
+                'dtprevdeslig__range': 'dtprevdeslig__range',
+                'tpavprevio': 'tpavprevio',
+                'observacao__icontains': 'observacao__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'observacao__icontains': 'observacao__icontains',
-                'tpavprevio': 'tpavprevio',
-                'dtprevdeslig__range': 'dtprevdeslig__range',
+                's2250_evtavprevio': 's2250_evtavprevio',
                 'dtavprv__range': 'dtavprv__range',
-                's2250_evtavprevio': 's2250_evtavprevio',}
+                'dtprevdeslig__range': 'dtprevdeslig__range',
+                'tpavprevio': 'tpavprevio',
+                'observacao__icontains': 'observacao__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

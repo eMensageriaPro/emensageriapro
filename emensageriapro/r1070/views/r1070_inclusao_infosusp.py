@@ -339,31 +339,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_inddeposito': 1,
-            'show_dtdecisao': 1,
-            'show_indsusp': 1,
+            'show_r1070_inclusao': 1,
             'show_codsusp': 0,
-            'show_r1070_inclusao': 1, }
+            'show_indsusp': 1,
+            'show_dtdecisao': 1,
+            'show_inddeposito': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'inddeposito__icontains': 'inddeposito__icontains',
-                'dtdecisao__range': 'dtdecisao__range',
-                'indsusp__icontains': 'indsusp__icontains',
+                'r1070_inclusao': 'r1070_inclusao',
                 'codsusp': 'codsusp',
-                'r1070_inclusao': 'r1070_inclusao',}
+                'indsusp__icontains': 'indsusp__icontains',
+                'dtdecisao__range': 'dtdecisao__range',
+                'inddeposito__icontains': 'inddeposito__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'inddeposito__icontains': 'inddeposito__icontains',
-                'dtdecisao__range': 'dtdecisao__range',
-                'indsusp__icontains': 'indsusp__icontains',
+                'r1070_inclusao': 'r1070_inclusao',
                 'codsusp': 'codsusp',
-                'r1070_inclusao': 'r1070_inclusao',}
+                'indsusp__icontains': 'indsusp__icontains',
+                'dtdecisao__range': 'dtdecisao__range',
+                'inddeposito__icontains': 'inddeposito__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

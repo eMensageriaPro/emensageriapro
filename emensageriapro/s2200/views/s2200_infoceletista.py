@@ -353,49 +353,49 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_dtopcfgts': 0,
-            'show_opcfgts': 1,
-            'show_fgts': 0,
-            'show_cnpjsindcategprof': 1,
-            'show_dtbase': 0,
-            'show_natatividade': 1,
-            'show_tpregjor': 1,
-            'show_indadmissao': 1,
-            'show_tpadmissao': 1,
+            'show_s2200_evtadmissao': 1,
             'show_dtadm': 1,
-            'show_s2200_evtadmissao': 1, }
+            'show_tpadmissao': 1,
+            'show_indadmissao': 1,
+            'show_tpregjor': 1,
+            'show_natatividade': 1,
+            'show_dtbase': 0,
+            'show_cnpjsindcategprof': 1,
+            'show_fgts': 0,
+            'show_opcfgts': 1,
+            'show_dtopcfgts': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'dtopcfgts__range': 'dtopcfgts__range',
-                'opcfgts': 'opcfgts',
-                'fgts': 'fgts',
-                'cnpjsindcategprof__icontains': 'cnpjsindcategprof__icontains',
-                'dtbase': 'dtbase',
-                'natatividade': 'natatividade',
-                'tpregjor': 'tpregjor',
-                'indadmissao': 'indadmissao',
-                'tpadmissao': 'tpadmissao',
+                's2200_evtadmissao': 's2200_evtadmissao',
                 'dtadm__range': 'dtadm__range',
-                's2200_evtadmissao': 's2200_evtadmissao',}
+                'tpadmissao': 'tpadmissao',
+                'indadmissao': 'indadmissao',
+                'tpregjor': 'tpregjor',
+                'natatividade': 'natatividade',
+                'dtbase': 'dtbase',
+                'cnpjsindcategprof__icontains': 'cnpjsindcategprof__icontains',
+                'fgts': 'fgts',
+                'opcfgts': 'opcfgts',
+                'dtopcfgts__range': 'dtopcfgts__range',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'dtopcfgts__range': 'dtopcfgts__range',
-                'opcfgts': 'opcfgts',
-                'fgts': 'fgts',
-                'cnpjsindcategprof__icontains': 'cnpjsindcategprof__icontains',
-                'dtbase': 'dtbase',
-                'natatividade': 'natatividade',
-                'tpregjor': 'tpregjor',
-                'indadmissao': 'indadmissao',
-                'tpadmissao': 'tpadmissao',
+                's2200_evtadmissao': 's2200_evtadmissao',
                 'dtadm__range': 'dtadm__range',
-                's2200_evtadmissao': 's2200_evtadmissao',}
+                'tpadmissao': 'tpadmissao',
+                'indadmissao': 'indadmissao',
+                'tpregjor': 'tpregjor',
+                'natatividade': 'natatividade',
+                'dtbase': 'dtbase',
+                'cnpjsindcategprof__icontains': 'cnpjsindcategprof__icontains',
+                'fgts': 'fgts',
+                'opcfgts': 'opcfgts',
+                'dtopcfgts__range': 'dtopcfgts__range',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

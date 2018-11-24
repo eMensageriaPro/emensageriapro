@@ -353,37 +353,37 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_utilizepi': 1,
-            'show_utilizepc': 1,
-            'show_epcepi': 0,
-            'show_tecmedicao': 0,
-            'show_intconc': 0,
+            'show_s2240_altexprisco_infoamb': 1,
             'show_codfatris': 1,
-            'show_s2240_altexprisco_infoamb': 1, }
+            'show_intconc': 0,
+            'show_tecmedicao': 0,
+            'show_epcepi': 0,
+            'show_utilizepc': 1,
+            'show_utilizepi': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'utilizepi': 'utilizepi',
-                'utilizepc': 'utilizepc',
-                'epcepi': 'epcepi',
-                'tecmedicao__icontains': 'tecmedicao__icontains',
-                'intconc__icontains': 'intconc__icontains',
+                's2240_altexprisco_infoamb': 's2240_altexprisco_infoamb',
                 'codfatris__icontains': 'codfatris__icontains',
-                's2240_altexprisco_infoamb': 's2240_altexprisco_infoamb',}
+                'intconc__icontains': 'intconc__icontains',
+                'tecmedicao__icontains': 'tecmedicao__icontains',
+                'epcepi': 'epcepi',
+                'utilizepc': 'utilizepc',
+                'utilizepi': 'utilizepi',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'utilizepi': 'utilizepi',
-                'utilizepc': 'utilizepc',
-                'epcepi': 'epcepi',
-                'tecmedicao__icontains': 'tecmedicao__icontains',
-                'intconc__icontains': 'intconc__icontains',
+                's2240_altexprisco_infoamb': 's2240_altexprisco_infoamb',
                 'codfatris__icontains': 'codfatris__icontains',
-                's2240_altexprisco_infoamb': 's2240_altexprisco_infoamb',}
+                'intconc__icontains': 'intconc__icontains',
+                'tecmedicao__icontains': 'tecmedicao__icontains',
+                'epcepi': 'epcepi',
+                'utilizepc': 'utilizepc',
+                'utilizepi': 'utilizepi',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

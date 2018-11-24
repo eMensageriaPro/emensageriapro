@@ -339,34 +339,34 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_observacao': 0,
-            'show_dttransf': 1,
-            'show_matricant': 0,
-            'show_cnpjempregant': 1,
+            'show_s2200_evtadmissao': 1,
             'show_tpinscant': 1,
-            'show_s2200_evtadmissao': 1, }
+            'show_cnpjempregant': 1,
+            'show_matricant': 0,
+            'show_dttransf': 1,
+            'show_observacao': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'observacao__icontains': 'observacao__icontains',
-                'dttransf__range': 'dttransf__range',
-                'matricant__icontains': 'matricant__icontains',
-                'cnpjempregant__icontains': 'cnpjempregant__icontains',
+                's2200_evtadmissao': 's2200_evtadmissao',
                 'tpinscant': 'tpinscant',
-                's2200_evtadmissao': 's2200_evtadmissao',}
+                'cnpjempregant__icontains': 'cnpjempregant__icontains',
+                'matricant__icontains': 'matricant__icontains',
+                'dttransf__range': 'dttransf__range',
+                'observacao__icontains': 'observacao__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'observacao__icontains': 'observacao__icontains',
-                'dttransf__range': 'dttransf__range',
-                'matricant__icontains': 'matricant__icontains',
-                'cnpjempregant__icontains': 'cnpjempregant__icontains',
+                's2200_evtadmissao': 's2200_evtadmissao',
                 'tpinscant': 'tpinscant',
-                's2200_evtadmissao': 's2200_evtadmissao',}
+                'cnpjempregant__icontains': 'cnpjempregant__icontains',
+                'matricant__icontains': 'matricant__icontains',
+                'dttransf__range': 'dttransf__range',
+                'observacao__icontains': 'observacao__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

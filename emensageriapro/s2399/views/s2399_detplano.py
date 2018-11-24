@@ -339,34 +339,34 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_vlrpgdep': 1,
-            'show_dtnascto': 1,
-            'show_nmdep': 1,
-            'show_cpfdep': 0,
+            'show_s2399_detoper': 1,
             'show_tpdep': 1,
-            'show_s2399_detoper': 1, }
+            'show_cpfdep': 0,
+            'show_nmdep': 1,
+            'show_dtnascto': 1,
+            'show_vlrpgdep': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'vlrpgdep': 'vlrpgdep',
-                'dtnascto__range': 'dtnascto__range',
-                'nmdep__icontains': 'nmdep__icontains',
-                'cpfdep__icontains': 'cpfdep__icontains',
+                's2399_detoper': 's2399_detoper',
                 'tpdep__icontains': 'tpdep__icontains',
-                's2399_detoper': 's2399_detoper',}
+                'cpfdep__icontains': 'cpfdep__icontains',
+                'nmdep__icontains': 'nmdep__icontains',
+                'dtnascto__range': 'dtnascto__range',
+                'vlrpgdep': 'vlrpgdep',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'vlrpgdep': 'vlrpgdep',
-                'dtnascto__range': 'dtnascto__range',
-                'nmdep__icontains': 'nmdep__icontains',
-                'cpfdep__icontains': 'cpfdep__icontains',
+                's2399_detoper': 's2399_detoper',
                 'tpdep__icontains': 'tpdep__icontains',
-                's2399_detoper': 's2399_detoper',}
+                'cpfdep__icontains': 'cpfdep__icontains',
+                'nmdep__icontains': 'nmdep__icontains',
+                'dtnascto__range': 'dtnascto__range',
+                'vlrpgdep': 'vlrpgdep',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

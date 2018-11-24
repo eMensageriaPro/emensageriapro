@@ -339,49 +339,49 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_vlrnretadic': 0,
-            'show_vlradicional': 0,
-            'show_vlrservicos25': 0,
-            'show_vlrservicos20': 0,
-            'show_vlrservicos15': 0,
-            'show_vlrnretprinc': 0,
-            'show_vlrretsub': 0,
-            'show_vlrretencao': 1,
-            'show_vlrbaseret': 1,
+            'show_r2010_nfs': 1,
             'show_tpservico': 1,
-            'show_r2010_nfs': 1, }
+            'show_vlrbaseret': 1,
+            'show_vlrretencao': 1,
+            'show_vlrretsub': 0,
+            'show_vlrnretprinc': 0,
+            'show_vlrservicos15': 0,
+            'show_vlrservicos20': 0,
+            'show_vlrservicos25': 0,
+            'show_vlradicional': 0,
+            'show_vlrnretadic': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'vlrnretadic': 'vlrnretadic',
-                'vlradicional': 'vlradicional',
-                'vlrservicos25': 'vlrservicos25',
-                'vlrservicos20': 'vlrservicos20',
-                'vlrservicos15': 'vlrservicos15',
-                'vlrnretprinc': 'vlrnretprinc',
-                'vlrretsub': 'vlrretsub',
-                'vlrretencao': 'vlrretencao',
-                'vlrbaseret': 'vlrbaseret',
+                'r2010_nfs': 'r2010_nfs',
                 'tpservico': 'tpservico',
-                'r2010_nfs': 'r2010_nfs',}
+                'vlrbaseret': 'vlrbaseret',
+                'vlrretencao': 'vlrretencao',
+                'vlrretsub': 'vlrretsub',
+                'vlrnretprinc': 'vlrnretprinc',
+                'vlrservicos15': 'vlrservicos15',
+                'vlrservicos20': 'vlrservicos20',
+                'vlrservicos25': 'vlrservicos25',
+                'vlradicional': 'vlradicional',
+                'vlrnretadic': 'vlrnretadic',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'vlrnretadic': 'vlrnretadic',
-                'vlradicional': 'vlradicional',
-                'vlrservicos25': 'vlrservicos25',
-                'vlrservicos20': 'vlrservicos20',
-                'vlrservicos15': 'vlrservicos15',
-                'vlrnretprinc': 'vlrnretprinc',
-                'vlrretsub': 'vlrretsub',
-                'vlrretencao': 'vlrretencao',
-                'vlrbaseret': 'vlrbaseret',
+                'r2010_nfs': 'r2010_nfs',
                 'tpservico': 'tpservico',
-                'r2010_nfs': 'r2010_nfs',}
+                'vlrbaseret': 'vlrbaseret',
+                'vlrretencao': 'vlrretencao',
+                'vlrretsub': 'vlrretsub',
+                'vlrnretprinc': 'vlrnretprinc',
+                'vlrservicos15': 'vlrservicos15',
+                'vlrservicos20': 'vlrservicos20',
+                'vlrservicos25': 'vlrservicos25',
+                'vlradicional': 'vlradicional',
+                'vlrnretadic': 'vlrnretadic',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

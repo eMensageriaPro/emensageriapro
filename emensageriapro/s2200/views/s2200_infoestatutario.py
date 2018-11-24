@@ -346,55 +346,55 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_dtiniparc': 0,
-            'show_indparcremun': 0,
-            'show_dtiniabono': 0,
-            'show_indabonoperm': 0,
-            'show_indtetorgps': 0,
-            'show_tpplanrp': 0,
-            'show_dtingsvpub': 1,
-            'show_dtexercicio': 1,
-            'show_dtposse': 1,
-            'show_dtnomeacao': 1,
-            'show_tpprov': 1,
+            'show_s2200_evtadmissao': 1,
             'show_indprovim': 1,
-            'show_s2200_evtadmissao': 1, }
+            'show_tpprov': 1,
+            'show_dtnomeacao': 1,
+            'show_dtposse': 1,
+            'show_dtexercicio': 1,
+            'show_dtingsvpub': 1,
+            'show_tpplanrp': 0,
+            'show_indtetorgps': 0,
+            'show_indabonoperm': 0,
+            'show_dtiniabono': 0,
+            'show_indparcremun': 0,
+            'show_dtiniparc': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'dtiniparc__range': 'dtiniparc__range',
-                'indparcremun__icontains': 'indparcremun__icontains',
-                'dtiniabono__range': 'dtiniabono__range',
-                'indabonoperm__icontains': 'indabonoperm__icontains',
-                'indtetorgps__icontains': 'indtetorgps__icontains',
-                'tpplanrp': 'tpplanrp',
-                'dtingsvpub__range': 'dtingsvpub__range',
-                'dtexercicio__range': 'dtexercicio__range',
-                'dtposse__range': 'dtposse__range',
-                'dtnomeacao__range': 'dtnomeacao__range',
-                'tpprov': 'tpprov',
+                's2200_evtadmissao': 's2200_evtadmissao',
                 'indprovim': 'indprovim',
-                's2200_evtadmissao': 's2200_evtadmissao',}
+                'tpprov': 'tpprov',
+                'dtnomeacao__range': 'dtnomeacao__range',
+                'dtposse__range': 'dtposse__range',
+                'dtexercicio__range': 'dtexercicio__range',
+                'dtingsvpub__range': 'dtingsvpub__range',
+                'tpplanrp': 'tpplanrp',
+                'indtetorgps__icontains': 'indtetorgps__icontains',
+                'indabonoperm__icontains': 'indabonoperm__icontains',
+                'dtiniabono__range': 'dtiniabono__range',
+                'indparcremun__icontains': 'indparcremun__icontains',
+                'dtiniparc__range': 'dtiniparc__range',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'dtiniparc__range': 'dtiniparc__range',
-                'indparcremun__icontains': 'indparcremun__icontains',
-                'dtiniabono__range': 'dtiniabono__range',
-                'indabonoperm__icontains': 'indabonoperm__icontains',
-                'indtetorgps__icontains': 'indtetorgps__icontains',
-                'tpplanrp': 'tpplanrp',
-                'dtingsvpub__range': 'dtingsvpub__range',
-                'dtexercicio__range': 'dtexercicio__range',
-                'dtposse__range': 'dtposse__range',
-                'dtnomeacao__range': 'dtnomeacao__range',
-                'tpprov': 'tpprov',
+                's2200_evtadmissao': 's2200_evtadmissao',
                 'indprovim': 'indprovim',
-                's2200_evtadmissao': 's2200_evtadmissao',}
+                'tpprov': 'tpprov',
+                'dtnomeacao__range': 'dtnomeacao__range',
+                'dtposse__range': 'dtposse__range',
+                'dtexercicio__range': 'dtexercicio__range',
+                'dtingsvpub__range': 'dtingsvpub__range',
+                'tpplanrp': 'tpplanrp',
+                'indtetorgps__icontains': 'indtetorgps__icontains',
+                'indabonoperm__icontains': 'indabonoperm__icontains',
+                'dtiniabono__range': 'dtiniabono__range',
+                'indparcremun__icontains': 'indparcremun__icontains',
+                'dtiniparc__range': 'dtiniparc__range',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

@@ -346,31 +346,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_aliqratajust': 1,
-            'show_fap': 1,
-            'show_aliqrat': 1,
+            'show_s5011_ideestab': 1,
             'show_cnaeprep': 1,
-            'show_s5011_ideestab': 1, }
+            'show_aliqrat': 1,
+            'show_fap': 1,
+            'show_aliqratajust': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'aliqratajust': 'aliqratajust',
-                'fap': 'fap',
-                'aliqrat': 'aliqrat',
+                's5011_ideestab': 's5011_ideestab',
                 'cnaeprep': 'cnaeprep',
-                's5011_ideestab': 's5011_ideestab',}
+                'aliqrat': 'aliqrat',
+                'fap': 'fap',
+                'aliqratajust': 'aliqratajust',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'aliqratajust': 'aliqratajust',
-                'fap': 'fap',
-                'aliqrat': 'aliqrat',
+                's5011_ideestab': 's5011_ideestab',
                 'cnaeprep': 'cnaeprep',
-                's5011_ideestab': 's5011_ideestab',}
+                'aliqrat': 'aliqrat',
+                'fap': 'fap',
+                'aliqratajust': 'aliqratajust',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

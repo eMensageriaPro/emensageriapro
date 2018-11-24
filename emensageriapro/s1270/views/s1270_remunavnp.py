@@ -339,49 +339,49 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_vrdesccp': 1,
-            'show_vrbcfgts': 1,
-            'show_vrbccp13': 1,
-            'show_vrbccp25': 1,
-            'show_vrbccp20': 1,
-            'show_vrbccp15': 1,
-            'show_vrbccp00': 1,
-            'show_codlotacao': 1,
-            'show_nrinsc': 1,
+            'show_s1270_evtcontratavnp': 1,
             'show_tpinsc': 1,
-            'show_s1270_evtcontratavnp': 1, }
+            'show_nrinsc': 1,
+            'show_codlotacao': 1,
+            'show_vrbccp00': 1,
+            'show_vrbccp15': 1,
+            'show_vrbccp20': 1,
+            'show_vrbccp25': 1,
+            'show_vrbccp13': 1,
+            'show_vrbcfgts': 1,
+            'show_vrdesccp': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'vrdesccp': 'vrdesccp',
-                'vrbcfgts': 'vrbcfgts',
-                'vrbccp13': 'vrbccp13',
-                'vrbccp25': 'vrbccp25',
-                'vrbccp20': 'vrbccp20',
-                'vrbccp15': 'vrbccp15',
-                'vrbccp00': 'vrbccp00',
-                'codlotacao__icontains': 'codlotacao__icontains',
-                'nrinsc__icontains': 'nrinsc__icontains',
+                's1270_evtcontratavnp': 's1270_evtcontratavnp',
                 'tpinsc': 'tpinsc',
-                's1270_evtcontratavnp': 's1270_evtcontratavnp',}
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'codlotacao__icontains': 'codlotacao__icontains',
+                'vrbccp00': 'vrbccp00',
+                'vrbccp15': 'vrbccp15',
+                'vrbccp20': 'vrbccp20',
+                'vrbccp25': 'vrbccp25',
+                'vrbccp13': 'vrbccp13',
+                'vrbcfgts': 'vrbcfgts',
+                'vrdesccp': 'vrdesccp',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'vrdesccp': 'vrdesccp',
-                'vrbcfgts': 'vrbcfgts',
-                'vrbccp13': 'vrbccp13',
-                'vrbccp25': 'vrbccp25',
-                'vrbccp20': 'vrbccp20',
-                'vrbccp15': 'vrbccp15',
-                'vrbccp00': 'vrbccp00',
-                'codlotacao__icontains': 'codlotacao__icontains',
-                'nrinsc__icontains': 'nrinsc__icontains',
+                's1270_evtcontratavnp': 's1270_evtcontratavnp',
                 'tpinsc': 'tpinsc',
-                's1270_evtcontratavnp': 's1270_evtcontratavnp',}
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'codlotacao__icontains': 'codlotacao__icontains',
+                'vrbccp00': 'vrbccp00',
+                'vrbccp15': 'vrbccp15',
+                'vrbccp20': 'vrbccp20',
+                'vrbccp25': 'vrbccp25',
+                'vrbccp13': 'vrbccp13',
+                'vrbcfgts': 'vrbcfgts',
+                'vrdesccp': 'vrdesccp',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

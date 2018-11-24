@@ -339,52 +339,52 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_codpostal': 0,
-            'show_nmcid': 1,
-            'show_bairro': 0,
-            'show_complem': 0,
-            'show_nrlograd': 0,
-            'show_dsclograd': 1,
-            'show_endext': 0,
-            'show_nifbenef': 0,
-            'show_indnif': 1,
-            'show_codpais': 1,
+            'show_s5002_infoirrf': 1,
             'show_idepais': 0,
-            'show_s5002_infoirrf': 1, }
+            'show_codpais': 1,
+            'show_indnif': 1,
+            'show_nifbenef': 0,
+            'show_endext': 0,
+            'show_dsclograd': 1,
+            'show_nrlograd': 0,
+            'show_complem': 0,
+            'show_bairro': 0,
+            'show_nmcid': 1,
+            'show_codpostal': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'codpostal__icontains': 'codpostal__icontains',
-                'nmcid__icontains': 'nmcid__icontains',
-                'bairro__icontains': 'bairro__icontains',
-                'complem__icontains': 'complem__icontains',
-                'nrlograd__icontains': 'nrlograd__icontains',
-                'dsclograd__icontains': 'dsclograd__icontains',
-                'endext': 'endext',
-                'nifbenef__icontains': 'nifbenef__icontains',
-                'indnif': 'indnif',
-                'codpais__icontains': 'codpais__icontains',
+                's5002_infoirrf': 's5002_infoirrf',
                 'idepais': 'idepais',
-                's5002_infoirrf': 's5002_infoirrf',}
+                'codpais__icontains': 'codpais__icontains',
+                'indnif': 'indnif',
+                'nifbenef__icontains': 'nifbenef__icontains',
+                'endext': 'endext',
+                'dsclograd__icontains': 'dsclograd__icontains',
+                'nrlograd__icontains': 'nrlograd__icontains',
+                'complem__icontains': 'complem__icontains',
+                'bairro__icontains': 'bairro__icontains',
+                'nmcid__icontains': 'nmcid__icontains',
+                'codpostal__icontains': 'codpostal__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'codpostal__icontains': 'codpostal__icontains',
-                'nmcid__icontains': 'nmcid__icontains',
-                'bairro__icontains': 'bairro__icontains',
-                'complem__icontains': 'complem__icontains',
-                'nrlograd__icontains': 'nrlograd__icontains',
-                'dsclograd__icontains': 'dsclograd__icontains',
-                'endext': 'endext',
-                'nifbenef__icontains': 'nifbenef__icontains',
-                'indnif': 'indnif',
-                'codpais__icontains': 'codpais__icontains',
+                's5002_infoirrf': 's5002_infoirrf',
                 'idepais': 'idepais',
-                's5002_infoirrf': 's5002_infoirrf',}
+                'codpais__icontains': 'codpais__icontains',
+                'indnif': 'indnif',
+                'nifbenef__icontains': 'nifbenef__icontains',
+                'endext': 'endext',
+                'dsclograd__icontains': 'dsclograd__icontains',
+                'nrlograd__icontains': 'nrlograd__icontains',
+                'complem__icontains': 'complem__icontains',
+                'bairro__icontains': 'bairro__icontains',
+                'nmcid__icontains': 'nmcid__icontains',
+                'codpostal__icontains': 'codpostal__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

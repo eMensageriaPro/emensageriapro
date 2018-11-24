@@ -339,31 +339,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_filhosbr': 1,
-            'show_casadobr': 1,
-            'show_classtrabestrang': 1,
+            'show_s2205_evtaltcadastral': 1,
             'show_dtchegada': 0,
-            'show_s2205_evtaltcadastral': 1, }
+            'show_classtrabestrang': 1,
+            'show_casadobr': 1,
+            'show_filhosbr': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'filhosbr__icontains': 'filhosbr__icontains',
-                'casadobr__icontains': 'casadobr__icontains',
-                'classtrabestrang': 'classtrabestrang',
+                's2205_evtaltcadastral': 's2205_evtaltcadastral',
                 'dtchegada__range': 'dtchegada__range',
-                's2205_evtaltcadastral': 's2205_evtaltcadastral',}
+                'classtrabestrang': 'classtrabestrang',
+                'casadobr__icontains': 'casadobr__icontains',
+                'filhosbr__icontains': 'filhosbr__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'filhosbr__icontains': 'filhosbr__icontains',
-                'casadobr__icontains': 'casadobr__icontains',
-                'classtrabestrang': 'classtrabestrang',
+                's2205_evtaltcadastral': 's2205_evtaltcadastral',
                 'dtchegada__range': 'dtchegada__range',
-                's2205_evtaltcadastral': 's2205_evtaltcadastral',}
+                'classtrabestrang': 'classtrabestrang',
+                'casadobr__icontains': 'casadobr__icontains',
+                'filhosbr__icontains': 'filhosbr__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

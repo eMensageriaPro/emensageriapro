@@ -339,52 +339,52 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_vrsenarcalc': 1,
-            'show_vrsenardesc': 1,
-            'show_vrratcalcpr': 1,
-            'show_vrratdescpr': 1,
-            'show_vrcpcalcpr': 1,
-            'show_vrsenarnret': 1,
-            'show_vrratnret': 1,
-            'show_vrcpnret': 1,
-            'show_vrcpdescpr': 1,
-            'show_vlraquis': 1,
+            'show_s5011_ideestab': 1,
             'show_indaquis': 1,
-            'show_s5011_ideestab': 1, }
+            'show_vlraquis': 1,
+            'show_vrcpdescpr': 1,
+            'show_vrcpnret': 1,
+            'show_vrratnret': 1,
+            'show_vrsenarnret': 1,
+            'show_vrcpcalcpr': 1,
+            'show_vrratdescpr': 1,
+            'show_vrratcalcpr': 1,
+            'show_vrsenardesc': 1,
+            'show_vrsenarcalc': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'vrsenarcalc': 'vrsenarcalc',
-                'vrsenardesc': 'vrsenardesc',
-                'vrratcalcpr': 'vrratcalcpr',
-                'vrratdescpr': 'vrratdescpr',
-                'vrcpcalcpr': 'vrcpcalcpr',
-                'vrsenarnret': 'vrsenarnret',
-                'vrratnret': 'vrratnret',
-                'vrcpnret': 'vrcpnret',
-                'vrcpdescpr': 'vrcpdescpr',
-                'vlraquis': 'vlraquis',
+                's5011_ideestab': 's5011_ideestab',
                 'indaquis': 'indaquis',
-                's5011_ideestab': 's5011_ideestab',}
+                'vlraquis': 'vlraquis',
+                'vrcpdescpr': 'vrcpdescpr',
+                'vrcpnret': 'vrcpnret',
+                'vrratnret': 'vrratnret',
+                'vrsenarnret': 'vrsenarnret',
+                'vrcpcalcpr': 'vrcpcalcpr',
+                'vrratdescpr': 'vrratdescpr',
+                'vrratcalcpr': 'vrratcalcpr',
+                'vrsenardesc': 'vrsenardesc',
+                'vrsenarcalc': 'vrsenarcalc',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'vrsenarcalc': 'vrsenarcalc',
-                'vrsenardesc': 'vrsenardesc',
-                'vrratcalcpr': 'vrratcalcpr',
-                'vrratdescpr': 'vrratdescpr',
-                'vrcpcalcpr': 'vrcpcalcpr',
-                'vrsenarnret': 'vrsenarnret',
-                'vrratnret': 'vrratnret',
-                'vrcpnret': 'vrcpnret',
-                'vrcpdescpr': 'vrcpdescpr',
-                'vlraquis': 'vlraquis',
+                's5011_ideestab': 's5011_ideestab',
                 'indaquis': 'indaquis',
-                's5011_ideestab': 's5011_ideestab',}
+                'vlraquis': 'vlraquis',
+                'vrcpdescpr': 'vrcpdescpr',
+                'vrcpnret': 'vrcpnret',
+                'vrratnret': 'vrratnret',
+                'vrsenarnret': 'vrsenarnret',
+                'vrcpcalcpr': 'vrcpcalcpr',
+                'vrratdescpr': 'vrratdescpr',
+                'vrratcalcpr': 'vrratcalcpr',
+                'vrsenardesc': 'vrsenardesc',
+                'vrsenarcalc': 'vrsenarcalc',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

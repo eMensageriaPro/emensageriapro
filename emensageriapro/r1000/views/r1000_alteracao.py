@@ -360,64 +360,64 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_email': 0,
-            'show_fonecel': 0,
-            'show_fonefixo': 0,
-            'show_cpfctt': 1,
-            'show_nmctt': 1,
-            'show_contato': 0,
-            'show_indsitpj': 0,
-            'show_indacordoisenmulta': 1,
-            'show_inddesoneracao': 1,
-            'show_indescrituracao': 1,
-            'show_classtrib': 1,
-            'show_infocadastro': 0,
-            'show_fimvalid': 0,
-            'show_inivalid': 1,
+            'show_r1000_evtinfocontri': 1,
             'show_ideperiodo': 0,
-            'show_r1000_evtinfocontri': 1, }
+            'show_inivalid': 1,
+            'show_fimvalid': 0,
+            'show_infocadastro': 0,
+            'show_classtrib': 1,
+            'show_indescrituracao': 1,
+            'show_inddesoneracao': 1,
+            'show_indacordoisenmulta': 1,
+            'show_indsitpj': 0,
+            'show_contato': 0,
+            'show_nmctt': 1,
+            'show_cpfctt': 1,
+            'show_fonefixo': 0,
+            'show_fonecel': 0,
+            'show_email': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'email__icontains': 'email__icontains',
-                'fonecel__icontains': 'fonecel__icontains',
-                'fonefixo__icontains': 'fonefixo__icontains',
-                'cpfctt__icontains': 'cpfctt__icontains',
-                'nmctt__icontains': 'nmctt__icontains',
-                'contato': 'contato',
-                'indsitpj': 'indsitpj',
-                'indacordoisenmulta': 'indacordoisenmulta',
-                'inddesoneracao': 'inddesoneracao',
-                'indescrituracao': 'indescrituracao',
-                'classtrib__icontains': 'classtrib__icontains',
-                'infocadastro': 'infocadastro',
-                'fimvalid__icontains': 'fimvalid__icontains',
-                'inivalid__icontains': 'inivalid__icontains',
+                'r1000_evtinfocontri': 'r1000_evtinfocontri',
                 'ideperiodo': 'ideperiodo',
-                'r1000_evtinfocontri': 'r1000_evtinfocontri',}
+                'inivalid__icontains': 'inivalid__icontains',
+                'fimvalid__icontains': 'fimvalid__icontains',
+                'infocadastro': 'infocadastro',
+                'classtrib__icontains': 'classtrib__icontains',
+                'indescrituracao': 'indescrituracao',
+                'inddesoneracao': 'inddesoneracao',
+                'indacordoisenmulta': 'indacordoisenmulta',
+                'indsitpj': 'indsitpj',
+                'contato': 'contato',
+                'nmctt__icontains': 'nmctt__icontains',
+                'cpfctt__icontains': 'cpfctt__icontains',
+                'fonefixo__icontains': 'fonefixo__icontains',
+                'fonecel__icontains': 'fonecel__icontains',
+                'email__icontains': 'email__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'email__icontains': 'email__icontains',
-                'fonecel__icontains': 'fonecel__icontains',
-                'fonefixo__icontains': 'fonefixo__icontains',
-                'cpfctt__icontains': 'cpfctt__icontains',
-                'nmctt__icontains': 'nmctt__icontains',
-                'contato': 'contato',
-                'indsitpj': 'indsitpj',
-                'indacordoisenmulta': 'indacordoisenmulta',
-                'inddesoneracao': 'inddesoneracao',
-                'indescrituracao': 'indescrituracao',
-                'classtrib__icontains': 'classtrib__icontains',
-                'infocadastro': 'infocadastro',
-                'fimvalid__icontains': 'fimvalid__icontains',
-                'inivalid__icontains': 'inivalid__icontains',
+                'r1000_evtinfocontri': 'r1000_evtinfocontri',
                 'ideperiodo': 'ideperiodo',
-                'r1000_evtinfocontri': 'r1000_evtinfocontri',}
+                'inivalid__icontains': 'inivalid__icontains',
+                'fimvalid__icontains': 'fimvalid__icontains',
+                'infocadastro': 'infocadastro',
+                'classtrib__icontains': 'classtrib__icontains',
+                'indescrituracao': 'indescrituracao',
+                'inddesoneracao': 'inddesoneracao',
+                'indacordoisenmulta': 'indacordoisenmulta',
+                'indsitpj': 'indsitpj',
+                'contato': 'contato',
+                'nmctt__icontains': 'nmctt__icontains',
+                'cpfctt__icontains': 'cpfctt__icontains',
+                'fonefixo__icontains': 'fonefixo__icontains',
+                'fonecel__icontains': 'fonecel__icontains',
+                'email__icontains': 'email__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

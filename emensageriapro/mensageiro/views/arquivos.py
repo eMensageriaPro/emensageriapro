@@ -281,26 +281,26 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_permite_recuperacao': 1,
+            'show_arquivo': 1,
             'show_data_criacao': 1,
-            'show_arquivo': 1, }
+            'show_permite_recuperacao': 1, }
         post = False
         #ANTES-POST-LISTAGEM
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'permite_recuperacao': 'permite_recuperacao',
+                'arquivo__icontains': 'arquivo__icontains',
                 'data_criacao__range': 'data_criacao__range',
-                'arquivo__icontains': 'arquivo__icontains',}
+                'permite_recuperacao': 'permite_recuperacao',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'permite_recuperacao': 'permite_recuperacao',
+                'arquivo__icontains': 'arquivo__icontains',
                 'data_criacao__range': 'data_criacao__range',
-                'arquivo__icontains': 'arquivo__icontains',}
+                'permite_recuperacao': 'permite_recuperacao',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

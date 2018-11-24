@@ -346,28 +346,28 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_vlrtotalbaseret': 1,
-            'show_cno': 0,
+            'show_r5001_infototal': 1,
             'show_cnpjprestador': 1,
-            'show_r5001_infototal': 1, }
+            'show_cno': 0,
+            'show_vlrtotalbaseret': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'vlrtotalbaseret': 'vlrtotalbaseret',
-                'cno__icontains': 'cno__icontains',
+                'r5001_infototal': 'r5001_infototal',
                 'cnpjprestador__icontains': 'cnpjprestador__icontains',
-                'r5001_infototal': 'r5001_infototal',}
+                'cno__icontains': 'cno__icontains',
+                'vlrtotalbaseret': 'vlrtotalbaseret',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'vlrtotalbaseret': 'vlrtotalbaseret',
-                'cno__icontains': 'cno__icontains',
+                'r5001_infototal': 'r5001_infototal',
                 'cnpjprestador__icontains': 'cnpjprestador__icontains',
-                'r5001_infototal': 'r5001_infototal',}
+                'cno__icontains': 'cno__icontains',
+                'vlrtotalbaseret': 'vlrtotalbaseret',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

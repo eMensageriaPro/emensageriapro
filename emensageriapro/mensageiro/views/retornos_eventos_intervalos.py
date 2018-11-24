@@ -281,32 +281,32 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_terminterv': 0,
-            'show_iniinterv': 0,
-            'show_durinterv': 1,
+            'show_retornos_eventos_horarios': 1,
             'show_tpinterv': 1,
-            'show_retornos_eventos_horarios': 1, }
+            'show_durinterv': 1,
+            'show_iniinterv': 0,
+            'show_terminterv': 0, }
         post = False
         #ANTES-POST-LISTAGEM
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'terminterv__icontains': 'terminterv__icontains',
-                'iniinterv__icontains': 'iniinterv__icontains',
-                'durinterv': 'durinterv',
+                'retornos_eventos_horarios': 'retornos_eventos_horarios',
                 'tpinterv': 'tpinterv',
-                'retornos_eventos_horarios': 'retornos_eventos_horarios',}
+                'durinterv': 'durinterv',
+                'iniinterv__icontains': 'iniinterv__icontains',
+                'terminterv__icontains': 'terminterv__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'terminterv__icontains': 'terminterv__icontains',
-                'iniinterv__icontains': 'iniinterv__icontains',
-                'durinterv': 'durinterv',
+                'retornos_eventos_horarios': 'retornos_eventos_horarios',
                 'tpinterv': 'tpinterv',
-                'retornos_eventos_horarios': 'retornos_eventos_horarios',}
+                'durinterv': 'durinterv',
+                'iniinterv__icontains': 'iniinterv__icontains',
+                'terminterv__icontains': 'terminterv__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

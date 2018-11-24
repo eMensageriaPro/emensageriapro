@@ -339,28 +339,28 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_codsusp': 0,
-            'show_nrprocjud': 1,
+            'show_s1202_evtrmnrpps': 1,
             'show_tptrib': 1,
-            'show_s1202_evtrmnrpps': 1, }
+            'show_nrprocjud': 1,
+            'show_codsusp': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'codsusp': 'codsusp',
-                'nrprocjud__icontains': 'nrprocjud__icontains',
+                's1202_evtrmnrpps': 's1202_evtrmnrpps',
                 'tptrib': 'tptrib',
-                's1202_evtrmnrpps': 's1202_evtrmnrpps',}
+                'nrprocjud__icontains': 'nrprocjud__icontains',
+                'codsusp': 'codsusp',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'codsusp': 'codsusp',
-                'nrprocjud__icontains': 'nrprocjud__icontains',
+                's1202_evtrmnrpps': 's1202_evtrmnrpps',
                 'tptrib': 'tptrib',
-                's1202_evtrmnrpps': 's1202_evtrmnrpps',}
+                'nrprocjud__icontains': 'nrprocjud__icontains',
+                'codsusp': 'codsusp',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

@@ -346,28 +346,28 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_vrcomerc': 1,
-            'show_nrinsc': 1,
+            'show_s1260_tpcomerc': 1,
             'show_tpinsc': 1,
-            'show_s1260_tpcomerc': 1, }
+            'show_nrinsc': 1,
+            'show_vrcomerc': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'vrcomerc': 'vrcomerc',
-                'nrinsc__icontains': 'nrinsc__icontains',
+                's1260_tpcomerc': 's1260_tpcomerc',
                 'tpinsc': 'tpinsc',
-                's1260_tpcomerc': 's1260_tpcomerc',}
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'vrcomerc': 'vrcomerc',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'vrcomerc': 'vrcomerc',
-                'nrinsc__icontains': 'nrinsc__icontains',
+                's1260_tpcomerc': 's1260_tpcomerc',
                 'tpinsc': 'tpinsc',
-                's1260_tpcomerc': 's1260_tpcomerc',}
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'vrcomerc': 'vrcomerc',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

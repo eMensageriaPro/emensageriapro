@@ -339,31 +339,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_indparcremun': 0,
-            'show_indabonoperm': 0,
-            'show_indtetorgps': 0,
+            'show_s2206_evtaltcontratual': 1,
             'show_tpplanrp': 1,
-            'show_s2206_evtaltcontratual': 1, }
+            'show_indtetorgps': 0,
+            'show_indabonoperm': 0,
+            'show_indparcremun': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'indparcremun__icontains': 'indparcremun__icontains',
-                'indabonoperm__icontains': 'indabonoperm__icontains',
-                'indtetorgps__icontains': 'indtetorgps__icontains',
+                's2206_evtaltcontratual': 's2206_evtaltcontratual',
                 'tpplanrp': 'tpplanrp',
-                's2206_evtaltcontratual': 's2206_evtaltcontratual',}
+                'indtetorgps__icontains': 'indtetorgps__icontains',
+                'indabonoperm__icontains': 'indabonoperm__icontains',
+                'indparcremun__icontains': 'indparcremun__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'indparcremun__icontains': 'indparcremun__icontains',
-                'indabonoperm__icontains': 'indabonoperm__icontains',
-                'indtetorgps__icontains': 'indtetorgps__icontains',
+                's2206_evtaltcontratual': 's2206_evtaltcontratual',
                 'tpplanrp': 'tpplanrp',
-                's2206_evtaltcontratual': 's2206_evtaltcontratual',}
+                'indtetorgps__icontains': 'indtetorgps__icontains',
+                'indabonoperm__icontains': 'indabonoperm__icontains',
+                'indparcremun__icontains': 'indparcremun__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

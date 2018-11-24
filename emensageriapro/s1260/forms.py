@@ -43,57 +43,23 @@ __author__ = 'marcelovasconcellos'
 
 
 
-class form_s1260_tpcomerc(forms.ModelForm):
-    vrtotcom = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+class form_s1260_ideadquir(forms.ModelForm):
+    vrcomerc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1260_tpcomerc,self ).__init__(*args,**kwargs)
+        super (form_s1260_ideadquir,self ).__init__(*args,**kwargs)
+        self.fields['s1260_tpcomerc'].queryset = s1260tpComerc.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s1260_tpcomerc'].widget.attrs['required'] = True
         
-        self.fields['vrtotcom'].widget.attrs['required'] = True
+        self.fields['tpinsc'].widget.attrs['required'] = True
         
-        self.fields['indcomerc'].widget.attrs['required'] = True
-        self.fields['s1260_evtcomprod'].queryset = s1260evtComProd.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1260_evtcomprod'].widget.attrs['required'] = True
+        self.fields['nrinsc'].widget.attrs['required'] = True
+        
+        self.fields['vrcomerc'].widget.attrs['required'] = True
 
     class Meta:
-        model = s1260tpComerc
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_s1260_nfs(forms.ModelForm):
-    vrsenardesc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    vrratdescpr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    vrcpdescpr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    vlrbruto = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1260_nfs,self ).__init__(*args,**kwargs)
-        
-        self.fields['vrsenardesc'].widget.attrs['required'] = True
-        
-        self.fields['vrratdescpr'].widget.attrs['required'] = True
-        
-        self.fields['vrcpdescpr'].widget.attrs['required'] = True
-        
-        self.fields['vlrbruto'].widget.attrs['required'] = True
-        
-        self.fields['dtemisnf'].widget.attrs['required'] = True
-        
-        self.fields['nrdocto'].widget.attrs['required'] = True
-        
-        self.fields['serie'].widget.attrs['required'] = True
-        self.fields['s1260_ideadquir'].queryset = s1260ideAdquir.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1260_ideadquir'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1260nfs
+        model = s1260ideAdquir
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
@@ -103,27 +69,21 @@ class form_s1260_nfs(forms.ModelForm):
 
 
 class form_s1260_infoprocjud(forms.ModelForm):
-    vrsenarsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    vrratsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrcpsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vrratsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vrsenarsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_s1260_infoprocjud,self ).__init__(*args,**kwargs)
+        self.fields['s1260_tpcomerc'].queryset = s1260tpComerc.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s1260_tpcomerc'].widget.attrs['required'] = True
         
-        self.fields['vrsenarsusp'].widget.attrs['required'] = True
-        
-        self.fields['vrratsusp'].widget.attrs['required'] = True
-        
-        self.fields['vrcpsusp'].widget.attrs['required'] = True
-        
-        self.fields['codsusp'].widget.attrs['required'] = True
+        self.fields['tpproc'].widget.attrs['required'] = True
         
         self.fields['nrproc'].widget.attrs['required'] = True
         
-        self.fields['tpproc'].widget.attrs['required'] = True
-        self.fields['s1260_tpcomerc'].queryset = s1260tpComerc.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1260_tpcomerc'].widget.attrs['required'] = True
+        self.fields['codsusp'].widget.attrs['required'] = True
 
     class Meta:
         model = s1260infoProcJud
@@ -135,23 +95,55 @@ class form_s1260_infoprocjud(forms.ModelForm):
         ]
 
 
-class form_s1260_ideadquir(forms.ModelForm):
-    vrcomerc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+class form_s1260_nfs(forms.ModelForm):
+    vlrbruto = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vrcpdescpr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vrratdescpr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    vrsenardesc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1260_ideadquir,self ).__init__(*args,**kwargs)
+        super (form_s1260_nfs,self ).__init__(*args,**kwargs)
+        self.fields['s1260_ideadquir'].queryset = s1260ideAdquir.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s1260_ideadquir'].widget.attrs['required'] = True
         
-        self.fields['vrcomerc'].widget.attrs['required'] = True
+        self.fields['nrdocto'].widget.attrs['required'] = True
         
-        self.fields['nrinsc'].widget.attrs['required'] = True
+        self.fields['dtemisnf'].widget.attrs['required'] = True
         
-        self.fields['tpinsc'].widget.attrs['required'] = True
-        self.fields['s1260_tpcomerc'].queryset = s1260tpComerc.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1260_tpcomerc'].widget.attrs['required'] = True
+        self.fields['vlrbruto'].widget.attrs['required'] = True
+        
+        self.fields['vrcpdescpr'].widget.attrs['required'] = True
+        
+        self.fields['vrratdescpr'].widget.attrs['required'] = True
+        
+        self.fields['vrsenardesc'].widget.attrs['required'] = True
 
     class Meta:
-        model = s1260ideAdquir
+        model = s1260nfs
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_s1260_tpcomerc(forms.ModelForm):
+    vrtotcom = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1260_tpcomerc,self ).__init__(*args,**kwargs)
+        self.fields['s1260_evtcomprod'].queryset = s1260evtComProd.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s1260_evtcomprod'].widget.attrs['required'] = True
+        
+        self.fields['indcomerc'].widget.attrs['required'] = True
+        
+        self.fields['vrtotcom'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1260tpComerc
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',

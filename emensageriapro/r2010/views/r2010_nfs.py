@@ -346,34 +346,34 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_obs': 0,
-            'show_vlrbruto': 1,
-            'show_dtemissaonf': 1,
-            'show_numdocto': 1,
+            'show_r2010_evtservtom': 1,
             'show_serie': 1,
-            'show_r2010_evtservtom': 1, }
+            'show_numdocto': 1,
+            'show_dtemissaonf': 1,
+            'show_vlrbruto': 1,
+            'show_obs': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'obs__icontains': 'obs__icontains',
-                'vlrbruto': 'vlrbruto',
-                'dtemissaonf__range': 'dtemissaonf__range',
-                'numdocto__icontains': 'numdocto__icontains',
+                'r2010_evtservtom': 'r2010_evtservtom',
                 'serie__icontains': 'serie__icontains',
-                'r2010_evtservtom': 'r2010_evtservtom',}
+                'numdocto__icontains': 'numdocto__icontains',
+                'dtemissaonf__range': 'dtemissaonf__range',
+                'vlrbruto': 'vlrbruto',
+                'obs__icontains': 'obs__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'obs__icontains': 'obs__icontains',
-                'vlrbruto': 'vlrbruto',
-                'dtemissaonf__range': 'dtemissaonf__range',
-                'numdocto__icontains': 'numdocto__icontains',
+                'r2010_evtservtom': 'r2010_evtservtom',
                 'serie__icontains': 'serie__icontains',
-                'r2010_evtservtom': 'r2010_evtservtom',}
+                'numdocto__icontains': 'numdocto__icontains',
+                'dtemissaonf__range': 'dtemissaonf__range',
+                'vlrbruto': 'vlrbruto',
+                'obs__icontains': 'obs__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

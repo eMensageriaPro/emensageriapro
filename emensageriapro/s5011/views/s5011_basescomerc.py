@@ -339,34 +339,34 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_vrsenarsusp': 0,
-            'show_vrratsusp': 0,
-            'show_vrcpsusp': 0,
-            'show_vrbccompr': 1,
+            'show_s5011_ideestab': 1,
             'show_indcomerc': 1,
-            'show_s5011_ideestab': 1, }
+            'show_vrbccompr': 1,
+            'show_vrcpsusp': 0,
+            'show_vrratsusp': 0,
+            'show_vrsenarsusp': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'vrsenarsusp': 'vrsenarsusp',
-                'vrratsusp': 'vrratsusp',
-                'vrcpsusp': 'vrcpsusp',
-                'vrbccompr': 'vrbccompr',
+                's5011_ideestab': 's5011_ideestab',
                 'indcomerc': 'indcomerc',
-                's5011_ideestab': 's5011_ideestab',}
+                'vrbccompr': 'vrbccompr',
+                'vrcpsusp': 'vrcpsusp',
+                'vrratsusp': 'vrratsusp',
+                'vrsenarsusp': 'vrsenarsusp',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'vrsenarsusp': 'vrsenarsusp',
-                'vrratsusp': 'vrratsusp',
-                'vrcpsusp': 'vrcpsusp',
-                'vrbccompr': 'vrbccompr',
+                's5011_ideestab': 's5011_ideestab',
                 'indcomerc': 'indcomerc',
-                's5011_ideestab': 's5011_ideestab',}
+                'vrbccompr': 'vrbccompr',
+                'vrcpsusp': 'vrcpsusp',
+                'vrratsusp': 'vrratsusp',
+                'vrsenarsusp': 'vrsenarsusp',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

@@ -360,28 +360,28 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_idedmdev': 1,
-            'show_nrbenefic': 1,
+            'show_s1207_evtbenprrp': 1,
             'show_tpbenef': 1,
-            'show_s1207_evtbenprrp': 1, }
+            'show_nrbenefic': 1,
+            'show_idedmdev': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'idedmdev__icontains': 'idedmdev__icontains',
-                'nrbenefic__icontains': 'nrbenefic__icontains',
+                's1207_evtbenprrp': 's1207_evtbenprrp',
                 'tpbenef': 'tpbenef',
-                's1207_evtbenprrp': 's1207_evtbenprrp',}
+                'nrbenefic__icontains': 'nrbenefic__icontains',
+                'idedmdev__icontains': 'idedmdev__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'idedmdev__icontains': 'idedmdev__icontains',
-                'nrbenefic__icontains': 'nrbenefic__icontains',
+                's1207_evtbenprrp': 's1207_evtbenprrp',
                 'tpbenef': 'tpbenef',
-                's1207_evtbenprrp': 's1207_evtbenprrp',}
+                'nrbenefic__icontains': 'nrbenefic__icontains',
+                'idedmdev__icontains': 'idedmdev__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

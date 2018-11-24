@@ -346,40 +346,40 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_codcbo': 1,
-            'show_nmcargo': 1,
-            'show_dadoscargo': 0,
-            'show_fimvalid': 0,
-            'show_inivalid': 1,
-            'show_codcargo': 1,
+            'show_s1030_evttabcargo': 1,
             'show_idecargo': 0,
-            'show_s1030_evttabcargo': 1, }
+            'show_codcargo': 1,
+            'show_inivalid': 1,
+            'show_fimvalid': 0,
+            'show_dadoscargo': 0,
+            'show_nmcargo': 1,
+            'show_codcbo': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'codcbo__icontains': 'codcbo__icontains',
-                'nmcargo__icontains': 'nmcargo__icontains',
-                'dadoscargo': 'dadoscargo',
-                'fimvalid__icontains': 'fimvalid__icontains',
-                'inivalid__icontains': 'inivalid__icontains',
-                'codcargo__icontains': 'codcargo__icontains',
+                's1030_evttabcargo': 's1030_evttabcargo',
                 'idecargo': 'idecargo',
-                's1030_evttabcargo': 's1030_evttabcargo',}
+                'codcargo__icontains': 'codcargo__icontains',
+                'inivalid__icontains': 'inivalid__icontains',
+                'fimvalid__icontains': 'fimvalid__icontains',
+                'dadoscargo': 'dadoscargo',
+                'nmcargo__icontains': 'nmcargo__icontains',
+                'codcbo__icontains': 'codcbo__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'codcbo__icontains': 'codcbo__icontains',
-                'nmcargo__icontains': 'nmcargo__icontains',
-                'dadoscargo': 'dadoscargo',
-                'fimvalid__icontains': 'fimvalid__icontains',
-                'inivalid__icontains': 'inivalid__icontains',
-                'codcargo__icontains': 'codcargo__icontains',
+                's1030_evttabcargo': 's1030_evttabcargo',
                 'idecargo': 'idecargo',
-                's1030_evttabcargo': 's1030_evttabcargo',}
+                'codcargo__icontains': 'codcargo__icontains',
+                'inivalid__icontains': 'inivalid__icontains',
+                'fimvalid__icontains': 'fimvalid__icontains',
+                'dadoscargo': 'dadoscargo',
+                'nmcargo__icontains': 'nmcargo__icontains',
+                'codcbo__icontains': 'codcbo__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

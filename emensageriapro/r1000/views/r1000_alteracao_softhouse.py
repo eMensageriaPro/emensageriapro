@@ -339,34 +339,34 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_email': 0,
-            'show_telefone': 0,
-            'show_nmcont': 1,
-            'show_nmrazao': 1,
+            'show_r1000_alteracao': 1,
             'show_cnpjsofthouse': 1,
-            'show_r1000_alteracao': 1, }
+            'show_nmrazao': 1,
+            'show_nmcont': 1,
+            'show_telefone': 0,
+            'show_email': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'email__icontains': 'email__icontains',
-                'telefone__icontains': 'telefone__icontains',
-                'nmcont__icontains': 'nmcont__icontains',
-                'nmrazao__icontains': 'nmrazao__icontains',
+                'r1000_alteracao': 'r1000_alteracao',
                 'cnpjsofthouse__icontains': 'cnpjsofthouse__icontains',
-                'r1000_alteracao': 'r1000_alteracao',}
+                'nmrazao__icontains': 'nmrazao__icontains',
+                'nmcont__icontains': 'nmcont__icontains',
+                'telefone__icontains': 'telefone__icontains',
+                'email__icontains': 'email__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'email__icontains': 'email__icontains',
-                'telefone__icontains': 'telefone__icontains',
-                'nmcont__icontains': 'nmcont__icontains',
-                'nmrazao__icontains': 'nmrazao__icontains',
+                'r1000_alteracao': 'r1000_alteracao',
                 'cnpjsofthouse__icontains': 'cnpjsofthouse__icontains',
-                'r1000_alteracao': 'r1000_alteracao',}
+                'nmrazao__icontains': 'nmrazao__icontains',
+                'nmcont__icontains': 'nmcont__icontains',
+                'telefone__icontains': 'telefone__icontains',
+                'email__icontains': 'email__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

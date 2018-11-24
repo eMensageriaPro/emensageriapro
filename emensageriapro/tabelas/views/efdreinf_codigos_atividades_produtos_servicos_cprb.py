@@ -324,40 +324,40 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_inicio_escrituracao': 0,
-            'show_aliquota': 0,
-            'show_ncm': 0,
-            'show_cr': 0,
-            'show_incidencia': 0,
-            'show_descricao': 1,
+            'show_grupo': 1,
             'show_codigo': 1,
-            'show_grupo': 1, }
+            'show_descricao': 1,
+            'show_incidencia': 0,
+            'show_cr': 0,
+            'show_ncm': 0,
+            'show_aliquota': 0,
+            'show_inicio_escrituracao': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'inicio_escrituracao__range': 'inicio_escrituracao__range',
-                'aliquota': 'aliquota',
-                'ncm__icontains': 'ncm__icontains',
-                'cr__icontains': 'cr__icontains',
-                'incidencia__icontains': 'incidencia__icontains',
-                'descricao__icontains': 'descricao__icontains',
+                'grupo': 'grupo',
                 'codigo__icontains': 'codigo__icontains',
-                'grupo': 'grupo',}
+                'descricao__icontains': 'descricao__icontains',
+                'incidencia__icontains': 'incidencia__icontains',
+                'cr__icontains': 'cr__icontains',
+                'ncm__icontains': 'ncm__icontains',
+                'aliquota': 'aliquota',
+                'inicio_escrituracao__range': 'inicio_escrituracao__range',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'inicio_escrituracao__range': 'inicio_escrituracao__range',
-                'aliquota': 'aliquota',
-                'ncm__icontains': 'ncm__icontains',
-                'cr__icontains': 'cr__icontains',
-                'incidencia__icontains': 'incidencia__icontains',
-                'descricao__icontains': 'descricao__icontains',
+                'grupo': 'grupo',
                 'codigo__icontains': 'codigo__icontains',
-                'grupo': 'grupo',}
+                'descricao__icontains': 'descricao__icontains',
+                'incidencia__icontains': 'incidencia__icontains',
+                'cr__icontains': 'cr__icontains',
+                'ncm__icontains': 'ncm__icontains',
+                'aliquota': 'aliquota',
+                'inicio_escrituracao__range': 'inicio_escrituracao__range',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

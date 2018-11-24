@@ -281,38 +281,38 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_permite_apagar': 0,
-            'show_permite_visualizar': 0,
-            'show_permite_editar': 0,
-            'show_permite_cadastrar': 0,
-            'show_permite_listar': 0,
+            'show_config_perfis': 1,
             'show_config_paginas': 1,
-            'show_config_perfis': 1, }
+            'show_permite_listar': 0,
+            'show_permite_cadastrar': 0,
+            'show_permite_editar': 0,
+            'show_permite_visualizar': 0,
+            'show_permite_apagar': 0, }
         post = False
         #ANTES-POST-LISTAGEM
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'permite_apagar': 'permite_apagar',
-                'permite_visualizar': 'permite_visualizar',
-                'permite_editar': 'permite_editar',
-                'permite_cadastrar': 'permite_cadastrar',
-                'permite_listar': 'permite_listar',
+                'config_perfis': 'config_perfis',
                 'config_paginas': 'config_paginas',
-                'config_perfis': 'config_perfis',}
+                'permite_listar': 'permite_listar',
+                'permite_cadastrar': 'permite_cadastrar',
+                'permite_editar': 'permite_editar',
+                'permite_visualizar': 'permite_visualizar',
+                'permite_apagar': 'permite_apagar',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'permite_apagar': 'permite_apagar',
-                'permite_visualizar': 'permite_visualizar',
-                'permite_editar': 'permite_editar',
-                'permite_cadastrar': 'permite_cadastrar',
-                'permite_listar': 'permite_listar',
+                'config_perfis': 'config_perfis',
                 'config_paginas': 'config_paginas',
-                'config_perfis': 'config_perfis',}
+                'permite_listar': 'permite_listar',
+                'permite_cadastrar': 'permite_cadastrar',
+                'permite_editar': 'permite_editar',
+                'permite_visualizar': 'permite_visualizar',
+                'permite_apagar': 'permite_apagar',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)
@@ -322,8 +322,8 @@ def listar(request, hash):
             config_permissoes_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
    
-        config_paginas_lista = ConfigPaginas.objects.using( db_slug ).filter(excluido = False).all()
         config_perfis_lista = ConfigPerfis.objects.using( db_slug ).filter(excluido = False).all()
+        config_paginas_lista = ConfigPaginas.objects.using( db_slug ).filter(excluido = False).all()
         #config_permissoes_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'config_permissoes'
@@ -344,8 +344,8 @@ def listar(request, hash):
             'hash': hash,
             'filtrar': filtrar,
        
-            'config_paginas_lista': config_paginas_lista,
             'config_perfis_lista': config_perfis_lista,
+            'config_paginas_lista': config_paginas_lista,
         }
         if for_print in (0,1):
             return render(request, 'config_permissoes_listar.html', context)

@@ -339,34 +339,34 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_dscsituacao': 0,
-            'show_indcessao': 1,
-            'show_infonus': 1,
-            'show_cnpjcess': 1,
+            'show_s2231_evtcessao': 1,
             'show_dtinicessao': 1,
-            'show_s2231_evtcessao': 1, }
+            'show_cnpjcess': 1,
+            'show_infonus': 1,
+            'show_indcessao': 1,
+            'show_dscsituacao': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'dscsituacao__icontains': 'dscsituacao__icontains',
-                'indcessao': 'indcessao',
-                'infonus': 'infonus',
-                'cnpjcess__icontains': 'cnpjcess__icontains',
+                's2231_evtcessao': 's2231_evtcessao',
                 'dtinicessao__range': 'dtinicessao__range',
-                's2231_evtcessao': 's2231_evtcessao',}
+                'cnpjcess__icontains': 'cnpjcess__icontains',
+                'infonus': 'infonus',
+                'indcessao': 'indcessao',
+                'dscsituacao__icontains': 'dscsituacao__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'dscsituacao__icontains': 'dscsituacao__icontains',
-                'indcessao': 'indcessao',
-                'infonus': 'infonus',
-                'cnpjcess__icontains': 'cnpjcess__icontains',
+                's2231_evtcessao': 's2231_evtcessao',
                 'dtinicessao__range': 'dtinicessao__range',
-                's2231_evtcessao': 's2231_evtcessao',}
+                'cnpjcess__icontains': 'cnpjcess__icontains',
+                'infonus': 'infonus',
+                'indcessao': 'indcessao',
+                'dscsituacao__icontains': 'dscsituacao__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

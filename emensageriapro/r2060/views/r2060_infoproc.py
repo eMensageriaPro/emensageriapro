@@ -339,31 +339,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_vlrcprbsusp': 1,
-            'show_codsusp': 0,
-            'show_nrproc': 1,
+            'show_r2060_tipocod': 1,
             'show_tpproc': 1,
-            'show_r2060_tipocod': 1, }
+            'show_nrproc': 1,
+            'show_codsusp': 0,
+            'show_vlrcprbsusp': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'vlrcprbsusp': 'vlrcprbsusp',
-                'codsusp': 'codsusp',
-                'nrproc__icontains': 'nrproc__icontains',
+                'r2060_tipocod': 'r2060_tipocod',
                 'tpproc': 'tpproc',
-                'r2060_tipocod': 'r2060_tipocod',}
+                'nrproc__icontains': 'nrproc__icontains',
+                'codsusp': 'codsusp',
+                'vlrcprbsusp': 'vlrcprbsusp',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'vlrcprbsusp': 'vlrcprbsusp',
-                'codsusp': 'codsusp',
-                'nrproc__icontains': 'nrproc__icontains',
+                'r2060_tipocod': 'r2060_tipocod',
                 'tpproc': 'tpproc',
-                'r2060_tipocod': 'r2060_tipocod',}
+                'nrproc__icontains': 'nrproc__icontains',
+                'codsusp': 'codsusp',
+                'vlrcprbsusp': 'vlrcprbsusp',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

@@ -49,15 +49,11 @@ class form_r2099_iderespinf(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_r2099_iderespinf,self ).__init__(*args,**kwargs)
         
-        self.fields['email'].widget.attrs['required'] = True
-        
-        self.fields['telefone'].widget.attrs['required'] = True
-        
-        self.fields['cpfresp'].widget.attrs['required'] = True
+        self.fields['r2099_evtfechaevper'].widget.attrs['required'] = True
         
         self.fields['nmresp'].widget.attrs['required'] = True
         
-        self.fields['r2099_evtfechaevper'].widget.attrs['required'] = True
+        self.fields['cpfresp'].widget.attrs['required'] = True
 
     class Meta:
         model = r2099ideRespInf

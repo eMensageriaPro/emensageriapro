@@ -339,31 +339,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_vlrnret': 1,
-            'show_codsusp': 0,
-            'show_nrproc': 1,
+            'show_r2030_recursosrec': 1,
             'show_tpproc': 1,
-            'show_r2030_recursosrec': 1, }
+            'show_nrproc': 1,
+            'show_codsusp': 0,
+            'show_vlrnret': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'vlrnret': 'vlrnret',
-                'codsusp': 'codsusp',
-                'nrproc__icontains': 'nrproc__icontains',
+                'r2030_recursosrec': 'r2030_recursosrec',
                 'tpproc': 'tpproc',
-                'r2030_recursosrec': 'r2030_recursosrec',}
+                'nrproc__icontains': 'nrproc__icontains',
+                'codsusp': 'codsusp',
+                'vlrnret': 'vlrnret',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'vlrnret': 'vlrnret',
-                'codsusp': 'codsusp',
-                'nrproc__icontains': 'nrproc__icontains',
+                'r2030_recursosrec': 'r2030_recursosrec',
                 'tpproc': 'tpproc',
-                'r2030_recursosrec': 'r2030_recursosrec',}
+                'nrproc__icontains': 'nrproc__icontains',
+                'codsusp': 'codsusp',
+                'vlrnret': 'vlrnret',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

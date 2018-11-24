@@ -339,43 +339,43 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_sitcargo': 1,
-            'show_dtlei': 1,
-            'show_nrlei': 1,
-            'show_leicargo': 0,
-            'show_codcarreira': 0,
-            'show_dedicexcl': 1,
-            'show_contagemesp': 1,
+            'show_s1030_inclusao': 1,
             'show_acumcargo': 1,
-            'show_s1030_inclusao': 1, }
+            'show_contagemesp': 1,
+            'show_dedicexcl': 1,
+            'show_codcarreira': 0,
+            'show_leicargo': 0,
+            'show_nrlei': 1,
+            'show_dtlei': 1,
+            'show_sitcargo': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'sitcargo': 'sitcargo',
-                'dtlei__range': 'dtlei__range',
-                'nrlei__icontains': 'nrlei__icontains',
-                'leicargo': 'leicargo',
-                'codcarreira__icontains': 'codcarreira__icontains',
-                'dedicexcl__icontains': 'dedicexcl__icontains',
-                'contagemesp': 'contagemesp',
+                's1030_inclusao': 's1030_inclusao',
                 'acumcargo': 'acumcargo',
-                's1030_inclusao': 's1030_inclusao',}
+                'contagemesp': 'contagemesp',
+                'dedicexcl__icontains': 'dedicexcl__icontains',
+                'codcarreira__icontains': 'codcarreira__icontains',
+                'leicargo': 'leicargo',
+                'nrlei__icontains': 'nrlei__icontains',
+                'dtlei__range': 'dtlei__range',
+                'sitcargo': 'sitcargo',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'sitcargo': 'sitcargo',
-                'dtlei__range': 'dtlei__range',
-                'nrlei__icontains': 'nrlei__icontains',
-                'leicargo': 'leicargo',
-                'codcarreira__icontains': 'codcarreira__icontains',
-                'dedicexcl__icontains': 'dedicexcl__icontains',
-                'contagemesp': 'contagemesp',
+                's1030_inclusao': 's1030_inclusao',
                 'acumcargo': 'acumcargo',
-                's1030_inclusao': 's1030_inclusao',}
+                'contagemesp': 'contagemesp',
+                'dedicexcl__icontains': 'dedicexcl__icontains',
+                'codcarreira__icontains': 'codcarreira__icontains',
+                'leicargo': 'leicargo',
+                'nrlei__icontains': 'nrlei__icontains',
+                'dtlei__range': 'dtlei__range',
+                'sitcargo': 'sitcargo',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

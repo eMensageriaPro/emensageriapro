@@ -339,28 +339,28 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_descrendimento': 0,
-            'show_vlrisento': 1,
+            'show_r2070_pgtopf': 1,
             'show_tpisencao': 1,
-            'show_r2070_pgtopf': 1, }
+            'show_vlrisento': 1,
+            'show_descrendimento': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'descrendimento__icontains': 'descrendimento__icontains',
-                'vlrisento': 'vlrisento',
+                'r2070_pgtopf': 'r2070_pgtopf',
                 'tpisencao': 'tpisencao',
-                'r2070_pgtopf': 'r2070_pgtopf',}
+                'vlrisento': 'vlrisento',
+                'descrendimento__icontains': 'descrendimento__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'descrendimento__icontains': 'descrendimento__icontains',
-                'vlrisento': 'vlrisento',
+                'r2070_pgtopf': 'r2070_pgtopf',
                 'tpisencao': 'tpisencao',
-                'r2070_pgtopf': 'r2070_pgtopf',}
+                'vlrisento': 'vlrisento',
+                'descrendimento__icontains': 'descrendimento__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

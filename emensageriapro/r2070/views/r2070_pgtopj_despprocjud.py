@@ -346,25 +346,25 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_vlrdespadvogados': 1,
+            'show_r2070_pgtopj_infoprocjud': 1,
             'show_vlrdespcustas': 1,
-            'show_r2070_pgtopj_infoprocjud': 1, }
+            'show_vlrdespadvogados': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'vlrdespadvogados': 'vlrdespadvogados',
+                'r2070_pgtopj_infoprocjud': 'r2070_pgtopj_infoprocjud',
                 'vlrdespcustas': 'vlrdespcustas',
-                'r2070_pgtopj_infoprocjud': 'r2070_pgtopj_infoprocjud',}
+                'vlrdespadvogados': 'vlrdespadvogados',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'vlrdespadvogados': 'vlrdespadvogados',
+                'r2070_pgtopj_infoprocjud': 'r2070_pgtopj_infoprocjud',
                 'vlrdespcustas': 'vlrdespcustas',
-                'r2070_pgtopj_infoprocjud': 'r2070_pgtopj_infoprocjud',}
+                'vlrdespadvogados': 'vlrdespadvogados',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

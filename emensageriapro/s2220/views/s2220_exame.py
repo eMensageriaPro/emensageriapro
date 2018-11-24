@@ -339,43 +339,43 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_indresult': 0,
-            'show_dtfimmonit': 0,
-            'show_dtinimonit': 1,
-            'show_ordexame': 1,
-            'show_interprexm': 1,
-            'show_obsproc': 0,
-            'show_procrealizado': 1,
+            'show_s2220_evtmonit': 1,
             'show_dtexm': 1,
-            'show_s2220_evtmonit': 1, }
+            'show_procrealizado': 1,
+            'show_obsproc': 0,
+            'show_interprexm': 1,
+            'show_ordexame': 1,
+            'show_dtinimonit': 1,
+            'show_dtfimmonit': 0,
+            'show_indresult': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'indresult': 'indresult',
-                'dtfimmonit__range': 'dtfimmonit__range',
-                'dtinimonit__range': 'dtinimonit__range',
-                'ordexame': 'ordexame',
-                'interprexm': 'interprexm',
-                'obsproc__icontains': 'obsproc__icontains',
-                'procrealizado': 'procrealizado',
+                's2220_evtmonit': 's2220_evtmonit',
                 'dtexm__range': 'dtexm__range',
-                's2220_evtmonit': 's2220_evtmonit',}
+                'procrealizado': 'procrealizado',
+                'obsproc__icontains': 'obsproc__icontains',
+                'interprexm': 'interprexm',
+                'ordexame': 'ordexame',
+                'dtinimonit__range': 'dtinimonit__range',
+                'dtfimmonit__range': 'dtfimmonit__range',
+                'indresult': 'indresult',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'indresult': 'indresult',
-                'dtfimmonit__range': 'dtfimmonit__range',
-                'dtinimonit__range': 'dtinimonit__range',
-                'ordexame': 'ordexame',
-                'interprexm': 'interprexm',
-                'obsproc__icontains': 'obsproc__icontains',
-                'procrealizado': 'procrealizado',
+                's2220_evtmonit': 's2220_evtmonit',
                 'dtexm__range': 'dtexm__range',
-                's2220_evtmonit': 's2220_evtmonit',}
+                'procrealizado': 'procrealizado',
+                'obsproc__icontains': 'obsproc__icontains',
+                'interprexm': 'interprexm',
+                'ordexame': 'ordexame',
+                'dtinimonit__range': 'dtinimonit__range',
+                'dtfimmonit__range': 'dtfimmonit__range',
+                'indresult': 'indresult',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

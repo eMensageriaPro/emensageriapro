@@ -339,40 +339,40 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_higienizacao': 1,
-            'show_periodictroca': 1,
-            'show_przvalid': 1,
-            'show_condfuncto': 1,
-            'show_medprotecao': 1,
-            'show_eficepi': 1,
+            'show_s2240_altexprisco_fatrisco': 1,
             'show_caepi': 0,
-            'show_s2240_altexprisco_fatrisco': 1, }
+            'show_eficepi': 1,
+            'show_medprotecao': 1,
+            'show_condfuncto': 1,
+            'show_przvalid': 1,
+            'show_periodictroca': 1,
+            'show_higienizacao': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'higienizacao__icontains': 'higienizacao__icontains',
-                'periodictroca__icontains': 'periodictroca__icontains',
-                'przvalid__icontains': 'przvalid__icontains',
-                'condfuncto__icontains': 'condfuncto__icontains',
-                'medprotecao__icontains': 'medprotecao__icontains',
-                'eficepi__icontains': 'eficepi__icontains',
+                's2240_altexprisco_fatrisco': 's2240_altexprisco_fatrisco',
                 'caepi__icontains': 'caepi__icontains',
-                's2240_altexprisco_fatrisco': 's2240_altexprisco_fatrisco',}
+                'eficepi__icontains': 'eficepi__icontains',
+                'medprotecao__icontains': 'medprotecao__icontains',
+                'condfuncto__icontains': 'condfuncto__icontains',
+                'przvalid__icontains': 'przvalid__icontains',
+                'periodictroca__icontains': 'periodictroca__icontains',
+                'higienizacao__icontains': 'higienizacao__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'higienizacao__icontains': 'higienizacao__icontains',
-                'periodictroca__icontains': 'periodictroca__icontains',
-                'przvalid__icontains': 'przvalid__icontains',
-                'condfuncto__icontains': 'condfuncto__icontains',
-                'medprotecao__icontains': 'medprotecao__icontains',
-                'eficepi__icontains': 'eficepi__icontains',
+                's2240_altexprisco_fatrisco': 's2240_altexprisco_fatrisco',
                 'caepi__icontains': 'caepi__icontains',
-                's2240_altexprisco_fatrisco': 's2240_altexprisco_fatrisco',}
+                'eficepi__icontains': 'eficepi__icontains',
+                'medprotecao__icontains': 'medprotecao__icontains',
+                'condfuncto__icontains': 'condfuncto__icontains',
+                'przvalid__icontains': 'przvalid__icontains',
+                'periodictroca__icontains': 'periodictroca__icontains',
+                'higienizacao__icontains': 'higienizacao__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

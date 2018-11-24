@@ -339,43 +339,43 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_indremuncargo': 0,
-            'show_infonus': 1,
-            'show_tpregprev': 1,
-            'show_tpregtrab': 1,
-            'show_dtadmced': 1,
-            'show_matricced': 1,
-            'show_cnpjcednt': 1,
+            'show_s2300_evttsvinicio': 1,
             'show_categorig': 1,
-            'show_s2300_evttsvinicio': 1, }
+            'show_cnpjcednt': 1,
+            'show_matricced': 1,
+            'show_dtadmced': 1,
+            'show_tpregtrab': 1,
+            'show_tpregprev': 1,
+            'show_infonus': 1,
+            'show_indremuncargo': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'indremuncargo__icontains': 'indremuncargo__icontains',
-                'infonus': 'infonus',
-                'tpregprev': 'tpregprev',
-                'tpregtrab': 'tpregtrab',
-                'dtadmced__range': 'dtadmced__range',
-                'matricced__icontains': 'matricced__icontains',
-                'cnpjcednt__icontains': 'cnpjcednt__icontains',
+                's2300_evttsvinicio': 's2300_evttsvinicio',
                 'categorig': 'categorig',
-                's2300_evttsvinicio': 's2300_evttsvinicio',}
+                'cnpjcednt__icontains': 'cnpjcednt__icontains',
+                'matricced__icontains': 'matricced__icontains',
+                'dtadmced__range': 'dtadmced__range',
+                'tpregtrab': 'tpregtrab',
+                'tpregprev': 'tpregprev',
+                'infonus': 'infonus',
+                'indremuncargo__icontains': 'indremuncargo__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'indremuncargo__icontains': 'indremuncargo__icontains',
-                'infonus': 'infonus',
-                'tpregprev': 'tpregprev',
-                'tpregtrab': 'tpregtrab',
-                'dtadmced__range': 'dtadmced__range',
-                'matricced__icontains': 'matricced__icontains',
-                'cnpjcednt__icontains': 'cnpjcednt__icontains',
+                's2300_evttsvinicio': 's2300_evttsvinicio',
                 'categorig': 'categorig',
-                's2300_evttsvinicio': 's2300_evttsvinicio',}
+                'cnpjcednt__icontains': 'cnpjcednt__icontains',
+                'matricced__icontains': 'matricced__icontains',
+                'dtadmced__range': 'dtadmced__range',
+                'tpregtrab': 'tpregtrab',
+                'tpregprev': 'tpregprev',
+                'infonus': 'infonus',
+                'indremuncargo__icontains': 'indremuncargo__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

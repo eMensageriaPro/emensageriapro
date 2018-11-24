@@ -339,37 +339,37 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_vlrsenarsusp': 0,
-            'show_vlrratsusp': 0,
-            'show_vlrcpsusp': 0,
-            'show_codsusp': 0,
-            'show_nrproc': 1,
+            'show_r2050_tipocom': 1,
             'show_tpproc': 1,
-            'show_r2050_tipocom': 1, }
+            'show_nrproc': 1,
+            'show_codsusp': 0,
+            'show_vlrcpsusp': 0,
+            'show_vlrratsusp': 0,
+            'show_vlrsenarsusp': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'vlrsenarsusp': 'vlrsenarsusp',
-                'vlrratsusp': 'vlrratsusp',
-                'vlrcpsusp': 'vlrcpsusp',
-                'codsusp': 'codsusp',
-                'nrproc__icontains': 'nrproc__icontains',
+                'r2050_tipocom': 'r2050_tipocom',
                 'tpproc': 'tpproc',
-                'r2050_tipocom': 'r2050_tipocom',}
+                'nrproc__icontains': 'nrproc__icontains',
+                'codsusp': 'codsusp',
+                'vlrcpsusp': 'vlrcpsusp',
+                'vlrratsusp': 'vlrratsusp',
+                'vlrsenarsusp': 'vlrsenarsusp',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'vlrsenarsusp': 'vlrsenarsusp',
-                'vlrratsusp': 'vlrratsusp',
-                'vlrcpsusp': 'vlrcpsusp',
-                'codsusp': 'codsusp',
-                'nrproc__icontains': 'nrproc__icontains',
+                'r2050_tipocom': 'r2050_tipocom',
                 'tpproc': 'tpproc',
-                'r2050_tipocom': 'r2050_tipocom',}
+                'nrproc__icontains': 'nrproc__icontains',
+                'codsusp': 'codsusp',
+                'vlrcpsusp': 'vlrcpsusp',
+                'vlrratsusp': 'vlrratsusp',
+                'vlrsenarsusp': 'vlrsenarsusp',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

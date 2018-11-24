@@ -346,28 +346,28 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_dscativdes': 1,
-            'show_infoativ': 0,
+            'show_s2240_altexprisco': 1,
             'show_codamb': 1,
-            'show_s2240_altexprisco': 1, }
+            'show_infoativ': 0,
+            'show_dscativdes': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'dscativdes__icontains': 'dscativdes__icontains',
-                'infoativ': 'infoativ',
+                's2240_altexprisco': 's2240_altexprisco',
                 'codamb__icontains': 'codamb__icontains',
-                's2240_altexprisco': 's2240_altexprisco',}
+                'infoativ': 'infoativ',
+                'dscativdes__icontains': 'dscativdes__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'dscativdes__icontains': 'dscativdes__icontains',
-                'infoativ': 'infoativ',
+                's2240_altexprisco': 's2240_altexprisco',
                 'codamb__icontains': 'codamb__icontains',
-                's2240_altexprisco': 's2240_altexprisco',}
+                'infoativ': 'infoativ',
+                'dscativdes__icontains': 'dscativdes__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

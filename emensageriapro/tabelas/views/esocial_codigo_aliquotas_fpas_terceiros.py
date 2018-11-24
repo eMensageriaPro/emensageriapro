@@ -324,40 +324,40 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_ind_total': 1,
-            'show_aliquota': 1,
-            'show_codigo_terceiro': 1,
-            'show_terceiros': 1,
-            'show_base_calculo': 1,
-            'show_tipo_empresa': 1,
+            'show_codigo': 1,
             'show_descricao': 1,
-            'show_codigo': 1, }
+            'show_tipo_empresa': 1,
+            'show_base_calculo': 1,
+            'show_terceiros': 1,
+            'show_codigo_terceiro': 1,
+            'show_aliquota': 1,
+            'show_ind_total': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'ind_total': 'ind_total',
-                'aliquota': 'aliquota',
-                'codigo_terceiro__icontains': 'codigo_terceiro__icontains',
-                'terceiros__icontains': 'terceiros__icontains',
-                'base_calculo__icontains': 'base_calculo__icontains',
-                'tipo_empresa__icontains': 'tipo_empresa__icontains',
+                'codigo__icontains': 'codigo__icontains',
                 'descricao__icontains': 'descricao__icontains',
-                'codigo__icontains': 'codigo__icontains',}
+                'tipo_empresa__icontains': 'tipo_empresa__icontains',
+                'base_calculo__icontains': 'base_calculo__icontains',
+                'terceiros__icontains': 'terceiros__icontains',
+                'codigo_terceiro__icontains': 'codigo_terceiro__icontains',
+                'aliquota': 'aliquota',
+                'ind_total': 'ind_total',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'ind_total': 'ind_total',
-                'aliquota': 'aliquota',
-                'codigo_terceiro__icontains': 'codigo_terceiro__icontains',
-                'terceiros__icontains': 'terceiros__icontains',
-                'base_calculo__icontains': 'base_calculo__icontains',
-                'tipo_empresa__icontains': 'tipo_empresa__icontains',
+                'codigo__icontains': 'codigo__icontains',
                 'descricao__icontains': 'descricao__icontains',
-                'codigo__icontains': 'codigo__icontains',}
+                'tipo_empresa__icontains': 'tipo_empresa__icontains',
+                'base_calculo__icontains': 'base_calculo__icontains',
+                'terceiros__icontains': 'terceiros__icontains',
+                'codigo_terceiro__icontains': 'codigo_terceiro__icontains',
+                'aliquota': 'aliquota',
+                'ind_total': 'ind_total',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

@@ -339,28 +339,28 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_vrdescseg': 1,
-            'show_vrcpseg': 1,
+            'show_s5001_evtbasestrab': 1,
             'show_tpcr': 1,
-            'show_s5001_evtbasestrab': 1, }
+            'show_vrcpseg': 1,
+            'show_vrdescseg': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'vrdescseg': 'vrdescseg',
-                'vrcpseg': 'vrcpseg',
+                's5001_evtbasestrab': 's5001_evtbasestrab',
                 'tpcr': 'tpcr',
-                's5001_evtbasestrab': 's5001_evtbasestrab',}
+                'vrcpseg': 'vrcpseg',
+                'vrdescseg': 'vrdescseg',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'vrdescseg': 'vrdescseg',
-                'vrcpseg': 'vrcpseg',
+                's5001_evtbasestrab': 's5001_evtbasestrab',
                 'tpcr': 'tpcr',
-                's5001_evtbasestrab': 's5001_evtbasestrab',}
+                'vrcpseg': 'vrcpseg',
+                'vrdescseg': 'vrdescseg',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

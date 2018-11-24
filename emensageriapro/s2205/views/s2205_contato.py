@@ -339,31 +339,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_emailalternat': 0,
-            'show_emailprinc': 0,
-            'show_fonealternat': 0,
+            'show_s2205_evtaltcadastral': 1,
             'show_foneprinc': 0,
-            'show_s2205_evtaltcadastral': 1, }
+            'show_fonealternat': 0,
+            'show_emailprinc': 0,
+            'show_emailalternat': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'emailalternat__icontains': 'emailalternat__icontains',
-                'emailprinc__icontains': 'emailprinc__icontains',
-                'fonealternat__icontains': 'fonealternat__icontains',
+                's2205_evtaltcadastral': 's2205_evtaltcadastral',
                 'foneprinc__icontains': 'foneprinc__icontains',
-                's2205_evtaltcadastral': 's2205_evtaltcadastral',}
+                'fonealternat__icontains': 'fonealternat__icontains',
+                'emailprinc__icontains': 'emailprinc__icontains',
+                'emailalternat__icontains': 'emailalternat__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'emailalternat__icontains': 'emailalternat__icontains',
-                'emailprinc__icontains': 'emailprinc__icontains',
-                'fonealternat__icontains': 'fonealternat__icontains',
+                's2205_evtaltcadastral': 's2205_evtaltcadastral',
                 'foneprinc__icontains': 'foneprinc__icontains',
-                's2205_evtaltcadastral': 's2205_evtaltcadastral',}
+                'fonealternat__icontains': 'fonealternat__icontains',
+                'emailprinc__icontains': 'emailprinc__icontains',
+                'emailalternat__icontains': 'emailalternat__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

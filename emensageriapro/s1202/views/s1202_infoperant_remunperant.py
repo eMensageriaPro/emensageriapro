@@ -346,25 +346,25 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_codcateg': 1,
+            'show_s1202_infoperant_ideestab': 1,
             'show_matricula': 0,
-            'show_s1202_infoperant_ideestab': 1, }
+            'show_codcateg': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'codcateg__icontains': 'codcateg__icontains',
+                's1202_infoperant_ideestab': 's1202_infoperant_ideestab',
                 'matricula__icontains': 'matricula__icontains',
-                's1202_infoperant_ideestab': 's1202_infoperant_ideestab',}
+                'codcateg__icontains': 'codcateg__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'codcateg__icontains': 'codcateg__icontains',
+                's1202_infoperant_ideestab': 's1202_infoperant_ideestab',
                 'matricula__icontains': 'matricula__icontains',
-                's1202_infoperant_ideestab': 's1202_infoperant_ideestab',}
+                'codcateg__icontains': 'codcateg__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

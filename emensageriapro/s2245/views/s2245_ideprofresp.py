@@ -339,37 +339,37 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_nacprof': 1,
-            'show_codcbo': 1,
-            'show_formprof': 1,
-            'show_tpprof': 1,
-            'show_nmprof': 1,
+            'show_s2245_infocomplem': 1,
             'show_cpfprof': 0,
-            'show_s2245_infocomplem': 1, }
+            'show_nmprof': 1,
+            'show_tpprof': 1,
+            'show_formprof': 1,
+            'show_codcbo': 1,
+            'show_nacprof': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'nacprof': 'nacprof',
-                'codcbo__icontains': 'codcbo__icontains',
-                'formprof__icontains': 'formprof__icontains',
-                'tpprof': 'tpprof',
-                'nmprof__icontains': 'nmprof__icontains',
+                's2245_infocomplem': 's2245_infocomplem',
                 'cpfprof__icontains': 'cpfprof__icontains',
-                's2245_infocomplem': 's2245_infocomplem',}
+                'nmprof__icontains': 'nmprof__icontains',
+                'tpprof': 'tpprof',
+                'formprof__icontains': 'formprof__icontains',
+                'codcbo__icontains': 'codcbo__icontains',
+                'nacprof': 'nacprof',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'nacprof': 'nacprof',
-                'codcbo__icontains': 'codcbo__icontains',
-                'formprof__icontains': 'formprof__icontains',
-                'tpprof': 'tpprof',
-                'nmprof__icontains': 'nmprof__icontains',
+                's2245_infocomplem': 's2245_infocomplem',
                 'cpfprof__icontains': 'cpfprof__icontains',
-                's2245_infocomplem': 's2245_infocomplem',}
+                'nmprof__icontains': 'nmprof__icontains',
+                'tpprof': 'tpprof',
+                'formprof__icontains': 'formprof__icontains',
+                'codcbo__icontains': 'codcbo__icontains',
+                'nacprof': 'nacprof',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

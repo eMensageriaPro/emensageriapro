@@ -346,34 +346,34 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_dsc': 1,
-            'show_dtefacconv': 0,
-            'show_compacconv': 0,
-            'show_tpacconv': 1,
+            'show_s1207_dmdev': 1,
             'show_dtacconv': 0,
-            'show_s1207_dmdev': 1, }
+            'show_tpacconv': 1,
+            'show_compacconv': 0,
+            'show_dtefacconv': 0,
+            'show_dsc': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'dsc__icontains': 'dsc__icontains',
-                'dtefacconv__range': 'dtefacconv__range',
-                'compacconv__icontains': 'compacconv__icontains',
-                'tpacconv__icontains': 'tpacconv__icontains',
+                's1207_dmdev': 's1207_dmdev',
                 'dtacconv__range': 'dtacconv__range',
-                's1207_dmdev': 's1207_dmdev',}
+                'tpacconv__icontains': 'tpacconv__icontains',
+                'compacconv__icontains': 'compacconv__icontains',
+                'dtefacconv__range': 'dtefacconv__range',
+                'dsc__icontains': 'dsc__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'dsc__icontains': 'dsc__icontains',
-                'dtefacconv__range': 'dtefacconv__range',
-                'compacconv__icontains': 'compacconv__icontains',
-                'tpacconv__icontains': 'tpacconv__icontains',
+                's1207_dmdev': 's1207_dmdev',
                 'dtacconv__range': 'dtacconv__range',
-                's1207_dmdev': 's1207_dmdev',}
+                'tpacconv__icontains': 'tpacconv__icontains',
+                'compacconv__icontains': 'compacconv__icontains',
+                'dtefacconv__range': 'dtefacconv__range',
+                'dsc__icontains': 'dsc__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

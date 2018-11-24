@@ -339,43 +339,43 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_observacao': 0,
-            'show_infocota': 1,
-            'show_reabreadap': 1,
-            'show_defintelectual': 1,
-            'show_defmental': 1,
-            'show_defauditiva': 1,
-            'show_defvisual': 1,
+            'show_s2200_evtadmissao': 1,
             'show_deffisica': 1,
-            'show_s2200_evtadmissao': 1, }
+            'show_defvisual': 1,
+            'show_defauditiva': 1,
+            'show_defmental': 1,
+            'show_defintelectual': 1,
+            'show_reabreadap': 1,
+            'show_infocota': 1,
+            'show_observacao': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'observacao__icontains': 'observacao__icontains',
-                'infocota__icontains': 'infocota__icontains',
-                'reabreadap__icontains': 'reabreadap__icontains',
-                'defintelectual__icontains': 'defintelectual__icontains',
-                'defmental__icontains': 'defmental__icontains',
-                'defauditiva__icontains': 'defauditiva__icontains',
-                'defvisual__icontains': 'defvisual__icontains',
+                's2200_evtadmissao': 's2200_evtadmissao',
                 'deffisica__icontains': 'deffisica__icontains',
-                's2200_evtadmissao': 's2200_evtadmissao',}
+                'defvisual__icontains': 'defvisual__icontains',
+                'defauditiva__icontains': 'defauditiva__icontains',
+                'defmental__icontains': 'defmental__icontains',
+                'defintelectual__icontains': 'defintelectual__icontains',
+                'reabreadap__icontains': 'reabreadap__icontains',
+                'infocota__icontains': 'infocota__icontains',
+                'observacao__icontains': 'observacao__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'observacao__icontains': 'observacao__icontains',
-                'infocota__icontains': 'infocota__icontains',
-                'reabreadap__icontains': 'reabreadap__icontains',
-                'defintelectual__icontains': 'defintelectual__icontains',
-                'defmental__icontains': 'defmental__icontains',
-                'defauditiva__icontains': 'defauditiva__icontains',
-                'defvisual__icontains': 'defvisual__icontains',
+                's2200_evtadmissao': 's2200_evtadmissao',
                 'deffisica__icontains': 'deffisica__icontains',
-                's2200_evtadmissao': 's2200_evtadmissao',}
+                'defvisual__icontains': 'defvisual__icontains',
+                'defauditiva__icontains': 'defauditiva__icontains',
+                'defmental__icontains': 'defmental__icontains',
+                'defintelectual__icontains': 'defintelectual__icontains',
+                'reabreadap__icontains': 'reabreadap__icontains',
+                'infocota__icontains': 'infocota__icontains',
+                'observacao__icontains': 'observacao__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

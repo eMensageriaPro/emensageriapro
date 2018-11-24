@@ -339,31 +339,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_codsusp': 1,
-            'show_extdecisao': 1,
-            'show_nrproc': 1,
+            'show_s1010_inclusao': 1,
             'show_tpproc': 1,
-            'show_s1010_inclusao': 1, }
+            'show_nrproc': 1,
+            'show_extdecisao': 1,
+            'show_codsusp': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'codsusp': 'codsusp',
-                'extdecisao': 'extdecisao',
-                'nrproc__icontains': 'nrproc__icontains',
+                's1010_inclusao': 's1010_inclusao',
                 'tpproc': 'tpproc',
-                's1010_inclusao': 's1010_inclusao',}
+                'nrproc__icontains': 'nrproc__icontains',
+                'extdecisao': 'extdecisao',
+                'codsusp': 'codsusp',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'codsusp': 'codsusp',
-                'extdecisao': 'extdecisao',
-                'nrproc__icontains': 'nrproc__icontains',
+                's1010_inclusao': 's1010_inclusao',
                 'tpproc': 'tpproc',
-                's1010_inclusao': 's1010_inclusao',}
+                'nrproc__icontains': 'nrproc__icontains',
+                'extdecisao': 'extdecisao',
+                'codsusp': 'codsusp',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

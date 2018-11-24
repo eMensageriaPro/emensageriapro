@@ -339,28 +339,28 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_eficepc': 0,
-            'show_dscepc': 1,
+            'show_s2240_iniexprisco_fatrisco': 1,
             'show_codep': 1,
-            'show_s2240_iniexprisco_fatrisco': 1, }
+            'show_dscepc': 1,
+            'show_eficepc': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'eficepc__icontains': 'eficepc__icontains',
-                'dscepc__icontains': 'dscepc__icontains',
+                's2240_iniexprisco_fatrisco': 's2240_iniexprisco_fatrisco',
                 'codep__icontains': 'codep__icontains',
-                's2240_iniexprisco_fatrisco': 's2240_iniexprisco_fatrisco',}
+                'dscepc__icontains': 'dscepc__icontains',
+                'eficepc__icontains': 'eficepc__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'eficepc__icontains': 'eficepc__icontains',
-                'dscepc__icontains': 'dscepc__icontains',
+                's2240_iniexprisco_fatrisco': 's2240_iniexprisco_fatrisco',
                 'codep__icontains': 'codep__icontains',
-                's2240_iniexprisco_fatrisco': 's2240_iniexprisco_fatrisco',}
+                'dscepc__icontains': 'dscepc__icontains',
+                'eficepc__icontains': 'eficepc__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

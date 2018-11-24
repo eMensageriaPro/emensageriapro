@@ -360,34 +360,34 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_observacao': 0,
-            'show_tpacidtransito': 0,
-            'show_infomesmomtv': 0,
-            'show_codmotafast': 1,
+            'show_s2230_evtafasttemp': 1,
             'show_dtiniafast': 1,
-            'show_s2230_evtafasttemp': 1, }
+            'show_codmotafast': 1,
+            'show_infomesmomtv': 0,
+            'show_tpacidtransito': 0,
+            'show_observacao': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'observacao__icontains': 'observacao__icontains',
-                'tpacidtransito': 'tpacidtransito',
-                'infomesmomtv__icontains': 'infomesmomtv__icontains',
-                'codmotafast__icontains': 'codmotafast__icontains',
+                's2230_evtafasttemp': 's2230_evtafasttemp',
                 'dtiniafast__range': 'dtiniafast__range',
-                's2230_evtafasttemp': 's2230_evtafasttemp',}
+                'codmotafast__icontains': 'codmotafast__icontains',
+                'infomesmomtv__icontains': 'infomesmomtv__icontains',
+                'tpacidtransito': 'tpacidtransito',
+                'observacao__icontains': 'observacao__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'observacao__icontains': 'observacao__icontains',
-                'tpacidtransito': 'tpacidtransito',
-                'infomesmomtv__icontains': 'infomesmomtv__icontains',
-                'codmotafast__icontains': 'codmotafast__icontains',
+                's2230_evtafasttemp': 's2230_evtafasttemp',
                 'dtiniafast__range': 'dtiniafast__range',
-                's2230_evtafasttemp': 's2230_evtafasttemp',}
+                'codmotafast__icontains': 'codmotafast__icontains',
+                'infomesmomtv__icontains': 'infomesmomtv__icontains',
+                'tpacidtransito': 'tpacidtransito',
+                'observacao__icontains': 'observacao__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

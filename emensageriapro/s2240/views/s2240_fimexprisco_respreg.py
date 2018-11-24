@@ -339,34 +339,34 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_ufoc': 0,
-            'show_nroc': 1,
-            'show_nisresp': 1,
-            'show_dtfim': 0,
+            'show_s2240_evtexprisco': 1,
             'show_dtini': 1,
-            'show_s2240_evtexprisco': 1, }
+            'show_dtfim': 0,
+            'show_nisresp': 1,
+            'show_nroc': 1,
+            'show_ufoc': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'ufoc__icontains': 'ufoc__icontains',
-                'nroc__icontains': 'nroc__icontains',
-                'nisresp__icontains': 'nisresp__icontains',
-                'dtfim__range': 'dtfim__range',
+                's2240_evtexprisco': 's2240_evtexprisco',
                 'dtini__range': 'dtini__range',
-                's2240_evtexprisco': 's2240_evtexprisco',}
+                'dtfim__range': 'dtfim__range',
+                'nisresp__icontains': 'nisresp__icontains',
+                'nroc__icontains': 'nroc__icontains',
+                'ufoc__icontains': 'ufoc__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'ufoc__icontains': 'ufoc__icontains',
-                'nroc__icontains': 'nroc__icontains',
-                'nisresp__icontains': 'nisresp__icontains',
-                'dtfim__range': 'dtfim__range',
+                's2240_evtexprisco': 's2240_evtexprisco',
                 'dtini__range': 'dtini__range',
-                's2240_evtexprisco': 's2240_evtexprisco',}
+                'dtfim__range': 'dtfim__range',
+                'nisresp__icontains': 'nisresp__icontains',
+                'nroc__icontains': 'nroc__icontains',
+                'ufoc__icontains': 'ufoc__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

@@ -339,40 +339,40 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_vlrtotalnretadic': 0,
-            'show_vlrtotalnretprinc': 0,
-            'show_vlrtotalretadic': 0,
-            'show_vlrtotalretprinc': 1,
-            'show_vlrtotalbaseret': 1,
-            'show_nrinsctomador': 1,
+            'show_r5001_infototal': 1,
             'show_tpinsctomador': 1,
-            'show_r5001_infototal': 1, }
+            'show_nrinsctomador': 1,
+            'show_vlrtotalbaseret': 1,
+            'show_vlrtotalretprinc': 1,
+            'show_vlrtotalretadic': 0,
+            'show_vlrtotalnretprinc': 0,
+            'show_vlrtotalnretadic': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'vlrtotalnretadic': 'vlrtotalnretadic',
-                'vlrtotalnretprinc': 'vlrtotalnretprinc',
-                'vlrtotalretadic': 'vlrtotalretadic',
-                'vlrtotalretprinc': 'vlrtotalretprinc',
-                'vlrtotalbaseret': 'vlrtotalbaseret',
-                'nrinsctomador__icontains': 'nrinsctomador__icontains',
+                'r5001_infototal': 'r5001_infototal',
                 'tpinsctomador': 'tpinsctomador',
-                'r5001_infototal': 'r5001_infototal',}
+                'nrinsctomador__icontains': 'nrinsctomador__icontains',
+                'vlrtotalbaseret': 'vlrtotalbaseret',
+                'vlrtotalretprinc': 'vlrtotalretprinc',
+                'vlrtotalretadic': 'vlrtotalretadic',
+                'vlrtotalnretprinc': 'vlrtotalnretprinc',
+                'vlrtotalnretadic': 'vlrtotalnretadic',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'vlrtotalnretadic': 'vlrtotalnretadic',
-                'vlrtotalnretprinc': 'vlrtotalnretprinc',
-                'vlrtotalretadic': 'vlrtotalretadic',
-                'vlrtotalretprinc': 'vlrtotalretprinc',
-                'vlrtotalbaseret': 'vlrtotalbaseret',
-                'nrinsctomador__icontains': 'nrinsctomador__icontains',
+                'r5001_infototal': 'r5001_infototal',
                 'tpinsctomador': 'tpinsctomador',
-                'r5001_infototal': 'r5001_infototal',}
+                'nrinsctomador__icontains': 'nrinsctomador__icontains',
+                'vlrtotalbaseret': 'vlrtotalbaseret',
+                'vlrtotalretprinc': 'vlrtotalretprinc',
+                'vlrtotalretadic': 'vlrtotalretadic',
+                'vlrtotalnretprinc': 'vlrtotalnretprinc',
+                'vlrtotalnretadic': 'vlrtotalnretadic',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

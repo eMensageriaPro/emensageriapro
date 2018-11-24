@@ -339,43 +339,43 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_depfinsprev': 1,
-            'show_incfismen': 1,
-            'show_depirrf': 1,
-            'show_sexodep': 1,
-            'show_cpfdep': 0,
-            'show_dtnascto': 1,
-            'show_nmdep': 1,
+            'show_s2405_evtcdbenefalt': 1,
             'show_tpdep': 1,
-            'show_s2405_evtcdbenefalt': 1, }
+            'show_nmdep': 1,
+            'show_dtnascto': 1,
+            'show_cpfdep': 0,
+            'show_sexodep': 1,
+            'show_depirrf': 1,
+            'show_incfismen': 1,
+            'show_depfinsprev': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'depfinsprev__icontains': 'depfinsprev__icontains',
-                'incfismen__icontains': 'incfismen__icontains',
-                'depirrf__icontains': 'depirrf__icontains',
-                'sexodep__icontains': 'sexodep__icontains',
-                'cpfdep__icontains': 'cpfdep__icontains',
-                'dtnascto__range': 'dtnascto__range',
-                'nmdep__icontains': 'nmdep__icontains',
+                's2405_evtcdbenefalt': 's2405_evtcdbenefalt',
                 'tpdep__icontains': 'tpdep__icontains',
-                's2405_evtcdbenefalt': 's2405_evtcdbenefalt',}
+                'nmdep__icontains': 'nmdep__icontains',
+                'dtnascto__range': 'dtnascto__range',
+                'cpfdep__icontains': 'cpfdep__icontains',
+                'sexodep__icontains': 'sexodep__icontains',
+                'depirrf__icontains': 'depirrf__icontains',
+                'incfismen__icontains': 'incfismen__icontains',
+                'depfinsprev__icontains': 'depfinsprev__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'depfinsprev__icontains': 'depfinsprev__icontains',
-                'incfismen__icontains': 'incfismen__icontains',
-                'depirrf__icontains': 'depirrf__icontains',
-                'sexodep__icontains': 'sexodep__icontains',
-                'cpfdep__icontains': 'cpfdep__icontains',
-                'dtnascto__range': 'dtnascto__range',
-                'nmdep__icontains': 'nmdep__icontains',
+                's2405_evtcdbenefalt': 's2405_evtcdbenefalt',
                 'tpdep__icontains': 'tpdep__icontains',
-                's2405_evtcdbenefalt': 's2405_evtcdbenefalt',}
+                'nmdep__icontains': 'nmdep__icontains',
+                'dtnascto__range': 'dtnascto__range',
+                'cpfdep__icontains': 'cpfdep__icontains',
+                'sexodep__icontains': 'sexodep__icontains',
+                'depirrf__icontains': 'depirrf__icontains',
+                'incfismen__icontains': 'incfismen__icontains',
+                'depfinsprev__icontains': 'depfinsprev__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

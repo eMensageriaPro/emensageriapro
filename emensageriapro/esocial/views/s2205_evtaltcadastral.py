@@ -192,7 +192,6 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_status': 1,
             'show_versao': 0,
             'show_transmissor_lote_esocial': 0,
             'show_retornos_eventos': 0,
@@ -201,6 +200,7 @@ def listar(request, hash):
             'show_validacoes': 0,
             'show_arquivo_original': 0,
             'show_arquivo': 0,
+            'show_status': 1,
             'show_recepcao_tp_amb': 0,
             'show_recepcao_data_hora': 0,
             'show_recepcao_versao_app': 0,
@@ -246,9 +246,9 @@ def listar(request, hash):
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'status': 'status',
                 'versao__icontains': 'versao__icontains',
                 'transmissor_lote_esocial': 'transmissor_lote_esocial',
+                'status': 'status',
                 'evtaltcadastral': 'evtaltcadastral',
                 'identidade__icontains': 'identidade__icontains',
                 'ideevento': 'ideevento',
@@ -286,9 +286,9 @@ def listar(request, hash):
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'status': 'status',
                 'versao__icontains': 'versao__icontains',
                 'transmissor_lote_esocial': 'transmissor_lote_esocial',
+                'status': 'status',
                 'evtaltcadastral': 'evtaltcadastral',
                 'identidade__icontains': 'identidade__icontains',
                 'ideevento': 'ideevento',
