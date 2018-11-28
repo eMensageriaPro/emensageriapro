@@ -73,11 +73,6 @@ EFDREINF_VERSOES = (
     ('v1_04', u'Versão 1.04'),
 )
 
-CHOICES_R2098_PROCEMI = (
-    (1, u'1 - Aplicativo do contribuinte'),
-    (2, u'2 - Aplicativo governamental'),
-)
-
 CHOICES_R1000_PROCEMI = (
     (1, u'1 - Aplicativo do contribuinte'),
     (2, u'2 - Aplicativo governamental'),
@@ -299,6 +294,11 @@ CHOICES_R2070_TPINSC = (
 CHOICES_R2070_TPINSCBENEF = (
     (1, u'1 - Pessoa Jurídica'),
     (2, u'2 - Pessoa Física'),
+)
+
+CHOICES_R2098_PROCEMI = (
+    (1, u'1 - Aplicativo do contribuinte'),
+    (2, u'2 - Aplicativo governamental'),
 )
 
 CHOICES_R2098_TPAMB = (
@@ -1078,15 +1078,15 @@ class r5001evtTotal(models.Model):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_03_02')
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
+    retornos_evttotal = models.ForeignKey('r5001evtTotal',
+        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
         related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    validacoes = models.TextField(blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
-    retornos_evttotal = models.ForeignKey('r5001evtTotal',
-        related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     perapur = models.CharField(max_length=10)
