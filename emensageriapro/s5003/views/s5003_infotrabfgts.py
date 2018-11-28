@@ -353,43 +353,43 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s5003_ideestablot': 1,
-            'show_matricula': 0,
-            'show_codcateg': 1,
-            'show_dtadm': 0,
-            'show_dtdeslig': 0,
-            'show_dtinicio': 0,
-            'show_mtvdeslig': 0,
+            'show_mtvdesligtsv': 0,
             'show_dtterm': 0,
-            'show_mtvdesligtsv': 0, }
+            'show_mtvdeslig': 0,
+            'show_dtinicio': 0,
+            'show_dtdeslig': 0,
+            'show_dtadm': 0,
+            'show_codcateg': 1,
+            'show_matricula': 0,
+            'show_s5003_ideestablot': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's5003_ideestablot': 's5003_ideestablot',
-                'matricula__icontains': 'matricula__icontains',
-                'codcateg__icontains': 'codcateg__icontains',
-                'dtadm__range': 'dtadm__range',
-                'dtdeslig__range': 'dtdeslig__range',
-                'dtinicio__range': 'dtinicio__range',
-                'mtvdeslig__icontains': 'mtvdeslig__icontains',
+                'mtvdesligtsv__icontains': 'mtvdesligtsv__icontains',
                 'dtterm__range': 'dtterm__range',
-                'mtvdesligtsv__icontains': 'mtvdesligtsv__icontains',}
+                'mtvdeslig__icontains': 'mtvdeslig__icontains',
+                'dtinicio__range': 'dtinicio__range',
+                'dtdeslig__range': 'dtdeslig__range',
+                'dtadm__range': 'dtadm__range',
+                'codcateg__icontains': 'codcateg__icontains',
+                'matricula__icontains': 'matricula__icontains',
+                's5003_ideestablot': 's5003_ideestablot',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's5003_ideestablot': 's5003_ideestablot',
-                'matricula__icontains': 'matricula__icontains',
-                'codcateg__icontains': 'codcateg__icontains',
-                'dtadm__range': 'dtadm__range',
-                'dtdeslig__range': 'dtdeslig__range',
-                'dtinicio__range': 'dtinicio__range',
-                'mtvdeslig__icontains': 'mtvdeslig__icontains',
+                'mtvdesligtsv__icontains': 'mtvdesligtsv__icontains',
                 'dtterm__range': 'dtterm__range',
-                'mtvdesligtsv__icontains': 'mtvdesligtsv__icontains',}
+                'mtvdeslig__icontains': 'mtvdeslig__icontains',
+                'dtinicio__range': 'dtinicio__range',
+                'dtdeslig__range': 'dtdeslig__range',
+                'dtadm__range': 'dtadm__range',
+                'codcateg__icontains': 'codcateg__icontains',
+                'matricula__icontains': 'matricula__icontains',
+                's5003_ideestablot': 's5003_ideestablot',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

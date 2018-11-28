@@ -339,25 +339,25 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s2210_evtcat': 1,
+            'show_nrreccatorig': 1,
             'show_dtcatorig': 1,
-            'show_nrreccatorig': 1, }
+            'show_s2210_evtcat': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's2210_evtcat': 's2210_evtcat',
+                'nrreccatorig__icontains': 'nrreccatorig__icontains',
                 'dtcatorig__range': 'dtcatorig__range',
-                'nrreccatorig__icontains': 'nrreccatorig__icontains',}
+                's2210_evtcat': 's2210_evtcat',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's2210_evtcat': 's2210_evtcat',
+                'nrreccatorig__icontains': 'nrreccatorig__icontains',
                 'dtcatorig__range': 'dtcatorig__range',
-                'nrreccatorig__icontains': 'nrreccatorig__icontains',}
+                's2210_evtcat': 's2210_evtcat',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

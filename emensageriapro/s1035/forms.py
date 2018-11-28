@@ -43,46 +43,26 @@ __author__ = 'marcelovasconcellos'
 
 
 
-class form_s1035_alteracao(forms.ModelForm):
+class form_s1035_inclusao(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1035_alteracao,self ).__init__(*args,**kwargs)
+        super (form_s1035_inclusao,self ).__init__(*args,**kwargs)
         
-        self.fields['s1035_evttabcarreira'].widget.attrs['required'] = True
-        
-        self.fields['codcarreira'].widget.attrs['required'] = True
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
-        
-        self.fields['dsccarreira'].widget.attrs['required'] = True
+        self.fields['sitcarr'].widget.attrs['required'] = True
         
         self.fields['dtleicarr'].widget.attrs['required'] = True
         
-        self.fields['sitcarr'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1035alteracao
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_s1035_alteracao_novavalidade(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1035_alteracao_novavalidade,self ).__init__(*args,**kwargs)
-        
-        self.fields['s1035_alteracao'].widget.attrs['required'] = True
+        self.fields['dsccarreira'].widget.attrs['required'] = True
         
         self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['codcarreira'].widget.attrs['required'] = True
+        
+        self.fields['s1035_evttabcarreira'].widget.attrs['required'] = True
 
     class Meta:
-        model = s1035alteracaonovaValidade
+        model = s1035inclusao
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
@@ -97,11 +77,11 @@ class form_s1035_exclusao(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s1035_exclusao,self ).__init__(*args,**kwargs)
         
-        self.fields['s1035_evttabcarreira'].widget.attrs['required'] = True
+        self.fields['inivalid'].widget.attrs['required'] = True
         
         self.fields['codcarreira'].widget.attrs['required'] = True
         
-        self.fields['inivalid'].widget.attrs['required'] = True
+        self.fields['s1035_evttabcarreira'].widget.attrs['required'] = True
 
     class Meta:
         model = s1035exclusao
@@ -113,26 +93,46 @@ class form_s1035_exclusao(forms.ModelForm):
         ]
 
 
-class form_s1035_inclusao(forms.ModelForm):
+class form_s1035_alteracao_novavalidade(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1035_inclusao,self ).__init__(*args,**kwargs)
-        
-        self.fields['s1035_evttabcarreira'].widget.attrs['required'] = True
-        
-        self.fields['codcarreira'].widget.attrs['required'] = True
+        super (form_s1035_alteracao_novavalidade,self ).__init__(*args,**kwargs)
         
         self.fields['inivalid'].widget.attrs['required'] = True
         
-        self.fields['dsccarreira'].widget.attrs['required'] = True
+        self.fields['s1035_alteracao'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1035alteracaonovaValidade
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_s1035_alteracao(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1035_alteracao,self ).__init__(*args,**kwargs)
+        
+        self.fields['sitcarr'].widget.attrs['required'] = True
         
         self.fields['dtleicarr'].widget.attrs['required'] = True
         
-        self.fields['sitcarr'].widget.attrs['required'] = True
+        self.fields['dsccarreira'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['codcarreira'].widget.attrs['required'] = True
+        
+        self.fields['s1035_evttabcarreira'].widget.attrs['required'] = True
 
     class Meta:
-        model = s1035inclusao
+        model = s1035alteracao
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',

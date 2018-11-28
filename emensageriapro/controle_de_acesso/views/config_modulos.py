@@ -288,29 +288,29 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_titulo': 1,
-            'show_slug': 1,
+            'show_ordem': 0,
             'show_modulo_pai': 0,
-            'show_ordem': 0, }
+            'show_slug': 1,
+            'show_titulo': 1, }
         post = False
         #ANTES-POST-LISTAGEM
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'titulo__icontains': 'titulo__icontains',
-                'slug__icontains': 'slug__icontains',
+                'ordem': 'ordem',
                 'modulo_pai': 'modulo_pai',
-                'ordem': 'ordem',}
+                'slug__icontains': 'slug__icontains',
+                'titulo__icontains': 'titulo__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'titulo__icontains': 'titulo__icontains',
-                'slug__icontains': 'slug__icontains',
+                'ordem': 'ordem',
                 'modulo_pai': 'modulo_pai',
-                'ordem': 'ordem',}
+                'slug__icontains': 'slug__icontains',
+                'titulo__icontains': 'titulo__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

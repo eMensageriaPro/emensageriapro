@@ -339,37 +339,37 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s2300_evttsvinicio': 1,
-            'show_nrregcnh': 1,
-            'show_dtexped': 0,
-            'show_ufcnh': 1,
-            'show_dtvalid': 1,
+            'show_categoriacnh': 1,
             'show_dtprihab': 0,
-            'show_categoriacnh': 1, }
+            'show_dtvalid': 1,
+            'show_ufcnh': 1,
+            'show_dtexped': 0,
+            'show_nrregcnh': 1,
+            'show_s2300_evttsvinicio': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's2300_evttsvinicio': 's2300_evttsvinicio',
-                'nrregcnh__icontains': 'nrregcnh__icontains',
-                'dtexped__range': 'dtexped__range',
-                'ufcnh__icontains': 'ufcnh__icontains',
-                'dtvalid__range': 'dtvalid__range',
+                'categoriacnh__icontains': 'categoriacnh__icontains',
                 'dtprihab__range': 'dtprihab__range',
-                'categoriacnh__icontains': 'categoriacnh__icontains',}
+                'dtvalid__range': 'dtvalid__range',
+                'ufcnh__icontains': 'ufcnh__icontains',
+                'dtexped__range': 'dtexped__range',
+                'nrregcnh__icontains': 'nrregcnh__icontains',
+                's2300_evttsvinicio': 's2300_evttsvinicio',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's2300_evttsvinicio': 's2300_evttsvinicio',
-                'nrregcnh__icontains': 'nrregcnh__icontains',
-                'dtexped__range': 'dtexped__range',
-                'ufcnh__icontains': 'ufcnh__icontains',
-                'dtvalid__range': 'dtvalid__range',
+                'categoriacnh__icontains': 'categoriacnh__icontains',
                 'dtprihab__range': 'dtprihab__range',
-                'categoriacnh__icontains': 'categoriacnh__icontains',}
+                'dtvalid__range': 'dtvalid__range',
+                'ufcnh__icontains': 'ufcnh__icontains',
+                'dtexped__range': 'dtexped__range',
+                'nrregcnh__icontains': 'nrregcnh__icontains',
+                's2300_evttsvinicio': 's2300_evttsvinicio',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

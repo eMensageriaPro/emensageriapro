@@ -353,34 +353,34 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s1210_infopgto': 1,
-            'show_perref': 0,
-            'show_idedmdev': 1,
-            'show_indpgtott': 1,
+            'show_nrrecarq': 0,
             'show_vrliq': 1,
-            'show_nrrecarq': 0, }
+            'show_indpgtott': 1,
+            'show_idedmdev': 1,
+            'show_perref': 0,
+            'show_s1210_infopgto': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's1210_infopgto': 's1210_infopgto',
-                'perref__icontains': 'perref__icontains',
-                'idedmdev__icontains': 'idedmdev__icontains',
-                'indpgtott__icontains': 'indpgtott__icontains',
+                'nrrecarq__icontains': 'nrrecarq__icontains',
                 'vrliq': 'vrliq',
-                'nrrecarq__icontains': 'nrrecarq__icontains',}
+                'indpgtott__icontains': 'indpgtott__icontains',
+                'idedmdev__icontains': 'idedmdev__icontains',
+                'perref__icontains': 'perref__icontains',
+                's1210_infopgto': 's1210_infopgto',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's1210_infopgto': 's1210_infopgto',
-                'perref__icontains': 'perref__icontains',
-                'idedmdev__icontains': 'idedmdev__icontains',
-                'indpgtott__icontains': 'indpgtott__icontains',
+                'nrrecarq__icontains': 'nrrecarq__icontains',
                 'vrliq': 'vrliq',
-                'nrrecarq__icontains': 'nrrecarq__icontains',}
+                'indpgtott__icontains': 'indpgtott__icontains',
+                'idedmdev__icontains': 'idedmdev__icontains',
+                'perref__icontains': 'perref__icontains',
+                's1210_infopgto': 's1210_infopgto',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

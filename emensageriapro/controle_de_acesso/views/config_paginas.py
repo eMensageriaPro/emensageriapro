@@ -288,35 +288,35 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_config_modulos': 1,
-            'show_titulo': 1,
-            'show_endereco': 1,
-            'show_exibe_menu': 1,
+            'show_ordem': 0,
             'show_tipo': 0,
-            'show_ordem': 0, }
+            'show_exibe_menu': 1,
+            'show_endereco': 1,
+            'show_titulo': 1,
+            'show_config_modulos': 1, }
         post = False
         #ANTES-POST-LISTAGEM
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'config_modulos': 'config_modulos',
-                'titulo__icontains': 'titulo__icontains',
-                'endereco__icontains': 'endereco__icontains',
-                'exibe_menu': 'exibe_menu',
+                'ordem': 'ordem',
                 'tipo': 'tipo',
-                'ordem': 'ordem',}
+                'exibe_menu': 'exibe_menu',
+                'endereco__icontains': 'endereco__icontains',
+                'titulo__icontains': 'titulo__icontains',
+                'config_modulos': 'config_modulos',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'config_modulos': 'config_modulos',
-                'titulo__icontains': 'titulo__icontains',
-                'endereco__icontains': 'endereco__icontains',
-                'exibe_menu': 'exibe_menu',
+                'ordem': 'ordem',
                 'tipo': 'tipo',
-                'ordem': 'ordem',}
+                'exibe_menu': 'exibe_menu',
+                'endereco__icontains': 'endereco__icontains',
+                'titulo__icontains': 'titulo__icontains',
+                'config_modulos': 'config_modulos',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

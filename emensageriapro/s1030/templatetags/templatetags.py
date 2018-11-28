@@ -394,7 +394,6 @@ def ano_mes_extenso(value):
 #     valor = real(soma)
 #     return valor
 
-
 @register.filter(name='inteiro')
 def inteiro(var):
     #print var

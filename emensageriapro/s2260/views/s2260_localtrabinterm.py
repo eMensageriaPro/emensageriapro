@@ -339,43 +339,43 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s2260_evtconvinterm': 1,
-            'show_tplograd': 1,
-            'show_dsclograd': 1,
-            'show_nrlograd': 1,
-            'show_complem': 0,
-            'show_bairro': 0,
-            'show_cep': 1,
+            'show_uf': 1,
             'show_codmunic': 1,
-            'show_uf': 1, }
+            'show_cep': 1,
+            'show_bairro': 0,
+            'show_complem': 0,
+            'show_nrlograd': 1,
+            'show_dsclograd': 1,
+            'show_tplograd': 1,
+            'show_s2260_evtconvinterm': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's2260_evtconvinterm': 's2260_evtconvinterm',
-                'tplograd__icontains': 'tplograd__icontains',
-                'dsclograd__icontains': 'dsclograd__icontains',
-                'nrlograd__icontains': 'nrlograd__icontains',
-                'complem__icontains': 'complem__icontains',
-                'bairro__icontains': 'bairro__icontains',
-                'cep__icontains': 'cep__icontains',
+                'uf__icontains': 'uf__icontains',
                 'codmunic__icontains': 'codmunic__icontains',
-                'uf__icontains': 'uf__icontains',}
+                'cep__icontains': 'cep__icontains',
+                'bairro__icontains': 'bairro__icontains',
+                'complem__icontains': 'complem__icontains',
+                'nrlograd__icontains': 'nrlograd__icontains',
+                'dsclograd__icontains': 'dsclograd__icontains',
+                'tplograd__icontains': 'tplograd__icontains',
+                's2260_evtconvinterm': 's2260_evtconvinterm',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's2260_evtconvinterm': 's2260_evtconvinterm',
-                'tplograd__icontains': 'tplograd__icontains',
-                'dsclograd__icontains': 'dsclograd__icontains',
-                'nrlograd__icontains': 'nrlograd__icontains',
-                'complem__icontains': 'complem__icontains',
-                'bairro__icontains': 'bairro__icontains',
-                'cep__icontains': 'cep__icontains',
+                'uf__icontains': 'uf__icontains',
                 'codmunic__icontains': 'codmunic__icontains',
-                'uf__icontains': 'uf__icontains',}
+                'cep__icontains': 'cep__icontains',
+                'bairro__icontains': 'bairro__icontains',
+                'complem__icontains': 'complem__icontains',
+                'nrlograd__icontains': 'nrlograd__icontains',
+                'dsclograd__icontains': 'dsclograd__icontains',
+                'tplograd__icontains': 'tplograd__icontains',
+                's2260_evtconvinterm': 's2260_evtconvinterm',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

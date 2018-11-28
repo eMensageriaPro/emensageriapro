@@ -339,31 +339,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_r2040_recursosrep': 1,
-            'show_tprepasse': 1,
-            'show_descrecurso': 1,
+            'show_vlrretapur': 1,
             'show_vlrbruto': 1,
-            'show_vlrretapur': 1, }
+            'show_descrecurso': 1,
+            'show_tprepasse': 1,
+            'show_r2040_recursosrep': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'r2040_recursosrep': 'r2040_recursosrep',
-                'tprepasse': 'tprepasse',
-                'descrecurso__icontains': 'descrecurso__icontains',
+                'vlrretapur': 'vlrretapur',
                 'vlrbruto': 'vlrbruto',
-                'vlrretapur': 'vlrretapur',}
+                'descrecurso__icontains': 'descrecurso__icontains',
+                'tprepasse': 'tprepasse',
+                'r2040_recursosrep': 'r2040_recursosrep',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'r2040_recursosrep': 'r2040_recursosrep',
-                'tprepasse': 'tprepasse',
-                'descrecurso__icontains': 'descrecurso__icontains',
+                'vlrretapur': 'vlrretapur',
                 'vlrbruto': 'vlrbruto',
-                'vlrretapur': 'vlrretapur',}
+                'descrecurso__icontains': 'descrecurso__icontains',
+                'tprepasse': 'tprepasse',
+                'r2040_recursosrep': 'r2040_recursosrep',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

@@ -339,40 +339,40 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s1260_ideadquir': 1,
-            'show_serie': 0,
-            'show_nrdocto': 1,
-            'show_dtemisnf': 1,
-            'show_vlrbruto': 1,
-            'show_vrcpdescpr': 1,
+            'show_vrsenardesc': 1,
             'show_vrratdescpr': 1,
-            'show_vrsenardesc': 1, }
+            'show_vrcpdescpr': 1,
+            'show_vlrbruto': 1,
+            'show_dtemisnf': 1,
+            'show_nrdocto': 1,
+            'show_serie': 0,
+            'show_s1260_ideadquir': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's1260_ideadquir': 's1260_ideadquir',
-                'serie__icontains': 'serie__icontains',
-                'nrdocto__icontains': 'nrdocto__icontains',
-                'dtemisnf__range': 'dtemisnf__range',
-                'vlrbruto': 'vlrbruto',
-                'vrcpdescpr': 'vrcpdescpr',
+                'vrsenardesc': 'vrsenardesc',
                 'vrratdescpr': 'vrratdescpr',
-                'vrsenardesc': 'vrsenardesc',}
+                'vrcpdescpr': 'vrcpdescpr',
+                'vlrbruto': 'vlrbruto',
+                'dtemisnf__range': 'dtemisnf__range',
+                'nrdocto__icontains': 'nrdocto__icontains',
+                'serie__icontains': 'serie__icontains',
+                's1260_ideadquir': 's1260_ideadquir',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's1260_ideadquir': 's1260_ideadquir',
-                'serie__icontains': 'serie__icontains',
-                'nrdocto__icontains': 'nrdocto__icontains',
-                'dtemisnf__range': 'dtemisnf__range',
-                'vlrbruto': 'vlrbruto',
-                'vrcpdescpr': 'vrcpdescpr',
+                'vrsenardesc': 'vrsenardesc',
                 'vrratdescpr': 'vrratdescpr',
-                'vrsenardesc': 'vrsenardesc',}
+                'vrcpdescpr': 'vrcpdescpr',
+                'vlrbruto': 'vlrbruto',
+                'dtemisnf__range': 'dtemisnf__range',
+                'nrdocto__icontains': 'nrdocto__icontains',
+                'serie__icontains': 'serie__icontains',
+                's1260_ideadquir': 's1260_ideadquir',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

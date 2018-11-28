@@ -297,10 +297,10 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_titulo': 1,
-            'show_permissoes': 0,
+            'show_paginas_permitidas': 0,
             'show_modulos_permitidos': 0,
-            'show_paginas_permitidas': 0, }
+            'show_permissoes': 0,
+            'show_titulo': 1, }
         post = False
         #ANTES-POST-LISTAGEM
         if request.method == 'POST':

@@ -281,65 +281,65 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_evento': 1,
-            'show_versao': 1,
-            'show_numero': 1,
-            'show_registro_campo': 1,
-            'show_registro_pai': 1,
-            'show_elemento': 0,
-            'show_tipo': 0,
-            'show_ocorrencias': 0,
-            'show_tamanho': 0,
-            'show_casas_decimais': 0,
-            'show_obrigatorio': 0,
-            'show_descricao': 0,
-            'show_tabela': 0,
-            'show_valores_validos': 0,
+            'show_validacoes': 0,
             'show_validacoes_precedencia': 0,
-            'show_validacoes': 0, }
+            'show_valores_validos': 0,
+            'show_tabela': 0,
+            'show_descricao': 0,
+            'show_obrigatorio': 0,
+            'show_casas_decimais': 0,
+            'show_tamanho': 0,
+            'show_ocorrencias': 0,
+            'show_tipo': 0,
+            'show_elemento': 0,
+            'show_registro_pai': 1,
+            'show_registro_campo': 1,
+            'show_numero': 1,
+            'show_versao': 1,
+            'show_evento': 1, }
         post = False
         #ANTES-POST-LISTAGEM
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'evento__icontains': 'evento__icontains',
-                'versao__icontains': 'versao__icontains',
-                'numero': 'numero',
-                'registro_campo__icontains': 'registro_campo__icontains',
-                'registro_pai__icontains': 'registro_pai__icontains',
-                'elemento__icontains': 'elemento__icontains',
-                'tipo__icontains': 'tipo__icontains',
-                'ocorrencias__icontains': 'ocorrencias__icontains',
-                'tamanho__icontains': 'tamanho__icontains',
-                'casas_decimais__icontains': 'casas_decimais__icontains',
-                'obrigatorio': 'obrigatorio',
-                'descricao__icontains': 'descricao__icontains',
-                'tabela__icontains': 'tabela__icontains',
-                'valores_validos__icontains': 'valores_validos__icontains',
+                'validacoes__icontains': 'validacoes__icontains',
                 'validacoes_precedencia__icontains': 'validacoes_precedencia__icontains',
-                'validacoes__icontains': 'validacoes__icontains',}
+                'valores_validos__icontains': 'valores_validos__icontains',
+                'tabela__icontains': 'tabela__icontains',
+                'descricao__icontains': 'descricao__icontains',
+                'obrigatorio': 'obrigatorio',
+                'casas_decimais__icontains': 'casas_decimais__icontains',
+                'tamanho__icontains': 'tamanho__icontains',
+                'ocorrencias__icontains': 'ocorrencias__icontains',
+                'tipo__icontains': 'tipo__icontains',
+                'elemento__icontains': 'elemento__icontains',
+                'registro_pai__icontains': 'registro_pai__icontains',
+                'registro_campo__icontains': 'registro_campo__icontains',
+                'numero': 'numero',
+                'versao__icontains': 'versao__icontains',
+                'evento__icontains': 'evento__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'evento__icontains': 'evento__icontains',
-                'versao__icontains': 'versao__icontains',
-                'numero': 'numero',
-                'registro_campo__icontains': 'registro_campo__icontains',
-                'registro_pai__icontains': 'registro_pai__icontains',
-                'elemento__icontains': 'elemento__icontains',
-                'tipo__icontains': 'tipo__icontains',
-                'ocorrencias__icontains': 'ocorrencias__icontains',
-                'tamanho__icontains': 'tamanho__icontains',
-                'casas_decimais__icontains': 'casas_decimais__icontains',
-                'obrigatorio': 'obrigatorio',
-                'descricao__icontains': 'descricao__icontains',
-                'tabela__icontains': 'tabela__icontains',
-                'valores_validos__icontains': 'valores_validos__icontains',
+                'validacoes__icontains': 'validacoes__icontains',
                 'validacoes_precedencia__icontains': 'validacoes_precedencia__icontains',
-                'validacoes__icontains': 'validacoes__icontains',}
+                'valores_validos__icontains': 'valores_validos__icontains',
+                'tabela__icontains': 'tabela__icontains',
+                'descricao__icontains': 'descricao__icontains',
+                'obrigatorio': 'obrigatorio',
+                'casas_decimais__icontains': 'casas_decimais__icontains',
+                'tamanho__icontains': 'tamanho__icontains',
+                'ocorrencias__icontains': 'ocorrencias__icontains',
+                'tipo__icontains': 'tipo__icontains',
+                'elemento__icontains': 'elemento__icontains',
+                'registro_pai__icontains': 'registro_pai__icontains',
+                'registro_campo__icontains': 'registro_campo__icontains',
+                'numero': 'numero',
+                'versao__icontains': 'versao__icontains',
+                'evento__icontains': 'evento__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

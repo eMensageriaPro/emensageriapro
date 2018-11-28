@@ -374,28 +374,28 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s1210_evtpgtos': 1,
-            'show_dtpgto': 1,
+            'show_indresbr': 1,
             'show_tppgto': 1,
-            'show_indresbr': 1, }
+            'show_dtpgto': 1,
+            'show_s1210_evtpgtos': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's1210_evtpgtos': 's1210_evtpgtos',
-                'dtpgto__range': 'dtpgto__range',
+                'indresbr__icontains': 'indresbr__icontains',
                 'tppgto': 'tppgto',
-                'indresbr__icontains': 'indresbr__icontains',}
+                'dtpgto__range': 'dtpgto__range',
+                's1210_evtpgtos': 's1210_evtpgtos',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's1210_evtpgtos': 's1210_evtpgtos',
-                'dtpgto__range': 'dtpgto__range',
+                'indresbr__icontains': 'indresbr__icontains',
                 'tppgto': 'tppgto',
-                'indresbr__icontains': 'indresbr__icontains',}
+                'dtpgto__range': 'dtpgto__range',
+                's1210_evtpgtos': 's1210_evtpgtos',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

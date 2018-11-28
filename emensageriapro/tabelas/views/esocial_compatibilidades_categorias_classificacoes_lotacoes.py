@@ -324,64 +324,64 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_codigo': 1,
-            'show_classificacao_tributaria': 1,
-            'show_tipo_lotacao_tributaria_01': 1,
-            'show_tipo_lotacao_tributaria_02': 1,
-            'show_tipo_lotacao_tributaria_03': 1,
-            'show_tipo_lotacao_tributaria_04': 1,
-            'show_tipo_lotacao_tributaria_05': 1,
-            'show_tipo_lotacao_tributaria_06': 1,
-            'show_tipo_lotacao_tributaria_07': 1,
-            'show_tipo_lotacao_tributaria_08': 1,
-            'show_tipo_lotacao_tributaria_09': 1,
-            'show_tipo_lotacao_tributaria_10': 1,
-            'show_tipo_lotacao_tributaria_21': 1,
-            'show_tipo_lotacao_tributaria_24': 1,
+            'show_tipo_lotacao_tributaria_91': 1,
             'show_tipo_lotacao_tributaria_90': 1,
-            'show_tipo_lotacao_tributaria_91': 1, }
+            'show_tipo_lotacao_tributaria_24': 1,
+            'show_tipo_lotacao_tributaria_21': 1,
+            'show_tipo_lotacao_tributaria_10': 1,
+            'show_tipo_lotacao_tributaria_09': 1,
+            'show_tipo_lotacao_tributaria_08': 1,
+            'show_tipo_lotacao_tributaria_07': 1,
+            'show_tipo_lotacao_tributaria_06': 1,
+            'show_tipo_lotacao_tributaria_05': 1,
+            'show_tipo_lotacao_tributaria_04': 1,
+            'show_tipo_lotacao_tributaria_03': 1,
+            'show_tipo_lotacao_tributaria_02': 1,
+            'show_tipo_lotacao_tributaria_01': 1,
+            'show_classificacao_tributaria': 1,
+            'show_codigo': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'codigo__icontains': 'codigo__icontains',
-                'classificacao_tributaria__icontains': 'classificacao_tributaria__icontains',
-                'tipo_lotacao_tributaria_01__icontains': 'tipo_lotacao_tributaria_01__icontains',
-                'tipo_lotacao_tributaria_02__icontains': 'tipo_lotacao_tributaria_02__icontains',
-                'tipo_lotacao_tributaria_03__icontains': 'tipo_lotacao_tributaria_03__icontains',
-                'tipo_lotacao_tributaria_04__icontains': 'tipo_lotacao_tributaria_04__icontains',
-                'tipo_lotacao_tributaria_05__icontains': 'tipo_lotacao_tributaria_05__icontains',
-                'tipo_lotacao_tributaria_06__icontains': 'tipo_lotacao_tributaria_06__icontains',
-                'tipo_lotacao_tributaria_07__icontains': 'tipo_lotacao_tributaria_07__icontains',
-                'tipo_lotacao_tributaria_08__icontains': 'tipo_lotacao_tributaria_08__icontains',
-                'tipo_lotacao_tributaria_09__icontains': 'tipo_lotacao_tributaria_09__icontains',
-                'tipo_lotacao_tributaria_10__icontains': 'tipo_lotacao_tributaria_10__icontains',
-                'tipo_lotacao_tributaria_21__icontains': 'tipo_lotacao_tributaria_21__icontains',
-                'tipo_lotacao_tributaria_24__icontains': 'tipo_lotacao_tributaria_24__icontains',
+                'tipo_lotacao_tributaria_91__icontains': 'tipo_lotacao_tributaria_91__icontains',
                 'tipo_lotacao_tributaria_90__icontains': 'tipo_lotacao_tributaria_90__icontains',
-                'tipo_lotacao_tributaria_91__icontains': 'tipo_lotacao_tributaria_91__icontains',}
+                'tipo_lotacao_tributaria_24__icontains': 'tipo_lotacao_tributaria_24__icontains',
+                'tipo_lotacao_tributaria_21__icontains': 'tipo_lotacao_tributaria_21__icontains',
+                'tipo_lotacao_tributaria_10__icontains': 'tipo_lotacao_tributaria_10__icontains',
+                'tipo_lotacao_tributaria_09__icontains': 'tipo_lotacao_tributaria_09__icontains',
+                'tipo_lotacao_tributaria_08__icontains': 'tipo_lotacao_tributaria_08__icontains',
+                'tipo_lotacao_tributaria_07__icontains': 'tipo_lotacao_tributaria_07__icontains',
+                'tipo_lotacao_tributaria_06__icontains': 'tipo_lotacao_tributaria_06__icontains',
+                'tipo_lotacao_tributaria_05__icontains': 'tipo_lotacao_tributaria_05__icontains',
+                'tipo_lotacao_tributaria_04__icontains': 'tipo_lotacao_tributaria_04__icontains',
+                'tipo_lotacao_tributaria_03__icontains': 'tipo_lotacao_tributaria_03__icontains',
+                'tipo_lotacao_tributaria_02__icontains': 'tipo_lotacao_tributaria_02__icontains',
+                'tipo_lotacao_tributaria_01__icontains': 'tipo_lotacao_tributaria_01__icontains',
+                'classificacao_tributaria__icontains': 'classificacao_tributaria__icontains',
+                'codigo__icontains': 'codigo__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'codigo__icontains': 'codigo__icontains',
-                'classificacao_tributaria__icontains': 'classificacao_tributaria__icontains',
-                'tipo_lotacao_tributaria_01__icontains': 'tipo_lotacao_tributaria_01__icontains',
-                'tipo_lotacao_tributaria_02__icontains': 'tipo_lotacao_tributaria_02__icontains',
-                'tipo_lotacao_tributaria_03__icontains': 'tipo_lotacao_tributaria_03__icontains',
-                'tipo_lotacao_tributaria_04__icontains': 'tipo_lotacao_tributaria_04__icontains',
-                'tipo_lotacao_tributaria_05__icontains': 'tipo_lotacao_tributaria_05__icontains',
-                'tipo_lotacao_tributaria_06__icontains': 'tipo_lotacao_tributaria_06__icontains',
-                'tipo_lotacao_tributaria_07__icontains': 'tipo_lotacao_tributaria_07__icontains',
-                'tipo_lotacao_tributaria_08__icontains': 'tipo_lotacao_tributaria_08__icontains',
-                'tipo_lotacao_tributaria_09__icontains': 'tipo_lotacao_tributaria_09__icontains',
-                'tipo_lotacao_tributaria_10__icontains': 'tipo_lotacao_tributaria_10__icontains',
-                'tipo_lotacao_tributaria_21__icontains': 'tipo_lotacao_tributaria_21__icontains',
-                'tipo_lotacao_tributaria_24__icontains': 'tipo_lotacao_tributaria_24__icontains',
+                'tipo_lotacao_tributaria_91__icontains': 'tipo_lotacao_tributaria_91__icontains',
                 'tipo_lotacao_tributaria_90__icontains': 'tipo_lotacao_tributaria_90__icontains',
-                'tipo_lotacao_tributaria_91__icontains': 'tipo_lotacao_tributaria_91__icontains',}
+                'tipo_lotacao_tributaria_24__icontains': 'tipo_lotacao_tributaria_24__icontains',
+                'tipo_lotacao_tributaria_21__icontains': 'tipo_lotacao_tributaria_21__icontains',
+                'tipo_lotacao_tributaria_10__icontains': 'tipo_lotacao_tributaria_10__icontains',
+                'tipo_lotacao_tributaria_09__icontains': 'tipo_lotacao_tributaria_09__icontains',
+                'tipo_lotacao_tributaria_08__icontains': 'tipo_lotacao_tributaria_08__icontains',
+                'tipo_lotacao_tributaria_07__icontains': 'tipo_lotacao_tributaria_07__icontains',
+                'tipo_lotacao_tributaria_06__icontains': 'tipo_lotacao_tributaria_06__icontains',
+                'tipo_lotacao_tributaria_05__icontains': 'tipo_lotacao_tributaria_05__icontains',
+                'tipo_lotacao_tributaria_04__icontains': 'tipo_lotacao_tributaria_04__icontains',
+                'tipo_lotacao_tributaria_03__icontains': 'tipo_lotacao_tributaria_03__icontains',
+                'tipo_lotacao_tributaria_02__icontains': 'tipo_lotacao_tributaria_02__icontains',
+                'tipo_lotacao_tributaria_01__icontains': 'tipo_lotacao_tributaria_01__icontains',
+                'classificacao_tributaria__icontains': 'classificacao_tributaria__icontains',
+                'codigo__icontains': 'codigo__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

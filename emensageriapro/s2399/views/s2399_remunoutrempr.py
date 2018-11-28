@@ -339,31 +339,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s2399_infomv': 1,
-            'show_tpinsc': 1,
-            'show_nrinsc': 1,
+            'show_vlrremunoe': 1,
             'show_codcateg': 1,
-            'show_vlrremunoe': 1, }
+            'show_nrinsc': 1,
+            'show_tpinsc': 1,
+            'show_s2399_infomv': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's2399_infomv': 's2399_infomv',
-                'tpinsc': 'tpinsc',
-                'nrinsc__icontains': 'nrinsc__icontains',
+                'vlrremunoe': 'vlrremunoe',
                 'codcateg__icontains': 'codcateg__icontains',
-                'vlrremunoe': 'vlrremunoe',}
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'tpinsc': 'tpinsc',
+                's2399_infomv': 's2399_infomv',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's2399_infomv': 's2399_infomv',
-                'tpinsc': 'tpinsc',
-                'nrinsc__icontains': 'nrinsc__icontains',
+                'vlrremunoe': 'vlrremunoe',
                 'codcateg__icontains': 'codcateg__icontains',
-                'vlrremunoe': 'vlrremunoe',}
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'tpinsc': 'tpinsc',
+                's2399_infomv': 's2399_infomv',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

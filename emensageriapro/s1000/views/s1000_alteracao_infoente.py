@@ -339,37 +339,37 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s1000_alteracao_infoop': 1,
-            'show_nmente': 1,
-            'show_uf': 1,
-            'show_codmunic': 0,
-            'show_indrpps': 1,
+            'show_vrsubteto': 1,
             'show_subteto': 1,
-            'show_vrsubteto': 1, }
+            'show_indrpps': 1,
+            'show_codmunic': 0,
+            'show_uf': 1,
+            'show_nmente': 1,
+            'show_s1000_alteracao_infoop': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's1000_alteracao_infoop': 's1000_alteracao_infoop',
-                'nmente__icontains': 'nmente__icontains',
-                'uf__icontains': 'uf__icontains',
-                'codmunic__icontains': 'codmunic__icontains',
-                'indrpps__icontains': 'indrpps__icontains',
+                'vrsubteto': 'vrsubteto',
                 'subteto': 'subteto',
-                'vrsubteto': 'vrsubteto',}
+                'indrpps__icontains': 'indrpps__icontains',
+                'codmunic__icontains': 'codmunic__icontains',
+                'uf__icontains': 'uf__icontains',
+                'nmente__icontains': 'nmente__icontains',
+                's1000_alteracao_infoop': 's1000_alteracao_infoop',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's1000_alteracao_infoop': 's1000_alteracao_infoop',
-                'nmente__icontains': 'nmente__icontains',
-                'uf__icontains': 'uf__icontains',
-                'codmunic__icontains': 'codmunic__icontains',
-                'indrpps__icontains': 'indrpps__icontains',
+                'vrsubteto': 'vrsubteto',
                 'subteto': 'subteto',
-                'vrsubteto': 'vrsubteto',}
+                'indrpps__icontains': 'indrpps__icontains',
+                'codmunic__icontains': 'codmunic__icontains',
+                'uf__icontains': 'uf__icontains',
+                'nmente__icontains': 'nmente__icontains',
+                's1000_alteracao_infoop': 's1000_alteracao_infoop',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

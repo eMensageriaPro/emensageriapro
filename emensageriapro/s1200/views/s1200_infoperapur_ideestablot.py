@@ -346,31 +346,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s1200_dmdev': 1,
-            'show_tpinsc': 1,
-            'show_nrinsc': 1,
+            'show_qtddiasav': 0,
             'show_codlotacao': 1,
-            'show_qtddiasav': 0, }
+            'show_nrinsc': 1,
+            'show_tpinsc': 1,
+            'show_s1200_dmdev': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's1200_dmdev': 's1200_dmdev',
-                'tpinsc': 'tpinsc',
-                'nrinsc__icontains': 'nrinsc__icontains',
+                'qtddiasav': 'qtddiasav',
                 'codlotacao__icontains': 'codlotacao__icontains',
-                'qtddiasav': 'qtddiasav',}
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'tpinsc': 'tpinsc',
+                's1200_dmdev': 's1200_dmdev',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's1200_dmdev': 's1200_dmdev',
-                'tpinsc': 'tpinsc',
-                'nrinsc__icontains': 'nrinsc__icontains',
+                'qtddiasav': 'qtddiasav',
                 'codlotacao__icontains': 'codlotacao__icontains',
-                'qtddiasav': 'qtddiasav',}
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'tpinsc': 'tpinsc',
+                's1200_dmdev': 's1200_dmdev',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

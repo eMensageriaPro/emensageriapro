@@ -346,43 +346,43 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s1080_evttaboperport': 1,
-            'show_ideoperportuario': 0,
-            'show_cnpjopportuario': 1,
-            'show_inivalid': 1,
-            'show_fimvalid': 0,
-            'show_dadosoperportuario': 0,
-            'show_aliqrat': 1,
+            'show_aliqratajust': 1,
             'show_fap': 1,
-            'show_aliqratajust': 1, }
+            'show_aliqrat': 1,
+            'show_dadosoperportuario': 0,
+            'show_fimvalid': 0,
+            'show_inivalid': 1,
+            'show_cnpjopportuario': 1,
+            'show_ideoperportuario': 0,
+            'show_s1080_evttaboperport': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's1080_evttaboperport': 's1080_evttaboperport',
-                'ideoperportuario': 'ideoperportuario',
-                'cnpjopportuario__icontains': 'cnpjopportuario__icontains',
-                'inivalid__icontains': 'inivalid__icontains',
-                'fimvalid__icontains': 'fimvalid__icontains',
-                'dadosoperportuario': 'dadosoperportuario',
-                'aliqrat': 'aliqrat',
+                'aliqratajust': 'aliqratajust',
                 'fap': 'fap',
-                'aliqratajust': 'aliqratajust',}
+                'aliqrat': 'aliqrat',
+                'dadosoperportuario': 'dadosoperportuario',
+                'fimvalid__icontains': 'fimvalid__icontains',
+                'inivalid__icontains': 'inivalid__icontains',
+                'cnpjopportuario__icontains': 'cnpjopportuario__icontains',
+                'ideoperportuario': 'ideoperportuario',
+                's1080_evttaboperport': 's1080_evttaboperport',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's1080_evttaboperport': 's1080_evttaboperport',
-                'ideoperportuario': 'ideoperportuario',
-                'cnpjopportuario__icontains': 'cnpjopportuario__icontains',
-                'inivalid__icontains': 'inivalid__icontains',
-                'fimvalid__icontains': 'fimvalid__icontains',
-                'dadosoperportuario': 'dadosoperportuario',
-                'aliqrat': 'aliqrat',
+                'aliqratajust': 'aliqratajust',
                 'fap': 'fap',
-                'aliqratajust': 'aliqratajust',}
+                'aliqrat': 'aliqrat',
+                'dadosoperportuario': 'dadosoperportuario',
+                'fimvalid__icontains': 'fimvalid__icontains',
+                'inivalid__icontains': 'inivalid__icontains',
+                'cnpjopportuario__icontains': 'cnpjopportuario__icontains',
+                'ideoperportuario': 'ideoperportuario',
+                's1080_evttaboperport': 's1080_evttaboperport',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

@@ -353,25 +353,25 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s1250_evtaqprod': 1,
+            'show_vlrtotaquis': 1,
             'show_indaquis': 1,
-            'show_vlrtotaquis': 1, }
+            'show_s1250_evtaqprod': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's1250_evtaqprod': 's1250_evtaqprod',
+                'vlrtotaquis': 'vlrtotaquis',
                 'indaquis': 'indaquis',
-                'vlrtotaquis': 'vlrtotaquis',}
+                's1250_evtaqprod': 's1250_evtaqprod',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's1250_evtaqprod': 's1250_evtaqprod',
+                'vlrtotaquis': 'vlrtotaquis',
                 'indaquis': 'indaquis',
-                'vlrtotaquis': 'vlrtotaquis',}
+                's1250_evtaqprod': 's1250_evtaqprod',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

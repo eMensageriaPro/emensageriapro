@@ -339,46 +339,46 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s1035_evttabcarreira': 1,
-            'show_idecarreira': 0,
-            'show_codcarreira': 1,
-            'show_inivalid': 1,
-            'show_fimvalid': 0,
-            'show_dadoscarreira': 0,
-            'show_dsccarreira': 1,
-            'show_leicarr': 0,
+            'show_sitcarr': 1,
             'show_dtleicarr': 1,
-            'show_sitcarr': 1, }
+            'show_leicarr': 0,
+            'show_dsccarreira': 1,
+            'show_dadoscarreira': 0,
+            'show_fimvalid': 0,
+            'show_inivalid': 1,
+            'show_codcarreira': 1,
+            'show_idecarreira': 0,
+            'show_s1035_evttabcarreira': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's1035_evttabcarreira': 's1035_evttabcarreira',
-                'idecarreira': 'idecarreira',
-                'codcarreira__icontains': 'codcarreira__icontains',
-                'inivalid__icontains': 'inivalid__icontains',
-                'fimvalid__icontains': 'fimvalid__icontains',
-                'dadoscarreira': 'dadoscarreira',
-                'dsccarreira__icontains': 'dsccarreira__icontains',
-                'leicarr__icontains': 'leicarr__icontains',
+                'sitcarr': 'sitcarr',
                 'dtleicarr__range': 'dtleicarr__range',
-                'sitcarr': 'sitcarr',}
+                'leicarr__icontains': 'leicarr__icontains',
+                'dsccarreira__icontains': 'dsccarreira__icontains',
+                'dadoscarreira': 'dadoscarreira',
+                'fimvalid__icontains': 'fimvalid__icontains',
+                'inivalid__icontains': 'inivalid__icontains',
+                'codcarreira__icontains': 'codcarreira__icontains',
+                'idecarreira': 'idecarreira',
+                's1035_evttabcarreira': 's1035_evttabcarreira',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's1035_evttabcarreira': 's1035_evttabcarreira',
-                'idecarreira': 'idecarreira',
-                'codcarreira__icontains': 'codcarreira__icontains',
-                'inivalid__icontains': 'inivalid__icontains',
-                'fimvalid__icontains': 'fimvalid__icontains',
-                'dadoscarreira': 'dadoscarreira',
-                'dsccarreira__icontains': 'dsccarreira__icontains',
-                'leicarr__icontains': 'leicarr__icontains',
+                'sitcarr': 'sitcarr',
                 'dtleicarr__range': 'dtleicarr__range',
-                'sitcarr': 'sitcarr',}
+                'leicarr__icontains': 'leicarr__icontains',
+                'dsccarreira__icontains': 'dsccarreira__icontains',
+                'dadoscarreira': 'dadoscarreira',
+                'fimvalid__icontains': 'fimvalid__icontains',
+                'inivalid__icontains': 'inivalid__icontains',
+                'codcarreira__icontains': 'codcarreira__icontains',
+                'idecarreira': 'idecarreira',
+                's1035_evttabcarreira': 's1035_evttabcarreira',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

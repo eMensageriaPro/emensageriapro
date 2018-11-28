@@ -346,34 +346,34 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_r2070_pgtopf': 1,
-            'show_tpprocrra': 0,
-            'show_nrprocrra': 0,
-            'show_codsusp': 0,
+            'show_qtdmesesrra': 0,
             'show_natrra': 0,
-            'show_qtdmesesrra': 0, }
+            'show_codsusp': 0,
+            'show_nrprocrra': 0,
+            'show_tpprocrra': 0,
+            'show_r2070_pgtopf': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'r2070_pgtopf': 'r2070_pgtopf',
-                'tpprocrra': 'tpprocrra',
-                'nrprocrra__icontains': 'nrprocrra__icontains',
-                'codsusp': 'codsusp',
+                'qtdmesesrra': 'qtdmesesrra',
                 'natrra__icontains': 'natrra__icontains',
-                'qtdmesesrra': 'qtdmesesrra',}
+                'codsusp': 'codsusp',
+                'nrprocrra__icontains': 'nrprocrra__icontains',
+                'tpprocrra': 'tpprocrra',
+                'r2070_pgtopf': 'r2070_pgtopf',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'r2070_pgtopf': 'r2070_pgtopf',
-                'tpprocrra': 'tpprocrra',
-                'nrprocrra__icontains': 'nrprocrra__icontains',
-                'codsusp': 'codsusp',
+                'qtdmesesrra': 'qtdmesesrra',
                 'natrra__icontains': 'natrra__icontains',
-                'qtdmesesrra': 'qtdmesesrra',}
+                'codsusp': 'codsusp',
+                'nrprocrra__icontains': 'nrprocrra__icontains',
+                'tpprocrra': 'tpprocrra',
+                'r2070_pgtopf': 'r2070_pgtopf',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

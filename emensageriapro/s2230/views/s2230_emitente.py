@@ -339,31 +339,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s2230_infoatestado': 1,
-            'show_nmemit': 1,
-            'show_ideoc': 1,
+            'show_ufoc': 0,
             'show_nroc': 1,
-            'show_ufoc': 0, }
+            'show_ideoc': 1,
+            'show_nmemit': 1,
+            'show_s2230_infoatestado': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's2230_infoatestado': 's2230_infoatestado',
-                'nmemit__icontains': 'nmemit__icontains',
-                'ideoc': 'ideoc',
+                'ufoc__icontains': 'ufoc__icontains',
                 'nroc__icontains': 'nroc__icontains',
-                'ufoc__icontains': 'ufoc__icontains',}
+                'ideoc': 'ideoc',
+                'nmemit__icontains': 'nmemit__icontains',
+                's2230_infoatestado': 's2230_infoatestado',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's2230_infoatestado': 's2230_infoatestado',
-                'nmemit__icontains': 'nmemit__icontains',
-                'ideoc': 'ideoc',
+                'ufoc__icontains': 'ufoc__icontains',
                 'nroc__icontains': 'nroc__icontains',
-                'ufoc__icontains': 'ufoc__icontains',}
+                'ideoc': 'ideoc',
+                'nmemit__icontains': 'nmemit__icontains',
+                's2230_infoatestado': 's2230_infoatestado',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

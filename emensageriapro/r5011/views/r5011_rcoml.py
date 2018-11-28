@@ -339,28 +339,28 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_r5011_infototalcontrib': 1,
-            'show_crcoml': 1,
+            'show_vlrcrcomlsusp': 0,
             'show_vlrcrcoml': 1,
-            'show_vlrcrcomlsusp': 0, }
+            'show_crcoml': 1,
+            'show_r5011_infototalcontrib': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'r5011_infototalcontrib': 'r5011_infototalcontrib',
-                'crcoml': 'crcoml',
+                'vlrcrcomlsusp': 'vlrcrcomlsusp',
                 'vlrcrcoml': 'vlrcrcoml',
-                'vlrcrcomlsusp': 'vlrcrcomlsusp',}
+                'crcoml': 'crcoml',
+                'r5011_infototalcontrib': 'r5011_infototalcontrib',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'r5011_infototalcontrib': 'r5011_infototalcontrib',
-                'crcoml': 'crcoml',
+                'vlrcrcomlsusp': 'vlrcrcomlsusp',
                 'vlrcrcoml': 'vlrcrcoml',
-                'vlrcrcomlsusp': 'vlrcrcomlsusp',}
+                'crcoml': 'crcoml',
+                'r5011_infototalcontrib': 'r5011_infototalcontrib',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

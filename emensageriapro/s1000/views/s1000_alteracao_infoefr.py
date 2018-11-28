@@ -339,31 +339,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s1000_alteracao_infoop': 1,
-            'show_ideefr': 1,
-            'show_cnpjefr': 0,
+            'show_prevcomp': 1,
             'show_indrpps': 1,
-            'show_prevcomp': 1, }
+            'show_cnpjefr': 0,
+            'show_ideefr': 1,
+            'show_s1000_alteracao_infoop': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's1000_alteracao_infoop': 's1000_alteracao_infoop',
-                'ideefr__icontains': 'ideefr__icontains',
-                'cnpjefr__icontains': 'cnpjefr__icontains',
+                'prevcomp__icontains': 'prevcomp__icontains',
                 'indrpps__icontains': 'indrpps__icontains',
-                'prevcomp__icontains': 'prevcomp__icontains',}
+                'cnpjefr__icontains': 'cnpjefr__icontains',
+                'ideefr__icontains': 'ideefr__icontains',
+                's1000_alteracao_infoop': 's1000_alteracao_infoop',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's1000_alteracao_infoop': 's1000_alteracao_infoop',
-                'ideefr__icontains': 'ideefr__icontains',
-                'cnpjefr__icontains': 'cnpjefr__icontains',
+                'prevcomp__icontains': 'prevcomp__icontains',
                 'indrpps__icontains': 'indrpps__icontains',
-                'prevcomp__icontains': 'prevcomp__icontains',}
+                'cnpjefr__icontains': 'cnpjefr__icontains',
+                'ideefr__icontains': 'ideefr__icontains',
+                's1000_alteracao_infoop': 's1000_alteracao_infoop',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

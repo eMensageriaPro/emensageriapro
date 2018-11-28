@@ -339,40 +339,40 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s2300_evttsvinicio': 1,
-            'show_deffisica': 1,
-            'show_defvisual': 1,
-            'show_defauditiva': 1,
-            'show_defmental': 1,
-            'show_defintelectual': 1,
+            'show_observacao': 0,
             'show_reabreadap': 1,
-            'show_observacao': 0, }
+            'show_defintelectual': 1,
+            'show_defmental': 1,
+            'show_defauditiva': 1,
+            'show_defvisual': 1,
+            'show_deffisica': 1,
+            'show_s2300_evttsvinicio': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's2300_evttsvinicio': 's2300_evttsvinicio',
-                'deffisica__icontains': 'deffisica__icontains',
-                'defvisual__icontains': 'defvisual__icontains',
-                'defauditiva__icontains': 'defauditiva__icontains',
-                'defmental__icontains': 'defmental__icontains',
-                'defintelectual__icontains': 'defintelectual__icontains',
+                'observacao__icontains': 'observacao__icontains',
                 'reabreadap__icontains': 'reabreadap__icontains',
-                'observacao__icontains': 'observacao__icontains',}
+                'defintelectual__icontains': 'defintelectual__icontains',
+                'defmental__icontains': 'defmental__icontains',
+                'defauditiva__icontains': 'defauditiva__icontains',
+                'defvisual__icontains': 'defvisual__icontains',
+                'deffisica__icontains': 'deffisica__icontains',
+                's2300_evttsvinicio': 's2300_evttsvinicio',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's2300_evttsvinicio': 's2300_evttsvinicio',
-                'deffisica__icontains': 'deffisica__icontains',
-                'defvisual__icontains': 'defvisual__icontains',
-                'defauditiva__icontains': 'defauditiva__icontains',
-                'defmental__icontains': 'defmental__icontains',
-                'defintelectual__icontains': 'defintelectual__icontains',
+                'observacao__icontains': 'observacao__icontains',
                 'reabreadap__icontains': 'reabreadap__icontains',
-                'observacao__icontains': 'observacao__icontains',}
+                'defintelectual__icontains': 'defintelectual__icontains',
+                'defmental__icontains': 'defmental__icontains',
+                'defauditiva__icontains': 'defauditiva__icontains',
+                'defvisual__icontains': 'defvisual__icontains',
+                'deffisica__icontains': 'deffisica__icontains',
+                's2300_evttsvinicio': 's2300_evttsvinicio',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

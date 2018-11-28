@@ -43,18 +43,24 @@ __author__ = 'marcelovasconcellos'
 
 
 
-class form_s2231_fimcessao(forms.ModelForm):
+class form_s2231_inicessao(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s2231_fimcessao,self ).__init__(*args,**kwargs)
+        super (form_s2231_inicessao,self ).__init__(*args,**kwargs)
+        
+        self.fields['indcessao'].widget.attrs['required'] = True
+        
+        self.fields['infonus'].widget.attrs['required'] = True
+        
+        self.fields['cnpjcess'].widget.attrs['required'] = True
+        
+        self.fields['dtinicessao'].widget.attrs['required'] = True
         
         self.fields['s2231_evtcessao'].widget.attrs['required'] = True
-        
-        self.fields['dttermcessao'].widget.attrs['required'] = True
 
     class Meta:
-        model = s2231fimCessao
+        model = s2231iniCessao
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
@@ -63,24 +69,18 @@ class form_s2231_fimcessao(forms.ModelForm):
         ]
 
 
-class form_s2231_inicessao(forms.ModelForm):
+class form_s2231_fimcessao(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s2231_inicessao,self ).__init__(*args,**kwargs)
+        super (form_s2231_fimcessao,self ).__init__(*args,**kwargs)
+        
+        self.fields['dttermcessao'].widget.attrs['required'] = True
         
         self.fields['s2231_evtcessao'].widget.attrs['required'] = True
-        
-        self.fields['dtinicessao'].widget.attrs['required'] = True
-        
-        self.fields['cnpjcess'].widget.attrs['required'] = True
-        
-        self.fields['infonus'].widget.attrs['required'] = True
-        
-        self.fields['indcessao'].widget.attrs['required'] = True
 
     class Meta:
-        model = s2231iniCessao
+        model = s2231fimCessao
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',

@@ -381,31 +381,31 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s5011_ideestab': 1,
-            'show_codlotacao': 1,
-            'show_fpas': 1,
+            'show_codtercssusp': 0,
             'show_codtercs': 1,
-            'show_codtercssusp': 0, }
+            'show_fpas': 1,
+            'show_codlotacao': 1,
+            'show_s5011_ideestab': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's5011_ideestab': 's5011_ideestab',
-                'codlotacao__icontains': 'codlotacao__icontains',
-                'fpas': 'fpas',
+                'codtercssusp__icontains': 'codtercssusp__icontains',
                 'codtercs__icontains': 'codtercs__icontains',
-                'codtercssusp__icontains': 'codtercssusp__icontains',}
+                'fpas': 'fpas',
+                'codlotacao__icontains': 'codlotacao__icontains',
+                's5011_ideestab': 's5011_ideestab',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's5011_ideestab': 's5011_ideestab',
-                'codlotacao__icontains': 'codlotacao__icontains',
-                'fpas': 'fpas',
+                'codtercssusp__icontains': 'codtercssusp__icontains',
                 'codtercs__icontains': 'codtercs__icontains',
-                'codtercssusp__icontains': 'codtercssusp__icontains',}
+                'fpas': 'fpas',
+                'codlotacao__icontains': 'codlotacao__icontains',
+                's5011_ideestab': 's5011_ideestab',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

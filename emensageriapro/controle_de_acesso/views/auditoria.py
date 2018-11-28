@@ -281,38 +281,38 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_tabela': 1,
-            'show_identidade': 1,
-            'show_situacao_anterior': 1,
-            'show_situacao_posterior': 1,
-            'show_operador': 1,
+            'show_tipo': 1,
             'show_data_hora': 1,
-            'show_tipo': 1, }
+            'show_operador': 1,
+            'show_situacao_posterior': 1,
+            'show_situacao_anterior': 1,
+            'show_identidade': 1,
+            'show_tabela': 1, }
         post = False
         #ANTES-POST-LISTAGEM
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'tabela__icontains': 'tabela__icontains',
-                'identidade': 'identidade',
-                'situacao_anterior__icontains': 'situacao_anterior__icontains',
-                'situacao_posterior__icontains': 'situacao_posterior__icontains',
-                'operador': 'operador',
+                'tipo': 'tipo',
                 'data_hora__range': 'data_hora__range',
-                'tipo': 'tipo',}
+                'operador': 'operador',
+                'situacao_posterior__icontains': 'situacao_posterior__icontains',
+                'situacao_anterior__icontains': 'situacao_anterior__icontains',
+                'identidade': 'identidade',
+                'tabela__icontains': 'tabela__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'tabela__icontains': 'tabela__icontains',
-                'identidade': 'identidade',
-                'situacao_anterior__icontains': 'situacao_anterior__icontains',
-                'situacao_posterior__icontains': 'situacao_posterior__icontains',
-                'operador': 'operador',
+                'tipo': 'tipo',
                 'data_hora__range': 'data_hora__range',
-                'tipo': 'tipo',}
+                'operador': 'operador',
+                'situacao_posterior__icontains': 'situacao_posterior__icontains',
+                'situacao_anterior__icontains': 'situacao_anterior__icontains',
+                'identidade': 'identidade',
+                'tabela__icontains': 'tabela__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

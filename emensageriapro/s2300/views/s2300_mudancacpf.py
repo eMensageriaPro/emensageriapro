@@ -339,28 +339,28 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s2300_evttsvinicio': 1,
-            'show_cpfant': 1,
+            'show_observacao': 0,
             'show_dtaltcpf': 1,
-            'show_observacao': 0, }
+            'show_cpfant': 1,
+            'show_s2300_evttsvinicio': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's2300_evttsvinicio': 's2300_evttsvinicio',
-                'cpfant__icontains': 'cpfant__icontains',
+                'observacao__icontains': 'observacao__icontains',
                 'dtaltcpf__range': 'dtaltcpf__range',
-                'observacao__icontains': 'observacao__icontains',}
+                'cpfant__icontains': 'cpfant__icontains',
+                's2300_evttsvinicio': 's2300_evttsvinicio',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's2300_evttsvinicio': 's2300_evttsvinicio',
-                'cpfant__icontains': 'cpfant__icontains',
+                'observacao__icontains': 'observacao__icontains',
                 'dtaltcpf__range': 'dtaltcpf__range',
-                'observacao__icontains': 'observacao__icontains',}
+                'cpfant__icontains': 'cpfant__icontains',
+                's2300_evttsvinicio': 's2300_evttsvinicio',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

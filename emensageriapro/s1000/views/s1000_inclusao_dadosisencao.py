@@ -339,43 +339,43 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s1000_inclusao': 1,
-            'show_ideminlei': 1,
-            'show_nrcertif': 1,
-            'show_dtemiscertif': 1,
-            'show_dtvenccertif': 1,
-            'show_nrprotrenov': 0,
-            'show_dtprotrenov': 0,
+            'show_pagdou': 0,
             'show_dtdou': 0,
-            'show_pagdou': 0, }
+            'show_dtprotrenov': 0,
+            'show_nrprotrenov': 0,
+            'show_dtvenccertif': 1,
+            'show_dtemiscertif': 1,
+            'show_nrcertif': 1,
+            'show_ideminlei': 1,
+            'show_s1000_inclusao': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's1000_inclusao': 's1000_inclusao',
-                'ideminlei__icontains': 'ideminlei__icontains',
-                'nrcertif__icontains': 'nrcertif__icontains',
-                'dtemiscertif__range': 'dtemiscertif__range',
-                'dtvenccertif__range': 'dtvenccertif__range',
-                'nrprotrenov__icontains': 'nrprotrenov__icontains',
-                'dtprotrenov__range': 'dtprotrenov__range',
+                'pagdou': 'pagdou',
                 'dtdou__range': 'dtdou__range',
-                'pagdou': 'pagdou',}
+                'dtprotrenov__range': 'dtprotrenov__range',
+                'nrprotrenov__icontains': 'nrprotrenov__icontains',
+                'dtvenccertif__range': 'dtvenccertif__range',
+                'dtemiscertif__range': 'dtemiscertif__range',
+                'nrcertif__icontains': 'nrcertif__icontains',
+                'ideminlei__icontains': 'ideminlei__icontains',
+                's1000_inclusao': 's1000_inclusao',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's1000_inclusao': 's1000_inclusao',
-                'ideminlei__icontains': 'ideminlei__icontains',
-                'nrcertif__icontains': 'nrcertif__icontains',
-                'dtemiscertif__range': 'dtemiscertif__range',
-                'dtvenccertif__range': 'dtvenccertif__range',
-                'nrprotrenov__icontains': 'nrprotrenov__icontains',
-                'dtprotrenov__range': 'dtprotrenov__range',
+                'pagdou': 'pagdou',
                 'dtdou__range': 'dtdou__range',
-                'pagdou': 'pagdou',}
+                'dtprotrenov__range': 'dtprotrenov__range',
+                'nrprotrenov__icontains': 'nrprotrenov__icontains',
+                'dtvenccertif__range': 'dtvenccertif__range',
+                'dtemiscertif__range': 'dtemiscertif__range',
+                'nrcertif__icontains': 'nrcertif__icontains',
+                'ideminlei__icontains': 'ideminlei__icontains',
+                's1000_inclusao': 's1000_inclusao',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

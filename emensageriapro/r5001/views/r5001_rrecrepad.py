@@ -339,34 +339,34 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_r5001_infototal': 1,
-            'show_cnpjassocdesp': 1,
-            'show_vlrtotalrep': 1,
-            'show_crrecrepad': 1,
+            'show_vlrcrrecrepadsusp': 0,
             'show_vlrcrrecrepad': 1,
-            'show_vlrcrrecrepadsusp': 0, }
+            'show_crrecrepad': 1,
+            'show_vlrtotalrep': 1,
+            'show_cnpjassocdesp': 1,
+            'show_r5001_infototal': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'r5001_infototal': 'r5001_infototal',
-                'cnpjassocdesp__icontains': 'cnpjassocdesp__icontains',
-                'vlrtotalrep': 'vlrtotalrep',
-                'crrecrepad': 'crrecrepad',
+                'vlrcrrecrepadsusp': 'vlrcrrecrepadsusp',
                 'vlrcrrecrepad': 'vlrcrrecrepad',
-                'vlrcrrecrepadsusp': 'vlrcrrecrepadsusp',}
+                'crrecrepad': 'crrecrepad',
+                'vlrtotalrep': 'vlrtotalrep',
+                'cnpjassocdesp__icontains': 'cnpjassocdesp__icontains',
+                'r5001_infototal': 'r5001_infototal',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'r5001_infototal': 'r5001_infototal',
-                'cnpjassocdesp__icontains': 'cnpjassocdesp__icontains',
-                'vlrtotalrep': 'vlrtotalrep',
-                'crrecrepad': 'crrecrepad',
+                'vlrcrrecrepadsusp': 'vlrcrrecrepadsusp',
                 'vlrcrrecrepad': 'vlrcrrecrepad',
-                'vlrcrrecrepadsusp': 'vlrcrrecrepadsusp',}
+                'crrecrepad': 'crrecrepad',
+                'vlrtotalrep': 'vlrtotalrep',
+                'cnpjassocdesp__icontains': 'cnpjassocdesp__icontains',
+                'r5001_infototal': 'r5001_infototal',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

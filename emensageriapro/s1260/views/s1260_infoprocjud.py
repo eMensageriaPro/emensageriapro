@@ -339,37 +339,37 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_s1260_tpcomerc': 1,
-            'show_tpproc': 1,
-            'show_nrproc': 1,
-            'show_codsusp': 1,
-            'show_vrcpsusp': 0,
+            'show_vrsenarsusp': 0,
             'show_vrratsusp': 0,
-            'show_vrsenarsusp': 0, }
+            'show_vrcpsusp': 0,
+            'show_codsusp': 1,
+            'show_nrproc': 1,
+            'show_tpproc': 1,
+            'show_s1260_tpcomerc': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                's1260_tpcomerc': 's1260_tpcomerc',
-                'tpproc': 'tpproc',
-                'nrproc__icontains': 'nrproc__icontains',
-                'codsusp': 'codsusp',
-                'vrcpsusp': 'vrcpsusp',
+                'vrsenarsusp': 'vrsenarsusp',
                 'vrratsusp': 'vrratsusp',
-                'vrsenarsusp': 'vrsenarsusp',}
+                'vrcpsusp': 'vrcpsusp',
+                'codsusp': 'codsusp',
+                'nrproc__icontains': 'nrproc__icontains',
+                'tpproc': 'tpproc',
+                's1260_tpcomerc': 's1260_tpcomerc',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                's1260_tpcomerc': 's1260_tpcomerc',
-                'tpproc': 'tpproc',
-                'nrproc__icontains': 'nrproc__icontains',
-                'codsusp': 'codsusp',
-                'vrcpsusp': 'vrcpsusp',
+                'vrsenarsusp': 'vrsenarsusp',
                 'vrratsusp': 'vrratsusp',
-                'vrsenarsusp': 'vrsenarsusp',}
+                'vrcpsusp': 'vrcpsusp',
+                'codsusp': 'codsusp',
+                'nrproc__icontains': 'nrproc__icontains',
+                'tpproc': 'tpproc',
+                's1260_tpcomerc': 's1260_tpcomerc',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

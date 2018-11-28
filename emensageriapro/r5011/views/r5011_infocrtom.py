@@ -339,28 +339,28 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_r5011_rtom': 1,
-            'show_crtom': 1,
+            'show_vlrcrtomsusp': 0,
             'show_vlrcrtom': 0,
-            'show_vlrcrtomsusp': 0, }
+            'show_crtom': 1,
+            'show_r5011_rtom': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'r5011_rtom': 'r5011_rtom',
-                'crtom': 'crtom',
+                'vlrcrtomsusp': 'vlrcrtomsusp',
                 'vlrcrtom': 'vlrcrtom',
-                'vlrcrtomsusp': 'vlrcrtomsusp',}
+                'crtom': 'crtom',
+                'r5011_rtom': 'r5011_rtom',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'r5011_rtom': 'r5011_rtom',
-                'crtom': 'crtom',
+                'vlrcrtomsusp': 'vlrcrtomsusp',
                 'vlrcrtom': 'vlrcrtom',
-                'vlrcrtomsusp': 'vlrcrtomsusp',}
+                'crtom': 'crtom',
+                'r5011_rtom': 'r5011_rtom',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)
