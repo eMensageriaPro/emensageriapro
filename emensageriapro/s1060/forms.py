@@ -43,48 +43,26 @@ __author__ = 'marcelovasconcellos'
 
 
 
-class form_s1060_inclusao(forms.ModelForm):
+class form_s1060_alteracao(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1060_inclusao,self ).__init__(*args,**kwargs)
+        super (form_s1060_alteracao,self ).__init__(*args,**kwargs)
         
-        self.fields['localamb'].widget.attrs['required'] = True
+        self.fields['s1060_evttabambiente'].widget.attrs['required'] = True
         
-        self.fields['dscamb'].widget.attrs['required'] = True
+        self.fields['codamb'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
         
         self.fields['nmamb'].widget.attrs['required'] = True
         
-        self.fields['inivalid'].widget.attrs['required'] = True
+        self.fields['dscamb'].widget.attrs['required'] = True
         
-        self.fields['codamb'].widget.attrs['required'] = True
-        
-        self.fields['s1060_evttabambiente'].widget.attrs['required'] = True
+        self.fields['localamb'].widget.attrs['required'] = True
 
     class Meta:
-        model = s1060inclusao
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_s1060_exclusao(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1060_exclusao,self ).__init__(*args,**kwargs)
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
-        
-        self.fields['codamb'].widget.attrs['required'] = True
-        
-        self.fields['s1060_evttabambiente'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1060exclusao
+        model = s1060alteracao
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
@@ -99,9 +77,9 @@ class form_s1060_alteracao_novavalidade(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s1060_alteracao_novavalidade,self ).__init__(*args,**kwargs)
         
-        self.fields['inivalid'].widget.attrs['required'] = True
-        
         self.fields['s1060_alteracao'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
 
     class Meta:
         model = s1060alteracaonovaValidade
@@ -113,26 +91,48 @@ class form_s1060_alteracao_novavalidade(forms.ModelForm):
         ]
 
 
-class form_s1060_alteracao(forms.ModelForm):
+class form_s1060_exclusao(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1060_alteracao,self ).__init__(*args,**kwargs)
+        super (form_s1060_exclusao,self ).__init__(*args,**kwargs)
         
-        self.fields['localamb'].widget.attrs['required'] = True
-        
-        self.fields['dscamb'].widget.attrs['required'] = True
-        
-        self.fields['nmamb'].widget.attrs['required'] = True
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
+        self.fields['s1060_evttabambiente'].widget.attrs['required'] = True
         
         self.fields['codamb'].widget.attrs['required'] = True
         
-        self.fields['s1060_evttabambiente'].widget.attrs['required'] = True
+        self.fields['inivalid'].widget.attrs['required'] = True
 
     class Meta:
-        model = s1060alteracao
+        model = s1060exclusao
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_s1060_inclusao(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1060_inclusao,self ).__init__(*args,**kwargs)
+        
+        self.fields['s1060_evttabambiente'].widget.attrs['required'] = True
+        
+        self.fields['codamb'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['nmamb'].widget.attrs['required'] = True
+        
+        self.fields['dscamb'].widget.attrs['required'] = True
+        
+        self.fields['localamb'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1060inclusao
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',

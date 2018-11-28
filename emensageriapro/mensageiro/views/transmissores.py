@@ -53,6 +53,272 @@ import base64
 
 
 @login_required
+def apagar(request, hash):
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        transmissores_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='transmissores')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    transmissores = get_object_or_404(TransmissorLote.objects.using( db_slug ), excluido = False, id = transmissores_id)
+    if request.method == 'POST':
+        TransmissorLote.objects.using( db_slug ).filter(id = transmissores_id).update(excluido = True)
+        #transmissores_apagar_custom
+        #transmissores_apagar_custom
+        messages.success(request, 'Apagado com sucesso!')
+        if request.session['retorno_pagina']== 'transmissores_salvar':
+            return redirect('transmissores', hash=request.session['retorno_hash'])
+        else:
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    context = {
+        'usuario': usuario,
+        
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+        
+        'permissao': permissao,
+        'data': datetime.datetime.now(),
+        'pagina': pagina,
+        'dict_permissoes': dict_permissoes,
+        'hash': hash,
+    }
+    return render(request, 'transmissores_apagar.html', context)
+
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class TransmissorLoteList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = TransmissorLote.objects.using(db_slug).all()
+    serializer_class = TransmissorLoteSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class TransmissorLoteDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = TransmissorLote.objects.using(db_slug).all()
+    serializer_class = TransmissorLoteSerializer
+    permission_classes = (IsAdminUser,)
+
+
+@login_required
+def listar(request, hash):
+    for_print = 0
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        #retorno_pagina = dict_hash['retorno_pagina']
+        #retorno_hash = dict_hash['retorno_hash']
+        #transmissores_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='transmissores')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    if permissao.permite_listar:
+        filtrar = False
+        dict_fields = {}
+        show_fields = {
+            'show_contribuinte_nrinsc': 1,
+            'show_contribuinte_tpinsc': 1,
+            'show_data_abertura': 0,
+            'show_eSocial': 0,
+            'show_efdreinf': 0,
+            'show_efdreinf_certificado': 0,
+            'show_efdreinf_intervalo': 0,
+            'show_efdreinf_lote_max': 0,
+            'show_efdreinf_lote_min': 0,
+            'show_efdreinf_pasta': 0,
+            'show_efdreinf_senha': 0,
+            'show_efdreinf_tempo_prox_envio': 0,
+            'show_efdreinf_timeout': 0,
+            'show_empregador_dados': 0,
+            'show_empregador_nrinsc': 1,
+            'show_empregador_tpinsc': 1,
+            'show_endereco_completo': 0,
+            'show_envio_automatico': 0,
+            'show_esocial_certificado': 0,
+            'show_esocial_intervalo': 0,
+            'show_esocial_lote_max': 0,
+            'show_esocial_lote_min': 0,
+            'show_esocial_pasta': 0,
+            'show_esocial_senha': 0,
+            'show_esocial_tempo_prox_envio': 0,
+            'show_esocial_timeout': 0,
+            'show_logotipo': 0,
+            'show_nome_empresa': 1,
+            'show_transmissor_dados': 0,
+            'show_transmissor_nrinsc': 1,
+            'show_transmissor_tpinsc': 1,
+            'show_validar_eventos': 0,
+            'show_verificar_predecessao': 0, }
+        post = False
+        #ANTES-POST-LISTAGEM
+        if request.method == 'POST':
+            post = True
+            dict_fields = {
+                'contribuinte_nrinsc': 'contribuinte_nrinsc',
+                'contribuinte_tpinsc__icontains': 'contribuinte_tpinsc__icontains',
+                'data_abertura__range': 'data_abertura__range',
+                'eSocial': 'eSocial',
+                'efdreinf': 'efdreinf',
+                'efdreinf_intervalo': 'efdreinf_intervalo',
+                'efdreinf_lote_max': 'efdreinf_lote_max',
+                'efdreinf_lote_min': 'efdreinf_lote_min',
+                'efdreinf_tempo_prox_envio': 'efdreinf_tempo_prox_envio',
+                'efdreinf_timeout': 'efdreinf_timeout',
+                'empregador_dados': 'empregador_dados',
+                'empregador_nrinsc': 'empregador_nrinsc',
+                'empregador_tpinsc__icontains': 'empregador_tpinsc__icontains',
+                'endereco_completo__icontains': 'endereco_completo__icontains',
+                'envio_automatico': 'envio_automatico',
+                'esocial_intervalo': 'esocial_intervalo',
+                'esocial_lote_max': 'esocial_lote_max',
+                'esocial_lote_min': 'esocial_lote_min',
+                'esocial_tempo_prox_envio': 'esocial_tempo_prox_envio',
+                'esocial_timeout': 'esocial_timeout',
+                'logotipo': 'logotipo',
+                'nome_empresa__icontains': 'nome_empresa__icontains',
+                'transmissor_dados': 'transmissor_dados',
+                'transmissor_nrinsc__icontains': 'transmissor_nrinsc__icontains',
+                'transmissor_tpinsc': 'transmissor_tpinsc',
+                'validar_eventos': 'validar_eventos',
+                'verificar_predecessao': 'verificar_predecessao',}
+            for a in dict_fields:
+                dict_fields[a] = request.POST.get(a or None)
+            for a in show_fields:
+                show_fields[a] = request.POST.get(a or None)
+            if request.method == 'POST':
+                dict_fields = {
+                'contribuinte_nrinsc': 'contribuinte_nrinsc',
+                'contribuinte_tpinsc__icontains': 'contribuinte_tpinsc__icontains',
+                'data_abertura__range': 'data_abertura__range',
+                'eSocial': 'eSocial',
+                'efdreinf': 'efdreinf',
+                'efdreinf_intervalo': 'efdreinf_intervalo',
+                'efdreinf_lote_max': 'efdreinf_lote_max',
+                'efdreinf_lote_min': 'efdreinf_lote_min',
+                'efdreinf_tempo_prox_envio': 'efdreinf_tempo_prox_envio',
+                'efdreinf_timeout': 'efdreinf_timeout',
+                'empregador_dados': 'empregador_dados',
+                'empregador_nrinsc': 'empregador_nrinsc',
+                'empregador_tpinsc__icontains': 'empregador_tpinsc__icontains',
+                'endereco_completo__icontains': 'endereco_completo__icontains',
+                'envio_automatico': 'envio_automatico',
+                'esocial_intervalo': 'esocial_intervalo',
+                'esocial_lote_max': 'esocial_lote_max',
+                'esocial_lote_min': 'esocial_lote_min',
+                'esocial_tempo_prox_envio': 'esocial_tempo_prox_envio',
+                'esocial_timeout': 'esocial_timeout',
+                'logotipo': 'logotipo',
+                'nome_empresa__icontains': 'nome_empresa__icontains',
+                'transmissor_dados': 'transmissor_dados',
+                'transmissor_nrinsc__icontains': 'transmissor_nrinsc__icontains',
+                'transmissor_tpinsc': 'transmissor_tpinsc',
+                'validar_eventos': 'validar_eventos',
+                'verificar_predecessao': 'verificar_predecessao',}
+                for a in dict_fields:
+                    dict_fields[a] = request.POST.get(dict_fields[a] or None)
+        dict_qs = clear_dict_fields(dict_fields)
+        transmissores_lista = TransmissorLote.objects.using( db_slug ).filter(**dict_qs).filter(excluido = False).exclude(id=0).all()
+        if not post and len(transmissores_lista) > 100:
+            filtrar = True
+            transmissores_lista = None
+            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+    
+        #transmissores_listar_custom
+        request.session["retorno_hash"] = hash
+        request.session["retorno_pagina"] = 'transmissores'
+        context = {
+            'transmissores_lista': transmissores_lista,
+            
+            'usuario': usuario,
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+            'permissao': permissao,
+            'dict_fields': dict_fields,
+            'data': datetime.datetime.now(),
+            'pagina': pagina,
+            'dict_permissoes': dict_permissoes,
+            'show_fields': show_fields,
+            'for_print': for_print,
+            'hash': hash,
+            'filtrar': filtrar,
+        
+        }
+        if for_print in (0,1):
+            return render(request, 'transmissores_listar.html', context)
+        elif for_print == 2:
+            #return render_to_pdf('tables/s1000_evtinfoempregador_pdf_xls.html', context)
+            from wkhtmltopdf.views import PDFTemplateResponse
+            response = PDFTemplateResponse(
+                request=request,
+                template='transmissores_listar.html',
+                filename="transmissores.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 10,
+                             'margin-bottom': 10,
+                             'margin-right': 10,
+                             'margin-left': 10,
+                             'zoom': 1,
+                             'dpi': 72,
+                             'orientation': 'Landscape',
+                             "viewport-size": "1366 x 513",
+                             'javascript-delay': 1000,
+                             'footer-center': '[page]/[topage]',
+                             "no-stop-slow-scripts": True},
+            )
+            return response
+        elif for_print == 3:
+            from django.shortcuts import render_to_response
+            response = render_to_response('transmissores_listar.html', context)
+            filename = "transmissores.xls"
+            response['Content-Disposition'] = 'attachment; filename=' + filename
+            response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            return response
+        elif for_print == 4:
+            from django.shortcuts import render_to_response
+            response = render_to_response('tables/transmissores_csv.html', context)
+            filename = "transmissores.csv"
+            response['Content-Disposition'] = 'attachment; filename=' + filename
+            response['Content-Type'] = 'text/csv; charset=UTF-8'
+            return response
+    else:
+        context = {
+            'usuario': usuario,
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+            'permissao': permissao,
+            'data': datetime.datetime.now(),
+            'pagina': pagina,
+            'dict_permissoes': dict_permissoes,
+        }
+        return render(request, 'permissao_negada.html', context)
+
+@login_required
 def salvar(request, hash):
     db_slug = 'default'
     try:
@@ -201,272 +467,6 @@ def salvar(request, hash):
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
 
-    else:
-        context = {
-            'usuario': usuario,
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            
-            'permissao': permissao,
-            'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
-        }
-        return render(request, 'permissao_negada.html', context)
-
-@login_required
-def apagar(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        transmissores_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='transmissores')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    transmissores = get_object_or_404(TransmissorLote.objects.using( db_slug ), excluido = False, id = transmissores_id)
-    if request.method == 'POST':
-        TransmissorLote.objects.using( db_slug ).filter(id = transmissores_id).update(excluido = True)
-        #transmissores_apagar_custom
-        #transmissores_apagar_custom
-        messages.success(request, 'Apagado com sucesso!')
-        if request.session['retorno_pagina']== 'transmissores_salvar':
-            return redirect('transmissores', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario,
-        
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-        
-        'permissao': permissao,
-        'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
-        'hash': hash,
-    }
-    return render(request, 'transmissores_apagar.html', context)
-
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser
-
-
-class TransmissorLoteList(generics.ListCreateAPIView):
-    db_slug = 'default'
-    queryset = TransmissorLote.objects.using(db_slug).all()
-    serializer_class = TransmissorLoteSerializer
-    permission_classes = (IsAdminUser,)
-
-
-class TransmissorLoteDetail(generics.RetrieveUpdateDestroyAPIView):
-    db_slug = 'default'
-    queryset = TransmissorLote.objects.using(db_slug).all()
-    serializer_class = TransmissorLoteSerializer
-    permission_classes = (IsAdminUser,)
-
-
-@login_required
-def listar(request, hash):
-    for_print = 0
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        #retorno_pagina = dict_hash['retorno_pagina']
-        #retorno_hash = dict_hash['retorno_hash']
-        #transmissores_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='transmissores')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    if permissao.permite_listar:
-        filtrar = False
-        dict_fields = {}
-        show_fields = {
-            'show_efdreinf_pasta': 0,
-            'show_efdreinf_senha': 0,
-            'show_efdreinf_certificado': 0,
-            'show_efdreinf_tempo_prox_envio': 0,
-            'show_efdreinf_intervalo': 0,
-            'show_efdreinf_timeout': 0,
-            'show_efdreinf_lote_max': 0,
-            'show_efdreinf_lote_min': 0,
-            'show_contribuinte_nrinsc': 1,
-            'show_contribuinte_tpinsc': 1,
-            'show_efdreinf': 0,
-            'show_esocial_pasta': 0,
-            'show_esocial_senha': 0,
-            'show_esocial_certificado': 0,
-            'show_esocial_tempo_prox_envio': 0,
-            'show_esocial_intervalo': 0,
-            'show_esocial_timeout': 0,
-            'show_esocial_lote_max': 0,
-            'show_esocial_lote_min': 0,
-            'show_empregador_nrinsc': 1,
-            'show_empregador_tpinsc': 1,
-            'show_eSocial': 0,
-            'show_endereco_completo': 0,
-            'show_logotipo': 0,
-            'show_envio_automatico': 0,
-            'show_verificar_predecessao': 0,
-            'show_validar_eventos': 0,
-            'show_data_abertura': 0,
-            'show_nome_empresa': 1,
-            'show_empregador_dados': 0,
-            'show_transmissor_nrinsc': 1,
-            'show_transmissor_tpinsc': 1,
-            'show_transmissor_dados': 0, }
-        post = False
-        #ANTES-POST-LISTAGEM
-        if request.method == 'POST':
-            post = True
-            dict_fields = {
-                'efdreinf_tempo_prox_envio': 'efdreinf_tempo_prox_envio',
-                'efdreinf_intervalo': 'efdreinf_intervalo',
-                'efdreinf_timeout': 'efdreinf_timeout',
-                'efdreinf_lote_max': 'efdreinf_lote_max',
-                'efdreinf_lote_min': 'efdreinf_lote_min',
-                'contribuinte_nrinsc': 'contribuinte_nrinsc',
-                'contribuinte_tpinsc__icontains': 'contribuinte_tpinsc__icontains',
-                'efdreinf': 'efdreinf',
-                'esocial_tempo_prox_envio': 'esocial_tempo_prox_envio',
-                'esocial_intervalo': 'esocial_intervalo',
-                'esocial_timeout': 'esocial_timeout',
-                'esocial_lote_max': 'esocial_lote_max',
-                'esocial_lote_min': 'esocial_lote_min',
-                'empregador_nrinsc': 'empregador_nrinsc',
-                'empregador_tpinsc__icontains': 'empregador_tpinsc__icontains',
-                'eSocial': 'eSocial',
-                'endereco_completo__icontains': 'endereco_completo__icontains',
-                'logotipo': 'logotipo',
-                'envio_automatico': 'envio_automatico',
-                'verificar_predecessao': 'verificar_predecessao',
-                'validar_eventos': 'validar_eventos',
-                'data_abertura__range': 'data_abertura__range',
-                'nome_empresa__icontains': 'nome_empresa__icontains',
-                'empregador_dados': 'empregador_dados',
-                'transmissor_nrinsc__icontains': 'transmissor_nrinsc__icontains',
-                'transmissor_tpinsc': 'transmissor_tpinsc',
-                'transmissor_dados': 'transmissor_dados',}
-            for a in dict_fields:
-                dict_fields[a] = request.POST.get(a or None)
-            for a in show_fields:
-                show_fields[a] = request.POST.get(a or None)
-            if request.method == 'POST':
-                dict_fields = {
-                'efdreinf_tempo_prox_envio': 'efdreinf_tempo_prox_envio',
-                'efdreinf_intervalo': 'efdreinf_intervalo',
-                'efdreinf_timeout': 'efdreinf_timeout',
-                'efdreinf_lote_max': 'efdreinf_lote_max',
-                'efdreinf_lote_min': 'efdreinf_lote_min',
-                'contribuinte_nrinsc': 'contribuinte_nrinsc',
-                'contribuinte_tpinsc__icontains': 'contribuinte_tpinsc__icontains',
-                'efdreinf': 'efdreinf',
-                'esocial_tempo_prox_envio': 'esocial_tempo_prox_envio',
-                'esocial_intervalo': 'esocial_intervalo',
-                'esocial_timeout': 'esocial_timeout',
-                'esocial_lote_max': 'esocial_lote_max',
-                'esocial_lote_min': 'esocial_lote_min',
-                'empregador_nrinsc': 'empregador_nrinsc',
-                'empregador_tpinsc__icontains': 'empregador_tpinsc__icontains',
-                'eSocial': 'eSocial',
-                'endereco_completo__icontains': 'endereco_completo__icontains',
-                'logotipo': 'logotipo',
-                'envio_automatico': 'envio_automatico',
-                'verificar_predecessao': 'verificar_predecessao',
-                'validar_eventos': 'validar_eventos',
-                'data_abertura__range': 'data_abertura__range',
-                'nome_empresa__icontains': 'nome_empresa__icontains',
-                'empregador_dados': 'empregador_dados',
-                'transmissor_nrinsc__icontains': 'transmissor_nrinsc__icontains',
-                'transmissor_tpinsc': 'transmissor_tpinsc',
-                'transmissor_dados': 'transmissor_dados',}
-                for a in dict_fields:
-                    dict_fields[a] = request.POST.get(dict_fields[a] or None)
-        dict_qs = clear_dict_fields(dict_fields)
-        transmissores_lista = TransmissorLote.objects.using( db_slug ).filter(**dict_qs).filter(excluido = False).exclude(id=0).all()
-        if not post and len(transmissores_lista) > 100:
-            filtrar = True
-            transmissores_lista = None
-            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
-        #transmissores_listar_custom
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'transmissores'
-        context = {
-            'transmissores_lista': transmissores_lista,
-            
-            'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            
-            'permissao': permissao,
-            'dict_fields': dict_fields,
-            'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
-            'show_fields': show_fields,
-            'for_print': for_print,
-            'hash': hash,
-            'filtrar': filtrar,
-        
-        }
-        if for_print in (0,1):
-            return render(request, 'transmissores_listar.html', context)
-        elif for_print == 2:
-            #return render_to_pdf('tables/s1000_evtinfoempregador_pdf_xls.html', context)
-            from wkhtmltopdf.views import PDFTemplateResponse
-            response = PDFTemplateResponse(
-                request=request,
-                template='transmissores_listar.html',
-                filename="transmissores.pdf",
-                context=context,
-                show_content_in_browser=True,
-                cmd_options={'margin-top': 10,
-                             'margin-bottom': 10,
-                             'margin-right': 10,
-                             'margin-left': 10,
-                             'zoom': 1,
-                             'dpi': 72,
-                             'orientation': 'Landscape',
-                             "viewport-size": "1366 x 513",
-                             'javascript-delay': 1000,
-                             'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
-            return response
-        elif for_print == 3:
-            from django.shortcuts import render_to_response
-            response = render_to_response('transmissores_listar.html', context)
-            filename = "transmissores.xls"
-            response['Content-Disposition'] = 'attachment; filename=' + filename
-            response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            return response
-        elif for_print == 4:
-            from django.shortcuts import render_to_response
-            response = render_to_response('tables/transmissores_csv.html', context)
-            filename = "transmissores.csv"
-            response['Content-Disposition'] = 'attachment; filename=' + filename
-            response['Content-Type'] = 'text/csv; charset=UTF-8'
-            return response
     else:
         context = {
             'usuario': usuario,

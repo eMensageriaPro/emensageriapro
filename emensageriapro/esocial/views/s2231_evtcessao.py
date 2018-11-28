@@ -170,61 +170,61 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_matricula': 1,
-            'show_nistrab': 1,
             'show_cpftrab': 1,
-            'show_idevinculo': 0,
-            'show_nrinsc': 1,
-            'show_tpinsc': 1,
+            'show_evtcessao': 0,
             'show_ideempregador': 0,
-            'show_verproc': 1,
-            'show_procemi': 1,
-            'show_tpamb': 1,
-            'show_nrrecibo': 0,
-            'show_indretif': 1,
             'show_ideevento': 0,
             'show_identidade': 1,
-            'show_evtcessao': 0, }
+            'show_idevinculo': 0,
+            'show_indretif': 1,
+            'show_matricula': 1,
+            'show_nistrab': 1,
+            'show_nrinsc': 1,
+            'show_nrrecibo': 0,
+            'show_procemi': 1,
+            'show_tpamb': 1,
+            'show_tpinsc': 1,
+            'show_verproc': 1, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'matricula__icontains': 'matricula__icontains',
-                'nistrab__icontains': 'nistrab__icontains',
                 'cpftrab__icontains': 'cpftrab__icontains',
-                'idevinculo': 'idevinculo',
-                'nrinsc__icontains': 'nrinsc__icontains',
-                'tpinsc': 'tpinsc',
+                'evtcessao': 'evtcessao',
                 'ideempregador': 'ideempregador',
-                'verproc__icontains': 'verproc__icontains',
-                'procemi': 'procemi',
-                'tpamb': 'tpamb',
-                'nrrecibo__icontains': 'nrrecibo__icontains',
-                'indretif': 'indretif',
                 'ideevento': 'ideevento',
                 'identidade__icontains': 'identidade__icontains',
-                'evtcessao': 'evtcessao',}
+                'idevinculo': 'idevinculo',
+                'indretif': 'indretif',
+                'matricula__icontains': 'matricula__icontains',
+                'nistrab__icontains': 'nistrab__icontains',
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'nrrecibo__icontains': 'nrrecibo__icontains',
+                'procemi': 'procemi',
+                'tpamb': 'tpamb',
+                'tpinsc': 'tpinsc',
+                'verproc__icontains': 'verproc__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'matricula__icontains': 'matricula__icontains',
-                'nistrab__icontains': 'nistrab__icontains',
                 'cpftrab__icontains': 'cpftrab__icontains',
-                'idevinculo': 'idevinculo',
-                'nrinsc__icontains': 'nrinsc__icontains',
-                'tpinsc': 'tpinsc',
+                'evtcessao': 'evtcessao',
                 'ideempregador': 'ideempregador',
-                'verproc__icontains': 'verproc__icontains',
-                'procemi': 'procemi',
-                'tpamb': 'tpamb',
-                'nrrecibo__icontains': 'nrrecibo__icontains',
-                'indretif': 'indretif',
                 'ideevento': 'ideevento',
                 'identidade__icontains': 'identidade__icontains',
-                'evtcessao': 'evtcessao',}
+                'idevinculo': 'idevinculo',
+                'indretif': 'indretif',
+                'matricula__icontains': 'matricula__icontains',
+                'nistrab__icontains': 'nistrab__icontains',
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'nrrecibo__icontains': 'nrrecibo__icontains',
+                'procemi': 'procemi',
+                'tpamb': 'tpamb',
+                'tpinsc': 'tpinsc',
+                'verproc__icontains': 'verproc__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)

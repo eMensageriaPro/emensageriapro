@@ -43,96 +43,24 @@ __author__ = 'marcelovasconcellos'
 
 
 
-class form_s1030_inclusao_cargopublico(forms.ModelForm):
+class form_s1030_alteracao(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1030_inclusao_cargopublico,self ).__init__(*args,**kwargs)
+        super (form_s1030_alteracao,self ).__init__(*args,**kwargs)
         
-        self.fields['sitcargo'].widget.attrs['required'] = True
+        self.fields['s1030_evttabcargo'].widget.attrs['required'] = True
         
-        self.fields['dtlei'].widget.attrs['required'] = True
+        self.fields['codcargo'].widget.attrs['required'] = True
         
-        self.fields['nrlei'].widget.attrs['required'] = True
-        
-        self.fields['dedicexcl'].widget.attrs['required'] = True
-        
-        self.fields['contagemesp'].widget.attrs['required'] = True
-        
-        self.fields['acumcargo'].widget.attrs['required'] = True
-        
-        self.fields['s1030_inclusao'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1030inclusaocargoPublico
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_s1030_inclusao(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1030_inclusao,self ).__init__(*args,**kwargs)
-        
-        self.fields['codcbo'].widget.attrs['required'] = True
+        self.fields['inivalid'].widget.attrs['required'] = True
         
         self.fields['nmcargo'].widget.attrs['required'] = True
         
-        self.fields['inivalid'].widget.attrs['required'] = True
-        
-        self.fields['codcargo'].widget.attrs['required'] = True
-        
-        self.fields['s1030_evttabcargo'].widget.attrs['required'] = True
+        self.fields['codcbo'].widget.attrs['required'] = True
 
     class Meta:
-        model = s1030inclusao
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_s1030_exclusao(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1030_exclusao,self ).__init__(*args,**kwargs)
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
-        
-        self.fields['codcargo'].widget.attrs['required'] = True
-        
-        self.fields['s1030_evttabcargo'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1030exclusao
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
-            'excluido',
- 
-        ]
-
-
-class form_s1030_alteracao_novavalidade(forms.ModelForm):
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super (form_s1030_alteracao_novavalidade,self ).__init__(*args,**kwargs)
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
-        
-        self.fields['s1030_alteracao'].widget.attrs['required'] = True
-
-    class Meta:
-        model = s1030alteracaonovaValidade
+        model = s1030alteracao
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
@@ -147,19 +75,19 @@ class form_s1030_alteracao_cargopublico(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s1030_alteracao_cargopublico,self ).__init__(*args,**kwargs)
         
-        self.fields['sitcargo'].widget.attrs['required'] = True
-        
-        self.fields['dtlei'].widget.attrs['required'] = True
-        
-        self.fields['nrlei'].widget.attrs['required'] = True
-        
-        self.fields['dedicexcl'].widget.attrs['required'] = True
-        
-        self.fields['contagemesp'].widget.attrs['required'] = True
+        self.fields['s1030_alteracao'].widget.attrs['required'] = True
         
         self.fields['acumcargo'].widget.attrs['required'] = True
         
-        self.fields['s1030_alteracao'].widget.attrs['required'] = True
+        self.fields['contagemesp'].widget.attrs['required'] = True
+        
+        self.fields['dedicexcl'].widget.attrs['required'] = True
+        
+        self.fields['nrlei'].widget.attrs['required'] = True
+        
+        self.fields['dtlei'].widget.attrs['required'] = True
+        
+        self.fields['sitcargo'].widget.attrs['required'] = True
 
     class Meta:
         model = s1030alteracaocargoPublico
@@ -171,24 +99,96 @@ class form_s1030_alteracao_cargopublico(forms.ModelForm):
         ]
 
 
-class form_s1030_alteracao(forms.ModelForm):
+class form_s1030_alteracao_novavalidade(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1030_alteracao,self ).__init__(*args,**kwargs)
+        super (form_s1030_alteracao_novavalidade,self ).__init__(*args,**kwargs)
         
-        self.fields['codcbo'].widget.attrs['required'] = True
-        
-        self.fields['nmcargo'].widget.attrs['required'] = True
+        self.fields['s1030_alteracao'].widget.attrs['required'] = True
         
         self.fields['inivalid'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1030alteracaonovaValidade
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_s1030_exclusao(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1030_exclusao,self ).__init__(*args,**kwargs)
+        
+        self.fields['s1030_evttabcargo'].widget.attrs['required'] = True
         
         self.fields['codcargo'].widget.attrs['required'] = True
         
-        self.fields['s1030_evttabcargo'].widget.attrs['required'] = True
+        self.fields['inivalid'].widget.attrs['required'] = True
 
     class Meta:
-        model = s1030alteracao
+        model = s1030exclusao
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_s1030_inclusao(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1030_inclusao,self ).__init__(*args,**kwargs)
+        
+        self.fields['s1030_evttabcargo'].widget.attrs['required'] = True
+        
+        self.fields['codcargo'].widget.attrs['required'] = True
+        
+        self.fields['inivalid'].widget.attrs['required'] = True
+        
+        self.fields['nmcargo'].widget.attrs['required'] = True
+        
+        self.fields['codcbo'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1030inclusao
+        exclude = [ 
+            'criado_em', 'criado_por',
+            'modificado_em', 'modificado_por',
+            'excluido',
+ 
+        ]
+
+
+class form_s1030_inclusao_cargopublico(forms.ModelForm):
+
+    def __init__(self,*args,**kwargs):
+        slug = kwargs.pop('slug')
+        super (form_s1030_inclusao_cargopublico,self ).__init__(*args,**kwargs)
+        
+        self.fields['s1030_inclusao'].widget.attrs['required'] = True
+        
+        self.fields['acumcargo'].widget.attrs['required'] = True
+        
+        self.fields['contagemesp'].widget.attrs['required'] = True
+        
+        self.fields['dedicexcl'].widget.attrs['required'] = True
+        
+        self.fields['nrlei'].widget.attrs['required'] = True
+        
+        self.fields['dtlei'].widget.attrs['required'] = True
+        
+        self.fields['sitcargo'].widget.attrs['required'] = True
+
+    class Meta:
+        model = s1030inclusaocargoPublico
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',

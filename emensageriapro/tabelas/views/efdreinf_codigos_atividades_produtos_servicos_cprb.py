@@ -95,6 +95,208 @@ def apagar(request, hash):
     }
     return render(request, 'efdreinf_codigos_atividades_produtos_servicos_cprb_apagar.html', context)
 
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+
+class EFDReinfCodigosAtividadesProdutosServicosCPRBList(generics.ListCreateAPIView):
+    db_slug = 'default'
+    queryset = EFDReinfCodigosAtividadesProdutosServicosCPRB.objects.using(db_slug).all()
+    serializer_class = EFDReinfCodigosAtividadesProdutosServicosCPRBSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class EFDReinfCodigosAtividadesProdutosServicosCPRBDetail(generics.RetrieveUpdateDestroyAPIView):
+    db_slug = 'default'
+    queryset = EFDReinfCodigosAtividadesProdutosServicosCPRB.objects.using(db_slug).all()
+    serializer_class = EFDReinfCodigosAtividadesProdutosServicosCPRBSerializer
+    permission_classes = (IsAdminUser,)
+
+
+def render_to_pdf(template_src, context_dict={}):
+    from io import BytesIO
+    from django.http import HttpResponse
+    from django.template.loader import get_template
+    from xhtml2pdf import pisa
+    template = get_template(template_src)
+    html  = template.render(context_dict)
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode("UTF-8")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return None
+
+
+@login_required
+def json_search(request, search):
+    from django.http import JsonResponse
+    import operator
+    from django.db.models import Count, Q
+    import urllib
+    db_slug = 'default'
+    search = urllib.unquote(search)
+    lista = search.split(" ")
+    dicionario = {}
+    if search.strip():
+        try:
+            query = reduce(operator.and_, ((Q(titulo__icontains=item) | Q(codigo__icontains=item)) for item in lista))
+            lista = EFDReinfCodigosAtividadesProdutosServicosCPRB.objects.using(db_slug).filter(excluido = False).filter(query).all()
+        except:
+            query = reduce(operator.and_, ((Q(descricao__icontains=item) | Q(codigo__icontains=item)) for item in lista))
+            lista = EFDReinfCodigosAtividadesProdutosServicosCPRB.objects.using(db_slug).filter(excluido = False).filter(query).all()
+    else:
+        lista = EFDReinfCodigosAtividadesProdutosServicosCPRB.objects.using(db_slug).filter(excluido=False).all()
+    lista_efdreinf_codigos_atividades_produtos_servicos_cprb = []
+    for a in lista:
+        dic = {}
+        dic['key'] = a.codigo
+        dic['value'] = '%s' % (a)
+        lista_efdreinf_codigos_atividades_produtos_servicos_cprb.append(dic)
+    dicionario['efdreinf_codigos_atividades_produtos_servicos_cprb'] = lista_efdreinf_codigos_atividades_produtos_servicos_cprb
+    return JsonResponse(dicionario)
+
+
+@login_required
+def listar(request, hash):
+    for_print = 0
+    db_slug = 'default'
+    try:
+        usuario_id = request.user.id
+        dict_hash = get_hash_url( hash )
+        #retorno_pagina = dict_hash['retorno_pagina']
+        #retorno_hash = dict_hash['retorno_hash']
+        #efdreinf_codigos_atividades_produtos_servicos_cprb_id = int(dict_hash['id'])
+        for_print = int(dict_hash['print'])
+    except:
+        usuario_id = False
+        return redirect('login')
+    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='efdreinf_codigos_atividades_produtos_servicos_cprb')
+    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
+    if permissao.permite_listar:
+        filtrar = False
+        dict_fields = {}
+        show_fields = {
+            'show_aliquota': 0,
+            'show_codigo': 1,
+            'show_cr': 0,
+            'show_descricao': 1,
+            'show_grupo': 1,
+            'show_incidencia': 0,
+            'show_inicio_escrituracao': 0,
+            'show_ncm': 0, }
+        post = False
+        if request.method == 'POST':
+            post = True
+            dict_fields = {
+                'aliquota': 'aliquota',
+                'codigo__icontains': 'codigo__icontains',
+                'cr__icontains': 'cr__icontains',
+                'descricao__icontains': 'descricao__icontains',
+                'grupo': 'grupo',
+                'incidencia__icontains': 'incidencia__icontains',
+                'inicio_escrituracao__range': 'inicio_escrituracao__range',
+                'ncm__icontains': 'ncm__icontains',}
+            for a in dict_fields:
+                dict_fields[a] = request.POST.get(a or None)
+            for a in show_fields:
+                show_fields[a] = request.POST.get(a or None)
+            if request.method == 'POST':
+                dict_fields = {
+                'aliquota': 'aliquota',
+                'codigo__icontains': 'codigo__icontains',
+                'cr__icontains': 'cr__icontains',
+                'descricao__icontains': 'descricao__icontains',
+                'grupo': 'grupo',
+                'incidencia__icontains': 'incidencia__icontains',
+                'inicio_escrituracao__range': 'inicio_escrituracao__range',
+                'ncm__icontains': 'ncm__icontains',}
+                for a in dict_fields:
+                    dict_fields[a] = request.POST.get(dict_fields[a] or None)
+        dict_qs = clear_dict_fields(dict_fields)
+        efdreinf_codigos_atividades_produtos_servicos_cprb_lista = EFDReinfCodigosAtividadesProdutosServicosCPRB.objects.using( db_slug ).filter(**dict_qs).filter(excluido = False).exclude(id=0).all()
+        if not post and len(efdreinf_codigos_atividades_produtos_servicos_cprb_lista) > 100:
+            filtrar = True
+            efdreinf_codigos_atividades_produtos_servicos_cprb_lista = None
+            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+    
+        #efdreinf_codigos_atividades_produtos_servicos_cprb_listar_custom
+        request.session["retorno_hash"] = hash
+        request.session["retorno_pagina"] = 'efdreinf_codigos_atividades_produtos_servicos_cprb'
+        context = {
+            'efdreinf_codigos_atividades_produtos_servicos_cprb_lista': efdreinf_codigos_atividades_produtos_servicos_cprb_lista,
+            
+            'usuario': usuario,
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+            'permissao': permissao,
+            'dict_fields': dict_fields,
+            'data': datetime.datetime.now(),
+            'pagina': pagina,
+            'dict_permissoes': dict_permissoes,
+            'show_fields': show_fields,
+            'for_print': for_print,
+            'hash': hash,
+            'filtrar': filtrar,
+        
+        }
+        if for_print in (0,1):
+            return render(request, 'efdreinf_codigos_atividades_produtos_servicos_cprb_listar.html', context)
+        elif for_print == 2:
+            #return render_to_pdf('tables/s1000_evtinfoempregador_pdf_xls.html', context)
+            from wkhtmltopdf.views import PDFTemplateResponse
+            response = PDFTemplateResponse(
+                request=request,
+                template='efdreinf_codigos_atividades_produtos_servicos_cprb_listar.html',
+                filename="efdreinf_codigos_atividades_produtos_servicos_cprb.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 10,
+                             'margin-bottom': 10,
+                             'margin-right': 10,
+                             'margin-left': 10,
+                             'zoom': 1,
+                             'dpi': 72,
+                             'orientation': 'Landscape',
+                             "viewport-size": "1366 x 513",
+                             'javascript-delay': 1000,
+                             'footer-center': '[page]/[topage]',
+                             "no-stop-slow-scripts": True},
+            )
+            return response
+        elif for_print == 3:
+            from django.shortcuts import render_to_response
+            response = render_to_response('efdreinf_codigos_atividades_produtos_servicos_cprb_listar.html', context)
+            filename = "efdreinf_codigos_atividades_produtos_servicos_cprb.xls"
+            response['Content-Disposition'] = 'attachment; filename=' + filename
+            response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            return response
+        elif for_print == 4:
+            from django.shortcuts import render_to_response
+            response = render_to_response('tables/efdreinf_codigos_atividades_produtos_servicos_cprb_csv.html', context)
+            filename = "efdreinf_codigos_atividades_produtos_servicos_cprb.csv"
+            response['Content-Disposition'] = 'attachment; filename=' + filename
+            response['Content-Type'] = 'text/csv; charset=UTF-8'
+            return response
+    else:
+        context = {
+            'usuario': usuario,
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+            'permissao': permissao,
+            'data': datetime.datetime.now(),
+            'pagina': pagina,
+            'dict_permissoes': dict_permissoes,
+        }
+        return render(request, 'permissao_negada.html', context)
+
 @login_required
 def salvar(request, hash):
     db_slug = 'default'
@@ -224,208 +426,6 @@ def salvar(request, hash):
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
 
-    else:
-        context = {
-            'usuario': usuario,
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            
-            'permissao': permissao,
-            'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
-        }
-        return render(request, 'permissao_negada.html', context)
-
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser
-
-
-class EFDReinfCodigosAtividadesProdutosServicosCPRBList(generics.ListCreateAPIView):
-    db_slug = 'default'
-    queryset = EFDReinfCodigosAtividadesProdutosServicosCPRB.objects.using(db_slug).all()
-    serializer_class = EFDReinfCodigosAtividadesProdutosServicosCPRBSerializer
-    permission_classes = (IsAdminUser,)
-
-
-class EFDReinfCodigosAtividadesProdutosServicosCPRBDetail(generics.RetrieveUpdateDestroyAPIView):
-    db_slug = 'default'
-    queryset = EFDReinfCodigosAtividadesProdutosServicosCPRB.objects.using(db_slug).all()
-    serializer_class = EFDReinfCodigosAtividadesProdutosServicosCPRBSerializer
-    permission_classes = (IsAdminUser,)
-
-
-def render_to_pdf(template_src, context_dict={}):
-    from io import BytesIO
-    from django.http import HttpResponse
-    from django.template.loader import get_template
-    from xhtml2pdf import pisa
-    template = get_template(template_src)
-    html  = template.render(context_dict)
-    result = BytesIO()
-    pdf = pisa.pisaDocument(BytesIO(html.encode("UTF-8")), result)
-    if not pdf.err:
-        return HttpResponse(result.getvalue(), content_type='application/pdf')
-    return None
-
-
-@login_required
-def json_search(request, search):
-    from django.http import JsonResponse
-    import operator
-    from django.db.models import Count, Q
-    import urllib
-    db_slug = 'default'
-    search = urllib.unquote(search)
-    lista = search.split(" ")
-    dicionario = {}
-    if search.strip():
-        try:
-            query = reduce(operator.and_, ((Q(titulo__icontains=item) | Q(codigo__icontains=item)) for item in lista))
-            lista = EFDReinfCodigosAtividadesProdutosServicosCPRB.objects.using(db_slug).filter(excluido = False).filter(query).all()
-        except:
-            query = reduce(operator.and_, ((Q(descricao__icontains=item) | Q(codigo__icontains=item)) for item in lista))
-            lista = EFDReinfCodigosAtividadesProdutosServicosCPRB.objects.using(db_slug).filter(excluido = False).filter(query).all()
-    else:
-        lista = EFDReinfCodigosAtividadesProdutosServicosCPRB.objects.using(db_slug).filter(excluido=False).all()
-    lista_efdreinf_codigos_atividades_produtos_servicos_cprb = []
-    for a in lista:
-        dic = {}
-        dic['key'] = a.codigo
-        dic['value'] = '%s' % (a)
-        lista_efdreinf_codigos_atividades_produtos_servicos_cprb.append(dic)
-    dicionario['efdreinf_codigos_atividades_produtos_servicos_cprb'] = lista_efdreinf_codigos_atividades_produtos_servicos_cprb
-    return JsonResponse(dicionario)
-
-
-@login_required
-def listar(request, hash):
-    for_print = 0
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        #retorno_pagina = dict_hash['retorno_pagina']
-        #retorno_hash = dict_hash['retorno_hash']
-        #efdreinf_codigos_atividades_produtos_servicos_cprb_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='efdreinf_codigos_atividades_produtos_servicos_cprb')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    if permissao.permite_listar:
-        filtrar = False
-        dict_fields = {}
-        show_fields = {
-            'show_inicio_escrituracao': 0,
-            'show_aliquota': 0,
-            'show_ncm': 0,
-            'show_cr': 0,
-            'show_incidencia': 0,
-            'show_descricao': 1,
-            'show_codigo': 1,
-            'show_grupo': 1, }
-        post = False
-        if request.method == 'POST':
-            post = True
-            dict_fields = {
-                'inicio_escrituracao__range': 'inicio_escrituracao__range',
-                'aliquota': 'aliquota',
-                'ncm__icontains': 'ncm__icontains',
-                'cr__icontains': 'cr__icontains',
-                'incidencia__icontains': 'incidencia__icontains',
-                'descricao__icontains': 'descricao__icontains',
-                'codigo__icontains': 'codigo__icontains',
-                'grupo': 'grupo',}
-            for a in dict_fields:
-                dict_fields[a] = request.POST.get(a or None)
-            for a in show_fields:
-                show_fields[a] = request.POST.get(a or None)
-            if request.method == 'POST':
-                dict_fields = {
-                'inicio_escrituracao__range': 'inicio_escrituracao__range',
-                'aliquota': 'aliquota',
-                'ncm__icontains': 'ncm__icontains',
-                'cr__icontains': 'cr__icontains',
-                'incidencia__icontains': 'incidencia__icontains',
-                'descricao__icontains': 'descricao__icontains',
-                'codigo__icontains': 'codigo__icontains',
-                'grupo': 'grupo',}
-                for a in dict_fields:
-                    dict_fields[a] = request.POST.get(dict_fields[a] or None)
-        dict_qs = clear_dict_fields(dict_fields)
-        efdreinf_codigos_atividades_produtos_servicos_cprb_lista = EFDReinfCodigosAtividadesProdutosServicosCPRB.objects.using( db_slug ).filter(**dict_qs).filter(excluido = False).exclude(id=0).all()
-        if not post and len(efdreinf_codigos_atividades_produtos_servicos_cprb_lista) > 100:
-            filtrar = True
-            efdreinf_codigos_atividades_produtos_servicos_cprb_lista = None
-            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
-        #efdreinf_codigos_atividades_produtos_servicos_cprb_listar_custom
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'efdreinf_codigos_atividades_produtos_servicos_cprb'
-        context = {
-            'efdreinf_codigos_atividades_produtos_servicos_cprb_lista': efdreinf_codigos_atividades_produtos_servicos_cprb_lista,
-            
-            'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            
-            'permissao': permissao,
-            'dict_fields': dict_fields,
-            'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
-            'show_fields': show_fields,
-            'for_print': for_print,
-            'hash': hash,
-            'filtrar': filtrar,
-        
-        }
-        if for_print in (0,1):
-            return render(request, 'efdreinf_codigos_atividades_produtos_servicos_cprb_listar.html', context)
-        elif for_print == 2:
-            #return render_to_pdf('tables/s1000_evtinfoempregador_pdf_xls.html', context)
-            from wkhtmltopdf.views import PDFTemplateResponse
-            response = PDFTemplateResponse(
-                request=request,
-                template='efdreinf_codigos_atividades_produtos_servicos_cprb_listar.html',
-                filename="efdreinf_codigos_atividades_produtos_servicos_cprb.pdf",
-                context=context,
-                show_content_in_browser=True,
-                cmd_options={'margin-top': 10,
-                             'margin-bottom': 10,
-                             'margin-right': 10,
-                             'margin-left': 10,
-                             'zoom': 1,
-                             'dpi': 72,
-                             'orientation': 'Landscape',
-                             "viewport-size": "1366 x 513",
-                             'javascript-delay': 1000,
-                             'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
-            return response
-        elif for_print == 3:
-            from django.shortcuts import render_to_response
-            response = render_to_response('efdreinf_codigos_atividades_produtos_servicos_cprb_listar.html', context)
-            filename = "efdreinf_codigos_atividades_produtos_servicos_cprb.xls"
-            response['Content-Disposition'] = 'attachment; filename=' + filename
-            response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            return response
-        elif for_print == 4:
-            from django.shortcuts import render_to_response
-            response = render_to_response('tables/efdreinf_codigos_atividades_produtos_servicos_cprb_csv.html', context)
-            filename = "efdreinf_codigos_atividades_produtos_servicos_cprb.csv"
-            response['Content-Disposition'] = 'attachment; filename=' + filename
-            response['Content-Type'] = 'text/csv; charset=UTF-8'
-            return response
     else:
         context = {
             'usuario': usuario,

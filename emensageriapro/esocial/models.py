@@ -2194,13 +2194,13 @@ class s1030evtTabCargo(models.Model):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
-    arquivo = models.CharField(max_length=200, blank=True, null=True)
-    ocorrencias = models.TextField(blank=True, null=True)
-    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
-    validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    validacoes = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1030_TPAMB)

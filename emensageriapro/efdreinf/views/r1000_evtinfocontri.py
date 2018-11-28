@@ -172,45 +172,45 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_nrinsc': 1,
-            'show_tpinsc': 1,
-            'show_idecontri': 0,
-            'show_verproc': 1,
-            'show_procemi': 1,
-            'show_tpamb': 1,
-            'show_ideevento': 0,
-            'show_identidade': 1,
-            'show_evtinfocontri': 0,
-            'show_operacao': 1,
-            'show_dhprocess': 0,
-            'show_descretorno': 0,
-            'show_cdretorno': 1,
-            'show_status': 1,
             'show_arquivo': 0,
             'show_arquivo_original': 0,
-            'show_validacoes': 0,
-            'show_validacao_precedencia': 0,
+            'show_cdretorno': 1,
+            'show_descretorno': 0,
+            'show_dhprocess': 0,
+            'show_evtinfocontri': 0,
+            'show_idecontri': 0,
+            'show_ideevento': 0,
+            'show_identidade': 1,
+            'show_nrinsc': 1,
             'show_ocorrencias': 0,
-            'show_retornos_evttotalcontrib': 0,
+            'show_operacao': 1,
+            'show_procemi': 1,
             'show_retornos_evttotal': 0,
+            'show_retornos_evttotalcontrib': 0,
+            'show_status': 1,
+            'show_tpamb': 1,
+            'show_tpinsc': 1,
             'show_transmissor_lote_efdreinf': 0,
+            'show_validacao_precedencia': 0,
+            'show_validacoes': 0,
+            'show_verproc': 1,
             'show_versao': 0, }
         post = False
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'nrinsc__icontains': 'nrinsc__icontains',
-                'tpinsc': 'tpinsc',
+                'evtinfocontri': 'evtinfocontri',
                 'idecontri': 'idecontri',
-                'verproc__icontains': 'verproc__icontains',
-                'procemi': 'procemi',
-                'tpamb': 'tpamb',
                 'ideevento': 'ideevento',
                 'identidade__icontains': 'identidade__icontains',
-                'evtinfocontri': 'evtinfocontri',
+                'nrinsc__icontains': 'nrinsc__icontains',
                 'operacao': 'operacao',
+                'procemi': 'procemi',
                 'status': 'status',
+                'tpamb': 'tpamb',
+                'tpinsc': 'tpinsc',
                 'transmissor_lote_efdreinf': 'transmissor_lote_efdreinf',
+                'verproc__icontains': 'verproc__icontains',
                 'versao__icontains': 'versao__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
@@ -218,18 +218,18 @@ def listar(request, hash):
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'nrinsc__icontains': 'nrinsc__icontains',
-                'tpinsc': 'tpinsc',
+                'evtinfocontri': 'evtinfocontri',
                 'idecontri': 'idecontri',
-                'verproc__icontains': 'verproc__icontains',
-                'procemi': 'procemi',
-                'tpamb': 'tpamb',
                 'ideevento': 'ideevento',
                 'identidade__icontains': 'identidade__icontains',
-                'evtinfocontri': 'evtinfocontri',
+                'nrinsc__icontains': 'nrinsc__icontains',
                 'operacao': 'operacao',
+                'procemi': 'procemi',
                 'status': 'status',
+                'tpamb': 'tpamb',
+                'tpinsc': 'tpinsc',
                 'transmissor_lote_efdreinf': 'transmissor_lote_efdreinf',
+                'verproc__icontains': 'verproc__icontains',
                 'versao__icontains': 'versao__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)

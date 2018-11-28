@@ -49,12 +49,12 @@ class form_s5012_infocrcontrib(forms.ModelForm):
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
         super (form_s5012_infocrcontrib,self ).__init__(*args,**kwargs)
-        
-        self.fields['vrcr'].widget.attrs['required'] = True
-        
-        self.fields['tpcr'].widget.attrs['required'] = True
         self.fields['s5012_evtirrf'].queryset = s5012evtIrrf.objects.using( slug ).filter(excluido=False).all()
         self.fields['s5012_evtirrf'].widget.attrs['required'] = True
+        
+        self.fields['tpcr'].widget.attrs['required'] = True
+        
+        self.fields['vrcr'].widget.attrs['required'] = True
 
     class Meta:
         model = s5012infoCRContrib

@@ -42,31 +42,47 @@ get_model = apps.get_model
 
 
 
-CHOICES_S2200_DIA = (
-    (1, u'1 - Segunda-Feira'),
-    (2, u'2 - Terça-Feira'),
-    (3, u'3 - Quarta-Feira'),
-    (4, u'4 - Quinta-Feira'),
-    (5, u'5 - Sexta-Feira'),
-    (6, u'6 - Sábado'),
-    (7, u'7 - Domingo'),
-    (8, u'8 - Dia variável'),
+SIM_NAO = (
+    (0, u'Não'),
+    (1, u'Sim'),
 )
 
-CHOICES_S2200_TPCONTR = (
-    (1, u'1 - Prazo indeterminado'),
-    (2, u'2 - Prazo determinado'),
+TIPO_INSCRICAO = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
-EVENTOS_OCORRENCIAS_TIPO = (
+EVENTOS_OCORRENCIAS_TIPO_EFDREINF = (
+    (1, u'1 - Aviso'),
+    (2, u'2 - Erro'),
+)
+
+CODIGO_STATUS_EFDREINF = (
+    (0, u'0 - Sucesso'),
     (1, u'1 - Erro'),
-    (2, u'2 - Advertência'),
+    (2, u'2 - Em Processamento'),
 )
 
-EVENTOS_GRUPOS = (
-    (1, u'1 - Eventos de Tabelas'),
-    (2, u'2 - Eventos Não Periódicos'),
-    (3, u'3 - Eventos Periódicos'),
+TRANSMISSOR_STATUS = (
+    (0, u'Cadastrado'),
+    (5, u'Erro no envio'),
+    (7, u'Enviado'),
+    (8, u'Erro na consulta'),
+    (9, u'Consultado'),
+)
+
+IMPORTACAO_STATUS = (
+    (0, u'Aguardando!'),
+    (1, u'Sucesso!'),
+    (2, u'Erro!'),
+    (3, u'Arquivo inválido!'),
+    (5, u'Identidade do evento já está cadastrada em nossa base'),
+    (6, u'Processado'),
+    (7, u'Processando'),
+    (8, u'Processado com erros'),
+    (9, u'Versão incompatível'),
 )
 
 CODIGO_RESPOSTA = (
@@ -87,52 +103,9 @@ CODIGO_RESPOSTA = (
     (505, u'505 - Solicitação de Consulta Incorreta - Consulta nula ou vazia.'),
 )
 
-CHOICES_S1050_INCLUSAO_TPINTERV = (
-    (1, u'1 - Intervalo em Horário Fixo'),
-    (2, u'2 - Intervalo em Horário Variável'),
-)
-
-CHOICES_S2200_TMPPARC = (
-    (0, u'0 - Não é contrato em tempo parcial'),
-    (1, u'1 - Limitado a 25 horas semanais'),
-    (2, u'2 - Limitado a 30 horas semanais'),
-    (3, u'3 - Limitado a 26 horas semanais'),
-)
-
-CHOICES_S2200_UNDSALFIXO = (
-    (1, u'1 - Por Hora'),
-    (2, u'2 - Por Dia'),
-    (3, u'3 - Por Semana'),
-    (4, u'4 - Por Quinzena'),
-    (5, u'5 - Por Mês'),
-    (6, u'6 - Por Tarefa'),
-    (7, u'7 - Não aplicável - salário exclusivamente variável'),
-)
-
-CODIGO_STATUS_EFDREINF = (
-    (0, u'0 - Sucesso'),
-    (1, u'1 - Erro'),
-    (2, u'2 - Em Processamento'),
-)
-
 TIPO_OCORRENCIA = (
     (1, u'1 - Erro'),
     (2, u'2 - Advertência'),
-)
-
-CHOICES_S2200_INFOCOTA = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-SIM_NAO = (
-    (0, u'Não'),
-    (1, u'Sim'),
-)
-
-EVENTOS_OCORRENCIAS_TIPO_EFDREINF = (
-    (1, u'1 - Aviso'),
-    (2, u'2 - Erro'),
 )
 
 TIPO_AMBIENTE = (
@@ -140,16 +113,15 @@ TIPO_AMBIENTE = (
     (2, u'2 - Produção restrita'),
 )
 
-IMPORTACAO_STATUS = (
-    (0, u'Aguardando!'),
-    (1, u'Sucesso!'),
-    (2, u'Erro!'),
-    (3, u'Arquivo inválido!'),
-    (5, u'Identidade do evento já está cadastrada em nossa base'),
-    (6, u'Processado'),
-    (7, u'Processando'),
-    (8, u'Processado com erros'),
-    (9, u'Versão incompatível'),
+EVENTOS_OCORRENCIAS_TIPO = (
+    (1, u'1 - Erro'),
+    (2, u'2 - Advertência'),
+)
+
+EVENTOS_GRUPOS = (
+    (1, u'1 - Eventos de Tabelas'),
+    (2, u'2 - Eventos Não Periódicos'),
+    (3, u'3 - Eventos Periódicos'),
 )
 
 CHOICES_S1000_TPINSC = (
@@ -164,12 +136,37 @@ CHOICES_S1050_INCLUSAO_PERHORFLEXIVEL = (
     ('S', u'S - Sim'),
 )
 
-TRANSMISSOR_STATUS = (
-    (0, u'Cadastrado'),
-    (5, u'Erro no envio'),
-    (7, u'Enviado'),
-    (8, u'Erro na consulta'),
-    (9, u'Consultado'),
+CHOICES_S1050_INCLUSAO_TPINTERV = (
+    (1, u'1 - Intervalo em Horário Fixo'),
+    (2, u'2 - Intervalo em Horário Variável'),
+)
+
+CHOICES_S2200_DIA = (
+    (1, u'1 - Segunda-Feira'),
+    (2, u'2 - Terça-Feira'),
+    (3, u'3 - Quarta-Feira'),
+    (4, u'4 - Quinta-Feira'),
+    (5, u'5 - Sexta-Feira'),
+    (6, u'6 - Sábado'),
+    (7, u'7 - Domingo'),
+    (8, u'8 - Dia variável'),
+)
+
+CHOICES_S2200_INFOCOTA = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2200_TMPPARC = (
+    (0, u'0 - Não é contrato em tempo parcial'),
+    (1, u'1 - Limitado a 25 horas semanais'),
+    (2, u'2 - Limitado a 30 horas semanais'),
+    (3, u'3 - Limitado a 26 horas semanais'),
+)
+
+CHOICES_S2200_TPCONTR = (
+    (1, u'1 - Prazo indeterminado'),
+    (2, u'2 - Prazo determinado'),
 )
 
 CHOICES_S2200_TPJORNADA = (
@@ -186,11 +183,14 @@ CHOICES_S2200_TPREGJOR = (
     (4, u'4 - Teletrabalho, previsto no Inciso III do Art. 62 da CLT'),
 )
 
-TIPO_INSCRICAO = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+CHOICES_S2200_UNDSALFIXO = (
+    (1, u'1 - Por Hora'),
+    (2, u'2 - Por Dia'),
+    (3, u'3 - Por Semana'),
+    (4, u'4 - Por Quinzena'),
+    (5, u'5 - Por Mês'),
+    (6, u'6 - Por Tarefa'),
+    (7, u'7 - Não aplicável - salário exclusivamente variável'),
 )
 
 class Arquivos(models.Model):

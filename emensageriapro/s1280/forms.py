@@ -43,18 +43,22 @@ __author__ = 'marcelovasconcellos'
 
 
 
-class form_s1280_infosubstpatropport(forms.ModelForm):
+class form_s1280_infoativconcom(forms.ModelForm):
+    fatormes = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    fator13 = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1280_infosubstpatropport,self ).__init__(*args,**kwargs)
+        super (form_s1280_infoativconcom,self ).__init__(*args,**kwargs)
         
-        self.fields['cnpjopportuario'].widget.attrs['required'] = True
-        self.fields['s1280_evtinfocomplper'].queryset = s1280evtInfoComplPer.objects.using( slug ).filter(excluido=False).all()
         self.fields['s1280_evtinfocomplper'].widget.attrs['required'] = True
+        
+        self.fields['fatormes'].widget.attrs['required'] = True
+        
+        self.fields['fator13'].widget.attrs['required'] = True
 
     class Meta:
-        model = s1280infoSubstPatrOpPort
+        model = s1280infoAtivConcom
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
@@ -70,11 +74,11 @@ class form_s1280_infosubstpatr(forms.ModelForm):
         slug = kwargs.pop('slug')
         super (form_s1280_infosubstpatr,self ).__init__(*args,**kwargs)
         
-        self.fields['percredcontrib'].widget.attrs['required'] = True
+        self.fields['s1280_evtinfocomplper'].widget.attrs['required'] = True
         
         self.fields['indsubstpatr'].widget.attrs['required'] = True
         
-        self.fields['s1280_evtinfocomplper'].widget.attrs['required'] = True
+        self.fields['percredcontrib'].widget.attrs['required'] = True
 
     class Meta:
         model = s1280infoSubstPatr
@@ -86,22 +90,18 @@ class form_s1280_infosubstpatr(forms.ModelForm):
         ]
 
 
-class form_s1280_infoativconcom(forms.ModelForm):
-    fator13 = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    fatormes = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+class form_s1280_infosubstpatropport(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1280_infoativconcom,self ).__init__(*args,**kwargs)
-        
-        self.fields['fator13'].widget.attrs['required'] = True
-        
-        self.fields['fatormes'].widget.attrs['required'] = True
-        
+        super (form_s1280_infosubstpatropport,self ).__init__(*args,**kwargs)
+        self.fields['s1280_evtinfocomplper'].queryset = s1280evtInfoComplPer.objects.using( slug ).filter(excluido=False).all()
         self.fields['s1280_evtinfocomplper'].widget.attrs['required'] = True
+        
+        self.fields['cnpjopportuario'].widget.attrs['required'] = True
 
     class Meta:
-        model = s1280infoAtivConcom
+        model = s1280infoSubstPatrOpPort
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
