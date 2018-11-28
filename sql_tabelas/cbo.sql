@@ -1,4 +1,4 @@
-DELETE FROM public.cbo;
+DELETE FROM cbo;
 INSERT INTO public.cbo (codigo, descricao, data_inicio, data_termino,criado_em, criado_por_id, excluido) VALUES ('010105', 'Oficial general da aeronáutica', '2014-01-01', Null, now(), 1, False);
 INSERT INTO public.cbo (codigo, descricao, data_inicio, data_termino,criado_em, criado_por_id, excluido) VALUES ('010110', 'Oficial general do exército', '2014-01-01', Null, now(), 1, False);
 INSERT INTO public.cbo (codigo, descricao, data_inicio, data_termino,criado_em, criado_por_id, excluido) VALUES ('010115', 'Oficial general da marinha', '2014-01-01', Null, now(), 1, False);
