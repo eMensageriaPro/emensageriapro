@@ -120,13 +120,24 @@ def enviar_email_senha_recuperar(nome, email_usuario, senha):
         """ % (LINK_WEBSITE, nome, senha)
 
     send_mail(
-        u'Recuperação de senha | eMensageriaPro',
+        u'Criação/Recuperação de senha | eMensageriaPro',
         strip_tags(mensagem_html),
         EMAIL_RECUPERACAO_SENHA,
         [ email_usuario, ],
         fail_silently=False,
         html_message=mensagem_html,
     )
+
+
+def recuperar_senha_funcao(email):
+    db_slug = 'default'
+    dados_usuario = User.objects.using(db_slug).get(email=email)
+    from django.contrib.auth.hashers import make_password
+    nova_senha = gera_senha(10)
+    hashed_password = make_password(nova_senha)
+    User.objects.using(db_slug).filter(email=email).update(password=hashed_password)
+    enviar_email_senha_recuperar(dados_usuario.first_name, email, nova_senha)
+
 
 
 
