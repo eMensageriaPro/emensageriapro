@@ -42,27 +42,6 @@ get_model = apps.get_model
 
 
 
-CHOICES_S1005_INCLUSAO_REGPT = (
-    (0, u'0 - Não utiliza'),
-    (1, u'1 - Manual'),
-    (2, u'2 - Mecânico'),
-    (3, u'3 - Eletrônico (portaria MTE 1.510/2009)'),
-    (4, u'4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011)'),
-    (5, u'5 - Eletrônico alternativo ( art. 2° da Portaria MTE 373/2011)'),
-    (6, u'6 - Eletrônico - outros'),
-)
-
-CHOICES_S1005_INCLUSAO_TPPROC = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
-    (4, u'4 - Processo FAP'),
-)
-
-CHOICES_S1005_ALTERACAO_CONTENTED = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
 PERIODOS = (
     ('2017-01', u'Janeiro/2017'),
     ('2017-02', u'Fevereiro/2017'),
@@ -102,37 +81,10 @@ PERIODOS = (
     ('2019-12', u'Dezembro/2019'),
 )
 
-CHOICES_S1005_ALTERACAO_INDSUBSTPATROBRA = (
-    (1, u'1 - Contribuição Patronal Substituída'),
-    (2, u'2 - Contribuição Patronal Não Substituída'),
-)
-
-CHOICES_S1005_INCLUSAO_CONTENTED = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1005_INCLUSAO_INDSUBSTPATROBRA = (
-    (1, u'1 - Contribuição Patronal Substituída'),
-    (2, u'2 - Contribuição Patronal Não Substituída'),
-)
-
-CHOICES_S1005_ALTERACAO_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1005_EXCLUSAO_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1005_INCLUSAO_TPCAEPF = (
-    (1, u'1 - Contribuinte Individual'),
-    (2, u'2 - Produtor Rural'),
-    (3, u'3 - Segurado Especial'),
+CHOICES_S1005_ALTERACAO_ALIQRAT = (
+    (1, u'1 - 1'),
+    (2, u'2 - 2'),
+    (3, u'3 - 3'),
 )
 
 CHOICES_S1005_ALTERACAO_CONTAPR = (
@@ -141,10 +93,9 @@ CHOICES_S1005_ALTERACAO_CONTAPR = (
     (2, u'2 - Obrigado'),
 )
 
-CHOICES_S1005_ALTERACAO_ALIQRAT = (
-    (1, u'1 - 1'),
-    (2, u'2 - 2'),
-    (3, u'3 - 3'),
+CHOICES_S1005_ALTERACAO_CONTENTED = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
 )
 
 CHOICES_S1005_ALTERACAO_CONTPCD = (
@@ -154,23 +105,9 @@ CHOICES_S1005_ALTERACAO_CONTPCD = (
     (9, u'9 - Obrigado'),
 )
 
-CHOICES_S1005_INCLUSAO_CONTAPR = (
-    (0, u'0 - Dispensado de acordo com a lei'),
-    (1, u'1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial'),
-    (2, u'2 - Obrigado'),
-)
-
-CHOICES_S1005_INCLUSAO_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1005_INCLUSAO_CONTPCD = (
-    (0, u'0 - Dispensado de acordo com a lei'),
-    (1, u'1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial'),
-    (2, u'2 - Com exigibilidade suspensa, mesmo que parcialmente em virtude de Termo de Compromisso firmado com o Ministério do Trabalho'),
-    (9, u'9 - Obrigado'),
+CHOICES_S1005_ALTERACAO_INDSUBSTPATROBRA = (
+    (1, u'1 - Contribuição Patronal Substituída'),
+    (2, u'2 - Contribuição Patronal Não Substituída'),
 )
 
 CHOICES_S1005_ALTERACAO_REGPT = (
@@ -189,16 +126,79 @@ CHOICES_S1005_ALTERACAO_TPCAEPF = (
     (3, u'3 - Segurado Especial'),
 )
 
+CHOICES_S1005_ALTERACAO_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
 CHOICES_S1005_ALTERACAO_TPPROC = (
     (1, u'1 - Administrativo'),
     (2, u'2 - Judicial'),
     (4, u'4 - Processo FAP'),
 )
 
+CHOICES_S1005_EXCLUSAO_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
 CHOICES_S1005_INCLUSAO_ALIQRAT = (
     (1, u'1 - 1'),
     (2, u'2 - 2'),
     (3, u'3 - 3'),
+)
+
+CHOICES_S1005_INCLUSAO_CONTAPR = (
+    (0, u'0 - Dispensado de acordo com a lei'),
+    (1, u'1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial'),
+    (2, u'2 - Obrigado'),
+)
+
+CHOICES_S1005_INCLUSAO_CONTENTED = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1005_INCLUSAO_CONTPCD = (
+    (0, u'0 - Dispensado de acordo com a lei'),
+    (1, u'1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial'),
+    (2, u'2 - Com exigibilidade suspensa, mesmo que parcialmente em virtude de Termo de Compromisso firmado com o Ministério do Trabalho'),
+    (9, u'9 - Obrigado'),
+)
+
+CHOICES_S1005_INCLUSAO_INDSUBSTPATROBRA = (
+    (1, u'1 - Contribuição Patronal Substituída'),
+    (2, u'2 - Contribuição Patronal Não Substituída'),
+)
+
+CHOICES_S1005_INCLUSAO_REGPT = (
+    (0, u'0 - Não utiliza'),
+    (1, u'1 - Manual'),
+    (2, u'2 - Mecânico'),
+    (3, u'3 - Eletrônico (portaria MTE 1.510/2009)'),
+    (4, u'4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011)'),
+    (5, u'5 - Eletrônico alternativo ( art. 2° da Portaria MTE 373/2011)'),
+    (6, u'6 - Eletrônico - outros'),
+)
+
+CHOICES_S1005_INCLUSAO_TPCAEPF = (
+    (1, u'1 - Contribuinte Individual'),
+    (2, u'2 - Produtor Rural'),
+    (3, u'3 - Segurado Especial'),
+)
+
+CHOICES_S1005_INCLUSAO_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+CHOICES_S1005_INCLUSAO_TPPROC = (
+    (1, u'1 - Administrativo'),
+    (2, u'2 - Judicial'),
+    (4, u'4 - Processo FAP'),
 )
 
 class s1005alteracao(models.Model):

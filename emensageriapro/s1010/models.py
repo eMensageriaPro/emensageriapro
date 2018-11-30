@@ -42,37 +42,6 @@ get_model = apps.get_model
 
 
 
-CHOICES_S1010_INCLUSAO_CODINCCP = (
-    ('00', u'00 - Não é base de cálculo'),
-    ('01', u'01 - Não é base de cálculo em função de acordos internacionais de previdência social'),
-    ('11', u'11 - Base de cálculo das contribuições sociais - Salário de Contribuição: Mensal'),
-    ('12', u'12 - Base de cálculo das contribuições sociais - Salário de Contribuição: 13o Salário'),
-    ('13', u'13 - Base de cálculo das contribuições sociais - Salário de Contribuição: Exclusiva do Empregador - mensal'),
-    ('14', u'14 - Base de cálculo das contribuições sociais - Salário de Contribuição: Exclusiva do Empregador - 13° salário'),
-    ('15', u'15 - Base de cálculo das contribuições sociais - Salário de Contribuição: Exclusiva do segurado - mensal'),
-    ('16', u'16 - Base de cálculo das contribuições sociais - Salário de Contribuição: Exclusiva do segurado - 13° salário'),
-    ('21', u'21 - Base de cálculo das contribuições sociais - Salário de Contribuição: Salário maternidade mensal pago pelo Empregador'),
-    ('22', u'22 - Base de cálculo das contribuições sociais - Salário de Contribuição: Salário maternidade - 13o Salário, pago pelo Empregador'),
-    ('23', u'23 - Base de cálculo das contribuições sociais - Salário de Contribuição: Auxilio doença mensal - Regime Próprio de Previdência Social'),
-    ('24', u'24 - Base de cálculo das contribuições sociais - Salário de Contribuição: Auxilio doença 13o salário doença - Regime próprio de previdência social'),
-    ('25', u'25 - Base de cálculo das contribuições sociais - Salário de Contribuição: Salário maternidade mensal pago pelo INSS'),
-    ('26', u'26 - Base de cálculo das contribuições sociais - Salário de Contribuição: Salário maternidade - 13° salário, pago pelo INSS'),
-    ('31', u'31 - Contribuição descontada do Segurado sobre salário de contribuição: Mensal'),
-    ('32', u'32 - Contribuição descontada do Segurado sobre salário de contribuição: 13o Salário'),
-    ('34', u'34 - Contribuição descontada do Segurado sobre salário de contribuição: SEST'),
-    ('35', u'35 - Contribuição descontada do Segurado sobre salário de contribuição: SENAT'),
-    ('51', u'51 - Outros: Salário-família'),
-    ('61', u'61 - Outros: Complemento de salário-mínimo - Regime próprio de previdência social'),
-    ('91', u'91 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Mensal'),
-    ('92', u'92 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: 13o Salário'),
-    ('93', u'93 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Salário maternidade'),
-    ('94', u'94 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Salário maternidade 13o salário'),
-    ('95', u'95 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Exclusiva do Empregador - mensal'),
-    ('96', u'96 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Exclusiva do Empregador - 13º salário'),
-    ('97', u'97 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Exclusiva do Empregador - Salário maternidade'),
-    ('98', u'98 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Exclusiva do Empregador - Salário maternidade 13º salário'),
-)
-
 PERIODOS = (
     ('2017-01', u'Janeiro/2017'),
     ('2017-02', u'Fevereiro/2017'),
@@ -110,6 +79,85 @@ PERIODOS = (
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
+)
+
+CHOICES_S1010_ALTERACAO_CODINCCP = (
+    ('00', u'00 - Não é base de cálculo'),
+    ('01', u'01 - Não é base de cálculo em função de acordos internacionais de previdência social'),
+    ('11', u'11 - Base de cálculo das contribuições sociais - Salário de Contribuição: Mensal'),
+    ('12', u'12 - Base de cálculo das contribuições sociais - Salário de Contribuição: 13o Salário'),
+    ('13', u'13 - Base de cálculo das contribuições sociais - Salário de Contribuição: Exclusiva do Empregador - mensal'),
+    ('14', u'14 - Base de cálculo das contribuições sociais - Salário de Contribuição: Exclusiva do Empregador - 13° salário'),
+    ('15', u'15 - Base de cálculo das contribuições sociais - Salário de Contribuição: Exclusiva do segurado - mensal'),
+    ('16', u'16 - Base de cálculo das contribuições sociais - Salário de Contribuição: Exclusiva do segurado - 13° salário'),
+    ('21', u'21 - Base de cálculo das contribuições sociais - Salário de Contribuição: Salário maternidade mensal pago pelo Empregador'),
+    ('22', u'22 - Base de cálculo das contribuições sociais - Salário de Contribuição: Salário maternidade - 13o Salário, pago pelo Empregador'),
+    ('23', u'23 - Base de cálculo das contribuições sociais - Salário de Contribuição: Auxilio doença mensal - Regime Próprio de Previdência Social'),
+    ('24', u'24 - Base de cálculo das contribuições sociais - Salário de Contribuição: Auxilio doença 13o salário doença - Regime próprio de previdência social'),
+    ('25', u'25 - Base de cálculo das contribuições sociais - Salário de Contribuição: Salário maternidade mensal pago pelo INSS'),
+    ('26', u'26 - Base de cálculo das contribuições sociais - Salário de Contribuição: Salário maternidade - 13° salário, pago pelo INSS'),
+    ('31', u'31 - Contribuição descontada do Segurado sobre salário de contribuição: Mensal'),
+    ('32', u'32 - Contribuição descontada do Segurado sobre salário de contribuição: 13o Salário'),
+    ('34', u'34 - Contribuição descontada do Segurado sobre salário de contribuição: SEST'),
+    ('35', u'35 - Contribuição descontada do Segurado sobre salário de contribuição: SENAT'),
+    ('51', u'51 - Outros: Salário-família'),
+    ('61', u'61 - Outros: Complemento de salário-mínimo - Regime próprio de previdência social'),
+    ('91', u'91 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Mensal'),
+    ('92', u'92 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: 13o Salário'),
+    ('93', u'93 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Salário maternidade'),
+    ('94', u'94 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Salário maternidade 13o salário'),
+    ('95', u'95 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Exclusiva do Empregador - mensal'),
+    ('96', u'96 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Exclusiva do Empregador - 13º salário'),
+    ('97', u'97 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Exclusiva do Empregador - Salário maternidade'),
+    ('98', u'98 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Exclusiva do Empregador - Salário maternidade 13º salário'),
+)
+
+CHOICES_S1010_ALTERACAO_CODINCCPRP = (
+    ('00', u'00 - Não compõe a apuração de contribuições devidas ao RPPS/regime militar: Sem incidência para RPPS/regime militar'),
+    ('01', u'01 - Não compõe a apuração de contribuições devidas ao RPPS/regime militar: Sem incidência em função de acordos internacionais de previdência social'),
+    ('10', u'10 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Do segurado de RPPS/militar e a cargo do ente público - mensal'),
+    ('11', u'11 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Do segurado de RPPS/militar e a cargo do ente público - 13º salário'),
+    ('12', u'12 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Somente para o ente público - mensal'),
+    ('13', u'13 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Somente para o ente público - 13° salário'),
+    ('14', u'14 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Somente do segurado - mensal'),
+    ('15', u'15 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Somente do segurado - 13° salário'),
+    ('16', u'16 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Verbas temporárias - contribuição do segurado e a cargo do ente - mensal'),
+    ('17', u'17 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Verbas temporárias - contribuição do segurado e a cargo do ente - 13º salário'),
+    ('18', u'18 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Verbas temporárias - contribuição somente do segurado - mensal'),
+    ('19', u'19 - Verbas temporárias - contribuição somente do segurado - 13° salário'),
+    ('20', u'20 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Provento/pensão considerado para apuração da parcela excedente a teto RGPS'),
+    ('21', u'21 - Base de cálculo das contribuições (remuneração de contribuição) para o RPPS de outro ente público: Do segurado de RPPS/militar e a cargo do ente público - mensal'),
+    ('22', u'22 - Base de cálculo das contribuições (remuneração de contribuição) para o RPPS de outro ente público: Do segurado de RPPS/militar e a cargo do ente público - 13º salário'),
+    ('23', u'23 - Base de cálculo das contribuições (remuneração de contribuição) para o RPPS de outro ente público: Somente para o ente público - mensal'),
+    ('24', u'24 - Base de cálculo das contribuições (remuneração de contribuição) para o RPPS de outro ente público: Somente para o ente público - 13° salário'),
+    ('25', u'25 - Base de cálculo das contribuições (remuneração de contribuição) para o RPPS de outro ente público: Verbas temporárias - contribuição do segurado e a cargo do ente - mensal'),
+    ('26', u'26 - Base de cálculo das contribuições (remuneração de contribuição) para o RPPS de outro ente público: Verbas temporárias - contribuição do segurado e a cargo do ente - 13º salário'),
+    ('27', u'27 - Base de cálculo das contribuições (remuneração de contribuição) para o RPPS de outro ente público: Verbas temporárias - contribuição somente do segurado - mensal'),
+    ('28', u'28 - Base de cálculo das contribuições (remuneração de contribuição) para o RPPS de outro ente público: Verbas temporárias - contribuição somente do segurado - 13° salário'),
+    ('31', u'31 - Contribuição descontada do segurado e beneficiário: Do segurado ativo RPPS/militar - mensal'),
+    ('32', u'32 - Contribuição descontada do segurado e beneficiário: Do segurado ativo RPPS/militar - 13º salário'),
+    ('33', u'33 - Contribuição descontada do segurado e beneficiário: Do aposentado RPPS/reforma/reserva - mensal'),
+    ('34', u'34 - Contribuição descontada do segurado e beneficiário: Do aposentado RPPS /reforma/reserva - 13º salário'),
+    ('35', u'35 - Contribuição descontada do segurado e beneficiário: Do pensionista RPPS/militar - mensal'),
+    ('36', u'36 - Contribuição descontada do segurado e beneficiário: Do pensionista RPPS/militar - 13º salário'),
+    ('41', u'41 - Contribuição descontada para RPPS de outro ente público: Do segurado ativo RPPS/militar - mensal'),
+    ('42', u'42 - Contribuição descontada para RPPS de outro ente público: Do segurado ativo RPPS/militar - 13º salário'),
+    ('51', u'51 - Isenção de contribuição: Contribuição descontada para RPPS de outro ente público: Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - mensal'),
+    ('52', u'52 - Contribuição descontada para RPPS de outro ente público: Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - 13º salário'),
+    ('91', u'91 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Contribuição do segurado ativo RPPS/militar - mensal'),
+    ('92', u'92 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Contribuição do segurado ativo RPPS/militar - 13º salário'),
+    ('93', u'93 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Contribuição do aposentado/reforma/reserva - mensal'),
+    ('94', u'94 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Contribuição do aposentado/reforma/reserva - 13º salário'),
+    ('95', u'95 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Contribuição do pensionista - mensal'),
+    ('96', u'96 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Contribuição do pensionista - 13º salário'),
+)
+
+CHOICES_S1010_ALTERACAO_CODINCFGTS = (
+    ('00', u'00 - Não é Base de Cálculo do FGTS'),
+    ('11', u'11 - Base de Cálculo do FGTS'),
+    ('12', u'12 - Base de Cálculo do FGTS 13° salário'),
+    ('21', u'21 - Base de Cálculo do FGTS Rescisório (aviso prévio)'),
+    ('91', u'91 - Incidência suspensa em decorrência de decisão judicial'),
 )
 
 CHOICES_S1010_ALTERACAO_CODINCIRRF = (
@@ -161,17 +209,29 @@ CHOICES_S1010_ALTERACAO_CODINCIRRF = (
     ('95', u'95 - Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre: RRA'),
 )
 
-CHOICES_S1010_ALTERACAO_CODINCFGTS = (
-    ('00', u'00 - Não é Base de Cálculo do FGTS'),
-    ('11', u'11 - Base de Cálculo do FGTS'),
-    ('12', u'12 - Base de Cálculo do FGTS 13° salário'),
-    ('21', u'21 - Base de Cálculo do FGTS Rescisório (aviso prévio)'),
+CHOICES_S1010_ALTERACAO_CODINCSIND = (
+    ('00', u'00 - Não é base de cálculo'),
+    ('11', u'11 - Base de cálculo'),
+    ('31', u'31 - Valor da contribuição sindical laboral descontada'),
     ('91', u'91 - Incidência suspensa em decorrência de decisão judicial'),
 )
 
-CHOICES_S1010_INCLUSAO_TETOREMUN = (
+CHOICES_S1010_ALTERACAO_EXTDECISAO = (
+    (1, u'1 - Contribuição Previdenciária do Ente Público'),
+    (1, u'1 - Contribuição Previdenciária Patronal'),
+    (2, u'2 - Contribuição Previdenciária do Ente Público + Descontada dos Segurados'),
+    (2, u'2 - Contribuição Previdenciária Patronal + Descontada dos Segurados'),
+    (3, u'3 - Contribuição Previdenciária Descontada dos Segurados'),
+)
+
+CHOICES_S1010_ALTERACAO_TETOREMUN = (
     ('N', u'N - Não'),
     ('S', u'S - Sim'),
+)
+
+CHOICES_S1010_ALTERACAO_TPPROC = (
+    (1, u'1 - Administrativo'),
+    (2, u'2 - Judicial'),
 )
 
 CHOICES_S1010_ALTERACAO_TPRUBR = (
@@ -181,11 +241,35 @@ CHOICES_S1010_ALTERACAO_TPRUBR = (
     (4, u'4 - Informativa dedutora'),
 )
 
-CHOICES_S1010_INCLUSAO_TPRUBR = (
-    (1, u'1 - Vencimento, provento ou pensão'),
-    (2, u'2 - Desconto'),
-    (3, u'3 - Informativa'),
-    (4, u'4 - Informativa dedutora'),
+CHOICES_S1010_INCLUSAO_CODINCCP = (
+    ('00', u'00 - Não é base de cálculo'),
+    ('01', u'01 - Não é base de cálculo em função de acordos internacionais de previdência social'),
+    ('11', u'11 - Base de cálculo das contribuições sociais - Salário de Contribuição: Mensal'),
+    ('12', u'12 - Base de cálculo das contribuições sociais - Salário de Contribuição: 13o Salário'),
+    ('13', u'13 - Base de cálculo das contribuições sociais - Salário de Contribuição: Exclusiva do Empregador - mensal'),
+    ('14', u'14 - Base de cálculo das contribuições sociais - Salário de Contribuição: Exclusiva do Empregador - 13° salário'),
+    ('15', u'15 - Base de cálculo das contribuições sociais - Salário de Contribuição: Exclusiva do segurado - mensal'),
+    ('16', u'16 - Base de cálculo das contribuições sociais - Salário de Contribuição: Exclusiva do segurado - 13° salário'),
+    ('21', u'21 - Base de cálculo das contribuições sociais - Salário de Contribuição: Salário maternidade mensal pago pelo Empregador'),
+    ('22', u'22 - Base de cálculo das contribuições sociais - Salário de Contribuição: Salário maternidade - 13o Salário, pago pelo Empregador'),
+    ('23', u'23 - Base de cálculo das contribuições sociais - Salário de Contribuição: Auxilio doença mensal - Regime Próprio de Previdência Social'),
+    ('24', u'24 - Base de cálculo das contribuições sociais - Salário de Contribuição: Auxilio doença 13o salário doença - Regime próprio de previdência social'),
+    ('25', u'25 - Base de cálculo das contribuições sociais - Salário de Contribuição: Salário maternidade mensal pago pelo INSS'),
+    ('26', u'26 - Base de cálculo das contribuições sociais - Salário de Contribuição: Salário maternidade - 13° salário, pago pelo INSS'),
+    ('31', u'31 - Contribuição descontada do Segurado sobre salário de contribuição: Mensal'),
+    ('32', u'32 - Contribuição descontada do Segurado sobre salário de contribuição: 13o Salário'),
+    ('34', u'34 - Contribuição descontada do Segurado sobre salário de contribuição: SEST'),
+    ('35', u'35 - Contribuição descontada do Segurado sobre salário de contribuição: SENAT'),
+    ('51', u'51 - Outros: Salário-família'),
+    ('61', u'61 - Outros: Complemento de salário-mínimo - Regime próprio de previdência social'),
+    ('91', u'91 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Mensal'),
+    ('92', u'92 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: 13o Salário'),
+    ('93', u'93 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Salário maternidade'),
+    ('94', u'94 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Salário maternidade 13o salário'),
+    ('95', u'95 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Exclusiva do Empregador - mensal'),
+    ('96', u'96 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Exclusiva do Empregador - 13º salário'),
+    ('97', u'97 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Exclusiva do Empregador - Salário maternidade'),
+    ('98', u'98 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Exclusiva do Empregador - Salário maternidade 13º salário'),
 )
 
 CHOICES_S1010_INCLUSAO_CODINCCPRP = (
@@ -228,88 +312,12 @@ CHOICES_S1010_INCLUSAO_CODINCCPRP = (
     ('96', u'96 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Contribuição do pensionista - 13º salário'),
 )
 
-CHOICES_S1010_INCLUSAO_CODINCSIND = (
-    ('00', u'00 - Não é base de cálculo'),
-    ('11', u'11 - Base de cálculo'),
-    ('31', u'31 - Valor da contribuição sindical laboral descontada'),
-    ('91', u'91 - Incidência suspensa em decorrência de decisão judicial'),
-)
-
-CHOICES_S1010_INCLUSAO_TPPROC = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
-)
-
-CHOICES_S1010_ALTERACAO_CODINCSIND = (
-    ('00', u'00 - Não é base de cálculo'),
-    ('11', u'11 - Base de cálculo'),
-    ('31', u'31 - Valor da contribuição sindical laboral descontada'),
-    ('91', u'91 - Incidência suspensa em decorrência de decisão judicial'),
-)
-
-CHOICES_S1010_ALTERACAO_EXTDECISAO = (
-    (1, u'1 - Contribuição Previdenciária do Ente Público'),
-    (1, u'1 - Contribuição Previdenciária Patronal'),
-    (2, u'2 - Contribuição Previdenciária do Ente Público + Descontada dos Segurados'),
-    (2, u'2 - Contribuição Previdenciária Patronal + Descontada dos Segurados'),
-    (3, u'3 - Contribuição Previdenciária Descontada dos Segurados'),
-)
-
-CHOICES_S1010_ALTERACAO_TPPROC = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
-)
-
-CHOICES_S1010_ALTERACAO_TETOREMUN = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1010_ALTERACAO_CODINCCP = (
-    ('00', u'00 - Não é base de cálculo'),
-    ('01', u'01 - Não é base de cálculo em função de acordos internacionais de previdência social'),
-    ('11', u'11 - Base de cálculo das contribuições sociais - Salário de Contribuição: Mensal'),
-    ('12', u'12 - Base de cálculo das contribuições sociais - Salário de Contribuição: 13o Salário'),
-    ('13', u'13 - Base de cálculo das contribuições sociais - Salário de Contribuição: Exclusiva do Empregador - mensal'),
-    ('14', u'14 - Base de cálculo das contribuições sociais - Salário de Contribuição: Exclusiva do Empregador - 13° salário'),
-    ('15', u'15 - Base de cálculo das contribuições sociais - Salário de Contribuição: Exclusiva do segurado - mensal'),
-    ('16', u'16 - Base de cálculo das contribuições sociais - Salário de Contribuição: Exclusiva do segurado - 13° salário'),
-    ('21', u'21 - Base de cálculo das contribuições sociais - Salário de Contribuição: Salário maternidade mensal pago pelo Empregador'),
-    ('22', u'22 - Base de cálculo das contribuições sociais - Salário de Contribuição: Salário maternidade - 13o Salário, pago pelo Empregador'),
-    ('23', u'23 - Base de cálculo das contribuições sociais - Salário de Contribuição: Auxilio doença mensal - Regime Próprio de Previdência Social'),
-    ('24', u'24 - Base de cálculo das contribuições sociais - Salário de Contribuição: Auxilio doença 13o salário doença - Regime próprio de previdência social'),
-    ('25', u'25 - Base de cálculo das contribuições sociais - Salário de Contribuição: Salário maternidade mensal pago pelo INSS'),
-    ('26', u'26 - Base de cálculo das contribuições sociais - Salário de Contribuição: Salário maternidade - 13° salário, pago pelo INSS'),
-    ('31', u'31 - Contribuição descontada do Segurado sobre salário de contribuição: Mensal'),
-    ('32', u'32 - Contribuição descontada do Segurado sobre salário de contribuição: 13o Salário'),
-    ('34', u'34 - Contribuição descontada do Segurado sobre salário de contribuição: SEST'),
-    ('35', u'35 - Contribuição descontada do Segurado sobre salário de contribuição: SENAT'),
-    ('51', u'51 - Outros: Salário-família'),
-    ('61', u'61 - Outros: Complemento de salário-mínimo - Regime próprio de previdência social'),
-    ('91', u'91 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Mensal'),
-    ('92', u'92 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: 13o Salário'),
-    ('93', u'93 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Salário maternidade'),
-    ('94', u'94 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Salário maternidade 13o salário'),
-    ('95', u'95 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Exclusiva do Empregador - mensal'),
-    ('96', u'96 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Exclusiva do Empregador - 13º salário'),
-    ('97', u'97 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Exclusiva do Empregador - Salário maternidade'),
-    ('98', u'98 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Exclusiva do Empregador - Salário maternidade 13º salário'),
-)
-
 CHOICES_S1010_INCLUSAO_CODINCFGTS = (
     ('00', u'00 - Não é Base de Cálculo do FGTS'),
     ('11', u'11 - Base de Cálculo do FGTS'),
     ('12', u'12 - Base de Cálculo do FGTS 13° salário'),
     ('21', u'21 - Base de Cálculo do FGTS Rescisório (aviso prévio)'),
     ('91', u'91 - Incidência suspensa em decorrência de decisão judicial'),
-)
-
-CHOICES_S1010_INCLUSAO_EXTDECISAO = (
-    (1, u'1 - Contribuição Previdenciária do Ente Público'),
-    (1, u'1 - Contribuição Previdenciária Patronal'),
-    (2, u'2 - Contribuição Previdenciária do Ente Público + Descontada dos Segurados'),
-    (2, u'2 - Contribuição Previdenciária Patronal + Descontada dos Segurados'),
-    (3, u'3 - Contribuição Previdenciária Descontada dos Segurados'),
 )
 
 CHOICES_S1010_INCLUSAO_CODINCIRRF = (
@@ -361,44 +369,36 @@ CHOICES_S1010_INCLUSAO_CODINCIRRF = (
     ('95', u'95 - Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre: RRA'),
 )
 
-CHOICES_S1010_ALTERACAO_CODINCCPRP = (
-    ('00', u'00 - Não compõe a apuração de contribuições devidas ao RPPS/regime militar: Sem incidência para RPPS/regime militar'),
-    ('01', u'01 - Não compõe a apuração de contribuições devidas ao RPPS/regime militar: Sem incidência em função de acordos internacionais de previdência social'),
-    ('10', u'10 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Do segurado de RPPS/militar e a cargo do ente público - mensal'),
-    ('11', u'11 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Do segurado de RPPS/militar e a cargo do ente público - 13º salário'),
-    ('12', u'12 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Somente para o ente público - mensal'),
-    ('13', u'13 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Somente para o ente público - 13° salário'),
-    ('14', u'14 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Somente do segurado - mensal'),
-    ('15', u'15 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Somente do segurado - 13° salário'),
-    ('16', u'16 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Verbas temporárias - contribuição do segurado e a cargo do ente - mensal'),
-    ('17', u'17 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Verbas temporárias - contribuição do segurado e a cargo do ente - 13º salário'),
-    ('18', u'18 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Verbas temporárias - contribuição somente do segurado - mensal'),
-    ('19', u'19 - Verbas temporárias - contribuição somente do segurado - 13° salário'),
-    ('20', u'20 - Base de cálculo das contribuições (remuneração de contribuição para o RPPS/regime militar): Provento/pensão considerado para apuração da parcela excedente a teto RGPS'),
-    ('21', u'21 - Base de cálculo das contribuições (remuneração de contribuição) para o RPPS de outro ente público: Do segurado de RPPS/militar e a cargo do ente público - mensal'),
-    ('22', u'22 - Base de cálculo das contribuições (remuneração de contribuição) para o RPPS de outro ente público: Do segurado de RPPS/militar e a cargo do ente público - 13º salário'),
-    ('23', u'23 - Base de cálculo das contribuições (remuneração de contribuição) para o RPPS de outro ente público: Somente para o ente público - mensal'),
-    ('24', u'24 - Base de cálculo das contribuições (remuneração de contribuição) para o RPPS de outro ente público: Somente para o ente público - 13° salário'),
-    ('25', u'25 - Base de cálculo das contribuições (remuneração de contribuição) para o RPPS de outro ente público: Verbas temporárias - contribuição do segurado e a cargo do ente - mensal'),
-    ('26', u'26 - Base de cálculo das contribuições (remuneração de contribuição) para o RPPS de outro ente público: Verbas temporárias - contribuição do segurado e a cargo do ente - 13º salário'),
-    ('27', u'27 - Base de cálculo das contribuições (remuneração de contribuição) para o RPPS de outro ente público: Verbas temporárias - contribuição somente do segurado - mensal'),
-    ('28', u'28 - Base de cálculo das contribuições (remuneração de contribuição) para o RPPS de outro ente público: Verbas temporárias - contribuição somente do segurado - 13° salário'),
-    ('31', u'31 - Contribuição descontada do segurado e beneficiário: Do segurado ativo RPPS/militar - mensal'),
-    ('32', u'32 - Contribuição descontada do segurado e beneficiário: Do segurado ativo RPPS/militar - 13º salário'),
-    ('33', u'33 - Contribuição descontada do segurado e beneficiário: Do aposentado RPPS/reforma/reserva - mensal'),
-    ('34', u'34 - Contribuição descontada do segurado e beneficiário: Do aposentado RPPS /reforma/reserva - 13º salário'),
-    ('35', u'35 - Contribuição descontada do segurado e beneficiário: Do pensionista RPPS/militar - mensal'),
-    ('36', u'36 - Contribuição descontada do segurado e beneficiário: Do pensionista RPPS/militar - 13º salário'),
-    ('41', u'41 - Contribuição descontada para RPPS de outro ente público: Do segurado ativo RPPS/militar - mensal'),
-    ('42', u'42 - Contribuição descontada para RPPS de outro ente público: Do segurado ativo RPPS/militar - 13º salário'),
-    ('51', u'51 - Isenção de contribuição: Contribuição descontada para RPPS de outro ente público: Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - mensal'),
-    ('52', u'52 - Contribuição descontada para RPPS de outro ente público: Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - 13º salário'),
-    ('91', u'91 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Contribuição do segurado ativo RPPS/militar - mensal'),
-    ('92', u'92 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Contribuição do segurado ativo RPPS/militar - 13º salário'),
-    ('93', u'93 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Contribuição do aposentado/reforma/reserva - mensal'),
-    ('94', u'94 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Contribuição do aposentado/reforma/reserva - 13º salário'),
-    ('95', u'95 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Contribuição do pensionista - mensal'),
-    ('96', u'96 - Suspensão de incidência sobre Salário de Contribuição em decorrência de decisão judicial: Contribuição do pensionista - 13º salário'),
+CHOICES_S1010_INCLUSAO_CODINCSIND = (
+    ('00', u'00 - Não é base de cálculo'),
+    ('11', u'11 - Base de cálculo'),
+    ('31', u'31 - Valor da contribuição sindical laboral descontada'),
+    ('91', u'91 - Incidência suspensa em decorrência de decisão judicial'),
+)
+
+CHOICES_S1010_INCLUSAO_EXTDECISAO = (
+    (1, u'1 - Contribuição Previdenciária do Ente Público'),
+    (1, u'1 - Contribuição Previdenciária Patronal'),
+    (2, u'2 - Contribuição Previdenciária do Ente Público + Descontada dos Segurados'),
+    (2, u'2 - Contribuição Previdenciária Patronal + Descontada dos Segurados'),
+    (3, u'3 - Contribuição Previdenciária Descontada dos Segurados'),
+)
+
+CHOICES_S1010_INCLUSAO_TETOREMUN = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1010_INCLUSAO_TPPROC = (
+    (1, u'1 - Administrativo'),
+    (2, u'2 - Judicial'),
+)
+
+CHOICES_S1010_INCLUSAO_TPRUBR = (
+    (1, u'1 - Vencimento, provento ou pensão'),
+    (2, u'2 - Desconto'),
+    (3, u'3 - Informativa'),
+    (4, u'4 - Informativa dedutora'),
 )
 
 class s1010alteracao(models.Model):

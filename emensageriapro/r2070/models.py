@@ -42,50 +42,25 @@ get_model = apps.get_model
 
 
 
+CHOICES_R2070_INDDECTERCEIRO = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
 CHOICES_R2070_INDNIF = (
     (1, u'1 - Beneficiário com NIF'),
     (2, u'2 - Beneficiário dispensado do NIF'),
     (3, u'3 - País não exige NIF'),
 )
 
-CHOICES_R2070_INDDECTERCEIRO = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_R2070_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-)
-
-CHOICES_R2070_INFOPROCJUD_TPINSCADVOGADO = (
-    (1, u'1 - Pessoa Jurídica'),
-    (2, u'2 - Pessoa Física'),
+CHOICES_R2070_INDPERREFERENCIA = (
+    (1, u'1 - Folha de Pagamento Mensal'),
+    (2, u'2 - Folha do Décimo Terceiro Salário'),
 )
 
 CHOICES_R2070_INDSUSPEXIG = (
     ('N', u'N - Não'),
     ('S', u'S - Sim'),
-)
-
-CHOICES_R2070_PGTOPJ_TPINSCADVOGADO = (
-    (1, u'1 - Pessoa Jurídica'),
-    (2, u'2 - Pessoa Física'),
-)
-
-CHOICES_R2070_PGTOPJ_INDORIGEMRECURSOS = (
-    (1, u'1 - Recursos do próprio declarante'),
-    (2, u'2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores'),
-)
-
-CHOICES_R2070_INFOPROCJUD_INDORIGEMRECURSOS = (
-    (1, u'1 - Recursos do próprio declarante'),
-    (2, u'2 - Recursos de terceiros -Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores'),
-)
-
-CHOICES_R2070_INFORRA_TPINSCADVOGADO = (
-    (1, u'1 - Pessoa Jurídica'),
-    (2, u'2 - Pessoa Física'),
 )
 
 CHOICES_R2070_INDTPDEDUCAO = (
@@ -95,6 +70,41 @@ CHOICES_R2070_INDTPDEDUCAO = (
     (4, u'4 - Funpresp'),
     (5, u'5 - Pensão Alimentícia'),
     (6, u'6 - Dependentes'),
+)
+
+CHOICES_R2070_INFOPROCJUD_INDORIGEMRECURSOS = (
+    (1, u'1 - Recursos do próprio declarante'),
+    (2, u'2 - Recursos de terceiros -Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores'),
+)
+
+CHOICES_R2070_INFOPROCJUD_TPINSCADVOGADO = (
+    (1, u'1 - Pessoa Jurídica'),
+    (2, u'2 - Pessoa Física'),
+)
+
+CHOICES_R2070_INFORRA_TPINSCADVOGADO = (
+    (1, u'1 - Pessoa Jurídica'),
+    (2, u'2 - Pessoa Física'),
+)
+
+CHOICES_R2070_INFORRA_TPPROCRRA = (
+    (1, u'1 - Administrativo'),
+    (2, u'2 - Judicial'),
+)
+
+CHOICES_R2070_PGTOPJ_INDORIGEMRECURSOS = (
+    (1, u'1 - Recursos do próprio declarante'),
+    (2, u'2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores'),
+)
+
+CHOICES_R2070_PGTOPJ_TPINSCADVOGADO = (
+    (1, u'1 - Pessoa Jurídica'),
+    (2, u'2 - Pessoa Física'),
+)
+
+CHOICES_R2070_TPINSC = (
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
 )
 
 CHOICES_R2070_TPISENCAO = (
@@ -109,16 +119,6 @@ CHOICES_R2070_TPISENCAO = (
     (7, u'7 - Valores pagos a titular ou sócio de microempresa ou empresa de pequeno porte, exceto pró-labore e alugueis'),
     (8, u'8 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço'),
     (9, u'9 - Benefícios indiretos e/ou reembolso de despesas recebidas por voluntário da copa do mundo ou da copa das confederações'),
-)
-
-CHOICES_R2070_INDPERREFERENCIA = (
-    (1, u'1 - Folha de Pagamento Mensal'),
-    (2, u'2 - Folha do Décimo Terceiro Salário'),
-)
-
-CHOICES_R2070_INFORRA_TPPROCRRA = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
 )
 
 class r2070compJud(models.Model):

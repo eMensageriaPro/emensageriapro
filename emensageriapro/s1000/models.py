@@ -42,125 +42,6 @@ get_model = apps.get_model
 
 
 
-CHOICES_S1000_ALTERACAO_INDSITPJ = (
-    (0, u'0 - Situação Normal'),
-    (1, u'1 - Extinção'),
-    (2, u'2 - Fusão'),
-    (3, u'3 - Cisão'),
-    (4, u'4 - Incorporação'),
-)
-
-CHOICES_S1000_INCLUSAO_SUBTETO = (
-    (1, u'1 - Executivo'),
-    (2, u'2 - Judiciário'),
-    (3, u'3 - Legislativo'),
-    (9, u'9 - Todos os poderes'),
-)
-
-CHOICES_S1000_ALTERACAO_INDOPCCP = (
-    (1, u'1 - Sobre a comercialização da sua produção'),
-    (2, u'2 - Sobre a folha de pagamento'),
-)
-
-CHOICES_S1000_ALTERACAO_INDDESFOLHA = (
-    (0, u'0 - Não Aplicável'),
-    (1, u'1 - Empresa enquadrada nos art. 7º a 9º da Lei 12.546/2011'),
-)
-
-CHOICES_S1000_INCLUSAO_INDACORDOISENMULTA = (
-    (0, u'0 - Sem acordo'),
-    (1, u'1 - Com acordo'),
-)
-
-CHOICES_S1000_INCLUSAO_INDSITPF = (
-    (0, u'0 - Situação Normal'),
-    (1, u'1 - Encerramento de espólio'),
-    (2, u'2 - Saída do país em caráter permanente'),
-)
-
-CHOICES_S1000_ALTERACAO_INDENTED = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1000_INCLUSAO_INDDESFOLHA = (
-    (0, u'0 - Não Aplicável'),
-    (1, u'1 - Empresa enquadrada nos art. 7º a 9º da Lei 12.546/2011'),
-)
-
-CHOICES_S1000_ALTERACAO_INDSITPF = (
-    (0, u'0 - Situação Normal'),
-    (1, u'1 - Encerramento de espólio'),
-    (2, u'2 - Saída do país em caráter permanente'),
-)
-
-CHOICES_S1000_ALTERACAO_PODEROP = (
-    (1, u'1 - Executivo'),
-    (2, u'2 - Judiciário'),
-    (3, u'3 - Legislativo'),
-    (4, u'4 - Ministério Público'),
-    (5, u'5 - Tribunal de Contas'),
-    (6, u'6 - Defensoria Pública'),
-)
-
-CHOICES_S1000_ALTERACAO_INDETT = (
-    ('N', u'N - Não é Empresa de Trabalho Temporário'),
-    ('S', u'S - Empresa de Trabalho Temporário'),
-)
-
-CHOICES_S1000_ALTERACAO_SUBTETO = (
-    (1, u'1 - Executivo'),
-    (2, u'2 - Judiciário'),
-    (3, u'3 - Legislativo'),
-    (9, u'9 - Todos os poderes'),
-)
-
-CHOICES_S1000_ALTERACAO_INDOPTREGELETRON = (
-    (0, u'0 - Não optou pelo registro eletrônico de empregados'),
-    (1, u'1 - Optou pelo registro eletrônico de empregados'),
-)
-
-CHOICES_S1000_ALTERACAO_INDACORDOISENMULTA = (
-    (0, u'0 - Sem acordo'),
-    (1, u'1 - Com acordo'),
-)
-
-CHOICES_S1000_INCLUSAO_PODEROP = (
-    (1, u'1 - Executivo'),
-    (2, u'2 - Judiciário'),
-    (3, u'3 - Legislativo'),
-    (4, u'4 - Ministério Público'),
-    (5, u'5 - Tribunal de Contas'),
-    (6, u'6 - Defensoria Pública'),
-)
-
-CHOICES_S1000_ALTERACAO_CLASSTRIB = (
-    ('01', u'01 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída'),
-    ('02', u'02 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária não substituída'),
-    ('03', u'03 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída'),
-    ('04', u'04 - MEI - Micro Empreendedor Individual'),
-    ('06', u'06 - Agroindústria'),
-    ('07', u'07 - Produtor Rural Pessoa Jurídica'),
-    ('08', u'08 - Consórcio Simplificado de Produtores Rurais'),
-    ('09', u'09 - Órgão Gestor de Mão de Obra'),
-    ('10', u'10 - Entidade Sindical a que se refere a Lei 12.023/2009'),
-    ('11', u'11 - Associação Desportiva que mantém Clube de Futebol Profissional'),
-    ('13', u'13 - Banco, caixa econômica, sociedade de crédito, financiamento e investimento e demais empresas relacionadas no parágrafo 1º do art. 22 da Lei 8.212./91'),
-    ('14', u'14 - Sindicatos em geral, exceto aquele classificado no código [10]'),
-    ('21', u'21 - Pessoa Física, exceto Segurado Especial'),
-    ('22', u'22 - Segurado Especial'),
-    ('60', u'60 - Missão Diplomática ou Repartição Consular de carreira estrangeira'),
-    ('70', u'70 - Empresa de que trata o Decreto 5.436/2005'),
-    ('80', u'80 - Entidade Beneficente de Assistência Social isenta de contribuições sociais'),
-    ('85', u'85 - Ente Federativo, Órgãos da União, Autarquias e Fundações Públicas'),
-    ('99', u'99 - Pessoas Jurídicas em Geral'),
-)
-
-CHOICES_S1000_INCLUSAO_INDOPCCP = (
-    (1, u'1 - Sobre a comercialização da sua produção'),
-    (2, u'2 - Sobre a folha de pagamento'),
-)
-
 ESTADOS = (
     ('AC', u'Acre'),
     ('AL', u'Alagoas'),
@@ -189,122 +70,6 @@ ESTADOS = (
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-)
-
-CHOICES_S1000_ALTERACAO_INDRPPS = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1000_INCLUSAO_INDRPPS = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1000_INCLUSAO_INDCOOP = (
-    (0, u'0 - Não é cooperativa'),
-    (1, u'1 - Cooperativa de Trabalho'),
-    (2, u'2 - Cooperativa de Produção'),
-    (3, u'3 - Outras Cooperativas'),
-)
-
-CHOICES_S1000_INCLUSAO_INDSITPJ = (
-    (0, u'0 - Situação Normal'),
-    (1, u'1 - Extinção'),
-    (2, u'2 - Fusão'),
-    (3, u'3 - Cisão'),
-    (4, u'4 - Incorporação'),
-)
-
-CHOICES_S1000_INCLUSAO_INDETT = (
-    ('N', u'N - Não é Empresa de Trabalho Temporário'),
-    ('S', u'S - Empresa de Trabalho Temporário'),
-)
-
-CHOICES_S1000_INCLUSAO_INDUGRPPS = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1000_INCLUSAO_CLASSTRIB = (
-    ('01', u'01 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída'),
-    ('02', u'02 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária não substituída'),
-    ('03', u'03 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída'),
-    ('04', u'04 - MEI - Micro Empreendedor Individual'),
-    ('06', u'06 - Agroindústria'),
-    ('07', u'07 - Produtor Rural Pessoa Jurídica'),
-    ('08', u'08 - Consórcio Simplificado de Produtores Rurais'),
-    ('09', u'09 - Órgão Gestor de Mão de Obra'),
-    ('10', u'10 - Entidade Sindical a que se refere a Lei 12.023/2009'),
-    ('11', u'11 - Associação Desportiva que mantém Clube de Futebol Profissional'),
-    ('13', u'13 - Banco, caixa econômica, sociedade de crédito, financiamento e investimento e demais empresas relacionadas no parágrafo 1º do art. 22 da Lei 8.212./91'),
-    ('14', u'14 - Sindicatos em geral, exceto aquele classificado no código [10]'),
-    ('21', u'21 - Pessoa Física, exceto Segurado Especial'),
-    ('22', u'22 - Segurado Especial'),
-    ('60', u'60 - Missão Diplomática ou Repartição Consular de carreira estrangeira'),
-    ('70', u'70 - Empresa de que trata o Decreto 5.436/2005'),
-    ('80', u'80 - Entidade Beneficente de Assistência Social isenta de contribuições sociais'),
-    ('85', u'85 - Ente Federativo, Órgãos da União, Autarquias e Fundações Públicas'),
-    ('99', u'99 - Pessoas Jurídicas em Geral'),
-)
-
-CHOICES_S1000_ALTERACAO_INDCONSTR = (
-    (0, u'0 - Não é Construtora'),
-    (1, u'1 - Empresa Construtora'),
-)
-
-CHOICES_S1000_ALTERACAO_INDUGRPPS = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1000_INCLUSAO_PREVCOMP = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1000_INCLUSAO_INDENTED = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1000_INCLUSAO_INDCONSTR = (
-    (0, u'0 - Não é Construtora'),
-    (1, u'1 - Empresa Construtora'),
-)
-
-CHOICES_S1000_INCLUSAO_ESFERAOP = (
-    (1, u'1 - Federal'),
-    (2, u'2 - Estadual ou distrital'),
-    (3, u'3 - Municipal'),
-)
-
-CHOICES_S1000_ALTERACAO_INDCOOP = (
-    (0, u'0 - Não é cooperativa'),
-    (1, u'1 - Cooperativa de Trabalho'),
-    (2, u'2 - Cooperativa de Produção'),
-    (3, u'3 - Outras Cooperativas'),
-)
-
-CHOICES_S1000_ALTERACAO_ESFERAOP = (
-    (1, u'1 - Federal'),
-    (2, u'2 - Estadual ou distrital'),
-    (3, u'3 - Municipal'),
-)
-
-CHOICES_S1000_ALTERACAO_IDEEFR = (
-    ('N', u'N - Não é EFR'),
-    ('S', u'S - É EFR'),
-)
-
-CHOICES_S1000_INCLUSAO_IDEEFR = (
-    ('N', u'N - Não é EFR'),
-    ('S', u'S - É EFR'),
-)
-
-CHOICES_S1000_INCLUSAO_INDOPTREGELETRON = (
-    (0, u'0 - Não optou pelo registro eletrônico de empregados'),
-    (1, u'1 - Optou pelo registro eletrônico de empregados'),
 )
 
 PERIODOS = (
@@ -346,9 +111,244 @@ PERIODOS = (
     ('2019-12', u'Dezembro/2019'),
 )
 
+CHOICES_S1000_ALTERACAO_CLASSTRIB = (
+    ('01', u'01 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída'),
+    ('02', u'02 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária não substituída'),
+    ('03', u'03 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída'),
+    ('04', u'04 - MEI - Micro Empreendedor Individual'),
+    ('06', u'06 - Agroindústria'),
+    ('07', u'07 - Produtor Rural Pessoa Jurídica'),
+    ('08', u'08 - Consórcio Simplificado de Produtores Rurais'),
+    ('09', u'09 - Órgão Gestor de Mão de Obra'),
+    ('10', u'10 - Entidade Sindical a que se refere a Lei 12.023/2009'),
+    ('11', u'11 - Associação Desportiva que mantém Clube de Futebol Profissional'),
+    ('13', u'13 - Banco, caixa econômica, sociedade de crédito, financiamento e investimento e demais empresas relacionadas no parágrafo 1º do art. 22 da Lei 8.212./91'),
+    ('14', u'14 - Sindicatos em geral, exceto aquele classificado no código [10]'),
+    ('21', u'21 - Pessoa Física, exceto Segurado Especial'),
+    ('22', u'22 - Segurado Especial'),
+    ('60', u'60 - Missão Diplomática ou Repartição Consular de carreira estrangeira'),
+    ('70', u'70 - Empresa de que trata o Decreto 5.436/2005'),
+    ('80', u'80 - Entidade Beneficente de Assistência Social isenta de contribuições sociais'),
+    ('85', u'85 - Ente Federativo, Órgãos da União, Autarquias e Fundações Públicas'),
+    ('99', u'99 - Pessoas Jurídicas em Geral'),
+)
+
+CHOICES_S1000_ALTERACAO_ESFERAOP = (
+    (1, u'1 - Federal'),
+    (2, u'2 - Estadual ou distrital'),
+    (3, u'3 - Municipal'),
+)
+
+CHOICES_S1000_ALTERACAO_IDEEFR = (
+    ('N', u'N - Não é EFR'),
+    ('S', u'S - É EFR'),
+)
+
+CHOICES_S1000_ALTERACAO_INDACORDOISENMULTA = (
+    (0, u'0 - Sem acordo'),
+    (1, u'1 - Com acordo'),
+)
+
+CHOICES_S1000_ALTERACAO_INDCONSTR = (
+    (0, u'0 - Não é Construtora'),
+    (1, u'1 - Empresa Construtora'),
+)
+
+CHOICES_S1000_ALTERACAO_INDCOOP = (
+    (0, u'0 - Não é cooperativa'),
+    (1, u'1 - Cooperativa de Trabalho'),
+    (2, u'2 - Cooperativa de Produção'),
+    (3, u'3 - Outras Cooperativas'),
+)
+
+CHOICES_S1000_ALTERACAO_INDDESFOLHA = (
+    (0, u'0 - Não Aplicável'),
+    (1, u'1 - Empresa enquadrada nos art. 7º a 9º da Lei 12.546/2011'),
+)
+
+CHOICES_S1000_ALTERACAO_INDENTED = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1000_ALTERACAO_INDETT = (
+    ('N', u'N - Não é Empresa de Trabalho Temporário'),
+    ('S', u'S - Empresa de Trabalho Temporário'),
+)
+
+CHOICES_S1000_ALTERACAO_INDOPCCP = (
+    (1, u'1 - Sobre a comercialização da sua produção'),
+    (2, u'2 - Sobre a folha de pagamento'),
+)
+
+CHOICES_S1000_ALTERACAO_INDOPTREGELETRON = (
+    (0, u'0 - Não optou pelo registro eletrônico de empregados'),
+    (1, u'1 - Optou pelo registro eletrônico de empregados'),
+)
+
+CHOICES_S1000_ALTERACAO_INDRPPS = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1000_ALTERACAO_INDSITPF = (
+    (0, u'0 - Situação Normal'),
+    (1, u'1 - Encerramento de espólio'),
+    (2, u'2 - Saída do país em caráter permanente'),
+)
+
+CHOICES_S1000_ALTERACAO_INDSITPJ = (
+    (0, u'0 - Situação Normal'),
+    (1, u'1 - Extinção'),
+    (2, u'2 - Fusão'),
+    (3, u'3 - Cisão'),
+    (4, u'4 - Incorporação'),
+)
+
+CHOICES_S1000_ALTERACAO_INDUGRPPS = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1000_ALTERACAO_PODEROP = (
+    (1, u'1 - Executivo'),
+    (2, u'2 - Judiciário'),
+    (3, u'3 - Legislativo'),
+    (4, u'4 - Ministério Público'),
+    (5, u'5 - Tribunal de Contas'),
+    (6, u'6 - Defensoria Pública'),
+)
+
 CHOICES_S1000_ALTERACAO_PREVCOMP = (
     ('N', u'N - Não'),
     ('S', u'S - Sim'),
+)
+
+CHOICES_S1000_ALTERACAO_SUBTETO = (
+    (1, u'1 - Executivo'),
+    (2, u'2 - Judiciário'),
+    (3, u'3 - Legislativo'),
+    (9, u'9 - Todos os poderes'),
+)
+
+CHOICES_S1000_INCLUSAO_CLASSTRIB = (
+    ('01', u'01 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída'),
+    ('02', u'02 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária não substituída'),
+    ('03', u'03 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída'),
+    ('04', u'04 - MEI - Micro Empreendedor Individual'),
+    ('06', u'06 - Agroindústria'),
+    ('07', u'07 - Produtor Rural Pessoa Jurídica'),
+    ('08', u'08 - Consórcio Simplificado de Produtores Rurais'),
+    ('09', u'09 - Órgão Gestor de Mão de Obra'),
+    ('10', u'10 - Entidade Sindical a que se refere a Lei 12.023/2009'),
+    ('11', u'11 - Associação Desportiva que mantém Clube de Futebol Profissional'),
+    ('13', u'13 - Banco, caixa econômica, sociedade de crédito, financiamento e investimento e demais empresas relacionadas no parágrafo 1º do art. 22 da Lei 8.212./91'),
+    ('14', u'14 - Sindicatos em geral, exceto aquele classificado no código [10]'),
+    ('21', u'21 - Pessoa Física, exceto Segurado Especial'),
+    ('22', u'22 - Segurado Especial'),
+    ('60', u'60 - Missão Diplomática ou Repartição Consular de carreira estrangeira'),
+    ('70', u'70 - Empresa de que trata o Decreto 5.436/2005'),
+    ('80', u'80 - Entidade Beneficente de Assistência Social isenta de contribuições sociais'),
+    ('85', u'85 - Ente Federativo, Órgãos da União, Autarquias e Fundações Públicas'),
+    ('99', u'99 - Pessoas Jurídicas em Geral'),
+)
+
+CHOICES_S1000_INCLUSAO_ESFERAOP = (
+    (1, u'1 - Federal'),
+    (2, u'2 - Estadual ou distrital'),
+    (3, u'3 - Municipal'),
+)
+
+CHOICES_S1000_INCLUSAO_IDEEFR = (
+    ('N', u'N - Não é EFR'),
+    ('S', u'S - É EFR'),
+)
+
+CHOICES_S1000_INCLUSAO_INDACORDOISENMULTA = (
+    (0, u'0 - Sem acordo'),
+    (1, u'1 - Com acordo'),
+)
+
+CHOICES_S1000_INCLUSAO_INDCONSTR = (
+    (0, u'0 - Não é Construtora'),
+    (1, u'1 - Empresa Construtora'),
+)
+
+CHOICES_S1000_INCLUSAO_INDCOOP = (
+    (0, u'0 - Não é cooperativa'),
+    (1, u'1 - Cooperativa de Trabalho'),
+    (2, u'2 - Cooperativa de Produção'),
+    (3, u'3 - Outras Cooperativas'),
+)
+
+CHOICES_S1000_INCLUSAO_INDDESFOLHA = (
+    (0, u'0 - Não Aplicável'),
+    (1, u'1 - Empresa enquadrada nos art. 7º a 9º da Lei 12.546/2011'),
+)
+
+CHOICES_S1000_INCLUSAO_INDENTED = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1000_INCLUSAO_INDETT = (
+    ('N', u'N - Não é Empresa de Trabalho Temporário'),
+    ('S', u'S - Empresa de Trabalho Temporário'),
+)
+
+CHOICES_S1000_INCLUSAO_INDOPCCP = (
+    (1, u'1 - Sobre a comercialização da sua produção'),
+    (2, u'2 - Sobre a folha de pagamento'),
+)
+
+CHOICES_S1000_INCLUSAO_INDOPTREGELETRON = (
+    (0, u'0 - Não optou pelo registro eletrônico de empregados'),
+    (1, u'1 - Optou pelo registro eletrônico de empregados'),
+)
+
+CHOICES_S1000_INCLUSAO_INDRPPS = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1000_INCLUSAO_INDSITPF = (
+    (0, u'0 - Situação Normal'),
+    (1, u'1 - Encerramento de espólio'),
+    (2, u'2 - Saída do país em caráter permanente'),
+)
+
+CHOICES_S1000_INCLUSAO_INDSITPJ = (
+    (0, u'0 - Situação Normal'),
+    (1, u'1 - Extinção'),
+    (2, u'2 - Fusão'),
+    (3, u'3 - Cisão'),
+    (4, u'4 - Incorporação'),
+)
+
+CHOICES_S1000_INCLUSAO_INDUGRPPS = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1000_INCLUSAO_PODEROP = (
+    (1, u'1 - Executivo'),
+    (2, u'2 - Judiciário'),
+    (3, u'3 - Legislativo'),
+    (4, u'4 - Ministério Público'),
+    (5, u'5 - Tribunal de Contas'),
+    (6, u'6 - Defensoria Pública'),
+)
+
+CHOICES_S1000_INCLUSAO_PREVCOMP = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1000_INCLUSAO_SUBTETO = (
+    (1, u'1 - Executivo'),
+    (2, u'2 - Judiciário'),
+    (3, u'3 - Legislativo'),
+    (9, u'9 - Todos os poderes'),
 )
 
 class s1000alteracao(models.Model):

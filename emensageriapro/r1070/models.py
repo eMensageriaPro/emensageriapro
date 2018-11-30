@@ -72,11 +72,6 @@ ESTADOS = (
     ('TO', u'Tocantins'),
 )
 
-CHOICES_R1070_INCLUSAO_TPPROC = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
-)
-
 PERIODOS = (
     ('2017-01', u'Janeiro/2017'),
     ('2017-02', u'Fevereiro/2017'),
@@ -116,7 +111,7 @@ PERIODOS = (
     ('2019-12', u'Dezembro/2019'),
 )
 
-CHOICES_R1070_INCLUSAO_INDAUTORIA = (
+CHOICES_R1070_ALTERACAO_INDAUTORIA = (
     (1, u'1 - Próprio contribuinte'),
     (2, u'2 - Outra entidade ou empresa'),
 )
@@ -124,21 +119,6 @@ CHOICES_R1070_INCLUSAO_INDAUTORIA = (
 CHOICES_R1070_ALTERACAO_INDDEPOSITO = (
     ('N', u'N - Não'),
     ('S', u'S - Sim'),
-)
-
-CHOICES_R1070_ALTERACAO_INDAUTORIA = (
-    (1, u'1 - Próprio contribuinte'),
-    (2, u'2 - Outra entidade ou empresa'),
-)
-
-CHOICES_R1070_INCLUSAO_INDDEPOSITO = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_R1070_EXCLUSAO_TPPROC = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
 )
 
 CHOICES_R1070_ALTERACAO_INDSUSP = (
@@ -162,6 +142,21 @@ CHOICES_R1070_ALTERACAO_TPPROC = (
     (2, u'2 - Judicial'),
 )
 
+CHOICES_R1070_EXCLUSAO_TPPROC = (
+    (1, u'1 - Administrativo'),
+    (2, u'2 - Judicial'),
+)
+
+CHOICES_R1070_INCLUSAO_INDAUTORIA = (
+    (1, u'1 - Próprio contribuinte'),
+    (2, u'2 - Outra entidade ou empresa'),
+)
+
+CHOICES_R1070_INCLUSAO_INDDEPOSITO = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
 CHOICES_R1070_INCLUSAO_INDSUSP = (
     ('01', u'01 - Liminar em Mandado de Segurança'),
     ('02', u'02 - Depósito Judicial do Montante Integral'),
@@ -176,6 +171,11 @@ CHOICES_R1070_INCLUSAO_INDSUSP = (
     ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
     ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
     ('92', u'92 - Sem suspensão da exigibilidade'),
+)
+
+CHOICES_R1070_INCLUSAO_TPPROC = (
+    (1, u'1 - Administrativo'),
+    (2, u'2 - Judicial'),
 )
 
 class r1070alteracao(models.Model):

@@ -26,12 +26,28 @@
 <div class="login-box">
     <div class="login-logo"><h1>eMensageriaPro</h1>
         <p style="font-size:20px"><strong>eSocial e EFDReinf</strong></p>
-        <p style="font-size:16px">Versão: {{ versao_emensageria }} -<a href="http://www.emensageria.com.br/">www.emensageria.com.br</a>
+        <p style="font-size:16px">Versão: {{ VERSAO_EMENSAGERIA }} -<a href="http://www.emensageria.com.br/">www.emensageria.com.br</a>
         </p></div><!-- /.login-logo -->
-    <div class="login-box-body"><p class="login-box-msg">Acesse o sistema</p>{% if messages %}
+    <div class="login-box-body"><p class="login-box-msg">Acesse o sistema</p>
+
+       {% for message in messages %}
+
+                    <div class="alert alert-success">
+                        <a class="close" href="#" data-dismiss="alert">×</a>
+
+                        {{ message }}
+
+                    </div>
+            {% endfor %}
+
+
+
+        {% if messages %}
         <div class="pad margin no-print">{% if form.errors %}
             <div class="alert alert-error"
-                 style="margin-bottom: 0!important;">Seu nome de usuário e senha não correspondem. Por favor, tente novamente.</div>{% endif %}</div>{% endif %}
+                 style="margin-bottom: 0!important;">Seu nome de usuário e senha não correspondem. Por favor, tente novamente.</div>{% endif %}</div>
+
+        {% endif %}
         <form action="#" method="post">{% csrf_token %}
             <div class="form-group has-feedback">
  {{ form.username|addcss:"form-control" }}

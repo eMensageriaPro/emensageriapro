@@ -317,14 +317,13 @@ def salvar(request, hash):
                     obj = Usuarios(**dados)
                     obj.save(using = db_slug)
                     #usuarios_cadastrar_custom
-                    #usuarios_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
                     from emensageriapro.controle_de_acesso.views.login_recuperar_senha import recuperar_senha_funcao
                     try:
                         recuperar_senha_funcao(users_dados['email'])
                         messages.success(request, 'A senha foi enviada para o e-mail %(email)s!' % users_dados)
                     except:
                         messages.error(request, 'Erro ao enviar o email com a senha!')
+                    messages.success(request, 'Cadastrado com sucesso!')
                 if request.session['retorno_pagina'] not in ('usuarios_apagar', 'usuarios_salvar', 'usuarios'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if usuarios_id != obj.id:
