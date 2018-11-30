@@ -44,18 +44,18 @@ __author__ = 'marcelovasconcellos'
 
 
 
+
 class form_s1200_dmdev(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_dmdev,self ).__init__(*args,**kwargs)
+        super(form_s1200_dmdev, self).__init__(*args,**kwargs)
+        
         self.fields['s1200_evtremun'].queryset = s1200evtRemun.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1200_evtremun'].widget.attrs['required'] = True
-        
-        self.fields['idedmdev'].widget.attrs['required'] = True
-        
+        self.fields['s1200_evtremun'].widget.attrs['required'] = True        
+        self.fields['idedmdev'].widget.attrs['required'] = True        
         self.fields['codcateg'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200dmDev
         exclude = [ 
@@ -66,18 +66,17 @@ class form_s1200_dmdev(forms.ModelForm):
         ]
 
 
+
 class form_s1200_infocomplem(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_infocomplem,self ).__init__(*args,**kwargs)
+        super(form_s1200_infocomplem, self).__init__(*args,**kwargs)
         
-        self.fields['s1200_evtremun'].widget.attrs['required'] = True
-        
-        self.fields['nmtrab'].widget.attrs['required'] = True
-        
+        self.fields['s1200_evtremun'].widget.attrs['required'] = True        
+        self.fields['nmtrab'].widget.attrs['required'] = True        
         self.fields['dtnascto'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200infoComplem
         exclude = [ 
@@ -88,16 +87,16 @@ class form_s1200_infocomplem(forms.ModelForm):
         ]
 
 
+
 class form_s1200_infointerm(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_infointerm,self ).__init__(*args,**kwargs)
+        super(form_s1200_infointerm, self).__init__(*args,**kwargs)
         
-        self.fields['s1200_evtremun'].widget.attrs['required'] = True
-        
+        self.fields['s1200_evtremun'].widget.attrs['required'] = True        
         self.fields['qtddiasinterm'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200infoInterm
         exclude = [ 
@@ -108,16 +107,16 @@ class form_s1200_infointerm(forms.ModelForm):
         ]
 
 
+
 class form_s1200_infomv(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_infomv,self ).__init__(*args,**kwargs)
+        super(form_s1200_infomv, self).__init__(*args,**kwargs)
         
-        self.fields['s1200_evtremun'].widget.attrs['required'] = True
-        
+        self.fields['s1200_evtremun'].widget.attrs['required'] = True        
         self.fields['indmv'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200infoMV
         exclude = [ 
@@ -128,20 +127,19 @@ class form_s1200_infomv(forms.ModelForm):
         ]
 
 
+
 class form_s1200_infoperant_ideadc(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_infoperant_ideadc,self ).__init__(*args,**kwargs)
+        super(form_s1200_infoperant_ideadc, self).__init__(*args,**kwargs)
+        
         self.fields['s1200_dmdev'].queryset = s1200dmDev.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1200_dmdev'].widget.attrs['required'] = True
-        
-        self.fields['tpacconv'].widget.attrs['required'] = True
-        
-        self.fields['dsc'].widget.attrs['required'] = True
-        
+        self.fields['s1200_dmdev'].widget.attrs['required'] = True        
+        self.fields['tpacconv'].widget.attrs['required'] = True        
+        self.fields['dsc'].widget.attrs['required'] = True        
         self.fields['remunsuc'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200infoPerAntideADC
         exclude = [ 
@@ -152,20 +150,19 @@ class form_s1200_infoperant_ideadc(forms.ModelForm):
         ]
 
 
+
 class form_s1200_infoperant_ideestablot(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_infoperant_ideestablot,self ).__init__(*args,**kwargs)
+        super(form_s1200_infoperant_ideestablot, self).__init__(*args,**kwargs)
+        
         self.fields['s1200_infoperant_ideperiodo'].queryset = s1200infoPerAntidePeriodo.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1200_infoperant_ideperiodo'].widget.attrs['required'] = True
-        
-        self.fields['tpinsc'].widget.attrs['required'] = True
-        
-        self.fields['nrinsc'].widget.attrs['required'] = True
-        
+        self.fields['s1200_infoperant_ideperiodo'].widget.attrs['required'] = True        
+        self.fields['tpinsc'].widget.attrs['required'] = True        
+        self.fields['nrinsc'].widget.attrs['required'] = True        
         self.fields['codlotacao'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200infoPerAntideEstabLot
         exclude = [ 
@@ -176,16 +173,17 @@ class form_s1200_infoperant_ideestablot(forms.ModelForm):
         ]
 
 
+
 class form_s1200_infoperant_ideperiodo(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_infoperant_ideperiodo,self ).__init__(*args,**kwargs)
-        self.fields['s1200_infoperant_ideadc'].queryset = s1200infoPerAntideADC.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1200_infoperant_ideadc'].widget.attrs['required'] = True
+        super(form_s1200_infoperant_ideperiodo, self).__init__(*args,**kwargs)
         
+        self.fields['s1200_infoperant_ideadc'].queryset = s1200infoPerAntideADC.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s1200_infoperant_ideadc'].widget.attrs['required'] = True        
         self.fields['perref'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200infoPerAntidePeriodo
         exclude = [ 
@@ -196,16 +194,16 @@ class form_s1200_infoperant_ideperiodo(forms.ModelForm):
         ]
 
 
+
 class form_s1200_infoperant_infoagnocivo(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_infoperant_infoagnocivo,self ).__init__(*args,**kwargs)
+        super(form_s1200_infoperant_infoagnocivo, self).__init__(*args,**kwargs)
         
-        self.fields['s1200_infoperant_remunperant'].widget.attrs['required'] = True
-        
+        self.fields['s1200_infoperant_remunperant'].widget.attrs['required'] = True        
         self.fields['grauexp'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200infoPerAntinfoAgNocivo
         exclude = [ 
@@ -216,16 +214,16 @@ class form_s1200_infoperant_infoagnocivo(forms.ModelForm):
         ]
 
 
+
 class form_s1200_infoperant_infocomplcont(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_infoperant_infocomplcont,self ).__init__(*args,**kwargs)
+        super(form_s1200_infoperant_infocomplcont, self).__init__(*args,**kwargs)
         
-        self.fields['s1200_dmdev'].widget.attrs['required'] = True
-        
+        self.fields['s1200_dmdev'].widget.attrs['required'] = True        
         self.fields['codcbo'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200infoPerAntinfoComplCont
         exclude = [ 
@@ -236,16 +234,17 @@ class form_s1200_infoperant_infocomplcont(forms.ModelForm):
         ]
 
 
+
 class form_s1200_infoperant_infotrabinterm(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_infoperant_infotrabinterm,self ).__init__(*args,**kwargs)
-        self.fields['s1200_infoperant_remunperant'].queryset = s1200infoPerAntremunPerAnt.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1200_infoperant_remunperant'].widget.attrs['required'] = True
+        super(form_s1200_infoperant_infotrabinterm, self).__init__(*args,**kwargs)
         
+        self.fields['s1200_infoperant_remunperant'].queryset = s1200infoPerAntremunPerAnt.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s1200_infoperant_remunperant'].widget.attrs['required'] = True        
         self.fields['codconv'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200infoPerAntinfoTrabInterm
         exclude = [ 
@@ -256,6 +255,7 @@ class form_s1200_infoperant_infotrabinterm(forms.ModelForm):
         ]
 
 
+
 class form_s1200_infoperant_itensremun(forms.ModelForm):
     qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
@@ -264,16 +264,14 @@ class form_s1200_infoperant_itensremun(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_infoperant_itensremun,self ).__init__(*args,**kwargs)
+        super(form_s1200_infoperant_itensremun, self).__init__(*args,**kwargs)
+        
         self.fields['s1200_infoperant_remunperant'].queryset = s1200infoPerAntremunPerAnt.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1200_infoperant_remunperant'].widget.attrs['required'] = True
-        
-        self.fields['codrubr'].widget.attrs['required'] = True
-        
-        self.fields['idetabrubr'].widget.attrs['required'] = True
-        
+        self.fields['s1200_infoperant_remunperant'].widget.attrs['required'] = True        
+        self.fields['codrubr'].widget.attrs['required'] = True        
+        self.fields['idetabrubr'].widget.attrs['required'] = True        
         self.fields['vrrubr'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200infoPerAntitensRemun
         exclude = [ 
@@ -284,14 +282,16 @@ class form_s1200_infoperant_itensremun(forms.ModelForm):
         ]
 
 
+
 class form_s1200_infoperant_remunperant(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_infoperant_remunperant,self ).__init__(*args,**kwargs)
+        super(form_s1200_infoperant_remunperant, self).__init__(*args,**kwargs)
+        
         self.fields['s1200_infoperant_ideestablot'].queryset = s1200infoPerAntideEstabLot.objects.using( slug ).filter(excluido=False).all()
         self.fields['s1200_infoperant_ideestablot'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200infoPerAntremunPerAnt
         exclude = [ 
@@ -302,21 +302,20 @@ class form_s1200_infoperant_remunperant(forms.ModelForm):
         ]
 
 
+
 class form_s1200_infoperapur_detoper(forms.ModelForm):
     vrpgtit = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_infoperapur_detoper,self ).__init__(*args,**kwargs)
+        super(form_s1200_infoperapur_detoper, self).__init__(*args,**kwargs)
+        
         self.fields['s1200_infoperapur_remunperapur'].queryset = s1200infoPerApurremunPerApur.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1200_infoperapur_remunperapur'].widget.attrs['required'] = True
-        
-        self.fields['cnpjoper'].widget.attrs['required'] = True
-        
-        self.fields['regans'].widget.attrs['required'] = True
-        
+        self.fields['s1200_infoperapur_remunperapur'].widget.attrs['required'] = True        
+        self.fields['cnpjoper'].widget.attrs['required'] = True        
+        self.fields['regans'].widget.attrs['required'] = True        
         self.fields['vrpgtit'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200infoPerApurdetOper
         exclude = [ 
@@ -327,23 +326,21 @@ class form_s1200_infoperapur_detoper(forms.ModelForm):
         ]
 
 
+
 class form_s1200_infoperapur_detplano(forms.ModelForm):
     vlrpgdep = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_infoperapur_detplano,self ).__init__(*args,**kwargs)
+        super(form_s1200_infoperapur_detplano, self).__init__(*args,**kwargs)
+        
         self.fields['s1200_infoperapur_detoper'].queryset = s1200infoPerApurdetOper.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1200_infoperapur_detoper'].widget.attrs['required'] = True
-        
-        self.fields['tpdep'].widget.attrs['required'] = True
-        
-        self.fields['nmdep'].widget.attrs['required'] = True
-        
-        self.fields['dtnascto'].widget.attrs['required'] = True
-        
+        self.fields['s1200_infoperapur_detoper'].widget.attrs['required'] = True        
+        self.fields['tpdep'].widget.attrs['required'] = True        
+        self.fields['nmdep'].widget.attrs['required'] = True        
+        self.fields['dtnascto'].widget.attrs['required'] = True        
         self.fields['vlrpgdep'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200infoPerApurdetPlano
         exclude = [ 
@@ -354,20 +351,19 @@ class form_s1200_infoperapur_detplano(forms.ModelForm):
         ]
 
 
+
 class form_s1200_infoperapur_ideestablot(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_infoperapur_ideestablot,self ).__init__(*args,**kwargs)
+        super(form_s1200_infoperapur_ideestablot, self).__init__(*args,**kwargs)
+        
         self.fields['s1200_dmdev'].queryset = s1200dmDev.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1200_dmdev'].widget.attrs['required'] = True
-        
-        self.fields['tpinsc'].widget.attrs['required'] = True
-        
-        self.fields['nrinsc'].widget.attrs['required'] = True
-        
+        self.fields['s1200_dmdev'].widget.attrs['required'] = True        
+        self.fields['tpinsc'].widget.attrs['required'] = True        
+        self.fields['nrinsc'].widget.attrs['required'] = True        
         self.fields['codlotacao'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200infoPerApurideEstabLot
         exclude = [ 
@@ -378,16 +374,16 @@ class form_s1200_infoperapur_ideestablot(forms.ModelForm):
         ]
 
 
+
 class form_s1200_infoperapur_infoagnocivo(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_infoperapur_infoagnocivo,self ).__init__(*args,**kwargs)
+        super(form_s1200_infoperapur_infoagnocivo, self).__init__(*args,**kwargs)
         
-        self.fields['s1200_infoperapur_remunperapur'].widget.attrs['required'] = True
-        
+        self.fields['s1200_infoperapur_remunperapur'].widget.attrs['required'] = True        
         self.fields['grauexp'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200infoPerApurinfoAgNocivo
         exclude = [ 
@@ -398,16 +394,17 @@ class form_s1200_infoperapur_infoagnocivo(forms.ModelForm):
         ]
 
 
+
 class form_s1200_infoperapur_infotrabinterm(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_infoperapur_infotrabinterm,self ).__init__(*args,**kwargs)
-        self.fields['s1200_infoperapur_remunperapur'].queryset = s1200infoPerApurremunPerApur.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1200_infoperapur_remunperapur'].widget.attrs['required'] = True
+        super(form_s1200_infoperapur_infotrabinterm, self).__init__(*args,**kwargs)
         
+        self.fields['s1200_infoperapur_remunperapur'].queryset = s1200infoPerApurremunPerApur.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s1200_infoperapur_remunperapur'].widget.attrs['required'] = True        
         self.fields['codconv'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200infoPerApurinfoTrabInterm
         exclude = [ 
@@ -418,6 +415,7 @@ class form_s1200_infoperapur_infotrabinterm(forms.ModelForm):
         ]
 
 
+
 class form_s1200_infoperapur_itensremun(forms.ModelForm):
     qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
@@ -426,16 +424,14 @@ class form_s1200_infoperapur_itensremun(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_infoperapur_itensremun,self ).__init__(*args,**kwargs)
+        super(form_s1200_infoperapur_itensremun, self).__init__(*args,**kwargs)
+        
         self.fields['s1200_infoperapur_remunperapur'].queryset = s1200infoPerApurremunPerApur.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1200_infoperapur_remunperapur'].widget.attrs['required'] = True
-        
-        self.fields['codrubr'].widget.attrs['required'] = True
-        
-        self.fields['idetabrubr'].widget.attrs['required'] = True
-        
+        self.fields['s1200_infoperapur_remunperapur'].widget.attrs['required'] = True        
+        self.fields['codrubr'].widget.attrs['required'] = True        
+        self.fields['idetabrubr'].widget.attrs['required'] = True        
         self.fields['vrrubr'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200infoPerApuritensRemun
         exclude = [ 
@@ -446,14 +442,16 @@ class form_s1200_infoperapur_itensremun(forms.ModelForm):
         ]
 
 
+
 class form_s1200_infoperapur_remunperapur(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_infoperapur_remunperapur,self ).__init__(*args,**kwargs)
+        super(form_s1200_infoperapur_remunperapur, self).__init__(*args,**kwargs)
+        
         self.fields['s1200_infoperapur_ideestablot'].queryset = s1200infoPerApurideEstabLot.objects.using( slug ).filter(excluido=False).all()
         self.fields['s1200_infoperapur_ideestablot'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200infoPerApurremunPerApur
         exclude = [ 
@@ -464,18 +462,18 @@ class form_s1200_infoperapur_remunperapur(forms.ModelForm):
         ]
 
 
+
 class form_s1200_procjudtrab(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_procjudtrab,self ).__init__(*args,**kwargs)
+        super(form_s1200_procjudtrab, self).__init__(*args,**kwargs)
+        
         self.fields['s1200_evtremun'].queryset = s1200evtRemun.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1200_evtremun'].widget.attrs['required'] = True
-        
-        self.fields['tptrib'].widget.attrs['required'] = True
-        
+        self.fields['s1200_evtremun'].widget.attrs['required'] = True        
+        self.fields['tptrib'].widget.attrs['required'] = True        
         self.fields['nrprocjud'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200procJudTrab
         exclude = [ 
@@ -486,23 +484,21 @@ class form_s1200_procjudtrab(forms.ModelForm):
         ]
 
 
+
 class form_s1200_remunoutrempr(forms.ModelForm):
     vlrremunoe = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_remunoutrempr,self ).__init__(*args,**kwargs)
+        super(form_s1200_remunoutrempr, self).__init__(*args,**kwargs)
+        
         self.fields['s1200_infomv'].queryset = s1200infoMV.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1200_infomv'].widget.attrs['required'] = True
-        
-        self.fields['tpinsc'].widget.attrs['required'] = True
-        
-        self.fields['nrinsc'].widget.attrs['required'] = True
-        
-        self.fields['codcateg'].widget.attrs['required'] = True
-        
+        self.fields['s1200_infomv'].widget.attrs['required'] = True        
+        self.fields['tpinsc'].widget.attrs['required'] = True        
+        self.fields['nrinsc'].widget.attrs['required'] = True        
+        self.fields['codcateg'].widget.attrs['required'] = True        
         self.fields['vlrremunoe'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200remunOutrEmpr
         exclude = [ 
@@ -513,20 +509,18 @@ class form_s1200_remunoutrempr(forms.ModelForm):
         ]
 
 
+
 class form_s1200_sucessaovinc(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1200_sucessaovinc,self ).__init__(*args,**kwargs)
+        super(form_s1200_sucessaovinc, self).__init__(*args,**kwargs)
         
-        self.fields['s1200_infocomplem'].widget.attrs['required'] = True
-        
-        self.fields['tpinscant'].widget.attrs['required'] = True
-        
-        self.fields['cnpjempregant'].widget.attrs['required'] = True
-        
+        self.fields['s1200_infocomplem'].widget.attrs['required'] = True        
+        self.fields['tpinscant'].widget.attrs['required'] = True        
+        self.fields['cnpjempregant'].widget.attrs['required'] = True        
         self.fields['dtadm'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1200sucessaoVinc
         exclude = [ 

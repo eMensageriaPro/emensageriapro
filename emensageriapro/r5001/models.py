@@ -42,14 +42,14 @@ get_model = apps.get_model
 
 
 
-CHOICES_R5001_TPINSC = (
+CHOICES_R5001_TPINSCTOMADOR = (
     (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
     (4, u'4 - CNO'),
 )
 
-CHOICES_R5001_TPINSCTOMADOR = (
+CHOICES_R5001_TPINSC = (
     (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
     (4, u'4 - CNO'),
 )
 

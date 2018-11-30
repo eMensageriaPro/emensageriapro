@@ -44,34 +44,26 @@ __author__ = 'marcelovasconcellos'
 
 
 
+
 class form_r3010_boletim(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r3010_boletim,self ).__init__(*args,**kwargs)
+        super(form_r3010_boletim, self).__init__(*args,**kwargs)
+        
         self.fields['r3010_evtespdesportivo'].queryset = r3010evtEspDesportivo.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r3010_evtespdesportivo'].widget.attrs['required'] = True
-        
-        self.fields['nrboletim'].widget.attrs['required'] = True
-        
-        self.fields['tpcompeticao'].widget.attrs['required'] = True
-        
-        self.fields['categevento'].widget.attrs['required'] = True
-        
-        self.fields['moddesportiva'].widget.attrs['required'] = True
-        
-        self.fields['nomecompeticao'].widget.attrs['required'] = True
-        
-        self.fields['cnpjmandante'].widget.attrs['required'] = True
-        
-        self.fields['pracadesportiva'].widget.attrs['required'] = True
-        
-        self.fields['uf'].widget.attrs['required'] = True
-        
-        self.fields['qtdepagantes'].widget.attrs['required'] = True
-        
+        self.fields['r3010_evtespdesportivo'].widget.attrs['required'] = True        
+        self.fields['nrboletim'].widget.attrs['required'] = True        
+        self.fields['tpcompeticao'].widget.attrs['required'] = True        
+        self.fields['categevento'].widget.attrs['required'] = True        
+        self.fields['moddesportiva'].widget.attrs['required'] = True        
+        self.fields['nomecompeticao'].widget.attrs['required'] = True        
+        self.fields['cnpjmandante'].widget.attrs['required'] = True        
+        self.fields['pracadesportiva'].widget.attrs['required'] = True        
+        self.fields['uf'].widget.attrs['required'] = True        
+        self.fields['qtdepagantes'].widget.attrs['required'] = True        
         self.fields['qtdenaopagantes'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r3010boletim
         exclude = [ 
@@ -82,21 +74,20 @@ class form_r3010_boletim(forms.ModelForm):
         ]
 
 
+
 class form_r3010_infoproc(forms.ModelForm):
     vlrcpsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r3010_infoproc,self ).__init__(*args,**kwargs)
+        super(form_r3010_infoproc, self).__init__(*args,**kwargs)
+        
         self.fields['r3010_evtespdesportivo'].queryset = r3010evtEspDesportivo.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r3010_evtespdesportivo'].widget.attrs['required'] = True
-        
-        self.fields['tpproc'].widget.attrs['required'] = True
-        
-        self.fields['nrproc'].widget.attrs['required'] = True
-        
+        self.fields['r3010_evtespdesportivo'].widget.attrs['required'] = True        
+        self.fields['tpproc'].widget.attrs['required'] = True        
+        self.fields['nrproc'].widget.attrs['required'] = True        
         self.fields['vlrcpsusp'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r3010infoProc
         exclude = [ 
@@ -107,21 +98,20 @@ class form_r3010_infoproc(forms.ModelForm):
         ]
 
 
+
 class form_r3010_outrasreceitas(forms.ModelForm):
     vlrreceita = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r3010_outrasreceitas,self ).__init__(*args,**kwargs)
+        super(form_r3010_outrasreceitas, self).__init__(*args,**kwargs)
+        
         self.fields['r3010_boletim'].queryset = r3010boletim.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r3010_boletim'].widget.attrs['required'] = True
-        
-        self.fields['tpreceita'].widget.attrs['required'] = True
-        
-        self.fields['vlrreceita'].widget.attrs['required'] = True
-        
+        self.fields['r3010_boletim'].widget.attrs['required'] = True        
+        self.fields['tpreceita'].widget.attrs['required'] = True        
+        self.fields['vlrreceita'].widget.attrs['required'] = True        
         self.fields['descreceita'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r3010outrasReceitas
         exclude = [ 
@@ -132,30 +122,25 @@ class form_r3010_outrasreceitas(forms.ModelForm):
         ]
 
 
+
 class form_r3010_receitaingressos(forms.ModelForm):
     precoindiv = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrtotal = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r3010_receitaingressos,self ).__init__(*args,**kwargs)
+        super(form_r3010_receitaingressos, self).__init__(*args,**kwargs)
+        
         self.fields['r3010_boletim'].queryset = r3010boletim.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r3010_boletim'].widget.attrs['required'] = True
-        
-        self.fields['tpingresso'].widget.attrs['required'] = True
-        
-        self.fields['descingr'].widget.attrs['required'] = True
-        
-        self.fields['qtdeingrvenda'].widget.attrs['required'] = True
-        
-        self.fields['qtdeingrvendidos'].widget.attrs['required'] = True
-        
-        self.fields['qtdeingrdev'].widget.attrs['required'] = True
-        
-        self.fields['precoindiv'].widget.attrs['required'] = True
-        
+        self.fields['r3010_boletim'].widget.attrs['required'] = True        
+        self.fields['tpingresso'].widget.attrs['required'] = True        
+        self.fields['descingr'].widget.attrs['required'] = True        
+        self.fields['qtdeingrvenda'].widget.attrs['required'] = True        
+        self.fields['qtdeingrvendidos'].widget.attrs['required'] = True        
+        self.fields['qtdeingrdev'].widget.attrs['required'] = True        
+        self.fields['precoindiv'].widget.attrs['required'] = True        
         self.fields['vlrtotal'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r3010receitaIngressos
         exclude = [ 

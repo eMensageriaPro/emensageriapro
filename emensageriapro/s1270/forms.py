@@ -43,6 +43,7 @@ __author__ = 'marcelovasconcellos'
 
 
 
+
 class form_s1270_remunavnp(forms.ModelForm):
     vrbccp00 = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrbccp15 = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
@@ -54,30 +55,21 @@ class form_s1270_remunavnp(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1270_remunavnp,self ).__init__(*args,**kwargs)
+        super(form_s1270_remunavnp, self).__init__(*args,**kwargs)
+        
         self.fields['s1270_evtcontratavnp'].queryset = s1270evtContratAvNP.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1270_evtcontratavnp'].widget.attrs['required'] = True
-        
-        self.fields['tpinsc'].widget.attrs['required'] = True
-        
-        self.fields['nrinsc'].widget.attrs['required'] = True
-        
-        self.fields['codlotacao'].widget.attrs['required'] = True
-        
-        self.fields['vrbccp00'].widget.attrs['required'] = True
-        
-        self.fields['vrbccp15'].widget.attrs['required'] = True
-        
-        self.fields['vrbccp20'].widget.attrs['required'] = True
-        
-        self.fields['vrbccp25'].widget.attrs['required'] = True
-        
-        self.fields['vrbccp13'].widget.attrs['required'] = True
-        
-        self.fields['vrbcfgts'].widget.attrs['required'] = True
-        
+        self.fields['s1270_evtcontratavnp'].widget.attrs['required'] = True        
+        self.fields['tpinsc'].widget.attrs['required'] = True        
+        self.fields['nrinsc'].widget.attrs['required'] = True        
+        self.fields['codlotacao'].widget.attrs['required'] = True        
+        self.fields['vrbccp00'].widget.attrs['required'] = True        
+        self.fields['vrbccp15'].widget.attrs['required'] = True        
+        self.fields['vrbccp20'].widget.attrs['required'] = True        
+        self.fields['vrbccp25'].widget.attrs['required'] = True        
+        self.fields['vrbccp13'].widget.attrs['required'] = True        
+        self.fields['vrbcfgts'].widget.attrs['required'] = True        
         self.fields['vrdesccp'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1270remunAvNP
         exclude = [ 

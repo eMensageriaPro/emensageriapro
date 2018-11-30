@@ -44,19 +44,19 @@ __author__ = 'marcelovasconcellos'
 
 
 
+
 class form_s5003_baseperante(forms.ModelForm):
     remfgtse = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5003_baseperante,self ).__init__(*args,**kwargs)
+        super(form_s5003_baseperante, self).__init__(*args,**kwargs)
+        
         self.fields['s5003_infobaseperante'].queryset = s5003infoBasePerAntE.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5003_infobaseperante'].widget.attrs['required'] = True
-        
-        self.fields['tpvalore'].widget.attrs['required'] = True
-        
+        self.fields['s5003_infobaseperante'].widget.attrs['required'] = True        
+        self.fields['tpvalore'].widget.attrs['required'] = True        
         self.fields['remfgtse'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5003basePerAntE
         exclude = [ 
@@ -67,19 +67,19 @@ class form_s5003_baseperante(forms.ModelForm):
         ]
 
 
+
 class form_s5003_baseperapur(forms.ModelForm):
     remfgts = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5003_baseperapur,self ).__init__(*args,**kwargs)
+        super(form_s5003_baseperapur, self).__init__(*args,**kwargs)
+        
         self.fields['s5003_infotrabfgts'].queryset = s5003infoTrabFGTS.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5003_infotrabfgts'].widget.attrs['required'] = True
-        
-        self.fields['tpvalor'].widget.attrs['required'] = True
-        
+        self.fields['s5003_infotrabfgts'].widget.attrs['required'] = True        
+        self.fields['tpvalor'].widget.attrs['required'] = True        
         self.fields['remfgts'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5003basePerApur
         exclude = [ 
@@ -90,19 +90,19 @@ class form_s5003_baseperapur(forms.ModelForm):
         ]
 
 
+
 class form_s5003_dpsperante(forms.ModelForm):
     dpsfgtse = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5003_dpsperante,self ).__init__(*args,**kwargs)
+        super(form_s5003_dpsperante, self).__init__(*args,**kwargs)
+        
         self.fields['s5003_infodpsperante'].queryset = s5003infoDpsPerAntE.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5003_infodpsperante'].widget.attrs['required'] = True
-        
-        self.fields['tpdpse'].widget.attrs['required'] = True
-        
+        self.fields['s5003_infodpsperante'].widget.attrs['required'] = True        
+        self.fields['tpdpse'].widget.attrs['required'] = True        
         self.fields['dpsfgtse'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5003dpsPerAntE
         exclude = [ 
@@ -113,19 +113,19 @@ class form_s5003_dpsperante(forms.ModelForm):
         ]
 
 
+
 class form_s5003_dpsperapur(forms.ModelForm):
     dpsfgts = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5003_dpsperapur,self ).__init__(*args,**kwargs)
+        super(form_s5003_dpsperapur, self).__init__(*args,**kwargs)
+        
         self.fields['s5003_infotrabdps'].queryset = s5003infoTrabDps.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5003_infotrabdps'].widget.attrs['required'] = True
-        
-        self.fields['tpdps'].widget.attrs['required'] = True
-        
+        self.fields['s5003_infotrabdps'].widget.attrs['required'] = True        
+        self.fields['tpdps'].widget.attrs['required'] = True        
         self.fields['dpsfgts'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5003dpsPerApur
         exclude = [ 
@@ -136,20 +136,19 @@ class form_s5003_dpsperapur(forms.ModelForm):
         ]
 
 
+
 class form_s5003_ideestablot(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5003_ideestablot,self ).__init__(*args,**kwargs)
+        super(form_s5003_ideestablot, self).__init__(*args,**kwargs)
+        
         self.fields['s5003_infofgts'].queryset = s5003infoFGTS.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5003_infofgts'].widget.attrs['required'] = True
-        
-        self.fields['tpinsc'].widget.attrs['required'] = True
-        
-        self.fields['nrinsc'].widget.attrs['required'] = True
-        
+        self.fields['s5003_infofgts'].widget.attrs['required'] = True        
+        self.fields['tpinsc'].widget.attrs['required'] = True        
+        self.fields['nrinsc'].widget.attrs['required'] = True        
         self.fields['codlotacao'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5003ideEstabLot
         exclude = [ 
@@ -160,16 +159,17 @@ class form_s5003_ideestablot(forms.ModelForm):
         ]
 
 
+
 class form_s5003_infobaseperante(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5003_infobaseperante,self ).__init__(*args,**kwargs)
-        self.fields['s5003_infotrabfgts'].queryset = s5003infoTrabFGTS.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5003_infotrabfgts'].widget.attrs['required'] = True
+        super(form_s5003_infobaseperante, self).__init__(*args,**kwargs)
         
+        self.fields['s5003_infotrabfgts'].queryset = s5003infoTrabFGTS.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s5003_infotrabfgts'].widget.attrs['required'] = True        
         self.fields['perref'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5003infoBasePerAntE
         exclude = [ 
@@ -180,16 +180,17 @@ class form_s5003_infobaseperante(forms.ModelForm):
         ]
 
 
+
 class form_s5003_infodpsperante(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5003_infodpsperante,self ).__init__(*args,**kwargs)
-        self.fields['s5003_infotrabdps'].queryset = s5003infoTrabDps.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5003_infotrabdps'].widget.attrs['required'] = True
+        super(form_s5003_infodpsperante, self).__init__(*args,**kwargs)
         
+        self.fields['s5003_infotrabdps'].queryset = s5003infoTrabDps.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s5003_infotrabdps'].widget.attrs['required'] = True        
         self.fields['perref'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5003infoDpsPerAntE
         exclude = [ 
@@ -200,14 +201,15 @@ class form_s5003_infodpsperante(forms.ModelForm):
         ]
 
 
+
 class form_s5003_infofgts(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5003_infofgts,self ).__init__(*args,**kwargs)
+        super(form_s5003_infofgts, self).__init__(*args,**kwargs)
         
         self.fields['s5003_evtbasesfgts'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5003infoFGTS
         exclude = [ 
@@ -218,16 +220,17 @@ class form_s5003_infofgts(forms.ModelForm):
         ]
 
 
+
 class form_s5003_infotrabdps(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5003_infotrabdps,self ).__init__(*args,**kwargs)
-        self.fields['s5003_infofgts'].queryset = s5003infoFGTS.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5003_infofgts'].widget.attrs['required'] = True
+        super(form_s5003_infotrabdps, self).__init__(*args,**kwargs)
         
+        self.fields['s5003_infofgts'].queryset = s5003infoFGTS.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s5003_infofgts'].widget.attrs['required'] = True        
         self.fields['codcateg'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5003infoTrabDps
         exclude = [ 
@@ -238,16 +241,17 @@ class form_s5003_infotrabdps(forms.ModelForm):
         ]
 
 
+
 class form_s5003_infotrabfgts(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5003_infotrabfgts,self ).__init__(*args,**kwargs)
-        self.fields['s5003_ideestablot'].queryset = s5003ideEstabLot.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5003_ideestablot'].widget.attrs['required'] = True
+        super(form_s5003_infotrabfgts, self).__init__(*args,**kwargs)
         
+        self.fields['s5003_ideestablot'].queryset = s5003ideEstabLot.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s5003_ideestablot'].widget.attrs['required'] = True        
         self.fields['codcateg'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5003infoTrabFGTS
         exclude = [ 

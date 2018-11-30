@@ -42,6 +42,11 @@ get_model = apps.get_model
 
 
 
+CHOICES_R2060_TPAJUSTE = (
+    (0, u'0 - Ajuste de redução'),
+    (1, u'1 - Ajuste de acréscimo'),
+)
+
 CHOICES_R2060_CODAJUSTE = (
     (1, u'1 - Ajuste da CPRB: Adoção do Regime de Caixa'),
     (10, u'10 - O valor do aporte de recursos realizado nos termos do art 6 §3 inciso III da Lei 11.079/2004'),
@@ -54,11 +59,6 @@ CHOICES_R2060_CODAJUSTE = (
     (7, u'7 - IPI, se incluído na receita bruta'),
     (8, u'8 - ICMS, quando cobrado pelo vendedor dos bens ou prestador dos serviços na condição de substituto tributário'),
     (9, u'9 - Receita bruta reconhecida pela construção, recuperação, reforma, ampliação ou melhoramento da infraestrutura, cuja contrapartida seja ativo intangível representativo de direito de exploração, no caso de contratos de concessão de serviços públicos'),
-)
-
-CHOICES_R2060_TPAJUSTE = (
-    (0, u'0 - Ajuste de redução'),
-    (1, u'1 - Ajuste de acréscimo'),
 )
 
 CHOICES_R2060_TPPROC = (

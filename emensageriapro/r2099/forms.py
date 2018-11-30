@@ -43,18 +43,17 @@ __author__ = 'marcelovasconcellos'
 
 
 
+
 class form_r2099_iderespinf(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2099_iderespinf,self ).__init__(*args,**kwargs)
+        super(form_r2099_iderespinf, self).__init__(*args,**kwargs)
         
-        self.fields['r2099_evtfechaevper'].widget.attrs['required'] = True
-        
-        self.fields['nmresp'].widget.attrs['required'] = True
-        
+        self.fields['r2099_evtfechaevper'].widget.attrs['required'] = True        
+        self.fields['nmresp'].widget.attrs['required'] = True        
         self.fields['cpfresp'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2099ideRespInf
         exclude = [ 

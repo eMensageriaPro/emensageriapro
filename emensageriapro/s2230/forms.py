@@ -43,20 +43,18 @@ __author__ = 'marcelovasconcellos'
 
 
 
+
 class form_s2230_emitente(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s2230_emitente,self ).__init__(*args,**kwargs)
+        super(form_s2230_emitente, self).__init__(*args,**kwargs)
         
-        self.fields['s2230_infoatestado'].widget.attrs['required'] = True
-        
-        self.fields['nmemit'].widget.attrs['required'] = True
-        
-        self.fields['ideoc'].widget.attrs['required'] = True
-        
+        self.fields['s2230_infoatestado'].widget.attrs['required'] = True        
+        self.fields['nmemit'].widget.attrs['required'] = True        
+        self.fields['ideoc'].widget.attrs['required'] = True        
         self.fields['nroc'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s2230emitente
         exclude = [ 
@@ -67,16 +65,16 @@ class form_s2230_emitente(forms.ModelForm):
         ]
 
 
+
 class form_s2230_fimafastamento(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s2230_fimafastamento,self ).__init__(*args,**kwargs)
+        super(form_s2230_fimafastamento, self).__init__(*args,**kwargs)
         
-        self.fields['s2230_evtafasttemp'].widget.attrs['required'] = True
-        
+        self.fields['s2230_evtafasttemp'].widget.attrs['required'] = True        
         self.fields['dttermafast'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s2230fimAfastamento
         exclude = [ 
@@ -87,16 +85,17 @@ class form_s2230_fimafastamento(forms.ModelForm):
         ]
 
 
+
 class form_s2230_infoatestado(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s2230_infoatestado,self ).__init__(*args,**kwargs)
-        self.fields['s2230_iniafastamento'].queryset = s2230iniAfastamento.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2230_iniafastamento'].widget.attrs['required'] = True
+        super(form_s2230_infoatestado, self).__init__(*args,**kwargs)
         
+        self.fields['s2230_iniafastamento'].queryset = s2230iniAfastamento.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s2230_iniafastamento'].widget.attrs['required'] = True        
         self.fields['qtddiasafast'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s2230infoAtestado
         exclude = [ 
@@ -107,18 +106,17 @@ class form_s2230_infoatestado(forms.ModelForm):
         ]
 
 
+
 class form_s2230_infocessao(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s2230_infocessao,self ).__init__(*args,**kwargs)
+        super(form_s2230_infocessao, self).__init__(*args,**kwargs)
         
-        self.fields['s2230_iniafastamento'].widget.attrs['required'] = True
-        
-        self.fields['cnpjcess'].widget.attrs['required'] = True
-        
+        self.fields['s2230_iniafastamento'].widget.attrs['required'] = True        
+        self.fields['cnpjcess'].widget.attrs['required'] = True        
         self.fields['infonus'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s2230infoCessao
         exclude = [ 
@@ -129,18 +127,17 @@ class form_s2230_infocessao(forms.ModelForm):
         ]
 
 
+
 class form_s2230_infomandsind(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s2230_infomandsind,self ).__init__(*args,**kwargs)
+        super(form_s2230_infomandsind, self).__init__(*args,**kwargs)
         
-        self.fields['s2230_iniafastamento'].widget.attrs['required'] = True
-        
-        self.fields['cnpjsind'].widget.attrs['required'] = True
-        
+        self.fields['s2230_iniafastamento'].widget.attrs['required'] = True        
+        self.fields['cnpjsind'].widget.attrs['required'] = True        
         self.fields['infonusremun'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s2230infoMandSind
         exclude = [ 
@@ -151,16 +148,16 @@ class form_s2230_infomandsind(forms.ModelForm):
         ]
 
 
+
 class form_s2230_inforetif(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s2230_inforetif,self ).__init__(*args,**kwargs)
+        super(form_s2230_inforetif, self).__init__(*args,**kwargs)
         
-        self.fields['s2230_evtafasttemp'].widget.attrs['required'] = True
-        
+        self.fields['s2230_evtafasttemp'].widget.attrs['required'] = True        
         self.fields['origretif'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s2230infoRetif
         exclude = [ 
@@ -171,18 +168,17 @@ class form_s2230_inforetif(forms.ModelForm):
         ]
 
 
+
 class form_s2230_iniafastamento(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s2230_iniafastamento,self ).__init__(*args,**kwargs)
+        super(form_s2230_iniafastamento, self).__init__(*args,**kwargs)
         
-        self.fields['s2230_evtafasttemp'].widget.attrs['required'] = True
-        
-        self.fields['dtiniafast'].widget.attrs['required'] = True
-        
+        self.fields['s2230_evtafasttemp'].widget.attrs['required'] = True        
+        self.fields['dtiniafast'].widget.attrs['required'] = True        
         self.fields['codmotafast'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s2230iniAfastamento
         exclude = [ 

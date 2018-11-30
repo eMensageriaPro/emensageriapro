@@ -43,21 +43,20 @@ __author__ = 'marcelovasconcellos'
 
 
 
+
 class form_r2020_infoprocretad(forms.ModelForm):
     valoradic = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2020_infoprocretad,self ).__init__(*args,**kwargs)
+        super(form_r2020_infoprocretad, self).__init__(*args,**kwargs)
+        
         self.fields['r2020_evtservprest'].queryset = r2020evtServPrest.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2020_evtservprest'].widget.attrs['required'] = True
-        
-        self.fields['tpprocretadic'].widget.attrs['required'] = True
-        
-        self.fields['nrprocretadic'].widget.attrs['required'] = True
-        
+        self.fields['r2020_evtservprest'].widget.attrs['required'] = True        
+        self.fields['tpprocretadic'].widget.attrs['required'] = True        
+        self.fields['nrprocretadic'].widget.attrs['required'] = True        
         self.fields['valoradic'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2020infoProcRetAd
         exclude = [ 
@@ -68,21 +67,20 @@ class form_r2020_infoprocretad(forms.ModelForm):
         ]
 
 
+
 class form_r2020_infoprocretpr(forms.ModelForm):
     valorprinc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2020_infoprocretpr,self ).__init__(*args,**kwargs)
+        super(form_r2020_infoprocretpr, self).__init__(*args,**kwargs)
+        
         self.fields['r2020_evtservprest'].queryset = r2020evtServPrest.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2020_evtservprest'].widget.attrs['required'] = True
-        
-        self.fields['tpprocretprinc'].widget.attrs['required'] = True
-        
-        self.fields['nrprocretprinc'].widget.attrs['required'] = True
-        
+        self.fields['r2020_evtservprest'].widget.attrs['required'] = True        
+        self.fields['tpprocretprinc'].widget.attrs['required'] = True        
+        self.fields['nrprocretprinc'].widget.attrs['required'] = True        
         self.fields['valorprinc'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2020infoProcRetPr
         exclude = [ 
@@ -91,6 +89,7 @@ class form_r2020_infoprocretpr(forms.ModelForm):
             'excluido',
  
         ]
+
 
 
 class form_r2020_infotpserv(forms.ModelForm):
@@ -106,16 +105,14 @@ class form_r2020_infotpserv(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2020_infotpserv,self ).__init__(*args,**kwargs)
+        super(form_r2020_infotpserv, self).__init__(*args,**kwargs)
+        
         self.fields['r2020_nfs'].queryset = r2020nfs.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2020_nfs'].widget.attrs['required'] = True
-        
-        self.fields['tpservico'].widget.attrs['required'] = True
-        
-        self.fields['vlrbaseret'].widget.attrs['required'] = True
-        
+        self.fields['r2020_nfs'].widget.attrs['required'] = True        
+        self.fields['tpservico'].widget.attrs['required'] = True        
+        self.fields['vlrbaseret'].widget.attrs['required'] = True        
         self.fields['vlrretencao'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2020infoTpServ
         exclude = [ 
@@ -126,23 +123,21 @@ class form_r2020_infotpserv(forms.ModelForm):
         ]
 
 
+
 class form_r2020_nfs(forms.ModelForm):
     vlrbruto = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2020_nfs,self ).__init__(*args,**kwargs)
+        super(form_r2020_nfs, self).__init__(*args,**kwargs)
+        
         self.fields['r2020_evtservprest'].queryset = r2020evtServPrest.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2020_evtservprest'].widget.attrs['required'] = True
-        
-        self.fields['serie'].widget.attrs['required'] = True
-        
-        self.fields['numdocto'].widget.attrs['required'] = True
-        
-        self.fields['dtemissaonf'].widget.attrs['required'] = True
-        
+        self.fields['r2020_evtservprest'].widget.attrs['required'] = True        
+        self.fields['serie'].widget.attrs['required'] = True        
+        self.fields['numdocto'].widget.attrs['required'] = True        
+        self.fields['dtemissaonf'].widget.attrs['required'] = True        
         self.fields['vlrbruto'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2020nfs
         exclude = [ 

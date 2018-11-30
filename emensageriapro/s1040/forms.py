@@ -43,22 +43,19 @@ __author__ = 'marcelovasconcellos'
 
 
 
+
 class form_s1040_alteracao(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1040_alteracao,self ).__init__(*args,**kwargs)
+        super(form_s1040_alteracao, self).__init__(*args,**kwargs)
         
-        self.fields['s1040_evttabfuncao'].widget.attrs['required'] = True
-        
-        self.fields['codfuncao'].widget.attrs['required'] = True
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
-        
-        self.fields['dscfuncao'].widget.attrs['required'] = True
-        
+        self.fields['s1040_evttabfuncao'].widget.attrs['required'] = True        
+        self.fields['codfuncao'].widget.attrs['required'] = True        
+        self.fields['inivalid'].widget.attrs['required'] = True        
+        self.fields['dscfuncao'].widget.attrs['required'] = True        
         self.fields['codcbo'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1040alteracao
         exclude = [ 
@@ -69,16 +66,16 @@ class form_s1040_alteracao(forms.ModelForm):
         ]
 
 
+
 class form_s1040_alteracao_novavalidade(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1040_alteracao_novavalidade,self ).__init__(*args,**kwargs)
+        super(form_s1040_alteracao_novavalidade, self).__init__(*args,**kwargs)
         
-        self.fields['s1040_alteracao'].widget.attrs['required'] = True
-        
+        self.fields['s1040_alteracao'].widget.attrs['required'] = True        
         self.fields['inivalid'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1040alteracaonovaValidade
         exclude = [ 
@@ -89,18 +86,17 @@ class form_s1040_alteracao_novavalidade(forms.ModelForm):
         ]
 
 
+
 class form_s1040_exclusao(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1040_exclusao,self ).__init__(*args,**kwargs)
+        super(form_s1040_exclusao, self).__init__(*args,**kwargs)
         
-        self.fields['s1040_evttabfuncao'].widget.attrs['required'] = True
-        
-        self.fields['codfuncao'].widget.attrs['required'] = True
-        
+        self.fields['s1040_evttabfuncao'].widget.attrs['required'] = True        
+        self.fields['codfuncao'].widget.attrs['required'] = True        
         self.fields['inivalid'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1040exclusao
         exclude = [ 
@@ -111,22 +107,19 @@ class form_s1040_exclusao(forms.ModelForm):
         ]
 
 
+
 class form_s1040_inclusao(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1040_inclusao,self ).__init__(*args,**kwargs)
+        super(form_s1040_inclusao, self).__init__(*args,**kwargs)
         
-        self.fields['s1040_evttabfuncao'].widget.attrs['required'] = True
-        
-        self.fields['codfuncao'].widget.attrs['required'] = True
-        
-        self.fields['inivalid'].widget.attrs['required'] = True
-        
-        self.fields['dscfuncao'].widget.attrs['required'] = True
-        
+        self.fields['s1040_evttabfuncao'].widget.attrs['required'] = True        
+        self.fields['codfuncao'].widget.attrs['required'] = True        
+        self.fields['inivalid'].widget.attrs['required'] = True        
+        self.fields['dscfuncao'].widget.attrs['required'] = True        
         self.fields['codcbo'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1040inclusao
         exclude = [ 

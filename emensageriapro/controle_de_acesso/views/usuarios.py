@@ -51,7 +51,7 @@ import base64
 from emensageriapro.mensageiro.models import ImportacaoArquivos
 from emensageriapro.mensageiro.forms import form_importacao_arquivos
 
-#IMPORTACOES
+from django.contrib.auth.models import User
 
 
 @login_required
@@ -274,6 +274,7 @@ def salvar(request, hash):
     permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
     if usuarios_id:
         usuarios = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuarios_id)
+        user = get_object_or_404(User.objects.using( db_slug ), id = usuarios.user_id)
     dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
     paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
@@ -282,12 +283,16 @@ def salvar(request, hash):
         mensagem = None
         if usuarios_id:
             usuarios_form = form_usuarios(request.POST or None, instance = usuarios, slug = db_slug)
+            users_form = form_users(request.POST or None, instance = user, slug = db_slug)
         else:
-            usuarios_form = form_usuarios(request.POST or None, slug = db_slug, initial={'password': 'asdkl1231'})
+            usuarios_form = form_usuarios(request.POST or None, slug = db_slug)
+            users_form = form_users(request.POST or None, slug = db_slug, initial={'password': 'asdkl1231'})
         if request.method == 'POST':
-            if usuarios_form.is_valid():
+            if usuarios_form.is_valid() and users_form.is_valid():
                 dados = usuarios_form.cleaned_data
+                users_dados = users_form.cleaned_data
                 if usuarios_id:
+                    User.objects.using(db_slug).filter(id=usuarios.user_id).update(**users_dados)
                     dados['modificado_por_id'] = usuario_id
                     dados['modificado_em'] = datetime.datetime.now()
                     #usuarios_campos_multiple_passo1
@@ -297,7 +302,13 @@ def salvar(request, hash):
                     #usuarios_campos_multiple_passo2
                     messages.success(request, 'Alterado com sucesso!')
                 else:
-                    dados['password'] = 'asdkl1231'
+                    users_dados['password'] = 'asdkl1231'
+                    users_dados['is_superuser'] = False
+                    users_dados['is_staff'] = True
+                    users_dados['is_active'] = True
+                    user_obj = User(**users_dados)
+                    user_obj.save(using = db_slug)
+                    dados['user_id'] = user_obj.pk
 
                     dados['criado_por_id'] = usuario_id
                     dados['criado_em'] = datetime.datetime.now()
@@ -337,6 +348,7 @@ def salvar(request, hash):
         context = {
             'usuarios': usuarios,
             'usuarios_form': usuarios_form,
+            'users_form': users_form,
             'mensagem': mensagem,
             'usuarios_id': int(usuarios_id),
             'usuario': usuario,

@@ -44,16 +44,17 @@ __author__ = 'marcelovasconcellos'
 
 
 
+
 class form_r2070_compjud(forms.ModelForm):
     vlrcompanocalend = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrcompanoant = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_compjud,self ).__init__(*args,**kwargs)
+        super(form_r2070_compjud, self).__init__(*args,**kwargs)
         
         self.fields['r2070_pgtopf'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070compJud
         exclude = [ 
@@ -64,15 +65,16 @@ class form_r2070_compjud(forms.ModelForm):
         ]
 
 
+
 class form_r2070_depjudicial(forms.ModelForm):
     vlrdepjudicial = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_depjudicial,self ).__init__(*args,**kwargs)
+        super(form_r2070_depjudicial, self).__init__(*args,**kwargs)
         
         self.fields['r2070_pgtopf'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070depJudicial
         exclude = [ 
@@ -83,21 +85,20 @@ class form_r2070_depjudicial(forms.ModelForm):
         ]
 
 
+
 class form_r2070_detcompet(forms.ModelForm):
     vlrrendtributavel = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_detcompet,self ).__init__(*args,**kwargs)
+        super(form_r2070_detcompet, self).__init__(*args,**kwargs)
+        
         self.fields['r2070_pgtopf'].queryset = r2070pgtoPF.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2070_pgtopf'].widget.attrs['required'] = True
-        
-        self.fields['indperreferencia'].widget.attrs['required'] = True
-        
-        self.fields['perrefpagto'].widget.attrs['required'] = True
-        
+        self.fields['r2070_pgtopf'].widget.attrs['required'] = True        
+        self.fields['indperreferencia'].widget.attrs['required'] = True        
+        self.fields['perrefpagto'].widget.attrs['required'] = True        
         self.fields['vlrrendtributavel'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070detCompet
         exclude = [ 
@@ -108,19 +109,19 @@ class form_r2070_detcompet(forms.ModelForm):
         ]
 
 
+
 class form_r2070_detdeducao(forms.ModelForm):
     vlrdeducao = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_detdeducao,self ).__init__(*args,**kwargs)
+        super(form_r2070_detdeducao, self).__init__(*args,**kwargs)
+        
         self.fields['r2070_pgtopf'].queryset = r2070pgtoPF.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2070_pgtopf'].widget.attrs['required'] = True
-        
-        self.fields['indtpdeducao'].widget.attrs['required'] = True
-        
+        self.fields['r2070_pgtopf'].widget.attrs['required'] = True        
+        self.fields['indtpdeducao'].widget.attrs['required'] = True        
         self.fields['vlrdeducao'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070detDeducao
         exclude = [ 
@@ -131,18 +132,18 @@ class form_r2070_detdeducao(forms.ModelForm):
         ]
 
 
+
 class form_r2070_ideestab(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_ideestab,self ).__init__(*args,**kwargs)
+        super(form_r2070_ideestab, self).__init__(*args,**kwargs)
+        
         self.fields['r2070_evtpgtosdivs'].queryset = r2070evtPgtosDivs.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2070_evtpgtosdivs'].widget.attrs['required'] = True
-        
-        self.fields['tpinsc'].widget.attrs['required'] = True
-        
+        self.fields['r2070_evtpgtosdivs'].widget.attrs['required'] = True        
+        self.fields['tpinsc'].widget.attrs['required'] = True        
         self.fields['nrinsc'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070ideEstab
         exclude = [ 
@@ -153,16 +154,16 @@ class form_r2070_ideestab(forms.ModelForm):
         ]
 
 
+
 class form_r2070_infomolestia(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_infomolestia,self ).__init__(*args,**kwargs)
+        super(form_r2070_infomolestia, self).__init__(*args,**kwargs)
         
-        self.fields['r2070_evtpgtosdivs'].widget.attrs['required'] = True
-        
+        self.fields['r2070_evtpgtosdivs'].widget.attrs['required'] = True        
         self.fields['dtlaudo'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070infoMolestia
         exclude = [ 
@@ -173,18 +174,18 @@ class form_r2070_infomolestia(forms.ModelForm):
         ]
 
 
+
 class form_r2070_infoprocjud(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_infoprocjud,self ).__init__(*args,**kwargs)
+        super(form_r2070_infoprocjud, self).__init__(*args,**kwargs)
+        
         self.fields['r2070_pgtopf'].queryset = r2070pgtoPF.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2070_pgtopf'].widget.attrs['required'] = True
-        
-        self.fields['nrprocjud'].widget.attrs['required'] = True
-        
+        self.fields['r2070_pgtopf'].widget.attrs['required'] = True        
+        self.fields['nrprocjud'].widget.attrs['required'] = True        
         self.fields['indorigemrecursos'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070infoProcJud
         exclude = [ 
@@ -195,20 +196,19 @@ class form_r2070_infoprocjud(forms.ModelForm):
         ]
 
 
+
 class form_r2070_infoprocjud_despprocjud(forms.ModelForm):
     vlrdespcustas = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrdespadvogados = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_infoprocjud_despprocjud,self ).__init__(*args,**kwargs)
+        super(form_r2070_infoprocjud_despprocjud, self).__init__(*args,**kwargs)
         
-        self.fields['r2070_infoprocjud'].widget.attrs['required'] = True
-        
-        self.fields['vlrdespcustas'].widget.attrs['required'] = True
-        
+        self.fields['r2070_infoprocjud'].widget.attrs['required'] = True        
+        self.fields['vlrdespcustas'].widget.attrs['required'] = True        
         self.fields['vlrdespadvogados'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070infoProcJuddespProcJud
         exclude = [ 
@@ -219,21 +219,20 @@ class form_r2070_infoprocjud_despprocjud(forms.ModelForm):
         ]
 
 
+
 class form_r2070_infoprocjud_ideadvogado(forms.ModelForm):
     vlradvogado = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_infoprocjud_ideadvogado,self ).__init__(*args,**kwargs)
+        super(form_r2070_infoprocjud_ideadvogado, self).__init__(*args,**kwargs)
+        
         self.fields['r2070_infoprocjud_despprocjud'].queryset = r2070infoProcJuddespProcJud.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2070_infoprocjud_despprocjud'].widget.attrs['required'] = True
-        
-        self.fields['tpinscadvogado'].widget.attrs['required'] = True
-        
-        self.fields['nrinscadvogado'].widget.attrs['required'] = True
-        
+        self.fields['r2070_infoprocjud_despprocjud'].widget.attrs['required'] = True        
+        self.fields['tpinscadvogado'].widget.attrs['required'] = True        
+        self.fields['nrinscadvogado'].widget.attrs['required'] = True        
         self.fields['vlradvogado'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070infoProcJudideAdvogado
         exclude = [ 
@@ -244,16 +243,16 @@ class form_r2070_infoprocjud_ideadvogado(forms.ModelForm):
         ]
 
 
+
 class form_r2070_infoprocjud_origemrecursos(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_infoprocjud_origemrecursos,self ).__init__(*args,**kwargs)
+        super(form_r2070_infoprocjud_origemrecursos, self).__init__(*args,**kwargs)
         
-        self.fields['r2070_infoprocjud'].widget.attrs['required'] = True
-        
+        self.fields['r2070_infoprocjud'].widget.attrs['required'] = True        
         self.fields['cnpjorigemrecursos'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070infoProcJudorigemRecursos
         exclude = [ 
@@ -264,14 +263,16 @@ class form_r2070_infoprocjud_origemrecursos(forms.ModelForm):
         ]
 
 
+
 class form_r2070_inforra(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_inforra,self ).__init__(*args,**kwargs)
+        super(form_r2070_inforra, self).__init__(*args,**kwargs)
+        
         self.fields['r2070_pgtopf'].queryset = r2070pgtoPF.objects.using( slug ).filter(excluido=False).all()
         self.fields['r2070_pgtopf'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070infoRRA
         exclude = [ 
@@ -282,20 +283,19 @@ class form_r2070_inforra(forms.ModelForm):
         ]
 
 
+
 class form_r2070_inforra_despprocjud(forms.ModelForm):
     vlrdespcustas = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrdespadvogados = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_inforra_despprocjud,self ).__init__(*args,**kwargs)
+        super(form_r2070_inforra_despprocjud, self).__init__(*args,**kwargs)
         
-        self.fields['r2070_inforra'].widget.attrs['required'] = True
-        
-        self.fields['vlrdespcustas'].widget.attrs['required'] = True
-        
+        self.fields['r2070_inforra'].widget.attrs['required'] = True        
+        self.fields['vlrdespcustas'].widget.attrs['required'] = True        
         self.fields['vlrdespadvogados'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070infoRRAdespProcJud
         exclude = [ 
@@ -306,21 +306,20 @@ class form_r2070_inforra_despprocjud(forms.ModelForm):
         ]
 
 
+
 class form_r2070_inforra_ideadvogado(forms.ModelForm):
     vlradvogado = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_inforra_ideadvogado,self ).__init__(*args,**kwargs)
+        super(form_r2070_inforra_ideadvogado, self).__init__(*args,**kwargs)
+        
         self.fields['r2070_inforra_despprocjud'].queryset = r2070infoRRAdespProcJud.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2070_inforra_despprocjud'].widget.attrs['required'] = True
-        
-        self.fields['tpinscadvogado'].widget.attrs['required'] = True
-        
-        self.fields['nrinscadvogado'].widget.attrs['required'] = True
-        
+        self.fields['r2070_inforra_despprocjud'].widget.attrs['required'] = True        
+        self.fields['tpinscadvogado'].widget.attrs['required'] = True        
+        self.fields['nrinscadvogado'].widget.attrs['required'] = True        
         self.fields['vlradvogado'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070infoRRAideAdvogado
         exclude = [ 
@@ -331,20 +330,18 @@ class form_r2070_inforra_ideadvogado(forms.ModelForm):
         ]
 
 
+
 class form_r2070_inforesidext(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_inforesidext,self ).__init__(*args,**kwargs)
+        super(form_r2070_inforesidext, self).__init__(*args,**kwargs)
         
-        self.fields['r2070_evtpgtosdivs'].widget.attrs['required'] = True
-        
-        self.fields['paisresid'].widget.attrs['required'] = True
-        
-        self.fields['dsclograd'].widget.attrs['required'] = True
-        
+        self.fields['r2070_evtpgtosdivs'].widget.attrs['required'] = True        
+        self.fields['paisresid'].widget.attrs['required'] = True        
+        self.fields['dsclograd'].widget.attrs['required'] = True        
         self.fields['indnif'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070infoResidExt
         exclude = [ 
@@ -355,26 +352,23 @@ class form_r2070_inforesidext(forms.ModelForm):
         ]
 
 
+
 class form_r2070_pgtopf(forms.ModelForm):
     vlrrendtributavel = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrirrf = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_pgtopf,self ).__init__(*args,**kwargs)
+        super(form_r2070_pgtopf, self).__init__(*args,**kwargs)
+        
         self.fields['r2070_ideestab'].queryset = r2070ideEstab.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2070_ideestab'].widget.attrs['required'] = True
-        
-        self.fields['dtpgto'].widget.attrs['required'] = True
-        
-        self.fields['indsuspexig'].widget.attrs['required'] = True
-        
-        self.fields['inddecterceiro'].widget.attrs['required'] = True
-        
-        self.fields['vlrrendtributavel'].widget.attrs['required'] = True
-        
+        self.fields['r2070_ideestab'].widget.attrs['required'] = True        
+        self.fields['dtpgto'].widget.attrs['required'] = True        
+        self.fields['indsuspexig'].widget.attrs['required'] = True        
+        self.fields['inddecterceiro'].widget.attrs['required'] = True        
+        self.fields['vlrrendtributavel'].widget.attrs['required'] = True        
         self.fields['vlrirrf'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070pgtoPF
         exclude = [ 
@@ -385,22 +379,21 @@ class form_r2070_pgtopf(forms.ModelForm):
         ]
 
 
+
 class form_r2070_pgtopj(forms.ModelForm):
     vlrrendtributavel = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrret = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_pgtopj,self ).__init__(*args,**kwargs)
+        super(form_r2070_pgtopj, self).__init__(*args,**kwargs)
+        
         self.fields['r2070_ideestab'].queryset = r2070ideEstab.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2070_ideestab'].widget.attrs['required'] = True
-        
-        self.fields['dtpagto'].widget.attrs['required'] = True
-        
-        self.fields['vlrrendtributavel'].widget.attrs['required'] = True
-        
+        self.fields['r2070_ideestab'].widget.attrs['required'] = True        
+        self.fields['dtpagto'].widget.attrs['required'] = True        
+        self.fields['vlrrendtributavel'].widget.attrs['required'] = True        
         self.fields['vlrret'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070pgtoPJ
         exclude = [ 
@@ -411,20 +404,19 @@ class form_r2070_pgtopj(forms.ModelForm):
         ]
 
 
+
 class form_r2070_pgtopj_despprocjud(forms.ModelForm):
     vlrdespcustas = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrdespadvogados = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_pgtopj_despprocjud,self ).__init__(*args,**kwargs)
+        super(form_r2070_pgtopj_despprocjud, self).__init__(*args,**kwargs)
         
-        self.fields['r2070_pgtopj_infoprocjud'].widget.attrs['required'] = True
-        
-        self.fields['vlrdespcustas'].widget.attrs['required'] = True
-        
+        self.fields['r2070_pgtopj_infoprocjud'].widget.attrs['required'] = True        
+        self.fields['vlrdespcustas'].widget.attrs['required'] = True        
         self.fields['vlrdespadvogados'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070pgtoPJdespProcJud
         exclude = [ 
@@ -435,21 +427,20 @@ class form_r2070_pgtopj_despprocjud(forms.ModelForm):
         ]
 
 
+
 class form_r2070_pgtopj_ideadvogado(forms.ModelForm):
     vlradvogado = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_pgtopj_ideadvogado,self ).__init__(*args,**kwargs)
+        super(form_r2070_pgtopj_ideadvogado, self).__init__(*args,**kwargs)
+        
         self.fields['r2070_pgtopj_despprocjud'].queryset = r2070pgtoPJdespProcJud.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2070_pgtopj_despprocjud'].widget.attrs['required'] = True
-        
-        self.fields['tpinscadvogado'].widget.attrs['required'] = True
-        
-        self.fields['nrinscadvogado'].widget.attrs['required'] = True
-        
+        self.fields['r2070_pgtopj_despprocjud'].widget.attrs['required'] = True        
+        self.fields['tpinscadvogado'].widget.attrs['required'] = True        
+        self.fields['nrinscadvogado'].widget.attrs['required'] = True        
         self.fields['vlradvogado'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070pgtoPJideAdvogado
         exclude = [ 
@@ -460,18 +451,18 @@ class form_r2070_pgtopj_ideadvogado(forms.ModelForm):
         ]
 
 
+
 class form_r2070_pgtopj_infoprocjud(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_pgtopj_infoprocjud,self ).__init__(*args,**kwargs)
+        super(form_r2070_pgtopj_infoprocjud, self).__init__(*args,**kwargs)
+        
         self.fields['r2070_pgtopj'].queryset = r2070pgtoPJ.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2070_pgtopj'].widget.attrs['required'] = True
-        
-        self.fields['nrprocjud'].widget.attrs['required'] = True
-        
+        self.fields['r2070_pgtopj'].widget.attrs['required'] = True        
+        self.fields['nrprocjud'].widget.attrs['required'] = True        
         self.fields['indorigemrecursos'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070pgtoPJinfoProcJud
         exclude = [ 
@@ -482,16 +473,16 @@ class form_r2070_pgtopj_infoprocjud(forms.ModelForm):
         ]
 
 
+
 class form_r2070_pgtopj_origemrecursos(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_pgtopj_origemrecursos,self ).__init__(*args,**kwargs)
+        super(form_r2070_pgtopj_origemrecursos, self).__init__(*args,**kwargs)
         
-        self.fields['r2070_pgtopj_infoprocjud'].widget.attrs['required'] = True
-        
+        self.fields['r2070_pgtopj_infoprocjud'].widget.attrs['required'] = True        
         self.fields['cnpjorigemrecursos'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070pgtoPJorigemRecursos
         exclude = [ 
@@ -502,26 +493,22 @@ class form_r2070_pgtopj_origemrecursos(forms.ModelForm):
         ]
 
 
+
 class form_r2070_pgtoresidext(forms.ModelForm):
     vlrpgto = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrret = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_pgtoresidext,self ).__init__(*args,**kwargs)
+        super(form_r2070_pgtoresidext, self).__init__(*args,**kwargs)
         
-        self.fields['r2070_ideestab'].widget.attrs['required'] = True
-        
-        self.fields['dtpagto'].widget.attrs['required'] = True
-        
-        self.fields['tprendimento'].widget.attrs['required'] = True
-        
-        self.fields['formatributacao'].widget.attrs['required'] = True
-        
-        self.fields['vlrpgto'].widget.attrs['required'] = True
-        
+        self.fields['r2070_ideestab'].widget.attrs['required'] = True        
+        self.fields['dtpagto'].widget.attrs['required'] = True        
+        self.fields['tprendimento'].widget.attrs['required'] = True        
+        self.fields['formatributacao'].widget.attrs['required'] = True        
+        self.fields['vlrpgto'].widget.attrs['required'] = True        
         self.fields['vlrret'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070pgtoResidExt
         exclude = [ 
@@ -532,19 +519,19 @@ class form_r2070_pgtoresidext(forms.ModelForm):
         ]
 
 
+
 class form_r2070_rendisento(forms.ModelForm):
     vlrisento = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2070_rendisento,self ).__init__(*args,**kwargs)
+        super(form_r2070_rendisento, self).__init__(*args,**kwargs)
+        
         self.fields['r2070_pgtopf'].queryset = r2070pgtoPF.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2070_pgtopf'].widget.attrs['required'] = True
-        
-        self.fields['tpisencao'].widget.attrs['required'] = True
-        
+        self.fields['r2070_pgtopf'].widget.attrs['required'] = True        
+        self.fields['tpisencao'].widget.attrs['required'] = True        
         self.fields['vlrisento'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2070rendIsento
         exclude = [ 

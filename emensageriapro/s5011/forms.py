@@ -44,6 +44,7 @@ __author__ = 'marcelovasconcellos'
 
 
 
+
 class form_s5011_basesaquis(forms.ModelForm):
     vlraquis = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrcpdescpr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
@@ -58,32 +59,22 @@ class form_s5011_basesaquis(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5011_basesaquis,self ).__init__(*args,**kwargs)
+        super(form_s5011_basesaquis, self).__init__(*args,**kwargs)
+        
         self.fields['s5011_ideestab'].queryset = s5011ideEstab.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5011_ideestab'].widget.attrs['required'] = True
-        
-        self.fields['indaquis'].widget.attrs['required'] = True
-        
-        self.fields['vlraquis'].widget.attrs['required'] = True
-        
-        self.fields['vrcpdescpr'].widget.attrs['required'] = True
-        
-        self.fields['vrcpnret'].widget.attrs['required'] = True
-        
-        self.fields['vrratnret'].widget.attrs['required'] = True
-        
-        self.fields['vrsenarnret'].widget.attrs['required'] = True
-        
-        self.fields['vrcpcalcpr'].widget.attrs['required'] = True
-        
-        self.fields['vrratdescpr'].widget.attrs['required'] = True
-        
-        self.fields['vrratcalcpr'].widget.attrs['required'] = True
-        
-        self.fields['vrsenardesc'].widget.attrs['required'] = True
-        
+        self.fields['s5011_ideestab'].widget.attrs['required'] = True        
+        self.fields['indaquis'].widget.attrs['required'] = True        
+        self.fields['vlraquis'].widget.attrs['required'] = True        
+        self.fields['vrcpdescpr'].widget.attrs['required'] = True        
+        self.fields['vrcpnret'].widget.attrs['required'] = True        
+        self.fields['vrratnret'].widget.attrs['required'] = True        
+        self.fields['vrsenarnret'].widget.attrs['required'] = True        
+        self.fields['vrcpcalcpr'].widget.attrs['required'] = True        
+        self.fields['vrratdescpr'].widget.attrs['required'] = True        
+        self.fields['vrratcalcpr'].widget.attrs['required'] = True        
+        self.fields['vrsenardesc'].widget.attrs['required'] = True        
         self.fields['vrsenarcalc'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5011basesAquis
         exclude = [ 
@@ -92,6 +83,7 @@ class form_s5011_basesaquis(forms.ModelForm):
             'excluido',
  
         ]
+
 
 
 class form_s5011_basesavnport(forms.ModelForm):
@@ -105,24 +97,17 @@ class form_s5011_basesavnport(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5011_basesavnport,self ).__init__(*args,**kwargs)
+        super(form_s5011_basesavnport, self).__init__(*args,**kwargs)
         
-        self.fields['s5011_idelotacao'].widget.attrs['required'] = True
-        
-        self.fields['vrbccp00'].widget.attrs['required'] = True
-        
-        self.fields['vrbccp15'].widget.attrs['required'] = True
-        
-        self.fields['vrbccp20'].widget.attrs['required'] = True
-        
-        self.fields['vrbccp25'].widget.attrs['required'] = True
-        
-        self.fields['vrbccp13'].widget.attrs['required'] = True
-        
-        self.fields['vrbcfgts'].widget.attrs['required'] = True
-        
+        self.fields['s5011_idelotacao'].widget.attrs['required'] = True        
+        self.fields['vrbccp00'].widget.attrs['required'] = True        
+        self.fields['vrbccp15'].widget.attrs['required'] = True        
+        self.fields['vrbccp20'].widget.attrs['required'] = True        
+        self.fields['vrbccp25'].widget.attrs['required'] = True        
+        self.fields['vrbccp13'].widget.attrs['required'] = True        
+        self.fields['vrbcfgts'].widget.attrs['required'] = True        
         self.fields['vrdesccp'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5011basesAvNPort
         exclude = [ 
@@ -133,6 +118,7 @@ class form_s5011_basesavnport(forms.ModelForm):
         ]
 
 
+
 class form_s5011_basescomerc(forms.ModelForm):
     vrbccompr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrcpsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
@@ -141,14 +127,13 @@ class form_s5011_basescomerc(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5011_basescomerc,self ).__init__(*args,**kwargs)
+        super(form_s5011_basescomerc, self).__init__(*args,**kwargs)
+        
         self.fields['s5011_ideestab'].queryset = s5011ideEstab.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5011_ideestab'].widget.attrs['required'] = True
-        
-        self.fields['indcomerc'].widget.attrs['required'] = True
-        
+        self.fields['s5011_ideestab'].widget.attrs['required'] = True        
+        self.fields['indcomerc'].widget.attrs['required'] = True        
         self.fields['vrbccompr'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5011basesComerc
         exclude = [ 
@@ -157,6 +142,7 @@ class form_s5011_basescomerc(forms.ModelForm):
             'excluido',
  
         ]
+
 
 
 class form_s5011_basesremun(forms.ModelForm):
@@ -177,42 +163,27 @@ class form_s5011_basesremun(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5011_basesremun,self ).__init__(*args,**kwargs)
+        super(form_s5011_basesremun, self).__init__(*args,**kwargs)
+        
         self.fields['s5011_idelotacao'].queryset = s5011ideLotacao.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5011_idelotacao'].widget.attrs['required'] = True
-        
-        self.fields['indincid'].widget.attrs['required'] = True
-        
-        self.fields['codcateg'].widget.attrs['required'] = True
-        
-        self.fields['vrbccp00'].widget.attrs['required'] = True
-        
-        self.fields['vrbccp15'].widget.attrs['required'] = True
-        
-        self.fields['vrbccp20'].widget.attrs['required'] = True
-        
-        self.fields['vrbccp25'].widget.attrs['required'] = True
-        
-        self.fields['vrsuspbccp00'].widget.attrs['required'] = True
-        
-        self.fields['vrsuspbccp15'].widget.attrs['required'] = True
-        
-        self.fields['vrsuspbccp20'].widget.attrs['required'] = True
-        
-        self.fields['vrsuspbccp25'].widget.attrs['required'] = True
-        
-        self.fields['vrdescsest'].widget.attrs['required'] = True
-        
-        self.fields['vrcalcsest'].widget.attrs['required'] = True
-        
-        self.fields['vrdescsenat'].widget.attrs['required'] = True
-        
-        self.fields['vrcalcsenat'].widget.attrs['required'] = True
-        
-        self.fields['vrsalfam'].widget.attrs['required'] = True
-        
+        self.fields['s5011_idelotacao'].widget.attrs['required'] = True        
+        self.fields['indincid'].widget.attrs['required'] = True        
+        self.fields['codcateg'].widget.attrs['required'] = True        
+        self.fields['vrbccp00'].widget.attrs['required'] = True        
+        self.fields['vrbccp15'].widget.attrs['required'] = True        
+        self.fields['vrbccp20'].widget.attrs['required'] = True        
+        self.fields['vrbccp25'].widget.attrs['required'] = True        
+        self.fields['vrsuspbccp00'].widget.attrs['required'] = True        
+        self.fields['vrsuspbccp15'].widget.attrs['required'] = True        
+        self.fields['vrsuspbccp20'].widget.attrs['required'] = True        
+        self.fields['vrsuspbccp25'].widget.attrs['required'] = True        
+        self.fields['vrdescsest'].widget.attrs['required'] = True        
+        self.fields['vrcalcsest'].widget.attrs['required'] = True        
+        self.fields['vrdescsenat'].widget.attrs['required'] = True        
+        self.fields['vrcalcsenat'].widget.attrs['required'] = True        
+        self.fields['vrsalfam'].widget.attrs['required'] = True        
         self.fields['vrsalmat'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5011basesRemun
         exclude = [ 
@@ -223,24 +194,21 @@ class form_s5011_basesremun(forms.ModelForm):
         ]
 
 
+
 class form_s5011_dadosopport(forms.ModelForm):
     fap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     aliqratajust = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5011_dadosopport,self ).__init__(*args,**kwargs)
+        super(form_s5011_dadosopport, self).__init__(*args,**kwargs)
         
-        self.fields['s5011_idelotacao'].widget.attrs['required'] = True
-        
-        self.fields['cnpjopportuario'].widget.attrs['required'] = True
-        
-        self.fields['aliqrat'].widget.attrs['required'] = True
-        
-        self.fields['fap'].widget.attrs['required'] = True
-        
+        self.fields['s5011_idelotacao'].widget.attrs['required'] = True        
+        self.fields['cnpjopportuario'].widget.attrs['required'] = True        
+        self.fields['aliqrat'].widget.attrs['required'] = True        
+        self.fields['fap'].widget.attrs['required'] = True        
         self.fields['aliqratajust'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5011dadosOpPort
         exclude = [ 
@@ -251,18 +219,18 @@ class form_s5011_dadosopport(forms.ModelForm):
         ]
 
 
+
 class form_s5011_ideestab(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5011_ideestab,self ).__init__(*args,**kwargs)
+        super(form_s5011_ideestab, self).__init__(*args,**kwargs)
+        
         self.fields['s5011_evtcs'].queryset = s5011evtCS.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5011_evtcs'].widget.attrs['required'] = True
-        
-        self.fields['tpinsc'].widget.attrs['required'] = True
-        
+        self.fields['s5011_evtcs'].widget.attrs['required'] = True        
+        self.fields['tpinsc'].widget.attrs['required'] = True        
         self.fields['nrinsc'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5011ideEstab
         exclude = [ 
@@ -273,20 +241,19 @@ class form_s5011_ideestab(forms.ModelForm):
         ]
 
 
+
 class form_s5011_idelotacao(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5011_idelotacao,self ).__init__(*args,**kwargs)
+        super(form_s5011_idelotacao, self).__init__(*args,**kwargs)
+        
         self.fields['s5011_ideestab'].queryset = s5011ideEstab.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5011_ideestab'].widget.attrs['required'] = True
-        
-        self.fields['codlotacao'].widget.attrs['required'] = True
-        
-        self.fields['fpas'].widget.attrs['required'] = True
-        
+        self.fields['s5011_ideestab'].widget.attrs['required'] = True        
+        self.fields['codlotacao'].widget.attrs['required'] = True        
+        self.fields['fpas'].widget.attrs['required'] = True        
         self.fields['codtercs'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5011ideLotacao
         exclude = [ 
@@ -297,20 +264,19 @@ class form_s5011_idelotacao(forms.ModelForm):
         ]
 
 
+
 class form_s5011_infoatconc(forms.ModelForm):
     fatormes = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     fator13 = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5011_infoatconc,self ).__init__(*args,**kwargs)
+        super(form_s5011_infoatconc, self).__init__(*args,**kwargs)
         
-        self.fields['s5011_infopj'].widget.attrs['required'] = True
-        
-        self.fields['fatormes'].widget.attrs['required'] = True
-        
+        self.fields['s5011_infopj'].widget.attrs['required'] = True        
+        self.fields['fatormes'].widget.attrs['required'] = True        
         self.fields['fator13'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5011infoAtConc
         exclude = [ 
@@ -321,20 +287,19 @@ class form_s5011_infoatconc(forms.ModelForm):
         ]
 
 
+
 class form_s5011_infocpseg(forms.ModelForm):
     vrdesccp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrcpseg = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5011_infocpseg,self ).__init__(*args,**kwargs)
+        super(form_s5011_infocpseg, self).__init__(*args,**kwargs)
         
-        self.fields['s5011_evtcs'].widget.attrs['required'] = True
-        
-        self.fields['vrdesccp'].widget.attrs['required'] = True
-        
+        self.fields['s5011_evtcs'].widget.attrs['required'] = True        
+        self.fields['vrdesccp'].widget.attrs['required'] = True        
         self.fields['vrcpseg'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5011infoCPSeg
         exclude = [ 
@@ -345,20 +310,20 @@ class form_s5011_infocpseg(forms.ModelForm):
         ]
 
 
+
 class form_s5011_infocrcontrib(forms.ModelForm):
     vrcr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrcrsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5011_infocrcontrib,self ).__init__(*args,**kwargs)
+        super(form_s5011_infocrcontrib, self).__init__(*args,**kwargs)
+        
         self.fields['s5011_evtcs'].queryset = s5011evtCS.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5011_evtcs'].widget.attrs['required'] = True
-        
-        self.fields['tpcr'].widget.attrs['required'] = True
-        
+        self.fields['s5011_evtcs'].widget.attrs['required'] = True        
+        self.fields['tpcr'].widget.attrs['required'] = True        
         self.fields['vrcr'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5011infoCRContrib
         exclude = [ 
@@ -369,20 +334,20 @@ class form_s5011_infocrcontrib(forms.ModelForm):
         ]
 
 
+
 class form_s5011_infocrestab(forms.ModelForm):
     vrcr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrsuspcr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5011_infocrestab,self ).__init__(*args,**kwargs)
+        super(form_s5011_infocrestab, self).__init__(*args,**kwargs)
+        
         self.fields['s5011_ideestab'].queryset = s5011ideEstab.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5011_ideestab'].widget.attrs['required'] = True
-        
-        self.fields['tpcr'].widget.attrs['required'] = True
-        
+        self.fields['s5011_ideestab'].widget.attrs['required'] = True        
+        self.fields['tpcr'].widget.attrs['required'] = True        
         self.fields['vrcr'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5011infoCREstab
         exclude = [ 
@@ -393,16 +358,16 @@ class form_s5011_infocrestab(forms.ModelForm):
         ]
 
 
+
 class form_s5011_infocomplobra(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5011_infocomplobra,self ).__init__(*args,**kwargs)
+        super(form_s5011_infocomplobra, self).__init__(*args,**kwargs)
         
-        self.fields['s5011_infoestab'].widget.attrs['required'] = True
-        
+        self.fields['s5011_infoestab'].widget.attrs['required'] = True        
         self.fields['indsubstpatrobra'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5011infoComplObra
         exclude = [ 
@@ -413,22 +378,19 @@ class form_s5011_infocomplobra(forms.ModelForm):
         ]
 
 
+
 class form_s5011_infoemprparcial(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5011_infoemprparcial,self ).__init__(*args,**kwargs)
+        super(form_s5011_infoemprparcial, self).__init__(*args,**kwargs)
         
-        self.fields['s5011_idelotacao'].widget.attrs['required'] = True
-        
-        self.fields['tpinsccontrat'].widget.attrs['required'] = True
-        
-        self.fields['nrinsccontrat'].widget.attrs['required'] = True
-        
-        self.fields['tpinscprop'].widget.attrs['required'] = True
-        
+        self.fields['s5011_idelotacao'].widget.attrs['required'] = True        
+        self.fields['tpinsccontrat'].widget.attrs['required'] = True        
+        self.fields['nrinsccontrat'].widget.attrs['required'] = True        
+        self.fields['tpinscprop'].widget.attrs['required'] = True        
         self.fields['nrinscprop'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5011infoEmprParcial
         exclude = [ 
@@ -439,24 +401,21 @@ class form_s5011_infoemprparcial(forms.ModelForm):
         ]
 
 
+
 class form_s5011_infoestab(forms.ModelForm):
     fap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     aliqratajust = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5011_infoestab,self ).__init__(*args,**kwargs)
+        super(form_s5011_infoestab, self).__init__(*args,**kwargs)
         
-        self.fields['s5011_ideestab'].widget.attrs['required'] = True
-        
-        self.fields['cnaeprep'].widget.attrs['required'] = True
-        
-        self.fields['aliqrat'].widget.attrs['required'] = True
-        
-        self.fields['fap'].widget.attrs['required'] = True
-        
+        self.fields['s5011_ideestab'].widget.attrs['required'] = True        
+        self.fields['cnaeprep'].widget.attrs['required'] = True        
+        self.fields['aliqrat'].widget.attrs['required'] = True        
+        self.fields['fap'].widget.attrs['required'] = True        
         self.fields['aliqratajust'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5011infoEstab
         exclude = [ 
@@ -467,17 +426,17 @@ class form_s5011_infoestab(forms.ModelForm):
         ]
 
 
+
 class form_s5011_infopj(forms.ModelForm):
     percredcontrib = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5011_infopj,self ).__init__(*args,**kwargs)
+        super(form_s5011_infopj, self).__init__(*args,**kwargs)
         
-        self.fields['s5011_evtcs'].widget.attrs['required'] = True
-        
+        self.fields['s5011_evtcs'].widget.attrs['required'] = True        
         self.fields['indconstr'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5011infoPJ
         exclude = [ 
@@ -488,16 +447,17 @@ class form_s5011_infopj(forms.ModelForm):
         ]
 
 
+
 class form_s5011_infosubstpatropport(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5011_infosubstpatropport,self ).__init__(*args,**kwargs)
-        self.fields['s5011_idelotacao'].queryset = s5011ideLotacao.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5011_idelotacao'].widget.attrs['required'] = True
+        super(form_s5011_infosubstpatropport, self).__init__(*args,**kwargs)
         
+        self.fields['s5011_idelotacao'].queryset = s5011ideLotacao.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s5011_idelotacao'].widget.attrs['required'] = True        
         self.fields['cnpjopportuario'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5011infoSubstPatrOpPort
         exclude = [ 
@@ -508,16 +468,17 @@ class form_s5011_infosubstpatropport(forms.ModelForm):
         ]
 
 
+
 class form_s5011_infotercsusp(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s5011_infotercsusp,self ).__init__(*args,**kwargs)
-        self.fields['s5011_idelotacao'].queryset = s5011ideLotacao.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5011_idelotacao'].widget.attrs['required'] = True
+        super(form_s5011_infotercsusp, self).__init__(*args,**kwargs)
         
+        self.fields['s5011_idelotacao'].queryset = s5011ideLotacao.objects.using( slug ).filter(excluido=False).all()
+        self.fields['s5011_idelotacao'].widget.attrs['required'] = True        
         self.fields['codterc'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s5011infoTercSusp
         exclude = [ 

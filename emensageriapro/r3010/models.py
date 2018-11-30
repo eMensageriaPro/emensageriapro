@@ -42,6 +42,11 @@ get_model = apps.get_model
 
 
 
+CHOICES_R3010_TPPROC = (
+    (1, u'1 - Administrativo'),
+    (2, u'2 - Judicial'),
+)
+
 ESTADOS = (
     ('AC', u'Acre'),
     ('AL', u'Alagoas'),
@@ -72,28 +77,11 @@ ESTADOS = (
     ('TO', u'Tocantins'),
 )
 
-CHOICES_R3010_CATEGEVENTO = (
-    (1, u'1 - Internacional'),
-    (2, u'2 - Interestadual'),
-    (3, u'3 - Estadual'),
-    (4, u'4 - Local'),
-)
-
-CHOICES_R3010_TPCOMPETICAO = (
-    (1, u'1 - Oficial'),
-    (2, u'2 - Não Oficial'),
-)
-
 CHOICES_R3010_TPINGRESSO = (
     (1, u'1 - Arquibancada'),
     (2, u'2 - Geral'),
     (3, u'3 - Cadeiras'),
     (4, u'4 - Camarote'),
-)
-
-CHOICES_R3010_TPPROC = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
 )
 
 CHOICES_R3010_TPRECEITA = (
@@ -102,6 +90,18 @@ CHOICES_R3010_TPRECEITA = (
     (3, u'3 - Publicidade'),
     (4, u'4 - Sorteio'),
     (5, u'5 - Outros'),
+)
+
+CHOICES_R3010_TPCOMPETICAO = (
+    (1, u'1 - Oficial'),
+    (2, u'2 - Não Oficial'),
+)
+
+CHOICES_R3010_CATEGEVENTO = (
+    (1, u'1 - Internacional'),
+    (2, u'2 - Interestadual'),
+    (3, u'3 - Estadual'),
+    (4, u'4 - Local'),
 )
 
 class r3010boletim(models.Model):

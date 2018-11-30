@@ -42,17 +42,17 @@ get_model = apps.get_model
 
 
 
-CHOICES_R2040_TPPROC = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
-)
-
 CHOICES_R2040_TPREPASSE = (
     (1, u'1 - Patrocínio'),
     (2, u'2 - Licenciamento de marcas e símbolos'),
     (3, u'3 - Publicidade'),
     (4, u'4 - Propaganda'),
     (5, u'5 - Transmissão de espetáculos'),
+)
+
+CHOICES_R2040_TPPROC = (
+    (1, u'1 - Administrativo'),
+    (2, u'2 - Judicial'),
 )
 
 class r2040infoProc(models.Model):

@@ -42,15 +42,15 @@ get_model = apps.get_model
 
 
 
-SIM_NAO = (
-    (0, u'Não'),
-    (1, u'Sim'),
-)
-
 AUDITORIA_TIPO = (
     (1, u'Inclusão'),
     (2, u'Alteração'),
     (3, u'Exclusão'),
+)
+
+SIM_NAO = (
+    (0, u'Não'),
+    (1, u'Sim'),
 )
 
 TIPOS_CONFIG_PAGINAS = (
@@ -216,8 +216,9 @@ class ConfigPermissoesSerializer(ModelSerializer):
         fields = '__all__'
             
 
-from django.contrib.auth.models import User
-class Usuarios(User):
+class Usuarios(models.Model):
+    from django.contrib.auth.models import User
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     """
     username = models.CharField(max_length=20)
     password = models.CharField(max_length=300, blank=True, default='asdkl1231')
@@ -240,13 +241,25 @@ class Usuarios(User):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.first_name) + ' - ' + unicode(self.last_name)
+        return unicode(self.user.first_name) + unicode(self.user.last_name)
+
+    def username(self):
+        return self.user.username
+
+    def first_name(self):
+        return self.user.first_name
+
+    def last_name(self):
+        return self.user.last_name
+
+    def email(self):
+        return self.user.email
     #usuarios_custom#
     #usuarios_custom#
     class Meta:
         db_table = r'usuarios'
         managed = True
-        ordering = ['first_name', 'last_name']
+        #ordering = ['first_name', 'last_name']
 
 
 

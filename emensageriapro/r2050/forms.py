@@ -43,6 +43,7 @@ __author__ = 'marcelovasconcellos'
 
 
 
+
 class form_r2050_infoproc(forms.ModelForm):
     vlrcpsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrratsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
@@ -50,14 +51,13 @@ class form_r2050_infoproc(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2050_infoproc,self ).__init__(*args,**kwargs)
+        super(form_r2050_infoproc, self).__init__(*args,**kwargs)
+        
         self.fields['r2050_tipocom'].queryset = r2050tipoCom.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2050_tipocom'].widget.attrs['required'] = True
-        
-        self.fields['tpproc'].widget.attrs['required'] = True
-        
+        self.fields['r2050_tipocom'].widget.attrs['required'] = True        
+        self.fields['tpproc'].widget.attrs['required'] = True        
         self.fields['nrproc'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2050infoProc
         exclude = [ 
@@ -68,19 +68,19 @@ class form_r2050_infoproc(forms.ModelForm):
         ]
 
 
+
 class form_r2050_tipocom(forms.ModelForm):
     vlrrecbruta = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_r2050_tipocom,self ).__init__(*args,**kwargs)
+        super(form_r2050_tipocom, self).__init__(*args,**kwargs)
+        
         self.fields['r2050_evtcomprod'].queryset = r2050evtComProd.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2050_evtcomprod'].widget.attrs['required'] = True
-        
-        self.fields['indcom'].widget.attrs['required'] = True
-        
+        self.fields['r2050_evtcomprod'].widget.attrs['required'] = True        
+        self.fields['indcom'].widget.attrs['required'] = True        
         self.fields['vlrrecbruta'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = r2050tipoCom
         exclude = [ 

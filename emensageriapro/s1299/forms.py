@@ -43,20 +43,18 @@ __author__ = 'marcelovasconcellos'
 
 
 
+
 class form_s1299_iderespinf(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
-        super (form_s1299_iderespinf,self ).__init__(*args,**kwargs)
+        super(form_s1299_iderespinf, self).__init__(*args,**kwargs)
         
-        self.fields['s1299_evtfechaevper'].widget.attrs['required'] = True
-        
-        self.fields['nmresp'].widget.attrs['required'] = True
-        
-        self.fields['cpfresp'].widget.attrs['required'] = True
-        
+        self.fields['s1299_evtfechaevper'].widget.attrs['required'] = True        
+        self.fields['nmresp'].widget.attrs['required'] = True        
+        self.fields['cpfresp'].widget.attrs['required'] = True        
         self.fields['telefone'].widget.attrs['required'] = True
-
+        
     class Meta:
         model = s1299ideRespInf
         exclude = [ 
