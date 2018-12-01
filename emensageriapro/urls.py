@@ -91,8 +91,6 @@ urlpatterns = [
     url(r'^tabelas/', include('emensageriapro.tabelas.urls')),
     url(r'^esocial/', include('emensageriapro.esocial.urls')),
 
-#URLS
-
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
