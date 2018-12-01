@@ -212,9 +212,6 @@ USE_L10N = True
 
 USE_TZ = False
 
-
-
-
 # Configurações de Versão do Aplicativo
 
 VERSAO_EMENSAGERIA = '1.3'
