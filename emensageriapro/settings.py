@@ -268,7 +268,7 @@ LOGOUT_REDIRECT_URL = LINK_WEBSITE
 
 STATIC_ROOT = env('STATIC_ROOT')
 
-STATIC_URL = LINK_WEBSITE + '/static/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'staticfiles')

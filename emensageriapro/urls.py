@@ -90,12 +90,9 @@ urlpatterns = [
     url(r'^s5013/', include('emensageriapro.s5013.urls')),
     url(r'^tabelas/', include('emensageriapro.tabelas.urls')),
     url(r'^esocial/', include('emensageriapro.esocial.urls')),
-    url(r'^%s/(?P.*)$' % settings.STATIC_URL, 'serve', {'document_root': settings.STATIC_ROOT}),
-    url(r'^%s/(?P.*)$' % settings.MEDIA_URL, 'serve', {'document_root': settings.MEDIA_ROOT})
 
 #URLS
 
 
-] #+  + \#static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
-#    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
