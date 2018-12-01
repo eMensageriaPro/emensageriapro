@@ -265,7 +265,7 @@ PASS_SCRIPT = env('PASS_SCRIPT')
 
 # Endereços login e logout
 
-LOGIN_REDIRECT_URL = LINK_WEBSITE + '/mensageiro/mapa-processamento/eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ==/'
+LOGIN_REDIRECT_URL = LINK_WEBSITE + 'mensageiro/mapa-processamento/eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ==/'
 LOGOUT_REDIRECT_URL = LINK_WEBSITE
 
 # Static files
