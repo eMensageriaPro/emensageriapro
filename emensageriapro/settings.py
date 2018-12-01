@@ -213,17 +213,7 @@ USE_L10N = True
 USE_TZ = False
 
 
-STATIC_ROOT = env('STATIC_ROOT')
 
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'staticfiles')
-]
-
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Configurações de Versão do Aplicativo
 
@@ -278,3 +268,15 @@ PASS_SCRIPT = env('PASS_SCRIPT')
 
 LOGIN_REDIRECT_URL = LINK_WEBSITE + 'mensageiro/mapa-processamento/eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ==/'
 LOGOUT_REDIRECT_URL = LINK_WEBSITE
+
+STATIC_ROOT = env('STATIC_ROOT')
+
+STATIC_URL = LINK_WEBSITE + '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'staticfiles')
+]
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
