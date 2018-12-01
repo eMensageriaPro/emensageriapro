@@ -35,9 +35,11 @@ import datetime
 
 """
 
-from emensageriapro import settings # import the settings file
+from emensageriapro import settings
 
 def admin_media(request):
-    print settings.LINK_WEBSITE
-    # return the value you want as a dictionnary. you may add multiple values in there.
-    return {'LINK_WEBSITE': settings.LINK_WEBSITE}
+    # return the value you want as a dictionary. you may add multiple values in there.
+    return {
+        'LINK_WEBSITE': settings.LINK_WEBSITE,
+        'VERSAO_EMENSAGERIA': settings.VERSAO_EMENSAGERIA,
+    }
