@@ -144,6 +144,7 @@ def listar(request, hash):
             'show_date_joined': 0,
             'show_email': 1,
             'show_first_name': 1,
+            'show_foto': 0,
             'show_is_active': 0,
             'show_is_staff': 0,
             'show_is_superuser': 0,
@@ -159,6 +160,7 @@ def listar(request, hash):
                 'config_perfis': 'config_perfis',
                 'email__icontains': 'email__icontains',
                 'first_name__icontains': 'first_name__icontains',
+                'foto__icontains': 'foto__icontains',
                 'last_name__icontains': 'last_name__icontains',
                 'username__icontains': 'username__icontains',}
             for a in dict_fields:
@@ -170,6 +172,7 @@ def listar(request, hash):
                 'config_perfis': 'config_perfis',
                 'email__icontains': 'email__icontains',
                 'first_name__icontains': 'first_name__icontains',
+                'foto__icontains': 'foto__icontains',
                 'last_name__icontains': 'last_name__icontains',
                 'username__icontains': 'username__icontains',}
                 for a in dict_fields:

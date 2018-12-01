@@ -50,7 +50,6 @@ class form_r1000_evtinfocontri(forms.ModelForm):
         slug = kwargs.pop('slug')
         super(form_r1000_evtinfocontri, self).__init__(*args,**kwargs)
         
-        self.fields['versao'].widget.attrs['readonly'] = True        
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True        
         self.fields['status'].widget.attrs['readonly'] = True        
@@ -89,7 +88,6 @@ class form_r1070_evttabprocesso(forms.ModelForm):
         slug = kwargs.pop('slug')
         super(form_r1070_evttabprocesso, self).__init__(*args,**kwargs)
         
-        self.fields['versao'].widget.attrs['readonly'] = True        
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True        
         self.fields['status'].widget.attrs['readonly'] = True        
@@ -134,7 +132,6 @@ class form_r2010_evtservtom(forms.ModelForm):
         slug = kwargs.pop('slug')
         super(form_r2010_evtservtom, self).__init__(*args,**kwargs)
         
-        self.fields['versao'].widget.attrs['readonly'] = True        
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True        
         self.fields['status'].widget.attrs['readonly'] = True        
@@ -188,7 +185,6 @@ class form_r2020_evtservprest(forms.ModelForm):
         slug = kwargs.pop('slug')
         super(form_r2020_evtservprest, self).__init__(*args,**kwargs)
         
-        self.fields['versao'].widget.attrs['readonly'] = True        
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True        
         self.fields['status'].widget.attrs['readonly'] = True        
@@ -236,7 +232,6 @@ class form_r2030_evtassocdesprec(forms.ModelForm):
         slug = kwargs.pop('slug')
         super(form_r2030_evtassocdesprec, self).__init__(*args,**kwargs)
         
-        self.fields['versao'].widget.attrs['readonly'] = True        
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True        
         self.fields['status'].widget.attrs['readonly'] = True        
@@ -278,7 +273,6 @@ class form_r2040_evtassocdesprep(forms.ModelForm):
         slug = kwargs.pop('slug')
         super(form_r2040_evtassocdesprep, self).__init__(*args,**kwargs)
         
-        self.fields['versao'].widget.attrs['readonly'] = True        
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True        
         self.fields['status'].widget.attrs['readonly'] = True        
@@ -327,7 +321,6 @@ class form_r2050_evtcomprod(forms.ModelForm):
         slug = kwargs.pop('slug')
         super(form_r2050_evtcomprod, self).__init__(*args,**kwargs)
         
-        self.fields['versao'].widget.attrs['readonly'] = True        
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True        
         self.fields['status'].widget.attrs['readonly'] = True        
@@ -376,7 +369,6 @@ class form_r2060_evtcprb(forms.ModelForm):
         slug = kwargs.pop('slug')
         super(form_r2060_evtcprb, self).__init__(*args,**kwargs)
         
-        self.fields['versao'].widget.attrs['readonly'] = True        
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True        
         self.fields['status'].widget.attrs['readonly'] = True        
@@ -420,7 +412,6 @@ class form_r2070_evtpgtosdivs(forms.ModelForm):
         slug = kwargs.pop('slug')
         super(form_r2070_evtpgtosdivs, self).__init__(*args,**kwargs)
         
-        self.fields['versao'].widget.attrs['readonly'] = True        
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True        
         self.fields['status'].widget.attrs['readonly'] = True        
@@ -462,7 +453,6 @@ class form_r2098_evtreabreevper(forms.ModelForm):
         slug = kwargs.pop('slug')
         super(form_r2098_evtreabreevper, self).__init__(*args,**kwargs)
         
-        self.fields['versao'].widget.attrs['readonly'] = True        
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True        
         self.fields['status'].widget.attrs['readonly'] = True        
@@ -501,7 +491,6 @@ class form_r2099_evtfechaevper(forms.ModelForm):
         slug = kwargs.pop('slug')
         super(form_r2099_evtfechaevper, self).__init__(*args,**kwargs)
         
-        self.fields['versao'].widget.attrs['readonly'] = True        
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True        
         self.fields['status'].widget.attrs['readonly'] = True        
@@ -551,7 +540,6 @@ class form_r3010_evtespdesportivo(forms.ModelForm):
         slug = kwargs.pop('slug')
         super(form_r3010_evtespdesportivo, self).__init__(*args,**kwargs)
         
-        self.fields['versao'].widget.attrs['readonly'] = True        
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True        
         self.fields['status'].widget.attrs['readonly'] = True        
@@ -597,7 +585,6 @@ class form_r5001_evttotal(forms.ModelForm):
         slug = kwargs.pop('slug')
         super(form_r5001_evttotal, self).__init__(*args,**kwargs)
         
-        self.fields['versao'].widget.attrs['readonly'] = True        
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True        
         self.fields['status'].widget.attrs['readonly'] = True        
@@ -636,7 +623,6 @@ class form_r5011_evttotalcontrib(forms.ModelForm):
         slug = kwargs.pop('slug')
         super(form_r5011_evttotalcontrib, self).__init__(*args,**kwargs)
         
-        self.fields['versao'].widget.attrs['readonly'] = True        
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True        
         self.fields['status'].widget.attrs['readonly'] = True        
@@ -676,7 +662,6 @@ class form_r9000_evtexclusao(forms.ModelForm):
         slug = kwargs.pop('slug')
         super(form_r9000_evtexclusao, self).__init__(*args,**kwargs)
         
-        self.fields['versao'].widget.attrs['readonly'] = True        
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True        
         self.fields['status'].widget.attrs['readonly'] = True        

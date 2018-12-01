@@ -72,6 +72,11 @@ ESTADOS = (
     ('TO', u'Tocantins'),
 )
 
+CHOICES_S2300_DEPIRRF = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
 CHOICES_S2300_CASADOBR = (
     ('N', u'N - Não'),
     ('S', u'S - Sim'),
@@ -163,11 +168,6 @@ CHOICES_S2300_DEFVISUAL = (
 )
 
 CHOICES_S2300_DEPFINSPREV = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2300_DEPIRRF = (
     ('N', u'N - Não'),
     ('S', u'S - Sim'),
 )

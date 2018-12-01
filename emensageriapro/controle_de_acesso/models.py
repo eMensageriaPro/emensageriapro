@@ -42,9 +42,9 @@ get_model = apps.get_model
 
 
 
-TIPOS_CONFIG_PAGINAS = (
-    (0, u'Manual'),
-    (1, u'Automático'),
+SIM_NAO = (
+    (0, u'Não'),
+    (1, u'Sim'),
 )
 
 AUDITORIA_TIPO = (
@@ -53,9 +53,9 @@ AUDITORIA_TIPO = (
     (3, u'Exclusão'),
 )
 
-SIM_NAO = (
-    (0, u'Não'),
-    (1, u'Sim'),
+TIPOS_CONFIG_PAGINAS = (
+    (0, u'Manual'),
+    (1, u'Automático'),
 )
 
 class Auditoria(models.Model):
@@ -220,6 +220,7 @@ class Usuarios(models.Model):
     from django.contrib.auth.models import User
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     """
+    foto = models.TextField(blank=True, null=True)
     username = models.CharField(max_length=20)
     password = models.CharField(max_length=300, blank=True, default='asdkl1231')
     first_name = models.CharField(max_length=60)
