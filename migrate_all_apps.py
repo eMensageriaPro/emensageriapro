@@ -186,7 +186,17 @@ def update_tables():
                 print ('Erro ao executar o arquivo %s!' % a)
 
 
+def collect_static():
+
+    print ''
+    comando = 'python manage.py collectstatic'
+    print "Executando: " + comando
+    os.system(comando)
+
+
 if __name__ == "__main__":
+
+    collect_static()
     migrates()
     reset_sequences()
     cadastro_controle_acesso()

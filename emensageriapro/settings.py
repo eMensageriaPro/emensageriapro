@@ -263,17 +263,20 @@ FORCE_PRODUCAO_RESTRITA = env('FORCE_PRODUCAO_RESTRITA')
 
 PASS_SCRIPT = env('PASS_SCRIPT')
 
+# Endereços login e logout
+
 LOGIN_REDIRECT_URL = LINK_WEBSITE + '/mensageiro/mapa-processamento/eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ==/'
 LOGOUT_REDIRECT_URL = LINK_WEBSITE
 
-STATIC_ROOT = env('STATIC_ROOT')
+# Static files
 
-STATIC_URL = '/static/'
-
+STATIC_ROOT = env('STATIC_ROOT') or os.path.join(BASE_DIR, 'static')
+STATIC_URL = env('STATIC_URL')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'staticfiles')
 ]
 
+# Media files
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = env('MEDIA_ROOT') or os.path.join(BASE_DIR, 'media')
+MEDIA_URL = env('MEDIA_URL')
