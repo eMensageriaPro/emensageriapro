@@ -32,7 +32,7 @@ def desvincular_eventos_esocial(request, hash):
         usuario_id = False
         return redirect('login')
     if evento_identidade:
-        a = TransmissorEventosEsocial.objects.using(db_slug).get(identidade=evento_identidade)
+        a = TransmissorEventosEsocial.objects.using(db_slug).get(iddentidade=evento_identidade)
         from django.db import connections
         cursor = connections[db_slug].cursor()
         cursor.execute("UPDATE %s SET transmissor_lote_esocial_id=Null WHERE id=%s" % (a.tabela, a.id) )
@@ -55,8 +55,10 @@ def vincular_eventos_esocial(request, hash):
         usuario_id = False
         return redirect('login')
     if transmissor_lote_esocial_id:
-        transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial.objects.using(db_slug), excluido=False,
-                                             id=transmissor_lote_esocial_id)
+        transmissor_lote_esocial = get_object_or_404(
+            TransmissorLoteEsocial.objects.using(db_slug),
+            excluido=False,
+            id=transmissor_lote_esocial_id)
         transmissor_eventos_esocial_vinculados_lista = TransmissorEventosEsocial.objects.using(db_slug).filter(excluido=False,
                                                                                      transmissor_lote_esocial_id=transmissor_lote_esocial_id).all()
         quant = 50 - transmissor_eventos_esocial_vinculados_lista.count()

@@ -232,7 +232,7 @@ def create_request(dados, transmissor_dados):
         base_request = REQUEST_CONSULTA_LOTE
 
         a = TransmissorLoteEsocial.objects.using('default').\
-                filter(id=dados['transmissor_id']).all()
+                get(id=dados['transmissor_id'])
 
         #a = executar_sql("""
         #  SELECT protocolo

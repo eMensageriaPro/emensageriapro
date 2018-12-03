@@ -56,7 +56,7 @@ def atualizar_versao():
     UPDATE s2300_evttsvinicio SET versao='v02_04_02' WHERE status in (0,1,2);
     UPDATE s2306_evttsvaltcontr SET versao='v02_04_02' WHERE status in (0,1,2);
     UPDATE s2399_evttsvtermino SET versao='v02_04_02' WHERE status in (0,1,2);
-    UPDATE s2400_evtcdbenprrp SET versao='v02_04_02' WHERE status in (0,1,2);
+    --UPDATE s2400_evtcdbenprrp SET versao='v02_04_02' WHERE status in (0,1,2);
     UPDATE s3000_evtexclusao SET versao='v02_04_02' WHERE status in (0,1,2);
     UPDATE s5001_evtbasestrab SET versao='v02_04_02' WHERE status in (0,1,2);
     UPDATE s5002_evtirrfbenef SET versao='v02_04_02' WHERE status in (0,1,2);
