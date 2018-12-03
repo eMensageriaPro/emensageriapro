@@ -63,10 +63,10 @@ class Auditoria(models.Model):
     identidade = models.IntegerField(blank=True)
     situacao_anterior = models.TextField(blank=True)
     situacao_posterior = models.TextField(blank=True)
-    tipo = models.IntegerField(choices=AUDITORIA_TIPO, blank=True)
     operador = models.ForeignKey('Usuarios',
         related_name='%(class)s_operador', blank=True)
     data_hora = models.DateTimeField(blank=True)
+    tipo = models.IntegerField(choices=AUDITORIA_TIPO, blank=True)
     criado_em = models.DateTimeField(blank=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -75,7 +75,7 @@ class Auditoria(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
     def __unicode__(self):
-        return unicode(self.tabela) + ' - ' + unicode(self.identidade) + ' - ' + unicode(self.tipo) + ' - ' + unicode(self.data_hora)
+        return unicode(self.tabela) + ' - ' + unicode(self.identidade) + ' - ' + unicode(self.data_hora) + ' - ' + unicode(self.tipo)
     #auditoria_custom#
     #auditoria_custom#
     class Meta:
