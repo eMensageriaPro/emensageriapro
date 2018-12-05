@@ -100,7 +100,7 @@ def reset_sequences():
         from information_schema.tables 
         where table_schema='public' 
         and table_name not like 'django_%' 
-        and table_name != "authtoken_token"
+        and table_name != 'authtoken_token'
         and table_name != 'usuarios';
         """, True)
 
