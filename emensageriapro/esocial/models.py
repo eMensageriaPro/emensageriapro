@@ -102,7 +102,7 @@ OPERACOES_INSALPERIC_APOSENTESP = (
 
 ESOCIAL_VERSOES = (
     ('v02_04_02', u'Versão 2.04.02'),
-    ('v02_05', u'Versão 2.05'),
+    ('v02_05_00', u'Versão 2.05.00'),
 )
 
 ESTADOS = (

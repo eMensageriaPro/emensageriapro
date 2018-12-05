@@ -79,6 +79,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
 
     'emensageriapro.controle_de_acesso',
     'emensageriapro.r1000',

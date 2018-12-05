@@ -121,6 +121,7 @@ def migrates():
     os.system('python manage.py migrate auth')
     os.system('python manage.py migrate contenttypes')
     os.system('python manage.py migrate sessions')
+    os.system('python manage.py migrate authtoken')
     os.system('python manage.py makemigrations --merge')
 
     for a in INSTALLED_APPS:

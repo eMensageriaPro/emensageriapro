@@ -6,6 +6,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from emensageriapro.controle_de_acesso.views import login_recuperar_senha as login_recuperar_senha_views
 from emensageriapro.controle_de_acesso.views import login_alterar_senha as login_alterar_senha_views
+from emensageriapro.controle_de_acesso.views import usuarios_create_token as usuarios_create_token_views
 from emensageriapro.controle_de_acesso.views import config_modulos as config_modulos_views
 from emensageriapro.controle_de_acesso.views import config_paginas as config_paginas_views
 from emensageriapro.controle_de_acesso.views import config_perfis as config_perfis_views
@@ -57,6 +58,10 @@ url(r'^recuperar-senha/$',
 url(r'^alterar-senha/$',
         login_alterar_senha_views.alterar_senha,
         name='alterar_senha'),
+
+url(r'^usuarios/criar-token/(?P<hash>.*)/$', 
+        usuarios_create_token_views.create_token, 
+        name='usuarios_create_token'),
 
 
 
