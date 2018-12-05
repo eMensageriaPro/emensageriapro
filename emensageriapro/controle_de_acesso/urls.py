@@ -13,7 +13,7 @@ from emensageriapro.controle_de_acesso.views import config_perfis as config_perf
 from emensageriapro.controle_de_acesso.views import config_permissoes as config_permissoes_views
 from emensageriapro.controle_de_acesso.views import usuarios as usuarios_views
 from emensageriapro.controle_de_acesso.views import auditoria as auditoria_views
-
+from rest_framework.authtoken import views
 
 
 """
@@ -58,6 +58,8 @@ url(r'^recuperar-senha/$',
 url(r'^alterar-senha/$',
         login_alterar_senha_views.alterar_senha,
         name='alterar_senha'),
+
+url(r'^api-token-auth/', views.obtain_auth_token),
 
 url(r'^usuarios/criar-token/(?P<hash>.*)/$', 
         usuarios_create_token_views.create_token, 
