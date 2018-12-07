@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações de identificação da lotação e validade das informações que estão sendo incluídas"
+{% if show_fields.show_s5011_ideestab or not s5011_ideestab_id and 1 %}"Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas";{% endif %}{% if show_fields.show_codlotacao or 1 %}"Código da Lotação";{% endif %}{% if show_fields.show_fpas or 1 %}"FPAS";{% endif %}{% if show_fields.show_codtercs or 1 %}"Código de Terceiros";{% endif %}{% if show_fields.show_codtercssusp or 0 %}"Código de Terceiros (Suspensão)";{% endif %}
+{% for a in s5011_idelotacao_lista %}{% if show_fields.show_s5011_ideestab or  not s5011_ideestab_id and 1 %}"{{ a.s5011_ideestab }}";{% endif %}{% if show_fields.show_codlotacao or 1 %}"{{ a.codlotacao }}";{% endif %}{% if show_fields.show_fpas or 1 %}"{{ a.fpas }}";{% endif %}{% if show_fields.show_codtercs or 1 %}"{{ a.codtercs }}";{% endif %}{% if show_fields.show_codtercssusp or 0 %}"{{ a.codtercssusp }}";{% endif %}
+{% endfor %}

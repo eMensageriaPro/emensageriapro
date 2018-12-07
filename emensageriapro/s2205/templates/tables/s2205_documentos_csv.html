@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Evento Alteração Cadastral do Trabalhador"
+{% if show_fields.show_s2205_evtaltcadastral or not s2205_evtaltcadastral_id and 1 %}"Evento Alteração Cadastral do Trabalhador";{% endif %}
+{% for a in s2205_documentos_lista %}{% if show_fields.show_s2205_evtaltcadastral or  not s2205_evtaltcadastral_id and 1 %}"{{ a.s2205_evtaltcadastral }}";{% endif %}
+{% endfor %}

@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"eSocial 06 - Países"
+{% if show_fields.show_codigo or 1 %}"Código";{% endif %}{% if show_fields.show_nome or 1 %}"Nome";{% endif %}{% if show_fields.show_data_criacao or 1 %}"Data de Criação";{% endif %}{% if show_fields.show_data_extincao or 1 %}"Data de Extinção";{% endif %}
+{% for a in esocial_paises_lista %}{% if show_fields.show_codigo or 1 %}"{{ a.codigo }}";{% endif %}{% if show_fields.show_nome or 1 %}"{{ a.nome }}";{% endif %}{% if show_fields.show_data_criacao or 1 %}"{{ a.data_criacao|date:"d/m/Y" }}";{% endif %}{% if show_fields.show_data_extincao or 1 %}"{{ a.data_extincao|date:"d/m/Y" }}";{% endif %}
+{% endfor %}

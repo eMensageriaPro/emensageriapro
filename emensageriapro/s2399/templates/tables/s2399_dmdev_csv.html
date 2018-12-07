@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF"
+{% if show_fields.show_s2399_evttsvtermino or not s2399_evttsvtermino_id and 1 %}"Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Término";{% endif %}{% if show_fields.show_idedmdev or 1 %}"Identificador dos demostrativos de pagamento";{% endif %}
+{% for a in s2399_dmdev_lista %}{% if show_fields.show_s2399_evttsvtermino or  not s2399_evttsvtermino_id and 1 %}"{{ a.s2399_evttsvtermino }}";{% endif %}{% if show_fields.show_idedmdev or 1 %}"{{ a.idedmdev }}";{% endif %}
+{% endfor %}

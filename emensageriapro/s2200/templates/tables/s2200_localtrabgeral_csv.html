@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades. Caso o trabalhador exerça suas atividades em instalações de terceiros, este campo deve ser preenchido com o estabelecimento do próprio empregado (...)"
+{% if show_fields.show_s2200_evtadmissao or not s2200_evtadmissao_id and 1 %}"Evento Cadastramento Inicial do Vínculo e Admissão / Ingresso de Trabalhador";{% endif %}{% if show_fields.show_tpinsc or 1 %}"Tipo de inscrição";{% endif %}{% if show_fields.show_nrinsc or 1 %}"Número de inscrição (CPF/CNPJ)";{% endif %}{% if show_fields.show_desccomp or 0 %}"Descrição";{% endif %}
+{% for a in s2200_localtrabgeral_lista %}{% if show_fields.show_s2200_evtadmissao or  not s2200_evtadmissao_id and 1 %}"{{ a.s2200_evtadmissao }}";{% endif %}{% if show_fields.show_tpinsc or 1 %}"{{ a.get_tpinsc_display }}";{% endif %}{% if show_fields.show_nrinsc or 1 %}"{{ a.nrinsc }}";{% endif %}{% if show_fields.show_desccomp or 0 %}"{{ a.desccomp }}";{% endif %}
+{% endfor %}

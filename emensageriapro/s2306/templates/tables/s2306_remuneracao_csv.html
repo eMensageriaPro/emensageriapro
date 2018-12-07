@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações da remuneração e periodicidade de pagamento"
+{% if show_fields.show_s2306_evttsvaltcontr or not s2306_evttsvaltcontr_id and 1 %}"Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual";{% endif %}{% if show_fields.show_vrsalfx or 1 %}"Valor do Salário Fixo";{% endif %}{% if show_fields.show_undsalfixo or 1 %}"Unidade do Salário Fixo";{% endif %}{% if show_fields.show_dscsalvar or 0 %}"Descrição do salário variável";{% endif %}
+{% for a in s2306_remuneracao_lista %}{% if show_fields.show_s2306_evttsvaltcontr or  not s2306_evttsvaltcontr_id and 1 %}"{{ a.s2306_evttsvaltcontr }}";{% endif %}{% if show_fields.show_vrsalfx or 1 %}"{{ a.vrsalfx }}";{% endif %}{% if show_fields.show_undsalfixo or 1 %}"{{ a.get_undsalfixo_display }}";{% endif %}{% if show_fields.show_dscsalvar or 0 %}"{{ a.dscsalvar }}";{% endif %}
+{% endfor %}

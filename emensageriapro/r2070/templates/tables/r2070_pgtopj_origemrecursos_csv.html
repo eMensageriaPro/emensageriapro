@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Identificação da origem dos recursos"
+{% if show_fields.show_r2070_pgtopj_infoprocjud or not r2070_pgtopj_infoprocjud_id and 1 %}"Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial";{% endif %}{% if show_fields.show_cnpjorigemrecursos or 1 %}"CNPJ da empresa de origem dos recursos";{% endif %}
+{% for a in r2070_pgtopj_origemrecursos_lista %}{% if show_fields.show_r2070_pgtopj_infoprocjud or  not r2070_pgtopj_infoprocjud_id and 1 %}"{{ a.r2070_pgtopj_infoprocjud }}";{% endif %}{% if show_fields.show_cnpjorigemrecursos or 1 %}"{{ a.cnpjorigemrecursos }}";{% endif %}
+{% endfor %}

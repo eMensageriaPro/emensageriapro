@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Registro obrigatório que indica a CAT de origem, preenchido quando tratar-se de CAT de reabertura ou de comunicação de óbito."
+{% if show_fields.show_s2210_evtcat or not s2210_evtcat_id and 1 %}"Evento Comunicação de Acidente de Trabalho";{% endif %}{% if show_fields.show_dtcatorig or 1 %}"Data do CAT de origem";{% endif %}{% if show_fields.show_nrreccatorig or 1 %}"Informar o número do recibo da CAT de origem";{% endif %}
+{% for a in s2210_catorigem_lista %}{% if show_fields.show_s2210_evtcat or  not s2210_evtcat_id and 1 %}"{{ a.s2210_evtcat }}";{% endif %}{% if show_fields.show_dtcatorig or 1 %}"{{ a.dtcatorig|date:"d/m/Y" }}";{% endif %}{% if show_fields.show_nrreccatorig or 1 %}"{{ a.nrreccatorig }}";{% endif %}
+{% endfor %}

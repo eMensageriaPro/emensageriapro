@@ -1,0 +1,485 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
+{% if not for_print %}
+
+    <section class="content-header">
+      <h1>
+        S-5013 - Informações do FGTS consolidadas por contribuinte
+        <small>Verificações</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">S-5013 - Informações do FGTS consolidadas por contribuinte</a></li>
+        <li class="active">Verificar</li>
+      </ol>
+    </section>
+    <section class="content">
+
+        {% if messages %}
+                <div class="pad margin no-print">
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+                </div>
+        {% endif %}
+
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">S-5013 - Informações do FGTS consolidadas por contribuinte<br>Identidade: {{ s5013_evtfgts.identidade }}</h3>
+              <div class="text-right">
+                <a href="{% url 's5013_evtfgts_verificar' hash='{}'|json_id:s5013_evtfgts_id|json_print:1|base64_encode_me %}" target="_blank">
+                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
+                </a>
+
+
+
+                  <div class="btn-group">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="text-left"><a
+                                            href="{% url 's5013_evtfgts_verificar' hash='{}'|json_id:s5013_evtfgts_id|json_print:2|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
+                                    <li class="text-left"><a
+                                            href="{% url 's5013_evtfgts_verificar' hash='{}'|json_id:s5013_evtfgts_id|json_print:3|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
+                                    <!--<li class="text-left"><a
+                                            href="{% url 's5013_evtfgts_verificar' hash='{}'|json_id:s5013_evtfgts_id|json_print:4|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
+                                </ul>
+                            </div>&nbsp;
+
+              </div>              
+            </div>
+            <div class="box-body">
+{% else %} 
+   <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            S-5013 - Informações do FGTS consolidadas por contribuinte<br>Identidade: {{ s5013_evtfgts.identidade }}
+            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+{% endif %} 
+
+
+
+
+      <h4>Layout</h4>
+
+
+
+
+<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
+              
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtFGTS</td>
+            <td bgcolor="lightgray" colspan="3">Evento consolidado por contribuinte referente ao FGTS devido.</td>
+        </tr>
+    {% for s5013_evtfgts in s5013_evtfgts_lista %}
+    {% ifequal 1 1 %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do evento de retorno.</td>
+        </tr>
+
+        <tr {% if s5013_evtfgts.perapur|validacoes_esocial_efdreinf:"s5013_evtfgts.perapur" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">perApur</td>
+            <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência das informações. Validação: Deve corresponder ao informado pelo empregador no evento de origem (S-1295 ou S-1299).</td>
+            <td width="200px"><b>{% if s5013_evtfgts.perapur or s5013_evtfgts.perapur == 0 %}{{ s5013_evtfgts.perapur }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5013_evtfgts_visualizar' %}
+                <a href="{% url 's5013_evtfgts_salvar'  hash='{}'|json_id:s5013_evtfgts.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
+        </tr>
+
+        <tr {% if s5013_evtfgts.tpinsc|validacoes_esocial_efdreinf:"s5013_evtfgts.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
+            <td width="200px"><b>{% if s5013_evtfgts.tpinsc or s5013_evtfgts.tpinsc == 0 %}{{ s5013_evtfgts.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5013_evtfgts_visualizar' %}
+                <a href="{% url 's5013_evtfgts_salvar'  hash='{}'|json_id:s5013_evtfgts.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5013_evtfgts.nrinsc|validacoes_esocial_efdreinf:"s5013_evtfgts.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s5013_evtfgts.nrinsc or s5013_evtfgts.nrinsc == 0 %}{{ s5013_evtfgts.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5013_evtfgts_visualizar' %}
+                <a href="{% url 's5013_evtfgts_salvar'  hash='{}'|json_id:s5013_evtfgts.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoFGTS</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas ao FGTS.</td>
+        </tr>
+
+        <tr {% if s5013_evtfgts.nrrecarqbase|validacoes_esocial_efdreinf:"s5013_evtfgts.nrrecarqbase" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecArqBase</td>
+            <td width="500px">Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador. Validação: Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem ao presente arquivo de retorno (S-1295 ou S-1299).</td>
+            <td width="200px"><b>{% if s5013_evtfgts.nrrecarqbase or s5013_evtfgts.nrrecarqbase == 0 %}{{ s5013_evtfgts.nrrecarqbase }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5013_evtfgts_visualizar' %}
+                <a href="{% url 's5013_evtfgts_salvar'  hash='{}'|json_id:s5013_evtfgts.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5013_evtfgts.indexistinfo|validacoes_esocial_efdreinf:"s5013_evtfgts.indexistinfo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indExistInfo</td>
+            <td width="500px">Indicativo de existência de FGTS, conforme opções a seguir: 1 - Há informações de FGTS; 2 - Há movimento, porém não há informações de FGTS; 3 - Não há movimento no período informado em {perApur}.</td>
+            <td width="200px"><b>{% if s5013_evtfgts.indexistinfo or s5013_evtfgts.indexistinfo == 0 %}{{ s5013_evtfgts.indexistinfo|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5013_evtfgts_visualizar' %}
+                <a href="{% url 's5013_evtfgts_salvar'  hash='{}'|json_id:s5013_evtfgts.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoBaseFGTS</td>
+            <td bgcolor="lightgray" colspan="3">Informações referentes a bases de cálculo do FGTS, agrupadas por {tpValor}.</td>
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">basePerApur</td>
+            <td bgcolor="lightgray" colspan="3">Informações consolidadas das bases de cálculo do FGTS do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E]. Origem: S-5003.</td>
+        </tr>
+    {% for s5013_baseperapur in s5013_baseperapur_lista %}
+    {% ifequal s5013_baseperapur.s5013_evtfgts.id s5013_evtfgts.id %}
+        <tr {% if s5013_baseperapur.tpvalor|validacoes_esocial_efdreinf:"s5013_baseperapur.tpvalor" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpValor</td>
+            <td width="500px">Tipo de valor que influi na apuração do FGTS: 11 - Base de Cálculo do FGTS; 12 - Base de Cálculo do FGTS 13° Salário; 13 - Base de Cálculo do FGTS Dissídio; 14 - Base de Cálculo do FGTS Dissídio 13º Salário; 15 - Base de Cálculo do FGTS - Aprendiz; 16 - Base de Cálculo do FGTS 13° Salário - Aprendiz; 17 - Base de Cálculo do FGTS Dissídio - Aprendiz; 18 - Base de Cálculo do FGTS Dissídio 13º Salário - Aprendiz; 21 - Base de Cálculo do FGTS Rescisório; 22 - Base de Cálculo do FGTS Rescisório - 13° Salário; 23 - Base de Cálculo do FGTS Rescisório - Aviso Prévio; 24 - Base de Cálculo do FGTS Rescisório - Dissídio; 25 - Base de Cálculo do FGTS Rescisório - Dissídio 13º Salário; 26 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio; 27 - Base de Cálculo do FGTS Rescisório - Aprendiz; 28 - Base de Cálculo do FGTS Rescisório - 13° Salário Aprendiz; 29 - Base de Cálculo do FGTS Rescisório - Aviso Prévio Aprendiz; 30 - Base de Cálculo do FGTS Rescisório - Dissídio Aprendiz; 31 - Base de Cálculo do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 32 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz; 91 - Incidência suspensa em decorrência de decisão judicial. Validação: Deve ser um código válido, conforme opções acima.</td>
+            <td width="200px"><b>{% if s5013_baseperapur.tpvalor or s5013_baseperapur.tpvalor == 0 %}{{ s5013_baseperapur.tpvalor|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5013_baseperapur_visualizar' %}
+                <a href="{% url 's5013_baseperapur_salvar'  hash='{}'|json_id:s5013_baseperapur.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5013_baseperapur.basefgts|validacoes_esocial_efdreinf:"s5013_baseperapur.basefgts" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">baseFGTS</td>
+            <td width="500px">Remuneração (valor da base de cálculo) do FGTS. Evento de origem: S-5003. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {remFGTS}, agrupados por {tpValor}.</td>
+            <td width="200px"><b>{% if s5013_baseperapur.basefgts or s5013_baseperapur.basefgts == 0 %}{{ s5013_baseperapur.basefgts|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5013_baseperapur_visualizar' %}
+                <a href="{% url 's5013_baseperapur_salvar'  hash='{}'|json_id:s5013_baseperapur.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoBasePerAntE</td>
+            <td bgcolor="lightgray" colspan="3">Informações referentes a bases de cálculo do FGTS de períodos anteriores quando {tpAcConv} = [E], agrupadas por {tpValor}.</td>
+        </tr>
+    {% for s5013_infobaseperante in s5013_infobaseperante_lista %}
+    {% ifequal s5013_infobaseperante.s5013_evtfgts.id s5013_evtfgts.id %}
+        <tr {% if s5013_infobaseperante.perref|validacoes_esocial_efdreinf:"s5013_infobaseperante.perref" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">perRef</td>
+            <td width="500px">Informar o período ao qual se refere a remuneração no formato AAAA-MM. Evento de origem: S-5003. Validação: Deve corresponder ao período informado no evento de origem.</td>
+            <td width="200px"><b>{% if s5013_infobaseperante.perref or s5013_infobaseperante.perref == 0 %}{{ s5013_infobaseperante.perref }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5013_infobaseperante_visualizar' %}
+                <a href="{% url 's5013_infobaseperante_salvar'  hash='{}'|json_id:s5013_infobaseperante.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">basePerAntE</td>
+            <td bgcolor="lightgray" colspan="3">Informações consolidadas das bases de cálculo do FGTS de períodos anteriores quando {tpAcConv} = [E]. Origem: S-5003.</td>
+        </tr>
+    {% for s5013_baseperante in s5013_baseperante_lista %}
+    {% ifequal s5013_baseperante.s5013_infobaseperante.id s5013_infobaseperante.id %}
+        <tr {% if s5013_baseperante.tpvalore|validacoes_esocial_efdreinf:"s5013_baseperante.tpvalore" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpValorE</td>
+            <td width="500px">Tipo de valor que influi na apuração do FGTS: 13 - Base de Cálculo do FGTS Dissídio; 14 - Base de Cálculo do FGTS Dissídio 13º Salário; 17 - Base de Cálculo do FGTS Dissídio - Aprendiz; 18 - Base de Cálculo do FGTS Dissídio 13º Salário - Aprendiz; 24 - Base de Cálculo do FGTS Rescisório - Dissídio; 25 - Base de Cálculo do FGTS Rescisório - Dissídio 13º Salário; 26 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio; 30 - Base de Cálculo do FGTS Rescisório - Dissídio Aprendiz; 31 - Base de Cálculo do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 32 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz; 91 - Incidência suspensa em decorrência de decisão judicial. Validação: Deve ser um código válido, conforme opções acima.</td>
+            <td width="200px"><b>{% if s5013_baseperante.tpvalore or s5013_baseperante.tpvalore == 0 %}{{ s5013_baseperante.tpvalore|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5013_baseperante_visualizar' %}
+                <a href="{% url 's5013_baseperante_salvar'  hash='{}'|json_id:s5013_baseperante.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5013_baseperante.basefgtse|validacoes_esocial_efdreinf:"s5013_baseperante.basefgtse" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">baseFGTSE</td>
+            <td width="500px">Remuneração (valor da base de cálculo) do FGTS. Evento de origem: S-5003. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {remFGTSE}, agrupados por {tpValorE}.</td>
+            <td width="200px"><b>{% if s5013_baseperante.basefgtse or s5013_baseperante.basefgtse == 0 %}{{ s5013_baseperante.basefgtse|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5013_baseperante_visualizar' %}
+                <a href="{% url 's5013_baseperante_salvar'  hash='{}'|json_id:s5013_baseperante.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %} 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoDpsFGTS</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre valores de FGTS, agrupados por {tpDps}.</td>
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">dpsPerApur</td>
+            <td bgcolor="lightgray" colspan="3">Cálculo consolidado dos valores de FGTS a serem depositados, incidentes sobre a remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E].</td>
+        </tr>
+    {% for s5013_dpsperapur in s5013_dpsperapur_lista %}
+    {% ifequal s5013_dpsperapur.s5013_evtfgts.id s5013_evtfgts.id %}
+        <tr {% if s5013_dpsperapur.tpdps|validacoes_esocial_efdreinf:"s5013_dpsperapur.tpdps" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpDps</td>
+            <td width="500px">Tipo de depósito: 51 - Depósito do FGTS; 52 - Depósito do FGTS 13° Salário; 53 - Depósito do FGTS Dissídio; 54 - Depósito do FGTS Dissídio 13º Salário; 55 - Depósito do FGTS - Aprendiz; 56 - Depósito do FGTS 13° Salário - Aprendiz; 57 - Depósito do FGTS Dissídio - Aprendiz; 58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz; 61 - Depósito do FGTS Rescisório; 62 - Depósito do FGTS Rescisório - 13° Salário; 63 - Depósito do FGTS Rescisório - Aviso Prévio; 64 - Depósito do FGTS Rescisório - Dissídio; 65 - Depósito do FGTS Rescisório - Dissídio 13º Salário; 66 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio; 67 - Depósito do FGTS Rescisório - Aprendiz; 68 - Depósito do FGTS Rescisório - 13° Salário Aprendiz; 69 - Depósito do FGTS Rescisório - Aviso Prévio Aprendiz; 70 - Depósito do FGTS Rescisório - Dissídio Aprendiz; 71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz. Validação: Deve ser um código válido, conforme opções acima.</td>
+            <td width="200px"><b>{% if s5013_dpsperapur.tpdps or s5013_dpsperapur.tpdps == 0 %}{{ s5013_dpsperapur.tpdps|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5013_dpsperapur_visualizar' %}
+                <a href="{% url 's5013_dpsperapur_salvar'  hash='{}'|json_id:s5013_dpsperapur.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5013_dpsperapur.vrfgts|validacoes_esocial_efdreinf:"s5013_dpsperapur.vrfgts" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrFGTS</td>
+            <td width="500px">Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador. Evento de origem: S-5003. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {dpsFGTS}, agrupados por {tpDps}.</td>
+            <td width="200px"><b>{% if s5013_dpsperapur.vrfgts or s5013_dpsperapur.vrfgts == 0 %}{{ s5013_dpsperapur.vrfgts|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5013_dpsperapur_visualizar' %}
+                <a href="{% url 's5013_dpsperapur_salvar'  hash='{}'|json_id:s5013_dpsperapur.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoDpsPerAntE</td>
+            <td bgcolor="lightgray" colspan="3">Informações referentes ao cálculo dos valores de FGTS de períodos anteriores quando {tpAcConv} = [E].</td>
+        </tr>
+    {% for s5013_infodpsperante in s5013_infodpsperante_lista %}
+    {% ifequal s5013_infodpsperante.s5013_evtfgts.id s5013_evtfgts.id %}
+        <tr {% if s5013_infodpsperante.perref|validacoes_esocial_efdreinf:"s5013_infodpsperante.perref" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">perRef</td>
+            <td width="500px">Informar o período ao qual se refere a remuneração no formato AAAA-MM. Evento de origem: S-5003. Validação: Deve corresponder ao período informado no evento de origem.</td>
+            <td width="200px"><b>{% if s5013_infodpsperante.perref or s5013_infodpsperante.perref == 0 %}{{ s5013_infodpsperante.perref }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5013_infodpsperante_visualizar' %}
+                <a href="{% url 's5013_infodpsperante_salvar'  hash='{}'|json_id:s5013_infodpsperante.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">dpsPerAntE</td>
+            <td bgcolor="lightgray" colspan="3">Cálculo consolidado dos valores de FGTS a serem depositados, incidentes sobre a remuneração de períodos anteriores quando {tpAcConv} = [E].</td>
+        </tr>
+    {% for s5013_dpsperante in s5013_dpsperante_lista %}
+    {% ifequal s5013_dpsperante.s5013_infodpsperante.id s5013_infodpsperante.id %}
+        <tr {% if s5013_dpsperante.tpdpse|validacoes_esocial_efdreinf:"s5013_dpsperante.tpdpse" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpDpsE</td>
+            <td width="500px">Tipo de depósito: 53 - Depósito do FGTS Dissídio; 54 - Depósito do FGTS Dissídio 13º Salário; 57 - Depósito do FGTS Dissídio - Aprendiz; 58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz; 64 - Depósito do FGTS Rescisório - Dissídio; 65 - Depósito do FGTS Rescisório - Dissídio 13º Salário; 66 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio; 70 - Depósito do FGTS Rescisório - Dissídio Aprendiz; 71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz. Validação: Deve ser um código válido, conforme opções acima.</td>
+            <td width="200px"><b>{% if s5013_dpsperante.tpdpse or s5013_dpsperante.tpdpse == 0 %}{{ s5013_dpsperante.tpdpse|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5013_dpsperante_visualizar' %}
+                <a href="{% url 's5013_dpsperante_salvar'  hash='{}'|json_id:s5013_dpsperante.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5013_dpsperante.vrfgtse|validacoes_esocial_efdreinf:"s5013_dpsperante.vrfgtse" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrFGTSE</td>
+            <td width="500px">Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador. Evento de origem: S-5003. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {dpsFGTSE}, agrupados por {tpDpsE}.</td>
+            <td width="200px"><b>{% if s5013_dpsperante.vrfgtse or s5013_dpsperante.vrfgtse == 0 %}{{ s5013_dpsperante.vrfgtse|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s5013_dpsperante_visualizar' %}
+                <a href="{% url 's5013_dpsperante_salvar'  hash='{}'|json_id:s5013_dpsperante.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}  {% endifequal %}{% endfor %}
+</table>
+{% if not for_print %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %} 
+
+        </div>
+      </div>
+    </section>
+{% endif %}  
+
+{% endblock content %}

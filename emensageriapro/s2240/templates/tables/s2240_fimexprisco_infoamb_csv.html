@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações relativas ao ambiente de trabalho"
+{% if show_fields.show_s2240_fimexprisco or not s2240_fimexprisco_id and 1 %}"Condições ambientais do trabalho - Fim";{% endif %}{% if show_fields.show_codamb or 1 %}"Código do Ambiente";{% endif %}
+{% for a in s2240_fimexprisco_infoamb_lista %}{% if show_fields.show_s2240_fimexprisco or  not s2240_fimexprisco_id and 1 %}"{{ a.s2240_fimexprisco }}";{% endif %}{% if show_fields.show_codamb or 1 %}"{{ a.codamb }}";{% endif %}
+{% endfor %}

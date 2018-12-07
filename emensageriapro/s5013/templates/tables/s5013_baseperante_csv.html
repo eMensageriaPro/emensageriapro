@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações sobre bases de cálculo do FGTS referentes à remuneração de períodos anteriores quando {tpAcConv} = [E]. Origem: S-1200 ou S-2299."
+{% if show_fields.show_s5013_infobaseperante or not s5013_infobaseperante_id and 1 %}"Informações referentes a bases de cálculo do FGTS de períodos anteriores quando {tpAcConv} = [E].";{% endif %}{% if show_fields.show_tpvalore or 1 %}"Tipo de valor que influi na apuração do FGTS";{% endif %}{% if show_fields.show_basefgtse or 1 %}"Remuneração (valor da base de cálculo) do FGTS";{% endif %}
+{% for a in s5013_baseperante_lista %}{% if show_fields.show_s5013_infobaseperante or  not s5013_infobaseperante_id and 1 %}"{{ a.s5013_infobaseperante }}";{% endif %}{% if show_fields.show_tpvalore or 1 %}"{{ a.get_tpvalore_display }}";{% endif %}{% if show_fields.show_basefgtse or 1 %}"{{ a.basefgtse }}";{% endif %}
+{% endfor %}

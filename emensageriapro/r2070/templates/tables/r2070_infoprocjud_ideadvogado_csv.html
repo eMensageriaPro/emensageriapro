@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Identificação do Advogado"
+{% if show_fields.show_r2070_infoprocjud_despprocjud or not r2070_infoprocjud_despprocjud_id and 1 %}"Detalhamento das despesas de processo judicial";{% endif %}{% if show_fields.show_tpinscadvogado or 1 %}"Tipo de Inscrição do Advogado";{% endif %}{% if show_fields.show_nrinscadvogado or 1 %}"Preencher com o número de inscrição (CNPJ/CPF) do Advogado";{% endif %}{% if show_fields.show_vlradvogado or 1 %}"Valor da despesa com o advogado";{% endif %}
+{% for a in r2070_infoprocjud_ideadvogado_lista %}{% if show_fields.show_r2070_infoprocjud_despprocjud or  not r2070_infoprocjud_despprocjud_id and 1 %}"{{ a.r2070_infoprocjud_despprocjud }}";{% endif %}{% if show_fields.show_tpinscadvogado or 1 %}"{{ a.get_tpinscadvogado_display }}";{% endif %}{% if show_fields.show_nrinscadvogado or 1 %}"{{ a.nrinscadvogado }}";{% endif %}{% if show_fields.show_vlradvogado or 1 %}"{{ a.vlradvogado }}";{% endif %}
+{% endfor %}

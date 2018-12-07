@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações relativas a existência de dependentes do beneficiário do pagamento. Origem: S-1210 - registro {deps}"
+{% if show_fields.show_s5002_evtirrfbenef or not s5002_evtirrfbenef_id and 1 %}"Imposto de Renda Retido do beneficiário do rendimento";{% endif %}{% if show_fields.show_vrdeddep or 1 %}"Valor da dedução da BC do IRRF";{% endif %}
+{% for a in s5002_infodep_lista %}{% if show_fields.show_s5002_evtirrfbenef or  not s5002_evtirrfbenef_id and 1 %}"{{ a.s5002_evtirrfbenef }}";{% endif %}{% if show_fields.show_vrdeddep or 1 %}"{{ a.vrdeddep }}";{% endif %}
+{% endfor %}

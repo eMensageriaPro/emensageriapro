@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Evento Bases por Trabalhador"
+{% if show_fields.show_s5001_evtbasestrab or not s5001_evtbasestrab_id and 1 %}"Evento Bases por Trabalhador";{% endif %}
+{% for a in s5001_infocp_lista %}{% if show_fields.show_s5001_evtbasestrab or  not s5001_evtbasestrab_id and 1 %}"{{ a.s5001_evtbasestrab }}";{% endif %}
+{% endfor %}

@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Cálculo da contribuição previdenciária do segurado, incidente sobre a Remuneração do Período de Apuração e de Períodos Anteriores informada nos eventos S-1200, S-2299 e S-2399."
+{% if show_fields.show_s5001_evtbasestrab or not s5001_evtbasestrab_id and 1 %}"Evento Bases por Trabalhador";{% endif %}{% if show_fields.show_tpcr or 1 %}"Código da Receita (CR)";{% endif %}{% if show_fields.show_vrcpseg or 1 %}"Valor da contribuição do segurado";{% endif %}{% if show_fields.show_vrdescseg or 1 %}"Valor efetivamente descontado do segurado";{% endif %}
+{% for a in s5001_infocpcalc_lista %}{% if show_fields.show_s5001_evtbasestrab or  not s5001_evtbasestrab_id and 1 %}"{{ a.s5001_evtbasestrab }}";{% endif %}{% if show_fields.show_tpcr or 1 %}"{{ a.get_tpcr_display }}";{% endif %}{% if show_fields.show_vrcpseg or 1 %}"{{ a.vrcpseg }}";{% endif %}{% if show_fields.show_vrdescseg or 1 %}"{{ a.vrdescseg }}";{% endif %}
+{% endfor %}

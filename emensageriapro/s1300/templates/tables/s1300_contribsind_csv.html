@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações da contribuição sindical patronal"
+{% if show_fields.show_s1300_evtcontrsindpatr or not s1300_evtcontrsindpatr_id and 1 %}"Contribuição sindical patronal";{% endif %}{% if show_fields.show_cnpjsindic or 1 %}"CNPJ do Sindicato";{% endif %}{% if show_fields.show_tpcontribsind or 1 %}"Tipo de Contribuição Sindical";{% endif %}{% if show_fields.show_vlrcontribsind or 1 %}"Valor";{% endif %}
+{% for a in s1300_contribsind_lista %}{% if show_fields.show_s1300_evtcontrsindpatr or  not s1300_evtcontrsindpatr_id and 1 %}"{{ a.s1300_evtcontrsindpatr }}";{% endif %}{% if show_fields.show_cnpjsindic or 1 %}"{{ a.cnpjsindic }}";{% endif %}{% if show_fields.show_tpcontribsind or 1 %}"{{ a.get_tpcontribsind_display }}";{% endif %}{% if show_fields.show_vlrcontribsind or 1 %}"{{ a.vlrcontribsind }}";{% endif %}
+{% endfor %}

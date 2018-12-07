@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Condições ambientais do trabalho - Início"
+{% if show_fields.show_iniexprisco or not s2240_evtexprisco_id and 1 %}"Condições ambientais do trabalho - Início";{% endif %}
+{% for a in s2240_iniexprisco_lista %}{% if show_fields.show_iniexprisco or  not s2240_evtexprisco_id and 1 %}"{{ a.iniexprisco }}";{% endif %}
+{% endfor %}

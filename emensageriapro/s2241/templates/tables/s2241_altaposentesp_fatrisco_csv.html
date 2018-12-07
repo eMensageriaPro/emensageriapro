@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente"
+{% if show_fields.show_s2241_altaposentesp_infoamb or not s2241_altaposentesp_infoamb_id and 1 %}"Informações relativas ao ambiente de trabalho";{% endif %}{% if show_fields.show_codfatris or not esocial_fatores_risco_id and 1 %}"Código do Fator de Risco";{% endif %}
+{% for a in s2241_altaposentesp_fatrisco_lista %}{% if show_fields.show_s2241_altaposentesp_infoamb or  not s2241_altaposentesp_infoamb_id and 1 %}"{{ a.s2241_altaposentesp_infoamb }}";{% endif %}{% if show_fields.show_codfatris or  not esocial_fatores_risco_id and 1 %}"{{ a.codfatris }}";{% endif %}
+{% endfor %}

@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Registro que apresenta o valor total da Receita Bruta por 'tipo' de comercialização."
+{% if show_fields.show_r2050_evtcomprod or not r2050_evtcomprod_id and 1 %}"Evento Comercialização da Produção";{% endif %}{% if show_fields.show_indcom or 1 %}"Indicativo de Comercialização";{% endif %}{% if show_fields.show_vlrrecbruta or 1 %}"Preencher com o valor total da comercialização";{% endif %}
+{% for a in r2050_tipocom_lista %}{% if show_fields.show_r2050_evtcomprod or  not r2050_evtcomprod_id and 1 %}"{{ a.r2050_evtcomprod }}";{% endif %}{% if show_fields.show_indcom or 1 %}"{{ a.get_indcom_display }}";{% endif %}{% if show_fields.show_vlrrecbruta or 1 %}"{{ a.vlrrecbruta }}";{% endif %}
+{% endfor %}

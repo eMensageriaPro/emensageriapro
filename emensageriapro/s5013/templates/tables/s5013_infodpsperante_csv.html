@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações referentes ao cálculo dos valores de FGTS de períodos anteriores quando {tpAcConv} = [E]."
+{% if show_fields.show_s5013_evtfgts or not s5013_evtfgts_id and 1 %}"Evento consolidado por contribuinte referente ao FGTS devido.";{% endif %}{% if show_fields.show_perref or 1 %}"Período de Referência";{% endif %}
+{% for a in s5013_infodpsperante_lista %}{% if show_fields.show_s5013_evtfgts or  not s5013_evtfgts_id and 1 %}"{{ a.s5013_evtfgts }}";{% endif %}{% if show_fields.show_perref or 1 %}"{{ a.perref }}";{% endif %}
+{% endfor %}

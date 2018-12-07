@@ -1,0 +1,33 @@
+# Dockerfile by Marcos Roberto
+# Variaveis de ambiente iniciais
+FROM python:2.7.15-stretch
+LABEL author="marcosroberto1808@gmail.com"
+
+COPY ./compose_setup/files/wkhtmltox_0.12.5-1.stretch_amd64.deb \
+./compose_setup/files/uwsgi.ini \
+requirements.txt /requirements/
+
+# Ajustar timezone e locales
+RUN export TZ="America/Fortaleza" ; \
+export LANG="pt_BR.UTF-8" ; \
+export LANGUAGE="pt_BR.UTF-8" ; \
+export LC_ALL="pt_BR.UTF-8" ; \
+ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone ; \
+apt-get update ; \
+apt-get install --reinstall -y locales ; \
+locale-gen pt_BR.UTF-8 ; \
+sed -i 's/# pt_BR.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/' /etc/locale.gen ; \
+dpkg-reconfigure --frontend noninteractive locales ; \
+# Dependencias basicas do S.O
+apt-get install -y xfonts-utils xfonts-75dpi xfonts-base libfontenc1 libxfont1 xfonts-encodings ; \
+dpkg -i /requirements/wkhtmltox_0.12.5-1.stretch_amd64.deb ; \
+rm -rf /requirements/wkhtmltox_0.12.5-1.stretch_amd64.deb ; \
+# # Dependencias PYTHON 
+pip install --no-cache-dir -r /requirements/requirements.txt ; \
+pip install --no-cache-dir uWSGI
+
+#### INICIO CONFIGURAÇÃO DA APLICAÇÃO ####
+
+## Iniciar Tudo
+WORKDIR /app
+CMD ["uwsgi --ini /requirements/uwsgi.ini"]

@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010"
+{% if show_fields.show_r5011_infototalcontrib or not r5011_infototalcontrib_id and 1 %}"Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos";{% endif %}{% if show_fields.show_cnpjprestador or 1 %}"Preencher com o CNPJ do Prestador de Serviços";{% endif %}{% if show_fields.show_cno or 0 %}"Número de inscrição no Cadastro Nacional de Obras - CNO";{% endif %}{% if show_fields.show_vlrtotalbaseret or 1 %}"Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante";{% endif %}
+{% for a in r5011_rtom_lista %}{% if show_fields.show_r5011_infototalcontrib or  not r5011_infototalcontrib_id and 1 %}"{{ a.r5011_infototalcontrib }}";{% endif %}{% if show_fields.show_cnpjprestador or 1 %}"{{ a.cnpjprestador }}";{% endif %}{% if show_fields.show_cno or 0 %}"{{ a.cno }}";{% endif %}{% if show_fields.show_vlrtotalbaseret or 1 %}"{{ a.vlrtotalbaseret }}";{% endif %}
+{% endfor %}

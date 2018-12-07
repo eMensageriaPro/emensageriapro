@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Exclusão das informações"
+{% if show_fields.show_s1030_evttabcargo or not s1030_evttabcargo_id and 1 %}"Evento utilizado para inclusão, alteração e exclusão de registros na tabela de cargos";{% endif %}{% if show_fields.show_idecargo or 0 %}"Informações de identificação do cargo e validade das informações que estão sendo incluídas";{% endif %}{% if show_fields.show_codcargo or 1 %}"Código do Cargo";{% endif %}{% if show_fields.show_inivalid or 1 %}"Início da Validade";{% endif %}{% if show_fields.show_fimvalid or 0 %}"Fim da Validade";{% endif %}
+{% for a in s1030_exclusao_lista %}{% if show_fields.show_s1030_evttabcargo or  not s1030_evttabcargo_id and 1 %}"{{ a.s1030_evttabcargo }}";{% endif %}{% if show_fields.show_idecargo or 0 %}"{{ a.idecargo }}";{% endif %}{% if show_fields.show_codcargo or 1 %}"{{ a.codcargo }}";{% endif %}{% if show_fields.show_inivalid or 1 %}"{{ a.get_inivalid_display }}";{% endif %}{% if show_fields.show_fimvalid or 0 %}"{{ a.get_fimvalid_display }}";{% endif %}
+{% endfor %}

@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Outras receitas do espetáculo"
+{% if show_fields.show_r3010_boletim or not r3010_boletim_id and 1 %}"Boletim do Espetáculo Desportivo";{% endif %}{% if show_fields.show_tpreceita or 1 %}"Tipo de receita";{% endif %}{% if show_fields.show_vlrreceita or 1 %}"Valor da receita auferida";{% endif %}{% if show_fields.show_descreceita or 1 %}"Descrição da receita";{% endif %}
+{% for a in r3010_outrasreceitas_lista %}{% if show_fields.show_r3010_boletim or  not r3010_boletim_id and 1 %}"{{ a.r3010_boletim }}";{% endif %}{% if show_fields.show_tpreceita or 1 %}"{{ a.get_tpreceita_display }}";{% endif %}{% if show_fields.show_vlrreceita or 1 %}"{{ a.vlrreceita }}";{% endif %}{% if show_fields.show_descreceita or 1 %}"{{ a.descreceita }}";{% endif %}
+{% endfor %}

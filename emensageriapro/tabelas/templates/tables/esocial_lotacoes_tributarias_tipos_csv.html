@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"eSocial 10 - Tipos de Lotação Tributária"
+{% if show_fields.show_codigo or 1 %}"Código";{% endif %}{% if show_fields.show_descricao or 1 %}"Descrição";{% endif %}{% if show_fields.show_preenchimento_campo_nr_insc or 1 %}"Preenchimento do Campo Número de Instrução";{% endif %}
+{% for a in esocial_lotacoes_tributarias_tipos_lista %}{% if show_fields.show_codigo or 1 %}"{{ a.codigo }}";{% endif %}{% if show_fields.show_descricao or 1 %}"{{ a.descricao }}";{% endif %}{% if show_fields.show_preenchimento_campo_nr_insc or 1 %}"{{ a.preenchimento_campo_nr_insc }}";{% endif %}
+{% endfor %}

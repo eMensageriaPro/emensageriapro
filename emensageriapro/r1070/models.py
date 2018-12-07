@@ -1,0 +1,435 @@
+#coding: utf-8
+
+"""
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
+
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from rest_framework.serializers import ModelSerializer
+from django.apps import apps
+get_model = apps.get_model
+
+
+
+CHOICES_R1070_INCLUSAO_TPPROC = (
+    (1, u'1 - Administrativo'),
+    (2, u'2 - Judicial'),
+)
+
+CHOICES_R1070_INCLUSAO_INDSUSP = (
+    ('01', u'01 - Liminar em Mandado de Segurança'),
+    ('02', u'02 - Depósito Judicial do Montante Integral'),
+    ('03', u'03 - Depósito Administrativo do Montante Integral'),
+    ('04', u'04 - Antecipação de Tutela'),
+    ('05', u'05 - Liminar em Medida Cautelar'),
+    ('08', u'08 - Sentença em Mandado de Segurança Favorável ao Contribuinte'),
+    ('09', u'09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF'),
+    ('10', u'10 - Acórdão do TRF Favorável ao Contribuinte'),
+    ('11', u'11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte'),
+    ('12', u'12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte'),
+    ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
+    ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
+    ('92', u'92 - Sem suspensão da exigibilidade'),
+)
+
+CHOICES_R1070_INCLUSAO_INDDEPOSITO = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_R1070_INCLUSAO_INDAUTORIA = (
+    (1, u'1 - Próprio contribuinte'),
+    (2, u'2 - Outra entidade ou empresa'),
+)
+
+CHOICES_R1070_EXCLUSAO_TPPROC = (
+    (1, u'1 - Administrativo'),
+    (2, u'2 - Judicial'),
+)
+
+CHOICES_R1070_ALTERACAO_TPPROC = (
+    (1, u'1 - Administrativo'),
+    (2, u'2 - Judicial'),
+)
+
+CHOICES_R1070_ALTERACAO_INDSUSP = (
+    ('01', u'01 - Liminar em Mandado de Segurança'),
+    ('02', u'02 - Depósito Judicial do Montante Integral'),
+    ('03', u'03 - Depósito Administrativo do Montante Integral'),
+    ('04', u'04 - Antecipação de Tutela'),
+    ('05', u'05 - Liminar em Medida Cautelar'),
+    ('08', u'08 - Sentença em Mandado de Segurança Favorável ao Contribuinte'),
+    ('09', u'09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF'),
+    ('10', u'10 - Acórdão do TRF Favorável ao Contribuinte'),
+    ('11', u'11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte'),
+    ('12', u'12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte'),
+    ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
+    ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
+    ('92', u'92 - Sem suspensão da exigibilidade'),
+)
+
+CHOICES_R1070_ALTERACAO_INDDEPOSITO = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_R1070_ALTERACAO_INDAUTORIA = (
+    (1, u'1 - Próprio contribuinte'),
+    (2, u'2 - Outra entidade ou empresa'),
+)
+
+PERIODOS = (
+    ('2017-01', u'Janeiro/2017'),
+    ('2017-02', u'Fevereiro/2017'),
+    ('2017-03', u'Março/2017'),
+    ('2017-04', u'Abril/2017'),
+    ('2017-05', u'Maio/2017'),
+    ('2017-06', u'Junho/2017'),
+    ('2017-07', u'Julho/2017'),
+    ('2017-08', u'Agosto/2017'),
+    ('2017-09', u'Setembro/2017'),
+    ('2017-10', u'Outubro/2017'),
+    ('2017-11', u'Novembro/2017'),
+    ('2017-12', u'Dezembro/2017'),
+    ('2018-01', u'Janeiro/2018'),
+    ('2018-02', u'Fevereiro/2018'),
+    ('2018-03', u'Março/2018'),
+    ('2018-04', u'Abril/2018'),
+    ('2018-05', u'Maio/2018'),
+    ('2018-06', u'Junho/2018'),
+    ('2018-07', u'Julho/2018'),
+    ('2018-08', u'Agosto/2018'),
+    ('2018-09', u'Setembro/2018'),
+    ('2018-10', u'Outubro/2018'),
+    ('2018-11', u'Novembro/2018'),
+    ('2018-12', u'Dezembro/2018'),
+    ('2019-01', u'Janeiro/2019'),
+    ('2019-02', u'Fevereiro/2019'),
+    ('2019-03', u'Março/2019'),
+    ('2019-04', u'Abril/2019'),
+    ('2019-05', u'Maio/2019'),
+    ('2019-06', u'Junho/2019'),
+    ('2019-07', u'Julho/2019'),
+    ('2019-08', u'Agosto/2019'),
+    ('2019-09', u'Setembro/2019'),
+    ('2019-10', u'Outubro/2019'),
+    ('2019-11', u'Novembro/2019'),
+    ('2019-12', u'Dezembro/2019'),
+)
+
+ESTADOS = (
+    ('AC', u'Acre'),
+    ('AL', u'Alagoas'),
+    ('AM', u'Amazonas'),
+    ('AP', u'Amapá'),
+    ('BA', u'Bahia'),
+    ('CE', u'Ceará'),
+    ('DF', u'Distrito Federal'),
+    ('ES', u'Espírito Santo'),
+    ('GO', u'Goiás'),
+    ('MA', u'Maranhão'),
+    ('MG', u'Minas Gerais'),
+    ('MS', u'Mato Grosso do Sul'),
+    ('MT', u'Mato Grosso'),
+    ('PA', u'Pará'),
+    ('PB', u'Paraíba'),
+    ('PE', u'Pernambuco'),
+    ('PI', u'Piauí'),
+    ('PR', u'Paraná'),
+    ('RJ', u'Rio de Janeiro'),
+    ('RN', u'Rio Grande do Norte'),
+    ('RO', u'Rondônia'),
+    ('RR', u'Roraima'),
+    ('RS', u'Rio Grande do Sul'),
+    ('SC', u'Santa Catarina'),
+    ('SE', u'Sergipe'),
+    ('SP', u'São Paulo'),
+    ('TO', u'Tocantins'),
+)
+
+class r1070alteracao(models.Model):
+    r1070_evttabprocesso = models.OneToOneField('efdreinf.r1070evtTabProcesso',
+        related_name='%(class)s_r1070_evttabprocesso')
+    def evento(self): return self.r1070_evttabprocesso.evento()
+    tpproc = models.IntegerField(choices=CHOICES_R1070_ALTERACAO_TPPROC)
+    nrproc = models.CharField(max_length=21)
+    inivalid = models.CharField(choices=PERIODOS, max_length=7)
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
+    indautoria = models.IntegerField(choices=CHOICES_R1070_ALTERACAO_INDAUTORIA)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.r1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.indautoria)
+    #r1070_alteracao_custom#
+    #r1070_alteracao_custom#
+    class Meta:
+        db_table = r'r1070_alteracao'
+        managed = True
+        ordering = ['r1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid', 'indautoria']
+
+
+
+class r1070alteracaoSerializer(ModelSerializer):
+    class Meta:
+        model = r1070alteracao
+        fields = '__all__'
+            
+
+class r1070alteracaodadosProcJud(models.Model):
+    r1070_alteracao = models.OneToOneField('r1070alteracao',
+        related_name='%(class)s_r1070_alteracao')
+    def evento(self): return self.r1070_alteracao.evento()
+    ufvara = models.CharField(choices=ESTADOS, max_length=2)
+    codmunic = models.TextField(max_length=7)
+    idvara = models.CharField(max_length=4)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.r1070_alteracao) + ' - ' + unicode(self.ufvara) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.idvara)
+    #r1070_alteracao_dadosprocjud_custom#
+    #r1070_alteracao_dadosprocjud_custom#
+    class Meta:
+        db_table = r'r1070_alteracao_dadosprocjud'
+        managed = True
+        ordering = ['r1070_alteracao', 'ufvara', 'codmunic', 'idvara']
+
+
+
+class r1070alteracaodadosProcJudSerializer(ModelSerializer):
+    class Meta:
+        model = r1070alteracaodadosProcJud
+        fields = '__all__'
+            
+
+class r1070alteracaoinfoSusp(models.Model):
+    r1070_alteracao = models.ForeignKey('r1070alteracao',
+        related_name='%(class)s_r1070_alteracao')
+    def evento(self): return self.r1070_alteracao.evento()
+    codsusp = models.IntegerField(blank=True, null=True)
+    indsusp = models.CharField(choices=CHOICES_R1070_ALTERACAO_INDSUSP, max_length=2)
+    dtdecisao = models.DateField()
+    inddeposito = models.CharField(choices=CHOICES_R1070_ALTERACAO_INDDEPOSITO, max_length=1)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.r1070_alteracao) + ' - ' + unicode(self.indsusp) + ' - ' + unicode(self.dtdecisao) + ' - ' + unicode(self.inddeposito)
+    #r1070_alteracao_infosusp_custom#
+    #r1070_alteracao_infosusp_custom#
+    class Meta:
+        db_table = r'r1070_alteracao_infosusp'
+        managed = True
+        ordering = ['r1070_alteracao', 'indsusp', 'dtdecisao', 'inddeposito']
+
+
+
+class r1070alteracaoinfoSuspSerializer(ModelSerializer):
+    class Meta:
+        model = r1070alteracaoinfoSusp
+        fields = '__all__'
+            
+
+class r1070alteracaonovaValidade(models.Model):
+    r1070_alteracao = models.OneToOneField('r1070alteracao',
+        related_name='%(class)s_r1070_alteracao')
+    def evento(self): return self.r1070_alteracao.evento()
+    inivalid = models.CharField(choices=PERIODOS, max_length=7)
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.r1070_alteracao) + ' - ' + unicode(self.inivalid)
+    #r1070_alteracao_novavalidade_custom#
+    #r1070_alteracao_novavalidade_custom#
+    class Meta:
+        db_table = r'r1070_alteracao_novavalidade'
+        managed = True
+        ordering = ['r1070_alteracao', 'inivalid']
+
+
+
+class r1070alteracaonovaValidadeSerializer(ModelSerializer):
+    class Meta:
+        model = r1070alteracaonovaValidade
+        fields = '__all__'
+            
+
+class r1070exclusao(models.Model):
+    r1070_evttabprocesso = models.OneToOneField('efdreinf.r1070evtTabProcesso',
+        related_name='%(class)s_r1070_evttabprocesso')
+    def evento(self): return self.r1070_evttabprocesso.evento()
+    tpproc = models.IntegerField(choices=CHOICES_R1070_EXCLUSAO_TPPROC)
+    nrproc = models.CharField(max_length=21)
+    inivalid = models.CharField(choices=PERIODOS, max_length=7)
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.r1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid)
+    #r1070_exclusao_custom#
+    #r1070_exclusao_custom#
+    class Meta:
+        db_table = r'r1070_exclusao'
+        managed = True
+        ordering = ['r1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid']
+
+
+
+class r1070exclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = r1070exclusao
+        fields = '__all__'
+            
+
+class r1070inclusao(models.Model):
+    r1070_evttabprocesso = models.OneToOneField('efdreinf.r1070evtTabProcesso',
+        related_name='%(class)s_r1070_evttabprocesso')
+    def evento(self): return self.r1070_evttabprocesso.evento()
+    tpproc = models.IntegerField(choices=CHOICES_R1070_INCLUSAO_TPPROC)
+    nrproc = models.CharField(max_length=21)
+    inivalid = models.CharField(choices=PERIODOS, max_length=7)
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
+    indautoria = models.IntegerField(choices=CHOICES_R1070_INCLUSAO_INDAUTORIA)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.r1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.indautoria)
+    #r1070_inclusao_custom#
+    #r1070_inclusao_custom#
+    class Meta:
+        db_table = r'r1070_inclusao'
+        managed = True
+        ordering = ['r1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid', 'indautoria']
+
+
+
+class r1070inclusaoSerializer(ModelSerializer):
+    class Meta:
+        model = r1070inclusao
+        fields = '__all__'
+            
+
+class r1070inclusaodadosProcJud(models.Model):
+    r1070_inclusao = models.OneToOneField('r1070inclusao',
+        related_name='%(class)s_r1070_inclusao')
+    def evento(self): return self.r1070_inclusao.evento()
+    ufvara = models.CharField(choices=ESTADOS, max_length=2)
+    codmunic = models.TextField(max_length=7)
+    idvara = models.CharField(max_length=4)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.r1070_inclusao) + ' - ' + unicode(self.ufvara) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.idvara)
+    #r1070_inclusao_dadosprocjud_custom#
+    #r1070_inclusao_dadosprocjud_custom#
+    class Meta:
+        db_table = r'r1070_inclusao_dadosprocjud'
+        managed = True
+        ordering = ['r1070_inclusao', 'ufvara', 'codmunic', 'idvara']
+
+
+
+class r1070inclusaodadosProcJudSerializer(ModelSerializer):
+    class Meta:
+        model = r1070inclusaodadosProcJud
+        fields = '__all__'
+            
+
+class r1070inclusaoinfoSusp(models.Model):
+    r1070_inclusao = models.ForeignKey('r1070inclusao',
+        related_name='%(class)s_r1070_inclusao')
+    def evento(self): return self.r1070_inclusao.evento()
+    codsusp = models.IntegerField(blank=True, null=True)
+    indsusp = models.CharField(choices=CHOICES_R1070_INCLUSAO_INDSUSP, max_length=2)
+    dtdecisao = models.DateField()
+    inddeposito = models.CharField(choices=CHOICES_R1070_INCLUSAO_INDDEPOSITO, max_length=1)
+    criado_em = models.DateTimeField(blank=True)
+    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.BooleanField(blank=True)
+    def __unicode__(self):
+        return unicode(self.r1070_inclusao) + ' - ' + unicode(self.indsusp) + ' - ' + unicode(self.dtdecisao) + ' - ' + unicode(self.inddeposito)
+    #r1070_inclusao_infosusp_custom#
+    #r1070_inclusao_infosusp_custom#
+    class Meta:
+        db_table = r'r1070_inclusao_infosusp'
+        managed = True
+        ordering = ['r1070_inclusao', 'indsusp', 'dtdecisao', 'inddeposito']
+
+
+
+class r1070inclusaoinfoSuspSerializer(ModelSerializer):
+    class Meta:
+        model = r1070inclusaoinfoSusp
+        fields = '__all__'
+            
+
+#VIEWS_MODELS

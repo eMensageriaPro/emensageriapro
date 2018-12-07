@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas"
+{% if show_fields.show_s2410_evtcdbenin or not s2410_evtcdbenin_id and 1 %}"Evento de cadastro de benefícios - Início";{% endif %}{% if show_fields.show_dthomol or 1 %}"Data da homologação do benefício pelo Tribunal de Contas";{% endif %}{% if show_fields.show_nratolegal or 1 %}"Informar o número do ato legal de registro ou homologação do Tribunal de Contas.";{% endif %}
+{% for a in s2410_homologtc_lista %}{% if show_fields.show_s2410_evtcdbenin or  not s2410_evtcdbenin_id and 1 %}"{{ a.s2410_evtcdbenin }}";{% endif %}{% if show_fields.show_dthomol or 1 %}"{{ a.dthomol|date:"d/m/Y" }}";{% endif %}{% if show_fields.show_nratolegal or 1 %}"{{ a.nratolegal }}";{% endif %}
+{% endfor %}

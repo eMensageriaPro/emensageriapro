@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações relativas ao FGTS."
+{% if show_fields.show_s5003_infofgts or not s5003_infofgts_id and 1 %}"Informações relativas ao FGTS.";{% endif %}
+{% for a in s5003_infodpsfgts_lista %}{% if show_fields.show_s5003_infofgts or  not s5003_infofgts_id and 1 %}"{{ a.s5003_infofgts }}";{% endif %}
+{% endfor %}

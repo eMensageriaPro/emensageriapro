@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações sobre beneficiários de pensão alimentícia."
+{% if show_fields.show_s1210_detpgtofl_retpgtotot or not s1210_detpgtofl_retpgtotot_id and 1 %}"Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.";{% endif %}{% if show_fields.show_cpfbenef or 1 %}"CPF";{% endif %}{% if show_fields.show_dtnasctobenef or 0 %}"Data de nascimento beneficiarios";{% endif %}{% if show_fields.show_nmbenefic or 1 %}"Nome";{% endif %}{% if show_fields.show_vlrpensao or 1 %}"Valor da Pensão alimentícia";{% endif %}
+{% for a in s1210_detpgtofl_penalim_lista %}{% if show_fields.show_s1210_detpgtofl_retpgtotot or  not s1210_detpgtofl_retpgtotot_id and 1 %}"{{ a.s1210_detpgtofl_retpgtotot }}";{% endif %}{% if show_fields.show_cpfbenef or 1 %}"{{ a.cpfbenef }}";{% endif %}{% if show_fields.show_dtnasctobenef or 0 %}"{{ a.dtnasctobenef|date:"d/m/Y" }}";{% endif %}{% if show_fields.show_nmbenefic or 1 %}"{{ a.nmbenefic }}";{% endif %}{% if show_fields.show_vlrpensao or 1 %}"{{ a.vlrpensao }}";{% endif %}
+{% endfor %}

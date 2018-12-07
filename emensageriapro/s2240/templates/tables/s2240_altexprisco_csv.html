@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Condições ambientais do trabalho - Alteração"
+{% if show_fields.show_s2240_evtexprisco or not s2240_evtexprisco_id and 1 %}"Evento Condições Ambientais do Trabalho - Fatores de Risco";{% endif %}{% if show_fields.show_dtaltcondicao or 1 %}"Data de alteração de condição";{% endif %}
+{% for a in s2240_altexprisco_lista %}{% if show_fields.show_s2240_evtexprisco or  not s2240_evtexprisco_id and 1 %}"{{ a.s2240_evtexprisco }}";{% endif %}{% if show_fields.show_dtaltcondicao or 1 %}"{{ a.dtaltcondicao|date:"d/m/Y" }}";{% endif %}
+{% endfor %}

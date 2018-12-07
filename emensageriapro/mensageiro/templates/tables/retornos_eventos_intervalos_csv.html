@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Retornos dos Eventos - Intervalos"
+{% if show_fields.show_retornos_eventos_horarios or not retornos_eventos_horarios_id and 1 %}"Retornos - Eventos - Horários";{% endif %}{% if show_fields.show_tpinterv or 1 %}"Tipo de intervalo da jornada";{% endif %}{% if show_fields.show_durinterv or 1 %}"Duração do intervalo (min)";{% endif %}{% if show_fields.show_iniinterv or 0 %}"Hora de início";{% endif %}{% if show_fields.show_terminterv or 0 %}"Hora de término";{% endif %}
+{% for a in retornos_eventos_intervalos_lista %}{% if show_fields.show_retornos_eventos_horarios or  not retornos_eventos_horarios_id and 1 %}"{{ a.retornos_eventos_horarios }}";{% endif %}{% if show_fields.show_tpinterv or 1 %}"{{ a.get_tpinterv_display }}";{% endif %}{% if show_fields.show_durinterv or 1 %}"{{ a.durinterv }}";{% endif %}{% if show_fields.show_iniinterv or 0 %}"{{ a.iniinterv }}";{% endif %}{% if show_fields.show_terminterv or 0 %}"{{ a.terminterv }}";{% endif %}
+{% endfor %}

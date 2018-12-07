@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações de cessão/exercício em outro órgão do trabalhador"
+{% if show_fields.show_s2200_evtadmissao or not s2200_evtadmissao_id and 1 %}"Evento Cadastramento Inicial do Vínculo e Admissão / Ingresso de Trabalhador";{% endif %}{% if show_fields.show_dtinicessao or 1 %}"Data de início da cessão/exercício em outro órgão";{% endif %}
+{% for a in s2200_cessao_lista %}{% if show_fields.show_s2200_evtadmissao or  not s2200_evtadmissao_id and 1 %}"{{ a.s2200_evtadmissao }}";{% endif %}{% if show_fields.show_dtinicessao or 1 %}"{{ a.dtinicessao|date:"d/m/Y" }}";{% endif %}
+{% endfor %}

@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações relativas ao ambiente de trabalho"
+{% if show_fields.show_s2241_fiminsalperic or not s2241_fiminsalperic_id and 1 %}"Condições do ambiente de trabalho insalubre/periculoso - Fim";{% endif %}{% if show_fields.show_codamb or 1 %}"Código do Ambiente";{% endif %}
+{% for a in s2241_fiminsalperic_infoamb_lista %}{% if show_fields.show_s2241_fiminsalperic or  not s2241_fiminsalperic_id and 1 %}"{{ a.s2241_fiminsalperic }}";{% endif %}{% if show_fields.show_codamb or 1 %}"{{ a.codamb }}";{% endif %}
+{% endfor %}

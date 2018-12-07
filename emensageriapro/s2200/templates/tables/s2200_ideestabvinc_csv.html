@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Identificação do estabelecimento ao qual o trabalhador temporário está vinculado. Se o local da efetiva prestação do serviço não possuir inscrição deverá ser informado o CNPJ/CPF ao qual o local da efetiva prestação está vinculado. O preenchimento é obriga (...)"
+{% if show_fields.show_s2200_trabtemporario or not s2200_trabtemporario_id and 1 %}"Dados sobre trabalho temporário. Preenchimento obrigatório na contratação de trabalhador temporário.";{% endif %}{% if show_fields.show_tpinsc or 1 %}"Tipo de inscrição";{% endif %}{% if show_fields.show_nrinsc or 1 %}"Número de inscrição (CPF/CNPJ)";{% endif %}
+{% for a in s2200_ideestabvinc_lista %}{% if show_fields.show_s2200_trabtemporario or  not s2200_trabtemporario_id and 1 %}"{{ a.s2200_trabtemporario }}";{% endif %}{% if show_fields.show_tpinsc or 1 %}"{{ a.get_tpinsc_display }}";{% endif %}{% if show_fields.show_nrinsc or 1 %}"{{ a.nrinsc }}";{% endif %}
+{% endfor %}

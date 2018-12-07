@@ -1,0 +1,1656 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
+{% if not for_print %}
+
+    <section class="content-header">
+      <h1>
+        S-2240 - Condições Ambientais do Trabalho - Fatores de Risco
+        <small>Verificações</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">S-2240 - Condições Ambientais do Trabalho - Fatores de Risco</a></li>
+        <li class="active">Verificar</li>
+      </ol>
+    </section>
+    <section class="content">
+
+        {% if messages %}
+                <div class="pad margin no-print">
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+                </div>
+        {% endif %}
+
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">S-2240 - Condições Ambientais do Trabalho - Fatores de Risco<br>Identidade: {{ s2240_evtexprisco.identidade }}</h3>
+              <div class="text-right">
+                <a href="{% url 's2240_evtexprisco_verificar' hash='{}'|json_id:s2240_evtexprisco_id|json_print:1|base64_encode_me %}" target="_blank">
+                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
+                </a>
+
+
+
+                  <div class="btn-group">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="text-left"><a
+                                            href="{% url 's2240_evtexprisco_verificar' hash='{}'|json_id:s2240_evtexprisco_id|json_print:2|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
+                                    <li class="text-left"><a
+                                            href="{% url 's2240_evtexprisco_verificar' hash='{}'|json_id:s2240_evtexprisco_id|json_print:3|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
+                                    <!--<li class="text-left"><a
+                                            href="{% url 's2240_evtexprisco_verificar' hash='{}'|json_id:s2240_evtexprisco_id|json_print:4|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
+                                </ul>
+                            </div>&nbsp;
+
+              </div>              
+            </div>
+            <div class="box-body">
+{% else %} 
+   <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            S-2240 - Condições Ambientais do Trabalho - Fatores de Risco<br>Identidade: {{ s2240_evtexprisco.identidade }}
+            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+{% endif %} 
+
+
+
+
+      <h4>Layout</h4>
+
+
+
+
+<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
+              
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtExpRisco</td>
+            <td bgcolor="lightgray" colspan="3">Evento Condições Ambientais do Trabalho - Fatores de Risco. Regras de validação: REGRA_EVENTOS_EXTEMP REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXTEMP_REINTEGRACAO REGRA_GERAL_VALIDA_DADOS_TABCONTRIB REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_TRABALHADOR_BASE_CNIS</td>
+        </tr>
+    {% for s2240_evtexprisco in s2240_evtexprisco_lista %}
+    {% ifequal 1 1 %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
+        </tr>
+
+        <tr {% if s2240_evtexprisco.indretif|validacoes_esocial_efdreinf:"s2240_evtexprisco.indretif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indRetif</td>
+            <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2240_evtexprisco.indretif or s2240_evtexprisco.indretif == 0 %}{{ s2240_evtexprisco.indretif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_evtexprisco_visualizar' %}
+                <a href="{% url 's2240_evtexprisco_salvar'  hash='{}'|json_id:s2240_evtexprisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_evtexprisco.nrrecibo|validacoes_esocial_efdreinf:"s2240_evtexprisco.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecibo</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
+            <td width="200px"><b>{% if s2240_evtexprisco.nrrecibo or s2240_evtexprisco.nrrecibo == 0 %}{{ s2240_evtexprisco.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_evtexprisco_visualizar' %}
+                <a href="{% url 's2240_evtexprisco_salvar'  hash='{}'|json_id:s2240_evtexprisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_evtexprisco.tpamb|validacoes_esocial_efdreinf:"s2240_evtexprisco.tpamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAmb</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2240_evtexprisco.tpamb or s2240_evtexprisco.tpamb == 0 %}{{ s2240_evtexprisco.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_evtexprisco_visualizar' %}
+                <a href="{% url 's2240_evtexprisco_salvar'  hash='{}'|json_id:s2240_evtexprisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_evtexprisco.procemi|validacoes_esocial_efdreinf:"s2240_evtexprisco.procemi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">procEmi</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="200px"><b>{% if s2240_evtexprisco.procemi or s2240_evtexprisco.procemi == 0 %}{{ s2240_evtexprisco.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_evtexprisco_visualizar' %}
+                <a href="{% url 's2240_evtexprisco_salvar'  hash='{}'|json_id:s2240_evtexprisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_evtexprisco.verproc|validacoes_esocial_efdreinf:"s2240_evtexprisco.verproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">verProc</td>
+            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
+            <td width="200px"><b>{% if s2240_evtexprisco.verproc or s2240_evtexprisco.verproc == 0 %}{{ s2240_evtexprisco.verproc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_evtexprisco_visualizar' %}
+                <a href="{% url 's2240_evtexprisco_salvar'  hash='{}'|json_id:s2240_evtexprisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
+        </tr>
+
+        <tr {% if s2240_evtexprisco.tpinsc|validacoes_esocial_efdreinf:"s2240_evtexprisco.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
+            <td width="200px"><b>{% if s2240_evtexprisco.tpinsc or s2240_evtexprisco.tpinsc == 0 %}{{ s2240_evtexprisco.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_evtexprisco_visualizar' %}
+                <a href="{% url 's2240_evtexprisco_salvar'  hash='{}'|json_id:s2240_evtexprisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_evtexprisco.nrinsc|validacoes_esocial_efdreinf:"s2240_evtexprisco.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2240_evtexprisco.nrinsc or s2240_evtexprisco.nrinsc == 0 %}{{ s2240_evtexprisco.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_evtexprisco_visualizar' %}
+                <a href="{% url 's2240_evtexprisco_salvar'  hash='{}'|json_id:s2240_evtexprisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideVinculo</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador e do Vínculo. Regras de validação: REGRA_TSV_ATIVO_NA_DTEVENTO REGRA_VINCULO_ATIVO_NA_DTEVENTO</td>
+        </tr>
+
+        <tr {% if s2240_evtexprisco.cpftrab|validacoes_esocial_efdreinf:"s2240_evtexprisco.cpftrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfTrab</td>
+            <td width="500px">Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2240_evtexprisco.cpftrab or s2240_evtexprisco.cpftrab == 0 %}{{ s2240_evtexprisco.cpftrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_evtexprisco_visualizar' %}
+                <a href="{% url 's2240_evtexprisco_salvar'  hash='{}'|json_id:s2240_evtexprisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_evtexprisco.nistrab|validacoes_esocial_efdreinf:"s2240_evtexprisco.nistrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nisTrab</td>
+            <td width="500px">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT. Validação: O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904].</td>
+            <td width="200px"><b>{% if s2240_evtexprisco.nistrab or s2240_evtexprisco.nistrab == 0 %}{{ s2240_evtexprisco.nistrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_evtexprisco_visualizar' %}
+                <a href="{% url 's2240_evtexprisco_salvar'  hash='{}'|json_id:s2240_evtexprisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_evtexprisco.matricula|validacoes_esocial_efdreinf:"s2240_evtexprisco.matricula" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">matricula</td>
+            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: A matrícula deve corresponder à informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista. Se o trabalhador não está sujeito a esse evento (S-2200), a matrícula não deve ser informada, porém, o trabalhador deve ter sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300.</td>
+            <td width="200px"><b>{% if s2240_evtexprisco.matricula or s2240_evtexprisco.matricula == 0 %}{{ s2240_evtexprisco.matricula }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_evtexprisco_visualizar' %}
+                <a href="{% url 's2240_evtexprisco_salvar'  hash='{}'|json_id:s2240_evtexprisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_evtexprisco.codcateg|validacoes_esocial_efdreinf:"s2240_evtexprisco.codcateg" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codCateg</td>
+            <td width="500px">Preencher com o código da categoria do trabalhador, conforme Tabela 01. Validação: Só informar se o trabalhador tiver sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300. Não informar nos demais casos. Se informado, deve existir na Tabela de Categorias de Trabalhadores (Tabela 01).</td>
+            <td width="200px"><b>{% if s2240_evtexprisco.codcateg or s2240_evtexprisco.codcateg == 0 %}{{ s2240_evtexprisco.codcateg|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_evtexprisco_visualizar' %}
+                <a href="{% url 's2240_evtexprisco_salvar'  hash='{}'|json_id:s2240_evtexprisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoExpRisco</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre o ambiente de trabalho, atividades desempenhadas e exposição a fatores de risco.</td>
+        </tr>
+
+        <tr {% if s2240_evtexprisco.dtinicondicao|validacoes_esocial_efdreinf:"s2240_evtexprisco.dtinicondicao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtIniCondicao</td>
+            <td width="500px">Informar a data em que o trabalhador iniciou as atividades nas condições descritas ou a data de início da obrigatoriedade deste evento para o empregador no eSocial, a que for mais recente. Validação: Deve ser uma data válida, igual ou anterior à data atual e igual ou posterior à data de admissão do vínculo a que se refere. Não pode ser anterior à data de início da obrigatoriedade deste evento para o empregador no eSocial.</td>
+            <td width="200px"><b>{% if s2240_evtexprisco.dtinicondicao or s2240_evtexprisco.dtinicondicao == 0 %}{{ s2240_evtexprisco.dtinicondicao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_evtexprisco_visualizar' %}
+                <a href="{% url 's2240_evtexprisco_salvar'  hash='{}'|json_id:s2240_evtexprisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoAmb</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas ao ambiente de trabalho.</td>
+        </tr>
+    {% for s2240_iniexprisco_infoamb in s2240_iniexprisco_infoamb_lista %}
+    {% ifequal s2240_iniexprisco_infoamb.s2240_evtexprisco.id s2240_evtexprisco.id %}
+        <tr {% if s2240_iniexprisco_infoamb.codamb|validacoes_esocial_efdreinf:"s2240_iniexprisco_infoamb.codamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codAmb</td>
+            <td width="500px">Informar o código do ambiente de trabalho constante da Tabela S-1060 no qual o trabalhador está desempenhando as atividades. Validação: Deve ser um código existente na Tabela S-1060.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_infoamb.codamb or s2240_iniexprisco_infoamb.codamb == 0 %}{{ s2240_iniexprisco_infoamb.codamb }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_infoamb_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_infoamb_salvar'  hash='{}'|json_id:s2240_iniexprisco_infoamb.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoAtiv</td>
+            <td bgcolor="lightgray" colspan="3">Descrição das atividades desempenhadas.</td>
+        </tr>
+
+        <tr {% if s2240_evtexprisco.dscativdes|validacoes_esocial_efdreinf:"s2240_evtexprisco.dscativdes" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscAtivDes</td>
+            <td width="500px">Descrição das atividades, físicas ou mentais, realizadas pelo trabalhador, por força do poder de comando a que se submete. As atividades deverão ser escritas com exatidão, e de forma sucinta, com a utilização de verbos no infinitivo impessoal. Exemplos: distribuir panfletos, operar máquina de envase, etc.</td>
+            <td width="200px"><b>{% if s2240_evtexprisco.dscativdes or s2240_evtexprisco.dscativdes == 0 %}{{ s2240_evtexprisco.dscativdes }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_evtexprisco_visualizar' %}
+                <a href="{% url 's2240_evtexprisco_salvar'  hash='{}'|json_id:s2240_evtexprisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ativPericInsal</td>
+            <td bgcolor="lightgray" colspan="3">Informação da(s) atividade(s) perigosa(s), insalubre(s) ou especial(is) desempenhada(s).</td>
+        </tr>
+    {% for s2240_iniexprisco_ativpericinsal in s2240_iniexprisco_ativpericinsal_lista %}
+    {% ifequal s2240_iniexprisco_ativpericinsal.s2240_evtexprisco.id s2240_evtexprisco.id %}
+        <tr {% if s2240_iniexprisco_ativpericinsal.codativ|validacoes_esocial_efdreinf:"s2240_iniexprisco_ativpericinsal.codativ" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codAtiv</td>
+            <td width="500px">Identificar a atividade desempenhada dentre as descritas na Tabela 28. Preencher com números e pontos. Caso não haja correspondência, informar o código [99.999] (Ausência de correspondência). Validação: Deve ser um código existente na Tabela 28 - Atividades perigosas, insalubres e/ou especiais.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_ativpericinsal.codativ or s2240_iniexprisco_ativpericinsal.codativ == 0 %}{{ s2240_iniexprisco_ativpericinsal.codativ }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_ativpericinsal_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_ativpericinsal_salvar'  hash='{}'|json_id:s2240_iniexprisco_ativpericinsal.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %} 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">fatRisco</td>
+            <td bgcolor="lightgray" colspan="3">Fator(es) de risco ao(s) qual(is) o trabalhador está exposto.</td>
+        </tr>
+    {% for s2240_iniexprisco_fatrisco in s2240_iniexprisco_fatrisco_lista %}
+    {% ifequal s2240_iniexprisco_fatrisco.s2240_evtexprisco.id s2240_evtexprisco.id %}
+        <tr {% if s2240_iniexprisco_fatrisco.codfatris|validacoes_esocial_efdreinf:"s2240_iniexprisco_fatrisco.codfatris" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codFatRis</td>
+            <td width="500px">Informar o código do fator de risco ao qual o trabalhador está exposto, conforme Tabela 23. Preencher com números e pontos. Caso não haja exposição, informar o código [09.01.001] (Ausência de Fator de Risco). Validação: Deve ser um código existente na Tabela 23 - Fatores de Riscos do Meio Ambiente do Trabalho.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_fatrisco.codfatris or s2240_iniexprisco_fatrisco.codfatris == 0 %}{{ s2240_iniexprisco_fatrisco.codfatris }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_fatrisco_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_fatrisco_salvar'  hash='{}'|json_id:s2240_iniexprisco_fatrisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_fatrisco.tpaval|validacoes_esocial_efdreinf:"s2240_iniexprisco_fatrisco.tpaval" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAval</td>
+            <td width="500px">Tipo de avaliação do fator de risco: 1 - Critério quantitativo; 2 - Critério qualitativo. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_fatrisco.tpaval or s2240_iniexprisco_fatrisco.tpaval == 0 %}{{ s2240_iniexprisco_fatrisco.tpaval|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_fatrisco_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_fatrisco_salvar'  hash='{}'|json_id:s2240_iniexprisco_fatrisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_fatrisco.intconc|validacoes_esocial_efdreinf:"s2240_iniexprisco_fatrisco.intconc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">intConc</td>
+            <td width="500px">Intensidade, concentração ou dose da exposição do trabalhador ao fator de risco cujo critério de avaliação seja quantitativo. Validação: Preenchimento obrigatório se {tpAval} = [1]. Não informar se {tpAval} = [2].</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_fatrisco.intconc or s2240_iniexprisco_fatrisco.intconc == 0 %}{{ s2240_iniexprisco_fatrisco.intconc|format_number_4dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_fatrisco_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_fatrisco_salvar'  hash='{}'|json_id:s2240_iniexprisco_fatrisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_fatrisco.limtol|validacoes_esocial_efdreinf:"s2240_iniexprisco_fatrisco.limtol" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">limTol</td>
+            <td width="500px">Limite de tolerância calculado para agentes específicos, conforme técnica de medição exigida na legislação. Validação: Preenchimento obrigatório se {tpAval} = [1] e {codFatRis} = [02.01.687, 02.01.788]. Não informar nos demais casos.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_fatrisco.limtol or s2240_iniexprisco_fatrisco.limtol == 0 %}{{ s2240_iniexprisco_fatrisco.limtol|format_number_4dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_fatrisco_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_fatrisco_salvar'  hash='{}'|json_id:s2240_iniexprisco_fatrisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_fatrisco.unmed|validacoes_esocial_efdreinf:"s2240_iniexprisco_fatrisco.unmed" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">unMed</td>
+            <td width="500px">Dose ou unidade de medida da intensidade ou concentração do agente: 1 - dose diária de ruído (número adimensional) Q=5; 2 - decibel linear (dB (linear)); 3 - decibel (C) (dB(C)); 4 - decibel (A) (dB(A)); 5 - quilocaloria por hora (kcal/h); 6 - gray (Gy); 7 - sievert (Sv); 8 - quilograma-força por centímetro quadrado (kgf/cm2); 9 - metro por segundo ao quadrado (m/s2); 10 - metro por segundo elevado a 1,75 (m/s1,75); 11 - parte de vapor ou gás por milhão de partes de ar contaminado (ppm); 12 - miligrama por metro cúbico de ar (mg/m3); 13 - fibra por centímetro cúbico (f/cm3); 14 - grau Celsius (ºC); 15 - metro por segundo (m/s); 16 - porcentual (%); 17 - lux (lx); 18 - unidade formadora de colônias por metro cúbico (ufc/m3); 19 - dose diária; 20 - dose mensal; 21 - dose trimestral; 22 - dose anual; 23 - hertz (Hz); 24 - gigahertz (GHz); 25 - quilohertz (kHz); 26 - watt por metro quadrado (W/m2); 27 - ampère por metro (A/m); 28 - militesla(mT); 29 - microtesla (µT); 30 - miliampère (mA); 31 - quilovolt por metro (kV/m); 32 - volt por metro (V/m); 33 - minuto (min); 34 - hora (h); 35 - joule por metro quadrado (J/m2); 36 - milijoule por centímetro quadrado (mJ/cm2); 37 - milisievert (mSv) - dose efetiva anual - corpo inteiro; 38 - atmosfera (atm); 39 - milhão de partículas por decímetro cúbico (mppdc); 40 - nanômetro (nm); 41 - miliwatt (mW); 42 - watt (W); 43 - umidade relativa do ar (UR (%)); 44 - decibel (A) (dB(A)) NEN Q=3; 45 - milisievert (mSv) - dose equivalente anual - cristalino; 46 - milisievert (mSv) - dose equivalente anual - pele; 47 - milisievert (mSv) - dose equivalente anual - mãos e pés. Validação: Preenchimento obrigatório se {tpAval} = [1]. Não informar se {tpAval} = [2]. Valores Válidos: 1,2,3,4,5,6,7,8,9,10, 11,12,13,14,15, 16,17,18,19,20, 21,22, 23, 24,25,26,27,28,29, 30, 31,32,33, 34,35,36,37,38,39,40, 41,42,43,44,45,46,47.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_fatrisco.unmed or s2240_iniexprisco_fatrisco.unmed == 0 %}{{ s2240_iniexprisco_fatrisco.unmed|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_fatrisco_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_fatrisco_salvar'  hash='{}'|json_id:s2240_iniexprisco_fatrisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_fatrisco.tecmedicao|validacoes_esocial_efdreinf:"s2240_iniexprisco_fatrisco.tecmedicao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tecMedicao</td>
+            <td width="500px">Técnica utilizada para medição da intensidade ou concentração. Validação: Preenchimento obrigatório se {tpAval} = [1]. Não informar se {tpAval} = [2].</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_fatrisco.tecmedicao or s2240_iniexprisco_fatrisco.tecmedicao == 0 %}{{ s2240_iniexprisco_fatrisco.tecmedicao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_fatrisco_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_fatrisco_salvar'  hash='{}'|json_id:s2240_iniexprisco_fatrisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_fatrisco.insalubridade|validacoes_esocial_efdreinf:"s2240_iniexprisco_fatrisco.insalubridade" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">insalubridade</td>
+            <td width="500px">A exposição ao fator de risco/execução da atividade configura trabalho insalubre? S - Sim; N - Não. Validação: Preenchimento obrigatório caso uma das situações abaixo seja atendida: a) Se o campo {matricula} for informado, referente a trabalhador com {tpRegTrab} = [1], exceto se {codCateg} = [104]; ou b) Se {codCateg} = [201,202,901]. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_fatrisco.insalubridade or s2240_iniexprisco_fatrisco.insalubridade == 0 %}{{ s2240_iniexprisco_fatrisco.insalubridade }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_fatrisco_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_fatrisco_salvar'  hash='{}'|json_id:s2240_iniexprisco_fatrisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_fatrisco.periculosidade|validacoes_esocial_efdreinf:"s2240_iniexprisco_fatrisco.periculosidade" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">periculosidade</td>
+            <td width="500px">A exposição ao fator de risco/execução da atividade configura trabalho perigoso? S - Sim; N - Não. Validação: Preenchimento obrigatório caso uma das situações abaixo seja atendida: a) Se o campo {matricula} for informado, referente a trabalhador com {tpRegTrab} = [1], exceto se {codCateg} = [104]; ou b) Se {codCateg} = [201,202,901]. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_fatrisco.periculosidade or s2240_iniexprisco_fatrisco.periculosidade == 0 %}{{ s2240_iniexprisco_fatrisco.periculosidade }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_fatrisco_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_fatrisco_salvar'  hash='{}'|json_id:s2240_iniexprisco_fatrisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_fatrisco.aposentesp|validacoes_esocial_efdreinf:"s2240_iniexprisco_fatrisco.aposentesp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">aposentEsp</td>
+            <td width="500px">A exposição ao fator de risco/execução da atividade enseja recolhimento do adicional para o financiamento da aposentadoria especial? S - Sim; N - Não. Validação: Preenchimento obrigatório caso uma das situações abaixo seja atendida: a) Se o campo {matricula} for informado, referente a trabalhador com {tpRegPrev} = [1], exceto se {codCateg} = [104]; ou b) Se {codCateg} = [201,202,731,734,738]. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_fatrisco.aposentesp or s2240_iniexprisco_fatrisco.aposentesp == 0 %}{{ s2240_iniexprisco_fatrisco.aposentesp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_fatrisco_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_fatrisco_salvar'  hash='{}'|json_id:s2240_iniexprisco_fatrisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">epcEpi</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas a Equipamentos de Proteção Coletiva - EPC e Equipamentos de Proteção Individual - EPI.</td>
+        </tr>
+
+        <tr {% if s2240_iniexprisco_fatrisco.utilizepc|validacoes_esocial_efdreinf:"s2240_iniexprisco_fatrisco.utilizepc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">utilizEPC</td>
+            <td width="500px">O empregador implementa medidas de proteção coletiva (EPC) para eliminar ou reduzir a exposição dos trabalhadores ao fator de risco? 0 - Não se aplica; 1 - Não implementa; 2 - Implementa. Valores Válidos: 0, 1, 2.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_fatrisco.utilizepc or s2240_iniexprisco_fatrisco.utilizepc == 0 %}{{ s2240_iniexprisco_fatrisco.utilizepc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_fatrisco_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_fatrisco_salvar'  hash='{}'|json_id:s2240_iniexprisco_fatrisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_fatrisco.eficepc|validacoes_esocial_efdreinf:"s2240_iniexprisco_fatrisco.eficepc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">eficEpc</td>
+            <td width="500px">Os EPCs são eficazes na neutralização dos riscos ao trabalhador? S - Sim; N - Não. Validação: Preenchimento obrigatório e exclusivo se {utilizEPC} = [2]. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_fatrisco.eficepc or s2240_iniexprisco_fatrisco.eficepc == 0 %}{{ s2240_iniexprisco_fatrisco.eficepc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_fatrisco_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_fatrisco_salvar'  hash='{}'|json_id:s2240_iniexprisco_fatrisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_fatrisco.utilizepi|validacoes_esocial_efdreinf:"s2240_iniexprisco_fatrisco.utilizepi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">utilizEPI</td>
+            <td width="500px">Utilização de EPI: 0 - Não se aplica; 1 - Não utilizado; 2 - Utilizado. Valores Válidos: 0, 1, 2.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_fatrisco.utilizepi or s2240_iniexprisco_fatrisco.utilizepi == 0 %}{{ s2240_iniexprisco_fatrisco.utilizepi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_fatrisco_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_fatrisco_salvar'  hash='{}'|json_id:s2240_iniexprisco_fatrisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">epc</td>
+            <td bgcolor="lightgray" colspan="3">Equipamentos de Proteção Coletiva - EPC</td>
+        </tr>
+    {% for s2240_iniexprisco_epc in s2240_iniexprisco_epc_lista %}
+    {% ifequal s2240_iniexprisco_epc.s2240_iniexprisco_fatrisco.id s2240_iniexprisco_fatrisco.id %}
+        <tr {% if s2240_iniexprisco_epc.codep|validacoes_esocial_efdreinf:"s2240_iniexprisco_epc.codep" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codEP</td>
+            <td width="500px">Informar o código do EPC constante da Tabela S-1065.Validação: Deve ser um código existente na Tabela S-1065, onde {tpEp} = [2].</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_epc.codep or s2240_iniexprisco_epc.codep == 0 %}{{ s2240_iniexprisco_epc.codep }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_epc_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_epc_salvar'  hash='{}'|json_id:s2240_iniexprisco_epc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_epc.dscepc|validacoes_esocial_efdreinf:"s2240_iniexprisco_epc.dscepc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscEpc</td>
+            <td width="500px">Descrição do EPC</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_epc.dscepc or s2240_iniexprisco_epc.dscepc == 0 %}{{ s2240_iniexprisco_epc.dscepc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_epc_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_epc_salvar'  hash='{}'|json_id:s2240_iniexprisco_epc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_epc.eficepc|validacoes_esocial_efdreinf:"s2240_iniexprisco_epc.eficepc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">eficEpc</td>
+            <td width="500px">O EPC é eficaz na neutralização dos riscos ao trabalhador? S - Sim;N - Não.Validação: Preenchimento obrigatório se {utilizEPC} = [2]. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_epc.eficepc or s2240_iniexprisco_epc.eficepc == 0 %}{{ s2240_iniexprisco_epc.eficepc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_epc_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_epc_salvar'  hash='{}'|json_id:s2240_iniexprisco_epc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">epi</td>
+            <td bgcolor="lightgray" colspan="3">Equipamento de Proteção Individual - EPI.</td>
+        </tr>
+    {% for s2240_iniexprisco_epi in s2240_iniexprisco_epi_lista %}
+    {% ifequal s2240_iniexprisco_epi.s2240_iniexprisco_fatrisco.id s2240_iniexprisco_fatrisco.id %}
+        <tr {% if s2240_iniexprisco_epi.caepi|validacoes_esocial_efdreinf:"s2240_iniexprisco_epi.caepi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">caEPI</td>
+            <td width="500px">Certificado de Aprovação do EPI.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_epi.caepi or s2240_iniexprisco_epi.caepi == 0 %}{{ s2240_iniexprisco_epi.caepi }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_epi_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_epi_salvar'  hash='{}'|json_id:s2240_iniexprisco_epi.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_epi.dscepi|validacoes_esocial_efdreinf:"s2240_iniexprisco_epi.dscepi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscEPI</td>
+            <td width="500px">Descrição do EPI. Validação: Preenchimento obrigatório e exclusivo se {caEPI} não for informado.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_epi.dscepi or s2240_iniexprisco_epi.dscepi == 0 %}{{ s2240_iniexprisco_epi.dscepi }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_epi_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_epi_salvar'  hash='{}'|json_id:s2240_iniexprisco_epi.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_epi.eficepi|validacoes_esocial_efdreinf:"s2240_iniexprisco_epi.eficepi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">eficEpi</td>
+            <td width="500px">O EPI é eficaz na neutralização do risco ao trabalhador? S - Sim; N - Não. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_epi.eficepi or s2240_iniexprisco_epi.eficepi == 0 %}{{ s2240_iniexprisco_epi.eficepi }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_epi_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_epi_salvar'  hash='{}'|json_id:s2240_iniexprisco_epi.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_epi.medprotecao|validacoes_esocial_efdreinf:"s2240_iniexprisco_epi.medprotecao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">medProtecao</td>
+            <td width="500px">Foi tentada a implementação de medidas de proteção coletiva, de caráter administrativo ou de organização, optando-se pelo EPI por inviabilidade técnica, insuficiência ou interinidade, ou ainda em caráter complementar ou emergencial? S - Sim; N - Não. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_epi.medprotecao or s2240_iniexprisco_epi.medprotecao == 0 %}{{ s2240_iniexprisco_epi.medprotecao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_epi_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_epi_salvar'  hash='{}'|json_id:s2240_iniexprisco_epi.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_epi.condfuncto|validacoes_esocial_efdreinf:"s2240_iniexprisco_epi.condfuncto" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">condFuncto</td>
+            <td width="500px">Foram observadas as condições de funcionamento do EPI ao longo do tempo, conforme especificação técnica do fabricante nacional ou importador, ajustadas às condições de campo? S - Sim; N - Não. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_epi.condfuncto or s2240_iniexprisco_epi.condfuncto == 0 %}{{ s2240_iniexprisco_epi.condfuncto }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_epi_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_epi_salvar'  hash='{}'|json_id:s2240_iniexprisco_epi.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_epi.usoinint|validacoes_esocial_efdreinf:"s2240_iniexprisco_epi.usoinint" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">usoInint</td>
+            <td width="500px">Foi observado o uso ininterrupto do EPI ao longo do tempo, conforme especificação técnica do fabricante nacional ou importador, ajustadas às condições de campo? S - Sim; N - Não. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_epi.usoinint or s2240_iniexprisco_epi.usoinint == 0 %}{{ s2240_iniexprisco_epi.usoinint }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_epi_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_epi_salvar'  hash='{}'|json_id:s2240_iniexprisco_epi.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_epi.przvalid|validacoes_esocial_efdreinf:"s2240_iniexprisco_epi.przvalid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">przValid</td>
+            <td width="500px">Foi observado o prazo de validade do Certificado de Aprovação - CA do MTb no momento da compra do EPI? S - Sim; N - Não. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_epi.przvalid or s2240_iniexprisco_epi.przvalid == 0 %}{{ s2240_iniexprisco_epi.przvalid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_epi_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_epi_salvar'  hash='{}'|json_id:s2240_iniexprisco_epi.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_epi.periodictroca|validacoes_esocial_efdreinf:"s2240_iniexprisco_epi.periodictroca" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">periodicTroca</td>
+            <td width="500px">É observada a periodicidade de troca definida pelo fabricante nacional ou importador e/ou programas ambientais, comprovada mediante recibo assinado pelo usuário em época própria? S - Sim; N - Não. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_epi.periodictroca or s2240_iniexprisco_epi.periodictroca == 0 %}{{ s2240_iniexprisco_epi.periodictroca }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_epi_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_epi_salvar'  hash='{}'|json_id:s2240_iniexprisco_epi.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_epi.higienizacao|validacoes_esocial_efdreinf:"s2240_iniexprisco_epi.higienizacao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">higienizacao</td>
+            <td width="500px">É observada a higienização conforme orientação do fabricante nacional ou importador? S - Sim; N - Não. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_epi.higienizacao or s2240_iniexprisco_epi.higienizacao == 0 %}{{ s2240_iniexprisco_epi.higienizacao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_epi_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_epi_salvar'  hash='{}'|json_id:s2240_iniexprisco_epi.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}     {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">respReg</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas ao responsável pelos registros ambientais.</td>
+        </tr>
+    {% for s2240_iniexprisco_respreg in s2240_iniexprisco_respreg_lista %}
+    {% ifequal s2240_iniexprisco_respreg.s2240_evtexprisco.id s2240_evtexprisco.id %}
+        <tr {% if s2240_iniexprisco_respreg.cpfresp|validacoes_esocial_efdreinf:"s2240_iniexprisco_respreg.cpfresp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfResp</td>
+            <td width="500px">Preencher com o CPF do responsável pelos registros ambientais. Validação: Deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_respreg.cpfresp or s2240_iniexprisco_respreg.cpfresp == 0 %}{{ s2240_iniexprisco_respreg.cpfresp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_respreg_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_respreg_salvar'  hash='{}'|json_id:s2240_iniexprisco_respreg.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_respreg.nisresp|validacoes_esocial_efdreinf:"s2240_iniexprisco_respreg.nisresp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nisResp</td>
+            <td width="500px">Preencher com o Número de Identificação Social - NIS do responsável pelos registros ambientais, o qual pode ser o PIS, PASEP ou NIT. Validação: Deve ser um NIS válido.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_respreg.nisresp or s2240_iniexprisco_respreg.nisresp == 0 %}{{ s2240_iniexprisco_respreg.nisresp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_respreg_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_respreg_salvar'  hash='{}'|json_id:s2240_iniexprisco_respreg.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_respreg.nmresp|validacoes_esocial_efdreinf:"s2240_iniexprisco_respreg.nmresp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmResp</td>
+            <td width="500px">Preencher com o nome do responsável pelos registros ambientais.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_respreg.nmresp or s2240_iniexprisco_respreg.nmresp == 0 %}{{ s2240_iniexprisco_respreg.nmresp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_respreg_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_respreg_salvar'  hash='{}'|json_id:s2240_iniexprisco_respreg.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_respreg.ideoc|validacoes_esocial_efdreinf:"s2240_iniexprisco_respreg.ideoc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">ideOC</td>
+            <td width="500px">Órgão de classe ao qual o responsável pelos registros ambientais está vinculado: 1 - Conselho Regional de Medicina (CRM); 4 - Conselho Regional de Engenharia e Agronomia (CREA); 9 - Outros. Valores Válidos: 1, 4, 9.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_respreg.ideoc or s2240_iniexprisco_respreg.ideoc == 0 %}{{ s2240_iniexprisco_respreg.ideoc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_respreg_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_respreg_salvar'  hash='{}'|json_id:s2240_iniexprisco_respreg.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_respreg.dscoc|validacoes_esocial_efdreinf:"s2240_iniexprisco_respreg.dscoc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscOC</td>
+            <td width="500px">Descrição (sigla) do órgão de classe ao qual o responsável pelos registros ambientais está vinculado. Validação: Preenchimento obrigatório se {ideOC} = [9]. Não informar se {ideOC} = [1,4].</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_respreg.dscoc or s2240_iniexprisco_respreg.dscoc == 0 %}{{ s2240_iniexprisco_respreg.dscoc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_respreg_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_respreg_salvar'  hash='{}'|json_id:s2240_iniexprisco_respreg.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_respreg.nroc|validacoes_esocial_efdreinf:"s2240_iniexprisco_respreg.nroc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrOC</td>
+            <td width="500px">Número de Inscrição no órgão de classe.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_respreg.nroc or s2240_iniexprisco_respreg.nroc == 0 %}{{ s2240_iniexprisco_respreg.nroc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_respreg_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_respreg_salvar'  hash='{}'|json_id:s2240_iniexprisco_respreg.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_respreg.ufoc|validacoes_esocial_efdreinf:"s2240_iniexprisco_respreg.ufoc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">ufOC</td>
+            <td width="500px">Sigla da UF do órgão de classe.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_respreg.ufoc or s2240_iniexprisco_respreg.ufoc == 0 %}{{ s2240_iniexprisco_respreg.ufoc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_respreg_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_respreg_salvar'  hash='{}'|json_id:s2240_iniexprisco_respreg.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">obs</td>
+            <td bgcolor="lightgray" colspan="3">Observações relativas a registros ambientais.</td>
+        </tr>
+    {% for s2240_iniexprisco_obs in s2240_iniexprisco_obs_lista %}
+    {% ifequal s2240_iniexprisco_obs.s2240_evtexprisco.id s2240_evtexprisco.id %}
+        <tr {% if s2240_iniexprisco_obs.meterg|validacoes_esocial_efdreinf:"s2240_iniexprisco_obs.meterg" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">metErg</td>
+            <td width="500px">Descrição da metodologia utilizada para o levantamento dos riscos ergonômicos. Validação: Preenchimento obrigatório se {obsCompl} não for informado.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_obs.meterg or s2240_iniexprisco_obs.meterg == 0 %}{{ s2240_iniexprisco_obs.meterg }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_obs_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_obs_salvar'  hash='{}'|json_id:s2240_iniexprisco_obs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_obs.obscompl|validacoes_esocial_efdreinf:"s2240_iniexprisco_obs.obscompl" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">obsCompl</td>
+            <td width="500px">Observação(ões) complementar(es) referente(s) a registros ambientais. Validação: Preenchimento obrigatório se {metErg} não for informado.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_obs.obscompl or s2240_iniexprisco_obs.obscompl == 0 %}{{ s2240_iniexprisco_obs.obscompl }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_obs_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_obs_salvar'  hash='{}'|json_id:s2240_iniexprisco_obs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_iniexprisco_obs.observacao|validacoes_esocial_efdreinf:"s2240_iniexprisco_obs.observacao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">observacao</td>
+            <td width="500px">Observação(ões) complementar(es) referente(s) a registros ambientais.</td>
+            <td width="200px"><b>{% if s2240_iniexprisco_obs.observacao or s2240_iniexprisco_obs.observacao == 0 %}{{ s2240_iniexprisco_obs.observacao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_iniexprisco_obs_visualizar' %}
+                <a href="{% url 's2240_iniexprisco_obs_salvar'  hash='{}'|json_id:s2240_iniexprisco_obs.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">altExpRisco</td>
+            <td bgcolor="lightgray" colspan="3">Condições ambientais do trabalho - Alteração Regra de validação: REGRA_EXISTE_EVENTO_INICIO_CDT</td>
+        </tr>
+    {% for s2240_altexprisco in s2240_altexprisco_lista %}
+    {% ifequal s2240_altexprisco.s2240_evtexprisco.id s2240_evtexprisco.id %}
+        <tr {% if s2240_altexprisco.dtaltcondicao|validacoes_esocial_efdreinf:"s2240_altexprisco.dtaltcondicao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtAltCondicao</td>
+            <td width="500px">Informar a data em que ocorreu alteração na condição de exposição ao(s) fator(es) de risco para o trabalhador. A data informada deve ser igual ou posterior à data de início na condição de exposição que se pretende alterar. Validação: Deve ser uma data igual ou posterior à data de início das atividades exercidas pelo trabalhador, sujeitas ao(s) fator(es) de risco.</td>
+            <td width="200px"><b>{% if s2240_altexprisco.dtaltcondicao or s2240_altexprisco.dtaltcondicao == 0 %}{{ s2240_altexprisco.dtaltcondicao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_altexprisco_visualizar' %}
+                <a href="{% url 's2240_altexprisco_salvar'  hash='{}'|json_id:s2240_altexprisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoAmb</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas ao ambiente de trabalho</td>
+        </tr>
+    {% for s2240_altexprisco_infoamb in s2240_altexprisco_infoamb_lista %}
+    {% ifequal s2240_altexprisco_infoamb.s2240_altexprisco.id s2240_altexprisco.id %}
+        <tr {% if s2240_altexprisco_infoamb.codamb|validacoes_esocial_efdreinf:"s2240_altexprisco_infoamb.codamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codAmb</td>
+            <td width="500px">Informar o código do ambiente de trabalho constante da tabela S-1060 no qual o trabalhador está desempenhando as atividadesValidação: Deve ser um código existente na tabela.</td>
+            <td width="200px"><b>{% if s2240_altexprisco_infoamb.codamb or s2240_altexprisco_infoamb.codamb == 0 %}{{ s2240_altexprisco_infoamb.codamb }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_altexprisco_infoamb_visualizar' %}
+                <a href="{% url 's2240_altexprisco_infoamb_salvar'  hash='{}'|json_id:s2240_altexprisco_infoamb.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoAtiv</td>
+            <td bgcolor="lightgray" colspan="3">Descrição das Atividades Desempenhadas</td>
+        </tr>
+
+        <tr {% if s2240_altexprisco_infoamb.dscativdes|validacoes_esocial_efdreinf:"s2240_altexprisco_infoamb.dscativdes" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscAtivDes</td>
+            <td width="500px">Descrição das atividades, físicas ou mentais, realizadas pelo trabalhador, por força do poder de comando a que se submete. As atividades deverão ser escritas com exatidão, e de forma sucinta, com a utilização de verbos no infinitivo impessoal. Exemplos: distribuir panfletos, operar máquina de envaze, etc.</td>
+            <td width="200px"><b>{% if s2240_altexprisco_infoamb.dscativdes or s2240_altexprisco_infoamb.dscativdes == 0 %}{{ s2240_altexprisco_infoamb.dscativdes }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_altexprisco_infoamb_visualizar' %}
+                <a href="{% url 's2240_altexprisco_infoamb_salvar'  hash='{}'|json_id:s2240_altexprisco_infoamb.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">fatRisco</td>
+            <td bgcolor="lightgray" colspan="3">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</td>
+        </tr>
+    {% for s2240_altexprisco_fatrisco in s2240_altexprisco_fatrisco_lista %}
+    {% ifequal s2240_altexprisco_fatrisco.s2240_altexprisco_infoamb.id s2240_altexprisco_infoamb.id %}
+        <tr {% if s2240_altexprisco_fatrisco.codfatris|validacoes_esocial_efdreinf:"s2240_altexprisco_fatrisco.codfatris" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codFatRis</td>
+            <td width="500px">Informar o código do fator de risco, conforme tabela 23. Caso não haja exposição, informar o código correspondente a 'Ausência de Fator de Risco' da tabela 23.Validação: Deve ser um código existente na tabela 23.Deve existir na tabela S-1060 para o código de ambiente informado no campo{codAmb}.</td>
+            <td width="200px"><b>{% if s2240_altexprisco_fatrisco.codfatris or s2240_altexprisco_fatrisco.codfatris == 0 %}{{ s2240_altexprisco_fatrisco.codfatris }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_altexprisco_fatrisco_visualizar' %}
+                <a href="{% url 's2240_altexprisco_fatrisco_salvar'  hash='{}'|json_id:s2240_altexprisco_fatrisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_altexprisco_fatrisco.intconc|validacoes_esocial_efdreinf:"s2240_altexprisco_fatrisco.intconc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">intConc</td>
+            <td width="500px">Intensidade ou concentração da exposição do trabalhador ao fator de risco cujo critério de avaliação seja quantitativo. Caso o fator de risco seja qualitativo, preencher com 'N/A' - (Não aplicável).</td>
+            <td width="200px"><b>{% if s2240_altexprisco_fatrisco.intconc or s2240_altexprisco_fatrisco.intconc == 0 %}{{ s2240_altexprisco_fatrisco.intconc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_altexprisco_fatrisco_visualizar' %}
+                <a href="{% url 's2240_altexprisco_fatrisco_salvar'  hash='{}'|json_id:s2240_altexprisco_fatrisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_altexprisco_fatrisco.tecmedicao|validacoes_esocial_efdreinf:"s2240_altexprisco_fatrisco.tecmedicao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tecMedicao</td>
+            <td width="500px">Técnica utilizada para medição da intensidade ou concentração.</td>
+            <td width="200px"><b>{% if s2240_altexprisco_fatrisco.tecmedicao or s2240_altexprisco_fatrisco.tecmedicao == 0 %}{{ s2240_altexprisco_fatrisco.tecmedicao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_altexprisco_fatrisco_visualizar' %}
+                <a href="{% url 's2240_altexprisco_fatrisco_salvar'  hash='{}'|json_id:s2240_altexprisco_fatrisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">epcEpi</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas a Equipamentos de Proteção Coletiva - EPC eEquipamentos de Proteção Individual - EPI</td>
+        </tr>
+
+        <tr {% if s2240_altexprisco_fatrisco.utilizepc|validacoes_esocial_efdreinf:"s2240_altexprisco_fatrisco.utilizepc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">utilizEPC</td>
+            <td width="500px">Utilização de EPC:0 - Não se aplica;1 - Não utilizado;2 - Utilizado.Valores Válidos: 0, 1, 2.</td>
+            <td width="200px"><b>{% if s2240_altexprisco_fatrisco.utilizepc or s2240_altexprisco_fatrisco.utilizepc == 0 %}{{ s2240_altexprisco_fatrisco.utilizepc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_altexprisco_fatrisco_visualizar' %}
+                <a href="{% url 's2240_altexprisco_fatrisco_salvar'  hash='{}'|json_id:s2240_altexprisco_fatrisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_altexprisco_fatrisco.utilizepi|validacoes_esocial_efdreinf:"s2240_altexprisco_fatrisco.utilizepi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">utilizEPI</td>
+            <td width="500px">Utilização de EPI:0 - Não se aplica;1 - Não utilizado;2 - Utilizado.Valores Válidos: 0, 1, 2.</td>
+            <td width="200px"><b>{% if s2240_altexprisco_fatrisco.utilizepi or s2240_altexprisco_fatrisco.utilizepi == 0 %}{{ s2240_altexprisco_fatrisco.utilizepi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_altexprisco_fatrisco_visualizar' %}
+                <a href="{% url 's2240_altexprisco_fatrisco_salvar'  hash='{}'|json_id:s2240_altexprisco_fatrisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">epc</td>
+            <td bgcolor="lightgray" colspan="3">Equipamentos de Proteção Coletiva - EPC</td>
+        </tr>
+    {% for s2240_altexprisco_epc in s2240_altexprisco_epc_lista %}
+    {% ifequal s2240_altexprisco_epc.s2240_altexprisco_fatrisco.id s2240_altexprisco_fatrisco.id %}
+        <tr {% if s2240_altexprisco_epc.dscepc|validacoes_esocial_efdreinf:"s2240_altexprisco_epc.dscepc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscEpc</td>
+            <td width="500px">Descrição do EPC</td>
+            <td width="200px"><b>{% if s2240_altexprisco_epc.dscepc or s2240_altexprisco_epc.dscepc == 0 %}{{ s2240_altexprisco_epc.dscepc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_altexprisco_epc_visualizar' %}
+                <a href="{% url 's2240_altexprisco_epc_salvar'  hash='{}'|json_id:s2240_altexprisco_epc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_altexprisco_epc.eficepc|validacoes_esocial_efdreinf:"s2240_altexprisco_epc.eficepc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">eficEpc</td>
+            <td width="500px">O EPC é eficaz na neutralização dos riscos ao trabalhador? S - Sim;N - Não.Validação: Preenchimento obrigatório se {utilizEPC} = [2]. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_altexprisco_epc.eficepc or s2240_altexprisco_epc.eficepc == 0 %}{{ s2240_altexprisco_epc.eficepc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_altexprisco_epc_visualizar' %}
+                <a href="{% url 's2240_altexprisco_epc_salvar'  hash='{}'|json_id:s2240_altexprisco_epc.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">epi</td>
+            <td bgcolor="lightgray" colspan="3">Equipamentos de Proteção Individual - EPI</td>
+        </tr>
+    {% for s2240_altexprisco_epi in s2240_altexprisco_epi_lista %}
+    {% ifequal s2240_altexprisco_epi.s2240_altexprisco_fatrisco.id s2240_altexprisco_fatrisco.id %}
+        <tr {% if s2240_altexprisco_epi.caepi|validacoes_esocial_efdreinf:"s2240_altexprisco_epi.caepi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">caEPI</td>
+            <td width="500px">Certificado de Aprovação do EPI.Validação: Preenchimento obrigatório se {utilizEPI} = [2].</td>
+            <td width="200px"><b>{% if s2240_altexprisco_epi.caepi or s2240_altexprisco_epi.caepi == 0 %}{{ s2240_altexprisco_epi.caepi }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_altexprisco_epi_visualizar' %}
+                <a href="{% url 's2240_altexprisco_epi_salvar'  hash='{}'|json_id:s2240_altexprisco_epi.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_altexprisco_epi.eficepi|validacoes_esocial_efdreinf:"s2240_altexprisco_epi.eficepi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">eficEpi</td>
+            <td width="500px">O EPI é eficaz na neutralização dos riscos ao trabalhador? S - Sim;N - Não.Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_altexprisco_epi.eficepi or s2240_altexprisco_epi.eficepi == 0 %}{{ s2240_altexprisco_epi.eficepi }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_altexprisco_epi_visualizar' %}
+                <a href="{% url 's2240_altexprisco_epi_salvar'  hash='{}'|json_id:s2240_altexprisco_epi.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_altexprisco_epi.medprotecao|validacoes_esocial_efdreinf:"s2240_altexprisco_epi.medprotecao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">medProtecao</td>
+            <td width="500px">Foi tentada a implementação de medidas de proteção coletiva, de caráter administrativo ou de organização, optando-se pelo EPI por inviabilidade técnica, insuficiência ou interinidade, ou ainda em caráter complementar ou emergencial?S - Sim; N - Não.Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_altexprisco_epi.medprotecao or s2240_altexprisco_epi.medprotecao == 0 %}{{ s2240_altexprisco_epi.medprotecao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_altexprisco_epi_visualizar' %}
+                <a href="{% url 's2240_altexprisco_epi_salvar'  hash='{}'|json_id:s2240_altexprisco_epi.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_altexprisco_epi.condfuncto|validacoes_esocial_efdreinf:"s2240_altexprisco_epi.condfuncto" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">condFuncto</td>
+            <td width="500px">Foram observadas as condições de funcionamento e do uso ininterrupto doEPI ao logo do tempo, conforme especificação técnica do fabricante, ajustadaàs condições do tempo? S - Sim;N - Não.Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_altexprisco_epi.condfuncto or s2240_altexprisco_epi.condfuncto == 0 %}{{ s2240_altexprisco_epi.condfuncto }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_altexprisco_epi_visualizar' %}
+                <a href="{% url 's2240_altexprisco_epi_salvar'  hash='{}'|json_id:s2240_altexprisco_epi.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_altexprisco_epi.przvalid|validacoes_esocial_efdreinf:"s2240_altexprisco_epi.przvalid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">przValid</td>
+            <td width="500px">Foi observado o prazo de validade, conforme Certificado de Aprovação - CAdo MTE? S - Sim; N - Não.Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_altexprisco_epi.przvalid or s2240_altexprisco_epi.przvalid == 0 %}{{ s2240_altexprisco_epi.przvalid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_altexprisco_epi_visualizar' %}
+                <a href="{% url 's2240_altexprisco_epi_salvar'  hash='{}'|json_id:s2240_altexprisco_epi.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_altexprisco_epi.periodictroca|validacoes_esocial_efdreinf:"s2240_altexprisco_epi.periodictroca" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">periodicTroca</td>
+            <td width="500px">Foi observada a periodicidade de troca definida pelos programas ambientais, comprovada mediante recibo assinado pelo usuário em época própria?S - Sim;N - Não.Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_altexprisco_epi.periodictroca or s2240_altexprisco_epi.periodictroca == 0 %}{{ s2240_altexprisco_epi.periodictroca }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_altexprisco_epi_visualizar' %}
+                <a href="{% url 's2240_altexprisco_epi_salvar'  hash='{}'|json_id:s2240_altexprisco_epi.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_altexprisco_epi.higienizacao|validacoes_esocial_efdreinf:"s2240_altexprisco_epi.higienizacao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">higienizacao</td>
+            <td width="500px">Foi observada a higienização? S - Sim;N - Não.Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2240_altexprisco_epi.higienizacao or s2240_altexprisco_epi.higienizacao == 0 %}{{ s2240_altexprisco_epi.higienizacao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_altexprisco_epi_visualizar' %}
+                <a href="{% url 's2240_altexprisco_epi_salvar'  hash='{}'|json_id:s2240_altexprisco_epi.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">fimExpRisco</td>
+            <td bgcolor="lightgray" colspan="3">Condições ambientais do trabalho - Fim Regra de validação: REGRA_EXISTE_EVENTO_INICIO_CDT</td>
+        </tr>
+    {% for s2240_fimexprisco in s2240_fimexprisco_lista %}
+    {% ifequal s2240_fimexprisco.s2240_evtexprisco.id s2240_evtexprisco.id %}
+        <tr {% if s2240_fimexprisco.dtfimcondicao|validacoes_esocial_efdreinf:"s2240_fimexprisco.dtfimcondicao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtFimCondicao</td>
+            <td width="500px">Informar a data até a qual o trabalhador esteve sujeito às condições do ambiente de trabalho indicadas nos eventos de início e/ou alteração encaminhados anteriormente.Validação: Deve ser uma data igual ou posterior a data de início da condição no evento Condições do Ambiente de Trabalho - Exposição a Fatores de Risco - Início a que se refere, ou, quando também existir evento de 'alteração' da condição, a data deve ser posterior a data de alteração indicada no último evento recebido.</td>
+            <td width="200px"><b>{% if s2240_fimexprisco.dtfimcondicao or s2240_fimexprisco.dtfimcondicao == 0 %}{{ s2240_fimexprisco.dtfimcondicao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_fimexprisco_visualizar' %}
+                <a href="{% url 's2240_fimexprisco_salvar'  hash='{}'|json_id:s2240_fimexprisco.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoAmb</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas ao ambiente de trabalho</td>
+        </tr>
+    {% for s2240_fimexprisco_infoamb in s2240_fimexprisco_infoamb_lista %}
+    {% ifequal s2240_fimexprisco_infoamb.s2240_fimexprisco.id s2240_fimexprisco.id %}
+        <tr {% if s2240_fimexprisco_infoamb.codamb|validacoes_esocial_efdreinf:"s2240_fimexprisco_infoamb.codamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codAmb</td>
+            <td width="500px">Informar o código do ambiente cadastrado para o trabalhador. Validação: Deve ser um código de ambiente {codAmb} informado anteriormente, que definia a exposição do trabalhador ao fator de risco.</td>
+            <td width="200px"><b>{% if s2240_fimexprisco_infoamb.codamb or s2240_fimexprisco_infoamb.codamb == 0 %}{{ s2240_fimexprisco_infoamb.codamb }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_fimexprisco_infoamb_visualizar' %}
+                <a href="{% url 's2240_fimexprisco_infoamb_salvar'  hash='{}'|json_id:s2240_fimexprisco_infoamb.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">respReg</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas ao responsável pelos registros ambientais</td>
+        </tr>
+    {% for s2240_fimexprisco_respreg in s2240_fimexprisco_respreg_lista %}
+    {% ifequal s2240_fimexprisco_respreg.s2240_evtexprisco.id s2240_evtexprisco.id %}
+        <tr {% if s2240_fimexprisco_respreg.dtini|validacoes_esocial_efdreinf:"s2240_fimexprisco_respreg.dtini" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtIni</td>
+            <td width="500px">Preencher com a data de início do período abrangido pela responsabilização. Validação: Deve ser igual à data de início do trabalhador no vínculo e igual ou anterior à data atual ou à data do desligamento, se este existir.</td>
+            <td width="200px"><b>{% if s2240_fimexprisco_respreg.dtini or s2240_fimexprisco_respreg.dtini == 0 %}{{ s2240_fimexprisco_respreg.dtini|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_fimexprisco_respreg_visualizar' %}
+                <a href="{% url 's2240_fimexprisco_respreg_salvar'  hash='{}'|json_id:s2240_fimexprisco_respreg.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_fimexprisco_respreg.dtfim|validacoes_esocial_efdreinf:"s2240_fimexprisco_respreg.dtfim" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtFim</td>
+            <td width="500px">Preencher com a data final do período abrangido pela responsabilização. No caso de trabalhador ativo sem alteração do responsável, não preencher. Validação: Deve ser igual ou maior que a data de início no vínculo e igual ou anterior à data atual ou à data de desligamento, se este existir.</td>
+            <td width="200px"><b>{% if s2240_fimexprisco_respreg.dtfim or s2240_fimexprisco_respreg.dtfim == 0 %}{{ s2240_fimexprisco_respreg.dtfim|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_fimexprisco_respreg_visualizar' %}
+                <a href="{% url 's2240_fimexprisco_respreg_salvar'  hash='{}'|json_id:s2240_fimexprisco_respreg.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_fimexprisco_respreg.nisresp|validacoes_esocial_efdreinf:"s2240_fimexprisco_respreg.nisresp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nisResp</td>
+            <td width="500px">NIS do responsável pela monitoraçãoValidação: Deve ser um NIS válido.</td>
+            <td width="200px"><b>{% if s2240_fimexprisco_respreg.nisresp or s2240_fimexprisco_respreg.nisresp == 0 %}{{ s2240_fimexprisco_respreg.nisresp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_fimexprisco_respreg_visualizar' %}
+                <a href="{% url 's2240_fimexprisco_respreg_salvar'  hash='{}'|json_id:s2240_fimexprisco_respreg.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_fimexprisco_respreg.nroc|validacoes_esocial_efdreinf:"s2240_fimexprisco_respreg.nroc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrOc</td>
+            <td width="500px">Número de Inscrição no órgão de classe</td>
+            <td width="200px"><b>{% if s2240_fimexprisco_respreg.nroc or s2240_fimexprisco_respreg.nroc == 0 %}{{ s2240_fimexprisco_respreg.nroc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_fimexprisco_respreg_visualizar' %}
+                <a href="{% url 's2240_fimexprisco_respreg_salvar'  hash='{}'|json_id:s2240_fimexprisco_respreg.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2240_fimexprisco_respreg.ufoc|validacoes_esocial_efdreinf:"s2240_fimexprisco_respreg.ufoc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">ufOC</td>
+            <td width="500px">Sigla da UF do órgão de classe.</td>
+            <td width="200px"><b>{% if s2240_fimexprisco_respreg.ufoc or s2240_fimexprisco_respreg.ufoc == 0 %}{{ s2240_fimexprisco_respreg.ufoc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2240_fimexprisco_respreg_visualizar' %}
+                <a href="{% url 's2240_fimexprisco_respreg_salvar'  hash='{}'|json_id:s2240_fimexprisco_respreg.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %} {% endifequal %}{% endfor %}
+</table>
+{% if not for_print %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %} 
+
+        </div>
+      </div>
+    </section>
+{% endif %}  
+
+{% endblock content %}

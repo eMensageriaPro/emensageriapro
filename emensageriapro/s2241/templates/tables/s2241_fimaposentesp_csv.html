@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Condições do ambiente de trabalho que ensejam aposentadoria especial - Término"
+{% if show_fields.show_s2241_evtinsapo or not s2241_evtinsapo_id and 1 %}"Insalubridade, periculosidade e aposentadoria especial";{% endif %}{% if show_fields.show_dtfimcondicao or 1 %}"Data do termino da condição";{% endif %}
+{% for a in s2241_fimaposentesp_lista %}{% if show_fields.show_s2241_evtinsapo or  not s2241_evtinsapo_id and 1 %}"{{ a.s2241_evtinsapo }}";{% endif %}{% if show_fields.show_dtfimcondicao or 1 %}"{{ a.dtfimcondicao|date:"d/m/Y" }}";{% endif %}
+{% endfor %}

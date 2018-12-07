@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"eSocial 18 - Motivos de Afastamento"
+{% if show_fields.show_codigo or 1 %}"Código";{% endif %}{% if show_fields.show_descricao or 1 %}"Descrição";{% endif %}{% if show_fields.show_data_inicio or 1 %}"Data de Início da Validade";{% endif %}{% if show_fields.show_data_termino or 1 %}"Data de Término da Validade";{% endif %}
+{% for a in esocial_afastamentos_motivos_lista %}{% if show_fields.show_codigo or 1 %}"{{ a.codigo }}";{% endif %}{% if show_fields.show_descricao or 1 %}"{{ a.descricao }}";{% endif %}{% if show_fields.show_data_inicio or 1 %}"{{ a.data_inicio|date:"d/m/Y" }}";{% endif %}{% if show_fields.show_data_termino or 1 %}"{{ a.data_termino|date:"d/m/Y" }}";{% endif %}
+{% endfor %}

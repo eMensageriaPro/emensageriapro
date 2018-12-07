@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas"
+{% if show_fields.show_s5011_evtcs or not s5011_evtcs_id and 1 %}"Evento demonstrativo das Contribuições Sociais devidas à Previdência Social e a Outras Entidades e Fundos e das suas bases de cálculo.";{% endif %}{% if show_fields.show_tpinsc or 1 %}"Tipo de inscrição";{% endif %}{% if show_fields.show_nrinsc or 1 %}"Número de inscrição (CPF/CNPJ)";{% endif %}
+{% for a in s5011_ideestab_lista %}{% if show_fields.show_s5011_evtcs or  not s5011_evtcs_id and 1 %}"{{ a.s5011_evtcs }}";{% endif %}{% if show_fields.show_tpinsc or 1 %}"{{ a.get_tpinsc_display }}";{% endif %}{% if show_fields.show_nrinsc or 1 %}"{{ a.nrinsc }}";{% endif %}
+{% endfor %}

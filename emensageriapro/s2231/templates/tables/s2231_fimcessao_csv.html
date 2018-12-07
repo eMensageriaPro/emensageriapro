@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações de término da cessão/exercício em outro órgão"
+{% if show_fields.show_s2231_evtcessao or not s2231_evtcessao_id and 1 %}"Evento Cessão/Exercício em Outro Órgão";{% endif %}{% if show_fields.show_dttermcessao or 1 %}"Preencher com a data de término da cessão/exercício em outro órgão";{% endif %}
+{% for a in s2231_fimcessao_lista %}{% if show_fields.show_s2231_evtcessao or  not s2231_evtcessao_id and 1 %}"{{ a.s2231_evtcessao }}";{% endif %}{% if show_fields.show_dttermcessao or 1 %}"{{ a.dttermcessao|date:"d/m/Y" }}";{% endif %}
+{% endfor %}

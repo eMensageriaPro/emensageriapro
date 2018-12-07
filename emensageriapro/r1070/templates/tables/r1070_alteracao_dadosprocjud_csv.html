@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações Complementares do Processo Judicial"
+{% if show_fields.show_r1070_alteracao or not r1070_alteracao_id and 1 %}"Alteração das informações";{% endif %}{% if show_fields.show_ufvara or 1 %}"Identificação da Unidade da Federação - UF da Seção Judiciária";{% endif %}{% if show_fields.show_codmunic or not municipios_id and 1 %}"Código do Município";{% endif %}{% if show_fields.show_idvara or 1 %}"Código de Identificação da Vara.";{% endif %}
+{% for a in r1070_alteracao_dadosprocjud_lista %}{% if show_fields.show_r1070_alteracao or  not r1070_alteracao_id and 1 %}"{{ a.r1070_alteracao }}";{% endif %}{% if show_fields.show_ufvara or 1 %}"{{ a.get_ufvara_display }}";{% endif %}{% if show_fields.show_codmunic or  not municipios_id and 1 %}"{{ a.codmunic }}";{% endif %}{% if show_fields.show_idvara or 1 %}"{{ a.idvara }}";{% endif %}
+{% endfor %}

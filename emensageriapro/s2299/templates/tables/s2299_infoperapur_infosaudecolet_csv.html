@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o número da obra (...)"
+{% if show_fields.show_s2299_infoperapur_ideestablot or not s2299_infoperapur_ideestablot_id and 1 %}"Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o número da obra (...)";{% endif %}
+{% for a in s2299_infoperapur_infosaudecolet_lista %}{% if show_fields.show_s2299_infoperapur_ideestablot or  not s2299_infoperapur_ideestablot_id and 1 %}"{{ a.s2299_infoperapur_ideestablot }}";{% endif %}
+{% endfor %}

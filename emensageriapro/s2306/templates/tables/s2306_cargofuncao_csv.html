@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo"
+{% if show_fields.show_s2306_evttsvaltcontr or not s2306_evttsvaltcontr_id and 1 %}"Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual";{% endif %}{% if show_fields.show_codcargo or 1 %}"Código do Cargo";{% endif %}{% if show_fields.show_codfuncao or 0 %}"Código da Função";{% endif %}
+{% for a in s2306_cargofuncao_lista %}{% if show_fields.show_s2306_evttsvaltcontr or  not s2306_evttsvaltcontr_id and 1 %}"{{ a.s2306_evttsvaltcontr }}";{% endif %}{% if show_fields.show_codcargo or 1 %}"{{ a.codcargo }}";{% endif %}{% if show_fields.show_codfuncao or 0 %}"{{ a.codfuncao }}";{% endif %}
+{% endfor %}

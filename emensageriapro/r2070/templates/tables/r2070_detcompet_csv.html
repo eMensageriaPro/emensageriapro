@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Detalhamento das Competências"
+{% if show_fields.show_r2070_pgtopf or not r2070_pgtopf_id and 1 %}"Beneficiário Pessoa Física - Residente no Brasil";{% endif %}{% if show_fields.show_indperreferencia or 1 %}"Indicativo de período de referência";{% endif %}{% if show_fields.show_perrefpagto or 1 %}"Informar o período ao qual se refere o pagamento do rendimento, no formato AAAA-MM, no caso de pagamento de folha mensal, ou AAAA, no caso específico do 13º salário";{% endif %}{% if show_fields.show_vlrrendtributavel or 1 %}"Valor do rendimento tributável";{% endif %}
+{% for a in r2070_detcompet_lista %}{% if show_fields.show_r2070_pgtopf or  not r2070_pgtopf_id and 1 %}"{{ a.r2070_pgtopf }}";{% endif %}{% if show_fields.show_indperreferencia or 1 %}"{{ a.get_indperreferencia_display }}";{% endif %}{% if show_fields.show_perrefpagto or 1 %}"{{ a.perrefpagto }}";{% endif %}{% if show_fields.show_vlrrendtributavel or 1 %}"{{ a.vlrrendtributavel }}";{% endif %}
+{% endfor %}

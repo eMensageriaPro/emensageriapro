@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações da Carteira de Trabalho e Previdência Social"
+{% if show_fields.show_s2200_evtadmissao or not s2200_evtadmissao_id and 1 %}"Evento Cadastramento Inicial do Vínculo e Admissão / Ingresso de Trabalhador";{% endif %}{% if show_fields.show_nrctps or 1 %}"Número da CTPS";{% endif %}{% if show_fields.show_seriectps or 1 %}"Série da CTPS";{% endif %}{% if show_fields.show_ufctps or 1 %}"UF da CTPS";{% endif %}
+{% for a in s2200_ctps_lista %}{% if show_fields.show_s2200_evtadmissao or  not s2200_evtadmissao_id and 1 %}"{{ a.s2200_evtadmissao }}";{% endif %}{% if show_fields.show_nrctps or 1 %}"{{ a.nrctps }}";{% endif %}{% if show_fields.show_seriectps or 1 %}"{{ a.seriectps }}";{% endif %}{% if show_fields.show_ufctps or 1 %}"{{ a.get_ufctps_display }}";{% endif %}
+{% endfor %}

@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Alterações inerentes ao servidor público"
+{% if show_fields.show_s2206_evtaltcontratual or not s2206_evtaltcontratual_id and 1 %}"Evento Alteração Contratual";{% endif %}{% if show_fields.show_mtvalter or 1 %}"Motivo da alteração do cargo/função";{% endif %}
+{% for a in s2206_servpubl_lista %}{% if show_fields.show_s2206_evtaltcontratual or  not s2206_evtaltcontratual_id and 1 %}"{{ a.s2206_evtaltcontratual }}";{% endif %}{% if show_fields.show_mtvalter or 1 %}"{{ a.get_mtvalter_display }}";{% endif %}
+{% endfor %}

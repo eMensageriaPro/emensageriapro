@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR."
+{% if show_fields.show_s5011_evtcs or not s5011_evtcs_id and 1 %}"Evento demonstrativo das Contribuições Sociais devidas à Previdência Social e a Outras Entidades e Fundos e das suas bases de cálculo.";{% endif %}{% if show_fields.show_tpcr or 1 %}"Código da Receita (CR)";{% endif %}{% if show_fields.show_vrcr or 1 %}"Valor do CR apurado";{% endif %}{% if show_fields.show_vrcrsusp or 0 %}"Valor do tributo com exigibilidade suspensa";{% endif %}
+{% for a in s5011_infocrcontrib_lista %}{% if show_fields.show_s5011_evtcs or  not s5011_evtcs_id and 1 %}"{{ a.s5011_evtcs }}";{% endif %}{% if show_fields.show_tpcr or 1 %}"{{ a.tpcr }}";{% endif %}{% if show_fields.show_vrcr or 1 %}"{{ a.vrcr }}";{% endif %}{% if show_fields.show_vrcrsusp or 0 %}"{{ a.vrcrsusp }}";{% endif %}
+{% endfor %}

@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho."
+{% if show_fields.show_s2210_evtcat or not s2210_evtcat_id and 1 %}"Evento Comunicação de Acidente de Trabalho";{% endif %}{% if show_fields.show_codparteating or 1 %}"Parte Atingida";{% endif %}{% if show_fields.show_lateralidade or 1 %}"Laterabilidade";{% endif %}
+{% for a in s2210_parteatingida_lista %}{% if show_fields.show_s2210_evtcat or  not s2210_evtcat_id and 1 %}"{{ a.s2210_evtcat }}";{% endif %}{% if show_fields.show_codparteating or 1 %}"{{ a.get_codparteating_display }}";{% endif %}{% if show_fields.show_lateralidade or 1 %}"{{ a.get_lateralidade_display }}";{% endif %}
+{% endfor %}

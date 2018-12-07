@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações da(s) convocação(ões) de trabalho intermitente"
+{% if show_fields.show_s2299_dmdev or not s2299_dmdev_id and 1 %}"Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF";{% endif %}{% if show_fields.show_codconv or 1 %}"Preencher com o código atribuído pela empresa que identifica a convocação para trabalho intermitente";{% endif %}
+{% for a in s2299_infotrabinterm_lista %}{% if show_fields.show_s2299_dmdev or  not s2299_dmdev_id and 1 %}"{{ a.s2299_dmdev }}";{% endif %}{% if show_fields.show_codconv or 1 %}"{{ a.codconv }}";{% endif %}
+{% endfor %}

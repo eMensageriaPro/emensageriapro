@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a coopera (...)"
+{% if show_fields.show_s2299_infoperant_ideestablot or not s2299_infoperant_ideestablot_id and 1 %}"Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração";{% endif %}{% if show_fields.show_grauexp or 1 %}"Código";{% endif %}
+{% for a in s2299_infoperant_infoagnocivo_lista %}{% if show_fields.show_s2299_infoperant_ideestablot or  not s2299_infoperant_ideestablot_id and 1 %}"{{ a.s2299_infoperant_ideestablot }}";{% endif %}{% if show_fields.show_grauexp or 1 %}"{{ a.get_grauexp_display }}";{% endif %}
+{% endfor %}

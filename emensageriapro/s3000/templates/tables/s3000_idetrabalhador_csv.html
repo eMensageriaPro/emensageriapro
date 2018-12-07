@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração."
+{% if show_fields.show_s3000_evtexclusao or not s3000_evtexclusao_id and 1 %}"Evento de Exclusão";{% endif %}{% if show_fields.show_cpftrab or 1 %}"CPF";{% endif %}{% if show_fields.show_nistrab or 0 %}"NIS";{% endif %}
+{% for a in s3000_idetrabalhador_lista %}{% if show_fields.show_s3000_evtexclusao or  not s3000_evtexclusao_id and 1 %}"{{ a.s3000_evtexclusao }}";{% endif %}{% if show_fields.show_cpftrab or 1 %}"{{ a.cpftrab }}";{% endif %}{% if show_fields.show_nistrab or 0 %}"{{ a.nistrab }}";{% endif %}
+{% endfor %}

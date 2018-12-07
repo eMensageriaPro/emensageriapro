@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Médico/Dentista que emitiu o atestado"
+{% if show_fields.show_s2230_infoatestado or not s2230_infoatestado_id and 1 %}"Informações complementares relativas ao atestado médico";{% endif %}{% if show_fields.show_nmemit or 1 %}"Nome";{% endif %}{% if show_fields.show_ideoc or 1 %}"Órgão de Classe (OC)";{% endif %}{% if show_fields.show_nroc or 1 %}"Número do OC";{% endif %}{% if show_fields.show_ufoc or 0 %}"UF do OC";{% endif %}
+{% for a in s2230_emitente_lista %}{% if show_fields.show_s2230_infoatestado or  not s2230_infoatestado_id and 1 %}"{{ a.s2230_infoatestado }}";{% endif %}{% if show_fields.show_nmemit or 1 %}"{{ a.nmemit }}";{% endif %}{% if show_fields.show_ideoc or 1 %}"{{ a.get_ideoc_display }}";{% endif %}{% if show_fields.show_nroc or 1 %}"{{ a.nroc }}";{% endif %}{% if show_fields.show_ufoc or 0 %}"{{ a.get_ufoc_display }}";{% endif %}
+{% endfor %}

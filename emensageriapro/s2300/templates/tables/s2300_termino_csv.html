@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações de término do TSVE"
+{% if show_fields.show_s2300_evttsvinicio or not s2300_evttsvinicio_id and 1 %}"Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Início";{% endif %}{% if show_fields.show_dtterm or 1 %}"Data de Término do contrato de trabalho";{% endif %}
+{% for a in s2300_termino_lista %}{% if show_fields.show_s2300_evttsvinicio or  not s2300_evttsvinicio_id and 1 %}"{{ a.s2300_evttsvinicio }}";{% endif %}{% if show_fields.show_dtterm or 1 %}"{{ a.dtterm|date:"d/m/Y" }}";{% endif %}
+{% endfor %}

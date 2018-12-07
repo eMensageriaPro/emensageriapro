@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Detalhamento dos valores devidos ao beneficiário"
+{% if show_fields.show_s1207_dmdev or not s1207_dmdev_id and 1 %}"Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF";{% endif %}{% if show_fields.show_codrubr or 1 %}"Código da Rubrica";{% endif %}{% if show_fields.show_idetabrubr or 1 %}"Identificador tabela de rubricas";{% endif %}{% if show_fields.show_vrrubr or 1 %}"Valor total";{% endif %}
+{% for a in s1207_itens_lista %}{% if show_fields.show_s1207_dmdev or  not s1207_dmdev_id and 1 %}"{{ a.s1207_dmdev }}";{% endif %}{% if show_fields.show_codrubr or 1 %}"{{ a.codrubr }}";{% endif %}{% if show_fields.show_idetabrubr or 1 %}"{{ a.idetabrubr }}";{% endif %}{% if show_fields.show_vrrubr or 1 %}"{{ a.vrrubr }}";{% endif %}
+{% endfor %}

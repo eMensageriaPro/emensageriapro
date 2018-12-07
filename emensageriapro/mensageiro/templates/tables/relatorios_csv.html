@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Relatórios"
+{% if show_fields.show_titulo or 1 %}"Título";{% endif %}{% if show_fields.show_campos or 0 %}"Lista dos Campos (separados por vírgula)";{% endif %}{% if show_fields.show_sql or 0 %}"SQL";{% endif %}
+{% for a in relatorios_lista %}{% if show_fields.show_titulo or 1 %}"{{ a.titulo }}";{% endif %}{% if show_fields.show_campos or 0 %}"{{ a.campos }}";{% endif %}{% if show_fields.show_sql or 0 %}"{{ a.sql }}";{% endif %}
+{% endfor %}

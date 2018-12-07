@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações de afastamento do trabalhador"
+{% if show_fields.show_s2200_evtadmissao or not s2200_evtadmissao_id and 1 %}"Evento Cadastramento Inicial do Vínculo e Admissão / Ingresso de Trabalhador";{% endif %}{% if show_fields.show_dtiniafast or 1 %}"Data de início do afastamento";{% endif %}{% if show_fields.show_codmotafast or 1 %}"Afastamento";{% endif %}
+{% for a in s2200_afastamento_lista %}{% if show_fields.show_s2200_evtadmissao or  not s2200_evtadmissao_id and 1 %}"{{ a.s2200_evtadmissao }}";{% endif %}{% if show_fields.show_dtiniafast or 1 %}"{{ a.dtiniafast|date:"d/m/Y" }}";{% endif %}{% if show_fields.show_codmotafast or 1 %}"{{ a.get_codmotafast_display }}";{% endif %}
+{% endfor %}

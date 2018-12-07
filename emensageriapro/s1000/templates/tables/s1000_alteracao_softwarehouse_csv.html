@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações relativas ao desenvolvedor do software que gerou o arquivo xml."
+{% if show_fields.show_s1000_alteracao or not s1000_alteracao_id and 1 %}"Alteração das informações";{% endif %}{% if show_fields.show_cnpjsofthouse or 1 %}"CNPJ";{% endif %}{% if show_fields.show_nmrazao or 1 %}"Razão Social";{% endif %}{% if show_fields.show_nmcont or 1 %}"Nome do Contato";{% endif %}{% if show_fields.show_telefone or 1 %}"Telefone";{% endif %}{% if show_fields.show_email or 0 %}"E-mail";{% endif %}
+{% for a in s1000_alteracao_softwarehouse_lista %}{% if show_fields.show_s1000_alteracao or  not s1000_alteracao_id and 1 %}"{{ a.s1000_alteracao }}";{% endif %}{% if show_fields.show_cnpjsofthouse or 1 %}"{{ a.cnpjsofthouse }}";{% endif %}{% if show_fields.show_nmrazao or 1 %}"{{ a.nmrazao }}";{% endif %}{% if show_fields.show_nmcont or 1 %}"{{ a.nmcont }}";{% endif %}{% if show_fields.show_telefone or 1 %}"{{ a.telefone }}";{% endif %}{% if show_fields.show_email or 0 %}"{{ a.email }}";{% endif %}
+{% endfor %}

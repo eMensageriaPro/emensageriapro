@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária."
+{% if show_fields.show_s2299_evtdeslig or not s2299_evtdeslig_id and 1 %}"Evento Desligamento";{% endif %}{% if show_fields.show_indmv or 1 %}"Desconto de Contribuição Previdenciária (Outros vinculos)";{% endif %}
+{% for a in s2299_infotrabinterm_infomv_lista %}{% if show_fields.show_s2299_evtdeslig or  not s2299_evtdeslig_id and 1 %}"{{ a.s2299_evtdeslig }}";{% endif %}{% if show_fields.show_indmv or 1 %}"{{ a.get_indmv_display }}";{% endif %}
+{% endfor %}

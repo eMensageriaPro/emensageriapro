@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo. Origem S-1200, S-1202, S-1207, S-1210, S-2299, S-2399."
+{% if show_fields.show_s5002_evtirrfbenef or not s5002_evtirrfbenef_id and 1 %}"Imposto de Renda Retido do beneficiário do rendimento";{% endif %}{% if show_fields.show_codcateg or not esocial_trabalhadores_categorias_id and 0 %}"Código da Categoria";{% endif %}{% if show_fields.show_indresbr or 1 %}"Indicador de residência";{% endif %}
+{% for a in s5002_infoirrf_lista %}{% if show_fields.show_s5002_evtirrfbenef or  not s5002_evtirrfbenef_id and 1 %}"{{ a.s5002_evtirrfbenef }}";{% endif %}{% if show_fields.show_codcateg or  not esocial_trabalhadores_categorias_id and 0 %}"{{ a.codcateg }}";{% endif %}{% if show_fields.show_indresbr or 1 %}"{{ a.get_indresbr_display }}";{% endif %}
+{% endfor %}

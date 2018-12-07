@@ -1,0 +1,771 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
+{% if not for_print %}
+
+    <section class="content-header">
+      <h1>
+        S-2230 - Afastamento Temporário
+        <small>Verificações</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">S-2230 - Afastamento Temporário</a></li>
+        <li class="active">Verificar</li>
+      </ol>
+    </section>
+    <section class="content">
+
+        {% if messages %}
+                <div class="pad margin no-print">
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+                </div>
+        {% endif %}
+
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">S-2230 - Afastamento Temporário<br>Identidade: {{ s2230_evtafasttemp.identidade }}</h3>
+              <div class="text-right">
+                <a href="{% url 's2230_evtafasttemp_verificar' hash='{}'|json_id:s2230_evtafasttemp_id|json_print:1|base64_encode_me %}" target="_blank">
+                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
+                </a>
+
+
+
+                  <div class="btn-group">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="text-left"><a
+                                            href="{% url 's2230_evtafasttemp_verificar' hash='{}'|json_id:s2230_evtafasttemp_id|json_print:2|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
+                                    <li class="text-left"><a
+                                            href="{% url 's2230_evtafasttemp_verificar' hash='{}'|json_id:s2230_evtafasttemp_id|json_print:3|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
+                                    <!--<li class="text-left"><a
+                                            href="{% url 's2230_evtafasttemp_verificar' hash='{}'|json_id:s2230_evtafasttemp_id|json_print:4|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
+                                </ul>
+                            </div>&nbsp;
+
+              </div>              
+            </div>
+            <div class="box-body">
+{% else %} 
+   <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            S-2230 - Afastamento Temporário<br>Identidade: {{ s2230_evtafasttemp.identidade }}
+            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+{% endif %} 
+
+
+
+
+      <h4>Layout</h4>
+
+
+
+
+<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
+              
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtAfastTemp</td>
+            <td bgcolor="lightgray" colspan="3">Evento Afastamento Temporário. Regras de validação: REGRA_AFASTAMENTO REGRA_EVENTOS_EXTEMP REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXCLUI_EVENTO_AFASTAMENTO REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXTEMP_REINTEGRACAO REGRA_GERAL_VALIDA_DADOS_TABCONTRIB REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_TRABALHADOR_BASE_CNIS</td>
+        </tr>
+    {% for s2230_evtafasttemp in s2230_evtafasttemp_lista %}
+    {% ifequal 1 1 %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
+        </tr>
+
+        <tr {% if s2230_evtafasttemp.indretif|validacoes_esocial_efdreinf:"s2230_evtafasttemp.indretif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indRetif</td>
+            <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2230_evtafasttemp.indretif or s2230_evtafasttemp.indretif == 0 %}{{ s2230_evtafasttemp.indretif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_evtafasttemp_visualizar' %}
+                <a href="{% url 's2230_evtafasttemp_salvar'  hash='{}'|json_id:s2230_evtafasttemp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_evtafasttemp.nrrecibo|validacoes_esocial_efdreinf:"s2230_evtafasttemp.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecibo</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
+            <td width="200px"><b>{% if s2230_evtafasttemp.nrrecibo or s2230_evtafasttemp.nrrecibo == 0 %}{{ s2230_evtafasttemp.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_evtafasttemp_visualizar' %}
+                <a href="{% url 's2230_evtafasttemp_salvar'  hash='{}'|json_id:s2230_evtafasttemp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_evtafasttemp.tpamb|validacoes_esocial_efdreinf:"s2230_evtafasttemp.tpamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAmb</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2230_evtafasttemp.tpamb or s2230_evtafasttemp.tpamb == 0 %}{{ s2230_evtafasttemp.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_evtafasttemp_visualizar' %}
+                <a href="{% url 's2230_evtafasttemp_salvar'  hash='{}'|json_id:s2230_evtafasttemp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_evtafasttemp.procemi|validacoes_esocial_efdreinf:"s2230_evtafasttemp.procemi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">procEmi</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="200px"><b>{% if s2230_evtafasttemp.procemi or s2230_evtafasttemp.procemi == 0 %}{{ s2230_evtafasttemp.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_evtafasttemp_visualizar' %}
+                <a href="{% url 's2230_evtafasttemp_salvar'  hash='{}'|json_id:s2230_evtafasttemp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_evtafasttemp.verproc|validacoes_esocial_efdreinf:"s2230_evtafasttemp.verproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">verProc</td>
+            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
+            <td width="200px"><b>{% if s2230_evtafasttemp.verproc or s2230_evtafasttemp.verproc == 0 %}{{ s2230_evtafasttemp.verproc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_evtafasttemp_visualizar' %}
+                <a href="{% url 's2230_evtafasttemp_salvar'  hash='{}'|json_id:s2230_evtafasttemp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
+        </tr>
+
+        <tr {% if s2230_evtafasttemp.tpinsc|validacoes_esocial_efdreinf:"s2230_evtafasttemp.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
+            <td width="200px"><b>{% if s2230_evtafasttemp.tpinsc or s2230_evtafasttemp.tpinsc == 0 %}{{ s2230_evtafasttemp.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_evtafasttemp_visualizar' %}
+                <a href="{% url 's2230_evtafasttemp_salvar'  hash='{}'|json_id:s2230_evtafasttemp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_evtafasttemp.nrinsc|validacoes_esocial_efdreinf:"s2230_evtafasttemp.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2230_evtafasttemp.nrinsc or s2230_evtafasttemp.nrinsc == 0 %}{{ s2230_evtafasttemp.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_evtafasttemp_visualizar' %}
+                <a href="{% url 's2230_evtafasttemp_salvar'  hash='{}'|json_id:s2230_evtafasttemp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideVinculo</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador e do Vínculo. Regras de validação: REGRA_TSV_ATIVO_NA_DTEVENTO REGRA_VINCULO_ATIVO_NA_DTEVENTO</td>
+        </tr>
+
+        <tr {% if s2230_evtafasttemp.cpftrab|validacoes_esocial_efdreinf:"s2230_evtafasttemp.cpftrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfTrab</td>
+            <td width="500px">Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2230_evtafasttemp.cpftrab or s2230_evtafasttemp.cpftrab == 0 %}{{ s2230_evtafasttemp.cpftrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_evtafasttemp_visualizar' %}
+                <a href="{% url 's2230_evtafasttemp_salvar'  hash='{}'|json_id:s2230_evtafasttemp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_evtafasttemp.nistrab|validacoes_esocial_efdreinf:"s2230_evtafasttemp.nistrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nisTrab</td>
+            <td width="500px">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT. Validação: O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904].</td>
+            <td width="200px"><b>{% if s2230_evtafasttemp.nistrab or s2230_evtafasttemp.nistrab == 0 %}{{ s2230_evtafasttemp.nistrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_evtafasttemp_visualizar' %}
+                <a href="{% url 's2230_evtafasttemp_salvar'  hash='{}'|json_id:s2230_evtafasttemp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_evtafasttemp.matricula|validacoes_esocial_efdreinf:"s2230_evtafasttemp.matricula" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">matricula</td>
+            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: A matrícula deve corresponder à informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista. Se o trabalhador não está sujeito a esse evento (S-2200), a matrícula não deve ser informada, porém, o trabalhador deve ter sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300.</td>
+            <td width="200px"><b>{% if s2230_evtafasttemp.matricula or s2230_evtafasttemp.matricula == 0 %}{{ s2230_evtafasttemp.matricula }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_evtafasttemp_visualizar' %}
+                <a href="{% url 's2230_evtafasttemp_salvar'  hash='{}'|json_id:s2230_evtafasttemp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_evtafasttemp.codcateg|validacoes_esocial_efdreinf:"s2230_evtafasttemp.codcateg" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codCateg</td>
+            <td width="500px">Preencher com o código da categoria do trabalhador, conforme Tabela 1. Validação: Só informar se o trabalhador tiver sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300. Não informar nos demais casos. Se informado, deve existir na Tabela de Categorias de Trabalhadores (Tabela 01).</td>
+            <td width="200px"><b>{% if s2230_evtafasttemp.codcateg or s2230_evtafasttemp.codcateg == 0 %}{{ s2230_evtafasttemp.codcateg|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_evtafasttemp_visualizar' %}
+                <a href="{% url 's2230_evtafasttemp_salvar'  hash='{}'|json_id:s2230_evtafasttemp.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoAfastamento</td>
+            <td bgcolor="lightgray" colspan="3">Informações do Evento.</td>
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">iniAfastamento</td>
+            <td bgcolor="lightgray" colspan="3">Informações do Afastamento Temporário - Início.</td>
+        </tr>
+    {% for s2230_iniafastamento in s2230_iniafastamento_lista %}
+    {% ifequal s2230_iniafastamento.s2230_evtafasttemp.id s2230_evtafasttemp.id %}
+        <tr {% if s2230_iniafastamento.dtiniafast|validacoes_esocial_efdreinf:"s2230_iniafastamento.dtiniafast" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtIniAfast</td>
+            <td width="500px">Data de início do afastamento. Validação: Deve-se obedecer às seguintes regras: a) A data deve ser igual ou posterior a data de admissão do vínculo ao qual se refere o evento (no caso de sucessão ou mudança de CPF, igual ou posterior à data da transferência ou à data de alteração do CPF, respectivamente); b) Não pode ser superior à data atual exceto se {codMotAfast} = [15] (férias), situação em que pode ser até 60 dias superior à data atual; c) É necessário que o trabalhador esteja, antes da data de início do afastamento, em atividade, ou seja, não pode existir evento de afastamento anterior a {dtIniAfast} sem que este tenha sido encerrado.</td>
+            <td width="200px"><b>{% if s2230_iniafastamento.dtiniafast or s2230_iniafastamento.dtiniafast == 0 %}{{ s2230_iniafastamento.dtiniafast|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_iniafastamento_visualizar' %}
+                <a href="{% url 's2230_iniafastamento_salvar'  hash='{}'|json_id:s2230_iniafastamento.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_iniafastamento.codmotafast|validacoes_esocial_efdreinf:"s2230_iniafastamento.codmotafast" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codMotAfast</td>
+            <td width="500px">Preencher com o código do motivo de afastamento temporário, conforme tabela 18. Validação: Deve ser um código existente na tabela 18.</td>
+            <td width="200px"><b>{% if s2230_iniafastamento.codmotafast or s2230_iniafastamento.codmotafast == 0 %}{{ s2230_iniafastamento.codmotafast }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_iniafastamento_visualizar' %}
+                <a href="{% url 's2230_iniafastamento_salvar'  hash='{}'|json_id:s2230_iniafastamento.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_iniafastamento.infomesmomtv|validacoes_esocial_efdreinf:"s2230_iniafastamento.infomesmomtv" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">infoMesmoMtv</td>
+            <td width="500px">Informar se o afastamento decorre da mesma doença que gerou o afastamento anterior ({codMotAfast} = [01, 03]) dentro de 60 dias: N - Não; S - Sim. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if s2230_iniafastamento.infomesmomtv or s2230_iniafastamento.infomesmomtv == 0 %}{{ s2230_iniafastamento.infomesmomtv }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_iniafastamento_visualizar' %}
+                <a href="{% url 's2230_iniafastamento_salvar'  hash='{}'|json_id:s2230_iniafastamento.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_iniafastamento.tpacidtransito|validacoes_esocial_efdreinf:"s2230_iniafastamento.tpacidtransito" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAcidTransito</td>
+            <td width="500px">Tipo de Acidente de Trânsito: 1 - Atropelamento; 2 - Colisão; 3 - Outros. Validação: Somente pode ser preenchido se {codMotAfast} = [01,03]. Valores Válidos: 1, 2, 3.</td>
+            <td width="200px"><b>{% if s2230_iniafastamento.tpacidtransito or s2230_iniafastamento.tpacidtransito == 0 %}{{ s2230_iniafastamento.tpacidtransito|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_iniafastamento_visualizar' %}
+                <a href="{% url 's2230_iniafastamento_salvar'  hash='{}'|json_id:s2230_iniafastamento.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_iniafastamento.observacao|validacoes_esocial_efdreinf:"s2230_iniafastamento.observacao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">observacao</td>
+            <td width="500px">Detalhar as informações sobre o afastamento do trabalhador, de maneira a explicitar os motivos do mesmo. Validação: O preenchimento é obrigatório se {codMotAfast} = [21].</td>
+            <td width="200px"><b>{% if s2230_iniafastamento.observacao or s2230_iniafastamento.observacao == 0 %}{{ s2230_iniafastamento.observacao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_iniafastamento_visualizar' %}
+                <a href="{% url 's2230_iniafastamento_salvar'  hash='{}'|json_id:s2230_iniafastamento.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoAtestado</td>
+            <td bgcolor="lightgray" colspan="3">Informações complementares relativas ao atestado médico.</td>
+        </tr>
+    {% for s2230_infoatestado in s2230_infoatestado_lista %}
+    {% ifequal s2230_infoatestado.s2230_iniafastamento.id s2230_iniafastamento.id %}
+        <tr {% if s2230_infoatestado.codcid|validacoes_esocial_efdreinf:"s2230_infoatestado.codcid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codCID</td>
+            <td width="500px">Informar o código na tabela de Classificação Internacional de Doenças - CID. Validação: Preenchimento obrigatório se {codMotAfast} = [01], exceto se {origRetif} = [2, 3]. Deve ser preenchido com caracteres alfanuméricos conforme opções constantes na tabela CID.</td>
+            <td width="200px"><b>{% if s2230_infoatestado.codcid or s2230_infoatestado.codcid == 0 %}{{ s2230_infoatestado.codcid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_infoatestado_visualizar' %}
+                <a href="{% url 's2230_infoatestado_salvar'  hash='{}'|json_id:s2230_infoatestado.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_infoatestado.qtddiasafast|validacoes_esocial_efdreinf:"s2230_infoatestado.qtddiasafast" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">qtdDiasAfast</td>
+            <td width="500px">Quantidade de dias de afastamento concedidos pelo médico.</td>
+            <td width="200px"><b>{% if s2230_infoatestado.qtddiasafast or s2230_infoatestado.qtddiasafast == 0 %}{{ s2230_infoatestado.qtddiasafast|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_infoatestado_visualizar' %}
+                <a href="{% url 's2230_infoatestado_salvar'  hash='{}'|json_id:s2230_infoatestado.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">emitente</td>
+            <td bgcolor="lightgray" colspan="3">Médico/Dentista que emitiu o atestado.</td>
+        </tr>
+    {% for s2230_emitente in s2230_emitente_lista %}
+    {% ifequal s2230_emitente.s2230_infoatestado.id s2230_infoatestado.id %}
+        <tr {% if s2230_emitente.nmemit|validacoes_esocial_efdreinf:"s2230_emitente.nmemit" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmEmit</td>
+            <td width="500px">Nome do médico/dentista que emitiu o atestado.</td>
+            <td width="200px"><b>{% if s2230_emitente.nmemit or s2230_emitente.nmemit == 0 %}{{ s2230_emitente.nmemit }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_emitente_visualizar' %}
+                <a href="{% url 's2230_emitente_salvar'  hash='{}'|json_id:s2230_emitente.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_emitente.ideoc|validacoes_esocial_efdreinf:"s2230_emitente.ideoc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">ideOC</td>
+            <td width="500px">Órgão de classe: 1 - Conselho Regional de Medicina (CRM); 2 - Conselho Regional de Odontologia (CRO); 3 - Registro do Ministério da Saúde (RMS). Valores Válidos: 1, 2, 3.</td>
+            <td width="200px"><b>{% if s2230_emitente.ideoc or s2230_emitente.ideoc == 0 %}{{ s2230_emitente.ideoc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_emitente_visualizar' %}
+                <a href="{% url 's2230_emitente_salvar'  hash='{}'|json_id:s2230_emitente.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_emitente.nroc|validacoes_esocial_efdreinf:"s2230_emitente.nroc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrOc</td>
+            <td width="500px">Número de inscrição no órgão de classe.</td>
+            <td width="200px"><b>{% if s2230_emitente.nroc or s2230_emitente.nroc == 0 %}{{ s2230_emitente.nroc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_emitente_visualizar' %}
+                <a href="{% url 's2230_emitente_salvar'  hash='{}'|json_id:s2230_emitente.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_emitente.ufoc|validacoes_esocial_efdreinf:"s2230_emitente.ufoc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">ufOC</td>
+            <td width="500px">Sigla da UF do órgão de classe.</td>
+            <td width="200px"><b>{% if s2230_emitente.ufoc or s2230_emitente.ufoc == 0 %}{{ s2230_emitente.ufoc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_emitente_visualizar' %}
+                <a href="{% url 's2230_emitente_salvar'  hash='{}'|json_id:s2230_emitente.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoCessao</td>
+            <td bgcolor="lightgray" colspan="3">Registro preenchido nos casos de afastamento por cessão ou requisição do trabalhador.</td>
+        </tr>
+    {% for s2230_infocessao in s2230_infocessao_lista %}
+    {% ifequal s2230_infocessao.s2230_iniafastamento.id s2230_iniafastamento.id %}
+        <tr {% if s2230_infocessao.cnpjcess|validacoes_esocial_efdreinf:"s2230_infocessao.cnpjcess" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjCess</td>
+            <td width="500px">Preencher com o CNPJ do órgão/entidade para o qual o trabalhador foi cedido/requisitado. Validação: Deve ser um CNPJ diferente do CNPJ do empregador e diferente dos estabelecimentos informados através do evento S-1005. Regra de validação: REGRA_VALIDA_CNPJ</td>
+            <td width="200px"><b>{% if s2230_infocessao.cnpjcess or s2230_infocessao.cnpjcess == 0 %}{{ s2230_infocessao.cnpjcess }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_infocessao_visualizar' %}
+                <a href="{% url 's2230_infocessao_salvar'  hash='{}'|json_id:s2230_infocessao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_infocessao.infonus|validacoes_esocial_efdreinf:"s2230_infocessao.infonus" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">infOnus</td>
+            <td width="500px">Ônus da cessão/requisição: 1 - Ônus do Cedente; 2 - Ônus do Cessionário; 3 - Ônus do Cedente e Cessionário. Valores Válidos: 1, 2, 3.</td>
+            <td width="200px"><b>{% if s2230_infocessao.infonus or s2230_infocessao.infonus == 0 %}{{ s2230_infocessao.infonus|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_infocessao_visualizar' %}
+                <a href="{% url 's2230_infocessao_salvar'  hash='{}'|json_id:s2230_infocessao.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoMandSind</td>
+            <td bgcolor="lightgray" colspan="3">Informações Complementares - afastamento para exercício de mandato sindical.</td>
+        </tr>
+    {% for s2230_infomandsind in s2230_infomandsind_lista %}
+    {% ifequal s2230_infomandsind.s2230_iniafastamento.id s2230_iniafastamento.id %}
+        <tr {% if s2230_infomandsind.cnpjsind|validacoes_esocial_efdreinf:"s2230_infomandsind.cnpjsind" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjSind</td>
+            <td width="500px">CNPJ do Sindicato no qual o trabalhador exercerá o mandato. Validação: Deve ser um CNPJ diferente do CNPJ base do empregador e diferente dos informados na tabela de estabelecimentos (S-1005). Regra de validação: REGRA_VALIDA_CNPJ</td>
+            <td width="200px"><b>{% if s2230_infomandsind.cnpjsind or s2230_infomandsind.cnpjsind == 0 %}{{ s2230_infomandsind.cnpjsind }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_infomandsind_visualizar' %}
+                <a href="{% url 's2230_infomandsind_salvar'  hash='{}'|json_id:s2230_infomandsind.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_infomandsind.infonusremun|validacoes_esocial_efdreinf:"s2230_infomandsind.infonusremun" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">infOnusRemun</td>
+            <td width="500px">Ônus da Remuneração: 1 - Apenas do Empregador; 2 - Apenas do Sindicato; 3 - Parte do Empregador, sendo a diferença e/ou complementação salarial paga pelo Sindicato. Valores Válidos: 1, 2, 3.</td>
+            <td width="200px"><b>{% if s2230_infomandsind.infonusremun or s2230_infomandsind.infonusremun == 0 %}{{ s2230_infomandsind.infonusremun|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_infomandsind_visualizar' %}
+                <a href="{% url 's2230_infomandsind_salvar'  hash='{}'|json_id:s2230_infomandsind.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoRetif</td>
+            <td bgcolor="lightgray" colspan="3">Informações de retificação do Afastamento Temporário. Preenchimento obrigatório caso {codMotAfast} seja retificado de [01] para [03] ou de [03] para [01].</td>
+        </tr>
+    {% for s2230_inforetif in s2230_inforetif_lista %}
+    {% ifequal s2230_inforetif.s2230_evtafasttemp.id s2230_evtafasttemp.id %}
+        <tr {% if s2230_inforetif.origretif|validacoes_esocial_efdreinf:"s2230_inforetif.origretif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">origRetif</td>
+            <td width="500px">Origem da retificação, conforme opções: 1 - Por iniciativa do empregador; 2 - Revisão Administrativa; 3 - Determinação Judicial. Valores Válidos: 1, 2, 3.</td>
+            <td width="200px"><b>{% if s2230_inforetif.origretif or s2230_inforetif.origretif == 0 %}{{ s2230_inforetif.origretif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_inforetif_visualizar' %}
+                <a href="{% url 's2230_inforetif_salvar'  hash='{}'|json_id:s2230_inforetif.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_inforetif.tpproc|validacoes_esocial_efdreinf:"s2230_inforetif.tpproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpProc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial; 3 - Número de Benefício (NB) do INSS. Validação: O preenchimento é obrigatório se {origRetif} = [2, 3]. Valores Válidos: 1, 2, 3.</td>
+            <td width="200px"><b>{% if s2230_inforetif.tpproc or s2230_inforetif.tpproc == 0 %}{{ s2230_inforetif.tpproc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_inforetif_visualizar' %}
+                <a href="{% url 's2230_inforetif_salvar'  hash='{}'|json_id:s2230_inforetif.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2230_inforetif.nrproc|validacoes_esocial_efdreinf:"s2230_inforetif.nrproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrProc</td>
+            <td width="500px">Informar o número do processo administrativo/judicial ou do benefício de acordo com o tipo informado em {tpProc}. Validação: O preenchimento é obrigatório se {origRetif} = [2, 3]. Deve ser um processo existente na Tabela de Processos S-1070.</td>
+            <td width="200px"><b>{% if s2230_inforetif.nrproc or s2230_inforetif.nrproc == 0 %}{{ s2230_inforetif.nrproc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_inforetif_visualizar' %}
+                <a href="{% url 's2230_inforetif_salvar'  hash='{}'|json_id:s2230_inforetif.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">fimAfastamento</td>
+            <td bgcolor="lightgray" colspan="3">Informações do Término do Afastamento. Regra de validação: REGRA_EXISTE_EVENTO_AFASTAMENTO</td>
+        </tr>
+    {% for s2230_fimafastamento in s2230_fimafastamento_lista %}
+    {% ifequal s2230_fimafastamento.s2230_evtafasttemp.id s2230_evtafasttemp.id %}
+        <tr {% if s2230_fimafastamento.dttermafast|validacoes_esocial_efdreinf:"s2230_fimafastamento.dttermafast" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtTermAfast</td>
+            <td width="500px">Preencher com a data do término do afastamento do trabalhador. Validação: Deve-se obedecer às seguintes regras: a) Deve ser igual ou posterior à data de início do afastamento do trabalhador; b) Deve ser uma data não superior à data atual acrescida de 15 dias corridos, exceto se {codMotAfast} = [15] (férias), situação em que pode ser superior à data atual em até 60 dias.</td>
+            <td width="200px"><b>{% if s2230_fimafastamento.dttermafast or s2230_fimafastamento.dttermafast == 0 %}{{ s2230_fimafastamento.dttermafast|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'s2230_fimafastamento_visualizar' %}
+                <a href="{% url 's2230_fimafastamento_salvar'  hash='{}'|json_id:s2230_fimafastamento.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %} {% endifequal %}{% endfor %}
+</table>
+{% if not for_print %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %} 
+
+        </div>
+      </div>
+    </section>
+{% endif %}  
+
+{% endblock content %}

@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Exclusão das informações"
+{% if show_fields.show_s1040_evttabfuncao or not s1040_evttabfuncao_id and 1 %}"Evento utilizado para inclusão, alteração e exclusão de registros na tabela de funções";{% endif %}{% if show_fields.show_idefuncao or 0 %}"Informações de identificação da função e validade das informações que estão sendo incluídas";{% endif %}{% if show_fields.show_codfuncao or 1 %}"Código da Função";{% endif %}{% if show_fields.show_inivalid or 1 %}"Início da Validade";{% endif %}{% if show_fields.show_fimvalid or 0 %}"Fim da Validade";{% endif %}
+{% for a in s1040_exclusao_lista %}{% if show_fields.show_s1040_evttabfuncao or  not s1040_evttabfuncao_id and 1 %}"{{ a.s1040_evttabfuncao }}";{% endif %}{% if show_fields.show_idefuncao or 0 %}"{{ a.idefuncao }}";{% endif %}{% if show_fields.show_codfuncao or 1 %}"{{ a.codfuncao }}";{% endif %}{% if show_fields.show_inivalid or 1 %}"{{ a.get_inivalid_display }}";{% endif %}{% if show_fields.show_fimvalid or 0 %}"{{ a.get_fimvalid_display }}";{% endif %}
+{% endfor %}

@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Observações do contrato de trabalho"
+{% if show_fields.show_s2206_evtaltcontratual or not s2206_evtaltcontratual_id and 1 %}"Evento Alteração Contratual";{% endif %}{% if show_fields.show_observacao or 1 %}"Observações";{% endif %}
+{% for a in s2206_observacoes_lista %}{% if show_fields.show_s2206_evtaltcontratual or  not s2206_evtaltcontratual_id and 1 %}"{{ a.s2206_evtaltcontratual }}";{% endif %}{% if show_fields.show_observacao or 1 %}"{{ a.observacao }}";{% endif %}
+{% endfor %}

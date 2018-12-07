@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Identificação dos estabelecimentos da associação desportiva que receberam os recursos"
+{% if show_fields.show_r2070_evtpgtosdivs or not r2070_evtpgtosdivs_id and 1 %}"Evento Pagamentos ou Créditos Efetuados - Retenções na Fonte de IR, CSLL, Cofins e PIS/PASEP";{% endif %}{% if show_fields.show_tpinsc or 1 %}"Preencher com o código correspondente ao tipo de inscrição";{% endif %}{% if show_fields.show_nrinsc or 1 %}"Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}";{% endif %}
+{% for a in r2070_ideestab_lista %}{% if show_fields.show_r2070_evtpgtosdivs or  not r2070_evtpgtosdivs_id and 1 %}"{{ a.r2070_evtpgtosdivs }}";{% endif %}{% if show_fields.show_tpinsc or 1 %}"{{ a.get_tpinsc_display }}";{% endif %}{% if show_fields.show_nrinsc or 1 %}"{{ a.nrinsc }}";{% endif %}
+{% endfor %}

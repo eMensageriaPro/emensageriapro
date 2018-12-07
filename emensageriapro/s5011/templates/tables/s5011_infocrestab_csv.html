@@ -1,0 +1,5 @@
+{% load templatetags %}"{{ conta.nome_empresa }}"
+"Informações das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, consolidadas por estabelecimento e por código de Receita - CR."
+{% if show_fields.show_s5011_ideestab or not s5011_ideestab_id and 1 %}"Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas";{% endif %}{% if show_fields.show_tpcr or 1 %}"Código da Receita (CR)";{% endif %}{% if show_fields.show_vrcr or 1 %}"Valor do CR apurado";{% endif %}{% if show_fields.show_vrsuspcr or 0 %}"Valor suspenso correspondente ao CR";{% endif %}
+{% for a in s5011_infocrestab_lista %}{% if show_fields.show_s5011_ideestab or  not s5011_ideestab_id and 1 %}"{{ a.s5011_ideestab }}";{% endif %}{% if show_fields.show_tpcr or 1 %}"{{ a.tpcr }}";{% endif %}{% if show_fields.show_vrcr or 1 %}"{{ a.vrcr }}";{% endif %}{% if show_fields.show_vrsuspcr or 0 %}"{{ a.vrsuspcr }}";{% endif %}
+{% endfor %}
