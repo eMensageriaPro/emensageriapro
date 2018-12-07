@@ -42,99 +42,6 @@ get_model = apps.get_model
 
 
 
-SIM_NAO = (
-    (0, u'Não'),
-    (1, u'Sim'),
-)
-
-EVENTO_STATUS = (
-    (0, u'Cadastrado'),
-    (1, u'Importado'),
-    (10, u'XML Assinado'),
-    (11, u'XML Gerado'),
-    (12, u'Retorno'),
-    (13, u'Erro - Ocorrências'),
-    (14, u'Processado'),
-    (15, u'Aguardando consulta'),
-    (2, u'Duplicado'),
-    (3, u'Erro na validação'),
-    (4, u'Validado'),
-    (6, u'Aguardando envio'),
-)
-
-CODIGO_RESPOSTA = (
-    (0, u'Cadastrado'),
-    (101, u'101 - Lote Aguardando Processamento'),
-    (201, u'201 - Lote Processado com Sucesso'),
-    (202, u'202 - Lote Processado com Advertências'),
-    (301, u'301 - Erro Servidor eSocial'),
-    (401, u'401 - Lote Incorreto - Erro preenchimento'),
-    (402, u'402 - Lote Incorreto - schema Inválido'),
-    (403, u'403 - Lote Incorreto - Versão do Schema não permitida'),
-    (404, u'404 - Lote Incorreto - Erro Certificado'),
-    (405, u'405 - Lote Incorreto - Lote nulo ou vazio'),
-    (501, u'501 - Solicitação de Consulta Incorreta - Erro Preenchimento'),
-    (502, u'502 - Solicitação de Consulta Incorreta - Schema Inválido.'),
-    (503, u'503 - Solicitação de Consulta Incorreta - Versão do Schema Não Permitida.'),
-    (504, u'504 - Solicitação de Consulta Incorreta - Erro Certificado.'),
-    (505, u'505 - Solicitação de Consulta Incorreta - Consulta nula ou vazia.'),
-)
-
-TIPO_AMBIENTE = (
-    (1, u'1 - Produção'),
-    (2, u'2 - Produção restrita'),
-)
-
-OPERACOES = (
-    (1, u'Incluir'),
-    (2, u'Alterar'),
-    (3, u'Excluir'),
-)
-
-OPERACOES_INSALPERIC_APOSENTESP = (
-    (1, u'Insalubridade/Periculosidade - Incluir'),
-    (2, u'Insalubridade/Periculosidade - Alterar'),
-    (3, u'Insalubridade/Periculosidade - Excluir'),
-    (4, u'Aposentadoria Especial - Incluir'),
-    (5, u'Aposentadoria Especial - Alterar'),
-    (6, u'Aposentadoria Especial - Excluir'),
-)
-
-ESOCIAL_VERSOES = (
-    ('v02_04_02', u'Versão 2.04.02'),
-    ('v02_05_00', u'Versão 2.05.00'),
-)
-
-ESTADOS = (
-    ('AC', u'Acre'),
-    ('AL', u'Alagoas'),
-    ('AM', u'Amazonas'),
-    ('AP', u'Amapá'),
-    ('BA', u'Bahia'),
-    ('CE', u'Ceará'),
-    ('DF', u'Distrito Federal'),
-    ('ES', u'Espírito Santo'),
-    ('GO', u'Goiás'),
-    ('MA', u'Maranhão'),
-    ('MG', u'Minas Gerais'),
-    ('MS', u'Mato Grosso do Sul'),
-    ('MT', u'Mato Grosso'),
-    ('PA', u'Pará'),
-    ('PB', u'Paraíba'),
-    ('PE', u'Pernambuco'),
-    ('PI', u'Piauí'),
-    ('PR', u'Paraná'),
-    ('RJ', u'Rio de Janeiro'),
-    ('RN', u'Rio Grande do Norte'),
-    ('RO', u'Rondônia'),
-    ('RR', u'Roraima'),
-    ('RS', u'Rio Grande do Sul'),
-    ('SC', u'Santa Catarina'),
-    ('SE', u'Sergipe'),
-    ('SP', u'São Paulo'),
-    ('TO', u'Tocantins'),
-)
-
 CHOICES_S1000_PROCEMI = (
     (1, u'1 - Aplicativo do empregador'),
     (2, u'2 - Aplicativo governamental - Empregador Doméstico'),
@@ -1972,6 +1879,99 @@ CHOICES_S5013_INDEXISTINFO = (
 CHOICES_S5013_TPINSC = (
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),
+)
+
+CODIGO_RESPOSTA = (
+    (0, u'Cadastrado'),
+    (101, u'101 - Lote Aguardando Processamento'),
+    (201, u'201 - Lote Processado com Sucesso'),
+    (202, u'202 - Lote Processado com Advertências'),
+    (301, u'301 - Erro Servidor eSocial'),
+    (401, u'401 - Lote Incorreto - Erro preenchimento'),
+    (402, u'402 - Lote Incorreto - schema Inválido'),
+    (403, u'403 - Lote Incorreto - Versão do Schema não permitida'),
+    (404, u'404 - Lote Incorreto - Erro Certificado'),
+    (405, u'405 - Lote Incorreto - Lote nulo ou vazio'),
+    (501, u'501 - Solicitação de Consulta Incorreta - Erro Preenchimento'),
+    (502, u'502 - Solicitação de Consulta Incorreta - Schema Inválido.'),
+    (503, u'503 - Solicitação de Consulta Incorreta - Versão do Schema Não Permitida.'),
+    (504, u'504 - Solicitação de Consulta Incorreta - Erro Certificado.'),
+    (505, u'505 - Solicitação de Consulta Incorreta - Consulta nula ou vazia.'),
+)
+
+ESOCIAL_VERSOES = (
+    ('v02_04_02', u'Versão 2.04.02'),
+    ('v02_05_00', u'Versão 2.05.00'),
+)
+
+ESTADOS = (
+    ('AC', u'Acre'),
+    ('AL', u'Alagoas'),
+    ('AM', u'Amazonas'),
+    ('AP', u'Amapá'),
+    ('BA', u'Bahia'),
+    ('CE', u'Ceará'),
+    ('DF', u'Distrito Federal'),
+    ('ES', u'Espírito Santo'),
+    ('GO', u'Goiás'),
+    ('MA', u'Maranhão'),
+    ('MG', u'Minas Gerais'),
+    ('MS', u'Mato Grosso do Sul'),
+    ('MT', u'Mato Grosso'),
+    ('PA', u'Pará'),
+    ('PB', u'Paraíba'),
+    ('PE', u'Pernambuco'),
+    ('PI', u'Piauí'),
+    ('PR', u'Paraná'),
+    ('RJ', u'Rio de Janeiro'),
+    ('RN', u'Rio Grande do Norte'),
+    ('RO', u'Rondônia'),
+    ('RR', u'Roraima'),
+    ('RS', u'Rio Grande do Sul'),
+    ('SC', u'Santa Catarina'),
+    ('SE', u'Sergipe'),
+    ('SP', u'São Paulo'),
+    ('TO', u'Tocantins'),
+)
+
+EVENTO_STATUS = (
+    (0, u'Cadastrado'),
+    (1, u'Importado'),
+    (10, u'XML Assinado'),
+    (11, u'XML Gerado'),
+    (12, u'Retorno'),
+    (13, u'Erro - Ocorrências'),
+    (14, u'Processado'),
+    (15, u'Aguardando consulta'),
+    (2, u'Duplicado'),
+    (3, u'Erro na validação'),
+    (4, u'Validado'),
+    (6, u'Aguardando envio'),
+)
+
+OPERACOES = (
+    (1, u'Incluir'),
+    (2, u'Alterar'),
+    (3, u'Excluir'),
+)
+
+OPERACOES_INSALPERIC_APOSENTESP = (
+    (1, u'Insalubridade/Periculosidade - Incluir'),
+    (2, u'Insalubridade/Periculosidade - Alterar'),
+    (3, u'Insalubridade/Periculosidade - Excluir'),
+    (4, u'Aposentadoria Especial - Incluir'),
+    (5, u'Aposentadoria Especial - Alterar'),
+    (6, u'Aposentadoria Especial - Excluir'),
+)
+
+SIM_NAO = (
+    (0, u'Não'),
+    (1, u'Sim'),
+)
+
+TIPO_AMBIENTE = (
+    (1, u'1 - Produção'),
+    (2, u'2 - Produção restrita'),
 )
 
 class s1000evtInfoEmpregador(models.Model):

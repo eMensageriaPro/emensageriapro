@@ -42,6 +42,26 @@ get_model = apps.get_model
 
 
 
+CHOICES_S2400_DEPFINSPREV = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2400_DEPIRRF = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2400_INCFISMEN = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2400_SEXODEP = (
+    ('F', u'F - Feminino'),
+    ('M', u'M - Masculino'),
+)
+
 ESTADOS = (
     ('AC', u'Acre'),
     ('AL', u'Alagoas'),
@@ -70,26 +90,6 @@ ESTADOS = (
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-)
-
-CHOICES_S2400_DEPFINSPREV = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2400_DEPIRRF = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2400_INCFISMEN = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2400_SEXODEP = (
-    ('F', u'F - Feminino'),
-    ('M', u'M - Masculino'),
 )
 
 class s2400brasil(models.Model):

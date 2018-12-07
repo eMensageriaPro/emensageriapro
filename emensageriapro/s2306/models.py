@@ -42,6 +42,35 @@ get_model = apps.get_model
 
 
 
+CHOICES_S2306_INDREMUNCARGO = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S2306_NATESTAGIO = (
+    ('N', u'N - Não Obrigatório'),
+    ('O', u'O - Obrigatório'),
+)
+
+CHOICES_S2306_NIVESTAGIO = (
+    (1, u'1 - Fundamental'),
+    (2, u'2 - Médio'),
+    (3, u'3 - Formação Profissional'),
+    (4, u'4 - Superior'),
+    (8, u'8 - Especial'),
+    (9, u'9 - Mãe social (Lei 7644, de 1987)'),
+)
+
+CHOICES_S2306_UNDSALFIXO = (
+    (1, u'1 - Por Hora'),
+    (2, u'2 - Por Dia'),
+    (3, u'3 - Por Semana'),
+    (4, u'4 - Por Quinzena'),
+    (5, u'5 - Por Mês'),
+    (6, u'6 - Por Tarefa'),
+    (7, u'7 - Não aplicável - salário exclusivamente variável'),
+)
+
 ESTADOS = (
     ('AC', u'Acre'),
     ('AL', u'Alagoas'),
@@ -70,35 +99,6 @@ ESTADOS = (
     ('SE', u'Sergipe'),
     ('SP', u'São Paulo'),
     ('TO', u'Tocantins'),
-)
-
-CHOICES_S2306_INDREMUNCARGO = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2306_NATESTAGIO = (
-    ('N', u'N - Não Obrigatório'),
-    ('O', u'O - Obrigatório'),
-)
-
-CHOICES_S2306_NIVESTAGIO = (
-    (1, u'1 - Fundamental'),
-    (2, u'2 - Médio'),
-    (3, u'3 - Formação Profissional'),
-    (4, u'4 - Superior'),
-    (8, u'8 - Especial'),
-    (9, u'9 - Mãe social (Lei 7644, de 1987)'),
-)
-
-CHOICES_S2306_UNDSALFIXO = (
-    (1, u'1 - Por Hora'),
-    (2, u'2 - Por Dia'),
-    (3, u'3 - Por Semana'),
-    (4, u'4 - Por Quinzena'),
-    (5, u'5 - Por Mês'),
-    (6, u'6 - Por Tarefa'),
-    (7, u'7 - Não aplicável - salário exclusivamente variável'),
 )
 
 class s2306ageIntegracao(models.Model):

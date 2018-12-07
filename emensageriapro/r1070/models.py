@@ -42,45 +42,14 @@ get_model = apps.get_model
 
 
 
-CHOICES_R1070_INCLUSAO_TPPROC = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
-)
-
-CHOICES_R1070_INCLUSAO_INDSUSP = (
-    ('01', u'01 - Liminar em Mandado de Segurança'),
-    ('02', u'02 - Depósito Judicial do Montante Integral'),
-    ('03', u'03 - Depósito Administrativo do Montante Integral'),
-    ('04', u'04 - Antecipação de Tutela'),
-    ('05', u'05 - Liminar em Medida Cautelar'),
-    ('08', u'08 - Sentença em Mandado de Segurança Favorável ao Contribuinte'),
-    ('09', u'09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF'),
-    ('10', u'10 - Acórdão do TRF Favorável ao Contribuinte'),
-    ('11', u'11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte'),
-    ('12', u'12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte'),
-    ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
-    ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
-    ('92', u'92 - Sem suspensão da exigibilidade'),
-)
-
-CHOICES_R1070_INCLUSAO_INDDEPOSITO = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_R1070_INCLUSAO_INDAUTORIA = (
+CHOICES_R1070_ALTERACAO_INDAUTORIA = (
     (1, u'1 - Próprio contribuinte'),
     (2, u'2 - Outra entidade ou empresa'),
 )
 
-CHOICES_R1070_EXCLUSAO_TPPROC = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
-)
-
-CHOICES_R1070_ALTERACAO_TPPROC = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
+CHOICES_R1070_ALTERACAO_INDDEPOSITO = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
 )
 
 CHOICES_R1070_ALTERACAO_INDSUSP = (
@@ -99,14 +68,75 @@ CHOICES_R1070_ALTERACAO_INDSUSP = (
     ('92', u'92 - Sem suspensão da exigibilidade'),
 )
 
-CHOICES_R1070_ALTERACAO_INDDEPOSITO = (
+CHOICES_R1070_ALTERACAO_TPPROC = (
+    (1, u'1 - Administrativo'),
+    (2, u'2 - Judicial'),
+)
+
+CHOICES_R1070_EXCLUSAO_TPPROC = (
+    (1, u'1 - Administrativo'),
+    (2, u'2 - Judicial'),
+)
+
+CHOICES_R1070_INCLUSAO_INDAUTORIA = (
+    (1, u'1 - Próprio contribuinte'),
+    (2, u'2 - Outra entidade ou empresa'),
+)
+
+CHOICES_R1070_INCLUSAO_INDDEPOSITO = (
     ('N', u'N - Não'),
     ('S', u'S - Sim'),
 )
 
-CHOICES_R1070_ALTERACAO_INDAUTORIA = (
-    (1, u'1 - Próprio contribuinte'),
-    (2, u'2 - Outra entidade ou empresa'),
+CHOICES_R1070_INCLUSAO_INDSUSP = (
+    ('01', u'01 - Liminar em Mandado de Segurança'),
+    ('02', u'02 - Depósito Judicial do Montante Integral'),
+    ('03', u'03 - Depósito Administrativo do Montante Integral'),
+    ('04', u'04 - Antecipação de Tutela'),
+    ('05', u'05 - Liminar em Medida Cautelar'),
+    ('08', u'08 - Sentença em Mandado de Segurança Favorável ao Contribuinte'),
+    ('09', u'09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF'),
+    ('10', u'10 - Acórdão do TRF Favorável ao Contribuinte'),
+    ('11', u'11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte'),
+    ('12', u'12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte'),
+    ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
+    ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
+    ('92', u'92 - Sem suspensão da exigibilidade'),
+)
+
+CHOICES_R1070_INCLUSAO_TPPROC = (
+    (1, u'1 - Administrativo'),
+    (2, u'2 - Judicial'),
+)
+
+ESTADOS = (
+    ('AC', u'Acre'),
+    ('AL', u'Alagoas'),
+    ('AM', u'Amazonas'),
+    ('AP', u'Amapá'),
+    ('BA', u'Bahia'),
+    ('CE', u'Ceará'),
+    ('DF', u'Distrito Federal'),
+    ('ES', u'Espírito Santo'),
+    ('GO', u'Goiás'),
+    ('MA', u'Maranhão'),
+    ('MG', u'Minas Gerais'),
+    ('MS', u'Mato Grosso do Sul'),
+    ('MT', u'Mato Grosso'),
+    ('PA', u'Pará'),
+    ('PB', u'Paraíba'),
+    ('PE', u'Pernambuco'),
+    ('PI', u'Piauí'),
+    ('PR', u'Paraná'),
+    ('RJ', u'Rio de Janeiro'),
+    ('RN', u'Rio Grande do Norte'),
+    ('RO', u'Rondônia'),
+    ('RR', u'Roraima'),
+    ('RS', u'Rio Grande do Sul'),
+    ('SC', u'Santa Catarina'),
+    ('SE', u'Sergipe'),
+    ('SP', u'São Paulo'),
+    ('TO', u'Tocantins'),
 )
 
 PERIODOS = (
@@ -146,36 +176,6 @@ PERIODOS = (
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
-)
-
-ESTADOS = (
-    ('AC', u'Acre'),
-    ('AL', u'Alagoas'),
-    ('AM', u'Amazonas'),
-    ('AP', u'Amapá'),
-    ('BA', u'Bahia'),
-    ('CE', u'Ceará'),
-    ('DF', u'Distrito Federal'),
-    ('ES', u'Espírito Santo'),
-    ('GO', u'Goiás'),
-    ('MA', u'Maranhão'),
-    ('MG', u'Minas Gerais'),
-    ('MS', u'Mato Grosso do Sul'),
-    ('MT', u'Mato Grosso'),
-    ('PA', u'Pará'),
-    ('PB', u'Paraíba'),
-    ('PE', u'Pernambuco'),
-    ('PI', u'Piauí'),
-    ('PR', u'Paraná'),
-    ('RJ', u'Rio de Janeiro'),
-    ('RN', u'Rio Grande do Norte'),
-    ('RO', u'Rondônia'),
-    ('RR', u'Roraima'),
-    ('RS', u'Rio Grande do Sul'),
-    ('SC', u'Santa Catarina'),
-    ('SE', u'Sergipe'),
-    ('SP', u'São Paulo'),
-    ('TO', u'Tocantins'),
 )
 
 class r1070alteracao(models.Model):

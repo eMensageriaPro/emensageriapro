@@ -42,6 +42,11 @@ get_model = apps.get_model
 
 
 
+CLASSIFICACAO_REGRAS_PAGAMENTOS_CODIGOS = (
+    (1, u'Beneficiários'),
+    (2, u'Beneficiários / Justiça – RRA'),
+)
+
 ESOCIAL_BENEFICIOS_PREVIDENCIARIOS_TIPOS_GRUPOS = (
     (1, u'Grupo 01 - Aposentadoria por Idade e Tempo de Contribuição'),
     (10, u'Grupo 10 - Benefícios Especiais com Vínculo Previdenciário'),
@@ -87,13 +92,11 @@ GRUPO_ATIVIDADES_PERICULOSAS = (
     (9, u'ATIVIDADES ESPECIAIS POR EXPOSIÇÃO A AGENTES FÍSICOS'),
 )
 
-TRABALHADORES_CATEGORIAS_GRUPO = (
-    (1, u'Empregado e Trabalhador Temporário'),
-    (2, u'Avulso'),
-    (3, u'Agente Público'),
-    (4, u'Cessão'),
-    (5, u'Contribuinte Individual'),
-    (6, u'Bolsistas'),
+GRUPO_CODIGO_ATIV_PROD_SERV = (
+    (1, u'I - Pessoas Jurídicas Prestadoras de Serviços -'),
+    (2, u'II - Pessoas Jurídicas Comerciais - CR 2991-01'),
+    (3, u'III - Pessoas Jurídicas Fabricantes - CR 2991-01'),
+    (4, u'IV - Códigos Genéricos - Outras Receitas sujeitas à CPRB - CR 2991-01'),
 )
 
 GRUPO_NATUREZAS_JURIDICAS = (
@@ -104,27 +107,24 @@ GRUPO_NATUREZAS_JURIDICAS = (
     (5, u'Organizações Internacionais e Outras Instituições Extraterritoriais'),
 )
 
-SIM_NAO_TXT = (
-    ('N', u'Não'),
-    ('S', u'Sim'),
-)
-
 GRUPO_PAGAMENTOS_CODIGOS = (
     (1, u'Beneficiários no Brasil'),
     (2, u'Beneficiários no Brasil e Justiça – RRA'),
     (3, u'Remessa Exterior'),
 )
 
-CLASSIFICACAO_REGRAS_PAGAMENTOS_CODIGOS = (
-    (1, u'Beneficiários'),
-    (2, u'Beneficiários / Justiça – RRA'),
+SIM_NAO_TXT = (
+    ('N', u'Não'),
+    ('S', u'Sim'),
 )
 
-GRUPO_CODIGO_ATIV_PROD_SERV = (
-    (1, u'I - Pessoas Jurídicas Prestadoras de Serviços -'),
-    (2, u'II - Pessoas Jurídicas Comerciais - CR 2991-01'),
-    (3, u'III - Pessoas Jurídicas Fabricantes - CR 2991-01'),
-    (4, u'IV - Códigos Genéricos - Outras Receitas sujeitas à CPRB - CR 2991-01'),
+TRABALHADORES_CATEGORIAS_GRUPO = (
+    (1, u'Empregado e Trabalhador Temporário'),
+    (2, u'Avulso'),
+    (3, u'Agente Público'),
+    (4, u'Cessão'),
+    (5, u'Contribuinte Individual'),
+    (6, u'Bolsistas'),
 )
 
 class CBO(models.Model):
