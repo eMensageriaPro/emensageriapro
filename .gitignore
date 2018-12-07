@@ -12,3 +12,6 @@ predecessores/
 www/
 UMLs/
 *_backup.py
+backup.py
+atualizar_web.py
+clear_database.py
