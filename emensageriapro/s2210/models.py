@@ -42,36 +42,6 @@ get_model = apps.get_model
 
 
 
-ESTADOS = (
-    ('AC', u'Acre'),
-    ('AL', u'Alagoas'),
-    ('AM', u'Amazonas'),
-    ('AP', u'Amapá'),
-    ('BA', u'Bahia'),
-    ('CE', u'Ceará'),
-    ('DF', u'Distrito Federal'),
-    ('ES', u'Espírito Santo'),
-    ('GO', u'Goiás'),
-    ('MA', u'Maranhão'),
-    ('MG', u'Minas Gerais'),
-    ('MS', u'Mato Grosso do Sul'),
-    ('MT', u'Mato Grosso'),
-    ('PA', u'Pará'),
-    ('PB', u'Paraíba'),
-    ('PE', u'Pernambuco'),
-    ('PI', u'Piauí'),
-    ('PR', u'Paraná'),
-    ('RJ', u'Rio de Janeiro'),
-    ('RN', u'Rio Grande do Norte'),
-    ('RO', u'Rondônia'),
-    ('RR', u'Roraima'),
-    ('RS', u'Rio Grande do Sul'),
-    ('SC', u'Santa Catarina'),
-    ('SE', u'Sergipe'),
-    ('SP', u'São Paulo'),
-    ('TO', u'Tocantins'),
-)
-
 CHOICES_S2210_CODAGNTCAUSADOR = (
     (302010200, u'302010200 - Rua e estrada - superfície utilizada para sustentar pessoas'),
     (302010250, u'302010250 - Calçada ou caminho para pedestre - superfície utilizada para sustentar pessoas'),
@@ -431,6 +401,36 @@ CHOICES_S2210_TPINSC = (
     (2, u'2 - CPF'),
     (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+)
+
+ESTADOS = (
+    ('AC', u'Acre'),
+    ('AL', u'Alagoas'),
+    ('AM', u'Amazonas'),
+    ('AP', u'Amapá'),
+    ('BA', u'Bahia'),
+    ('CE', u'Ceará'),
+    ('DF', u'Distrito Federal'),
+    ('ES', u'Espírito Santo'),
+    ('GO', u'Goiás'),
+    ('MA', u'Maranhão'),
+    ('MG', u'Minas Gerais'),
+    ('MS', u'Mato Grosso do Sul'),
+    ('MT', u'Mato Grosso'),
+    ('PA', u'Pará'),
+    ('PB', u'Paraíba'),
+    ('PE', u'Pernambuco'),
+    ('PI', u'Piauí'),
+    ('PR', u'Paraná'),
+    ('RJ', u'Rio de Janeiro'),
+    ('RN', u'Rio Grande do Norte'),
+    ('RO', u'Rondônia'),
+    ('RR', u'Roraima'),
+    ('RS', u'Rio Grande do Sul'),
+    ('SC', u'Santa Catarina'),
+    ('SE', u'Sergipe'),
+    ('SP', u'São Paulo'),
+    ('TO', u'Tocantins'),
 )
 
 class s2210agenteCausador(models.Model):

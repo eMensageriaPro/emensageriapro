@@ -42,6 +42,26 @@ get_model = apps.get_model
 
 
 
+CHOICES_S1050_ALTERACAO_PERHORFLEXIVEL = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1050_ALTERACAO_TPINTERV = (
+    (1, u'1 - Intervalo em Horário Fixo'),
+    (2, u'2 - Intervalo em Horário Variável'),
+)
+
+CHOICES_S1050_INCLUSAO_PERHORFLEXIVEL = (
+    ('N', u'N - Não'),
+    ('S', u'S - Sim'),
+)
+
+CHOICES_S1050_INCLUSAO_TPINTERV = (
+    (1, u'1 - Intervalo em Horário Fixo'),
+    (2, u'2 - Intervalo em Horário Variável'),
+)
+
 PERIODOS = (
     ('2017-01', u'Janeiro/2017'),
     ('2017-02', u'Fevereiro/2017'),
@@ -79,26 +99,6 @@ PERIODOS = (
     ('2019-10', u'Outubro/2019'),
     ('2019-11', u'Novembro/2019'),
     ('2019-12', u'Dezembro/2019'),
-)
-
-CHOICES_S1050_ALTERACAO_PERHORFLEXIVEL = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1050_ALTERACAO_TPINTERV = (
-    (1, u'1 - Intervalo em Horário Fixo'),
-    (2, u'2 - Intervalo em Horário Variável'),
-)
-
-CHOICES_S1050_INCLUSAO_PERHORFLEXIVEL = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1050_INCLUSAO_TPINTERV = (
-    (1, u'1 - Intervalo em Horário Fixo'),
-    (2, u'2 - Intervalo em Horário Variável'),
 )
 
 class s1050alteracao(models.Model):

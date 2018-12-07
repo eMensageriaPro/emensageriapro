@@ -42,36 +42,6 @@ get_model = apps.get_model
 
 
 
-ESTADOS = (
-    ('AC', u'Acre'),
-    ('AL', u'Alagoas'),
-    ('AM', u'Amazonas'),
-    ('AP', u'Amapá'),
-    ('BA', u'Bahia'),
-    ('CE', u'Ceará'),
-    ('DF', u'Distrito Federal'),
-    ('ES', u'Espírito Santo'),
-    ('GO', u'Goiás'),
-    ('MA', u'Maranhão'),
-    ('MG', u'Minas Gerais'),
-    ('MS', u'Mato Grosso do Sul'),
-    ('MT', u'Mato Grosso'),
-    ('PA', u'Pará'),
-    ('PB', u'Paraíba'),
-    ('PE', u'Pernambuco'),
-    ('PI', u'Piauí'),
-    ('PR', u'Paraná'),
-    ('RJ', u'Rio de Janeiro'),
-    ('RN', u'Rio Grande do Norte'),
-    ('RO', u'Rondônia'),
-    ('RR', u'Roraima'),
-    ('RS', u'Rio Grande do Sul'),
-    ('SC', u'Santa Catarina'),
-    ('SE', u'Sergipe'),
-    ('SP', u'São Paulo'),
-    ('TO', u'Tocantins'),
-)
-
 CHOICES_R3010_CATEGEVENTO = (
     (1, u'1 - Internacional'),
     (2, u'2 - Interestadual'),
@@ -102,6 +72,36 @@ CHOICES_R3010_TPRECEITA = (
     (3, u'3 - Publicidade'),
     (4, u'4 - Sorteio'),
     (5, u'5 - Outros'),
+)
+
+ESTADOS = (
+    ('AC', u'Acre'),
+    ('AL', u'Alagoas'),
+    ('AM', u'Amazonas'),
+    ('AP', u'Amapá'),
+    ('BA', u'Bahia'),
+    ('CE', u'Ceará'),
+    ('DF', u'Distrito Federal'),
+    ('ES', u'Espírito Santo'),
+    ('GO', u'Goiás'),
+    ('MA', u'Maranhão'),
+    ('MG', u'Minas Gerais'),
+    ('MS', u'Mato Grosso do Sul'),
+    ('MT', u'Mato Grosso'),
+    ('PA', u'Pará'),
+    ('PB', u'Paraíba'),
+    ('PE', u'Pernambuco'),
+    ('PI', u'Piauí'),
+    ('PR', u'Paraná'),
+    ('RJ', u'Rio de Janeiro'),
+    ('RN', u'Rio Grande do Norte'),
+    ('RO', u'Rondônia'),
+    ('RR', u'Roraima'),
+    ('RS', u'Rio Grande do Sul'),
+    ('SC', u'Santa Catarina'),
+    ('SE', u'Sergipe'),
+    ('SP', u'São Paulo'),
+    ('TO', u'Tocantins'),
 )
 
 class r3010boletim(models.Model):
