@@ -134,20 +134,19 @@ class s2299dmDev(models.Model):
         related_name='%(class)s_s2299_evtdeslig')
     def evento(self): return self.s2299_evtdeslig.evento()
     idedmdev = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_evtdeslig) + ' - ' + unicode(self.idedmdev)
     #s2299_dmdev_custom#
-    #s2299_dmdev_custom#
     class Meta:
         db_table = r's2299_dmdev'
-        managed = True
+        managed = True # s2299_dmdev #
         ordering = ['s2299_evtdeslig', 'idedmdev']
 
 
@@ -168,20 +167,19 @@ class s2299infoPerAntdetVerbas(models.Model):
     fatorrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=5, blank=True, null=True)
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_infoperant_ideestablot) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s2299_infoperant_detverbas_custom#
-    #s2299_infoperant_detverbas_custom#
     class Meta:
         db_table = r's2299_infoperant_detverbas'
-        managed = True
+        managed = True # s2299_infoperant_detverbas #
         ordering = ['s2299_infoperant_ideestablot', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
@@ -201,20 +199,19 @@ class s2299infoPerAntideADC(models.Model):
     compacconv = models.CharField(max_length=7, blank=True, null=True)
     dtefacconv = models.DateField()
     dsc = models.CharField(max_length=255)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_dmdev) + ' - ' + unicode(self.dtacconv) + ' - ' + unicode(self.tpacconv) + ' - ' + unicode(self.dtefacconv) + ' - ' + unicode(self.dsc)
     #s2299_infoperant_ideadc_custom#
-    #s2299_infoperant_ideadc_custom#
     class Meta:
         db_table = r's2299_infoperant_ideadc'
-        managed = True
+        managed = True # s2299_infoperant_ideadc #
         ordering = ['s2299_dmdev', 'dtacconv', 'tpacconv', 'dtefacconv', 'dsc']
 
 
@@ -232,20 +229,19 @@ class s2299infoPerAntideEstabLot(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S2299_INFOPERANT_TPINSC)
     nrinsc = models.CharField(max_length=15)
     codlotacao = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_infoperant_ideperiodo) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao)
     #s2299_infoperant_ideestablot_custom#
-    #s2299_infoperant_ideestablot_custom#
     class Meta:
         db_table = r's2299_infoperant_ideestablot'
-        managed = True
+        managed = True # s2299_infoperant_ideestablot #
         ordering = ['s2299_infoperant_ideperiodo', 'tpinsc', 'nrinsc', 'codlotacao']
 
 
@@ -261,20 +257,19 @@ class s2299infoPerAntidePeriodo(models.Model):
         related_name='%(class)s_s2299_infoperant_ideadc')
     def evento(self): return self.s2299_infoperant_ideadc.evento()
     perref = models.CharField(max_length=7)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_infoperant_ideadc) + ' - ' + unicode(self.perref)
     #s2299_infoperant_ideperiodo_custom#
-    #s2299_infoperant_ideperiodo_custom#
     class Meta:
         db_table = r's2299_infoperant_ideperiodo'
-        managed = True
+        managed = True # s2299_infoperant_ideperiodo #
         ordering = ['s2299_infoperant_ideadc', 'perref']
 
 
@@ -290,20 +285,19 @@ class s2299infoPerAntinfoAgNocivo(models.Model):
         related_name='%(class)s_s2299_infoperant_ideestablot')
     def evento(self): return self.s2299_infoperant_ideestablot.evento()
     grauexp = models.IntegerField(choices=CHOICES_S2299_INFOPERANT_GRAUEXP)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_infoperant_ideestablot) + ' - ' + unicode(self.grauexp)
     #s2299_infoperant_infoagnocivo_custom#
-    #s2299_infoperant_infoagnocivo_custom#
     class Meta:
         db_table = r's2299_infoperant_infoagnocivo'
-        managed = True
+        managed = True # s2299_infoperant_infoagnocivo #
         ordering = ['s2299_infoperant_ideestablot', 'grauexp']
 
 
@@ -319,20 +313,19 @@ class s2299infoPerAntinfoSimples(models.Model):
         related_name='%(class)s_s2299_infoperant_ideestablot')
     def evento(self): return self.s2299_infoperant_ideestablot.evento()
     indsimples = models.IntegerField(choices=CHOICES_S2299_INFOPERANT_INDSIMPLES)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_infoperant_ideestablot) + ' - ' + unicode(self.indsimples)
     #s2299_infoperant_infosimples_custom#
-    #s2299_infoperant_infosimples_custom#
     class Meta:
         db_table = r's2299_infoperant_infosimples'
-        managed = True
+        managed = True # s2299_infoperant_infosimples #
         ordering = ['s2299_infoperant_ideestablot', 'indsimples']
 
 
@@ -350,20 +343,19 @@ class s2299infoPerApurdetOper(models.Model):
     cnpjoper = models.CharField(max_length=14)
     regans = models.CharField(max_length=6)
     vrpgtit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_infoperapur_ideestablot) + ' - ' + unicode(self.cnpjoper) + ' - ' + unicode(self.regans) + ' - ' + unicode(self.vrpgtit)
     #s2299_infoperapur_detoper_custom#
-    #s2299_infoperapur_detoper_custom#
     class Meta:
         db_table = r's2299_infoperapur_detoper'
-        managed = True
+        managed = True # s2299_infoperapur_detoper #
         ordering = ['s2299_infoperapur_ideestablot', 'cnpjoper', 'regans', 'vrpgtit']
 
 
@@ -383,20 +375,19 @@ class s2299infoPerApurdetPlano(models.Model):
     nmdep = models.CharField(max_length=70)
     dtnascto = models.DateField()
     vlrpgdep = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_infoperapur_detoper) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.vlrpgdep)
     #s2299_infoperapur_detplano_custom#
-    #s2299_infoperapur_detplano_custom#
     class Meta:
         db_table = r's2299_infoperapur_detplano'
-        managed = True
+        managed = True # s2299_infoperapur_detplano #
         ordering = ['s2299_infoperapur_detoper', 'tpdep', 'nmdep', 'dtnascto', 'vlrpgdep']
 
 
@@ -417,20 +408,19 @@ class s2299infoPerApurdetVerbas(models.Model):
     fatorrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=5, blank=True, null=True)
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_infoperapur_ideestablot) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s2299_infoperapur_detverbas_custom#
-    #s2299_infoperapur_detverbas_custom#
     class Meta:
         db_table = r's2299_infoperapur_detverbas'
-        managed = True
+        managed = True # s2299_infoperapur_detverbas #
         ordering = ['s2299_infoperapur_ideestablot', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
@@ -448,20 +438,19 @@ class s2299infoPerApurideEstabLot(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S2299_INFOPERAPUR_TPINSC)
     nrinsc = models.CharField(max_length=15)
     codlotacao = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_dmdev) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao)
     #s2299_infoperapur_ideestablot_custom#
-    #s2299_infoperapur_ideestablot_custom#
     class Meta:
         db_table = r's2299_infoperapur_ideestablot'
-        managed = True
+        managed = True # s2299_infoperapur_ideestablot #
         ordering = ['s2299_dmdev', 'tpinsc', 'nrinsc', 'codlotacao']
 
 
@@ -477,20 +466,19 @@ class s2299infoPerApurinfoAgNocivo(models.Model):
         related_name='%(class)s_s2299_infoperapur_ideestablot')
     def evento(self): return self.s2299_infoperapur_ideestablot.evento()
     grauexp = models.IntegerField(choices=CHOICES_S2299_INFOPERAPUR_GRAUEXP)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_infoperapur_ideestablot) + ' - ' + unicode(self.grauexp)
     #s2299_infoperapur_infoagnocivo_custom#
-    #s2299_infoperapur_infoagnocivo_custom#
     class Meta:
         db_table = r's2299_infoperapur_infoagnocivo'
-        managed = True
+        managed = True # s2299_infoperapur_infoagnocivo #
         ordering = ['s2299_infoperapur_ideestablot', 'grauexp']
 
 
@@ -506,20 +494,19 @@ class s2299infoPerApurinfoSimples(models.Model):
         related_name='%(class)s_s2299_infoperapur_ideestablot')
     def evento(self): return self.s2299_infoperapur_ideestablot.evento()
     indsimples = models.IntegerField(choices=CHOICES_S2299_INFOPERAPUR_INDSIMPLES)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_infoperapur_ideestablot) + ' - ' + unicode(self.indsimples)
     #s2299_infoperapur_infosimples_custom#
-    #s2299_infoperapur_infosimples_custom#
     class Meta:
         db_table = r's2299_infoperapur_infosimples'
-        managed = True
+        managed = True # s2299_infoperapur_infosimples #
         ordering = ['s2299_infoperapur_ideestablot', 'indsimples']
 
 
@@ -535,20 +522,19 @@ class s2299infoTrabInterm(models.Model):
         related_name='%(class)s_s2299_dmdev')
     def evento(self): return self.s2299_dmdev.evento()
     codconv = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_dmdev) + ' - ' + unicode(self.codconv)
     #s2299_infotrabinterm_custom#
-    #s2299_infotrabinterm_custom#
     class Meta:
         db_table = r's2299_infotrabinterm'
-        managed = True
+        managed = True # s2299_infotrabinterm #
         ordering = ['s2299_dmdev', 'codconv']
 
 
@@ -565,20 +551,19 @@ class s2299infoTrabIntermconsigFGTS(models.Model):
     def evento(self): return self.s2299_evtdeslig.evento()
     insconsig = models.CharField(max_length=5)
     nrcontr = models.CharField(max_length=40)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_evtdeslig) + ' - ' + unicode(self.insconsig) + ' - ' + unicode(self.nrcontr)
     #s2299_infotrabinterm_consigfgts_custom#
-    #s2299_infotrabinterm_consigfgts_custom#
     class Meta:
         db_table = r's2299_infotrabinterm_consigfgts'
-        managed = True
+        managed = True # s2299_infotrabinterm_consigfgts #
         ordering = ['s2299_evtdeslig', 'insconsig', 'nrcontr']
 
 
@@ -594,20 +579,19 @@ class s2299infoTrabInterminfoMV(models.Model):
         related_name='%(class)s_s2299_evtdeslig')
     def evento(self): return self.s2299_evtdeslig.evento()
     indmv = models.IntegerField(choices=CHOICES_S2299_INFOTRABINTERM_INDMV)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_evtdeslig) + ' - ' + unicode(self.indmv)
     #s2299_infotrabinterm_infomv_custom#
-    #s2299_infotrabinterm_infomv_custom#
     class Meta:
         db_table = r's2299_infotrabinterm_infomv'
-        managed = True
+        managed = True # s2299_infotrabinterm_infomv #
         ordering = ['s2299_evtdeslig', 'indmv']
 
 
@@ -623,20 +607,19 @@ class s2299infoTrabIntermprocCS(models.Model):
         related_name='%(class)s_s2299_evtdeslig')
     def evento(self): return self.s2299_evtdeslig.evento()
     nrprocjud = models.CharField(max_length=20)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_evtdeslig) + ' - ' + unicode(self.nrprocjud)
     #s2299_infotrabinterm_proccs_custom#
-    #s2299_infotrabinterm_proccs_custom#
     class Meta:
         db_table = r's2299_infotrabinterm_proccs'
-        managed = True
+        managed = True # s2299_infotrabinterm_proccs #
         ordering = ['s2299_evtdeslig', 'nrprocjud']
 
 
@@ -654,20 +637,19 @@ class s2299infoTrabIntermprocJudTrab(models.Model):
     tptrib = models.IntegerField(choices=CHOICES_S2299_INFOTRABINTERM_TPTRIB)
     nrprocjud = models.CharField(max_length=20)
     codsusp = models.IntegerField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_evtdeslig) + ' - ' + unicode(self.tptrib) + ' - ' + unicode(self.nrprocjud)
     #s2299_infotrabinterm_procjudtrab_custom#
-    #s2299_infotrabinterm_procjudtrab_custom#
     class Meta:
         db_table = r's2299_infotrabinterm_procjudtrab'
-        managed = True
+        managed = True # s2299_infotrabinterm_procjudtrab #
         ordering = ['s2299_evtdeslig', 'tptrib', 'nrprocjud']
 
 
@@ -683,20 +665,19 @@ class s2299infoTrabIntermquarentena(models.Model):
         related_name='%(class)s_s2299_evtdeslig')
     def evento(self): return self.s2299_evtdeslig.evento()
     dtfimquar = models.DateField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_evtdeslig) + ' - ' + unicode(self.dtfimquar)
     #s2299_infotrabinterm_quarentena_custom#
-    #s2299_infotrabinterm_quarentena_custom#
     class Meta:
         db_table = r's2299_infotrabinterm_quarentena'
-        managed = True
+        managed = True # s2299_infotrabinterm_quarentena #
         ordering = ['s2299_evtdeslig', 'dtfimquar']
 
 
@@ -715,20 +696,19 @@ class s2299infoTrabIntermremunOutrEmpr(models.Model):
     nrinsc = models.CharField(max_length=15)
     codcateg = models.TextField(max_length=3)
     vlrremunoe = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_infotrabinterm_infomv) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.vlrremunoe)
     #s2299_infotrabinterm_remunoutrempr_custom#
-    #s2299_infotrabinterm_remunoutrempr_custom#
     class Meta:
         db_table = r's2299_infotrabinterm_remunoutrempr'
-        managed = True
+        managed = True # s2299_infotrabinterm_remunoutrempr #
         ordering = ['s2299_infotrabinterm_infomv', 'tpinsc', 'nrinsc', 'codcateg', 'vlrremunoe']
 
 
@@ -744,20 +724,19 @@ class s2299mudancaCPF(models.Model):
         related_name='%(class)s_s2299_evtdeslig')
     def evento(self): return self.s2299_evtdeslig.evento()
     novocpf = models.CharField(max_length=11)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_evtdeslig) + ' - ' + unicode(self.novocpf)
     #s2299_mudancacpf_custom#
-    #s2299_mudancacpf_custom#
     class Meta:
         db_table = r's2299_mudancacpf'
-        managed = True
+        managed = True # s2299_mudancacpf #
         ordering = ['s2299_evtdeslig', 'novocpf']
 
 
@@ -773,20 +752,19 @@ class s2299observacoes(models.Model):
         related_name='%(class)s_s2299_evtdeslig')
     def evento(self): return self.s2299_evtdeslig.evento()
     observacao = models.CharField(max_length=255)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_evtdeslig) + ' - ' + unicode(self.observacao)
     #s2299_observacoes_custom#
-    #s2299_observacoes_custom#
     class Meta:
         db_table = r's2299_observacoes'
-        managed = True
+        managed = True # s2299_observacoes #
         ordering = ['s2299_evtdeslig', 'observacao']
 
 
@@ -803,20 +781,19 @@ class s2299sucessaoVinc(models.Model):
     def evento(self): return self.s2299_evtdeslig.evento()
     tpinscsuc = models.IntegerField(choices=CHOICES_S2299_TPINSCSUC)
     cnpjsucessora = models.CharField(max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_evtdeslig) + ' - ' + unicode(self.tpinscsuc) + ' - ' + unicode(self.cnpjsucessora)
     #s2299_sucessaovinc_custom#
-    #s2299_sucessaovinc_custom#
     class Meta:
         db_table = r's2299_sucessaovinc'
-        managed = True
+        managed = True # s2299_sucessaovinc #
         ordering = ['s2299_evtdeslig', 'tpinscsuc', 'cnpjsucessora']
 
 
@@ -833,20 +810,19 @@ class s2299transfTit(models.Model):
     def evento(self): return self.s2299_evtdeslig.evento()
     cpfsubstituto = models.CharField(max_length=11)
     dtnascto = models.DateField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2299_evtdeslig) + ' - ' + unicode(self.cpfsubstituto) + ' - ' + unicode(self.dtnascto)
     #s2299_transftit_custom#
-    #s2299_transftit_custom#
     class Meta:
         db_table = r's2299_transftit'
-        managed = True
+        managed = True # s2299_transftit #
         ordering = ['s2299_evtdeslig', 'cpfsubstituto', 'dtnascto']
 
 

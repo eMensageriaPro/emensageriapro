@@ -389,20 +389,19 @@ class s1210deps(models.Model):
         related_name='%(class)s_s1210_evtpgtos')
     def evento(self): return self.s1210_evtpgtos.evento()
     vrdeddep = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_evtpgtos) + ' - ' + unicode(self.vrdeddep)
     #s1210_deps_custom#
-    #s1210_deps_custom#
     class Meta:
         db_table = r's1210_deps'
-        managed = True
+        managed = True # s1210_deps #
         ordering = ['s1210_evtpgtos', 'vrdeddep']
 
 
@@ -418,20 +417,19 @@ class s1210detPgtoAnt(models.Model):
         related_name='%(class)s_s1210_infopgto')
     def evento(self): return self.s1210_infopgto.evento()
     codcateg = models.TextField(max_length=3)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_infopgto) + ' - ' + unicode(self.codcateg)
     #s1210_detpgtoant_custom#
-    #s1210_detpgtoant_custom#
     class Meta:
         db_table = r's1210_detpgtoant'
-        managed = True
+        managed = True # s1210_detpgtoant #
         ordering = ['s1210_infopgto', 'codcateg']
 
 
@@ -448,20 +446,19 @@ class s1210detPgtoAntinfoPgtoAnt(models.Model):
     def evento(self): return self.s1210_detpgtoant.evento()
     tpbcirrf = models.CharField(choices=CHOICES_S1210_DETPGTOANT_TPBCIRRF, max_length=2)
     vrbcirrf = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_detpgtoant) + ' - ' + unicode(self.tpbcirrf) + ' - ' + unicode(self.vrbcirrf)
     #s1210_detpgtoant_infopgtoant_custom#
-    #s1210_detpgtoant_infopgtoant_custom#
     class Meta:
         db_table = r's1210_detpgtoant_infopgtoant'
-        managed = True
+        managed = True # s1210_detpgtoant_infopgtoant #
         ordering = ['s1210_detpgtoant', 'tpbcirrf', 'vrbcirrf']
 
 
@@ -480,20 +477,19 @@ class s1210detPgtoBenPr(models.Model):
     idedmdev = models.CharField(max_length=30)
     indpgtott = models.CharField(choices=CHOICES_S1210_DETPGTOBENPR_INDPGTOTT, max_length=1)
     vrliq = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_infopgto) + ' - ' + unicode(self.perref) + ' - ' + unicode(self.idedmdev) + ' - ' + unicode(self.indpgtott) + ' - ' + unicode(self.vrliq)
     #s1210_detpgtobenpr_custom#
-    #s1210_detpgtobenpr_custom#
     class Meta:
         db_table = r's1210_detpgtobenpr'
-        managed = True
+        managed = True # s1210_detpgtobenpr #
         ordering = ['s1210_infopgto', 'perref', 'idedmdev', 'indpgtott', 'vrliq']
 
 
@@ -514,20 +510,19 @@ class s1210detPgtoBenPrinfoPgtoParc(models.Model):
     fatorrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=5, blank=True, null=True)
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_detpgtobenpr) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1210_detpgtobenpr_infopgtoparc_custom#
-    #s1210_detpgtobenpr_infopgtoparc_custom#
     class Meta:
         db_table = r's1210_detpgtobenpr_infopgtoparc'
-        managed = True
+        managed = True # s1210_detpgtobenpr_infopgtoparc #
         ordering = ['s1210_detpgtobenpr', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
@@ -548,20 +543,19 @@ class s1210detPgtoBenPrretPgtoTot(models.Model):
     fatorrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=5, blank=True, null=True)
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_detpgtobenpr) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1210_detpgtobenpr_retpgtotot_custom#
-    #s1210_detpgtobenpr_retpgtotot_custom#
     class Meta:
         db_table = r's1210_detpgtobenpr_retpgtotot'
-        managed = True
+        managed = True # s1210_detpgtobenpr_retpgtotot #
         ordering = ['s1210_detpgtobenpr', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
@@ -581,20 +575,19 @@ class s1210detPgtoFer(models.Model):
     dtinigoz = models.DateField()
     qtdias = models.IntegerField()
     vrliq = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_infopgto) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtinigoz) + ' - ' + unicode(self.qtdias) + ' - ' + unicode(self.vrliq)
     #s1210_detpgtofer_custom#
-    #s1210_detpgtofer_custom#
     class Meta:
         db_table = r's1210_detpgtofer'
-        managed = True
+        managed = True # s1210_detpgtofer #
         ordering = ['s1210_infopgto', 'codcateg', 'dtinigoz', 'qtdias', 'vrliq']
 
 
@@ -615,20 +608,19 @@ class s1210detPgtoFerdetRubrFer(models.Model):
     fatorrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=5, blank=True, null=True)
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_detpgtofer) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1210_detpgtofer_detrubrfer_custom#
-    #s1210_detpgtofer_detrubrfer_custom#
     class Meta:
         db_table = r's1210_detpgtofer_detrubrfer'
-        managed = True
+        managed = True # s1210_detpgtofer_detrubrfer #
         ordering = ['s1210_detpgtofer', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
@@ -647,20 +639,19 @@ class s1210detPgtoFerpenAlim(models.Model):
     dtnasctobenef = models.DateField(blank=True, null=True)
     nmbenefic = models.CharField(max_length=70)
     vlrpensao = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_detpgtofer_detrubrfer) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.vlrpensao)
     #s1210_detpgtofer_penalim_custom#
-    #s1210_detpgtofer_penalim_custom#
     class Meta:
         db_table = r's1210_detpgtofer_penalim'
-        managed = True
+        managed = True # s1210_detpgtofer_penalim #
         ordering = ['s1210_detpgtofer_detrubrfer', 'cpfbenef', 'nmbenefic', 'vlrpensao']
 
 
@@ -680,20 +671,19 @@ class s1210detPgtoFl(models.Model):
     indpgtott = models.CharField(choices=CHOICES_S1210_DETPGTOFL_INDPGTOTT, max_length=1)
     vrliq = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     nrrecarq = models.CharField(max_length=40, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_infopgto) + ' - ' + unicode(self.idedmdev) + ' - ' + unicode(self.indpgtott) + ' - ' + unicode(self.vrliq)
     #s1210_detpgtofl_custom#
-    #s1210_detpgtofl_custom#
     class Meta:
         db_table = r's1210_detpgtofl'
-        managed = True
+        managed = True # s1210_detpgtofl #
         ordering = ['s1210_infopgto', 'idedmdev', 'indpgtott', 'vrliq']
 
 
@@ -715,20 +705,19 @@ class s1210detPgtoFlinfoPgtoParc(models.Model):
     fatorrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=5, blank=True, null=True)
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_detpgtofl) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1210_detpgtofl_infopgtoparc_custom#
-    #s1210_detpgtofl_infopgtoparc_custom#
     class Meta:
         db_table = r's1210_detpgtofl_infopgtoparc'
-        managed = True
+        managed = True # s1210_detpgtofl_infopgtoparc #
         ordering = ['s1210_detpgtofl', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
@@ -747,20 +736,19 @@ class s1210detPgtoFlpenAlim(models.Model):
     dtnasctobenef = models.DateField(blank=True, null=True)
     nmbenefic = models.CharField(max_length=70)
     vlrpensao = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_detpgtofl_retpgtotot) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.vlrpensao)
     #s1210_detpgtofl_penalim_custom#
-    #s1210_detpgtofl_penalim_custom#
     class Meta:
         db_table = r's1210_detpgtofl_penalim'
-        managed = True
+        managed = True # s1210_detpgtofl_penalim #
         ordering = ['s1210_detpgtofl_retpgtotot', 'cpfbenef', 'nmbenefic', 'vlrpensao']
 
 
@@ -781,20 +769,19 @@ class s1210detPgtoFlretPgtoTot(models.Model):
     fatorrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=5, blank=True, null=True)
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_detpgtofl) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1210_detpgtofl_retpgtotot_custom#
-    #s1210_detpgtofl_retpgtotot_custom#
     class Meta:
         db_table = r's1210_detpgtofl_retpgtotot'
-        managed = True
+        managed = True # s1210_detpgtofl_retpgtotot #
         ordering = ['s1210_detpgtofl', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
@@ -818,20 +805,19 @@ class s1210idePgtoExt(models.Model):
     bairro = models.CharField(max_length=90, blank=True, null=True)
     nmcid = models.CharField(max_length=50)
     codpostal = models.CharField(max_length=12, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_infopgto) + ' - ' + unicode(self.codpais) + ' - ' + unicode(self.indnif) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nmcid)
     #s1210_idepgtoext_custom#
-    #s1210_idepgtoext_custom#
     class Meta:
         db_table = r's1210_idepgtoext'
-        managed = True
+        managed = True # s1210_idepgtoext #
         ordering = ['s1210_infopgto', 'codpais', 'indnif', 'dsclograd', 'nmcid']
 
 
@@ -849,20 +835,19 @@ class s1210infoPgto(models.Model):
     dtpgto = models.DateField()
     tppgto = models.IntegerField(choices=CHOICES_S1210_TPPGTO)
     indresbr = models.CharField(choices=CHOICES_S1210_INDRESBR, max_length=1)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_evtpgtos) + ' - ' + unicode(self.dtpgto) + ' - ' + unicode(self.tppgto) + ' - ' + unicode(self.indresbr)
     #s1210_infopgto_custom#
-    #s1210_infopgto_custom#
     class Meta:
         db_table = r's1210_infopgto'
-        managed = True
+        managed = True # s1210_infopgto #
         ordering = ['s1210_evtpgtos', 'dtpgto', 'tppgto', 'indresbr']
 
 

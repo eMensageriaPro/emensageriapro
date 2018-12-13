@@ -154,20 +154,19 @@ class s2230emitente(models.Model):
     ideoc = models.IntegerField(choices=CHOICES_S2230_IDEOC)
     nroc = models.CharField(max_length=14)
     ufoc = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2230_infoatestado) + ' - ' + unicode(self.nmemit) + ' - ' + unicode(self.ideoc) + ' - ' + unicode(self.nroc)
     #s2230_emitente_custom#
-    #s2230_emitente_custom#
     class Meta:
         db_table = r's2230_emitente'
-        managed = True
+        managed = True # s2230_emitente #
         ordering = ['s2230_infoatestado', 'nmemit', 'ideoc', 'nroc']
 
 
@@ -183,20 +182,19 @@ class s2230fimAfastamento(models.Model):
         related_name='%(class)s_s2230_evtafasttemp')
     def evento(self): return self.s2230_evtafasttemp.evento()
     dttermafast = models.DateField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2230_evtafasttemp) + ' - ' + unicode(self.dttermafast)
     #s2230_fimafastamento_custom#
-    #s2230_fimafastamento_custom#
     class Meta:
         db_table = r's2230_fimafastamento'
-        managed = True
+        managed = True # s2230_fimafastamento #
         ordering = ['s2230_evtafasttemp', 'dttermafast']
 
 
@@ -213,20 +211,19 @@ class s2230infoAtestado(models.Model):
     def evento(self): return self.s2230_iniafastamento.evento()
     codcid = models.CharField(max_length=4, blank=True, null=True)
     qtddiasafast = models.IntegerField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2230_iniafastamento) + ' - ' + unicode(self.qtddiasafast)
     #s2230_infoatestado_custom#
-    #s2230_infoatestado_custom#
     class Meta:
         db_table = r's2230_infoatestado'
-        managed = True
+        managed = True # s2230_infoatestado #
         ordering = ['s2230_iniafastamento', 'qtddiasafast']
 
 
@@ -243,20 +240,19 @@ class s2230infoCessao(models.Model):
     def evento(self): return self.s2230_iniafastamento.evento()
     cnpjcess = models.CharField(max_length=14)
     infonus = models.IntegerField(choices=CHOICES_S2230_INFONUS)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2230_iniafastamento) + ' - ' + unicode(self.cnpjcess) + ' - ' + unicode(self.infonus)
     #s2230_infocessao_custom#
-    #s2230_infocessao_custom#
     class Meta:
         db_table = r's2230_infocessao'
-        managed = True
+        managed = True # s2230_infocessao #
         ordering = ['s2230_iniafastamento', 'cnpjcess', 'infonus']
 
 
@@ -273,20 +269,19 @@ class s2230infoMandSind(models.Model):
     def evento(self): return self.s2230_iniafastamento.evento()
     cnpjsind = models.CharField(max_length=14)
     infonusremun = models.IntegerField(choices=CHOICES_S2230_INFONUSREMUN)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2230_iniafastamento) + ' - ' + unicode(self.cnpjsind) + ' - ' + unicode(self.infonusremun)
     #s2230_infomandsind_custom#
-    #s2230_infomandsind_custom#
     class Meta:
         db_table = r's2230_infomandsind'
-        managed = True
+        managed = True # s2230_infomandsind #
         ordering = ['s2230_iniafastamento', 'cnpjsind', 'infonusremun']
 
 
@@ -304,20 +299,19 @@ class s2230infoRetif(models.Model):
     origretif = models.IntegerField(choices=CHOICES_S2230_ORIGRETIF)
     tpproc = models.IntegerField(choices=CHOICES_S2230_TPPROC, blank=True, null=True)
     nrproc = models.CharField(max_length=21, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2230_evtafasttemp) + ' - ' + unicode(self.origretif)
     #s2230_inforetif_custom#
-    #s2230_inforetif_custom#
     class Meta:
         db_table = r's2230_inforetif'
-        managed = True
+        managed = True # s2230_inforetif #
         ordering = ['s2230_evtafasttemp', 'origretif']
 
 
@@ -337,20 +331,19 @@ class s2230iniAfastamento(models.Model):
     infomesmomtv = models.CharField(choices=CHOICES_S2230_INFOMESMOMTV, max_length=1, blank=True, null=True)
     tpacidtransito = models.IntegerField(choices=CHOICES_S2230_TPACIDTRANSITO, blank=True, null=True)
     observacao = models.CharField(max_length=255, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2230_evtafasttemp) + ' - ' + unicode(self.dtiniafast) + ' - ' + unicode(self.codmotafast)
     #s2230_iniafastamento_custom#
-    #s2230_iniafastamento_custom#
     class Meta:
         db_table = r's2230_iniafastamento'
-        managed = True
+        managed = True # s2230_iniafastamento #
         ordering = ['s2230_evtafasttemp', 'dtiniafast', 'codmotafast']
 
 

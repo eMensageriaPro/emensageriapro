@@ -104,20 +104,19 @@ class s2400brasil(models.Model):
     cep = models.CharField(max_length=8)
     codmunic = models.TextField(max_length=7)
     uf = models.CharField(choices=ESTADOS, max_length=2)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2400_evtcdbenefin) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
     #s2400_brasil_custom#
-    #s2400_brasil_custom#
     class Meta:
         db_table = r's2400_brasil'
-        managed = True
+        managed = True # s2400_brasil #
         ordering = ['s2400_evtcdbenefin', 'tplograd', 'dsclograd', 'nrlograd', 'cep', 'codmunic', 'uf']
 
 
@@ -140,20 +139,19 @@ class s2400dependente(models.Model):
     depirrf = models.CharField(choices=CHOICES_S2400_DEPIRRF, max_length=1)
     incfismen = models.CharField(choices=CHOICES_S2400_INCFISMEN, max_length=1)
     depfinsprev = models.CharField(choices=CHOICES_S2400_DEPFINSPREV, max_length=1)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2400_evtcdbenefin) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.sexodep) + ' - ' + unicode(self.depirrf) + ' - ' + unicode(self.incfismen) + ' - ' + unicode(self.depfinsprev)
     #s2400_dependente_custom#
-    #s2400_dependente_custom#
     class Meta:
         db_table = r's2400_dependente'
-        managed = True
+        managed = True # s2400_dependente #
         ordering = ['s2400_evtcdbenefin', 'tpdep', 'nmdep', 'dtnascto', 'sexodep', 'depirrf', 'incfismen', 'depfinsprev']
 
 
@@ -175,20 +173,19 @@ class s2400exterior(models.Model):
     bairro = models.CharField(max_length=60, blank=True, null=True)
     nmcid = models.CharField(max_length=50)
     codpostal = models.CharField(max_length=12, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2400_evtcdbenefin) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.nmcid)
     #s2400_exterior_custom#
-    #s2400_exterior_custom#
     class Meta:
         db_table = r's2400_exterior'
-        managed = True
+        managed = True # s2400_exterior #
         ordering = ['s2400_evtcdbenefin', 'paisresid', 'dsclograd', 'nrlograd', 'nmcid']
 
 

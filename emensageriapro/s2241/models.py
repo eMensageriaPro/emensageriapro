@@ -47,20 +47,19 @@ class s2241altAposentEsp(models.Model):
         related_name='%(class)s_s2241_evtinsapo')
     def evento(self): return self.s2241_evtinsapo.evento()
     dtaltcondicao = models.DateField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2241_evtinsapo) + ' - ' + unicode(self.dtaltcondicao)
     #s2241_altaposentesp_custom#
-    #s2241_altaposentesp_custom#
     class Meta:
         db_table = r's2241_altaposentesp'
-        managed = True
+        managed = True # s2241_altaposentesp #
         ordering = ['s2241_evtinsapo', 'dtaltcondicao']
 
 
@@ -76,20 +75,19 @@ class s2241altAposentEspfatRisco(models.Model):
         related_name='%(class)s_s2241_altaposentesp_infoamb')
     def evento(self): return self.s2241_altaposentesp_infoamb.evento()
     codfatris = models.TextField(max_length=10)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2241_altaposentesp_infoamb) + ' - ' + unicode(self.codfatris)
     #s2241_altaposentesp_fatrisco_custom#
-    #s2241_altaposentesp_fatrisco_custom#
     class Meta:
         db_table = r's2241_altaposentesp_fatrisco'
-        managed = True
+        managed = True # s2241_altaposentesp_fatrisco #
         ordering = ['s2241_altaposentesp_infoamb', 'codfatris']
 
 
@@ -105,20 +103,19 @@ class s2241altAposentEspinfoamb(models.Model):
         related_name='%(class)s_s2241_altaposentesp')
     def evento(self): return self.s2241_altaposentesp.evento()
     codamb = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2241_altaposentesp) + ' - ' + unicode(self.codamb)
     #s2241_altaposentesp_infoamb_custom#
-    #s2241_altaposentesp_infoamb_custom#
     class Meta:
         db_table = r's2241_altaposentesp_infoamb'
-        managed = True
+        managed = True # s2241_altaposentesp_infoamb #
         ordering = ['s2241_altaposentesp', 'codamb']
 
 
@@ -134,20 +131,19 @@ class s2241altInsalPeric(models.Model):
         related_name='%(class)s_s2241_evtinsapo')
     def evento(self): return self.s2241_evtinsapo.evento()
     dtaltcondicao = models.DateField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2241_evtinsapo) + ' - ' + unicode(self.dtaltcondicao)
     #s2241_altinsalperic_custom#
-    #s2241_altinsalperic_custom#
     class Meta:
         db_table = r's2241_altinsalperic'
-        managed = True
+        managed = True # s2241_altinsalperic #
         ordering = ['s2241_evtinsapo', 'dtaltcondicao']
 
 
@@ -163,20 +159,19 @@ class s2241altInsalPericfatRisco(models.Model):
         related_name='%(class)s_s2241_altinsalperic_infoamb')
     def evento(self): return self.s2241_altinsalperic_infoamb.evento()
     codfatris = models.TextField(max_length=10)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2241_altinsalperic_infoamb) + ' - ' + unicode(self.codfatris)
     #s2241_altinsalperic_fatrisco_custom#
-    #s2241_altinsalperic_fatrisco_custom#
     class Meta:
         db_table = r's2241_altinsalperic_fatrisco'
-        managed = True
+        managed = True # s2241_altinsalperic_fatrisco #
         ordering = ['s2241_altinsalperic_infoamb', 'codfatris']
 
 
@@ -192,20 +187,19 @@ class s2241altInsalPericinfoamb(models.Model):
         related_name='%(class)s_s2241_altinsalperic')
     def evento(self): return self.s2241_altinsalperic.evento()
     codamb = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2241_altinsalperic) + ' - ' + unicode(self.codamb)
     #s2241_altinsalperic_infoamb_custom#
-    #s2241_altinsalperic_infoamb_custom#
     class Meta:
         db_table = r's2241_altinsalperic_infoamb'
-        managed = True
+        managed = True # s2241_altinsalperic_infoamb #
         ordering = ['s2241_altinsalperic', 'codamb']
 
 
@@ -221,20 +215,19 @@ class s2241fimAposentEsp(models.Model):
         related_name='%(class)s_s2241_evtinsapo')
     def evento(self): return self.s2241_evtinsapo.evento()
     dtfimcondicao = models.DateField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2241_evtinsapo) + ' - ' + unicode(self.dtfimcondicao)
     #s2241_fimaposentesp_custom#
-    #s2241_fimaposentesp_custom#
     class Meta:
         db_table = r's2241_fimaposentesp'
-        managed = True
+        managed = True # s2241_fimaposentesp #
         ordering = ['s2241_evtinsapo', 'dtfimcondicao']
 
 
@@ -250,20 +243,19 @@ class s2241fimAposentEspinfoAmb(models.Model):
         related_name='%(class)s_s2241_fimaposentesp')
     def evento(self): return self.s2241_fimaposentesp.evento()
     codamb = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2241_fimaposentesp) + ' - ' + unicode(self.codamb)
     #s2241_fimaposentesp_infoamb_custom#
-    #s2241_fimaposentesp_infoamb_custom#
     class Meta:
         db_table = r's2241_fimaposentesp_infoamb'
-        managed = True
+        managed = True # s2241_fimaposentesp_infoamb #
         ordering = ['s2241_fimaposentesp', 'codamb']
 
 
@@ -279,20 +271,19 @@ class s2241fimInsalPeric(models.Model):
         related_name='%(class)s_s2241_evtinsapo')
     def evento(self): return self.s2241_evtinsapo.evento()
     dtfimcondicao = models.DateField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2241_evtinsapo) + ' - ' + unicode(self.dtfimcondicao)
     #s2241_fiminsalperic_custom#
-    #s2241_fiminsalperic_custom#
     class Meta:
         db_table = r's2241_fiminsalperic'
-        managed = True
+        managed = True # s2241_fiminsalperic #
         ordering = ['s2241_evtinsapo', 'dtfimcondicao']
 
 
@@ -308,20 +299,19 @@ class s2241fimInsalPericinfoAmb(models.Model):
         related_name='%(class)s_s2241_fiminsalperic')
     def evento(self): return self.s2241_fiminsalperic.evento()
     codamb = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2241_fiminsalperic) + ' - ' + unicode(self.codamb)
     #s2241_fiminsalperic_infoamb_custom#
-    #s2241_fiminsalperic_infoamb_custom#
     class Meta:
         db_table = r's2241_fiminsalperic_infoamb'
-        managed = True
+        managed = True # s2241_fiminsalperic_infoamb #
         ordering = ['s2241_fiminsalperic', 'codamb']
 
 
@@ -337,20 +327,19 @@ class s2241iniAposentEsp(models.Model):
         related_name='%(class)s_s2241_evtinsapo')
     def evento(self): return self.s2241_evtinsapo.evento()
     dtinicondicao = models.DateField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2241_evtinsapo) + ' - ' + unicode(self.dtinicondicao)
     #s2241_iniaposentesp_custom#
-    #s2241_iniaposentesp_custom#
     class Meta:
         db_table = r's2241_iniaposentesp'
-        managed = True
+        managed = True # s2241_iniaposentesp #
         ordering = ['s2241_evtinsapo', 'dtinicondicao']
 
 
@@ -366,20 +355,19 @@ class s2241iniAposentEspfatRisco(models.Model):
         related_name='%(class)s_s2241_iniaposentesp_infoamb')
     def evento(self): return self.s2241_iniaposentesp_infoamb.evento()
     codfatris = models.TextField(max_length=10)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2241_iniaposentesp_infoamb) + ' - ' + unicode(self.codfatris)
     #s2241_iniaposentesp_fatrisco_custom#
-    #s2241_iniaposentesp_fatrisco_custom#
     class Meta:
         db_table = r's2241_iniaposentesp_fatrisco'
-        managed = True
+        managed = True # s2241_iniaposentesp_fatrisco #
         ordering = ['s2241_iniaposentesp_infoamb', 'codfatris']
 
 
@@ -395,20 +383,19 @@ class s2241iniAposentEspinfoAmb(models.Model):
         related_name='%(class)s_s2241_iniaposentesp')
     def evento(self): return self.s2241_iniaposentesp.evento()
     codamb = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2241_iniaposentesp) + ' - ' + unicode(self.codamb)
     #s2241_iniaposentesp_infoamb_custom#
-    #s2241_iniaposentesp_infoamb_custom#
     class Meta:
         db_table = r's2241_iniaposentesp_infoamb'
-        managed = True
+        managed = True # s2241_iniaposentesp_infoamb #
         ordering = ['s2241_iniaposentesp', 'codamb']
 
 
@@ -424,20 +411,19 @@ class s2241iniInsalPeric(models.Model):
         related_name='%(class)s_s2241_evtinsapo')
     def evento(self): return self.s2241_evtinsapo.evento()
     dtinicondicao = models.DateField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2241_evtinsapo) + ' - ' + unicode(self.dtinicondicao)
     #s2241_iniinsalperic_custom#
-    #s2241_iniinsalperic_custom#
     class Meta:
         db_table = r's2241_iniinsalperic'
-        managed = True
+        managed = True # s2241_iniinsalperic #
         ordering = ['s2241_evtinsapo', 'dtinicondicao']
 
 
@@ -453,20 +439,19 @@ class s2241iniInsalPericfatRisco(models.Model):
         related_name='%(class)s_s2241_iniinsalperic_infoamb')
     def evento(self): return self.s2241_iniinsalperic_infoamb.evento()
     codfatris = models.TextField(max_length=10)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2241_iniinsalperic_infoamb) + ' - ' + unicode(self.codfatris)
     #s2241_iniinsalperic_fatrisco_custom#
-    #s2241_iniinsalperic_fatrisco_custom#
     class Meta:
         db_table = r's2241_iniinsalperic_fatrisco'
-        managed = True
+        managed = True # s2241_iniinsalperic_fatrisco #
         ordering = ['s2241_iniinsalperic_infoamb', 'codfatris']
 
 
@@ -482,20 +467,19 @@ class s2241iniInsalPericinfoAmb(models.Model):
         related_name='%(class)s_s2241_iniinsalperic')
     def evento(self): return self.s2241_iniinsalperic.evento()
     codamb = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2241_iniinsalperic) + ' - ' + unicode(self.codamb)
     #s2241_iniinsalperic_infoamb_custom#
-    #s2241_iniinsalperic_infoamb_custom#
     class Meta:
         db_table = r's2241_iniinsalperic_infoamb'
-        managed = True
+        managed = True # s2241_iniinsalperic_infoamb #
         ordering = ['s2241_iniinsalperic', 'codamb']
 
 

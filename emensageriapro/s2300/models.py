@@ -272,20 +272,19 @@ class s2300CNH(models.Model):
     dtvalid = models.DateField()
     dtprihab = models.DateField(blank=True, null=True)
     categoriacnh = models.CharField(choices=CHOICES_S2300_CATEGORIACNH, max_length=2)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.nrregcnh) + ' - ' + unicode(self.ufcnh) + ' - ' + unicode(self.dtvalid) + ' - ' + unicode(self.categoriacnh)
     #s2300_cnh_custom#
-    #s2300_cnh_custom#
     class Meta:
         db_table = r's2300_cnh'
-        managed = True
+        managed = True # s2300_cnh #
         ordering = ['s2300_evttsvinicio', 'nrregcnh', 'ufcnh', 'dtvalid', 'categoriacnh']
 
 
@@ -303,20 +302,19 @@ class s2300CTPS(models.Model):
     nrctps = models.CharField(max_length=11)
     seriectps = models.CharField(max_length=5)
     ufctps = models.CharField(choices=ESTADOS, max_length=2)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.nrctps) + ' - ' + unicode(self.seriectps) + ' - ' + unicode(self.ufctps)
     #s2300_ctps_custom#
-    #s2300_ctps_custom#
     class Meta:
         db_table = r's2300_ctps'
-        managed = True
+        managed = True # s2300_ctps #
         ordering = ['s2300_evttsvinicio', 'nrctps', 'seriectps', 'ufctps']
 
 
@@ -335,20 +333,19 @@ class s2300OC(models.Model):
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
     dtvalid = models.DateField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.nroc) + ' - ' + unicode(self.orgaoemissor)
     #s2300_oc_custom#
-    #s2300_oc_custom#
     class Meta:
         db_table = r's2300_oc'
-        managed = True
+        managed = True # s2300_oc #
         ordering = ['s2300_evttsvinicio', 'nroc', 'orgaoemissor']
 
 
@@ -366,20 +363,19 @@ class s2300RG(models.Model):
     nrrg = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.nrrg) + ' - ' + unicode(self.orgaoemissor)
     #s2300_rg_custom#
-    #s2300_rg_custom#
     class Meta:
         db_table = r's2300_rg'
-        managed = True
+        managed = True # s2300_rg #
         ordering = ['s2300_evttsvinicio', 'nrrg', 'orgaoemissor']
 
 
@@ -397,20 +393,19 @@ class s2300RIC(models.Model):
     nrric = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.nrric) + ' - ' + unicode(self.orgaoemissor)
     #s2300_ric_custom#
-    #s2300_ric_custom#
     class Meta:
         db_table = r's2300_ric'
-        managed = True
+        managed = True # s2300_ric #
         ordering = ['s2300_evttsvinicio', 'nrric', 'orgaoemissor']
 
 
@@ -428,20 +423,19 @@ class s2300RNE(models.Model):
     nrrne = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.nrrne) + ' - ' + unicode(self.orgaoemissor)
     #s2300_rne_custom#
-    #s2300_rne_custom#
     class Meta:
         db_table = r's2300_rne'
-        managed = True
+        managed = True # s2300_rne #
         ordering = ['s2300_evttsvinicio', 'nrrne', 'orgaoemissor']
 
 
@@ -458,20 +452,19 @@ class s2300afastamento(models.Model):
     def evento(self): return self.s2300_evttsvinicio.evento()
     dtiniafast = models.DateField()
     codmotafast = models.CharField(choices=CHOICES_S2300_CODMOTAFAST, max_length=2)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.dtiniafast) + ' - ' + unicode(self.codmotafast)
     #s2300_afastamento_custom#
-    #s2300_afastamento_custom#
     class Meta:
         db_table = r's2300_afastamento'
-        managed = True
+        managed = True # s2300_afastamento #
         ordering = ['s2300_evttsvinicio', 'dtiniafast', 'codmotafast']
 
 
@@ -494,20 +487,19 @@ class s2300ageIntegracao(models.Model):
     cep = models.CharField(max_length=8)
     codmunic = models.TextField(max_length=7, blank=True, null=True)
     uf = models.CharField(choices=ESTADOS, max_length=2)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_infoestagiario) + ' - ' + unicode(self.cnpjagntinteg) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.uf)
     #s2300_ageintegracao_custom#
-    #s2300_ageintegracao_custom#
     class Meta:
         db_table = r's2300_ageintegracao'
-        managed = True
+        managed = True # s2300_ageintegracao #
         ordering = ['s2300_infoestagiario', 'cnpjagntinteg', 'nmrazao', 'dsclograd', 'nrlograd', 'cep', 'uf']
 
 
@@ -530,20 +522,19 @@ class s2300brasil(models.Model):
     cep = models.CharField(max_length=8)
     codmunic = models.TextField(max_length=7)
     uf = models.CharField(choices=ESTADOS, max_length=2)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
     #s2300_brasil_custom#
-    #s2300_brasil_custom#
     class Meta:
         db_table = r's2300_brasil'
-        managed = True
+        managed = True # s2300_brasil #
         ordering = ['s2300_evttsvinicio', 'tplograd', 'dsclograd', 'nrlograd', 'cep', 'codmunic', 'uf']
 
 
@@ -560,20 +551,19 @@ class s2300cargoFuncao(models.Model):
     def evento(self): return self.s2300_evttsvinicio.evento()
     codcargo = models.CharField(max_length=30)
     codfuncao = models.CharField(max_length=30, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.codcargo)
     #s2300_cargofuncao_custom#
-    #s2300_cargofuncao_custom#
     class Meta:
         db_table = r's2300_cargofuncao'
-        managed = True
+        managed = True # s2300_cargofuncao #
         ordering = ['s2300_evttsvinicio', 'codcargo']
 
 
@@ -592,20 +582,19 @@ class s2300contato(models.Model):
     fonealternat = models.CharField(max_length=13, blank=True, null=True)
     emailprinc = models.CharField(max_length=60, blank=True, null=True)
     emailalternat = models.CharField(max_length=60, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio)
     #s2300_contato_custom#
-    #s2300_contato_custom#
     class Meta:
         db_table = r's2300_contato'
-        managed = True
+        managed = True # s2300_contato #
         ordering = ['s2300_evttsvinicio']
 
 
@@ -629,20 +618,19 @@ class s2300dependente(models.Model):
     depsf = models.CharField(choices=CHOICES_S2300_DEPSF, max_length=1)
     inctrab = models.CharField(choices=CHOICES_S2300_INCTRAB, max_length=1)
     depfinsprev = models.CharField(choices=CHOICES_S2300_DEPFINSPREV, max_length=1, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.depirrf) + ' - ' + unicode(self.depsf) + ' - ' + unicode(self.inctrab)
     #s2300_dependente_custom#
-    #s2300_dependente_custom#
     class Meta:
         db_table = r's2300_dependente'
-        managed = True
+        managed = True # s2300_dependente #
         ordering = ['s2300_evttsvinicio', 'tpdep', 'nmdep', 'dtnascto', 'depirrf', 'depsf', 'inctrab']
 
 
@@ -664,20 +652,19 @@ class s2300exterior(models.Model):
     bairro = models.CharField(max_length=90, blank=True, null=True)
     nmcid = models.CharField(max_length=50)
     codpostal = models.CharField(max_length=12, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.nmcid)
     #s2300_exterior_custom#
-    #s2300_exterior_custom#
     class Meta:
         db_table = r's2300_exterior'
-        managed = True
+        managed = True # s2300_exterior #
         ordering = ['s2300_evttsvinicio', 'paisresid', 'dsclograd', 'nrlograd', 'nmcid']
 
 
@@ -694,20 +681,19 @@ class s2300fgts(models.Model):
     def evento(self): return self.s2300_evttsvinicio.evento()
     opcfgts = models.IntegerField(choices=CHOICES_S2300_OPCFGTS)
     dtopcfgts = models.DateField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.opcfgts)
     #s2300_fgts_custom#
-    #s2300_fgts_custom#
     class Meta:
         db_table = r's2300_fgts'
-        managed = True
+        managed = True # s2300_fgts #
         ordering = ['s2300_evttsvinicio', 'opcfgts']
 
 
@@ -729,20 +715,19 @@ class s2300infoDeficiencia(models.Model):
     defintelectual = models.CharField(choices=CHOICES_S2300_DEFINTELECTUAL, max_length=1)
     reabreadap = models.CharField(choices=CHOICES_S2300_REABREADAP, max_length=1)
     observacao = models.CharField(max_length=255, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.deffisica) + ' - ' + unicode(self.defvisual) + ' - ' + unicode(self.defauditiva) + ' - ' + unicode(self.defmental) + ' - ' + unicode(self.defintelectual) + ' - ' + unicode(self.reabreadap)
     #s2300_infodeficiencia_custom#
-    #s2300_infodeficiencia_custom#
     class Meta:
         db_table = r's2300_infodeficiencia'
-        managed = True
+        managed = True # s2300_infodeficiencia #
         ordering = ['s2300_evttsvinicio', 'deffisica', 'defvisual', 'defauditiva', 'defmental', 'defintelectual', 'reabreadap']
 
 
@@ -761,20 +746,19 @@ class s2300infoDirigenteSindical(models.Model):
     cnpjorigem = models.CharField(max_length=14, blank=True, null=True)
     dtadmorig = models.DateField(blank=True, null=True)
     matricorig = models.CharField(max_length=30, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.categorig)
     #s2300_infodirigentesindical_custom#
-    #s2300_infodirigentesindical_custom#
     class Meta:
         db_table = r's2300_infodirigentesindical'
-        managed = True
+        managed = True # s2300_infodirigentesindical #
         ordering = ['s2300_evttsvinicio', 'categorig']
 
 
@@ -803,20 +787,19 @@ class s2300infoEstagiario(models.Model):
     cep = models.CharField(max_length=8, blank=True, null=True)
     codmunic = models.TextField(max_length=7, blank=True, null=True)
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.natestagio) + ' - ' + unicode(self.nivestagio) + ' - ' + unicode(self.dtprevterm) + ' - ' + unicode(self.nmrazao)
     #s2300_infoestagiario_custom#
-    #s2300_infoestagiario_custom#
     class Meta:
         db_table = r's2300_infoestagiario'
-        managed = True
+        managed = True # s2300_infoestagiario #
         ordering = ['s2300_evttsvinicio', 'natestagio', 'nivestagio', 'dtprevterm', 'nmrazao']
 
 
@@ -839,20 +822,19 @@ class s2300infoTrabCedido(models.Model):
     tpregprev = models.IntegerField(choices=CHOICES_S2300_TPREGPREV)
     infonus = models.IntegerField(choices=CHOICES_S2300_INFONUS)
     indremuncargo = models.CharField(choices=CHOICES_S2300_INDREMUNCARGO, max_length=1, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.categorig) + ' - ' + unicode(self.cnpjcednt) + ' - ' + unicode(self.matricced) + ' - ' + unicode(self.dtadmced) + ' - ' + unicode(self.tpregtrab) + ' - ' + unicode(self.tpregprev) + ' - ' + unicode(self.infonus)
     #s2300_infotrabcedido_custom#
-    #s2300_infotrabcedido_custom#
     class Meta:
         db_table = r's2300_infotrabcedido'
-        managed = True
+        managed = True # s2300_infotrabcedido #
         ordering = ['s2300_evttsvinicio', 'categorig', 'cnpjcednt', 'matricced', 'dtadmced', 'tpregtrab', 'tpregprev', 'infonus']
 
 
@@ -870,20 +852,19 @@ class s2300mudancaCPF(models.Model):
     cpfant = models.CharField(max_length=11)
     dtaltcpf = models.DateField()
     observacao = models.CharField(max_length=255, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.cpfant) + ' - ' + unicode(self.dtaltcpf)
     #s2300_mudancacpf_custom#
-    #s2300_mudancacpf_custom#
     class Meta:
         db_table = r's2300_mudancacpf'
-        managed = True
+        managed = True # s2300_mudancacpf #
         ordering = ['s2300_evttsvinicio', 'cpfant', 'dtaltcpf']
 
 
@@ -901,20 +882,19 @@ class s2300remuneracao(models.Model):
     vrsalfx = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     undsalfixo = models.IntegerField(choices=CHOICES_S2300_UNDSALFIXO)
     dscsalvar = models.CharField(max_length=255, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.vrsalfx) + ' - ' + unicode(self.undsalfixo)
     #s2300_remuneracao_custom#
-    #s2300_remuneracao_custom#
     class Meta:
         db_table = r's2300_remuneracao'
-        managed = True
+        managed = True # s2300_remuneracao #
         ordering = ['s2300_evttsvinicio', 'vrsalfx', 'undsalfixo']
 
 
@@ -931,20 +911,19 @@ class s2300supervisorEstagio(models.Model):
     def evento(self): return self.s2300_infoestagiario.evento()
     cpfsupervisor = models.CharField(max_length=11)
     nmsuperv = models.CharField(max_length=70)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_infoestagiario) + ' - ' + unicode(self.cpfsupervisor) + ' - ' + unicode(self.nmsuperv)
     #s2300_supervisorestagio_custom#
-    #s2300_supervisorestagio_custom#
     class Meta:
         db_table = r's2300_supervisorestagio'
-        managed = True
+        managed = True # s2300_supervisorestagio #
         ordering = ['s2300_infoestagiario', 'cpfsupervisor', 'nmsuperv']
 
 
@@ -960,20 +939,19 @@ class s2300termino(models.Model):
         related_name='%(class)s_s2300_evttsvinicio')
     def evento(self): return self.s2300_evttsvinicio.evento()
     dtterm = models.DateField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.dtterm)
     #s2300_termino_custom#
-    #s2300_termino_custom#
     class Meta:
         db_table = r's2300_termino'
-        managed = True
+        managed = True # s2300_termino #
         ordering = ['s2300_evttsvinicio', 'dtterm']
 
 
@@ -992,20 +970,19 @@ class s2300trabEstrangeiro(models.Model):
     classtrabestrang = models.IntegerField(choices=CHOICES_S2300_CLASSTRABESTRANG)
     casadobr = models.CharField(choices=CHOICES_S2300_CASADOBR, max_length=1)
     filhosbr = models.CharField(choices=CHOICES_S2300_FILHOSBR, max_length=1)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2300_evttsvinicio) + ' - ' + unicode(self.classtrabestrang) + ' - ' + unicode(self.casadobr) + ' - ' + unicode(self.filhosbr)
     #s2300_trabestrangeiro_custom#
-    #s2300_trabestrangeiro_custom#
     class Meta:
         db_table = r's2300_trabestrangeiro'
-        managed = True
+        managed = True # s2300_trabestrangeiro #
         ordering = ['s2300_evttsvinicio', 'classtrabestrang', 'casadobr', 'filhosbr']
 
 

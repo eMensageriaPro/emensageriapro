@@ -103,20 +103,19 @@ class s5001calcTerc(models.Model):
     tpcr = models.IntegerField(choices=CHOICES_S5001_TPCR)
     vrcssegterc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrdescterc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5001_infocategincid) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrcssegterc) + ' - ' + unicode(self.vrdescterc)
     #s5001_calcterc_custom#
-    #s5001_calcterc_custom#
     class Meta:
         db_table = r's5001_calcterc'
-        managed = True
+        managed = True # s5001_calcterc #
         ordering = ['s5001_infocategincid', 'tpcr', 'vrcssegterc', 'vrdescterc']
 
 
@@ -134,20 +133,19 @@ class s5001ideEstabLot(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S5001_TPINSC)
     nrinsc = models.CharField(max_length=15)
     codlotacao = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5001_evtbasestrab) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao)
     #s5001_ideestablot_custom#
-    #s5001_ideestablot_custom#
     class Meta:
         db_table = r's5001_ideestablot'
-        managed = True
+        managed = True # s5001_ideestablot #
         ordering = ['s5001_evtbasestrab', 'tpinsc', 'nrinsc', 'codlotacao']
 
 
@@ -165,20 +163,19 @@ class s5001infoBaseCS(models.Model):
     ind13 = models.IntegerField(choices=CHOICES_S5001_IND13)
     tpvalor = models.IntegerField(choices=CHOICES_S5001_TPVALOR)
     valor = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5001_infocategincid) + ' - ' + unicode(self.ind13) + ' - ' + unicode(self.tpvalor) + ' - ' + unicode(self.valor)
     #s5001_infobasecs_custom#
-    #s5001_infobasecs_custom#
     class Meta:
         db_table = r's5001_infobasecs'
-        managed = True
+        managed = True # s5001_infobasecs #
         ordering = ['s5001_infocategincid', 'ind13', 'tpvalor', 'valor']
 
 
@@ -196,20 +193,19 @@ class s5001infoCategIncid(models.Model):
     matricula = models.CharField(max_length=30, blank=True, null=True)
     codcateg = models.TextField(max_length=3)
     indsimples = models.IntegerField(choices=CHOICES_S5001_INDSIMPLES, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5001_ideestablot) + ' - ' + unicode(self.codcateg)
     #s5001_infocategincid_custom#
-    #s5001_infocategincid_custom#
     class Meta:
         db_table = r's5001_infocategincid'
-        managed = True
+        managed = True # s5001_infocategincid #
         ordering = ['s5001_ideestablot', 'codcateg']
 
 
@@ -227,20 +223,19 @@ class s5001infoCpCalc(models.Model):
     tpcr = models.IntegerField(choices=CHOICES_S5001_TPCR)
     vrcpseg = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrdescseg = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5001_evtbasestrab) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrcpseg) + ' - ' + unicode(self.vrdescseg)
     #s5001_infocpcalc_custom#
-    #s5001_infocpcalc_custom#
     class Meta:
         db_table = r's5001_infocpcalc'
-        managed = True
+        managed = True # s5001_infocpcalc #
         ordering = ['s5001_evtbasestrab', 'tpcr', 'vrcpseg', 'vrdescseg']
 
 
@@ -257,20 +252,19 @@ class s5001procJudTrab(models.Model):
     def evento(self): return self.s5001_evtbasestrab.evento()
     nrprocjud = models.CharField(max_length=20)
     codsusp = models.IntegerField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5001_evtbasestrab) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.codsusp)
     #s5001_procjudtrab_custom#
-    #s5001_procjudtrab_custom#
     class Meta:
         db_table = r's5001_procjudtrab'
-        managed = True
+        managed = True # s5001_procjudtrab #
         ordering = ['s5001_evtbasestrab', 'nrprocjud', 'codsusp']
 
 

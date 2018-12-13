@@ -118,20 +118,19 @@ class s1060alteracao(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S1060_ALTERACAO_TPINSC, blank=True, null=True)
     nrinsc = models.CharField(max_length=15, blank=True, null=True)
     codlotacao = models.CharField(max_length=30, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1060_evttabambiente) + ' - ' + unicode(self.codamb) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.nmamb) + ' - ' + unicode(self.dscamb) + ' - ' + unicode(self.localamb)
     #s1060_alteracao_custom#
-    #s1060_alteracao_custom#
     class Meta:
         db_table = r's1060_alteracao'
-        managed = True
+        managed = True # s1060_alteracao #
         ordering = ['s1060_evttabambiente', 'codamb', 'inivalid', 'nmamb', 'dscamb', 'localamb']
 
 
@@ -148,20 +147,19 @@ class s1060alteracaonovaValidade(models.Model):
     def evento(self): return self.s1060_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1060_alteracao) + ' - ' + unicode(self.inivalid)
     #s1060_alteracao_novavalidade_custom#
-    #s1060_alteracao_novavalidade_custom#
     class Meta:
         db_table = r's1060_alteracao_novavalidade'
-        managed = True
+        managed = True # s1060_alteracao_novavalidade #
         ordering = ['s1060_alteracao', 'inivalid']
 
 
@@ -179,20 +177,19 @@ class s1060exclusao(models.Model):
     codamb = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1060_evttabambiente) + ' - ' + unicode(self.codamb) + ' - ' + unicode(self.inivalid)
     #s1060_exclusao_custom#
-    #s1060_exclusao_custom#
     class Meta:
         db_table = r's1060_exclusao'
-        managed = True
+        managed = True # s1060_exclusao #
         ordering = ['s1060_evttabambiente', 'codamb', 'inivalid']
 
 
@@ -216,20 +213,19 @@ class s1060inclusao(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S1060_INCLUSAO_TPINSC, blank=True, null=True)
     nrinsc = models.CharField(max_length=15, blank=True, null=True)
     codlotacao = models.CharField(max_length=30, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1060_evttabambiente) + ' - ' + unicode(self.codamb) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.nmamb) + ' - ' + unicode(self.dscamb) + ' - ' + unicode(self.localamb)
     #s1060_inclusao_custom#
-    #s1060_inclusao_custom#
     class Meta:
         db_table = r's1060_inclusao'
-        managed = True
+        managed = True # s1060_inclusao #
         ordering = ['s1060_evttabambiente', 'codamb', 'inivalid', 'nmamb', 'dscamb', 'localamb']
 
 

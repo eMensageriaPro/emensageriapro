@@ -223,20 +223,19 @@ class s2240altExpRisco(models.Model):
         related_name='%(class)s_s2240_evtexprisco')
     def evento(self): return self.s2240_evtexprisco.evento()
     dtaltcondicao = models.DateField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.dtaltcondicao)
     #s2240_altexprisco_custom#
-    #s2240_altexprisco_custom#
     class Meta:
         db_table = r's2240_altexprisco'
-        managed = True
+        managed = True # s2240_altexprisco #
         ordering = ['s2240_evtexprisco', 'dtaltcondicao']
 
 
@@ -253,20 +252,19 @@ class s2240altExpRiscoepc(models.Model):
     def evento(self): return self.s2240_altexprisco_fatrisco.evento()
     dscepc = models.CharField(max_length=70)
     eficepc = models.CharField(choices=CHOICES_S2240_ALTEXPRISCO_EFICEPC, max_length=1, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_altexprisco_fatrisco) + ' - ' + unicode(self.dscepc)
     #s2240_altexprisco_epc_custom#
-    #s2240_altexprisco_epc_custom#
     class Meta:
         db_table = r's2240_altexprisco_epc'
-        managed = True
+        managed = True # s2240_altexprisco_epc #
         ordering = ['s2240_altexprisco_fatrisco', 'dscepc']
 
 
@@ -288,20 +286,19 @@ class s2240altExpRiscoepi(models.Model):
     przvalid = models.CharField(choices=CHOICES_S2240_ALTEXPRISCO_PRZVALID, max_length=1)
     periodictroca = models.CharField(choices=CHOICES_S2240_ALTEXPRISCO_PERIODICTROCA, max_length=1)
     higienizacao = models.CharField(choices=CHOICES_S2240_ALTEXPRISCO_HIGIENIZACAO, max_length=1)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_altexprisco_fatrisco) + ' - ' + unicode(self.eficepi) + ' - ' + unicode(self.medprotecao) + ' - ' + unicode(self.condfuncto) + ' - ' + unicode(self.przvalid) + ' - ' + unicode(self.periodictroca) + ' - ' + unicode(self.higienizacao)
     #s2240_altexprisco_epi_custom#
-    #s2240_altexprisco_epi_custom#
     class Meta:
         db_table = r's2240_altexprisco_epi'
-        managed = True
+        managed = True # s2240_altexprisco_epi #
         ordering = ['s2240_altexprisco_fatrisco', 'eficepi', 'medprotecao', 'condfuncto', 'przvalid', 'periodictroca', 'higienizacao']
 
 
@@ -321,20 +318,19 @@ class s2240altExpRiscofatRisco(models.Model):
     tecmedicao = models.CharField(max_length=40, blank=True, null=True)
     utilizepc = models.IntegerField(choices=CHOICES_S2240_ALTEXPRISCO_UTILIZEPC)
     utilizepi = models.IntegerField(choices=CHOICES_S2240_ALTEXPRISCO_UTILIZEPI)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_altexprisco_infoamb) + ' - ' + unicode(self.codfatris) + ' - ' + unicode(self.utilizepc) + ' - ' + unicode(self.utilizepi)
     #s2240_altexprisco_fatrisco_custom#
-    #s2240_altexprisco_fatrisco_custom#
     class Meta:
         db_table = r's2240_altexprisco_fatrisco'
-        managed = True
+        managed = True # s2240_altexprisco_fatrisco #
         ordering = ['s2240_altexprisco_infoamb', 'codfatris', 'utilizepc', 'utilizepi']
 
 
@@ -351,20 +347,19 @@ class s2240altExpRiscoinfoAmb(models.Model):
     def evento(self): return self.s2240_altexprisco.evento()
     codamb = models.CharField(max_length=30)
     dscativdes = models.CharField(max_length=999)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_altexprisco) + ' - ' + unicode(self.codamb) + ' - ' + unicode(self.dscativdes)
     #s2240_altexprisco_infoamb_custom#
-    #s2240_altexprisco_infoamb_custom#
     class Meta:
         db_table = r's2240_altexprisco_infoamb'
-        managed = True
+        managed = True # s2240_altexprisco_infoamb #
         ordering = ['s2240_altexprisco', 'codamb', 'dscativdes']
 
 
@@ -380,20 +375,19 @@ class s2240fimExpRisco(models.Model):
         related_name='%(class)s_s2240_evtexprisco')
     def evento(self): return self.s2240_evtexprisco.evento()
     dtfimcondicao = models.DateField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.dtfimcondicao)
     #s2240_fimexprisco_custom#
-    #s2240_fimexprisco_custom#
     class Meta:
         db_table = r's2240_fimexprisco'
-        managed = True
+        managed = True # s2240_fimexprisco #
         ordering = ['s2240_evtexprisco', 'dtfimcondicao']
 
 
@@ -409,20 +403,19 @@ class s2240fimExpRiscoinfoAmb(models.Model):
         related_name='%(class)s_s2240_fimexprisco')
     def evento(self): return self.s2240_fimexprisco.evento()
     codamb = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_fimexprisco) + ' - ' + unicode(self.codamb)
     #s2240_fimexprisco_infoamb_custom#
-    #s2240_fimexprisco_infoamb_custom#
     class Meta:
         db_table = r's2240_fimexprisco_infoamb'
-        managed = True
+        managed = True # s2240_fimexprisco_infoamb #
         ordering = ['s2240_fimexprisco', 'codamb']
 
 
@@ -442,20 +435,19 @@ class s2240fimExpRiscorespReg(models.Model):
     nisresp = models.CharField(max_length=11)
     nroc = models.CharField(max_length=14)
     ufoc = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.dtini) + ' - ' + unicode(self.nisresp) + ' - ' + unicode(self.nroc)
     #s2240_fimexprisco_respreg_custom#
-    #s2240_fimexprisco_respreg_custom#
     class Meta:
         db_table = r's2240_fimexprisco_respreg'
-        managed = True
+        managed = True # s2240_fimexprisco_respreg #
         ordering = ['s2240_evtexprisco', 'dtini', 'nisresp', 'nroc']
 
 
@@ -471,20 +463,19 @@ class s2240iniExpRiscoativPericInsal(models.Model):
         related_name='%(class)s_s2240_evtexprisco')
     def evento(self): return self.s2240_evtexprisco.evento()
     codativ = models.CharField(max_length=6)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.codativ)
     #s2240_iniexprisco_ativpericinsal_custom#
-    #s2240_iniexprisco_ativpericinsal_custom#
     class Meta:
         db_table = r's2240_iniexprisco_ativpericinsal'
-        managed = True
+        managed = True # s2240_iniexprisco_ativpericinsal #
         ordering = ['s2240_evtexprisco', 'codativ']
 
 
@@ -502,20 +493,19 @@ class s2240iniExpRiscoepc(models.Model):
     codep = models.CharField(max_length=30)
     dscepc = models.CharField(max_length=70)
     eficepc = models.CharField(choices=CHOICES_S2240_INIEXPRISCO_EFICEPC, max_length=1, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_iniexprisco_fatrisco) + ' - ' + unicode(self.codep) + ' - ' + unicode(self.dscepc)
     #s2240_iniexprisco_epc_custom#
-    #s2240_iniexprisco_epc_custom#
     class Meta:
         db_table = r's2240_iniexprisco_epc'
-        managed = True
+        managed = True # s2240_iniexprisco_epc #
         ordering = ['s2240_iniexprisco_fatrisco', 'codep', 'dscepc']
 
 
@@ -539,20 +529,19 @@ class s2240iniExpRiscoepi(models.Model):
     przvalid = models.CharField(choices=CHOICES_S2240_INIEXPRISCO_PRZVALID, max_length=1)
     periodictroca = models.CharField(choices=CHOICES_S2240_INIEXPRISCO_PERIODICTROCA, max_length=1)
     higienizacao = models.CharField(choices=CHOICES_S2240_INIEXPRISCO_HIGIENIZACAO, max_length=1)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_iniexprisco_fatrisco) + ' - ' + unicode(self.eficepi) + ' - ' + unicode(self.medprotecao) + ' - ' + unicode(self.condfuncto) + ' - ' + unicode(self.usoinint) + ' - ' + unicode(self.przvalid) + ' - ' + unicode(self.periodictroca) + ' - ' + unicode(self.higienizacao)
     #s2240_iniexprisco_epi_custom#
-    #s2240_iniexprisco_epi_custom#
     class Meta:
         db_table = r's2240_iniexprisco_epi'
-        managed = True
+        managed = True # s2240_iniexprisco_epi #
         ordering = ['s2240_iniexprisco_fatrisco', 'eficepi', 'medprotecao', 'condfuncto', 'usoinint', 'przvalid', 'periodictroca', 'higienizacao']
 
 
@@ -579,20 +568,19 @@ class s2240iniExpRiscofatRisco(models.Model):
     utilizepc = models.IntegerField(choices=CHOICES_S2240_INIEXPRISCO_UTILIZEPC)
     eficepc = models.CharField(choices=CHOICES_S2240_INIEXPRISCO_EFICEPC, max_length=1, blank=True, null=True)
     utilizepi = models.IntegerField(choices=CHOICES_S2240_INIEXPRISCO_UTILIZEPI)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.codfatris) + ' - ' + unicode(self.tpaval) + ' - ' + unicode(self.utilizepc) + ' - ' + unicode(self.utilizepi)
     #s2240_iniexprisco_fatrisco_custom#
-    #s2240_iniexprisco_fatrisco_custom#
     class Meta:
         db_table = r's2240_iniexprisco_fatrisco'
-        managed = True
+        managed = True # s2240_iniexprisco_fatrisco #
         ordering = ['s2240_evtexprisco', 'codfatris', 'tpaval', 'utilizepc', 'utilizepi']
 
 
@@ -608,20 +596,19 @@ class s2240iniExpRiscoinfoAmb(models.Model):
         related_name='%(class)s_s2240_evtexprisco')
     def evento(self): return self.s2240_evtexprisco.evento()
     codamb = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.codamb)
     #s2240_iniexprisco_infoamb_custom#
-    #s2240_iniexprisco_infoamb_custom#
     class Meta:
         db_table = r's2240_iniexprisco_infoamb'
-        managed = True
+        managed = True # s2240_iniexprisco_infoamb #
         ordering = ['s2240_evtexprisco', 'codamb']
 
 
@@ -639,20 +626,19 @@ class s2240iniExpRiscoobs(models.Model):
     meterg = models.CharField(max_length=999, blank=True, null=True)
     obscompl = models.CharField(max_length=999, blank=True, null=True)
     observacao = models.CharField(max_length=999, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_evtexprisco)
     #s2240_iniexprisco_obs_custom#
-    #s2240_iniexprisco_obs_custom#
     class Meta:
         db_table = r's2240_iniexprisco_obs'
-        managed = True
+        managed = True # s2240_iniexprisco_obs #
         ordering = ['s2240_evtexprisco']
 
 
@@ -674,20 +660,19 @@ class s2240iniExpRiscorespReg(models.Model):
     dscoc = models.CharField(max_length=20, blank=True, null=True)
     nroc = models.CharField(max_length=14)
     ufoc = models.CharField(choices=ESTADOS, max_length=2)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.cpfresp) + ' - ' + unicode(self.nisresp) + ' - ' + unicode(self.nmresp) + ' - ' + unicode(self.ideoc) + ' - ' + unicode(self.nroc) + ' - ' + unicode(self.ufoc)
     #s2240_iniexprisco_respreg_custom#
-    #s2240_iniexprisco_respreg_custom#
     class Meta:
         db_table = r's2240_iniexprisco_respreg'
-        managed = True
+        managed = True # s2240_iniexprisco_respreg #
         ordering = ['s2240_evtexprisco', 'cpfresp', 'nisresp', 'nmresp', 'ideoc', 'nroc', 'ufoc']
 
 

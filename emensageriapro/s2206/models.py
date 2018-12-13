@@ -149,20 +149,19 @@ class s2206alvaraJudicial(models.Model):
         related_name='%(class)s_s2206_evtaltcontratual')
     def evento(self): return self.s2206_evtaltcontratual.evento()
     nrprocjud = models.CharField(max_length=20)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.nrprocjud)
     #s2206_alvarajudicial_custom#
-    #s2206_alvarajudicial_custom#
     class Meta:
         db_table = r's2206_alvarajudicial'
-        managed = True
+        managed = True # s2206_alvarajudicial #
         ordering = ['s2206_evtaltcontratual', 'nrprocjud']
 
 
@@ -179,20 +178,19 @@ class s2206aprend(models.Model):
     def evento(self): return self.s2206_infoceletista.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S2206_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_infoceletista) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s2206_aprend_custom#
-    #s2206_aprend_custom#
     class Meta:
         db_table = r's2206_aprend'
-        managed = True
+        managed = True # s2206_aprend #
         ordering = ['s2206_infoceletista', 'tpinsc', 'nrinsc']
 
 
@@ -208,20 +206,19 @@ class s2206filiacaoSindical(models.Model):
         related_name='%(class)s_s2206_evtaltcontratual')
     def evento(self): return self.s2206_evtaltcontratual.evento()
     cnpjsindtrab = models.CharField(max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.cnpjsindtrab)
     #s2206_filiacaosindical_custom#
-    #s2206_filiacaosindical_custom#
     class Meta:
         db_table = r's2206_filiacaosindical'
-        managed = True
+        managed = True # s2206_filiacaosindical #
         ordering = ['s2206_evtaltcontratual', 'cnpjsindtrab']
 
 
@@ -240,20 +237,19 @@ class s2206horContratual(models.Model):
     tpjornada = models.IntegerField(choices=CHOICES_S2206_TPJORNADA)
     dsctpjorn = models.CharField(max_length=100, blank=True, null=True)
     tmpparc = models.IntegerField(choices=CHOICES_S2206_TMPPARC)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpjornada) + ' - ' + unicode(self.tmpparc)
     #s2206_horcontratual_custom#
-    #s2206_horcontratual_custom#
     class Meta:
         db_table = r's2206_horcontratual'
-        managed = True
+        managed = True # s2206_horcontratual #
         ordering = ['s2206_evtaltcontratual', 'tpjornada', 'tmpparc']
 
 
@@ -270,20 +266,19 @@ class s2206horario(models.Model):
     def evento(self): return self.s2206_horcontratual.evento()
     dia = models.IntegerField(choices=CHOICES_S2206_DIA)
     codhorcontrat = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_horcontratual) + ' - ' + unicode(self.dia) + ' - ' + unicode(self.codhorcontrat)
     #s2206_horario_custom#
-    #s2206_horario_custom#
     class Meta:
         db_table = r's2206_horario'
-        managed = True
+        managed = True # s2206_horario #
         ordering = ['s2206_horcontratual', 'dia', 'codhorcontrat']
 
 
@@ -302,20 +297,19 @@ class s2206infoCeletista(models.Model):
     natatividade = models.IntegerField(choices=CHOICES_S2206_NATATIVIDADE)
     dtbase = models.IntegerField(blank=True, null=True)
     cnpjsindcategprof = models.CharField(max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpregjor) + ' - ' + unicode(self.natatividade) + ' - ' + unicode(self.cnpjsindcategprof)
     #s2206_infoceletista_custom#
-    #s2206_infoceletista_custom#
     class Meta:
         db_table = r's2206_infoceletista'
-        managed = True
+        managed = True # s2206_infoceletista #
         ordering = ['s2206_evtaltcontratual', 'tpregjor', 'natatividade', 'cnpjsindcategprof']
 
 
@@ -334,20 +328,19 @@ class s2206infoEstatutario(models.Model):
     indtetorgps = models.CharField(choices=CHOICES_S2206_INDTETORGPS, max_length=1, blank=True, null=True)
     indabonoperm = models.CharField(choices=CHOICES_S2206_INDABONOPERM, max_length=1, blank=True, null=True)
     indparcremun = models.CharField(choices=CHOICES_S2206_INDPARCREMUN, max_length=1, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpplanrp)
     #s2206_infoestatutario_custom#
-    #s2206_infoestatutario_custom#
     class Meta:
         db_table = r's2206_infoestatutario'
-        managed = True
+        managed = True # s2206_infoestatutario #
         ordering = ['s2206_evtaltcontratual', 'tpplanrp']
 
 
@@ -370,20 +363,19 @@ class s2206localTrabDom(models.Model):
     cep = models.CharField(max_length=8)
     codmunic = models.TextField(max_length=7)
     uf = models.CharField(choices=ESTADOS, max_length=2)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
     #s2206_localtrabdom_custom#
-    #s2206_localtrabdom_custom#
     class Meta:
         db_table = r's2206_localtrabdom'
-        managed = True
+        managed = True # s2206_localtrabdom #
         ordering = ['s2206_evtaltcontratual', 'tplograd', 'dsclograd', 'nrlograd', 'cep', 'codmunic', 'uf']
 
 
@@ -401,20 +393,19 @@ class s2206localTrabGeral(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S2206_TPINSC)
     nrinsc = models.CharField(max_length=15)
     desccomp = models.CharField(max_length=80, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s2206_localtrabgeral_custom#
-    #s2206_localtrabgeral_custom#
     class Meta:
         db_table = r's2206_localtrabgeral'
-        managed = True
+        managed = True # s2206_localtrabgeral #
         ordering = ['s2206_evtaltcontratual', 'tpinsc', 'nrinsc']
 
 
@@ -430,20 +421,19 @@ class s2206observacoes(models.Model):
         related_name='%(class)s_s2206_evtaltcontratual')
     def evento(self): return self.s2206_evtaltcontratual.evento()
     observacao = models.CharField(max_length=255)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.observacao)
     #s2206_observacoes_custom#
-    #s2206_observacoes_custom#
     class Meta:
         db_table = r's2206_observacoes'
-        managed = True
+        managed = True # s2206_observacoes #
         ordering = ['s2206_evtaltcontratual', 'observacao']
 
 
@@ -459,20 +449,19 @@ class s2206servPubl(models.Model):
         related_name='%(class)s_s2206_evtaltcontratual')
     def evento(self): return self.s2206_evtaltcontratual.evento()
     mtvalter = models.IntegerField(choices=CHOICES_S2206_MTVALTER)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.mtvalter)
     #s2206_servpubl_custom#
-    #s2206_servpubl_custom#
     class Meta:
         db_table = r's2206_servpubl'
-        managed = True
+        managed = True # s2206_servpubl #
         ordering = ['s2206_evtaltcontratual', 'mtvalter']
 
 
@@ -488,20 +477,19 @@ class s2206trabTemp(models.Model):
         related_name='%(class)s_s2206_infoceletista')
     def evento(self): return self.s2206_infoceletista.evento()
     justprorr = models.CharField(max_length=999)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_infoceletista) + ' - ' + unicode(self.justprorr)
     #s2206_trabtemp_custom#
-    #s2206_trabtemp_custom#
     class Meta:
         db_table = r's2206_trabtemp'
-        managed = True
+        managed = True # s2206_trabtemp #
         ordering = ['s2206_infoceletista', 'justprorr']
 
 

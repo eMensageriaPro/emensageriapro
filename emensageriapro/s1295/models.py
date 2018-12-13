@@ -50,20 +50,19 @@ class s1295ideRespInf(models.Model):
     cpfresp = models.CharField(max_length=11)
     telefone = models.CharField(max_length=13)
     email = models.CharField(max_length=60, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1295_evttotconting) + ' - ' + unicode(self.nmresp) + ' - ' + unicode(self.cpfresp) + ' - ' + unicode(self.telefone)
     #s1295_iderespinf_custom#
-    #s1295_iderespinf_custom#
     class Meta:
         db_table = r's1295_iderespinf'
-        managed = True
+        managed = True # s1295_iderespinf #
         ordering = ['s1295_evttotconting', 'nmresp', 'cpfresp', 'telefone']
 
 

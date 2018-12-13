@@ -197,18 +197,17 @@ class Arquivos(models.Model):
     arquivo = models.CharField(max_length=300)
     data_criacao = models.DateField()
     permite_recuperacao = models.IntegerField(choices=SIM_NAO)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    #arquivos_custom#
+    excluido = models.BooleanField(blank=True, default=False)
     #arquivos_custom#
     class Meta:
         db_table = r'arquivos'
-        managed = True
+        managed = True # arquivos #
 
 
 
@@ -229,20 +228,19 @@ class ImportacaoArquivos(models.Model):
     quant_processado = models.IntegerField(blank=True, null=True)
     quant_importado = models.IntegerField(blank=True, null=True)
     quant_erros = models.IntegerField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.arquivo)
     #importacao_arquivos_custom#
-    #importacao_arquivos_custom#
     class Meta:
         db_table = r'importacao_arquivos'
-        managed = True
+        managed = True # importacao_arquivos #
         ordering = ['arquivo']
 
 
@@ -264,20 +262,19 @@ class ImportacaoArquivosEventos(models.Model):
     status = models.IntegerField(choices=IMPORTACAO_STATUS, blank=True, null=True)
     data_hora = models.DateTimeField(blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.importacao_arquivos) + ' - ' + unicode(self.arquivo) + ' - ' + unicode(self.evento) + ' - ' + unicode(self.versao) + ' - ' + unicode(self.identidade_evento) + ' - ' + unicode(self.identidade)
     #importacao_arquivos_eventos_custom#
-    #importacao_arquivos_eventos_custom#
     class Meta:
         db_table = r'importacao_arquivos_eventos'
-        managed = True
+        managed = True # importacao_arquivos_eventos #
         ordering = ['importacao_arquivos', 'arquivo', 'evento', 'versao', 'identidade_evento', 'identidade']
 
 
@@ -305,20 +302,19 @@ class RegrasDeValidacao(models.Model):
     valores_validos = models.TextField(blank=True, null=True)
     validacoes_precedencia = models.TextField(blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.evento) + ' - ' + unicode(self.versao) + ' - ' + unicode(self.numero) + ' - ' + unicode(self.registro_campo) + ' - ' + unicode(self.registro_pai)
     #regras_validacao_custom#
-    #regras_validacao_custom#
     class Meta:
         db_table = r'regras_validacao'
-        managed = True
+        managed = True # regras_validacao #
 
 
 
@@ -332,18 +328,17 @@ class Relatorios(models.Model):
     titulo = models.CharField(max_length=500)
     campos = models.CharField(max_length=500)
     sql = models.TextField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    #relatorios_custom#
+    excluido = models.BooleanField(blank=True, default=False)
     #relatorios_custom#
     class Meta:
         db_table = r'relatorios'
-        managed = True
+        managed = True # relatorios #
 
 
 
@@ -402,20 +397,19 @@ class RetornosEventos(models.Model):
     tpjornada = models.IntegerField(choices=CHOICES_S2200_TPJORNADA, blank=True, null=True)
     dsctpjorn = models.CharField(max_length=100, blank=True, null=True)
     tmpparc = models.IntegerField(choices=CHOICES_S2200_TMPPARC, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.transmissor_lote_esocial) + ' - ' + unicode(self.identidade)
     #retornos_eventos_custom#
-    #retornos_eventos_custom#
     class Meta:
         db_table = r'retornos_eventos'
-        managed = True
+        managed = True # retornos_eventos #
         ordering = ['transmissor_lote_esocial', 'identidade']
 
 
@@ -435,18 +429,17 @@ class RetornosEventosHorarios(models.Model):
     hrsaida = models.CharField(max_length=50, blank=True, null=True)
     durjornada = models.IntegerField(blank=True, null=True)
     perhorflexivel = models.CharField(choices=CHOICES_S1050_INCLUSAO_PERHORFLEXIVEL, max_length=50, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    #retornos_eventos_horarios_custom#
+    excluido = models.BooleanField(blank=True, default=False)
     #retornos_eventos_horarios_custom#
     class Meta:
         db_table = r'retornos_eventos_horarios'
-        managed = True
+        managed = True # retornos_eventos_horarios #
 
 
 
@@ -463,18 +456,17 @@ class RetornosEventosIntervalos(models.Model):
     durinterv = models.IntegerField(blank=True, null=True)
     iniinterv = models.CharField(max_length=50, blank=True, null=True)
     terminterv = models.CharField(max_length=50, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    #retornos_eventos_intervalos_custom#
+    excluido = models.BooleanField(blank=True, default=False)
     #retornos_eventos_intervalos_custom#
     class Meta:
         db_table = r'retornos_eventos_intervalos'
-        managed = True
+        managed = True # retornos_eventos_intervalos #
 
 
 
@@ -491,18 +483,17 @@ class RetornosEventosOcorrencias(models.Model):
     codigo = models.IntegerField(blank=True)
     descricao = models.TextField(blank=True)
     localizacao = models.TextField(max_length=30, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    #retornos_eventos_ocorrencias_custom#
+    excluido = models.BooleanField(blank=True, default=False)
     #retornos_eventos_ocorrencias_custom#
     class Meta:
         db_table = r'retornos_eventos_ocorrencias'
-        managed = True
+        managed = True # retornos_eventos_ocorrencias #
 
 
 
@@ -542,20 +533,19 @@ class TransmissorLote(models.Model):
     efdreinf_certificado = models.FileField(upload_to="efdreinf_certificado", blank=True, null=True)
     efdreinf_senha = models.CharField(max_length=20, blank=True, null=True)
     efdreinf_pasta = models.CharField(max_length=200, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.transmissor_nrinsc) + ' - ' + unicode(self.nome_empresa) + ' - ' + unicode(self.empregador_tpinsc) + ' - ' + unicode(self.contribuinte_tpinsc)
     #transmissores_custom#
-    #transmissores_custom#
     class Meta:
         db_table = r'transmissores'
-        managed = True
+        managed = True # transmissores #
 
 
 
@@ -581,20 +571,19 @@ class TransmissorLoteEfdreinf(models.Model):
     numero_protocolo_fechamento = models.CharField(max_length=50, blank=True, null=True)
     processamento_versao_aplicativo = models.CharField(max_length=50, blank=True, null=True)
     tempo_estimado_conclusao = models.IntegerField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.transmissor) + ' - ' + unicode(self.contribuinte_tpinsc) + ' - ' + unicode(self.contribuinte_nrinsc) + ' - ' + unicode(self.identidade_transmissor) + ' - ' + unicode(self.codigo_status) + ' - ' + unicode(self.retorno_descricao)
     #transmissor_lote_efdreinf_custom#
-    #transmissor_lote_efdreinf_custom#
     class Meta:
         db_table = r'transmissor_lote_efdreinf'
-        managed = True
+        managed = True # transmissor_lote_efdreinf #
 
 
 
@@ -611,18 +600,17 @@ class TransmissorLoteEfdreinfOcorrencias(models.Model):
     descricao = models.TextField()
     tipo = models.IntegerField(choices=EVENTOS_OCORRENCIAS_TIPO_EFDREINF)
     localizacao = models.CharField(max_length=50)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    #transmissor_lote_efdreinf_ocorrencias_custom#
+    excluido = models.BooleanField(blank=True, default=False)
     #transmissor_lote_efdreinf_ocorrencias_custom#
     class Meta:
         db_table = r'transmissor_lote_efdreinf_ocorrencias'
-        managed = True
+        managed = True # transmissor_lote_efdreinf_ocorrencias #
 
 
 
@@ -646,20 +634,19 @@ class TransmissorLoteEsocial(models.Model):
     protocolo = models.CharField(max_length=50, blank=True, null=True)
     processamento_versao_aplicativo = models.CharField(max_length=50, blank=True, null=True)
     tempo_estimado_conclusao = models.IntegerField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.transmissor) + ' - ' + unicode(self.empregador_tpinsc) + ' - ' + unicode(self.empregador_nrinsc) + ' - ' + unicode(self.resposta_codigo) + ' - ' + unicode(self.resposta_descricao)
     #transmissor_lote_esocial_custom#
-    #transmissor_lote_esocial_custom#
     class Meta:
         db_table = r'transmissor_lote_esocial'
-        managed = True
+        managed = True # transmissor_lote_esocial #
 
 
 
@@ -676,18 +663,17 @@ class TransmissorLoteEsocialOcorrencias(models.Model):
     descricao = models.TextField()
     tipo = models.IntegerField(choices=EVENTOS_OCORRENCIAS_TIPO)
     localizacao = models.CharField(max_length=50)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-    #transmissor_lote_esocial_ocorrencias_custom#
+    excluido = models.BooleanField(blank=True, default=False)
     #transmissor_lote_esocial_ocorrencias_custom#
     class Meta:
         db_table = r'transmissor_lote_esocial_ocorrencias'
-        managed = True
+        managed = True # transmissor_lote_esocial_ocorrencias #
 
 
 

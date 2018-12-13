@@ -63,20 +63,19 @@ class r2050infoProc(models.Model):
     vlrcpsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vlrratsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vlrsenarsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r2050_tipocom) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc)
     #r2050_infoproc_custom#
-    #r2050_infoproc_custom#
     class Meta:
         db_table = r'r2050_infoproc'
-        managed = True
+        managed = True # r2050_infoproc #
         ordering = ['r2050_tipocom', 'tpproc', 'nrproc']
 
 
@@ -93,20 +92,19 @@ class r2050tipoCom(models.Model):
     def evento(self): return self.r2050_evtcomprod.evento()
     indcom = models.IntegerField(choices=CHOICES_R2050_INDCOM)
     vlrrecbruta = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r2050_evtcomprod) + ' - ' + unicode(self.indcom) + ' - ' + unicode(self.vlrrecbruta)
     #r2050_tipocom_custom#
-    #r2050_tipocom_custom#
     class Meta:
         db_table = r'r2050_tipocom'
-        managed = True
+        managed = True # r2050_tipocom #
         ordering = ['r2050_evtcomprod', 'indcom', 'vlrrecbruta']
 
 

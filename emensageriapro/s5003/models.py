@@ -122,20 +122,19 @@ class s5003basePerAntE(models.Model):
     def evento(self): return self.s5003_infobaseperante.evento()
     tpvalore = models.IntegerField(choices=CHOICES_S5003_TPVALORE)
     remfgtse = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_infobaseperante) + ' - ' + unicode(self.tpvalore) + ' - ' + unicode(self.remfgtse)
     #s5003_baseperante_custom#
-    #s5003_baseperante_custom#
     class Meta:
         db_table = r's5003_baseperante'
-        managed = True
+        managed = True # s5003_baseperante #
         ordering = ['s5003_infobaseperante', 'tpvalore', 'remfgtse']
 
 
@@ -152,20 +151,19 @@ class s5003basePerApur(models.Model):
     def evento(self): return self.s5003_infotrabfgts.evento()
     tpvalor = models.IntegerField(choices=CHOICES_S5003_TPVALOR)
     remfgts = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_infotrabfgts) + ' - ' + unicode(self.tpvalor) + ' - ' + unicode(self.remfgts)
     #s5003_baseperapur_custom#
-    #s5003_baseperapur_custom#
     class Meta:
         db_table = r's5003_baseperapur'
-        managed = True
+        managed = True # s5003_baseperapur #
         ordering = ['s5003_infotrabfgts', 'tpvalor', 'remfgts']
 
 
@@ -182,20 +180,19 @@ class s5003dpsPerAntE(models.Model):
     def evento(self): return self.s5003_infodpsperante.evento()
     tpdpse = models.IntegerField(choices=CHOICES_S5003_TPDPSE)
     dpsfgtse = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_infodpsperante) + ' - ' + unicode(self.tpdpse) + ' - ' + unicode(self.dpsfgtse)
     #s5003_dpsperante_custom#
-    #s5003_dpsperante_custom#
     class Meta:
         db_table = r's5003_dpsperante'
-        managed = True
+        managed = True # s5003_dpsperante #
         ordering = ['s5003_infodpsperante', 'tpdpse', 'dpsfgtse']
 
 
@@ -212,20 +209,19 @@ class s5003dpsPerApur(models.Model):
     def evento(self): return self.s5003_infotrabdps.evento()
     tpdps = models.IntegerField(choices=CHOICES_S5003_TPDPS)
     dpsfgts = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_infotrabdps) + ' - ' + unicode(self.tpdps) + ' - ' + unicode(self.dpsfgts)
     #s5003_dpsperapur_custom#
-    #s5003_dpsperapur_custom#
     class Meta:
         db_table = r's5003_dpsperapur'
-        managed = True
+        managed = True # s5003_dpsperapur #
         ordering = ['s5003_infotrabdps', 'tpdps', 'dpsfgts']
 
 
@@ -243,20 +239,19 @@ class s5003ideEstabLot(models.Model):
     tpinsc = models.IntegerField()
     nrinsc = models.CharField(max_length=15)
     codlotacao = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_infofgts) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao)
     #s5003_ideestablot_custom#
-    #s5003_ideestablot_custom#
     class Meta:
         db_table = r's5003_ideestablot'
-        managed = True
+        managed = True # s5003_ideestablot #
         ordering = ['s5003_infofgts', 'tpinsc', 'nrinsc', 'codlotacao']
 
 
@@ -272,20 +267,19 @@ class s5003infoBasePerAntE(models.Model):
         related_name='%(class)s_s5003_infotrabfgts')
     def evento(self): return self.s5003_infotrabfgts.evento()
     perref = models.CharField(max_length=7)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_infotrabfgts) + ' - ' + unicode(self.perref)
     #s5003_infobaseperante_custom#
-    #s5003_infobaseperante_custom#
     class Meta:
         db_table = r's5003_infobaseperante'
-        managed = True
+        managed = True # s5003_infobaseperante #
         ordering = ['s5003_infotrabfgts', 'perref']
 
 
@@ -301,20 +295,19 @@ class s5003infoDpsPerAntE(models.Model):
         related_name='%(class)s_s5003_infotrabdps')
     def evento(self): return self.s5003_infotrabdps.evento()
     perref = models.CharField(max_length=7)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_infotrabdps) + ' - ' + unicode(self.perref)
     #s5003_infodpsperante_custom#
-    #s5003_infodpsperante_custom#
     class Meta:
         db_table = r's5003_infodpsperante'
-        managed = True
+        managed = True # s5003_infodpsperante #
         ordering = ['s5003_infotrabdps', 'perref']
 
 
@@ -330,20 +323,19 @@ class s5003infoFGTS(models.Model):
         related_name='%(class)s_s5003_evtbasesfgts')
     def evento(self): return self.s5003_evtbasesfgts.evento()
     dtvenc = models.DateField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_evtbasesfgts)
     #s5003_infofgts_custom#
-    #s5003_infofgts_custom#
     class Meta:
         db_table = r's5003_infofgts'
-        managed = True
+        managed = True # s5003_infofgts #
         ordering = ['s5003_evtbasesfgts']
 
 
@@ -360,20 +352,19 @@ class s5003infoTrabDps(models.Model):
     def evento(self): return self.s5003_infofgts.evento()
     matricula = models.CharField(max_length=30, blank=True, null=True)
     codcateg = models.TextField(max_length=3)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_infofgts) + ' - ' + unicode(self.codcateg)
     #s5003_infotrabdps_custom#
-    #s5003_infotrabdps_custom#
     class Meta:
         db_table = r's5003_infotrabdps'
-        managed = True
+        managed = True # s5003_infotrabdps #
         ordering = ['s5003_infofgts', 'codcateg']
 
 
@@ -396,20 +387,19 @@ class s5003infoTrabFGTS(models.Model):
     mtvdeslig = models.CharField(max_length=2, blank=True, null=True)
     dtterm = models.DateField(blank=True, null=True)
     mtvdesligtsv = models.CharField(max_length=2, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_ideestablot) + ' - ' + unicode(self.codcateg)
     #s5003_infotrabfgts_custom#
-    #s5003_infotrabfgts_custom#
     class Meta:
         db_table = r's5003_infotrabfgts'
-        managed = True
+        managed = True # s5003_infotrabfgts #
         ordering = ['s5003_ideestablot', 'codcateg']
 
 

@@ -373,20 +373,19 @@ class s1000alteracao(models.Model):
     fonefixo = models.CharField(max_length=13, blank=True, null=True)
     fonecel = models.CharField(max_length=13, blank=True, null=True)
     email = models.CharField(max_length=60, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_evtinfoempregador) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.classtrib) + ' - ' + unicode(self.inddesfolha) + ' - ' + unicode(self.indoptregeletron) + ' - ' + unicode(self.indett) + ' - ' + unicode(self.nmctt) + ' - ' + unicode(self.cpfctt)
     #s1000_alteracao_custom#
-    #s1000_alteracao_custom#
     class Meta:
         db_table = r's1000_alteracao'
-        managed = True
+        managed = True # s1000_alteracao #
         ordering = ['s1000_evtinfoempregador', 'inivalid', 'nmrazao', 'classtrib', 'inddesfolha', 'indoptregeletron', 'indett', 'nmctt', 'cpfctt']
 
 
@@ -409,20 +408,19 @@ class s1000alteracaodadosIsencao(models.Model):
     dtprotrenov = models.DateField(blank=True, null=True)
     dtdou = models.DateField(blank=True, null=True)
     pagdou = models.IntegerField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_alteracao) + ' - ' + unicode(self.ideminlei) + ' - ' + unicode(self.nrcertif) + ' - ' + unicode(self.dtemiscertif) + ' - ' + unicode(self.dtvenccertif)
     #s1000_alteracao_dadosisencao_custom#
-    #s1000_alteracao_dadosisencao_custom#
     class Meta:
         db_table = r's1000_alteracao_dadosisencao'
-        managed = True
+        managed = True # s1000_alteracao_dadosisencao #
         ordering = ['s1000_alteracao', 'ideminlei', 'nrcertif', 'dtemiscertif', 'dtvenccertif']
 
 
@@ -441,20 +439,19 @@ class s1000alteracaoinfoEFR(models.Model):
     cnpjefr = models.CharField(max_length=14, blank=True, null=True)
     indrpps = models.CharField(choices=CHOICES_S1000_ALTERACAO_INDRPPS, max_length=1)
     prevcomp = models.CharField(choices=CHOICES_S1000_ALTERACAO_PREVCOMP, max_length=1)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_alteracao_infoop) + ' - ' + unicode(self.ideefr) + ' - ' + unicode(self.indrpps) + ' - ' + unicode(self.prevcomp)
     #s1000_alteracao_infoefr_custom#
-    #s1000_alteracao_infoefr_custom#
     class Meta:
         db_table = r's1000_alteracao_infoefr'
-        managed = True
+        managed = True # s1000_alteracao_infoefr #
         ordering = ['s1000_alteracao_infoop', 'ideefr', 'indrpps', 'prevcomp']
 
 
@@ -475,20 +472,19 @@ class s1000alteracaoinfoEnte(models.Model):
     indrpps = models.CharField(choices=CHOICES_S1000_ALTERACAO_INDRPPS, max_length=1)
     subteto = models.IntegerField(choices=CHOICES_S1000_ALTERACAO_SUBTETO)
     vrsubteto = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_alteracao_infoop) + ' - ' + unicode(self.nmente) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.indrpps) + ' - ' + unicode(self.subteto) + ' - ' + unicode(self.vrsubteto)
     #s1000_alteracao_infoente_custom#
-    #s1000_alteracao_infoente_custom#
     class Meta:
         db_table = r's1000_alteracao_infoente'
-        managed = True
+        managed = True # s1000_alteracao_infoente #
         ordering = ['s1000_alteracao_infoop', 'nmente', 'uf', 'indrpps', 'subteto', 'vrsubteto']
 
 
@@ -510,20 +506,19 @@ class s1000alteracaoinfoOP(models.Model):
     vrtetorem = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     ideefr = models.CharField(choices=CHOICES_S1000_ALTERACAO_IDEEFR, max_length=1)
     cnpjefr = models.CharField(max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_alteracao) + ' - ' + unicode(self.nrsiafi) + ' - ' + unicode(self.indugrpps) + ' - ' + unicode(self.poderop) + ' - ' + unicode(self.vrtetorem) + ' - ' + unicode(self.ideefr)
     #s1000_alteracao_infoop_custom#
-    #s1000_alteracao_infoop_custom#
     class Meta:
         db_table = r's1000_alteracao_infoop'
-        managed = True
+        managed = True # s1000_alteracao_infoop #
         ordering = ['s1000_alteracao', 'nrsiafi', 'indugrpps', 'poderop', 'vrtetorem', 'ideefr']
 
 
@@ -539,20 +534,19 @@ class s1000alteracaoinfoOrgInternacional(models.Model):
         related_name='%(class)s_s1000_alteracao')
     def evento(self): return self.s1000_alteracao.evento()
     indacordoisenmulta = models.IntegerField(choices=CHOICES_S1000_ALTERACAO_INDACORDOISENMULTA)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_alteracao) + ' - ' + unicode(self.indacordoisenmulta)
     #s1000_alteracao_infoorginternacional_custom#
-    #s1000_alteracao_infoorginternacional_custom#
     class Meta:
         db_table = r's1000_alteracao_infoorginternacional'
-        managed = True
+        managed = True # s1000_alteracao_infoorginternacional #
         ordering = ['s1000_alteracao', 'indacordoisenmulta']
 
 
@@ -569,20 +563,19 @@ class s1000alteracaonovaValidade(models.Model):
     def evento(self): return self.s1000_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_alteracao) + ' - ' + unicode(self.inivalid)
     #s1000_alteracao_novavalidade_custom#
-    #s1000_alteracao_novavalidade_custom#
     class Meta:
         db_table = r's1000_alteracao_novavalidade'
-        managed = True
+        managed = True # s1000_alteracao_novavalidade #
         ordering = ['s1000_alteracao', 'inivalid']
 
 
@@ -598,20 +591,19 @@ class s1000alteracaosituacaoPF(models.Model):
         related_name='%(class)s_s1000_alteracao')
     def evento(self): return self.s1000_alteracao.evento()
     indsitpf = models.IntegerField(choices=CHOICES_S1000_ALTERACAO_INDSITPF)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_alteracao) + ' - ' + unicode(self.indsitpf)
     #s1000_alteracao_situacaopf_custom#
-    #s1000_alteracao_situacaopf_custom#
     class Meta:
         db_table = r's1000_alteracao_situacaopf'
-        managed = True
+        managed = True # s1000_alteracao_situacaopf #
         ordering = ['s1000_alteracao', 'indsitpf']
 
 
@@ -627,20 +619,19 @@ class s1000alteracaosituacaoPJ(models.Model):
         related_name='%(class)s_s1000_alteracao')
     def evento(self): return self.s1000_alteracao.evento()
     indsitpj = models.IntegerField(choices=CHOICES_S1000_ALTERACAO_INDSITPJ)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_alteracao) + ' - ' + unicode(self.indsitpj)
     #s1000_alteracao_situacaopj_custom#
-    #s1000_alteracao_situacaopj_custom#
     class Meta:
         db_table = r's1000_alteracao_situacaopj'
-        managed = True
+        managed = True # s1000_alteracao_situacaopj #
         ordering = ['s1000_alteracao', 'indsitpj']
 
 
@@ -660,20 +651,19 @@ class s1000alteracaosoftwareHouse(models.Model):
     nmcont = models.CharField(max_length=70)
     telefone = models.CharField(max_length=13)
     email = models.CharField(max_length=60, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_alteracao) + ' - ' + unicode(self.cnpjsofthouse) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.nmcont) + ' - ' + unicode(self.telefone)
     #s1000_alteracao_softwarehouse_custom#
-    #s1000_alteracao_softwarehouse_custom#
     class Meta:
         db_table = r's1000_alteracao_softwarehouse'
-        managed = True
+        managed = True # s1000_alteracao_softwarehouse #
         ordering = ['s1000_alteracao', 'cnpjsofthouse', 'nmrazao', 'nmcont', 'telefone']
 
 
@@ -690,20 +680,19 @@ class s1000exclusao(models.Model):
     def evento(self): return self.s1000_evtinfoempregador.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_evtinfoempregador) + ' - ' + unicode(self.inivalid)
     #s1000_exclusao_custom#
-    #s1000_exclusao_custom#
     class Meta:
         db_table = r's1000_exclusao'
-        managed = True
+        managed = True # s1000_exclusao #
         ordering = ['s1000_evtinfoempregador', 'inivalid']
 
 
@@ -736,20 +725,19 @@ class s1000inclusao(models.Model):
     fonefixo = models.CharField(max_length=13, blank=True, null=True)
     fonecel = models.CharField(max_length=13, blank=True, null=True)
     email = models.CharField(max_length=60, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_evtinfoempregador) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.classtrib) + ' - ' + unicode(self.inddesfolha) + ' - ' + unicode(self.indoptregeletron) + ' - ' + unicode(self.indett) + ' - ' + unicode(self.nmctt) + ' - ' + unicode(self.cpfctt)
     #s1000_inclusao_custom#
-    #s1000_inclusao_custom#
     class Meta:
         db_table = r's1000_inclusao'
-        managed = True
+        managed = True # s1000_inclusao #
         ordering = ['s1000_evtinfoempregador', 'inivalid', 'nmrazao', 'classtrib', 'inddesfolha', 'indoptregeletron', 'indett', 'nmctt', 'cpfctt']
 
 
@@ -772,20 +760,19 @@ class s1000inclusaodadosIsencao(models.Model):
     dtprotrenov = models.DateField(blank=True, null=True)
     dtdou = models.DateField(blank=True, null=True)
     pagdou = models.IntegerField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_inclusao) + ' - ' + unicode(self.ideminlei) + ' - ' + unicode(self.nrcertif) + ' - ' + unicode(self.dtemiscertif) + ' - ' + unicode(self.dtvenccertif)
     #s1000_inclusao_dadosisencao_custom#
-    #s1000_inclusao_dadosisencao_custom#
     class Meta:
         db_table = r's1000_inclusao_dadosisencao'
-        managed = True
+        managed = True # s1000_inclusao_dadosisencao #
         ordering = ['s1000_inclusao', 'ideminlei', 'nrcertif', 'dtemiscertif', 'dtvenccertif']
 
 
@@ -804,20 +791,19 @@ class s1000inclusaoinfoEFR(models.Model):
     cnpjefr = models.CharField(max_length=14, blank=True, null=True)
     indrpps = models.CharField(choices=CHOICES_S1000_INCLUSAO_INDRPPS, max_length=1)
     prevcomp = models.CharField(choices=CHOICES_S1000_INCLUSAO_PREVCOMP, max_length=1)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_inclusao_infoop) + ' - ' + unicode(self.ideefr) + ' - ' + unicode(self.indrpps) + ' - ' + unicode(self.prevcomp)
     #s1000_inclusao_infoefr_custom#
-    #s1000_inclusao_infoefr_custom#
     class Meta:
         db_table = r's1000_inclusao_infoefr'
-        managed = True
+        managed = True # s1000_inclusao_infoefr #
         ordering = ['s1000_inclusao_infoop', 'ideefr', 'indrpps', 'prevcomp']
 
 
@@ -838,20 +824,19 @@ class s1000inclusaoinfoEnte(models.Model):
     indrpps = models.CharField(choices=CHOICES_S1000_INCLUSAO_INDRPPS, max_length=1)
     subteto = models.IntegerField(choices=CHOICES_S1000_INCLUSAO_SUBTETO)
     vrsubteto = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_inclusao_infoop) + ' - ' + unicode(self.nmente) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.indrpps) + ' - ' + unicode(self.subteto) + ' - ' + unicode(self.vrsubteto)
     #s1000_inclusao_infoente_custom#
-    #s1000_inclusao_infoente_custom#
     class Meta:
         db_table = r's1000_inclusao_infoente'
-        managed = True
+        managed = True # s1000_inclusao_infoente #
         ordering = ['s1000_inclusao_infoop', 'nmente', 'uf', 'indrpps', 'subteto', 'vrsubteto']
 
 
@@ -873,20 +858,19 @@ class s1000inclusaoinfoOP(models.Model):
     vrtetorem = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     ideefr = models.CharField(choices=CHOICES_S1000_INCLUSAO_IDEEFR, max_length=1)
     cnpjefr = models.CharField(max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_inclusao) + ' - ' + unicode(self.nrsiafi) + ' - ' + unicode(self.indugrpps) + ' - ' + unicode(self.poderop) + ' - ' + unicode(self.vrtetorem) + ' - ' + unicode(self.ideefr)
     #s1000_inclusao_infoop_custom#
-    #s1000_inclusao_infoop_custom#
     class Meta:
         db_table = r's1000_inclusao_infoop'
-        managed = True
+        managed = True # s1000_inclusao_infoop #
         ordering = ['s1000_inclusao', 'nrsiafi', 'indugrpps', 'poderop', 'vrtetorem', 'ideefr']
 
 
@@ -902,20 +886,19 @@ class s1000inclusaoinfoOrgInternacional(models.Model):
         related_name='%(class)s_s1000_inclusao')
     def evento(self): return self.s1000_inclusao.evento()
     indacordoisenmulta = models.IntegerField(choices=CHOICES_S1000_INCLUSAO_INDACORDOISENMULTA)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_inclusao) + ' - ' + unicode(self.indacordoisenmulta)
     #s1000_inclusao_infoorginternacional_custom#
-    #s1000_inclusao_infoorginternacional_custom#
     class Meta:
         db_table = r's1000_inclusao_infoorginternacional'
-        managed = True
+        managed = True # s1000_inclusao_infoorginternacional #
         ordering = ['s1000_inclusao', 'indacordoisenmulta']
 
 
@@ -931,20 +914,19 @@ class s1000inclusaosituacaoPF(models.Model):
         related_name='%(class)s_s1000_inclusao')
     def evento(self): return self.s1000_inclusao.evento()
     indsitpf = models.IntegerField(choices=CHOICES_S1000_INCLUSAO_INDSITPF)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_inclusao) + ' - ' + unicode(self.indsitpf)
     #s1000_inclusao_situacaopf_custom#
-    #s1000_inclusao_situacaopf_custom#
     class Meta:
         db_table = r's1000_inclusao_situacaopf'
-        managed = True
+        managed = True # s1000_inclusao_situacaopf #
         ordering = ['s1000_inclusao', 'indsitpf']
 
 
@@ -960,20 +942,19 @@ class s1000inclusaosituacaoPJ(models.Model):
         related_name='%(class)s_s1000_inclusao')
     def evento(self): return self.s1000_inclusao.evento()
     indsitpj = models.IntegerField(choices=CHOICES_S1000_INCLUSAO_INDSITPJ)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_inclusao) + ' - ' + unicode(self.indsitpj)
     #s1000_inclusao_situacaopj_custom#
-    #s1000_inclusao_situacaopj_custom#
     class Meta:
         db_table = r's1000_inclusao_situacaopj'
-        managed = True
+        managed = True # s1000_inclusao_situacaopj #
         ordering = ['s1000_inclusao', 'indsitpj']
 
 
@@ -993,20 +974,19 @@ class s1000inclusaosoftwareHouse(models.Model):
     nmcont = models.CharField(max_length=70)
     telefone = models.CharField(max_length=13)
     email = models.CharField(max_length=60, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1000_inclusao) + ' - ' + unicode(self.cnpjsofthouse) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.nmcont) + ' - ' + unicode(self.telefone)
     #s1000_inclusao_softwarehouse_custom#
-    #s1000_inclusao_softwarehouse_custom#
     class Meta:
         db_table = r's1000_inclusao_softwarehouse'
-        managed = True
+        managed = True # s1000_inclusao_softwarehouse #
         ordering = ['s1000_inclusao', 'cnpjsofthouse', 'nmrazao', 'nmcont', 'telefone']
 
 

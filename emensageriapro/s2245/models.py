@@ -76,20 +76,19 @@ class s2245ideProfResp(models.Model):
     formprof = models.CharField(max_length=255)
     codcbo = models.CharField(max_length=6)
     nacprof = models.IntegerField(choices=CHOICES_S2245_NACPROF)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2245_infocomplem) + ' - ' + unicode(self.nmprof) + ' - ' + unicode(self.tpprof) + ' - ' + unicode(self.formprof) + ' - ' + unicode(self.codcbo) + ' - ' + unicode(self.nacprof)
     #s2245_ideprofresp_custom#
-    #s2245_ideprofresp_custom#
     class Meta:
         db_table = r's2245_ideprofresp'
-        managed = True
+        managed = True # s2245_ideprofresp #
         ordering = ['s2245_infocomplem', 'nmprof', 'tpprof', 'formprof', 'codcbo', 'nacprof']
 
 
@@ -108,20 +107,19 @@ class s2245infoComplem(models.Model):
     durtreicap = models.DecimalField(max_digits=15, decimal_places=2, max_length=6)
     modtreicap = models.IntegerField(choices=CHOICES_S2245_MODTREICAP)
     tptreicap = models.IntegerField(choices=CHOICES_S2245_TPTREICAP)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2245_evttreicap) + ' - ' + unicode(self.dttreicap) + ' - ' + unicode(self.durtreicap) + ' - ' + unicode(self.modtreicap) + ' - ' + unicode(self.tptreicap)
     #s2245_infocomplem_custom#
-    #s2245_infocomplem_custom#
     class Meta:
         db_table = r's2245_infocomplem'
-        managed = True
+        managed = True # s2245_infocomplem #
         ordering = ['s2245_evttreicap', 'dttreicap', 'durtreicap', 'modtreicap', 'tptreicap']
 
 

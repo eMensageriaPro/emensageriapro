@@ -63,20 +63,19 @@ class r2040infoProc(models.Model):
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField(blank=True, null=True)
     vlrnret = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r2040_recursosrep) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.vlrnret)
     #r2040_infoproc_custom#
-    #r2040_infoproc_custom#
     class Meta:
         db_table = r'r2040_infoproc'
-        managed = True
+        managed = True # r2040_infoproc #
         ordering = ['r2040_recursosrep', 'tpproc', 'nrproc', 'vlrnret']
 
 
@@ -95,20 +94,19 @@ class r2040infoRecurso(models.Model):
     descrecurso = models.CharField(max_length=20)
     vlrbruto = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrretapur = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r2040_recursosrep) + ' - ' + unicode(self.tprepasse) + ' - ' + unicode(self.descrecurso) + ' - ' + unicode(self.vlrbruto) + ' - ' + unicode(self.vlrretapur)
     #r2040_inforecurso_custom#
-    #r2040_inforecurso_custom#
     class Meta:
         db_table = r'r2040_inforecurso'
-        managed = True
+        managed = True # r2040_inforecurso #
         ordering = ['r2040_recursosrep', 'tprepasse', 'descrecurso', 'vlrbruto', 'vlrretapur']
 
 
@@ -127,20 +125,19 @@ class r2040recursosRep(models.Model):
     vlrtotalrep = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrtotalret = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrtotalnret = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r2040_evtassocdesprep) + ' - ' + unicode(self.cnpjassocdesp) + ' - ' + unicode(self.vlrtotalrep) + ' - ' + unicode(self.vlrtotalret)
     #r2040_recursosrep_custom#
-    #r2040_recursosrep_custom#
     class Meta:
         db_table = r'r2040_recursosrep'
-        managed = True
+        managed = True # r2040_recursosrep #
         ordering = ['r2040_evtassocdesprep', 'cnpjassocdesp', 'vlrtotalrep', 'vlrtotalret']
 
 

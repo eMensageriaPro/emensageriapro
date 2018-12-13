@@ -217,20 +217,19 @@ class s1005alteracao(models.Model):
     contapr = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_CONTAPR)
     nrprocjud = models.CharField(max_length=20, blank=True, null=True)
     contented = models.CharField(choices=CHOICES_S1005_ALTERACAO_CONTENTED, max_length=1, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_evttabestab) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.cnaeprep) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.regpt) + ' - ' + unicode(self.contapr)
     #s1005_alteracao_custom#
-    #s1005_alteracao_custom#
     class Meta:
         db_table = r's1005_alteracao'
-        managed = True
+        managed = True # s1005_alteracao #
         ordering = ['s1005_evttabestab', 'tpinsc', 'nrinsc', 'inivalid', 'cnaeprep', 'aliqrat', 'regpt', 'contapr']
 
 
@@ -246,20 +245,19 @@ class s1005alteracaoinfoCaepf(models.Model):
         related_name='%(class)s_s1005_alteracao')
     def evento(self): return self.s1005_alteracao.evento()
     tpcaepf = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_TPCAEPF)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_alteracao) + ' - ' + unicode(self.tpcaepf)
     #s1005_alteracao_infocaepf_custom#
-    #s1005_alteracao_infocaepf_custom#
     class Meta:
         db_table = r's1005_alteracao_infocaepf'
-        managed = True
+        managed = True # s1005_alteracao_infocaepf #
         ordering = ['s1005_alteracao', 'tpcaepf']
 
 
@@ -275,20 +273,19 @@ class s1005alteracaoinfoEntEduc(models.Model):
         related_name='%(class)s_s1005_alteracao')
     def evento(self): return self.s1005_alteracao.evento()
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_alteracao) + ' - ' + unicode(self.nrinsc)
     #s1005_alteracao_infoenteduc_custom#
-    #s1005_alteracao_infoenteduc_custom#
     class Meta:
         db_table = r's1005_alteracao_infoenteduc'
-        managed = True
+        managed = True # s1005_alteracao_infoenteduc #
         ordering = ['s1005_alteracao', 'nrinsc']
 
 
@@ -304,20 +301,19 @@ class s1005alteracaoinfoObra(models.Model):
         related_name='%(class)s_s1005_alteracao')
     def evento(self): return self.s1005_alteracao.evento()
     indsubstpatrobra = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_INDSUBSTPATROBRA)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_alteracao) + ' - ' + unicode(self.indsubstpatrobra)
     #s1005_alteracao_infoobra_custom#
-    #s1005_alteracao_infoobra_custom#
     class Meta:
         db_table = r's1005_alteracao_infoobra'
-        managed = True
+        managed = True # s1005_alteracao_infoobra #
         ordering = ['s1005_alteracao', 'indsubstpatrobra']
 
 
@@ -334,20 +330,19 @@ class s1005alteracaoinfoPCD(models.Model):
     def evento(self): return self.s1005_alteracao.evento()
     contpcd = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_CONTPCD)
     nrprocjud = models.CharField(max_length=20, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_alteracao) + ' - ' + unicode(self.contpcd)
     #s1005_alteracao_infopcd_custom#
-    #s1005_alteracao_infopcd_custom#
     class Meta:
         db_table = r's1005_alteracao_infopcd'
-        managed = True
+        managed = True # s1005_alteracao_infopcd #
         ordering = ['s1005_alteracao', 'contpcd']
 
 
@@ -364,20 +359,19 @@ class s1005alteracaonovaValidade(models.Model):
     def evento(self): return self.s1005_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_alteracao) + ' - ' + unicode(self.inivalid)
     #s1005_alteracao_novavalidade_custom#
-    #s1005_alteracao_novavalidade_custom#
     class Meta:
         db_table = r's1005_alteracao_novavalidade'
-        managed = True
+        managed = True # s1005_alteracao_novavalidade #
         ordering = ['s1005_alteracao', 'inivalid']
 
 
@@ -395,20 +389,19 @@ class s1005alteracaoprocAdmJudFap(models.Model):
     tpproc = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_alteracao) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.codsusp)
     #s1005_alteracao_procadmjudfap_custom#
-    #s1005_alteracao_procadmjudfap_custom#
     class Meta:
         db_table = r's1005_alteracao_procadmjudfap'
-        managed = True
+        managed = True # s1005_alteracao_procadmjudfap #
         ordering = ['s1005_alteracao', 'tpproc', 'nrproc', 'codsusp']
 
 
@@ -426,20 +419,19 @@ class s1005alteracaoprocAdmJudRat(models.Model):
     tpproc = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_alteracao) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.codsusp)
     #s1005_alteracao_procadmjudrat_custom#
-    #s1005_alteracao_procadmjudrat_custom#
     class Meta:
         db_table = r's1005_alteracao_procadmjudrat'
-        managed = True
+        managed = True # s1005_alteracao_procadmjudrat #
         ordering = ['s1005_alteracao', 'tpproc', 'nrproc', 'codsusp']
 
 
@@ -458,20 +450,19 @@ class s1005exclusao(models.Model):
     nrinsc = models.CharField(max_length=15)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_evttabestab) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.inivalid)
     #s1005_exclusao_custom#
-    #s1005_exclusao_custom#
     class Meta:
         db_table = r's1005_exclusao'
-        managed = True
+        managed = True # s1005_exclusao #
         ordering = ['s1005_evttabestab', 'tpinsc', 'nrinsc', 'inivalid']
 
 
@@ -498,20 +489,19 @@ class s1005inclusao(models.Model):
     contapr = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_CONTAPR)
     nrprocjud = models.CharField(max_length=20, blank=True, null=True)
     contented = models.CharField(choices=CHOICES_S1005_INCLUSAO_CONTENTED, max_length=1, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_evttabestab) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.cnaeprep) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.regpt) + ' - ' + unicode(self.contapr)
     #s1005_inclusao_custom#
-    #s1005_inclusao_custom#
     class Meta:
         db_table = r's1005_inclusao'
-        managed = True
+        managed = True # s1005_inclusao #
         ordering = ['s1005_evttabestab', 'tpinsc', 'nrinsc', 'inivalid', 'cnaeprep', 'aliqrat', 'regpt', 'contapr']
 
 
@@ -527,20 +517,19 @@ class s1005inclusaoinfoCaepf(models.Model):
         related_name='%(class)s_s1005_inclusao')
     def evento(self): return self.s1005_inclusao.evento()
     tpcaepf = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_TPCAEPF)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_inclusao) + ' - ' + unicode(self.tpcaepf)
     #s1005_inclusao_infocaepf_custom#
-    #s1005_inclusao_infocaepf_custom#
     class Meta:
         db_table = r's1005_inclusao_infocaepf'
-        managed = True
+        managed = True # s1005_inclusao_infocaepf #
         ordering = ['s1005_inclusao', 'tpcaepf']
 
 
@@ -556,20 +545,19 @@ class s1005inclusaoinfoEntEduc(models.Model):
         related_name='%(class)s_s1005_inclusao')
     def evento(self): return self.s1005_inclusao.evento()
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_inclusao) + ' - ' + unicode(self.nrinsc)
     #s1005_inclusao_infoenteduc_custom#
-    #s1005_inclusao_infoenteduc_custom#
     class Meta:
         db_table = r's1005_inclusao_infoenteduc'
-        managed = True
+        managed = True # s1005_inclusao_infoenteduc #
         ordering = ['s1005_inclusao', 'nrinsc']
 
 
@@ -585,20 +573,19 @@ class s1005inclusaoinfoObra(models.Model):
         related_name='%(class)s_s1005_inclusao')
     def evento(self): return self.s1005_inclusao.evento()
     indsubstpatrobra = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_INDSUBSTPATROBRA)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_inclusao) + ' - ' + unicode(self.indsubstpatrobra)
     #s1005_inclusao_infoobra_custom#
-    #s1005_inclusao_infoobra_custom#
     class Meta:
         db_table = r's1005_inclusao_infoobra'
-        managed = True
+        managed = True # s1005_inclusao_infoobra #
         ordering = ['s1005_inclusao', 'indsubstpatrobra']
 
 
@@ -615,20 +602,19 @@ class s1005inclusaoinfoPCD(models.Model):
     def evento(self): return self.s1005_inclusao.evento()
     contpcd = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_CONTPCD)
     nrprocjud = models.CharField(max_length=20, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_inclusao) + ' - ' + unicode(self.contpcd)
     #s1005_inclusao_infopcd_custom#
-    #s1005_inclusao_infopcd_custom#
     class Meta:
         db_table = r's1005_inclusao_infopcd'
-        managed = True
+        managed = True # s1005_inclusao_infopcd #
         ordering = ['s1005_inclusao', 'contpcd']
 
 
@@ -646,20 +632,19 @@ class s1005inclusaoprocAdmJudFap(models.Model):
     tpproc = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_inclusao) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.codsusp)
     #s1005_inclusao_procadmjudfap_custom#
-    #s1005_inclusao_procadmjudfap_custom#
     class Meta:
         db_table = r's1005_inclusao_procadmjudfap'
-        managed = True
+        managed = True # s1005_inclusao_procadmjudfap #
         ordering = ['s1005_inclusao', 'tpproc', 'nrproc', 'codsusp']
 
 
@@ -677,20 +662,19 @@ class s1005inclusaoprocAdmJudRat(models.Model):
     tpproc = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_inclusao) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.codsusp)
     #s1005_inclusao_procadmjudrat_custom#
-    #s1005_inclusao_procadmjudrat_custom#
     class Meta:
         db_table = r's1005_inclusao_procadmjudrat'
-        managed = True
+        managed = True # s1005_inclusao_procadmjudrat #
         ordering = ['s1005_inclusao', 'tpproc', 'nrproc', 'codsusp']
 
 

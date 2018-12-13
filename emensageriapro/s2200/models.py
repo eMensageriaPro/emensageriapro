@@ -340,20 +340,19 @@ class s2200CNH(models.Model):
     dtvalid = models.DateField()
     dtprihab = models.DateField(blank=True, null=True)
     categoriacnh = models.CharField(choices=CHOICES_S2200_CATEGORIACNH, max_length=2)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nrregcnh) + ' - ' + unicode(self.ufcnh) + ' - ' + unicode(self.dtvalid) + ' - ' + unicode(self.categoriacnh)
     #s2200_cnh_custom#
-    #s2200_cnh_custom#
     class Meta:
         db_table = r's2200_cnh'
-        managed = True
+        managed = True # s2200_cnh #
         ordering = ['s2200_evtadmissao', 'nrregcnh', 'ufcnh', 'dtvalid', 'categoriacnh']
 
 
@@ -371,20 +370,19 @@ class s2200CTPS(models.Model):
     nrctps = models.CharField(max_length=11)
     seriectps = models.CharField(max_length=5)
     ufctps = models.CharField(choices=ESTADOS, max_length=2)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nrctps) + ' - ' + unicode(self.seriectps) + ' - ' + unicode(self.ufctps)
     #s2200_ctps_custom#
-    #s2200_ctps_custom#
     class Meta:
         db_table = r's2200_ctps'
-        managed = True
+        managed = True # s2200_ctps #
         ordering = ['s2200_evtadmissao', 'nrctps', 'seriectps', 'ufctps']
 
 
@@ -403,20 +401,19 @@ class s2200OC(models.Model):
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
     dtvalid = models.DateField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nroc) + ' - ' + unicode(self.orgaoemissor)
     #s2200_oc_custom#
-    #s2200_oc_custom#
     class Meta:
         db_table = r's2200_oc'
-        managed = True
+        managed = True # s2200_oc #
         ordering = ['s2200_evtadmissao', 'nroc', 'orgaoemissor']
 
 
@@ -434,20 +431,19 @@ class s2200RG(models.Model):
     nrrg = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nrrg) + ' - ' + unicode(self.orgaoemissor)
     #s2200_rg_custom#
-    #s2200_rg_custom#
     class Meta:
         db_table = r's2200_rg'
-        managed = True
+        managed = True # s2200_rg #
         ordering = ['s2200_evtadmissao', 'nrrg', 'orgaoemissor']
 
 
@@ -465,20 +461,19 @@ class s2200RIC(models.Model):
     nrric = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nrric) + ' - ' + unicode(self.orgaoemissor)
     #s2200_ric_custom#
-    #s2200_ric_custom#
     class Meta:
         db_table = r's2200_ric'
-        managed = True
+        managed = True # s2200_ric #
         ordering = ['s2200_evtadmissao', 'nrric', 'orgaoemissor']
 
 
@@ -496,20 +491,19 @@ class s2200RNE(models.Model):
     nrrne = models.CharField(max_length=14)
     orgaoemissor = models.CharField(max_length=20)
     dtexped = models.DateField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nrrne) + ' - ' + unicode(self.orgaoemissor)
     #s2200_rne_custom#
-    #s2200_rne_custom#
     class Meta:
         db_table = r's2200_rne'
-        managed = True
+        managed = True # s2200_rne #
         ordering = ['s2200_evtadmissao', 'nrrne', 'orgaoemissor']
 
 
@@ -526,20 +520,19 @@ class s2200afastamento(models.Model):
     def evento(self): return self.s2200_evtadmissao.evento()
     dtiniafast = models.DateField()
     codmotafast = models.CharField(choices=CHOICES_S2200_CODMOTAFAST, max_length=2)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.dtiniafast) + ' - ' + unicode(self.codmotafast)
     #s2200_afastamento_custom#
-    #s2200_afastamento_custom#
     class Meta:
         db_table = r's2200_afastamento'
-        managed = True
+        managed = True # s2200_afastamento #
         ordering = ['s2200_evtadmissao', 'dtiniafast', 'codmotafast']
 
 
@@ -555,20 +548,19 @@ class s2200alvaraJudicial(models.Model):
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
     nrprocjud = models.CharField(max_length=20)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nrprocjud)
     #s2200_alvarajudicial_custom#
-    #s2200_alvarajudicial_custom#
     class Meta:
         db_table = r's2200_alvarajudicial'
-        managed = True
+        managed = True # s2200_alvarajudicial #
         ordering = ['s2200_evtadmissao', 'nrprocjud']
 
 
@@ -584,20 +576,19 @@ class s2200aposentadoria(models.Model):
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
     trabaposent = models.CharField(choices=CHOICES_S2200_TRABAPOSENT, max_length=1)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.trabaposent)
     #s2200_aposentadoria_custom#
-    #s2200_aposentadoria_custom#
     class Meta:
         db_table = r's2200_aposentadoria'
-        managed = True
+        managed = True # s2200_aposentadoria #
         ordering = ['s2200_evtadmissao', 'trabaposent']
 
 
@@ -614,20 +605,19 @@ class s2200aprend(models.Model):
     def evento(self): return self.s2200_infoceletista.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S2200_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_infoceletista) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s2200_aprend_custom#
-    #s2200_aprend_custom#
     class Meta:
         db_table = r's2200_aprend'
-        managed = True
+        managed = True # s2200_aprend #
         ordering = ['s2200_infoceletista', 'tpinsc', 'nrinsc']
 
 
@@ -650,20 +640,19 @@ class s2200brasil(models.Model):
     cep = models.CharField(max_length=8)
     codmunic = models.TextField(max_length=7)
     uf = models.CharField(choices=ESTADOS, max_length=2)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
     #s2200_brasil_custom#
-    #s2200_brasil_custom#
     class Meta:
         db_table = r's2200_brasil'
-        managed = True
+        managed = True # s2200_brasil #
         ordering = ['s2200_evtadmissao', 'tplograd', 'dsclograd', 'nrlograd', 'cep', 'codmunic', 'uf']
 
 
@@ -679,20 +668,19 @@ class s2200cessao(models.Model):
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
     dtinicessao = models.DateField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.dtinicessao)
     #s2200_cessao_custom#
-    #s2200_cessao_custom#
     class Meta:
         db_table = r's2200_cessao'
-        managed = True
+        managed = True # s2200_cessao #
         ordering = ['s2200_evtadmissao', 'dtinicessao']
 
 
@@ -711,20 +699,19 @@ class s2200contato(models.Model):
     fonealternat = models.CharField(max_length=13, blank=True, null=True)
     emailprinc = models.CharField(max_length=60, blank=True, null=True)
     emailalternat = models.CharField(max_length=60, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao)
     #s2200_contato_custom#
-    #s2200_contato_custom#
     class Meta:
         db_table = r's2200_contato'
-        managed = True
+        managed = True # s2200_contato #
         ordering = ['s2200_evtadmissao']
 
 
@@ -748,20 +735,19 @@ class s2200dependente(models.Model):
     depsf = models.CharField(choices=CHOICES_S2200_DEPSF, max_length=1)
     inctrab = models.CharField(choices=CHOICES_S2200_INCTRAB, max_length=1)
     depfinsprev = models.CharField(choices=CHOICES_S2200_DEPFINSPREV, max_length=1, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.depirrf) + ' - ' + unicode(self.depsf) + ' - ' + unicode(self.inctrab)
     #s2200_dependente_custom#
-    #s2200_dependente_custom#
     class Meta:
         db_table = r's2200_dependente'
-        managed = True
+        managed = True # s2200_dependente #
         ordering = ['s2200_evtadmissao', 'tpdep', 'nmdep', 'dtnascto', 'depirrf', 'depsf', 'inctrab']
 
 
@@ -777,20 +763,19 @@ class s2200desligamento(models.Model):
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
     dtdeslig = models.DateField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.dtdeslig)
     #s2200_desligamento_custom#
-    #s2200_desligamento_custom#
     class Meta:
         db_table = r's2200_desligamento'
-        managed = True
+        managed = True # s2200_desligamento #
         ordering = ['s2200_evtadmissao', 'dtdeslig']
 
 
@@ -812,20 +797,19 @@ class s2200exterior(models.Model):
     bairro = models.CharField(max_length=90, blank=True, null=True)
     nmcid = models.CharField(max_length=50)
     codpostal = models.CharField(max_length=12, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.nmcid)
     #s2200_exterior_custom#
-    #s2200_exterior_custom#
     class Meta:
         db_table = r's2200_exterior'
-        managed = True
+        managed = True # s2200_exterior #
         ordering = ['s2200_evtadmissao', 'paisresid', 'dsclograd', 'nrlograd', 'nmcid']
 
 
@@ -841,20 +825,19 @@ class s2200filiacaoSindical(models.Model):
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
     cnpjsindtrab = models.CharField(max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.cnpjsindtrab)
     #s2200_filiacaosindical_custom#
-    #s2200_filiacaosindical_custom#
     class Meta:
         db_table = r's2200_filiacaosindical'
-        managed = True
+        managed = True # s2200_filiacaosindical #
         ordering = ['s2200_evtadmissao', 'cnpjsindtrab']
 
 
@@ -873,20 +856,19 @@ class s2200horContratual(models.Model):
     tpjornada = models.IntegerField(choices=CHOICES_S2200_TPJORNADA)
     dsctpjorn = models.CharField(max_length=100, blank=True, null=True)
     tmpparc = models.IntegerField(choices=CHOICES_S2200_TMPPARC)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tpjornada) + ' - ' + unicode(self.tmpparc)
     #s2200_horcontratual_custom#
-    #s2200_horcontratual_custom#
     class Meta:
         db_table = r's2200_horcontratual'
-        managed = True
+        managed = True # s2200_horcontratual #
         ordering = ['s2200_evtadmissao', 'tpjornada', 'tmpparc']
 
 
@@ -903,20 +885,19 @@ class s2200horario(models.Model):
     def evento(self): return self.s2200_horcontratual.evento()
     dia = models.IntegerField(choices=CHOICES_S2200_DIA)
     codhorcontrat = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_horcontratual) + ' - ' + unicode(self.dia) + ' - ' + unicode(self.codhorcontrat)
     #s2200_horario_custom#
-    #s2200_horario_custom#
     class Meta:
         db_table = r's2200_horario'
-        managed = True
+        managed = True # s2200_horario #
         ordering = ['s2200_horcontratual', 'dia', 'codhorcontrat']
 
 
@@ -933,20 +914,19 @@ class s2200ideEstabVinc(models.Model):
     def evento(self): return self.s2200_trabtemporario.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S2200_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_trabtemporario) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s2200_ideestabvinc_custom#
-    #s2200_ideestabvinc_custom#
     class Meta:
         db_table = r's2200_ideestabvinc'
-        managed = True
+        managed = True # s2200_ideestabvinc #
         ordering = ['s2200_trabtemporario', 'tpinsc', 'nrinsc']
 
 
@@ -962,20 +942,19 @@ class s2200ideTrabSubstituido(models.Model):
         related_name='%(class)s_s2200_trabtemporario')
     def evento(self): return self.s2200_trabtemporario.evento()
     cpftrabsubst = models.CharField(max_length=11)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_trabtemporario) + ' - ' + unicode(self.cpftrabsubst)
     #s2200_idetrabsubstituido_custom#
-    #s2200_idetrabsubstituido_custom#
     class Meta:
         db_table = r's2200_idetrabsubstituido'
-        managed = True
+        managed = True # s2200_idetrabsubstituido #
         ordering = ['s2200_trabtemporario', 'cpftrabsubst']
 
 
@@ -999,20 +978,19 @@ class s2200infoCeletista(models.Model):
     cnpjsindcategprof = models.CharField(max_length=14)
     opcfgts = models.IntegerField(choices=CHOICES_S2200_OPCFGTS)
     dtopcfgts = models.DateField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.dtadm) + ' - ' + unicode(self.tpadmissao) + ' - ' + unicode(self.indadmissao) + ' - ' + unicode(self.tpregjor) + ' - ' + unicode(self.natatividade) + ' - ' + unicode(self.cnpjsindcategprof) + ' - ' + unicode(self.opcfgts)
     #s2200_infoceletista_custom#
-    #s2200_infoceletista_custom#
     class Meta:
         db_table = r's2200_infoceletista'
-        managed = True
+        managed = True # s2200_infoceletista #
         ordering = ['s2200_evtadmissao', 'dtadm', 'tpadmissao', 'indadmissao', 'tpregjor', 'natatividade', 'cnpjsindcategprof', 'opcfgts']
 
 
@@ -1028,20 +1006,19 @@ class s2200infoDecJud(models.Model):
         related_name='%(class)s_s2200_infoestatutario')
     def evento(self): return self.s2200_infoestatutario.evento()
     nrprocjud = models.CharField(max_length=20)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_infoestatutario) + ' - ' + unicode(self.nrprocjud)
     #s2200_infodecjud_custom#
-    #s2200_infodecjud_custom#
     class Meta:
         db_table = r's2200_infodecjud'
-        managed = True
+        managed = True # s2200_infodecjud #
         ordering = ['s2200_infoestatutario', 'nrprocjud']
 
 
@@ -1064,20 +1041,19 @@ class s2200infoDeficiencia(models.Model):
     reabreadap = models.CharField(choices=CHOICES_S2200_REABREADAP, max_length=1)
     infocota = models.CharField(choices=CHOICES_S2200_INFOCOTA, max_length=1)
     observacao = models.CharField(max_length=255, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.deffisica) + ' - ' + unicode(self.defvisual) + ' - ' + unicode(self.defauditiva) + ' - ' + unicode(self.defmental) + ' - ' + unicode(self.defintelectual) + ' - ' + unicode(self.reabreadap) + ' - ' + unicode(self.infocota)
     #s2200_infodeficiencia_custom#
-    #s2200_infodeficiencia_custom#
     class Meta:
         db_table = r's2200_infodeficiencia'
-        managed = True
+        managed = True # s2200_infodeficiencia #
         ordering = ['s2200_evtadmissao', 'deffisica', 'defvisual', 'defauditiva', 'defmental', 'defintelectual', 'reabreadap', 'infocota']
 
 
@@ -1104,20 +1080,19 @@ class s2200infoEstatutario(models.Model):
     dtiniabono = models.DateField(blank=True, null=True)
     indparcremun = models.CharField(choices=CHOICES_S2200_INDPARCREMUN, max_length=1, blank=True, null=True)
     dtiniparc = models.DateField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.indprovim) + ' - ' + unicode(self.tpprov) + ' - ' + unicode(self.dtnomeacao) + ' - ' + unicode(self.dtposse) + ' - ' + unicode(self.dtexercicio) + ' - ' + unicode(self.dtingsvpub)
     #s2200_infoestatutario_custom#
-    #s2200_infoestatutario_custom#
     class Meta:
         db_table = r's2200_infoestatutario'
-        managed = True
+        managed = True # s2200_infoestatutario #
         ordering = ['s2200_evtadmissao', 'indprovim', 'tpprov', 'dtnomeacao', 'dtposse', 'dtexercicio', 'dtingsvpub']
 
 
@@ -1140,20 +1115,19 @@ class s2200localTrabDom(models.Model):
     cep = models.CharField(max_length=8)
     codmunic = models.TextField(max_length=7)
     uf = models.CharField(choices=ESTADOS, max_length=2)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
     #s2200_localtrabdom_custom#
-    #s2200_localtrabdom_custom#
     class Meta:
         db_table = r's2200_localtrabdom'
-        managed = True
+        managed = True # s2200_localtrabdom #
         ordering = ['s2200_evtadmissao', 'tplograd', 'dsclograd', 'nrlograd', 'cep', 'codmunic', 'uf']
 
 
@@ -1171,20 +1145,19 @@ class s2200localTrabGeral(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S2200_TPINSC)
     nrinsc = models.CharField(max_length=15)
     desccomp = models.CharField(max_length=80, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s2200_localtrabgeral_custom#
-    #s2200_localtrabgeral_custom#
     class Meta:
         db_table = r's2200_localtrabgeral'
-        managed = True
+        managed = True # s2200_localtrabgeral #
         ordering = ['s2200_evtadmissao', 'tpinsc', 'nrinsc']
 
 
@@ -1203,20 +1176,19 @@ class s2200mudancaCPF(models.Model):
     matricant = models.CharField(max_length=30)
     dtaltcpf = models.DateField()
     observacao = models.CharField(max_length=255, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.cpfant) + ' - ' + unicode(self.matricant) + ' - ' + unicode(self.dtaltcpf)
     #s2200_mudancacpf_custom#
-    #s2200_mudancacpf_custom#
     class Meta:
         db_table = r's2200_mudancacpf'
-        managed = True
+        managed = True # s2200_mudancacpf #
         ordering = ['s2200_evtadmissao', 'cpfant', 'matricant', 'dtaltcpf']
 
 
@@ -1232,20 +1204,19 @@ class s2200observacoes(models.Model):
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
     observacao = models.CharField(max_length=255)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.observacao)
     #s2200_observacoes_custom#
-    #s2200_observacoes_custom#
     class Meta:
         db_table = r's2200_observacoes'
-        managed = True
+        managed = True # s2200_observacoes #
         ordering = ['s2200_evtadmissao', 'observacao']
 
 
@@ -1265,20 +1236,19 @@ class s2200sucessaoVinc(models.Model):
     matricant = models.CharField(max_length=30, blank=True, null=True)
     dttransf = models.DateField()
     observacao = models.CharField(max_length=255, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tpinscant) + ' - ' + unicode(self.cnpjempregant) + ' - ' + unicode(self.dttransf)
     #s2200_sucessaovinc_custom#
-    #s2200_sucessaovinc_custom#
     class Meta:
         db_table = r's2200_sucessaovinc'
-        managed = True
+        managed = True # s2200_sucessaovinc #
         ordering = ['s2200_evtadmissao', 'tpinscant', 'cnpjempregant', 'dttransf']
 
 
@@ -1297,20 +1267,19 @@ class s2200trabEstrangeiro(models.Model):
     classtrabestrang = models.IntegerField(choices=CHOICES_S2200_CLASSTRABESTRANG)
     casadobr = models.CharField(choices=CHOICES_S2200_CASADOBR, max_length=1)
     filhosbr = models.CharField(choices=CHOICES_S2200_FILHOSBR, max_length=1)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.classtrabestrang) + ' - ' + unicode(self.casadobr) + ' - ' + unicode(self.filhosbr)
     #s2200_trabestrangeiro_custom#
-    #s2200_trabestrangeiro_custom#
     class Meta:
         db_table = r's2200_trabestrangeiro'
-        managed = True
+        managed = True # s2200_trabestrangeiro #
         ordering = ['s2200_evtadmissao', 'classtrabestrang', 'casadobr', 'filhosbr']
 
 
@@ -1330,20 +1299,19 @@ class s2200trabTemporario(models.Model):
     tpinclcontr = models.IntegerField(choices=CHOICES_S2200_TPINCLCONTR)
     tpinsc = models.IntegerField(choices=CHOICES_S2200_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_infoceletista) + ' - ' + unicode(self.hipleg) + ' - ' + unicode(self.justcontr) + ' - ' + unicode(self.tpinclcontr) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s2200_trabtemporario_custom#
-    #s2200_trabtemporario_custom#
     class Meta:
         db_table = r's2200_trabtemporario'
-        managed = True
+        managed = True # s2200_trabtemporario #
         ordering = ['s2200_infoceletista', 'hipleg', 'justcontr', 'tpinclcontr', 'tpinsc', 'nrinsc']
 
 
@@ -1361,20 +1329,19 @@ class s2200transfDom(models.Model):
     cpfsubstituido = models.CharField(max_length=11)
     matricant = models.CharField(max_length=30, blank=True, null=True)
     dttransf = models.DateField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.cpfsubstituido) + ' - ' + unicode(self.dttransf)
     #s2200_transfdom_custom#
-    #s2200_transfdom_custom#
     class Meta:
         db_table = r's2200_transfdom'
-        managed = True
+        managed = True # s2200_transfdom #
         ordering = ['s2200_evtadmissao', 'cpfsubstituido', 'dttransf']
 
 
