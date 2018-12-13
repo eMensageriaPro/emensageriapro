@@ -113,20 +113,19 @@ class s2306ageIntegracao(models.Model):
     cep = models.CharField(max_length=8)
     codmunic = models.TextField(max_length=7, blank=True, null=True)
     uf = models.CharField(choices=ESTADOS, max_length=2)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2306_infoestagiario) + ' - ' + unicode(self.cnpjagntinteg) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.uf)
     #s2306_ageintegracao_custom#
-    #s2306_ageintegracao_custom#
     class Meta:
         db_table = r's2306_ageintegracao'
-        managed = True
+        managed = True # s2306_ageintegracao #
         ordering = ['s2306_infoestagiario', 'cnpjagntinteg', 'nmrazao', 'dsclograd', 'nrlograd', 'cep', 'uf']
 
 
@@ -143,20 +142,19 @@ class s2306cargoFuncao(models.Model):
     def evento(self): return self.s2306_evttsvaltcontr.evento()
     codcargo = models.CharField(max_length=30)
     codfuncao = models.CharField(max_length=30, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2306_evttsvaltcontr) + ' - ' + unicode(self.codcargo)
     #s2306_cargofuncao_custom#
-    #s2306_cargofuncao_custom#
     class Meta:
         db_table = r's2306_cargofuncao'
-        managed = True
+        managed = True # s2306_cargofuncao #
         ordering = ['s2306_evttsvaltcontr', 'codcargo']
 
 
@@ -185,20 +183,19 @@ class s2306infoEstagiario(models.Model):
     cep = models.CharField(max_length=8, blank=True, null=True)
     codmunic = models.TextField(max_length=7, blank=True, null=True)
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2306_evttsvaltcontr) + ' - ' + unicode(self.natestagio) + ' - ' + unicode(self.nivestagio) + ' - ' + unicode(self.dtprevterm) + ' - ' + unicode(self.nmrazao)
     #s2306_infoestagiario_custom#
-    #s2306_infoestagiario_custom#
     class Meta:
         db_table = r's2306_infoestagiario'
-        managed = True
+        managed = True # s2306_infoestagiario #
         ordering = ['s2306_evttsvaltcontr', 'natestagio', 'nivestagio', 'dtprevterm', 'nmrazao']
 
 
@@ -214,20 +211,19 @@ class s2306infoTrabCedido(models.Model):
         related_name='%(class)s_s2306_evttsvaltcontr')
     def evento(self): return self.s2306_evttsvaltcontr.evento()
     indremuncargo = models.CharField(choices=CHOICES_S2306_INDREMUNCARGO, max_length=1)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2306_evttsvaltcontr) + ' - ' + unicode(self.indremuncargo)
     #s2306_infotrabcedido_custom#
-    #s2306_infotrabcedido_custom#
     class Meta:
         db_table = r's2306_infotrabcedido'
-        managed = True
+        managed = True # s2306_infotrabcedido #
         ordering = ['s2306_evttsvaltcontr', 'indremuncargo']
 
 
@@ -245,20 +241,19 @@ class s2306remuneracao(models.Model):
     vrsalfx = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     undsalfixo = models.IntegerField(choices=CHOICES_S2306_UNDSALFIXO)
     dscsalvar = models.CharField(max_length=255, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2306_evttsvaltcontr) + ' - ' + unicode(self.vrsalfx) + ' - ' + unicode(self.undsalfixo)
     #s2306_remuneracao_custom#
-    #s2306_remuneracao_custom#
     class Meta:
         db_table = r's2306_remuneracao'
-        managed = True
+        managed = True # s2306_remuneracao #
         ordering = ['s2306_evttsvaltcontr', 'vrsalfx', 'undsalfixo']
 
 
@@ -275,20 +270,19 @@ class s2306supervisorEstagio(models.Model):
     def evento(self): return self.s2306_infoestagiario.evento()
     cpfsupervisor = models.CharField(max_length=11)
     nmsuperv = models.CharField(max_length=70)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2306_infoestagiario) + ' - ' + unicode(self.cpfsupervisor) + ' - ' + unicode(self.nmsuperv)
     #s2306_supervisorestagio_custom#
-    #s2306_supervisorestagio_custom#
     class Meta:
         db_table = r's2306_supervisorestagio'
-        managed = True
+        managed = True # s2306_supervisorestagio #
         ordering = ['s2306_infoestagiario', 'cpfsupervisor', 'nmsuperv']
 
 

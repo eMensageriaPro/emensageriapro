@@ -129,20 +129,19 @@ class s5011basesAquis(models.Model):
     vrratcalcpr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrsenardesc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrsenarcalc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_ideestab) + ' - ' + unicode(self.indaquis) + ' - ' + unicode(self.vlraquis) + ' - ' + unicode(self.vrcpdescpr) + ' - ' + unicode(self.vrcpnret) + ' - ' + unicode(self.vrratnret) + ' - ' + unicode(self.vrsenarnret) + ' - ' + unicode(self.vrcpcalcpr) + ' - ' + unicode(self.vrratdescpr) + ' - ' + unicode(self.vrratcalcpr) + ' - ' + unicode(self.vrsenardesc) + ' - ' + unicode(self.vrsenarcalc)
     #s5011_basesaquis_custom#
-    #s5011_basesaquis_custom#
     class Meta:
         db_table = r's5011_basesaquis'
-        managed = True
+        managed = True # s5011_basesaquis #
         ordering = ['s5011_ideestab', 'indaquis', 'vlraquis', 'vrcpdescpr', 'vrcpnret', 'vrratnret', 'vrsenarnret', 'vrcpcalcpr', 'vrratdescpr', 'vrratcalcpr', 'vrsenardesc', 'vrsenarcalc']
 
 
@@ -164,20 +163,19 @@ class s5011basesAvNPort(models.Model):
     vrbccp13 = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrbcfgts = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrdesccp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_idelotacao) + ' - ' + unicode(self.vrbccp00) + ' - ' + unicode(self.vrbccp15) + ' - ' + unicode(self.vrbccp20) + ' - ' + unicode(self.vrbccp25) + ' - ' + unicode(self.vrbccp13) + ' - ' + unicode(self.vrbcfgts) + ' - ' + unicode(self.vrdesccp)
     #s5011_basesavnport_custom#
-    #s5011_basesavnport_custom#
     class Meta:
         db_table = r's5011_basesavnport'
-        managed = True
+        managed = True # s5011_basesavnport #
         ordering = ['s5011_idelotacao', 'vrbccp00', 'vrbccp15', 'vrbccp20', 'vrbccp25', 'vrbccp13', 'vrbcfgts', 'vrdesccp']
 
 
@@ -197,20 +195,19 @@ class s5011basesComerc(models.Model):
     vrcpsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vrratsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vrsenarsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_ideestab) + ' - ' + unicode(self.indcomerc) + ' - ' + unicode(self.vrbccompr)
     #s5011_basescomerc_custom#
-    #s5011_basescomerc_custom#
     class Meta:
         db_table = r's5011_basescomerc'
-        managed = True
+        managed = True # s5011_basescomerc #
         ordering = ['s5011_ideestab', 'indcomerc', 'vrbccompr']
 
 
@@ -241,20 +238,19 @@ class s5011basesRemun(models.Model):
     vrcalcsenat = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrsalfam = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrsalmat = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_idelotacao) + ' - ' + unicode(self.indincid) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.vrbccp00) + ' - ' + unicode(self.vrbccp15) + ' - ' + unicode(self.vrbccp20) + ' - ' + unicode(self.vrbccp25) + ' - ' + unicode(self.vrsuspbccp00) + ' - ' + unicode(self.vrsuspbccp15) + ' - ' + unicode(self.vrsuspbccp20) + ' - ' + unicode(self.vrsuspbccp25) + ' - ' + unicode(self.vrdescsest) + ' - ' + unicode(self.vrcalcsest) + ' - ' + unicode(self.vrdescsenat) + ' - ' + unicode(self.vrcalcsenat) + ' - ' + unicode(self.vrsalfam) + ' - ' + unicode(self.vrsalmat)
     #s5011_basesremun_custom#
-    #s5011_basesremun_custom#
     class Meta:
         db_table = r's5011_basesremun'
-        managed = True
+        managed = True # s5011_basesremun #
         ordering = ['s5011_idelotacao', 'indincid', 'codcateg', 'vrbccp00', 'vrbccp15', 'vrbccp20', 'vrbccp25', 'vrsuspbccp00', 'vrsuspbccp15', 'vrsuspbccp20', 'vrsuspbccp25', 'vrdescsest', 'vrcalcsest', 'vrdescsenat', 'vrcalcsenat', 'vrsalfam', 'vrsalmat']
 
 
@@ -273,20 +269,19 @@ class s5011dadosOpPort(models.Model):
     aliqrat = models.IntegerField(choices=CHOICES_S5011_ALIQRAT)
     fap = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
     aliqratajust = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_idelotacao) + ' - ' + unicode(self.cnpjopportuario) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.fap) + ' - ' + unicode(self.aliqratajust)
     #s5011_dadosopport_custom#
-    #s5011_dadosopport_custom#
     class Meta:
         db_table = r's5011_dadosopport'
-        managed = True
+        managed = True # s5011_dadosopport #
         ordering = ['s5011_idelotacao', 'cnpjopportuario', 'aliqrat', 'fap', 'aliqratajust']
 
 
@@ -303,20 +298,19 @@ class s5011ideEstab(models.Model):
     def evento(self): return self.s5011_evtcs.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S5011_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_evtcs) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s5011_ideestab_custom#
-    #s5011_ideestab_custom#
     class Meta:
         db_table = r's5011_ideestab'
-        managed = True
+        managed = True # s5011_ideestab #
         ordering = ['s5011_evtcs', 'tpinsc', 'nrinsc']
 
 
@@ -335,20 +329,19 @@ class s5011ideLotacao(models.Model):
     fpas = models.IntegerField()
     codtercs = models.CharField(max_length=4)
     codtercssusp = models.CharField(max_length=4, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_ideestab) + ' - ' + unicode(self.codlotacao) + ' - ' + unicode(self.fpas) + ' - ' + unicode(self.codtercs)
     #s5011_idelotacao_custom#
-    #s5011_idelotacao_custom#
     class Meta:
         db_table = r's5011_idelotacao'
-        managed = True
+        managed = True # s5011_idelotacao #
         ordering = ['s5011_ideestab', 'codlotacao', 'fpas', 'codtercs']
 
 
@@ -365,20 +358,19 @@ class s5011infoAtConc(models.Model):
     def evento(self): return self.s5011_infopj.evento()
     fatormes = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
     fator13 = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_infopj) + ' - ' + unicode(self.fatormes) + ' - ' + unicode(self.fator13)
     #s5011_infoatconc_custom#
-    #s5011_infoatconc_custom#
     class Meta:
         db_table = r's5011_infoatconc'
-        managed = True
+        managed = True # s5011_infoatconc #
         ordering = ['s5011_infopj', 'fatormes', 'fator13']
 
 
@@ -395,20 +387,19 @@ class s5011infoCPSeg(models.Model):
     def evento(self): return self.s5011_evtcs.evento()
     vrdesccp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrcpseg = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_evtcs) + ' - ' + unicode(self.vrdesccp) + ' - ' + unicode(self.vrcpseg)
     #s5011_infocpseg_custom#
-    #s5011_infocpseg_custom#
     class Meta:
         db_table = r's5011_infocpseg'
-        managed = True
+        managed = True # s5011_infocpseg #
         ordering = ['s5011_evtcs', 'vrdesccp', 'vrcpseg']
 
 
@@ -426,20 +417,19 @@ class s5011infoCRContrib(models.Model):
     tpcr = models.IntegerField()
     vrcr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrcrsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_evtcs) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrcr)
     #s5011_infocrcontrib_custom#
-    #s5011_infocrcontrib_custom#
     class Meta:
         db_table = r's5011_infocrcontrib'
-        managed = True
+        managed = True # s5011_infocrcontrib #
         ordering = ['s5011_evtcs', 'tpcr', 'vrcr']
 
 
@@ -457,20 +447,19 @@ class s5011infoCREstab(models.Model):
     tpcr = models.IntegerField()
     vrcr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrsuspcr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_ideestab) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrcr)
     #s5011_infocrestab_custom#
-    #s5011_infocrestab_custom#
     class Meta:
         db_table = r's5011_infocrestab'
-        managed = True
+        managed = True # s5011_infocrestab #
         ordering = ['s5011_ideestab', 'tpcr', 'vrcr']
 
 
@@ -486,20 +475,19 @@ class s5011infoComplObra(models.Model):
         related_name='%(class)s_s5011_infoestab')
     def evento(self): return self.s5011_infoestab.evento()
     indsubstpatrobra = models.IntegerField(choices=CHOICES_S5011_INDSUBSTPATROBRA)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_infoestab) + ' - ' + unicode(self.indsubstpatrobra)
     #s5011_infocomplobra_custom#
-    #s5011_infocomplobra_custom#
     class Meta:
         db_table = r's5011_infocomplobra'
-        managed = True
+        managed = True # s5011_infocomplobra #
         ordering = ['s5011_infoestab', 'indsubstpatrobra']
 
 
@@ -518,20 +506,19 @@ class s5011infoEmprParcial(models.Model):
     nrinsccontrat = models.CharField(max_length=14)
     tpinscprop = models.IntegerField(choices=CHOICES_S5011_TPINSCPROP)
     nrinscprop = models.CharField(max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_idelotacao) + ' - ' + unicode(self.tpinsccontrat) + ' - ' + unicode(self.nrinsccontrat) + ' - ' + unicode(self.tpinscprop) + ' - ' + unicode(self.nrinscprop)
     #s5011_infoemprparcial_custom#
-    #s5011_infoemprparcial_custom#
     class Meta:
         db_table = r's5011_infoemprparcial'
-        managed = True
+        managed = True # s5011_infoemprparcial #
         ordering = ['s5011_idelotacao', 'tpinsccontrat', 'nrinsccontrat', 'tpinscprop', 'nrinscprop']
 
 
@@ -550,20 +537,19 @@ class s5011infoEstab(models.Model):
     aliqrat = models.IntegerField(choices=CHOICES_S5011_ALIQRAT)
     fap = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
     aliqratajust = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_ideestab) + ' - ' + unicode(self.cnaeprep) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.fap) + ' - ' + unicode(self.aliqratajust)
     #s5011_infoestab_custom#
-    #s5011_infoestab_custom#
     class Meta:
         db_table = r's5011_infoestab'
-        managed = True
+        managed = True # s5011_infoestab #
         ordering = ['s5011_ideestab', 'cnaeprep', 'aliqrat', 'fap', 'aliqratajust']
 
 
@@ -582,20 +568,19 @@ class s5011infoPJ(models.Model):
     indconstr = models.IntegerField(choices=CHOICES_S5011_INDCONSTR)
     indsubstpatr = models.IntegerField(choices=CHOICES_S5011_INDSUBSTPATR, blank=True, null=True)
     percredcontrib = models.DecimalField(max_digits=15, decimal_places=2, max_length=5, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_evtcs) + ' - ' + unicode(self.indconstr)
     #s5011_infopj_custom#
-    #s5011_infopj_custom#
     class Meta:
         db_table = r's5011_infopj'
-        managed = True
+        managed = True # s5011_infopj #
         ordering = ['s5011_evtcs', 'indconstr']
 
 
@@ -611,20 +596,19 @@ class s5011infoSubstPatrOpPort(models.Model):
         related_name='%(class)s_s5011_idelotacao')
     def evento(self): return self.s5011_idelotacao.evento()
     cnpjopportuario = models.CharField(max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_idelotacao) + ' - ' + unicode(self.cnpjopportuario)
     #s5011_infosubstpatropport_custom#
-    #s5011_infosubstpatropport_custom#
     class Meta:
         db_table = r's5011_infosubstpatropport'
-        managed = True
+        managed = True # s5011_infosubstpatropport #
         ordering = ['s5011_idelotacao', 'cnpjopportuario']
 
 
@@ -640,20 +624,19 @@ class s5011infoTercSusp(models.Model):
         related_name='%(class)s_s5011_idelotacao')
     def evento(self): return self.s5011_idelotacao.evento()
     codterc = models.CharField(max_length=4)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_idelotacao) + ' - ' + unicode(self.codterc)
     #s5011_infotercsusp_custom#
-    #s5011_infotercsusp_custom#
     class Meta:
         db_table = r's5011_infotercsusp'
-        managed = True
+        managed = True # s5011_infotercsusp #
         ordering = ['s5011_idelotacao', 'codterc']
 
 

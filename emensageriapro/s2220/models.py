@@ -72,20 +72,19 @@ class s2220exame(models.Model):
     dtinimonit = models.DateField()
     dtfimmonit = models.DateField(blank=True, null=True)
     indresult = models.IntegerField(choices=CHOICES_S2220_INDRESULT, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2220_evtmonit) + ' - ' + unicode(self.dtexm) + ' - ' + unicode(self.procrealizado) + ' - ' + unicode(self.interprexm) + ' - ' + unicode(self.ordexame) + ' - ' + unicode(self.dtinimonit)
     #s2220_exame_custom#
-    #s2220_exame_custom#
     class Meta:
         db_table = r's2220_exame'
-        managed = True
+        managed = True # s2220_exame #
         ordering = ['s2220_evtmonit', 'dtexm', 'procrealizado', 'interprexm', 'ordexame', 'dtinimonit']
 
 

@@ -65,20 +65,19 @@ class r5001RCPRB(models.Model):
     crcprb = models.IntegerField()
     vlrcrcprb = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrcrcprbsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r5001_infototal) + ' - ' + unicode(self.crcprb) + ' - ' + unicode(self.vlrcrcprb)
     #r5001_rcprb_custom#
-    #r5001_rcprb_custom#
     class Meta:
         db_table = r'r5001_rcprb'
-        managed = True
+        managed = True # r5001_rcprb #
         ordering = ['r5001_infototal', 'crcprb', 'vlrcrcprb']
 
 
@@ -96,20 +95,19 @@ class r5001RComl(models.Model):
     crcoml = models.IntegerField()
     vlrcrcoml = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrcrcomlsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r5001_infototal) + ' - ' + unicode(self.crcoml) + ' - ' + unicode(self.vlrcrcoml)
     #r5001_rcoml_custom#
-    #r5001_rcoml_custom#
     class Meta:
         db_table = r'r5001_rcoml'
-        managed = True
+        managed = True # r5001_rcoml #
         ordering = ['r5001_infototal', 'crcoml', 'vlrcrcoml']
 
 
@@ -131,20 +129,19 @@ class r5001RPrest(models.Model):
     vlrtotalretadic = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vlrtotalnretprinc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vlrtotalnretadic = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r5001_infototal) + ' - ' + unicode(self.tpinsctomador) + ' - ' + unicode(self.nrinsctomador) + ' - ' + unicode(self.vlrtotalbaseret) + ' - ' + unicode(self.vlrtotalretprinc)
     #r5001_rprest_custom#
-    #r5001_rprest_custom#
     class Meta:
         db_table = r'r5001_rprest'
-        managed = True
+        managed = True # r5001_rprest #
         ordering = ['r5001_infototal', 'tpinsctomador', 'nrinsctomador', 'vlrtotalbaseret', 'vlrtotalretprinc']
 
 
@@ -163,20 +160,19 @@ class r5001RRecEspetDesp(models.Model):
     vlrreceitatotal = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrcrrecespetdesp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrcrrecespetdespsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r5001_infototal) + ' - ' + unicode(self.crrecespetdesp) + ' - ' + unicode(self.vlrreceitatotal) + ' - ' + unicode(self.vlrcrrecespetdesp)
     #r5001_rrecespetdesp_custom#
-    #r5001_rrecespetdesp_custom#
     class Meta:
         db_table = r'r5001_rrecespetdesp'
-        managed = True
+        managed = True # r5001_rrecespetdesp #
         ordering = ['r5001_infototal', 'crrecespetdesp', 'vlrreceitatotal', 'vlrcrrecespetdesp']
 
 
@@ -196,20 +192,19 @@ class r5001RRecRepAD(models.Model):
     crrecrepad = models.IntegerField()
     vlrcrrecrepad = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrcrrecrepadsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r5001_infototal) + ' - ' + unicode(self.cnpjassocdesp) + ' - ' + unicode(self.vlrtotalrep) + ' - ' + unicode(self.crrecrepad) + ' - ' + unicode(self.vlrcrrecrepad)
     #r5001_rrecrepad_custom#
-    #r5001_rrecrepad_custom#
     class Meta:
         db_table = r'r5001_rrecrepad'
-        managed = True
+        managed = True # r5001_rrecrepad #
         ordering = ['r5001_infototal', 'cnpjassocdesp', 'vlrtotalrep', 'crrecrepad', 'vlrcrrecrepad']
 
 
@@ -227,20 +222,19 @@ class r5001RTom(models.Model):
     cnpjprestador = models.CharField(max_length=14)
     cno = models.CharField(max_length=12, blank=True, null=True)
     vlrtotalbaseret = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r5001_infototal) + ' - ' + unicode(self.cnpjprestador) + ' - ' + unicode(self.vlrtotalbaseret)
     #r5001_rtom_custom#
-    #r5001_rtom_custom#
     class Meta:
         db_table = r'r5001_rtom'
-        managed = True
+        managed = True # r5001_rtom #
         ordering = ['r5001_infototal', 'cnpjprestador', 'vlrtotalbaseret']
 
 
@@ -258,20 +252,19 @@ class r5001infoCRTom(models.Model):
     crtom = models.IntegerField()
     vlrcrtom = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vlrcrtomsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r5001_rtom) + ' - ' + unicode(self.crtom)
     #r5001_infocrtom_custom#
-    #r5001_infocrtom_custom#
     class Meta:
         db_table = r'r5001_infocrtom'
-        managed = True
+        managed = True # r5001_infocrtom #
         ordering = ['r5001_rtom', 'crtom']
 
 
@@ -289,20 +282,19 @@ class r5001infoTotal(models.Model):
     nrrecarqbase = models.CharField(max_length=52, blank=True, null=True)
     tpinsc = models.IntegerField(choices=CHOICES_R5001_TPINSC)
     nrinsc = models.CharField(max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r5001_evttotal) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #r5001_infototal_custom#
-    #r5001_infototal_custom#
     class Meta:
         db_table = r'r5001_infototal'
-        managed = True
+        managed = True # r5001_infototal #
         ordering = ['r5001_evttotal', 'tpinsc', 'nrinsc']
 
 
@@ -321,20 +313,19 @@ class r5001regOcorrs(models.Model):
     localerroaviso = models.CharField(max_length=200)
     codresp = models.CharField(max_length=6)
     dscresp = models.CharField(max_length=999)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r5001_evttotal) + ' - ' + unicode(self.tpocorr) + ' - ' + unicode(self.localerroaviso) + ' - ' + unicode(self.codresp) + ' - ' + unicode(self.dscresp)
     #r5001_regocorrs_custom#
-    #r5001_regocorrs_custom#
     class Meta:
         db_table = r'r5001_regocorrs'
-        managed = True
+        managed = True # r5001_regocorrs #
         ordering = ['r5001_evttotal', 'tpocorr', 'localerroaviso', 'codresp', 'dscresp']
 
 

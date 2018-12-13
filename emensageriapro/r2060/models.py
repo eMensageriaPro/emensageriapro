@@ -74,20 +74,19 @@ class r2060infoProc(models.Model):
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField(blank=True, null=True)
     vlrcprbsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r2060_tipocod) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.vlrcprbsusp)
     #r2060_infoproc_custom#
-    #r2060_infoproc_custom#
     class Meta:
         db_table = r'r2060_infoproc'
-        managed = True
+        managed = True # r2060_infoproc #
         ordering = ['r2060_tipocod', 'tpproc', 'nrproc', 'vlrcprbsusp']
 
 
@@ -107,20 +106,19 @@ class r2060tipoAjuste(models.Model):
     vlrajuste = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     descajuste = models.CharField(max_length=20)
     dtajuste = models.CharField(max_length=7)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r2060_tipocod) + ' - ' + unicode(self.tpajuste) + ' - ' + unicode(self.codajuste) + ' - ' + unicode(self.vlrajuste) + ' - ' + unicode(self.descajuste) + ' - ' + unicode(self.dtajuste)
     #r2060_tipoajuste_custom#
-    #r2060_tipoajuste_custom#
     class Meta:
         db_table = r'r2060_tipoajuste'
-        managed = True
+        managed = True # r2060_tipoajuste #
         ordering = ['r2060_tipocod', 'tpajuste', 'codajuste', 'vlrajuste', 'descajuste', 'dtajuste']
 
 
@@ -141,20 +139,19 @@ class r2060tipoCod(models.Model):
     vlradicrecbruta = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrbccprb = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrcprbapur = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r2060_evtcprb) + ' - ' + unicode(self.codativecon) + ' - ' + unicode(self.vlrrecbrutaativ) + ' - ' + unicode(self.vlrexcrecbruta) + ' - ' + unicode(self.vlradicrecbruta) + ' - ' + unicode(self.vlrbccprb)
     #r2060_tipocod_custom#
-    #r2060_tipocod_custom#
     class Meta:
         db_table = r'r2060_tipocod'
-        managed = True
+        managed = True # r2060_tipocod #
         ordering = ['r2060_evtcprb', 'codativecon', 'vlrrecbrutaativ', 'vlrexcrecbruta', 'vlradicrecbruta', 'vlrbccprb']
 
 

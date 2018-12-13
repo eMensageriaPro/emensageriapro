@@ -140,20 +140,19 @@ class s1030alteracao(models.Model):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
     nmcargo = models.CharField(max_length=100)
     codcbo = models.CharField(max_length=6)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1030_evttabcargo) + ' - ' + unicode(self.codcargo) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.nmcargo) + ' - ' + unicode(self.codcbo)
     #s1030_alteracao_custom#
-    #s1030_alteracao_custom#
     class Meta:
         db_table = r's1030_alteracao'
-        managed = True
+        managed = True # s1030_alteracao #
         ordering = ['s1030_evttabcargo', 'codcargo', 'inivalid', 'nmcargo', 'codcbo']
 
 
@@ -175,20 +174,19 @@ class s1030alteracaocargoPublico(models.Model):
     nrlei = models.CharField(max_length=12)
     dtlei = models.DateField()
     sitcargo = models.IntegerField(choices=CHOICES_S1030_ALTERACAO_SITCARGO)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1030_alteracao) + ' - ' + unicode(self.acumcargo) + ' - ' + unicode(self.contagemesp) + ' - ' + unicode(self.dedicexcl) + ' - ' + unicode(self.nrlei) + ' - ' + unicode(self.dtlei) + ' - ' + unicode(self.sitcargo)
     #s1030_alteracao_cargopublico_custom#
-    #s1030_alteracao_cargopublico_custom#
     class Meta:
         db_table = r's1030_alteracao_cargopublico'
-        managed = True
+        managed = True # s1030_alteracao_cargopublico #
         ordering = ['s1030_alteracao', 'acumcargo', 'contagemesp', 'dedicexcl', 'nrlei', 'dtlei', 'sitcargo']
 
 
@@ -205,20 +203,19 @@ class s1030alteracaonovaValidade(models.Model):
     def evento(self): return self.s1030_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1030_alteracao) + ' - ' + unicode(self.inivalid)
     #s1030_alteracao_novavalidade_custom#
-    #s1030_alteracao_novavalidade_custom#
     class Meta:
         db_table = r's1030_alteracao_novavalidade'
-        managed = True
+        managed = True # s1030_alteracao_novavalidade #
         ordering = ['s1030_alteracao', 'inivalid']
 
 
@@ -236,20 +233,19 @@ class s1030exclusao(models.Model):
     codcargo = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1030_evttabcargo) + ' - ' + unicode(self.codcargo) + ' - ' + unicode(self.inivalid)
     #s1030_exclusao_custom#
-    #s1030_exclusao_custom#
     class Meta:
         db_table = r's1030_exclusao'
-        managed = True
+        managed = True # s1030_exclusao #
         ordering = ['s1030_evttabcargo', 'codcargo', 'inivalid']
 
 
@@ -269,20 +265,19 @@ class s1030inclusao(models.Model):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
     nmcargo = models.CharField(max_length=100)
     codcbo = models.CharField(max_length=6)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1030_evttabcargo) + ' - ' + unicode(self.codcargo) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.nmcargo) + ' - ' + unicode(self.codcbo)
     #s1030_inclusao_custom#
-    #s1030_inclusao_custom#
     class Meta:
         db_table = r's1030_inclusao'
-        managed = True
+        managed = True # s1030_inclusao #
         ordering = ['s1030_evttabcargo', 'codcargo', 'inivalid', 'nmcargo', 'codcbo']
 
 
@@ -304,20 +299,19 @@ class s1030inclusaocargoPublico(models.Model):
     nrlei = models.CharField(max_length=12)
     dtlei = models.DateField()
     sitcargo = models.IntegerField(choices=CHOICES_S1030_INCLUSAO_SITCARGO)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1030_inclusao) + ' - ' + unicode(self.acumcargo) + ' - ' + unicode(self.contagemesp) + ' - ' + unicode(self.dedicexcl) + ' - ' + unicode(self.nrlei) + ' - ' + unicode(self.dtlei) + ' - ' + unicode(self.sitcargo)
     #s1030_inclusao_cargopublico_custom#
-    #s1030_inclusao_cargopublico_custom#
     class Meta:
         db_table = r's1030_inclusao_cargopublico'
-        managed = True
+        managed = True # s1030_inclusao_cargopublico #
         ordering = ['s1030_inclusao', 'acumcargo', 'contagemesp', 'dedicexcl', 'nrlei', 'dtlei', 'sitcargo']
 
 

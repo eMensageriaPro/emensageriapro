@@ -122,20 +122,19 @@ class s5013basePerAntE(models.Model):
     def evento(self): return self.s5013_infobaseperante.evento()
     tpvalore = models.IntegerField(choices=CHOICES_S5013_TPVALORE)
     basefgtse = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5013_infobaseperante) + ' - ' + unicode(self.tpvalore) + ' - ' + unicode(self.basefgtse)
     #s5013_baseperante_custom#
-    #s5013_baseperante_custom#
     class Meta:
         db_table = r's5013_baseperante'
-        managed = True
+        managed = True # s5013_baseperante #
         ordering = ['s5013_infobaseperante', 'tpvalore', 'basefgtse']
 
 
@@ -152,20 +151,19 @@ class s5013basePerApur(models.Model):
     def evento(self): return self.s5013_evtfgts.evento()
     tpvalor = models.IntegerField(choices=CHOICES_S5013_TPVALOR)
     basefgts = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5013_evtfgts) + ' - ' + unicode(self.tpvalor) + ' - ' + unicode(self.basefgts)
     #s5013_baseperapur_custom#
-    #s5013_baseperapur_custom#
     class Meta:
         db_table = r's5013_baseperapur'
-        managed = True
+        managed = True # s5013_baseperapur #
         ordering = ['s5013_evtfgts', 'tpvalor', 'basefgts']
 
 
@@ -182,20 +180,19 @@ class s5013dpsPerAntE(models.Model):
     def evento(self): return self.s5013_infodpsperante.evento()
     tpdpse = models.IntegerField(choices=CHOICES_S5013_TPDPSE)
     vrfgtse = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5013_infodpsperante) + ' - ' + unicode(self.tpdpse) + ' - ' + unicode(self.vrfgtse)
     #s5013_dpsperante_custom#
-    #s5013_dpsperante_custom#
     class Meta:
         db_table = r's5013_dpsperante'
-        managed = True
+        managed = True # s5013_dpsperante #
         ordering = ['s5013_infodpsperante', 'tpdpse', 'vrfgtse']
 
 
@@ -212,20 +209,19 @@ class s5013dpsPerApur(models.Model):
     def evento(self): return self.s5013_evtfgts.evento()
     tpdps = models.IntegerField(choices=CHOICES_S5013_TPDPS)
     vrfgts = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5013_evtfgts) + ' - ' + unicode(self.tpdps) + ' - ' + unicode(self.vrfgts)
     #s5013_dpsperapur_custom#
-    #s5013_dpsperapur_custom#
     class Meta:
         db_table = r's5013_dpsperapur'
-        managed = True
+        managed = True # s5013_dpsperapur #
         ordering = ['s5013_evtfgts', 'tpdps', 'vrfgts']
 
 
@@ -241,20 +237,19 @@ class s5013infoBasePerAntE(models.Model):
         related_name='%(class)s_s5013_evtfgts')
     def evento(self): return self.s5013_evtfgts.evento()
     perref = models.CharField(max_length=7)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5013_evtfgts) + ' - ' + unicode(self.perref)
     #s5013_infobaseperante_custom#
-    #s5013_infobaseperante_custom#
     class Meta:
         db_table = r's5013_infobaseperante'
-        managed = True
+        managed = True # s5013_infobaseperante #
         ordering = ['s5013_evtfgts', 'perref']
 
 
@@ -270,20 +265,19 @@ class s5013infoDpsPerAntE(models.Model):
         related_name='%(class)s_s5013_evtfgts')
     def evento(self): return self.s5013_evtfgts.evento()
     perref = models.CharField(max_length=7)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5013_evtfgts) + ' - ' + unicode(self.perref)
     #s5013_infodpsperante_custom#
-    #s5013_infodpsperante_custom#
     class Meta:
         db_table = r's5013_infodpsperante'
-        managed = True
+        managed = True # s5013_infodpsperante #
         ordering = ['s5013_evtfgts', 'perref']
 
 

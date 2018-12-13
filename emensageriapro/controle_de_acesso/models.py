@@ -67,20 +67,19 @@ class Auditoria(models.Model):
         related_name='%(class)s_operador', blank=True)
     data_hora = models.DateTimeField(blank=True)
     tipo = models.IntegerField(choices=AUDITORIA_TIPO, blank=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.tabela) + ' - ' + unicode(self.identidade) + ' - ' + unicode(self.data_hora) + ' - ' + unicode(self.tipo)
     #auditoria_custom#
-    #auditoria_custom#
     class Meta:
         db_table = r'auditoria'
-        managed = True
+        managed = True # auditoria #
         ordering = ['identidade']
 
 
@@ -97,20 +96,19 @@ class ConfigModulos(models.Model):
     modulo_pai = models.ForeignKey('ConfigModulos',
         related_name='%(class)s_modulo_pai', blank=True, null=True)
     ordem = models.IntegerField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.titulo)
     #config_modulos_custom#
-    #config_modulos_custom#
     class Meta:
         db_table = r'config_modulos'
-        managed = True
+        managed = True # config_modulos #
         ordering = ['titulo']
 
 
@@ -129,20 +127,19 @@ class ConfigPaginas(models.Model):
     exibe_menu = models.IntegerField(choices=SIM_NAO)
     tipo = models.IntegerField(choices=TIPOS_CONFIG_PAGINAS)
     ordem = models.IntegerField()
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.titulo)
     #config_paginas_custom#
-    #config_paginas_custom#
     class Meta:
         db_table = r'config_paginas'
-        managed = True
+        managed = True # config_paginas #
         ordering = ['titulo']
 
 
@@ -158,20 +155,19 @@ class ConfigPerfis(models.Model):
     permissoes = models.TextField(blank=True, null=True)
     modulos_permitidos = models.TextField(blank=True, null=True)
     paginas_permitidas = models.TextField(blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.titulo)
     #config_perfis_custom#
-    #config_perfis_custom#
     class Meta:
         db_table = r'config_perfis'
-        managed = True
+        managed = True # config_perfis #
         ordering = ['titulo']
 
 
@@ -192,20 +188,19 @@ class ConfigPermissoes(models.Model):
     permite_editar = models.IntegerField(choices=SIM_NAO)
     permite_visualizar = models.IntegerField(choices=SIM_NAO)
     permite_apagar = models.IntegerField(choices=SIM_NAO)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.config_perfis) + ' - ' + unicode(self.config_paginas)
     #config_permissoes_custom#
-    #config_permissoes_custom#
     class Meta:
         db_table = r'config_permissoes'
-        managed = True
+        managed = True # config_permissoes #
         ordering = ['config_perfis', 'config_paginas']
 
 
@@ -234,13 +229,13 @@ class Usuarios(models.Model):
     """
     config_perfis = models.ForeignKey('ConfigPerfis',
         related_name='%(class)s_config_perfis')
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.user.first_name) + unicode(self.user.last_name)
 
@@ -256,10 +251,9 @@ class Usuarios(models.Model):
     def email(self):
         return self.user.email
     #usuarios_custom#
-    #usuarios_custom#
     class Meta:
         db_table = r'usuarios'
-        managed = True
+        managed = True # usuarios #
         #ordering = ['first_name', 'last_name']
 
 

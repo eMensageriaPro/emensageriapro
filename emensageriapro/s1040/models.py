@@ -90,20 +90,19 @@ class s1040alteracao(models.Model):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
     dscfuncao = models.CharField(max_length=100)
     codcbo = models.CharField(max_length=6)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1040_evttabfuncao) + ' - ' + unicode(self.codfuncao) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.dscfuncao) + ' - ' + unicode(self.codcbo)
     #s1040_alteracao_custom#
-    #s1040_alteracao_custom#
     class Meta:
         db_table = r's1040_alteracao'
-        managed = True
+        managed = True # s1040_alteracao #
         ordering = ['s1040_evttabfuncao', 'codfuncao', 'inivalid', 'dscfuncao', 'codcbo']
 
 
@@ -120,20 +119,19 @@ class s1040alteracaonovaValidade(models.Model):
     def evento(self): return self.s1040_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1040_alteracao) + ' - ' + unicode(self.inivalid)
     #s1040_alteracao_novavalidade_custom#
-    #s1040_alteracao_novavalidade_custom#
     class Meta:
         db_table = r's1040_alteracao_novavalidade'
-        managed = True
+        managed = True # s1040_alteracao_novavalidade #
         ordering = ['s1040_alteracao', 'inivalid']
 
 
@@ -151,20 +149,19 @@ class s1040exclusao(models.Model):
     codfuncao = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1040_evttabfuncao) + ' - ' + unicode(self.codfuncao) + ' - ' + unicode(self.inivalid)
     #s1040_exclusao_custom#
-    #s1040_exclusao_custom#
     class Meta:
         db_table = r's1040_exclusao'
-        managed = True
+        managed = True # s1040_exclusao #
         ordering = ['s1040_evttabfuncao', 'codfuncao', 'inivalid']
 
 
@@ -184,20 +181,19 @@ class s1040inclusao(models.Model):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
     dscfuncao = models.CharField(max_length=100)
     codcbo = models.CharField(max_length=6)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1040_evttabfuncao) + ' - ' + unicode(self.codfuncao) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.dscfuncao) + ' - ' + unicode(self.codcbo)
     #s1040_inclusao_custom#
-    #s1040_inclusao_custom#
     class Meta:
         db_table = r's1040_inclusao'
-        managed = True
+        managed = True # s1040_inclusao #
         ordering = ['s1040_evttabfuncao', 'codfuncao', 'inivalid', 'dscfuncao', 'codcbo']
 
 

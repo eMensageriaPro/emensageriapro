@@ -103,20 +103,19 @@ class s1080alteracao(models.Model):
     aliqrat = models.IntegerField(choices=CHOICES_S1080_ALTERACAO_ALIQRAT)
     fap = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
     aliqratajust = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1080_evttaboperport) + ' - ' + unicode(self.cnpjopportuario) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.fap) + ' - ' + unicode(self.aliqratajust)
     #s1080_alteracao_custom#
-    #s1080_alteracao_custom#
     class Meta:
         db_table = r's1080_alteracao'
-        managed = True
+        managed = True # s1080_alteracao #
         ordering = ['s1080_evttaboperport', 'cnpjopportuario', 'inivalid', 'aliqrat', 'fap', 'aliqratajust']
 
 
@@ -133,20 +132,19 @@ class s1080alteracaonovaValidade(models.Model):
     def evento(self): return self.s1080_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1080_alteracao) + ' - ' + unicode(self.inivalid)
     #s1080_alteracao_novavalidade_custom#
-    #s1080_alteracao_novavalidade_custom#
     class Meta:
         db_table = r's1080_alteracao_novavalidade'
-        managed = True
+        managed = True # s1080_alteracao_novavalidade #
         ordering = ['s1080_alteracao', 'inivalid']
 
 
@@ -164,20 +162,19 @@ class s1080exclusao(models.Model):
     cnpjopportuario = models.CharField(max_length=14)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1080_evttaboperport) + ' - ' + unicode(self.cnpjopportuario) + ' - ' + unicode(self.inivalid)
     #s1080_exclusao_custom#
-    #s1080_exclusao_custom#
     class Meta:
         db_table = r's1080_exclusao'
-        managed = True
+        managed = True # s1080_exclusao #
         ordering = ['s1080_evttaboperport', 'cnpjopportuario', 'inivalid']
 
 
@@ -198,20 +195,19 @@ class s1080inclusao(models.Model):
     aliqrat = models.IntegerField(choices=CHOICES_S1080_INCLUSAO_ALIQRAT)
     fap = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
     aliqratajust = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1080_evttaboperport) + ' - ' + unicode(self.cnpjopportuario) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.fap) + ' - ' + unicode(self.aliqratajust)
     #s1080_inclusao_custom#
-    #s1080_inclusao_custom#
     class Meta:
         db_table = r's1080_inclusao'
-        managed = True
+        managed = True # s1080_inclusao #
         ordering = ['s1080_evttaboperport', 'cnpjopportuario', 'inivalid', 'aliqrat', 'fap', 'aliqratajust']
 
 

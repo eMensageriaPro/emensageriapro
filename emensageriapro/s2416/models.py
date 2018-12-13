@@ -57,20 +57,19 @@ class s2416homologTC(models.Model):
         related_name='%(class)s_s2416_evtcdbenalt')
     def evento(self): return self.s2416_evtcdbenalt.evento()
     nratolegal = models.CharField(max_length=20)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2416_evtcdbenalt) + ' - ' + unicode(self.nratolegal)
     #s2416_homologtc_custom#
-    #s2416_homologtc_custom#
     class Meta:
         db_table = r's2416_homologtc'
-        managed = True
+        managed = True # s2416_homologtc #
         ordering = ['s2416_evtcdbenalt', 'nratolegal']
 
 
@@ -86,20 +85,19 @@ class s2416infoPenMorte(models.Model):
         related_name='%(class)s_s2416_evtcdbenalt')
     def evento(self): return self.s2416_evtcdbenalt.evento()
     tppenmorte = models.IntegerField(choices=CHOICES_S2416_TPPENMORTE)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2416_evtcdbenalt) + ' - ' + unicode(self.tppenmorte)
     #s2416_infopenmorte_custom#
-    #s2416_infopenmorte_custom#
     class Meta:
         db_table = r's2416_infopenmorte'
-        managed = True
+        managed = True # s2416_infopenmorte #
         ordering = ['s2416_evtcdbenalt', 'tppenmorte']
 
 
@@ -116,20 +114,19 @@ class s2416suspensao(models.Model):
     def evento(self): return self.s2416_evtcdbenalt.evento()
     mtvsuspensao = models.CharField(choices=CHOICES_S2416_MTVSUSPENSAO, max_length=2)
     dscsuspensao = models.CharField(max_length=255, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2416_evtcdbenalt) + ' - ' + unicode(self.mtvsuspensao)
     #s2416_suspensao_custom#
-    #s2416_suspensao_custom#
     class Meta:
         db_table = r's2416_suspensao'
-        managed = True
+        managed = True # s2416_suspensao #
         ordering = ['s2416_evtcdbenalt', 'mtvsuspensao']
 
 

@@ -69,20 +69,19 @@ class s1260ideAdquir(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S1260_TPINSC)
     nrinsc = models.CharField(max_length=15)
     vrcomerc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1260_tpcomerc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.vrcomerc)
     #s1260_ideadquir_custom#
-    #s1260_ideadquir_custom#
     class Meta:
         db_table = r's1260_ideadquir'
-        managed = True
+        managed = True # s1260_ideadquir #
         ordering = ['s1260_tpcomerc', 'tpinsc', 'nrinsc', 'vrcomerc']
 
 
@@ -103,20 +102,19 @@ class s1260infoProcJud(models.Model):
     vrcpsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vrratsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vrsenarsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1260_tpcomerc) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.codsusp)
     #s1260_infoprocjud_custom#
-    #s1260_infoprocjud_custom#
     class Meta:
         db_table = r's1260_infoprocjud'
-        managed = True
+        managed = True # s1260_infoprocjud #
         ordering = ['s1260_tpcomerc', 'tpproc', 'nrproc', 'codsusp']
 
 
@@ -138,20 +136,19 @@ class s1260nfs(models.Model):
     vrcpdescpr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrratdescpr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrsenardesc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1260_ideadquir) + ' - ' + unicode(self.nrdocto) + ' - ' + unicode(self.dtemisnf) + ' - ' + unicode(self.vlrbruto) + ' - ' + unicode(self.vrcpdescpr) + ' - ' + unicode(self.vrratdescpr) + ' - ' + unicode(self.vrsenardesc)
     #s1260_nfs_custom#
-    #s1260_nfs_custom#
     class Meta:
         db_table = r's1260_nfs'
-        managed = True
+        managed = True # s1260_nfs #
         ordering = ['s1260_ideadquir', 'nrdocto', 'dtemisnf', 'vlrbruto', 'vrcpdescpr', 'vrratdescpr', 'vrsenardesc']
 
 
@@ -168,20 +165,19 @@ class s1260tpComerc(models.Model):
     def evento(self): return self.s1260_evtcomprod.evento()
     indcomerc = models.IntegerField(choices=CHOICES_S1260_INDCOMERC)
     vrtotcom = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1260_evtcomprod) + ' - ' + unicode(self.indcomerc) + ' - ' + unicode(self.vrtotcom)
     #s1260_tpcomerc_custom#
-    #s1260_tpcomerc_custom#
     class Meta:
         db_table = r's1260_tpcomerc'
-        managed = True
+        managed = True # s1260_tpcomerc #
         ordering = ['s1260_evtcomprod', 'indcomerc', 'vrtotcom']
 
 

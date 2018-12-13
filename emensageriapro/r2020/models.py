@@ -60,20 +60,19 @@ class r2020infoProcRetAd(models.Model):
     nrprocretadic = models.CharField(max_length=21)
     codsuspadic = models.IntegerField(blank=True, null=True)
     valoradic = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r2020_evtservprest) + ' - ' + unicode(self.tpprocretadic) + ' - ' + unicode(self.nrprocretadic) + ' - ' + unicode(self.valoradic)
     #r2020_infoprocretad_custom#
-    #r2020_infoprocretad_custom#
     class Meta:
         db_table = r'r2020_infoprocretad'
-        managed = True
+        managed = True # r2020_infoprocretad #
         ordering = ['r2020_evtservprest', 'tpprocretadic', 'nrprocretadic', 'valoradic']
 
 
@@ -92,20 +91,19 @@ class r2020infoProcRetPr(models.Model):
     nrprocretprinc = models.CharField(max_length=21)
     codsuspprinc = models.IntegerField(blank=True, null=True)
     valorprinc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r2020_evtservprest) + ' - ' + unicode(self.tpprocretprinc) + ' - ' + unicode(self.nrprocretprinc) + ' - ' + unicode(self.valorprinc)
     #r2020_infoprocretpr_custom#
-    #r2020_infoprocretpr_custom#
     class Meta:
         db_table = r'r2020_infoprocretpr'
-        managed = True
+        managed = True # r2020_infoprocretpr #
         ordering = ['r2020_evtservprest', 'tpprocretprinc', 'nrprocretprinc', 'valorprinc']
 
 
@@ -130,20 +128,19 @@ class r2020infoTpServ(models.Model):
     vlrservicos25 = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vlradicional = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vlrnretadic = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r2020_nfs) + ' - ' + unicode(self.tpservico) + ' - ' + unicode(self.vlrbaseret) + ' - ' + unicode(self.vlrretencao)
     #r2020_infotpserv_custom#
-    #r2020_infotpserv_custom#
     class Meta:
         db_table = r'r2020_infotpserv'
-        managed = True
+        managed = True # r2020_infotpserv #
         ordering = ['r2020_nfs', 'tpservico', 'vlrbaseret', 'vlrretencao']
 
 
@@ -163,20 +160,19 @@ class r2020nfs(models.Model):
     dtemissaonf = models.DateField()
     vlrbruto = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     obs = models.CharField(max_length=250, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.r2020_evtservprest) + ' - ' + unicode(self.serie) + ' - ' + unicode(self.numdocto) + ' - ' + unicode(self.dtemissaonf) + ' - ' + unicode(self.vlrbruto)
     #r2020_nfs_custom#
-    #r2020_nfs_custom#
     class Meta:
         db_table = r'r2020_nfs'
-        managed = True
+        managed = True # r2020_nfs #
         ordering = ['r2020_evtservprest', 'serie', 'numdocto', 'dtemissaonf', 'vlrbruto']
 
 

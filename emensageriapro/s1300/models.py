@@ -56,20 +56,19 @@ class s1300contribSind(models.Model):
     cnpjsindic = models.CharField(max_length=14)
     tpcontribsind = models.IntegerField(choices=CHOICES_S1300_TPCONTRIBSIND)
     vlrcontribsind = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1300_evtcontrsindpatr) + ' - ' + unicode(self.cnpjsindic) + ' - ' + unicode(self.tpcontribsind) + ' - ' + unicode(self.vlrcontribsind)
     #s1300_contribsind_custom#
-    #s1300_contribsind_custom#
     class Meta:
         db_table = r's1300_contribsind'
-        managed = True
+        managed = True # s1300_contribsind #
         ordering = ['s1300_evtcontrsindpatr', 'cnpjsindic', 'tpcontribsind', 'vlrcontribsind']
 
 

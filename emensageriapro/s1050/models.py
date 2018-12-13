@@ -112,20 +112,19 @@ class s1050alteracao(models.Model):
     hrsaida = models.CharField(max_length=4)
     durjornada = models.IntegerField()
     perhorflexivel = models.CharField(choices=CHOICES_S1050_ALTERACAO_PERHORFLEXIVEL, max_length=1)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1050_evttabhortur) + ' - ' + unicode(self.codhorcontrat) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.hrentr) + ' - ' + unicode(self.hrsaida) + ' - ' + unicode(self.durjornada) + ' - ' + unicode(self.perhorflexivel)
     #s1050_alteracao_custom#
-    #s1050_alteracao_custom#
     class Meta:
         db_table = r's1050_alteracao'
-        managed = True
+        managed = True # s1050_alteracao #
         ordering = ['s1050_evttabhortur', 'codhorcontrat', 'inivalid', 'hrentr', 'hrsaida', 'durjornada', 'perhorflexivel']
 
 
@@ -144,20 +143,19 @@ class s1050alteracaohorarioIntervalo(models.Model):
     durinterv = models.IntegerField()
     iniinterv = models.CharField(max_length=4, blank=True, null=True)
     terminterv = models.CharField(max_length=4, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1050_alteracao) + ' - ' + unicode(self.tpinterv) + ' - ' + unicode(self.durinterv)
     #s1050_alteracao_horariointervalo_custom#
-    #s1050_alteracao_horariointervalo_custom#
     class Meta:
         db_table = r's1050_alteracao_horariointervalo'
-        managed = True
+        managed = True # s1050_alteracao_horariointervalo #
         ordering = ['s1050_alteracao', 'tpinterv', 'durinterv']
 
 
@@ -174,20 +172,19 @@ class s1050alteracaonovaValidade(models.Model):
     def evento(self): return self.s1050_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1050_alteracao) + ' - ' + unicode(self.inivalid)
     #s1050_alteracao_novavalidade_custom#
-    #s1050_alteracao_novavalidade_custom#
     class Meta:
         db_table = r's1050_alteracao_novavalidade'
-        managed = True
+        managed = True # s1050_alteracao_novavalidade #
         ordering = ['s1050_alteracao', 'inivalid']
 
 
@@ -205,20 +202,19 @@ class s1050exclusao(models.Model):
     codhorcontrat = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1050_evttabhortur) + ' - ' + unicode(self.codhorcontrat) + ' - ' + unicode(self.inivalid)
     #s1050_exclusao_custom#
-    #s1050_exclusao_custom#
     class Meta:
         db_table = r's1050_exclusao'
-        managed = True
+        managed = True # s1050_exclusao #
         ordering = ['s1050_evttabhortur', 'codhorcontrat', 'inivalid']
 
 
@@ -240,20 +236,19 @@ class s1050inclusao(models.Model):
     hrsaida = models.CharField(max_length=4)
     durjornada = models.IntegerField()
     perhorflexivel = models.CharField(choices=CHOICES_S1050_INCLUSAO_PERHORFLEXIVEL, max_length=1)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1050_evttabhortur) + ' - ' + unicode(self.codhorcontrat) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.hrentr) + ' - ' + unicode(self.hrsaida) + ' - ' + unicode(self.durjornada) + ' - ' + unicode(self.perhorflexivel)
     #s1050_inclusao_custom#
-    #s1050_inclusao_custom#
     class Meta:
         db_table = r's1050_inclusao'
-        managed = True
+        managed = True # s1050_inclusao #
         ordering = ['s1050_evttabhortur', 'codhorcontrat', 'inivalid', 'hrentr', 'hrsaida', 'durjornada', 'perhorflexivel']
 
 
@@ -272,20 +267,19 @@ class s1050inclusaohorarioIntervalo(models.Model):
     durinterv = models.IntegerField()
     iniinterv = models.CharField(max_length=4, blank=True, null=True)
     terminterv = models.CharField(max_length=4, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1050_inclusao) + ' - ' + unicode(self.tpinterv) + ' - ' + unicode(self.durinterv)
     #s1050_inclusao_horariointervalo_custom#
-    #s1050_inclusao_horariointervalo_custom#
     class Meta:
         db_table = r's1050_inclusao_horariointervalo'
-        managed = True
+        managed = True # s1050_inclusao_horariointervalo #
         ordering = ['s1050_inclusao', 'tpinterv', 'durinterv']
 
 

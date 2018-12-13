@@ -63,20 +63,19 @@ class s2250cancAvPrevio(models.Model):
     dtcancavprv = models.DateField()
     observacao = models.CharField(max_length=255, blank=True, null=True)
     mtvcancavprevio = models.IntegerField(choices=CHOICES_S2250_MTVCANCAVPREVIO)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2250_evtavprevio) + ' - ' + unicode(self.dtcancavprv) + ' - ' + unicode(self.mtvcancavprevio)
     #s2250_cancavprevio_custom#
-    #s2250_cancavprevio_custom#
     class Meta:
         db_table = r's2250_cancavprevio'
-        managed = True
+        managed = True # s2250_cancavprevio #
         ordering = ['s2250_evtavprevio', 'dtcancavprv', 'mtvcancavprevio']
 
 
@@ -95,20 +94,19 @@ class s2250detAvPrevio(models.Model):
     dtprevdeslig = models.DateField()
     tpavprevio = models.IntegerField(choices=CHOICES_S2250_TPAVPREVIO)
     observacao = models.CharField(max_length=255, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2250_evtavprevio) + ' - ' + unicode(self.dtavprv) + ' - ' + unicode(self.dtprevdeslig) + ' - ' + unicode(self.tpavprevio)
     #s2250_detavprevio_custom#
-    #s2250_detavprevio_custom#
     class Meta:
         db_table = r's2250_detavprevio'
-        managed = True
+        managed = True # s2250_detavprevio #
         ordering = ['s2250_evtavprevio', 'dtavprv', 'dtprevdeslig', 'tpavprevio']
 
 

@@ -63,20 +63,19 @@ class s1270remunAvNP(models.Model):
     vrbccp13 = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrbcfgts = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vrdesccp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s1270_evtcontratavnp) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao) + ' - ' + unicode(self.vrbccp00) + ' - ' + unicode(self.vrbccp15) + ' - ' + unicode(self.vrbccp20) + ' - ' + unicode(self.vrbccp25) + ' - ' + unicode(self.vrbccp13) + ' - ' + unicode(self.vrbcfgts) + ' - ' + unicode(self.vrdesccp)
     #s1270_remunavnp_custom#
-    #s1270_remunavnp_custom#
     class Meta:
         db_table = r's1270_remunavnp'
-        managed = True
+        managed = True # s1270_remunavnp #
         ordering = ['s1270_evtcontratavnp', 'tpinsc', 'nrinsc', 'codlotacao', 'vrbccp00', 'vrbccp15', 'vrbccp20', 'vrbccp25', 'vrbccp13', 'vrbcfgts', 'vrdesccp']
 
 

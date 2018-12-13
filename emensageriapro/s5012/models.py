@@ -63,20 +63,19 @@ class s5012infoCRContrib(models.Model):
     def evento(self): return self.s5012_evtirrf.evento()
     tpcr = models.IntegerField(choices=CHOICES_S5012_TPCR)
     vrcr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s5012_evtirrf) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrcr)
     #s5012_infocrcontrib_custom#
-    #s5012_infocrcontrib_custom#
     class Meta:
         db_table = r's5012_infocrcontrib'
-        managed = True
+        managed = True # s5012_infocrcontrib #
         ordering = ['s5012_evtirrf', 'tpcr', 'vrcr']
 
 

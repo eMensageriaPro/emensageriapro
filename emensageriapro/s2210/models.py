@@ -438,20 +438,19 @@ class s2210agenteCausador(models.Model):
         related_name='%(class)s_s2210_evtcat')
     def evento(self): return self.s2210_evtcat.evento()
     codagntcausador = models.IntegerField(choices=CHOICES_S2210_CODAGNTCAUSADOR)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2210_evtcat) + ' - ' + unicode(self.codagntcausador)
     #s2210_agentecausador_custom#
-    #s2210_agentecausador_custom#
     class Meta:
         db_table = r's2210_agentecausador'
-        managed = True
+        managed = True # s2210_agentecausador #
         ordering = ['s2210_evtcat', 'codagntcausador']
 
 
@@ -481,20 +480,19 @@ class s2210atestado(models.Model):
     ideoc = models.IntegerField(choices=CHOICES_S2210_IDEOC)
     nroc = models.CharField(max_length=14)
     ufoc = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2210_evtcat) + ' - ' + unicode(self.dtatendimento) + ' - ' + unicode(self.hratendimento) + ' - ' + unicode(self.indinternacao) + ' - ' + unicode(self.durtrat) + ' - ' + unicode(self.indafast) + ' - ' + unicode(self.dsclesao) + ' - ' + unicode(self.codcid) + ' - ' + unicode(self.nmemit) + ' - ' + unicode(self.ideoc) + ' - ' + unicode(self.nroc)
     #s2210_atestado_custom#
-    #s2210_atestado_custom#
     class Meta:
         db_table = r's2210_atestado'
-        managed = True
+        managed = True # s2210_atestado #
         ordering = ['s2210_evtcat', 'dtatendimento', 'hratendimento', 'indinternacao', 'durtrat', 'indafast', 'dsclesao', 'codcid', 'nmemit', 'ideoc', 'nroc']
 
 
@@ -511,20 +509,19 @@ class s2210catOrigem(models.Model):
     def evento(self): return self.s2210_evtcat.evento()
     dtcatorig = models.DateField()
     nrreccatorig = models.CharField(max_length=40)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2210_evtcat) + ' - ' + unicode(self.dtcatorig) + ' - ' + unicode(self.nrreccatorig)
     #s2210_catorigem_custom#
-    #s2210_catorigem_custom#
     class Meta:
         db_table = r's2210_catorigem'
-        managed = True
+        managed = True # s2210_catorigem #
         ordering = ['s2210_evtcat', 'dtcatorig', 'nrreccatorig']
 
 
@@ -541,20 +538,19 @@ class s2210ideLocalAcid(models.Model):
     def evento(self): return self.s2210_evtcat.evento()
     tpinsc = models.IntegerField(choices=CHOICES_S2210_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2210_evtcat) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s2210_idelocalacid_custom#
-    #s2210_idelocalacid_custom#
     class Meta:
         db_table = r's2210_idelocalacid'
-        managed = True
+        managed = True # s2210_idelocalacid #
         ordering = ['s2210_evtcat', 'tpinsc', 'nrinsc']
 
 
@@ -571,20 +567,19 @@ class s2210parteAtingida(models.Model):
     def evento(self): return self.s2210_evtcat.evento()
     codparteating = models.IntegerField(choices=CHOICES_S2210_CODPARTEATING)
     lateralidade = models.IntegerField(choices=CHOICES_S2210_LATERALIDADE)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2210_evtcat) + ' - ' + unicode(self.codparteating) + ' - ' + unicode(self.lateralidade)
     #s2210_parteatingida_custom#
-    #s2210_parteatingida_custom#
     class Meta:
         db_table = r's2210_parteatingida'
-        managed = True
+        managed = True # s2210_parteatingida #
         ordering = ['s2210_evtcat', 'codparteating', 'lateralidade']
 
 

@@ -84,20 +84,19 @@ class s2260localTrabInterm(models.Model):
     cep = models.CharField(max_length=8)
     codmunic = models.TextField(max_length=7)
     uf = models.CharField(choices=ESTADOS, max_length=2)
-    criado_em = models.DateTimeField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
+    excluido = models.BooleanField(blank=True, default=False)
     def __unicode__(self):
         return unicode(self.s2260_evtconvinterm) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
     #s2260_localtrabinterm_custom#
-    #s2260_localtrabinterm_custom#
     class Meta:
         db_table = r's2260_localtrabinterm'
-        managed = True
+        managed = True # s2260_localtrabinterm #
         ordering = ['s2260_evtconvinterm', 'tplograd', 'dsclograd', 'nrlograd', 'cep', 'codmunic', 'uf']
 
 
