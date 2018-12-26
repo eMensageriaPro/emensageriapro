@@ -296,7 +296,7 @@ def send_xml(request, transmissor_id, service):
     transmissor_dados['transmissor_nrinsc'] = tle.transmissor.transmissor_nrinsc
     transmissor_dados['esocial_lote_min'] = tle.transmissor.esocial_lote_min
     transmissor_dados['esocial_lote_max'] = tle.transmissor.esocial_lote_max
-    transmissor_dados['esocial_timeout'] = tle.transmissor.esocial_timeout
+    transmissor_dados['esocial_timeout'] = int(tle.transmissor.esocial_timeout)
     # transmissor_dados['esocial_certificado'] = BASE_DIR + 'uploads/' + tle.transmissor.esocial_certificado
     # transmissor_dados['esocial_senha'] = tle.transmissor.esocial_senha
 
