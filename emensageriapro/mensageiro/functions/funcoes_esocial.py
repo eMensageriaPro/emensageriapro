@@ -365,7 +365,10 @@ def send_xml(request, transmissor_id, service):
             os.system(command)
 
             if not os.path.isfile(BASE_DIR + '/' + dados['response']):
-                messages.error(request, 'O servidor demorou mais que o esperado para efetuar a conexão! Caso necessário solicite ao administrador do sistema para que aumente o tempo do Timeout')
+                messages.error(request, '''O servidor demorou mais que o esperado 
+                                            para efetuar a conexão! Caso necessário solicite ao 
+                                            administrador do sistema para que aumente o tempo do 
+                                            Timeout. Timeout atual %(timeout)s''' % dados)
                 return None
 
             if service == 'WsEnviarLoteEventos':
