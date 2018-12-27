@@ -10,6 +10,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('mensageiro', '0010_auto_20181213_0410'),
+        ('esocial', '0013_auto_20181227_1221'),
     ]
 
     operations = [
