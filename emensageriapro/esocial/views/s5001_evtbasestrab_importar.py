@@ -93,7 +93,7 @@ def read_s5001_evtbasestrab_obj(doc, status, validar=False):
         for procJudTrab in evtBasesTrab.ideTrabalhador.procJudTrab:
             s5001_procjudtrab_dados = {}
             s5001_procjudtrab_dados['s5001_evtbasestrab_id'] = s5001_evtbasestrab_id
-       
+
             if 'nrProcJud' in dir(procJudTrab): s5001_procjudtrab_dados['nrprocjud'] = procJudTrab.nrProcJud.cdata
             if 'codSusp' in dir(procJudTrab): s5001_procjudtrab_dados['codsusp'] = procJudTrab.codSusp.cdata
             insert = create_insert('s5001_procjudtrab', s5001_procjudtrab_dados)
@@ -105,7 +105,7 @@ def read_s5001_evtbasestrab_obj(doc, status, validar=False):
         for infoCpCalc in evtBasesTrab.infoCpCalc:
             s5001_infocpcalc_dados = {}
             s5001_infocpcalc_dados['s5001_evtbasestrab_id'] = s5001_evtbasestrab_id
-       
+
             if 'tpCR' in dir(infoCpCalc): s5001_infocpcalc_dados['tpcr'] = infoCpCalc.tpCR.cdata
             if 'vrCpSeg' in dir(infoCpCalc): s5001_infocpcalc_dados['vrcpseg'] = infoCpCalc.vrCpSeg.cdata
             if 'vrDescSeg' in dir(infoCpCalc): s5001_infocpcalc_dados['vrdescseg'] = infoCpCalc.vrDescSeg.cdata
@@ -118,7 +118,7 @@ def read_s5001_evtbasestrab_obj(doc, status, validar=False):
         for ideEstabLot in evtBasesTrab.infoCp.ideEstabLot:
             s5001_ideestablot_dados = {}
             s5001_ideestablot_dados['s5001_evtbasestrab_id'] = s5001_evtbasestrab_id
-       
+
             if 'tpInsc' in dir(ideEstabLot): s5001_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
             if 'nrInsc' in dir(ideEstabLot): s5001_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
             if 'codLotacao' in dir(ideEstabLot): s5001_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
@@ -131,7 +131,7 @@ def read_s5001_evtbasestrab_obj(doc, status, validar=False):
                 for infoCategIncid in ideEstabLot.infoCategIncid:
                     s5001_infocategincid_dados = {}
                     s5001_infocategincid_dados['s5001_ideestablot_id'] = s5001_ideestablot_id
-               
+
                     if 'matricula' in dir(infoCategIncid): s5001_infocategincid_dados['matricula'] = infoCategIncid.matricula.cdata
                     if 'codCateg' in dir(infoCategIncid): s5001_infocategincid_dados['codcateg'] = infoCategIncid.codCateg.cdata
                     if 'indSimples' in dir(infoCategIncid): s5001_infocategincid_dados['indsimples'] = infoCategIncid.indSimples.cdata
@@ -139,7 +139,7 @@ def read_s5001_evtbasestrab_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s5001_infocategincid_id = resp[0][0]
                     #print s5001_infocategincid_id
-   
+
     from emensageriapro.esocial.views.s5001_evtbasestrab_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(s5001_evtbasestrab_id, 'default')
     return dados

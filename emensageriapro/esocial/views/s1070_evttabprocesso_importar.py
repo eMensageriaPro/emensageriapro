@@ -92,7 +92,7 @@ def read_s1070_evttabprocesso_obj(doc, status, validar=False):
         for inclusao in evtTabProcesso.infoProcesso.inclusao:
             s1070_inclusao_dados = {}
             s1070_inclusao_dados['s1070_evttabprocesso_id'] = s1070_evttabprocesso_id
-       
+
             if 'tpProc' in dir(inclusao.ideProcesso): s1070_inclusao_dados['tpproc'] = inclusao.ideProcesso.tpProc.cdata
             if 'nrProc' in dir(inclusao.ideProcesso): s1070_inclusao_dados['nrproc'] = inclusao.ideProcesso.nrProc.cdata
             if 'iniValid' in dir(inclusao.ideProcesso): s1070_inclusao_dados['inivalid'] = inclusao.ideProcesso.iniValid.cdata
@@ -109,7 +109,7 @@ def read_s1070_evttabprocesso_obj(doc, status, validar=False):
                 for dadosProcJud in inclusao.dadosProc.dadosProcJud:
                     s1070_inclusao_dadosprocjud_dados = {}
                     s1070_inclusao_dadosprocjud_dados['s1070_inclusao_id'] = s1070_inclusao_id
-               
+
                     if 'ufVara' in dir(dadosProcJud): s1070_inclusao_dadosprocjud_dados['ufvara'] = dadosProcJud.ufVara.cdata
                     if 'codMunic' in dir(dadosProcJud): s1070_inclusao_dadosprocjud_dados['codmunic'] = dadosProcJud.codMunic.cdata
                     if 'idVara' in dir(dadosProcJud): s1070_inclusao_dadosprocjud_dados['idvara'] = dadosProcJud.idVara.cdata
@@ -117,12 +117,12 @@ def read_s1070_evttabprocesso_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1070_inclusao_dadosprocjud_id = resp[0][0]
                     #print s1070_inclusao_dadosprocjud_id
-   
+
             if 'infoSusp' in dir(inclusao.dadosProc):
                 for infoSusp in inclusao.dadosProc.infoSusp:
                     s1070_inclusao_infosusp_dados = {}
                     s1070_inclusao_infosusp_dados['s1070_inclusao_id'] = s1070_inclusao_id
-               
+
                     if 'codSusp' in dir(infoSusp): s1070_inclusao_infosusp_dados['codsusp'] = infoSusp.codSusp.cdata
                     if 'indSusp' in dir(infoSusp): s1070_inclusao_infosusp_dados['indsusp'] = infoSusp.indSusp.cdata
                     if 'dtDecisao' in dir(infoSusp): s1070_inclusao_infosusp_dados['dtdecisao'] = infoSusp.dtDecisao.cdata
@@ -131,12 +131,12 @@ def read_s1070_evttabprocesso_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1070_inclusao_infosusp_id = resp[0][0]
                     #print s1070_inclusao_infosusp_id
-   
+
     if 'alteracao' in dir(evtTabProcesso.infoProcesso):
         for alteracao in evtTabProcesso.infoProcesso.alteracao:
             s1070_alteracao_dados = {}
             s1070_alteracao_dados['s1070_evttabprocesso_id'] = s1070_evttabprocesso_id
-       
+
             if 'tpProc' in dir(alteracao.ideProcesso): s1070_alteracao_dados['tpproc'] = alteracao.ideProcesso.tpProc.cdata
             if 'nrProc' in dir(alteracao.ideProcesso): s1070_alteracao_dados['nrproc'] = alteracao.ideProcesso.nrProc.cdata
             if 'iniValid' in dir(alteracao.ideProcesso): s1070_alteracao_dados['inivalid'] = alteracao.ideProcesso.iniValid.cdata
@@ -153,7 +153,7 @@ def read_s1070_evttabprocesso_obj(doc, status, validar=False):
                 for dadosProcJud in alteracao.dadosProc.dadosProcJud:
                     s1070_alteracao_dadosprocjud_dados = {}
                     s1070_alteracao_dadosprocjud_dados['s1070_alteracao_id'] = s1070_alteracao_id
-               
+
                     if 'ufVara' in dir(dadosProcJud): s1070_alteracao_dadosprocjud_dados['ufvara'] = dadosProcJud.ufVara.cdata
                     if 'codMunic' in dir(dadosProcJud): s1070_alteracao_dadosprocjud_dados['codmunic'] = dadosProcJud.codMunic.cdata
                     if 'idVara' in dir(dadosProcJud): s1070_alteracao_dadosprocjud_dados['idvara'] = dadosProcJud.idVara.cdata
@@ -161,12 +161,12 @@ def read_s1070_evttabprocesso_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1070_alteracao_dadosprocjud_id = resp[0][0]
                     #print s1070_alteracao_dadosprocjud_id
-   
+
             if 'infoSusp' in dir(alteracao.dadosProc):
                 for infoSusp in alteracao.dadosProc.infoSusp:
                     s1070_alteracao_infosusp_dados = {}
                     s1070_alteracao_infosusp_dados['s1070_alteracao_id'] = s1070_alteracao_id
-               
+
                     if 'codSusp' in dir(infoSusp): s1070_alteracao_infosusp_dados['codsusp'] = infoSusp.codSusp.cdata
                     if 'indSusp' in dir(infoSusp): s1070_alteracao_infosusp_dados['indsusp'] = infoSusp.indSusp.cdata
                     if 'dtDecisao' in dir(infoSusp): s1070_alteracao_infosusp_dados['dtdecisao'] = infoSusp.dtDecisao.cdata
@@ -175,24 +175,24 @@ def read_s1070_evttabprocesso_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1070_alteracao_infosusp_id = resp[0][0]
                     #print s1070_alteracao_infosusp_id
-   
+
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:
                     s1070_alteracao_novavalidade_dados = {}
                     s1070_alteracao_novavalidade_dados['s1070_alteracao_id'] = s1070_alteracao_id
-               
+
                     if 'iniValid' in dir(novaValidade): s1070_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
                     if 'fimValid' in dir(novaValidade): s1070_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
                     insert = create_insert('s1070_alteracao_novavalidade', s1070_alteracao_novavalidade_dados)
                     resp = executar_sql(insert, True)
                     s1070_alteracao_novavalidade_id = resp[0][0]
                     #print s1070_alteracao_novavalidade_id
-   
+
     if 'exclusao' in dir(evtTabProcesso.infoProcesso):
         for exclusao in evtTabProcesso.infoProcesso.exclusao:
             s1070_exclusao_dados = {}
             s1070_exclusao_dados['s1070_evttabprocesso_id'] = s1070_evttabprocesso_id
-       
+
             if 'tpProc' in dir(exclusao.ideProcesso): s1070_exclusao_dados['tpproc'] = exclusao.ideProcesso.tpProc.cdata
             if 'nrProc' in dir(exclusao.ideProcesso): s1070_exclusao_dados['nrproc'] = exclusao.ideProcesso.nrProc.cdata
             if 'iniValid' in dir(exclusao.ideProcesso): s1070_exclusao_dados['inivalid'] = exclusao.ideProcesso.iniValid.cdata

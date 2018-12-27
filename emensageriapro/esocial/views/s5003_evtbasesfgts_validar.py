@@ -55,20 +55,20 @@ def validacoes_s5003_evtbasesfgts(arquivo):
     if 'nisTrab' in dir(evtBasesFGTS.ideTrabalhador): validacoes_lista = validar_campo(validacoes_lista,'evtBasesFGTS.ideTrabalhador.nisTrab', evtBasesFGTS.ideTrabalhador.nisTrab.cdata, 0, '')
     if 'infoFGTS' in dir(evtBasesFGTS):
         for infoFGTS in evtBasesFGTS.infoFGTS:
-       
+
             if 'dtVenc' in dir(infoFGTS): validacoes_lista = validar_campo(validacoes_lista,'infoFGTS.dtVenc', infoFGTS.dtVenc.cdata, 0, '')
 
             if 'ideEstabLot' in dir(infoFGTS):
                 for ideEstabLot in infoFGTS.ideEstabLot:
-               
+
                     if 'tpInsc' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.tpInsc', ideEstabLot.tpInsc.cdata, 1, '')
                     if 'nrInsc' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.nrInsc', ideEstabLot.nrInsc.cdata, 1, '')
                     if 'codLotacao' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.codLotacao', ideEstabLot.codLotacao.cdata, 1, '')
-   
+
             if 'infoTrabDps' in dir(infoFGTS.infoDpsFGTS):
                 for infoTrabDps in infoFGTS.infoDpsFGTS.infoTrabDps:
-               
+
                     if 'matricula' in dir(infoTrabDps): validacoes_lista = validar_campo(validacoes_lista,'infoTrabDps.matricula', infoTrabDps.matricula.cdata, 0, '')
                     if 'codCateg' in dir(infoTrabDps): validacoes_lista = validar_campo(validacoes_lista,'infoTrabDps.codCateg', infoTrabDps.codCateg.cdata, 1, '')
-   
+
     return validacoes_lista

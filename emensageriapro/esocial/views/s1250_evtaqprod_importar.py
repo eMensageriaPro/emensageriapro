@@ -98,7 +98,7 @@ def read_s1250_evtaqprod_obj(doc, status, validar=False):
         for tpAquis in evtAqProd.infoAquisProd.ideEstabAdquir.tpAquis:
             s1250_tpaquis_dados = {}
             s1250_tpaquis_dados['s1250_evtaqprod_id'] = s1250_evtaqprod_id
-       
+
             insert = create_insert('s1250_tpaquis', s1250_tpaquis_dados)
             resp = executar_sql(insert, True)
             s1250_tpaquis_id = resp[0][0]
@@ -108,22 +108,22 @@ def read_s1250_evtaqprod_obj(doc, status, validar=False):
                 for ideProdutor in tpAquis.ideProdutor:
                     s1250_ideprodutor_dados = {}
                     s1250_ideprodutor_dados['s1250_tpaquis_id'] = s1250_tpaquis_id
-               
+
                     insert = create_insert('s1250_ideprodutor', s1250_ideprodutor_dados)
                     resp = executar_sql(insert, True)
                     s1250_ideprodutor_id = resp[0][0]
                     #print s1250_ideprodutor_id
-   
+
             if 'infoProcJ' in dir(tpAquis):
                 for infoProcJ in tpAquis.infoProcJ:
                     s1250_infoprocj_dados = {}
                     s1250_infoprocj_dados['s1250_tpaquis_id'] = s1250_tpaquis_id
-               
+
                     insert = create_insert('s1250_infoprocj', s1250_infoprocj_dados)
                     resp = executar_sql(insert, True)
                     s1250_infoprocj_id = resp[0][0]
                     #print s1250_infoprocj_id
-   
+
     from emensageriapro.esocial.views.s1250_evtaqprod_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(s1250_evtaqprod_id, 'default')
     return dados

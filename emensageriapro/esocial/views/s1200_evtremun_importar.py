@@ -98,7 +98,7 @@ def read_s1200_evtremun_obj(doc, status, validar=False):
         for infoMV in evtRemun.ideTrabalhador.infoMV:
             s1200_infomv_dados = {}
             s1200_infomv_dados['s1200_evtremun_id'] = s1200_evtremun_id
-       
+
             if 'indMV' in dir(infoMV): s1200_infomv_dados['indmv'] = infoMV.indMV.cdata
             insert = create_insert('s1200_infomv', s1200_infomv_dados)
             resp = executar_sql(insert, True)
@@ -109,7 +109,7 @@ def read_s1200_evtremun_obj(doc, status, validar=False):
                 for remunOutrEmpr in infoMV.remunOutrEmpr:
                     s1200_remunoutrempr_dados = {}
                     s1200_remunoutrempr_dados['s1200_infomv_id'] = s1200_infomv_id
-               
+
                     if 'tpInsc' in dir(remunOutrEmpr): s1200_remunoutrempr_dados['tpinsc'] = remunOutrEmpr.tpInsc.cdata
                     if 'nrInsc' in dir(remunOutrEmpr): s1200_remunoutrempr_dados['nrinsc'] = remunOutrEmpr.nrInsc.cdata
                     if 'codCateg' in dir(remunOutrEmpr): s1200_remunoutrempr_dados['codcateg'] = remunOutrEmpr.codCateg.cdata
@@ -118,12 +118,12 @@ def read_s1200_evtremun_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1200_remunoutrempr_id = resp[0][0]
                     #print s1200_remunoutrempr_id
-   
+
     if 'infoComplem' in dir(evtRemun.ideTrabalhador):
         for infoComplem in evtRemun.ideTrabalhador.infoComplem:
             s1200_infocomplem_dados = {}
             s1200_infocomplem_dados['s1200_evtremun_id'] = s1200_evtremun_id
-       
+
             if 'nmTrab' in dir(infoComplem): s1200_infocomplem_dados['nmtrab'] = infoComplem.nmTrab.cdata
             if 'dtNascto' in dir(infoComplem): s1200_infocomplem_dados['dtnascto'] = infoComplem.dtNascto.cdata
             insert = create_insert('s1200_infocomplem', s1200_infocomplem_dados)
@@ -135,7 +135,7 @@ def read_s1200_evtremun_obj(doc, status, validar=False):
                 for sucessaoVinc in infoComplem.sucessaoVinc:
                     s1200_sucessaovinc_dados = {}
                     s1200_sucessaovinc_dados['s1200_infocomplem_id'] = s1200_infocomplem_id
-               
+
                     if 'tpInscAnt' in dir(sucessaoVinc): s1200_sucessaovinc_dados['tpinscant'] = sucessaoVinc.tpInscAnt.cdata
                     if 'cnpjEmpregAnt' in dir(sucessaoVinc): s1200_sucessaovinc_dados['cnpjempregant'] = sucessaoVinc.cnpjEmpregAnt.cdata
                     if 'matricAnt' in dir(sucessaoVinc): s1200_sucessaovinc_dados['matricant'] = sucessaoVinc.matricAnt.cdata
@@ -145,12 +145,12 @@ def read_s1200_evtremun_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1200_sucessaovinc_id = resp[0][0]
                     #print s1200_sucessaovinc_id
-   
+
     if 'procJudTrab' in dir(evtRemun.ideTrabalhador):
         for procJudTrab in evtRemun.ideTrabalhador.procJudTrab:
             s1200_procjudtrab_dados = {}
             s1200_procjudtrab_dados['s1200_evtremun_id'] = s1200_evtremun_id
-       
+
             if 'tpTrib' in dir(procJudTrab): s1200_procjudtrab_dados['tptrib'] = procJudTrab.tpTrib.cdata
             if 'nrProcJud' in dir(procJudTrab): s1200_procjudtrab_dados['nrprocjud'] = procJudTrab.nrProcJud.cdata
             if 'codSusp' in dir(procJudTrab): s1200_procjudtrab_dados['codsusp'] = procJudTrab.codSusp.cdata
@@ -163,7 +163,7 @@ def read_s1200_evtremun_obj(doc, status, validar=False):
         for infoInterm in evtRemun.ideTrabalhador.infoInterm:
             s1200_infointerm_dados = {}
             s1200_infointerm_dados['s1200_evtremun_id'] = s1200_evtremun_id
-       
+
             if 'qtdDiasInterm' in dir(infoInterm): s1200_infointerm_dados['qtddiasinterm'] = infoInterm.qtdDiasInterm.cdata
             insert = create_insert('s1200_infointerm', s1200_infointerm_dados)
             resp = executar_sql(insert, True)
@@ -174,7 +174,7 @@ def read_s1200_evtremun_obj(doc, status, validar=False):
         for dmDev in evtRemun.dmDev:
             s1200_dmdev_dados = {}
             s1200_dmdev_dados['s1200_evtremun_id'] = s1200_evtremun_id
-       
+
             if 'ideDmDev' in dir(dmDev): s1200_dmdev_dados['idedmdev'] = dmDev.ideDmDev.cdata
             if 'codCateg' in dir(dmDev): s1200_dmdev_dados['codcateg'] = dmDev.codCateg.cdata
             insert = create_insert('s1200_dmdev', s1200_dmdev_dados)
@@ -186,7 +186,7 @@ def read_s1200_evtremun_obj(doc, status, validar=False):
                 for ideEstabLot in dmDev.infoPerApur.ideEstabLot:
                     s1200_infoperapur_ideestablot_dados = {}
                     s1200_infoperapur_ideestablot_dados['s1200_dmdev_id'] = s1200_dmdev_id
-               
+
                     if 'tpInsc' in dir(ideEstabLot): s1200_infoperapur_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
                     if 'nrInsc' in dir(ideEstabLot): s1200_infoperapur_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
                     if 'codLotacao' in dir(ideEstabLot): s1200_infoperapur_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
@@ -195,12 +195,12 @@ def read_s1200_evtremun_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1200_infoperapur_ideestablot_id = resp[0][0]
                     #print s1200_infoperapur_ideestablot_id
-   
+
             if 'ideADC' in dir(dmDev.infoPerAnt):
                 for ideADC in dmDev.infoPerAnt.ideADC:
                     s1200_infoperant_ideadc_dados = {}
                     s1200_infoperant_ideadc_dados['s1200_dmdev_id'] = s1200_dmdev_id
-               
+
                     if 'dtAcConv' in dir(ideADC): s1200_infoperant_ideadc_dados['dtacconv'] = ideADC.dtAcConv.cdata
                     if 'tpAcConv' in dir(ideADC): s1200_infoperant_ideadc_dados['tpacconv'] = ideADC.tpAcConv.cdata
                     if 'compAcConv' in dir(ideADC): s1200_infoperant_ideadc_dados['compacconv'] = ideADC.compAcConv.cdata
@@ -211,12 +211,12 @@ def read_s1200_evtremun_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1200_infoperant_ideadc_id = resp[0][0]
                     #print s1200_infoperant_ideadc_id
-   
+
             if 'infoComplCont' in dir(dmDev):
                 for infoComplCont in dmDev.infoComplCont:
                     s1200_infoperant_infocomplcont_dados = {}
                     s1200_infoperant_infocomplcont_dados['s1200_dmdev_id'] = s1200_dmdev_id
-               
+
                     if 'codCBO' in dir(infoComplCont): s1200_infoperant_infocomplcont_dados['codcbo'] = infoComplCont.codCBO.cdata
                     if 'natAtividade' in dir(infoComplCont): s1200_infoperant_infocomplcont_dados['natatividade'] = infoComplCont.natAtividade.cdata
                     if 'qtdDiasTrab' in dir(infoComplCont): s1200_infoperant_infocomplcont_dados['qtddiastrab'] = infoComplCont.qtdDiasTrab.cdata
@@ -224,7 +224,7 @@ def read_s1200_evtremun_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1200_infoperant_infocomplcont_id = resp[0][0]
                     #print s1200_infoperant_infocomplcont_id
-   
+
     from emensageriapro.esocial.views.s1200_evtremun_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(s1200_evtremun_id, 'default')
     return dados

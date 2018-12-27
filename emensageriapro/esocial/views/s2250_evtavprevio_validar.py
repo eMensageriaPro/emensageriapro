@@ -59,7 +59,7 @@ def validacoes_s2250_evtavprevio(arquivo):
     if 'matricula' in dir(evtAvPrevio.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideVinculo.matricula', evtAvPrevio.ideVinculo.matricula.cdata, 1, '')
     if 'detAvPrevio' in dir(evtAvPrevio.infoAvPrevio):
         for detAvPrevio in evtAvPrevio.infoAvPrevio.detAvPrevio:
-       
+
             if 'dtAvPrv' in dir(detAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'detAvPrevio.dtAvPrv', detAvPrevio.dtAvPrv.cdata, 1, '')
             if 'dtPrevDeslig' in dir(detAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'detAvPrevio.dtPrevDeslig', detAvPrevio.dtPrevDeslig.cdata, 1, '')
             if 'tpAvPrevio' in dir(detAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'detAvPrevio.tpAvPrevio', detAvPrevio.tpAvPrevio.cdata, 1, '1;2;4;5')
@@ -67,7 +67,7 @@ def validacoes_s2250_evtavprevio(arquivo):
 
     if 'cancAvPrevio' in dir(evtAvPrevio.infoAvPrevio):
         for cancAvPrevio in evtAvPrevio.infoAvPrevio.cancAvPrevio:
-       
+
             if 'dtCancAvPrv' in dir(cancAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'cancAvPrevio.dtCancAvPrv', cancAvPrevio.dtCancAvPrv.cdata, 1, '')
             if 'observacao' in dir(cancAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'cancAvPrevio.observacao', cancAvPrevio.observacao.cdata, 0, '')
             if 'mtvCancAvPrevio' in dir(cancAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'cancAvPrevio.mtvCancAvPrevio', cancAvPrevio.mtvCancAvPrevio.cdata, 1, '1;2;3;9')

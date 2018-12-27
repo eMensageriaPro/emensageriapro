@@ -76,7 +76,7 @@ def validacoes_s2220_evtmonit(arquivo):
     if 'ufCRM' in dir(evtMonit.exMedOcup.respMonit): validacoes_lista = validar_campo(validacoes_lista,'evtMonit.exMedOcup.respMonit.ufCRM', evtMonit.exMedOcup.respMonit.ufCRM.cdata, 1, '')
     if 'exame' in dir(evtMonit.exMedOcup.aso):
         for exame in evtMonit.exMedOcup.aso.exame:
-       
+
             if 'dtExm' in dir(exame): validacoes_lista = validar_campo(validacoes_lista,'exame.dtExm', exame.dtExm.cdata, 1, '')
             if 'procRealizado' in dir(exame): validacoes_lista = validar_campo(validacoes_lista,'exame.procRealizado', exame.procRealizado.cdata, 1, '')
             if 'obsProc' in dir(exame): validacoes_lista = validar_campo(validacoes_lista,'exame.obsProc', exame.obsProc.cdata, 0, '')

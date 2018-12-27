@@ -105,7 +105,7 @@ def verificar(request, hash):
     if permissao.permite_listar:
         s2210_evtcat = get_object_or_404(s2210evtCAT.objects.using( db_slug ), excluido = False, id = s2210_evtcat_id)
         s2210_evtcat_lista = s2210evtCAT.objects.using( db_slug ).filter(id=s2210_evtcat_id, excluido = False).all()
-   
+
 
         s2210_idelocalacid_lista = s2210ideLocalAcid.objects.using(db_slug).filter(s2210_evtcat_id__in = listar_ids(s2210_evtcat_lista) ).filter(excluido=False).all()
         s2210_parteatingida_lista = s2210parteAtingida.objects.using(db_slug).filter(s2210_evtcat_id__in = listar_ids(s2210_evtcat_lista) ).filter(excluido=False).all()
@@ -118,11 +118,11 @@ def verificar(request, hash):
             's2210_evtcat_lista': s2210_evtcat_lista,
             's2210_evtcat_id': s2210_evtcat_id,
             's2210_evtcat': s2210_evtcat,
-            
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -174,10 +174,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -197,20 +197,20 @@ def gerar_xml_s2210(s2210_evtcat_id, db_slug, versao=None):
             s2210evtCAT.objects.using( db_slug ),
             excluido = False,
             id = s2210_evtcat_id)
-   
+
         if not versao:
 
             versao = s2210_evtcat.versao
-   
+
         s2210_evtcat_lista = s2210evtCAT.objects.using( db_slug ).filter(id=s2210_evtcat_id, excluido = False).all()
-   
+
 
         s2210_idelocalacid_lista = s2210ideLocalAcid.objects.using(db_slug).filter(s2210_evtcat_id__in = listar_ids(s2210_evtcat_lista) ).filter(excluido=False).all()
         s2210_parteatingida_lista = s2210parteAtingida.objects.using(db_slug).filter(s2210_evtcat_id__in = listar_ids(s2210_evtcat_lista) ).filter(excluido=False).all()
         s2210_agentecausador_lista = s2210agenteCausador.objects.using(db_slug).filter(s2210_evtcat_id__in = listar_ids(s2210_evtcat_lista) ).filter(excluido=False).all()
         s2210_atestado_lista = s2210atestado.objects.using(db_slug).filter(s2210_evtcat_id__in = listar_ids(s2210_evtcat_lista) ).filter(excluido=False).all()
         s2210_catorigem_lista = s2210catOrigem.objects.using(db_slug).filter(s2210_evtcat_id__in = listar_ids(s2210_evtcat_lista) ).filter(excluido=False).all()
-   
+
         context = {
             'versao': versao,
             'base': s2210_evtcat,
@@ -226,11 +226,11 @@ def gerar_xml_s2210(s2210_evtcat_id, db_slug, versao=None):
             's2210_catorigem_lista': s2210_catorigem_lista,
 
         }
-   
+
         t = get_template('s2210_evtcat.xml')
         xml = t.render(context)
         return xml
-   
+
 
 
 @login_required
@@ -253,7 +253,7 @@ def recibo(request, hash, tipo):
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
     if permissao.permite_listar:
-   
+
         s2210_evtcat = get_object_or_404(
             s2210evtCAT.objects.using( db_slug ),
             excluido = False, id = s2210_evtcat_id)
@@ -272,7 +272,7 @@ def recibo(request, hash, tipo):
 
         retorno_ocorrencias = RetornosEventosOcorrencias.objects.using(db_slug).\
             filter(retornos_eventos_id=retorno.id,excluido=False).all()
-   
+
         context = {
             's2210_evtcat_id': s2210_evtcat_id,
             's2210_evtcat': s2210_evtcat,
@@ -282,11 +282,11 @@ def recibo(request, hash, tipo):
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
 
-            
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -314,10 +314,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-            
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -383,7 +383,7 @@ def gerar_xml(request, hash):
     s2210_evtcat_id = int(dict_hash['id'])
 
     if s2210_evtcat_id:
-   
+
         xml_assinado = gerar_xml_assinado(s2210_evtcat_id, db_slug)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
@@ -403,7 +403,7 @@ def duplicar(request, hash):
     s2210_evtcat_id = int(dict_hash['id'])
 
     if s2210_evtcat_id:
-   
+
         s2210_evtcat = get_object_or_404(
             s2210evtCAT.objects.using(db_slug),
             excluido=False,
@@ -445,21 +445,21 @@ def criar_alteracao(request, hash):
             s2210evtCAT.objects.using(db_slug),
             excluido=False,
             id=s2210_evtcat_id)
-   
+
         texto = gerar_xml_s2210(s2210_evtcat_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
         dados = read_s2210_evtcat_string({}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(dados['id'], db_slug)
-   
+
         s2210evtCAT.objects.using(db_slug).filter(id=dados['id']).\
             update(status=0, arquivo_original=0, arquivo='')
-   
+
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s2210_evtcat.identidade),
             's2210_evtcat', dados['id'], request.user.id, 1)
-   
+
         messages.success(request, 'Evento de alteração criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )   
+        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('s2210_evtcat_salvar', hash=url_hash)
 
     messages.error(request, 'Erro ao criar evento de alteração!')
@@ -479,25 +479,25 @@ def criar_exclusao(request, hash):
     s2210_evtcat_id = int(dict_hash['id'])
 
     if s2210_evtcat_id:
-   
+
         s2210_evtcat = get_object_or_404(
             s2210evtCAT.objects.using(db_slug),
             excluido=False,
             id=s2210_evtcat_id)
-   
+
         texto = gerar_xml_s2210(s2210_evtcat_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_s2210_evtcat_string({}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(dados['id'], db_slug)
-   
+
         s2210evtCAT.objects.using(db_slug).filter(id=dados['id']).\
             update(status=0, arquivo_original=0, arquivo='')
-   
+
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s2210_evtcat.identidade),
             's2210_evtcat', dados['id'], request.user.id, 1)
-   
+
         messages.success(request, 'Evento de exclusão criado com sucesso!')
         url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('s2210_evtcat_salvar', hash=url_hash)
@@ -517,7 +517,7 @@ def alterar_identidade(request, hash):
     s2210_evtcat_id = int(dict_hash['id'])
 
     if s2210_evtcat_id:
-   
+
         s2210_evtcat = get_object_or_404(
             s2210evtCAT.objects.using(db_slug),
             excluido=False,
@@ -536,7 +536,7 @@ def alterar_identidade(request, hash):
             return redirect('s2210_evtcat_salvar', hash=url_hash)
 
         else:
-       
+
             messages.error(request, 'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
@@ -690,7 +690,7 @@ def validar_evento(request, hash):
             messages.success(request, u'Validações processadas com sucesso!')
 
         else:
-       
+
             messages.error(request, u'Não foi possível validar o evento pois a versão do evento não é compatível com a versão do sistema!')
     else:
 

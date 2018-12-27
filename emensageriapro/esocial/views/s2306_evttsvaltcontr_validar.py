@@ -61,25 +61,25 @@ def validacoes_s2306_evttsvaltcontr(arquivo):
     if 'natAtividade' in dir(evtTSVAltContr.infoTSVAlteracao): validacoes_lista = validar_campo(validacoes_lista,'evtTSVAltContr.infoTSVAlteracao.natAtividade', evtTSVAltContr.infoTSVAlteracao.natAtividade.cdata, 0, '1;2')
     if 'cargoFuncao' in dir(evtTSVAltContr.infoTSVAlteracao.infoComplementares):
         for cargoFuncao in evtTSVAltContr.infoTSVAlteracao.infoComplementares.cargoFuncao:
-       
+
             if 'codCargo' in dir(cargoFuncao): validacoes_lista = validar_campo(validacoes_lista,'cargoFuncao.codCargo', cargoFuncao.codCargo.cdata, 1, '')
             if 'codFuncao' in dir(cargoFuncao): validacoes_lista = validar_campo(validacoes_lista,'cargoFuncao.codFuncao', cargoFuncao.codFuncao.cdata, 0, '')
 
     if 'remuneracao' in dir(evtTSVAltContr.infoTSVAlteracao.infoComplementares):
         for remuneracao in evtTSVAltContr.infoTSVAlteracao.infoComplementares.remuneracao:
-       
+
             if 'vrSalFx' in dir(remuneracao): validacoes_lista = validar_campo(validacoes_lista,'remuneracao.vrSalFx', remuneracao.vrSalFx.cdata, 1, '')
             if 'undSalFixo' in dir(remuneracao): validacoes_lista = validar_campo(validacoes_lista,'remuneracao.undSalFixo', remuneracao.undSalFixo.cdata, 1, '1;2;3;4;5;6;7')
             if 'dscSalVar' in dir(remuneracao): validacoes_lista = validar_campo(validacoes_lista,'remuneracao.dscSalVar', remuneracao.dscSalVar.cdata, 0, '')
 
     if 'infoTrabCedido' in dir(evtTSVAltContr.infoTSVAlteracao.infoComplementares):
         for infoTrabCedido in evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoTrabCedido:
-       
+
             if 'indRemunCargo' in dir(infoTrabCedido): validacoes_lista = validar_campo(validacoes_lista,'infoTrabCedido.indRemunCargo', infoTrabCedido.indRemunCargo.cdata, 1, 'S;N')
 
     if 'infoEstagiario' in dir(evtTSVAltContr.infoTSVAlteracao.infoComplementares):
         for infoEstagiario in evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario:
-       
+
             if 'natEstagio' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.natEstagio', infoEstagiario.natEstagio.cdata, 1, 'O;N')
             if 'nivEstagio' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.nivEstagio', infoEstagiario.nivEstagio.cdata, 1, '1;2;3;4;8;9')
             if 'areaAtuacao' in dir(infoEstagiario): validacoes_lista = validar_campo(validacoes_lista,'infoEstagiario.areaAtuacao', infoEstagiario.areaAtuacao.cdata, 0, '')
@@ -97,7 +97,7 @@ def validacoes_s2306_evttsvaltcontr(arquivo):
 
             if 'ageIntegracao' in dir(infoEstagiario):
                 for ageIntegracao in infoEstagiario.ageIntegracao:
-               
+
                     if 'cnpjAgntInteg' in dir(ageIntegracao): validacoes_lista = validar_campo(validacoes_lista,'ageIntegracao.cnpjAgntInteg', ageIntegracao.cnpjAgntInteg.cdata, 1, '')
                     if 'nmRazao' in dir(ageIntegracao): validacoes_lista = validar_campo(validacoes_lista,'ageIntegracao.nmRazao', ageIntegracao.nmRazao.cdata, 1, '')
                     if 'dscLograd' in dir(ageIntegracao): validacoes_lista = validar_campo(validacoes_lista,'ageIntegracao.dscLograd', ageIntegracao.dscLograd.cdata, 1, '')
@@ -106,11 +106,11 @@ def validacoes_s2306_evttsvaltcontr(arquivo):
                     if 'cep' in dir(ageIntegracao): validacoes_lista = validar_campo(validacoes_lista,'ageIntegracao.cep', ageIntegracao.cep.cdata, 1, '')
                     if 'codMunic' in dir(ageIntegracao): validacoes_lista = validar_campo(validacoes_lista,'ageIntegracao.codMunic', ageIntegracao.codMunic.cdata, 0, '')
                     if 'uf' in dir(ageIntegracao): validacoes_lista = validar_campo(validacoes_lista,'ageIntegracao.uf', ageIntegracao.uf.cdata, 1, '')
-   
+
             if 'supervisorEstagio' in dir(infoEstagiario):
                 for supervisorEstagio in infoEstagiario.supervisorEstagio:
-               
+
                     if 'cpfSupervisor' in dir(supervisorEstagio): validacoes_lista = validar_campo(validacoes_lista,'supervisorEstagio.cpfSupervisor', supervisorEstagio.cpfSupervisor.cdata, 1, '')
                     if 'nmSuperv' in dir(supervisorEstagio): validacoes_lista = validar_campo(validacoes_lista,'supervisorEstagio.nmSuperv', supervisorEstagio.nmSuperv.cdata, 1, '')
-   
+
     return validacoes_lista

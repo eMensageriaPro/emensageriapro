@@ -92,17 +92,17 @@ def apagar(request, hash):
                              's2230_iniafastamento', s2230_iniafastamento_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's2230_iniafastamento_salvar':
             return redirect('s2230_iniafastamento', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -205,17 +205,17 @@ def listar(request, hash):
             filtrar = True
             s2230_iniafastamento_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s2230_iniafastamento_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2230_iniafastamento'
         context = {
             's2230_iniafastamento_lista': s2230_iniafastamento_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -225,7 +225,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 's2230_iniafastamento_listar.html', context)
@@ -268,10 +268,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -365,7 +365,7 @@ def salvar(request, hash):
             s2230_iniafastamento_form.fields[field].widget.attrs['ng-model'] = 's2230_iniafastamento_'+field
         if int(dict_hash['print']):
             s2230_iniafastamento_form = disabled_form_for_print(s2230_iniafastamento_form)
-   
+
         s2230_infoatestado_form = None
         s2230_infoatestado_lista = None
         s2230_infocessao_form = None
@@ -374,7 +374,7 @@ def salvar(request, hash):
         s2230_infomandsind_lista = None
         if s2230_iniafastamento_id:
             s2230_iniafastamento = get_object_or_404(s2230iniAfastamento.objects.using( db_slug ), excluido = False, id = s2230_iniafastamento_id)
-       
+
             s2230_infoatestado_form = form_s2230_infoatestado(initial={ 's2230_iniafastamento': s2230_iniafastamento }, slug=db_slug)
             s2230_infoatestado_form.fields['s2230_iniafastamento'].widget.attrs['readonly'] = True
             s2230_infoatestado_lista = s2230infoAtestado.objects.using( db_slug ).filter(excluido = False, s2230_iniafastamento_id=s2230_iniafastamento.id).all()
@@ -404,9 +404,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2230_iniafastamento_id': int(s2230_iniafastamento_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             's2230_infoatestado_form': s2230_infoatestado_form,
             's2230_infoatestado_lista': s2230_infoatestado_lista,
             's2230_infocessao_form': s2230_infocessao_form,
@@ -415,7 +415,7 @@ def salvar(request, hash):
             's2230_infomandsind_lista': s2230_infomandsind_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -459,10 +459,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

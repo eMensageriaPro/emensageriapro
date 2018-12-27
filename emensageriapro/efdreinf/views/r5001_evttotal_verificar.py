@@ -105,7 +105,7 @@ def verificar(request, hash):
     if permissao.permite_listar:
         r5001_evttotal = get_object_or_404(r5001evtTotal.objects.using( db_slug ), excluido = False, id = r5001_evttotal_id)
         r5001_evttotal_lista = r5001evtTotal.objects.using( db_slug ).filter(id=r5001_evttotal_id, excluido = False).all()
-   
+
 
         r5001_regocorrs_lista = r5001regOcorrs.objects.using(db_slug).filter(r5001_evttotal_id__in = listar_ids(r5001_evttotal_lista) ).filter(excluido=False).all()
         r5001_infototal_lista = r5001infoTotal.objects.using(db_slug).filter(r5001_evttotal_id__in = listar_ids(r5001_evttotal_lista) ).filter(excluido=False).all()
@@ -122,11 +122,11 @@ def verificar(request, hash):
             'r5001_evttotal_lista': r5001_evttotal_lista,
             'r5001_evttotal_id': r5001_evttotal_id,
             'r5001_evttotal': r5001_evttotal,
-            
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -182,10 +182,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -205,13 +205,13 @@ def gerar_xml_r5001(r5001_evttotal_id, db_slug, versao=None):
             r5001evtTotal.objects.using( db_slug ),
             excluido = False,
             id = r5001_evttotal_id)
-   
+
         if not versao:
 
             versao = r5001_evttotal.versao
-   
+
         r5001_evttotal_lista = r5001evtTotal.objects.using( db_slug ).filter(id=r5001_evttotal_id, excluido = False).all()
-   
+
 
         r5001_regocorrs_lista = r5001regOcorrs.objects.using(db_slug).filter(r5001_evttotal_id__in = listar_ids(r5001_evttotal_lista) ).filter(excluido=False).all()
         r5001_infototal_lista = r5001infoTotal.objects.using(db_slug).filter(r5001_evttotal_id__in = listar_ids(r5001_evttotal_lista) ).filter(excluido=False).all()
@@ -222,7 +222,7 @@ def gerar_xml_r5001(r5001_evttotal_id, db_slug, versao=None):
         r5001_rcoml_lista = r5001RComl.objects.using(db_slug).filter(r5001_infototal_id__in = listar_ids(r5001_infototal_lista) ).filter(excluido=False).all()
         r5001_rcprb_lista = r5001RCPRB.objects.using(db_slug).filter(r5001_infototal_id__in = listar_ids(r5001_infototal_lista) ).filter(excluido=False).all()
         r5001_rrecespetdesp_lista = r5001RRecEspetDesp.objects.using(db_slug).filter(r5001_infototal_id__in = listar_ids(r5001_infototal_lista) ).filter(excluido=False).all()
-   
+
         context = {
             'versao': versao,
             'base': r5001_evttotal,
@@ -242,11 +242,11 @@ def gerar_xml_r5001(r5001_evttotal_id, db_slug, versao=None):
             'r5001_rrecespetdesp_lista': r5001_rrecespetdesp_lista,
 
         }
-   
+
         t = get_template('r5001_evttotal.xml')
         xml = t.render(context)
         return xml
-   
+
 
 
 @login_required
@@ -269,7 +269,7 @@ def recibo(request, hash, tipo):
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
     if permissao.permite_listar:
-   
+
         r5001_evttotal = get_object_or_404(
             r5001evtTotal.objects.using( db_slug ),
             excluido = False, id = r5001_evttotal_id)
@@ -288,7 +288,7 @@ def recibo(request, hash, tipo):
 
         retorno_ocorrencias = RetornosEventosOcorrencias.objects.using(db_slug).\
             filter(retornos_eventos_id=retorno.id,excluido=False).all()
-   
+
         context = {
             'r5001_evttotal_id': r5001_evttotal_id,
             'r5001_evttotal': r5001_evttotal,
@@ -298,11 +298,11 @@ def recibo(request, hash, tipo):
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
 
-            
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -330,10 +330,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-            
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -399,7 +399,7 @@ def gerar_xml(request, hash):
     r5001_evttotal_id = int(dict_hash['id'])
 
     if r5001_evttotal_id:
-   
+
         xml_assinado = gerar_xml_assinado(r5001_evttotal_id, db_slug)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
@@ -419,7 +419,7 @@ def duplicar(request, hash):
     r5001_evttotal_id = int(dict_hash['id'])
 
     if r5001_evttotal_id:
-   
+
         r5001_evttotal = get_object_or_404(
             r5001evtTotal.objects.using(db_slug),
             excluido=False,
@@ -461,21 +461,21 @@ def criar_alteracao(request, hash):
             r5001evtTotal.objects.using(db_slug),
             excluido=False,
             id=r5001_evttotal_id)
-   
+
         texto = gerar_xml_r5001(r5001_evttotal_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
         dados = read_r5001_evttotal_string({}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(dados['id'], db_slug)
-   
+
         r5001evtTotal.objects.using(db_slug).filter(id=dados['id']).\
             update(status=0, arquivo_original=0, arquivo='')
-   
+
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r5001_evttotal.identidade),
             'r5001_evttotal', dados['id'], request.user.id, 1)
-   
+
         messages.success(request, 'Evento de alteração criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )   
+        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('r5001_evttotal_salvar', hash=url_hash)
 
     messages.error(request, 'Erro ao criar evento de alteração!')
@@ -495,25 +495,25 @@ def criar_exclusao(request, hash):
     r5001_evttotal_id = int(dict_hash['id'])
 
     if r5001_evttotal_id:
-   
+
         r5001_evttotal = get_object_or_404(
             r5001evtTotal.objects.using(db_slug),
             excluido=False,
             id=r5001_evttotal_id)
-   
+
         texto = gerar_xml_r5001(r5001_evttotal_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_r5001_evttotal_string({}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(dados['id'], db_slug)
-   
+
         r5001evtTotal.objects.using(db_slug).filter(id=dados['id']).\
             update(status=0, arquivo_original=0, arquivo='')
-   
+
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r5001_evttotal.identidade),
             'r5001_evttotal', dados['id'], request.user.id, 1)
-   
+
         messages.success(request, 'Evento de exclusão criado com sucesso!')
         url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('r5001_evttotal_salvar', hash=url_hash)
@@ -533,7 +533,7 @@ def alterar_identidade(request, hash):
     r5001_evttotal_id = int(dict_hash['id'])
 
     if r5001_evttotal_id:
-   
+
         r5001_evttotal = get_object_or_404(
             r5001evtTotal.objects.using(db_slug),
             excluido=False,
@@ -552,7 +552,7 @@ def alterar_identidade(request, hash):
             return redirect('r5001_evttotal_salvar', hash=url_hash)
 
         else:
-       
+
             messages.error(request, 'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
@@ -706,7 +706,7 @@ def validar_evento(request, hash):
             messages.success(request, u'Validações processadas com sucesso!')
 
         else:
-       
+
             messages.error(request, u'Não foi possível validar o evento pois a versão do evento não é compatível com a versão do sistema!')
     else:
 

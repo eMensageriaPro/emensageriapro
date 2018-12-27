@@ -97,7 +97,7 @@ def read_s2250_evtavprevio_obj(doc, status, validar=False):
         for detAvPrevio in evtAvPrevio.infoAvPrevio.detAvPrevio:
             s2250_detavprevio_dados = {}
             s2250_detavprevio_dados['s2250_evtavprevio_id'] = s2250_evtavprevio_id
-       
+
             if 'dtAvPrv' in dir(detAvPrevio): s2250_detavprevio_dados['dtavprv'] = detAvPrevio.dtAvPrv.cdata
             if 'dtPrevDeslig' in dir(detAvPrevio): s2250_detavprevio_dados['dtprevdeslig'] = detAvPrevio.dtPrevDeslig.cdata
             if 'tpAvPrevio' in dir(detAvPrevio): s2250_detavprevio_dados['tpavprevio'] = detAvPrevio.tpAvPrevio.cdata
@@ -111,7 +111,7 @@ def read_s2250_evtavprevio_obj(doc, status, validar=False):
         for cancAvPrevio in evtAvPrevio.infoAvPrevio.cancAvPrevio:
             s2250_cancavprevio_dados = {}
             s2250_cancavprevio_dados['s2250_evtavprevio_id'] = s2250_evtavprevio_id
-       
+
             if 'dtCancAvPrv' in dir(cancAvPrevio): s2250_cancavprevio_dados['dtcancavprv'] = cancAvPrevio.dtCancAvPrv.cdata
             if 'observacao' in dir(cancAvPrevio): s2250_cancavprevio_dados['observacao'] = cancAvPrevio.observacao.cdata
             if 'mtvCancAvPrevio' in dir(cancAvPrevio): s2250_cancavprevio_dados['mtvcancavprevio'] = cancAvPrevio.mtvCancAvPrevio.cdata

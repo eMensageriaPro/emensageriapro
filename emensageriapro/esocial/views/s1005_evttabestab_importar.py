@@ -92,7 +92,7 @@ def read_s1005_evttabestab_obj(doc, status, validar=False):
         for inclusao in evtTabEstab.infoEstab.inclusao:
             s1005_inclusao_dados = {}
             s1005_inclusao_dados['s1005_evttabestab_id'] = s1005_evttabestab_id
-       
+
             if 'tpInsc' in dir(inclusao.ideEstab): s1005_inclusao_dados['tpinsc'] = inclusao.ideEstab.tpInsc.cdata
             if 'nrInsc' in dir(inclusao.ideEstab): s1005_inclusao_dados['nrinsc'] = inclusao.ideEstab.nrInsc.cdata
             if 'iniValid' in dir(inclusao.ideEstab): s1005_inclusao_dados['inivalid'] = inclusao.ideEstab.iniValid.cdata
@@ -114,7 +114,7 @@ def read_s1005_evttabestab_obj(doc, status, validar=False):
                 for procAdmJudRat in inclusao.dadosEstab.aliqGilrat.procAdmJudRat:
                     s1005_inclusao_procadmjudrat_dados = {}
                     s1005_inclusao_procadmjudrat_dados['s1005_inclusao_id'] = s1005_inclusao_id
-               
+
                     if 'tpProc' in dir(procAdmJudRat): s1005_inclusao_procadmjudrat_dados['tpproc'] = procAdmJudRat.tpProc.cdata
                     if 'nrProc' in dir(procAdmJudRat): s1005_inclusao_procadmjudrat_dados['nrproc'] = procAdmJudRat.nrProc.cdata
                     if 'codSusp' in dir(procAdmJudRat): s1005_inclusao_procadmjudrat_dados['codsusp'] = procAdmJudRat.codSusp.cdata
@@ -122,12 +122,12 @@ def read_s1005_evttabestab_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1005_inclusao_procadmjudrat_id = resp[0][0]
                     #print s1005_inclusao_procadmjudrat_id
-   
+
             if 'procAdmJudFap' in dir(inclusao.dadosEstab.aliqGilrat):
                 for procAdmJudFap in inclusao.dadosEstab.aliqGilrat.procAdmJudFap:
                     s1005_inclusao_procadmjudfap_dados = {}
                     s1005_inclusao_procadmjudfap_dados['s1005_inclusao_id'] = s1005_inclusao_id
-               
+
                     if 'tpProc' in dir(procAdmJudFap): s1005_inclusao_procadmjudfap_dados['tpproc'] = procAdmJudFap.tpProc.cdata
                     if 'nrProc' in dir(procAdmJudFap): s1005_inclusao_procadmjudfap_dados['nrproc'] = procAdmJudFap.nrProc.cdata
                     if 'codSusp' in dir(procAdmJudFap): s1005_inclusao_procadmjudfap_dados['codsusp'] = procAdmJudFap.codSusp.cdata
@@ -135,57 +135,57 @@ def read_s1005_evttabestab_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1005_inclusao_procadmjudfap_id = resp[0][0]
                     #print s1005_inclusao_procadmjudfap_id
-   
+
             if 'infoCaepf' in dir(inclusao.dadosEstab):
                 for infoCaepf in inclusao.dadosEstab.infoCaepf:
                     s1005_inclusao_infocaepf_dados = {}
                     s1005_inclusao_infocaepf_dados['s1005_inclusao_id'] = s1005_inclusao_id
-               
+
                     if 'tpCaepf' in dir(infoCaepf): s1005_inclusao_infocaepf_dados['tpcaepf'] = infoCaepf.tpCaepf.cdata
                     insert = create_insert('s1005_inclusao_infocaepf', s1005_inclusao_infocaepf_dados)
                     resp = executar_sql(insert, True)
                     s1005_inclusao_infocaepf_id = resp[0][0]
                     #print s1005_inclusao_infocaepf_id
-   
+
             if 'infoObra' in dir(inclusao.dadosEstab):
                 for infoObra in inclusao.dadosEstab.infoObra:
                     s1005_inclusao_infoobra_dados = {}
                     s1005_inclusao_infoobra_dados['s1005_inclusao_id'] = s1005_inclusao_id
-               
+
                     if 'indSubstPatrObra' in dir(infoObra): s1005_inclusao_infoobra_dados['indsubstpatrobra'] = infoObra.indSubstPatrObra.cdata
                     insert = create_insert('s1005_inclusao_infoobra', s1005_inclusao_infoobra_dados)
                     resp = executar_sql(insert, True)
                     s1005_inclusao_infoobra_id = resp[0][0]
                     #print s1005_inclusao_infoobra_id
-   
+
             if 'infoEntEduc' in dir(inclusao.dadosEstab.infoTrab.infoApr):
                 for infoEntEduc in inclusao.dadosEstab.infoTrab.infoApr.infoEntEduc:
                     s1005_inclusao_infoenteduc_dados = {}
                     s1005_inclusao_infoenteduc_dados['s1005_inclusao_id'] = s1005_inclusao_id
-               
+
                     if 'nrInsc' in dir(infoEntEduc): s1005_inclusao_infoenteduc_dados['nrinsc'] = infoEntEduc.nrInsc.cdata
                     insert = create_insert('s1005_inclusao_infoenteduc', s1005_inclusao_infoenteduc_dados)
                     resp = executar_sql(insert, True)
                     s1005_inclusao_infoenteduc_id = resp[0][0]
                     #print s1005_inclusao_infoenteduc_id
-   
+
             if 'infoPCD' in dir(inclusao.dadosEstab.infoTrab):
                 for infoPCD in inclusao.dadosEstab.infoTrab.infoPCD:
                     s1005_inclusao_infopcd_dados = {}
                     s1005_inclusao_infopcd_dados['s1005_inclusao_id'] = s1005_inclusao_id
-               
+
                     if 'contPCD' in dir(infoPCD): s1005_inclusao_infopcd_dados['contpcd'] = infoPCD.contPCD.cdata
                     if 'nrProcJud' in dir(infoPCD): s1005_inclusao_infopcd_dados['nrprocjud'] = infoPCD.nrProcJud.cdata
                     insert = create_insert('s1005_inclusao_infopcd', s1005_inclusao_infopcd_dados)
                     resp = executar_sql(insert, True)
                     s1005_inclusao_infopcd_id = resp[0][0]
                     #print s1005_inclusao_infopcd_id
-   
+
     if 'alteracao' in dir(evtTabEstab.infoEstab):
         for alteracao in evtTabEstab.infoEstab.alteracao:
             s1005_alteracao_dados = {}
             s1005_alteracao_dados['s1005_evttabestab_id'] = s1005_evttabestab_id
-       
+
             if 'tpInsc' in dir(alteracao.ideEstab): s1005_alteracao_dados['tpinsc'] = alteracao.ideEstab.tpInsc.cdata
             if 'nrInsc' in dir(alteracao.ideEstab): s1005_alteracao_dados['nrinsc'] = alteracao.ideEstab.nrInsc.cdata
             if 'iniValid' in dir(alteracao.ideEstab): s1005_alteracao_dados['inivalid'] = alteracao.ideEstab.iniValid.cdata
@@ -207,7 +207,7 @@ def read_s1005_evttabestab_obj(doc, status, validar=False):
                 for procAdmJudRat in alteracao.dadosEstab.aliqGilrat.procAdmJudRat:
                     s1005_alteracao_procadmjudrat_dados = {}
                     s1005_alteracao_procadmjudrat_dados['s1005_alteracao_id'] = s1005_alteracao_id
-               
+
                     if 'tpProc' in dir(procAdmJudRat): s1005_alteracao_procadmjudrat_dados['tpproc'] = procAdmJudRat.tpProc.cdata
                     if 'nrProc' in dir(procAdmJudRat): s1005_alteracao_procadmjudrat_dados['nrproc'] = procAdmJudRat.nrProc.cdata
                     if 'codSusp' in dir(procAdmJudRat): s1005_alteracao_procadmjudrat_dados['codsusp'] = procAdmJudRat.codSusp.cdata
@@ -215,12 +215,12 @@ def read_s1005_evttabestab_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1005_alteracao_procadmjudrat_id = resp[0][0]
                     #print s1005_alteracao_procadmjudrat_id
-   
+
             if 'procAdmJudFap' in dir(alteracao.dadosEstab.aliqGilrat):
                 for procAdmJudFap in alteracao.dadosEstab.aliqGilrat.procAdmJudFap:
                     s1005_alteracao_procadmjudfap_dados = {}
                     s1005_alteracao_procadmjudfap_dados['s1005_alteracao_id'] = s1005_alteracao_id
-               
+
                     if 'tpProc' in dir(procAdmJudFap): s1005_alteracao_procadmjudfap_dados['tpproc'] = procAdmJudFap.tpProc.cdata
                     if 'nrProc' in dir(procAdmJudFap): s1005_alteracao_procadmjudfap_dados['nrproc'] = procAdmJudFap.nrProc.cdata
                     if 'codSusp' in dir(procAdmJudFap): s1005_alteracao_procadmjudfap_dados['codsusp'] = procAdmJudFap.codSusp.cdata
@@ -228,69 +228,69 @@ def read_s1005_evttabestab_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1005_alteracao_procadmjudfap_id = resp[0][0]
                     #print s1005_alteracao_procadmjudfap_id
-   
+
             if 'infoCaepf' in dir(alteracao.dadosEstab):
                 for infoCaepf in alteracao.dadosEstab.infoCaepf:
                     s1005_alteracao_infocaepf_dados = {}
                     s1005_alteracao_infocaepf_dados['s1005_alteracao_id'] = s1005_alteracao_id
-               
+
                     if 'tpCaepf' in dir(infoCaepf): s1005_alteracao_infocaepf_dados['tpcaepf'] = infoCaepf.tpCaepf.cdata
                     insert = create_insert('s1005_alteracao_infocaepf', s1005_alteracao_infocaepf_dados)
                     resp = executar_sql(insert, True)
                     s1005_alteracao_infocaepf_id = resp[0][0]
                     #print s1005_alteracao_infocaepf_id
-   
+
             if 'infoObra' in dir(alteracao.dadosEstab):
                 for infoObra in alteracao.dadosEstab.infoObra:
                     s1005_alteracao_infoobra_dados = {}
                     s1005_alteracao_infoobra_dados['s1005_alteracao_id'] = s1005_alteracao_id
-               
+
                     if 'indSubstPatrObra' in dir(infoObra): s1005_alteracao_infoobra_dados['indsubstpatrobra'] = infoObra.indSubstPatrObra.cdata
                     insert = create_insert('s1005_alteracao_infoobra', s1005_alteracao_infoobra_dados)
                     resp = executar_sql(insert, True)
                     s1005_alteracao_infoobra_id = resp[0][0]
                     #print s1005_alteracao_infoobra_id
-   
+
             if 'infoEntEduc' in dir(alteracao.dadosEstab.infoTrab.infoApr):
                 for infoEntEduc in alteracao.dadosEstab.infoTrab.infoApr.infoEntEduc:
                     s1005_alteracao_infoenteduc_dados = {}
                     s1005_alteracao_infoenteduc_dados['s1005_alteracao_id'] = s1005_alteracao_id
-               
+
                     if 'nrInsc' in dir(infoEntEduc): s1005_alteracao_infoenteduc_dados['nrinsc'] = infoEntEduc.nrInsc.cdata
                     insert = create_insert('s1005_alteracao_infoenteduc', s1005_alteracao_infoenteduc_dados)
                     resp = executar_sql(insert, True)
                     s1005_alteracao_infoenteduc_id = resp[0][0]
                     #print s1005_alteracao_infoenteduc_id
-   
+
             if 'infoPCD' in dir(alteracao.dadosEstab.infoTrab):
                 for infoPCD in alteracao.dadosEstab.infoTrab.infoPCD:
                     s1005_alteracao_infopcd_dados = {}
                     s1005_alteracao_infopcd_dados['s1005_alteracao_id'] = s1005_alteracao_id
-               
+
                     if 'contPCD' in dir(infoPCD): s1005_alteracao_infopcd_dados['contpcd'] = infoPCD.contPCD.cdata
                     if 'nrProcJud' in dir(infoPCD): s1005_alteracao_infopcd_dados['nrprocjud'] = infoPCD.nrProcJud.cdata
                     insert = create_insert('s1005_alteracao_infopcd', s1005_alteracao_infopcd_dados)
                     resp = executar_sql(insert, True)
                     s1005_alteracao_infopcd_id = resp[0][0]
                     #print s1005_alteracao_infopcd_id
-   
+
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:
                     s1005_alteracao_novavalidade_dados = {}
                     s1005_alteracao_novavalidade_dados['s1005_alteracao_id'] = s1005_alteracao_id
-               
+
                     if 'iniValid' in dir(novaValidade): s1005_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
                     if 'fimValid' in dir(novaValidade): s1005_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
                     insert = create_insert('s1005_alteracao_novavalidade', s1005_alteracao_novavalidade_dados)
                     resp = executar_sql(insert, True)
                     s1005_alteracao_novavalidade_id = resp[0][0]
                     #print s1005_alteracao_novavalidade_id
-   
+
     if 'exclusao' in dir(evtTabEstab.infoEstab):
         for exclusao in evtTabEstab.infoEstab.exclusao:
             s1005_exclusao_dados = {}
             s1005_exclusao_dados['s1005_evttabestab_id'] = s1005_evttabestab_id
-       
+
             if 'tpInsc' in dir(exclusao.ideEstab): s1005_exclusao_dados['tpinsc'] = exclusao.ideEstab.tpInsc.cdata
             if 'nrInsc' in dir(exclusao.ideEstab): s1005_exclusao_dados['nrinsc'] = exclusao.ideEstab.nrInsc.cdata
             if 'iniValid' in dir(exclusao.ideEstab): s1005_exclusao_dados['inivalid'] = exclusao.ideEstab.iniValid.cdata

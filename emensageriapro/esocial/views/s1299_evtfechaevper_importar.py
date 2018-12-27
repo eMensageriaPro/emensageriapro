@@ -101,7 +101,7 @@ def read_s1299_evtfechaevper_obj(doc, status, validar=False):
         for ideRespInf in evtFechaEvPer.ideRespInf:
             s1299_iderespinf_dados = {}
             s1299_iderespinf_dados['s1299_evtfechaevper_id'] = s1299_evtfechaevper_id
-       
+
             if 'nmResp' in dir(ideRespInf): s1299_iderespinf_dados['nmresp'] = ideRespInf.nmResp.cdata
             if 'cpfResp' in dir(ideRespInf): s1299_iderespinf_dados['cpfresp'] = ideRespInf.cpfResp.cdata
             if 'telefone' in dir(ideRespInf): s1299_iderespinf_dados['telefone'] = ideRespInf.telefone.cdata

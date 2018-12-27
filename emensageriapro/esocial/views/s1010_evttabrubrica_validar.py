@@ -54,7 +54,7 @@ def validacoes_s1010_evttabrubrica(arquivo):
     if 'nrInsc' in dir(evtTabRubrica.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtTabRubrica.ideEmpregador.nrInsc', evtTabRubrica.ideEmpregador.nrInsc.cdata, 1, '')
     if 'inclusao' in dir(evtTabRubrica.infoRubrica):
         for inclusao in evtTabRubrica.infoRubrica.inclusao:
-       
+
             if 'codRubr' in dir(inclusao.ideRubrica): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideRubrica.codRubr', inclusao.ideRubrica.codRubr.cdata, 1, '')
             if 'ideTabRubr' in dir(inclusao.ideRubrica): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideRubrica.ideTabRubr', inclusao.ideRubrica.ideTabRubr.cdata, 1, '')
             if 'iniValid' in dir(inclusao.ideRubrica): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideRubrica.iniValid', inclusao.ideRubrica.iniValid.cdata, 1, '')
@@ -72,38 +72,38 @@ def validacoes_s1010_evttabrubrica(arquivo):
 
             if 'ideProcessoCP' in dir(inclusao.dadosRubrica):
                 for ideProcessoCP in inclusao.dadosRubrica.ideProcessoCP:
-               
+
                     if 'tpProc' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.tpProc', ideProcessoCP.tpProc.cdata, 1, '1;2')
                     if 'nrProc' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.nrProc', ideProcessoCP.nrProc.cdata, 1, '')
                     if 'extDecisao' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.extDecisao', ideProcessoCP.extDecisao.cdata, 1, '1;2')
                     if 'codSusp' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.codSusp', ideProcessoCP.codSusp.cdata, 1, '')
-   
+
             if 'ideProcessoIRRF' in dir(inclusao.dadosRubrica):
                 for ideProcessoIRRF in inclusao.dadosRubrica.ideProcessoIRRF:
-               
+
                     if 'nrProc' in dir(ideProcessoIRRF): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoIRRF.nrProc', ideProcessoIRRF.nrProc.cdata, 1, '')
                     if 'codSusp' in dir(ideProcessoIRRF): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoIRRF.codSusp', ideProcessoIRRF.codSusp.cdata, 1, '')
-   
+
             if 'ideProcessoFGTS' in dir(inclusao.dadosRubrica):
                 for ideProcessoFGTS in inclusao.dadosRubrica.ideProcessoFGTS:
-               
+
                     if 'nrProc' in dir(ideProcessoFGTS): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoFGTS.nrProc', ideProcessoFGTS.nrProc.cdata, 1, '')
-   
+
             if 'ideProcessoSIND' in dir(inclusao.dadosRubrica):
                 for ideProcessoSIND in inclusao.dadosRubrica.ideProcessoSIND:
-               
+
                     if 'nrProc' in dir(ideProcessoSIND): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoSIND.nrProc', ideProcessoSIND.nrProc.cdata, 1, '')
-   
+
             if 'ideProcessoCPRP' in dir(inclusao.dadosRubrica):
                 for ideProcessoCPRP in inclusao.dadosRubrica.ideProcessoCPRP:
-               
+
                     if 'tpProc' in dir(ideProcessoCPRP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCPRP.tpProc', ideProcessoCPRP.tpProc.cdata, 1, '1;2')
                     if 'nrProc' in dir(ideProcessoCPRP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCPRP.nrProc', ideProcessoCPRP.nrProc.cdata, 1, '')
                     if 'extDecisao' in dir(ideProcessoCPRP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCPRP.extDecisao', ideProcessoCPRP.extDecisao.cdata, 1, '1;2;3')
-   
+
     if 'alteracao' in dir(evtTabRubrica.infoRubrica):
         for alteracao in evtTabRubrica.infoRubrica.alteracao:
-       
+
             if 'codRubr' in dir(alteracao.ideRubrica): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideRubrica.codRubr', alteracao.ideRubrica.codRubr.cdata, 1, '')
             if 'ideTabRubr' in dir(alteracao.ideRubrica): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideRubrica.ideTabRubr', alteracao.ideRubrica.ideTabRubr.cdata, 1, '')
             if 'iniValid' in dir(alteracao.ideRubrica): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideRubrica.iniValid', alteracao.ideRubrica.iniValid.cdata, 1, '')
@@ -121,44 +121,44 @@ def validacoes_s1010_evttabrubrica(arquivo):
 
             if 'ideProcessoCP' in dir(alteracao.dadosRubrica):
                 for ideProcessoCP in alteracao.dadosRubrica.ideProcessoCP:
-               
+
                     if 'tpProc' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.tpProc', ideProcessoCP.tpProc.cdata, 1, '1;2')
                     if 'nrProc' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.nrProc', ideProcessoCP.nrProc.cdata, 1, '')
                     if 'extDecisao' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.extDecisao', ideProcessoCP.extDecisao.cdata, 1, '1;2')
                     if 'codSusp' in dir(ideProcessoCP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCP.codSusp', ideProcessoCP.codSusp.cdata, 1, '')
-   
+
             if 'ideProcessoIRRF' in dir(alteracao.dadosRubrica):
                 for ideProcessoIRRF in alteracao.dadosRubrica.ideProcessoIRRF:
-               
+
                     if 'nrProc' in dir(ideProcessoIRRF): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoIRRF.nrProc', ideProcessoIRRF.nrProc.cdata, 1, '')
                     if 'codSusp' in dir(ideProcessoIRRF): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoIRRF.codSusp', ideProcessoIRRF.codSusp.cdata, 1, '')
-   
+
             if 'ideProcessoFGTS' in dir(alteracao.dadosRubrica):
                 for ideProcessoFGTS in alteracao.dadosRubrica.ideProcessoFGTS:
-               
+
                     if 'nrProc' in dir(ideProcessoFGTS): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoFGTS.nrProc', ideProcessoFGTS.nrProc.cdata, 1, '')
-   
+
             if 'ideProcessoSIND' in dir(alteracao.dadosRubrica):
                 for ideProcessoSIND in alteracao.dadosRubrica.ideProcessoSIND:
-               
+
                     if 'nrProc' in dir(ideProcessoSIND): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoSIND.nrProc', ideProcessoSIND.nrProc.cdata, 1, '')
-   
+
             if 'ideProcessoCPRP' in dir(alteracao.dadosRubrica):
                 for ideProcessoCPRP in alteracao.dadosRubrica.ideProcessoCPRP:
-               
+
                     if 'tpProc' in dir(ideProcessoCPRP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCPRP.tpProc', ideProcessoCPRP.tpProc.cdata, 1, '1;2')
                     if 'nrProc' in dir(ideProcessoCPRP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCPRP.nrProc', ideProcessoCPRP.nrProc.cdata, 1, '')
                     if 'extDecisao' in dir(ideProcessoCPRP): validacoes_lista = validar_campo(validacoes_lista,'ideProcessoCPRP.extDecisao', ideProcessoCPRP.extDecisao.cdata, 1, '1;2;3')
-   
+
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:
-               
+
                     if 'iniValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.iniValid', novaValidade.iniValid.cdata, 1, '')
                     if 'fimValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.fimValid', novaValidade.fimValid.cdata, 0, '')
-   
+
     if 'exclusao' in dir(evtTabRubrica.infoRubrica):
         for exclusao in evtTabRubrica.infoRubrica.exclusao:
-       
+
             if 'codRubr' in dir(exclusao.ideRubrica): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideRubrica.codRubr', exclusao.ideRubrica.codRubr.cdata, 1, '')
             if 'ideTabRubr' in dir(exclusao.ideRubrica): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideRubrica.ideTabRubr', exclusao.ideRubrica.ideTabRubr.cdata, 1, '')
             if 'iniValid' in dir(exclusao.ideRubrica): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideRubrica.iniValid', exclusao.ideRubrica.iniValid.cdata, 1, '')

@@ -62,7 +62,7 @@ def validacoes_r2060_evtcprb(arquivo):
     if 'vlrCPRBSuspTotal' in dir(evtCPRB.infoCPRB.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'evtCPRB.infoCPRB.ideEstab.vlrCPRBSuspTotal', evtCPRB.infoCPRB.ideEstab.vlrCPRBSuspTotal.cdata, 0, '')
     if 'tipoCod' in dir(evtCPRB.infoCPRB.ideEstab):
         for tipoCod in evtCPRB.infoCPRB.ideEstab.tipoCod:
-       
+
             if 'codAtivEcon' in dir(tipoCod): validacoes_lista = validar_campo(validacoes_lista,'tipoCod.codAtivEcon', tipoCod.codAtivEcon.cdata, 1, '')
             if 'vlrRecBrutaAtiv' in dir(tipoCod): validacoes_lista = validar_campo(validacoes_lista,'tipoCod.vlrRecBrutaAtiv', tipoCod.vlrRecBrutaAtiv.cdata, 1, '')
             if 'vlrExcRecBruta' in dir(tipoCod): validacoes_lista = validar_campo(validacoes_lista,'tipoCod.vlrExcRecBruta', tipoCod.vlrExcRecBruta.cdata, 1, '')
@@ -72,19 +72,19 @@ def validacoes_r2060_evtcprb(arquivo):
 
             if 'tipoAjuste' in dir(tipoCod):
                 for tipoAjuste in tipoCod.tipoAjuste:
-               
+
                     if 'tpAjuste' in dir(tipoAjuste): validacoes_lista = validar_campo(validacoes_lista,'tipoAjuste.tpAjuste', tipoAjuste.tpAjuste.cdata, 1, '0;1')
                     if 'codAjuste' in dir(tipoAjuste): validacoes_lista = validar_campo(validacoes_lista,'tipoAjuste.codAjuste', tipoAjuste.codAjuste.cdata, 1, '1;2;3;4;5;6;7;8;9;10;11')
                     if 'vlrAjuste' in dir(tipoAjuste): validacoes_lista = validar_campo(validacoes_lista,'tipoAjuste.vlrAjuste', tipoAjuste.vlrAjuste.cdata, 1, '')
                     if 'descAjuste' in dir(tipoAjuste): validacoes_lista = validar_campo(validacoes_lista,'tipoAjuste.descAjuste', tipoAjuste.descAjuste.cdata, 1, '')
                     if 'dtAjuste' in dir(tipoAjuste): validacoes_lista = validar_campo(validacoes_lista,'tipoAjuste.dtAjuste', tipoAjuste.dtAjuste.cdata, 1, '')
-   
+
             if 'infoProc' in dir(tipoCod):
                 for infoProc in tipoCod.infoProc:
-               
+
                     if 'tpProc' in dir(infoProc): validacoes_lista = validar_campo(validacoes_lista,'infoProc.tpProc', infoProc.tpProc.cdata, 1, '1;2')
                     if 'nrProc' in dir(infoProc): validacoes_lista = validar_campo(validacoes_lista,'infoProc.nrProc', infoProc.nrProc.cdata, 1, '')
                     if 'codSusp' in dir(infoProc): validacoes_lista = validar_campo(validacoes_lista,'infoProc.codSusp', infoProc.codSusp.cdata, 0, '')
                     if 'vlrCPRBSusp' in dir(infoProc): validacoes_lista = validar_campo(validacoes_lista,'infoProc.vlrCPRBSusp', infoProc.vlrCPRBSusp.cdata, 1, '')
-   
+
     return validacoes_lista

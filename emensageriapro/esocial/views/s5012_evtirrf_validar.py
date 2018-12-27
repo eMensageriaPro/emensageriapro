@@ -54,7 +54,7 @@ def validacoes_s5012_evtirrf(arquivo):
     if 'indExistInfo' in dir(evtIrrf.infoIRRF): validacoes_lista = validar_campo(validacoes_lista,'evtIrrf.infoIRRF.indExistInfo', evtIrrf.infoIRRF.indExistInfo.cdata, 1, '1;2;3')
     if 'infoCRContrib' in dir(evtIrrf.infoIRRF):
         for infoCRContrib in evtIrrf.infoIRRF.infoCRContrib:
-       
+
             if 'tpCR' in dir(infoCRContrib): validacoes_lista = validar_campo(validacoes_lista,'infoCRContrib.tpCR', infoCRContrib.tpCR.cdata, 1, '047301;056107;056108;056109;056110;056111;056112;056113;058806;061001;3533;356201')
             if 'vrCR' in dir(infoCRContrib): validacoes_lista = validar_campo(validacoes_lista,'infoCRContrib.vrCR', infoCRContrib.vrCR.cdata, 1, '')
 

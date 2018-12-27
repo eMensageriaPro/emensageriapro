@@ -92,7 +92,7 @@ def read_s5013_evtfgts_obj(doc, status, validar=False):
         for basePerApur in evtFGTS.infoFGTS.infoBaseFGTS.basePerApur:
             s5013_baseperapur_dados = {}
             s5013_baseperapur_dados['s5013_evtfgts_id'] = s5013_evtfgts_id
-       
+
             if 'tpValor' in dir(basePerApur): s5013_baseperapur_dados['tpvalor'] = basePerApur.tpValor.cdata
             if 'baseFGTS' in dir(basePerApur): s5013_baseperapur_dados['basefgts'] = basePerApur.baseFGTS.cdata
             insert = create_insert('s5013_baseperapur', s5013_baseperapur_dados)
@@ -104,7 +104,7 @@ def read_s5013_evtfgts_obj(doc, status, validar=False):
         for infoBasePerAntE in evtFGTS.infoFGTS.infoBaseFGTS.infoBasePerAntE:
             s5013_infobaseperante_dados = {}
             s5013_infobaseperante_dados['s5013_evtfgts_id'] = s5013_evtfgts_id
-       
+
             if 'perRef' in dir(infoBasePerAntE): s5013_infobaseperante_dados['perref'] = infoBasePerAntE.perRef.cdata
             insert = create_insert('s5013_infobaseperante', s5013_infobaseperante_dados)
             resp = executar_sql(insert, True)
@@ -115,19 +115,19 @@ def read_s5013_evtfgts_obj(doc, status, validar=False):
                 for basePerAntE in infoBasePerAntE.basePerAntE:
                     s5013_baseperante_dados = {}
                     s5013_baseperante_dados['s5013_infobaseperante_id'] = s5013_infobaseperante_id
-               
+
                     if 'tpValorE' in dir(basePerAntE): s5013_baseperante_dados['tpvalore'] = basePerAntE.tpValorE.cdata
                     if 'baseFGTSE' in dir(basePerAntE): s5013_baseperante_dados['basefgtse'] = basePerAntE.baseFGTSE.cdata
                     insert = create_insert('s5013_baseperante', s5013_baseperante_dados)
                     resp = executar_sql(insert, True)
                     s5013_baseperante_id = resp[0][0]
                     #print s5013_baseperante_id
-   
+
     if 'dpsPerApur' in dir(evtFGTS.infoFGTS.infoDpsFGTS):
         for dpsPerApur in evtFGTS.infoFGTS.infoDpsFGTS.dpsPerApur:
             s5013_dpsperapur_dados = {}
             s5013_dpsperapur_dados['s5013_evtfgts_id'] = s5013_evtfgts_id
-       
+
             if 'tpDps' in dir(dpsPerApur): s5013_dpsperapur_dados['tpdps'] = dpsPerApur.tpDps.cdata
             if 'vrFGTS' in dir(dpsPerApur): s5013_dpsperapur_dados['vrfgts'] = dpsPerApur.vrFGTS.cdata
             insert = create_insert('s5013_dpsperapur', s5013_dpsperapur_dados)
@@ -139,7 +139,7 @@ def read_s5013_evtfgts_obj(doc, status, validar=False):
         for infoDpsPerAntE in evtFGTS.infoFGTS.infoDpsFGTS.infoDpsPerAntE:
             s5013_infodpsperante_dados = {}
             s5013_infodpsperante_dados['s5013_evtfgts_id'] = s5013_evtfgts_id
-       
+
             if 'perRef' in dir(infoDpsPerAntE): s5013_infodpsperante_dados['perref'] = infoDpsPerAntE.perRef.cdata
             insert = create_insert('s5013_infodpsperante', s5013_infodpsperante_dados)
             resp = executar_sql(insert, True)
@@ -150,14 +150,14 @@ def read_s5013_evtfgts_obj(doc, status, validar=False):
                 for dpsPerAntE in infoDpsPerAntE.dpsPerAntE:
                     s5013_dpsperante_dados = {}
                     s5013_dpsperante_dados['s5013_infodpsperante_id'] = s5013_infodpsperante_id
-               
+
                     if 'tpDpsE' in dir(dpsPerAntE): s5013_dpsperante_dados['tpdpse'] = dpsPerAntE.tpDpsE.cdata
                     if 'vrFGTSE' in dir(dpsPerAntE): s5013_dpsperante_dados['vrfgtse'] = dpsPerAntE.vrFGTSE.cdata
                     insert = create_insert('s5013_dpsperante', s5013_dpsperante_dados)
                     resp = executar_sql(insert, True)
                     s5013_dpsperante_id = resp[0][0]
                     #print s5013_dpsperante_id
-   
+
     from emensageriapro.esocial.views.s5013_evtfgts_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(s5013_evtfgts_id, 'default')
     return dados

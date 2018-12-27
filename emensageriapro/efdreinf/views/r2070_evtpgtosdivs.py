@@ -97,17 +97,17 @@ def apagar(request, hash):
                              'r2070_evtpgtosdivs', r2070_evtpgtosdivs_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 'r2070_evtpgtosdivs_salvar':
             return redirect('r2070_evtpgtosdivs', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -260,18 +260,18 @@ def listar(request, hash):
             filtrar = True
             r2070_evtpgtosdivs_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-   
+
         transmissor_lote_efdreinf_lista = TransmissorLoteEfdreinf.objects.using( db_slug ).filter(excluido = False).all()
         #r2070_evtpgtosdivs_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r2070_evtpgtosdivs'
         context = {
             'r2070_evtpgtosdivs_lista': r2070_evtpgtosdivs_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -281,7 +281,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-       
+
             'transmissor_lote_efdreinf_lista': transmissor_lote_efdreinf_lista,
         }
         #return render(request, 'r2070_evtpgtosdivs_listar.html', context)
@@ -326,10 +326,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -473,7 +473,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         r2070_evtpgtosdivs_form = disabled_form_fields(r2070_evtpgtosdivs_form, permissao.permite_editar)
-    
+
         if r2070_evtpgtosdivs_id:
             if r2070_evtpgtosdivs.status != 0:
                 r2070_evtpgtosdivs_form = disabled_form_fields(r2070_evtpgtosdivs_form, False)
@@ -483,7 +483,7 @@ def salvar(request, hash):
             r2070_evtpgtosdivs_form.fields[field].widget.attrs['ng-model'] = 'r2070_evtpgtosdivs_'+field
         if int(dict_hash['print']):
             r2070_evtpgtosdivs_form = disabled_form_for_print(r2070_evtpgtosdivs_form)
-   
+
         r2070_inforesidext_form = None
         r2070_inforesidext_lista = None
         r2070_infomolestia_form = None
@@ -492,7 +492,7 @@ def salvar(request, hash):
         r2070_ideestab_lista = None
         if r2070_evtpgtosdivs_id:
             r2070_evtpgtosdivs = get_object_or_404(r2070evtPgtosDivs.objects.using( db_slug ), excluido = False, id = r2070_evtpgtosdivs_id)
-       
+
             r2070_inforesidext_form = form_r2070_inforesidext(initial={ 'r2070_evtpgtosdivs': r2070_evtpgtosdivs }, slug=db_slug)
             r2070_inforesidext_form.fields['r2070_evtpgtosdivs'].widget.attrs['readonly'] = True
             r2070_inforesidext_lista = r2070infoResidExt.objects.using( db_slug ).filter(excluido = False, r2070_evtpgtosdivs_id=r2070_evtpgtosdivs.id).all()
@@ -520,7 +520,7 @@ def salvar(request, hash):
             r2070_evtpgtosdivs_form.fields['procemi'].value = 1
             r2070_evtpgtosdivs_form.fields['verproc'].widget.attrs['readonly'] = True
             r2070_evtpgtosdivs_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-    
+
         if dict_hash['tab'] or 'r2070_evtpgtosdivs' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'r2070_evtpgtosdivs_salvar'
@@ -533,9 +533,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r2070_evtpgtosdivs_id': int(r2070_evtpgtosdivs_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             'r2070_inforesidext_form': r2070_inforesidext_form,
             'r2070_inforesidext_lista': r2070_inforesidext_lista,
             'r2070_infomolestia_form': r2070_infomolestia_form,
@@ -544,7 +544,7 @@ def salvar(request, hash):
             'r2070_ideestab_lista': r2070_ideestab_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -554,7 +554,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #r2070_evtpgtosdivs_salvar_custom_variaveis_context#
         }
-    
+
         if for_print in (0,1 ):
             return render(request, 'r2070_evtpgtosdivs_salvar.html', context)
         elif for_print == 2:
@@ -588,10 +588,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

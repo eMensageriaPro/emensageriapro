@@ -58,18 +58,18 @@ def validacoes_s1280_evtinfocomplper(arquivo):
     if 'nrInsc' in dir(evtInfoComplPer.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtInfoComplPer.ideEmpregador.nrInsc', evtInfoComplPer.ideEmpregador.nrInsc.cdata, 1, '')
     if 'infoSubstPatr' in dir(evtInfoComplPer):
         for infoSubstPatr in evtInfoComplPer.infoSubstPatr:
-       
+
             if 'indSubstPatr' in dir(infoSubstPatr): validacoes_lista = validar_campo(validacoes_lista,'infoSubstPatr.indSubstPatr', infoSubstPatr.indSubstPatr.cdata, 1, '1;2')
             if 'percRedContrib' in dir(infoSubstPatr): validacoes_lista = validar_campo(validacoes_lista,'infoSubstPatr.percRedContrib', infoSubstPatr.percRedContrib.cdata, 1, '')
 
     if 'infoSubstPatrOpPort' in dir(evtInfoComplPer):
         for infoSubstPatrOpPort in evtInfoComplPer.infoSubstPatrOpPort:
-       
+
             if 'cnpjOpPortuario' in dir(infoSubstPatrOpPort): validacoes_lista = validar_campo(validacoes_lista,'infoSubstPatrOpPort.cnpjOpPortuario', infoSubstPatrOpPort.cnpjOpPortuario.cdata, 1, '')
 
     if 'infoAtivConcom' in dir(evtInfoComplPer):
         for infoAtivConcom in evtInfoComplPer.infoAtivConcom:
-       
+
             if 'fatorMes' in dir(infoAtivConcom): validacoes_lista = validar_campo(validacoes_lista,'infoAtivConcom.fatorMes', infoAtivConcom.fatorMes.cdata, 1, '')
             if 'fator13' in dir(infoAtivConcom): validacoes_lista = validar_campo(validacoes_lista,'infoAtivConcom.fator13', infoAtivConcom.fator13.cdata, 1, '')
 

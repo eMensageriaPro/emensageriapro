@@ -68,7 +68,7 @@ def validacoes_s2405_evtcdbenefalt(arquivo):
     if 'nmPai' in dir(evtCdBenefAlt.alteracao.dadosBenef.dadosNasc): validacoes_lista = validar_campo(validacoes_lista,'evtCdBenefAlt.alteracao.dadosBenef.dadosNasc.nmPai', evtCdBenefAlt.alteracao.dadosBenef.dadosNasc.nmPai.cdata, 0, '')
     if 'brasil' in dir(evtCdBenefAlt.alteracao.dadosBenef.endereco):
         for brasil in evtCdBenefAlt.alteracao.dadosBenef.endereco.brasil:
-       
+
             if 'tpLograd' in dir(brasil): validacoes_lista = validar_campo(validacoes_lista,'brasil.tpLograd', brasil.tpLograd.cdata, 1, '')
             if 'dscLograd' in dir(brasil): validacoes_lista = validar_campo(validacoes_lista,'brasil.dscLograd', brasil.dscLograd.cdata, 1, '')
             if 'nrLograd' in dir(brasil): validacoes_lista = validar_campo(validacoes_lista,'brasil.nrLograd', brasil.nrLograd.cdata, 1, '')
@@ -80,7 +80,7 @@ def validacoes_s2405_evtcdbenefalt(arquivo):
 
     if 'exterior' in dir(evtCdBenefAlt.alteracao.dadosBenef.endereco):
         for exterior in evtCdBenefAlt.alteracao.dadosBenef.endereco.exterior:
-       
+
             if 'paisResid' in dir(exterior): validacoes_lista = validar_campo(validacoes_lista,'exterior.paisResid', exterior.paisResid.cdata, 1, '008;040;329;331;334;337;341;345;351;355;357;358;041;359;361;365;367;369;372;375;379;383;386;043;388;391;395;396;399;403;411;420;423;426;047;427;431;434;438;440;442;445;447;449;450;053;452;455;458;461;464;467;472;474;476;477;059;485;488;490;493;494;495;497;499;501;505;063;507;508;511;517;521;525;528;531;535;538;064;542;545;548;551;556;563;566;569;573;575;065;576;578;580;583;586;589;593;599;603;607;069;611;623;625;628;640;647;660;665;670;675;009;072;676;677;678;685;687;690;691;695;697;700;073;705;710;715;720;728;731;735;738;741;744;077;748;750;754;756;759;764;767;770;772;776;080;780;782;783;785;788;790;791;795;800;805;081;810;815;820;823;824;827;828;831;833;840;083;845;847;848;850;855;858;863;866;870;873;085;875;888;890;087;088;090;013;093;097;098;100;101;105;106;108;111;115;017;119;127;131;137;141;145;149;150;151;152;020;153;154;158;160;161;163;165;169;173;177;023;183;187;190;193;195;196;198;199;229;232;025;235;237;239;240;243;244;245;246;247;249;031;251;253;255;259;263;267;271;275;281;285;037;289;291;293;297;301;305;309;313;317;325')
             if 'dscLograd' in dir(exterior): validacoes_lista = validar_campo(validacoes_lista,'exterior.dscLograd', exterior.dscLograd.cdata, 1, '')
             if 'nrLograd' in dir(exterior): validacoes_lista = validar_campo(validacoes_lista,'exterior.nrLograd', exterior.nrLograd.cdata, 1, '')
@@ -91,7 +91,7 @@ def validacoes_s2405_evtcdbenefalt(arquivo):
 
     if 'dependente' in dir(evtCdBenefAlt.alteracao.dadosBenef):
         for dependente in evtCdBenefAlt.alteracao.dadosBenef.dependente:
-       
+
             if 'tpDep' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.tpDep', dependente.tpDep.cdata, 1, '')
             if 'nmDep' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.nmDep', dependente.nmDep.cdata, 1, '')
             if 'dtNascto' in dir(dependente): validacoes_lista = validar_campo(validacoes_lista,'dependente.dtNascto', dependente.dtNascto.cdata, 1, '')

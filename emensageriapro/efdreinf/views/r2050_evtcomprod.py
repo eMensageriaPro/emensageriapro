@@ -93,17 +93,17 @@ def apagar(request, hash):
                              'r2050_evtcomprod', r2050_evtcomprod_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 'r2050_evtcomprod_salvar':
             return redirect('r2050_evtcomprod', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -274,18 +274,18 @@ def listar(request, hash):
             filtrar = True
             r2050_evtcomprod_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-   
+
         transmissor_lote_efdreinf_lista = TransmissorLoteEfdreinf.objects.using( db_slug ).filter(excluido = False).all()
         #r2050_evtcomprod_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r2050_evtcomprod'
         context = {
             'r2050_evtcomprod_lista': r2050_evtcomprod_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -295,7 +295,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-       
+
             'transmissor_lote_efdreinf_lista': transmissor_lote_efdreinf_lista,
         }
         #return render(request, 'r2050_evtcomprod_listar.html', context)
@@ -340,10 +340,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -487,7 +487,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         r2050_evtcomprod_form = disabled_form_fields(r2050_evtcomprod_form, permissao.permite_editar)
-    
+
         if r2050_evtcomprod_id:
             if r2050_evtcomprod.status != 0:
                 r2050_evtcomprod_form = disabled_form_fields(r2050_evtcomprod_form, False)
@@ -497,12 +497,12 @@ def salvar(request, hash):
             r2050_evtcomprod_form.fields[field].widget.attrs['ng-model'] = 'r2050_evtcomprod_'+field
         if int(dict_hash['print']):
             r2050_evtcomprod_form = disabled_form_for_print(r2050_evtcomprod_form)
-   
+
         r2050_tipocom_form = None
         r2050_tipocom_lista = None
         if r2050_evtcomprod_id:
             r2050_evtcomprod = get_object_or_404(r2050evtComProd.objects.using( db_slug ), excluido = False, id = r2050_evtcomprod_id)
-       
+
             r2050_tipocom_form = form_r2050_tipocom(initial={ 'r2050_evtcomprod': r2050_evtcomprod }, slug=db_slug)
             r2050_tipocom_form.fields['r2050_evtcomprod'].widget.attrs['readonly'] = True
             r2050_tipocom_lista = r2050tipoCom.objects.using( db_slug ).filter(excluido = False, r2050_evtcomprod_id=r2050_evtcomprod.id).all()
@@ -524,7 +524,7 @@ def salvar(request, hash):
             r2050_evtcomprod_form.fields['procemi'].value = 1
             r2050_evtcomprod_form.fields['verproc'].widget.attrs['readonly'] = True
             r2050_evtcomprod_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-    
+
         if dict_hash['tab'] or 'r2050_evtcomprod' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'r2050_evtcomprod_salvar'
@@ -537,14 +537,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r2050_evtcomprod_id': int(r2050_evtcomprod_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             'r2050_tipocom_form': r2050_tipocom_form,
             'r2050_tipocom_lista': r2050_tipocom_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -554,7 +554,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #r2050_evtcomprod_salvar_custom_variaveis_context#
         }
-    
+
         if for_print in (0,1 ):
             return render(request, 'r2050_evtcomprod_salvar.html', context)
         elif for_print == 2:
@@ -588,10 +588,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

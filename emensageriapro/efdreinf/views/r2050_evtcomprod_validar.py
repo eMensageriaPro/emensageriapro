@@ -66,18 +66,18 @@ def validacoes_r2050_evtcomprod(arquivo):
     if 'vlrSenarSuspTotal' in dir(evtComProd.infoComProd.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'evtComProd.infoComProd.ideEstab.vlrSenarSuspTotal', evtComProd.infoComProd.ideEstab.vlrSenarSuspTotal.cdata, 0, '')
     if 'tipoCom' in dir(evtComProd.infoComProd.ideEstab):
         for tipoCom in evtComProd.infoComProd.ideEstab.tipoCom:
-       
+
             if 'indCom' in dir(tipoCom): validacoes_lista = validar_campo(validacoes_lista,'tipoCom.indCom', tipoCom.indCom.cdata, 1, '1;8;9')
             if 'vlrRecBruta' in dir(tipoCom): validacoes_lista = validar_campo(validacoes_lista,'tipoCom.vlrRecBruta', tipoCom.vlrRecBruta.cdata, 1, '')
 
             if 'infoProc' in dir(tipoCom):
                 for infoProc in tipoCom.infoProc:
-               
+
                     if 'tpProc' in dir(infoProc): validacoes_lista = validar_campo(validacoes_lista,'infoProc.tpProc', infoProc.tpProc.cdata, 1, '1;2')
                     if 'nrProc' in dir(infoProc): validacoes_lista = validar_campo(validacoes_lista,'infoProc.nrProc', infoProc.nrProc.cdata, 1, '')
                     if 'codSusp' in dir(infoProc): validacoes_lista = validar_campo(validacoes_lista,'infoProc.codSusp', infoProc.codSusp.cdata, 0, '')
                     if 'vlrCPSusp' in dir(infoProc): validacoes_lista = validar_campo(validacoes_lista,'infoProc.vlrCPSusp', infoProc.vlrCPSusp.cdata, 0, '')
                     if 'vlrRatSusp' in dir(infoProc): validacoes_lista = validar_campo(validacoes_lista,'infoProc.vlrRatSusp', infoProc.vlrRatSusp.cdata, 0, '')
                     if 'vlrSenarSusp' in dir(infoProc): validacoes_lista = validar_campo(validacoes_lista,'infoProc.vlrSenarSusp', infoProc.vlrSenarSusp.cdata, 0, '')
-   
+
     return validacoes_lista

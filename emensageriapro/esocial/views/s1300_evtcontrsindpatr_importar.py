@@ -96,7 +96,7 @@ def read_s1300_evtcontrsindpatr_obj(doc, status, validar=False):
         for contribSind in evtContrSindPatr.contribSind:
             s1300_contribsind_dados = {}
             s1300_contribsind_dados['s1300_evtcontrsindpatr_id'] = s1300_evtcontrsindpatr_id
-       
+
             if 'cnpjSindic' in dir(contribSind): s1300_contribsind_dados['cnpjsindic'] = contribSind.cnpjSindic.cdata
             if 'tpContribSind' in dir(contribSind): s1300_contribsind_dados['tpcontribsind'] = contribSind.tpContribSind.cdata
             if 'vlrContribSind' in dir(contribSind): s1300_contribsind_dados['vlrcontribsind'] = contribSind.vlrContribSind.cdata

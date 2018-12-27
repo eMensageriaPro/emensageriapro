@@ -66,7 +66,7 @@ def validacoes_s2260_evtconvinterm(arquivo):
     if 'indLocal' in dir(evtConvInterm.infoConvInterm.localTrab): validacoes_lista = validar_campo(validacoes_lista,'evtConvInterm.infoConvInterm.localTrab.indLocal', evtConvInterm.infoConvInterm.localTrab.indLocal.cdata, 1, '0;1;2')
     if 'localTrabInterm' in dir(evtConvInterm.infoConvInterm.localTrab):
         for localTrabInterm in evtConvInterm.infoConvInterm.localTrab.localTrabInterm:
-       
+
             if 'tpLograd' in dir(localTrabInterm): validacoes_lista = validar_campo(validacoes_lista,'localTrabInterm.tpLograd', localTrabInterm.tpLograd.cdata, 1, 'A;AC;ACA;ACL;AD;AE;AER;AL;AMD;AME;AN;ANT;ART;AT;ATL;A V;AV;AVC;AVM;AVV;BAL;BC;BCO;BEL;BL;BLO;BLS;BLV;BSQ;BVD;BX;C;CAL;CAM;CAN;CH;CHA;CIC;CIR;CJ;CJM;CMP;COL;COM;CON;COR;CPO;CRG;CTN;DSC;DSV;DT;EB;EIM;ENS;ENT;EQ;ESC;ESD;ESE;ESI;ESL;ESM;ESP;ESS;EST;ESV;ETA;ETC;ETD;ETN;ETP;ETT;EVA;EVD;EX;FAV;FAZ;FER;FNT;FRA;FTE;GAL;GJA;HAB;IA;IND;IOA;JD;JDE;LD;LGA;LGO;LOT;LRG;LT;MER;MNA;MOD;MRG;MRO;MTE;NUC;NUR;OUT;PAR;PAS;PAT;PC;PCE;PDA;PDO;PNT;PR;PRL;PRM;PRQ;PRR;PSA;PSG;PSP;PSS;PTE;PTO;Q;QTA;QTS;R;R I;R L;R P;R V;RAM;RCR;REC;RER;RES;RET;RLA;RMP;ROA;ROD;ROT;RPE;RPR;RTN;RTT;SEG;SIT;SRV;ST;SUB;TCH;TER;TR;TRV;TUN;TV;TVP;TVV;UNI;V;V C;V L;VAC;VAL;VCO;VD;V-E;VER;VEV;VL;VLA;VLE;VLT;VPE;VRT;ZIG')
             if 'dscLograd' in dir(localTrabInterm): validacoes_lista = validar_campo(validacoes_lista,'localTrabInterm.dscLograd', localTrabInterm.dscLograd.cdata, 1, '')
             if 'nrLograd' in dir(localTrabInterm): validacoes_lista = validar_campo(validacoes_lista,'localTrabInterm.nrLograd', localTrabInterm.nrLograd.cdata, 1, '')

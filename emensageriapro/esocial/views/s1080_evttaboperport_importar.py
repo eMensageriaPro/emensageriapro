@@ -92,7 +92,7 @@ def read_s1080_evttaboperport_obj(doc, status, validar=False):
         for inclusao in evtTabOperPort.infoOperPortuario.inclusao:
             s1080_inclusao_dados = {}
             s1080_inclusao_dados['s1080_evttaboperport_id'] = s1080_evttaboperport_id
-       
+
             if 'cnpjOpPortuario' in dir(inclusao.ideOperPortuario): s1080_inclusao_dados['cnpjopportuario'] = inclusao.ideOperPortuario.cnpjOpPortuario.cdata
             if 'iniValid' in dir(inclusao.ideOperPortuario): s1080_inclusao_dados['inivalid'] = inclusao.ideOperPortuario.iniValid.cdata
             if 'fimValid' in dir(inclusao.ideOperPortuario): s1080_inclusao_dados['fimvalid'] = inclusao.ideOperPortuario.fimValid.cdata
@@ -108,7 +108,7 @@ def read_s1080_evttaboperport_obj(doc, status, validar=False):
         for alteracao in evtTabOperPort.infoOperPortuario.alteracao:
             s1080_alteracao_dados = {}
             s1080_alteracao_dados['s1080_evttaboperport_id'] = s1080_evttaboperport_id
-       
+
             if 'cnpjOpPortuario' in dir(alteracao.ideOperPortuario): s1080_alteracao_dados['cnpjopportuario'] = alteracao.ideOperPortuario.cnpjOpPortuario.cdata
             if 'iniValid' in dir(alteracao.ideOperPortuario): s1080_alteracao_dados['inivalid'] = alteracao.ideOperPortuario.iniValid.cdata
             if 'fimValid' in dir(alteracao.ideOperPortuario): s1080_alteracao_dados['fimvalid'] = alteracao.ideOperPortuario.fimValid.cdata
@@ -124,19 +124,19 @@ def read_s1080_evttaboperport_obj(doc, status, validar=False):
                 for novaValidade in alteracao.novaValidade:
                     s1080_alteracao_novavalidade_dados = {}
                     s1080_alteracao_novavalidade_dados['s1080_alteracao_id'] = s1080_alteracao_id
-               
+
                     if 'iniValid' in dir(novaValidade): s1080_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
                     if 'fimValid' in dir(novaValidade): s1080_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
                     insert = create_insert('s1080_alteracao_novavalidade', s1080_alteracao_novavalidade_dados)
                     resp = executar_sql(insert, True)
                     s1080_alteracao_novavalidade_id = resp[0][0]
                     #print s1080_alteracao_novavalidade_id
-   
+
     if 'exclusao' in dir(evtTabOperPort.infoOperPortuario):
         for exclusao in evtTabOperPort.infoOperPortuario.exclusao:
             s1080_exclusao_dados = {}
             s1080_exclusao_dados['s1080_evttaboperport_id'] = s1080_evttaboperport_id
-       
+
             if 'cnpjOpPortuario' in dir(exclusao.ideOperPortuario): s1080_exclusao_dados['cnpjopportuario'] = exclusao.ideOperPortuario.cnpjOpPortuario.cdata
             if 'iniValid' in dir(exclusao.ideOperPortuario): s1080_exclusao_dados['inivalid'] = exclusao.ideOperPortuario.iniValid.cdata
             if 'fimValid' in dir(exclusao.ideOperPortuario): s1080_exclusao_dados['fimvalid'] = exclusao.ideOperPortuario.fimValid.cdata

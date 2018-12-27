@@ -54,7 +54,7 @@ def validacoes_s1050_evttabhortur(arquivo):
     if 'nrInsc' in dir(evtTabHorTur.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtTabHorTur.ideEmpregador.nrInsc', evtTabHorTur.ideEmpregador.nrInsc.cdata, 1, '')
     if 'inclusao' in dir(evtTabHorTur.infoHorContratual):
         for inclusao in evtTabHorTur.infoHorContratual.inclusao:
-       
+
             if 'codHorContrat' in dir(inclusao.ideHorContratual): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideHorContratual.codHorContrat', inclusao.ideHorContratual.codHorContrat.cdata, 1, '')
             if 'iniValid' in dir(inclusao.ideHorContratual): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideHorContratual.iniValid', inclusao.ideHorContratual.iniValid.cdata, 1, '')
             if 'fimValid' in dir(inclusao.ideHorContratual): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideHorContratual.fimValid', inclusao.ideHorContratual.fimValid.cdata, 0, '')
@@ -65,15 +65,15 @@ def validacoes_s1050_evttabhortur(arquivo):
 
             if 'horarioIntervalo' in dir(inclusao.dadosHorContratual):
                 for horarioIntervalo in inclusao.dadosHorContratual.horarioIntervalo:
-               
+
                     if 'tpInterv' in dir(horarioIntervalo): validacoes_lista = validar_campo(validacoes_lista,'horarioIntervalo.tpInterv', horarioIntervalo.tpInterv.cdata, 1, '1;2')
                     if 'durInterv' in dir(horarioIntervalo): validacoes_lista = validar_campo(validacoes_lista,'horarioIntervalo.durInterv', horarioIntervalo.durInterv.cdata, 1, '')
                     if 'iniInterv' in dir(horarioIntervalo): validacoes_lista = validar_campo(validacoes_lista,'horarioIntervalo.iniInterv', horarioIntervalo.iniInterv.cdata, 0, '')
                     if 'termInterv' in dir(horarioIntervalo): validacoes_lista = validar_campo(validacoes_lista,'horarioIntervalo.termInterv', horarioIntervalo.termInterv.cdata, 0, '')
-   
+
     if 'alteracao' in dir(evtTabHorTur.infoHorContratual):
         for alteracao in evtTabHorTur.infoHorContratual.alteracao:
-       
+
             if 'codHorContrat' in dir(alteracao.ideHorContratual): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideHorContratual.codHorContrat', alteracao.ideHorContratual.codHorContrat.cdata, 1, '')
             if 'iniValid' in dir(alteracao.ideHorContratual): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideHorContratual.iniValid', alteracao.ideHorContratual.iniValid.cdata, 1, '')
             if 'fimValid' in dir(alteracao.ideHorContratual): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideHorContratual.fimValid', alteracao.ideHorContratual.fimValid.cdata, 0, '')
@@ -84,21 +84,21 @@ def validacoes_s1050_evttabhortur(arquivo):
 
             if 'horarioIntervalo' in dir(alteracao.dadosHorContratual):
                 for horarioIntervalo in alteracao.dadosHorContratual.horarioIntervalo:
-               
+
                     if 'tpInterv' in dir(horarioIntervalo): validacoes_lista = validar_campo(validacoes_lista,'horarioIntervalo.tpInterv', horarioIntervalo.tpInterv.cdata, 1, '1;2')
                     if 'durInterv' in dir(horarioIntervalo): validacoes_lista = validar_campo(validacoes_lista,'horarioIntervalo.durInterv', horarioIntervalo.durInterv.cdata, 1, '')
                     if 'iniInterv' in dir(horarioIntervalo): validacoes_lista = validar_campo(validacoes_lista,'horarioIntervalo.iniInterv', horarioIntervalo.iniInterv.cdata, 0, '')
                     if 'termInterv' in dir(horarioIntervalo): validacoes_lista = validar_campo(validacoes_lista,'horarioIntervalo.termInterv', horarioIntervalo.termInterv.cdata, 0, '')
-   
+
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:
-               
+
                     if 'iniValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.iniValid', novaValidade.iniValid.cdata, 1, '')
                     if 'fimValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.fimValid', novaValidade.fimValid.cdata, 0, '')
-   
+
     if 'exclusao' in dir(evtTabHorTur.infoHorContratual):
         for exclusao in evtTabHorTur.infoHorContratual.exclusao:
-       
+
             if 'codHorContrat' in dir(exclusao.ideHorContratual): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideHorContratual.codHorContrat', exclusao.ideHorContratual.codHorContrat.cdata, 1, '')
             if 'iniValid' in dir(exclusao.ideHorContratual): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideHorContratual.iniValid', exclusao.ideHorContratual.iniValid.cdata, 1, '')
             if 'fimValid' in dir(exclusao.ideHorContratual): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideHorContratual.fimValid', exclusao.ideHorContratual.fimValid.cdata, 0, '')

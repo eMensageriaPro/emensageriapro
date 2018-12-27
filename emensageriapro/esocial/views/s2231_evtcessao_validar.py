@@ -59,7 +59,7 @@ def validacoes_s2231_evtcessao(arquivo):
     if 'matricula' in dir(evtCessao.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideVinculo.matricula', evtCessao.ideVinculo.matricula.cdata, 1, '')
     if 'iniCessao' in dir(evtCessao.infoCessao):
         for iniCessao in evtCessao.infoCessao.iniCessao:
-       
+
             if 'dtIniCessao' in dir(iniCessao): validacoes_lista = validar_campo(validacoes_lista,'iniCessao.dtIniCessao', iniCessao.dtIniCessao.cdata, 1, '')
             if 'cnpjCess' in dir(iniCessao): validacoes_lista = validar_campo(validacoes_lista,'iniCessao.cnpjCess', iniCessao.cnpjCess.cdata, 1, '')
             if 'infOnus' in dir(iniCessao): validacoes_lista = validar_campo(validacoes_lista,'iniCessao.infOnus', iniCessao.infOnus.cdata, 1, '1;2;3;4')
@@ -68,7 +68,7 @@ def validacoes_s2231_evtcessao(arquivo):
 
     if 'fimCessao' in dir(evtCessao.infoCessao):
         for fimCessao in evtCessao.infoCessao.fimCessao:
-       
+
             if 'dtTermCessao' in dir(fimCessao): validacoes_lista = validar_campo(validacoes_lista,'fimCessao.dtTermCessao', fimCessao.dtTermCessao.cdata, 1, '')
 
     return validacoes_lista

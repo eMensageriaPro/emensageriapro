@@ -105,7 +105,7 @@ def verificar(request, hash):
     if permissao.permite_listar:
         s2300_evttsvinicio = get_object_or_404(s2300evtTSVInicio.objects.using( db_slug ), excluido = False, id = s2300_evttsvinicio_id)
         s2300_evttsvinicio_lista = s2300evtTSVInicio.objects.using( db_slug ).filter(id=s2300_evttsvinicio_id, excluido = False).all()
-   
+
 
         s2300_ctps_lista = s2300CTPS.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_ric_lista = s2300RIC.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
@@ -136,11 +136,11 @@ def verificar(request, hash):
             's2300_evttsvinicio_lista': s2300_evttsvinicio_lista,
             's2300_evttsvinicio_id': s2300_evttsvinicio_id,
             's2300_evttsvinicio': s2300_evttsvinicio,
-            
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -210,10 +210,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -233,13 +233,13 @@ def gerar_xml_s2300(s2300_evttsvinicio_id, db_slug, versao=None):
             s2300evtTSVInicio.objects.using( db_slug ),
             excluido = False,
             id = s2300_evttsvinicio_id)
-   
+
         if not versao:
 
             versao = s2300_evttsvinicio.versao
-   
+
         s2300_evttsvinicio_lista = s2300evtTSVInicio.objects.using( db_slug ).filter(id=s2300_evttsvinicio_id, excluido = False).all()
-   
+
 
         s2300_ctps_lista = s2300CTPS.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_ric_lista = s2300RIC.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
@@ -264,7 +264,7 @@ def gerar_xml_s2300(s2300_evttsvinicio_id, db_slug, versao=None):
         s2300_mudancacpf_lista = s2300mudancaCPF.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_afastamento_lista = s2300afastamento.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
         s2300_termino_lista = s2300termino.objects.using(db_slug).filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).filter(excluido=False).all()
-   
+
         context = {
             'versao': versao,
             'base': s2300_evttsvinicio,
@@ -298,11 +298,11 @@ def gerar_xml_s2300(s2300_evttsvinicio_id, db_slug, versao=None):
             's2300_termino_lista': s2300_termino_lista,
 
         }
-   
+
         t = get_template('s2300_evttsvinicio.xml')
         xml = t.render(context)
         return xml
-   
+
 
 
 @login_required
@@ -325,7 +325,7 @@ def recibo(request, hash, tipo):
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
     if permissao.permite_listar:
-   
+
         s2300_evttsvinicio = get_object_or_404(
             s2300evtTSVInicio.objects.using( db_slug ),
             excluido = False, id = s2300_evttsvinicio_id)
@@ -344,7 +344,7 @@ def recibo(request, hash, tipo):
 
         retorno_ocorrencias = RetornosEventosOcorrencias.objects.using(db_slug).\
             filter(retornos_eventos_id=retorno.id,excluido=False).all()
-   
+
         context = {
             's2300_evttsvinicio_id': s2300_evttsvinicio_id,
             's2300_evttsvinicio': s2300_evttsvinicio,
@@ -354,11 +354,11 @@ def recibo(request, hash, tipo):
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
 
-            
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -386,10 +386,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-            
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -455,7 +455,7 @@ def gerar_xml(request, hash):
     s2300_evttsvinicio_id = int(dict_hash['id'])
 
     if s2300_evttsvinicio_id:
-   
+
         xml_assinado = gerar_xml_assinado(s2300_evttsvinicio_id, db_slug)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
@@ -475,7 +475,7 @@ def duplicar(request, hash):
     s2300_evttsvinicio_id = int(dict_hash['id'])
 
     if s2300_evttsvinicio_id:
-   
+
         s2300_evttsvinicio = get_object_or_404(
             s2300evtTSVInicio.objects.using(db_slug),
             excluido=False,
@@ -517,21 +517,21 @@ def criar_alteracao(request, hash):
             s2300evtTSVInicio.objects.using(db_slug),
             excluido=False,
             id=s2300_evttsvinicio_id)
-   
+
         texto = gerar_xml_s2300(s2300_evttsvinicio_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
         dados = read_s2300_evttsvinicio_string({}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(dados['id'], db_slug)
-   
+
         s2300evtTSVInicio.objects.using(db_slug).filter(id=dados['id']).\
             update(status=0, arquivo_original=0, arquivo='')
-   
+
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s2300_evttsvinicio.identidade),
             's2300_evttsvinicio', dados['id'], request.user.id, 1)
-   
+
         messages.success(request, 'Evento de alteração criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )   
+        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('s2300_evttsvinicio_salvar', hash=url_hash)
 
     messages.error(request, 'Erro ao criar evento de alteração!')
@@ -551,25 +551,25 @@ def criar_exclusao(request, hash):
     s2300_evttsvinicio_id = int(dict_hash['id'])
 
     if s2300_evttsvinicio_id:
-   
+
         s2300_evttsvinicio = get_object_or_404(
             s2300evtTSVInicio.objects.using(db_slug),
             excluido=False,
             id=s2300_evttsvinicio_id)
-   
+
         texto = gerar_xml_s2300(s2300_evttsvinicio_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_s2300_evttsvinicio_string({}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(dados['id'], db_slug)
-   
+
         s2300evtTSVInicio.objects.using(db_slug).filter(id=dados['id']).\
             update(status=0, arquivo_original=0, arquivo='')
-   
+
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s2300_evttsvinicio.identidade),
             's2300_evttsvinicio', dados['id'], request.user.id, 1)
-   
+
         messages.success(request, 'Evento de exclusão criado com sucesso!')
         url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('s2300_evttsvinicio_salvar', hash=url_hash)
@@ -589,7 +589,7 @@ def alterar_identidade(request, hash):
     s2300_evttsvinicio_id = int(dict_hash['id'])
 
     if s2300_evttsvinicio_id:
-   
+
         s2300_evttsvinicio = get_object_or_404(
             s2300evtTSVInicio.objects.using(db_slug),
             excluido=False,
@@ -608,7 +608,7 @@ def alterar_identidade(request, hash):
             return redirect('s2300_evttsvinicio_salvar', hash=url_hash)
 
         else:
-       
+
             messages.error(request, 'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
@@ -762,7 +762,7 @@ def validar_evento(request, hash):
             messages.success(request, u'Validações processadas com sucesso!')
 
         else:
-       
+
             messages.error(request, u'Não foi possível validar o evento pois a versão do evento não é compatível com a versão do sistema!')
     else:
 

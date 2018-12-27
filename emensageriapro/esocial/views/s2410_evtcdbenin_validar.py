@@ -68,19 +68,19 @@ def validacoes_s2410_evtcdbenin(arquivo):
     if 'indHomologTC' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio): validacoes_lista = validar_campo(validacoes_lista,'evtCdBenIn.infoBenInicio.dadosBeneficio.indHomologTC', evtCdBenIn.infoBenInicio.dadosBeneficio.indHomologTC.cdata, 1, 'S;N')
     if 'infoPenMorte' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio):
         for infoPenMorte in evtCdBenIn.infoBenInicio.dadosBeneficio.infoPenMorte:
-       
+
             if 'tpPenMorte' in dir(infoPenMorte): validacoes_lista = validar_campo(validacoes_lista,'infoPenMorte.tpPenMorte', infoPenMorte.tpPenMorte.cdata, 1, '1;2')
 
             if 'instPenMorte' in dir(infoPenMorte):
                 for instPenMorte in infoPenMorte.instPenMorte:
-               
+
                     if 'cpfInst' in dir(instPenMorte): validacoes_lista = validar_campo(validacoes_lista,'instPenMorte.cpfInst', instPenMorte.cpfInst.cdata, 1, '')
                     if 'dtInst' in dir(instPenMorte): validacoes_lista = validar_campo(validacoes_lista,'instPenMorte.dtInst', instPenMorte.dtInst.cdata, 1, '')
                     if 'intAposentado' in dir(instPenMorte): validacoes_lista = validar_campo(validacoes_lista,'instPenMorte.intAposentado', instPenMorte.intAposentado.cdata, 1, 'S;N')
-   
+
     if 'homologTC' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio):
         for homologTC in evtCdBenIn.infoBenInicio.dadosBeneficio.homologTC:
-       
+
             if 'dtHomol' in dir(homologTC): validacoes_lista = validar_campo(validacoes_lista,'homologTC.dtHomol', homologTC.dtHomol.cdata, 1, '')
             if 'nrAtoLegal' in dir(homologTC): validacoes_lista = validar_campo(validacoes_lista,'homologTC.nrAtoLegal', homologTC.nrAtoLegal.cdata, 1, '')
 

@@ -104,7 +104,7 @@ def read_r2050_evtcomprod_obj(doc, status, validar=False):
         for tipoCom in evtComProd.infoComProd.ideEstab.tipoCom:
             r2050_tipocom_dados = {}
             r2050_tipocom_dados['r2050_evtcomprod_id'] = r2050_evtcomprod_id
-       
+
             if 'indCom' in dir(tipoCom): r2050_tipocom_dados['indcom'] = tipoCom.indCom.cdata
             if 'vlrRecBruta' in dir(tipoCom): r2050_tipocom_dados['vlrrecbruta'] = tipoCom.vlrRecBruta.cdata
             insert = create_insert('r2050_tipocom', r2050_tipocom_dados)
@@ -116,7 +116,7 @@ def read_r2050_evtcomprod_obj(doc, status, validar=False):
                 for infoProc in tipoCom.infoProc:
                     r2050_infoproc_dados = {}
                     r2050_infoproc_dados['r2050_tipocom_id'] = r2050_tipocom_id
-               
+
                     if 'tpProc' in dir(infoProc): r2050_infoproc_dados['tpproc'] = infoProc.tpProc.cdata
                     if 'nrProc' in dir(infoProc): r2050_infoproc_dados['nrproc'] = infoProc.nrProc.cdata
                     if 'codSusp' in dir(infoProc): r2050_infoproc_dados['codsusp'] = infoProc.codSusp.cdata
@@ -127,7 +127,7 @@ def read_r2050_evtcomprod_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r2050_infoproc_id = resp[0][0]
                     #print r2050_infoproc_id
-   
+
     from emensageriapro.efdreinf.views.r2050_evtcomprod_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(r2050_evtcomprod_id, 'default')
     return dados

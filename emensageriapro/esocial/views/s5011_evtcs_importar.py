@@ -94,7 +94,7 @@ def read_s5011_evtcs_obj(doc, status, validar=False):
         for infoCPSeg in evtCS.infoCS.infoCPSeg:
             s5011_infocpseg_dados = {}
             s5011_infocpseg_dados['s5011_evtcs_id'] = s5011_evtcs_id
-       
+
             if 'vrDescCP' in dir(infoCPSeg): s5011_infocpseg_dados['vrdesccp'] = infoCPSeg.vrDescCP.cdata
             if 'vrCpSeg' in dir(infoCPSeg): s5011_infocpseg_dados['vrcpseg'] = infoCPSeg.vrCpSeg.cdata
             insert = create_insert('s5011_infocpseg', s5011_infocpseg_dados)
@@ -106,7 +106,7 @@ def read_s5011_evtcs_obj(doc, status, validar=False):
         for infoPJ in evtCS.infoCS.infoContrib.infoPJ:
             s5011_infopj_dados = {}
             s5011_infopj_dados['s5011_evtcs_id'] = s5011_evtcs_id
-       
+
             if 'indCoop' in dir(infoPJ): s5011_infopj_dados['indcoop'] = infoPJ.indCoop.cdata
             if 'indConstr' in dir(infoPJ): s5011_infopj_dados['indconstr'] = infoPJ.indConstr.cdata
             if 'indSubstPatr' in dir(infoPJ): s5011_infopj_dados['indsubstpatr'] = infoPJ.indSubstPatr.cdata
@@ -120,19 +120,19 @@ def read_s5011_evtcs_obj(doc, status, validar=False):
                 for infoAtConc in infoPJ.infoAtConc:
                     s5011_infoatconc_dados = {}
                     s5011_infoatconc_dados['s5011_infopj_id'] = s5011_infopj_id
-               
+
                     if 'fatorMes' in dir(infoAtConc): s5011_infoatconc_dados['fatormes'] = infoAtConc.fatorMes.cdata
                     if 'fator13' in dir(infoAtConc): s5011_infoatconc_dados['fator13'] = infoAtConc.fator13.cdata
                     insert = create_insert('s5011_infoatconc', s5011_infoatconc_dados)
                     resp = executar_sql(insert, True)
                     s5011_infoatconc_id = resp[0][0]
                     #print s5011_infoatconc_id
-   
+
     if 'ideEstab' in dir(evtCS.infoCS):
         for ideEstab in evtCS.infoCS.ideEstab:
             s5011_ideestab_dados = {}
             s5011_ideestab_dados['s5011_evtcs_id'] = s5011_evtcs_id
-       
+
             if 'tpInsc' in dir(ideEstab): s5011_ideestab_dados['tpinsc'] = ideEstab.tpInsc.cdata
             if 'nrInsc' in dir(ideEstab): s5011_ideestab_dados['nrinsc'] = ideEstab.nrInsc.cdata
             insert = create_insert('s5011_ideestab', s5011_ideestab_dados)
@@ -144,7 +144,7 @@ def read_s5011_evtcs_obj(doc, status, validar=False):
                 for infoEstab in ideEstab.infoEstab:
                     s5011_infoestab_dados = {}
                     s5011_infoestab_dados['s5011_ideestab_id'] = s5011_ideestab_id
-               
+
                     if 'cnaePrep' in dir(infoEstab): s5011_infoestab_dados['cnaeprep'] = infoEstab.cnaePrep.cdata
                     if 'aliqRat' in dir(infoEstab): s5011_infoestab_dados['aliqrat'] = infoEstab.aliqRat.cdata
                     if 'fap' in dir(infoEstab): s5011_infoestab_dados['fap'] = infoEstab.fap.cdata
@@ -153,12 +153,12 @@ def read_s5011_evtcs_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s5011_infoestab_id = resp[0][0]
                     #print s5011_infoestab_id
-   
+
             if 'ideLotacao' in dir(ideEstab):
                 for ideLotacao in ideEstab.ideLotacao:
                     s5011_idelotacao_dados = {}
                     s5011_idelotacao_dados['s5011_ideestab_id'] = s5011_ideestab_id
-               
+
                     if 'codLotacao' in dir(ideLotacao): s5011_idelotacao_dados['codlotacao'] = ideLotacao.codLotacao.cdata
                     if 'fpas' in dir(ideLotacao): s5011_idelotacao_dados['fpas'] = ideLotacao.fpas.cdata
                     if 'codTercs' in dir(ideLotacao): s5011_idelotacao_dados['codtercs'] = ideLotacao.codTercs.cdata
@@ -167,12 +167,12 @@ def read_s5011_evtcs_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s5011_idelotacao_id = resp[0][0]
                     #print s5011_idelotacao_id
-   
+
             if 'basesAquis' in dir(ideEstab):
                 for basesAquis in ideEstab.basesAquis:
                     s5011_basesaquis_dados = {}
                     s5011_basesaquis_dados['s5011_ideestab_id'] = s5011_ideestab_id
-               
+
                     if 'indAquis' in dir(basesAquis): s5011_basesaquis_dados['indaquis'] = basesAquis.indAquis.cdata
                     if 'vlrAquis' in dir(basesAquis): s5011_basesaquis_dados['vlraquis'] = basesAquis.vlrAquis.cdata
                     if 'vrCPDescPR' in dir(basesAquis): s5011_basesaquis_dados['vrcpdescpr'] = basesAquis.vrCPDescPR.cdata
@@ -188,12 +188,12 @@ def read_s5011_evtcs_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s5011_basesaquis_id = resp[0][0]
                     #print s5011_basesaquis_id
-   
+
             if 'basesComerc' in dir(ideEstab):
                 for basesComerc in ideEstab.basesComerc:
                     s5011_basescomerc_dados = {}
                     s5011_basescomerc_dados['s5011_ideestab_id'] = s5011_ideestab_id
-               
+
                     if 'indComerc' in dir(basesComerc): s5011_basescomerc_dados['indcomerc'] = basesComerc.indComerc.cdata
                     if 'vrBcComPR' in dir(basesComerc): s5011_basescomerc_dados['vrbccompr'] = basesComerc.vrBcComPR.cdata
                     if 'vrCPSusp' in dir(basesComerc): s5011_basescomerc_dados['vrcpsusp'] = basesComerc.vrCPSusp.cdata
@@ -203,12 +203,12 @@ def read_s5011_evtcs_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s5011_basescomerc_id = resp[0][0]
                     #print s5011_basescomerc_id
-   
+
             if 'infoCREstab' in dir(ideEstab):
                 for infoCREstab in ideEstab.infoCREstab:
                     s5011_infocrestab_dados = {}
                     s5011_infocrestab_dados['s5011_ideestab_id'] = s5011_ideestab_id
-               
+
                     if 'tpCR' in dir(infoCREstab): s5011_infocrestab_dados['tpcr'] = infoCREstab.tpCR.cdata
                     if 'vrCR' in dir(infoCREstab): s5011_infocrestab_dados['vrcr'] = infoCREstab.vrCR.cdata
                     if 'vrSuspCR' in dir(infoCREstab): s5011_infocrestab_dados['vrsuspcr'] = infoCREstab.vrSuspCR.cdata
@@ -216,12 +216,12 @@ def read_s5011_evtcs_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s5011_infocrestab_id = resp[0][0]
                     #print s5011_infocrestab_id
-   
+
     if 'infoCRContrib' in dir(evtCS.infoCS):
         for infoCRContrib in evtCS.infoCS.infoCRContrib:
             s5011_infocrcontrib_dados = {}
             s5011_infocrcontrib_dados['s5011_evtcs_id'] = s5011_evtcs_id
-       
+
             if 'tpCR' in dir(infoCRContrib): s5011_infocrcontrib_dados['tpcr'] = infoCRContrib.tpCR.cdata
             if 'vrCR' in dir(infoCRContrib): s5011_infocrcontrib_dados['vrcr'] = infoCRContrib.vrCR.cdata
             if 'vrCRSusp' in dir(infoCRContrib): s5011_infocrcontrib_dados['vrcrsusp'] = infoCRContrib.vrCRSusp.cdata

@@ -93,17 +93,17 @@ def apagar(request, hash):
                              's1295_evttotconting', s1295_evttotconting_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's1295_evttotconting_salvar':
             return redirect('s1295_evttotconting', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -244,18 +244,18 @@ def listar(request, hash):
             filtrar = True
             s1295_evttotconting_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-   
+
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s1295_evttotconting_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1295_evttotconting'
         context = {
             's1295_evttotconting_lista': s1295_evttotconting_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -265,7 +265,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-       
+
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         #return render(request, 's1295_evttotconting_listar.html', context)
@@ -310,10 +310,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -457,7 +457,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         s1295_evttotconting_form = disabled_form_fields(s1295_evttotconting_form, permissao.permite_editar)
-    
+
         if s1295_evttotconting_id:
             if s1295_evttotconting.status != 0:
                 s1295_evttotconting_form = disabled_form_fields(s1295_evttotconting_form, False)
@@ -467,12 +467,12 @@ def salvar(request, hash):
             s1295_evttotconting_form.fields[field].widget.attrs['ng-model'] = 's1295_evttotconting_'+field
         if int(dict_hash['print']):
             s1295_evttotconting_form = disabled_form_for_print(s1295_evttotconting_form)
-   
+
         s1295_iderespinf_form = None
         s1295_iderespinf_lista = None
         if s1295_evttotconting_id:
             s1295_evttotconting = get_object_or_404(s1295evtTotConting.objects.using( db_slug ), excluido = False, id = s1295_evttotconting_id)
-       
+
             s1295_iderespinf_form = form_s1295_iderespinf(initial={ 's1295_evttotconting': s1295_evttotconting }, slug=db_slug)
             s1295_iderespinf_form.fields['s1295_evttotconting'].widget.attrs['readonly'] = True
             s1295_iderespinf_lista = s1295ideRespInf.objects.using( db_slug ).filter(excluido = False, s1295_evttotconting_id=s1295_evttotconting.id).all()
@@ -494,7 +494,7 @@ def salvar(request, hash):
             s1295_evttotconting_form.fields['procemi'].value = 1
             s1295_evttotconting_form.fields['verproc'].widget.attrs['readonly'] = True
             s1295_evttotconting_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-    
+
         if dict_hash['tab'] or 's1295_evttotconting' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's1295_evttotconting_salvar'
@@ -507,14 +507,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1295_evttotconting_id': int(s1295_evttotconting_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             's1295_iderespinf_form': s1295_iderespinf_form,
             's1295_iderespinf_lista': s1295_iderespinf_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -524,7 +524,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s1295_evttotconting_salvar_custom_variaveis_context#
         }
-    
+
         if for_print in (0,1 ):
             return render(request, 's1295_evttotconting_salvar.html', context)
         elif for_print == 2:
@@ -558,10 +558,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

@@ -104,7 +104,7 @@ def read_s2260_evtconvinterm_obj(doc, status, validar=False):
         for localTrabInterm in evtConvInterm.infoConvInterm.localTrab.localTrabInterm:
             s2260_localtrabinterm_dados = {}
             s2260_localtrabinterm_dados['s2260_evtconvinterm_id'] = s2260_evtconvinterm_id
-       
+
             if 'tpLograd' in dir(localTrabInterm): s2260_localtrabinterm_dados['tplograd'] = localTrabInterm.tpLograd.cdata
             if 'dscLograd' in dir(localTrabInterm): s2260_localtrabinterm_dados['dsclograd'] = localTrabInterm.dscLograd.cdata
             if 'nrLograd' in dir(localTrabInterm): s2260_localtrabinterm_dados['nrlograd'] = localTrabInterm.nrLograd.cdata

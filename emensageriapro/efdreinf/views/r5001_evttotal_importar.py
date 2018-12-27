@@ -97,7 +97,7 @@ def read_r5001_evttotal_obj(doc, status, validar=False):
         for regOcorrs in evtTotal.ideRecRetorno.ideStatus.regOcorrs:
             r5001_regocorrs_dados = {}
             r5001_regocorrs_dados['r5001_evttotal_id'] = r5001_evttotal_id
-       
+
             if 'tpOcorr' in dir(regOcorrs): r5001_regocorrs_dados['tpocorr'] = regOcorrs.tpOcorr.cdata
             if 'localErroAviso' in dir(regOcorrs): r5001_regocorrs_dados['localerroaviso'] = regOcorrs.localErroAviso.cdata
             if 'codResp' in dir(regOcorrs): r5001_regocorrs_dados['codresp'] = regOcorrs.codResp.cdata
@@ -111,7 +111,7 @@ def read_r5001_evttotal_obj(doc, status, validar=False):
         for infoTotal in evtTotal.infoTotal:
             r5001_infototal_dados = {}
             r5001_infototal_dados['r5001_evttotal_id'] = r5001_evttotal_id
-       
+
             if 'nrRecArqBase' in dir(infoTotal): r5001_infototal_dados['nrrecarqbase'] = infoTotal.nrRecArqBase.cdata
             if 'tpInsc' in dir(infoTotal.ideEstab): r5001_infototal_dados['tpinsc'] = infoTotal.ideEstab.tpInsc.cdata
             if 'nrInsc' in dir(infoTotal.ideEstab): r5001_infototal_dados['nrinsc'] = infoTotal.ideEstab.nrInsc.cdata
@@ -124,7 +124,7 @@ def read_r5001_evttotal_obj(doc, status, validar=False):
                 for RTom in infoTotal.ideEstab.RTom:
                     r5001_rtom_dados = {}
                     r5001_rtom_dados['r5001_infototal_id'] = r5001_infototal_id
-               
+
                     if 'cnpjPrestador' in dir(RTom): r5001_rtom_dados['cnpjprestador'] = RTom.cnpjPrestador.cdata
                     if 'cno' in dir(RTom): r5001_rtom_dados['cno'] = RTom.cno.cdata
                     if 'vlrTotalBaseRet' in dir(RTom): r5001_rtom_dados['vlrtotalbaseret'] = RTom.vlrTotalBaseRet.cdata
@@ -132,12 +132,12 @@ def read_r5001_evttotal_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r5001_rtom_id = resp[0][0]
                     #print r5001_rtom_id
-   
+
             if 'RPrest' in dir(infoTotal.ideEstab):
                 for RPrest in infoTotal.ideEstab.RPrest:
                     r5001_rprest_dados = {}
                     r5001_rprest_dados['r5001_infototal_id'] = r5001_infototal_id
-               
+
                     if 'tpInscTomador' in dir(RPrest): r5001_rprest_dados['tpinsctomador'] = RPrest.tpInscTomador.cdata
                     if 'nrInscTomador' in dir(RPrest): r5001_rprest_dados['nrinsctomador'] = RPrest.nrInscTomador.cdata
                     if 'vlrTotalBaseRet' in dir(RPrest): r5001_rprest_dados['vlrtotalbaseret'] = RPrest.vlrTotalBaseRet.cdata
@@ -149,12 +149,12 @@ def read_r5001_evttotal_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r5001_rprest_id = resp[0][0]
                     #print r5001_rprest_id
-   
+
             if 'RRecRepAD' in dir(infoTotal.ideEstab):
                 for RRecRepAD in infoTotal.ideEstab.RRecRepAD:
                     r5001_rrecrepad_dados = {}
                     r5001_rrecrepad_dados['r5001_infototal_id'] = r5001_infototal_id
-               
+
                     if 'cnpjAssocDesp' in dir(RRecRepAD): r5001_rrecrepad_dados['cnpjassocdesp'] = RRecRepAD.cnpjAssocDesp.cdata
                     if 'vlrTotalRep' in dir(RRecRepAD): r5001_rrecrepad_dados['vlrtotalrep'] = RRecRepAD.vlrTotalRep.cdata
                     if 'CRRecRepAD' in dir(RRecRepAD): r5001_rrecrepad_dados['crrecrepad'] = RRecRepAD.CRRecRepAD.cdata
@@ -164,12 +164,12 @@ def read_r5001_evttotal_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r5001_rrecrepad_id = resp[0][0]
                     #print r5001_rrecrepad_id
-   
+
             if 'RComl' in dir(infoTotal.ideEstab):
                 for RComl in infoTotal.ideEstab.RComl:
                     r5001_rcoml_dados = {}
                     r5001_rcoml_dados['r5001_infototal_id'] = r5001_infototal_id
-               
+
                     if 'CRComl' in dir(RComl): r5001_rcoml_dados['crcoml'] = RComl.CRComl.cdata
                     if 'vlrCRComl' in dir(RComl): r5001_rcoml_dados['vlrcrcoml'] = RComl.vlrCRComl.cdata
                     if 'vlrCRComlSusp' in dir(RComl): r5001_rcoml_dados['vlrcrcomlsusp'] = RComl.vlrCRComlSusp.cdata
@@ -177,12 +177,12 @@ def read_r5001_evttotal_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r5001_rcoml_id = resp[0][0]
                     #print r5001_rcoml_id
-   
+
             if 'RCPRB' in dir(infoTotal.ideEstab):
                 for RCPRB in infoTotal.ideEstab.RCPRB:
                     r5001_rcprb_dados = {}
                     r5001_rcprb_dados['r5001_infototal_id'] = r5001_infototal_id
-               
+
                     if 'CRCPRB' in dir(RCPRB): r5001_rcprb_dados['crcprb'] = RCPRB.CRCPRB.cdata
                     if 'vlrCRCPRB' in dir(RCPRB): r5001_rcprb_dados['vlrcrcprb'] = RCPRB.vlrCRCPRB.cdata
                     if 'vlrCRCPRBSusp' in dir(RCPRB): r5001_rcprb_dados['vlrcrcprbsusp'] = RCPRB.vlrCRCPRBSusp.cdata
@@ -190,12 +190,12 @@ def read_r5001_evttotal_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r5001_rcprb_id = resp[0][0]
                     #print r5001_rcprb_id
-   
+
             if 'RRecEspetDesp' in dir(infoTotal.ideEstab):
                 for RRecEspetDesp in infoTotal.ideEstab.RRecEspetDesp:
                     r5001_rrecespetdesp_dados = {}
                     r5001_rrecespetdesp_dados['r5001_infototal_id'] = r5001_infototal_id
-               
+
                     if 'CRRecEspetDesp' in dir(RRecEspetDesp): r5001_rrecespetdesp_dados['crrecespetdesp'] = RRecEspetDesp.CRRecEspetDesp.cdata
                     if 'vlrReceitaTotal' in dir(RRecEspetDesp): r5001_rrecespetdesp_dados['vlrreceitatotal'] = RRecEspetDesp.vlrReceitaTotal.cdata
                     if 'vlrCRRecEspetDesp' in dir(RRecEspetDesp): r5001_rrecespetdesp_dados['vlrcrrecespetdesp'] = RRecEspetDesp.vlrCRRecEspetDesp.cdata
@@ -204,7 +204,7 @@ def read_r5001_evttotal_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r5001_rrecespetdesp_id = resp[0][0]
                     #print r5001_rrecespetdesp_id
-   
+
     from emensageriapro.efdreinf.views.r5001_evttotal_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(r5001_evttotal_id, 'default')
     return dados

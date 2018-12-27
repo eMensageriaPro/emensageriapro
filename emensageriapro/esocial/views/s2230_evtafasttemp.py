@@ -97,17 +97,17 @@ def apagar(request, hash):
                              's2230_evtafasttemp', s2230_evtafasttemp_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's2230_evtafasttemp_salvar':
             return redirect('s2230_evtafasttemp', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -263,18 +263,18 @@ def listar(request, hash):
             filtrar = True
             s2230_evtafasttemp_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-   
+
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s2230_evtafasttemp_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2230_evtafasttemp'
         context = {
             's2230_evtafasttemp_lista': s2230_evtafasttemp_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -284,7 +284,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-       
+
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         #return render(request, 's2230_evtafasttemp_listar.html', context)
@@ -329,10 +329,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -476,7 +476,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         s2230_evtafasttemp_form = disabled_form_fields(s2230_evtafasttemp_form, permissao.permite_editar)
-    
+
         if s2230_evtafasttemp_id:
             if s2230_evtafasttemp.status != 0:
                 s2230_evtafasttemp_form = disabled_form_fields(s2230_evtafasttemp_form, False)
@@ -486,7 +486,7 @@ def salvar(request, hash):
             s2230_evtafasttemp_form.fields[field].widget.attrs['ng-model'] = 's2230_evtafasttemp_'+field
         if int(dict_hash['print']):
             s2230_evtafasttemp_form = disabled_form_for_print(s2230_evtafasttemp_form)
-   
+
         s2230_iniafastamento_form = None
         s2230_iniafastamento_lista = None
         s2230_inforetif_form = None
@@ -495,7 +495,7 @@ def salvar(request, hash):
         s2230_fimafastamento_lista = None
         if s2230_evtafasttemp_id:
             s2230_evtafasttemp = get_object_or_404(s2230evtAfastTemp.objects.using( db_slug ), excluido = False, id = s2230_evtafasttemp_id)
-       
+
             s2230_iniafastamento_form = form_s2230_iniafastamento(initial={ 's2230_evtafasttemp': s2230_evtafasttemp }, slug=db_slug)
             s2230_iniafastamento_form.fields['s2230_evtafasttemp'].widget.attrs['readonly'] = True
             s2230_iniafastamento_lista = s2230iniAfastamento.objects.using( db_slug ).filter(excluido = False, s2230_evtafasttemp_id=s2230_evtafasttemp.id).all()
@@ -523,7 +523,7 @@ def salvar(request, hash):
             s2230_evtafasttemp_form.fields['procemi'].value = 1
             s2230_evtafasttemp_form.fields['verproc'].widget.attrs['readonly'] = True
             s2230_evtafasttemp_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-    
+
         if dict_hash['tab'] or 's2230_evtafasttemp' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's2230_evtafasttemp_salvar'
@@ -536,9 +536,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2230_evtafasttemp_id': int(s2230_evtafasttemp_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             's2230_iniafastamento_form': s2230_iniafastamento_form,
             's2230_iniafastamento_lista': s2230_iniafastamento_lista,
             's2230_inforetif_form': s2230_inforetif_form,
@@ -547,7 +547,7 @@ def salvar(request, hash):
             's2230_fimafastamento_lista': s2230_fimafastamento_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -557,7 +557,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s2230_evtafasttemp_salvar_custom_variaveis_context#
         }
-    
+
         if for_print in (0,1 ):
             return render(request, 's2230_evtafasttemp_salvar.html', context)
         elif for_print == 2:
@@ -591,10 +591,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

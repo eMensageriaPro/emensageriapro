@@ -97,7 +97,7 @@ def read_s1260_evtcomprod_obj(doc, status, validar=False):
         for tpComerc in evtComProd.infoComProd.ideEstabel.tpComerc:
             s1260_tpcomerc_dados = {}
             s1260_tpcomerc_dados['s1260_evtcomprod_id'] = s1260_evtcomprod_id
-       
+
             if 'indComerc' in dir(tpComerc): s1260_tpcomerc_dados['indcomerc'] = tpComerc.indComerc.cdata
             if 'vrTotCom' in dir(tpComerc): s1260_tpcomerc_dados['vrtotcom'] = tpComerc.vrTotCom.cdata
             insert = create_insert('s1260_tpcomerc', s1260_tpcomerc_dados)
@@ -109,7 +109,7 @@ def read_s1260_evtcomprod_obj(doc, status, validar=False):
                 for ideAdquir in tpComerc.ideAdquir:
                     s1260_ideadquir_dados = {}
                     s1260_ideadquir_dados['s1260_tpcomerc_id'] = s1260_tpcomerc_id
-               
+
                     if 'tpInsc' in dir(ideAdquir): s1260_ideadquir_dados['tpinsc'] = ideAdquir.tpInsc.cdata
                     if 'nrInsc' in dir(ideAdquir): s1260_ideadquir_dados['nrinsc'] = ideAdquir.nrInsc.cdata
                     if 'vrComerc' in dir(ideAdquir): s1260_ideadquir_dados['vrcomerc'] = ideAdquir.vrComerc.cdata
@@ -117,12 +117,12 @@ def read_s1260_evtcomprod_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1260_ideadquir_id = resp[0][0]
                     #print s1260_ideadquir_id
-   
+
             if 'infoProcJud' in dir(tpComerc):
                 for infoProcJud in tpComerc.infoProcJud:
                     s1260_infoprocjud_dados = {}
                     s1260_infoprocjud_dados['s1260_tpcomerc_id'] = s1260_tpcomerc_id
-               
+
                     if 'tpProc' in dir(infoProcJud): s1260_infoprocjud_dados['tpproc'] = infoProcJud.tpProc.cdata
                     if 'nrProc' in dir(infoProcJud): s1260_infoprocjud_dados['nrproc'] = infoProcJud.nrProc.cdata
                     if 'codSusp' in dir(infoProcJud): s1260_infoprocjud_dados['codsusp'] = infoProcJud.codSusp.cdata
@@ -133,7 +133,7 @@ def read_s1260_evtcomprod_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1260_infoprocjud_id = resp[0][0]
                     #print s1260_infoprocjud_id
-   
+
     from emensageriapro.esocial.views.s1260_evtcomprod_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(s1260_evtcomprod_id, 'default')
     return dados

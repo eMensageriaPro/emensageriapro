@@ -105,7 +105,7 @@ def verificar(request, hash):
     if permissao.permite_listar:
         r2070_evtpgtosdivs = get_object_or_404(r2070evtPgtosDivs.objects.using( db_slug ), excluido = False, id = r2070_evtpgtosdivs_id)
         r2070_evtpgtosdivs_lista = r2070evtPgtosDivs.objects.using( db_slug ).filter(id=r2070_evtpgtosdivs_id, excluido = False).all()
-   
+
 
         r2070_inforesidext_lista = r2070infoResidExt.objects.using(db_slug).filter(r2070_evtpgtosdivs_id__in = listar_ids(r2070_evtpgtosdivs_lista) ).filter(excluido=False).all()
         r2070_infomolestia_lista = r2070infoMolestia.objects.using(db_slug).filter(r2070_evtpgtosdivs_id__in = listar_ids(r2070_evtpgtosdivs_lista) ).filter(excluido=False).all()
@@ -135,11 +135,11 @@ def verificar(request, hash):
             'r2070_evtpgtosdivs_lista': r2070_evtpgtosdivs_lista,
             'r2070_evtpgtosdivs_id': r2070_evtpgtosdivs_id,
             'r2070_evtpgtosdivs': r2070_evtpgtosdivs,
-            
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -208,10 +208,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -231,13 +231,13 @@ def gerar_xml_r2070(r2070_evtpgtosdivs_id, db_slug, versao=None):
             r2070evtPgtosDivs.objects.using( db_slug ),
             excluido = False,
             id = r2070_evtpgtosdivs_id)
-   
+
         if not versao:
 
             versao = r2070_evtpgtosdivs.versao
-   
+
         r2070_evtpgtosdivs_lista = r2070evtPgtosDivs.objects.using( db_slug ).filter(id=r2070_evtpgtosdivs_id, excluido = False).all()
-   
+
 
         r2070_inforesidext_lista = r2070infoResidExt.objects.using(db_slug).filter(r2070_evtpgtosdivs_id__in = listar_ids(r2070_evtpgtosdivs_lista) ).filter(excluido=False).all()
         r2070_infomolestia_lista = r2070infoMolestia.objects.using(db_slug).filter(r2070_evtpgtosdivs_id__in = listar_ids(r2070_evtpgtosdivs_lista) ).filter(excluido=False).all()
@@ -261,7 +261,7 @@ def gerar_xml_r2070(r2070_evtpgtosdivs_id, db_slug, versao=None):
         r2070_pgtopj_ideadvogado_lista = r2070pgtoPJideAdvogado.objects.using(db_slug).filter(r2070_pgtopj_despprocjud_id__in = listar_ids(r2070_pgtopj_despprocjud_lista) ).filter(excluido=False).all()
         r2070_pgtopj_origemrecursos_lista = r2070pgtoPJorigemRecursos.objects.using(db_slug).filter(r2070_pgtopj_infoprocjud_id__in = listar_ids(r2070_pgtopj_infoprocjud_lista) ).filter(excluido=False).all()
         r2070_pgtoresidext_lista = r2070pgtoResidExt.objects.using(db_slug).filter(r2070_ideestab_id__in = listar_ids(r2070_ideestab_lista) ).filter(excluido=False).all()
-   
+
         context = {
             'versao': versao,
             'base': r2070_evtpgtosdivs,
@@ -294,11 +294,11 @@ def gerar_xml_r2070(r2070_evtpgtosdivs_id, db_slug, versao=None):
             'r2070_pgtoresidext_lista': r2070_pgtoresidext_lista,
 
         }
-   
+
         t = get_template('r2070_evtpgtosdivs.xml')
         xml = t.render(context)
         return xml
-   
+
 
 
 @login_required
@@ -321,7 +321,7 @@ def recibo(request, hash, tipo):
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
     if permissao.permite_listar:
-   
+
         r2070_evtpgtosdivs = get_object_or_404(
             r2070evtPgtosDivs.objects.using( db_slug ),
             excluido = False, id = r2070_evtpgtosdivs_id)
@@ -340,7 +340,7 @@ def recibo(request, hash, tipo):
 
         retorno_ocorrencias = RetornosEventosOcorrencias.objects.using(db_slug).\
             filter(retornos_eventos_id=retorno.id,excluido=False).all()
-   
+
         context = {
             'r2070_evtpgtosdivs_id': r2070_evtpgtosdivs_id,
             'r2070_evtpgtosdivs': r2070_evtpgtosdivs,
@@ -350,11 +350,11 @@ def recibo(request, hash, tipo):
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
 
-            
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -382,10 +382,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-            
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -451,7 +451,7 @@ def gerar_xml(request, hash):
     r2070_evtpgtosdivs_id = int(dict_hash['id'])
 
     if r2070_evtpgtosdivs_id:
-   
+
         xml_assinado = gerar_xml_assinado(r2070_evtpgtosdivs_id, db_slug)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
@@ -471,7 +471,7 @@ def duplicar(request, hash):
     r2070_evtpgtosdivs_id = int(dict_hash['id'])
 
     if r2070_evtpgtosdivs_id:
-   
+
         r2070_evtpgtosdivs = get_object_or_404(
             r2070evtPgtosDivs.objects.using(db_slug),
             excluido=False,
@@ -513,21 +513,21 @@ def criar_alteracao(request, hash):
             r2070evtPgtosDivs.objects.using(db_slug),
             excluido=False,
             id=r2070_evtpgtosdivs_id)
-   
+
         texto = gerar_xml_r2070(r2070_evtpgtosdivs_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
         dados = read_r2070_evtpgtosdivs_string({}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(dados['id'], db_slug)
-   
+
         r2070evtPgtosDivs.objects.using(db_slug).filter(id=dados['id']).\
             update(status=0, arquivo_original=0, arquivo='')
-   
+
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r2070_evtpgtosdivs.identidade),
             'r2070_evtpgtosdivs', dados['id'], request.user.id, 1)
-   
+
         messages.success(request, 'Evento de alteração criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )   
+        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('r2070_evtpgtosdivs_salvar', hash=url_hash)
 
     messages.error(request, 'Erro ao criar evento de alteração!')
@@ -547,25 +547,25 @@ def criar_exclusao(request, hash):
     r2070_evtpgtosdivs_id = int(dict_hash['id'])
 
     if r2070_evtpgtosdivs_id:
-   
+
         r2070_evtpgtosdivs = get_object_or_404(
             r2070evtPgtosDivs.objects.using(db_slug),
             excluido=False,
             id=r2070_evtpgtosdivs_id)
-   
+
         texto = gerar_xml_r2070(r2070_evtpgtosdivs_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_r2070_evtpgtosdivs_string({}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(dados['id'], db_slug)
-   
+
         r2070evtPgtosDivs.objects.using(db_slug).filter(id=dados['id']).\
             update(status=0, arquivo_original=0, arquivo='')
-   
+
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r2070_evtpgtosdivs.identidade),
             'r2070_evtpgtosdivs', dados['id'], request.user.id, 1)
-   
+
         messages.success(request, 'Evento de exclusão criado com sucesso!')
         url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('r2070_evtpgtosdivs_salvar', hash=url_hash)
@@ -585,7 +585,7 @@ def alterar_identidade(request, hash):
     r2070_evtpgtosdivs_id = int(dict_hash['id'])
 
     if r2070_evtpgtosdivs_id:
-   
+
         r2070_evtpgtosdivs = get_object_or_404(
             r2070evtPgtosDivs.objects.using(db_slug),
             excluido=False,
@@ -604,7 +604,7 @@ def alterar_identidade(request, hash):
             return redirect('r2070_evtpgtosdivs_salvar', hash=url_hash)
 
         else:
-       
+
             messages.error(request, 'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
@@ -758,7 +758,7 @@ def validar_evento(request, hash):
             messages.success(request, u'Validações processadas com sucesso!')
 
         else:
-       
+
             messages.error(request, u'Não foi possível validar o evento pois a versão do evento não é compatível com a versão do sistema!')
     else:
 

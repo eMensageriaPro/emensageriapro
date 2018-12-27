@@ -70,85 +70,85 @@ def validacoes_s2299_evtdeslig(arquivo):
     if 'qtdDiasInterm' in dir(evtDeslig.infoDeslig): validacoes_lista = validar_campo(validacoes_lista,'evtDeslig.infoDeslig.qtdDiasInterm', evtDeslig.infoDeslig.qtdDiasInterm.cdata, 0, '')
     if 'observacoes' in dir(evtDeslig.infoDeslig):
         for observacoes in evtDeslig.infoDeslig.observacoes:
-       
+
             if 'observacao' in dir(observacoes): validacoes_lista = validar_campo(validacoes_lista,'observacoes.observacao', observacoes.observacao.cdata, 1, '')
 
     if 'sucessaoVinc' in dir(evtDeslig.infoDeslig):
         for sucessaoVinc in evtDeslig.infoDeslig.sucessaoVinc:
-       
+
             if 'tpInscSuc' in dir(sucessaoVinc): validacoes_lista = validar_campo(validacoes_lista,'sucessaoVinc.tpInscSuc', sucessaoVinc.tpInscSuc.cdata, 1, '1;2')
             if 'cnpjSucessora' in dir(sucessaoVinc): validacoes_lista = validar_campo(validacoes_lista,'sucessaoVinc.cnpjSucessora', sucessaoVinc.cnpjSucessora.cdata, 1, '')
 
     if 'transfTit' in dir(evtDeslig.infoDeslig):
         for transfTit in evtDeslig.infoDeslig.transfTit:
-       
+
             if 'cpfSubstituto' in dir(transfTit): validacoes_lista = validar_campo(validacoes_lista,'transfTit.cpfSubstituto', transfTit.cpfSubstituto.cdata, 1, '')
             if 'dtNascto' in dir(transfTit): validacoes_lista = validar_campo(validacoes_lista,'transfTit.dtNascto', transfTit.dtNascto.cdata, 1, '')
 
     if 'mudancaCPF' in dir(evtDeslig.infoDeslig):
         for mudancaCPF in evtDeslig.infoDeslig.mudancaCPF:
-       
+
             if 'novoCPF' in dir(mudancaCPF): validacoes_lista = validar_campo(validacoes_lista,'mudancaCPF.novoCPF', mudancaCPF.novoCPF.cdata, 1, '')
 
     if 'dmDev' in dir(evtDeslig.infoDeslig.verbasResc):
         for dmDev in evtDeslig.infoDeslig.verbasResc.dmDev:
-       
+
             if 'ideDmDev' in dir(dmDev): validacoes_lista = validar_campo(validacoes_lista,'dmDev.ideDmDev', dmDev.ideDmDev.cdata, 1, '')
 
             if 'ideEstabLot' in dir(dmDev.infoPerApur):
                 for ideEstabLot in dmDev.infoPerApur.ideEstabLot:
-               
+
                     if 'tpInsc' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.tpInsc', ideEstabLot.tpInsc.cdata, 1, '1;2;3;4')
                     if 'nrInsc' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.nrInsc', ideEstabLot.nrInsc.cdata, 1, '')
                     if 'codLotacao' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.codLotacao', ideEstabLot.codLotacao.cdata, 1, '')
-   
+
             if 'ideADC' in dir(dmDev.infoPerAnt):
                 for ideADC in dmDev.infoPerAnt.ideADC:
-               
+
                     if 'dtAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dtAcConv', ideADC.dtAcConv.cdata, 1, '')
                     if 'tpAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.tpAcConv', ideADC.tpAcConv.cdata, 1, 'A;B;C;D;E')
                     if 'compAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.compAcConv', ideADC.compAcConv.cdata, 0, '')
                     if 'dtEfAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dtEfAcConv', ideADC.dtEfAcConv.cdata, 1, '')
                     if 'dsc' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dsc', ideADC.dsc.cdata, 1, '')
-   
+
             if 'infoTrabInterm' in dir(dmDev):
                 for infoTrabInterm in dmDev.infoTrabInterm:
-               
+
                     if 'codConv' in dir(infoTrabInterm): validacoes_lista = validar_campo(validacoes_lista,'infoTrabInterm.codConv', infoTrabInterm.codConv.cdata, 1, '')
-   
+
     if 'procJudTrab' in dir(evtDeslig.infoDeslig.verbasResc):
         for procJudTrab in evtDeslig.infoDeslig.verbasResc.procJudTrab:
-       
+
             if 'tpTrib' in dir(procJudTrab): validacoes_lista = validar_campo(validacoes_lista,'procJudTrab.tpTrib', procJudTrab.tpTrib.cdata, 1, '3;2;3;4')
             if 'nrProcJud' in dir(procJudTrab): validacoes_lista = validar_campo(validacoes_lista,'procJudTrab.nrProcJud', procJudTrab.nrProcJud.cdata, 1, '')
             if 'codSusp' in dir(procJudTrab): validacoes_lista = validar_campo(validacoes_lista,'procJudTrab.codSusp', procJudTrab.codSusp.cdata, 0, '')
 
     if 'infoMV' in dir(evtDeslig.infoDeslig.verbasResc):
         for infoMV in evtDeslig.infoDeslig.verbasResc.infoMV:
-       
+
             if 'indMV' in dir(infoMV): validacoes_lista = validar_campo(validacoes_lista,'infoMV.indMV', infoMV.indMV.cdata, 1, '1;2;3')
 
             if 'remunOutrEmpr' in dir(infoMV):
                 for remunOutrEmpr in infoMV.remunOutrEmpr:
-               
+
                     if 'tpInsc' in dir(remunOutrEmpr): validacoes_lista = validar_campo(validacoes_lista,'remunOutrEmpr.tpInsc', remunOutrEmpr.tpInsc.cdata, 1, '1;2;3;4')
                     if 'nrInsc' in dir(remunOutrEmpr): validacoes_lista = validar_campo(validacoes_lista,'remunOutrEmpr.nrInsc', remunOutrEmpr.nrInsc.cdata, 1, '')
                     if 'codCateg' in dir(remunOutrEmpr): validacoes_lista = validar_campo(validacoes_lista,'remunOutrEmpr.codCateg', remunOutrEmpr.codCateg.cdata, 1, '101;102;103;104;105;106;111;201;202;301;302;303;305;306;307;308;309;401;410;701;711;712;721;722;723;731;734;738;741;751;761;771;781;901;902;903;904;905')
                     if 'vlrRemunOE' in dir(remunOutrEmpr): validacoes_lista = validar_campo(validacoes_lista,'remunOutrEmpr.vlrRemunOE', remunOutrEmpr.vlrRemunOE.cdata, 1, '')
-   
+
     if 'procCS' in dir(evtDeslig.infoDeslig.verbasResc):
         for procCS in evtDeslig.infoDeslig.verbasResc.procCS:
-       
+
             if 'nrProcJud' in dir(procCS): validacoes_lista = validar_campo(validacoes_lista,'procCS.nrProcJud', procCS.nrProcJud.cdata, 1, '')
 
     if 'quarentena' in dir(evtDeslig.infoDeslig):
         for quarentena in evtDeslig.infoDeslig.quarentena:
-       
+
             if 'dtFimQuar' in dir(quarentena): validacoes_lista = validar_campo(validacoes_lista,'quarentena.dtFimQuar', quarentena.dtFimQuar.cdata, 1, '')
 
     if 'consigFGTS' in dir(evtDeslig.infoDeslig):
         for consigFGTS in evtDeslig.infoDeslig.consigFGTS:
-       
+
             if 'insConsig' in dir(consigFGTS): validacoes_lista = validar_campo(validacoes_lista,'consigFGTS.insConsig', consigFGTS.insConsig.cdata, 1, '')
             if 'nrContr' in dir(consigFGTS): validacoes_lista = validar_campo(validacoes_lista,'consigFGTS.nrContr', consigFGTS.nrContr.cdata, 1, '')
 

@@ -94,7 +94,7 @@ def read_s3000_evtexclusao_obj(doc, status, validar=False):
         for ideTrabalhador in evtExclusao.infoExclusao.ideTrabalhador:
             s3000_idetrabalhador_dados = {}
             s3000_idetrabalhador_dados['s3000_evtexclusao_id'] = s3000_evtexclusao_id
-       
+
             if 'cpfTrab' in dir(ideTrabalhador): s3000_idetrabalhador_dados['cpftrab'] = ideTrabalhador.cpfTrab.cdata
             if 'nisTrab' in dir(ideTrabalhador): s3000_idetrabalhador_dados['nistrab'] = ideTrabalhador.nisTrab.cdata
             insert = create_insert('s3000_idetrabalhador', s3000_idetrabalhador_dados)
@@ -106,7 +106,7 @@ def read_s3000_evtexclusao_obj(doc, status, validar=False):
         for ideFolhaPagto in evtExclusao.infoExclusao.ideFolhaPagto:
             s3000_idefolhapagto_dados = {}
             s3000_idefolhapagto_dados['s3000_evtexclusao_id'] = s3000_evtexclusao_id
-       
+
             if 'indApuracao' in dir(ideFolhaPagto): s3000_idefolhapagto_dados['indapuracao'] = ideFolhaPagto.indApuracao.cdata
             if 'perApur' in dir(ideFolhaPagto): s3000_idefolhapagto_dados['perapur'] = ideFolhaPagto.perApur.cdata
             insert = create_insert('s3000_idefolhapagto', s3000_idefolhapagto_dados)

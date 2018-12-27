@@ -123,7 +123,7 @@ def read_s2210_evtcat_obj(doc, status, validar=False):
         for ideLocalAcid in evtCAT.cat.localAcidente.ideLocalAcid:
             s2210_idelocalacid_dados = {}
             s2210_idelocalacid_dados['s2210_evtcat_id'] = s2210_evtcat_id
-       
+
             if 'tpInsc' in dir(ideLocalAcid): s2210_idelocalacid_dados['tpinsc'] = ideLocalAcid.tpInsc.cdata
             if 'nrInsc' in dir(ideLocalAcid): s2210_idelocalacid_dados['nrinsc'] = ideLocalAcid.nrInsc.cdata
             insert = create_insert('s2210_idelocalacid', s2210_idelocalacid_dados)
@@ -135,7 +135,7 @@ def read_s2210_evtcat_obj(doc, status, validar=False):
         for parteAtingida in evtCAT.cat.parteAtingida:
             s2210_parteatingida_dados = {}
             s2210_parteatingida_dados['s2210_evtcat_id'] = s2210_evtcat_id
-       
+
             if 'codParteAting' in dir(parteAtingida): s2210_parteatingida_dados['codparteating'] = parteAtingida.codParteAting.cdata
             if 'lateralidade' in dir(parteAtingida): s2210_parteatingida_dados['lateralidade'] = parteAtingida.lateralidade.cdata
             insert = create_insert('s2210_parteatingida', s2210_parteatingida_dados)
@@ -147,7 +147,7 @@ def read_s2210_evtcat_obj(doc, status, validar=False):
         for agenteCausador in evtCAT.cat.agenteCausador:
             s2210_agentecausador_dados = {}
             s2210_agentecausador_dados['s2210_evtcat_id'] = s2210_evtcat_id
-       
+
             if 'codAgntCausador' in dir(agenteCausador): s2210_agentecausador_dados['codagntcausador'] = agenteCausador.codAgntCausador.cdata
             insert = create_insert('s2210_agentecausador', s2210_agentecausador_dados)
             resp = executar_sql(insert, True)
@@ -158,7 +158,7 @@ def read_s2210_evtcat_obj(doc, status, validar=False):
         for atestado in evtCAT.cat.atestado:
             s2210_atestado_dados = {}
             s2210_atestado_dados['s2210_evtcat_id'] = s2210_evtcat_id
-       
+
             if 'codCNES' in dir(atestado): s2210_atestado_dados['codcnes'] = atestado.codCNES.cdata
             if 'dtAtendimento' in dir(atestado): s2210_atestado_dados['dtatendimento'] = atestado.dtAtendimento.cdata
             if 'hrAtendimento' in dir(atestado): s2210_atestado_dados['hratendimento'] = atestado.hrAtendimento.cdata
@@ -183,7 +183,7 @@ def read_s2210_evtcat_obj(doc, status, validar=False):
         for catOrigem in evtCAT.cat.catOrigem:
             s2210_catorigem_dados = {}
             s2210_catorigem_dados['s2210_evtcat_id'] = s2210_evtcat_id
-       
+
             if 'dtCatOrig' in dir(catOrigem): s2210_catorigem_dados['dtcatorig'] = catOrigem.dtCatOrig.cdata
             if 'nrRecCatOrig' in dir(catOrigem): s2210_catorigem_dados['nrreccatorig'] = catOrigem.nrRecCatOrig.cdata
             insert = create_insert('s2210_catorigem', s2210_catorigem_dados)

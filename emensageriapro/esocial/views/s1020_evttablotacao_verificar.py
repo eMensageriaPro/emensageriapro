@@ -105,7 +105,7 @@ def verificar(request, hash):
     if permissao.permite_listar:
         s1020_evttablotacao = get_object_or_404(s1020evtTabLotacao.objects.using( db_slug ), excluido = False, id = s1020_evttablotacao_id)
         s1020_evttablotacao_lista = s1020evtTabLotacao.objects.using( db_slug ).filter(id=s1020_evttablotacao_id, excluido = False).all()
-   
+
 
         s1020_inclusao_lista = s1020inclusao.objects.using(db_slug).filter(s1020_evttablotacao_id__in = listar_ids(s1020_evttablotacao_lista) ).filter(excluido=False).all()
         s1020_inclusao_procjudterceiro_lista = s1020inclusaoprocJudTerceiro.objects.using(db_slug).filter(s1020_inclusao_id__in = listar_ids(s1020_inclusao_lista) ).filter(excluido=False).all()
@@ -121,11 +121,11 @@ def verificar(request, hash):
             's1020_evttablotacao_lista': s1020_evttablotacao_lista,
             's1020_evttablotacao_id': s1020_evttablotacao_id,
             's1020_evttablotacao': s1020_evttablotacao,
-            
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -180,10 +180,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -203,13 +203,13 @@ def gerar_xml_s1020(s1020_evttablotacao_id, db_slug, versao=None):
             s1020evtTabLotacao.objects.using( db_slug ),
             excluido = False,
             id = s1020_evttablotacao_id)
-   
+
         if not versao:
 
             versao = s1020_evttablotacao.versao
-   
+
         s1020_evttablotacao_lista = s1020evtTabLotacao.objects.using( db_slug ).filter(id=s1020_evttablotacao_id, excluido = False).all()
-   
+
 
         s1020_inclusao_lista = s1020inclusao.objects.using(db_slug).filter(s1020_evttablotacao_id__in = listar_ids(s1020_evttablotacao_lista) ).filter(excluido=False).all()
         s1020_inclusao_procjudterceiro_lista = s1020inclusaoprocJudTerceiro.objects.using(db_slug).filter(s1020_inclusao_id__in = listar_ids(s1020_inclusao_lista) ).filter(excluido=False).all()
@@ -219,7 +219,7 @@ def gerar_xml_s1020(s1020_evttablotacao_id, db_slug, versao=None):
         s1020_alteracao_infoemprparcial_lista = s1020alteracaoinfoEmprParcial.objects.using(db_slug).filter(s1020_alteracao_id__in = listar_ids(s1020_alteracao_lista) ).filter(excluido=False).all()
         s1020_alteracao_novavalidade_lista = s1020alteracaonovaValidade.objects.using(db_slug).filter(s1020_alteracao_id__in = listar_ids(s1020_alteracao_lista) ).filter(excluido=False).all()
         s1020_exclusao_lista = s1020exclusao.objects.using(db_slug).filter(s1020_evttablotacao_id__in = listar_ids(s1020_evttablotacao_lista) ).filter(excluido=False).all()
-   
+
         context = {
             'versao': versao,
             'base': s1020_evttablotacao,
@@ -238,11 +238,11 @@ def gerar_xml_s1020(s1020_evttablotacao_id, db_slug, versao=None):
             's1020_exclusao_lista': s1020_exclusao_lista,
 
         }
-   
+
         t = get_template('s1020_evttablotacao.xml')
         xml = t.render(context)
         return xml
-   
+
 
 
 @login_required
@@ -265,7 +265,7 @@ def recibo(request, hash, tipo):
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
     if permissao.permite_listar:
-   
+
         s1020_evttablotacao = get_object_or_404(
             s1020evtTabLotacao.objects.using( db_slug ),
             excluido = False, id = s1020_evttablotacao_id)
@@ -284,7 +284,7 @@ def recibo(request, hash, tipo):
 
         retorno_ocorrencias = RetornosEventosOcorrencias.objects.using(db_slug).\
             filter(retornos_eventos_id=retorno.id,excluido=False).all()
-   
+
         context = {
             's1020_evttablotacao_id': s1020_evttablotacao_id,
             's1020_evttablotacao': s1020_evttablotacao,
@@ -294,11 +294,11 @@ def recibo(request, hash, tipo):
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
 
-            
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -326,10 +326,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-            
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -395,7 +395,7 @@ def gerar_xml(request, hash):
     s1020_evttablotacao_id = int(dict_hash['id'])
 
     if s1020_evttablotacao_id:
-   
+
         xml_assinado = gerar_xml_assinado(s1020_evttablotacao_id, db_slug)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
@@ -415,7 +415,7 @@ def duplicar(request, hash):
     s1020_evttablotacao_id = int(dict_hash['id'])
 
     if s1020_evttablotacao_id:
-   
+
         s1020_evttablotacao = get_object_or_404(
             s1020evtTabLotacao.objects.using(db_slug),
             excluido=False,
@@ -457,21 +457,21 @@ def criar_alteracao(request, hash):
             s1020evtTabLotacao.objects.using(db_slug),
             excluido=False,
             id=s1020_evttablotacao_id)
-   
+
         texto = gerar_xml_s1020(s1020_evttablotacao_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
         dados = read_s1020_evttablotacao_string({}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(dados['id'], db_slug)
-   
+
         s1020evtTabLotacao.objects.using(db_slug).filter(id=dados['id']).\
             update(status=0, arquivo_original=0, arquivo='')
-   
+
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1020_evttablotacao.identidade),
             's1020_evttablotacao', dados['id'], request.user.id, 1)
-   
+
         messages.success(request, 'Evento de alteração criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )   
+        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('s1020_evttablotacao_salvar', hash=url_hash)
 
     messages.error(request, 'Erro ao criar evento de alteração!')
@@ -491,25 +491,25 @@ def criar_exclusao(request, hash):
     s1020_evttablotacao_id = int(dict_hash['id'])
 
     if s1020_evttablotacao_id:
-   
+
         s1020_evttablotacao = get_object_or_404(
             s1020evtTabLotacao.objects.using(db_slug),
             excluido=False,
             id=s1020_evttablotacao_id)
-   
+
         texto = gerar_xml_s1020(s1020_evttablotacao_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_s1020_evttablotacao_string({}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(dados['id'], db_slug)
-   
+
         s1020evtTabLotacao.objects.using(db_slug).filter(id=dados['id']).\
             update(status=0, arquivo_original=0, arquivo='')
-   
+
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1020_evttablotacao.identidade),
             's1020_evttablotacao', dados['id'], request.user.id, 1)
-   
+
         messages.success(request, 'Evento de exclusão criado com sucesso!')
         url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('s1020_evttablotacao_salvar', hash=url_hash)
@@ -529,7 +529,7 @@ def alterar_identidade(request, hash):
     s1020_evttablotacao_id = int(dict_hash['id'])
 
     if s1020_evttablotacao_id:
-   
+
         s1020_evttablotacao = get_object_or_404(
             s1020evtTabLotacao.objects.using(db_slug),
             excluido=False,
@@ -548,7 +548,7 @@ def alterar_identidade(request, hash):
             return redirect('s1020_evttablotacao_salvar', hash=url_hash)
 
         else:
-       
+
             messages.error(request, 'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
@@ -702,7 +702,7 @@ def validar_evento(request, hash):
             messages.success(request, u'Validações processadas com sucesso!')
 
         else:
-       
+
             messages.error(request, u'Não foi possível validar o evento pois a versão do evento não é compatível com a versão do sistema!')
     else:
 

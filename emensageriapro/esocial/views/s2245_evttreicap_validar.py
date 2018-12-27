@@ -63,7 +63,7 @@ def validacoes_s2245_evttreicap(arquivo):
     if 'observacao' in dir(evtTreiCap.treiCap): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.treiCap.observacao', evtTreiCap.treiCap.observacao.cdata, 0, '')
     if 'infoComplem' in dir(evtTreiCap.treiCap):
         for infoComplem in evtTreiCap.treiCap.infoComplem:
-       
+
             if 'dtTreiCap' in dir(infoComplem): validacoes_lista = validar_campo(validacoes_lista,'infoComplem.dtTreiCap', infoComplem.dtTreiCap.cdata, 1, '')
             if 'durTreiCap' in dir(infoComplem): validacoes_lista = validar_campo(validacoes_lista,'infoComplem.durTreiCap', infoComplem.durTreiCap.cdata, 1, '')
             if 'modTreiCap' in dir(infoComplem): validacoes_lista = validar_campo(validacoes_lista,'infoComplem.modTreiCap', infoComplem.modTreiCap.cdata, 1, '1;2;3')
@@ -71,12 +71,12 @@ def validacoes_s2245_evttreicap(arquivo):
 
             if 'ideProfResp' in dir(infoComplem):
                 for ideProfResp in infoComplem.ideProfResp:
-               
+
                     if 'cpfProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.cpfProf', ideProfResp.cpfProf.cdata, 0, '')
                     if 'nmProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.nmProf', ideProfResp.nmProf.cdata, 1, '')
                     if 'tpProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.tpProf', ideProfResp.tpProf.cdata, 1, '1;2')
                     if 'formProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.formProf', ideProfResp.formProf.cdata, 1, '')
                     if 'codCBO' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.codCBO', ideProfResp.codCBO.cdata, 1, '')
                     if 'nacProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.nacProf', ideProfResp.nacProf.cdata, 1, '1;2')
-   
+
     return validacoes_lista

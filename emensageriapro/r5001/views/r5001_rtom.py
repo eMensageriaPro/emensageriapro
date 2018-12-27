@@ -92,17 +92,17 @@ def apagar(request, hash):
                              'r5001_rtom', r5001_rtom_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 'r5001_rtom_salvar':
             return redirect('r5001_rtom', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -199,17 +199,17 @@ def listar(request, hash):
             filtrar = True
             r5001_rtom_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #r5001_rtom_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r5001_rtom'
         context = {
             'r5001_rtom_lista': r5001_rtom_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -219,7 +219,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 'r5001_rtom_listar.html', context)
@@ -262,10 +262,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -359,12 +359,12 @@ def salvar(request, hash):
             r5001_rtom_form.fields[field].widget.attrs['ng-model'] = 'r5001_rtom_'+field
         if int(dict_hash['print']):
             r5001_rtom_form = disabled_form_for_print(r5001_rtom_form)
-   
+
         r5001_infocrtom_form = None
         r5001_infocrtom_lista = None
         if r5001_rtom_id:
             r5001_rtom = get_object_or_404(r5001RTom.objects.using( db_slug ), excluido = False, id = r5001_rtom_id)
-       
+
             r5001_infocrtom_form = form_r5001_infocrtom(initial={ 'r5001_rtom': r5001_rtom }, slug=db_slug)
             r5001_infocrtom_form.fields['r5001_rtom'].widget.attrs['readonly'] = True
             r5001_infocrtom_lista = r5001infoCRTom.objects.using( db_slug ).filter(excluido = False, r5001_rtom_id=r5001_rtom.id).all()
@@ -388,14 +388,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r5001_rtom_id': int(r5001_rtom_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             'r5001_infocrtom_form': r5001_infocrtom_form,
             'r5001_infocrtom_lista': r5001_infocrtom_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -439,10 +439,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

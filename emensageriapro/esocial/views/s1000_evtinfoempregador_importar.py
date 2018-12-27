@@ -92,7 +92,7 @@ def read_s1000_evtinfoempregador_obj(doc, status, validar=False):
         for inclusao in evtInfoEmpregador.infoEmpregador.inclusao:
             s1000_inclusao_dados = {}
             s1000_inclusao_dados['s1000_evtinfoempregador_id'] = s1000_evtinfoempregador_id
-       
+
             if 'iniValid' in dir(inclusao.idePeriodo): s1000_inclusao_dados['inivalid'] = inclusao.idePeriodo.iniValid.cdata
             if 'fimValid' in dir(inclusao.idePeriodo): s1000_inclusao_dados['fimvalid'] = inclusao.idePeriodo.fimValid.cdata
             if 'nmRazao' in dir(inclusao.infoCadastro): s1000_inclusao_dados['nmrazao'] = inclusao.infoCadastro.nmRazao.cdata
@@ -120,7 +120,7 @@ def read_s1000_evtinfoempregador_obj(doc, status, validar=False):
                 for dadosIsencao in inclusao.infoCadastro.dadosIsencao:
                     s1000_inclusao_dadosisencao_dados = {}
                     s1000_inclusao_dadosisencao_dados['s1000_inclusao_id'] = s1000_inclusao_id
-               
+
                     if 'ideMinLei' in dir(dadosIsencao): s1000_inclusao_dadosisencao_dados['ideminlei'] = dadosIsencao.ideMinLei.cdata
                     if 'nrCertif' in dir(dadosIsencao): s1000_inclusao_dadosisencao_dados['nrcertif'] = dadosIsencao.nrCertif.cdata
                     if 'dtEmisCertif' in dir(dadosIsencao): s1000_inclusao_dadosisencao_dados['dtemiscertif'] = dadosIsencao.dtEmisCertif.cdata
@@ -133,12 +133,12 @@ def read_s1000_evtinfoempregador_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1000_inclusao_dadosisencao_id = resp[0][0]
                     #print s1000_inclusao_dadosisencao_id
-   
+
             if 'infoOP' in dir(inclusao.infoCadastro):
                 for infoOP in inclusao.infoCadastro.infoOP:
                     s1000_inclusao_infoop_dados = {}
                     s1000_inclusao_infoop_dados['s1000_inclusao_id'] = s1000_inclusao_id
-               
+
                     if 'nrSiafi' in dir(infoOP): s1000_inclusao_infoop_dados['nrsiafi'] = infoOP.nrSiafi.cdata
                     if 'indUGRPPS' in dir(infoOP): s1000_inclusao_infoop_dados['indugrpps'] = infoOP.indUGRPPS.cdata
                     if 'esferaOP' in dir(infoOP): s1000_inclusao_infoop_dados['esferaop'] = infoOP.esferaOP.cdata
@@ -150,23 +150,23 @@ def read_s1000_evtinfoempregador_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1000_inclusao_infoop_id = resp[0][0]
                     #print s1000_inclusao_infoop_id
-   
+
             if 'infoOrgInternacional' in dir(inclusao.infoCadastro):
                 for infoOrgInternacional in inclusao.infoCadastro.infoOrgInternacional:
                     s1000_inclusao_infoorginternacional_dados = {}
                     s1000_inclusao_infoorginternacional_dados['s1000_inclusao_id'] = s1000_inclusao_id
-               
+
                     if 'indAcordoIsenMulta' in dir(infoOrgInternacional): s1000_inclusao_infoorginternacional_dados['indacordoisenmulta'] = infoOrgInternacional.indAcordoIsenMulta.cdata
                     insert = create_insert('s1000_inclusao_infoorginternacional', s1000_inclusao_infoorginternacional_dados)
                     resp = executar_sql(insert, True)
                     s1000_inclusao_infoorginternacional_id = resp[0][0]
                     #print s1000_inclusao_infoorginternacional_id
-   
+
             if 'softwareHouse' in dir(inclusao.infoCadastro):
                 for softwareHouse in inclusao.infoCadastro.softwareHouse:
                     s1000_inclusao_softwarehouse_dados = {}
                     s1000_inclusao_softwarehouse_dados['s1000_inclusao_id'] = s1000_inclusao_id
-               
+
                     if 'cnpjSoftHouse' in dir(softwareHouse): s1000_inclusao_softwarehouse_dados['cnpjsofthouse'] = softwareHouse.cnpjSoftHouse.cdata
                     if 'nmRazao' in dir(softwareHouse): s1000_inclusao_softwarehouse_dados['nmrazao'] = softwareHouse.nmRazao.cdata
                     if 'nmCont' in dir(softwareHouse): s1000_inclusao_softwarehouse_dados['nmcont'] = softwareHouse.nmCont.cdata
@@ -176,34 +176,34 @@ def read_s1000_evtinfoempregador_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1000_inclusao_softwarehouse_id = resp[0][0]
                     #print s1000_inclusao_softwarehouse_id
-   
+
             if 'situacaoPJ' in dir(inclusao.infoCadastro.infoComplementares):
                 for situacaoPJ in inclusao.infoCadastro.infoComplementares.situacaoPJ:
                     s1000_inclusao_situacaopj_dados = {}
                     s1000_inclusao_situacaopj_dados['s1000_inclusao_id'] = s1000_inclusao_id
-               
+
                     if 'indSitPJ' in dir(situacaoPJ): s1000_inclusao_situacaopj_dados['indsitpj'] = situacaoPJ.indSitPJ.cdata
                     insert = create_insert('s1000_inclusao_situacaopj', s1000_inclusao_situacaopj_dados)
                     resp = executar_sql(insert, True)
                     s1000_inclusao_situacaopj_id = resp[0][0]
                     #print s1000_inclusao_situacaopj_id
-   
+
             if 'situacaoPF' in dir(inclusao.infoCadastro.infoComplementares):
                 for situacaoPF in inclusao.infoCadastro.infoComplementares.situacaoPF:
                     s1000_inclusao_situacaopf_dados = {}
                     s1000_inclusao_situacaopf_dados['s1000_inclusao_id'] = s1000_inclusao_id
-               
+
                     if 'indSitPF' in dir(situacaoPF): s1000_inclusao_situacaopf_dados['indsitpf'] = situacaoPF.indSitPF.cdata
                     insert = create_insert('s1000_inclusao_situacaopf', s1000_inclusao_situacaopf_dados)
                     resp = executar_sql(insert, True)
                     s1000_inclusao_situacaopf_id = resp[0][0]
                     #print s1000_inclusao_situacaopf_id
-   
+
     if 'alteracao' in dir(evtInfoEmpregador.infoEmpregador):
         for alteracao in evtInfoEmpregador.infoEmpregador.alteracao:
             s1000_alteracao_dados = {}
             s1000_alteracao_dados['s1000_evtinfoempregador_id'] = s1000_evtinfoempregador_id
-       
+
             if 'iniValid' in dir(alteracao.idePeriodo): s1000_alteracao_dados['inivalid'] = alteracao.idePeriodo.iniValid.cdata
             if 'fimValid' in dir(alteracao.idePeriodo): s1000_alteracao_dados['fimvalid'] = alteracao.idePeriodo.fimValid.cdata
             if 'nmRazao' in dir(alteracao.infoCadastro): s1000_alteracao_dados['nmrazao'] = alteracao.infoCadastro.nmRazao.cdata
@@ -231,7 +231,7 @@ def read_s1000_evtinfoempregador_obj(doc, status, validar=False):
                 for dadosIsencao in alteracao.infoCadastro.dadosIsencao:
                     s1000_alteracao_dadosisencao_dados = {}
                     s1000_alteracao_dadosisencao_dados['s1000_alteracao_id'] = s1000_alteracao_id
-               
+
                     if 'ideMinLei' in dir(dadosIsencao): s1000_alteracao_dadosisencao_dados['ideminlei'] = dadosIsencao.ideMinLei.cdata
                     if 'nrCertif' in dir(dadosIsencao): s1000_alteracao_dadosisencao_dados['nrcertif'] = dadosIsencao.nrCertif.cdata
                     if 'dtEmisCertif' in dir(dadosIsencao): s1000_alteracao_dadosisencao_dados['dtemiscertif'] = dadosIsencao.dtEmisCertif.cdata
@@ -244,12 +244,12 @@ def read_s1000_evtinfoempregador_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1000_alteracao_dadosisencao_id = resp[0][0]
                     #print s1000_alteracao_dadosisencao_id
-   
+
             if 'infoOP' in dir(alteracao.infoCadastro):
                 for infoOP in alteracao.infoCadastro.infoOP:
                     s1000_alteracao_infoop_dados = {}
                     s1000_alteracao_infoop_dados['s1000_alteracao_id'] = s1000_alteracao_id
-               
+
                     if 'nrSiafi' in dir(infoOP): s1000_alteracao_infoop_dados['nrsiafi'] = infoOP.nrSiafi.cdata
                     if 'indUGRPPS' in dir(infoOP): s1000_alteracao_infoop_dados['indugrpps'] = infoOP.indUGRPPS.cdata
                     if 'esferaOP' in dir(infoOP): s1000_alteracao_infoop_dados['esferaop'] = infoOP.esferaOP.cdata
@@ -261,23 +261,23 @@ def read_s1000_evtinfoempregador_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1000_alteracao_infoop_id = resp[0][0]
                     #print s1000_alteracao_infoop_id
-   
+
             if 'infoOrgInternacional' in dir(alteracao.infoCadastro):
                 for infoOrgInternacional in alteracao.infoCadastro.infoOrgInternacional:
                     s1000_alteracao_infoorginternacional_dados = {}
                     s1000_alteracao_infoorginternacional_dados['s1000_alteracao_id'] = s1000_alteracao_id
-               
+
                     if 'indAcordoIsenMulta' in dir(infoOrgInternacional): s1000_alteracao_infoorginternacional_dados['indacordoisenmulta'] = infoOrgInternacional.indAcordoIsenMulta.cdata
                     insert = create_insert('s1000_alteracao_infoorginternacional', s1000_alteracao_infoorginternacional_dados)
                     resp = executar_sql(insert, True)
                     s1000_alteracao_infoorginternacional_id = resp[0][0]
                     #print s1000_alteracao_infoorginternacional_id
-   
+
             if 'softwareHouse' in dir(alteracao.infoCadastro):
                 for softwareHouse in alteracao.infoCadastro.softwareHouse:
                     s1000_alteracao_softwarehouse_dados = {}
                     s1000_alteracao_softwarehouse_dados['s1000_alteracao_id'] = s1000_alteracao_id
-               
+
                     if 'cnpjSoftHouse' in dir(softwareHouse): s1000_alteracao_softwarehouse_dados['cnpjsofthouse'] = softwareHouse.cnpjSoftHouse.cdata
                     if 'nmRazao' in dir(softwareHouse): s1000_alteracao_softwarehouse_dados['nmrazao'] = softwareHouse.nmRazao.cdata
                     if 'nmCont' in dir(softwareHouse): s1000_alteracao_softwarehouse_dados['nmcont'] = softwareHouse.nmCont.cdata
@@ -287,46 +287,46 @@ def read_s1000_evtinfoempregador_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1000_alteracao_softwarehouse_id = resp[0][0]
                     #print s1000_alteracao_softwarehouse_id
-   
+
             if 'situacaoPJ' in dir(alteracao.infoCadastro.infoComplementares):
                 for situacaoPJ in alteracao.infoCadastro.infoComplementares.situacaoPJ:
                     s1000_alteracao_situacaopj_dados = {}
                     s1000_alteracao_situacaopj_dados['s1000_alteracao_id'] = s1000_alteracao_id
-               
+
                     if 'indSitPJ' in dir(situacaoPJ): s1000_alteracao_situacaopj_dados['indsitpj'] = situacaoPJ.indSitPJ.cdata
                     insert = create_insert('s1000_alteracao_situacaopj', s1000_alteracao_situacaopj_dados)
                     resp = executar_sql(insert, True)
                     s1000_alteracao_situacaopj_id = resp[0][0]
                     #print s1000_alteracao_situacaopj_id
-   
+
             if 'situacaoPF' in dir(alteracao.infoCadastro.infoComplementares):
                 for situacaoPF in alteracao.infoCadastro.infoComplementares.situacaoPF:
                     s1000_alteracao_situacaopf_dados = {}
                     s1000_alteracao_situacaopf_dados['s1000_alteracao_id'] = s1000_alteracao_id
-               
+
                     if 'indSitPF' in dir(situacaoPF): s1000_alteracao_situacaopf_dados['indsitpf'] = situacaoPF.indSitPF.cdata
                     insert = create_insert('s1000_alteracao_situacaopf', s1000_alteracao_situacaopf_dados)
                     resp = executar_sql(insert, True)
                     s1000_alteracao_situacaopf_id = resp[0][0]
                     #print s1000_alteracao_situacaopf_id
-   
+
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:
                     s1000_alteracao_novavalidade_dados = {}
                     s1000_alteracao_novavalidade_dados['s1000_alteracao_id'] = s1000_alteracao_id
-               
+
                     if 'iniValid' in dir(novaValidade): s1000_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
                     if 'fimValid' in dir(novaValidade): s1000_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
                     insert = create_insert('s1000_alteracao_novavalidade', s1000_alteracao_novavalidade_dados)
                     resp = executar_sql(insert, True)
                     s1000_alteracao_novavalidade_id = resp[0][0]
                     #print s1000_alteracao_novavalidade_id
-   
+
     if 'exclusao' in dir(evtInfoEmpregador.infoEmpregador):
         for exclusao in evtInfoEmpregador.infoEmpregador.exclusao:
             s1000_exclusao_dados = {}
             s1000_exclusao_dados['s1000_evtinfoempregador_id'] = s1000_evtinfoempregador_id
-       
+
             if 'iniValid' in dir(exclusao.idePeriodo): s1000_exclusao_dados['inivalid'] = exclusao.idePeriodo.iniValid.cdata
             if 'fimValid' in dir(exclusao.idePeriodo): s1000_exclusao_dados['fimvalid'] = exclusao.idePeriodo.fimValid.cdata
             insert = create_insert('s1000_exclusao', s1000_exclusao_dados)

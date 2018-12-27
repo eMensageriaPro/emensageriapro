@@ -60,14 +60,14 @@ def validacoes_s1250_evtaqprod(arquivo):
     if 'nrInscAdq' in dir(evtAqProd.infoAquisProd.ideEstabAdquir): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.infoAquisProd.ideEstabAdquir.nrInscAdq', evtAqProd.infoAquisProd.ideEstabAdquir.nrInscAdq.cdata, 1, '')
     if 'tpAquis' in dir(evtAqProd.infoAquisProd.ideEstabAdquir):
         for tpAquis in evtAqProd.infoAquisProd.ideEstabAdquir.tpAquis:
-       
+
 
             if 'ideProdutor' in dir(tpAquis):
                 for ideProdutor in tpAquis.ideProdutor:
-               
-   
+
+
             if 'infoProcJ' in dir(tpAquis):
                 for infoProcJ in tpAquis.infoProcJ:
-               
-   
+
+
     return validacoes_lista

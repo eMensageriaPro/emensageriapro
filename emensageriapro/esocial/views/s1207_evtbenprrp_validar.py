@@ -59,38 +59,38 @@ def validacoes_s1207_evtbenprrp(arquivo):
     if 'cpfBenef' in dir(evtBenPrRP.ideBenef): validacoes_lista = validar_campo(validacoes_lista,'evtBenPrRP.ideBenef.cpfBenef', evtBenPrRP.ideBenef.cpfBenef.cdata, 1, '')
     if 'procJudTrab' in dir(evtBenPrRP.ideBenef):
         for procJudTrab in evtBenPrRP.ideBenef.procJudTrab:
-       
+
             if 'tpTrib' in dir(procJudTrab): validacoes_lista = validar_campo(validacoes_lista,'procJudTrab.tpTrib', procJudTrab.tpTrib.cdata, 1, '1;5')
             if 'nrProcJud' in dir(procJudTrab): validacoes_lista = validar_campo(validacoes_lista,'procJudTrab.nrProcJud', procJudTrab.nrProcJud.cdata, 1, '')
             if 'codSusp' in dir(procJudTrab): validacoes_lista = validar_campo(validacoes_lista,'procJudTrab.codSusp', procJudTrab.codSusp.cdata, 0, '')
 
     if 'dmDev' in dir(evtBenPrRP):
         for dmDev in evtBenPrRP.dmDev:
-       
+
             if 'tpBenef' in dir(dmDev): validacoes_lista = validar_campo(validacoes_lista,'dmDev.tpBenef', dmDev.tpBenef.cdata, 1, '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;91;92;93;94;95;96;97;98;99')
             if 'nrBenefic' in dir(dmDev): validacoes_lista = validar_campo(validacoes_lista,'dmDev.nrBenefic', dmDev.nrBenefic.cdata, 1, '')
             if 'ideDmDev' in dir(dmDev): validacoes_lista = validar_campo(validacoes_lista,'dmDev.ideDmDev', dmDev.ideDmDev.cdata, 1, '')
 
             if 'itens' in dir(dmDev):
                 for itens in dmDev.itens:
-               
+
                     if 'codRubr' in dir(itens): validacoes_lista = validar_campo(validacoes_lista,'itens.codRubr', itens.codRubr.cdata, 1, '')
                     if 'ideTabRubr' in dir(itens): validacoes_lista = validar_campo(validacoes_lista,'itens.ideTabRubr', itens.ideTabRubr.cdata, 1, '')
                     if 'vrRubr' in dir(itens): validacoes_lista = validar_campo(validacoes_lista,'itens.vrRubr', itens.vrRubr.cdata, 1, '')
-   
+
             if 'ideEstab' in dir(dmDev.infoPerApur):
                 for ideEstab in dmDev.infoPerApur.ideEstab:
-               
+
                     if 'tpInsc' in dir(ideEstab): validacoes_lista = validar_campo(validacoes_lista,'ideEstab.tpInsc', ideEstab.tpInsc.cdata, 1, '')
                     if 'nrInsc' in dir(ideEstab): validacoes_lista = validar_campo(validacoes_lista,'ideEstab.nrInsc', ideEstab.nrInsc.cdata, 1, '')
-   
+
             if 'ideADC' in dir(dmDev.infoPerAnt):
                 for ideADC in dmDev.infoPerAnt.ideADC:
-               
+
                     if 'dtAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dtAcConv', ideADC.dtAcConv.cdata, 0, '')
                     if 'tpAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.tpAcConv', ideADC.tpAcConv.cdata, 1, 'B;G;H')
                     if 'compAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.compAcConv', ideADC.compAcConv.cdata, 0, '')
                     if 'dtEfAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dtEfAcConv', ideADC.dtEfAcConv.cdata, 0, '')
                     if 'dsc' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dsc', ideADC.dsc.cdata, 1, '')
-   
+
     return validacoes_lista

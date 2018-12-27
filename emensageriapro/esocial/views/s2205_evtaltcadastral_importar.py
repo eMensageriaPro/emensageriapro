@@ -110,7 +110,7 @@ def read_s2205_evtaltcadastral_obj(doc, status, validar=False):
         for CTPS in evtAltCadastral.alteracao.dadosTrabalhador.documentos.CTPS:
             s2205_ctps_dados = {}
             s2205_ctps_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
-       
+
             if 'nrCtps' in dir(CTPS): s2205_ctps_dados['nrctps'] = CTPS.nrCtps.cdata
             if 'serieCtps' in dir(CTPS): s2205_ctps_dados['seriectps'] = CTPS.serieCtps.cdata
             if 'ufCtps' in dir(CTPS): s2205_ctps_dados['ufctps'] = CTPS.ufCtps.cdata
@@ -123,7 +123,7 @@ def read_s2205_evtaltcadastral_obj(doc, status, validar=False):
         for RIC in evtAltCadastral.alteracao.dadosTrabalhador.documentos.RIC:
             s2205_ric_dados = {}
             s2205_ric_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
-       
+
             if 'nrRic' in dir(RIC): s2205_ric_dados['nrric'] = RIC.nrRic.cdata
             if 'orgaoEmissor' in dir(RIC): s2205_ric_dados['orgaoemissor'] = RIC.orgaoEmissor.cdata
             if 'dtExped' in dir(RIC): s2205_ric_dados['dtexped'] = RIC.dtExped.cdata
@@ -136,7 +136,7 @@ def read_s2205_evtaltcadastral_obj(doc, status, validar=False):
         for RG in evtAltCadastral.alteracao.dadosTrabalhador.documentos.RG:
             s2205_rg_dados = {}
             s2205_rg_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
-       
+
             if 'nrRg' in dir(RG): s2205_rg_dados['nrrg'] = RG.nrRg.cdata
             if 'orgaoEmissor' in dir(RG): s2205_rg_dados['orgaoemissor'] = RG.orgaoEmissor.cdata
             if 'dtExped' in dir(RG): s2205_rg_dados['dtexped'] = RG.dtExped.cdata
@@ -149,7 +149,7 @@ def read_s2205_evtaltcadastral_obj(doc, status, validar=False):
         for RNE in evtAltCadastral.alteracao.dadosTrabalhador.documentos.RNE:
             s2205_rne_dados = {}
             s2205_rne_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
-       
+
             if 'nrRne' in dir(RNE): s2205_rne_dados['nrrne'] = RNE.nrRne.cdata
             if 'orgaoEmissor' in dir(RNE): s2205_rne_dados['orgaoemissor'] = RNE.orgaoEmissor.cdata
             if 'dtExped' in dir(RNE): s2205_rne_dados['dtexped'] = RNE.dtExped.cdata
@@ -162,7 +162,7 @@ def read_s2205_evtaltcadastral_obj(doc, status, validar=False):
         for OC in evtAltCadastral.alteracao.dadosTrabalhador.documentos.OC:
             s2205_oc_dados = {}
             s2205_oc_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
-       
+
             if 'nrOc' in dir(OC): s2205_oc_dados['nroc'] = OC.nrOc.cdata
             if 'orgaoEmissor' in dir(OC): s2205_oc_dados['orgaoemissor'] = OC.orgaoEmissor.cdata
             if 'dtExped' in dir(OC): s2205_oc_dados['dtexped'] = OC.dtExped.cdata
@@ -176,7 +176,7 @@ def read_s2205_evtaltcadastral_obj(doc, status, validar=False):
         for CNH in evtAltCadastral.alteracao.dadosTrabalhador.documentos.CNH:
             s2205_cnh_dados = {}
             s2205_cnh_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
-       
+
             if 'nrRegCnh' in dir(CNH): s2205_cnh_dados['nrregcnh'] = CNH.nrRegCnh.cdata
             if 'dtExped' in dir(CNH): s2205_cnh_dados['dtexped'] = CNH.dtExped.cdata
             if 'ufCnh' in dir(CNH): s2205_cnh_dados['ufcnh'] = CNH.ufCnh.cdata
@@ -192,7 +192,7 @@ def read_s2205_evtaltcadastral_obj(doc, status, validar=False):
         for brasil in evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil:
             s2205_brasil_dados = {}
             s2205_brasil_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
-       
+
             if 'tpLograd' in dir(brasil): s2205_brasil_dados['tplograd'] = brasil.tpLograd.cdata
             if 'dscLograd' in dir(brasil): s2205_brasil_dados['dsclograd'] = brasil.dscLograd.cdata
             if 'nrLograd' in dir(brasil): s2205_brasil_dados['nrlograd'] = brasil.nrLograd.cdata
@@ -210,7 +210,7 @@ def read_s2205_evtaltcadastral_obj(doc, status, validar=False):
         for exterior in evtAltCadastral.alteracao.dadosTrabalhador.endereco.exterior:
             s2205_exterior_dados = {}
             s2205_exterior_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
-       
+
             if 'paisResid' in dir(exterior): s2205_exterior_dados['paisresid'] = exterior.paisResid.cdata
             if 'dscLograd' in dir(exterior): s2205_exterior_dados['dsclograd'] = exterior.dscLograd.cdata
             if 'nrLograd' in dir(exterior): s2205_exterior_dados['nrlograd'] = exterior.nrLograd.cdata
@@ -227,7 +227,7 @@ def read_s2205_evtaltcadastral_obj(doc, status, validar=False):
         for trabEstrangeiro in evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro:
             s2205_trabestrangeiro_dados = {}
             s2205_trabestrangeiro_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
-       
+
             if 'dtChegada' in dir(trabEstrangeiro): s2205_trabestrangeiro_dados['dtchegada'] = trabEstrangeiro.dtChegada.cdata
             if 'classTrabEstrang' in dir(trabEstrangeiro): s2205_trabestrangeiro_dados['classtrabestrang'] = trabEstrangeiro.classTrabEstrang.cdata
             if 'casadoBr' in dir(trabEstrangeiro): s2205_trabestrangeiro_dados['casadobr'] = trabEstrangeiro.casadoBr.cdata
@@ -241,7 +241,7 @@ def read_s2205_evtaltcadastral_obj(doc, status, validar=False):
         for infoDeficiencia in evtAltCadastral.alteracao.dadosTrabalhador.infoDeficiencia:
             s2205_infodeficiencia_dados = {}
             s2205_infodeficiencia_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
-       
+
             if 'defFisica' in dir(infoDeficiencia): s2205_infodeficiencia_dados['deffisica'] = infoDeficiencia.defFisica.cdata
             if 'defVisual' in dir(infoDeficiencia): s2205_infodeficiencia_dados['defvisual'] = infoDeficiencia.defVisual.cdata
             if 'defAuditiva' in dir(infoDeficiencia): s2205_infodeficiencia_dados['defauditiva'] = infoDeficiencia.defAuditiva.cdata
@@ -259,7 +259,7 @@ def read_s2205_evtaltcadastral_obj(doc, status, validar=False):
         for dependente in evtAltCadastral.alteracao.dadosTrabalhador.dependente:
             s2205_dependente_dados = {}
             s2205_dependente_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
-       
+
             if 'tpDep' in dir(dependente): s2205_dependente_dados['tpdep'] = dependente.tpDep.cdata
             if 'nmDep' in dir(dependente): s2205_dependente_dados['nmdep'] = dependente.nmDep.cdata
             if 'dtNascto' in dir(dependente): s2205_dependente_dados['dtnascto'] = dependente.dtNascto.cdata
@@ -278,7 +278,7 @@ def read_s2205_evtaltcadastral_obj(doc, status, validar=False):
         for aposentadoria in evtAltCadastral.alteracao.dadosTrabalhador.aposentadoria:
             s2205_aposentadoria_dados = {}
             s2205_aposentadoria_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
-       
+
             if 'trabAposent' in dir(aposentadoria): s2205_aposentadoria_dados['trabaposent'] = aposentadoria.trabAposent.cdata
             insert = create_insert('s2205_aposentadoria', s2205_aposentadoria_dados)
             resp = executar_sql(insert, True)
@@ -289,7 +289,7 @@ def read_s2205_evtaltcadastral_obj(doc, status, validar=False):
         for contato in evtAltCadastral.alteracao.dadosTrabalhador.contato:
             s2205_contato_dados = {}
             s2205_contato_dados['s2205_evtaltcadastral_id'] = s2205_evtaltcadastral_id
-       
+
             if 'fonePrinc' in dir(contato): s2205_contato_dados['foneprinc'] = contato.fonePrinc.cdata
             if 'foneAlternat' in dir(contato): s2205_contato_dados['fonealternat'] = contato.foneAlternat.cdata
             if 'emailPrinc' in dir(contato): s2205_contato_dados['emailprinc'] = contato.emailPrinc.cdata

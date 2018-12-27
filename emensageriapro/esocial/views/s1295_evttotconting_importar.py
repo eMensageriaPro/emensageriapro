@@ -94,7 +94,7 @@ def read_s1295_evttotconting_obj(doc, status, validar=False):
         for ideRespInf in evtTotConting.ideRespInf:
             s1295_iderespinf_dados = {}
             s1295_iderespinf_dados['s1295_evttotconting_id'] = s1295_evttotconting_id
-       
+
             if 'nmResp' in dir(ideRespInf): s1295_iderespinf_dados['nmresp'] = ideRespInf.nmResp.cdata
             if 'cpfResp' in dir(ideRespInf): s1295_iderespinf_dados['cpfresp'] = ideRespInf.cpfResp.cdata
             if 'telefone' in dir(ideRespInf): s1295_iderespinf_dados['telefone'] = ideRespInf.telefone.cdata

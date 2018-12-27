@@ -96,7 +96,7 @@ def read_s1270_evtcontratavnp_obj(doc, status, validar=False):
         for remunAvNP in evtContratAvNP.remunAvNP:
             s1270_remunavnp_dados = {}
             s1270_remunavnp_dados['s1270_evtcontratavnp_id'] = s1270_evtcontratavnp_id
-       
+
             if 'tpInsc' in dir(remunAvNP): s1270_remunavnp_dados['tpinsc'] = remunAvNP.tpInsc.cdata
             if 'nrInsc' in dir(remunAvNP): s1270_remunavnp_dados['nrinsc'] = remunAvNP.nrInsc.cdata
             if 'codLotacao' in dir(remunAvNP): s1270_remunavnp_dados['codlotacao'] = remunAvNP.codLotacao.cdata

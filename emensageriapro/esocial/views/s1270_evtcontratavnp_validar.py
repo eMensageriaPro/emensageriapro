@@ -58,7 +58,7 @@ def validacoes_s1270_evtcontratavnp(arquivo):
     if 'nrInsc' in dir(evtContratAvNP.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtContratAvNP.ideEmpregador.nrInsc', evtContratAvNP.ideEmpregador.nrInsc.cdata, 1, '')
     if 'remunAvNP' in dir(evtContratAvNP):
         for remunAvNP in evtContratAvNP.remunAvNP:
-       
+
             if 'tpInsc' in dir(remunAvNP): validacoes_lista = validar_campo(validacoes_lista,'remunAvNP.tpInsc', remunAvNP.tpInsc.cdata, 1, '1;2;3;4')
             if 'nrInsc' in dir(remunAvNP): validacoes_lista = validar_campo(validacoes_lista,'remunAvNP.nrInsc', remunAvNP.nrInsc.cdata, 1, '')
             if 'codLotacao' in dir(remunAvNP): validacoes_lista = validar_campo(validacoes_lista,'remunAvNP.codLotacao', remunAvNP.codLotacao.cdata, 1, '')

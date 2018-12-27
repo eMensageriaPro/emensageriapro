@@ -92,17 +92,17 @@ def apagar(request, hash):
                              'r2070_ideestab', r2070_ideestab_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 'r2070_ideestab_salvar':
             return redirect('r2070_ideestab', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -196,17 +196,17 @@ def listar(request, hash):
             filtrar = True
             r2070_ideestab_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #r2070_ideestab_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r2070_ideestab'
         context = {
             'r2070_ideestab_lista': r2070_ideestab_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -216,7 +216,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 'r2070_ideestab_listar.html', context)
@@ -259,10 +259,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -356,7 +356,7 @@ def salvar(request, hash):
             r2070_ideestab_form.fields[field].widget.attrs['ng-model'] = 'r2070_ideestab_'+field
         if int(dict_hash['print']):
             r2070_ideestab_form = disabled_form_for_print(r2070_ideestab_form)
-   
+
         r2070_pgtopf_form = None
         r2070_pgtopf_lista = None
         r2070_pgtopj_form = None
@@ -365,7 +365,7 @@ def salvar(request, hash):
         r2070_pgtoresidext_lista = None
         if r2070_ideestab_id:
             r2070_ideestab = get_object_or_404(r2070ideEstab.objects.using( db_slug ), excluido = False, id = r2070_ideestab_id)
-       
+
             r2070_pgtopf_form = form_r2070_pgtopf(initial={ 'r2070_ideestab': r2070_ideestab }, slug=db_slug)
             r2070_pgtopf_form.fields['r2070_ideestab'].widget.attrs['readonly'] = True
             r2070_pgtopf_lista = r2070pgtoPF.objects.using( db_slug ).filter(excluido = False, r2070_ideestab_id=r2070_ideestab.id).all()
@@ -395,9 +395,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r2070_ideestab_id': int(r2070_ideestab_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             'r2070_pgtopf_form': r2070_pgtopf_form,
             'r2070_pgtopf_lista': r2070_pgtopf_lista,
             'r2070_pgtopj_form': r2070_pgtopj_form,
@@ -406,7 +406,7 @@ def salvar(request, hash):
             'r2070_pgtoresidext_lista': r2070_pgtoresidext_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -450,10 +450,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

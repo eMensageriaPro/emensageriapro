@@ -99,7 +99,7 @@ def read_s2306_evttsvaltcontr_obj(doc, status, validar=False):
         for cargoFuncao in evtTSVAltContr.infoTSVAlteracao.infoComplementares.cargoFuncao:
             s2306_cargofuncao_dados = {}
             s2306_cargofuncao_dados['s2306_evttsvaltcontr_id'] = s2306_evttsvaltcontr_id
-       
+
             if 'codCargo' in dir(cargoFuncao): s2306_cargofuncao_dados['codcargo'] = cargoFuncao.codCargo.cdata
             if 'codFuncao' in dir(cargoFuncao): s2306_cargofuncao_dados['codfuncao'] = cargoFuncao.codFuncao.cdata
             insert = create_insert('s2306_cargofuncao', s2306_cargofuncao_dados)
@@ -111,7 +111,7 @@ def read_s2306_evttsvaltcontr_obj(doc, status, validar=False):
         for remuneracao in evtTSVAltContr.infoTSVAlteracao.infoComplementares.remuneracao:
             s2306_remuneracao_dados = {}
             s2306_remuneracao_dados['s2306_evttsvaltcontr_id'] = s2306_evttsvaltcontr_id
-       
+
             if 'vrSalFx' in dir(remuneracao): s2306_remuneracao_dados['vrsalfx'] = remuneracao.vrSalFx.cdata
             if 'undSalFixo' in dir(remuneracao): s2306_remuneracao_dados['undsalfixo'] = remuneracao.undSalFixo.cdata
             if 'dscSalVar' in dir(remuneracao): s2306_remuneracao_dados['dscsalvar'] = remuneracao.dscSalVar.cdata
@@ -124,7 +124,7 @@ def read_s2306_evttsvaltcontr_obj(doc, status, validar=False):
         for infoTrabCedido in evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoTrabCedido:
             s2306_infotrabcedido_dados = {}
             s2306_infotrabcedido_dados['s2306_evttsvaltcontr_id'] = s2306_evttsvaltcontr_id
-       
+
             if 'indRemunCargo' in dir(infoTrabCedido): s2306_infotrabcedido_dados['indremuncargo'] = infoTrabCedido.indRemunCargo.cdata
             insert = create_insert('s2306_infotrabcedido', s2306_infotrabcedido_dados)
             resp = executar_sql(insert, True)
@@ -135,7 +135,7 @@ def read_s2306_evttsvaltcontr_obj(doc, status, validar=False):
         for infoEstagiario in evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario:
             s2306_infoestagiario_dados = {}
             s2306_infoestagiario_dados['s2306_evttsvaltcontr_id'] = s2306_evttsvaltcontr_id
-       
+
             if 'natEstagio' in dir(infoEstagiario): s2306_infoestagiario_dados['natestagio'] = infoEstagiario.natEstagio.cdata
             if 'nivEstagio' in dir(infoEstagiario): s2306_infoestagiario_dados['nivestagio'] = infoEstagiario.nivEstagio.cdata
             if 'areaAtuacao' in dir(infoEstagiario): s2306_infoestagiario_dados['areaatuacao'] = infoEstagiario.areaAtuacao.cdata
@@ -159,7 +159,7 @@ def read_s2306_evttsvaltcontr_obj(doc, status, validar=False):
                 for ageIntegracao in infoEstagiario.ageIntegracao:
                     s2306_ageintegracao_dados = {}
                     s2306_ageintegracao_dados['s2306_infoestagiario_id'] = s2306_infoestagiario_id
-               
+
                     if 'cnpjAgntInteg' in dir(ageIntegracao): s2306_ageintegracao_dados['cnpjagntinteg'] = ageIntegracao.cnpjAgntInteg.cdata
                     if 'nmRazao' in dir(ageIntegracao): s2306_ageintegracao_dados['nmrazao'] = ageIntegracao.nmRazao.cdata
                     if 'dscLograd' in dir(ageIntegracao): s2306_ageintegracao_dados['dsclograd'] = ageIntegracao.dscLograd.cdata
@@ -172,19 +172,19 @@ def read_s2306_evttsvaltcontr_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s2306_ageintegracao_id = resp[0][0]
                     #print s2306_ageintegracao_id
-   
+
             if 'supervisorEstagio' in dir(infoEstagiario):
                 for supervisorEstagio in infoEstagiario.supervisorEstagio:
                     s2306_supervisorestagio_dados = {}
                     s2306_supervisorestagio_dados['s2306_infoestagiario_id'] = s2306_infoestagiario_id
-               
+
                     if 'cpfSupervisor' in dir(supervisorEstagio): s2306_supervisorestagio_dados['cpfsupervisor'] = supervisorEstagio.cpfSupervisor.cdata
                     if 'nmSuperv' in dir(supervisorEstagio): s2306_supervisorestagio_dados['nmsuperv'] = supervisorEstagio.nmSuperv.cdata
                     insert = create_insert('s2306_supervisorestagio', s2306_supervisorestagio_dados)
                     resp = executar_sql(insert, True)
                     s2306_supervisorestagio_id = resp[0][0]
                     #print s2306_supervisorestagio_id
-   
+
     from emensageriapro.esocial.views.s2306_evttsvaltcontr_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(s2306_evttsvaltcontr_id, 'default')
     return dados

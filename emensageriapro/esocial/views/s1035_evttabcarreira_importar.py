@@ -92,7 +92,7 @@ def read_s1035_evttabcarreira_obj(doc, status, validar=False):
         for inclusao in evtTabCarreira.infoCarreira.inclusao:
             s1035_inclusao_dados = {}
             s1035_inclusao_dados['s1035_evttabcarreira_id'] = s1035_evttabcarreira_id
-       
+
             if 'codCarreira' in dir(inclusao.ideCarreira): s1035_inclusao_dados['codcarreira'] = inclusao.ideCarreira.codCarreira.cdata
             if 'iniValid' in dir(inclusao.ideCarreira): s1035_inclusao_dados['inivalid'] = inclusao.ideCarreira.iniValid.cdata
             if 'fimValid' in dir(inclusao.ideCarreira): s1035_inclusao_dados['fimvalid'] = inclusao.ideCarreira.fimValid.cdata
@@ -109,7 +109,7 @@ def read_s1035_evttabcarreira_obj(doc, status, validar=False):
         for alteracao in evtTabCarreira.infoCarreira.alteracao:
             s1035_alteracao_dados = {}
             s1035_alteracao_dados['s1035_evttabcarreira_id'] = s1035_evttabcarreira_id
-       
+
             if 'codCarreira' in dir(alteracao.ideCarreira): s1035_alteracao_dados['codcarreira'] = alteracao.ideCarreira.codCarreira.cdata
             if 'iniValid' in dir(alteracao.ideCarreira): s1035_alteracao_dados['inivalid'] = alteracao.ideCarreira.iniValid.cdata
             if 'fimValid' in dir(alteracao.ideCarreira): s1035_alteracao_dados['fimvalid'] = alteracao.ideCarreira.fimValid.cdata
@@ -126,19 +126,19 @@ def read_s1035_evttabcarreira_obj(doc, status, validar=False):
                 for novaValidade in alteracao.novaValidade:
                     s1035_alteracao_novavalidade_dados = {}
                     s1035_alteracao_novavalidade_dados['s1035_alteracao_id'] = s1035_alteracao_id
-               
+
                     if 'iniValid' in dir(novaValidade): s1035_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
                     if 'fimValid' in dir(novaValidade): s1035_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
                     insert = create_insert('s1035_alteracao_novavalidade', s1035_alteracao_novavalidade_dados)
                     resp = executar_sql(insert, True)
                     s1035_alteracao_novavalidade_id = resp[0][0]
                     #print s1035_alteracao_novavalidade_id
-   
+
     if 'exclusao' in dir(evtTabCarreira.infoCarreira):
         for exclusao in evtTabCarreira.infoCarreira.exclusao:
             s1035_exclusao_dados = {}
             s1035_exclusao_dados['s1035_evttabcarreira_id'] = s1035_evttabcarreira_id
-       
+
             if 'codCarreira' in dir(exclusao.ideCarreira): s1035_exclusao_dados['codcarreira'] = exclusao.ideCarreira.codCarreira.cdata
             if 'iniValid' in dir(exclusao.ideCarreira): s1035_exclusao_dados['inivalid'] = exclusao.ideCarreira.iniValid.cdata
             if 'fimValid' in dir(exclusao.ideCarreira): s1035_exclusao_dados['fimvalid'] = exclusao.ideCarreira.fimValid.cdata

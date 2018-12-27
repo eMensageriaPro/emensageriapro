@@ -97,7 +97,7 @@ def read_s1210_evtpgtos_obj(doc, status, validar=False):
         for deps in evtPgtos.ideBenef.deps:
             s1210_deps_dados = {}
             s1210_deps_dados['s1210_evtpgtos_id'] = s1210_evtpgtos_id
-       
+
             if 'vrDedDep' in dir(deps): s1210_deps_dados['vrdeddep'] = deps.vrDedDep.cdata
             insert = create_insert('s1210_deps', s1210_deps_dados)
             resp = executar_sql(insert, True)
@@ -108,7 +108,7 @@ def read_s1210_evtpgtos_obj(doc, status, validar=False):
         for infoPgto in evtPgtos.ideBenef.infoPgto:
             s1210_infopgto_dados = {}
             s1210_infopgto_dados['s1210_evtpgtos_id'] = s1210_evtpgtos_id
-       
+
             if 'dtPgto' in dir(infoPgto): s1210_infopgto_dados['dtpgto'] = infoPgto.dtPgto.cdata
             if 'tpPgto' in dir(infoPgto): s1210_infopgto_dados['tppgto'] = infoPgto.tpPgto.cdata
             if 'indResBr' in dir(infoPgto): s1210_infopgto_dados['indresbr'] = infoPgto.indResBr.cdata
@@ -121,7 +121,7 @@ def read_s1210_evtpgtos_obj(doc, status, validar=False):
                 for detPgtoFl in infoPgto.detPgtoFl:
                     s1210_detpgtofl_dados = {}
                     s1210_detpgtofl_dados['s1210_infopgto_id'] = s1210_infopgto_id
-               
+
                     if 'perRef' in dir(detPgtoFl): s1210_detpgtofl_dados['perref'] = detPgtoFl.perRef.cdata
                     if 'ideDmDev' in dir(detPgtoFl): s1210_detpgtofl_dados['idedmdev'] = detPgtoFl.ideDmDev.cdata
                     if 'indPgtoTt' in dir(detPgtoFl): s1210_detpgtofl_dados['indpgtott'] = detPgtoFl.indPgtoTt.cdata
@@ -131,12 +131,12 @@ def read_s1210_evtpgtos_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1210_detpgtofl_id = resp[0][0]
                     #print s1210_detpgtofl_id
-   
+
             if 'detPgtoBenPr' in dir(infoPgto):
                 for detPgtoBenPr in infoPgto.detPgtoBenPr:
                     s1210_detpgtobenpr_dados = {}
                     s1210_detpgtobenpr_dados['s1210_infopgto_id'] = s1210_infopgto_id
-               
+
                     if 'perRef' in dir(detPgtoBenPr): s1210_detpgtobenpr_dados['perref'] = detPgtoBenPr.perRef.cdata
                     if 'ideDmDev' in dir(detPgtoBenPr): s1210_detpgtobenpr_dados['idedmdev'] = detPgtoBenPr.ideDmDev.cdata
                     if 'indPgtoTt' in dir(detPgtoBenPr): s1210_detpgtobenpr_dados['indpgtott'] = detPgtoBenPr.indPgtoTt.cdata
@@ -145,12 +145,12 @@ def read_s1210_evtpgtos_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1210_detpgtobenpr_id = resp[0][0]
                     #print s1210_detpgtobenpr_id
-   
+
             if 'detPgtoFer' in dir(infoPgto):
                 for detPgtoFer in infoPgto.detPgtoFer:
                     s1210_detpgtofer_dados = {}
                     s1210_detpgtofer_dados['s1210_infopgto_id'] = s1210_infopgto_id
-               
+
                     if 'codCateg' in dir(detPgtoFer): s1210_detpgtofer_dados['codcateg'] = detPgtoFer.codCateg.cdata
                     if 'matricula' in dir(detPgtoFer): s1210_detpgtofer_dados['matricula'] = detPgtoFer.matricula.cdata
                     if 'dtIniGoz' in dir(detPgtoFer): s1210_detpgtofer_dados['dtinigoz'] = detPgtoFer.dtIniGoz.cdata
@@ -160,23 +160,23 @@ def read_s1210_evtpgtos_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1210_detpgtofer_id = resp[0][0]
                     #print s1210_detpgtofer_id
-   
+
             if 'detPgtoAnt' in dir(infoPgto):
                 for detPgtoAnt in infoPgto.detPgtoAnt:
                     s1210_detpgtoant_dados = {}
                     s1210_detpgtoant_dados['s1210_infopgto_id'] = s1210_infopgto_id
-               
+
                     if 'codCateg' in dir(detPgtoAnt): s1210_detpgtoant_dados['codcateg'] = detPgtoAnt.codCateg.cdata
                     insert = create_insert('s1210_detpgtoant', s1210_detpgtoant_dados)
                     resp = executar_sql(insert, True)
                     s1210_detpgtoant_id = resp[0][0]
                     #print s1210_detpgtoant_id
-   
+
             if 'idePgtoExt' in dir(infoPgto):
                 for idePgtoExt in infoPgto.idePgtoExt:
                     s1210_idepgtoext_dados = {}
                     s1210_idepgtoext_dados['s1210_infopgto_id'] = s1210_infopgto_id
-               
+
                     if 'codPais' in dir(idePgtoExt): s1210_idepgtoext_dados['codpais'] = idePgtoExt.idePais.codPais.cdata
                     if 'indNIF' in dir(idePgtoExt): s1210_idepgtoext_dados['indnif'] = idePgtoExt.idePais.indNIF.cdata
                     if 'nifBenef' in dir(idePgtoExt): s1210_idepgtoext_dados['nifbenef'] = idePgtoExt.idePais.nifBenef.cdata
@@ -190,7 +190,7 @@ def read_s1210_evtpgtos_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1210_idepgtoext_id = resp[0][0]
                     #print s1210_idepgtoext_id
-   
+
     from emensageriapro.esocial.views.s1210_evtpgtos_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(s1210_evtpgtos_id, 'default')
     return dados

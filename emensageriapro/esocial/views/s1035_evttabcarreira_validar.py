@@ -54,7 +54,7 @@ def validacoes_s1035_evttabcarreira(arquivo):
     if 'nrInsc' in dir(evtTabCarreira.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtTabCarreira.ideEmpregador.nrInsc', evtTabCarreira.ideEmpregador.nrInsc.cdata, 1, '')
     if 'inclusao' in dir(evtTabCarreira.infoCarreira):
         for inclusao in evtTabCarreira.infoCarreira.inclusao:
-       
+
             if 'codCarreira' in dir(inclusao.ideCarreira): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideCarreira.codCarreira', inclusao.ideCarreira.codCarreira.cdata, 1, '')
             if 'iniValid' in dir(inclusao.ideCarreira): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideCarreira.iniValid', inclusao.ideCarreira.iniValid.cdata, 1, '')
             if 'fimValid' in dir(inclusao.ideCarreira): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideCarreira.fimValid', inclusao.ideCarreira.fimValid.cdata, 0, '')
@@ -65,7 +65,7 @@ def validacoes_s1035_evttabcarreira(arquivo):
 
     if 'alteracao' in dir(evtTabCarreira.infoCarreira):
         for alteracao in evtTabCarreira.infoCarreira.alteracao:
-       
+
             if 'codCarreira' in dir(alteracao.ideCarreira): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideCarreira.codCarreira', alteracao.ideCarreira.codCarreira.cdata, 1, '')
             if 'iniValid' in dir(alteracao.ideCarreira): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideCarreira.iniValid', alteracao.ideCarreira.iniValid.cdata, 1, '')
             if 'fimValid' in dir(alteracao.ideCarreira): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideCarreira.fimValid', alteracao.ideCarreira.fimValid.cdata, 0, '')
@@ -76,13 +76,13 @@ def validacoes_s1035_evttabcarreira(arquivo):
 
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:
-               
+
                     if 'iniValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.iniValid', novaValidade.iniValid.cdata, 1, '')
                     if 'fimValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.fimValid', novaValidade.fimValid.cdata, 0, '')
-   
+
     if 'exclusao' in dir(evtTabCarreira.infoCarreira):
         for exclusao in evtTabCarreira.infoCarreira.exclusao:
-       
+
             if 'codCarreira' in dir(exclusao.ideCarreira): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideCarreira.codCarreira', exclusao.ideCarreira.codCarreira.cdata, 1, '')
             if 'iniValid' in dir(exclusao.ideCarreira): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideCarreira.iniValid', exclusao.ideCarreira.iniValid.cdata, 1, '')
             if 'fimValid' in dir(exclusao.ideCarreira): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideCarreira.fimValid', exclusao.ideCarreira.fimValid.cdata, 0, '')

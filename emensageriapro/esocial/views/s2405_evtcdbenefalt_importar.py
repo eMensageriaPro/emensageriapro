@@ -106,7 +106,7 @@ def read_s2405_evtcdbenefalt_obj(doc, status, validar=False):
         for brasil in evtCdBenefAlt.alteracao.dadosBenef.endereco.brasil:
             s2405_brasil_dados = {}
             s2405_brasil_dados['s2405_evtcdbenefalt_id'] = s2405_evtcdbenefalt_id
-       
+
             if 'tpLograd' in dir(brasil): s2405_brasil_dados['tplograd'] = brasil.tpLograd.cdata
             if 'dscLograd' in dir(brasil): s2405_brasil_dados['dsclograd'] = brasil.dscLograd.cdata
             if 'nrLograd' in dir(brasil): s2405_brasil_dados['nrlograd'] = brasil.nrLograd.cdata
@@ -124,7 +124,7 @@ def read_s2405_evtcdbenefalt_obj(doc, status, validar=False):
         for exterior in evtCdBenefAlt.alteracao.dadosBenef.endereco.exterior:
             s2405_exterior_dados = {}
             s2405_exterior_dados['s2405_evtcdbenefalt_id'] = s2405_evtcdbenefalt_id
-       
+
             if 'paisResid' in dir(exterior): s2405_exterior_dados['paisresid'] = exterior.paisResid.cdata
             if 'dscLograd' in dir(exterior): s2405_exterior_dados['dsclograd'] = exterior.dscLograd.cdata
             if 'nrLograd' in dir(exterior): s2405_exterior_dados['nrlograd'] = exterior.nrLograd.cdata
@@ -141,7 +141,7 @@ def read_s2405_evtcdbenefalt_obj(doc, status, validar=False):
         for dependente in evtCdBenefAlt.alteracao.dadosBenef.dependente:
             s2405_dependente_dados = {}
             s2405_dependente_dados['s2405_evtcdbenefalt_id'] = s2405_evtcdbenefalt_id
-       
+
             if 'tpDep' in dir(dependente): s2405_dependente_dados['tpdep'] = dependente.tpDep.cdata
             if 'nmDep' in dir(dependente): s2405_dependente_dados['nmdep'] = dependente.nmDep.cdata
             if 'dtNascto' in dir(dependente): s2405_dependente_dados['dtnascto'] = dependente.dtNascto.cdata

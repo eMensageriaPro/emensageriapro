@@ -105,7 +105,7 @@ def verificar(request, hash):
     if permissao.permite_listar:
         s2306_evttsvaltcontr = get_object_or_404(s2306evtTSVAltContr.objects.using( db_slug ), excluido = False, id = s2306_evttsvaltcontr_id)
         s2306_evttsvaltcontr_lista = s2306evtTSVAltContr.objects.using( db_slug ).filter(id=s2306_evttsvaltcontr_id, excluido = False).all()
-   
+
 
         s2306_cargofuncao_lista = s2306cargoFuncao.objects.using(db_slug).filter(s2306_evttsvaltcontr_id__in = listar_ids(s2306_evttsvaltcontr_lista) ).filter(excluido=False).all()
         s2306_remuneracao_lista = s2306remuneracao.objects.using(db_slug).filter(s2306_evttsvaltcontr_id__in = listar_ids(s2306_evttsvaltcontr_lista) ).filter(excluido=False).all()
@@ -119,11 +119,11 @@ def verificar(request, hash):
             's2306_evttsvaltcontr_lista': s2306_evttsvaltcontr_lista,
             's2306_evttsvaltcontr_id': s2306_evttsvaltcontr_id,
             's2306_evttsvaltcontr': s2306_evttsvaltcontr,
-            
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -176,10 +176,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -199,13 +199,13 @@ def gerar_xml_s2306(s2306_evttsvaltcontr_id, db_slug, versao=None):
             s2306evtTSVAltContr.objects.using( db_slug ),
             excluido = False,
             id = s2306_evttsvaltcontr_id)
-   
+
         if not versao:
 
             versao = s2306_evttsvaltcontr.versao
-   
+
         s2306_evttsvaltcontr_lista = s2306evtTSVAltContr.objects.using( db_slug ).filter(id=s2306_evttsvaltcontr_id, excluido = False).all()
-   
+
 
         s2306_cargofuncao_lista = s2306cargoFuncao.objects.using(db_slug).filter(s2306_evttsvaltcontr_id__in = listar_ids(s2306_evttsvaltcontr_lista) ).filter(excluido=False).all()
         s2306_remuneracao_lista = s2306remuneracao.objects.using(db_slug).filter(s2306_evttsvaltcontr_id__in = listar_ids(s2306_evttsvaltcontr_lista) ).filter(excluido=False).all()
@@ -213,7 +213,7 @@ def gerar_xml_s2306(s2306_evttsvaltcontr_id, db_slug, versao=None):
         s2306_infoestagiario_lista = s2306infoEstagiario.objects.using(db_slug).filter(s2306_evttsvaltcontr_id__in = listar_ids(s2306_evttsvaltcontr_lista) ).filter(excluido=False).all()
         s2306_ageintegracao_lista = s2306ageIntegracao.objects.using(db_slug).filter(s2306_infoestagiario_id__in = listar_ids(s2306_infoestagiario_lista) ).filter(excluido=False).all()
         s2306_supervisorestagio_lista = s2306supervisorEstagio.objects.using(db_slug).filter(s2306_infoestagiario_id__in = listar_ids(s2306_infoestagiario_lista) ).filter(excluido=False).all()
-   
+
         context = {
             'versao': versao,
             'base': s2306_evttsvaltcontr,
@@ -230,11 +230,11 @@ def gerar_xml_s2306(s2306_evttsvaltcontr_id, db_slug, versao=None):
             's2306_supervisorestagio_lista': s2306_supervisorestagio_lista,
 
         }
-   
+
         t = get_template('s2306_evttsvaltcontr.xml')
         xml = t.render(context)
         return xml
-   
+
 
 
 @login_required
@@ -257,7 +257,7 @@ def recibo(request, hash, tipo):
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
     if permissao.permite_listar:
-   
+
         s2306_evttsvaltcontr = get_object_or_404(
             s2306evtTSVAltContr.objects.using( db_slug ),
             excluido = False, id = s2306_evttsvaltcontr_id)
@@ -276,7 +276,7 @@ def recibo(request, hash, tipo):
 
         retorno_ocorrencias = RetornosEventosOcorrencias.objects.using(db_slug).\
             filter(retornos_eventos_id=retorno.id,excluido=False).all()
-   
+
         context = {
             's2306_evttsvaltcontr_id': s2306_evttsvaltcontr_id,
             's2306_evttsvaltcontr': s2306_evttsvaltcontr,
@@ -286,11 +286,11 @@ def recibo(request, hash, tipo):
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
 
-            
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -318,10 +318,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-            
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -387,7 +387,7 @@ def gerar_xml(request, hash):
     s2306_evttsvaltcontr_id = int(dict_hash['id'])
 
     if s2306_evttsvaltcontr_id:
-   
+
         xml_assinado = gerar_xml_assinado(s2306_evttsvaltcontr_id, db_slug)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
@@ -407,7 +407,7 @@ def duplicar(request, hash):
     s2306_evttsvaltcontr_id = int(dict_hash['id'])
 
     if s2306_evttsvaltcontr_id:
-   
+
         s2306_evttsvaltcontr = get_object_or_404(
             s2306evtTSVAltContr.objects.using(db_slug),
             excluido=False,
@@ -449,21 +449,21 @@ def criar_alteracao(request, hash):
             s2306evtTSVAltContr.objects.using(db_slug),
             excluido=False,
             id=s2306_evttsvaltcontr_id)
-   
+
         texto = gerar_xml_s2306(s2306_evttsvaltcontr_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
         dados = read_s2306_evttsvaltcontr_string({}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(dados['id'], db_slug)
-   
+
         s2306evtTSVAltContr.objects.using(db_slug).filter(id=dados['id']).\
             update(status=0, arquivo_original=0, arquivo='')
-   
+
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s2306_evttsvaltcontr.identidade),
             's2306_evttsvaltcontr', dados['id'], request.user.id, 1)
-   
+
         messages.success(request, 'Evento de alteração criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )   
+        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('s2306_evttsvaltcontr_salvar', hash=url_hash)
 
     messages.error(request, 'Erro ao criar evento de alteração!')
@@ -483,25 +483,25 @@ def criar_exclusao(request, hash):
     s2306_evttsvaltcontr_id = int(dict_hash['id'])
 
     if s2306_evttsvaltcontr_id:
-   
+
         s2306_evttsvaltcontr = get_object_or_404(
             s2306evtTSVAltContr.objects.using(db_slug),
             excluido=False,
             id=s2306_evttsvaltcontr_id)
-   
+
         texto = gerar_xml_s2306(s2306_evttsvaltcontr_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_s2306_evttsvaltcontr_string({}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(dados['id'], db_slug)
-   
+
         s2306evtTSVAltContr.objects.using(db_slug).filter(id=dados['id']).\
             update(status=0, arquivo_original=0, arquivo='')
-   
+
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s2306_evttsvaltcontr.identidade),
             's2306_evttsvaltcontr', dados['id'], request.user.id, 1)
-   
+
         messages.success(request, 'Evento de exclusão criado com sucesso!')
         url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('s2306_evttsvaltcontr_salvar', hash=url_hash)
@@ -521,7 +521,7 @@ def alterar_identidade(request, hash):
     s2306_evttsvaltcontr_id = int(dict_hash['id'])
 
     if s2306_evttsvaltcontr_id:
-   
+
         s2306_evttsvaltcontr = get_object_or_404(
             s2306evtTSVAltContr.objects.using(db_slug),
             excluido=False,
@@ -540,7 +540,7 @@ def alterar_identidade(request, hash):
             return redirect('s2306_evttsvaltcontr_salvar', hash=url_hash)
 
         else:
-       
+
             messages.error(request, 'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
@@ -694,7 +694,7 @@ def validar_evento(request, hash):
             messages.success(request, u'Validações processadas com sucesso!')
 
         else:
-       
+
             messages.error(request, u'Não foi possível validar o evento pois a versão do evento não é compatível com a versão do sistema!')
     else:
 

@@ -54,7 +54,7 @@ def validacoes_r1000_evtinfocontri(arquivo):
     if 'nrInsc' in dir(evtInfoContri.ideContri): validacoes_lista = validar_campo(validacoes_lista,'evtInfoContri.ideContri.nrInsc', evtInfoContri.ideContri.nrInsc.cdata, 1, '')
     if 'inclusao' in dir(evtInfoContri.infoContri):
         for inclusao in evtInfoContri.infoContri.inclusao:
-       
+
             if 'iniValid' in dir(inclusao.idePeriodo): validacoes_lista = validar_campo(validacoes_lista,'inclusao.idePeriodo.iniValid', inclusao.idePeriodo.iniValid.cdata, 1, '')
             if 'fimValid' in dir(inclusao.idePeriodo): validacoes_lista = validar_campo(validacoes_lista,'inclusao.idePeriodo.fimValid', inclusao.idePeriodo.fimValid.cdata, 0, '')
             if 'classTrib' in dir(inclusao.infoCadastro): validacoes_lista = validar_campo(validacoes_lista,'inclusao.infoCadastro.classTrib', inclusao.infoCadastro.classTrib.cdata, 1, '')
@@ -70,22 +70,22 @@ def validacoes_r1000_evtinfocontri(arquivo):
 
             if 'softHouse' in dir(inclusao.infoCadastro):
                 for softHouse in inclusao.infoCadastro.softHouse:
-               
+
                     if 'cnpjSoftHouse' in dir(softHouse): validacoes_lista = validar_campo(validacoes_lista,'softHouse.cnpjSoftHouse', softHouse.cnpjSoftHouse.cdata, 1, '')
                     if 'nmRazao' in dir(softHouse): validacoes_lista = validar_campo(validacoes_lista,'softHouse.nmRazao', softHouse.nmRazao.cdata, 1, '')
                     if 'nmCont' in dir(softHouse): validacoes_lista = validar_campo(validacoes_lista,'softHouse.nmCont', softHouse.nmCont.cdata, 1, '')
                     if 'telefone' in dir(softHouse): validacoes_lista = validar_campo(validacoes_lista,'softHouse.telefone', softHouse.telefone.cdata, 0, '')
                     if 'email' in dir(softHouse): validacoes_lista = validar_campo(validacoes_lista,'softHouse.email', softHouse.email.cdata, 0, '')
-   
+
             if 'infoEFR' in dir(inclusao.infoCadastro):
                 for infoEFR in inclusao.infoCadastro.infoEFR:
-               
+
                     if 'ideEFR' in dir(infoEFR): validacoes_lista = validar_campo(validacoes_lista,'infoEFR.ideEFR', infoEFR.ideEFR.cdata, 1, 'S;N')
                     if 'cnpjEFR' in dir(infoEFR): validacoes_lista = validar_campo(validacoes_lista,'infoEFR.cnpjEFR', infoEFR.cnpjEFR.cdata, 0, '')
-   
+
     if 'alteracao' in dir(evtInfoContri.infoContri):
         for alteracao in evtInfoContri.infoContri.alteracao:
-       
+
             if 'iniValid' in dir(alteracao.idePeriodo): validacoes_lista = validar_campo(validacoes_lista,'alteracao.idePeriodo.iniValid', alteracao.idePeriodo.iniValid.cdata, 1, '')
             if 'fimValid' in dir(alteracao.idePeriodo): validacoes_lista = validar_campo(validacoes_lista,'alteracao.idePeriodo.fimValid', alteracao.idePeriodo.fimValid.cdata, 0, '')
             if 'classTrib' in dir(alteracao.infoCadastro): validacoes_lista = validar_campo(validacoes_lista,'alteracao.infoCadastro.classTrib', alteracao.infoCadastro.classTrib.cdata, 1, '')
@@ -101,28 +101,28 @@ def validacoes_r1000_evtinfocontri(arquivo):
 
             if 'softHouse' in dir(alteracao.infoCadastro):
                 for softHouse in alteracao.infoCadastro.softHouse:
-               
+
                     if 'cnpjSoftHouse' in dir(softHouse): validacoes_lista = validar_campo(validacoes_lista,'softHouse.cnpjSoftHouse', softHouse.cnpjSoftHouse.cdata, 1, '')
                     if 'nmRazao' in dir(softHouse): validacoes_lista = validar_campo(validacoes_lista,'softHouse.nmRazao', softHouse.nmRazao.cdata, 1, '')
                     if 'nmCont' in dir(softHouse): validacoes_lista = validar_campo(validacoes_lista,'softHouse.nmCont', softHouse.nmCont.cdata, 1, '')
                     if 'telefone' in dir(softHouse): validacoes_lista = validar_campo(validacoes_lista,'softHouse.telefone', softHouse.telefone.cdata, 0, '')
                     if 'email' in dir(softHouse): validacoes_lista = validar_campo(validacoes_lista,'softHouse.email', softHouse.email.cdata, 0, '')
-   
+
             if 'infoEFR' in dir(alteracao.infoCadastro):
                 for infoEFR in alteracao.infoCadastro.infoEFR:
-               
+
                     if 'ideEFR' in dir(infoEFR): validacoes_lista = validar_campo(validacoes_lista,'infoEFR.ideEFR', infoEFR.ideEFR.cdata, 1, 'S;N')
                     if 'cnpjEFR' in dir(infoEFR): validacoes_lista = validar_campo(validacoes_lista,'infoEFR.cnpjEFR', infoEFR.cnpjEFR.cdata, 0, '')
-   
+
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:
-               
+
                     if 'iniValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.iniValid', novaValidade.iniValid.cdata, 1, '')
                     if 'fimValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.fimValid', novaValidade.fimValid.cdata, 0, '')
-   
+
     if 'exclusao' in dir(evtInfoContri.infoContri):
         for exclusao in evtInfoContri.infoContri.exclusao:
-       
+
             if 'iniValid' in dir(exclusao.idePeriodo): validacoes_lista = validar_campo(validacoes_lista,'exclusao.idePeriodo.iniValid', exclusao.idePeriodo.iniValid.cdata, 1, '')
             if 'fimValid' in dir(exclusao.idePeriodo): validacoes_lista = validar_campo(validacoes_lista,'exclusao.idePeriodo.fimValid', exclusao.idePeriodo.fimValid.cdata, 0, '')
 

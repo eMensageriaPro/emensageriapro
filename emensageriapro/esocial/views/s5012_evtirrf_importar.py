@@ -92,7 +92,7 @@ def read_s5012_evtirrf_obj(doc, status, validar=False):
         for infoCRContrib in evtIrrf.infoIRRF.infoCRContrib:
             s5012_infocrcontrib_dados = {}
             s5012_infocrcontrib_dados['s5012_evtirrf_id'] = s5012_evtirrf_id
-       
+
             if 'tpCR' in dir(infoCRContrib): s5012_infocrcontrib_dados['tpcr'] = infoCRContrib.tpCR.cdata
             if 'vrCR' in dir(infoCRContrib): s5012_infocrcontrib_dados['vrcr'] = infoCRContrib.vrCR.cdata
             insert = create_insert('s5012_infocrcontrib', s5012_infocrcontrib_dados)

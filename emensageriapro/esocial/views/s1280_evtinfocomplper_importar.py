@@ -96,7 +96,7 @@ def read_s1280_evtinfocomplper_obj(doc, status, validar=False):
         for infoSubstPatr in evtInfoComplPer.infoSubstPatr:
             s1280_infosubstpatr_dados = {}
             s1280_infosubstpatr_dados['s1280_evtinfocomplper_id'] = s1280_evtinfocomplper_id
-       
+
             if 'indSubstPatr' in dir(infoSubstPatr): s1280_infosubstpatr_dados['indsubstpatr'] = infoSubstPatr.indSubstPatr.cdata
             if 'percRedContrib' in dir(infoSubstPatr): s1280_infosubstpatr_dados['percredcontrib'] = infoSubstPatr.percRedContrib.cdata
             insert = create_insert('s1280_infosubstpatr', s1280_infosubstpatr_dados)
@@ -108,7 +108,7 @@ def read_s1280_evtinfocomplper_obj(doc, status, validar=False):
         for infoSubstPatrOpPort in evtInfoComplPer.infoSubstPatrOpPort:
             s1280_infosubstpatropport_dados = {}
             s1280_infosubstpatropport_dados['s1280_evtinfocomplper_id'] = s1280_evtinfocomplper_id
-       
+
             if 'cnpjOpPortuario' in dir(infoSubstPatrOpPort): s1280_infosubstpatropport_dados['cnpjopportuario'] = infoSubstPatrOpPort.cnpjOpPortuario.cdata
             insert = create_insert('s1280_infosubstpatropport', s1280_infosubstpatropport_dados)
             resp = executar_sql(insert, True)
@@ -119,7 +119,7 @@ def read_s1280_evtinfocomplper_obj(doc, status, validar=False):
         for infoAtivConcom in evtInfoComplPer.infoAtivConcom:
             s1280_infoativconcom_dados = {}
             s1280_infoativconcom_dados['s1280_evtinfocomplper_id'] = s1280_evtinfocomplper_id
-       
+
             if 'fatorMes' in dir(infoAtivConcom): s1280_infoativconcom_dados['fatormes'] = infoAtivConcom.fatorMes.cdata
             if 'fator13' in dir(infoAtivConcom): s1280_infoativconcom_dados['fator13'] = infoAtivConcom.fator13.cdata
             insert = create_insert('s1280_infoativconcom', s1280_infoativconcom_dados)

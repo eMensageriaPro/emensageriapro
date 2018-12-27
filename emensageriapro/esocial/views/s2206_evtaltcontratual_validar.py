@@ -74,7 +74,7 @@ def validacoes_s2206_evtaltcontratual(arquivo):
     if 'objDet' in dir(evtAltContratual.altContratual.infoContrato.duracao): validacoes_lista = validar_campo(validacoes_lista,'evtAltContratual.altContratual.infoContrato.duracao.objDet', evtAltContratual.altContratual.infoContrato.duracao.objDet.cdata, 0, '')
     if 'infoCeletista' in dir(evtAltContratual.altContratual.infoRegimeTrab):
         for infoCeletista in evtAltContratual.altContratual.infoRegimeTrab.infoCeletista:
-       
+
             if 'tpRegJor' in dir(infoCeletista): validacoes_lista = validar_campo(validacoes_lista,'infoCeletista.tpRegJor', infoCeletista.tpRegJor.cdata, 1, '1;2;3;4')
             if 'natAtividade' in dir(infoCeletista): validacoes_lista = validar_campo(validacoes_lista,'infoCeletista.natAtividade', infoCeletista.natAtividade.cdata, 1, '1;2')
             if 'dtBase' in dir(infoCeletista): validacoes_lista = validar_campo(validacoes_lista,'infoCeletista.dtBase', infoCeletista.dtBase.cdata, 0, '')
@@ -82,18 +82,18 @@ def validacoes_s2206_evtaltcontratual(arquivo):
 
             if 'trabTemp' in dir(infoCeletista):
                 for trabTemp in infoCeletista.trabTemp:
-               
+
                     if 'justProrr' in dir(trabTemp): validacoes_lista = validar_campo(validacoes_lista,'trabTemp.justProrr', trabTemp.justProrr.cdata, 1, '')
-   
+
             if 'aprend' in dir(infoCeletista):
                 for aprend in infoCeletista.aprend:
-               
+
                     if 'tpInsc' in dir(aprend): validacoes_lista = validar_campo(validacoes_lista,'aprend.tpInsc', aprend.tpInsc.cdata, 1, '1;2;3;4')
                     if 'nrInsc' in dir(aprend): validacoes_lista = validar_campo(validacoes_lista,'aprend.nrInsc', aprend.nrInsc.cdata, 1, '')
-   
+
     if 'infoEstatutario' in dir(evtAltContratual.altContratual.infoRegimeTrab):
         for infoEstatutario in evtAltContratual.altContratual.infoRegimeTrab.infoEstatutario:
-       
+
             if 'tpPlanRP' in dir(infoEstatutario): validacoes_lista = validar_campo(validacoes_lista,'infoEstatutario.tpPlanRP', infoEstatutario.tpPlanRP.cdata, 1, '1;2')
             if 'indTetoRGPS' in dir(infoEstatutario): validacoes_lista = validar_campo(validacoes_lista,'infoEstatutario.indTetoRGPS', infoEstatutario.indTetoRGPS.cdata, 0, 'S;N')
             if 'indAbonoPerm' in dir(infoEstatutario): validacoes_lista = validar_campo(validacoes_lista,'infoEstatutario.indAbonoPerm', infoEstatutario.indAbonoPerm.cdata, 0, 'S;N')
@@ -101,14 +101,14 @@ def validacoes_s2206_evtaltcontratual(arquivo):
 
     if 'localTrabGeral' in dir(evtAltContratual.altContratual.infoContrato.localTrabalho):
         for localTrabGeral in evtAltContratual.altContratual.infoContrato.localTrabalho.localTrabGeral:
-       
+
             if 'tpInsc' in dir(localTrabGeral): validacoes_lista = validar_campo(validacoes_lista,'localTrabGeral.tpInsc', localTrabGeral.tpInsc.cdata, 1, '1;2;3;4')
             if 'nrInsc' in dir(localTrabGeral): validacoes_lista = validar_campo(validacoes_lista,'localTrabGeral.nrInsc', localTrabGeral.nrInsc.cdata, 1, '')
             if 'descComp' in dir(localTrabGeral): validacoes_lista = validar_campo(validacoes_lista,'localTrabGeral.descComp', localTrabGeral.descComp.cdata, 0, '')
 
     if 'localTrabDom' in dir(evtAltContratual.altContratual.infoContrato.localTrabalho):
         for localTrabDom in evtAltContratual.altContratual.infoContrato.localTrabalho.localTrabDom:
-       
+
             if 'tpLograd' in dir(localTrabDom): validacoes_lista = validar_campo(validacoes_lista,'localTrabDom.tpLograd', localTrabDom.tpLograd.cdata, 1, 'A;AC;ACA;ACL;AD;AE;AER;AL;AMD;AME;AN;ANT;ART;AT;ATL;A V;AV;AVC;AVM;AVV;BAL;BC;BCO;BEL;BL;BLO;BLS;BLV;BSQ;BVD;BX;C;CAL;CAM;CAN;CH;CHA;CIC;CIR;CJ;CJM;CMP;COL;COM;CON;COR;CPO;CRG;CTN;DSC;DSV;DT;EB;EIM;ENS;ENT;EQ;ESC;ESD;ESE;ESI;ESL;ESM;ESP;ESS;EST;ESV;ETA;ETC;ETD;ETN;ETP;ETT;EVA;EVD;EX;FAV;FAZ;FER;FNT;FRA;FTE;GAL;GJA;HAB;IA;IND;IOA;JD;JDE;LD;LGA;LGO;LOT;LRG;LT;MER;MNA;MOD;MRG;MRO;MTE;NUC;NUR;OUT;PAR;PAS;PAT;PC;PCE;PDA;PDO;PNT;PR;PRL;PRM;PRQ;PRR;PSA;PSG;PSP;PSS;PTE;PTO;Q;QTA;QTS;R;R I;R L;R P;R V;RAM;RCR;REC;RER;RES;RET;RLA;RMP;ROA;ROD;ROT;RPE;RPR;RTN;RTT;SEG;SIT;SRV;ST;SUB;TCH;TER;TR;TRV;TUN;TV;TVP;TVV;UNI;V;V C;V L;VAC;VAL;VCO;VD;V-E;VER;VEV;VL;VLA;VLE;VLT;VPE;VRT;ZIG')
             if 'dscLograd' in dir(localTrabDom): validacoes_lista = validar_campo(validacoes_lista,'localTrabDom.dscLograd', localTrabDom.dscLograd.cdata, 1, '')
             if 'nrLograd' in dir(localTrabDom): validacoes_lista = validar_campo(validacoes_lista,'localTrabDom.nrLograd', localTrabDom.nrLograd.cdata, 1, '')
@@ -120,7 +120,7 @@ def validacoes_s2206_evtaltcontratual(arquivo):
 
     if 'horContratual' in dir(evtAltContratual.altContratual.infoContrato):
         for horContratual in evtAltContratual.altContratual.infoContrato.horContratual:
-       
+
             if 'qtdHrsSem' in dir(horContratual): validacoes_lista = validar_campo(validacoes_lista,'horContratual.qtdHrsSem', horContratual.qtdHrsSem.cdata, 0, '')
             if 'tpJornada' in dir(horContratual): validacoes_lista = validar_campo(validacoes_lista,'horContratual.tpJornada', horContratual.tpJornada.cdata, 1, '1;2;3;9')
             if 'dscTpJorn' in dir(horContratual): validacoes_lista = validar_campo(validacoes_lista,'horContratual.dscTpJorn', horContratual.dscTpJorn.cdata, 0, '')
@@ -128,28 +128,28 @@ def validacoes_s2206_evtaltcontratual(arquivo):
 
             if 'horario' in dir(horContratual):
                 for horario in horContratual.horario:
-               
+
                     if 'dia' in dir(horario): validacoes_lista = validar_campo(validacoes_lista,'horario.dia', horario.dia.cdata, 1, '1;2;3;4;5;6;7;8')
                     if 'codHorContrat' in dir(horario): validacoes_lista = validar_campo(validacoes_lista,'horario.codHorContrat', horario.codHorContrat.cdata, 1, '')
-   
+
     if 'filiacaoSindical' in dir(evtAltContratual.altContratual.infoContrato):
         for filiacaoSindical in evtAltContratual.altContratual.infoContrato.filiacaoSindical:
-       
+
             if 'cnpjSindTrab' in dir(filiacaoSindical): validacoes_lista = validar_campo(validacoes_lista,'filiacaoSindical.cnpjSindTrab', filiacaoSindical.cnpjSindTrab.cdata, 1, '')
 
     if 'alvaraJudicial' in dir(evtAltContratual.altContratual.infoContrato):
         for alvaraJudicial in evtAltContratual.altContratual.infoContrato.alvaraJudicial:
-       
+
             if 'nrProcJud' in dir(alvaraJudicial): validacoes_lista = validar_campo(validacoes_lista,'alvaraJudicial.nrProcJud', alvaraJudicial.nrProcJud.cdata, 1, '')
 
     if 'observacoes' in dir(evtAltContratual.altContratual.infoContrato):
         for observacoes in evtAltContratual.altContratual.infoContrato.observacoes:
-       
+
             if 'observacao' in dir(observacoes): validacoes_lista = validar_campo(validacoes_lista,'observacoes.observacao', observacoes.observacao.cdata, 1, '')
 
     if 'servPubl' in dir(evtAltContratual.altContratual.infoContrato):
         for servPubl in evtAltContratual.altContratual.infoContrato.servPubl:
-       
+
             if 'mtvAlter' in dir(servPubl): validacoes_lista = validar_campo(validacoes_lista,'servPubl.mtvAlter', servPubl.mtvAlter.cdata, 1, '1;2;3;8;9')
 
     return validacoes_lista

@@ -102,7 +102,7 @@ def read_s2399_evttsvtermino_obj(doc, status, validar=False):
         for mudancaCPF in evtTSVTermino.infoTSVTermino.mudancaCPF:
             s2399_mudancacpf_dados = {}
             s2399_mudancacpf_dados['s2399_evttsvtermino_id'] = s2399_evttsvtermino_id
-       
+
             if 'novoCPF' in dir(mudancaCPF): s2399_mudancacpf_dados['novocpf'] = mudancaCPF.novoCPF.cdata
             insert = create_insert('s2399_mudancacpf', s2399_mudancacpf_dados)
             resp = executar_sql(insert, True)
@@ -113,7 +113,7 @@ def read_s2399_evttsvtermino_obj(doc, status, validar=False):
         for dmDev in evtTSVTermino.infoTSVTermino.verbasResc.dmDev:
             s2399_dmdev_dados = {}
             s2399_dmdev_dados['s2399_evttsvtermino_id'] = s2399_evttsvtermino_id
-       
+
             if 'ideDmDev' in dir(dmDev): s2399_dmdev_dados['idedmdev'] = dmDev.ideDmDev.cdata
             insert = create_insert('s2399_dmdev', s2399_dmdev_dados)
             resp = executar_sql(insert, True)
@@ -124,7 +124,7 @@ def read_s2399_evttsvtermino_obj(doc, status, validar=False):
                 for ideEstabLot in dmDev.ideEstabLot:
                     s2399_ideestablot_dados = {}
                     s2399_ideestablot_dados['s2399_dmdev_id'] = s2399_dmdev_id
-               
+
                     if 'tpInsc' in dir(ideEstabLot): s2399_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
                     if 'nrInsc' in dir(ideEstabLot): s2399_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
                     if 'codLotacao' in dir(ideEstabLot): s2399_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
@@ -132,12 +132,12 @@ def read_s2399_evttsvtermino_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s2399_ideestablot_id = resp[0][0]
                     #print s2399_ideestablot_id
-   
+
     if 'procJudTrab' in dir(evtTSVTermino.infoTSVTermino.verbasResc):
         for procJudTrab in evtTSVTermino.infoTSVTermino.verbasResc.procJudTrab:
             s2399_procjudtrab_dados = {}
             s2399_procjudtrab_dados['s2399_evttsvtermino_id'] = s2399_evttsvtermino_id
-       
+
             if 'tpTrib' in dir(procJudTrab): s2399_procjudtrab_dados['tptrib'] = procJudTrab.tpTrib.cdata
             if 'nrProcJud' in dir(procJudTrab): s2399_procjudtrab_dados['nrprocjud'] = procJudTrab.nrProcJud.cdata
             if 'codSusp' in dir(procJudTrab): s2399_procjudtrab_dados['codsusp'] = procJudTrab.codSusp.cdata
@@ -150,7 +150,7 @@ def read_s2399_evttsvtermino_obj(doc, status, validar=False):
         for infoMV in evtTSVTermino.infoTSVTermino.verbasResc.infoMV:
             s2399_infomv_dados = {}
             s2399_infomv_dados['s2399_evttsvtermino_id'] = s2399_evttsvtermino_id
-       
+
             if 'indMV' in dir(infoMV): s2399_infomv_dados['indmv'] = infoMV.indMV.cdata
             insert = create_insert('s2399_infomv', s2399_infomv_dados)
             resp = executar_sql(insert, True)
@@ -161,7 +161,7 @@ def read_s2399_evttsvtermino_obj(doc, status, validar=False):
                 for remunOutrEmpr in infoMV.remunOutrEmpr:
                     s2399_remunoutrempr_dados = {}
                     s2399_remunoutrempr_dados['s2399_infomv_id'] = s2399_infomv_id
-               
+
                     if 'tpInsc' in dir(remunOutrEmpr): s2399_remunoutrempr_dados['tpinsc'] = remunOutrEmpr.tpInsc.cdata
                     if 'nrInsc' in dir(remunOutrEmpr): s2399_remunoutrempr_dados['nrinsc'] = remunOutrEmpr.nrInsc.cdata
                     if 'codCateg' in dir(remunOutrEmpr): s2399_remunoutrempr_dados['codcateg'] = remunOutrEmpr.codCateg.cdata
@@ -170,12 +170,12 @@ def read_s2399_evttsvtermino_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s2399_remunoutrempr_id = resp[0][0]
                     #print s2399_remunoutrempr_id
-   
+
     if 'quarentena' in dir(evtTSVTermino.infoTSVTermino):
         for quarentena in evtTSVTermino.infoTSVTermino.quarentena:
             s2399_quarentena_dados = {}
             s2399_quarentena_dados['s2399_evttsvtermino_id'] = s2399_evttsvtermino_id
-       
+
             if 'dtFimQuar' in dir(quarentena): s2399_quarentena_dados['dtfimquar'] = quarentena.dtFimQuar.cdata
             insert = create_insert('s2399_quarentena', s2399_quarentena_dados)
             resp = executar_sql(insert, True)

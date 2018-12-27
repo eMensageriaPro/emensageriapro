@@ -100,7 +100,7 @@ def read_s2240_evtexprisco_obj(doc, status, validar=False):
         for infoAmb in evtExpRisco.infoExpRisco.infoAmb:
             s2240_iniexprisco_infoamb_dados = {}
             s2240_iniexprisco_infoamb_dados['s2240_evtexprisco_id'] = s2240_evtexprisco_id
-       
+
             if 'codAmb' in dir(infoAmb): s2240_iniexprisco_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
             insert = create_insert('s2240_iniexprisco_infoamb', s2240_iniexprisco_infoamb_dados)
             resp = executar_sql(insert, True)
@@ -111,7 +111,7 @@ def read_s2240_evtexprisco_obj(doc, status, validar=False):
         for ativPericInsal in evtExpRisco.infoExpRisco.infoAtiv.ativPericInsal:
             s2240_iniexprisco_ativpericinsal_dados = {}
             s2240_iniexprisco_ativpericinsal_dados['s2240_evtexprisco_id'] = s2240_evtexprisco_id
-       
+
             if 'codAtiv' in dir(ativPericInsal): s2240_iniexprisco_ativpericinsal_dados['codativ'] = ativPericInsal.codAtiv.cdata
             insert = create_insert('s2240_iniexprisco_ativpericinsal', s2240_iniexprisco_ativpericinsal_dados)
             resp = executar_sql(insert, True)
@@ -122,7 +122,7 @@ def read_s2240_evtexprisco_obj(doc, status, validar=False):
         for fatRisco in evtExpRisco.infoExpRisco.fatRisco:
             s2240_iniexprisco_fatrisco_dados = {}
             s2240_iniexprisco_fatrisco_dados['s2240_evtexprisco_id'] = s2240_evtexprisco_id
-       
+
             if 'codFatRis' in dir(fatRisco): s2240_iniexprisco_fatrisco_dados['codfatris'] = fatRisco.codFatRis.cdata
             if 'tpAval' in dir(fatRisco): s2240_iniexprisco_fatrisco_dados['tpaval'] = fatRisco.tpAval.cdata
             if 'intConc' in dir(fatRisco): s2240_iniexprisco_fatrisco_dados['intconc'] = fatRisco.intConc.cdata
@@ -144,7 +144,7 @@ def read_s2240_evtexprisco_obj(doc, status, validar=False):
                 for epc in fatRisco.epcEpi.epc:
                     s2240_iniexprisco_epc_dados = {}
                     s2240_iniexprisco_epc_dados['s2240_iniexprisco_fatrisco_id'] = s2240_iniexprisco_fatrisco_id
-               
+
                     if 'codEP' in dir(epc): s2240_iniexprisco_epc_dados['codep'] = epc.codEP.cdata
                     if 'dscEpc' in dir(epc): s2240_iniexprisco_epc_dados['dscepc'] = epc.dscEpc.cdata
                     if 'eficEpc' in dir(epc): s2240_iniexprisco_epc_dados['eficepc'] = epc.eficEpc.cdata
@@ -152,12 +152,12 @@ def read_s2240_evtexprisco_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s2240_iniexprisco_epc_id = resp[0][0]
                     #print s2240_iniexprisco_epc_id
-   
+
             if 'epi' in dir(fatRisco.epcEpi):
                 for epi in fatRisco.epcEpi.epi:
                     s2240_iniexprisco_epi_dados = {}
                     s2240_iniexprisco_epi_dados['s2240_iniexprisco_fatrisco_id'] = s2240_iniexprisco_fatrisco_id
-               
+
                     if 'caEPI' in dir(epi): s2240_iniexprisco_epi_dados['caepi'] = epi.caEPI.cdata
                     if 'dscEPI' in dir(epi): s2240_iniexprisco_epi_dados['dscepi'] = epi.dscEPI.cdata
                     if 'eficEpi' in dir(epi): s2240_iniexprisco_epi_dados['eficepi'] = epi.eficEpi.cdata
@@ -171,12 +171,12 @@ def read_s2240_evtexprisco_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s2240_iniexprisco_epi_id = resp[0][0]
                     #print s2240_iniexprisco_epi_id
-   
+
     if 'respReg' in dir(evtExpRisco.infoExpRisco):
         for respReg in evtExpRisco.infoExpRisco.respReg:
             s2240_iniexprisco_respreg_dados = {}
             s2240_iniexprisco_respreg_dados['s2240_evtexprisco_id'] = s2240_evtexprisco_id
-       
+
             if 'cpfResp' in dir(respReg): s2240_iniexprisco_respreg_dados['cpfresp'] = respReg.cpfResp.cdata
             if 'nisResp' in dir(respReg): s2240_iniexprisco_respreg_dados['nisresp'] = respReg.nisResp.cdata
             if 'nmResp' in dir(respReg): s2240_iniexprisco_respreg_dados['nmresp'] = respReg.nmResp.cdata
@@ -193,7 +193,7 @@ def read_s2240_evtexprisco_obj(doc, status, validar=False):
         for obs in evtExpRisco.infoExpRisco.obs:
             s2240_iniexprisco_obs_dados = {}
             s2240_iniexprisco_obs_dados['s2240_evtexprisco_id'] = s2240_evtexprisco_id
-       
+
             if 'metErg' in dir(obs): s2240_iniexprisco_obs_dados['meterg'] = obs.metErg.cdata
             if 'obsCompl' in dir(obs): s2240_iniexprisco_obs_dados['obscompl'] = obs.obsCompl.cdata
             if 'observacao' in dir(obs): s2240_iniexprisco_obs_dados['observacao'] = obs.observacao.cdata
@@ -206,7 +206,7 @@ def read_s2240_evtexprisco_obj(doc, status, validar=False):
         for altExpRisco in evtExpRisco.infoExpRisco.altExpRisco:
             s2240_altexprisco_dados = {}
             s2240_altexprisco_dados['s2240_evtexprisco_id'] = s2240_evtexprisco_id
-       
+
             if 'dtAltCondicao' in dir(altExpRisco): s2240_altexprisco_dados['dtaltcondicao'] = altExpRisco.dtAltCondicao.cdata
             insert = create_insert('s2240_altexprisco', s2240_altexprisco_dados)
             resp = executar_sql(insert, True)
@@ -217,19 +217,19 @@ def read_s2240_evtexprisco_obj(doc, status, validar=False):
                 for infoAmb in altExpRisco.infoAmb:
                     s2240_altexprisco_infoamb_dados = {}
                     s2240_altexprisco_infoamb_dados['s2240_altexprisco_id'] = s2240_altexprisco_id
-               
+
                     if 'codAmb' in dir(infoAmb): s2240_altexprisco_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
                     if 'dscAtivDes' in dir(infoAmb): s2240_altexprisco_infoamb_dados['dscativdes'] = infoAmb.infoAtiv.dscAtivDes.cdata
                     insert = create_insert('s2240_altexprisco_infoamb', s2240_altexprisco_infoamb_dados)
                     resp = executar_sql(insert, True)
                     s2240_altexprisco_infoamb_id = resp[0][0]
                     #print s2240_altexprisco_infoamb_id
-   
+
     if 'fimExpRisco' in dir(evtExpRisco.infoExpRisco):
         for fimExpRisco in evtExpRisco.infoExpRisco.fimExpRisco:
             s2240_fimexprisco_dados = {}
             s2240_fimexprisco_dados['s2240_evtexprisco_id'] = s2240_evtexprisco_id
-       
+
             if 'dtFimCondicao' in dir(fimExpRisco): s2240_fimexprisco_dados['dtfimcondicao'] = fimExpRisco.dtFimCondicao.cdata
             insert = create_insert('s2240_fimexprisco', s2240_fimexprisco_dados)
             resp = executar_sql(insert, True)
@@ -240,18 +240,18 @@ def read_s2240_evtexprisco_obj(doc, status, validar=False):
                 for infoAmb in fimExpRisco.infoAmb:
                     s2240_fimexprisco_infoamb_dados = {}
                     s2240_fimexprisco_infoamb_dados['s2240_fimexprisco_id'] = s2240_fimexprisco_id
-               
+
                     if 'codAmb' in dir(infoAmb): s2240_fimexprisco_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
                     insert = create_insert('s2240_fimexprisco_infoamb', s2240_fimexprisco_infoamb_dados)
                     resp = executar_sql(insert, True)
                     s2240_fimexprisco_infoamb_id = resp[0][0]
                     #print s2240_fimexprisco_infoamb_id
-   
+
     if 'respReg' in dir(evtExpRisco.infoExpRisco):
         for respReg in evtExpRisco.infoExpRisco.respReg:
             s2240_fimexprisco_respreg_dados = {}
             s2240_fimexprisco_respreg_dados['s2240_evtexprisco_id'] = s2240_evtexprisco_id
-       
+
             if 'dtIni' in dir(respReg): s2240_fimexprisco_respreg_dados['dtini'] = respReg.dtIni.cdata
             if 'dtFim' in dir(respReg): s2240_fimexprisco_respreg_dados['dtfim'] = respReg.dtFim.cdata
             if 'nisResp' in dir(respReg): s2240_fimexprisco_respreg_dados['nisresp'] = respReg.nisResp.cdata

@@ -92,17 +92,17 @@ def apagar(request, hash):
                              's1005_inclusao', s1005_inclusao_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's1005_inclusao_salvar':
             return redirect('s1005_inclusao', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -241,17 +241,17 @@ def listar(request, hash):
             filtrar = True
             s1005_inclusao_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s1005_inclusao_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1005_inclusao'
         context = {
             's1005_inclusao_lista': s1005_inclusao_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -261,7 +261,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 's1005_inclusao_listar.html', context)
@@ -304,10 +304,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -401,7 +401,7 @@ def salvar(request, hash):
             s1005_inclusao_form.fields[field].widget.attrs['ng-model'] = 's1005_inclusao_'+field
         if int(dict_hash['print']):
             s1005_inclusao_form = disabled_form_for_print(s1005_inclusao_form)
-   
+
         s1005_inclusao_procadmjudrat_form = None
         s1005_inclusao_procadmjudrat_lista = None
         s1005_inclusao_procadmjudfap_form = None
@@ -416,7 +416,7 @@ def salvar(request, hash):
         s1005_inclusao_infopcd_lista = None
         if s1005_inclusao_id:
             s1005_inclusao = get_object_or_404(s1005inclusao.objects.using( db_slug ), excluido = False, id = s1005_inclusao_id)
-       
+
             s1005_inclusao_procadmjudrat_form = form_s1005_inclusao_procadmjudrat(initial={ 's1005_inclusao': s1005_inclusao }, slug=db_slug)
             s1005_inclusao_procadmjudrat_form.fields['s1005_inclusao'].widget.attrs['readonly'] = True
             s1005_inclusao_procadmjudrat_lista = s1005inclusaoprocAdmJudRat.objects.using( db_slug ).filter(excluido = False, s1005_inclusao_id=s1005_inclusao.id).all()
@@ -455,9 +455,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1005_inclusao_id': int(s1005_inclusao_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             's1005_inclusao_procadmjudrat_form': s1005_inclusao_procadmjudrat_form,
             's1005_inclusao_procadmjudrat_lista': s1005_inclusao_procadmjudrat_lista,
             's1005_inclusao_procadmjudfap_form': s1005_inclusao_procadmjudfap_form,
@@ -472,7 +472,7 @@ def salvar(request, hash):
             's1005_inclusao_infopcd_lista': s1005_inclusao_infopcd_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -516,10 +516,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

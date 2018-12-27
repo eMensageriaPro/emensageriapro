@@ -106,7 +106,7 @@ def read_r2010_evtservtom_obj(doc, status, validar=False):
         for nfs in evtServTom.infoServTom.ideEstabObra.idePrestServ.nfs:
             r2010_nfs_dados = {}
             r2010_nfs_dados['r2010_evtservtom_id'] = r2010_evtservtom_id
-       
+
             if 'serie' in dir(nfs): r2010_nfs_dados['serie'] = nfs.serie.cdata
             if 'numDocto' in dir(nfs): r2010_nfs_dados['numdocto'] = nfs.numDocto.cdata
             if 'dtEmissaoNF' in dir(nfs): r2010_nfs_dados['dtemissaonf'] = nfs.dtEmissaoNF.cdata
@@ -121,7 +121,7 @@ def read_r2010_evtservtom_obj(doc, status, validar=False):
                 for infoTpServ in nfs.infoTpServ:
                     r2010_infotpserv_dados = {}
                     r2010_infotpserv_dados['r2010_nfs_id'] = r2010_nfs_id
-               
+
                     if 'tpServico' in dir(infoTpServ): r2010_infotpserv_dados['tpservico'] = infoTpServ.tpServico.cdata
                     if 'vlrBaseRet' in dir(infoTpServ): r2010_infotpserv_dados['vlrbaseret'] = infoTpServ.vlrBaseRet.cdata
                     if 'vlrRetencao' in dir(infoTpServ): r2010_infotpserv_dados['vlrretencao'] = infoTpServ.vlrRetencao.cdata
@@ -136,12 +136,12 @@ def read_r2010_evtservtom_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r2010_infotpserv_id = resp[0][0]
                     #print r2010_infotpserv_id
-   
+
     if 'infoProcRetPr' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ):
         for infoProcRetPr in evtServTom.infoServTom.ideEstabObra.idePrestServ.infoProcRetPr:
             r2010_infoprocretpr_dados = {}
             r2010_infoprocretpr_dados['r2010_evtservtom_id'] = r2010_evtservtom_id
-       
+
             if 'tpProcRetPrinc' in dir(infoProcRetPr): r2010_infoprocretpr_dados['tpprocretprinc'] = infoProcRetPr.tpProcRetPrinc.cdata
             if 'nrProcRetPrinc' in dir(infoProcRetPr): r2010_infoprocretpr_dados['nrprocretprinc'] = infoProcRetPr.nrProcRetPrinc.cdata
             if 'codSuspPrinc' in dir(infoProcRetPr): r2010_infoprocretpr_dados['codsuspprinc'] = infoProcRetPr.codSuspPrinc.cdata
@@ -155,7 +155,7 @@ def read_r2010_evtservtom_obj(doc, status, validar=False):
         for infoProcRetAd in evtServTom.infoServTom.ideEstabObra.idePrestServ.infoProcRetAd:
             r2010_infoprocretad_dados = {}
             r2010_infoprocretad_dados['r2010_evtservtom_id'] = r2010_evtservtom_id
-       
+
             if 'tpProcRetAdic' in dir(infoProcRetAd): r2010_infoprocretad_dados['tpprocretadic'] = infoProcRetAd.tpProcRetAdic.cdata
             if 'nrProcRetAdic' in dir(infoProcRetAd): r2010_infoprocretad_dados['nrprocretadic'] = infoProcRetAd.nrProcRetAdic.cdata
             if 'codSuspAdic' in dir(infoProcRetAd): r2010_infoprocretad_dados['codsuspadic'] = infoProcRetAd.codSuspAdic.cdata

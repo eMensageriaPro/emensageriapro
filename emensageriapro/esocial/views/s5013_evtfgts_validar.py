@@ -54,36 +54,36 @@ def validacoes_s5013_evtfgts(arquivo):
     if 'indExistInfo' in dir(evtFGTS.infoFGTS): validacoes_lista = validar_campo(validacoes_lista,'evtFGTS.infoFGTS.indExistInfo', evtFGTS.infoFGTS.indExistInfo.cdata, 1, '1;2;3')
     if 'basePerApur' in dir(evtFGTS.infoFGTS.infoBaseFGTS):
         for basePerApur in evtFGTS.infoFGTS.infoBaseFGTS.basePerApur:
-       
+
             if 'tpValor' in dir(basePerApur): validacoes_lista = validar_campo(validacoes_lista,'basePerApur.tpValor', basePerApur.tpValor.cdata, 1, '')
             if 'baseFGTS' in dir(basePerApur): validacoes_lista = validar_campo(validacoes_lista,'basePerApur.baseFGTS', basePerApur.baseFGTS.cdata, 1, '')
 
     if 'infoBasePerAntE' in dir(evtFGTS.infoFGTS.infoBaseFGTS):
         for infoBasePerAntE in evtFGTS.infoFGTS.infoBaseFGTS.infoBasePerAntE:
-       
+
             if 'perRef' in dir(infoBasePerAntE): validacoes_lista = validar_campo(validacoes_lista,'infoBasePerAntE.perRef', infoBasePerAntE.perRef.cdata, 1, '')
 
             if 'basePerAntE' in dir(infoBasePerAntE):
                 for basePerAntE in infoBasePerAntE.basePerAntE:
-               
+
                     if 'tpValorE' in dir(basePerAntE): validacoes_lista = validar_campo(validacoes_lista,'basePerAntE.tpValorE', basePerAntE.tpValorE.cdata, 1, '')
                     if 'baseFGTSE' in dir(basePerAntE): validacoes_lista = validar_campo(validacoes_lista,'basePerAntE.baseFGTSE', basePerAntE.baseFGTSE.cdata, 1, '')
-   
+
     if 'dpsPerApur' in dir(evtFGTS.infoFGTS.infoDpsFGTS):
         for dpsPerApur in evtFGTS.infoFGTS.infoDpsFGTS.dpsPerApur:
-       
+
             if 'tpDps' in dir(dpsPerApur): validacoes_lista = validar_campo(validacoes_lista,'dpsPerApur.tpDps', dpsPerApur.tpDps.cdata, 1, '')
             if 'vrFGTS' in dir(dpsPerApur): validacoes_lista = validar_campo(validacoes_lista,'dpsPerApur.vrFGTS', dpsPerApur.vrFGTS.cdata, 1, '')
 
     if 'infoDpsPerAntE' in dir(evtFGTS.infoFGTS.infoDpsFGTS):
         for infoDpsPerAntE in evtFGTS.infoFGTS.infoDpsFGTS.infoDpsPerAntE:
-       
+
             if 'perRef' in dir(infoDpsPerAntE): validacoes_lista = validar_campo(validacoes_lista,'infoDpsPerAntE.perRef', infoDpsPerAntE.perRef.cdata, 1, '')
 
             if 'dpsPerAntE' in dir(infoDpsPerAntE):
                 for dpsPerAntE in infoDpsPerAntE.dpsPerAntE:
-               
+
                     if 'tpDpsE' in dir(dpsPerAntE): validacoes_lista = validar_campo(validacoes_lista,'dpsPerAntE.tpDpsE', dpsPerAntE.tpDpsE.cdata, 1, '')
                     if 'vrFGTSE' in dir(dpsPerAntE): validacoes_lista = validar_campo(validacoes_lista,'dpsPerAntE.vrFGTSE', dpsPerAntE.vrFGTSE.cdata, 1, '')
-   
+
     return validacoes_lista

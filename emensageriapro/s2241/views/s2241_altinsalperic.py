@@ -92,17 +92,17 @@ def apagar(request, hash):
                              's2241_altinsalperic', s2241_altinsalperic_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's2241_altinsalperic_salvar':
             return redirect('s2241_altinsalperic', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -193,17 +193,17 @@ def listar(request, hash):
             filtrar = True
             s2241_altinsalperic_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s2241_altinsalperic_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2241_altinsalperic'
         context = {
             's2241_altinsalperic_lista': s2241_altinsalperic_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -213,7 +213,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 's2241_altinsalperic_listar.html', context)
@@ -256,10 +256,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -353,12 +353,12 @@ def salvar(request, hash):
             s2241_altinsalperic_form.fields[field].widget.attrs['ng-model'] = 's2241_altinsalperic_'+field
         if int(dict_hash['print']):
             s2241_altinsalperic_form = disabled_form_for_print(s2241_altinsalperic_form)
-   
+
         s2241_altinsalperic_infoamb_form = None
         s2241_altinsalperic_infoamb_lista = None
         if s2241_altinsalperic_id:
             s2241_altinsalperic = get_object_or_404(s2241altInsalPeric.objects.using( db_slug ), excluido = False, id = s2241_altinsalperic_id)
-       
+
             s2241_altinsalperic_infoamb_form = form_s2241_altinsalperic_infoamb(initial={ 's2241_altinsalperic': s2241_altinsalperic }, slug=db_slug)
             s2241_altinsalperic_infoamb_form.fields['s2241_altinsalperic'].widget.attrs['readonly'] = True
             s2241_altinsalperic_infoamb_lista = s2241altInsalPericinfoamb.objects.using( db_slug ).filter(excluido = False, s2241_altinsalperic_id=s2241_altinsalperic.id).all()
@@ -382,14 +382,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2241_altinsalperic_id': int(s2241_altinsalperic_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             's2241_altinsalperic_infoamb_form': s2241_altinsalperic_infoamb_form,
             's2241_altinsalperic_infoamb_lista': s2241_altinsalperic_infoamb_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -433,10 +433,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

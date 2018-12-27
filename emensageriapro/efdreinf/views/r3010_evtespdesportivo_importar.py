@@ -102,7 +102,7 @@ def read_r3010_evtespdesportivo_obj(doc, status, validar=False):
         for boletim in evtEspDesportivo.ideContri.ideEstab.boletim:
             r3010_boletim_dados = {}
             r3010_boletim_dados['r3010_evtespdesportivo_id'] = r3010_evtespdesportivo_id
-       
+
             if 'nrBoletim' in dir(boletim): r3010_boletim_dados['nrboletim'] = boletim.nrBoletim.cdata
             if 'tpCompeticao' in dir(boletim): r3010_boletim_dados['tpcompeticao'] = boletim.tpCompeticao.cdata
             if 'categEvento' in dir(boletim): r3010_boletim_dados['categevento'] = boletim.categEvento.cdata
@@ -125,7 +125,7 @@ def read_r3010_evtespdesportivo_obj(doc, status, validar=False):
                 for receitaIngressos in boletim.receitaIngressos:
                     r3010_receitaingressos_dados = {}
                     r3010_receitaingressos_dados['r3010_boletim_id'] = r3010_boletim_id
-               
+
                     if 'tpIngresso' in dir(receitaIngressos): r3010_receitaingressos_dados['tpingresso'] = receitaIngressos.tpIngresso.cdata
                     if 'descIngr' in dir(receitaIngressos): r3010_receitaingressos_dados['descingr'] = receitaIngressos.descIngr.cdata
                     if 'qtdeIngrVenda' in dir(receitaIngressos): r3010_receitaingressos_dados['qtdeingrvenda'] = receitaIngressos.qtdeIngrVenda.cdata
@@ -137,12 +137,12 @@ def read_r3010_evtespdesportivo_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r3010_receitaingressos_id = resp[0][0]
                     #print r3010_receitaingressos_id
-   
+
             if 'outrasReceitas' in dir(boletim):
                 for outrasReceitas in boletim.outrasReceitas:
                     r3010_outrasreceitas_dados = {}
                     r3010_outrasreceitas_dados['r3010_boletim_id'] = r3010_boletim_id
-               
+
                     if 'tpReceita' in dir(outrasReceitas): r3010_outrasreceitas_dados['tpreceita'] = outrasReceitas.tpReceita.cdata
                     if 'vlrReceita' in dir(outrasReceitas): r3010_outrasreceitas_dados['vlrreceita'] = outrasReceitas.vlrReceita.cdata
                     if 'descReceita' in dir(outrasReceitas): r3010_outrasreceitas_dados['descreceita'] = outrasReceitas.descReceita.cdata
@@ -150,12 +150,12 @@ def read_r3010_evtespdesportivo_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r3010_outrasreceitas_id = resp[0][0]
                     #print r3010_outrasreceitas_id
-   
+
     if 'infoProc' in dir(evtEspDesportivo.ideContri.ideEstab.receitaTotal):
         for infoProc in evtEspDesportivo.ideContri.ideEstab.receitaTotal.infoProc:
             r3010_infoproc_dados = {}
             r3010_infoproc_dados['r3010_evtespdesportivo_id'] = r3010_evtespdesportivo_id
-       
+
             if 'tpProc' in dir(infoProc): r3010_infoproc_dados['tpproc'] = infoProc.tpProc.cdata
             if 'nrProc' in dir(infoProc): r3010_infoproc_dados['nrproc'] = infoProc.nrProc.cdata
             if 'codSusp' in dir(infoProc): r3010_infoproc_dados['codsusp'] = infoProc.codSusp.cdata

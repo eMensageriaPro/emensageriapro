@@ -54,7 +54,7 @@ def validacoes_s1060_evttabambiente(arquivo):
     if 'nrInsc' in dir(evtTabAmbiente.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtTabAmbiente.ideEmpregador.nrInsc', evtTabAmbiente.ideEmpregador.nrInsc.cdata, 1, '')
     if 'inclusao' in dir(evtTabAmbiente.infoAmbiente):
         for inclusao in evtTabAmbiente.infoAmbiente.inclusao:
-       
+
             if 'codAmb' in dir(inclusao.ideAmbiente): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideAmbiente.codAmb', inclusao.ideAmbiente.codAmb.cdata, 1, '')
             if 'iniValid' in dir(inclusao.ideAmbiente): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideAmbiente.iniValid', inclusao.ideAmbiente.iniValid.cdata, 1, '')
             if 'fimValid' in dir(inclusao.ideAmbiente): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideAmbiente.fimValid', inclusao.ideAmbiente.fimValid.cdata, 0, '')
@@ -67,7 +67,7 @@ def validacoes_s1060_evttabambiente(arquivo):
 
     if 'alteracao' in dir(evtTabAmbiente.infoAmbiente):
         for alteracao in evtTabAmbiente.infoAmbiente.alteracao:
-       
+
             if 'codAmb' in dir(alteracao.ideAmbiente): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideAmbiente.codAmb', alteracao.ideAmbiente.codAmb.cdata, 1, '')
             if 'iniValid' in dir(alteracao.ideAmbiente): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideAmbiente.iniValid', alteracao.ideAmbiente.iniValid.cdata, 1, '')
             if 'fimValid' in dir(alteracao.ideAmbiente): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideAmbiente.fimValid', alteracao.ideAmbiente.fimValid.cdata, 0, '')
@@ -80,13 +80,13 @@ def validacoes_s1060_evttabambiente(arquivo):
 
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:
-               
+
                     if 'iniValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.iniValid', novaValidade.iniValid.cdata, 1, '')
                     if 'fimValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.fimValid', novaValidade.fimValid.cdata, 0, '')
-   
+
     if 'exclusao' in dir(evtTabAmbiente.infoAmbiente):
         for exclusao in evtTabAmbiente.infoAmbiente.exclusao:
-       
+
             if 'codAmb' in dir(exclusao.ideAmbiente): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideAmbiente.codAmb', exclusao.ideAmbiente.codAmb.cdata, 1, '')
             if 'iniValid' in dir(exclusao.ideAmbiente): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideAmbiente.iniValid', exclusao.ideAmbiente.iniValid.cdata, 1, '')
             if 'fimValid' in dir(exclusao.ideAmbiente): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideAmbiente.fimValid', exclusao.ideAmbiente.fimValid.cdata, 0, '')

@@ -99,7 +99,7 @@ def read_r2070_evtpgtosdivs_obj(doc, status, validar=False):
         for infoResidExt in evtPgtosDivs.ideBenef.infoResidExt:
             r2070_inforesidext_dados = {}
             r2070_inforesidext_dados['r2070_evtpgtosdivs_id'] = r2070_evtpgtosdivs_id
-       
+
             if 'paisResid' in dir(infoResidExt.infoEnder): r2070_inforesidext_dados['paisresid'] = infoResidExt.infoEnder.paisResid.cdata
             if 'dscLograd' in dir(infoResidExt.infoEnder): r2070_inforesidext_dados['dsclograd'] = infoResidExt.infoEnder.dscLograd.cdata
             if 'nrLograd' in dir(infoResidExt.infoEnder): r2070_inforesidext_dados['nrlograd'] = infoResidExt.infoEnder.nrLograd.cdata
@@ -119,7 +119,7 @@ def read_r2070_evtpgtosdivs_obj(doc, status, validar=False):
         for infoMolestia in evtPgtosDivs.ideBenef.infoMolestia:
             r2070_infomolestia_dados = {}
             r2070_infomolestia_dados['r2070_evtpgtosdivs_id'] = r2070_evtpgtosdivs_id
-       
+
             if 'dtLaudo' in dir(infoMolestia): r2070_infomolestia_dados['dtlaudo'] = infoMolestia.dtLaudo.cdata
             insert = create_insert('r2070_infomolestia', r2070_infomolestia_dados)
             resp = executar_sql(insert, True)
@@ -130,7 +130,7 @@ def read_r2070_evtpgtosdivs_obj(doc, status, validar=False):
         for ideEstab in evtPgtosDivs.ideBenef.infoPgto.ideEstab:
             r2070_ideestab_dados = {}
             r2070_ideestab_dados['r2070_evtpgtosdivs_id'] = r2070_evtpgtosdivs_id
-       
+
             if 'tpInsc' in dir(ideEstab): r2070_ideestab_dados['tpinsc'] = ideEstab.tpInsc.cdata
             if 'nrInsc' in dir(ideEstab): r2070_ideestab_dados['nrinsc'] = ideEstab.nrInsc.cdata
             insert = create_insert('r2070_ideestab', r2070_ideestab_dados)
@@ -142,7 +142,7 @@ def read_r2070_evtpgtosdivs_obj(doc, status, validar=False):
                 for pgtoPF in ideEstab.pgtoResidBR.pgtoPF:
                     r2070_pgtopf_dados = {}
                     r2070_pgtopf_dados['r2070_ideestab_id'] = r2070_ideestab_id
-               
+
                     if 'dtPgto' in dir(pgtoPF): r2070_pgtopf_dados['dtpgto'] = pgtoPF.dtPgto.cdata
                     if 'indSuspExig' in dir(pgtoPF): r2070_pgtopf_dados['indsuspexig'] = pgtoPF.indSuspExig.cdata
                     if 'indDecTerceiro' in dir(pgtoPF): r2070_pgtopf_dados['inddecterceiro'] = pgtoPF.indDecTerceiro.cdata
@@ -152,12 +152,12 @@ def read_r2070_evtpgtosdivs_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r2070_pgtopf_id = resp[0][0]
                     #print r2070_pgtopf_id
-   
+
             if 'pgtoPJ' in dir(ideEstab.pgtoResidBR):
                 for pgtoPJ in ideEstab.pgtoResidBR.pgtoPJ:
                     r2070_pgtopj_dados = {}
                     r2070_pgtopj_dados['r2070_ideestab_id'] = r2070_ideestab_id
-               
+
                     if 'dtPagto' in dir(pgtoPJ): r2070_pgtopj_dados['dtpagto'] = pgtoPJ.dtPagto.cdata
                     if 'vlrRendTributavel' in dir(pgtoPJ): r2070_pgtopj_dados['vlrrendtributavel'] = pgtoPJ.vlrRendTributavel.cdata
                     if 'vlrRet' in dir(pgtoPJ): r2070_pgtopj_dados['vlrret'] = pgtoPJ.vlrRet.cdata
@@ -165,12 +165,12 @@ def read_r2070_evtpgtosdivs_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r2070_pgtopj_id = resp[0][0]
                     #print r2070_pgtopj_id
-   
+
             if 'pgtoResidExt' in dir(ideEstab):
                 for pgtoResidExt in ideEstab.pgtoResidExt:
                     r2070_pgtoresidext_dados = {}
                     r2070_pgtoresidext_dados['r2070_ideestab_id'] = r2070_ideestab_id
-               
+
                     if 'dtPagto' in dir(pgtoResidExt): r2070_pgtoresidext_dados['dtpagto'] = pgtoResidExt.dtPagto.cdata
                     if 'tpRendimento' in dir(pgtoResidExt): r2070_pgtoresidext_dados['tprendimento'] = pgtoResidExt.tpRendimento.cdata
                     if 'formaTributacao' in dir(pgtoResidExt): r2070_pgtoresidext_dados['formatributacao'] = pgtoResidExt.formaTributacao.cdata
@@ -180,7 +180,7 @@ def read_r2070_evtpgtosdivs_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r2070_pgtoresidext_id = resp[0][0]
                     #print r2070_pgtoresidext_id
-   
+
     from emensageriapro.efdreinf.views.r2070_evtpgtosdivs_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(r2070_evtpgtosdivs_id, 'default')
     return dados

@@ -92,17 +92,17 @@ def apagar(request, hash):
                              's5011_infoestab', s5011_infoestab_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's5011_infoestab_salvar':
             return redirect('s5011_infoestab', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -202,17 +202,17 @@ def listar(request, hash):
             filtrar = True
             s5011_infoestab_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s5011_infoestab_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's5011_infoestab'
         context = {
             's5011_infoestab_lista': s5011_infoestab_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -222,7 +222,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 's5011_infoestab_listar.html', context)
@@ -265,10 +265,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -362,12 +362,12 @@ def salvar(request, hash):
             s5011_infoestab_form.fields[field].widget.attrs['ng-model'] = 's5011_infoestab_'+field
         if int(dict_hash['print']):
             s5011_infoestab_form = disabled_form_for_print(s5011_infoestab_form)
-   
+
         s5011_infocomplobra_form = None
         s5011_infocomplobra_lista = None
         if s5011_infoestab_id:
             s5011_infoestab = get_object_or_404(s5011infoEstab.objects.using( db_slug ), excluido = False, id = s5011_infoestab_id)
-       
+
             s5011_infocomplobra_form = form_s5011_infocomplobra(initial={ 's5011_infoestab': s5011_infoestab }, slug=db_slug)
             s5011_infocomplobra_form.fields['s5011_infoestab'].widget.attrs['readonly'] = True
             s5011_infocomplobra_lista = s5011infoComplObra.objects.using( db_slug ).filter(excluido = False, s5011_infoestab_id=s5011_infoestab.id).all()
@@ -391,14 +391,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's5011_infoestab_id': int(s5011_infoestab_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             's5011_infocomplobra_form': s5011_infocomplobra_form,
             's5011_infocomplobra_lista': s5011_infocomplobra_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -442,10 +442,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

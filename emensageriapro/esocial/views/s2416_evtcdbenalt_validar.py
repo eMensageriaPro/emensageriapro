@@ -65,17 +65,17 @@ def validacoes_s2416_evtcdbenalt(arquivo):
     if 'indSuspensao' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio): validacoes_lista = validar_campo(validacoes_lista,'evtCdBenAlt.infoBenAlteracao.dadosBeneficio.indSuspensao', evtCdBenAlt.infoBenAlteracao.dadosBeneficio.indSuspensao.cdata, 1, 'S;N')
     if 'infoPenMorte' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio):
         for infoPenMorte in evtCdBenAlt.infoBenAlteracao.dadosBeneficio.infoPenMorte:
-       
+
             if 'tpPenMorte' in dir(infoPenMorte): validacoes_lista = validar_campo(validacoes_lista,'infoPenMorte.tpPenMorte', infoPenMorte.tpPenMorte.cdata, 1, '1;2')
 
     if 'homologTC' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio):
         for homologTC in evtCdBenAlt.infoBenAlteracao.dadosBeneficio.homologTC:
-       
+
             if 'nrAtoLegal' in dir(homologTC): validacoes_lista = validar_campo(validacoes_lista,'homologTC.nrAtoLegal', homologTC.nrAtoLegal.cdata, 1, '')
 
     if 'suspensao' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio):
         for suspensao in evtCdBenAlt.infoBenAlteracao.dadosBeneficio.suspensao:
-       
+
             if 'mtvSuspensao' in dir(suspensao): validacoes_lista = validar_campo(validacoes_lista,'suspensao.mtvSuspensao', suspensao.mtvSuspensao.cdata, 1, '01;99')
             if 'dscSuspensao' in dir(suspensao): validacoes_lista = validar_campo(validacoes_lista,'suspensao.dscSuspensao', suspensao.dscSuspensao.cdata, 0, '')
 

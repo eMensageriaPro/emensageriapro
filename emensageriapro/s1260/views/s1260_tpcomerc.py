@@ -92,17 +92,17 @@ def apagar(request, hash):
                              's1260_tpcomerc', s1260_tpcomerc_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's1260_tpcomerc_salvar':
             return redirect('s1260_tpcomerc', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -196,17 +196,17 @@ def listar(request, hash):
             filtrar = True
             s1260_tpcomerc_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s1260_tpcomerc_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1260_tpcomerc'
         context = {
             's1260_tpcomerc_lista': s1260_tpcomerc_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -216,7 +216,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 's1260_tpcomerc_listar.html', context)
@@ -259,10 +259,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -356,14 +356,14 @@ def salvar(request, hash):
             s1260_tpcomerc_form.fields[field].widget.attrs['ng-model'] = 's1260_tpcomerc_'+field
         if int(dict_hash['print']):
             s1260_tpcomerc_form = disabled_form_for_print(s1260_tpcomerc_form)
-   
+
         s1260_ideadquir_form = None
         s1260_ideadquir_lista = None
         s1260_infoprocjud_form = None
         s1260_infoprocjud_lista = None
         if s1260_tpcomerc_id:
             s1260_tpcomerc = get_object_or_404(s1260tpComerc.objects.using( db_slug ), excluido = False, id = s1260_tpcomerc_id)
-       
+
             s1260_ideadquir_form = form_s1260_ideadquir(initial={ 's1260_tpcomerc': s1260_tpcomerc }, slug=db_slug)
             s1260_ideadquir_form.fields['s1260_tpcomerc'].widget.attrs['readonly'] = True
             s1260_ideadquir_lista = s1260ideAdquir.objects.using( db_slug ).filter(excluido = False, s1260_tpcomerc_id=s1260_tpcomerc.id).all()
@@ -390,16 +390,16 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1260_tpcomerc_id': int(s1260_tpcomerc_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             's1260_ideadquir_form': s1260_ideadquir_form,
             's1260_ideadquir_lista': s1260_ideadquir_lista,
             's1260_infoprocjud_form': s1260_infoprocjud_form,
             's1260_infoprocjud_lista': s1260_infoprocjud_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -443,10 +443,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

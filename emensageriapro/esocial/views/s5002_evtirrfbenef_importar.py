@@ -92,7 +92,7 @@ def read_s5002_evtirrfbenef_obj(doc, status, validar=False):
         for infoDep in evtIrrfBenef.infoDep:
             s5002_infodep_dados = {}
             s5002_infodep_dados['s5002_evtirrfbenef_id'] = s5002_evtirrfbenef_id
-       
+
             if 'vrDedDep' in dir(infoDep): s5002_infodep_dados['vrdeddep'] = infoDep.vrDedDep.cdata
             insert = create_insert('s5002_infodep', s5002_infodep_dados)
             resp = executar_sql(insert, True)
@@ -103,7 +103,7 @@ def read_s5002_evtirrfbenef_obj(doc, status, validar=False):
         for infoIrrf in evtIrrfBenef.infoIrrf:
             s5002_infoirrf_dados = {}
             s5002_infoirrf_dados['s5002_evtirrfbenef_id'] = s5002_evtirrfbenef_id
-       
+
             if 'codCateg' in dir(infoIrrf): s5002_infoirrf_dados['codcateg'] = infoIrrf.codCateg.cdata
             if 'indResBr' in dir(infoIrrf): s5002_infoirrf_dados['indresbr'] = infoIrrf.indResBr.cdata
             insert = create_insert('s5002_infoirrf', s5002_infoirrf_dados)
@@ -115,31 +115,31 @@ def read_s5002_evtirrfbenef_obj(doc, status, validar=False):
                 for basesIrrf in infoIrrf.basesIrrf:
                     s5002_basesirrf_dados = {}
                     s5002_basesirrf_dados['s5002_infoirrf_id'] = s5002_infoirrf_id
-               
+
                     if 'tpValor' in dir(basesIrrf): s5002_basesirrf_dados['tpvalor'] = basesIrrf.tpValor.cdata
                     if 'valor' in dir(basesIrrf): s5002_basesirrf_dados['valor'] = basesIrrf.valor.cdata
                     insert = create_insert('s5002_basesirrf', s5002_basesirrf_dados)
                     resp = executar_sql(insert, True)
                     s5002_basesirrf_id = resp[0][0]
                     #print s5002_basesirrf_id
-   
+
             if 'irrf' in dir(infoIrrf):
                 for irrf in infoIrrf.irrf:
                     s5002_irrf_dados = {}
                     s5002_irrf_dados['s5002_infoirrf_id'] = s5002_infoirrf_id
-               
+
                     if 'tpCR' in dir(irrf): s5002_irrf_dados['tpcr'] = irrf.tpCR.cdata
                     if 'vrIrrfDesc' in dir(irrf): s5002_irrf_dados['vrirrfdesc'] = irrf.vrIrrfDesc.cdata
                     insert = create_insert('s5002_irrf', s5002_irrf_dados)
                     resp = executar_sql(insert, True)
                     s5002_irrf_id = resp[0][0]
                     #print s5002_irrf_id
-   
+
             if 'idePgtoExt' in dir(infoIrrf):
                 for idePgtoExt in infoIrrf.idePgtoExt:
                     s5002_idepgtoext_dados = {}
                     s5002_idepgtoext_dados['s5002_infoirrf_id'] = s5002_infoirrf_id
-               
+
                     if 'codPais' in dir(idePgtoExt): s5002_idepgtoext_dados['codpais'] = idePgtoExt.idePais.codPais.cdata
                     if 'indNIF' in dir(idePgtoExt): s5002_idepgtoext_dados['indnif'] = idePgtoExt.idePais.indNIF.cdata
                     if 'nifBenef' in dir(idePgtoExt): s5002_idepgtoext_dados['nifbenef'] = idePgtoExt.idePais.nifBenef.cdata
@@ -153,7 +153,7 @@ def read_s5002_evtirrfbenef_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s5002_idepgtoext_id = resp[0][0]
                     #print s5002_idepgtoext_id
-   
+
     from emensageriapro.esocial.views.s5002_evtirrfbenef_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(s5002_evtirrfbenef_id, 'default')
     return dados

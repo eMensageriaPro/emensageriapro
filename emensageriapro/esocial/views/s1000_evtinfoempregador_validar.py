@@ -54,7 +54,7 @@ def validacoes_s1000_evtinfoempregador(arquivo):
     if 'nrInsc' in dir(evtInfoEmpregador.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtInfoEmpregador.ideEmpregador.nrInsc', evtInfoEmpregador.ideEmpregador.nrInsc.cdata, 1, '')
     if 'inclusao' in dir(evtInfoEmpregador.infoEmpregador):
         for inclusao in evtInfoEmpregador.infoEmpregador.inclusao:
-       
+
             if 'iniValid' in dir(inclusao.idePeriodo): validacoes_lista = validar_campo(validacoes_lista,'inclusao.idePeriodo.iniValid', inclusao.idePeriodo.iniValid.cdata, 1, '')
             if 'fimValid' in dir(inclusao.idePeriodo): validacoes_lista = validar_campo(validacoes_lista,'inclusao.idePeriodo.fimValid', inclusao.idePeriodo.fimValid.cdata, 0, '')
             if 'nmRazao' in dir(inclusao.infoCadastro): validacoes_lista = validar_campo(validacoes_lista,'inclusao.infoCadastro.nmRazao', inclusao.infoCadastro.nmRazao.cdata, 1, '')
@@ -76,7 +76,7 @@ def validacoes_s1000_evtinfoempregador(arquivo):
 
             if 'dadosIsencao' in dir(inclusao.infoCadastro):
                 for dadosIsencao in inclusao.infoCadastro.dadosIsencao:
-               
+
                     if 'ideMinLei' in dir(dadosIsencao): validacoes_lista = validar_campo(validacoes_lista,'dadosIsencao.ideMinLei', dadosIsencao.ideMinLei.cdata, 1, '')
                     if 'nrCertif' in dir(dadosIsencao): validacoes_lista = validar_campo(validacoes_lista,'dadosIsencao.nrCertif', dadosIsencao.nrCertif.cdata, 1, '')
                     if 'dtEmisCertif' in dir(dadosIsencao): validacoes_lista = validar_campo(validacoes_lista,'dadosIsencao.dtEmisCertif', dadosIsencao.dtEmisCertif.cdata, 1, '')
@@ -85,10 +85,10 @@ def validacoes_s1000_evtinfoempregador(arquivo):
                     if 'dtProtRenov' in dir(dadosIsencao): validacoes_lista = validar_campo(validacoes_lista,'dadosIsencao.dtProtRenov', dadosIsencao.dtProtRenov.cdata, 0, '')
                     if 'dtDou' in dir(dadosIsencao): validacoes_lista = validar_campo(validacoes_lista,'dadosIsencao.dtDou', dadosIsencao.dtDou.cdata, 0, '')
                     if 'pagDou' in dir(dadosIsencao): validacoes_lista = validar_campo(validacoes_lista,'dadosIsencao.pagDou', dadosIsencao.pagDou.cdata, 0, '')
-   
+
             if 'infoOP' in dir(inclusao.infoCadastro):
                 for infoOP in inclusao.infoCadastro.infoOP:
-               
+
                     if 'nrSiafi' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.nrSiafi', infoOP.nrSiafi.cdata, 1, '')
                     if 'indUGRPPS' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.indUGRPPS', infoOP.indUGRPPS.cdata, 1, 'S;N')
                     if 'esferaOP' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.esferaOP', infoOP.esferaOP.cdata, 0, '1;2;3')
@@ -96,34 +96,34 @@ def validacoes_s1000_evtinfoempregador(arquivo):
                     if 'vrTetoRem' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.vrTetoRem', infoOP.vrTetoRem.cdata, 1, '')
                     if 'ideEFR' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.ideEFR', infoOP.ideEFR.cdata, 1, 'S;N')
                     if 'cnpjEFR' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.cnpjEFR', infoOP.cnpjEFR.cdata, 0, '')
-   
+
             if 'infoOrgInternacional' in dir(inclusao.infoCadastro):
                 for infoOrgInternacional in inclusao.infoCadastro.infoOrgInternacional:
-               
+
                     if 'indAcordoIsenMulta' in dir(infoOrgInternacional): validacoes_lista = validar_campo(validacoes_lista,'infoOrgInternacional.indAcordoIsenMulta', infoOrgInternacional.indAcordoIsenMulta.cdata, 1, '0;1')
-   
+
             if 'softwareHouse' in dir(inclusao.infoCadastro):
                 for softwareHouse in inclusao.infoCadastro.softwareHouse:
-               
+
                     if 'cnpjSoftHouse' in dir(softwareHouse): validacoes_lista = validar_campo(validacoes_lista,'softwareHouse.cnpjSoftHouse', softwareHouse.cnpjSoftHouse.cdata, 1, '')
                     if 'nmRazao' in dir(softwareHouse): validacoes_lista = validar_campo(validacoes_lista,'softwareHouse.nmRazao', softwareHouse.nmRazao.cdata, 1, '')
                     if 'nmCont' in dir(softwareHouse): validacoes_lista = validar_campo(validacoes_lista,'softwareHouse.nmCont', softwareHouse.nmCont.cdata, 1, '')
                     if 'telefone' in dir(softwareHouse): validacoes_lista = validar_campo(validacoes_lista,'softwareHouse.telefone', softwareHouse.telefone.cdata, 1, '')
                     if 'email' in dir(softwareHouse): validacoes_lista = validar_campo(validacoes_lista,'softwareHouse.email', softwareHouse.email.cdata, 0, '')
-   
+
             if 'situacaoPJ' in dir(inclusao.infoCadastro.infoComplementares):
                 for situacaoPJ in inclusao.infoCadastro.infoComplementares.situacaoPJ:
-               
+
                     if 'indSitPJ' in dir(situacaoPJ): validacoes_lista = validar_campo(validacoes_lista,'situacaoPJ.indSitPJ', situacaoPJ.indSitPJ.cdata, 1, '0;1;2;3;4')
-   
+
             if 'situacaoPF' in dir(inclusao.infoCadastro.infoComplementares):
                 for situacaoPF in inclusao.infoCadastro.infoComplementares.situacaoPF:
-               
+
                     if 'indSitPF' in dir(situacaoPF): validacoes_lista = validar_campo(validacoes_lista,'situacaoPF.indSitPF', situacaoPF.indSitPF.cdata, 1, '0;1;2')
-   
+
     if 'alteracao' in dir(evtInfoEmpregador.infoEmpregador):
         for alteracao in evtInfoEmpregador.infoEmpregador.alteracao:
-       
+
             if 'iniValid' in dir(alteracao.idePeriodo): validacoes_lista = validar_campo(validacoes_lista,'alteracao.idePeriodo.iniValid', alteracao.idePeriodo.iniValid.cdata, 1, '')
             if 'fimValid' in dir(alteracao.idePeriodo): validacoes_lista = validar_campo(validacoes_lista,'alteracao.idePeriodo.fimValid', alteracao.idePeriodo.fimValid.cdata, 0, '')
             if 'nmRazao' in dir(alteracao.infoCadastro): validacoes_lista = validar_campo(validacoes_lista,'alteracao.infoCadastro.nmRazao', alteracao.infoCadastro.nmRazao.cdata, 1, '')
@@ -145,7 +145,7 @@ def validacoes_s1000_evtinfoempregador(arquivo):
 
             if 'dadosIsencao' in dir(alteracao.infoCadastro):
                 for dadosIsencao in alteracao.infoCadastro.dadosIsencao:
-               
+
                     if 'ideMinLei' in dir(dadosIsencao): validacoes_lista = validar_campo(validacoes_lista,'dadosIsencao.ideMinLei', dadosIsencao.ideMinLei.cdata, 1, '')
                     if 'nrCertif' in dir(dadosIsencao): validacoes_lista = validar_campo(validacoes_lista,'dadosIsencao.nrCertif', dadosIsencao.nrCertif.cdata, 1, '')
                     if 'dtEmisCertif' in dir(dadosIsencao): validacoes_lista = validar_campo(validacoes_lista,'dadosIsencao.dtEmisCertif', dadosIsencao.dtEmisCertif.cdata, 1, '')
@@ -154,10 +154,10 @@ def validacoes_s1000_evtinfoempregador(arquivo):
                     if 'dtProtRenov' in dir(dadosIsencao): validacoes_lista = validar_campo(validacoes_lista,'dadosIsencao.dtProtRenov', dadosIsencao.dtProtRenov.cdata, 0, '')
                     if 'dtDou' in dir(dadosIsencao): validacoes_lista = validar_campo(validacoes_lista,'dadosIsencao.dtDou', dadosIsencao.dtDou.cdata, 0, '')
                     if 'pagDou' in dir(dadosIsencao): validacoes_lista = validar_campo(validacoes_lista,'dadosIsencao.pagDou', dadosIsencao.pagDou.cdata, 0, '')
-   
+
             if 'infoOP' in dir(alteracao.infoCadastro):
                 for infoOP in alteracao.infoCadastro.infoOP:
-               
+
                     if 'nrSiafi' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.nrSiafi', infoOP.nrSiafi.cdata, 1, '')
                     if 'indUGRPPS' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.indUGRPPS', infoOP.indUGRPPS.cdata, 1, 'S;N')
                     if 'esferaOP' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.esferaOP', infoOP.esferaOP.cdata, 0, '1;2;3')
@@ -165,40 +165,40 @@ def validacoes_s1000_evtinfoempregador(arquivo):
                     if 'vrTetoRem' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.vrTetoRem', infoOP.vrTetoRem.cdata, 1, '')
                     if 'ideEFR' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.ideEFR', infoOP.ideEFR.cdata, 1, 'S;N')
                     if 'cnpjEFR' in dir(infoOP): validacoes_lista = validar_campo(validacoes_lista,'infoOP.cnpjEFR', infoOP.cnpjEFR.cdata, 0, '')
-   
+
             if 'infoOrgInternacional' in dir(alteracao.infoCadastro):
                 for infoOrgInternacional in alteracao.infoCadastro.infoOrgInternacional:
-               
+
                     if 'indAcordoIsenMulta' in dir(infoOrgInternacional): validacoes_lista = validar_campo(validacoes_lista,'infoOrgInternacional.indAcordoIsenMulta', infoOrgInternacional.indAcordoIsenMulta.cdata, 1, '0;1')
-   
+
             if 'softwareHouse' in dir(alteracao.infoCadastro):
                 for softwareHouse in alteracao.infoCadastro.softwareHouse:
-               
+
                     if 'cnpjSoftHouse' in dir(softwareHouse): validacoes_lista = validar_campo(validacoes_lista,'softwareHouse.cnpjSoftHouse', softwareHouse.cnpjSoftHouse.cdata, 1, '')
                     if 'nmRazao' in dir(softwareHouse): validacoes_lista = validar_campo(validacoes_lista,'softwareHouse.nmRazao', softwareHouse.nmRazao.cdata, 1, '')
                     if 'nmCont' in dir(softwareHouse): validacoes_lista = validar_campo(validacoes_lista,'softwareHouse.nmCont', softwareHouse.nmCont.cdata, 1, '')
                     if 'telefone' in dir(softwareHouse): validacoes_lista = validar_campo(validacoes_lista,'softwareHouse.telefone', softwareHouse.telefone.cdata, 1, '')
                     if 'email' in dir(softwareHouse): validacoes_lista = validar_campo(validacoes_lista,'softwareHouse.email', softwareHouse.email.cdata, 0, '')
-   
+
             if 'situacaoPJ' in dir(alteracao.infoCadastro.infoComplementares):
                 for situacaoPJ in alteracao.infoCadastro.infoComplementares.situacaoPJ:
-               
+
                     if 'indSitPJ' in dir(situacaoPJ): validacoes_lista = validar_campo(validacoes_lista,'situacaoPJ.indSitPJ', situacaoPJ.indSitPJ.cdata, 1, '0;1;2;3;4')
-   
+
             if 'situacaoPF' in dir(alteracao.infoCadastro.infoComplementares):
                 for situacaoPF in alteracao.infoCadastro.infoComplementares.situacaoPF:
-               
+
                     if 'indSitPF' in dir(situacaoPF): validacoes_lista = validar_campo(validacoes_lista,'situacaoPF.indSitPF', situacaoPF.indSitPF.cdata, 1, '0;1;2')
-   
+
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:
-               
+
                     if 'iniValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.iniValid', novaValidade.iniValid.cdata, 1, '')
                     if 'fimValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.fimValid', novaValidade.fimValid.cdata, 0, '')
-   
+
     if 'exclusao' in dir(evtInfoEmpregador.infoEmpregador):
         for exclusao in evtInfoEmpregador.infoEmpregador.exclusao:
-       
+
             if 'iniValid' in dir(exclusao.idePeriodo): validacoes_lista = validar_campo(validacoes_lista,'exclusao.idePeriodo.iniValid', exclusao.idePeriodo.iniValid.cdata, 1, '')
             if 'fimValid' in dir(exclusao.idePeriodo): validacoes_lista = validar_campo(validacoes_lista,'exclusao.idePeriodo.fimValid', exclusao.idePeriodo.fimValid.cdata, 0, '')
 

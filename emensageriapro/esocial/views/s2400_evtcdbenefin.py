@@ -97,17 +97,17 @@ def apagar(request, hash):
                              's2400_evtcdbenefin', s2400_evtcdbenefin_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's2400_evtcdbenefin_salvar':
             return redirect('s2400_evtcdbenefin', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -302,18 +302,18 @@ def listar(request, hash):
             filtrar = True
             s2400_evtcdbenefin_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-   
+
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s2400_evtcdbenefin_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2400_evtcdbenefin'
         context = {
             's2400_evtcdbenefin_lista': s2400_evtcdbenefin_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -323,7 +323,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-       
+
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         #return render(request, 's2400_evtcdbenefin_listar.html', context)
@@ -368,10 +368,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -515,7 +515,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         s2400_evtcdbenefin_form = disabled_form_fields(s2400_evtcdbenefin_form, permissao.permite_editar)
-    
+
         if s2400_evtcdbenefin_id:
             if s2400_evtcdbenefin.status != 0:
                 s2400_evtcdbenefin_form = disabled_form_fields(s2400_evtcdbenefin_form, False)
@@ -525,7 +525,7 @@ def salvar(request, hash):
             s2400_evtcdbenefin_form.fields[field].widget.attrs['ng-model'] = 's2400_evtcdbenefin_'+field
         if int(dict_hash['print']):
             s2400_evtcdbenefin_form = disabled_form_for_print(s2400_evtcdbenefin_form)
-   
+
         s2400_brasil_form = None
         s2400_brasil_lista = None
         s2400_exterior_form = None
@@ -534,7 +534,7 @@ def salvar(request, hash):
         s2400_dependente_lista = None
         if s2400_evtcdbenefin_id:
             s2400_evtcdbenefin = get_object_or_404(s2400evtCdBenefIn.objects.using( db_slug ), excluido = False, id = s2400_evtcdbenefin_id)
-       
+
             s2400_brasil_form = form_s2400_brasil(initial={ 's2400_evtcdbenefin': s2400_evtcdbenefin }, slug=db_slug)
             s2400_brasil_form.fields['s2400_evtcdbenefin'].widget.attrs['readonly'] = True
             s2400_brasil_lista = s2400brasil.objects.using( db_slug ).filter(excluido = False, s2400_evtcdbenefin_id=s2400_evtcdbenefin.id).all()
@@ -562,7 +562,7 @@ def salvar(request, hash):
             s2400_evtcdbenefin_form.fields['procemi'].value = 1
             s2400_evtcdbenefin_form.fields['verproc'].widget.attrs['readonly'] = True
             s2400_evtcdbenefin_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-    
+
         if dict_hash['tab'] or 's2400_evtcdbenefin' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's2400_evtcdbenefin_salvar'
@@ -575,9 +575,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2400_evtcdbenefin_id': int(s2400_evtcdbenefin_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             's2400_brasil_form': s2400_brasil_form,
             's2400_brasil_lista': s2400_brasil_lista,
             's2400_exterior_form': s2400_exterior_form,
@@ -586,7 +586,7 @@ def salvar(request, hash):
             's2400_dependente_lista': s2400_dependente_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -596,7 +596,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s2400_evtcdbenefin_salvar_custom_variaveis_context#
         }
-    
+
         if for_print in (0,1 ):
             return render(request, 's2400_evtcdbenefin_salvar.html', context)
         elif for_print == 2:
@@ -630,10 +630,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

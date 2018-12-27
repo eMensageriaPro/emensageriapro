@@ -105,7 +105,7 @@ def verificar(request, hash):
     if permissao.permite_listar:
         s1040_evttabfuncao = get_object_or_404(s1040evtTabFuncao.objects.using( db_slug ), excluido = False, id = s1040_evttabfuncao_id)
         s1040_evttabfuncao_lista = s1040evtTabFuncao.objects.using( db_slug ).filter(id=s1040_evttabfuncao_id, excluido = False).all()
-   
+
 
         s1040_inclusao_lista = s1040inclusao.objects.using(db_slug).filter(s1040_evttabfuncao_id__in = listar_ids(s1040_evttabfuncao_lista) ).filter(excluido=False).all()
         s1040_alteracao_lista = s1040alteracao.objects.using(db_slug).filter(s1040_evttabfuncao_id__in = listar_ids(s1040_evttabfuncao_lista) ).filter(excluido=False).all()
@@ -117,11 +117,11 @@ def verificar(request, hash):
             's1040_evttabfuncao_lista': s1040_evttabfuncao_lista,
             's1040_evttabfuncao_id': s1040_evttabfuncao_id,
             's1040_evttabfuncao': s1040_evttabfuncao,
-            
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -172,10 +172,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -195,19 +195,19 @@ def gerar_xml_s1040(s1040_evttabfuncao_id, db_slug, versao=None):
             s1040evtTabFuncao.objects.using( db_slug ),
             excluido = False,
             id = s1040_evttabfuncao_id)
-   
+
         if not versao:
 
             versao = s1040_evttabfuncao.versao
-   
+
         s1040_evttabfuncao_lista = s1040evtTabFuncao.objects.using( db_slug ).filter(id=s1040_evttabfuncao_id, excluido = False).all()
-   
+
 
         s1040_inclusao_lista = s1040inclusao.objects.using(db_slug).filter(s1040_evttabfuncao_id__in = listar_ids(s1040_evttabfuncao_lista) ).filter(excluido=False).all()
         s1040_alteracao_lista = s1040alteracao.objects.using(db_slug).filter(s1040_evttabfuncao_id__in = listar_ids(s1040_evttabfuncao_lista) ).filter(excluido=False).all()
         s1040_alteracao_novavalidade_lista = s1040alteracaonovaValidade.objects.using(db_slug).filter(s1040_alteracao_id__in = listar_ids(s1040_alteracao_lista) ).filter(excluido=False).all()
         s1040_exclusao_lista = s1040exclusao.objects.using(db_slug).filter(s1040_evttabfuncao_id__in = listar_ids(s1040_evttabfuncao_lista) ).filter(excluido=False).all()
-   
+
         context = {
             'versao': versao,
             'base': s1040_evttabfuncao,
@@ -222,11 +222,11 @@ def gerar_xml_s1040(s1040_evttabfuncao_id, db_slug, versao=None):
             's1040_exclusao_lista': s1040_exclusao_lista,
 
         }
-   
+
         t = get_template('s1040_evttabfuncao.xml')
         xml = t.render(context)
         return xml
-   
+
 
 
 @login_required
@@ -249,7 +249,7 @@ def recibo(request, hash, tipo):
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
     if permissao.permite_listar:
-   
+
         s1040_evttabfuncao = get_object_or_404(
             s1040evtTabFuncao.objects.using( db_slug ),
             excluido = False, id = s1040_evttabfuncao_id)
@@ -268,7 +268,7 @@ def recibo(request, hash, tipo):
 
         retorno_ocorrencias = RetornosEventosOcorrencias.objects.using(db_slug).\
             filter(retornos_eventos_id=retorno.id,excluido=False).all()
-   
+
         context = {
             's1040_evttabfuncao_id': s1040_evttabfuncao_id,
             's1040_evttabfuncao': s1040_evttabfuncao,
@@ -278,11 +278,11 @@ def recibo(request, hash, tipo):
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
 
-            
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -310,10 +310,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-            
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -379,7 +379,7 @@ def gerar_xml(request, hash):
     s1040_evttabfuncao_id = int(dict_hash['id'])
 
     if s1040_evttabfuncao_id:
-   
+
         xml_assinado = gerar_xml_assinado(s1040_evttabfuncao_id, db_slug)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
@@ -399,7 +399,7 @@ def duplicar(request, hash):
     s1040_evttabfuncao_id = int(dict_hash['id'])
 
     if s1040_evttabfuncao_id:
-   
+
         s1040_evttabfuncao = get_object_or_404(
             s1040evtTabFuncao.objects.using(db_slug),
             excluido=False,
@@ -441,21 +441,21 @@ def criar_alteracao(request, hash):
             s1040evtTabFuncao.objects.using(db_slug),
             excluido=False,
             id=s1040_evttabfuncao_id)
-   
+
         texto = gerar_xml_s1040(s1040_evttabfuncao_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
         dados = read_s1040_evttabfuncao_string({}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(dados['id'], db_slug)
-   
+
         s1040evtTabFuncao.objects.using(db_slug).filter(id=dados['id']).\
             update(status=0, arquivo_original=0, arquivo='')
-   
+
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1040_evttabfuncao.identidade),
             's1040_evttabfuncao', dados['id'], request.user.id, 1)
-   
+
         messages.success(request, 'Evento de alteração criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )   
+        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('s1040_evttabfuncao_salvar', hash=url_hash)
 
     messages.error(request, 'Erro ao criar evento de alteração!')
@@ -475,25 +475,25 @@ def criar_exclusao(request, hash):
     s1040_evttabfuncao_id = int(dict_hash['id'])
 
     if s1040_evttabfuncao_id:
-   
+
         s1040_evttabfuncao = get_object_or_404(
             s1040evtTabFuncao.objects.using(db_slug),
             excluido=False,
             id=s1040_evttabfuncao_id)
-   
+
         texto = gerar_xml_s1040(s1040_evttabfuncao_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_s1040_evttabfuncao_string({}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(dados['id'], db_slug)
-   
+
         s1040evtTabFuncao.objects.using(db_slug).filter(id=dados['id']).\
             update(status=0, arquivo_original=0, arquivo='')
-   
+
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1040_evttabfuncao.identidade),
             's1040_evttabfuncao', dados['id'], request.user.id, 1)
-   
+
         messages.success(request, 'Evento de exclusão criado com sucesso!')
         url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('s1040_evttabfuncao_salvar', hash=url_hash)
@@ -513,7 +513,7 @@ def alterar_identidade(request, hash):
     s1040_evttabfuncao_id = int(dict_hash['id'])
 
     if s1040_evttabfuncao_id:
-   
+
         s1040_evttabfuncao = get_object_or_404(
             s1040evtTabFuncao.objects.using(db_slug),
             excluido=False,
@@ -532,7 +532,7 @@ def alterar_identidade(request, hash):
             return redirect('s1040_evttabfuncao_salvar', hash=url_hash)
 
         else:
-       
+
             messages.error(request, 'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
@@ -686,7 +686,7 @@ def validar_evento(request, hash):
             messages.success(request, u'Validações processadas com sucesso!')
 
         else:
-       
+
             messages.error(request, u'Não foi possível validar o evento pois a versão do evento não é compatível com a versão do sistema!')
     else:
 

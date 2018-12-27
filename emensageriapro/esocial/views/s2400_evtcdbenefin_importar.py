@@ -110,7 +110,7 @@ def read_s2400_evtcdbenefin_obj(doc, status, validar=False):
         for brasil in evtCdBenefIn.beneficiario.endereco.brasil:
             s2400_brasil_dados = {}
             s2400_brasil_dados['s2400_evtcdbenefin_id'] = s2400_evtcdbenefin_id
-       
+
             if 'tpLograd' in dir(brasil): s2400_brasil_dados['tplograd'] = brasil.tpLograd.cdata
             if 'dscLograd' in dir(brasil): s2400_brasil_dados['dsclograd'] = brasil.dscLograd.cdata
             if 'nrLograd' in dir(brasil): s2400_brasil_dados['nrlograd'] = brasil.nrLograd.cdata
@@ -128,7 +128,7 @@ def read_s2400_evtcdbenefin_obj(doc, status, validar=False):
         for exterior in evtCdBenefIn.beneficiario.endereco.exterior:
             s2400_exterior_dados = {}
             s2400_exterior_dados['s2400_evtcdbenefin_id'] = s2400_evtcdbenefin_id
-       
+
             if 'paisResid' in dir(exterior): s2400_exterior_dados['paisresid'] = exterior.paisResid.cdata
             if 'dscLograd' in dir(exterior): s2400_exterior_dados['dsclograd'] = exterior.dscLograd.cdata
             if 'nrLograd' in dir(exterior): s2400_exterior_dados['nrlograd'] = exterior.nrLograd.cdata
@@ -145,7 +145,7 @@ def read_s2400_evtcdbenefin_obj(doc, status, validar=False):
         for dependente in evtCdBenefIn.beneficiario.dependente:
             s2400_dependente_dados = {}
             s2400_dependente_dados['s2400_evtcdbenefin_id'] = s2400_evtcdbenefin_id
-       
+
             if 'tpDep' in dir(dependente): s2400_dependente_dados['tpdep'] = dependente.tpDep.cdata
             if 'nmDep' in dir(dependente): s2400_dependente_dados['nmdep'] = dependente.nmDep.cdata
             if 'dtNascto' in dir(dependente): s2400_dependente_dados['dtnascto'] = dependente.dtNascto.cdata

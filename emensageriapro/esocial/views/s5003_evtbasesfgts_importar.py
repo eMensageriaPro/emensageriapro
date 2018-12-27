@@ -93,7 +93,7 @@ def read_s5003_evtbasesfgts_obj(doc, status, validar=False):
         for infoFGTS in evtBasesFGTS.infoFGTS:
             s5003_infofgts_dados = {}
             s5003_infofgts_dados['s5003_evtbasesfgts_id'] = s5003_evtbasesfgts_id
-       
+
             if 'dtVenc' in dir(infoFGTS): s5003_infofgts_dados['dtvenc'] = infoFGTS.dtVenc.cdata
             insert = create_insert('s5003_infofgts', s5003_infofgts_dados)
             resp = executar_sql(insert, True)
@@ -104,7 +104,7 @@ def read_s5003_evtbasesfgts_obj(doc, status, validar=False):
                 for ideEstabLot in infoFGTS.ideEstabLot:
                     s5003_ideestablot_dados = {}
                     s5003_ideestablot_dados['s5003_infofgts_id'] = s5003_infofgts_id
-               
+
                     if 'tpInsc' in dir(ideEstabLot): s5003_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
                     if 'nrInsc' in dir(ideEstabLot): s5003_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
                     if 'codLotacao' in dir(ideEstabLot): s5003_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
@@ -112,19 +112,19 @@ def read_s5003_evtbasesfgts_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s5003_ideestablot_id = resp[0][0]
                     #print s5003_ideestablot_id
-   
+
             if 'infoTrabDps' in dir(infoFGTS.infoDpsFGTS):
                 for infoTrabDps in infoFGTS.infoDpsFGTS.infoTrabDps:
                     s5003_infotrabdps_dados = {}
                     s5003_infotrabdps_dados['s5003_infofgts_id'] = s5003_infofgts_id
-               
+
                     if 'matricula' in dir(infoTrabDps): s5003_infotrabdps_dados['matricula'] = infoTrabDps.matricula.cdata
                     if 'codCateg' in dir(infoTrabDps): s5003_infotrabdps_dados['codcateg'] = infoTrabDps.codCateg.cdata
                     insert = create_insert('s5003_infotrabdps', s5003_infotrabdps_dados)
                     resp = executar_sql(insert, True)
                     s5003_infotrabdps_id = resp[0][0]
                     #print s5003_infotrabdps_id
-   
+
     from emensageriapro.esocial.views.s5003_evtbasesfgts_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(s5003_evtbasesfgts_id, 'default')
     return dados

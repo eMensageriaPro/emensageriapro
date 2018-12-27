@@ -56,13 +56,13 @@ def validacoes_s3000_evtexclusao(arquivo):
     if 'nrRecEvt' in dir(evtExclusao.infoExclusao): validacoes_lista = validar_campo(validacoes_lista,'evtExclusao.infoExclusao.nrRecEvt', evtExclusao.infoExclusao.nrRecEvt.cdata, 1, '')
     if 'ideTrabalhador' in dir(evtExclusao.infoExclusao):
         for ideTrabalhador in evtExclusao.infoExclusao.ideTrabalhador:
-       
+
             if 'cpfTrab' in dir(ideTrabalhador): validacoes_lista = validar_campo(validacoes_lista,'ideTrabalhador.cpfTrab', ideTrabalhador.cpfTrab.cdata, 1, '')
             if 'nisTrab' in dir(ideTrabalhador): validacoes_lista = validar_campo(validacoes_lista,'ideTrabalhador.nisTrab', ideTrabalhador.nisTrab.cdata, 0, '')
 
     if 'ideFolhaPagto' in dir(evtExclusao.infoExclusao):
         for ideFolhaPagto in evtExclusao.infoExclusao.ideFolhaPagto:
-       
+
             if 'indApuracao' in dir(ideFolhaPagto): validacoes_lista = validar_campo(validacoes_lista,'ideFolhaPagto.indApuracao', ideFolhaPagto.indApuracao.cdata, 1, '1;2')
             if 'perApur' in dir(ideFolhaPagto): validacoes_lista = validar_campo(validacoes_lista,'ideFolhaPagto.perApur', ideFolhaPagto.perApur.cdata, 1, '')
 

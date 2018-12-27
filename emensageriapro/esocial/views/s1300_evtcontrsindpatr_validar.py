@@ -58,7 +58,7 @@ def validacoes_s1300_evtcontrsindpatr(arquivo):
     if 'nrInsc' in dir(evtContrSindPatr.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtContrSindPatr.ideEmpregador.nrInsc', evtContrSindPatr.ideEmpregador.nrInsc.cdata, 1, '')
     if 'contribSind' in dir(evtContrSindPatr):
         for contribSind in evtContrSindPatr.contribSind:
-       
+
             if 'cnpjSindic' in dir(contribSind): validacoes_lista = validar_campo(validacoes_lista,'contribSind.cnpjSindic', contribSind.cnpjSindic.cdata, 1, '')
             if 'tpContribSind' in dir(contribSind): validacoes_lista = validar_campo(validacoes_lista,'contribSind.tpContribSind', contribSind.tpContribSind.cdata, 1, '1;2;3;4')
             if 'vlrContribSind' in dir(contribSind): validacoes_lista = validar_campo(validacoes_lista,'contribSind.vlrContribSind', contribSind.vlrContribSind.cdata, 1, '')

@@ -108,7 +108,7 @@ def read_s2299_evtdeslig_obj(doc, status, validar=False):
         for observacoes in evtDeslig.infoDeslig.observacoes:
             s2299_observacoes_dados = {}
             s2299_observacoes_dados['s2299_evtdeslig_id'] = s2299_evtdeslig_id
-       
+
             if 'observacao' in dir(observacoes): s2299_observacoes_dados['observacao'] = observacoes.observacao.cdata
             insert = create_insert('s2299_observacoes', s2299_observacoes_dados)
             resp = executar_sql(insert, True)
@@ -119,7 +119,7 @@ def read_s2299_evtdeslig_obj(doc, status, validar=False):
         for sucessaoVinc in evtDeslig.infoDeslig.sucessaoVinc:
             s2299_sucessaovinc_dados = {}
             s2299_sucessaovinc_dados['s2299_evtdeslig_id'] = s2299_evtdeslig_id
-       
+
             if 'tpInscSuc' in dir(sucessaoVinc): s2299_sucessaovinc_dados['tpinscsuc'] = sucessaoVinc.tpInscSuc.cdata
             if 'cnpjSucessora' in dir(sucessaoVinc): s2299_sucessaovinc_dados['cnpjsucessora'] = sucessaoVinc.cnpjSucessora.cdata
             insert = create_insert('s2299_sucessaovinc', s2299_sucessaovinc_dados)
@@ -131,7 +131,7 @@ def read_s2299_evtdeslig_obj(doc, status, validar=False):
         for transfTit in evtDeslig.infoDeslig.transfTit:
             s2299_transftit_dados = {}
             s2299_transftit_dados['s2299_evtdeslig_id'] = s2299_evtdeslig_id
-       
+
             if 'cpfSubstituto' in dir(transfTit): s2299_transftit_dados['cpfsubstituto'] = transfTit.cpfSubstituto.cdata
             if 'dtNascto' in dir(transfTit): s2299_transftit_dados['dtnascto'] = transfTit.dtNascto.cdata
             insert = create_insert('s2299_transftit', s2299_transftit_dados)
@@ -143,7 +143,7 @@ def read_s2299_evtdeslig_obj(doc, status, validar=False):
         for mudancaCPF in evtDeslig.infoDeslig.mudancaCPF:
             s2299_mudancacpf_dados = {}
             s2299_mudancacpf_dados['s2299_evtdeslig_id'] = s2299_evtdeslig_id
-       
+
             if 'novoCPF' in dir(mudancaCPF): s2299_mudancacpf_dados['novocpf'] = mudancaCPF.novoCPF.cdata
             insert = create_insert('s2299_mudancacpf', s2299_mudancacpf_dados)
             resp = executar_sql(insert, True)
@@ -154,7 +154,7 @@ def read_s2299_evtdeslig_obj(doc, status, validar=False):
         for dmDev in evtDeslig.infoDeslig.verbasResc.dmDev:
             s2299_dmdev_dados = {}
             s2299_dmdev_dados['s2299_evtdeslig_id'] = s2299_evtdeslig_id
-       
+
             if 'ideDmDev' in dir(dmDev): s2299_dmdev_dados['idedmdev'] = dmDev.ideDmDev.cdata
             insert = create_insert('s2299_dmdev', s2299_dmdev_dados)
             resp = executar_sql(insert, True)
@@ -165,7 +165,7 @@ def read_s2299_evtdeslig_obj(doc, status, validar=False):
                 for ideEstabLot in dmDev.infoPerApur.ideEstabLot:
                     s2299_infoperapur_ideestablot_dados = {}
                     s2299_infoperapur_ideestablot_dados['s2299_dmdev_id'] = s2299_dmdev_id
-               
+
                     if 'tpInsc' in dir(ideEstabLot): s2299_infoperapur_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
                     if 'nrInsc' in dir(ideEstabLot): s2299_infoperapur_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
                     if 'codLotacao' in dir(ideEstabLot): s2299_infoperapur_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
@@ -173,12 +173,12 @@ def read_s2299_evtdeslig_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s2299_infoperapur_ideestablot_id = resp[0][0]
                     #print s2299_infoperapur_ideestablot_id
-   
+
             if 'ideADC' in dir(dmDev.infoPerAnt):
                 for ideADC in dmDev.infoPerAnt.ideADC:
                     s2299_infoperant_ideadc_dados = {}
                     s2299_infoperant_ideadc_dados['s2299_dmdev_id'] = s2299_dmdev_id
-               
+
                     if 'dtAcConv' in dir(ideADC): s2299_infoperant_ideadc_dados['dtacconv'] = ideADC.dtAcConv.cdata
                     if 'tpAcConv' in dir(ideADC): s2299_infoperant_ideadc_dados['tpacconv'] = ideADC.tpAcConv.cdata
                     if 'compAcConv' in dir(ideADC): s2299_infoperant_ideadc_dados['compacconv'] = ideADC.compAcConv.cdata
@@ -188,23 +188,23 @@ def read_s2299_evtdeslig_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s2299_infoperant_ideadc_id = resp[0][0]
                     #print s2299_infoperant_ideadc_id
-   
+
             if 'infoTrabInterm' in dir(dmDev):
                 for infoTrabInterm in dmDev.infoTrabInterm:
                     s2299_infotrabinterm_dados = {}
                     s2299_infotrabinterm_dados['s2299_dmdev_id'] = s2299_dmdev_id
-               
+
                     if 'codConv' in dir(infoTrabInterm): s2299_infotrabinterm_dados['codconv'] = infoTrabInterm.codConv.cdata
                     insert = create_insert('s2299_infotrabinterm', s2299_infotrabinterm_dados)
                     resp = executar_sql(insert, True)
                     s2299_infotrabinterm_id = resp[0][0]
                     #print s2299_infotrabinterm_id
-   
+
     if 'procJudTrab' in dir(evtDeslig.infoDeslig.verbasResc):
         for procJudTrab in evtDeslig.infoDeslig.verbasResc.procJudTrab:
             s2299_infotrabinterm_procjudtrab_dados = {}
             s2299_infotrabinterm_procjudtrab_dados['s2299_evtdeslig_id'] = s2299_evtdeslig_id
-       
+
             if 'tpTrib' in dir(procJudTrab): s2299_infotrabinterm_procjudtrab_dados['tptrib'] = procJudTrab.tpTrib.cdata
             if 'nrProcJud' in dir(procJudTrab): s2299_infotrabinterm_procjudtrab_dados['nrprocjud'] = procJudTrab.nrProcJud.cdata
             if 'codSusp' in dir(procJudTrab): s2299_infotrabinterm_procjudtrab_dados['codsusp'] = procJudTrab.codSusp.cdata
@@ -217,7 +217,7 @@ def read_s2299_evtdeslig_obj(doc, status, validar=False):
         for infoMV in evtDeslig.infoDeslig.verbasResc.infoMV:
             s2299_infotrabinterm_infomv_dados = {}
             s2299_infotrabinterm_infomv_dados['s2299_evtdeslig_id'] = s2299_evtdeslig_id
-       
+
             if 'indMV' in dir(infoMV): s2299_infotrabinterm_infomv_dados['indmv'] = infoMV.indMV.cdata
             insert = create_insert('s2299_infotrabinterm_infomv', s2299_infotrabinterm_infomv_dados)
             resp = executar_sql(insert, True)
@@ -228,7 +228,7 @@ def read_s2299_evtdeslig_obj(doc, status, validar=False):
                 for remunOutrEmpr in infoMV.remunOutrEmpr:
                     s2299_infotrabinterm_remunoutrempr_dados = {}
                     s2299_infotrabinterm_remunoutrempr_dados['s2299_infotrabinterm_infomv_id'] = s2299_infotrabinterm_infomv_id
-               
+
                     if 'tpInsc' in dir(remunOutrEmpr): s2299_infotrabinterm_remunoutrempr_dados['tpinsc'] = remunOutrEmpr.tpInsc.cdata
                     if 'nrInsc' in dir(remunOutrEmpr): s2299_infotrabinterm_remunoutrempr_dados['nrinsc'] = remunOutrEmpr.nrInsc.cdata
                     if 'codCateg' in dir(remunOutrEmpr): s2299_infotrabinterm_remunoutrempr_dados['codcateg'] = remunOutrEmpr.codCateg.cdata
@@ -237,12 +237,12 @@ def read_s2299_evtdeslig_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s2299_infotrabinterm_remunoutrempr_id = resp[0][0]
                     #print s2299_infotrabinterm_remunoutrempr_id
-   
+
     if 'procCS' in dir(evtDeslig.infoDeslig.verbasResc):
         for procCS in evtDeslig.infoDeslig.verbasResc.procCS:
             s2299_infotrabinterm_proccs_dados = {}
             s2299_infotrabinterm_proccs_dados['s2299_evtdeslig_id'] = s2299_evtdeslig_id
-       
+
             if 'nrProcJud' in dir(procCS): s2299_infotrabinterm_proccs_dados['nrprocjud'] = procCS.nrProcJud.cdata
             insert = create_insert('s2299_infotrabinterm_proccs', s2299_infotrabinterm_proccs_dados)
             resp = executar_sql(insert, True)
@@ -253,7 +253,7 @@ def read_s2299_evtdeslig_obj(doc, status, validar=False):
         for quarentena in evtDeslig.infoDeslig.quarentena:
             s2299_infotrabinterm_quarentena_dados = {}
             s2299_infotrabinterm_quarentena_dados['s2299_evtdeslig_id'] = s2299_evtdeslig_id
-       
+
             if 'dtFimQuar' in dir(quarentena): s2299_infotrabinterm_quarentena_dados['dtfimquar'] = quarentena.dtFimQuar.cdata
             insert = create_insert('s2299_infotrabinterm_quarentena', s2299_infotrabinterm_quarentena_dados)
             resp = executar_sql(insert, True)
@@ -264,7 +264,7 @@ def read_s2299_evtdeslig_obj(doc, status, validar=False):
         for consigFGTS in evtDeslig.infoDeslig.consigFGTS:
             s2299_infotrabinterm_consigfgts_dados = {}
             s2299_infotrabinterm_consigfgts_dados['s2299_evtdeslig_id'] = s2299_evtdeslig_id
-       
+
             if 'insConsig' in dir(consigFGTS): s2299_infotrabinterm_consigfgts_dados['insconsig'] = consigFGTS.insConsig.cdata
             if 'nrContr' in dir(consigFGTS): s2299_infotrabinterm_consigfgts_dados['nrcontr'] = consigFGTS.nrContr.cdata
             insert = create_insert('s2299_infotrabinterm_consigfgts', s2299_infotrabinterm_consigfgts_dados)

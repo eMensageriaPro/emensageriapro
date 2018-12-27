@@ -92,7 +92,7 @@ def read_s1060_evttabambiente_obj(doc, status, validar=False):
         for inclusao in evtTabAmbiente.infoAmbiente.inclusao:
             s1060_inclusao_dados = {}
             s1060_inclusao_dados['s1060_evttabambiente_id'] = s1060_evttabambiente_id
-       
+
             if 'codAmb' in dir(inclusao.ideAmbiente): s1060_inclusao_dados['codamb'] = inclusao.ideAmbiente.codAmb.cdata
             if 'iniValid' in dir(inclusao.ideAmbiente): s1060_inclusao_dados['inivalid'] = inclusao.ideAmbiente.iniValid.cdata
             if 'fimValid' in dir(inclusao.ideAmbiente): s1060_inclusao_dados['fimvalid'] = inclusao.ideAmbiente.fimValid.cdata
@@ -111,7 +111,7 @@ def read_s1060_evttabambiente_obj(doc, status, validar=False):
         for alteracao in evtTabAmbiente.infoAmbiente.alteracao:
             s1060_alteracao_dados = {}
             s1060_alteracao_dados['s1060_evttabambiente_id'] = s1060_evttabambiente_id
-       
+
             if 'codAmb' in dir(alteracao.ideAmbiente): s1060_alteracao_dados['codamb'] = alteracao.ideAmbiente.codAmb.cdata
             if 'iniValid' in dir(alteracao.ideAmbiente): s1060_alteracao_dados['inivalid'] = alteracao.ideAmbiente.iniValid.cdata
             if 'fimValid' in dir(alteracao.ideAmbiente): s1060_alteracao_dados['fimvalid'] = alteracao.ideAmbiente.fimValid.cdata
@@ -130,19 +130,19 @@ def read_s1060_evttabambiente_obj(doc, status, validar=False):
                 for novaValidade in alteracao.novaValidade:
                     s1060_alteracao_novavalidade_dados = {}
                     s1060_alteracao_novavalidade_dados['s1060_alteracao_id'] = s1060_alteracao_id
-               
+
                     if 'iniValid' in dir(novaValidade): s1060_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
                     if 'fimValid' in dir(novaValidade): s1060_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
                     insert = create_insert('s1060_alteracao_novavalidade', s1060_alteracao_novavalidade_dados)
                     resp = executar_sql(insert, True)
                     s1060_alteracao_novavalidade_id = resp[0][0]
                     #print s1060_alteracao_novavalidade_id
-   
+
     if 'exclusao' in dir(evtTabAmbiente.infoAmbiente):
         for exclusao in evtTabAmbiente.infoAmbiente.exclusao:
             s1060_exclusao_dados = {}
             s1060_exclusao_dados['s1060_evttabambiente_id'] = s1060_evttabambiente_id
-       
+
             if 'codAmb' in dir(exclusao.ideAmbiente): s1060_exclusao_dados['codamb'] = exclusao.ideAmbiente.codAmb.cdata
             if 'iniValid' in dir(exclusao.ideAmbiente): s1060_exclusao_dados['inivalid'] = exclusao.ideAmbiente.iniValid.cdata
             if 'fimValid' in dir(exclusao.ideAmbiente): s1060_exclusao_dados['fimvalid'] = exclusao.ideAmbiente.fimValid.cdata

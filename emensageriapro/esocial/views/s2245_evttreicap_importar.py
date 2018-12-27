@@ -101,7 +101,7 @@ def read_s2245_evttreicap_obj(doc, status, validar=False):
         for infoComplem in evtTreiCap.treiCap.infoComplem:
             s2245_infocomplem_dados = {}
             s2245_infocomplem_dados['s2245_evttreicap_id'] = s2245_evttreicap_id
-       
+
             if 'dtTreiCap' in dir(infoComplem): s2245_infocomplem_dados['dttreicap'] = infoComplem.dtTreiCap.cdata
             if 'durTreiCap' in dir(infoComplem): s2245_infocomplem_dados['durtreicap'] = infoComplem.durTreiCap.cdata
             if 'modTreiCap' in dir(infoComplem): s2245_infocomplem_dados['modtreicap'] = infoComplem.modTreiCap.cdata
@@ -115,7 +115,7 @@ def read_s2245_evttreicap_obj(doc, status, validar=False):
                 for ideProfResp in infoComplem.ideProfResp:
                     s2245_ideprofresp_dados = {}
                     s2245_ideprofresp_dados['s2245_infocomplem_id'] = s2245_infocomplem_id
-               
+
                     if 'cpfProf' in dir(ideProfResp): s2245_ideprofresp_dados['cpfprof'] = ideProfResp.cpfProf.cdata
                     if 'nmProf' in dir(ideProfResp): s2245_ideprofresp_dados['nmprof'] = ideProfResp.nmProf.cdata
                     if 'tpProf' in dir(ideProfResp): s2245_ideprofresp_dados['tpprof'] = ideProfResp.tpProf.cdata
@@ -126,7 +126,7 @@ def read_s2245_evttreicap_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s2245_ideprofresp_id = resp[0][0]
                     #print s2245_ideprofresp_id
-   
+
     from emensageriapro.esocial.views.s2245_evttreicap_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(s2245_evttreicap_id, 'default')
     return dados

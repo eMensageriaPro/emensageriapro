@@ -92,17 +92,17 @@ def apagar(request, hash):
                              's1210_detpgtofl_retpgtotot', s1210_detpgtofl_retpgtotot_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's1210_detpgtofl_retpgtotot_salvar':
             return redirect('s1210_detpgtofl_retpgtotot', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -208,17 +208,17 @@ def listar(request, hash):
             filtrar = True
             s1210_detpgtofl_retpgtotot_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s1210_detpgtofl_retpgtotot_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1210_detpgtofl_retpgtotot'
         context = {
             's1210_detpgtofl_retpgtotot_lista': s1210_detpgtofl_retpgtotot_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -228,7 +228,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 's1210_detpgtofl_retpgtotot_listar.html', context)
@@ -271,10 +271,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -368,12 +368,12 @@ def salvar(request, hash):
             s1210_detpgtofl_retpgtotot_form.fields[field].widget.attrs['ng-model'] = 's1210_detpgtofl_retpgtotot_'+field
         if int(dict_hash['print']):
             s1210_detpgtofl_retpgtotot_form = disabled_form_for_print(s1210_detpgtofl_retpgtotot_form)
-   
+
         s1210_detpgtofl_penalim_form = None
         s1210_detpgtofl_penalim_lista = None
         if s1210_detpgtofl_retpgtotot_id:
             s1210_detpgtofl_retpgtotot = get_object_or_404(s1210detPgtoFlretPgtoTot.objects.using( db_slug ), excluido = False, id = s1210_detpgtofl_retpgtotot_id)
-       
+
             s1210_detpgtofl_penalim_form = form_s1210_detpgtofl_penalim(initial={ 's1210_detpgtofl_retpgtotot': s1210_detpgtofl_retpgtotot }, slug=db_slug)
             s1210_detpgtofl_penalim_form.fields['s1210_detpgtofl_retpgtotot'].widget.attrs['readonly'] = True
             s1210_detpgtofl_penalim_lista = s1210detPgtoFlpenAlim.objects.using( db_slug ).filter(excluido = False, s1210_detpgtofl_retpgtotot_id=s1210_detpgtofl_retpgtotot.id).all()
@@ -397,14 +397,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1210_detpgtofl_retpgtotot_id': int(s1210_detpgtofl_retpgtotot_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             's1210_detpgtofl_penalim_form': s1210_detpgtofl_penalim_form,
             's1210_detpgtofl_penalim_lista': s1210_detpgtofl_penalim_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -448,10 +448,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

@@ -92,17 +92,17 @@ def apagar(request, hash):
                              'r2050_tipocom', r2050_tipocom_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 'r2050_tipocom_salvar':
             return redirect('r2050_tipocom', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -196,17 +196,17 @@ def listar(request, hash):
             filtrar = True
             r2050_tipocom_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #r2050_tipocom_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r2050_tipocom'
         context = {
             'r2050_tipocom_lista': r2050_tipocom_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -216,7 +216,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 'r2050_tipocom_listar.html', context)
@@ -259,10 +259,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -356,12 +356,12 @@ def salvar(request, hash):
             r2050_tipocom_form.fields[field].widget.attrs['ng-model'] = 'r2050_tipocom_'+field
         if int(dict_hash['print']):
             r2050_tipocom_form = disabled_form_for_print(r2050_tipocom_form)
-   
+
         r2050_infoproc_form = None
         r2050_infoproc_lista = None
         if r2050_tipocom_id:
             r2050_tipocom = get_object_or_404(r2050tipoCom.objects.using( db_slug ), excluido = False, id = r2050_tipocom_id)
-       
+
             r2050_infoproc_form = form_r2050_infoproc(initial={ 'r2050_tipocom': r2050_tipocom }, slug=db_slug)
             r2050_infoproc_form.fields['r2050_tipocom'].widget.attrs['readonly'] = True
             r2050_infoproc_lista = r2050infoProc.objects.using( db_slug ).filter(excluido = False, r2050_tipocom_id=r2050_tipocom.id).all()
@@ -385,14 +385,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r2050_tipocom_id': int(r2050_tipocom_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             'r2050_infoproc_form': r2050_infoproc_form,
             'r2050_infoproc_lista': r2050_infoproc_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -436,10 +436,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

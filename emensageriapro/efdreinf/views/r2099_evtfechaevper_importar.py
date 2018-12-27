@@ -101,7 +101,7 @@ def read_r2099_evtfechaevper_obj(doc, status, validar=False):
         for ideRespInf in evtFechaEvPer.ideRespInf:
             r2099_iderespinf_dados = {}
             r2099_iderespinf_dados['r2099_evtfechaevper_id'] = r2099_evtfechaevper_id
-       
+
             if 'nmResp' in dir(ideRespInf): r2099_iderespinf_dados['nmresp'] = ideRespInf.nmResp.cdata
             if 'cpfResp' in dir(ideRespInf): r2099_iderespinf_dados['cpfresp'] = ideRespInf.cpfResp.cdata
             if 'telefone' in dir(ideRespInf): r2099_iderespinf_dados['telefone'] = ideRespInf.telefone.cdata

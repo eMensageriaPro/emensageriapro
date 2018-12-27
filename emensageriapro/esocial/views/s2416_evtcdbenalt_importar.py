@@ -103,7 +103,7 @@ def read_s2416_evtcdbenalt_obj(doc, status, validar=False):
         for infoPenMorte in evtCdBenAlt.infoBenAlteracao.dadosBeneficio.infoPenMorte:
             s2416_infopenmorte_dados = {}
             s2416_infopenmorte_dados['s2416_evtcdbenalt_id'] = s2416_evtcdbenalt_id
-       
+
             if 'tpPenMorte' in dir(infoPenMorte): s2416_infopenmorte_dados['tppenmorte'] = infoPenMorte.tpPenMorte.cdata
             insert = create_insert('s2416_infopenmorte', s2416_infopenmorte_dados)
             resp = executar_sql(insert, True)
@@ -114,7 +114,7 @@ def read_s2416_evtcdbenalt_obj(doc, status, validar=False):
         for homologTC in evtCdBenAlt.infoBenAlteracao.dadosBeneficio.homologTC:
             s2416_homologtc_dados = {}
             s2416_homologtc_dados['s2416_evtcdbenalt_id'] = s2416_evtcdbenalt_id
-       
+
             if 'nrAtoLegal' in dir(homologTC): s2416_homologtc_dados['nratolegal'] = homologTC.nrAtoLegal.cdata
             insert = create_insert('s2416_homologtc', s2416_homologtc_dados)
             resp = executar_sql(insert, True)
@@ -125,7 +125,7 @@ def read_s2416_evtcdbenalt_obj(doc, status, validar=False):
         for suspensao in evtCdBenAlt.infoBenAlteracao.dadosBeneficio.suspensao:
             s2416_suspensao_dados = {}
             s2416_suspensao_dados['s2416_evtcdbenalt_id'] = s2416_evtcdbenalt_id
-       
+
             if 'mtvSuspensao' in dir(suspensao): s2416_suspensao_dados['mtvsuspensao'] = suspensao.mtvSuspensao.cdata
             if 'dscSuspensao' in dir(suspensao): s2416_suspensao_dados['dscsuspensao'] = suspensao.dscSuspensao.cdata
             insert = create_insert('s2416_suspensao', s2416_suspensao_dados)

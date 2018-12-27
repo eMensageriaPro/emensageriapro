@@ -128,7 +128,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for CTPS in evtAdmissao.trabalhador.documentos.CTPS:
             s2200_ctps_dados = {}
             s2200_ctps_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'nrCtps' in dir(CTPS): s2200_ctps_dados['nrctps'] = CTPS.nrCtps.cdata
             if 'serieCtps' in dir(CTPS): s2200_ctps_dados['seriectps'] = CTPS.serieCtps.cdata
             if 'ufCtps' in dir(CTPS): s2200_ctps_dados['ufctps'] = CTPS.ufCtps.cdata
@@ -141,7 +141,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for RIC in evtAdmissao.trabalhador.documentos.RIC:
             s2200_ric_dados = {}
             s2200_ric_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'nrRic' in dir(RIC): s2200_ric_dados['nrric'] = RIC.nrRic.cdata
             if 'orgaoEmissor' in dir(RIC): s2200_ric_dados['orgaoemissor'] = RIC.orgaoEmissor.cdata
             if 'dtExped' in dir(RIC): s2200_ric_dados['dtexped'] = RIC.dtExped.cdata
@@ -154,7 +154,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for RG in evtAdmissao.trabalhador.documentos.RG:
             s2200_rg_dados = {}
             s2200_rg_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'nrRg' in dir(RG): s2200_rg_dados['nrrg'] = RG.nrRg.cdata
             if 'orgaoEmissor' in dir(RG): s2200_rg_dados['orgaoemissor'] = RG.orgaoEmissor.cdata
             if 'dtExped' in dir(RG): s2200_rg_dados['dtexped'] = RG.dtExped.cdata
@@ -167,7 +167,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for RNE in evtAdmissao.trabalhador.documentos.RNE:
             s2200_rne_dados = {}
             s2200_rne_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'nrRne' in dir(RNE): s2200_rne_dados['nrrne'] = RNE.nrRne.cdata
             if 'orgaoEmissor' in dir(RNE): s2200_rne_dados['orgaoemissor'] = RNE.orgaoEmissor.cdata
             if 'dtExped' in dir(RNE): s2200_rne_dados['dtexped'] = RNE.dtExped.cdata
@@ -180,7 +180,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for OC in evtAdmissao.trabalhador.documentos.OC:
             s2200_oc_dados = {}
             s2200_oc_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'nrOc' in dir(OC): s2200_oc_dados['nroc'] = OC.nrOc.cdata
             if 'orgaoEmissor' in dir(OC): s2200_oc_dados['orgaoemissor'] = OC.orgaoEmissor.cdata
             if 'dtExped' in dir(OC): s2200_oc_dados['dtexped'] = OC.dtExped.cdata
@@ -194,7 +194,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for CNH in evtAdmissao.trabalhador.documentos.CNH:
             s2200_cnh_dados = {}
             s2200_cnh_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'nrRegCnh' in dir(CNH): s2200_cnh_dados['nrregcnh'] = CNH.nrRegCnh.cdata
             if 'dtExped' in dir(CNH): s2200_cnh_dados['dtexped'] = CNH.dtExped.cdata
             if 'ufCnh' in dir(CNH): s2200_cnh_dados['ufcnh'] = CNH.ufCnh.cdata
@@ -210,7 +210,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for brasil in evtAdmissao.trabalhador.endereco.brasil:
             s2200_brasil_dados = {}
             s2200_brasil_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'tpLograd' in dir(brasil): s2200_brasil_dados['tplograd'] = brasil.tpLograd.cdata
             if 'dscLograd' in dir(brasil): s2200_brasil_dados['dsclograd'] = brasil.dscLograd.cdata
             if 'nrLograd' in dir(brasil): s2200_brasil_dados['nrlograd'] = brasil.nrLograd.cdata
@@ -228,7 +228,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for exterior in evtAdmissao.trabalhador.endereco.exterior:
             s2200_exterior_dados = {}
             s2200_exterior_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'paisResid' in dir(exterior): s2200_exterior_dados['paisresid'] = exterior.paisResid.cdata
             if 'dscLograd' in dir(exterior): s2200_exterior_dados['dsclograd'] = exterior.dscLograd.cdata
             if 'nrLograd' in dir(exterior): s2200_exterior_dados['nrlograd'] = exterior.nrLograd.cdata
@@ -245,7 +245,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for trabEstrangeiro in evtAdmissao.trabalhador.trabEstrangeiro:
             s2200_trabestrangeiro_dados = {}
             s2200_trabestrangeiro_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'dtChegada' in dir(trabEstrangeiro): s2200_trabestrangeiro_dados['dtchegada'] = trabEstrangeiro.dtChegada.cdata
             if 'classTrabEstrang' in dir(trabEstrangeiro): s2200_trabestrangeiro_dados['classtrabestrang'] = trabEstrangeiro.classTrabEstrang.cdata
             if 'casadoBr' in dir(trabEstrangeiro): s2200_trabestrangeiro_dados['casadobr'] = trabEstrangeiro.casadoBr.cdata
@@ -259,7 +259,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for infoDeficiencia in evtAdmissao.trabalhador.infoDeficiencia:
             s2200_infodeficiencia_dados = {}
             s2200_infodeficiencia_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'defFisica' in dir(infoDeficiencia): s2200_infodeficiencia_dados['deffisica'] = infoDeficiencia.defFisica.cdata
             if 'defVisual' in dir(infoDeficiencia): s2200_infodeficiencia_dados['defvisual'] = infoDeficiencia.defVisual.cdata
             if 'defAuditiva' in dir(infoDeficiencia): s2200_infodeficiencia_dados['defauditiva'] = infoDeficiencia.defAuditiva.cdata
@@ -277,7 +277,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for dependente in evtAdmissao.trabalhador.dependente:
             s2200_dependente_dados = {}
             s2200_dependente_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'tpDep' in dir(dependente): s2200_dependente_dados['tpdep'] = dependente.tpDep.cdata
             if 'nmDep' in dir(dependente): s2200_dependente_dados['nmdep'] = dependente.nmDep.cdata
             if 'dtNascto' in dir(dependente): s2200_dependente_dados['dtnascto'] = dependente.dtNascto.cdata
@@ -296,7 +296,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for aposentadoria in evtAdmissao.trabalhador.aposentadoria:
             s2200_aposentadoria_dados = {}
             s2200_aposentadoria_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'trabAposent' in dir(aposentadoria): s2200_aposentadoria_dados['trabaposent'] = aposentadoria.trabAposent.cdata
             insert = create_insert('s2200_aposentadoria', s2200_aposentadoria_dados)
             resp = executar_sql(insert, True)
@@ -307,7 +307,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for contato in evtAdmissao.trabalhador.contato:
             s2200_contato_dados = {}
             s2200_contato_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'fonePrinc' in dir(contato): s2200_contato_dados['foneprinc'] = contato.fonePrinc.cdata
             if 'foneAlternat' in dir(contato): s2200_contato_dados['fonealternat'] = contato.foneAlternat.cdata
             if 'emailPrinc' in dir(contato): s2200_contato_dados['emailprinc'] = contato.emailPrinc.cdata
@@ -321,7 +321,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for infoCeletista in evtAdmissao.vinculo.infoRegimeTrab.infoCeletista:
             s2200_infoceletista_dados = {}
             s2200_infoceletista_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'dtAdm' in dir(infoCeletista): s2200_infoceletista_dados['dtadm'] = infoCeletista.dtAdm.cdata
             if 'tpAdmissao' in dir(infoCeletista): s2200_infoceletista_dados['tpadmissao'] = infoCeletista.tpAdmissao.cdata
             if 'indAdmissao' in dir(infoCeletista): s2200_infoceletista_dados['indadmissao'] = infoCeletista.indAdmissao.cdata
@@ -340,7 +340,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
                 for trabTemporario in infoCeletista.trabTemporario:
                     s2200_trabtemporario_dados = {}
                     s2200_trabtemporario_dados['s2200_infoceletista_id'] = s2200_infoceletista_id
-               
+
                     if 'hipLeg' in dir(trabTemporario): s2200_trabtemporario_dados['hipleg'] = trabTemporario.hipLeg.cdata
                     if 'justContr' in dir(trabTemporario): s2200_trabtemporario_dados['justcontr'] = trabTemporario.justContr.cdata
                     if 'tpInclContr' in dir(trabTemporario): s2200_trabtemporario_dados['tpinclcontr'] = trabTemporario.tpInclContr.cdata
@@ -350,24 +350,24 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s2200_trabtemporario_id = resp[0][0]
                     #print s2200_trabtemporario_id
-   
+
             if 'aprend' in dir(infoCeletista):
                 for aprend in infoCeletista.aprend:
                     s2200_aprend_dados = {}
                     s2200_aprend_dados['s2200_infoceletista_id'] = s2200_infoceletista_id
-               
+
                     if 'tpInsc' in dir(aprend): s2200_aprend_dados['tpinsc'] = aprend.tpInsc.cdata
                     if 'nrInsc' in dir(aprend): s2200_aprend_dados['nrinsc'] = aprend.nrInsc.cdata
                     insert = create_insert('s2200_aprend', s2200_aprend_dados)
                     resp = executar_sql(insert, True)
                     s2200_aprend_id = resp[0][0]
                     #print s2200_aprend_id
-   
+
     if 'infoEstatutario' in dir(evtAdmissao.vinculo.infoRegimeTrab):
         for infoEstatutario in evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario:
             s2200_infoestatutario_dados = {}
             s2200_infoestatutario_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'indProvim' in dir(infoEstatutario): s2200_infoestatutario_dados['indprovim'] = infoEstatutario.indProvim.cdata
             if 'tpProv' in dir(infoEstatutario): s2200_infoestatutario_dados['tpprov'] = infoEstatutario.tpProv.cdata
             if 'dtNomeacao' in dir(infoEstatutario): s2200_infoestatutario_dados['dtnomeacao'] = infoEstatutario.dtNomeacao.cdata
@@ -389,18 +389,18 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
                 for infoDecJud in infoEstatutario.infoDecJud:
                     s2200_infodecjud_dados = {}
                     s2200_infodecjud_dados['s2200_infoestatutario_id'] = s2200_infoestatutario_id
-               
+
                     if 'nrProcJud' in dir(infoDecJud): s2200_infodecjud_dados['nrprocjud'] = infoDecJud.nrProcJud.cdata
                     insert = create_insert('s2200_infodecjud', s2200_infodecjud_dados)
                     resp = executar_sql(insert, True)
                     s2200_infodecjud_id = resp[0][0]
                     #print s2200_infodecjud_id
-   
+
     if 'localTrabGeral' in dir(evtAdmissao.vinculo.infoContrato.localTrabalho):
         for localTrabGeral in evtAdmissao.vinculo.infoContrato.localTrabalho.localTrabGeral:
             s2200_localtrabgeral_dados = {}
             s2200_localtrabgeral_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'tpInsc' in dir(localTrabGeral): s2200_localtrabgeral_dados['tpinsc'] = localTrabGeral.tpInsc.cdata
             if 'nrInsc' in dir(localTrabGeral): s2200_localtrabgeral_dados['nrinsc'] = localTrabGeral.nrInsc.cdata
             if 'descComp' in dir(localTrabGeral): s2200_localtrabgeral_dados['desccomp'] = localTrabGeral.descComp.cdata
@@ -413,7 +413,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for localTrabDom in evtAdmissao.vinculo.infoContrato.localTrabalho.localTrabDom:
             s2200_localtrabdom_dados = {}
             s2200_localtrabdom_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'tpLograd' in dir(localTrabDom): s2200_localtrabdom_dados['tplograd'] = localTrabDom.tpLograd.cdata
             if 'dscLograd' in dir(localTrabDom): s2200_localtrabdom_dados['dsclograd'] = localTrabDom.dscLograd.cdata
             if 'nrLograd' in dir(localTrabDom): s2200_localtrabdom_dados['nrlograd'] = localTrabDom.nrLograd.cdata
@@ -431,7 +431,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for horContratual in evtAdmissao.vinculo.infoContrato.horContratual:
             s2200_horcontratual_dados = {}
             s2200_horcontratual_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'qtdHrsSem' in dir(horContratual): s2200_horcontratual_dados['qtdhrssem'] = horContratual.qtdHrsSem.cdata
             if 'tpJornada' in dir(horContratual): s2200_horcontratual_dados['tpjornada'] = horContratual.tpJornada.cdata
             if 'dscTpJorn' in dir(horContratual): s2200_horcontratual_dados['dsctpjorn'] = horContratual.dscTpJorn.cdata
@@ -445,19 +445,19 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
                 for horario in horContratual.horario:
                     s2200_horario_dados = {}
                     s2200_horario_dados['s2200_horcontratual_id'] = s2200_horcontratual_id
-               
+
                     if 'dia' in dir(horario): s2200_horario_dados['dia'] = horario.dia.cdata
                     if 'codHorContrat' in dir(horario): s2200_horario_dados['codhorcontrat'] = horario.codHorContrat.cdata
                     insert = create_insert('s2200_horario', s2200_horario_dados)
                     resp = executar_sql(insert, True)
                     s2200_horario_id = resp[0][0]
                     #print s2200_horario_id
-   
+
     if 'filiacaoSindical' in dir(evtAdmissao.vinculo.infoContrato):
         for filiacaoSindical in evtAdmissao.vinculo.infoContrato.filiacaoSindical:
             s2200_filiacaosindical_dados = {}
             s2200_filiacaosindical_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'cnpjSindTrab' in dir(filiacaoSindical): s2200_filiacaosindical_dados['cnpjsindtrab'] = filiacaoSindical.cnpjSindTrab.cdata
             insert = create_insert('s2200_filiacaosindical', s2200_filiacaosindical_dados)
             resp = executar_sql(insert, True)
@@ -468,7 +468,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for alvaraJudicial in evtAdmissao.vinculo.infoContrato.alvaraJudicial:
             s2200_alvarajudicial_dados = {}
             s2200_alvarajudicial_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'nrProcJud' in dir(alvaraJudicial): s2200_alvarajudicial_dados['nrprocjud'] = alvaraJudicial.nrProcJud.cdata
             insert = create_insert('s2200_alvarajudicial', s2200_alvarajudicial_dados)
             resp = executar_sql(insert, True)
@@ -479,7 +479,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for observacoes in evtAdmissao.vinculo.infoContrato.observacoes:
             s2200_observacoes_dados = {}
             s2200_observacoes_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'observacao' in dir(observacoes): s2200_observacoes_dados['observacao'] = observacoes.observacao.cdata
             insert = create_insert('s2200_observacoes', s2200_observacoes_dados)
             resp = executar_sql(insert, True)
@@ -490,7 +490,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for sucessaoVinc in evtAdmissao.vinculo.sucessaoVinc:
             s2200_sucessaovinc_dados = {}
             s2200_sucessaovinc_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'tpInscAnt' in dir(sucessaoVinc): s2200_sucessaovinc_dados['tpinscant'] = sucessaoVinc.tpInscAnt.cdata
             if 'cnpjEmpregAnt' in dir(sucessaoVinc): s2200_sucessaovinc_dados['cnpjempregant'] = sucessaoVinc.cnpjEmpregAnt.cdata
             if 'matricAnt' in dir(sucessaoVinc): s2200_sucessaovinc_dados['matricant'] = sucessaoVinc.matricAnt.cdata
@@ -505,7 +505,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for transfDom in evtAdmissao.vinculo.transfDom:
             s2200_transfdom_dados = {}
             s2200_transfdom_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'cpfSubstituido' in dir(transfDom): s2200_transfdom_dados['cpfsubstituido'] = transfDom.cpfSubstituido.cdata
             if 'matricAnt' in dir(transfDom): s2200_transfdom_dados['matricant'] = transfDom.matricAnt.cdata
             if 'dtTransf' in dir(transfDom): s2200_transfdom_dados['dttransf'] = transfDom.dtTransf.cdata
@@ -518,7 +518,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for mudancaCPF in evtAdmissao.vinculo.mudancaCPF:
             s2200_mudancacpf_dados = {}
             s2200_mudancacpf_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'cpfAnt' in dir(mudancaCPF): s2200_mudancacpf_dados['cpfant'] = mudancaCPF.cpfAnt.cdata
             if 'matricAnt' in dir(mudancaCPF): s2200_mudancacpf_dados['matricant'] = mudancaCPF.matricAnt.cdata
             if 'dtAltCPF' in dir(mudancaCPF): s2200_mudancacpf_dados['dtaltcpf'] = mudancaCPF.dtAltCPF.cdata
@@ -532,7 +532,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for afastamento in evtAdmissao.vinculo.afastamento:
             s2200_afastamento_dados = {}
             s2200_afastamento_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'dtIniAfast' in dir(afastamento): s2200_afastamento_dados['dtiniafast'] = afastamento.dtIniAfast.cdata
             if 'codMotAfast' in dir(afastamento): s2200_afastamento_dados['codmotafast'] = afastamento.codMotAfast.cdata
             insert = create_insert('s2200_afastamento', s2200_afastamento_dados)
@@ -544,7 +544,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for desligamento in evtAdmissao.vinculo.desligamento:
             s2200_desligamento_dados = {}
             s2200_desligamento_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'dtDeslig' in dir(desligamento): s2200_desligamento_dados['dtdeslig'] = desligamento.dtDeslig.cdata
             insert = create_insert('s2200_desligamento', s2200_desligamento_dados)
             resp = executar_sql(insert, True)
@@ -555,7 +555,7 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
         for cessao in evtAdmissao.vinculo.cessao:
             s2200_cessao_dados = {}
             s2200_cessao_dados['s2200_evtadmissao_id'] = s2200_evtadmissao_id
-       
+
             if 'dtIniCessao' in dir(cessao): s2200_cessao_dados['dtinicessao'] = cessao.dtIniCessao.cdata
             insert = create_insert('s2200_cessao', s2200_cessao_dados)
             resp = executar_sql(insert, True)

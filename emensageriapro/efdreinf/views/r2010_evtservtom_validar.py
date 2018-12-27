@@ -68,7 +68,7 @@ def validacoes_r2010_evtservtom(arquivo):
     if 'indCPRB' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ): validacoes_lista = validar_campo(validacoes_lista,'evtServTom.infoServTom.ideEstabObra.idePrestServ.indCPRB', evtServTom.infoServTom.ideEstabObra.idePrestServ.indCPRB.cdata, 1, '0;1')
     if 'nfs' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ):
         for nfs in evtServTom.infoServTom.ideEstabObra.idePrestServ.nfs:
-       
+
             if 'serie' in dir(nfs): validacoes_lista = validar_campo(validacoes_lista,'nfs.serie', nfs.serie.cdata, 1, '')
             if 'numDocto' in dir(nfs): validacoes_lista = validar_campo(validacoes_lista,'nfs.numDocto', nfs.numDocto.cdata, 1, '')
             if 'dtEmissaoNF' in dir(nfs): validacoes_lista = validar_campo(validacoes_lista,'nfs.dtEmissaoNF', nfs.dtEmissaoNF.cdata, 1, '')
@@ -77,7 +77,7 @@ def validacoes_r2010_evtservtom(arquivo):
 
             if 'infoTpServ' in dir(nfs):
                 for infoTpServ in nfs.infoTpServ:
-               
+
                     if 'tpServico' in dir(infoTpServ): validacoes_lista = validar_campo(validacoes_lista,'infoTpServ.tpServico', infoTpServ.tpServico.cdata, 1, '')
                     if 'vlrBaseRet' in dir(infoTpServ): validacoes_lista = validar_campo(validacoes_lista,'infoTpServ.vlrBaseRet', infoTpServ.vlrBaseRet.cdata, 1, '')
                     if 'vlrRetencao' in dir(infoTpServ): validacoes_lista = validar_campo(validacoes_lista,'infoTpServ.vlrRetencao', infoTpServ.vlrRetencao.cdata, 1, '')
@@ -88,10 +88,10 @@ def validacoes_r2010_evtservtom(arquivo):
                     if 'vlrServicos25' in dir(infoTpServ): validacoes_lista = validar_campo(validacoes_lista,'infoTpServ.vlrServicos25', infoTpServ.vlrServicos25.cdata, 0, '')
                     if 'vlrAdicional' in dir(infoTpServ): validacoes_lista = validar_campo(validacoes_lista,'infoTpServ.vlrAdicional', infoTpServ.vlrAdicional.cdata, 0, '')
                     if 'vlrNRetAdic' in dir(infoTpServ): validacoes_lista = validar_campo(validacoes_lista,'infoTpServ.vlrNRetAdic', infoTpServ.vlrNRetAdic.cdata, 0, '')
-   
+
     if 'infoProcRetPr' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ):
         for infoProcRetPr in evtServTom.infoServTom.ideEstabObra.idePrestServ.infoProcRetPr:
-       
+
             if 'tpProcRetPrinc' in dir(infoProcRetPr): validacoes_lista = validar_campo(validacoes_lista,'infoProcRetPr.tpProcRetPrinc', infoProcRetPr.tpProcRetPrinc.cdata, 1, '1;2')
             if 'nrProcRetPrinc' in dir(infoProcRetPr): validacoes_lista = validar_campo(validacoes_lista,'infoProcRetPr.nrProcRetPrinc', infoProcRetPr.nrProcRetPrinc.cdata, 1, '')
             if 'codSuspPrinc' in dir(infoProcRetPr): validacoes_lista = validar_campo(validacoes_lista,'infoProcRetPr.codSuspPrinc', infoProcRetPr.codSuspPrinc.cdata, 0, '')
@@ -99,7 +99,7 @@ def validacoes_r2010_evtservtom(arquivo):
 
     if 'infoProcRetAd' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ):
         for infoProcRetAd in evtServTom.infoServTom.ideEstabObra.idePrestServ.infoProcRetAd:
-       
+
             if 'tpProcRetAdic' in dir(infoProcRetAd): validacoes_lista = validar_campo(validacoes_lista,'infoProcRetAd.tpProcRetAdic', infoProcRetAd.tpProcRetAdic.cdata, 1, '1;2')
             if 'nrProcRetAdic' in dir(infoProcRetAd): validacoes_lista = validar_campo(validacoes_lista,'infoProcRetAd.nrProcRetAdic', infoProcRetAd.nrProcRetAdic.cdata, 1, '')
             if 'codSuspAdic' in dir(infoProcRetAd): validacoes_lista = validar_campo(validacoes_lista,'infoProcRetAd.codSuspAdic', infoProcRetAd.codSuspAdic.cdata, 0, '')

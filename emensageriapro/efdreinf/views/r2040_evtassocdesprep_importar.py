@@ -97,7 +97,7 @@ def read_r2040_evtassocdesprep_obj(doc, status, validar=False):
         for recursosRep in evtAssocDespRep.ideContri.ideEstab.recursosRep:
             r2040_recursosrep_dados = {}
             r2040_recursosrep_dados['r2040_evtassocdesprep_id'] = r2040_evtassocdesprep_id
-       
+
             if 'cnpjAssocDesp' in dir(recursosRep): r2040_recursosrep_dados['cnpjassocdesp'] = recursosRep.cnpjAssocDesp.cdata
             if 'vlrTotalRep' in dir(recursosRep): r2040_recursosrep_dados['vlrtotalrep'] = recursosRep.vlrTotalRep.cdata
             if 'vlrTotalRet' in dir(recursosRep): r2040_recursosrep_dados['vlrtotalret'] = recursosRep.vlrTotalRet.cdata
@@ -111,7 +111,7 @@ def read_r2040_evtassocdesprep_obj(doc, status, validar=False):
                 for infoRecurso in recursosRep.infoRecurso:
                     r2040_inforecurso_dados = {}
                     r2040_inforecurso_dados['r2040_recursosrep_id'] = r2040_recursosrep_id
-               
+
                     if 'tpRepasse' in dir(infoRecurso): r2040_inforecurso_dados['tprepasse'] = infoRecurso.tpRepasse.cdata
                     if 'descRecurso' in dir(infoRecurso): r2040_inforecurso_dados['descrecurso'] = infoRecurso.descRecurso.cdata
                     if 'vlrBruto' in dir(infoRecurso): r2040_inforecurso_dados['vlrbruto'] = infoRecurso.vlrBruto.cdata
@@ -120,12 +120,12 @@ def read_r2040_evtassocdesprep_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r2040_inforecurso_id = resp[0][0]
                     #print r2040_inforecurso_id
-   
+
             if 'infoProc' in dir(recursosRep):
                 for infoProc in recursosRep.infoProc:
                     r2040_infoproc_dados = {}
                     r2040_infoproc_dados['r2040_recursosrep_id'] = r2040_recursosrep_id
-               
+
                     if 'tpProc' in dir(infoProc): r2040_infoproc_dados['tpproc'] = infoProc.tpProc.cdata
                     if 'nrProc' in dir(infoProc): r2040_infoproc_dados['nrproc'] = infoProc.nrProc.cdata
                     if 'codSusp' in dir(infoProc): r2040_infoproc_dados['codsusp'] = infoProc.codSusp.cdata
@@ -134,7 +134,7 @@ def read_r2040_evtassocdesprep_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r2040_infoproc_id = resp[0][0]
                     #print r2040_infoproc_id
-   
+
     from emensageriapro.efdreinf.views.r2040_evtassocdesprep_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(r2040_evtassocdesprep_id, 'default')
     return dados

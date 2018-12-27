@@ -106,7 +106,7 @@ def read_s2410_evtcdbenin_obj(doc, status, validar=False):
         for infoPenMorte in evtCdBenIn.infoBenInicio.dadosBeneficio.infoPenMorte:
             s2410_infopenmorte_dados = {}
             s2410_infopenmorte_dados['s2410_evtcdbenin_id'] = s2410_evtcdbenin_id
-       
+
             if 'tpPenMorte' in dir(infoPenMorte): s2410_infopenmorte_dados['tppenmorte'] = infoPenMorte.tpPenMorte.cdata
             insert = create_insert('s2410_infopenmorte', s2410_infopenmorte_dados)
             resp = executar_sql(insert, True)
@@ -117,7 +117,7 @@ def read_s2410_evtcdbenin_obj(doc, status, validar=False):
                 for instPenMorte in infoPenMorte.instPenMorte:
                     s2410_instpenmorte_dados = {}
                     s2410_instpenmorte_dados['s2410_infopenmorte_id'] = s2410_infopenmorte_id
-               
+
                     if 'cpfInst' in dir(instPenMorte): s2410_instpenmorte_dados['cpfinst'] = instPenMorte.cpfInst.cdata
                     if 'dtInst' in dir(instPenMorte): s2410_instpenmorte_dados['dtinst'] = instPenMorte.dtInst.cdata
                     if 'intAposentado' in dir(instPenMorte): s2410_instpenmorte_dados['intaposentado'] = instPenMorte.intAposentado.cdata
@@ -125,12 +125,12 @@ def read_s2410_evtcdbenin_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s2410_instpenmorte_id = resp[0][0]
                     #print s2410_instpenmorte_id
-   
+
     if 'homologTC' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio):
         for homologTC in evtCdBenIn.infoBenInicio.dadosBeneficio.homologTC:
             s2410_homologtc_dados = {}
             s2410_homologtc_dados['s2410_evtcdbenin_id'] = s2410_evtcdbenin_id
-       
+
             if 'dtHomol' in dir(homologTC): s2410_homologtc_dados['dthomol'] = homologTC.dtHomol.cdata
             if 'nrAtoLegal' in dir(homologTC): s2410_homologtc_dados['nratolegal'] = homologTC.nrAtoLegal.cdata
             insert = create_insert('s2410_homologtc', s2410_homologtc_dados)

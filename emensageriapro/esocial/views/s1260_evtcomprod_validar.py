@@ -59,25 +59,25 @@ def validacoes_s1260_evtcomprod(arquivo):
     if 'nrInscEstabRural' in dir(evtComProd.infoComProd.ideEstabel): validacoes_lista = validar_campo(validacoes_lista,'evtComProd.infoComProd.ideEstabel.nrInscEstabRural', evtComProd.infoComProd.ideEstabel.nrInscEstabRural.cdata, 1, '')
     if 'tpComerc' in dir(evtComProd.infoComProd.ideEstabel):
         for tpComerc in evtComProd.infoComProd.ideEstabel.tpComerc:
-       
+
             if 'indComerc' in dir(tpComerc): validacoes_lista = validar_campo(validacoes_lista,'tpComerc.indComerc', tpComerc.indComerc.cdata, 1, '2;3;7;8;9')
             if 'vrTotCom' in dir(tpComerc): validacoes_lista = validar_campo(validacoes_lista,'tpComerc.vrTotCom', tpComerc.vrTotCom.cdata, 1, '')
 
             if 'ideAdquir' in dir(tpComerc):
                 for ideAdquir in tpComerc.ideAdquir:
-               
+
                     if 'tpInsc' in dir(ideAdquir): validacoes_lista = validar_campo(validacoes_lista,'ideAdquir.tpInsc', ideAdquir.tpInsc.cdata, 1, '1;2;3;4')
                     if 'nrInsc' in dir(ideAdquir): validacoes_lista = validar_campo(validacoes_lista,'ideAdquir.nrInsc', ideAdquir.nrInsc.cdata, 1, '')
                     if 'vrComerc' in dir(ideAdquir): validacoes_lista = validar_campo(validacoes_lista,'ideAdquir.vrComerc', ideAdquir.vrComerc.cdata, 1, '')
-   
+
             if 'infoProcJud' in dir(tpComerc):
                 for infoProcJud in tpComerc.infoProcJud:
-               
+
                     if 'tpProc' in dir(infoProcJud): validacoes_lista = validar_campo(validacoes_lista,'infoProcJud.tpProc', infoProcJud.tpProc.cdata, 1, '1;2')
                     if 'nrProc' in dir(infoProcJud): validacoes_lista = validar_campo(validacoes_lista,'infoProcJud.nrProc', infoProcJud.nrProc.cdata, 1, '')
                     if 'codSusp' in dir(infoProcJud): validacoes_lista = validar_campo(validacoes_lista,'infoProcJud.codSusp', infoProcJud.codSusp.cdata, 1, '')
                     if 'vrCPSusp' in dir(infoProcJud): validacoes_lista = validar_campo(validacoes_lista,'infoProcJud.vrCPSusp', infoProcJud.vrCPSusp.cdata, 0, '')
                     if 'vrRatSusp' in dir(infoProcJud): validacoes_lista = validar_campo(validacoes_lista,'infoProcJud.vrRatSusp', infoProcJud.vrRatSusp.cdata, 0, '')
                     if 'vrSenarSusp' in dir(infoProcJud): validacoes_lista = validar_campo(validacoes_lista,'infoProcJud.vrSenarSusp', infoProcJud.vrSenarSusp.cdata, 0, '')
-   
+
     return validacoes_lista

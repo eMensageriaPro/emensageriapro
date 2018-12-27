@@ -64,7 +64,7 @@ def validacoes_r3010_evtespdesportivo(arquivo):
     if 'vlrRetParc' in dir(evtEspDesportivo.ideContri.ideEstab.receitaTotal): validacoes_lista = validar_campo(validacoes_lista,'evtEspDesportivo.ideContri.ideEstab.receitaTotal.vlrRetParc', evtEspDesportivo.ideContri.ideEstab.receitaTotal.vlrRetParc.cdata, 1, '')
     if 'boletim' in dir(evtEspDesportivo.ideContri.ideEstab):
         for boletim in evtEspDesportivo.ideContri.ideEstab.boletim:
-       
+
             if 'nrBoletim' in dir(boletim): validacoes_lista = validar_campo(validacoes_lista,'boletim.nrBoletim', boletim.nrBoletim.cdata, 1, '')
             if 'tpCompeticao' in dir(boletim): validacoes_lista = validar_campo(validacoes_lista,'boletim.tpCompeticao', boletim.tpCompeticao.cdata, 1, '1;2')
             if 'categEvento' in dir(boletim): validacoes_lista = validar_campo(validacoes_lista,'boletim.categEvento', boletim.categEvento.cdata, 1, '1;2;3;4')
@@ -81,7 +81,7 @@ def validacoes_r3010_evtespdesportivo(arquivo):
 
             if 'receitaIngressos' in dir(boletim):
                 for receitaIngressos in boletim.receitaIngressos:
-               
+
                     if 'tpIngresso' in dir(receitaIngressos): validacoes_lista = validar_campo(validacoes_lista,'receitaIngressos.tpIngresso', receitaIngressos.tpIngresso.cdata, 1, '1;2;3;4')
                     if 'descIngr' in dir(receitaIngressos): validacoes_lista = validar_campo(validacoes_lista,'receitaIngressos.descIngr', receitaIngressos.descIngr.cdata, 1, '')
                     if 'qtdeIngrVenda' in dir(receitaIngressos): validacoes_lista = validar_campo(validacoes_lista,'receitaIngressos.qtdeIngrVenda', receitaIngressos.qtdeIngrVenda.cdata, 1, '')
@@ -89,17 +89,17 @@ def validacoes_r3010_evtespdesportivo(arquivo):
                     if 'qtdeIngrDev' in dir(receitaIngressos): validacoes_lista = validar_campo(validacoes_lista,'receitaIngressos.qtdeIngrDev', receitaIngressos.qtdeIngrDev.cdata, 1, '')
                     if 'precoIndiv' in dir(receitaIngressos): validacoes_lista = validar_campo(validacoes_lista,'receitaIngressos.precoIndiv', receitaIngressos.precoIndiv.cdata, 1, '')
                     if 'vlrTotal' in dir(receitaIngressos): validacoes_lista = validar_campo(validacoes_lista,'receitaIngressos.vlrTotal', receitaIngressos.vlrTotal.cdata, 1, '')
-   
+
             if 'outrasReceitas' in dir(boletim):
                 for outrasReceitas in boletim.outrasReceitas:
-               
+
                     if 'tpReceita' in dir(outrasReceitas): validacoes_lista = validar_campo(validacoes_lista,'outrasReceitas.tpReceita', outrasReceitas.tpReceita.cdata, 1, '1;2;3;4;5')
                     if 'vlrReceita' in dir(outrasReceitas): validacoes_lista = validar_campo(validacoes_lista,'outrasReceitas.vlrReceita', outrasReceitas.vlrReceita.cdata, 1, '')
                     if 'descReceita' in dir(outrasReceitas): validacoes_lista = validar_campo(validacoes_lista,'outrasReceitas.descReceita', outrasReceitas.descReceita.cdata, 1, '')
-   
+
     if 'infoProc' in dir(evtEspDesportivo.ideContri.ideEstab.receitaTotal):
         for infoProc in evtEspDesportivo.ideContri.ideEstab.receitaTotal.infoProc:
-       
+
             if 'tpProc' in dir(infoProc): validacoes_lista = validar_campo(validacoes_lista,'infoProc.tpProc', infoProc.tpProc.cdata, 1, '1;2')
             if 'nrProc' in dir(infoProc): validacoes_lista = validar_campo(validacoes_lista,'infoProc.nrProc', infoProc.nrProc.cdata, 1, '')
             if 'codSusp' in dir(infoProc): validacoes_lista = validar_campo(validacoes_lista,'infoProc.codSusp', infoProc.codSusp.cdata, 0, '')

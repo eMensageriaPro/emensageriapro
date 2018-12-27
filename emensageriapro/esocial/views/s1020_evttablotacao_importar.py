@@ -92,7 +92,7 @@ def read_s1020_evttablotacao_obj(doc, status, validar=False):
         for inclusao in evtTabLotacao.infoLotacao.inclusao:
             s1020_inclusao_dados = {}
             s1020_inclusao_dados['s1020_evttablotacao_id'] = s1020_evttablotacao_id
-       
+
             if 'codLotacao' in dir(inclusao.ideLotacao): s1020_inclusao_dados['codlotacao'] = inclusao.ideLotacao.codLotacao.cdata
             if 'iniValid' in dir(inclusao.ideLotacao): s1020_inclusao_dados['inivalid'] = inclusao.ideLotacao.iniValid.cdata
             if 'fimValid' in dir(inclusao.ideLotacao): s1020_inclusao_dados['fimvalid'] = inclusao.ideLotacao.fimValid.cdata
@@ -111,7 +111,7 @@ def read_s1020_evttablotacao_obj(doc, status, validar=False):
                 for procJudTerceiro in inclusao.dadosLotacao.fpasLotacao.infoProcJudTerceiros.procJudTerceiro:
                     s1020_inclusao_procjudterceiro_dados = {}
                     s1020_inclusao_procjudterceiro_dados['s1020_inclusao_id'] = s1020_inclusao_id
-               
+
                     if 'codTerc' in dir(procJudTerceiro): s1020_inclusao_procjudterceiro_dados['codterc'] = procJudTerceiro.codTerc.cdata
                     if 'nrProcJud' in dir(procJudTerceiro): s1020_inclusao_procjudterceiro_dados['nrprocjud'] = procJudTerceiro.nrProcJud.cdata
                     if 'codSusp' in dir(procJudTerceiro): s1020_inclusao_procjudterceiro_dados['codsusp'] = procJudTerceiro.codSusp.cdata
@@ -119,12 +119,12 @@ def read_s1020_evttablotacao_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1020_inclusao_procjudterceiro_id = resp[0][0]
                     #print s1020_inclusao_procjudterceiro_id
-   
+
             if 'infoEmprParcial' in dir(inclusao.dadosLotacao):
                 for infoEmprParcial in inclusao.dadosLotacao.infoEmprParcial:
                     s1020_inclusao_infoemprparcial_dados = {}
                     s1020_inclusao_infoemprparcial_dados['s1020_inclusao_id'] = s1020_inclusao_id
-               
+
                     if 'tpInscContrat' in dir(infoEmprParcial): s1020_inclusao_infoemprparcial_dados['tpinsccontrat'] = infoEmprParcial.tpInscContrat.cdata
                     if 'nrInscContrat' in dir(infoEmprParcial): s1020_inclusao_infoemprparcial_dados['nrinsccontrat'] = infoEmprParcial.nrInscContrat.cdata
                     if 'tpInscProp' in dir(infoEmprParcial): s1020_inclusao_infoemprparcial_dados['tpinscprop'] = infoEmprParcial.tpInscProp.cdata
@@ -133,12 +133,12 @@ def read_s1020_evttablotacao_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1020_inclusao_infoemprparcial_id = resp[0][0]
                     #print s1020_inclusao_infoemprparcial_id
-   
+
     if 'alteracao' in dir(evtTabLotacao.infoLotacao):
         for alteracao in evtTabLotacao.infoLotacao.alteracao:
             s1020_alteracao_dados = {}
             s1020_alteracao_dados['s1020_evttablotacao_id'] = s1020_evttablotacao_id
-       
+
             if 'codLotacao' in dir(alteracao.ideLotacao): s1020_alteracao_dados['codlotacao'] = alteracao.ideLotacao.codLotacao.cdata
             if 'iniValid' in dir(alteracao.ideLotacao): s1020_alteracao_dados['inivalid'] = alteracao.ideLotacao.iniValid.cdata
             if 'fimValid' in dir(alteracao.ideLotacao): s1020_alteracao_dados['fimvalid'] = alteracao.ideLotacao.fimValid.cdata
@@ -157,7 +157,7 @@ def read_s1020_evttablotacao_obj(doc, status, validar=False):
                 for procJudTerceiro in alteracao.dadosLotacao.fpasLotacao.infoProcJudTerceiros.procJudTerceiro:
                     s1020_alteracao_procjudterceiro_dados = {}
                     s1020_alteracao_procjudterceiro_dados['s1020_alteracao_id'] = s1020_alteracao_id
-               
+
                     if 'codTerc' in dir(procJudTerceiro): s1020_alteracao_procjudterceiro_dados['codterc'] = procJudTerceiro.codTerc.cdata
                     if 'nrProcJud' in dir(procJudTerceiro): s1020_alteracao_procjudterceiro_dados['nrprocjud'] = procJudTerceiro.nrProcJud.cdata
                     if 'codSusp' in dir(procJudTerceiro): s1020_alteracao_procjudterceiro_dados['codsusp'] = procJudTerceiro.codSusp.cdata
@@ -165,12 +165,12 @@ def read_s1020_evttablotacao_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1020_alteracao_procjudterceiro_id = resp[0][0]
                     #print s1020_alteracao_procjudterceiro_id
-   
+
             if 'infoEmprParcial' in dir(alteracao.dadosLotacao):
                 for infoEmprParcial in alteracao.dadosLotacao.infoEmprParcial:
                     s1020_alteracao_infoemprparcial_dados = {}
                     s1020_alteracao_infoemprparcial_dados['s1020_alteracao_id'] = s1020_alteracao_id
-               
+
                     if 'tpInscContrat' in dir(infoEmprParcial): s1020_alteracao_infoemprparcial_dados['tpinsccontrat'] = infoEmprParcial.tpInscContrat.cdata
                     if 'nrInscContrat' in dir(infoEmprParcial): s1020_alteracao_infoemprparcial_dados['nrinsccontrat'] = infoEmprParcial.nrInscContrat.cdata
                     if 'tpInscProp' in dir(infoEmprParcial): s1020_alteracao_infoemprparcial_dados['tpinscprop'] = infoEmprParcial.tpInscProp.cdata
@@ -179,24 +179,24 @@ def read_s1020_evttablotacao_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1020_alteracao_infoemprparcial_id = resp[0][0]
                     #print s1020_alteracao_infoemprparcial_id
-   
+
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:
                     s1020_alteracao_novavalidade_dados = {}
                     s1020_alteracao_novavalidade_dados['s1020_alteracao_id'] = s1020_alteracao_id
-               
+
                     if 'iniValid' in dir(novaValidade): s1020_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
                     if 'fimValid' in dir(novaValidade): s1020_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
                     insert = create_insert('s1020_alteracao_novavalidade', s1020_alteracao_novavalidade_dados)
                     resp = executar_sql(insert, True)
                     s1020_alteracao_novavalidade_id = resp[0][0]
                     #print s1020_alteracao_novavalidade_id
-   
+
     if 'exclusao' in dir(evtTabLotacao.infoLotacao):
         for exclusao in evtTabLotacao.infoLotacao.exclusao:
             s1020_exclusao_dados = {}
             s1020_exclusao_dados['s1020_evttablotacao_id'] = s1020_evttablotacao_id
-       
+
             if 'codLotacao' in dir(exclusao.ideLotacao): s1020_exclusao_dados['codlotacao'] = exclusao.ideLotacao.codLotacao.cdata
             if 'iniValid' in dir(exclusao.ideLotacao): s1020_exclusao_dados['inivalid'] = exclusao.ideLotacao.iniValid.cdata
             if 'fimValid' in dir(exclusao.ideLotacao): s1020_exclusao_dados['fimvalid'] = exclusao.ideLotacao.fimValid.cdata

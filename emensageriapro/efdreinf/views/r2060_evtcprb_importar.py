@@ -100,7 +100,7 @@ def read_r2060_evtcprb_obj(doc, status, validar=False):
         for tipoCod in evtCPRB.infoCPRB.ideEstab.tipoCod:
             r2060_tipocod_dados = {}
             r2060_tipocod_dados['r2060_evtcprb_id'] = r2060_evtcprb_id
-       
+
             if 'codAtivEcon' in dir(tipoCod): r2060_tipocod_dados['codativecon'] = tipoCod.codAtivEcon.cdata
             if 'vlrRecBrutaAtiv' in dir(tipoCod): r2060_tipocod_dados['vlrrecbrutaativ'] = tipoCod.vlrRecBrutaAtiv.cdata
             if 'vlrExcRecBruta' in dir(tipoCod): r2060_tipocod_dados['vlrexcrecbruta'] = tipoCod.vlrExcRecBruta.cdata
@@ -116,7 +116,7 @@ def read_r2060_evtcprb_obj(doc, status, validar=False):
                 for tipoAjuste in tipoCod.tipoAjuste:
                     r2060_tipoajuste_dados = {}
                     r2060_tipoajuste_dados['r2060_tipocod_id'] = r2060_tipocod_id
-               
+
                     if 'tpAjuste' in dir(tipoAjuste): r2060_tipoajuste_dados['tpajuste'] = tipoAjuste.tpAjuste.cdata
                     if 'codAjuste' in dir(tipoAjuste): r2060_tipoajuste_dados['codajuste'] = tipoAjuste.codAjuste.cdata
                     if 'vlrAjuste' in dir(tipoAjuste): r2060_tipoajuste_dados['vlrajuste'] = tipoAjuste.vlrAjuste.cdata
@@ -126,12 +126,12 @@ def read_r2060_evtcprb_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r2060_tipoajuste_id = resp[0][0]
                     #print r2060_tipoajuste_id
-   
+
             if 'infoProc' in dir(tipoCod):
                 for infoProc in tipoCod.infoProc:
                     r2060_infoproc_dados = {}
                     r2060_infoproc_dados['r2060_tipocod_id'] = r2060_tipocod_id
-               
+
                     if 'tpProc' in dir(infoProc): r2060_infoproc_dados['tpproc'] = infoProc.tpProc.cdata
                     if 'nrProc' in dir(infoProc): r2060_infoproc_dados['nrproc'] = infoProc.nrProc.cdata
                     if 'codSusp' in dir(infoProc): r2060_infoproc_dados['codsusp'] = infoProc.codSusp.cdata
@@ -140,7 +140,7 @@ def read_r2060_evtcprb_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r2060_infoproc_id = resp[0][0]
                     #print r2060_infoproc_id
-   
+
     from emensageriapro.efdreinf.views.r2060_evtcprb_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(r2060_evtcprb_id, 'default')
     return dados

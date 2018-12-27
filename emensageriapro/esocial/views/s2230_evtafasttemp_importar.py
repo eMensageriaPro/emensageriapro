@@ -98,7 +98,7 @@ def read_s2230_evtafasttemp_obj(doc, status, validar=False):
         for iniAfastamento in evtAfastTemp.infoAfastamento.iniAfastamento:
             s2230_iniafastamento_dados = {}
             s2230_iniafastamento_dados['s2230_evtafasttemp_id'] = s2230_evtafasttemp_id
-       
+
             if 'dtIniAfast' in dir(iniAfastamento): s2230_iniafastamento_dados['dtiniafast'] = iniAfastamento.dtIniAfast.cdata
             if 'codMotAfast' in dir(iniAfastamento): s2230_iniafastamento_dados['codmotafast'] = iniAfastamento.codMotAfast.cdata
             if 'infoMesmoMtv' in dir(iniAfastamento): s2230_iniafastamento_dados['infomesmomtv'] = iniAfastamento.infoMesmoMtv.cdata
@@ -113,43 +113,43 @@ def read_s2230_evtafasttemp_obj(doc, status, validar=False):
                 for infoAtestado in iniAfastamento.infoAtestado:
                     s2230_infoatestado_dados = {}
                     s2230_infoatestado_dados['s2230_iniafastamento_id'] = s2230_iniafastamento_id
-               
+
                     if 'codCID' in dir(infoAtestado): s2230_infoatestado_dados['codcid'] = infoAtestado.codCID.cdata
                     if 'qtdDiasAfast' in dir(infoAtestado): s2230_infoatestado_dados['qtddiasafast'] = infoAtestado.qtdDiasAfast.cdata
                     insert = create_insert('s2230_infoatestado', s2230_infoatestado_dados)
                     resp = executar_sql(insert, True)
                     s2230_infoatestado_id = resp[0][0]
                     #print s2230_infoatestado_id
-   
+
             if 'infoCessao' in dir(iniAfastamento):
                 for infoCessao in iniAfastamento.infoCessao:
                     s2230_infocessao_dados = {}
                     s2230_infocessao_dados['s2230_iniafastamento_id'] = s2230_iniafastamento_id
-               
+
                     if 'cnpjCess' in dir(infoCessao): s2230_infocessao_dados['cnpjcess'] = infoCessao.cnpjCess.cdata
                     if 'infOnus' in dir(infoCessao): s2230_infocessao_dados['infonus'] = infoCessao.infOnus.cdata
                     insert = create_insert('s2230_infocessao', s2230_infocessao_dados)
                     resp = executar_sql(insert, True)
                     s2230_infocessao_id = resp[0][0]
                     #print s2230_infocessao_id
-   
+
             if 'infoMandSind' in dir(iniAfastamento):
                 for infoMandSind in iniAfastamento.infoMandSind:
                     s2230_infomandsind_dados = {}
                     s2230_infomandsind_dados['s2230_iniafastamento_id'] = s2230_iniafastamento_id
-               
+
                     if 'cnpjSind' in dir(infoMandSind): s2230_infomandsind_dados['cnpjsind'] = infoMandSind.cnpjSind.cdata
                     if 'infOnusRemun' in dir(infoMandSind): s2230_infomandsind_dados['infonusremun'] = infoMandSind.infOnusRemun.cdata
                     insert = create_insert('s2230_infomandsind', s2230_infomandsind_dados)
                     resp = executar_sql(insert, True)
                     s2230_infomandsind_id = resp[0][0]
                     #print s2230_infomandsind_id
-   
+
     if 'infoRetif' in dir(evtAfastTemp.infoAfastamento):
         for infoRetif in evtAfastTemp.infoAfastamento.infoRetif:
             s2230_inforetif_dados = {}
             s2230_inforetif_dados['s2230_evtafasttemp_id'] = s2230_evtafasttemp_id
-       
+
             if 'origRetif' in dir(infoRetif): s2230_inforetif_dados['origretif'] = infoRetif.origRetif.cdata
             if 'tpProc' in dir(infoRetif): s2230_inforetif_dados['tpproc'] = infoRetif.tpProc.cdata
             if 'nrProc' in dir(infoRetif): s2230_inforetif_dados['nrproc'] = infoRetif.nrProc.cdata
@@ -162,7 +162,7 @@ def read_s2230_evtafasttemp_obj(doc, status, validar=False):
         for fimAfastamento in evtAfastTemp.infoAfastamento.fimAfastamento:
             s2230_fimafastamento_dados = {}
             s2230_fimafastamento_dados['s2230_evtafasttemp_id'] = s2230_evtafasttemp_id
-       
+
             if 'dtTermAfast' in dir(fimAfastamento): s2230_fimafastamento_dados['dttermafast'] = fimAfastamento.dtTermAfast.cdata
             insert = create_insert('s2230_fimafastamento', s2230_fimafastamento_dados)
             resp = executar_sql(insert, True)

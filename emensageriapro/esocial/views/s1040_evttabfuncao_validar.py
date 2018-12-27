@@ -54,7 +54,7 @@ def validacoes_s1040_evttabfuncao(arquivo):
     if 'nrInsc' in dir(evtTabFuncao.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtTabFuncao.ideEmpregador.nrInsc', evtTabFuncao.ideEmpregador.nrInsc.cdata, 1, '')
     if 'inclusao' in dir(evtTabFuncao.infoFuncao):
         for inclusao in evtTabFuncao.infoFuncao.inclusao:
-       
+
             if 'codFuncao' in dir(inclusao.ideFuncao): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideFuncao.codFuncao', inclusao.ideFuncao.codFuncao.cdata, 1, '')
             if 'iniValid' in dir(inclusao.ideFuncao): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideFuncao.iniValid', inclusao.ideFuncao.iniValid.cdata, 1, '')
             if 'fimValid' in dir(inclusao.ideFuncao): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideFuncao.fimValid', inclusao.ideFuncao.fimValid.cdata, 0, '')
@@ -63,7 +63,7 @@ def validacoes_s1040_evttabfuncao(arquivo):
 
     if 'alteracao' in dir(evtTabFuncao.infoFuncao):
         for alteracao in evtTabFuncao.infoFuncao.alteracao:
-       
+
             if 'codFuncao' in dir(alteracao.ideFuncao): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideFuncao.codFuncao', alteracao.ideFuncao.codFuncao.cdata, 1, '')
             if 'iniValid' in dir(alteracao.ideFuncao): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideFuncao.iniValid', alteracao.ideFuncao.iniValid.cdata, 1, '')
             if 'fimValid' in dir(alteracao.ideFuncao): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideFuncao.fimValid', alteracao.ideFuncao.fimValid.cdata, 0, '')
@@ -72,13 +72,13 @@ def validacoes_s1040_evttabfuncao(arquivo):
 
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:
-               
+
                     if 'iniValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.iniValid', novaValidade.iniValid.cdata, 1, '')
                     if 'fimValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.fimValid', novaValidade.fimValid.cdata, 0, '')
-   
+
     if 'exclusao' in dir(evtTabFuncao.infoFuncao):
         for exclusao in evtTabFuncao.infoFuncao.exclusao:
-       
+
             if 'codFuncao' in dir(exclusao.ideFuncao): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideFuncao.codFuncao', exclusao.ideFuncao.codFuncao.cdata, 1, '')
             if 'iniValid' in dir(exclusao.ideFuncao): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideFuncao.iniValid', exclusao.ideFuncao.iniValid.cdata, 1, '')
             if 'fimValid' in dir(exclusao.ideFuncao): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideFuncao.fimValid', exclusao.ideFuncao.fimValid.cdata, 0, '')

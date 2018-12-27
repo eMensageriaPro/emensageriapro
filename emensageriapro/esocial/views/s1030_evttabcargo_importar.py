@@ -92,7 +92,7 @@ def read_s1030_evttabcargo_obj(doc, status, validar=False):
         for inclusao in evtTabCargo.infoCargo.inclusao:
             s1030_inclusao_dados = {}
             s1030_inclusao_dados['s1030_evttabcargo_id'] = s1030_evttabcargo_id
-       
+
             if 'codCargo' in dir(inclusao.ideCargo): s1030_inclusao_dados['codcargo'] = inclusao.ideCargo.codCargo.cdata
             if 'iniValid' in dir(inclusao.ideCargo): s1030_inclusao_dados['inivalid'] = inclusao.ideCargo.iniValid.cdata
             if 'fimValid' in dir(inclusao.ideCargo): s1030_inclusao_dados['fimvalid'] = inclusao.ideCargo.fimValid.cdata
@@ -107,7 +107,7 @@ def read_s1030_evttabcargo_obj(doc, status, validar=False):
                 for cargoPublico in inclusao.dadosCargo.cargoPublico:
                     s1030_inclusao_cargopublico_dados = {}
                     s1030_inclusao_cargopublico_dados['s1030_inclusao_id'] = s1030_inclusao_id
-               
+
                     if 'acumCargo' in dir(cargoPublico): s1030_inclusao_cargopublico_dados['acumcargo'] = cargoPublico.acumCargo.cdata
                     if 'contagemEsp' in dir(cargoPublico): s1030_inclusao_cargopublico_dados['contagemesp'] = cargoPublico.contagemEsp.cdata
                     if 'dedicExcl' in dir(cargoPublico): s1030_inclusao_cargopublico_dados['dedicexcl'] = cargoPublico.dedicExcl.cdata
@@ -119,12 +119,12 @@ def read_s1030_evttabcargo_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1030_inclusao_cargopublico_id = resp[0][0]
                     #print s1030_inclusao_cargopublico_id
-   
+
     if 'alteracao' in dir(evtTabCargo.infoCargo):
         for alteracao in evtTabCargo.infoCargo.alteracao:
             s1030_alteracao_dados = {}
             s1030_alteracao_dados['s1030_evttabcargo_id'] = s1030_evttabcargo_id
-       
+
             if 'codCargo' in dir(alteracao.ideCargo): s1030_alteracao_dados['codcargo'] = alteracao.ideCargo.codCargo.cdata
             if 'iniValid' in dir(alteracao.ideCargo): s1030_alteracao_dados['inivalid'] = alteracao.ideCargo.iniValid.cdata
             if 'fimValid' in dir(alteracao.ideCargo): s1030_alteracao_dados['fimvalid'] = alteracao.ideCargo.fimValid.cdata
@@ -139,7 +139,7 @@ def read_s1030_evttabcargo_obj(doc, status, validar=False):
                 for cargoPublico in alteracao.dadosCargo.cargoPublico:
                     s1030_alteracao_cargopublico_dados = {}
                     s1030_alteracao_cargopublico_dados['s1030_alteracao_id'] = s1030_alteracao_id
-               
+
                     if 'acumCargo' in dir(cargoPublico): s1030_alteracao_cargopublico_dados['acumcargo'] = cargoPublico.acumCargo.cdata
                     if 'contagemEsp' in dir(cargoPublico): s1030_alteracao_cargopublico_dados['contagemesp'] = cargoPublico.contagemEsp.cdata
                     if 'dedicExcl' in dir(cargoPublico): s1030_alteracao_cargopublico_dados['dedicexcl'] = cargoPublico.dedicExcl.cdata
@@ -151,24 +151,24 @@ def read_s1030_evttabcargo_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1030_alteracao_cargopublico_id = resp[0][0]
                     #print s1030_alteracao_cargopublico_id
-   
+
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:
                     s1030_alteracao_novavalidade_dados = {}
                     s1030_alteracao_novavalidade_dados['s1030_alteracao_id'] = s1030_alteracao_id
-               
+
                     if 'iniValid' in dir(novaValidade): s1030_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
                     if 'fimValid' in dir(novaValidade): s1030_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
                     insert = create_insert('s1030_alteracao_novavalidade', s1030_alteracao_novavalidade_dados)
                     resp = executar_sql(insert, True)
                     s1030_alteracao_novavalidade_id = resp[0][0]
                     #print s1030_alteracao_novavalidade_id
-   
+
     if 'exclusao' in dir(evtTabCargo.infoCargo):
         for exclusao in evtTabCargo.infoCargo.exclusao:
             s1030_exclusao_dados = {}
             s1030_exclusao_dados['s1030_evttabcargo_id'] = s1030_evttabcargo_id
-       
+
             if 'codCargo' in dir(exclusao.ideCargo): s1030_exclusao_dados['codcargo'] = exclusao.ideCargo.codCargo.cdata
             if 'iniValid' in dir(exclusao.ideCargo): s1030_exclusao_dados['inivalid'] = exclusao.ideCargo.iniValid.cdata
             if 'fimValid' in dir(exclusao.ideCargo): s1030_exclusao_dados['fimvalid'] = exclusao.ideCargo.fimValid.cdata

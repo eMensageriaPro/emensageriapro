@@ -54,7 +54,7 @@ def validacoes_s1020_evttablotacao(arquivo):
     if 'nrInsc' in dir(evtTabLotacao.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtTabLotacao.ideEmpregador.nrInsc', evtTabLotacao.ideEmpregador.nrInsc.cdata, 1, '')
     if 'inclusao' in dir(evtTabLotacao.infoLotacao):
         for inclusao in evtTabLotacao.infoLotacao.inclusao:
-       
+
             if 'codLotacao' in dir(inclusao.ideLotacao): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideLotacao.codLotacao', inclusao.ideLotacao.codLotacao.cdata, 1, '')
             if 'iniValid' in dir(inclusao.ideLotacao): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideLotacao.iniValid', inclusao.ideLotacao.iniValid.cdata, 1, '')
             if 'fimValid' in dir(inclusao.ideLotacao): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideLotacao.fimValid', inclusao.ideLotacao.fimValid.cdata, 0, '')
@@ -67,22 +67,22 @@ def validacoes_s1020_evttablotacao(arquivo):
 
             if 'procJudTerceiro' in dir(inclusao.dadosLotacao.fpasLotacao.infoProcJudTerceiros):
                 for procJudTerceiro in inclusao.dadosLotacao.fpasLotacao.infoProcJudTerceiros.procJudTerceiro:
-               
+
                     if 'codTerc' in dir(procJudTerceiro): validacoes_lista = validar_campo(validacoes_lista,'procJudTerceiro.codTerc', procJudTerceiro.codTerc.cdata, 1, '')
                     if 'nrProcJud' in dir(procJudTerceiro): validacoes_lista = validar_campo(validacoes_lista,'procJudTerceiro.nrProcJud', procJudTerceiro.nrProcJud.cdata, 1, '')
                     if 'codSusp' in dir(procJudTerceiro): validacoes_lista = validar_campo(validacoes_lista,'procJudTerceiro.codSusp', procJudTerceiro.codSusp.cdata, 1, '')
-   
+
             if 'infoEmprParcial' in dir(inclusao.dadosLotacao):
                 for infoEmprParcial in inclusao.dadosLotacao.infoEmprParcial:
-               
+
                     if 'tpInscContrat' in dir(infoEmprParcial): validacoes_lista = validar_campo(validacoes_lista,'infoEmprParcial.tpInscContrat', infoEmprParcial.tpInscContrat.cdata, 1, '1;2;3;4')
                     if 'nrInscContrat' in dir(infoEmprParcial): validacoes_lista = validar_campo(validacoes_lista,'infoEmprParcial.nrInscContrat', infoEmprParcial.nrInscContrat.cdata, 1, '')
                     if 'tpInscProp' in dir(infoEmprParcial): validacoes_lista = validar_campo(validacoes_lista,'infoEmprParcial.tpInscProp', infoEmprParcial.tpInscProp.cdata, 1, '1;2;3;4')
                     if 'nrInscProp' in dir(infoEmprParcial): validacoes_lista = validar_campo(validacoes_lista,'infoEmprParcial.nrInscProp', infoEmprParcial.nrInscProp.cdata, 1, '')
-   
+
     if 'alteracao' in dir(evtTabLotacao.infoLotacao):
         for alteracao in evtTabLotacao.infoLotacao.alteracao:
-       
+
             if 'codLotacao' in dir(alteracao.ideLotacao): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideLotacao.codLotacao', alteracao.ideLotacao.codLotacao.cdata, 1, '')
             if 'iniValid' in dir(alteracao.ideLotacao): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideLotacao.iniValid', alteracao.ideLotacao.iniValid.cdata, 1, '')
             if 'fimValid' in dir(alteracao.ideLotacao): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideLotacao.fimValid', alteracao.ideLotacao.fimValid.cdata, 0, '')
@@ -95,28 +95,28 @@ def validacoes_s1020_evttablotacao(arquivo):
 
             if 'procJudTerceiro' in dir(alteracao.dadosLotacao.fpasLotacao.infoProcJudTerceiros):
                 for procJudTerceiro in alteracao.dadosLotacao.fpasLotacao.infoProcJudTerceiros.procJudTerceiro:
-               
+
                     if 'codTerc' in dir(procJudTerceiro): validacoes_lista = validar_campo(validacoes_lista,'procJudTerceiro.codTerc', procJudTerceiro.codTerc.cdata, 1, '')
                     if 'nrProcJud' in dir(procJudTerceiro): validacoes_lista = validar_campo(validacoes_lista,'procJudTerceiro.nrProcJud', procJudTerceiro.nrProcJud.cdata, 1, '')
                     if 'codSusp' in dir(procJudTerceiro): validacoes_lista = validar_campo(validacoes_lista,'procJudTerceiro.codSusp', procJudTerceiro.codSusp.cdata, 1, '')
-   
+
             if 'infoEmprParcial' in dir(alteracao.dadosLotacao):
                 for infoEmprParcial in alteracao.dadosLotacao.infoEmprParcial:
-               
+
                     if 'tpInscContrat' in dir(infoEmprParcial): validacoes_lista = validar_campo(validacoes_lista,'infoEmprParcial.tpInscContrat', infoEmprParcial.tpInscContrat.cdata, 1, '1;2;3;4')
                     if 'nrInscContrat' in dir(infoEmprParcial): validacoes_lista = validar_campo(validacoes_lista,'infoEmprParcial.nrInscContrat', infoEmprParcial.nrInscContrat.cdata, 1, '')
                     if 'tpInscProp' in dir(infoEmprParcial): validacoes_lista = validar_campo(validacoes_lista,'infoEmprParcial.tpInscProp', infoEmprParcial.tpInscProp.cdata, 1, '1;2;3;4')
                     if 'nrInscProp' in dir(infoEmprParcial): validacoes_lista = validar_campo(validacoes_lista,'infoEmprParcial.nrInscProp', infoEmprParcial.nrInscProp.cdata, 1, '')
-   
+
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:
-               
+
                     if 'iniValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.iniValid', novaValidade.iniValid.cdata, 1, '')
                     if 'fimValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.fimValid', novaValidade.fimValid.cdata, 0, '')
-   
+
     if 'exclusao' in dir(evtTabLotacao.infoLotacao):
         for exclusao in evtTabLotacao.infoLotacao.exclusao:
-       
+
             if 'codLotacao' in dir(exclusao.ideLotacao): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideLotacao.codLotacao', exclusao.ideLotacao.codLotacao.cdata, 1, '')
             if 'iniValid' in dir(exclusao.ideLotacao): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideLotacao.iniValid', exclusao.ideLotacao.iniValid.cdata, 1, '')
             if 'fimValid' in dir(exclusao.ideLotacao): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideLotacao.fimValid', exclusao.ideLotacao.fimValid.cdata, 0, '')

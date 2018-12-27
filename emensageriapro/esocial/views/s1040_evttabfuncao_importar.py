@@ -92,7 +92,7 @@ def read_s1040_evttabfuncao_obj(doc, status, validar=False):
         for inclusao in evtTabFuncao.infoFuncao.inclusao:
             s1040_inclusao_dados = {}
             s1040_inclusao_dados['s1040_evttabfuncao_id'] = s1040_evttabfuncao_id
-       
+
             if 'codFuncao' in dir(inclusao.ideFuncao): s1040_inclusao_dados['codfuncao'] = inclusao.ideFuncao.codFuncao.cdata
             if 'iniValid' in dir(inclusao.ideFuncao): s1040_inclusao_dados['inivalid'] = inclusao.ideFuncao.iniValid.cdata
             if 'fimValid' in dir(inclusao.ideFuncao): s1040_inclusao_dados['fimvalid'] = inclusao.ideFuncao.fimValid.cdata
@@ -107,7 +107,7 @@ def read_s1040_evttabfuncao_obj(doc, status, validar=False):
         for alteracao in evtTabFuncao.infoFuncao.alteracao:
             s1040_alteracao_dados = {}
             s1040_alteracao_dados['s1040_evttabfuncao_id'] = s1040_evttabfuncao_id
-       
+
             if 'codFuncao' in dir(alteracao.ideFuncao): s1040_alteracao_dados['codfuncao'] = alteracao.ideFuncao.codFuncao.cdata
             if 'iniValid' in dir(alteracao.ideFuncao): s1040_alteracao_dados['inivalid'] = alteracao.ideFuncao.iniValid.cdata
             if 'fimValid' in dir(alteracao.ideFuncao): s1040_alteracao_dados['fimvalid'] = alteracao.ideFuncao.fimValid.cdata
@@ -122,19 +122,19 @@ def read_s1040_evttabfuncao_obj(doc, status, validar=False):
                 for novaValidade in alteracao.novaValidade:
                     s1040_alteracao_novavalidade_dados = {}
                     s1040_alteracao_novavalidade_dados['s1040_alteracao_id'] = s1040_alteracao_id
-               
+
                     if 'iniValid' in dir(novaValidade): s1040_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
                     if 'fimValid' in dir(novaValidade): s1040_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
                     insert = create_insert('s1040_alteracao_novavalidade', s1040_alteracao_novavalidade_dados)
                     resp = executar_sql(insert, True)
                     s1040_alteracao_novavalidade_id = resp[0][0]
                     #print s1040_alteracao_novavalidade_id
-   
+
     if 'exclusao' in dir(evtTabFuncao.infoFuncao):
         for exclusao in evtTabFuncao.infoFuncao.exclusao:
             s1040_exclusao_dados = {}
             s1040_exclusao_dados['s1040_evttabfuncao_id'] = s1040_evttabfuncao_id
-       
+
             if 'codFuncao' in dir(exclusao.ideFuncao): s1040_exclusao_dados['codfuncao'] = exclusao.ideFuncao.codFuncao.cdata
             if 'iniValid' in dir(exclusao.ideFuncao): s1040_exclusao_dados['inivalid'] = exclusao.ideFuncao.iniValid.cdata
             if 'fimValid' in dir(exclusao.ideFuncao): s1040_exclusao_dados['fimvalid'] = exclusao.ideFuncao.fimValid.cdata

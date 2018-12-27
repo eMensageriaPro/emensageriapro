@@ -97,7 +97,7 @@ def read_r5011_evttotalcontrib_obj(doc, status, validar=False):
         for regOcorrs in evtTotalContrib.ideRecRetorno.ideStatus.regOcorrs:
             r5011_regocorrs_dados = {}
             r5011_regocorrs_dados['r5011_evttotalcontrib_id'] = r5011_evttotalcontrib_id
-       
+
             if 'tpOcorr' in dir(regOcorrs): r5011_regocorrs_dados['tpocorr'] = regOcorrs.tpOcorr.cdata
             if 'localErroAviso' in dir(regOcorrs): r5011_regocorrs_dados['localerroaviso'] = regOcorrs.localErroAviso.cdata
             if 'codResp' in dir(regOcorrs): r5011_regocorrs_dados['codresp'] = regOcorrs.codResp.cdata
@@ -111,7 +111,7 @@ def read_r5011_evttotalcontrib_obj(doc, status, validar=False):
         for infoTotalContrib in evtTotalContrib.infoTotalContrib:
             r5011_infototalcontrib_dados = {}
             r5011_infototalcontrib_dados['r5011_evttotalcontrib_id'] = r5011_evttotalcontrib_id
-       
+
             if 'nrRecArqBase' in dir(infoTotalContrib): r5011_infototalcontrib_dados['nrrecarqbase'] = infoTotalContrib.nrRecArqBase.cdata
             if 'indExistInfo' in dir(infoTotalContrib): r5011_infototalcontrib_dados['indexistinfo'] = infoTotalContrib.indExistInfo.cdata
             insert = create_insert('r5011_infototalcontrib', r5011_infototalcontrib_dados)
@@ -123,7 +123,7 @@ def read_r5011_evttotalcontrib_obj(doc, status, validar=False):
                 for RTom in infoTotalContrib.RTom:
                     r5011_rtom_dados = {}
                     r5011_rtom_dados['r5011_infototalcontrib_id'] = r5011_infototalcontrib_id
-               
+
                     if 'cnpjPrestador' in dir(RTom): r5011_rtom_dados['cnpjprestador'] = RTom.cnpjPrestador.cdata
                     if 'cno' in dir(RTom): r5011_rtom_dados['cno'] = RTom.cno.cdata
                     if 'vlrTotalBaseRet' in dir(RTom): r5011_rtom_dados['vlrtotalbaseret'] = RTom.vlrTotalBaseRet.cdata
@@ -131,12 +131,12 @@ def read_r5011_evttotalcontrib_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r5011_rtom_id = resp[0][0]
                     #print r5011_rtom_id
-   
+
             if 'RPrest' in dir(infoTotalContrib):
                 for RPrest in infoTotalContrib.RPrest:
                     r5011_rprest_dados = {}
                     r5011_rprest_dados['r5011_infototalcontrib_id'] = r5011_infototalcontrib_id
-               
+
                     if 'tpInscTomador' in dir(RPrest): r5011_rprest_dados['tpinsctomador'] = RPrest.tpInscTomador.cdata
                     if 'nrInscTomador' in dir(RPrest): r5011_rprest_dados['nrinsctomador'] = RPrest.nrInscTomador.cdata
                     if 'vlrTotalBaseRet' in dir(RPrest): r5011_rprest_dados['vlrtotalbaseret'] = RPrest.vlrTotalBaseRet.cdata
@@ -148,12 +148,12 @@ def read_r5011_evttotalcontrib_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r5011_rprest_id = resp[0][0]
                     #print r5011_rprest_id
-   
+
             if 'RRecRepAD' in dir(infoTotalContrib):
                 for RRecRepAD in infoTotalContrib.RRecRepAD:
                     r5011_rrecrepad_dados = {}
                     r5011_rrecrepad_dados['r5011_infototalcontrib_id'] = r5011_infototalcontrib_id
-               
+
                     if 'cnpjAssocDesp' in dir(RRecRepAD): r5011_rrecrepad_dados['cnpjassocdesp'] = RRecRepAD.cnpjAssocDesp.cdata
                     if 'vlrTotalRep' in dir(RRecRepAD): r5011_rrecrepad_dados['vlrtotalrep'] = RRecRepAD.vlrTotalRep.cdata
                     if 'CRRecRepAD' in dir(RRecRepAD): r5011_rrecrepad_dados['crrecrepad'] = RRecRepAD.CRRecRepAD.cdata
@@ -163,12 +163,12 @@ def read_r5011_evttotalcontrib_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r5011_rrecrepad_id = resp[0][0]
                     #print r5011_rrecrepad_id
-   
+
             if 'RComl' in dir(infoTotalContrib):
                 for RComl in infoTotalContrib.RComl:
                     r5011_rcoml_dados = {}
                     r5011_rcoml_dados['r5011_infototalcontrib_id'] = r5011_infototalcontrib_id
-               
+
                     if 'CRComl' in dir(RComl): r5011_rcoml_dados['crcoml'] = RComl.CRComl.cdata
                     if 'vlrCRComl' in dir(RComl): r5011_rcoml_dados['vlrcrcoml'] = RComl.vlrCRComl.cdata
                     if 'vlrCRComlSusp' in dir(RComl): r5011_rcoml_dados['vlrcrcomlsusp'] = RComl.vlrCRComlSusp.cdata
@@ -176,12 +176,12 @@ def read_r5011_evttotalcontrib_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r5011_rcoml_id = resp[0][0]
                     #print r5011_rcoml_id
-   
+
             if 'RCPRB' in dir(infoTotalContrib):
                 for RCPRB in infoTotalContrib.RCPRB:
                     r5011_rcprb_dados = {}
                     r5011_rcprb_dados['r5011_infototalcontrib_id'] = r5011_infototalcontrib_id
-               
+
                     if 'CRCPRB' in dir(RCPRB): r5011_rcprb_dados['crcprb'] = RCPRB.CRCPRB.cdata
                     if 'vlrCRCPRB' in dir(RCPRB): r5011_rcprb_dados['vlrcrcprb'] = RCPRB.vlrCRCPRB.cdata
                     if 'vlrCRCPRBSusp' in dir(RCPRB): r5011_rcprb_dados['vlrcrcprbsusp'] = RCPRB.vlrCRCPRBSusp.cdata
@@ -189,7 +189,7 @@ def read_r5011_evttotalcontrib_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     r5011_rcprb_id = resp[0][0]
                     #print r5011_rcprb_id
-   
+
     from emensageriapro.efdreinf.views.r5011_evttotalcontrib_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(r5011_evttotalcontrib_id, 'default')
     return dados

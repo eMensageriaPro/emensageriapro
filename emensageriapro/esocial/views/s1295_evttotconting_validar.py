@@ -56,7 +56,7 @@ def validacoes_s1295_evttotconting(arquivo):
     if 'nrInsc' in dir(evtTotConting.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtTotConting.ideEmpregador.nrInsc', evtTotConting.ideEmpregador.nrInsc.cdata, 1, '')
     if 'ideRespInf' in dir(evtTotConting):
         for ideRespInf in evtTotConting.ideRespInf:
-       
+
             if 'nmResp' in dir(ideRespInf): validacoes_lista = validar_campo(validacoes_lista,'ideRespInf.nmResp', ideRespInf.nmResp.cdata, 1, '')
             if 'cpfResp' in dir(ideRespInf): validacoes_lista = validar_campo(validacoes_lista,'ideRespInf.cpfResp', ideRespInf.cpfResp.cdata, 1, '')
             if 'telefone' in dir(ideRespInf): validacoes_lista = validar_campo(validacoes_lista,'ideRespInf.telefone', ideRespInf.telefone.cdata, 1, '')

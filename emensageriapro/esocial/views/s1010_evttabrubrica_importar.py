@@ -92,7 +92,7 @@ def read_s1010_evttabrubrica_obj(doc, status, validar=False):
         for inclusao in evtTabRubrica.infoRubrica.inclusao:
             s1010_inclusao_dados = {}
             s1010_inclusao_dados['s1010_evttabrubrica_id'] = s1010_evttabrubrica_id
-       
+
             if 'codRubr' in dir(inclusao.ideRubrica): s1010_inclusao_dados['codrubr'] = inclusao.ideRubrica.codRubr.cdata
             if 'ideTabRubr' in dir(inclusao.ideRubrica): s1010_inclusao_dados['idetabrubr'] = inclusao.ideRubrica.ideTabRubr.cdata
             if 'iniValid' in dir(inclusao.ideRubrica): s1010_inclusao_dados['inivalid'] = inclusao.ideRubrica.iniValid.cdata
@@ -116,7 +116,7 @@ def read_s1010_evttabrubrica_obj(doc, status, validar=False):
                 for ideProcessoCP in inclusao.dadosRubrica.ideProcessoCP:
                     s1010_inclusao_ideprocessocp_dados = {}
                     s1010_inclusao_ideprocessocp_dados['s1010_inclusao_id'] = s1010_inclusao_id
-               
+
                     if 'tpProc' in dir(ideProcessoCP): s1010_inclusao_ideprocessocp_dados['tpproc'] = ideProcessoCP.tpProc.cdata
                     if 'nrProc' in dir(ideProcessoCP): s1010_inclusao_ideprocessocp_dados['nrproc'] = ideProcessoCP.nrProc.cdata
                     if 'extDecisao' in dir(ideProcessoCP): s1010_inclusao_ideprocessocp_dados['extdecisao'] = ideProcessoCP.extDecisao.cdata
@@ -125,46 +125,46 @@ def read_s1010_evttabrubrica_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1010_inclusao_ideprocessocp_id = resp[0][0]
                     #print s1010_inclusao_ideprocessocp_id
-   
+
             if 'ideProcessoIRRF' in dir(inclusao.dadosRubrica):
                 for ideProcessoIRRF in inclusao.dadosRubrica.ideProcessoIRRF:
                     s1010_inclusao_ideprocessoirrf_dados = {}
                     s1010_inclusao_ideprocessoirrf_dados['s1010_inclusao_id'] = s1010_inclusao_id
-               
+
                     if 'nrProc' in dir(ideProcessoIRRF): s1010_inclusao_ideprocessoirrf_dados['nrproc'] = ideProcessoIRRF.nrProc.cdata
                     if 'codSusp' in dir(ideProcessoIRRF): s1010_inclusao_ideprocessoirrf_dados['codsusp'] = ideProcessoIRRF.codSusp.cdata
                     insert = create_insert('s1010_inclusao_ideprocessoirrf', s1010_inclusao_ideprocessoirrf_dados)
                     resp = executar_sql(insert, True)
                     s1010_inclusao_ideprocessoirrf_id = resp[0][0]
                     #print s1010_inclusao_ideprocessoirrf_id
-   
+
             if 'ideProcessoFGTS' in dir(inclusao.dadosRubrica):
                 for ideProcessoFGTS in inclusao.dadosRubrica.ideProcessoFGTS:
                     s1010_inclusao_ideprocessofgts_dados = {}
                     s1010_inclusao_ideprocessofgts_dados['s1010_inclusao_id'] = s1010_inclusao_id
-               
+
                     if 'nrProc' in dir(ideProcessoFGTS): s1010_inclusao_ideprocessofgts_dados['nrproc'] = ideProcessoFGTS.nrProc.cdata
                     insert = create_insert('s1010_inclusao_ideprocessofgts', s1010_inclusao_ideprocessofgts_dados)
                     resp = executar_sql(insert, True)
                     s1010_inclusao_ideprocessofgts_id = resp[0][0]
                     #print s1010_inclusao_ideprocessofgts_id
-   
+
             if 'ideProcessoSIND' in dir(inclusao.dadosRubrica):
                 for ideProcessoSIND in inclusao.dadosRubrica.ideProcessoSIND:
                     s1010_inclusao_ideprocessosind_dados = {}
                     s1010_inclusao_ideprocessosind_dados['s1010_inclusao_id'] = s1010_inclusao_id
-               
+
                     if 'nrProc' in dir(ideProcessoSIND): s1010_inclusao_ideprocessosind_dados['nrproc'] = ideProcessoSIND.nrProc.cdata
                     insert = create_insert('s1010_inclusao_ideprocessosind', s1010_inclusao_ideprocessosind_dados)
                     resp = executar_sql(insert, True)
                     s1010_inclusao_ideprocessosind_id = resp[0][0]
                     #print s1010_inclusao_ideprocessosind_id
-   
+
             if 'ideProcessoCPRP' in dir(inclusao.dadosRubrica):
                 for ideProcessoCPRP in inclusao.dadosRubrica.ideProcessoCPRP:
                     s1010_inclusao_ideprocessocprp_dados = {}
                     s1010_inclusao_ideprocessocprp_dados['s1010_inclusao_id'] = s1010_inclusao_id
-               
+
                     if 'tpProc' in dir(ideProcessoCPRP): s1010_inclusao_ideprocessocprp_dados['tpproc'] = ideProcessoCPRP.tpProc.cdata
                     if 'nrProc' in dir(ideProcessoCPRP): s1010_inclusao_ideprocessocprp_dados['nrproc'] = ideProcessoCPRP.nrProc.cdata
                     if 'extDecisao' in dir(ideProcessoCPRP): s1010_inclusao_ideprocessocprp_dados['extdecisao'] = ideProcessoCPRP.extDecisao.cdata
@@ -172,12 +172,12 @@ def read_s1010_evttabrubrica_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1010_inclusao_ideprocessocprp_id = resp[0][0]
                     #print s1010_inclusao_ideprocessocprp_id
-   
+
     if 'alteracao' in dir(evtTabRubrica.infoRubrica):
         for alteracao in evtTabRubrica.infoRubrica.alteracao:
             s1010_alteracao_dados = {}
             s1010_alteracao_dados['s1010_evttabrubrica_id'] = s1010_evttabrubrica_id
-       
+
             if 'codRubr' in dir(alteracao.ideRubrica): s1010_alteracao_dados['codrubr'] = alteracao.ideRubrica.codRubr.cdata
             if 'ideTabRubr' in dir(alteracao.ideRubrica): s1010_alteracao_dados['idetabrubr'] = alteracao.ideRubrica.ideTabRubr.cdata
             if 'iniValid' in dir(alteracao.ideRubrica): s1010_alteracao_dados['inivalid'] = alteracao.ideRubrica.iniValid.cdata
@@ -201,7 +201,7 @@ def read_s1010_evttabrubrica_obj(doc, status, validar=False):
                 for ideProcessoCP in alteracao.dadosRubrica.ideProcessoCP:
                     s1010_alteracao_ideprocessocp_dados = {}
                     s1010_alteracao_ideprocessocp_dados['s1010_alteracao_id'] = s1010_alteracao_id
-               
+
                     if 'tpProc' in dir(ideProcessoCP): s1010_alteracao_ideprocessocp_dados['tpproc'] = ideProcessoCP.tpProc.cdata
                     if 'nrProc' in dir(ideProcessoCP): s1010_alteracao_ideprocessocp_dados['nrproc'] = ideProcessoCP.nrProc.cdata
                     if 'extDecisao' in dir(ideProcessoCP): s1010_alteracao_ideprocessocp_dados['extdecisao'] = ideProcessoCP.extDecisao.cdata
@@ -210,46 +210,46 @@ def read_s1010_evttabrubrica_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1010_alteracao_ideprocessocp_id = resp[0][0]
                     #print s1010_alteracao_ideprocessocp_id
-   
+
             if 'ideProcessoIRRF' in dir(alteracao.dadosRubrica):
                 for ideProcessoIRRF in alteracao.dadosRubrica.ideProcessoIRRF:
                     s1010_alteracao_ideprocessoirrf_dados = {}
                     s1010_alteracao_ideprocessoirrf_dados['s1010_alteracao_id'] = s1010_alteracao_id
-               
+
                     if 'nrProc' in dir(ideProcessoIRRF): s1010_alteracao_ideprocessoirrf_dados['nrproc'] = ideProcessoIRRF.nrProc.cdata
                     if 'codSusp' in dir(ideProcessoIRRF): s1010_alteracao_ideprocessoirrf_dados['codsusp'] = ideProcessoIRRF.codSusp.cdata
                     insert = create_insert('s1010_alteracao_ideprocessoirrf', s1010_alteracao_ideprocessoirrf_dados)
                     resp = executar_sql(insert, True)
                     s1010_alteracao_ideprocessoirrf_id = resp[0][0]
                     #print s1010_alteracao_ideprocessoirrf_id
-   
+
             if 'ideProcessoFGTS' in dir(alteracao.dadosRubrica):
                 for ideProcessoFGTS in alteracao.dadosRubrica.ideProcessoFGTS:
                     s1010_alteracao_ideprocessofgts_dados = {}
                     s1010_alteracao_ideprocessofgts_dados['s1010_alteracao_id'] = s1010_alteracao_id
-               
+
                     if 'nrProc' in dir(ideProcessoFGTS): s1010_alteracao_ideprocessofgts_dados['nrproc'] = ideProcessoFGTS.nrProc.cdata
                     insert = create_insert('s1010_alteracao_ideprocessofgts', s1010_alteracao_ideprocessofgts_dados)
                     resp = executar_sql(insert, True)
                     s1010_alteracao_ideprocessofgts_id = resp[0][0]
                     #print s1010_alteracao_ideprocessofgts_id
-   
+
             if 'ideProcessoSIND' in dir(alteracao.dadosRubrica):
                 for ideProcessoSIND in alteracao.dadosRubrica.ideProcessoSIND:
                     s1010_alteracao_ideprocessosind_dados = {}
                     s1010_alteracao_ideprocessosind_dados['s1010_alteracao_id'] = s1010_alteracao_id
-               
+
                     if 'nrProc' in dir(ideProcessoSIND): s1010_alteracao_ideprocessosind_dados['nrproc'] = ideProcessoSIND.nrProc.cdata
                     insert = create_insert('s1010_alteracao_ideprocessosind', s1010_alteracao_ideprocessosind_dados)
                     resp = executar_sql(insert, True)
                     s1010_alteracao_ideprocessosind_id = resp[0][0]
                     #print s1010_alteracao_ideprocessosind_id
-   
+
             if 'ideProcessoCPRP' in dir(alteracao.dadosRubrica):
                 for ideProcessoCPRP in alteracao.dadosRubrica.ideProcessoCPRP:
                     s1010_alteracao_ideprocessocprp_dados = {}
                     s1010_alteracao_ideprocessocprp_dados['s1010_alteracao_id'] = s1010_alteracao_id
-               
+
                     if 'tpProc' in dir(ideProcessoCPRP): s1010_alteracao_ideprocessocprp_dados['tpproc'] = ideProcessoCPRP.tpProc.cdata
                     if 'nrProc' in dir(ideProcessoCPRP): s1010_alteracao_ideprocessocprp_dados['nrproc'] = ideProcessoCPRP.nrProc.cdata
                     if 'extDecisao' in dir(ideProcessoCPRP): s1010_alteracao_ideprocessocprp_dados['extdecisao'] = ideProcessoCPRP.extDecisao.cdata
@@ -257,24 +257,24 @@ def read_s1010_evttabrubrica_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1010_alteracao_ideprocessocprp_id = resp[0][0]
                     #print s1010_alteracao_ideprocessocprp_id
-   
+
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:
                     s1010_alteracao_novavalidade_dados = {}
                     s1010_alteracao_novavalidade_dados['s1010_alteracao_id'] = s1010_alteracao_id
-               
+
                     if 'iniValid' in dir(novaValidade): s1010_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
                     if 'fimValid' in dir(novaValidade): s1010_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
                     insert = create_insert('s1010_alteracao_novavalidade', s1010_alteracao_novavalidade_dados)
                     resp = executar_sql(insert, True)
                     s1010_alteracao_novavalidade_id = resp[0][0]
                     #print s1010_alteracao_novavalidade_id
-   
+
     if 'exclusao' in dir(evtTabRubrica.infoRubrica):
         for exclusao in evtTabRubrica.infoRubrica.exclusao:
             s1010_exclusao_dados = {}
             s1010_exclusao_dados['s1010_evttabrubrica_id'] = s1010_evttabrubrica_id
-       
+
             if 'codRubr' in dir(exclusao.ideRubrica): s1010_exclusao_dados['codrubr'] = exclusao.ideRubrica.codRubr.cdata
             if 'ideTabRubr' in dir(exclusao.ideRubrica): s1010_exclusao_dados['idetabrubr'] = exclusao.ideRubrica.ideTabRubr.cdata
             if 'iniValid' in dir(exclusao.ideRubrica): s1010_exclusao_dados['inivalid'] = exclusao.ideRubrica.iniValid.cdata

@@ -92,17 +92,17 @@ def apagar(request, hash):
                              's2206_horcontratual', s2206_horcontratual_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's2206_horcontratual_salvar':
             return redirect('s2206_horcontratual', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -202,17 +202,17 @@ def listar(request, hash):
             filtrar = True
             s2206_horcontratual_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s2206_horcontratual_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2206_horcontratual'
         context = {
             's2206_horcontratual_lista': s2206_horcontratual_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -222,7 +222,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 's2206_horcontratual_listar.html', context)
@@ -265,10 +265,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -362,12 +362,12 @@ def salvar(request, hash):
             s2206_horcontratual_form.fields[field].widget.attrs['ng-model'] = 's2206_horcontratual_'+field
         if int(dict_hash['print']):
             s2206_horcontratual_form = disabled_form_for_print(s2206_horcontratual_form)
-   
+
         s2206_horario_form = None
         s2206_horario_lista = None
         if s2206_horcontratual_id:
             s2206_horcontratual = get_object_or_404(s2206horContratual.objects.using( db_slug ), excluido = False, id = s2206_horcontratual_id)
-       
+
             s2206_horario_form = form_s2206_horario(initial={ 's2206_horcontratual': s2206_horcontratual }, slug=db_slug)
             s2206_horario_form.fields['s2206_horcontratual'].widget.attrs['readonly'] = True
             s2206_horario_lista = s2206horario.objects.using( db_slug ).filter(excluido = False, s2206_horcontratual_id=s2206_horcontratual.id).all()
@@ -391,14 +391,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2206_horcontratual_id': int(s2206_horcontratual_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             's2206_horario_form': s2206_horario_form,
             's2206_horario_lista': s2206_horario_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -442,10 +442,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

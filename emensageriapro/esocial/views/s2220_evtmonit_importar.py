@@ -114,7 +114,7 @@ def read_s2220_evtmonit_obj(doc, status, validar=False):
         for exame in evtMonit.exMedOcup.aso.exame:
             s2220_exame_dados = {}
             s2220_exame_dados['s2220_evtmonit_id'] = s2220_evtmonit_id
-       
+
             if 'dtExm' in dir(exame): s2220_exame_dados['dtexm'] = exame.dtExm.cdata
             if 'procRealizado' in dir(exame): s2220_exame_dados['procrealizado'] = exame.procRealizado.cdata
             if 'obsProc' in dir(exame): s2220_exame_dados['obsproc'] = exame.obsProc.cdata

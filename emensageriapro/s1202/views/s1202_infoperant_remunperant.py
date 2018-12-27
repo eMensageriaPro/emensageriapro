@@ -92,17 +92,17 @@ def apagar(request, hash):
                              's1202_infoperant_remunperant', s1202_infoperant_remunperant_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's1202_infoperant_remunperant_salvar':
             return redirect('s1202_infoperant_remunperant', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -196,17 +196,17 @@ def listar(request, hash):
             filtrar = True
             s1202_infoperant_remunperant_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s1202_infoperant_remunperant_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1202_infoperant_remunperant'
         context = {
             's1202_infoperant_remunperant_lista': s1202_infoperant_remunperant_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -216,7 +216,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 's1202_infoperant_remunperant_listar.html', context)
@@ -259,10 +259,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -356,12 +356,12 @@ def salvar(request, hash):
             s1202_infoperant_remunperant_form.fields[field].widget.attrs['ng-model'] = 's1202_infoperant_remunperant_'+field
         if int(dict_hash['print']):
             s1202_infoperant_remunperant_form = disabled_form_for_print(s1202_infoperant_remunperant_form)
-   
+
         s1202_infoperant_itensremun_form = None
         s1202_infoperant_itensremun_lista = None
         if s1202_infoperant_remunperant_id:
             s1202_infoperant_remunperant = get_object_or_404(s1202infoPerAntremunPerAnt.objects.using( db_slug ), excluido = False, id = s1202_infoperant_remunperant_id)
-       
+
             s1202_infoperant_itensremun_form = form_s1202_infoperant_itensremun(initial={ 's1202_infoperant_remunperant': s1202_infoperant_remunperant }, slug=db_slug)
             s1202_infoperant_itensremun_form.fields['s1202_infoperant_remunperant'].widget.attrs['readonly'] = True
             s1202_infoperant_itensremun_lista = s1202infoPerAntitensRemun.objects.using( db_slug ).filter(excluido = False, s1202_infoperant_remunperant_id=s1202_infoperant_remunperant.id).all()
@@ -385,14 +385,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1202_infoperant_remunperant_id': int(s1202_infoperant_remunperant_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             's1202_infoperant_itensremun_form': s1202_infoperant_itensremun_form,
             's1202_infoperant_itensremun_lista': s1202_infoperant_itensremun_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -436,10 +436,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

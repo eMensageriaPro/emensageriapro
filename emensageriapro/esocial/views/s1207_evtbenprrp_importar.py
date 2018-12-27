@@ -97,7 +97,7 @@ def read_s1207_evtbenprrp_obj(doc, status, validar=False):
         for procJudTrab in evtBenPrRP.ideBenef.procJudTrab:
             s1207_procjudtrab_dados = {}
             s1207_procjudtrab_dados['s1207_evtbenprrp_id'] = s1207_evtbenprrp_id
-       
+
             if 'tpTrib' in dir(procJudTrab): s1207_procjudtrab_dados['tptrib'] = procJudTrab.tpTrib.cdata
             if 'nrProcJud' in dir(procJudTrab): s1207_procjudtrab_dados['nrprocjud'] = procJudTrab.nrProcJud.cdata
             if 'codSusp' in dir(procJudTrab): s1207_procjudtrab_dados['codsusp'] = procJudTrab.codSusp.cdata
@@ -110,7 +110,7 @@ def read_s1207_evtbenprrp_obj(doc, status, validar=False):
         for dmDev in evtBenPrRP.dmDev:
             s1207_dmdev_dados = {}
             s1207_dmdev_dados['s1207_evtbenprrp_id'] = s1207_evtbenprrp_id
-       
+
             if 'tpBenef' in dir(dmDev): s1207_dmdev_dados['tpbenef'] = dmDev.tpBenef.cdata
             if 'nrBenefic' in dir(dmDev): s1207_dmdev_dados['nrbenefic'] = dmDev.nrBenefic.cdata
             if 'ideDmDev' in dir(dmDev): s1207_dmdev_dados['idedmdev'] = dmDev.ideDmDev.cdata
@@ -123,7 +123,7 @@ def read_s1207_evtbenprrp_obj(doc, status, validar=False):
                 for itens in dmDev.itens:
                     s1207_itens_dados = {}
                     s1207_itens_dados['s1207_dmdev_id'] = s1207_dmdev_id
-               
+
                     if 'codRubr' in dir(itens): s1207_itens_dados['codrubr'] = itens.codRubr.cdata
                     if 'ideTabRubr' in dir(itens): s1207_itens_dados['idetabrubr'] = itens.ideTabRubr.cdata
                     if 'vrRubr' in dir(itens): s1207_itens_dados['vrrubr'] = itens.vrRubr.cdata
@@ -131,24 +131,24 @@ def read_s1207_evtbenprrp_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1207_itens_id = resp[0][0]
                     #print s1207_itens_id
-   
+
             if 'ideEstab' in dir(dmDev.infoPerApur):
                 for ideEstab in dmDev.infoPerApur.ideEstab:
                     s1207_infoperapur_ideestab_dados = {}
                     s1207_infoperapur_ideestab_dados['s1207_dmdev_id'] = s1207_dmdev_id
-               
+
                     if 'tpInsc' in dir(ideEstab): s1207_infoperapur_ideestab_dados['tpinsc'] = ideEstab.tpInsc.cdata
                     if 'nrInsc' in dir(ideEstab): s1207_infoperapur_ideestab_dados['nrinsc'] = ideEstab.nrInsc.cdata
                     insert = create_insert('s1207_infoperapur_ideestab', s1207_infoperapur_ideestab_dados)
                     resp = executar_sql(insert, True)
                     s1207_infoperapur_ideestab_id = resp[0][0]
                     #print s1207_infoperapur_ideestab_id
-   
+
             if 'ideADC' in dir(dmDev.infoPerAnt):
                 for ideADC in dmDev.infoPerAnt.ideADC:
                     s1207_infoperant_ideadc_dados = {}
                     s1207_infoperant_ideadc_dados['s1207_dmdev_id'] = s1207_dmdev_id
-               
+
                     if 'dtAcConv' in dir(ideADC): s1207_infoperant_ideadc_dados['dtacconv'] = ideADC.dtAcConv.cdata
                     if 'tpAcConv' in dir(ideADC): s1207_infoperant_ideadc_dados['tpacconv'] = ideADC.tpAcConv.cdata
                     if 'compAcConv' in dir(ideADC): s1207_infoperant_ideadc_dados['compacconv'] = ideADC.compAcConv.cdata
@@ -158,7 +158,7 @@ def read_s1207_evtbenprrp_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s1207_infoperant_ideadc_id = resp[0][0]
                     #print s1207_infoperant_ideadc_id
-   
+
     from emensageriapro.esocial.views.s1207_evtbenprrp_verificar import validar_evento_funcao
     if validar: validar_evento_funcao(s1207_evtbenprrp_id, 'default')
     return dados

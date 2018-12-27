@@ -97,7 +97,7 @@ def read_s2231_evtcessao_obj(doc, status, validar=False):
         for iniCessao in evtCessao.infoCessao.iniCessao:
             s2231_inicessao_dados = {}
             s2231_inicessao_dados['s2231_evtcessao_id'] = s2231_evtcessao_id
-       
+
             if 'dtIniCessao' in dir(iniCessao): s2231_inicessao_dados['dtinicessao'] = iniCessao.dtIniCessao.cdata
             if 'cnpjCess' in dir(iniCessao): s2231_inicessao_dados['cnpjcess'] = iniCessao.cnpjCess.cdata
             if 'infOnus' in dir(iniCessao): s2231_inicessao_dados['infonus'] = iniCessao.infOnus.cdata
@@ -112,7 +112,7 @@ def read_s2231_evtcessao_obj(doc, status, validar=False):
         for fimCessao in evtCessao.infoCessao.fimCessao:
             s2231_fimcessao_dados = {}
             s2231_fimcessao_dados['s2231_evtcessao_id'] = s2231_evtcessao_id
-       
+
             if 'dtTermCessao' in dir(fimCessao): s2231_fimcessao_dados['dttermcessao'] = fimCessao.dtTermCessao.cdata
             insert = create_insert('s2231_fimcessao', s2231_fimcessao_dados)
             resp = executar_sql(insert, True)

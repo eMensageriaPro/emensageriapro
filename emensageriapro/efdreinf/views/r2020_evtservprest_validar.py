@@ -68,7 +68,7 @@ def validacoes_r2020_evtservprest(arquivo):
     if 'vlrTotalNRetAdic' in dir(evtServPrest.infoServPrest.ideEstabPrest.ideTomador): validacoes_lista = validar_campo(validacoes_lista,'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalNRetAdic', evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalNRetAdic.cdata, 0, '')
     if 'nfs' in dir(evtServPrest.infoServPrest.ideEstabPrest.ideTomador):
         for nfs in evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nfs:
-       
+
             if 'serie' in dir(nfs): validacoes_lista = validar_campo(validacoes_lista,'nfs.serie', nfs.serie.cdata, 1, '')
             if 'numDocto' in dir(nfs): validacoes_lista = validar_campo(validacoes_lista,'nfs.numDocto', nfs.numDocto.cdata, 1, '')
             if 'dtEmissaoNF' in dir(nfs): validacoes_lista = validar_campo(validacoes_lista,'nfs.dtEmissaoNF', nfs.dtEmissaoNF.cdata, 1, '')
@@ -77,7 +77,7 @@ def validacoes_r2020_evtservprest(arquivo):
 
             if 'infoTpServ' in dir(nfs):
                 for infoTpServ in nfs.infoTpServ:
-               
+
                     if 'tpServico' in dir(infoTpServ): validacoes_lista = validar_campo(validacoes_lista,'infoTpServ.tpServico', infoTpServ.tpServico.cdata, 1, '')
                     if 'vlrBaseRet' in dir(infoTpServ): validacoes_lista = validar_campo(validacoes_lista,'infoTpServ.vlrBaseRet', infoTpServ.vlrBaseRet.cdata, 1, '')
                     if 'vlrRetencao' in dir(infoTpServ): validacoes_lista = validar_campo(validacoes_lista,'infoTpServ.vlrRetencao', infoTpServ.vlrRetencao.cdata, 1, '')
@@ -88,10 +88,10 @@ def validacoes_r2020_evtservprest(arquivo):
                     if 'vlrServicos25' in dir(infoTpServ): validacoes_lista = validar_campo(validacoes_lista,'infoTpServ.vlrServicos25', infoTpServ.vlrServicos25.cdata, 0, '')
                     if 'vlrAdicional' in dir(infoTpServ): validacoes_lista = validar_campo(validacoes_lista,'infoTpServ.vlrAdicional', infoTpServ.vlrAdicional.cdata, 0, '')
                     if 'vlrNRetAdic' in dir(infoTpServ): validacoes_lista = validar_campo(validacoes_lista,'infoTpServ.vlrNRetAdic', infoTpServ.vlrNRetAdic.cdata, 0, '')
-   
+
     if 'infoProcRetPr' in dir(evtServPrest.infoServPrest.ideEstabPrest.ideTomador):
         for infoProcRetPr in evtServPrest.infoServPrest.ideEstabPrest.ideTomador.infoProcRetPr:
-       
+
             if 'tpProcRetPrinc' in dir(infoProcRetPr): validacoes_lista = validar_campo(validacoes_lista,'infoProcRetPr.tpProcRetPrinc', infoProcRetPr.tpProcRetPrinc.cdata, 1, '1;2')
             if 'nrProcRetPrinc' in dir(infoProcRetPr): validacoes_lista = validar_campo(validacoes_lista,'infoProcRetPr.nrProcRetPrinc', infoProcRetPr.nrProcRetPrinc.cdata, 1, '')
             if 'codSuspPrinc' in dir(infoProcRetPr): validacoes_lista = validar_campo(validacoes_lista,'infoProcRetPr.codSuspPrinc', infoProcRetPr.codSuspPrinc.cdata, 0, '')
@@ -99,7 +99,7 @@ def validacoes_r2020_evtservprest(arquivo):
 
     if 'infoProcRetAd' in dir(evtServPrest.infoServPrest.ideEstabPrest.ideTomador):
         for infoProcRetAd in evtServPrest.infoServPrest.ideEstabPrest.ideTomador.infoProcRetAd:
-       
+
             if 'tpProcRetAdic' in dir(infoProcRetAd): validacoes_lista = validar_campo(validacoes_lista,'infoProcRetAd.tpProcRetAdic', infoProcRetAd.tpProcRetAdic.cdata, 1, '1;2')
             if 'nrProcRetAdic' in dir(infoProcRetAd): validacoes_lista = validar_campo(validacoes_lista,'infoProcRetAd.nrProcRetAdic', infoProcRetAd.nrProcRetAdic.cdata, 1, '')
             if 'codSuspAdic' in dir(infoProcRetAd): validacoes_lista = validar_campo(validacoes_lista,'infoProcRetAd.codSuspAdic', infoProcRetAd.codSuspAdic.cdata, 0, '')

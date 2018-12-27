@@ -54,7 +54,7 @@ def validacoes_s1070_evttabprocesso(arquivo):
     if 'nrInsc' in dir(evtTabProcesso.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtTabProcesso.ideEmpregador.nrInsc', evtTabProcesso.ideEmpregador.nrInsc.cdata, 1, '')
     if 'inclusao' in dir(evtTabProcesso.infoProcesso):
         for inclusao in evtTabProcesso.infoProcesso.inclusao:
-       
+
             if 'tpProc' in dir(inclusao.ideProcesso): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideProcesso.tpProc', inclusao.ideProcesso.tpProc.cdata, 1, '1;2;3')
             if 'nrProc' in dir(inclusao.ideProcesso): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideProcesso.nrProc', inclusao.ideProcesso.nrProc.cdata, 1, '')
             if 'iniValid' in dir(inclusao.ideProcesso): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideProcesso.iniValid', inclusao.ideProcesso.iniValid.cdata, 1, '')
@@ -65,22 +65,22 @@ def validacoes_s1070_evttabprocesso(arquivo):
 
             if 'dadosProcJud' in dir(inclusao.dadosProc):
                 for dadosProcJud in inclusao.dadosProc.dadosProcJud:
-               
+
                     if 'ufVara' in dir(dadosProcJud): validacoes_lista = validar_campo(validacoes_lista,'dadosProcJud.ufVara', dadosProcJud.ufVara.cdata, 1, '')
                     if 'codMunic' in dir(dadosProcJud): validacoes_lista = validar_campo(validacoes_lista,'dadosProcJud.codMunic', dadosProcJud.codMunic.cdata, 1, '')
                     if 'idVara' in dir(dadosProcJud): validacoes_lista = validar_campo(validacoes_lista,'dadosProcJud.idVara', dadosProcJud.idVara.cdata, 1, '')
-   
+
             if 'infoSusp' in dir(inclusao.dadosProc):
                 for infoSusp in inclusao.dadosProc.infoSusp:
-               
+
                     if 'codSusp' in dir(infoSusp): validacoes_lista = validar_campo(validacoes_lista,'infoSusp.codSusp', infoSusp.codSusp.cdata, 1, '')
                     if 'indSusp' in dir(infoSusp): validacoes_lista = validar_campo(validacoes_lista,'infoSusp.indSusp', infoSusp.indSusp.cdata, 1, '01;02;03;04;05;08;09;10;11;12;13;14;90;92')
                     if 'dtDecisao' in dir(infoSusp): validacoes_lista = validar_campo(validacoes_lista,'infoSusp.dtDecisao', infoSusp.dtDecisao.cdata, 1, '')
                     if 'indDeposito' in dir(infoSusp): validacoes_lista = validar_campo(validacoes_lista,'infoSusp.indDeposito', infoSusp.indDeposito.cdata, 1, 'S;N')
-   
+
     if 'alteracao' in dir(evtTabProcesso.infoProcesso):
         for alteracao in evtTabProcesso.infoProcesso.alteracao:
-       
+
             if 'tpProc' in dir(alteracao.ideProcesso): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideProcesso.tpProc', alteracao.ideProcesso.tpProc.cdata, 1, '1;2;3')
             if 'nrProc' in dir(alteracao.ideProcesso): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideProcesso.nrProc', alteracao.ideProcesso.nrProc.cdata, 1, '')
             if 'iniValid' in dir(alteracao.ideProcesso): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideProcesso.iniValid', alteracao.ideProcesso.iniValid.cdata, 1, '')
@@ -91,28 +91,28 @@ def validacoes_s1070_evttabprocesso(arquivo):
 
             if 'dadosProcJud' in dir(alteracao.dadosProc):
                 for dadosProcJud in alteracao.dadosProc.dadosProcJud:
-               
+
                     if 'ufVara' in dir(dadosProcJud): validacoes_lista = validar_campo(validacoes_lista,'dadosProcJud.ufVara', dadosProcJud.ufVara.cdata, 1, '')
                     if 'codMunic' in dir(dadosProcJud): validacoes_lista = validar_campo(validacoes_lista,'dadosProcJud.codMunic', dadosProcJud.codMunic.cdata, 1, '')
                     if 'idVara' in dir(dadosProcJud): validacoes_lista = validar_campo(validacoes_lista,'dadosProcJud.idVara', dadosProcJud.idVara.cdata, 1, '')
-   
+
             if 'infoSusp' in dir(alteracao.dadosProc):
                 for infoSusp in alteracao.dadosProc.infoSusp:
-               
+
                     if 'codSusp' in dir(infoSusp): validacoes_lista = validar_campo(validacoes_lista,'infoSusp.codSusp', infoSusp.codSusp.cdata, 1, '')
                     if 'indSusp' in dir(infoSusp): validacoes_lista = validar_campo(validacoes_lista,'infoSusp.indSusp', infoSusp.indSusp.cdata, 1, '01;02;03;04;05;08;09;10;11;12;13;14;90;92')
                     if 'dtDecisao' in dir(infoSusp): validacoes_lista = validar_campo(validacoes_lista,'infoSusp.dtDecisao', infoSusp.dtDecisao.cdata, 1, '')
                     if 'indDeposito' in dir(infoSusp): validacoes_lista = validar_campo(validacoes_lista,'infoSusp.indDeposito', infoSusp.indDeposito.cdata, 1, 'S;N')
-   
+
             if 'novaValidade' in dir(alteracao):
                 for novaValidade in alteracao.novaValidade:
-               
+
                     if 'iniValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.iniValid', novaValidade.iniValid.cdata, 1, '')
                     if 'fimValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.fimValid', novaValidade.fimValid.cdata, 0, '')
-   
+
     if 'exclusao' in dir(evtTabProcesso.infoProcesso):
         for exclusao in evtTabProcesso.infoProcesso.exclusao:
-       
+
             if 'tpProc' in dir(exclusao.ideProcesso): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideProcesso.tpProc', exclusao.ideProcesso.tpProc.cdata, 1, '1;2;3')
             if 'nrProc' in dir(exclusao.ideProcesso): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideProcesso.nrProc', exclusao.ideProcesso.nrProc.cdata, 1, '')
             if 'iniValid' in dir(exclusao.ideProcesso): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideProcesso.iniValid', exclusao.ideProcesso.iniValid.cdata, 1, '')

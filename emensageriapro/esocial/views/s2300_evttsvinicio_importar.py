@@ -113,7 +113,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for CTPS in evtTSVInicio.trabalhador.documentos.CTPS:
             s2300_ctps_dados = {}
             s2300_ctps_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'nrCtps' in dir(CTPS): s2300_ctps_dados['nrctps'] = CTPS.nrCtps.cdata
             if 'serieCtps' in dir(CTPS): s2300_ctps_dados['seriectps'] = CTPS.serieCtps.cdata
             if 'ufCtps' in dir(CTPS): s2300_ctps_dados['ufctps'] = CTPS.ufCtps.cdata
@@ -126,7 +126,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for RIC in evtTSVInicio.trabalhador.documentos.RIC:
             s2300_ric_dados = {}
             s2300_ric_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'nrRic' in dir(RIC): s2300_ric_dados['nrric'] = RIC.nrRic.cdata
             if 'orgaoEmissor' in dir(RIC): s2300_ric_dados['orgaoemissor'] = RIC.orgaoEmissor.cdata
             if 'dtExped' in dir(RIC): s2300_ric_dados['dtexped'] = RIC.dtExped.cdata
@@ -139,7 +139,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for RG in evtTSVInicio.trabalhador.documentos.RG:
             s2300_rg_dados = {}
             s2300_rg_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'nrRg' in dir(RG): s2300_rg_dados['nrrg'] = RG.nrRg.cdata
             if 'orgaoEmissor' in dir(RG): s2300_rg_dados['orgaoemissor'] = RG.orgaoEmissor.cdata
             if 'dtExped' in dir(RG): s2300_rg_dados['dtexped'] = RG.dtExped.cdata
@@ -152,7 +152,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for RNE in evtTSVInicio.trabalhador.documentos.RNE:
             s2300_rne_dados = {}
             s2300_rne_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'nrRne' in dir(RNE): s2300_rne_dados['nrrne'] = RNE.nrRne.cdata
             if 'orgaoEmissor' in dir(RNE): s2300_rne_dados['orgaoemissor'] = RNE.orgaoEmissor.cdata
             if 'dtExped' in dir(RNE): s2300_rne_dados['dtexped'] = RNE.dtExped.cdata
@@ -165,7 +165,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for OC in evtTSVInicio.trabalhador.documentos.OC:
             s2300_oc_dados = {}
             s2300_oc_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'nrOc' in dir(OC): s2300_oc_dados['nroc'] = OC.nrOc.cdata
             if 'orgaoEmissor' in dir(OC): s2300_oc_dados['orgaoemissor'] = OC.orgaoEmissor.cdata
             if 'dtExped' in dir(OC): s2300_oc_dados['dtexped'] = OC.dtExped.cdata
@@ -179,7 +179,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for CNH in evtTSVInicio.trabalhador.documentos.CNH:
             s2300_cnh_dados = {}
             s2300_cnh_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'nrRegCnh' in dir(CNH): s2300_cnh_dados['nrregcnh'] = CNH.nrRegCnh.cdata
             if 'dtExped' in dir(CNH): s2300_cnh_dados['dtexped'] = CNH.dtExped.cdata
             if 'ufCnh' in dir(CNH): s2300_cnh_dados['ufcnh'] = CNH.ufCnh.cdata
@@ -195,7 +195,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for brasil in evtTSVInicio.trabalhador.endereco.brasil:
             s2300_brasil_dados = {}
             s2300_brasil_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'tpLograd' in dir(brasil): s2300_brasil_dados['tplograd'] = brasil.tpLograd.cdata
             if 'dscLograd' in dir(brasil): s2300_brasil_dados['dsclograd'] = brasil.dscLograd.cdata
             if 'nrLograd' in dir(brasil): s2300_brasil_dados['nrlograd'] = brasil.nrLograd.cdata
@@ -213,7 +213,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for exterior in evtTSVInicio.trabalhador.endereco.exterior:
             s2300_exterior_dados = {}
             s2300_exterior_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'paisResid' in dir(exterior): s2300_exterior_dados['paisresid'] = exterior.paisResid.cdata
             if 'dscLograd' in dir(exterior): s2300_exterior_dados['dsclograd'] = exterior.dscLograd.cdata
             if 'nrLograd' in dir(exterior): s2300_exterior_dados['nrlograd'] = exterior.nrLograd.cdata
@@ -230,7 +230,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for trabEstrangeiro in evtTSVInicio.trabalhador.trabEstrangeiro:
             s2300_trabestrangeiro_dados = {}
             s2300_trabestrangeiro_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'dtChegada' in dir(trabEstrangeiro): s2300_trabestrangeiro_dados['dtchegada'] = trabEstrangeiro.dtChegada.cdata
             if 'classTrabEstrang' in dir(trabEstrangeiro): s2300_trabestrangeiro_dados['classtrabestrang'] = trabEstrangeiro.classTrabEstrang.cdata
             if 'casadoBr' in dir(trabEstrangeiro): s2300_trabestrangeiro_dados['casadobr'] = trabEstrangeiro.casadoBr.cdata
@@ -244,7 +244,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for infoDeficiencia in evtTSVInicio.trabalhador.infoDeficiencia:
             s2300_infodeficiencia_dados = {}
             s2300_infodeficiencia_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'defFisica' in dir(infoDeficiencia): s2300_infodeficiencia_dados['deffisica'] = infoDeficiencia.defFisica.cdata
             if 'defVisual' in dir(infoDeficiencia): s2300_infodeficiencia_dados['defvisual'] = infoDeficiencia.defVisual.cdata
             if 'defAuditiva' in dir(infoDeficiencia): s2300_infodeficiencia_dados['defauditiva'] = infoDeficiencia.defAuditiva.cdata
@@ -261,7 +261,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for dependente in evtTSVInicio.trabalhador.dependente:
             s2300_dependente_dados = {}
             s2300_dependente_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'tpDep' in dir(dependente): s2300_dependente_dados['tpdep'] = dependente.tpDep.cdata
             if 'nmDep' in dir(dependente): s2300_dependente_dados['nmdep'] = dependente.nmDep.cdata
             if 'dtNascto' in dir(dependente): s2300_dependente_dados['dtnascto'] = dependente.dtNascto.cdata
@@ -280,7 +280,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for contato in evtTSVInicio.trabalhador.contato:
             s2300_contato_dados = {}
             s2300_contato_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'fonePrinc' in dir(contato): s2300_contato_dados['foneprinc'] = contato.fonePrinc.cdata
             if 'foneAlternat' in dir(contato): s2300_contato_dados['fonealternat'] = contato.foneAlternat.cdata
             if 'emailPrinc' in dir(contato): s2300_contato_dados['emailprinc'] = contato.emailPrinc.cdata
@@ -294,7 +294,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for cargoFuncao in evtTSVInicio.infoTSVInicio.infoComplementares.cargoFuncao:
             s2300_cargofuncao_dados = {}
             s2300_cargofuncao_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'codCargo' in dir(cargoFuncao): s2300_cargofuncao_dados['codcargo'] = cargoFuncao.codCargo.cdata
             if 'codFuncao' in dir(cargoFuncao): s2300_cargofuncao_dados['codfuncao'] = cargoFuncao.codFuncao.cdata
             insert = create_insert('s2300_cargofuncao', s2300_cargofuncao_dados)
@@ -306,7 +306,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for remuneracao in evtTSVInicio.infoTSVInicio.infoComplementares.remuneracao:
             s2300_remuneracao_dados = {}
             s2300_remuneracao_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'vrSalFx' in dir(remuneracao): s2300_remuneracao_dados['vrsalfx'] = remuneracao.vrSalFx.cdata
             if 'undSalFixo' in dir(remuneracao): s2300_remuneracao_dados['undsalfixo'] = remuneracao.undSalFixo.cdata
             if 'dscSalVar' in dir(remuneracao): s2300_remuneracao_dados['dscsalvar'] = remuneracao.dscSalVar.cdata
@@ -319,7 +319,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for fgts in evtTSVInicio.infoTSVInicio.infoComplementares.fgts:
             s2300_fgts_dados = {}
             s2300_fgts_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'opcFGTS' in dir(fgts): s2300_fgts_dados['opcfgts'] = fgts.opcFGTS.cdata
             if 'dtOpcFGTS' in dir(fgts): s2300_fgts_dados['dtopcfgts'] = fgts.dtOpcFGTS.cdata
             insert = create_insert('s2300_fgts', s2300_fgts_dados)
@@ -331,7 +331,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for infoDirigenteSindical in evtTSVInicio.infoTSVInicio.infoComplementares.infoDirigenteSindical:
             s2300_infodirigentesindical_dados = {}
             s2300_infodirigentesindical_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'categOrig' in dir(infoDirigenteSindical): s2300_infodirigentesindical_dados['categorig'] = infoDirigenteSindical.categOrig.cdata
             if 'cnpjOrigem' in dir(infoDirigenteSindical): s2300_infodirigentesindical_dados['cnpjorigem'] = infoDirigenteSindical.cnpjOrigem.cdata
             if 'dtAdmOrig' in dir(infoDirigenteSindical): s2300_infodirigentesindical_dados['dtadmorig'] = infoDirigenteSindical.dtAdmOrig.cdata
@@ -345,7 +345,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for infoTrabCedido in evtTSVInicio.infoTSVInicio.infoComplementares.infoTrabCedido:
             s2300_infotrabcedido_dados = {}
             s2300_infotrabcedido_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'categOrig' in dir(infoTrabCedido): s2300_infotrabcedido_dados['categorig'] = infoTrabCedido.categOrig.cdata
             if 'cnpjCednt' in dir(infoTrabCedido): s2300_infotrabcedido_dados['cnpjcednt'] = infoTrabCedido.cnpjCednt.cdata
             if 'matricCed' in dir(infoTrabCedido): s2300_infotrabcedido_dados['matricced'] = infoTrabCedido.matricCed.cdata
@@ -363,7 +363,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for infoEstagiario in evtTSVInicio.infoTSVInicio.infoComplementares.infoEstagiario:
             s2300_infoestagiario_dados = {}
             s2300_infoestagiario_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'natEstagio' in dir(infoEstagiario): s2300_infoestagiario_dados['natestagio'] = infoEstagiario.natEstagio.cdata
             if 'nivEstagio' in dir(infoEstagiario): s2300_infoestagiario_dados['nivestagio'] = infoEstagiario.nivEstagio.cdata
             if 'areaAtuacao' in dir(infoEstagiario): s2300_infoestagiario_dados['areaatuacao'] = infoEstagiario.areaAtuacao.cdata
@@ -387,7 +387,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
                 for ageIntegracao in infoEstagiario.ageIntegracao:
                     s2300_ageintegracao_dados = {}
                     s2300_ageintegracao_dados['s2300_infoestagiario_id'] = s2300_infoestagiario_id
-               
+
                     if 'cnpjAgntInteg' in dir(ageIntegracao): s2300_ageintegracao_dados['cnpjagntinteg'] = ageIntegracao.cnpjAgntInteg.cdata
                     if 'nmRazao' in dir(ageIntegracao): s2300_ageintegracao_dados['nmrazao'] = ageIntegracao.nmRazao.cdata
                     if 'dscLograd' in dir(ageIntegracao): s2300_ageintegracao_dados['dsclograd'] = ageIntegracao.dscLograd.cdata
@@ -400,24 +400,24 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
                     resp = executar_sql(insert, True)
                     s2300_ageintegracao_id = resp[0][0]
                     #print s2300_ageintegracao_id
-   
+
             if 'supervisorEstagio' in dir(infoEstagiario):
                 for supervisorEstagio in infoEstagiario.supervisorEstagio:
                     s2300_supervisorestagio_dados = {}
                     s2300_supervisorestagio_dados['s2300_infoestagiario_id'] = s2300_infoestagiario_id
-               
+
                     if 'cpfSupervisor' in dir(supervisorEstagio): s2300_supervisorestagio_dados['cpfsupervisor'] = supervisorEstagio.cpfSupervisor.cdata
                     if 'nmSuperv' in dir(supervisorEstagio): s2300_supervisorestagio_dados['nmsuperv'] = supervisorEstagio.nmSuperv.cdata
                     insert = create_insert('s2300_supervisorestagio', s2300_supervisorestagio_dados)
                     resp = executar_sql(insert, True)
                     s2300_supervisorestagio_id = resp[0][0]
                     #print s2300_supervisorestagio_id
-   
+
     if 'mudancaCPF' in dir(evtTSVInicio.infoTSVInicio):
         for mudancaCPF in evtTSVInicio.infoTSVInicio.mudancaCPF:
             s2300_mudancacpf_dados = {}
             s2300_mudancacpf_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'cpfAnt' in dir(mudancaCPF): s2300_mudancacpf_dados['cpfant'] = mudancaCPF.cpfAnt.cdata
             if 'dtAltCPF' in dir(mudancaCPF): s2300_mudancacpf_dados['dtaltcpf'] = mudancaCPF.dtAltCPF.cdata
             if 'observacao' in dir(mudancaCPF): s2300_mudancacpf_dados['observacao'] = mudancaCPF.observacao.cdata
@@ -430,7 +430,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for afastamento in evtTSVInicio.infoTSVInicio.afastamento:
             s2300_afastamento_dados = {}
             s2300_afastamento_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'dtIniAfast' in dir(afastamento): s2300_afastamento_dados['dtiniafast'] = afastamento.dtIniAfast.cdata
             if 'codMotAfast' in dir(afastamento): s2300_afastamento_dados['codmotafast'] = afastamento.codMotAfast.cdata
             insert = create_insert('s2300_afastamento', s2300_afastamento_dados)
@@ -442,7 +442,7 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
         for termino in evtTSVInicio.infoTSVInicio.termino:
             s2300_termino_dados = {}
             s2300_termino_dados['s2300_evttsvinicio_id'] = s2300_evttsvinicio_id
-       
+
             if 'dtTerm' in dir(termino): s2300_termino_dados['dtterm'] = termino.dtTerm.cdata
             insert = create_insert('s2300_termino', s2300_termino_dados)
             resp = executar_sql(insert, True)

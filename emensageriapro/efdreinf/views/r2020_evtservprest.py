@@ -97,17 +97,17 @@ def apagar(request, hash):
                              'r2020_evtservprest', r2020_evtservprest_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 'r2020_evtservprest_salvar':
             return redirect('r2020_evtservprest', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -287,18 +287,18 @@ def listar(request, hash):
             filtrar = True
             r2020_evtservprest_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-   
+
         transmissor_lote_efdreinf_lista = TransmissorLoteEfdreinf.objects.using( db_slug ).filter(excluido = False).all()
         #r2020_evtservprest_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r2020_evtservprest'
         context = {
             'r2020_evtservprest_lista': r2020_evtservprest_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -308,7 +308,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-       
+
             'transmissor_lote_efdreinf_lista': transmissor_lote_efdreinf_lista,
         }
         #return render(request, 'r2020_evtservprest_listar.html', context)
@@ -353,10 +353,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -500,7 +500,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         r2020_evtservprest_form = disabled_form_fields(r2020_evtservprest_form, permissao.permite_editar)
-    
+
         if r2020_evtservprest_id:
             if r2020_evtservprest.status != 0:
                 r2020_evtservprest_form = disabled_form_fields(r2020_evtservprest_form, False)
@@ -510,7 +510,7 @@ def salvar(request, hash):
             r2020_evtservprest_form.fields[field].widget.attrs['ng-model'] = 'r2020_evtservprest_'+field
         if int(dict_hash['print']):
             r2020_evtservprest_form = disabled_form_for_print(r2020_evtservprest_form)
-   
+
         r2020_nfs_form = None
         r2020_nfs_lista = None
         r2020_infoprocretpr_form = None
@@ -519,7 +519,7 @@ def salvar(request, hash):
         r2020_infoprocretad_lista = None
         if r2020_evtservprest_id:
             r2020_evtservprest = get_object_or_404(r2020evtServPrest.objects.using( db_slug ), excluido = False, id = r2020_evtservprest_id)
-       
+
             r2020_nfs_form = form_r2020_nfs(initial={ 'r2020_evtservprest': r2020_evtservprest }, slug=db_slug)
             r2020_nfs_form.fields['r2020_evtservprest'].widget.attrs['readonly'] = True
             r2020_nfs_lista = r2020nfs.objects.using( db_slug ).filter(excluido = False, r2020_evtservprest_id=r2020_evtservprest.id).all()
@@ -547,7 +547,7 @@ def salvar(request, hash):
             r2020_evtservprest_form.fields['procemi'].value = 1
             r2020_evtservprest_form.fields['verproc'].widget.attrs['readonly'] = True
             r2020_evtservprest_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-    
+
         if dict_hash['tab'] or 'r2020_evtservprest' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'r2020_evtservprest_salvar'
@@ -560,9 +560,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r2020_evtservprest_id': int(r2020_evtservprest_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             'r2020_nfs_form': r2020_nfs_form,
             'r2020_nfs_lista': r2020_nfs_lista,
             'r2020_infoprocretpr_form': r2020_infoprocretpr_form,
@@ -571,7 +571,7 @@ def salvar(request, hash):
             'r2020_infoprocretad_lista': r2020_infoprocretad_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -581,7 +581,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #r2020_evtservprest_salvar_custom_variaveis_context#
         }
-    
+
         if for_print in (0,1 ):
             return render(request, 'r2020_evtservprest_salvar.html', context)
         elif for_print == 2:
@@ -615,10 +615,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

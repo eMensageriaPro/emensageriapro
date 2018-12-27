@@ -92,17 +92,17 @@ def apagar(request, hash):
                              's1207_infoperapur_ideestab', s1207_infoperapur_ideestab_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+
         if request.session['retorno_pagina']== 's1207_infoperapur_ideestab_salvar':
             return redirect('s1207_infoperapur_ideestab', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -196,17 +196,17 @@ def listar(request, hash):
             filtrar = True
             s1207_infoperapur_ideestab_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s1207_infoperapur_ideestab_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1207_infoperapur_ideestab'
         context = {
             's1207_infoperapur_ideestab_lista': s1207_infoperapur_ideestab_lista,
-            
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -216,7 +216,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+
         }
         if for_print in (0,1):
             return render(request, 's1207_infoperapur_ideestab_listar.html', context)
@@ -259,10 +259,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -356,12 +356,12 @@ def salvar(request, hash):
             s1207_infoperapur_ideestab_form.fields[field].widget.attrs['ng-model'] = 's1207_infoperapur_ideestab_'+field
         if int(dict_hash['print']):
             s1207_infoperapur_ideestab_form = disabled_form_for_print(s1207_infoperapur_ideestab_form)
-   
+
         s1207_infoperapur_itensremun_form = None
         s1207_infoperapur_itensremun_lista = None
         if s1207_infoperapur_ideestab_id:
             s1207_infoperapur_ideestab = get_object_or_404(s1207infoPerApurideEstab.objects.using( db_slug ), excluido = False, id = s1207_infoperapur_ideestab_id)
-       
+
             s1207_infoperapur_itensremun_form = form_s1207_infoperapur_itensremun(initial={ 's1207_infoperapur_ideestab': s1207_infoperapur_ideestab }, slug=db_slug)
             s1207_infoperapur_itensremun_form.fields['s1207_infoperapur_ideestab'].widget.attrs['readonly'] = True
             s1207_infoperapur_itensremun_lista = s1207infoPerApuritensRemun.objects.using( db_slug ).filter(excluido = False, s1207_infoperapur_ideestab_id=s1207_infoperapur_ideestab.id).all()
@@ -385,14 +385,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1207_infoperapur_ideestab_id': int(s1207_infoperapur_ideestab_id),
             'usuario': usuario,
-            
+
             'hash': hash,
-       
+
             's1207_infoperapur_itensremun_form': s1207_infoperapur_itensremun_form,
             's1207_infoperapur_itensremun_lista': s1207_infoperapur_itensremun_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -436,10 +436,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
