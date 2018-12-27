@@ -215,15 +215,12 @@ USE_TZ = False
 
 # Configurações de Versão do Aplicativo
 
-VERSAO_EMENSAGERIA = '1.3'
+VERSAO_EMENSAGERIA = '1.2'
 VERSAO_LAYOUT_ESOCIAL = "v02_04_02"
 VERSAO_LAYOUT_EFDREINF = "v1_03_02"
 
-<<<<<<< HEAD
-VERSOES_ESOCIAL = ['v02_04_02', 'v02_05_00']
-VERSOES_EFDREINF = ['v1_03_02', 'v1_04_00']
-=======
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
+VERSOES_ESOCIAL = ["v02_04_02", "v02_05_00"]
+VERSOES_EFDREINF = ["v1_03_02", "v01_04_00"]
 
 # Hosts permitidos em Produção (obrigatório caso o DEBUG = False)
 ALLOWED_HOSTS = [
