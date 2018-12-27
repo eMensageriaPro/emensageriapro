@@ -221,7 +221,7 @@ class Usuarios(models.Model):
     first_name = models.CharField(max_length=60)
     last_name = models.CharField(max_length=60)
     email = models.EmailField(max_length=60)
-    is_superuser = models.BooleanField(blank=True)
+    is_superuser = models.BooleanField()
     is_staff = models.BooleanField(blank=True)
     is_active = models.BooleanField(blank=True)
     last_login = models.DateTimeField(blank=True)

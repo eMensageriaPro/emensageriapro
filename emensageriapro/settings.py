@@ -219,6 +219,8 @@ VERSAO_EMENSAGERIA = '1.3'
 VERSAO_LAYOUT_ESOCIAL = "v02_04_02"
 VERSAO_LAYOUT_EFDREINF = "v1_03_02"
 
+VERSOES_ESOCIAL = ['v02_04_02', 'v02_05_00']
+VERSOES_EFDREINF = ['v1_03_02', 'v1_04_00']
 
 # Hosts permitidos em Produção (obrigatório caso o DEBUG = False)
 ALLOWED_HOSTS = [

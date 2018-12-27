@@ -189,10 +189,10 @@ def apagar(request, hash):
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+   
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+   
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -452,18 +452,18 @@ def listar(request, hash):
             filtrar = True
             retornos_eventos_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-   
+
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #retornos_eventos_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'retornos_eventos'
         context = {
             'retornos_eventos_lista': retornos_eventos_lista,
-            
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -473,7 +473,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-       
+  
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         if for_print in (0,1):
@@ -517,10 +517,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -593,12 +593,12 @@ def salvar(request, hash):
             retornos_eventos_form.fields[field].widget.attrs['ng-model'] = 'retornos_eventos_'+field
         if int(dict_hash['print']):
             retornos_eventos_form = disabled_form_for_print(retornos_eventos_form)
-   
+
         retornos_eventos_ocorrencias_form = None
         retornos_eventos_ocorrencias_lista = None
         if retornos_eventos_id:
             retornos_eventos = get_object_or_404(RetornosEventos.objects.using( db_slug ), excluido = False, id = retornos_eventos_id)
-       
+  
             retornos_eventos_ocorrencias_form = form_retornos_eventos_ocorrencias(initial={ 'retornos_eventos': retornos_eventos }, slug=db_slug)
             retornos_eventos_ocorrencias_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             retornos_eventos_ocorrencias_lista = RetornosEventosOcorrencias.objects.using( db_slug ).filter(excluido = False, retornos_eventos_id=retornos_eventos.id).all()
@@ -616,14 +616,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'retornos_eventos_id': int(retornos_eventos_id),
             'usuario': usuario,
-            
-            'hash': hash,
        
+            'hash': hash,
+  
             'retornos_eventos_ocorrencias_form': retornos_eventos_ocorrencias_form,
             'retornos_eventos_ocorrencias_lista': retornos_eventos_ocorrencias_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -667,10 +667,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

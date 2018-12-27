@@ -783,6 +783,7 @@ def validar_evento_funcao(s2200_evtadmissao_id, db_slug):
 @login_required
 def validar_evento(request, hash):
 
+    from emensageriapro.settings import VERSOES_ESOCIAL
     from emensageriapro.mensageiro.functions.funcoes_validacoes import VERSAO_ATUAL
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
@@ -795,7 +796,7 @@ def validar_evento(request, hash):
             excluido=False,
             id=s2200_evtadmissao_id)
 
-        if s2200_evtadmissao.versao in VERSAO_ATUAL:
+        if s2200_evtadmissao.versao in VERSOES_ESOCIAL:
 
             validar_evento_funcao(s2200_evtadmissao_id, db_slug)
             messages.success(request, u'Validações processadas com sucesso!')

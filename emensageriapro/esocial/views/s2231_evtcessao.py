@@ -95,17 +95,17 @@ def apagar(request, hash):
                              's2231_evtcessao', s2231_evtcessao_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+   
         if request.session['retorno_pagina']== 's2231_evtcessao_salvar':
             return redirect('s2231_evtcessao', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+   
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+   
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -233,17 +233,17 @@ def listar(request, hash):
             filtrar = True
             s2231_evtcessao_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s2231_evtcessao_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2231_evtcessao'
         context = {
             's2231_evtcessao_lista': s2231_evtcessao_lista,
-            
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -253,7 +253,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+   
         }
         #return render(request, 's2231_evtcessao_listar.html', context)
         if for_print in (0,1):
@@ -297,10 +297,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -444,7 +444,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         s2231_evtcessao_form = disabled_form_fields(s2231_evtcessao_form, permissao.permite_editar)
-    
+
         if s2231_evtcessao_id:
             if s2231_evtcessao.status != 0:
                 s2231_evtcessao_form = disabled_form_fields(s2231_evtcessao_form, False)
@@ -454,14 +454,14 @@ def salvar(request, hash):
             s2231_evtcessao_form.fields[field].widget.attrs['ng-model'] = 's2231_evtcessao_'+field
         if int(dict_hash['print']):
             s2231_evtcessao_form = disabled_form_for_print(s2231_evtcessao_form)
-   
+
         s2231_inicessao_form = None
         s2231_inicessao_lista = None
         s2231_fimcessao_form = None
         s2231_fimcessao_lista = None
         if s2231_evtcessao_id:
             s2231_evtcessao = get_object_or_404(s2231evtCessao.objects.using( db_slug ), excluido = False, id = s2231_evtcessao_id)
-       
+  
             s2231_inicessao_form = form_s2231_inicessao(initial={ 's2231_evtcessao': s2231_evtcessao }, slug=db_slug)
             s2231_inicessao_form.fields['s2231_evtcessao'].widget.attrs['readonly'] = True
             s2231_inicessao_lista = s2231iniCessao.objects.using( db_slug ).filter(excluido = False, s2231_evtcessao_id=s2231_evtcessao.id).all()
@@ -486,7 +486,7 @@ def salvar(request, hash):
             s2231_evtcessao_form.fields['procemi'].value = 1
             s2231_evtcessao_form.fields['verproc'].widget.attrs['readonly'] = True
             s2231_evtcessao_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-    
+
         if dict_hash['tab'] or 's2231_evtcessao' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's2231_evtcessao_salvar'
@@ -499,16 +499,16 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2231_evtcessao_id': int(s2231_evtcessao_id),
             'usuario': usuario,
-            
-            'hash': hash,
        
+            'hash': hash,
+  
             's2231_inicessao_form': s2231_inicessao_form,
             's2231_inicessao_lista': s2231_inicessao_lista,
             's2231_fimcessao_form': s2231_fimcessao_form,
             's2231_fimcessao_lista': s2231_fimcessao_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -518,7 +518,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s2231_evtcessao_salvar_custom_variaveis_context#
         }
-    
+
         if for_print in (0,1 ):
             return render(request, 's2231_evtcessao_salvar.html', context)
         elif for_print == 2:
@@ -552,10 +552,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

@@ -95,17 +95,17 @@ def apagar(request, hash):
                              's3000_evtexclusao', s3000_evtexclusao_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+   
         if request.session['retorno_pagina']== 's3000_evtexclusao_salvar':
             return redirect('s3000_evtexclusao', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+   
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+   
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -249,18 +249,18 @@ def listar(request, hash):
             filtrar = True
             s3000_evtexclusao_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-   
+
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s3000_evtexclusao_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's3000_evtexclusao'
         context = {
             's3000_evtexclusao_lista': s3000_evtexclusao_lista,
-            
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -270,7 +270,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-       
+  
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         #return render(request, 's3000_evtexclusao_listar.html', context)
@@ -315,10 +315,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -462,7 +462,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         s3000_evtexclusao_form = disabled_form_fields(s3000_evtexclusao_form, permissao.permite_editar)
-    
+
         if s3000_evtexclusao_id:
             if s3000_evtexclusao.status != 0:
                 s3000_evtexclusao_form = disabled_form_fields(s3000_evtexclusao_form, False)
@@ -472,14 +472,14 @@ def salvar(request, hash):
             s3000_evtexclusao_form.fields[field].widget.attrs['ng-model'] = 's3000_evtexclusao_'+field
         if int(dict_hash['print']):
             s3000_evtexclusao_form = disabled_form_for_print(s3000_evtexclusao_form)
-   
+
         s3000_idetrabalhador_form = None
         s3000_idetrabalhador_lista = None
         s3000_idefolhapagto_form = None
         s3000_idefolhapagto_lista = None
         if s3000_evtexclusao_id:
             s3000_evtexclusao = get_object_or_404(s3000evtExclusao.objects.using( db_slug ), excluido = False, id = s3000_evtexclusao_id)
-       
+  
             s3000_idetrabalhador_form = form_s3000_idetrabalhador(initial={ 's3000_evtexclusao': s3000_evtexclusao }, slug=db_slug)
             s3000_idetrabalhador_form.fields['s3000_evtexclusao'].widget.attrs['readonly'] = True
             s3000_idetrabalhador_lista = s3000ideTrabalhador.objects.using( db_slug ).filter(excluido = False, s3000_evtexclusao_id=s3000_evtexclusao.id).all()
@@ -504,7 +504,7 @@ def salvar(request, hash):
             s3000_evtexclusao_form.fields['procemi'].value = 1
             s3000_evtexclusao_form.fields['verproc'].widget.attrs['readonly'] = True
             s3000_evtexclusao_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-    
+
         if dict_hash['tab'] or 's3000_evtexclusao' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's3000_evtexclusao_salvar'
@@ -517,16 +517,16 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's3000_evtexclusao_id': int(s3000_evtexclusao_id),
             'usuario': usuario,
-            
-            'hash': hash,
        
+            'hash': hash,
+  
             's3000_idetrabalhador_form': s3000_idetrabalhador_form,
             's3000_idetrabalhador_lista': s3000_idetrabalhador_lista,
             's3000_idefolhapagto_form': s3000_idefolhapagto_form,
             's3000_idefolhapagto_lista': s3000_idefolhapagto_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -536,7 +536,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s3000_evtexclusao_salvar_custom_variaveis_context#
         }
-    
+
         if for_print in (0,1 ):
             return render(request, 's3000_evtexclusao_salvar.html', context)
         elif for_print == 2:
@@ -570,10 +570,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

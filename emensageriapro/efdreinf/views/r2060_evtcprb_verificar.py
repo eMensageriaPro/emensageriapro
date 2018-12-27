@@ -587,9 +587,9 @@ def validar_evento_funcao(r2060_evtcprb_id, db_slug):
     from emensageriapro.settings import BASE_DIR
     lista_validacoes = []
     r2060_evtcprb = get_object_or_404(r2060evtCPRB.objects.using(db_slug), excluido=False, id=r2060_evtcprb_id)
-    if r2060_evtcprb.transmissor_lote_esocial:
-        if r2060_evtcprb.transmissor_lote_esocial.transmissor:
-            if r2060_evtcprb.transmissor_lote_esocial.transmissor.verificar_predecessao:
+    if r2060_evtcprb.transmissor_lote_efdreinf:
+        if r2060_evtcprb.transmissor_lote_efdreinf.transmissor:
+            if r2060_evtcprb.transmissor_lote_efdreinf.transmissor.verificar_predecessao:
                 quant = validar_precedencia('efdreinf', 'r2060_evtcprb', r2060_evtcprb_id)
                 if quant <= 0:
                     lista_validacoes.append(u'Precedência não foi enviada!')
@@ -663,6 +663,7 @@ def validar_evento_funcao(r2060_evtcprb_id, db_slug):
 @login_required
 def validar_evento(request, hash):
 
+    from emensageriapro.settings import VERSOES_EFDREINF
     from emensageriapro.mensageiro.functions.funcoes_validacoes import VERSAO_ATUAL
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
@@ -675,7 +676,7 @@ def validar_evento(request, hash):
             excluido=False,
             id=r2060_evtcprb_id)
 
-        if r2060_evtcprb.versao in VERSAO_ATUAL:
+        if r2060_evtcprb.versao in VERSOES_EFDREINF:
 
             validar_evento_funcao(r2060_evtcprb_id, db_slug)
             messages.success(request, u'Validações processadas com sucesso!')

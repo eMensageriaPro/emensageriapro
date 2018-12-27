@@ -591,9 +591,9 @@ def validar_evento_funcao(r3010_evtespdesportivo_id, db_slug):
     from emensageriapro.settings import BASE_DIR
     lista_validacoes = []
     r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo.objects.using(db_slug), excluido=False, id=r3010_evtespdesportivo_id)
-    if r3010_evtespdesportivo.transmissor_lote_esocial:
-        if r3010_evtespdesportivo.transmissor_lote_esocial.transmissor:
-            if r3010_evtespdesportivo.transmissor_lote_esocial.transmissor.verificar_predecessao:
+    if r3010_evtespdesportivo.transmissor_lote_efdreinf:
+        if r3010_evtespdesportivo.transmissor_lote_efdreinf.transmissor:
+            if r3010_evtespdesportivo.transmissor_lote_efdreinf.transmissor.verificar_predecessao:
                 quant = validar_precedencia('efdreinf', 'r3010_evtespdesportivo', r3010_evtespdesportivo_id)
                 if quant <= 0:
                     lista_validacoes.append(u'Precedência não foi enviada!')
@@ -667,6 +667,7 @@ def validar_evento_funcao(r3010_evtespdesportivo_id, db_slug):
 @login_required
 def validar_evento(request, hash):
 
+    from emensageriapro.settings import VERSOES_EFDREINF
     from emensageriapro.mensageiro.functions.funcoes_validacoes import VERSAO_ATUAL
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
@@ -679,7 +680,7 @@ def validar_evento(request, hash):
             excluido=False,
             id=r3010_evtespdesportivo_id)
 
-        if r3010_evtespdesportivo.versao in VERSAO_ATUAL:
+        if r3010_evtespdesportivo.versao in VERSOES_EFDREINF:
 
             validar_evento_funcao(r3010_evtespdesportivo_id, db_slug)
             messages.success(request, u'Validações processadas com sucesso!')

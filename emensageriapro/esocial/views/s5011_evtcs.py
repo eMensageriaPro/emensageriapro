@@ -99,17 +99,17 @@ def apagar(request, hash):
                              's5011_evtcs', s5011_evtcs_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+   
         if request.session['retorno_pagina']== 's5011_evtcs_salvar':
             return redirect('s5011_evtcs', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+   
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+   
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -256,18 +256,18 @@ def listar(request, hash):
             filtrar = True
             s5011_evtcs_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-   
+
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s5011_evtcs_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's5011_evtcs'
         context = {
             's5011_evtcs_lista': s5011_evtcs_lista,
-            
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -277,7 +277,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-       
+  
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         #return render(request, 's5011_evtcs_listar.html', context)
@@ -322,10 +322,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -469,7 +469,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         s5011_evtcs_form = disabled_form_fields(s5011_evtcs_form, permissao.permite_editar)
-    
+
         if s5011_evtcs_id:
             if s5011_evtcs.status != 0:
                 s5011_evtcs_form = disabled_form_fields(s5011_evtcs_form, False)
@@ -479,7 +479,7 @@ def salvar(request, hash):
             s5011_evtcs_form.fields[field].widget.attrs['ng-model'] = 's5011_evtcs_'+field
         if int(dict_hash['print']):
             s5011_evtcs_form = disabled_form_for_print(s5011_evtcs_form)
-   
+
         s5011_infocpseg_form = None
         s5011_infocpseg_lista = None
         s5011_infopj_form = None
@@ -490,7 +490,7 @@ def salvar(request, hash):
         s5011_infocrcontrib_lista = None
         if s5011_evtcs_id:
             s5011_evtcs = get_object_or_404(s5011evtCS.objects.using( db_slug ), excluido = False, id = s5011_evtcs_id)
-       
+  
             s5011_infocpseg_form = form_s5011_infocpseg(initial={ 's5011_evtcs': s5011_evtcs }, slug=db_slug)
             s5011_infocpseg_form.fields['s5011_evtcs'].widget.attrs['readonly'] = True
             s5011_infocpseg_lista = s5011infoCPSeg.objects.using( db_slug ).filter(excluido = False, s5011_evtcs_id=s5011_evtcs.id).all()
@@ -521,7 +521,7 @@ def salvar(request, hash):
             s5011_evtcs_form.fields['procemi'].value = 1
             s5011_evtcs_form.fields['verproc'].widget.attrs['readonly'] = True
             s5011_evtcs_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-    
+
         if dict_hash['tab'] or 's5011_evtcs' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's5011_evtcs_salvar'
@@ -534,9 +534,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's5011_evtcs_id': int(s5011_evtcs_id),
             'usuario': usuario,
-            
-            'hash': hash,
        
+            'hash': hash,
+  
             's5011_infocpseg_form': s5011_infocpseg_form,
             's5011_infocpseg_lista': s5011_infocpseg_lista,
             's5011_infopj_form': s5011_infopj_form,
@@ -547,7 +547,7 @@ def salvar(request, hash):
             's5011_infocrcontrib_lista': s5011_infocrcontrib_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -557,7 +557,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s5011_evtcs_salvar_custom_variaveis_context#
         }
-    
+
         if for_print in (0,1 ):
             return render(request, 's5011_evtcs_salvar.html', context)
         elif for_print == 2:
@@ -591,10 +591,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

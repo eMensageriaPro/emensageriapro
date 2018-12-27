@@ -92,17 +92,17 @@ def apagar(request, hash):
                              'r1000_alteracao', r1000_alteracao_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+   
         if request.session['retorno_pagina']== 'r1000_alteracao_salvar':
             return redirect('r1000_alteracao', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+   
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+   
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -235,17 +235,17 @@ def listar(request, hash):
             filtrar = True
             r1000_alteracao_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #r1000_alteracao_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r1000_alteracao'
         context = {
             'r1000_alteracao_lista': r1000_alteracao_lista,
-            
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -255,7 +255,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+   
         }
         if for_print in (0,1):
             return render(request, 'r1000_alteracao_listar.html', context)
@@ -298,10 +298,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -395,7 +395,7 @@ def salvar(request, hash):
             r1000_alteracao_form.fields[field].widget.attrs['ng-model'] = 'r1000_alteracao_'+field
         if int(dict_hash['print']):
             r1000_alteracao_form = disabled_form_for_print(r1000_alteracao_form)
-   
+
         r1000_alteracao_softhouse_form = None
         r1000_alteracao_softhouse_lista = None
         r1000_alteracao_infoefr_form = None
@@ -404,7 +404,7 @@ def salvar(request, hash):
         r1000_alteracao_novavalidade_lista = None
         if r1000_alteracao_id:
             r1000_alteracao = get_object_or_404(r1000alteracao.objects.using( db_slug ), excluido = False, id = r1000_alteracao_id)
-       
+  
             r1000_alteracao_softhouse_form = form_r1000_alteracao_softhouse(initial={ 'r1000_alteracao': r1000_alteracao }, slug=db_slug)
             r1000_alteracao_softhouse_form.fields['r1000_alteracao'].widget.attrs['readonly'] = True
             r1000_alteracao_softhouse_lista = r1000alteracaosoftHouse.objects.using( db_slug ).filter(excluido = False, r1000_alteracao_id=r1000_alteracao.id).all()
@@ -434,9 +434,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r1000_alteracao_id': int(r1000_alteracao_id),
             'usuario': usuario,
-            
-            'hash': hash,
        
+            'hash': hash,
+  
             'r1000_alteracao_softhouse_form': r1000_alteracao_softhouse_form,
             'r1000_alteracao_softhouse_lista': r1000_alteracao_softhouse_lista,
             'r1000_alteracao_infoefr_form': r1000_alteracao_infoefr_form,
@@ -445,7 +445,7 @@ def salvar(request, hash):
             'r1000_alteracao_novavalidade_lista': r1000_alteracao_novavalidade_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -489,10 +489,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

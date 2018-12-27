@@ -92,17 +92,17 @@ def apagar(request, hash):
                              's1200_infoperapur_remunperapur', s1200_infoperapur_remunperapur_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+   
         if request.session['retorno_pagina']== 's1200_infoperapur_remunperapur_salvar':
             return redirect('s1200_infoperapur_remunperapur', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+   
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+   
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -196,17 +196,17 @@ def listar(request, hash):
             filtrar = True
             s1200_infoperapur_remunperapur_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s1200_infoperapur_remunperapur_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1200_infoperapur_remunperapur'
         context = {
             's1200_infoperapur_remunperapur_lista': s1200_infoperapur_remunperapur_lista,
-            
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -216,7 +216,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+   
         }
         if for_print in (0,1):
             return render(request, 's1200_infoperapur_remunperapur_listar.html', context)
@@ -259,10 +259,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -356,7 +356,7 @@ def salvar(request, hash):
             s1200_infoperapur_remunperapur_form.fields[field].widget.attrs['ng-model'] = 's1200_infoperapur_remunperapur_'+field
         if int(dict_hash['print']):
             s1200_infoperapur_remunperapur_form = disabled_form_for_print(s1200_infoperapur_remunperapur_form)
-   
+
         s1200_infoperapur_itensremun_form = None
         s1200_infoperapur_itensremun_lista = None
         s1200_infoperapur_detoper_form = None
@@ -367,7 +367,7 @@ def salvar(request, hash):
         s1200_infoperapur_infotrabinterm_lista = None
         if s1200_infoperapur_remunperapur_id:
             s1200_infoperapur_remunperapur = get_object_or_404(s1200infoPerApurremunPerApur.objects.using( db_slug ), excluido = False, id = s1200_infoperapur_remunperapur_id)
-       
+  
             s1200_infoperapur_itensremun_form = form_s1200_infoperapur_itensremun(initial={ 's1200_infoperapur_remunperapur': s1200_infoperapur_remunperapur }, slug=db_slug)
             s1200_infoperapur_itensremun_form.fields['s1200_infoperapur_remunperapur'].widget.attrs['readonly'] = True
             s1200_infoperapur_itensremun_lista = s1200infoPerApuritensRemun.objects.using( db_slug ).filter(excluido = False, s1200_infoperapur_remunperapur_id=s1200_infoperapur_remunperapur.id).all()
@@ -400,9 +400,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1200_infoperapur_remunperapur_id': int(s1200_infoperapur_remunperapur_id),
             'usuario': usuario,
-            
-            'hash': hash,
        
+            'hash': hash,
+  
             's1200_infoperapur_itensremun_form': s1200_infoperapur_itensremun_form,
             's1200_infoperapur_itensremun_lista': s1200_infoperapur_itensremun_lista,
             's1200_infoperapur_detoper_form': s1200_infoperapur_detoper_form,
@@ -413,7 +413,7 @@ def salvar(request, hash):
             's1200_infoperapur_infotrabinterm_lista': s1200_infoperapur_infotrabinterm_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -457,10 +457,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

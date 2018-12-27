@@ -91,17 +91,17 @@ def apagar(request, hash):
                              's2298_evtreintegr', s2298_evtreintegr_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+   
         if request.session['retorno_pagina']== 's2298_evtreintegr_salvar':
             return redirect('s2298_evtreintegr', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+   
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+   
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -275,18 +275,18 @@ def listar(request, hash):
             filtrar = True
             s2298_evtreintegr_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-   
+
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s2298_evtreintegr_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2298_evtreintegr'
         context = {
             's2298_evtreintegr_lista': s2298_evtreintegr_lista,
-            
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -296,7 +296,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-       
+  
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         #return render(request, 's2298_evtreintegr_listar.html', context)
@@ -341,10 +341,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -488,7 +488,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         s2298_evtreintegr_form = disabled_form_fields(s2298_evtreintegr_form, permissao.permite_editar)
-    
+
         if s2298_evtreintegr_id:
             if s2298_evtreintegr.status != 0:
                 s2298_evtreintegr_form = disabled_form_fields(s2298_evtreintegr_form, False)
@@ -520,7 +520,7 @@ def salvar(request, hash):
             s2298_evtreintegr_form.fields['procemi'].value = 1
             s2298_evtreintegr_form.fields['verproc'].widget.attrs['readonly'] = True
             s2298_evtreintegr_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-    
+
         if dict_hash['tab'] or 's2298_evtreintegr' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's2298_evtreintegr_salvar'
@@ -533,12 +533,12 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2298_evtreintegr_id': int(s2298_evtreintegr_id),
             'usuario': usuario,
-            
+       
             'hash': hash,
             #[VARIAVEIS_SECUNDARIAS]
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -548,7 +548,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s2298_evtreintegr_salvar_custom_variaveis_context#
         }
-    
+
         if for_print in (0,1 ):
             return render(request, 's2298_evtreintegr_salvar.html', context)
         elif for_print == 2:
@@ -582,10 +582,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

@@ -92,17 +92,17 @@ def apagar(request, hash):
                              'r2010_nfs', r2010_nfs_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+   
         if request.session['retorno_pagina']== 'r2010_nfs_salvar':
             return redirect('r2010_nfs', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+   
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+   
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -205,17 +205,17 @@ def listar(request, hash):
             filtrar = True
             r2010_nfs_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #r2010_nfs_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r2010_nfs'
         context = {
             'r2010_nfs_lista': r2010_nfs_lista,
-            
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -225,7 +225,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+   
         }
         if for_print in (0,1):
             return render(request, 'r2010_nfs_listar.html', context)
@@ -268,10 +268,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -365,12 +365,12 @@ def salvar(request, hash):
             r2010_nfs_form.fields[field].widget.attrs['ng-model'] = 'r2010_nfs_'+field
         if int(dict_hash['print']):
             r2010_nfs_form = disabled_form_for_print(r2010_nfs_form)
-   
+
         r2010_infotpserv_form = None
         r2010_infotpserv_lista = None
         if r2010_nfs_id:
             r2010_nfs = get_object_or_404(r2010nfs.objects.using( db_slug ), excluido = False, id = r2010_nfs_id)
-       
+  
             r2010_infotpserv_form = form_r2010_infotpserv(initial={ 'r2010_nfs': r2010_nfs }, slug=db_slug)
             r2010_infotpserv_form.fields['r2010_nfs'].widget.attrs['readonly'] = True
             r2010_infotpserv_lista = r2010infoTpServ.objects.using( db_slug ).filter(excluido = False, r2010_nfs_id=r2010_nfs.id).all()
@@ -394,14 +394,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r2010_nfs_id': int(r2010_nfs_id),
             'usuario': usuario,
-            
-            'hash': hash,
        
+            'hash': hash,
+  
             'r2010_infotpserv_form': r2010_infotpserv_form,
             'r2010_infotpserv_lista': r2010_infotpserv_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -445,10 +445,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

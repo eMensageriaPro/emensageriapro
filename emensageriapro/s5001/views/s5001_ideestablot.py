@@ -92,17 +92,17 @@ def apagar(request, hash):
                              's5001_ideestablot', s5001_ideestablot_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+   
         if request.session['retorno_pagina']== 's5001_ideestablot_salvar':
             return redirect('s5001_ideestablot', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+   
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+   
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -199,17 +199,17 @@ def listar(request, hash):
             filtrar = True
             s5001_ideestablot_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s5001_ideestablot_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's5001_ideestablot'
         context = {
             's5001_ideestablot_lista': s5001_ideestablot_lista,
-            
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -219,7 +219,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+   
         }
         if for_print in (0,1):
             return render(request, 's5001_ideestablot_listar.html', context)
@@ -262,10 +262,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -359,12 +359,12 @@ def salvar(request, hash):
             s5001_ideestablot_form.fields[field].widget.attrs['ng-model'] = 's5001_ideestablot_'+field
         if int(dict_hash['print']):
             s5001_ideestablot_form = disabled_form_for_print(s5001_ideestablot_form)
-   
+
         s5001_infocategincid_form = None
         s5001_infocategincid_lista = None
         if s5001_ideestablot_id:
             s5001_ideestablot = get_object_or_404(s5001ideEstabLot.objects.using( db_slug ), excluido = False, id = s5001_ideestablot_id)
-       
+  
             s5001_infocategincid_form = form_s5001_infocategincid(initial={ 's5001_ideestablot': s5001_ideestablot }, slug=db_slug)
             s5001_infocategincid_form.fields['s5001_ideestablot'].widget.attrs['readonly'] = True
             s5001_infocategincid_lista = s5001infoCategIncid.objects.using( db_slug ).filter(excluido = False, s5001_ideestablot_id=s5001_ideestablot.id).all()
@@ -388,14 +388,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's5001_ideestablot_id': int(s5001_ideestablot_id),
             'usuario': usuario,
-            
-            'hash': hash,
        
+            'hash': hash,
+  
             's5001_infocategincid_form': s5001_infocategincid_form,
             's5001_infocategincid_lista': s5001_infocategincid_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -439,10 +439,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

@@ -92,17 +92,17 @@ def apagar(request, hash):
                              's1210_detpgtobenpr', s1210_detpgtobenpr_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+   
         if request.session['retorno_pagina']== 's1210_detpgtobenpr_salvar':
             return redirect('s1210_detpgtobenpr', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+   
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+   
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -202,17 +202,17 @@ def listar(request, hash):
             filtrar = True
             s1210_detpgtobenpr_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s1210_detpgtobenpr_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1210_detpgtobenpr'
         context = {
             's1210_detpgtobenpr_lista': s1210_detpgtobenpr_lista,
-            
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -222,7 +222,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+   
         }
         if for_print in (0,1):
             return render(request, 's1210_detpgtobenpr_listar.html', context)
@@ -265,10 +265,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -362,14 +362,14 @@ def salvar(request, hash):
             s1210_detpgtobenpr_form.fields[field].widget.attrs['ng-model'] = 's1210_detpgtobenpr_'+field
         if int(dict_hash['print']):
             s1210_detpgtobenpr_form = disabled_form_for_print(s1210_detpgtobenpr_form)
-   
+
         s1210_detpgtobenpr_retpgtotot_form = None
         s1210_detpgtobenpr_retpgtotot_lista = None
         s1210_detpgtobenpr_infopgtoparc_form = None
         s1210_detpgtobenpr_infopgtoparc_lista = None
         if s1210_detpgtobenpr_id:
             s1210_detpgtobenpr = get_object_or_404(s1210detPgtoBenPr.objects.using( db_slug ), excluido = False, id = s1210_detpgtobenpr_id)
-       
+  
             s1210_detpgtobenpr_retpgtotot_form = form_s1210_detpgtobenpr_retpgtotot(initial={ 's1210_detpgtobenpr': s1210_detpgtobenpr }, slug=db_slug)
             s1210_detpgtobenpr_retpgtotot_form.fields['s1210_detpgtobenpr'].widget.attrs['readonly'] = True
             s1210_detpgtobenpr_retpgtotot_lista = s1210detPgtoBenPrretPgtoTot.objects.using( db_slug ).filter(excluido = False, s1210_detpgtobenpr_id=s1210_detpgtobenpr.id).all()
@@ -396,16 +396,16 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1210_detpgtobenpr_id': int(s1210_detpgtobenpr_id),
             'usuario': usuario,
-            
-            'hash': hash,
        
+            'hash': hash,
+  
             's1210_detpgtobenpr_retpgtotot_form': s1210_detpgtobenpr_retpgtotot_form,
             's1210_detpgtobenpr_retpgtotot_lista': s1210_detpgtobenpr_retpgtotot_lista,
             's1210_detpgtobenpr_infopgtoparc_form': s1210_detpgtobenpr_infopgtoparc_form,
             's1210_detpgtobenpr_infopgtoparc_lista': s1210_detpgtobenpr_infopgtoparc_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -449,10 +449,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

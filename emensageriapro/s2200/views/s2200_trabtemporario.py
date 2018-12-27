@@ -92,17 +92,17 @@ def apagar(request, hash):
                              's2200_trabtemporario', s2200_trabtemporario_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-        
+   
         if request.session['retorno_pagina']== 's2200_trabtemporario_salvar':
             return redirect('s2200_trabtemporario', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-        
+   
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
-        
+   
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -208,17 +208,17 @@ def listar(request, hash):
             filtrar = True
             s2200_trabtemporario_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-    
+
         #s2200_trabtemporario_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2200_trabtemporario'
         context = {
             's2200_trabtemporario_lista': s2200_trabtemporario_lista,
-            
+       
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -228,7 +228,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-        
+   
         }
         if for_print in (0,1):
             return render(request, 's2200_trabtemporario_listar.html', context)
@@ -271,10 +271,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -368,14 +368,14 @@ def salvar(request, hash):
             s2200_trabtemporario_form.fields[field].widget.attrs['ng-model'] = 's2200_trabtemporario_'+field
         if int(dict_hash['print']):
             s2200_trabtemporario_form = disabled_form_for_print(s2200_trabtemporario_form)
-   
+
         s2200_ideestabvinc_form = None
         s2200_ideestabvinc_lista = None
         s2200_idetrabsubstituido_form = None
         s2200_idetrabsubstituido_lista = None
         if s2200_trabtemporario_id:
             s2200_trabtemporario = get_object_or_404(s2200trabTemporario.objects.using( db_slug ), excluido = False, id = s2200_trabtemporario_id)
-       
+  
             s2200_ideestabvinc_form = form_s2200_ideestabvinc(initial={ 's2200_trabtemporario': s2200_trabtemporario }, slug=db_slug)
             s2200_ideestabvinc_form.fields['s2200_trabtemporario'].widget.attrs['readonly'] = True
             s2200_ideestabvinc_lista = s2200ideEstabVinc.objects.using( db_slug ).filter(excluido = False, s2200_trabtemporario_id=s2200_trabtemporario.id).all()
@@ -402,16 +402,16 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2200_trabtemporario_id': int(s2200_trabtemporario_id),
             'usuario': usuario,
-            
-            'hash': hash,
        
+            'hash': hash,
+  
             's2200_ideestabvinc_form': s2200_ideestabvinc_form,
             's2200_ideestabvinc_lista': s2200_ideestabvinc_lista,
             's2200_idetrabsubstituido_form': s2200_idetrabsubstituido_form,
             's2200_idetrabsubstituido_lista': s2200_idetrabsubstituido_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -455,10 +455,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-            
+       
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-            
+       
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
