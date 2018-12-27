@@ -92,17 +92,28 @@ def apagar(request, hash):
                              's1200_dmdev', s1200_dmdev_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+<<<<<<< HEAD
    
+=======
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 's1200_dmdev_salvar':
             return redirect('s1200_dmdev', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
+<<<<<<< HEAD
    
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
    
+=======
+        
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -196,17 +207,29 @@ def listar(request, hash):
             filtrar = True
             s1200_dmdev_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         #s1200_dmdev_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1200_dmdev'
         context = {
             's1200_dmdev_lista': s1200_dmdev_lista,
+<<<<<<< HEAD
        
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'usuario': usuario,
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -216,7 +239,11 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
+<<<<<<< HEAD
    
+=======
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         }
         if for_print in (0,1):
             return render(request, 's1200_dmdev_listar.html', context)
@@ -259,10 +286,17 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
+<<<<<<< HEAD
        
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -356,7 +390,11 @@ def salvar(request, hash):
             s1200_dmdev_form.fields[field].widget.attrs['ng-model'] = 's1200_dmdev_'+field
         if int(dict_hash['print']):
             s1200_dmdev_form = disabled_form_for_print(s1200_dmdev_form)
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         s1200_infoperapur_ideestablot_form = None
         s1200_infoperapur_ideestablot_lista = None
         s1200_infoperant_ideadc_form = None
@@ -365,7 +403,11 @@ def salvar(request, hash):
         s1200_infoperant_infocomplcont_lista = None
         if s1200_dmdev_id:
             s1200_dmdev = get_object_or_404(s1200dmDev.objects.using( db_slug ), excluido = False, id = s1200_dmdev_id)
+<<<<<<< HEAD
   
+=======
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             s1200_infoperapur_ideestablot_form = form_s1200_infoperapur_ideestablot(initial={ 's1200_dmdev': s1200_dmdev }, slug=db_slug)
             s1200_infoperapur_ideestablot_form.fields['s1200_dmdev'].widget.attrs['readonly'] = True
             s1200_infoperapur_ideestablot_lista = s1200infoPerApurideEstabLot.objects.using( db_slug ).filter(excluido = False, s1200_dmdev_id=s1200_dmdev.id).all()
@@ -395,9 +437,15 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1200_dmdev_id': int(s1200_dmdev_id),
             'usuario': usuario,
+<<<<<<< HEAD
        
             'hash': hash,
   
+=======
+            
+            'hash': hash,
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             's1200_infoperapur_ideestablot_form': s1200_infoperapur_ideestablot_form,
             's1200_infoperapur_ideestablot_lista': s1200_infoperapur_ideestablot_lista,
             's1200_infoperant_ideadc_form': s1200_infoperant_ideadc_form,
@@ -406,7 +454,11 @@ def salvar(request, hash):
             's1200_infoperant_infocomplcont_lista': s1200_infoperant_infocomplcont_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
+<<<<<<< HEAD
        
+=======
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -450,10 +502,17 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
+<<<<<<< HEAD
        
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

@@ -95,17 +95,28 @@ def apagar(request, hash):
                              's1207_evtbenprrp', s1207_evtbenprrp_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+<<<<<<< HEAD
    
+=======
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 's1207_evtbenprrp_salvar':
             return redirect('s1207_evtbenprrp', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
+<<<<<<< HEAD
    
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
    
+=======
+        
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -258,18 +269,30 @@ def listar(request, hash):
             filtrar = True
             s1207_evtbenprrp_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s1207_evtbenprrp_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1207_evtbenprrp'
         context = {
             's1207_evtbenprrp_lista': s1207_evtbenprrp_lista,
+<<<<<<< HEAD
        
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'usuario': usuario,
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -279,7 +302,11 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
+<<<<<<< HEAD
   
+=======
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         #return render(request, 's1207_evtbenprrp_listar.html', context)
@@ -324,10 +351,17 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
+<<<<<<< HEAD
        
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -471,7 +505,11 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         s1207_evtbenprrp_form = disabled_form_fields(s1207_evtbenprrp_form, permissao.permite_editar)
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if s1207_evtbenprrp_id:
             if s1207_evtbenprrp.status != 0:
                 s1207_evtbenprrp_form = disabled_form_fields(s1207_evtbenprrp_form, False)
@@ -481,14 +519,22 @@ def salvar(request, hash):
             s1207_evtbenprrp_form.fields[field].widget.attrs['ng-model'] = 's1207_evtbenprrp_'+field
         if int(dict_hash['print']):
             s1207_evtbenprrp_form = disabled_form_for_print(s1207_evtbenprrp_form)
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         s1207_procjudtrab_form = None
         s1207_procjudtrab_lista = None
         s1207_dmdev_form = None
         s1207_dmdev_lista = None
         if s1207_evtbenprrp_id:
             s1207_evtbenprrp = get_object_or_404(s1207evtBenPrRP.objects.using( db_slug ), excluido = False, id = s1207_evtbenprrp_id)
+<<<<<<< HEAD
   
+=======
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             s1207_procjudtrab_form = form_s1207_procjudtrab(initial={ 's1207_evtbenprrp': s1207_evtbenprrp }, slug=db_slug)
             s1207_procjudtrab_form.fields['s1207_evtbenprrp'].widget.attrs['readonly'] = True
             s1207_procjudtrab_lista = s1207procJudTrab.objects.using( db_slug ).filter(excluido = False, s1207_evtbenprrp_id=s1207_evtbenprrp.id).all()
@@ -513,7 +559,11 @@ def salvar(request, hash):
             s1207_evtbenprrp_form.fields['procemi'].value = 1
             s1207_evtbenprrp_form.fields['verproc'].widget.attrs['readonly'] = True
             s1207_evtbenprrp_form.fields['verproc'].value = VERSAO_EMENSAGERIA
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if dict_hash['tab'] or 's1207_evtbenprrp' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's1207_evtbenprrp_salvar'
@@ -526,16 +576,26 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1207_evtbenprrp_id': int(s1207_evtbenprrp_id),
             'usuario': usuario,
+<<<<<<< HEAD
        
             'hash': hash,
   
+=======
+            
+            'hash': hash,
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             's1207_procjudtrab_form': s1207_procjudtrab_form,
             's1207_procjudtrab_lista': s1207_procjudtrab_lista,
             's1207_dmdev_form': s1207_dmdev_form,
             's1207_dmdev_lista': s1207_dmdev_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
+<<<<<<< HEAD
        
+=======
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -545,7 +605,11 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s1207_evtbenprrp_salvar_custom_variaveis_context#
         }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if for_print in (0,1 ):
             return render(request, 's1207_evtbenprrp_salvar.html', context)
         elif for_print == 2:
@@ -579,10 +643,17 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
+<<<<<<< HEAD
        
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

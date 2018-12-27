@@ -92,17 +92,28 @@ def apagar(request, hash):
                              'r5011_rtom', r5011_rtom_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+<<<<<<< HEAD
    
+=======
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 'r5011_rtom_salvar':
             return redirect('r5011_rtom', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
+<<<<<<< HEAD
    
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
    
+=======
+        
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -199,17 +210,29 @@ def listar(request, hash):
             filtrar = True
             r5011_rtom_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         #r5011_rtom_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r5011_rtom'
         context = {
             'r5011_rtom_lista': r5011_rtom_lista,
+<<<<<<< HEAD
        
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'usuario': usuario,
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -219,7 +242,11 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
+<<<<<<< HEAD
    
+=======
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         }
         if for_print in (0,1):
             return render(request, 'r5011_rtom_listar.html', context)
@@ -262,10 +289,17 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
+<<<<<<< HEAD
        
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -359,12 +393,20 @@ def salvar(request, hash):
             r5011_rtom_form.fields[field].widget.attrs['ng-model'] = 'r5011_rtom_'+field
         if int(dict_hash['print']):
             r5011_rtom_form = disabled_form_for_print(r5011_rtom_form)
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         r5011_infocrtom_form = None
         r5011_infocrtom_lista = None
         if r5011_rtom_id:
             r5011_rtom = get_object_or_404(r5011RTom.objects.using( db_slug ), excluido = False, id = r5011_rtom_id)
+<<<<<<< HEAD
   
+=======
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             r5011_infocrtom_form = form_r5011_infocrtom(initial={ 'r5011_rtom': r5011_rtom }, slug=db_slug)
             r5011_infocrtom_form.fields['r5011_rtom'].widget.attrs['readonly'] = True
             r5011_infocrtom_lista = r5011infoCRTom.objects.using( db_slug ).filter(excluido = False, r5011_rtom_id=r5011_rtom.id).all()
@@ -388,14 +430,24 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r5011_rtom_id': int(r5011_rtom_id),
             'usuario': usuario,
+<<<<<<< HEAD
        
             'hash': hash,
   
+=======
+            
+            'hash': hash,
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'r5011_infocrtom_form': r5011_infocrtom_form,
             'r5011_infocrtom_lista': r5011_infocrtom_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
+<<<<<<< HEAD
        
+=======
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -439,10 +491,17 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
+<<<<<<< HEAD
        
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

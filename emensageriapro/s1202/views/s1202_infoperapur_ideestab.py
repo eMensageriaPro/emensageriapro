@@ -92,17 +92,28 @@ def apagar(request, hash):
                              's1202_infoperapur_ideestab', s1202_infoperapur_ideestab_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+<<<<<<< HEAD
    
+=======
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 's1202_infoperapur_ideestab_salvar':
             return redirect('s1202_infoperapur_ideestab', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
+<<<<<<< HEAD
    
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
    
+=======
+        
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -196,17 +207,29 @@ def listar(request, hash):
             filtrar = True
             s1202_infoperapur_ideestab_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         #s1202_infoperapur_ideestab_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1202_infoperapur_ideestab'
         context = {
             's1202_infoperapur_ideestab_lista': s1202_infoperapur_ideestab_lista,
+<<<<<<< HEAD
        
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'usuario': usuario,
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -216,7 +239,11 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
+<<<<<<< HEAD
    
+=======
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         }
         if for_print in (0,1):
             return render(request, 's1202_infoperapur_ideestab_listar.html', context)
@@ -259,10 +286,17 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
+<<<<<<< HEAD
        
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -356,12 +390,20 @@ def salvar(request, hash):
             s1202_infoperapur_ideestab_form.fields[field].widget.attrs['ng-model'] = 's1202_infoperapur_ideestab_'+field
         if int(dict_hash['print']):
             s1202_infoperapur_ideestab_form = disabled_form_for_print(s1202_infoperapur_ideestab_form)
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         s1202_infoperapur_remunperapur_form = None
         s1202_infoperapur_remunperapur_lista = None
         if s1202_infoperapur_ideestab_id:
             s1202_infoperapur_ideestab = get_object_or_404(s1202infoPerApurideEstab.objects.using( db_slug ), excluido = False, id = s1202_infoperapur_ideestab_id)
+<<<<<<< HEAD
   
+=======
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             s1202_infoperapur_remunperapur_form = form_s1202_infoperapur_remunperapur(initial={ 's1202_infoperapur_ideestab': s1202_infoperapur_ideestab }, slug=db_slug)
             s1202_infoperapur_remunperapur_form.fields['s1202_infoperapur_ideestab'].widget.attrs['readonly'] = True
             s1202_infoperapur_remunperapur_lista = s1202infoPerApurremunPerApur.objects.using( db_slug ).filter(excluido = False, s1202_infoperapur_ideestab_id=s1202_infoperapur_ideestab.id).all()
@@ -385,14 +427,24 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1202_infoperapur_ideestab_id': int(s1202_infoperapur_ideestab_id),
             'usuario': usuario,
+<<<<<<< HEAD
        
             'hash': hash,
   
+=======
+            
+            'hash': hash,
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             's1202_infoperapur_remunperapur_form': s1202_infoperapur_remunperapur_form,
             's1202_infoperapur_remunperapur_lista': s1202_infoperapur_remunperapur_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
+<<<<<<< HEAD
        
+=======
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -436,10 +488,17 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
+<<<<<<< HEAD
        
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

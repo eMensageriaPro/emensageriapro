@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
 .DS_Store
 *.pyc
 .env
@@ -12,7 +15,11 @@ predecessores/
 www/
 UMLs/
 *_backup.py
+<<<<<<< HEAD
 backup.py
 atualizar_web.py
 clear_database.py
 .idea/
+=======
+
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3

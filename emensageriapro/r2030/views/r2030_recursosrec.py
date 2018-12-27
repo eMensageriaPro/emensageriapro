@@ -92,17 +92,28 @@ def apagar(request, hash):
                              'r2030_recursosrec', r2030_recursosrec_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+<<<<<<< HEAD
    
+=======
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 'r2030_recursosrec_salvar':
             return redirect('r2030_recursosrec', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
+<<<<<<< HEAD
    
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
    
+=======
+        
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -202,17 +213,29 @@ def listar(request, hash):
             filtrar = True
             r2030_recursosrec_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         #r2030_recursosrec_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r2030_recursosrec'
         context = {
             'r2030_recursosrec_lista': r2030_recursosrec_lista,
+<<<<<<< HEAD
        
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'usuario': usuario,
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -222,7 +245,11 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
+<<<<<<< HEAD
    
+=======
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         }
         if for_print in (0,1):
             return render(request, 'r2030_recursosrec_listar.html', context)
@@ -265,10 +292,17 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
+<<<<<<< HEAD
        
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -362,14 +396,22 @@ def salvar(request, hash):
             r2030_recursosrec_form.fields[field].widget.attrs['ng-model'] = 'r2030_recursosrec_'+field
         if int(dict_hash['print']):
             r2030_recursosrec_form = disabled_form_for_print(r2030_recursosrec_form)
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         r2030_inforecurso_form = None
         r2030_inforecurso_lista = None
         r2030_infoproc_form = None
         r2030_infoproc_lista = None
         if r2030_recursosrec_id:
             r2030_recursosrec = get_object_or_404(r2030recursosRec.objects.using( db_slug ), excluido = False, id = r2030_recursosrec_id)
+<<<<<<< HEAD
   
+=======
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             r2030_inforecurso_form = form_r2030_inforecurso(initial={ 'r2030_recursosrec': r2030_recursosrec }, slug=db_slug)
             r2030_inforecurso_form.fields['r2030_recursosrec'].widget.attrs['readonly'] = True
             r2030_inforecurso_lista = r2030infoRecurso.objects.using( db_slug ).filter(excluido = False, r2030_recursosrec_id=r2030_recursosrec.id).all()
@@ -396,16 +438,26 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r2030_recursosrec_id': int(r2030_recursosrec_id),
             'usuario': usuario,
+<<<<<<< HEAD
        
             'hash': hash,
   
+=======
+            
+            'hash': hash,
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'r2030_inforecurso_form': r2030_inforecurso_form,
             'r2030_inforecurso_lista': r2030_inforecurso_lista,
             'r2030_infoproc_form': r2030_infoproc_form,
             'r2030_infoproc_lista': r2030_infoproc_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
+<<<<<<< HEAD
        
+=======
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -449,10 +501,17 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
+<<<<<<< HEAD
        
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

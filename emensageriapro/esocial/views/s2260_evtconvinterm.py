@@ -93,17 +93,28 @@ def apagar(request, hash):
                              's2260_evtconvinterm', s2260_evtconvinterm_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+<<<<<<< HEAD
    
+=======
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 's2260_evtconvinterm_salvar':
             return redirect('s2260_evtconvinterm', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
+<<<<<<< HEAD
    
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
    
+=======
+        
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -286,18 +297,30 @@ def listar(request, hash):
             filtrar = True
             s2260_evtconvinterm_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s2260_evtconvinterm_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2260_evtconvinterm'
         context = {
             's2260_evtconvinterm_lista': s2260_evtconvinterm_lista,
+<<<<<<< HEAD
        
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'usuario': usuario,
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -307,7 +330,11 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
+<<<<<<< HEAD
   
+=======
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         #return render(request, 's2260_evtconvinterm_listar.html', context)
@@ -352,10 +379,17 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
+<<<<<<< HEAD
        
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -499,7 +533,11 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         s2260_evtconvinterm_form = disabled_form_fields(s2260_evtconvinterm_form, permissao.permite_editar)
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if s2260_evtconvinterm_id:
             if s2260_evtconvinterm.status != 0:
                 s2260_evtconvinterm_form = disabled_form_fields(s2260_evtconvinterm_form, False)
@@ -509,12 +547,20 @@ def salvar(request, hash):
             s2260_evtconvinterm_form.fields[field].widget.attrs['ng-model'] = 's2260_evtconvinterm_'+field
         if int(dict_hash['print']):
             s2260_evtconvinterm_form = disabled_form_for_print(s2260_evtconvinterm_form)
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         s2260_localtrabinterm_form = None
         s2260_localtrabinterm_lista = None
         if s2260_evtconvinterm_id:
             s2260_evtconvinterm = get_object_or_404(s2260evtConvInterm.objects.using( db_slug ), excluido = False, id = s2260_evtconvinterm_id)
+<<<<<<< HEAD
   
+=======
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             s2260_localtrabinterm_form = form_s2260_localtrabinterm(initial={ 's2260_evtconvinterm': s2260_evtconvinterm }, slug=db_slug)
             s2260_localtrabinterm_form.fields['s2260_evtconvinterm'].widget.attrs['readonly'] = True
             s2260_localtrabinterm_lista = s2260localTrabInterm.objects.using( db_slug ).filter(excluido = False, s2260_evtconvinterm_id=s2260_evtconvinterm.id).all()
@@ -536,7 +582,11 @@ def salvar(request, hash):
             s2260_evtconvinterm_form.fields['procemi'].value = 1
             s2260_evtconvinterm_form.fields['verproc'].widget.attrs['readonly'] = True
             s2260_evtconvinterm_form.fields['verproc'].value = VERSAO_EMENSAGERIA
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if dict_hash['tab'] or 's2260_evtconvinterm' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's2260_evtconvinterm_salvar'
@@ -549,14 +599,24 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2260_evtconvinterm_id': int(s2260_evtconvinterm_id),
             'usuario': usuario,
+<<<<<<< HEAD
        
             'hash': hash,
   
+=======
+            
+            'hash': hash,
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             's2260_localtrabinterm_form': s2260_localtrabinterm_form,
             's2260_localtrabinterm_lista': s2260_localtrabinterm_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
+<<<<<<< HEAD
        
+=======
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -566,7 +626,11 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s2260_evtconvinterm_salvar_custom_variaveis_context#
         }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if for_print in (0,1 ):
             return render(request, 's2260_evtconvinterm_salvar.html', context)
         elif for_print == 2:
@@ -600,10 +664,17 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
+<<<<<<< HEAD
        
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

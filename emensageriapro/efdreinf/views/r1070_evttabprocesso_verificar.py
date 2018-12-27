@@ -607,9 +607,15 @@ def validar_evento_funcao(r1070_evttabprocesso_id, db_slug):
     from emensageriapro.settings import BASE_DIR
     lista_validacoes = []
     r1070_evttabprocesso = get_object_or_404(r1070evtTabProcesso.objects.using(db_slug), excluido=False, id=r1070_evttabprocesso_id)
+<<<<<<< HEAD
     if r1070_evttabprocesso.transmissor_lote_efdreinf:
         if r1070_evttabprocesso.transmissor_lote_efdreinf.transmissor:
             if r1070_evttabprocesso.transmissor_lote_efdreinf.transmissor.verificar_predecessao:
+=======
+    if r1070_evttabprocesso.transmissor_lote_esocial:
+        if r1070_evttabprocesso.transmissor_lote_esocial.transmissor:
+            if r1070_evttabprocesso.transmissor_lote_esocial.transmissor.verificar_predecessao:
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
                 quant = validar_precedencia('efdreinf', 'r1070_evttabprocesso', r1070_evttabprocesso_id)
                 if quant <= 0:
                     lista_validacoes.append(u'Precedência não foi enviada!')
@@ -683,7 +689,10 @@ def validar_evento_funcao(r1070_evttabprocesso_id, db_slug):
 @login_required
 def validar_evento(request, hash):
 
+<<<<<<< HEAD
     from emensageriapro.settings import VERSOES_EFDREINF
+=======
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
     from emensageriapro.mensageiro.functions.funcoes_validacoes import VERSAO_ATUAL
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
@@ -696,7 +705,11 @@ def validar_evento(request, hash):
             excluido=False,
             id=r1070_evttabprocesso_id)
 
+<<<<<<< HEAD
         if r1070_evttabprocesso.versao in VERSOES_EFDREINF:
+=======
+        if r1070_evttabprocesso.versao in VERSAO_ATUAL:
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
 
             validar_evento_funcao(r1070_evttabprocesso_id, db_slug)
             messages.success(request, u'Validações processadas com sucesso!')

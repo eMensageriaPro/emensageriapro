@@ -92,17 +92,28 @@ def apagar(request, hash):
                              's2200_infoceletista', s2200_infoceletista_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+<<<<<<< HEAD
    
+=======
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 's2200_infoceletista_salvar':
             return redirect('s2200_infoceletista', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
+<<<<<<< HEAD
    
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
    
+=======
+        
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -220,17 +231,29 @@ def listar(request, hash):
             filtrar = True
             s2200_infoceletista_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         #s2200_infoceletista_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2200_infoceletista'
         context = {
             's2200_infoceletista_lista': s2200_infoceletista_lista,
+<<<<<<< HEAD
        
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'usuario': usuario,
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -240,7 +263,11 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
+<<<<<<< HEAD
    
+=======
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         }
         if for_print in (0,1):
             return render(request, 's2200_infoceletista_listar.html', context)
@@ -283,10 +310,17 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
+<<<<<<< HEAD
        
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -380,14 +414,22 @@ def salvar(request, hash):
             s2200_infoceletista_form.fields[field].widget.attrs['ng-model'] = 's2200_infoceletista_'+field
         if int(dict_hash['print']):
             s2200_infoceletista_form = disabled_form_for_print(s2200_infoceletista_form)
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         s2200_trabtemporario_form = None
         s2200_trabtemporario_lista = None
         s2200_aprend_form = None
         s2200_aprend_lista = None
         if s2200_infoceletista_id:
             s2200_infoceletista = get_object_or_404(s2200infoCeletista.objects.using( db_slug ), excluido = False, id = s2200_infoceletista_id)
+<<<<<<< HEAD
   
+=======
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             s2200_trabtemporario_form = form_s2200_trabtemporario(initial={ 's2200_infoceletista': s2200_infoceletista }, slug=db_slug)
             s2200_trabtemporario_form.fields['s2200_infoceletista'].widget.attrs['readonly'] = True
             s2200_trabtemporario_lista = s2200trabTemporario.objects.using( db_slug ).filter(excluido = False, s2200_infoceletista_id=s2200_infoceletista.id).all()
@@ -414,16 +456,26 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2200_infoceletista_id': int(s2200_infoceletista_id),
             'usuario': usuario,
+<<<<<<< HEAD
        
             'hash': hash,
   
+=======
+            
+            'hash': hash,
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             's2200_trabtemporario_form': s2200_trabtemporario_form,
             's2200_trabtemporario_lista': s2200_trabtemporario_lista,
             's2200_aprend_form': s2200_aprend_form,
             's2200_aprend_lista': s2200_aprend_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
+<<<<<<< HEAD
        
+=======
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -467,10 +519,17 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
+<<<<<<< HEAD
        
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

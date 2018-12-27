@@ -92,17 +92,28 @@ def apagar(request, hash):
                              's1250_ideprodutor', s1250_ideprodutor_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+<<<<<<< HEAD
    
+=======
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 's1250_ideprodutor_salvar':
             return redirect('s1250_ideprodutor', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
+<<<<<<< HEAD
    
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
    
+=======
+        
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -211,17 +222,29 @@ def listar(request, hash):
             filtrar = True
             s1250_ideprodutor_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         #s1250_ideprodutor_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1250_ideprodutor'
         context = {
             's1250_ideprodutor_lista': s1250_ideprodutor_lista,
+<<<<<<< HEAD
        
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'usuario': usuario,
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -231,7 +254,11 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
+<<<<<<< HEAD
    
+=======
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         }
         if for_print in (0,1):
             return render(request, 's1250_ideprodutor_listar.html', context)
@@ -274,10 +301,17 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
+<<<<<<< HEAD
        
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -371,14 +405,22 @@ def salvar(request, hash):
             s1250_ideprodutor_form.fields[field].widget.attrs['ng-model'] = 's1250_ideprodutor_'+field
         if int(dict_hash['print']):
             s1250_ideprodutor_form = disabled_form_for_print(s1250_ideprodutor_form)
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         s1250_nfs_form = None
         s1250_nfs_lista = None
         s1250_infoprocjud_form = None
         s1250_infoprocjud_lista = None
         if s1250_ideprodutor_id:
             s1250_ideprodutor = get_object_or_404(s1250ideProdutor.objects.using( db_slug ), excluido = False, id = s1250_ideprodutor_id)
+<<<<<<< HEAD
   
+=======
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             s1250_nfs_form = form_s1250_nfs(initial={ 's1250_ideprodutor': s1250_ideprodutor }, slug=db_slug)
             s1250_nfs_form.fields['s1250_ideprodutor'].widget.attrs['readonly'] = True
             s1250_nfs_lista = s1250nfs.objects.using( db_slug ).filter(excluido = False, s1250_ideprodutor_id=s1250_ideprodutor.id).all()
@@ -405,16 +447,26 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1250_ideprodutor_id': int(s1250_ideprodutor_id),
             'usuario': usuario,
+<<<<<<< HEAD
        
             'hash': hash,
   
+=======
+            
+            'hash': hash,
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             's1250_nfs_form': s1250_nfs_form,
             's1250_nfs_lista': s1250_nfs_lista,
             's1250_infoprocjud_form': s1250_infoprocjud_form,
             's1250_infoprocjud_lista': s1250_infoprocjud_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
+<<<<<<< HEAD
        
+=======
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -458,10 +510,17 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
+<<<<<<< HEAD
        
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

@@ -92,17 +92,28 @@ def apagar(request, hash):
                              's5011_idelotacao', s5011_idelotacao_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+<<<<<<< HEAD
    
+=======
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 's5011_idelotacao_salvar':
             return redirect('s5011_idelotacao', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
+<<<<<<< HEAD
    
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
    
+=======
+        
+        'modulos_permitidos_lista': modulos_permitidos_lista,
+        'paginas_permitidas_lista': paginas_permitidas_lista,
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -202,17 +213,29 @@ def listar(request, hash):
             filtrar = True
             s5011_idelotacao_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         #s5011_idelotacao_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's5011_idelotacao'
         context = {
             's5011_idelotacao_lista': s5011_idelotacao_lista,
+<<<<<<< HEAD
        
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'usuario': usuario,
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -222,7 +245,11 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
+<<<<<<< HEAD
    
+=======
+        
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         }
         if for_print in (0,1):
             return render(request, 's5011_idelotacao_listar.html', context)
@@ -265,10 +292,17 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
+<<<<<<< HEAD
        
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -362,7 +396,11 @@ def salvar(request, hash):
             s5011_idelotacao_form.fields[field].widget.attrs['ng-model'] = 's5011_idelotacao_'+field
         if int(dict_hash['print']):
             s5011_idelotacao_form = disabled_form_for_print(s5011_idelotacao_form)
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         s5011_infotercsusp_form = None
         s5011_infotercsusp_lista = None
         s5011_infoemprparcial_form = None
@@ -377,7 +415,11 @@ def salvar(request, hash):
         s5011_infosubstpatropport_lista = None
         if s5011_idelotacao_id:
             s5011_idelotacao = get_object_or_404(s5011ideLotacao.objects.using( db_slug ), excluido = False, id = s5011_idelotacao_id)
+<<<<<<< HEAD
   
+=======
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             s5011_infotercsusp_form = form_s5011_infotercsusp(initial={ 's5011_idelotacao': s5011_idelotacao }, slug=db_slug)
             s5011_infotercsusp_form.fields['s5011_idelotacao'].widget.attrs['readonly'] = True
             s5011_infotercsusp_lista = s5011infoTercSusp.objects.using( db_slug ).filter(excluido = False, s5011_idelotacao_id=s5011_idelotacao.id).all()
@@ -416,9 +458,15 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's5011_idelotacao_id': int(s5011_idelotacao_id),
             'usuario': usuario,
+<<<<<<< HEAD
        
             'hash': hash,
   
+=======
+            
+            'hash': hash,
+       
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             's5011_infotercsusp_form': s5011_infotercsusp_form,
             's5011_infotercsusp_lista': s5011_infotercsusp_lista,
             's5011_infoemprparcial_form': s5011_infoemprparcial_form,
@@ -433,7 +481,11 @@ def salvar(request, hash):
             's5011_infosubstpatropport_lista': s5011_infosubstpatropport_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
+<<<<<<< HEAD
        
+=======
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -477,10 +529,17 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
+<<<<<<< HEAD
        
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
        
+=======
+            
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+            
+>>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
