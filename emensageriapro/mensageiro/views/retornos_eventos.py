@@ -352,7 +352,7 @@ def listar(request, hash):
                 'nrinsc__icontains': 'nrinsc__icontains',
                 'processamento': 'processamento',
                 'processamento': 'processamento',
-                'processamento_codigo_resposta': 'processamento_codigo_resposta',
+                'processamento_codigo_resposta__icontains': 'processamento_codigo_resposta__icontains',
                 'processamento_data_hora__range': 'processamento_data_hora__range',
                 'processamento_descricao_resposta__icontains': 'processamento_descricao_resposta__icontains',
                 'processamento_versao_app_processamento__icontains': 'processamento_versao_app_processamento__icontains',
@@ -421,7 +421,7 @@ def listar(request, hash):
                 'nrinsc__icontains': 'nrinsc__icontains',
                 'processamento': 'processamento',
                 'processamento': 'processamento',
-                'processamento_codigo_resposta': 'processamento_codigo_resposta',
+                'processamento_codigo_resposta__icontains': 'processamento_codigo_resposta__icontains',
                 'processamento_data_hora__range': 'processamento_data_hora__range',
                 'processamento_descricao_resposta__icontains': 'processamento_descricao_resposta__icontains',
                 'processamento_versao_app_processamento__icontains': 'processamento_versao_app_processamento__icontains',
@@ -459,11 +459,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 'retornos_eventos'
         context = {
             'retornos_eventos_lista': retornos_eventos_lista,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -517,10 +517,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -616,14 +616,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'retornos_eventos_id': int(retornos_eventos_id),
             'usuario': usuario,
-
+  
             'hash': hash,
 
             'retornos_eventos_ocorrencias_form': retornos_eventos_ocorrencias_form,
             'retornos_eventos_ocorrencias_lista': retornos_eventos_ocorrencias_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -667,10 +667,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

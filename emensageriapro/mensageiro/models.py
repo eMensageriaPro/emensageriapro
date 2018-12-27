@@ -356,7 +356,7 @@ class RetornosEventos(models.Model):
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, null=True)
     processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
@@ -571,6 +571,9 @@ class TransmissorLoteEfdreinf(models.Model):
     numero_protocolo_fechamento = models.CharField(max_length=50, blank=True, null=True)
     processamento_versao_aplicativo = models.CharField(max_length=50, blank=True, null=True)
     tempo_estimado_conclusao = models.IntegerField(blank=True, null=True)
+    arquivo_header = models.CharField(max_length=200, blank=True, null=True)
+    arquivo_request = models.CharField(max_length=200, blank=True, null=True)
+    arquivo_response = models.CharField(max_length=200, blank=True, null=True)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -595,11 +598,11 @@ class TransmissorLoteEfdreinfSerializer(ModelSerializer):
 
 class TransmissorLoteEfdreinfOcorrencias(models.Model):
     transmissor_lote_efdreinf = models.ForeignKey('TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf')
-    resposta_codigo = models.CharField(max_length=50)
-    descricao = models.TextField()
-    tipo = models.IntegerField(choices=EVENTOS_OCORRENCIAS_TIPO_EFDREINF)
-    localizacao = models.CharField(max_length=50)
+        related_name='%(class)s_transmissor_lote_efdreinf', blank=True)
+    resposta_codigo = models.CharField(max_length=50, blank=True)
+    descricao = models.TextField(blank=True)
+    tipo = models.IntegerField(choices=EVENTOS_OCORRENCIAS_TIPO_EFDREINF, blank=True)
+    localizacao = models.CharField(max_length=50, blank=True)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -634,6 +637,9 @@ class TransmissorLoteEsocial(models.Model):
     protocolo = models.CharField(max_length=50, blank=True, null=True)
     processamento_versao_aplicativo = models.CharField(max_length=50, blank=True, null=True)
     tempo_estimado_conclusao = models.IntegerField(blank=True, null=True)
+    arquivo_header = models.CharField(max_length=200, blank=True, null=True)
+    arquivo_request = models.CharField(max_length=200, blank=True, null=True)
+    arquivo_response = models.CharField(max_length=200, blank=True, null=True)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -658,11 +664,11 @@ class TransmissorLoteEsocialSerializer(ModelSerializer):
 
 class TransmissorLoteEsocialOcorrencias(models.Model):
     transmissor_lote_esocial = models.ForeignKey('TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial')
-    resposta_codigo = models.IntegerField(choices=TIPO_OCORRENCIA)
-    descricao = models.TextField()
-    tipo = models.IntegerField(choices=EVENTOS_OCORRENCIAS_TIPO)
-    localizacao = models.CharField(max_length=50)
+        related_name='%(class)s_transmissor_lote_esocial', blank=True)
+    resposta_codigo = models.CharField(max_length=50, blank=True)
+    descricao = models.TextField(blank=True)
+    tipo = models.IntegerField(choices=EVENTOS_OCORRENCIAS_TIPO, blank=True)
+    localizacao = models.CharField(max_length=50, blank=True)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)

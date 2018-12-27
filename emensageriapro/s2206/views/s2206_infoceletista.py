@@ -208,11 +208,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 's2206_infoceletista'
         context = {
             's2206_infoceletista_lista': s2206_infoceletista_lista,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -265,10 +265,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -396,7 +396,7 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2206_infoceletista_id': int(s2206_infoceletista_id),
             'usuario': usuario,
-
+  
             'hash': hash,
 
             's2206_trabtemp_form': s2206_trabtemp_form,
@@ -405,7 +405,7 @@ def salvar(request, hash):
             's2206_aprend_lista': s2206_aprend_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -449,10 +449,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

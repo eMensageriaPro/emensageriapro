@@ -202,11 +202,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 's1250_tpaquis'
         context = {
             's1250_tpaquis_lista': s1250_tpaquis_lista,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -259,10 +259,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -390,7 +390,7 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1250_tpaquis_id': int(s1250_tpaquis_id),
             'usuario': usuario,
-
+  
             'hash': hash,
 
             's1250_ideprodutor_form': s1250_ideprodutor_form,
@@ -399,7 +399,7 @@ def salvar(request, hash):
             's1250_infoprocj_lista': s1250_infoprocj_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -443,10 +443,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

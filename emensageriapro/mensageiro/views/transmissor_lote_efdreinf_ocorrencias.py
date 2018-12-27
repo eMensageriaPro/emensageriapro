@@ -138,10 +138,10 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_descricao': 0,
-            'show_localizacao': 0,
+            'show_descricao': 1,
+            'show_localizacao': 1,
             'show_resposta_codigo': 1,
-            'show_tipo': 1,
+            'show_tipo': 0,
             'show_transmissor_lote_efdreinf': 1, }
         post = False
         #ANTES-POST-LISTAGEM
@@ -177,11 +177,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 'transmissor_lote_efdreinf_ocorrencias'
         context = {
             'transmissor_lote_efdreinf_ocorrencias_lista': transmissor_lote_efdreinf_ocorrencias_lista,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -235,10 +235,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -329,12 +329,12 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'transmissor_lote_efdreinf_ocorrencias_id': int(transmissor_lote_efdreinf_ocorrencias_id),
             'usuario': usuario,
-
+  
             'hash': hash,
             #[VARIAVEIS_SECUNDARIAS]
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -378,10 +378,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

@@ -397,6 +397,7 @@ EVENTO_STATUS = (
     (2, u'Duplicado'),
     (3, u'Erro na validação'),
     (4, u'Validado'),
+    (5, u'Erro no envio'),
     (6, u'Aguardando envio'),
 )
 

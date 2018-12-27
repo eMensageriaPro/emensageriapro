@@ -235,11 +235,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 's2240_iniexprisco_fatrisco'
         context = {
             's2240_iniexprisco_fatrisco_lista': s2240_iniexprisco_fatrisco_lista,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -292,10 +292,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -423,7 +423,7 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2240_iniexprisco_fatrisco_id': int(s2240_iniexprisco_fatrisco_id),
             'usuario': usuario,
-
+  
             'hash': hash,
 
             's2240_iniexprisco_epc_form': s2240_iniexprisco_epc_form,
@@ -432,7 +432,7 @@ def salvar(request, hash):
             's2240_iniexprisco_epi_lista': s2240_iniexprisco_epi_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -476,10 +476,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

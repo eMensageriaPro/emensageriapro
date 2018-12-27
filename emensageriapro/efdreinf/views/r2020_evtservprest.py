@@ -294,11 +294,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 'r2020_evtservprest'
         context = {
             'r2020_evtservprest_lista': r2020_evtservprest_lista,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -353,10 +353,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -560,7 +560,7 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r2020_evtservprest_id': int(r2020_evtservprest_id),
             'usuario': usuario,
-
+  
             'hash': hash,
 
             'r2020_nfs_form': r2020_nfs_form,
@@ -571,7 +571,7 @@ def salvar(request, hash):
             'r2020_infoprocretad_lista': r2020_infoprocretad_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -615,10 +615,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

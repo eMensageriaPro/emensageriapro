@@ -227,6 +227,9 @@ class form_transmissor_lote_esocial(forms.ModelForm):
             'modificado_em', 'modificado_por',
             'excluido',
             'resposta_descricao',
+            'arquivo_header',
+            'arquivo_request',
+            'arquivo_response',
  
         ]
 
@@ -239,10 +242,10 @@ class form_transmissor_lote_esocial_ocorrencias(forms.ModelForm):
         super(form_transmissor_lote_esocial_ocorrencias, self).__init__(*args,**kwargs)
         
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
-        self.fields['transmissor_lote_esocial'].widget.attrs['required'] = True        
-        self.fields['resposta_codigo'].widget.attrs['required'] = True        
-        self.fields['tipo'].widget.attrs['required'] = True        
-        self.fields['localizacao'].widget.attrs['required'] = True
+        self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True        
+        self.fields['resposta_codigo'].widget.attrs['readonly'] = True        
+        self.fields['tipo'].widget.attrs['readonly'] = True        
+        self.fields['localizacao'].widget.attrs['readonly'] = True
         
     class Meta:
         model = TransmissorLoteEsocialOcorrencias
@@ -283,6 +286,9 @@ class form_transmissor_lote_efdreinf(forms.ModelForm):
             'modificado_em', 'modificado_por',
             'excluido',
             'retorno_descricao',
+            'arquivo_header',
+            'arquivo_request',
+            'arquivo_response',
  
         ]
 
@@ -295,10 +301,10 @@ class form_transmissor_lote_efdreinf_ocorrencias(forms.ModelForm):
         super(form_transmissor_lote_efdreinf_ocorrencias, self).__init__(*args,**kwargs)
         
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
-        self.fields['transmissor_lote_efdreinf'].widget.attrs['required'] = True        
-        self.fields['resposta_codigo'].widget.attrs['required'] = True        
-        self.fields['tipo'].widget.attrs['required'] = True        
-        self.fields['localizacao'].widget.attrs['required'] = True
+        self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True        
+        self.fields['resposta_codigo'].widget.attrs['readonly'] = True        
+        self.fields['tipo'].widget.attrs['readonly'] = True        
+        self.fields['localizacao'].widget.attrs['readonly'] = True
         
     class Meta:
         model = TransmissorLoteEfdreinfOcorrencias

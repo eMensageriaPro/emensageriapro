@@ -205,11 +205,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 's1260_ideadquir'
         context = {
             's1260_ideadquir_lista': s1260_ideadquir_lista,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -262,10 +262,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -388,14 +388,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1260_ideadquir_id': int(s1260_ideadquir_id),
             'usuario': usuario,
-
+  
             'hash': hash,
 
             's1260_nfs_form': s1260_nfs_form,
             's1260_nfs_lista': s1260_nfs_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -439,10 +439,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

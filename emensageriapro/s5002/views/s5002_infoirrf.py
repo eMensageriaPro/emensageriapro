@@ -202,11 +202,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 's5002_infoirrf'
         context = {
             's5002_infoirrf_lista': s5002_infoirrf_lista,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -259,10 +259,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -395,7 +395,7 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's5002_infoirrf_id': int(s5002_infoirrf_id),
             'usuario': usuario,
-
+  
             'hash': hash,
 
             's5002_basesirrf_form': s5002_basesirrf_form,
@@ -406,7 +406,7 @@ def salvar(request, hash):
             's5002_idepgtoext_lista': s5002_idepgtoext_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -450,10 +450,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

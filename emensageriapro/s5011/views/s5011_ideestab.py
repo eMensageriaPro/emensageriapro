@@ -202,11 +202,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 's5011_ideestab'
         context = {
             's5011_ideestab_lista': s5011_ideestab_lista,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -259,10 +259,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -405,7 +405,7 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's5011_ideestab_id': int(s5011_ideestab_id),
             'usuario': usuario,
-
+  
             'hash': hash,
 
             's5011_infoestab_form': s5011_infoestab_form,
@@ -420,7 +420,7 @@ def salvar(request, hash):
             's5011_infocrestab_lista': s5011_infocrestab_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -464,10 +464,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

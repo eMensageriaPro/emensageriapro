@@ -1881,24 +1881,6 @@ CHOICES_S5013_TPINSC = (
     (2, u'2 - CPF'),
 )
 
-CODIGO_RESPOSTA = (
-    (0, u'Cadastrado'),
-    (101, u'101 - Lote Aguardando Processamento'),
-    (201, u'201 - Lote Processado com Sucesso'),
-    (202, u'202 - Lote Processado com Advertências'),
-    (301, u'301 - Erro Servidor eSocial'),
-    (401, u'401 - Lote Incorreto - Erro preenchimento'),
-    (402, u'402 - Lote Incorreto - schema Inválido'),
-    (403, u'403 - Lote Incorreto - Versão do Schema não permitida'),
-    (404, u'404 - Lote Incorreto - Erro Certificado'),
-    (405, u'405 - Lote Incorreto - Lote nulo ou vazio'),
-    (501, u'501 - Solicitação de Consulta Incorreta - Erro Preenchimento'),
-    (502, u'502 - Solicitação de Consulta Incorreta - Schema Inválido.'),
-    (503, u'503 - Solicitação de Consulta Incorreta - Versão do Schema Não Permitida.'),
-    (504, u'504 - Solicitação de Consulta Incorreta - Erro Certificado.'),
-    (505, u'505 - Solicitação de Consulta Incorreta - Consulta nula ou vazia.'),
-)
-
 ESOCIAL_VERSOES = (
     ('v02_04_02', u'Versão 2.04.02'),
     ('v02_05_00', u'Versão 2.05.00'),
@@ -1946,6 +1928,7 @@ EVENTO_STATUS = (
     (2, u'Duplicado'),
     (3, u'Erro na validação'),
     (4, u'Validado'),
+    (5, u'Erro no envio'),
     (6, u'Aguardando envio'),
 )
 
@@ -1975,9 +1958,6 @@ TIPO_AMBIENTE = (
 )
 
 class s1000evtInfoEmpregador(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -1985,24 +1965,27 @@ class s1000evtInfoEmpregador(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1000_TPAMB)
     procemi = models.IntegerField(choices=CHOICES_S1000_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1000_TPINSC)
     nrinsc = models.CharField(max_length=15)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
+    operacao = models.IntegerField(choices=OPERACOES)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -2028,9 +2011,6 @@ class s1000evtInfoEmpregadorSerializer(ModelSerializer):
             
 
 class s1005evtTabEstab(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2038,24 +2018,27 @@ class s1005evtTabEstab(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1005_TPAMB)
     procemi = models.IntegerField(choices=CHOICES_S1005_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1005_TPINSC)
     nrinsc = models.CharField(max_length=15)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
+    operacao = models.IntegerField(choices=OPERACOES)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -2081,9 +2064,6 @@ class s1005evtTabEstabSerializer(ModelSerializer):
             
 
 class s1010evtTabRubrica(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2091,24 +2071,27 @@ class s1010evtTabRubrica(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1010_TPAMB)
     procemi = models.IntegerField(choices=CHOICES_S1010_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1010_TPINSC)
     nrinsc = models.CharField(max_length=15)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
+    operacao = models.IntegerField(choices=OPERACOES)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -2134,9 +2117,6 @@ class s1010evtTabRubricaSerializer(ModelSerializer):
             
 
 class s1020evtTabLotacao(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2144,24 +2124,27 @@ class s1020evtTabLotacao(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1020_TPAMB)
     procemi = models.IntegerField(choices=CHOICES_S1020_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1020_TPINSC)
     nrinsc = models.CharField(max_length=15)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
+    operacao = models.IntegerField(choices=OPERACOES)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -2187,9 +2170,6 @@ class s1020evtTabLotacaoSerializer(ModelSerializer):
             
 
 class s1030evtTabCargo(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2197,24 +2177,27 @@ class s1030evtTabCargo(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1030_TPAMB)
     procemi = models.IntegerField(choices=CHOICES_S1030_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1030_TPINSC)
     nrinsc = models.CharField(max_length=15)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
+    operacao = models.IntegerField(choices=OPERACOES)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -2240,9 +2223,6 @@ class s1030evtTabCargoSerializer(ModelSerializer):
             
 
 class s1035evtTabCarreira(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2250,24 +2230,27 @@ class s1035evtTabCarreira(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1035_TPAMB)
     procemi = models.IntegerField(choices=CHOICES_S1035_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1035_TPINSC)
     nrinsc = models.CharField(max_length=15)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
+    operacao = models.IntegerField(choices=OPERACOES)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -2293,9 +2276,6 @@ class s1035evtTabCarreiraSerializer(ModelSerializer):
             
 
 class s1040evtTabFuncao(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2303,24 +2283,27 @@ class s1040evtTabFuncao(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1040_TPAMB)
     procemi = models.IntegerField(choices=CHOICES_S1040_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1040_TPINSC)
     nrinsc = models.CharField(max_length=15)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
+    operacao = models.IntegerField(choices=OPERACOES)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -2346,9 +2329,6 @@ class s1040evtTabFuncaoSerializer(ModelSerializer):
             
 
 class s1050evtTabHorTur(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2356,24 +2336,27 @@ class s1050evtTabHorTur(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1050_TPAMB)
     procemi = models.IntegerField(choices=CHOICES_S1050_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1050_TPINSC)
     nrinsc = models.CharField(max_length=15)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
+    operacao = models.IntegerField(choices=OPERACOES)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -2399,9 +2382,6 @@ class s1050evtTabHorTurSerializer(ModelSerializer):
             
 
 class s1060evtTabAmbiente(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2409,24 +2389,27 @@ class s1060evtTabAmbiente(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1060_TPAMB)
     procemi = models.IntegerField(choices=CHOICES_S1060_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1060_TPINSC)
     nrinsc = models.CharField(max_length=15)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
+    operacao = models.IntegerField(choices=OPERACOES)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -2452,9 +2435,6 @@ class s1060evtTabAmbienteSerializer(ModelSerializer):
             
 
 class s1070evtTabProcesso(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2462,24 +2442,27 @@ class s1070evtTabProcesso(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1070_TPAMB)
     procemi = models.IntegerField(choices=CHOICES_S1070_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1070_TPINSC)
     nrinsc = models.CharField(max_length=15)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
+    operacao = models.IntegerField(choices=OPERACOES)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -2505,9 +2488,6 @@ class s1070evtTabProcessoSerializer(ModelSerializer):
             
 
 class s1080evtTabOperPort(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2515,24 +2495,27 @@ class s1080evtTabOperPort(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1080_TPAMB)
     procemi = models.IntegerField(choices=CHOICES_S1080_PROCEMI)
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1080_TPINSC)
     nrinsc = models.CharField(max_length=15)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
+    operacao = models.IntegerField(choices=OPERACOES)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -2558,9 +2541,6 @@ class s1080evtTabOperPortSerializer(ModelSerializer):
             
 
 class s1200evtRemun(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2568,13 +2548,10 @@ class s1200evtRemun(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -2591,6 +2568,12 @@ class s1200evtRemun(models.Model):
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -2616,9 +2599,6 @@ class s1200evtRemunSerializer(ModelSerializer):
             
 
 class s1202evtRmnRPPS(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2626,13 +2606,10 @@ class s1202evtRmnRPPS(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -2650,6 +2627,12 @@ class s1202evtRmnRPPS(models.Model):
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
     qtddepfp = models.IntegerField(blank=True, null=True)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -2675,9 +2658,6 @@ class s1202evtRmnRPPSSerializer(ModelSerializer):
             
 
 class s1207evtBenPrRP(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2685,13 +2665,10 @@ class s1207evtBenPrRP(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -2707,6 +2684,12 @@ class s1207evtBenPrRP(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S1207_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpfbenef = models.CharField(max_length=11)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -2732,9 +2715,6 @@ class s1207evtBenPrRPSerializer(ModelSerializer):
             
 
 class s1210evtPgtos(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2742,13 +2722,10 @@ class s1210evtPgtos(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -2764,6 +2741,12 @@ class s1210evtPgtos(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S1210_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpfbenef = models.CharField(max_length=11)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -2789,9 +2772,6 @@ class s1210evtPgtosSerializer(ModelSerializer):
             
 
 class s1250evtAqProd(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2799,13 +2779,10 @@ class s1250evtAqProd(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -2822,6 +2799,12 @@ class s1250evtAqProd(models.Model):
     nrinsc = models.CharField(max_length=15)
     tpinscadq = models.IntegerField(choices=CHOICES_S1250_TPINSCADQ)
     nrinscadq = models.CharField(max_length=15)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -2847,9 +2830,6 @@ class s1250evtAqProdSerializer(ModelSerializer):
             
 
 class s1260evtComProd(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2857,13 +2837,10 @@ class s1260evtComProd(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -2879,6 +2856,12 @@ class s1260evtComProd(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S1260_TPINSC)
     nrinsc = models.CharField(max_length=15)
     nrinscestabrural = models.CharField(max_length=15)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -2904,9 +2887,6 @@ class s1260evtComProdSerializer(ModelSerializer):
             
 
 class s1270evtContratAvNP(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2914,13 +2894,10 @@ class s1270evtContratAvNP(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -2935,6 +2912,12 @@ class s1270evtContratAvNP(models.Model):
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1270_TPINSC)
     nrinsc = models.CharField(max_length=15)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -2960,9 +2943,6 @@ class s1270evtContratAvNPSerializer(ModelSerializer):
             
 
 class s1280evtInfoComplPer(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2970,13 +2950,10 @@ class s1280evtInfoComplPer(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -2991,6 +2968,12 @@ class s1280evtInfoComplPer(models.Model):
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1280_TPINSC)
     nrinsc = models.CharField(max_length=15)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3016,9 +2999,6 @@ class s1280evtInfoComplPerSerializer(ModelSerializer):
             
 
 class s1295evtTotConting(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3026,13 +3006,10 @@ class s1295evtTotConting(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -3045,6 +3022,12 @@ class s1295evtTotConting(models.Model):
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1295_TPINSC)
     nrinsc = models.CharField(max_length=15)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3070,9 +3053,6 @@ class s1295evtTotContingSerializer(ModelSerializer):
             
 
 class s1298evtReabreEvPer(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3080,13 +3060,10 @@ class s1298evtReabreEvPer(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -3099,6 +3076,12 @@ class s1298evtReabreEvPer(models.Model):
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1298_TPINSC)
     nrinsc = models.CharField(max_length=15)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3124,9 +3107,6 @@ class s1298evtReabreEvPerSerializer(ModelSerializer):
             
 
 class s1299evtFechaEvPer(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3134,13 +3114,10 @@ class s1299evtFechaEvPer(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -3160,6 +3137,12 @@ class s1299evtFechaEvPer(models.Model):
     evtcontratavnp = models.CharField(choices=CHOICES_S1299_EVTCONTRATAVNP, max_length=1)
     evtinfocomplper = models.CharField(choices=CHOICES_S1299_EVTINFOCOMPLPER, max_length=1)
     compsemmovto = models.CharField(max_length=7, blank=True, null=True)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3185,9 +3168,6 @@ class s1299evtFechaEvPerSerializer(ModelSerializer):
             
 
 class s1300evtContrSindPatr(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3195,13 +3175,10 @@ class s1300evtContrSindPatr(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -3216,6 +3193,12 @@ class s1300evtContrSindPatr(models.Model):
     verproc = models.CharField(max_length=20)
     tpinsc = models.IntegerField(choices=CHOICES_S1300_TPINSC)
     nrinsc = models.CharField(max_length=15)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3241,9 +3224,6 @@ class s1300evtContrSindPatrSerializer(ModelSerializer):
             
 
 class s2190evtAdmPrelim(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3251,13 +3231,10 @@ class s2190evtAdmPrelim(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -3271,6 +3248,12 @@ class s2190evtAdmPrelim(models.Model):
     cpftrab = models.CharField(max_length=11)
     dtnascto = models.DateField()
     dtadm = models.DateField()
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3296,9 +3279,6 @@ class s2190evtAdmPrelimSerializer(ModelSerializer):
             
 
 class s2200evtAdmissao(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3306,13 +3286,10 @@ class s2200evtAdmissao(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -3359,6 +3336,12 @@ class s2200evtAdmissao(models.Model):
     dtterm = models.DateField(blank=True, null=True)
     clauassec = models.CharField(choices=CHOICES_S2200_CLAUASSEC, max_length=1, blank=True, null=True)
     objdet = models.CharField(max_length=255, blank=True, null=True)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3384,9 +3367,6 @@ class s2200evtAdmissaoSerializer(ModelSerializer):
             
 
 class s2205evtAltCadastral(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3394,13 +3374,10 @@ class s2205evtAltCadastral(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -3429,6 +3406,12 @@ class s2205evtAltCadastral(models.Model):
     paisnac = models.TextField(max_length=3)
     nmmae = models.CharField(max_length=70, blank=True, null=True)
     nmpai = models.CharField(max_length=70, blank=True, null=True)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3454,9 +3437,6 @@ class s2205evtAltCadastralSerializer(ModelSerializer):
             
 
 class s2206evtAltContratual(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3464,13 +3444,10 @@ class s2206evtAltContratual(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -3501,6 +3478,12 @@ class s2206evtAltContratual(models.Model):
     tpcontr = models.IntegerField(choices=CHOICES_S2206_TPCONTR)
     dtterm = models.DateField(blank=True, null=True)
     objdet = models.CharField(max_length=255, blank=True, null=True)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3526,9 +3509,6 @@ class s2206evtAltContratualSerializer(ModelSerializer):
             
 
 class s2210evtCAT(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3536,13 +3516,10 @@ class s2210evtCAT(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -3584,6 +3561,12 @@ class s2210evtCAT(models.Model):
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
     pais = models.TextField(max_length=3, blank=True, null=True)
     codpostal = models.CharField(max_length=12, blank=True, null=True)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3609,9 +3592,6 @@ class s2210evtCATSerializer(ModelSerializer):
             
 
 class s2220evtMonit(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3619,13 +3599,10 @@ class s2220evtMonit(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -3658,6 +3635,12 @@ class s2220evtMonit(models.Model):
     nmresp = models.CharField(max_length=70)
     nrcrm = models.CharField(max_length=8)
     ufcrm = models.CharField(choices=ESTADOS, max_length=2)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3683,9 +3666,6 @@ class s2220evtMonitSerializer(ModelSerializer):
             
 
 class s2221evtToxic(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3693,13 +3673,10 @@ class s2221evtToxic(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -3723,6 +3700,12 @@ class s2221evtToxic(models.Model):
     nrcrm = models.CharField(max_length=8, blank=True, null=True)
     ufcrm = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
     indrecusa = models.CharField(max_length=1)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3748,9 +3731,6 @@ class s2221evtToxicSerializer(ModelSerializer):
             
 
 class s2230evtAfastTemp(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3758,13 +3738,10 @@ class s2230evtAfastTemp(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -3781,6 +3758,12 @@ class s2230evtAfastTemp(models.Model):
     nistrab = models.CharField(max_length=11, blank=True, null=True)
     matricula = models.CharField(max_length=30, blank=True, null=True)
     codcateg = models.TextField(max_length=3, blank=True, null=True)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3842,9 +3825,6 @@ class s2231evtCessaoSerializer(ModelSerializer):
             
 
 class s2240evtExpRisco(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3852,18 +3832,14 @@ class s2240evtExpRisco(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2240_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
@@ -3878,6 +3854,13 @@ class s2240evtExpRisco(models.Model):
     codcateg = models.TextField(max_length=3, blank=True, null=True)
     dtinicondicao = models.DateField()
     dscativdes = models.CharField(max_length=999)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
+    operacao = models.IntegerField(choices=OPERACOES)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3903,9 +3886,6 @@ class s2240evtExpRiscoSerializer(ModelSerializer):
             
 
 class s2241evtInsApo(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3913,18 +3893,14 @@ class s2241evtInsApo(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES_INSALPERIC_APOSENTESP)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2241_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
@@ -3936,6 +3912,13 @@ class s2241evtInsApo(models.Model):
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
     matricula = models.CharField(max_length=30, blank=True, null=True)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
+    operacao = models.IntegerField(choices=OPERACOES_INSALPERIC_APOSENTESP)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -3961,9 +3944,6 @@ class s2241evtInsApoSerializer(ModelSerializer):
             
 
 class s2245evtTreiCap(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3971,18 +3951,14 @@ class s2245evtTreiCap(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES_INSALPERIC_APOSENTESP)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2245_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
@@ -3998,6 +3974,13 @@ class s2245evtTreiCap(models.Model):
     codtreicap = models.CharField(max_length=4)
     obstreicap = models.CharField(max_length=999, blank=True, null=True)
     observacao = models.CharField(max_length=999, blank=True, null=True)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
+    operacao = models.IntegerField(choices=OPERACOES_INSALPERIC_APOSENTESP)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -4023,9 +4006,6 @@ class s2245evtTreiCapSerializer(ModelSerializer):
             
 
 class s2250evtAvPrevio(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4033,13 +4013,10 @@ class s2250evtAvPrevio(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -4055,6 +4032,12 @@ class s2250evtAvPrevio(models.Model):
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11)
     matricula = models.CharField(max_length=30)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -4080,9 +4063,6 @@ class s2250evtAvPrevioSerializer(ModelSerializer):
             
 
 class s2260evtConvInterm(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4090,13 +4070,10 @@ class s2260evtConvInterm(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -4119,6 +4096,12 @@ class s2260evtConvInterm(models.Model):
     codhorcontrat = models.CharField(max_length=30, blank=True, null=True)
     dscjornada = models.CharField(max_length=999, blank=True, null=True)
     indlocal = models.IntegerField(choices=CHOICES_S2260_INDLOCAL)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -4144,9 +4127,6 @@ class s2260evtConvIntermSerializer(ModelSerializer):
             
 
 class s2298evtReintegr(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4154,13 +4134,10 @@ class s2298evtReintegr(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -4182,6 +4159,12 @@ class s2298evtReintegr(models.Model):
     dtefetretorno = models.DateField()
     dtefeito = models.DateField()
     indpagtojuizo = models.CharField(choices=CHOICES_S2298_INDPAGTOJUIZO, max_length=1)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -4207,9 +4190,6 @@ class s2298evtReintegrSerializer(ModelSerializer):
             
 
 class s2299evtDeslig(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4217,13 +4197,10 @@ class s2299evtDeslig(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -4250,6 +4227,12 @@ class s2299evtDeslig(models.Model):
     nrproctrab = models.CharField(max_length=20, blank=True, null=True)
     indcumprparc = models.IntegerField(choices=CHOICES_S2299_INDCUMPRPARC)
     qtddiasinterm = models.IntegerField(blank=True, null=True)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -4275,9 +4258,6 @@ class s2299evtDesligSerializer(ModelSerializer):
             
 
 class s2300evtTSVInicio(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4285,13 +4265,10 @@ class s2300evtTSVInicio(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -4323,6 +4300,12 @@ class s2300evtTSVInicio(models.Model):
     codcateg = models.TextField(max_length=3)
     dtinicio = models.DateField()
     natatividade = models.IntegerField(choices=CHOICES_S2300_NATATIVIDADE, blank=True, null=True)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -4348,9 +4331,6 @@ class s2300evtTSVInicioSerializer(ModelSerializer):
             
 
 class s2306evtTSVAltContr(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4358,13 +4338,10 @@ class s2306evtTSVAltContr(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -4382,6 +4359,12 @@ class s2306evtTSVAltContr(models.Model):
     codcateg = models.TextField(max_length=3)
     dtalteracao = models.DateField()
     natatividade = models.IntegerField(choices=CHOICES_S2306_NATATIVIDADE, blank=True, null=True)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -4407,9 +4390,6 @@ class s2306evtTSVAltContrSerializer(ModelSerializer):
             
 
 class s2399evtTSVTermino(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4417,13 +4397,10 @@ class s2399evtTSVTermino(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -4444,6 +4421,12 @@ class s2399evtTSVTermino(models.Model):
     pensalim = models.IntegerField(choices=CHOICES_S2399_PENSALIM, blank=True, null=True)
     percaliment = models.DecimalField(max_digits=15, decimal_places=2, max_length=5, blank=True, null=True)
     vralim = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -4469,9 +4452,6 @@ class s2399evtTSVTerminoSerializer(ModelSerializer):
             
 
 class s2400evtCdBenefIn(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4479,13 +4459,10 @@ class s2400evtCdBenefIn(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -4514,6 +4491,12 @@ class s2400evtCdBenefIn(models.Model):
     paisnac = models.TextField(max_length=3)
     nmmae = models.CharField(max_length=70, blank=True, null=True)
     nmpai = models.CharField(max_length=70, blank=True, null=True)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -4539,9 +4522,6 @@ class s2400evtCdBenefInSerializer(ModelSerializer):
             
 
 class s2405evtCdBenefAlt(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4549,13 +4529,10 @@ class s2405evtCdBenefAlt(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -4580,6 +4557,12 @@ class s2405evtCdBenefAlt(models.Model):
     paisnac = models.TextField(max_length=3)
     nmmae = models.CharField(max_length=70, blank=True, null=True)
     nmpai = models.CharField(max_length=70, blank=True, null=True)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -4605,9 +4588,6 @@ class s2405evtCdBenefAltSerializer(ModelSerializer):
             
 
 class s2410evtCdBenIn(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4615,13 +4595,10 @@ class s2410evtCdBenIn(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -4646,6 +4623,12 @@ class s2410evtCdBenIn(models.Model):
     dsc = models.CharField(max_length=255, blank=True, null=True)
     inddecjud = models.CharField(choices=CHOICES_S2410_INDDECJUD, max_length=1)
     indhomologtc = models.CharField(choices=CHOICES_S2410_INDHOMOLOGTC, max_length=1)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -4671,9 +4654,6 @@ class s2410evtCdBenInSerializer(ModelSerializer):
             
 
 class s2416evtCdBenAlt(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4681,18 +4661,14 @@ class s2416evtCdBenAlt(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2416_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
@@ -4710,6 +4686,13 @@ class s2416evtCdBenAlt(models.Model):
     inddecjud = models.CharField(choices=CHOICES_S2416_INDDECJUD, max_length=1)
     indhomologtc = models.CharField(choices=CHOICES_S2416_INDHOMOLOGTC, max_length=1)
     indsuspensao = models.CharField(choices=CHOICES_S2416_INDSUSPENSAO, max_length=1)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
+    operacao = models.IntegerField(choices=OPERACOES)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -4735,9 +4718,6 @@ class s2416evtCdBenAltSerializer(ModelSerializer):
             
 
 class s2420evtCdBenTerm(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4745,18 +4725,14 @@ class s2420evtCdBenTerm(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
     recibo_hash = models.CharField(max_length=100, blank=True, null=True)
-    operacao = models.IntegerField(choices=OPERACOES)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2420_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
@@ -4769,6 +4745,13 @@ class s2420evtCdBenTerm(models.Model):
     nrbeneficio = models.CharField(max_length=20)
     dttermbeneficio = models.DateField()
     mtvtermino = models.CharField(max_length=2)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
+    operacao = models.IntegerField(choices=OPERACOES)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -4794,9 +4777,6 @@ class s2420evtCdBenTermSerializer(ModelSerializer):
             
 
 class s3000evtExclusao(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4804,13 +4784,10 @@ class s3000evtExclusao(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -4823,6 +4800,12 @@ class s3000evtExclusao(models.Model):
     nrinsc = models.CharField(max_length=15)
     tpevento = models.CharField(choices=CHOICES_S3000_TPEVENTO, max_length=6)
     nrrecevt = models.CharField(max_length=40)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -4848,9 +4831,6 @@ class s3000evtExclusaoSerializer(ModelSerializer):
             
 
 class s5001evtBasesTrab(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4858,13 +4838,10 @@ class s5001evtBasesTrab(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -4876,6 +4853,12 @@ class s5001evtBasesTrab(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S5001_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -4901,9 +4884,6 @@ class s5001evtBasesTrabSerializer(ModelSerializer):
             
 
 class s5002evtIrrfBenef(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4911,13 +4891,10 @@ class s5002evtIrrfBenef(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -4928,6 +4905,12 @@ class s5002evtIrrfBenef(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S5002_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -4953,9 +4936,6 @@ class s5002evtIrrfBenefSerializer(ModelSerializer):
             
 
 class s5003evtBasesFGTS(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4963,13 +4943,10 @@ class s5003evtBasesFGTS(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -4981,6 +4958,12 @@ class s5003evtBasesFGTS(models.Model):
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -5006,9 +4989,6 @@ class s5003evtBasesFGTSSerializer(ModelSerializer):
             
 
 class s5011evtCS(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -5016,13 +4996,10 @@ class s5011evtCS(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -5035,6 +5012,12 @@ class s5011evtCS(models.Model):
     nrrecarqbase = models.CharField(max_length=40)
     indexistinfo = models.IntegerField(choices=CHOICES_S5011_INDEXISTINFO)
     classtrib = models.CharField(choices=CHOICES_S5011_CLASSTRIB, max_length=2)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -5060,9 +5043,6 @@ class s5011evtCSSerializer(ModelSerializer):
             
 
 class s5012evtIrrf(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -5070,13 +5050,10 @@ class s5012evtIrrf(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -5087,6 +5064,12 @@ class s5012evtIrrf(models.Model):
     nrinsc = models.CharField(max_length=15)
     nrrecarqbase = models.CharField(max_length=40)
     indexistinfo = models.IntegerField(choices=CHOICES_S5012_INDEXISTINFO)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -5112,9 +5095,6 @@ class s5012evtIrrfSerializer(ModelSerializer):
             
 
 class s5013evtFGTS(models.Model):
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
-    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
-        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -5122,13 +5102,10 @@ class s5013evtFGTS(models.Model):
     validacoes = models.TextField(blank=True, null=True)
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
     arquivo = models.CharField(max_length=200, blank=True, null=True)
-    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     recepcao_tp_amb = models.IntegerField(choices=TIPO_AMBIENTE, blank=True, null=True)
     recepcao_data_hora = models.DateTimeField(blank=True, null=True)
     recepcao_versao_app = models.CharField(max_length=30, blank=True, null=True)
     recepcao_protocolo_envio_lote = models.CharField(max_length=30, blank=True, null=True)
-    processamento_codigo_resposta = models.IntegerField(choices=CODIGO_RESPOSTA, blank=True, null=True)
-    processamento_descricao_resposta = models.TextField(blank=True, null=True)
     processamento_versao_app_processamento = models.CharField(max_length=30, blank=True, null=True)
     processamento_data_hora = models.DateTimeField(blank=True, null=True)
     recibo_numero = models.CharField(max_length=100, blank=True, null=True)
@@ -5139,6 +5116,12 @@ class s5013evtFGTS(models.Model):
     nrinsc = models.CharField(max_length=15)
     nrrecarqbase = models.CharField(max_length=40)
     indexistinfo = models.IntegerField(choices=CHOICES_S5013_INDEXISTINFO)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
+    processamento_codigo_resposta = models.CharField(max_length=10, blank=True, default='- -')
+    processamento_descricao_resposta = models.TextField(blank=True, default='- -')
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_criado_por', blank=True, null=True)

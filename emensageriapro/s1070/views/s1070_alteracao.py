@@ -223,11 +223,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 's1070_alteracao'
         context = {
             's1070_alteracao_lista': s1070_alteracao_lista,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -280,10 +280,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -416,7 +416,7 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1070_alteracao_id': int(s1070_alteracao_id),
             'usuario': usuario,
-
+  
             'hash': hash,
 
             's1070_alteracao_dadosprocjud_form': s1070_alteracao_dadosprocjud_form,
@@ -427,7 +427,7 @@ def salvar(request, hash):
             's1070_alteracao_novavalidade_lista': s1070_alteracao_novavalidade_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -471,10 +471,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

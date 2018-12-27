@@ -202,11 +202,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 's1260_tpcomerc'
         context = {
             's1260_tpcomerc_lista': s1260_tpcomerc_lista,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -259,10 +259,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -390,7 +390,7 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1260_tpcomerc_id': int(s1260_tpcomerc_id),
             'usuario': usuario,
-
+  
             'hash': hash,
 
             's1260_ideadquir_form': s1260_ideadquir_form,
@@ -399,7 +399,7 @@ def salvar(request, hash):
             's1260_infoprocjud_lista': s1260_infoprocjud_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -443,10 +443,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

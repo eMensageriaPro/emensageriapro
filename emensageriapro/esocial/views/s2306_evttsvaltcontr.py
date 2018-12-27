@@ -194,7 +194,7 @@ def listar(request, hash):
             'show_procemi': 1,
             'show_processamento_codigo_resposta': 1,
             'show_processamento_data_hora': 0,
-            'show_processamento_descricao_resposta': 0,
+            'show_processamento_descricao_resposta': 1,
             'show_processamento_versao_app_processamento': 0,
             'show_recepcao_data_hora': 0,
             'show_recepcao_protocolo_envio_lote': 0,
@@ -278,11 +278,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 's2306_evttsvaltcontr'
         context = {
             's2306_evttsvaltcontr_lista': s2306_evttsvaltcontr_lista,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -337,10 +337,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -460,6 +460,8 @@ def salvar(request, hash):
                         messages.error(request, 'Não é possível salvar o evento, pois o mesmo não está com o status "Cadastrado"!')
 
                 else:
+                    dados['processamento_codigo_resposta'] = '- -'
+                    dados['processamento_descricao_resposta'] = '- -'
 
                     dados['criado_por_id'] = usuario_id
                     dados['criado_em'] = datetime.datetime.now()
@@ -549,7 +551,7 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2306_evttsvaltcontr_id': int(s2306_evttsvaltcontr_id),
             'usuario': usuario,
-
+  
             'hash': hash,
 
             's2306_cargofuncao_form': s2306_cargofuncao_form,
@@ -562,7 +564,7 @@ def salvar(request, hash):
             's2306_infoestagiario_lista': s2306_infoestagiario_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -606,10 +608,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

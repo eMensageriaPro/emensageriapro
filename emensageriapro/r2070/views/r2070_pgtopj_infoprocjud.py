@@ -205,11 +205,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 'r2070_pgtopj_infoprocjud'
         context = {
             'r2070_pgtopj_infoprocjud_lista': r2070_pgtopj_infoprocjud_lista,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -262,10 +262,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -393,7 +393,7 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r2070_pgtopj_infoprocjud_id': int(r2070_pgtopj_infoprocjud_id),
             'usuario': usuario,
-
+  
             'hash': hash,
 
             'r2070_pgtopj_despprocjud_form': r2070_pgtopj_despprocjud_form,
@@ -402,7 +402,7 @@ def salvar(request, hash):
             'r2070_pgtopj_origemrecursos_lista': r2070_pgtopj_origemrecursos_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -446,10 +446,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
