@@ -92,28 +92,17 @@ def apagar(request, hash):
                              's1070_inclusao', s1070_inclusao_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-<<<<<<< HEAD
-   
-=======
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 's1070_inclusao_salvar':
             return redirect('s1070_inclusao', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-<<<<<<< HEAD
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-=======
         
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -228,29 +217,17 @@ def listar(request, hash):
             filtrar = True
             s1070_inclusao_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         #s1070_inclusao_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1070_inclusao'
         context = {
             's1070_inclusao_lista': s1070_inclusao_lista,
-<<<<<<< HEAD
-       
-            'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -260,11 +237,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-<<<<<<< HEAD
-   
-=======
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         }
         if for_print in (0,1):
             return render(request, 's1070_inclusao_listar.html', context)
@@ -307,17 +280,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -411,22 +377,14 @@ def salvar(request, hash):
             s1070_inclusao_form.fields[field].widget.attrs['ng-model'] = 's1070_inclusao_'+field
         if int(dict_hash['print']):
             s1070_inclusao_form = disabled_form_for_print(s1070_inclusao_form)
-<<<<<<< HEAD
-
-=======
    
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         s1070_inclusao_dadosprocjud_form = None
         s1070_inclusao_dadosprocjud_lista = None
         s1070_inclusao_infosusp_form = None
         s1070_inclusao_infosusp_lista = None
         if s1070_inclusao_id:
             s1070_inclusao = get_object_or_404(s1070inclusao.objects.using( db_slug ), excluido = False, id = s1070_inclusao_id)
-<<<<<<< HEAD
-  
-=======
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             s1070_inclusao_dadosprocjud_form = form_s1070_inclusao_dadosprocjud(initial={ 's1070_inclusao': s1070_inclusao }, slug=db_slug)
             s1070_inclusao_dadosprocjud_form.fields['s1070_inclusao'].widget.attrs['readonly'] = True
             s1070_inclusao_dadosprocjud_lista = s1070inclusaodadosProcJud.objects.using( db_slug ).filter(excluido = False, s1070_inclusao_id=s1070_inclusao.id).all()
@@ -453,26 +411,16 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1070_inclusao_id': int(s1070_inclusao_id),
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'hash': hash,
-  
-=======
             
             'hash': hash,
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             's1070_inclusao_dadosprocjud_form': s1070_inclusao_dadosprocjud_form,
             's1070_inclusao_dadosprocjud_lista': s1070_inclusao_dadosprocjud_lista,
             's1070_inclusao_infosusp_form': s1070_inclusao_infosusp_form,
             's1070_inclusao_infosusp_lista': s1070_inclusao_infosusp_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-<<<<<<< HEAD
-       
-=======
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -516,17 +464,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

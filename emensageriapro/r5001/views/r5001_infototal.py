@@ -92,28 +92,17 @@ def apagar(request, hash):
                              'r5001_infototal', r5001_infototal_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-<<<<<<< HEAD
-   
-=======
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 'r5001_infototal_salvar':
             return redirect('r5001_infototal', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-<<<<<<< HEAD
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-=======
         
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -213,29 +202,17 @@ def listar(request, hash):
             filtrar = True
             r5001_infototal_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         #r5001_infototal_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r5001_infototal'
         context = {
             'r5001_infototal_lista': r5001_infototal_lista,
-<<<<<<< HEAD
-       
-            'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -245,11 +222,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-<<<<<<< HEAD
-   
-=======
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         }
         if for_print in (0,1):
             return render(request, 'r5001_infototal_listar.html', context)
@@ -292,17 +265,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -396,11 +362,7 @@ def salvar(request, hash):
             r5001_infototal_form.fields[field].widget.attrs['ng-model'] = 'r5001_infototal_'+field
         if int(dict_hash['print']):
             r5001_infototal_form = disabled_form_for_print(r5001_infototal_form)
-<<<<<<< HEAD
-
-=======
    
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         r5001_rtom_form = None
         r5001_rtom_lista = None
         r5001_rprest_form = None
@@ -415,11 +377,7 @@ def salvar(request, hash):
         r5001_rrecespetdesp_lista = None
         if r5001_infototal_id:
             r5001_infototal = get_object_or_404(r5001infoTotal.objects.using( db_slug ), excluido = False, id = r5001_infototal_id)
-<<<<<<< HEAD
-  
-=======
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             r5001_rtom_form = form_r5001_rtom(initial={ 'r5001_infototal': r5001_infototal }, slug=db_slug)
             r5001_rtom_form.fields['r5001_infototal'].widget.attrs['readonly'] = True
             r5001_rtom_lista = r5001RTom.objects.using( db_slug ).filter(excluido = False, r5001_infototal_id=r5001_infototal.id).all()
@@ -458,15 +416,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r5001_infototal_id': int(r5001_infototal_id),
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'hash': hash,
-  
-=======
             
             'hash': hash,
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'r5001_rtom_form': r5001_rtom_form,
             'r5001_rtom_lista': r5001_rtom_lista,
             'r5001_rprest_form': r5001_rprest_form,
@@ -481,11 +433,7 @@ def salvar(request, hash):
             'r5001_rrecespetdesp_lista': r5001_rrecespetdesp_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-<<<<<<< HEAD
-       
-=======
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -529,17 +477,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

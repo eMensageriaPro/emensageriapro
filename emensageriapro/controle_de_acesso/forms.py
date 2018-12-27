@@ -192,10 +192,7 @@ class form_usuarios(forms.ModelForm):
         self.fields['first_name'].widget.attrs['required'] = True        
         self.fields['last_name'].widget.attrs['required'] = True        
         self.fields['email'].widget.attrs['required'] = True        
-<<<<<<< HEAD
         self.fields['is_superuser'].widget.attrs['required'] = True        
-=======
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         self.fields['config_perfis'].queryset = ConfigPerfis.objects.using( slug ).filter(excluido=False).all()
         self.fields['config_perfis'].widget.attrs['required'] = True
         
@@ -206,10 +203,6 @@ class form_usuarios(forms.ModelForm):
             'modificado_em', 'modificado_por',
             'excluido',
             'password',
-<<<<<<< HEAD
-=======
-            'is_superuser',
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'is_staff',
             'is_active',
             'last_login',

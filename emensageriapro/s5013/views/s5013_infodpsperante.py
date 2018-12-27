@@ -92,28 +92,17 @@ def apagar(request, hash):
                              's5013_infodpsperante', s5013_infodpsperante_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-<<<<<<< HEAD
-   
-=======
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 's5013_infodpsperante_salvar':
             return redirect('s5013_infodpsperante', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-<<<<<<< HEAD
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-=======
         
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -204,29 +193,17 @@ def listar(request, hash):
             filtrar = True
             s5013_infodpsperante_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         #s5013_infodpsperante_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's5013_infodpsperante'
         context = {
             's5013_infodpsperante_lista': s5013_infodpsperante_lista,
-<<<<<<< HEAD
-       
-            'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -236,11 +213,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-<<<<<<< HEAD
-   
-=======
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         }
         if for_print in (0,1):
             return render(request, 's5013_infodpsperante_listar.html', context)
@@ -283,17 +256,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -387,20 +353,12 @@ def salvar(request, hash):
             s5013_infodpsperante_form.fields[field].widget.attrs['ng-model'] = 's5013_infodpsperante_'+field
         if int(dict_hash['print']):
             s5013_infodpsperante_form = disabled_form_for_print(s5013_infodpsperante_form)
-<<<<<<< HEAD
-
-=======
    
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         s5013_dpsperante_form = None
         s5013_dpsperante_lista = None
         if s5013_infodpsperante_id:
             s5013_infodpsperante = get_object_or_404(s5013infoDpsPerAntE.objects.using( db_slug ), excluido = False, id = s5013_infodpsperante_id)
-<<<<<<< HEAD
-  
-=======
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             s5013_dpsperante_form = form_s5013_dpsperante(initial={ 's5013_infodpsperante': s5013_infodpsperante }, slug=db_slug)
             s5013_dpsperante_form.fields['s5013_infodpsperante'].widget.attrs['readonly'] = True
             s5013_dpsperante_lista = s5013dpsPerAntE.objects.using( db_slug ).filter(excluido = False, s5013_infodpsperante_id=s5013_infodpsperante.id).all()
@@ -424,24 +382,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's5013_infodpsperante_id': int(s5013_infodpsperante_id),
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'hash': hash,
-  
-=======
             
             'hash': hash,
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             's5013_dpsperante_form': s5013_dpsperante_form,
             's5013_dpsperante_lista': s5013_dpsperante_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-<<<<<<< HEAD
-       
-=======
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -485,17 +433,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

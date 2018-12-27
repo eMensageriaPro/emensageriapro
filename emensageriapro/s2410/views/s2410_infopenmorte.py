@@ -92,28 +92,17 @@ def apagar(request, hash):
                              's2410_infopenmorte', s2410_infopenmorte_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-<<<<<<< HEAD
-   
-=======
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 's2410_infopenmorte_salvar':
             return redirect('s2410_infopenmorte', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-<<<<<<< HEAD
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-=======
         
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -204,29 +193,17 @@ def listar(request, hash):
             filtrar = True
             s2410_infopenmorte_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         #s2410_infopenmorte_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2410_infopenmorte'
         context = {
             's2410_infopenmorte_lista': s2410_infopenmorte_lista,
-<<<<<<< HEAD
-       
-            'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -236,11 +213,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-<<<<<<< HEAD
-   
-=======
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         }
         if for_print in (0,1):
             return render(request, 's2410_infopenmorte_listar.html', context)
@@ -283,17 +256,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -387,20 +353,12 @@ def salvar(request, hash):
             s2410_infopenmorte_form.fields[field].widget.attrs['ng-model'] = 's2410_infopenmorte_'+field
         if int(dict_hash['print']):
             s2410_infopenmorte_form = disabled_form_for_print(s2410_infopenmorte_form)
-<<<<<<< HEAD
-
-=======
    
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         s2410_instpenmorte_form = None
         s2410_instpenmorte_lista = None
         if s2410_infopenmorte_id:
             s2410_infopenmorte = get_object_or_404(s2410infoPenMorte.objects.using( db_slug ), excluido = False, id = s2410_infopenmorte_id)
-<<<<<<< HEAD
-  
-=======
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             s2410_instpenmorte_form = form_s2410_instpenmorte(initial={ 's2410_infopenmorte': s2410_infopenmorte }, slug=db_slug)
             s2410_instpenmorte_form.fields['s2410_infopenmorte'].widget.attrs['readonly'] = True
             s2410_instpenmorte_lista = s2410instPenMorte.objects.using( db_slug ).filter(excluido = False, s2410_infopenmorte_id=s2410_infopenmorte.id).all()
@@ -424,24 +382,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2410_infopenmorte_id': int(s2410_infopenmorte_id),
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'hash': hash,
-  
-=======
             
             'hash': hash,
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             's2410_instpenmorte_form': s2410_instpenmorte_form,
             's2410_instpenmorte_lista': s2410_instpenmorte_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-<<<<<<< HEAD
-       
-=======
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -485,17 +433,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

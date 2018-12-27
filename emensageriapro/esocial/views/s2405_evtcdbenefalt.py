@@ -97,28 +97,17 @@ def apagar(request, hash):
                              's2405_evtcdbenefalt', s2405_evtcdbenefalt_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-<<<<<<< HEAD
-   
-=======
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 's2405_evtcdbenefalt_salvar':
             return redirect('s2405_evtcdbenefalt', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-<<<<<<< HEAD
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-=======
         
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -307,30 +296,18 @@ def listar(request, hash):
             filtrar = True
             s2405_evtcdbenefalt_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-<<<<<<< HEAD
-
-=======
    
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s2405_evtcdbenefalt_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2405_evtcdbenefalt'
         context = {
             's2405_evtcdbenefalt_lista': s2405_evtcdbenefalt_lista,
-<<<<<<< HEAD
-       
-            'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -340,11 +317,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-<<<<<<< HEAD
-  
-=======
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         #return render(request, 's2405_evtcdbenefalt_listar.html', context)
@@ -389,17 +362,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -543,11 +509,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         s2405_evtcdbenefalt_form = disabled_form_fields(s2405_evtcdbenefalt_form, permissao.permite_editar)
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if s2405_evtcdbenefalt_id:
             if s2405_evtcdbenefalt.status != 0:
                 s2405_evtcdbenefalt_form = disabled_form_fields(s2405_evtcdbenefalt_form, False)
@@ -557,11 +519,7 @@ def salvar(request, hash):
             s2405_evtcdbenefalt_form.fields[field].widget.attrs['ng-model'] = 's2405_evtcdbenefalt_'+field
         if int(dict_hash['print']):
             s2405_evtcdbenefalt_form = disabled_form_for_print(s2405_evtcdbenefalt_form)
-<<<<<<< HEAD
-
-=======
    
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         s2405_brasil_form = None
         s2405_brasil_lista = None
         s2405_exterior_form = None
@@ -570,11 +528,7 @@ def salvar(request, hash):
         s2405_dependente_lista = None
         if s2405_evtcdbenefalt_id:
             s2405_evtcdbenefalt = get_object_or_404(s2405evtCdBenefAlt.objects.using( db_slug ), excluido = False, id = s2405_evtcdbenefalt_id)
-<<<<<<< HEAD
-  
-=======
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             s2405_brasil_form = form_s2405_brasil(initial={ 's2405_evtcdbenefalt': s2405_evtcdbenefalt }, slug=db_slug)
             s2405_brasil_form.fields['s2405_evtcdbenefalt'].widget.attrs['readonly'] = True
             s2405_brasil_lista = s2405brasil.objects.using( db_slug ).filter(excluido = False, s2405_evtcdbenefalt_id=s2405_evtcdbenefalt.id).all()
@@ -602,11 +556,7 @@ def salvar(request, hash):
             s2405_evtcdbenefalt_form.fields['procemi'].value = 1
             s2405_evtcdbenefalt_form.fields['verproc'].widget.attrs['readonly'] = True
             s2405_evtcdbenefalt_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if dict_hash['tab'] or 's2405_evtcdbenefalt' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's2405_evtcdbenefalt_salvar'
@@ -619,15 +569,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2405_evtcdbenefalt_id': int(s2405_evtcdbenefalt_id),
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'hash': hash,
-  
-=======
             
             'hash': hash,
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             's2405_brasil_form': s2405_brasil_form,
             's2405_brasil_lista': s2405_brasil_lista,
             's2405_exterior_form': s2405_exterior_form,
@@ -636,11 +580,7 @@ def salvar(request, hash):
             's2405_dependente_lista': s2405_dependente_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-<<<<<<< HEAD
-       
-=======
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -650,11 +590,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s2405_evtcdbenefalt_salvar_custom_variaveis_context#
         }
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if for_print in (0,1 ):
             return render(request, 's2405_evtcdbenefalt_salvar.html', context)
         elif for_print == 2:
@@ -688,17 +624,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

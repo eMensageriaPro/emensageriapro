@@ -45,13 +45,9 @@ except: locale.setlocale(locale.LC_ALL, 'pt_BR.utf8')
 
 register = template.Library()
 
-<<<<<<< HEAD
 @register.filter(name='multiply')
 def multiply(value, arg):
     return value*arg
-=======
-
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
 
 @register.filter(name='lista_json_table_esocial')
 def lista_json_table_esocial(texto):

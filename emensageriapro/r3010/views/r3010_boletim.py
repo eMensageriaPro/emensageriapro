@@ -92,28 +92,17 @@ def apagar(request, hash):
                              'r3010_boletim', r3010_boletim_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-<<<<<<< HEAD
-   
-=======
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 'r3010_boletim_salvar':
             return redirect('r3010_boletim', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-<<<<<<< HEAD
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-=======
         
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -240,29 +229,17 @@ def listar(request, hash):
             filtrar = True
             r3010_boletim_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         #r3010_boletim_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r3010_boletim'
         context = {
             'r3010_boletim_lista': r3010_boletim_lista,
-<<<<<<< HEAD
-       
-            'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -272,11 +249,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-<<<<<<< HEAD
-   
-=======
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         }
         if for_print in (0,1):
             return render(request, 'r3010_boletim_listar.html', context)
@@ -319,17 +292,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -423,22 +389,14 @@ def salvar(request, hash):
             r3010_boletim_form.fields[field].widget.attrs['ng-model'] = 'r3010_boletim_'+field
         if int(dict_hash['print']):
             r3010_boletim_form = disabled_form_for_print(r3010_boletim_form)
-<<<<<<< HEAD
-
-=======
    
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         r3010_receitaingressos_form = None
         r3010_receitaingressos_lista = None
         r3010_outrasreceitas_form = None
         r3010_outrasreceitas_lista = None
         if r3010_boletim_id:
             r3010_boletim = get_object_or_404(r3010boletim.objects.using( db_slug ), excluido = False, id = r3010_boletim_id)
-<<<<<<< HEAD
-  
-=======
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             r3010_receitaingressos_form = form_r3010_receitaingressos(initial={ 'r3010_boletim': r3010_boletim }, slug=db_slug)
             r3010_receitaingressos_form.fields['r3010_boletim'].widget.attrs['readonly'] = True
             r3010_receitaingressos_lista = r3010receitaIngressos.objects.using( db_slug ).filter(excluido = False, r3010_boletim_id=r3010_boletim.id).all()
@@ -465,26 +423,16 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r3010_boletim_id': int(r3010_boletim_id),
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'hash': hash,
-  
-=======
             
             'hash': hash,
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'r3010_receitaingressos_form': r3010_receitaingressos_form,
             'r3010_receitaingressos_lista': r3010_receitaingressos_lista,
             'r3010_outrasreceitas_form': r3010_outrasreceitas_form,
             'r3010_outrasreceitas_lista': r3010_outrasreceitas_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-<<<<<<< HEAD
-       
-=======
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -528,17 +476,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

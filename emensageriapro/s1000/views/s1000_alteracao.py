@@ -92,28 +92,17 @@ def apagar(request, hash):
                              's1000_alteracao', s1000_alteracao_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-<<<<<<< HEAD
-   
-=======
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 's1000_alteracao_salvar':
             return redirect('s1000_alteracao', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-<<<<<<< HEAD
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-=======
         
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -264,29 +253,17 @@ def listar(request, hash):
             filtrar = True
             s1000_alteracao_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         #s1000_alteracao_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's1000_alteracao'
         context = {
             's1000_alteracao_lista': s1000_alteracao_lista,
-<<<<<<< HEAD
-       
-            'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -296,11 +273,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-<<<<<<< HEAD
-   
-=======
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         }
         if for_print in (0,1):
             return render(request, 's1000_alteracao_listar.html', context)
@@ -343,17 +316,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -447,11 +413,7 @@ def salvar(request, hash):
             s1000_alteracao_form.fields[field].widget.attrs['ng-model'] = 's1000_alteracao_'+field
         if int(dict_hash['print']):
             s1000_alteracao_form = disabled_form_for_print(s1000_alteracao_form)
-<<<<<<< HEAD
-
-=======
    
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         s1000_alteracao_dadosisencao_form = None
         s1000_alteracao_dadosisencao_lista = None
         s1000_alteracao_infoop_form = None
@@ -468,11 +430,7 @@ def salvar(request, hash):
         s1000_alteracao_novavalidade_lista = None
         if s1000_alteracao_id:
             s1000_alteracao = get_object_or_404(s1000alteracao.objects.using( db_slug ), excluido = False, id = s1000_alteracao_id)
-<<<<<<< HEAD
-  
-=======
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             s1000_alteracao_dadosisencao_form = form_s1000_alteracao_dadosisencao(initial={ 's1000_alteracao': s1000_alteracao }, slug=db_slug)
             s1000_alteracao_dadosisencao_form.fields['s1000_alteracao'].widget.attrs['readonly'] = True
             s1000_alteracao_dadosisencao_lista = s1000alteracaodadosIsencao.objects.using( db_slug ).filter(excluido = False, s1000_alteracao_id=s1000_alteracao.id).all()
@@ -514,15 +472,9 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's1000_alteracao_id': int(s1000_alteracao_id),
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'hash': hash,
-  
-=======
             
             'hash': hash,
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             's1000_alteracao_dadosisencao_form': s1000_alteracao_dadosisencao_form,
             's1000_alteracao_dadosisencao_lista': s1000_alteracao_dadosisencao_lista,
             's1000_alteracao_infoop_form': s1000_alteracao_infoop_form,
@@ -539,11 +491,7 @@ def salvar(request, hash):
             's1000_alteracao_novavalidade_lista': s1000_alteracao_novavalidade_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-<<<<<<< HEAD
-       
-=======
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -587,17 +535,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

@@ -93,28 +93,17 @@ def apagar(request, hash):
                              's5003_evtbasesfgts', s5003_evtbasesfgts_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-<<<<<<< HEAD
-   
-=======
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 's5003_evtbasesfgts_salvar':
             return redirect('s5003_evtbasesfgts', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-<<<<<<< HEAD
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-=======
         
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -255,30 +244,18 @@ def listar(request, hash):
             filtrar = True
             s5003_evtbasesfgts_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-<<<<<<< HEAD
-
-=======
    
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s5003_evtbasesfgts_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's5003_evtbasesfgts'
         context = {
             's5003_evtbasesfgts_lista': s5003_evtbasesfgts_lista,
-<<<<<<< HEAD
-       
-            'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -288,11 +265,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-<<<<<<< HEAD
-  
-=======
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
         #return render(request, 's5003_evtbasesfgts_listar.html', context)
@@ -337,17 +310,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -491,11 +457,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         s5003_evtbasesfgts_form = disabled_form_fields(s5003_evtbasesfgts_form, permissao.permite_editar)
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if s5003_evtbasesfgts_id:
             if s5003_evtbasesfgts.status != 0:
                 s5003_evtbasesfgts_form = disabled_form_fields(s5003_evtbasesfgts_form, False)
@@ -505,20 +467,12 @@ def salvar(request, hash):
             s5003_evtbasesfgts_form.fields[field].widget.attrs['ng-model'] = 's5003_evtbasesfgts_'+field
         if int(dict_hash['print']):
             s5003_evtbasesfgts_form = disabled_form_for_print(s5003_evtbasesfgts_form)
-<<<<<<< HEAD
-
-=======
    
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         s5003_infofgts_form = None
         s5003_infofgts_lista = None
         if s5003_evtbasesfgts_id:
             s5003_evtbasesfgts = get_object_or_404(s5003evtBasesFGTS.objects.using( db_slug ), excluido = False, id = s5003_evtbasesfgts_id)
-<<<<<<< HEAD
-  
-=======
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             s5003_infofgts_form = form_s5003_infofgts(initial={ 's5003_evtbasesfgts': s5003_evtbasesfgts }, slug=db_slug)
             s5003_infofgts_form.fields['s5003_evtbasesfgts'].widget.attrs['readonly'] = True
             s5003_infofgts_lista = s5003infoFGTS.objects.using( db_slug ).filter(excluido = False, s5003_evtbasesfgts_id=s5003_evtbasesfgts.id).all()
@@ -540,11 +494,7 @@ def salvar(request, hash):
             s5003_evtbasesfgts_form.fields['procemi'].value = 1
             s5003_evtbasesfgts_form.fields['verproc'].widget.attrs['readonly'] = True
             s5003_evtbasesfgts_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if dict_hash['tab'] or 's5003_evtbasesfgts' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's5003_evtbasesfgts_salvar'
@@ -557,24 +507,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's5003_evtbasesfgts_id': int(s5003_evtbasesfgts_id),
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'hash': hash,
-  
-=======
             
             'hash': hash,
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             's5003_infofgts_form': s5003_infofgts_form,
             's5003_infofgts_lista': s5003_infofgts_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-<<<<<<< HEAD
-       
-=======
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -584,11 +524,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #s5003_evtbasesfgts_salvar_custom_variaveis_context#
         }
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if for_print in (0,1 ):
             return render(request, 's5003_evtbasesfgts_salvar.html', context)
         elif for_print == 2:
@@ -622,17 +558,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

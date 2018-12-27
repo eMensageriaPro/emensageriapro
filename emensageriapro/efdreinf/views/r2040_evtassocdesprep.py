@@ -93,28 +93,17 @@ def apagar(request, hash):
                              'r2040_evtassocdesprep', r2040_evtassocdesprep_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-<<<<<<< HEAD
-   
-=======
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 'r2040_evtassocdesprep_salvar':
             return redirect('r2040_evtassocdesprep', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-<<<<<<< HEAD
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-=======
         
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -261,30 +250,18 @@ def listar(request, hash):
             filtrar = True
             r2040_evtassocdesprep_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-<<<<<<< HEAD
-
-=======
    
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         transmissor_lote_efdreinf_lista = TransmissorLoteEfdreinf.objects.using( db_slug ).filter(excluido = False).all()
         #r2040_evtassocdesprep_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r2040_evtassocdesprep'
         context = {
             'r2040_evtassocdesprep_lista': r2040_evtassocdesprep_lista,
-<<<<<<< HEAD
-       
-            'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -294,11 +271,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-<<<<<<< HEAD
-  
-=======
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'transmissor_lote_efdreinf_lista': transmissor_lote_efdreinf_lista,
         }
         #return render(request, 'r2040_evtassocdesprep_listar.html', context)
@@ -343,17 +316,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -497,11 +463,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         r2040_evtassocdesprep_form = disabled_form_fields(r2040_evtassocdesprep_form, permissao.permite_editar)
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if r2040_evtassocdesprep_id:
             if r2040_evtassocdesprep.status != 0:
                 r2040_evtassocdesprep_form = disabled_form_fields(r2040_evtassocdesprep_form, False)
@@ -511,20 +473,12 @@ def salvar(request, hash):
             r2040_evtassocdesprep_form.fields[field].widget.attrs['ng-model'] = 'r2040_evtassocdesprep_'+field
         if int(dict_hash['print']):
             r2040_evtassocdesprep_form = disabled_form_for_print(r2040_evtassocdesprep_form)
-<<<<<<< HEAD
-
-=======
    
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         r2040_recursosrep_form = None
         r2040_recursosrep_lista = None
         if r2040_evtassocdesprep_id:
             r2040_evtassocdesprep = get_object_or_404(r2040evtAssocDespRep.objects.using( db_slug ), excluido = False, id = r2040_evtassocdesprep_id)
-<<<<<<< HEAD
-  
-=======
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             r2040_recursosrep_form = form_r2040_recursosrep(initial={ 'r2040_evtassocdesprep': r2040_evtassocdesprep }, slug=db_slug)
             r2040_recursosrep_form.fields['r2040_evtassocdesprep'].widget.attrs['readonly'] = True
             r2040_recursosrep_lista = r2040recursosRep.objects.using( db_slug ).filter(excluido = False, r2040_evtassocdesprep_id=r2040_evtassocdesprep.id).all()
@@ -546,11 +500,7 @@ def salvar(request, hash):
             r2040_evtassocdesprep_form.fields['procemi'].value = 1
             r2040_evtassocdesprep_form.fields['verproc'].widget.attrs['readonly'] = True
             r2040_evtassocdesprep_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if dict_hash['tab'] or 'r2040_evtassocdesprep' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'r2040_evtassocdesprep_salvar'
@@ -563,24 +513,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r2040_evtassocdesprep_id': int(r2040_evtassocdesprep_id),
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'hash': hash,
-  
-=======
             
             'hash': hash,
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'r2040_recursosrep_form': r2040_recursosrep_form,
             'r2040_recursosrep_lista': r2040_recursosrep_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-<<<<<<< HEAD
-       
-=======
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -590,11 +530,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #r2040_evtassocdesprep_salvar_custom_variaveis_context#
         }
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if for_print in (0,1 ):
             return render(request, 'r2040_evtassocdesprep_salvar.html', context)
         elif for_print == 2:
@@ -628,17 +564,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

@@ -93,28 +93,17 @@ def apagar(request, hash):
                              'r2099_evtfechaevper', r2099_evtfechaevper_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-<<<<<<< HEAD
-   
-=======
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 'r2099_evtfechaevper_salvar':
             return redirect('r2099_evtfechaevper', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-<<<<<<< HEAD
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-=======
         
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -273,30 +262,18 @@ def listar(request, hash):
             filtrar = True
             r2099_evtfechaevper_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-<<<<<<< HEAD
-
-=======
    
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         transmissor_lote_efdreinf_lista = TransmissorLoteEfdreinf.objects.using( db_slug ).filter(excluido = False).all()
         #r2099_evtfechaevper_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r2099_evtfechaevper'
         context = {
             'r2099_evtfechaevper_lista': r2099_evtfechaevper_lista,
-<<<<<<< HEAD
-       
-            'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -306,11 +283,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-<<<<<<< HEAD
-  
-=======
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'transmissor_lote_efdreinf_lista': transmissor_lote_efdreinf_lista,
         }
         #return render(request, 'r2099_evtfechaevper_listar.html', context)
@@ -355,17 +328,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -509,11 +475,7 @@ def salvar(request, hash):
             else:
                 messages.error(request, 'Erro ao salvar!')
         r2099_evtfechaevper_form = disabled_form_fields(r2099_evtfechaevper_form, permissao.permite_editar)
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if r2099_evtfechaevper_id:
             if r2099_evtfechaevper.status != 0:
                 r2099_evtfechaevper_form = disabled_form_fields(r2099_evtfechaevper_form, False)
@@ -523,20 +485,12 @@ def salvar(request, hash):
             r2099_evtfechaevper_form.fields[field].widget.attrs['ng-model'] = 'r2099_evtfechaevper_'+field
         if int(dict_hash['print']):
             r2099_evtfechaevper_form = disabled_form_for_print(r2099_evtfechaevper_form)
-<<<<<<< HEAD
-
-=======
    
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         r2099_iderespinf_form = None
         r2099_iderespinf_lista = None
         if r2099_evtfechaevper_id:
             r2099_evtfechaevper = get_object_or_404(r2099evtFechaEvPer.objects.using( db_slug ), excluido = False, id = r2099_evtfechaevper_id)
-<<<<<<< HEAD
-  
-=======
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             r2099_iderespinf_form = form_r2099_iderespinf(initial={ 'r2099_evtfechaevper': r2099_evtfechaevper }, slug=db_slug)
             r2099_iderespinf_form.fields['r2099_evtfechaevper'].widget.attrs['readonly'] = True
             r2099_iderespinf_lista = r2099ideRespInf.objects.using( db_slug ).filter(excluido = False, r2099_evtfechaevper_id=r2099_evtfechaevper.id).all()
@@ -558,11 +512,7 @@ def salvar(request, hash):
             r2099_evtfechaevper_form.fields['procemi'].value = 1
             r2099_evtfechaevper_form.fields['verproc'].widget.attrs['readonly'] = True
             r2099_evtfechaevper_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if dict_hash['tab'] or 'r2099_evtfechaevper' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'r2099_evtfechaevper_salvar'
@@ -575,24 +525,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             'r2099_evtfechaevper_id': int(r2099_evtfechaevper_id),
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'hash': hash,
-  
-=======
             
             'hash': hash,
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'r2099_iderespinf_form': r2099_iderespinf_form,
             'r2099_iderespinf_lista': r2099_iderespinf_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-<<<<<<< HEAD
-       
-=======
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -602,11 +542,7 @@ def salvar(request, hash):
             'tab': dict_hash['tab'],
             #r2099_evtfechaevper_salvar_custom_variaveis_context#
         }
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if for_print in (0,1 ):
             return render(request, 'r2099_evtfechaevper_salvar.html', context)
         elif for_print == 2:
@@ -640,17 +576,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

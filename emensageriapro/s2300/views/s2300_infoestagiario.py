@@ -92,28 +92,17 @@ def apagar(request, hash):
                              's2300_infoestagiario', s2300_infoestagiario_id, usuario_id, 3)
         else:
             messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-<<<<<<< HEAD
-   
-=======
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         if request.session['retorno_pagina']== 's2300_infoestagiario_salvar':
             return redirect('s2300_infoestagiario', hash=request.session['retorno_hash'])
         else:
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
     context = {
         'usuario': usuario,
-<<<<<<< HEAD
-   
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-   
-=======
         
         'modulos_permitidos_lista': modulos_permitidos_lista,
         'paginas_permitidas_lista': paginas_permitidas_lista,
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         'permissao': permissao,
         'data': datetime.datetime.now(),
         'pagina': pagina,
@@ -246,29 +235,17 @@ def listar(request, hash):
             filtrar = True
             s2300_infoestagiario_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         #s2300_infoestagiario_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2300_infoestagiario'
         context = {
             's2300_infoestagiario_lista': s2300_infoestagiario_lista,
-<<<<<<< HEAD
-       
-            'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -278,11 +255,7 @@ def listar(request, hash):
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
-<<<<<<< HEAD
-   
-=======
         
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         }
         if for_print in (0,1):
             return render(request, 's2300_infoestagiario_listar.html', context)
@@ -325,17 +298,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -429,22 +395,14 @@ def salvar(request, hash):
             s2300_infoestagiario_form.fields[field].widget.attrs['ng-model'] = 's2300_infoestagiario_'+field
         if int(dict_hash['print']):
             s2300_infoestagiario_form = disabled_form_for_print(s2300_infoestagiario_form)
-<<<<<<< HEAD
-
-=======
    
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
         s2300_ageintegracao_form = None
         s2300_ageintegracao_lista = None
         s2300_supervisorestagio_form = None
         s2300_supervisorestagio_lista = None
         if s2300_infoestagiario_id:
             s2300_infoestagiario = get_object_or_404(s2300infoEstagiario.objects.using( db_slug ), excluido = False, id = s2300_infoestagiario_id)
-<<<<<<< HEAD
-  
-=======
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             s2300_ageintegracao_form = form_s2300_ageintegracao(initial={ 's2300_infoestagiario': s2300_infoestagiario }, slug=db_slug)
             s2300_ageintegracao_form.fields['s2300_infoestagiario'].widget.attrs['readonly'] = True
             s2300_ageintegracao_lista = s2300ageIntegracao.objects.using( db_slug ).filter(excluido = False, s2300_infoestagiario_id=s2300_infoestagiario.id).all()
@@ -471,26 +429,16 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2300_infoestagiario_id': int(s2300_infoestagiario_id),
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'hash': hash,
-  
-=======
             
             'hash': hash,
        
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             's2300_ageintegracao_form': s2300_ageintegracao_form,
             's2300_ageintegracao_lista': s2300_ageintegracao_lista,
             's2300_supervisorestagio_form': s2300_supervisorestagio_form,
             's2300_supervisorestagio_lista': s2300_supervisorestagio_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-<<<<<<< HEAD
-       
-=======
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -534,17 +482,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-<<<<<<< HEAD
-       
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-=======
             
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
             
->>>>>>> 3217f7abcc9a9c37261d88e43626ba3e9fb91ee3
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
