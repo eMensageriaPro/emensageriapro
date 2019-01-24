@@ -19,3 +19,6 @@ PASS_SCRIPT=senha_webservice
 LINK_WEBSITE=http://emensageriapro-dev.org.br/
 EMAIL_RECUPERACAO_SENHA=contato@emensageria.com.br
 STATIC_ROOT=/app/static
+STATIC_URL=http://endereco.servidor.static/
+MEDIA_ROOT=/endereco/pasta/media
+MEDIA_URL=http://endereco.servidor.media/

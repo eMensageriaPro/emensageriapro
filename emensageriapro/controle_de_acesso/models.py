@@ -212,10 +212,10 @@ class ConfigPermissoesSerializer(ModelSerializer):
             
 
 class Usuarios(models.Model):
+    foto = models.TextField(blank=True, null=True)
     from django.contrib.auth.models import User
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     """
-    foto = models.TextField(blank=True, null=True)
     username = models.CharField(max_length=20)
     password = models.CharField(max_length=300, blank=True, default='asdkl1231')
     first_name = models.CharField(max_length=60)
