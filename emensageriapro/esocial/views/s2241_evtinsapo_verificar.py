@@ -129,11 +129,11 @@ def verificar(request, hash):
             's2241_evtinsapo_lista': s2241_evtinsapo_lista,
             's2241_evtinsapo_id': s2241_evtinsapo_id,
             's2241_evtinsapo': s2241_evtinsapo,
-  
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-  
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -196,10 +196,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-  
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-  
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -326,11 +326,11 @@ def recibo(request, hash, tipo):
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
 
-  
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-  
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -358,10 +358,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-  
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-  
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

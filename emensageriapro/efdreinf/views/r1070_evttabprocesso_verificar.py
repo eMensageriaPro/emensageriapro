@@ -121,11 +121,11 @@ def verificar(request, hash):
             'r1070_evttabprocesso_lista': r1070_evttabprocesso_lista,
             'r1070_evttabprocesso_id': r1070_evttabprocesso_id,
             'r1070_evttabprocesso': r1070_evttabprocesso,
-  
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-  
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -180,10 +180,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-  
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-  
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -294,11 +294,11 @@ def recibo(request, hash, tipo):
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
 
-  
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-  
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -326,10 +326,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-  
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-  
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

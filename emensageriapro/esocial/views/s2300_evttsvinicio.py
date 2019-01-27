@@ -705,6 +705,10 @@ def salvar(request, hash):
             s2300_evttsvinicio_form.fields['procemi'].value = 1
             s2300_evttsvinicio_form.fields['verproc'].widget.attrs['readonly'] = True
             s2300_evttsvinicio_form.fields['verproc'].value = VERSAO_EMENSAGERIA
+            s2300_evttsvinicio_form.fields['status'].widget.attrs['disabled'] = True
+            s2300_evttsvinicio_form.fields['status'].widget.attrs['readonly'] = True
+            s2300_evttsvinicio_form.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
+            s2300_evttsvinicio_form.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
 
         if dict_hash['tab'] or 's2300_evttsvinicio' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash

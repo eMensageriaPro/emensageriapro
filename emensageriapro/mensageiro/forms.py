@@ -86,7 +86,8 @@ class form_transmissores(forms.ModelForm):
         self.fields['esocial_lote_max'].widget.attrs['required'] = True        
         self.fields['esocial_timeout'].widget.attrs['required'] = True        
         self.fields['esocial_intervalo'].widget.attrs['required'] = True        
-        self.fields['esocial_tempo_prox_envio'].widget.attrs['readonly'] = True        
+        self.fields['esocial_tempo_prox_envio'].widget.attrs['readonly'] = True
+        self.fields['esocial_tempo_prox_envio'].widget.attrs['disabled'] = True        
         self.fields['contribuinte_tpinsc'].widget.attrs['required'] = True        
         self.fields['contribuinte_nrinsc'].widget.attrs['required'] = True        
         self.fields['efdreinf_lote_min'].widget.attrs['required'] = True        
@@ -94,6 +95,7 @@ class form_transmissores(forms.ModelForm):
         self.fields['efdreinf_timeout'].widget.attrs['required'] = True        
         self.fields['efdreinf_intervalo'].widget.attrs['required'] = True        
         self.fields['efdreinf_tempo_prox_envio'].widget.attrs['readonly'] = True
+        self.fields['efdreinf_tempo_prox_envio'].widget.attrs['disabled'] = True
         
     class Meta:
         model = TransmissorLote
@@ -119,7 +121,8 @@ class form_regras_validacao(forms.ModelForm):
         super(form_regras_validacao, self).__init__(*args,**kwargs)
         
         self.fields['evento'].widget.attrs['required'] = True        
-        self.fields['versao'].widget.attrs['readonly'] = True        
+        self.fields['versao'].widget.attrs['readonly'] = True
+        self.fields['versao'].widget.attrs['disabled'] = True        
         self.fields['numero'].widget.attrs['required'] = True        
         self.fields['registro_campo'].widget.attrs['required'] = True        
         self.fields['registro_pai'].widget.attrs['required'] = True        
@@ -128,12 +131,18 @@ class form_regras_validacao(forms.ModelForm):
         self.fields['ocorrencias'].widget.attrs['required'] = True        
         self.fields['tamanho'].widget.attrs['required'] = True        
         self.fields['casas_decimais'].widget.attrs['required'] = True        
-        self.fields['obrigatorio'].widget.attrs['readonly'] = True        
-        self.fields['descricao'].widget.attrs['readonly'] = True        
-        self.fields['tabela'].widget.attrs['readonly'] = True        
-        self.fields['valores_validos'].widget.attrs['readonly'] = True        
-        self.fields['validacoes_precedencia'].widget.attrs['readonly'] = True        
+        self.fields['obrigatorio'].widget.attrs['readonly'] = True
+        self.fields['obrigatorio'].widget.attrs['disabled'] = True        
+        self.fields['descricao'].widget.attrs['readonly'] = True
+        self.fields['descricao'].widget.attrs['disabled'] = True        
+        self.fields['tabela'].widget.attrs['readonly'] = True
+        self.fields['tabela'].widget.attrs['disabled'] = True        
+        self.fields['valores_validos'].widget.attrs['readonly'] = True
+        self.fields['valores_validos'].widget.attrs['disabled'] = True        
+        self.fields['validacoes_precedencia'].widget.attrs['readonly'] = True
+        self.fields['validacoes_precedencia'].widget.attrs['disabled'] = True        
         self.fields['validacoes'].widget.attrs['readonly'] = True
+        self.fields['validacoes'].widget.attrs['disabled'] = True
         
     class Meta:
         model = RegrasDeValidacao
@@ -152,15 +161,23 @@ class form_importacao_arquivos(forms.ModelForm):
         slug = kwargs.pop('slug')
         super(form_importacao_arquivos, self).__init__(*args,**kwargs)
         
-        self.fields['arquivo'].widget.attrs['readonly'] = True        
-        self.fields['status'].widget.attrs['readonly'] = True        
-        self.fields['data_hora'].widget.attrs['readonly'] = True        
+        self.fields['arquivo'].widget.attrs['readonly'] = True
+        self.fields['arquivo'].widget.attrs['disabled'] = True        
+        self.fields['status'].widget.attrs['readonly'] = True
+        self.fields['status'].widget.attrs['disabled'] = True        
+        self.fields['data_hora'].widget.attrs['readonly'] = True
+        self.fields['data_hora'].widget.attrs['disabled'] = True        
         self.fields['importado_por'].queryset = Usuarios.objects.using( slug ).filter(excluido=False).all()
-        self.fields['importado_por'].widget.attrs['readonly'] = True        
-        self.fields['quant_total'].widget.attrs['readonly'] = True        
-        self.fields['quant_aguardando'].widget.attrs['readonly'] = True        
-        self.fields['quant_importado'].widget.attrs['readonly'] = True        
+        self.fields['importado_por'].widget.attrs['readonly'] = True
+        self.fields['importado_por'].widget.attrs['disabled'] = True        
+        self.fields['quant_total'].widget.attrs['readonly'] = True
+        self.fields['quant_total'].widget.attrs['disabled'] = True        
+        self.fields['quant_aguardando'].widget.attrs['readonly'] = True
+        self.fields['quant_aguardando'].widget.attrs['disabled'] = True        
+        self.fields['quant_importado'].widget.attrs['readonly'] = True
+        self.fields['quant_importado'].widget.attrs['disabled'] = True        
         self.fields['quant_erros'].widget.attrs['readonly'] = True
+        self.fields['quant_erros'].widget.attrs['disabled'] = True
         
     class Meta:
         model = ImportacaoArquivos
@@ -181,15 +198,24 @@ class form_importacao_arquivos_eventos(forms.ModelForm):
         super(form_importacao_arquivos_eventos, self).__init__(*args,**kwargs)
         
         self.fields['importacao_arquivos'].queryset = ImportacaoArquivos.objects.using( slug ).filter(excluido=False).all()
-        self.fields['importacao_arquivos'].widget.attrs['readonly'] = True        
-        self.fields['arquivo'].widget.attrs['readonly'] = True        
-        self.fields['evento'].widget.attrs['readonly'] = True        
-        self.fields['versao'].widget.attrs['readonly'] = True        
-        self.fields['identidade_evento'].widget.attrs['readonly'] = True        
-        self.fields['identidade'].widget.attrs['readonly'] = True        
-        self.fields['status'].widget.attrs['readonly'] = True        
-        self.fields['data_hora'].widget.attrs['readonly'] = True        
+        self.fields['importacao_arquivos'].widget.attrs['readonly'] = True
+        self.fields['importacao_arquivos'].widget.attrs['disabled'] = True        
+        self.fields['arquivo'].widget.attrs['readonly'] = True
+        self.fields['arquivo'].widget.attrs['disabled'] = True        
+        self.fields['evento'].widget.attrs['readonly'] = True
+        self.fields['evento'].widget.attrs['disabled'] = True        
+        self.fields['versao'].widget.attrs['readonly'] = True
+        self.fields['versao'].widget.attrs['disabled'] = True        
+        self.fields['identidade_evento'].widget.attrs['readonly'] = True
+        self.fields['identidade_evento'].widget.attrs['disabled'] = True        
+        self.fields['identidade'].widget.attrs['readonly'] = True
+        self.fields['identidade'].widget.attrs['disabled'] = True        
+        self.fields['status'].widget.attrs['readonly'] = True
+        self.fields['status'].widget.attrs['disabled'] = True        
+        self.fields['data_hora'].widget.attrs['readonly'] = True
+        self.fields['data_hora'].widget.attrs['disabled'] = True        
         self.fields['validacoes'].widget.attrs['readonly'] = True
+        self.fields['validacoes'].widget.attrs['disabled'] = True
         
     class Meta:
         model = ImportacaoArquivosEventos
@@ -212,13 +238,20 @@ class form_transmissor_lote_esocial(forms.ModelForm):
         self.fields['empregador_tpinsc'].widget.attrs['required'] = True        
         self.fields['empregador_nrinsc'].widget.attrs['required'] = True        
         self.fields['grupo'].widget.attrs['required'] = True        
-        self.fields['status'].widget.attrs['readonly'] = True        
-        self.fields['resposta_codigo'].widget.attrs['readonly'] = True        
-        self.fields['recepcao_data_hora'].widget.attrs['readonly'] = True        
-        self.fields['recepcao_versao_aplicativo'].widget.attrs['readonly'] = True        
-        self.fields['protocolo'].widget.attrs['readonly'] = True        
-        self.fields['processamento_versao_aplicativo'].widget.attrs['readonly'] = True        
+        self.fields['status'].widget.attrs['readonly'] = True
+        self.fields['status'].widget.attrs['disabled'] = True        
+        self.fields['resposta_codigo'].widget.attrs['readonly'] = True
+        self.fields['resposta_codigo'].widget.attrs['disabled'] = True        
+        self.fields['recepcao_data_hora'].widget.attrs['readonly'] = True
+        self.fields['recepcao_data_hora'].widget.attrs['disabled'] = True        
+        self.fields['recepcao_versao_aplicativo'].widget.attrs['readonly'] = True
+        self.fields['recepcao_versao_aplicativo'].widget.attrs['disabled'] = True        
+        self.fields['protocolo'].widget.attrs['readonly'] = True
+        self.fields['protocolo'].widget.attrs['disabled'] = True        
+        self.fields['processamento_versao_aplicativo'].widget.attrs['readonly'] = True
+        self.fields['processamento_versao_aplicativo'].widget.attrs['disabled'] = True        
         self.fields['tempo_estimado_conclusao'].widget.attrs['readonly'] = True
+        self.fields['tempo_estimado_conclusao'].widget.attrs['disabled'] = True
         
     class Meta:
         model = TransmissorLoteEsocial
@@ -242,10 +275,14 @@ class form_transmissor_lote_esocial_ocorrencias(forms.ModelForm):
         super(form_transmissor_lote_esocial_ocorrencias, self).__init__(*args,**kwargs)
         
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
-        self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True        
-        self.fields['resposta_codigo'].widget.attrs['readonly'] = True        
-        self.fields['tipo'].widget.attrs['readonly'] = True        
+        self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
+        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True        
+        self.fields['resposta_codigo'].widget.attrs['readonly'] = True
+        self.fields['resposta_codigo'].widget.attrs['disabled'] = True        
+        self.fields['tipo'].widget.attrs['readonly'] = True
+        self.fields['tipo'].widget.attrs['disabled'] = True        
         self.fields['localizacao'].widget.attrs['readonly'] = True
+        self.fields['localizacao'].widget.attrs['disabled'] = True
         
     class Meta:
         model = TransmissorLoteEsocialOcorrencias
@@ -269,15 +306,24 @@ class form_transmissor_lote_efdreinf(forms.ModelForm):
         self.fields['contribuinte_tpinsc'].widget.attrs['required'] = True        
         self.fields['contribuinte_nrinsc'].widget.attrs['required'] = True        
         self.fields['grupo'].widget.attrs['required'] = True        
-        self.fields['status'].widget.attrs['readonly'] = True        
-        self.fields['identidade_transmissor'].widget.attrs['readonly'] = True        
-        self.fields['codigo_status'].widget.attrs['readonly'] = True        
-        self.fields['recepcao_data_hora'].widget.attrs['readonly'] = True        
-        self.fields['recepcao_versao_aplicativo'].widget.attrs['readonly'] = True        
-        self.fields['protocolo'].widget.attrs['readonly'] = True        
-        self.fields['numero_protocolo_fechamento'].widget.attrs['readonly'] = True        
-        self.fields['processamento_versao_aplicativo'].widget.attrs['readonly'] = True        
+        self.fields['status'].widget.attrs['readonly'] = True
+        self.fields['status'].widget.attrs['disabled'] = True        
+        self.fields['identidade_transmissor'].widget.attrs['readonly'] = True
+        self.fields['identidade_transmissor'].widget.attrs['disabled'] = True        
+        self.fields['codigo_status'].widget.attrs['readonly'] = True
+        self.fields['codigo_status'].widget.attrs['disabled'] = True        
+        self.fields['recepcao_data_hora'].widget.attrs['readonly'] = True
+        self.fields['recepcao_data_hora'].widget.attrs['disabled'] = True        
+        self.fields['recepcao_versao_aplicativo'].widget.attrs['readonly'] = True
+        self.fields['recepcao_versao_aplicativo'].widget.attrs['disabled'] = True        
+        self.fields['protocolo'].widget.attrs['readonly'] = True
+        self.fields['protocolo'].widget.attrs['disabled'] = True        
+        self.fields['numero_protocolo_fechamento'].widget.attrs['readonly'] = True
+        self.fields['numero_protocolo_fechamento'].widget.attrs['disabled'] = True        
+        self.fields['processamento_versao_aplicativo'].widget.attrs['readonly'] = True
+        self.fields['processamento_versao_aplicativo'].widget.attrs['disabled'] = True        
         self.fields['tempo_estimado_conclusao'].widget.attrs['readonly'] = True
+        self.fields['tempo_estimado_conclusao'].widget.attrs['disabled'] = True
         
     class Meta:
         model = TransmissorLoteEfdreinf
@@ -301,10 +347,14 @@ class form_transmissor_lote_efdreinf_ocorrencias(forms.ModelForm):
         super(form_transmissor_lote_efdreinf_ocorrencias, self).__init__(*args,**kwargs)
         
         self.fields['transmissor_lote_efdreinf'].queryset = TransmissorLoteEfdreinf.objects.using( slug ).filter(excluido=False).all()
-        self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True        
-        self.fields['resposta_codigo'].widget.attrs['readonly'] = True        
-        self.fields['tipo'].widget.attrs['readonly'] = True        
+        self.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
+        self.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True        
+        self.fields['resposta_codigo'].widget.attrs['readonly'] = True
+        self.fields['resposta_codigo'].widget.attrs['disabled'] = True        
+        self.fields['tipo'].widget.attrs['readonly'] = True
+        self.fields['tipo'].widget.attrs['disabled'] = True        
         self.fields['localizacao'].widget.attrs['readonly'] = True
+        self.fields['localizacao'].widget.attrs['disabled'] = True
         
     class Meta:
         model = TransmissorLoteEfdreinfOcorrencias
@@ -349,52 +399,98 @@ class form_retornos_eventos(forms.ModelForm):
         
         self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
         self.fields['transmissor_lote_esocial'].widget.attrs['required'] = True        
-        self.fields['identidade'].widget.attrs['readonly'] = True        
-        self.fields['recepcao_tp_amb'].widget.attrs['readonly'] = True        
-        self.fields['recepcao_data_hora'].widget.attrs['readonly'] = True        
-        self.fields['recepcao_versao_app'].widget.attrs['readonly'] = True        
-        self.fields['recepcao_protocolo_envio_lote'].widget.attrs['readonly'] = True        
-        self.fields['processamento_codigo_resposta'].widget.attrs['readonly'] = True        
-        self.fields['processamento_descricao_resposta'].widget.attrs['readonly'] = True        
-        self.fields['processamento_versao_app_processamento'].widget.attrs['readonly'] = True        
-        self.fields['processamento_data_hora'].widget.attrs['readonly'] = True        
-        self.fields['recibo_numero'].widget.attrs['readonly'] = True        
-        self.fields['recibo_hash'].widget.attrs['readonly'] = True        
-        self.fields['tpinsc'].widget.attrs['readonly'] = True        
-        self.fields['empregador_tpinsc'].widget.attrs['readonly'] = True        
-        self.fields['nrinsc'].widget.attrs['readonly'] = True        
-        self.fields['empregador_nrinsc'].widget.attrs['readonly'] = True        
-        self.fields['cpftrab'].widget.attrs['readonly'] = True        
-        self.fields['nistrab'].widget.attrs['readonly'] = True        
-        self.fields['nmtrab'].widget.attrs['readonly'] = True        
-        self.fields['infocota'].widget.attrs['readonly'] = True        
-        self.fields['matricula'].widget.attrs['readonly'] = True        
-        self.fields['dtadm'].widget.attrs['readonly'] = True        
-        self.fields['tpregjor'].widget.attrs['readonly'] = True        
-        self.fields['dtbase'].widget.attrs['readonly'] = True        
-        self.fields['cnpjsindcategprof'].widget.attrs['readonly'] = True        
-        self.fields['dtposse'].widget.attrs['readonly'] = True        
-        self.fields['dtexercicio'].widget.attrs['readonly'] = True        
-        self.fields['codcargo'].widget.attrs['readonly'] = True        
-        self.fields['nmcargo'].widget.attrs['readonly'] = True        
-        self.fields['codcbocargo'].widget.attrs['readonly'] = True        
-        self.fields['codfuncao'].widget.attrs['readonly'] = True        
-        self.fields['dscfuncao'].widget.attrs['readonly'] = True        
-        self.fields['codcbofuncao'].widget.attrs['readonly'] = True        
-        self.fields['codcateg'].widget.attrs['readonly'] = True        
-        self.fields['vrsalfx'].widget.attrs['readonly'] = True        
-        self.fields['undsalfixo'].widget.attrs['readonly'] = True        
-        self.fields['dscsalvar'].widget.attrs['readonly'] = True        
-        self.fields['tpcontr'].widget.attrs['readonly'] = True        
-        self.fields['dtterm'].widget.attrs['readonly'] = True        
-        self.fields['clauasseg'].widget.attrs['readonly'] = True        
-        self.fields['local_tpinsc'].widget.attrs['readonly'] = True        
-        self.fields['local_nrinsc'].widget.attrs['readonly'] = True        
-        self.fields['local_cnae'].widget.attrs['readonly'] = True        
-        self.fields['qtdhrssem'].widget.attrs['readonly'] = True        
-        self.fields['tpjornada'].widget.attrs['readonly'] = True        
-        self.fields['dsctpjorn'].widget.attrs['readonly'] = True        
+        self.fields['identidade'].widget.attrs['readonly'] = True
+        self.fields['identidade'].widget.attrs['disabled'] = True        
+        self.fields['recepcao_tp_amb'].widget.attrs['readonly'] = True
+        self.fields['recepcao_tp_amb'].widget.attrs['disabled'] = True        
+        self.fields['recepcao_data_hora'].widget.attrs['readonly'] = True
+        self.fields['recepcao_data_hora'].widget.attrs['disabled'] = True        
+        self.fields['recepcao_versao_app'].widget.attrs['readonly'] = True
+        self.fields['recepcao_versao_app'].widget.attrs['disabled'] = True        
+        self.fields['recepcao_protocolo_envio_lote'].widget.attrs['readonly'] = True
+        self.fields['recepcao_protocolo_envio_lote'].widget.attrs['disabled'] = True        
+        self.fields['processamento_codigo_resposta'].widget.attrs['readonly'] = True
+        self.fields['processamento_codigo_resposta'].widget.attrs['disabled'] = True        
+        self.fields['processamento_descricao_resposta'].widget.attrs['readonly'] = True
+        self.fields['processamento_descricao_resposta'].widget.attrs['disabled'] = True        
+        self.fields['processamento_versao_app_processamento'].widget.attrs['readonly'] = True
+        self.fields['processamento_versao_app_processamento'].widget.attrs['disabled'] = True        
+        self.fields['processamento_data_hora'].widget.attrs['readonly'] = True
+        self.fields['processamento_data_hora'].widget.attrs['disabled'] = True        
+        self.fields['recibo_numero'].widget.attrs['readonly'] = True
+        self.fields['recibo_numero'].widget.attrs['disabled'] = True        
+        self.fields['recibo_hash'].widget.attrs['readonly'] = True
+        self.fields['recibo_hash'].widget.attrs['disabled'] = True        
+        self.fields['tpinsc'].widget.attrs['readonly'] = True
+        self.fields['tpinsc'].widget.attrs['disabled'] = True        
+        self.fields['empregador_tpinsc'].widget.attrs['readonly'] = True
+        self.fields['empregador_tpinsc'].widget.attrs['disabled'] = True        
+        self.fields['nrinsc'].widget.attrs['readonly'] = True
+        self.fields['nrinsc'].widget.attrs['disabled'] = True        
+        self.fields['empregador_nrinsc'].widget.attrs['readonly'] = True
+        self.fields['empregador_nrinsc'].widget.attrs['disabled'] = True        
+        self.fields['cpftrab'].widget.attrs['readonly'] = True
+        self.fields['cpftrab'].widget.attrs['disabled'] = True        
+        self.fields['nistrab'].widget.attrs['readonly'] = True
+        self.fields['nistrab'].widget.attrs['disabled'] = True        
+        self.fields['nmtrab'].widget.attrs['readonly'] = True
+        self.fields['nmtrab'].widget.attrs['disabled'] = True        
+        self.fields['infocota'].widget.attrs['readonly'] = True
+        self.fields['infocota'].widget.attrs['disabled'] = True        
+        self.fields['matricula'].widget.attrs['readonly'] = True
+        self.fields['matricula'].widget.attrs['disabled'] = True        
+        self.fields['dtadm'].widget.attrs['readonly'] = True
+        self.fields['dtadm'].widget.attrs['disabled'] = True        
+        self.fields['tpregjor'].widget.attrs['readonly'] = True
+        self.fields['tpregjor'].widget.attrs['disabled'] = True        
+        self.fields['dtbase'].widget.attrs['readonly'] = True
+        self.fields['dtbase'].widget.attrs['disabled'] = True        
+        self.fields['cnpjsindcategprof'].widget.attrs['readonly'] = True
+        self.fields['cnpjsindcategprof'].widget.attrs['disabled'] = True        
+        self.fields['dtposse'].widget.attrs['readonly'] = True
+        self.fields['dtposse'].widget.attrs['disabled'] = True        
+        self.fields['dtexercicio'].widget.attrs['readonly'] = True
+        self.fields['dtexercicio'].widget.attrs['disabled'] = True        
+        self.fields['codcargo'].widget.attrs['readonly'] = True
+        self.fields['codcargo'].widget.attrs['disabled'] = True        
+        self.fields['nmcargo'].widget.attrs['readonly'] = True
+        self.fields['nmcargo'].widget.attrs['disabled'] = True        
+        self.fields['codcbocargo'].widget.attrs['readonly'] = True
+        self.fields['codcbocargo'].widget.attrs['disabled'] = True        
+        self.fields['codfuncao'].widget.attrs['readonly'] = True
+        self.fields['codfuncao'].widget.attrs['disabled'] = True        
+        self.fields['dscfuncao'].widget.attrs['readonly'] = True
+        self.fields['dscfuncao'].widget.attrs['disabled'] = True        
+        self.fields['codcbofuncao'].widget.attrs['readonly'] = True
+        self.fields['codcbofuncao'].widget.attrs['disabled'] = True        
+        self.fields['codcateg'].widget.attrs['readonly'] = True
+        self.fields['codcateg'].widget.attrs['disabled'] = True        
+        self.fields['vrsalfx'].widget.attrs['readonly'] = True
+        self.fields['vrsalfx'].widget.attrs['disabled'] = True        
+        self.fields['undsalfixo'].widget.attrs['readonly'] = True
+        self.fields['undsalfixo'].widget.attrs['disabled'] = True        
+        self.fields['dscsalvar'].widget.attrs['readonly'] = True
+        self.fields['dscsalvar'].widget.attrs['disabled'] = True        
+        self.fields['tpcontr'].widget.attrs['readonly'] = True
+        self.fields['tpcontr'].widget.attrs['disabled'] = True        
+        self.fields['dtterm'].widget.attrs['readonly'] = True
+        self.fields['dtterm'].widget.attrs['disabled'] = True        
+        self.fields['clauasseg'].widget.attrs['readonly'] = True
+        self.fields['clauasseg'].widget.attrs['disabled'] = True        
+        self.fields['local_tpinsc'].widget.attrs['readonly'] = True
+        self.fields['local_tpinsc'].widget.attrs['disabled'] = True        
+        self.fields['local_nrinsc'].widget.attrs['readonly'] = True
+        self.fields['local_nrinsc'].widget.attrs['disabled'] = True        
+        self.fields['local_cnae'].widget.attrs['readonly'] = True
+        self.fields['local_cnae'].widget.attrs['disabled'] = True        
+        self.fields['qtdhrssem'].widget.attrs['readonly'] = True
+        self.fields['qtdhrssem'].widget.attrs['disabled'] = True        
+        self.fields['tpjornada'].widget.attrs['readonly'] = True
+        self.fields['tpjornada'].widget.attrs['disabled'] = True        
+        self.fields['dsctpjorn'].widget.attrs['readonly'] = True
+        self.fields['dsctpjorn'].widget.attrs['disabled'] = True        
         self.fields['tmpparc'].widget.attrs['readonly'] = True
+        self.fields['tmpparc'].widget.attrs['disabled'] = True
         
     class Meta:
         model = RetornosEventos
@@ -414,10 +510,14 @@ class form_retornos_eventos_ocorrencias(forms.ModelForm):
         super(form_retornos_eventos_ocorrencias, self).__init__(*args,**kwargs)
         
         self.fields['retornos_eventos'].queryset = RetornosEventos.objects.using( slug ).filter(excluido=False).all()
-        self.fields['retornos_eventos'].widget.attrs['readonly'] = True        
-        self.fields['tipo'].widget.attrs['readonly'] = True        
-        self.fields['codigo'].widget.attrs['readonly'] = True        
+        self.fields['retornos_eventos'].widget.attrs['readonly'] = True
+        self.fields['retornos_eventos'].widget.attrs['disabled'] = True        
+        self.fields['tipo'].widget.attrs['readonly'] = True
+        self.fields['tipo'].widget.attrs['disabled'] = True        
+        self.fields['codigo'].widget.attrs['readonly'] = True
+        self.fields['codigo'].widget.attrs['disabled'] = True        
         self.fields['localizacao'].widget.attrs['readonly'] = True
+        self.fields['localizacao'].widget.attrs['disabled'] = True
         
     class Meta:
         model = RetornosEventosOcorrencias

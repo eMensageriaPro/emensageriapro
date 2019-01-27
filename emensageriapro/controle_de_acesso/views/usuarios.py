@@ -308,7 +308,6 @@ def salvar(request, hash):
                     messages.success(request, 'Alterado com sucesso!')
                 else:
                     users_dados['password'] = 'asdkl1231'
-                    users_dados['is_superuser'] = False
                     users_dados['is_staff'] = True
                     users_dados['is_active'] = True
                     user_obj = User(**users_dados)

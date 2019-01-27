@@ -507,6 +507,10 @@ def salvar(request, hash):
             s1040_evttabfuncao_form.fields['procemi'].value = 1
             s1040_evttabfuncao_form.fields['verproc'].widget.attrs['readonly'] = True
             s1040_evttabfuncao_form.fields['verproc'].value = VERSAO_EMENSAGERIA
+            s1040_evttabfuncao_form.fields['status'].widget.attrs['disabled'] = True
+            s1040_evttabfuncao_form.fields['status'].widget.attrs['readonly'] = True
+            s1040_evttabfuncao_form.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
+            s1040_evttabfuncao_form.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
 
         if dict_hash['tab'] or 's1040_evttabfuncao' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash

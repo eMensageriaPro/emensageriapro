@@ -67,6 +67,9 @@ def create_token(request, hash):
         return redirect('login')
 
     from rest_framework.authtoken.models import Token
-    token = Token.objects.create(user=request.user)
+    try:
+        token = Token.objects.create(user=request.user)
+    except:
+        token = Token.objects.get(user=request.user)
     messages.success(request, 'Token criado com sucesso! Token: %s' % token.key)
     return redirect('usuarios', hash=hash)

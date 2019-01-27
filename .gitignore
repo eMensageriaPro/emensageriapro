@@ -1,6 +1,7 @@
 .DS_Store
 *.pyc
 .env
+.env_localhost
 certificados/*.pfx
 certificados/*.pem
 arquivos/

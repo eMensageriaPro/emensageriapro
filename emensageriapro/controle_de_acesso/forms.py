@@ -150,12 +150,12 @@ class form_users(forms.ModelForm):
         self.fields['first_name'].widget.attrs['required'] = True
         self.fields['last_name'].widget.attrs['required'] = True
         self.fields['email'].widget.attrs['required'] = True
+        self.fields['is_superuser'].widget.attrs['required'] = True
 
     class Meta:
         model = User
         exclude = [
             'password',
-            'is_superuser',
             'is_staff',
             'is_active',
             'last_login',
@@ -221,14 +221,21 @@ class form_auditoria(forms.ModelForm):
         slug = kwargs.pop('slug')
         super(form_auditoria, self).__init__(*args,**kwargs)
         
-        self.fields['tabela'].widget.attrs['readonly'] = True        
-        self.fields['identidade'].widget.attrs['readonly'] = True        
-        self.fields['situacao_anterior'].widget.attrs['readonly'] = True        
-        self.fields['situacao_posterior'].widget.attrs['readonly'] = True        
+        self.fields['tabela'].widget.attrs['readonly'] = True
+        self.fields['tabela'].widget.attrs['disabled'] = True        
+        self.fields['identidade'].widget.attrs['readonly'] = True
+        self.fields['identidade'].widget.attrs['disabled'] = True        
+        self.fields['situacao_anterior'].widget.attrs['readonly'] = True
+        self.fields['situacao_anterior'].widget.attrs['disabled'] = True        
+        self.fields['situacao_posterior'].widget.attrs['readonly'] = True
+        self.fields['situacao_posterior'].widget.attrs['disabled'] = True        
         self.fields['operador'].queryset = Usuarios.objects.using( slug ).filter(excluido=False).all()
-        self.fields['operador'].widget.attrs['readonly'] = True        
-        self.fields['data_hora'].widget.attrs['readonly'] = True        
+        self.fields['operador'].widget.attrs['readonly'] = True
+        self.fields['operador'].widget.attrs['disabled'] = True        
+        self.fields['data_hora'].widget.attrs['readonly'] = True
+        self.fields['data_hora'].widget.attrs['disabled'] = True        
         self.fields['tipo'].widget.attrs['readonly'] = True
+        self.fields['tipo'].widget.attrs['disabled'] = True
         
     class Meta:
         model = Auditoria
