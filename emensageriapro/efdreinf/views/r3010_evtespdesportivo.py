@@ -516,19 +516,19 @@ def salvar(request, hash):
             evento_totalizador = True
         else:
             evento_totalizador = False
-        if not evento_totalizador:
-            r3010_evtespdesportivo_form.fields['tpamb'].widget.attrs['disabled'] = True
-            r3010_evtespdesportivo_form.fields['tpamb'].widget.attrs['readonly'] = True
-            r3010_evtespdesportivo_form.fields['tpamb'].value = TP_AMB
-            r3010_evtespdesportivo_form.fields['procemi'].widget.attrs['disabled'] = True
-            r3010_evtespdesportivo_form.fields['procemi'].widget.attrs['readonly'] = True
-            r3010_evtespdesportivo_form.fields['procemi'].value = 1
-            r3010_evtespdesportivo_form.fields['verproc'].widget.attrs['readonly'] = True
-            r3010_evtespdesportivo_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-            r3010_evtespdesportivo_form.fields['status'].widget.attrs['disabled'] = True
-            r3010_evtespdesportivo_form.fields['status'].widget.attrs['readonly'] = True
-            r3010_evtespdesportivo_form.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
-            r3010_evtespdesportivo_form.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
+        #         if not evento_totalizador:
+        #             r3010_evtespdesportivo_form.fields['tpamb'].widget.attrs['disabled'] = True
+        #             r3010_evtespdesportivo_form.fields['tpamb'].widget.attrs['readonly'] = True
+        #             r3010_evtespdesportivo_form.fields['tpamb'].value = TP_AMB
+        #             r3010_evtespdesportivo_form.fields['procemi'].widget.attrs['disabled'] = True
+        #             r3010_evtespdesportivo_form.fields['procemi'].widget.attrs['readonly'] = True
+        #             r3010_evtespdesportivo_form.fields['procemi'].value = 1
+        #             r3010_evtespdesportivo_form.fields['verproc'].widget.attrs['readonly'] = True
+        #             r3010_evtespdesportivo_form.fields['verproc'].value = VERSAO_EMENSAGERIA
+        #             r3010_evtespdesportivo_form.fields['status'].widget.attrs['disabled'] = True
+        #             r3010_evtespdesportivo_form.fields['status'].widget.attrs['readonly'] = True
+        #             r3010_evtespdesportivo_form.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
+        #             r3010_evtespdesportivo_form.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
 
         if dict_hash['tab'] or 'r3010_evtespdesportivo' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash

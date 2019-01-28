@@ -126,11 +126,11 @@ def verificar(request, hash):
             's2205_evtaltcadastral_lista': s2205_evtaltcadastral_lista,
             's2205_evtaltcadastral_id': s2205_evtaltcadastral_id,
             's2205_evtaltcadastral': s2205_evtaltcadastral,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -190,10 +190,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -242,7 +242,6 @@ def gerar_xml_s2205(s2205_evtaltcadastral_id, db_slug, versao=None):
             's2205_evtaltcadastral_id': int(s2205_evtaltcadastral_id),
             's2205_evtaltcadastral': s2205_evtaltcadastral,
 
-
             's2205_ctps_lista': s2205_ctps_lista,
             's2205_ric_lista': s2205_ric_lista,
             's2205_rg_lista': s2205_rg_lista,
@@ -256,7 +255,6 @@ def gerar_xml_s2205(s2205_evtaltcadastral_id, db_slug, versao=None):
             's2205_dependente_lista': s2205_dependente_lista,
             's2205_aposentadoria_lista': s2205_aposentadoria_lista,
             's2205_contato_lista': s2205_contato_lista,
-
         }
 
         t = get_template('s2205_evtaltcadastral.xml')
@@ -308,17 +306,15 @@ def recibo(request, hash, tipo):
         context = {
             's2205_evtaltcadastral_id': s2205_evtaltcadastral_id,
             's2205_evtaltcadastral': s2205_evtaltcadastral,
-
             'retorno': retorno,
             'retorno_horarios': retorno_horarios,
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
-
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -346,10 +342,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

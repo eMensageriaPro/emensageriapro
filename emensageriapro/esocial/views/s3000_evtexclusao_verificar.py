@@ -115,11 +115,11 @@ def verificar(request, hash):
             's3000_evtexclusao_lista': s3000_evtexclusao_lista,
             's3000_evtexclusao_id': s3000_evtexclusao_id,
             's3000_evtexclusao': s3000_evtexclusao,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -168,10 +168,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -209,10 +209,8 @@ def gerar_xml_s3000(s3000_evtexclusao_id, db_slug, versao=None):
             's3000_evtexclusao_id': int(s3000_evtexclusao_id),
             's3000_evtexclusao': s3000_evtexclusao,
 
-
             's3000_idetrabalhador_lista': s3000_idetrabalhador_lista,
             's3000_idefolhapagto_lista': s3000_idefolhapagto_lista,
-
         }
 
         t = get_template('s3000_evtexclusao.xml')
@@ -264,17 +262,15 @@ def recibo(request, hash, tipo):
         context = {
             's3000_evtexclusao_id': s3000_evtexclusao_id,
             's3000_evtexclusao': s3000_evtexclusao,
-
             'retorno': retorno,
             'retorno_horarios': retorno_horarios,
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
-
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -302,10 +298,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

@@ -119,11 +119,11 @@ def verificar(request, hash):
             's5001_evtbasestrab_lista': s5001_evtbasestrab_lista,
             's5001_evtbasestrab_id': s5001_evtbasestrab_id,
             's5001_evtbasestrab': s5001_evtbasestrab,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -176,10 +176,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -221,14 +221,12 @@ def gerar_xml_s5001(s5001_evtbasestrab_id, db_slug, versao=None):
             's5001_evtbasestrab_id': int(s5001_evtbasestrab_id),
             's5001_evtbasestrab': s5001_evtbasestrab,
 
-
             's5001_procjudtrab_lista': s5001_procjudtrab_lista,
             's5001_infocpcalc_lista': s5001_infocpcalc_lista,
             's5001_ideestablot_lista': s5001_ideestablot_lista,
             's5001_infocategincid_lista': s5001_infocategincid_lista,
             's5001_infobasecs_lista': s5001_infobasecs_lista,
             's5001_calcterc_lista': s5001_calcterc_lista,
-
         }
 
         t = get_template('s5001_evtbasestrab.xml')
@@ -280,17 +278,15 @@ def recibo(request, hash, tipo):
         context = {
             's5001_evtbasestrab_id': s5001_evtbasestrab_id,
             's5001_evtbasestrab': s5001_evtbasestrab,
-
             'retorno': retorno,
             'retorno_horarios': retorno_horarios,
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
-
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -318,10 +314,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

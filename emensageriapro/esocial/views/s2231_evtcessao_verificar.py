@@ -115,11 +115,11 @@ def verificar(request, hash):
             's2231_evtcessao_lista': s2231_evtcessao_lista,
             's2231_evtcessao_id': s2231_evtcessao_id,
             's2231_evtcessao': s2231_evtcessao,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -168,10 +168,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -209,10 +209,8 @@ def gerar_xml_s2231(s2231_evtcessao_id, db_slug, versao=None):
             's2231_evtcessao_id': int(s2231_evtcessao_id),
             's2231_evtcessao': s2231_evtcessao,
 
-
             's2231_inicessao_lista': s2231_inicessao_lista,
             's2231_fimcessao_lista': s2231_fimcessao_lista,
-
         }
 
         t = get_template('s2231_evtcessao.xml')
@@ -264,17 +262,15 @@ def recibo(request, hash, tipo):
         context = {
             's2231_evtcessao_id': s2231_evtcessao_id,
             's2231_evtcessao': s2231_evtcessao,
-
             'retorno': retorno,
             'retorno_horarios': retorno_horarios,
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
-
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -302,10 +298,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

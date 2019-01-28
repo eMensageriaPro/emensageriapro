@@ -119,11 +119,11 @@ def verificar(request, hash):
             's2306_evttsvaltcontr_lista': s2306_evttsvaltcontr_lista,
             's2306_evttsvaltcontr_id': s2306_evttsvaltcontr_id,
             's2306_evttsvaltcontr': s2306_evttsvaltcontr,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -176,10 +176,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -221,14 +221,12 @@ def gerar_xml_s2306(s2306_evttsvaltcontr_id, db_slug, versao=None):
             's2306_evttsvaltcontr_id': int(s2306_evttsvaltcontr_id),
             's2306_evttsvaltcontr': s2306_evttsvaltcontr,
 
-
             's2306_cargofuncao_lista': s2306_cargofuncao_lista,
             's2306_remuneracao_lista': s2306_remuneracao_lista,
             's2306_infotrabcedido_lista': s2306_infotrabcedido_lista,
             's2306_infoestagiario_lista': s2306_infoestagiario_lista,
             's2306_ageintegracao_lista': s2306_ageintegracao_lista,
             's2306_supervisorestagio_lista': s2306_supervisorestagio_lista,
-
         }
 
         t = get_template('s2306_evttsvaltcontr.xml')
@@ -280,17 +278,15 @@ def recibo(request, hash, tipo):
         context = {
             's2306_evttsvaltcontr_id': s2306_evttsvaltcontr_id,
             's2306_evttsvaltcontr': s2306_evttsvaltcontr,
-
             'retorno': retorno,
             'retorno_horarios': retorno_horarios,
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
-
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -318,10 +314,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

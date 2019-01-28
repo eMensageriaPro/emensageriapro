@@ -128,11 +128,11 @@ def verificar(request, hash):
             's1210_evtpgtos_lista': s1210_evtpgtos_lista,
             's1210_evtpgtos_id': s1210_evtpgtos_id,
             's1210_evtpgtos': s1210_evtpgtos,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -194,10 +194,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -248,7 +248,6 @@ def gerar_xml_s1210(s1210_evtpgtos_id, db_slug, versao=None):
             's1210_evtpgtos_id': int(s1210_evtpgtos_id),
             's1210_evtpgtos': s1210_evtpgtos,
 
-
             's1210_deps_lista': s1210_deps_lista,
             's1210_infopgto_lista': s1210_infopgto_lista,
             's1210_detpgtofl_lista': s1210_detpgtofl_lista,
@@ -264,7 +263,6 @@ def gerar_xml_s1210(s1210_evtpgtos_id, db_slug, versao=None):
             's1210_detpgtoant_lista': s1210_detpgtoant_lista,
             's1210_detpgtoant_infopgtoant_lista': s1210_detpgtoant_infopgtoant_lista,
             's1210_idepgtoext_lista': s1210_idepgtoext_lista,
-
         }
 
         t = get_template('s1210_evtpgtos.xml')
@@ -316,17 +314,15 @@ def recibo(request, hash, tipo):
         context = {
             's1210_evtpgtos_id': s1210_evtpgtos_id,
             's1210_evtpgtos': s1210_evtpgtos,
-
             'retorno': retorno,
             'retorno_horarios': retorno_horarios,
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
-
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -354,10 +350,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

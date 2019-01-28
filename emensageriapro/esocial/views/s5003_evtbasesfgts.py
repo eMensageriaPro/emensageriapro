@@ -487,19 +487,19 @@ def salvar(request, hash):
             evento_totalizador = True
         else:
             evento_totalizador = False
-        if not evento_totalizador:
-            s5003_evtbasesfgts_form.fields['tpamb'].widget.attrs['disabled'] = True
-            s5003_evtbasesfgts_form.fields['tpamb'].widget.attrs['readonly'] = True
-            s5003_evtbasesfgts_form.fields['tpamb'].value = TP_AMB
-            s5003_evtbasesfgts_form.fields['procemi'].widget.attrs['disabled'] = True
-            s5003_evtbasesfgts_form.fields['procemi'].widget.attrs['readonly'] = True
-            s5003_evtbasesfgts_form.fields['procemi'].value = 1
-            s5003_evtbasesfgts_form.fields['verproc'].widget.attrs['readonly'] = True
-            s5003_evtbasesfgts_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-            s5003_evtbasesfgts_form.fields['status'].widget.attrs['disabled'] = True
-            s5003_evtbasesfgts_form.fields['status'].widget.attrs['readonly'] = True
-            s5003_evtbasesfgts_form.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
-            s5003_evtbasesfgts_form.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
+        #         if not evento_totalizador:
+        #             s5003_evtbasesfgts_form.fields['tpamb'].widget.attrs['disabled'] = True
+        #             s5003_evtbasesfgts_form.fields['tpamb'].widget.attrs['readonly'] = True
+        #             s5003_evtbasesfgts_form.fields['tpamb'].value = TP_AMB
+        #             s5003_evtbasesfgts_form.fields['procemi'].widget.attrs['disabled'] = True
+        #             s5003_evtbasesfgts_form.fields['procemi'].widget.attrs['readonly'] = True
+        #             s5003_evtbasesfgts_form.fields['procemi'].value = 1
+        #             s5003_evtbasesfgts_form.fields['verproc'].widget.attrs['readonly'] = True
+        #             s5003_evtbasesfgts_form.fields['verproc'].value = VERSAO_EMENSAGERIA
+        #             s5003_evtbasesfgts_form.fields['status'].widget.attrs['disabled'] = True
+        #             s5003_evtbasesfgts_form.fields['status'].widget.attrs['readonly'] = True
+        #             s5003_evtbasesfgts_form.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
+        #             s5003_evtbasesfgts_form.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
 
         if dict_hash['tab'] or 's5003_evtbasesfgts' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash

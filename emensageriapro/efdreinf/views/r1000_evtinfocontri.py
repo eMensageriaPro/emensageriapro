@@ -490,19 +490,19 @@ def salvar(request, hash):
             evento_totalizador = True
         else:
             evento_totalizador = False
-        if not evento_totalizador:
-            r1000_evtinfocontri_form.fields['tpamb'].widget.attrs['disabled'] = True
-            r1000_evtinfocontri_form.fields['tpamb'].widget.attrs['readonly'] = True
-            r1000_evtinfocontri_form.fields['tpamb'].value = TP_AMB
-            r1000_evtinfocontri_form.fields['procemi'].widget.attrs['disabled'] = True
-            r1000_evtinfocontri_form.fields['procemi'].widget.attrs['readonly'] = True
-            r1000_evtinfocontri_form.fields['procemi'].value = 1
-            r1000_evtinfocontri_form.fields['verproc'].widget.attrs['readonly'] = True
-            r1000_evtinfocontri_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-            r1000_evtinfocontri_form.fields['status'].widget.attrs['disabled'] = True
-            r1000_evtinfocontri_form.fields['status'].widget.attrs['readonly'] = True
-            r1000_evtinfocontri_form.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
-            r1000_evtinfocontri_form.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
+        #         if not evento_totalizador:
+        #             r1000_evtinfocontri_form.fields['tpamb'].widget.attrs['disabled'] = True
+        #             r1000_evtinfocontri_form.fields['tpamb'].widget.attrs['readonly'] = True
+        #             r1000_evtinfocontri_form.fields['tpamb'].value = TP_AMB
+        #             r1000_evtinfocontri_form.fields['procemi'].widget.attrs['disabled'] = True
+        #             r1000_evtinfocontri_form.fields['procemi'].widget.attrs['readonly'] = True
+        #             r1000_evtinfocontri_form.fields['procemi'].value = 1
+        #             r1000_evtinfocontri_form.fields['verproc'].widget.attrs['readonly'] = True
+        #             r1000_evtinfocontri_form.fields['verproc'].value = VERSAO_EMENSAGERIA
+        #             r1000_evtinfocontri_form.fields['status'].widget.attrs['disabled'] = True
+        #             r1000_evtinfocontri_form.fields['status'].widget.attrs['readonly'] = True
+        #             r1000_evtinfocontri_form.fields['transmissor_lote_efdreinf'].widget.attrs['disabled'] = True
+        #             r1000_evtinfocontri_form.fields['transmissor_lote_efdreinf'].widget.attrs['readonly'] = True
 
         if dict_hash['tab'] or 'r1000_evtinfocontri' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash

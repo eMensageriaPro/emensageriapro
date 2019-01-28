@@ -114,11 +114,11 @@ def verificar(request, hash):
             's5012_evtirrf_lista': s5012_evtirrf_lista,
             's5012_evtirrf_id': s5012_evtirrf_id,
             's5012_evtirrf': s5012_evtirrf,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -166,10 +166,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -206,9 +206,7 @@ def gerar_xml_s5012(s5012_evtirrf_id, db_slug, versao=None):
             's5012_evtirrf_id': int(s5012_evtirrf_id),
             's5012_evtirrf': s5012_evtirrf,
 
-
             's5012_infocrcontrib_lista': s5012_infocrcontrib_lista,
-
         }
 
         t = get_template('s5012_evtirrf.xml')
@@ -260,17 +258,15 @@ def recibo(request, hash, tipo):
         context = {
             's5012_evtirrf_id': s5012_evtirrf_id,
             's5012_evtirrf': s5012_evtirrf,
-
             'retorno': retorno,
             'retorno_horarios': retorno_horarios,
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
-
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -298,10 +294,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

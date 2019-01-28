@@ -115,11 +115,11 @@ def verificar(request, hash):
             's2250_evtavprevio_lista': s2250_evtavprevio_lista,
             's2250_evtavprevio_id': s2250_evtavprevio_id,
             's2250_evtavprevio': s2250_evtavprevio,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -168,10 +168,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -209,10 +209,8 @@ def gerar_xml_s2250(s2250_evtavprevio_id, db_slug, versao=None):
             's2250_evtavprevio_id': int(s2250_evtavprevio_id),
             's2250_evtavprevio': s2250_evtavprevio,
 
-
             's2250_detavprevio_lista': s2250_detavprevio_lista,
             's2250_cancavprevio_lista': s2250_cancavprevio_lista,
-
         }
 
         t = get_template('s2250_evtavprevio.xml')
@@ -264,17 +262,15 @@ def recibo(request, hash, tipo):
         context = {
             's2250_evtavprevio_id': s2250_evtavprevio_id,
             's2250_evtavprevio': s2250_evtavprevio,
-
             'retorno': retorno,
             'retorno_horarios': retorno_horarios,
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
-
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -302,10 +298,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

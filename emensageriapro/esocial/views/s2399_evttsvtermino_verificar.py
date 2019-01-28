@@ -125,11 +125,11 @@ def verificar(request, hash):
             's2399_evttsvtermino_lista': s2399_evttsvtermino_lista,
             's2399_evttsvtermino_id': s2399_evttsvtermino_id,
             's2399_evttsvtermino': s2399_evttsvtermino,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -188,10 +188,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -239,7 +239,6 @@ def gerar_xml_s2399(s2399_evttsvtermino_id, db_slug, versao=None):
             's2399_evttsvtermino_id': int(s2399_evttsvtermino_id),
             's2399_evttsvtermino': s2399_evttsvtermino,
 
-
             's2399_mudancacpf_lista': s2399_mudancacpf_lista,
             's2399_dmdev_lista': s2399_dmdev_lista,
             's2399_ideestablot_lista': s2399_ideestablot_lista,
@@ -252,7 +251,6 @@ def gerar_xml_s2399(s2399_evttsvtermino_id, db_slug, versao=None):
             's2399_infomv_lista': s2399_infomv_lista,
             's2399_remunoutrempr_lista': s2399_remunoutrempr_lista,
             's2399_quarentena_lista': s2399_quarentena_lista,
-
         }
 
         t = get_template('s2399_evttsvtermino.xml')
@@ -304,17 +302,15 @@ def recibo(request, hash, tipo):
         context = {
             's2399_evttsvtermino_id': s2399_evttsvtermino_id,
             's2399_evttsvtermino': s2399_evttsvtermino,
-
             'retorno': retorno,
             'retorno_horarios': retorno_horarios,
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
-
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -342,10 +338,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

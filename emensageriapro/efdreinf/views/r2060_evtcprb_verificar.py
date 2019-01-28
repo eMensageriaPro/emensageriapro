@@ -116,11 +116,11 @@ def verificar(request, hash):
             'r2060_evtcprb_lista': r2060_evtcprb_lista,
             'r2060_evtcprb_id': r2060_evtcprb_id,
             'r2060_evtcprb': r2060_evtcprb,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -170,10 +170,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -212,11 +212,9 @@ def gerar_xml_r2060(r2060_evtcprb_id, db_slug, versao=None):
             'r2060_evtcprb_id': int(r2060_evtcprb_id),
             'r2060_evtcprb': r2060_evtcprb,
 
-
             'r2060_tipocod_lista': r2060_tipocod_lista,
             'r2060_tipoajuste_lista': r2060_tipoajuste_lista,
             'r2060_infoproc_lista': r2060_infoproc_lista,
-
         }
 
         t = get_template('r2060_evtcprb.xml')
@@ -268,17 +266,15 @@ def recibo(request, hash, tipo):
         context = {
             'r2060_evtcprb_id': r2060_evtcprb_id,
             'r2060_evtcprb': r2060_evtcprb,
-
             'retorno': retorno,
             'retorno_horarios': retorno_horarios,
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
-
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -306,10 +302,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

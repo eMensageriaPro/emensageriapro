@@ -501,19 +501,19 @@ def salvar(request, hash):
             evento_totalizador = True
         else:
             evento_totalizador = False
-        if not evento_totalizador:
-            s2420_evtcdbenterm_form.fields['tpamb'].widget.attrs['disabled'] = True
-            s2420_evtcdbenterm_form.fields['tpamb'].widget.attrs['readonly'] = True
-            s2420_evtcdbenterm_form.fields['tpamb'].value = TP_AMB
-            s2420_evtcdbenterm_form.fields['procemi'].widget.attrs['disabled'] = True
-            s2420_evtcdbenterm_form.fields['procemi'].widget.attrs['readonly'] = True
-            s2420_evtcdbenterm_form.fields['procemi'].value = 1
-            s2420_evtcdbenterm_form.fields['verproc'].widget.attrs['readonly'] = True
-            s2420_evtcdbenterm_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-            s2420_evtcdbenterm_form.fields['status'].widget.attrs['disabled'] = True
-            s2420_evtcdbenterm_form.fields['status'].widget.attrs['readonly'] = True
-            s2420_evtcdbenterm_form.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
-            s2420_evtcdbenterm_form.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
+        #         if not evento_totalizador:
+        #             s2420_evtcdbenterm_form.fields['tpamb'].widget.attrs['disabled'] = True
+        #             s2420_evtcdbenterm_form.fields['tpamb'].widget.attrs['readonly'] = True
+        #             s2420_evtcdbenterm_form.fields['tpamb'].value = TP_AMB
+        #             s2420_evtcdbenterm_form.fields['procemi'].widget.attrs['disabled'] = True
+        #             s2420_evtcdbenterm_form.fields['procemi'].widget.attrs['readonly'] = True
+        #             s2420_evtcdbenterm_form.fields['procemi'].value = 1
+        #             s2420_evtcdbenterm_form.fields['verproc'].widget.attrs['readonly'] = True
+        #             s2420_evtcdbenterm_form.fields['verproc'].value = VERSAO_EMENSAGERIA
+        #             s2420_evtcdbenterm_form.fields['status'].widget.attrs['disabled'] = True
+        #             s2420_evtcdbenterm_form.fields['status'].widget.attrs['readonly'] = True
+        #             s2420_evtcdbenterm_form.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
+        #             s2420_evtcdbenterm_form.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
 
         if dict_hash['tab'] or 's2420_evtcdbenterm' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash

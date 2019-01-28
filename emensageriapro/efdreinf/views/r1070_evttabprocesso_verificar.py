@@ -121,11 +121,11 @@ def verificar(request, hash):
             'r1070_evttabprocesso_lista': r1070_evttabprocesso_lista,
             'r1070_evttabprocesso_id': r1070_evttabprocesso_id,
             'r1070_evttabprocesso': r1070_evttabprocesso,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -180,10 +180,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -227,7 +227,6 @@ def gerar_xml_r1070(r1070_evttabprocesso_id, db_slug, versao=None):
             'r1070_evttabprocesso_id': int(r1070_evttabprocesso_id),
             'r1070_evttabprocesso': r1070_evttabprocesso,
 
-
             'r1070_inclusao_lista': r1070_inclusao_lista,
             'r1070_inclusao_infosusp_lista': r1070_inclusao_infosusp_lista,
             'r1070_inclusao_dadosprocjud_lista': r1070_inclusao_dadosprocjud_lista,
@@ -236,7 +235,6 @@ def gerar_xml_r1070(r1070_evttabprocesso_id, db_slug, versao=None):
             'r1070_alteracao_dadosprocjud_lista': r1070_alteracao_dadosprocjud_lista,
             'r1070_alteracao_novavalidade_lista': r1070_alteracao_novavalidade_lista,
             'r1070_exclusao_lista': r1070_exclusao_lista,
-
         }
 
         t = get_template('r1070_evttabprocesso.xml')
@@ -288,17 +286,15 @@ def recibo(request, hash, tipo):
         context = {
             'r1070_evttabprocesso_id': r1070_evttabprocesso_id,
             'r1070_evttabprocesso': r1070_evttabprocesso,
-
             'retorno': retorno,
             'retorno_horarios': retorno_horarios,
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
-
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -326,10 +322,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

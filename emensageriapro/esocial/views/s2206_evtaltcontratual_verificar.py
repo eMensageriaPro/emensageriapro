@@ -125,11 +125,11 @@ def verificar(request, hash):
             's2206_evtaltcontratual_lista': s2206_evtaltcontratual_lista,
             's2206_evtaltcontratual_id': s2206_evtaltcontratual_id,
             's2206_evtaltcontratual': s2206_evtaltcontratual,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -188,10 +188,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -239,7 +239,6 @@ def gerar_xml_s2206(s2206_evtaltcontratual_id, db_slug, versao=None):
             's2206_evtaltcontratual_id': int(s2206_evtaltcontratual_id),
             's2206_evtaltcontratual': s2206_evtaltcontratual,
 
-
             's2206_infoceletista_lista': s2206_infoceletista_lista,
             's2206_trabtemp_lista': s2206_trabtemp_lista,
             's2206_aprend_lista': s2206_aprend_lista,
@@ -252,7 +251,6 @@ def gerar_xml_s2206(s2206_evtaltcontratual_id, db_slug, versao=None):
             's2206_alvarajudicial_lista': s2206_alvarajudicial_lista,
             's2206_observacoes_lista': s2206_observacoes_lista,
             's2206_servpubl_lista': s2206_servpubl_lista,
-
         }
 
         t = get_template('s2206_evtaltcontratual.xml')
@@ -304,17 +302,15 @@ def recibo(request, hash, tipo):
         context = {
             's2206_evtaltcontratual_id': s2206_evtaltcontratual_id,
             's2206_evtaltcontratual': s2206_evtaltcontratual,
-
             'retorno': retorno,
             'retorno_horarios': retorno_horarios,
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
-
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -342,10 +338,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

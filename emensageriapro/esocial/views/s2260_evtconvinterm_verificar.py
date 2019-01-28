@@ -114,11 +114,11 @@ def verificar(request, hash):
             's2260_evtconvinterm_lista': s2260_evtconvinterm_lista,
             's2260_evtconvinterm_id': s2260_evtconvinterm_id,
             's2260_evtconvinterm': s2260_evtconvinterm,
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -166,10 +166,10 @@ def verificar(request, hash):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -206,9 +206,7 @@ def gerar_xml_s2260(s2260_evtconvinterm_id, db_slug, versao=None):
             's2260_evtconvinterm_id': int(s2260_evtconvinterm_id),
             's2260_evtconvinterm': s2260_evtconvinterm,
 
-
             's2260_localtrabinterm_lista': s2260_localtrabinterm_lista,
-
         }
 
         t = get_template('s2260_evtconvinterm.xml')
@@ -260,17 +258,15 @@ def recibo(request, hash, tipo):
         context = {
             's2260_evtconvinterm_id': s2260_evtconvinterm_id,
             's2260_evtconvinterm': s2260_evtconvinterm,
-
             'retorno': retorno,
             'retorno_horarios': retorno_horarios,
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
-
-
+  
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -298,10 +294,10 @@ def recibo(request, hash, tipo):
     else:
         context = {
             'usuario': usuario,
-
+  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-
+  
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
