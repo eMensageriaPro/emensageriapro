@@ -16,3 +16,4 @@ backup.py
 atualizar_web.py
 clear_database.py
 .idea/
+emensageriapro.wsgi

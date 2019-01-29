@@ -245,6 +245,10 @@ EMAIL_PORT = env('EMAIL_PORT')
 EMAIL_USE_TLS = env('EMAIL_USE_TLS')
 SERVER_EMAIL = env('SERVER_EMAIL')
 
+ADMINS = [x.split(':') for x in env.list('DJANGO_ADMINS')]
+
+SEND_BROKEN_LINK_EMAILS = True
+MANAGERS = ADMINS
 
 # Configurações de Certificado
 
