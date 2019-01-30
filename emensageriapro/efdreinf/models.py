@@ -413,9 +413,6 @@ SIM_NAO = (
 )
 
 class r1000evtInfoContri(models.Model):
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_03_02')
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     retornos_evttotal = models.ForeignKey('r5001evtTotal',
         related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
@@ -433,6 +430,9 @@ class r1000evtInfoContri(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_R1000_TPINSC)
     nrinsc = models.CharField(max_length=14)
+    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00')
+    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES)
@@ -461,9 +461,6 @@ class r1000evtInfoContriSerializer(ModelSerializer):
             
 
 class r1070evtTabProcesso(models.Model):
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_03_02')
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     retornos_evttotal = models.ForeignKey('r5001evtTotal',
         related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
@@ -481,6 +478,9 @@ class r1070evtTabProcesso(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_R1070_TPINSC)
     nrinsc = models.CharField(max_length=14)
+    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00')
+    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES)
@@ -509,9 +509,6 @@ class r1070evtTabProcessoSerializer(ModelSerializer):
             
 
 class r2010evtServTom(models.Model):
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_03_02')
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     retornos_evttotal = models.ForeignKey('r5001evtTotal',
         related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
@@ -543,6 +540,9 @@ class r2010evtServTom(models.Model):
     vlrtotalnretprinc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vlrtotalnretadic = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     indcprb = models.IntegerField(choices=CHOICES_R2010_INDCPRB)
+    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00')
+    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
     criado_em = models.DateTimeField(auto_now_add=True)
@@ -570,9 +570,6 @@ class r2010evtServTomSerializer(ModelSerializer):
             
 
 class r2020evtServPrest(models.Model):
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_03_02')
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     retornos_evttotal = models.ForeignKey('r5001evtTotal',
         related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
@@ -604,6 +601,9 @@ class r2020evtServPrest(models.Model):
     vlrtotalretadic = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vlrtotalnretprinc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vlrtotalnretadic = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
+    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00')
+    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
     criado_em = models.DateTimeField(auto_now_add=True)
@@ -631,9 +631,6 @@ class r2020evtServPrestSerializer(ModelSerializer):
             
 
 class r2030evtAssocDespRec(models.Model):
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_03_02')
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     retornos_evttotal = models.ForeignKey('r5001evtTotal',
         related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
@@ -656,6 +653,9 @@ class r2030evtAssocDespRec(models.Model):
     nrinsc = models.CharField(max_length=14)
     tpinscestab = models.IntegerField(choices=CHOICES_R2030_TPINSCESTAB)
     nrinscestab = models.CharField(max_length=14)
+    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00')
+    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
     criado_em = models.DateTimeField(auto_now_add=True)
@@ -683,9 +683,6 @@ class r2030evtAssocDespRecSerializer(ModelSerializer):
             
 
 class r2040evtAssocDespRep(models.Model):
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_03_02')
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     retornos_evttotal = models.ForeignKey('r5001evtTotal',
         related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
@@ -708,6 +705,9 @@ class r2040evtAssocDespRep(models.Model):
     nrinsc = models.CharField(max_length=14)
     tpinscestab = models.IntegerField(choices=CHOICES_R2040_TPINSCESTAB)
     nrinscestab = models.CharField(max_length=14)
+    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00')
+    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
     criado_em = models.DateTimeField(auto_now_add=True)
@@ -735,9 +735,6 @@ class r2040evtAssocDespRepSerializer(ModelSerializer):
             
 
 class r2050evtComProd(models.Model):
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_03_02')
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     retornos_evttotal = models.ForeignKey('r5001evtTotal',
         related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
@@ -767,6 +764,9 @@ class r2050evtComProd(models.Model):
     vlrcpsusptotal = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vlrratsusptotal = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vlrsenarsusptotal = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
+    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00')
+    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
     criado_em = models.DateTimeField(auto_now_add=True)
@@ -794,9 +794,6 @@ class r2050evtComProdSerializer(ModelSerializer):
             
 
 class r2060evtCPRB(models.Model):
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_03_02')
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     retornos_evttotal = models.ForeignKey('r5001evtTotal',
         related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
@@ -822,6 +819,9 @@ class r2060evtCPRB(models.Model):
     vlrrecbrutatotal = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrcpapurtotal = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrcprbsusptotal = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
+    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00')
+    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
     criado_em = models.DateTimeField(auto_now_add=True)
@@ -849,9 +849,6 @@ class r2060evtCPRBSerializer(ModelSerializer):
             
 
 class r2070evtPgtosDivs(models.Model):
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_03_02')
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     retornos_evttotal = models.ForeignKey('r5001evtTotal',
         related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
@@ -876,6 +873,9 @@ class r2070evtPgtosDivs(models.Model):
     tpinscbenef = models.IntegerField(choices=CHOICES_R2070_TPINSCBENEF, blank=True, null=True)
     nrinscbenef = models.CharField(max_length=14, blank=True, null=True)
     nmrazaobenef = models.CharField(max_length=150)
+    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00')
+    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
     criado_em = models.DateTimeField(auto_now_add=True)
@@ -903,9 +903,6 @@ class r2070evtPgtosDivsSerializer(ModelSerializer):
             
 
 class r2098evtReabreEvPer(models.Model):
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_03_02')
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     retornos_evttotal = models.ForeignKey('r5001evtTotal',
         related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
@@ -924,6 +921,9 @@ class r2098evtReabreEvPer(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_R2098_TPINSC)
     nrinsc = models.CharField(max_length=14)
+    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00')
+    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
     criado_em = models.DateTimeField(auto_now_add=True)
@@ -951,9 +951,6 @@ class r2098evtReabreEvPerSerializer(ModelSerializer):
             
 
 class r2099evtFechaEvPer(models.Model):
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_03_02')
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     retornos_evttotal = models.ForeignKey('r5001evtTotal',
         related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
@@ -980,6 +977,9 @@ class r2099evtFechaEvPer(models.Model):
     evtcprb = models.CharField(choices=CHOICES_R2099_EVTCPRB, max_length=1)
     evtpgtos = models.CharField(choices=CHOICES_R2099_EVTPGTOS, max_length=1, blank=True, null=True)
     compsemmovto = models.CharField(max_length=7, blank=True, null=True)
+    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00')
+    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
     criado_em = models.DateTimeField(auto_now_add=True)
@@ -1007,9 +1007,6 @@ class r2099evtFechaEvPerSerializer(ModelSerializer):
             
 
 class r3010evtEspDesportivo(models.Model):
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_03_02')
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     retornos_evttotal = models.ForeignKey('r5001evtTotal',
         related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
@@ -1037,6 +1034,9 @@ class r3010evtEspDesportivo(models.Model):
     vlrcpsusptotal = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vlrreceitaclubes = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrretparc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00')
+    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
     criado_em = models.DateTimeField(auto_now_add=True)
@@ -1064,9 +1064,6 @@ class r3010evtEspDesportivoSerializer(ModelSerializer):
             
 
 class r5001evtTotal(models.Model):
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_03_02')
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     retornos_evttotal = models.ForeignKey('r5001evtTotal',
         related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
@@ -1087,6 +1084,9 @@ class r5001evtTotal(models.Model):
     tpev = models.CharField(max_length=6)
     idev = models.CharField(max_length=36)
     hash = models.CharField(max_length=60)
+    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00')
+    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -1113,9 +1113,6 @@ class r5001evtTotalSerializer(ModelSerializer):
             
 
 class r5011evtTotalContrib(models.Model):
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_03_02')
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     retornos_evttotal = models.ForeignKey('r5001evtTotal',
         related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
@@ -1136,6 +1133,9 @@ class r5011evtTotalContrib(models.Model):
     tpev = models.CharField(max_length=6)
     idev = models.CharField(max_length=36)
     hash = models.CharField(max_length=60)
+    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00')
+    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     criado_em = models.DateTimeField(auto_now_add=True)
     criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
@@ -1162,9 +1162,6 @@ class r5011evtTotalContribSerializer(ModelSerializer):
             
 
 class r9000evtExclusao(models.Model):
-    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_03_02')
-    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
-        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     retornos_evttotal = models.ForeignKey('r5001evtTotal',
         related_name='%(class)s_retornos_evttotal', blank=True, null=True)
     retornos_evttotalcontrib = models.ForeignKey('r5011evtTotalContrib',
@@ -1185,6 +1182,9 @@ class r9000evtExclusao(models.Model):
     tpevento = models.CharField(max_length=6)
     nrrecevt = models.CharField(max_length=52)
     perapur = models.CharField(max_length=10)
+    versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00')
+    transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
+        related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
     criado_em = models.DateTimeField(auto_now_add=True)

@@ -1979,7 +1979,7 @@ class s1000evtInfoEmpregador(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_S1000_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -2032,7 +2032,7 @@ class s1005evtTabEstab(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_S1005_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -2085,7 +2085,7 @@ class s1010evtTabRubrica(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_S1010_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -2138,7 +2138,7 @@ class s1020evtTabLotacao(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_S1020_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -2191,7 +2191,7 @@ class s1030evtTabCargo(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_S1030_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -2244,7 +2244,7 @@ class s1035evtTabCarreira(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_S1035_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -2297,7 +2297,7 @@ class s1040evtTabFuncao(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_S1040_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -2350,7 +2350,7 @@ class s1050evtTabHorTur(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_S1050_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -2403,7 +2403,7 @@ class s1060evtTabAmbiente(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_S1060_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -2456,7 +2456,7 @@ class s1070evtTabProcesso(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_S1070_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -2509,7 +2509,7 @@ class s1080evtTabOperPort(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_S1080_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -2568,7 +2568,7 @@ class s1200evtRemun(models.Model):
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -2627,7 +2627,7 @@ class s1202evtRmnRPPS(models.Model):
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
     qtddepfp = models.IntegerField(blank=True, null=True)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -2684,7 +2684,7 @@ class s1207evtBenPrRP(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S1207_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpfbenef = models.CharField(max_length=11)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -2741,7 +2741,7 @@ class s1210evtPgtos(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S1210_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpfbenef = models.CharField(max_length=11)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -2799,7 +2799,7 @@ class s1250evtAqProd(models.Model):
     nrinsc = models.CharField(max_length=15)
     tpinscadq = models.IntegerField(choices=CHOICES_S1250_TPINSCADQ)
     nrinscadq = models.CharField(max_length=15)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -2856,7 +2856,7 @@ class s1260evtComProd(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S1260_TPINSC)
     nrinsc = models.CharField(max_length=15)
     nrinscestabrural = models.CharField(max_length=15)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -2912,7 +2912,7 @@ class s1270evtContratAvNP(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_S1270_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -2968,7 +2968,7 @@ class s1280evtInfoComplPer(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_S1280_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -3022,7 +3022,7 @@ class s1295evtTotConting(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_S1295_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -3076,7 +3076,7 @@ class s1298evtReabreEvPer(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_S1298_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -3137,7 +3137,7 @@ class s1299evtFechaEvPer(models.Model):
     evtcontratavnp = models.CharField(choices=CHOICES_S1299_EVTCONTRATAVNP, max_length=1)
     evtinfocomplper = models.CharField(choices=CHOICES_S1299_EVTINFOCOMPLPER, max_length=1)
     compsemmovto = models.CharField(max_length=7, blank=True, null=True)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -3193,7 +3193,7 @@ class s1300evtContrSindPatr(models.Model):
     verproc = models.CharField(max_length=20, blank=True)
     tpinsc = models.IntegerField(choices=CHOICES_S1300_TPINSC)
     nrinsc = models.CharField(max_length=15)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -3248,7 +3248,7 @@ class s2190evtAdmPrelim(models.Model):
     cpftrab = models.CharField(max_length=11)
     dtnascto = models.DateField()
     dtadm = models.DateField()
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -3336,7 +3336,7 @@ class s2200evtAdmissao(models.Model):
     dtterm = models.DateField(blank=True, null=True)
     clauassec = models.CharField(choices=CHOICES_S2200_CLAUASSEC, max_length=1, blank=True, null=True)
     objdet = models.CharField(max_length=255, blank=True, null=True)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -3406,7 +3406,7 @@ class s2205evtAltCadastral(models.Model):
     paisnac = models.TextField(max_length=3)
     nmmae = models.CharField(max_length=70, blank=True, null=True)
     nmpai = models.CharField(max_length=70, blank=True, null=True)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -3478,7 +3478,7 @@ class s2206evtAltContratual(models.Model):
     tpcontr = models.IntegerField(choices=CHOICES_S2206_TPCONTR)
     dtterm = models.DateField(blank=True, null=True)
     objdet = models.CharField(max_length=255, blank=True, null=True)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -3561,7 +3561,7 @@ class s2210evtCAT(models.Model):
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
     pais = models.TextField(max_length=3, blank=True, null=True)
     codpostal = models.CharField(max_length=12, blank=True, null=True)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -3635,7 +3635,7 @@ class s2220evtMonit(models.Model):
     nmresp = models.CharField(max_length=70)
     nrcrm = models.CharField(max_length=8)
     ufcrm = models.CharField(choices=ESTADOS, max_length=2)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -3700,7 +3700,7 @@ class s2221evtToxic(models.Model):
     nrcrm = models.CharField(max_length=8, blank=True, null=True)
     ufcrm = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
     indrecusa = models.CharField(max_length=1)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -3758,7 +3758,7 @@ class s2230evtAfastTemp(models.Model):
     nistrab = models.CharField(max_length=11, blank=True, null=True)
     matricula = models.CharField(max_length=30, blank=True, null=True)
     codcateg = models.TextField(max_length=3, blank=True, null=True)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -3854,7 +3854,7 @@ class s2240evtExpRisco(models.Model):
     codcateg = models.TextField(max_length=3, blank=True, null=True)
     dtinicondicao = models.DateField()
     dscativdes = models.CharField(max_length=999)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -3912,7 +3912,7 @@ class s2241evtInsApo(models.Model):
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
     matricula = models.CharField(max_length=30, blank=True, null=True)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -3974,7 +3974,7 @@ class s2245evtTreiCap(models.Model):
     codtreicap = models.CharField(max_length=4)
     obstreicap = models.CharField(max_length=999, blank=True, null=True)
     observacao = models.CharField(max_length=999, blank=True, null=True)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -4032,7 +4032,7 @@ class s2250evtAvPrevio(models.Model):
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11)
     matricula = models.CharField(max_length=30)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -4096,7 +4096,7 @@ class s2260evtConvInterm(models.Model):
     codhorcontrat = models.CharField(max_length=30, blank=True, null=True)
     dscjornada = models.CharField(max_length=999, blank=True, null=True)
     indlocal = models.IntegerField(choices=CHOICES_S2260_INDLOCAL)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -4159,7 +4159,7 @@ class s2298evtReintegr(models.Model):
     dtefetretorno = models.DateField()
     dtefeito = models.DateField()
     indpagtojuizo = models.CharField(choices=CHOICES_S2298_INDPAGTOJUIZO, max_length=1)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -4227,7 +4227,7 @@ class s2299evtDeslig(models.Model):
     nrproctrab = models.CharField(max_length=20, blank=True, null=True)
     indcumprparc = models.IntegerField(choices=CHOICES_S2299_INDCUMPRPARC)
     qtddiasinterm = models.IntegerField(blank=True, null=True)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -4300,7 +4300,7 @@ class s2300evtTSVInicio(models.Model):
     codcateg = models.TextField(max_length=3)
     dtinicio = models.DateField()
     natatividade = models.IntegerField(choices=CHOICES_S2300_NATATIVIDADE, blank=True, null=True)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -4359,7 +4359,7 @@ class s2306evtTSVAltContr(models.Model):
     codcateg = models.TextField(max_length=3)
     dtalteracao = models.DateField()
     natatividade = models.IntegerField(choices=CHOICES_S2306_NATATIVIDADE, blank=True, null=True)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -4421,7 +4421,7 @@ class s2399evtTSVTermino(models.Model):
     pensalim = models.IntegerField(choices=CHOICES_S2399_PENSALIM, blank=True, null=True)
     percaliment = models.DecimalField(max_digits=15, decimal_places=2, max_length=5, blank=True, null=True)
     vralim = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -4491,7 +4491,7 @@ class s2400evtCdBenefIn(models.Model):
     paisnac = models.TextField(max_length=3)
     nmmae = models.CharField(max_length=70, blank=True, null=True)
     nmpai = models.CharField(max_length=70, blank=True, null=True)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -4557,7 +4557,7 @@ class s2405evtCdBenefAlt(models.Model):
     paisnac = models.TextField(max_length=3)
     nmmae = models.CharField(max_length=70, blank=True, null=True)
     nmpai = models.CharField(max_length=70, blank=True, null=True)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -4623,7 +4623,7 @@ class s2410evtCdBenIn(models.Model):
     dsc = models.CharField(max_length=255, blank=True, null=True)
     inddecjud = models.CharField(choices=CHOICES_S2410_INDDECJUD, max_length=1)
     indhomologtc = models.CharField(choices=CHOICES_S2410_INDHOMOLOGTC, max_length=1)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -4686,7 +4686,7 @@ class s2416evtCdBenAlt(models.Model):
     inddecjud = models.CharField(choices=CHOICES_S2416_INDDECJUD, max_length=1)
     indhomologtc = models.CharField(choices=CHOICES_S2416_INDHOMOLOGTC, max_length=1)
     indsuspensao = models.CharField(choices=CHOICES_S2416_INDSUSPENSAO, max_length=1)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -4745,7 +4745,7 @@ class s2420evtCdBenTerm(models.Model):
     nrbeneficio = models.CharField(max_length=20)
     dttermbeneficio = models.DateField()
     mtvtermino = models.CharField(max_length=2)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -4800,7 +4800,7 @@ class s3000evtExclusao(models.Model):
     nrinsc = models.CharField(max_length=15)
     tpevento = models.CharField(choices=CHOICES_S3000_TPEVENTO, max_length=6)
     nrrecevt = models.CharField(max_length=40)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -4853,7 +4853,7 @@ class s5001evtBasesTrab(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S5001_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -4905,7 +4905,7 @@ class s5002evtIrrfBenef(models.Model):
     tpinsc = models.IntegerField(choices=CHOICES_S5002_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -4958,7 +4958,7 @@ class s5003evtBasesFGTS(models.Model):
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -5012,7 +5012,7 @@ class s5011evtCS(models.Model):
     nrrecarqbase = models.CharField(max_length=40)
     indexistinfo = models.IntegerField(choices=CHOICES_S5011_INDEXISTINFO)
     classtrib = models.CharField(choices=CHOICES_S5011_CLASSTRIB, max_length=2)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -5064,7 +5064,7 @@ class s5012evtIrrf(models.Model):
     nrinsc = models.CharField(max_length=15)
     nrrecarqbase = models.CharField(max_length=40)
     indexistinfo = models.IntegerField(choices=CHOICES_S5012_INDEXISTINFO)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
@@ -5116,7 +5116,7 @@ class s5013evtFGTS(models.Model):
     nrinsc = models.CharField(max_length=15)
     nrrecarqbase = models.CharField(max_length=40)
     indexistinfo = models.IntegerField(choices=CHOICES_S5013_INDEXISTINFO)
-    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_04_02')
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
