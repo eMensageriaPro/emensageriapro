@@ -41,12 +41,17 @@ import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django.db.models import Count
+from django.forms.models import model_to_dict
+from wkhtmltopdf.views import PDFTemplateResponse
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
 from emensageriapro.padrao import *
 from emensageriapro.mensageiro.forms import *
 from emensageriapro.mensageiro.models import *
 from emensageriapro.controle_de_acesso.models import *
+import json
 import base64
 from emensageriapro.esocial.models import s1000evtInfoEmpregador
 from emensageriapro.esocial.models import s1005evtTabEstab
@@ -156,8 +161,6 @@ from emensageriapro.esocial.forms import form_s5012_evtirrf
 from emensageriapro.esocial.forms import form_s5013_evtfgts
 
 #IMPORTACOES
-
-
 @login_required
 def apagar(request, hash):
     db_slug = 'default'

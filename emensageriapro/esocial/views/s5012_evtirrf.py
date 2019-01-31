@@ -41,19 +41,22 @@ import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django.db.models import Count
+from django.forms.models import model_to_dict
+from wkhtmltopdf.views import PDFTemplateResponse
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
+import json
 import base64
 from emensageriapro.s5012.models import s5012infoCRContrib
 from emensageriapro.s5012.forms import form_s5012_infocrcontrib
 
 #IMPORTACOES
-
-
 @login_required
 def apagar(request, hash):
     db_slug = 'default'
@@ -61,17 +64,16 @@ def apagar(request, hash):
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s5012_evtirrf_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
     except:
-        usuario_id = False
         return redirect('login')
+
     usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
     pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s5012_evtirrf')
     permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-
     dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
     paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+
     s5012_evtirrf = get_object_or_404(s5012evtIrrf.objects.using( db_slug ), excluido = False, id = s5012_evtirrf_id)
 
     if s5012_evtirrf_id:
@@ -112,10 +114,6 @@ def apagar(request, hash):
     }
     return render(request, 's5012_evtirrf_apagar.html', context)
 
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser
-
-
 class s5012evtIrrfList(generics.ListCreateAPIView):
     db_slug = 'default'
     queryset = s5012evtIrrf.objects.using(db_slug).all()
@@ -130,33 +128,16 @@ class s5012evtIrrfDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAdminUser,)
 
 
-def render_to_pdf(template_src, context_dict={}):
-    from io import BytesIO
-    from django.http import HttpResponse
-    from django.template.loader import get_template
-    from xhtml2pdf import pisa
-    template = get_template(template_src)
-    html  = template.render(context_dict)
-    result = BytesIO()
-    pdf = pisa.pisaDocument(BytesIO(html.encode("UTF-8")), result)
-    if not pdf.err:
-        return HttpResponse(result.getvalue(), content_type='application/pdf')
-    return None
-
 @login_required
 def listar(request, hash):
-    for_print = 0
     db_slug = 'default'
     try:
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
-        #retorno_pagina = dict_hash['retorno_pagina']
-        #retorno_hash = dict_hash['retorno_hash']
-        #s5012_evtirrf_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
     except:
-        usuario_id = False
         return redirect('login')
+
     usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
     pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s5012_evtirrf')
     permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
@@ -265,11 +246,12 @@ def listar(request, hash):
 
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
-        #return render(request, 's5012_evtirrf_listar.html', context)
+
         if for_print in (0,1):
             return render(request, 's5012_evtirrf_listar.html', context)
+
         elif for_print == 2:
-            #return render_to_pdf('tables/s1000_evtinfoempregador_pdf_xls.html', context)
+            from emensageriapro.functions import render_to_pdf
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -290,20 +272,21 @@ def listar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+
         elif for_print == 3:
-            from django.shortcuts import render_to_response
             response = render_to_response('s5012_evtirrf_listar.html', context)
             filename = "s5012_evtirrf.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
+
         elif for_print == 4:
-            from django.shortcuts import render_to_response
             response = render_to_response('tables/s5012_evtirrf_csv.html', context)
             filename = "s5012_evtirrf.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
+
     else:
         context = {
             'usuario': usuario,
@@ -318,55 +301,56 @@ def listar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
-#view_identidade_evento#
-def identidade_evento(s5012_evtirrf_id, db_slug):
-    from emensageriapro.mensageiro.models import TransmissorEventosEsocial
-    dados_evento = s5012evtIrrf.objects.using( db_slug ).get(id=s5012_evtirrf_id)
-    identidade = 'ID'
-    identidade += str(dados_evento.tpinsc)
-    nr_insc = dados_evento.nrinsc
-    while len(nr_insc) != 14:
-        nr_insc = nr_insc+'0'
-    identidade += nr_insc
-    identidade += str(dados_evento.criado_em.year)
-    mes = str(dados_evento.criado_em.month)
-    if len(mes) == 1: mes = '0'+mes
-    identidade += mes
-    dia = str(dados_evento.criado_em.day)
-    if len(dia) == 1: dia = '0'+dia
-    identidade += dia
-    hora = str(dados_evento.criado_em.hour)
-    if len(hora) == 1: hora = '0'+hora
-    identidade += hora
-    minuto = str(dados_evento.criado_em.minute)
-    if len(minuto) == 1: minuto = '0'+minuto
-    identidade += minuto
-    segundo = str(dados_evento.criado_em.second)
-    if len(segundo) == 1: segundo = '0'+segundo
-    identidade += segundo
-    existe = True
-    n = 0
-    while existe:
-        n+=1
-        sequencial = str(n)
-        while len(sequencial) != 5:
-            sequencial = '0'+sequencial
-        identidade_temp = identidade + sequencial
-        lista_eventos = TransmissorEventosEsocial.objects.using(db_slug).filter(criado_em=dados_evento.criado_em,
-                                                                         excluido=False, identidade = identidade_temp).all()
-        if not lista_eventos:
-            s5012evtIrrf.objects.using(db_slug).filter(id=s5012_evtirrf_id).update(identidade=identidade_temp)
-            existe = False
-    return identidade_temp
-#view_identidade_evento#
-
+# #view_identidade_evento#
+# def identidade_evento(s5012_evtirrf_id, db_slug):
+#     from emensageriapro.mensageiro.models import TransmissorEventosEsocial
+#     dados_evento = s5012evtIrrf.objects.using( db_slug ).get(id=s5012_evtirrf_id)
+#     identidade = 'ID'
+#     identidade += str(dados_evento.tpinsc)
+#     nr_insc = dados_evento.nrinsc
+#     while len(nr_insc) != 14:
+#         nr_insc = nr_insc+'0'
+#     identidade += nr_insc
+#     identidade += str(dados_evento.criado_em.year)
+#     mes = str(dados_evento.criado_em.month)
+#     if len(mes) == 1: mes = '0'+mes
+#     identidade += mes
+#     dia = str(dados_evento.criado_em.day)
+#     if len(dia) == 1: dia = '0'+dia
+#     identidade += dia
+#     hora = str(dados_evento.criado_em.hour)
+#     if len(hora) == 1: hora = '0'+hora
+#     identidade += hora
+#     minuto = str(dados_evento.criado_em.minute)
+#     if len(minuto) == 1: minuto = '0'+minuto
+#     identidade += minuto
+#     segundo = str(dados_evento.criado_em.second)
+#     if len(segundo) == 1: segundo = '0'+segundo
+#     identidade += segundo
+#     existe = True
+#     n = 0
+#     while existe:
+#         n+=1
+#         sequencial = str(n)
+#         while len(sequencial) != 5:
+#             sequencial = '0'+sequencial
+#         identidade_temp = identidade + sequencial
+#         lista_eventos = TransmissorEventosEsocial.objects.using(db_slug).filter(criado_em=dados_evento.criado_em,
+#                                                                          excluido=False, identidade = identidade_temp).all()
+#         if not lista_eventos:
+#             s5012evtIrrf.objects.using(db_slug).filter(id=s5012_evtirrf_id).update(identidade=identidade_temp)
+#             existe = False
+#     return identidade_temp
+# #view_identidade_evento#
 
 
 def gerar_identidade(request, chave, evento_id):
+    from emensageriapro.functions import identidade_evento
     from emensageriapro.settings import PASS_SCRIPT
     if chave == PASS_SCRIPT:
         db_slug = 'default'
-        ident = identidade_evento(evento_id, db_slug)
+        obj = get_object_or_404(s5012evtIrrf.objects.using( db_slug ), excluido = False, id = evento_id)
+        ident = identidade_evento(obj)
         mensagem = ident
     else:
         mensagem = 'Chave incorreta!'
@@ -385,18 +369,18 @@ def salvar(request, hash):
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
     except:
-        usuario_id = False
         return redirect('login')
+
     usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
     pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s5012_evtirrf')
     permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-    if s5012_evtirrf_id:
-        s5012_evtirrf = get_object_or_404(s5012evtIrrf.objects.using( db_slug ), excluido = False, id = s5012_evtirrf_id)
     dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
     paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
     if s5012_evtirrf_id:
+        s5012_evtirrf = get_object_or_404(s5012evtIrrf.objects.using( db_slug ), excluido = False, id = s5012_evtirrf_id)
+
         if s5012_evtirrf.status != 0:
             dict_permissoes['s5012_evtirrf_apagar'] = 0
             dict_permissoes['s5012_evtirrf_editar'] = 0
@@ -410,8 +394,7 @@ def salvar(request, hash):
         if request.method == 'POST':
             if s5012_evtirrf_form.is_valid():
                 dados = s5012_evtirrf_form.cleaned_data
-                import json
-                from django.forms.models import model_to_dict
+
                 if s5012_evtirrf_id:
                     if s5012_evtirrf.status == 0:
                         dados['modificado_por_id'] = usuario_id
@@ -441,7 +424,10 @@ def salvar(request, hash):
                     obj.save(using = db_slug)
                     #s5012_evtirrf_cadastrar_custom
                     #s5012_evtirrf_cadastrar_campos_multiple_passo2
-                    identidade_evento(obj.id, db_slug)
+                    #identidade_evento(obj.id, db_slug)
+                    from emensageriapro.functions import identidade_evento
+                    identidade_evento(obj)
+ 
                     messages.success(request, 'Cadastrado com sucesso!')
                     s5012_evtirrf_form = form_s5012_evtirrf(request.POST or None, instance = obj, slug = db_slug)
                     gravar_auditoria('{}',
@@ -484,19 +470,6 @@ def salvar(request, hash):
             evento_totalizador = True
         else:
             evento_totalizador = False
-        #         if not evento_totalizador:
-        #             s5012_evtirrf_form.fields['tpamb'].widget.attrs['disabled'] = True
-        #             s5012_evtirrf_form.fields['tpamb'].widget.attrs['readonly'] = True
-        #             s5012_evtirrf_form.fields['tpamb'].value = TP_AMB
-        #             s5012_evtirrf_form.fields['procemi'].widget.attrs['disabled'] = True
-        #             s5012_evtirrf_form.fields['procemi'].widget.attrs['readonly'] = True
-        #             s5012_evtirrf_form.fields['procemi'].value = 1
-        #             s5012_evtirrf_form.fields['verproc'].widget.attrs['readonly'] = True
-        #             s5012_evtirrf_form.fields['verproc'].value = VERSAO_EMENSAGERIA
-        #             s5012_evtirrf_form.fields['status'].widget.attrs['disabled'] = True
-        #             s5012_evtirrf_form.fields['status'].widget.attrs['readonly'] = True
-        #             s5012_evtirrf_form.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True
-        #             s5012_evtirrf_form.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
 
         if dict_hash['tab'] or 's5012_evtirrf' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
@@ -530,8 +503,8 @@ def salvar(request, hash):
 
         if for_print in (0,1 ):
             return render(request, 's5012_evtirrf_salvar.html', context)
+
         elif for_print == 2:
-            from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
                 template='s5012_evtirrf_salvar.html',
@@ -551,8 +524,8 @@ def salvar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+
         elif for_print == 3:
-            from django.shortcuts import render_to_response
             response = render_to_response('s5012_evtirrf_salvar.html', context)
             filename = "s5012_evtirrf.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename

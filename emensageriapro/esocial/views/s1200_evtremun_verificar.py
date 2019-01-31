@@ -43,43 +43,22 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
-import datetime
+from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
-import base64
 from emensageriapro.s1200.models import *
 from emensageriapro.s1200.forms import *
+from emensageriapro.functions import render_to_pdf, txt_xml
+from wkhtmltopdf.views import PDFTemplateResponse
+import base64
 import os
-
-
-def render_to_pdf(template_src, context_dict={}):
-    from io import BytesIO
-    from django.http import HttpResponse
-    from django.template.loader import get_template
-    from xhtml2pdf import pisa
-    template = get_template(template_src)
-    html  = template.render(context_dict)
-    result = BytesIO()
-    pdf = pisa.pisaDocument(BytesIO(html.encode("UTF-8")), result)
-    if not pdf.err:
-        return HttpResponse(result.getvalue(), content_type='application/pdf')
-    return None
-
-def txt_xml(texto):
-    texto = str(texto)
-    texto = texto.replace(">",'&gt;')
-    texto = texto.replace("<",'&lt;')
-    texto = texto.replace("&",'&amp;')
-    texto = texto.replace('"','&quot;')
-    texto = texto.replace("'",'&apos;')
-    return texto
 
 
 
@@ -93,8 +72,8 @@ def verificar(request, hash):
         s1200_evtremun_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
     except:
-        usuario_id = False
         return redirect('login')
+
     usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
     pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s1200_evtremun')
     permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
@@ -141,7 +120,7 @@ def verificar(request, hash):
             'paginas_permitidas_lista': paginas_permitidas_lista,
   
             'permissao': permissao,
-            'data': datetime.datetime.now(),
+            'data': datetime.now(),
             'pagina': pagina,
             'dict_permissoes': dict_permissoes,
             'for_print': for_print,
@@ -172,7 +151,6 @@ def verificar(request, hash):
         }
         if for_print == 2:
 
-            from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(request=request,
                                            template='s1200_evtremun_verificar.html',
                                            filename="s1200_evtremun.pdf",
@@ -189,23 +167,29 @@ def verificar(request, hash):
                                                         "no-stop-slow-scripts": True},
                                            )
             return response
+
         elif for_print == 3:
-            from django.shortcuts import render_to_response
+
             response =  render_to_response('s1200_evtremun_verificar.html', context)
             filename = "%s.xls" % s1200_evtremun.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
+
         elif for_print == 4:
-            from django.shortcuts import render_to_response
+
             response =  render_to_response('s1200_evtremun_verificar.html', context)
             filename = "%s.csv" % s1200_evtremun.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
+
         else:
+
             return render(request, 's1200_evtremun_verificar.html', context)
+
     else:
+
         context = {
             'usuario': usuario,
   
@@ -213,10 +197,11 @@ def verificar(request, hash):
             'paginas_permitidas_lista': paginas_permitidas_lista,
   
             'permissao': permissao,
-            'data': datetime.datetime.now(),
+            'data': datetime.now(),
             'pagina': pagina,
             'dict_permissoes': dict_permissoes,
         }
+
         return render(request, 'permissao_negada.html', context)
 
 
@@ -224,6 +209,7 @@ def verificar(request, hash):
 def gerar_xml_s1200(s1200_evtremun_id, db_slug, versao=None):
 
     from django.template.loader import get_template
+    from emensageriapro.functions import get_xmlns
 
     if s1200_evtremun_id:
 
@@ -235,6 +221,10 @@ def gerar_xml_s1200(s1200_evtremun_id, db_slug, versao=None):
         if not versao:
 
             versao = s1200_evtremun.versao
+
+        evento = 's1200evtRemun'[5:]
+        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
+        xmlns = get_xmlns(arquivo)
 
         s1200_evtremun_lista = s1200evtRemun.objects.using( db_slug ).filter(id=s1200_evtremun_id, excluido = False).all()
 
@@ -263,6 +253,7 @@ def gerar_xml_s1200(s1200_evtremun_id, db_slug, versao=None):
         s1200_infoperant_infocomplcont_lista = s1200infoPerAntinfoComplCont.objects.using(db_slug).filter(s1200_dmdev_id__in = listar_ids(s1200_dmdev_lista) ).filter(excluido=False).all()
 
         context = {
+            'xmlns': xmlns,
             'versao': versao,
             'base': s1200_evtremun,
             's1200_evtremun_lista': s1200_evtremun_lista,
@@ -303,14 +294,16 @@ def gerar_xml_s1200(s1200_evtremun_id, db_slug, versao=None):
 def recibo(request, hash, tipo):
     for_print = 0
     db_slug = 'default'
+
     try:
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s1200_evtremun_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+
     except:
-        usuario_id = False
         return redirect('login')
+
     usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
     pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s1200_evtremun')
     permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
@@ -352,7 +345,7 @@ def recibo(request, hash, tipo):
             'paginas_permitidas_lista': paginas_permitidas_lista,
   
             'permissao': permissao,
-            'data': datetime.datetime.now(),
+            'data': datetime.now(),
             'pagina': pagina,
             'dict_permissoes': dict_permissoes,
             'for_print': for_print,
@@ -360,22 +353,24 @@ def recibo(request, hash, tipo):
         }
 
         if tipo == 'XLS':
-            from django.shortcuts import render_to_response
             response =  render_to_response('s1200_evtremun_recibo_pdf.html', context)
             filename = "%s.xls" % s1200_evtremun.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
+
         elif tipo == 'CSV':
-            from django.shortcuts import render_to_response
             response =  render_to_response('s1200_evtremun_recibo_csv.html', context)
             filename = "%s.csv" % s1200_evtremun.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
+
         else:
             return render_to_pdf('s1200_evtremun_recibo_pdf.html', context)
+
     else:
+
         context = {
             'usuario': usuario,
   
@@ -383,7 +378,7 @@ def recibo(request, hash, tipo):
             'paginas_permitidas_lista': paginas_permitidas_lista,
   
             'permissao': permissao,
-            'data': datetime.datetime.now(),
+            'data': datetime.now(),
             'pagina': pagina,
             'dict_permissoes': dict_permissoes,
         }
@@ -392,7 +387,6 @@ def recibo(request, hash, tipo):
 
 
 def gerar_xml_assinado(s1200_evtremun_id, db_slug):
-    import os
     from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
@@ -440,8 +434,7 @@ def gerar_xml_assinado(s1200_evtremun_id, db_slug):
 @login_required
 def gerar_xml(request, hash):
 
-    from datetime import datetime
-    from django.http import HttpResponse
+
     db_slug = 'default'
     dict_hash = get_hash_url( hash )
     s1200_evtremun_id = int(dict_hash['id'])
@@ -451,7 +444,7 @@ def gerar_xml(request, hash):
         xml_assinado = gerar_xml_assinado(s1200_evtremun_id, db_slug)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
-    context = {'data': datetime.datetime.now(),}
+    context = {'data': datetime.now(),}
     return render(request, 'permissao_negada.html', context)
 
 
@@ -460,7 +453,7 @@ def gerar_xml(request, hash):
 def duplicar(request, hash):
 
     from emensageriapro.esocial.views.s1200_evtremun_importar import read_s1200_evtremun_string
-    from emensageriapro.esocial.views.s1200_evtremun import identidade_evento
+    from emensageriapro.functions import identidade_evento
 
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
@@ -475,7 +468,7 @@ def duplicar(request, hash):
 
         texto = gerar_xml_s1200(s1200_evtremun_id, db_slug, versao="|")
         dados = read_s1200_evtremun_string({}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(dados['id'], db_slug)
+        nova_identidade = identidade_evento(s1200_evtremun)
 
         s1200evtRemun.objects.using(db_slug).filter(id=dados['id']).\
             update(status=0, arquivo_original=0, arquivo='')
@@ -497,7 +490,7 @@ def duplicar(request, hash):
 def criar_alteracao(request, hash):
 
     from emensageriapro.esocial.views.s1200_evtremun_importar import read_s1200_evtremun_string
-    from emensageriapro.esocial.views.s1200_evtremun import identidade_evento
+    from emensageriapro.functions import identidade_evento
 
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
@@ -513,7 +506,7 @@ def criar_alteracao(request, hash):
         texto = gerar_xml_s1200(s1200_evtremun_id, db_slug, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
         dados = read_s1200_evtremun_string({}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(dados['id'], db_slug)
+        nova_identidade = identidade_evento(s1200_evtremun)
 
         s1200evtRemun.objects.using(db_slug).filter(id=dados['id']).\
             update(status=0, arquivo_original=0, arquivo='')
@@ -536,7 +529,7 @@ def criar_alteracao(request, hash):
 def criar_exclusao(request, hash):
 
     from emensageriapro.esocial.views.s1200_evtremun_importar import read_s1200_evtremun_string
-    from emensageriapro.esocial.views.s1200_evtremun import identidade_evento
+    from emensageriapro.functions import identidade_evento
 
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
@@ -553,7 +546,7 @@ def criar_exclusao(request, hash):
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
         dados = read_s1200_evtremun_string({}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(dados['id'], db_slug)
+        nova_identidade = identidade_evento(s1200_evtremun)
 
         s1200evtRemun.objects.using(db_slug).filter(id=dados['id']).\
             update(status=0, arquivo_original=0, arquivo='')
@@ -575,7 +568,7 @@ def criar_exclusao(request, hash):
 @login_required
 def alterar_identidade(request, hash):
 
-    from emensageriapro.esocial.views.s1200_evtremun import identidade_evento
+    from emensageriapro.functions import identidade_evento
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
     s1200_evtremun_id = int(dict_hash['id'])
@@ -589,7 +582,7 @@ def alterar_identidade(request, hash):
 
         if s1200_evtremun.status == 0:
 
-            nova_identidade = identidade_evento(s1200_evtremun_id, db_slug)
+            nova_identidade = identidade_evento(s1200_evtremun)
             messages.success(request, 'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s1200_evtremun_id )
 
@@ -625,7 +618,7 @@ def abrir_evento_para_edicao(request, hash):
             arquivo = 'arquivos/Eventos/s1200_evtremun/%s.xml' % (s1200_evtremun.identidade)
 
             if os.path.exists(BASE_DIR + '/' + arquivo):
-                from datetime import datetime
+
                 data_hora_atual = str(datetime.now()).replace(':','_').replace(' ','_').replace('.','_')
                 dad = (BASE_DIR, s1200_evtremun.identidade, BASE_DIR, s1200_evtremun.identidade, data_hora_atual)
                 os.system('mv %s/arquivos/Eventos/s1200_evtremun/%s.xml %s/arquivos/Eventos/s1200_evtremun/%s_backup_%s.xml' % dad)

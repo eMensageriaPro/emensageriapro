@@ -17,3 +17,4 @@ atualizar_web.py
 clear_database.py
 .idea/
 emensageriapro.wsgi
+xsd/rename_xsds.py

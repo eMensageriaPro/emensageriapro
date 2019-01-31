@@ -240,46 +240,46 @@ def get_schema_name(arquivo):
     if tipo == 'efdreinf':
 
         if 'evtInfoContri' in xml:
-            schema_filename = '%s/%s/evtInfoContribuinte.xsd' % (tipo, versao)
+            schema_filename = '%s/%s/evtInfoContri.xsd' % (tipo, versao)
 
         elif 'evtTabProcesso' in xml:
             schema_filename = '%s/%s/evtTabProcesso.xsd' % (tipo, versao)
 
         elif 'evtServTom' in xml:
-            schema_filename = '%s/%s/evtTomadorServicos.xsd' % (tipo, versao)
+            schema_filename = '%s/%s/evtServTom.xsd' % (tipo, versao)
 
         elif 'evtServPrest' in xml:
-            schema_filename = '%s/%s/evtPrestadorServicos.xsd' % (tipo, versao)
+            schema_filename = '%s/%s/evtServPrest.xsd' % (tipo, versao)
 
         elif 'evtAssocDespRec' in xml:
-            schema_filename = '%s/%s/evtRecursoRecebidoAssociacao.xsd' % (tipo, versao)
+            schema_filename = '%s/%s/evtAssocDespRec.xsd' % (tipo, versao)
 
         elif 'evtAssocDespRep' in xml:
-            schema_filename = '%s/%s/evtRecursoRepassadoAssociacao.xsd' % (tipo, versao)
+            schema_filename = '%s/%s/evtAssocDespRep.xsd' % (tipo, versao)
 
         elif 'evtComProd' in xml:
-            schema_filename = '%s/%s/evtInfoProdRural.xsd' % (tipo, versao)
+            schema_filename = '%s/%s/evtComProd.xsd' % (tipo, versao)
 
         elif 'evtCPRB' in xml:
-            schema_filename = '%s/%s/evtInfoCPRB.xsd' % (tipo, versao)
+            schema_filename = '%s/%s/evtCPRB.xsd' % (tipo, versao)
 
         elif 'evtPgtosDivs' in xml:
-            schema_filename = '%s/%s/r2070_evtpgtosdivs' % (tipo, versao)
+            schema_filename = '%s/%s/evtPgtosDivs' % (tipo, versao)
 
         elif 'evtReabreEvPer' in xml:
             schema_filename = '%s/%s/evtReabreEvPer.xsd' % (tipo, versao)
 
         elif 'evtFechaEvPer' in xml:
-            schema_filename = '%s/%s/evtFechamento.xsd' % (tipo, versao)
+            schema_filename = '%s/%s/evtFechaEvPer.xsd' % (tipo, versao)
 
         elif 'evtEspDesportivo' in xml:
             schema_filename = '%s/%s/evtEspDesportivo.xsd' % (tipo, versao)
 
         elif 'evtTotal' in xml:
-            schema_filename = '%s/%s/r5001_evttotal' % (tipo, versao)
+            schema_filename = '%s/%s/evtTotal.xsd' % (tipo, versao)
 
         elif 'evtTotalContrib' in xml:
-            schema_filename = '%s/%s/r5011_evttotalcontrib' % (tipo, versao)
+            schema_filename = '%s/%s/evtTotalContrib.xsd' % (tipo, versao)
 
         elif 'evtExclusao' in xml:
             schema_filename = '%s/%s/evtExclusao.xsd' % (tipo, versao)
