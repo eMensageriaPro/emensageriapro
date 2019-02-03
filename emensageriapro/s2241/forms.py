@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s2241.models import * 
 from emensageriapro.tabelas.models import eSocialFatoresRisco 
 from emensageriapro.esocial.models import s2241evtInsApo 
@@ -53,6 +54,25 @@ class form_s2241_altaposentesp(forms.ModelForm):
         
         self.fields['s2241_evtinsapo'].widget.attrs['required'] = True        
         self.fields['dtaltcondicao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2241_altaposentesp, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2241altAposentEsp
@@ -74,6 +94,25 @@ class form_s2241_altaposentesp_fatrisco(forms.ModelForm):
         self.fields['s2241_altaposentesp_infoamb'].queryset = s2241altAposentEspinfoamb.objects.using( slug ).filter(excluido=False).all()
         self.fields['s2241_altaposentesp_infoamb'].widget.attrs['required'] = True        
         self.fields['codfatris'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2241_altaposentesp_fatrisco, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2241altAposentEspfatRisco
@@ -95,6 +134,25 @@ class form_s2241_altaposentesp_infoamb(forms.ModelForm):
         self.fields['s2241_altaposentesp'].queryset = s2241altAposentEsp.objects.using( slug ).filter(excluido=False).all()
         self.fields['s2241_altaposentesp'].widget.attrs['required'] = True        
         self.fields['codamb'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2241_altaposentesp_infoamb, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2241altAposentEspinfoamb
@@ -115,6 +173,25 @@ class form_s2241_altinsalperic(forms.ModelForm):
         
         self.fields['s2241_evtinsapo'].widget.attrs['required'] = True        
         self.fields['dtaltcondicao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2241_altinsalperic, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2241altInsalPeric
@@ -136,6 +213,25 @@ class form_s2241_altinsalperic_fatrisco(forms.ModelForm):
         self.fields['s2241_altinsalperic_infoamb'].queryset = s2241altInsalPericinfoamb.objects.using( slug ).filter(excluido=False).all()
         self.fields['s2241_altinsalperic_infoamb'].widget.attrs['required'] = True        
         self.fields['codfatris'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2241_altinsalperic_fatrisco, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2241altInsalPericfatRisco
@@ -157,6 +253,25 @@ class form_s2241_altinsalperic_infoamb(forms.ModelForm):
         self.fields['s2241_altinsalperic'].queryset = s2241altInsalPeric.objects.using( slug ).filter(excluido=False).all()
         self.fields['s2241_altinsalperic'].widget.attrs['required'] = True        
         self.fields['codamb'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2241_altinsalperic_infoamb, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2241altInsalPericinfoamb
@@ -177,6 +292,25 @@ class form_s2241_fimaposentesp(forms.ModelForm):
         
         self.fields['s2241_evtinsapo'].widget.attrs['required'] = True        
         self.fields['dtfimcondicao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2241_fimaposentesp, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2241fimAposentEsp
@@ -198,6 +332,25 @@ class form_s2241_fimaposentesp_infoamb(forms.ModelForm):
         self.fields['s2241_fimaposentesp'].queryset = s2241fimAposentEsp.objects.using( slug ).filter(excluido=False).all()
         self.fields['s2241_fimaposentesp'].widget.attrs['required'] = True        
         self.fields['codamb'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2241_fimaposentesp_infoamb, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2241fimAposentEspinfoAmb
@@ -218,6 +371,25 @@ class form_s2241_fiminsalperic(forms.ModelForm):
         
         self.fields['s2241_evtinsapo'].widget.attrs['required'] = True        
         self.fields['dtfimcondicao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2241_fiminsalperic, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2241fimInsalPeric
@@ -239,6 +411,25 @@ class form_s2241_fiminsalperic_infoamb(forms.ModelForm):
         self.fields['s2241_fiminsalperic'].queryset = s2241fimInsalPeric.objects.using( slug ).filter(excluido=False).all()
         self.fields['s2241_fiminsalperic'].widget.attrs['required'] = True        
         self.fields['codamb'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2241_fiminsalperic_infoamb, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2241fimInsalPericinfoAmb
@@ -259,6 +450,25 @@ class form_s2241_iniaposentesp(forms.ModelForm):
         
         self.fields['s2241_evtinsapo'].widget.attrs['required'] = True        
         self.fields['dtinicondicao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2241_iniaposentesp, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2241iniAposentEsp
@@ -280,6 +490,25 @@ class form_s2241_iniaposentesp_fatrisco(forms.ModelForm):
         self.fields['s2241_iniaposentesp_infoamb'].queryset = s2241iniAposentEspinfoAmb.objects.using( slug ).filter(excluido=False).all()
         self.fields['s2241_iniaposentesp_infoamb'].widget.attrs['required'] = True        
         self.fields['codfatris'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2241_iniaposentesp_fatrisco, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2241iniAposentEspfatRisco
@@ -301,6 +530,25 @@ class form_s2241_iniaposentesp_infoamb(forms.ModelForm):
         self.fields['s2241_iniaposentesp'].queryset = s2241iniAposentEsp.objects.using( slug ).filter(excluido=False).all()
         self.fields['s2241_iniaposentesp'].widget.attrs['required'] = True        
         self.fields['codamb'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2241_iniaposentesp_infoamb, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2241iniAposentEspinfoAmb
@@ -321,6 +569,25 @@ class form_s2241_iniinsalperic(forms.ModelForm):
         
         self.fields['s2241_evtinsapo'].widget.attrs['required'] = True        
         self.fields['dtinicondicao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2241_iniinsalperic, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2241iniInsalPeric
@@ -342,6 +609,25 @@ class form_s2241_iniinsalperic_fatrisco(forms.ModelForm):
         self.fields['s2241_iniinsalperic_infoamb'].queryset = s2241iniInsalPericinfoAmb.objects.using( slug ).filter(excluido=False).all()
         self.fields['s2241_iniinsalperic_infoamb'].widget.attrs['required'] = True        
         self.fields['codfatris'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2241_iniinsalperic_fatrisco, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2241iniInsalPericfatRisco
@@ -363,6 +649,25 @@ class form_s2241_iniinsalperic_infoamb(forms.ModelForm):
         self.fields['s2241_iniinsalperic'].queryset = s2241iniInsalPeric.objects.using( slug ).filter(excluido=False).all()
         self.fields['s2241_iniinsalperic'].widget.attrs['required'] = True        
         self.fields['codamb'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2241_iniinsalperic_infoamb, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2241iniInsalPericinfoAmb

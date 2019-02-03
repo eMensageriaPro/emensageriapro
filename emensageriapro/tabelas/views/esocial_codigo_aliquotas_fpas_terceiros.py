@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     esocial_codigo_aliquotas_fpas_terceiros = get_object_or_404(eSocialCodigoAliquotasFPASTerceiros.objects.using( db_slug ), excluido = False, id = esocial_codigo_aliquotas_fpas_terceiros_id)
     if request.method == 'POST':
-        eSocialCodigoAliquotasFPASTerceiros.objects.using( db_slug ).filter(id = esocial_codigo_aliquotas_fpas_terceiros_id).update(excluido = True)
+        obj = eSocialCodigoAliquotasFPASTerceiros.objects.using( db_slug ).get(id = esocial_codigo_aliquotas_fpas_terceiros_id)
+        obj.delete(request=request)
         #esocial_codigo_aliquotas_fpas_terceiros_apagar_custom
         #esocial_codigo_aliquotas_fpas_terceiros_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -330,27 +332,21 @@ def salvar(request, hash):
             esocial_codigo_aliquotas_fpas_terceiros_form = form_esocial_codigo_aliquotas_fpas_terceiros(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if esocial_codigo_aliquotas_fpas_terceiros_form.is_valid():
+
                 dados = esocial_codigo_aliquotas_fpas_terceiros_form.cleaned_data
-                if esocial_codigo_aliquotas_fpas_terceiros_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #esocial_codigo_aliquotas_fpas_terceiros_campos_multiple_passo1
-                    eSocialCodigoAliquotasFPASTerceiros.objects.using(db_slug).filter(id=esocial_codigo_aliquotas_fpas_terceiros_id).update(**dados)
-                    obj = eSocialCodigoAliquotasFPASTerceiros.objects.using(db_slug).get(id=esocial_codigo_aliquotas_fpas_terceiros_id)
-                    #esocial_codigo_aliquotas_fpas_terceiros_editar_custom
-                    #esocial_codigo_aliquotas_fpas_terceiros_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
+                obj = esocial_codigo_aliquotas_fpas_terceiros_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not esocial_codigo_aliquotas_fpas_terceiros_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'esocial_codigo_aliquotas_fpas_terceiros', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #esocial_codigo_aliquotas_fpas_terceiros_cadastrar_campos_multiple_passo1
-                    obj = eSocialCodigoAliquotasFPASTerceiros(**dados)
-                    obj.save(using = db_slug)
-                    #esocial_codigo_aliquotas_fpas_terceiros_cadastrar_custom
-                    #esocial_codigo_aliquotas_fpas_terceiros_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
+                    gravar_auditoria(json.dumps(model_to_dict(esocial_codigo_aliquotas_fpas_terceiros), indent=4, sort_keys=True, default=str),
+                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                     'esocial_codigo_aliquotas_fpas_terceiros', esocial_codigo_aliquotas_fpas_terceiros_id, usuario_id, 2)
+                  
                 if request.session['retorno_pagina'] not in ('esocial_codigo_aliquotas_fpas_terceiros_apagar', 'esocial_codigo_aliquotas_fpas_terceiros_salvar', 'esocial_codigo_aliquotas_fpas_terceiros'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if esocial_codigo_aliquotas_fpas_terceiros_id != obj.id:

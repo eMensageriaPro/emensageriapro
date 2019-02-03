@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.r2060.models import * 
 from emensageriapro.efdreinf.models import r2060evtCPRB 
 
@@ -56,6 +57,25 @@ class form_r2060_infoproc(forms.ModelForm):
         self.fields['tpproc'].widget.attrs['required'] = True        
         self.fields['nrproc'].widget.attrs['required'] = True        
         self.fields['vlrcprbsusp'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2060_infoproc, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2060infoProc
@@ -82,6 +102,25 @@ class form_r2060_tipoajuste(forms.ModelForm):
         self.fields['vlrajuste'].widget.attrs['required'] = True        
         self.fields['descajuste'].widget.attrs['required'] = True        
         self.fields['dtajuste'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2060_tipoajuste, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2060tipoAjuste
@@ -112,6 +151,25 @@ class form_r2060_tipocod(forms.ModelForm):
         self.fields['vlrexcrecbruta'].widget.attrs['required'] = True        
         self.fields['vlradicrecbruta'].widget.attrs['required'] = True        
         self.fields['vlrbccprb'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2060_tipocod, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2060tipoCod

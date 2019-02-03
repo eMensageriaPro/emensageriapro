@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -78,7 +79,8 @@ def apagar(request, hash):
 
     efdreinf_paises = get_object_or_404(EFDReinfPaises.objects.using( db_slug ), excluido = False, id = efdreinf_paises_id)
     if request.method == 'POST':
-        EFDReinfPaises.objects.using( db_slug ).filter(id = efdreinf_paises_id).update(excluido = True)
+        obj = EFDReinfPaises.objects.using( db_slug ).get(id = efdreinf_paises_id)
+        obj.delete(request=request)
         #efdreinf_paises_apagar_custom
         #efdreinf_paises_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -314,27 +316,21 @@ def salvar(request, hash):
             efdreinf_paises_form = form_efdreinf_paises(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if efdreinf_paises_form.is_valid():
+
                 dados = efdreinf_paises_form.cleaned_data
-                if efdreinf_paises_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #efdreinf_paises_campos_multiple_passo1
-                    EFDReinfPaises.objects.using(db_slug).filter(id=efdreinf_paises_id).update(**dados)
-                    obj = EFDReinfPaises.objects.using(db_slug).get(id=efdreinf_paises_id)
-                    #efdreinf_paises_editar_custom
-                    #efdreinf_paises_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
+                obj = efdreinf_paises_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not efdreinf_paises_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'efdreinf_paises', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #efdreinf_paises_cadastrar_campos_multiple_passo1
-                    obj = EFDReinfPaises(**dados)
-                    obj.save(using = db_slug)
-                    #efdreinf_paises_cadastrar_custom
-                    #efdreinf_paises_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
+                    gravar_auditoria(json.dumps(model_to_dict(efdreinf_paises), indent=4, sort_keys=True, default=str),
+                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                     'efdreinf_paises', efdreinf_paises_id, usuario_id, 2)
+                  
                 if request.session['retorno_pagina'] not in ('efdreinf_paises_apagar', 'efdreinf_paises_salvar', 'efdreinf_paises'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if efdreinf_paises_id != obj.id:

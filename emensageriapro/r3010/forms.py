@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.r3010.models import * 
 from emensageriapro.tabelas.models import Municipios 
 from emensageriapro.efdreinf.models import r3010evtEspDesportivo 
@@ -63,6 +64,25 @@ class form_r3010_boletim(forms.ModelForm):
         self.fields['uf'].widget.attrs['required'] = True        
         self.fields['qtdepagantes'].widget.attrs['required'] = True        
         self.fields['qtdenaopagantes'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r3010_boletim, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r3010boletim
@@ -87,6 +107,25 @@ class form_r3010_infoproc(forms.ModelForm):
         self.fields['tpproc'].widget.attrs['required'] = True        
         self.fields['nrproc'].widget.attrs['required'] = True        
         self.fields['vlrcpsusp'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r3010_infoproc, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r3010infoProc
@@ -111,6 +150,25 @@ class form_r3010_outrasreceitas(forms.ModelForm):
         self.fields['tpreceita'].widget.attrs['required'] = True        
         self.fields['vlrreceita'].widget.attrs['required'] = True        
         self.fields['descreceita'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r3010_outrasreceitas, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r3010outrasReceitas
@@ -140,6 +198,25 @@ class form_r3010_receitaingressos(forms.ModelForm):
         self.fields['qtdeingrdev'].widget.attrs['required'] = True        
         self.fields['precoindiv'].widget.attrs['required'] = True        
         self.fields['vlrtotal'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r3010_receitaingressos, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r3010receitaIngressos

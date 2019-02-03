@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -52,7 +55,7 @@ CHOICES_S2416_TPPENMORTE = (
     (2, u'2 - Temporária'),
 )
 
-class s2416homologTC(models.Model):
+class s2416homologTC(SoftDeletionModel):
     s2416_evtcdbenalt = models.OneToOneField('esocial.s2416evtCdBenAlt',
         related_name='%(class)s_s2416_evtcdbenalt')
     def evento(self): return self.s2416_evtcdbenalt.evento()
@@ -63,7 +66,7 @@ class s2416homologTC(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2416_evtcdbenalt) + ' - ' + unicode(self.nratolegal)
     #s2416_homologtc_custom#
@@ -77,10 +80,17 @@ class s2416homologTC(models.Model):
 class s2416homologTCSerializer(ModelSerializer):
     class Meta:
         model = s2416homologTC
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2416infoPenMorte(models.Model):
+class s2416infoPenMorte(SoftDeletionModel):
     s2416_evtcdbenalt = models.OneToOneField('esocial.s2416evtCdBenAlt',
         related_name='%(class)s_s2416_evtcdbenalt')
     def evento(self): return self.s2416_evtcdbenalt.evento()
@@ -91,7 +101,7 @@ class s2416infoPenMorte(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2416_evtcdbenalt) + ' - ' + unicode(self.tppenmorte)
     #s2416_infopenmorte_custom#
@@ -105,10 +115,17 @@ class s2416infoPenMorte(models.Model):
 class s2416infoPenMorteSerializer(ModelSerializer):
     class Meta:
         model = s2416infoPenMorte
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2416suspensao(models.Model):
+class s2416suspensao(SoftDeletionModel):
     s2416_evtcdbenalt = models.OneToOneField('esocial.s2416evtCdBenAlt',
         related_name='%(class)s_s2416_evtcdbenalt')
     def evento(self): return self.s2416_evtcdbenalt.evento()
@@ -120,7 +137,7 @@ class s2416suspensao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2416_evtcdbenalt) + ' - ' + unicode(self.mtvsuspensao)
     #s2416_suspensao_custom#
@@ -134,7 +151,14 @@ class s2416suspensao(models.Model):
 class s2416suspensaoSerializer(ModelSerializer):
     class Meta:
         model = s2416suspensao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     esocial_arquivos_esocial_tipos = get_object_or_404(eSocialArquivosEsocialTipos.objects.using( db_slug ), excluido = False, id = esocial_arquivos_esocial_tipos_id)
     if request.method == 'POST':
-        eSocialArquivosEsocialTipos.objects.using( db_slug ).filter(id = esocial_arquivos_esocial_tipos_id).update(excluido = True)
+        obj = eSocialArquivosEsocialTipos.objects.using( db_slug ).get(id = esocial_arquivos_esocial_tipos_id)
+        obj.delete(request=request)
         #esocial_arquivos_esocial_tipos_apagar_custom
         #esocial_arquivos_esocial_tipos_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -312,27 +314,21 @@ def salvar(request, hash):
             esocial_arquivos_esocial_tipos_form = form_esocial_arquivos_esocial_tipos(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if esocial_arquivos_esocial_tipos_form.is_valid():
+
                 dados = esocial_arquivos_esocial_tipos_form.cleaned_data
-                if esocial_arquivos_esocial_tipos_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #esocial_arquivos_esocial_tipos_campos_multiple_passo1
-                    eSocialArquivosEsocialTipos.objects.using(db_slug).filter(id=esocial_arquivos_esocial_tipos_id).update(**dados)
-                    obj = eSocialArquivosEsocialTipos.objects.using(db_slug).get(id=esocial_arquivos_esocial_tipos_id)
-                    #esocial_arquivos_esocial_tipos_editar_custom
-                    #esocial_arquivos_esocial_tipos_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
+                obj = esocial_arquivos_esocial_tipos_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not esocial_arquivos_esocial_tipos_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'esocial_arquivos_esocial_tipos', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #esocial_arquivos_esocial_tipos_cadastrar_campos_multiple_passo1
-                    obj = eSocialArquivosEsocialTipos(**dados)
-                    obj.save(using = db_slug)
-                    #esocial_arquivos_esocial_tipos_cadastrar_custom
-                    #esocial_arquivos_esocial_tipos_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
+                    gravar_auditoria(json.dumps(model_to_dict(esocial_arquivos_esocial_tipos), indent=4, sort_keys=True, default=str),
+                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                     'esocial_arquivos_esocial_tipos', esocial_arquivos_esocial_tipos_id, usuario_id, 2)
+                  
                 if request.session['retorno_pagina'] not in ('esocial_arquivos_esocial_tipos_apagar', 'esocial_arquivos_esocial_tipos_salvar', 'esocial_arquivos_esocial_tipos'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if esocial_arquivos_esocial_tipos_id != obj.id:

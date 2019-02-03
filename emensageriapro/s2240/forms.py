@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s2240.models import * 
 from emensageriapro.tabelas.models import eSocialFatoresRisco 
 from emensageriapro.esocial.models import s2240evtExpRisco 
@@ -53,6 +54,25 @@ class form_s2240_altexprisco(forms.ModelForm):
         
         self.fields['s2240_evtexprisco'].widget.attrs['required'] = True        
         self.fields['dtaltcondicao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2240_altexprisco, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2240altExpRisco
@@ -74,6 +94,25 @@ class form_s2240_altexprisco_epc(forms.ModelForm):
         self.fields['s2240_altexprisco_fatrisco'].queryset = s2240altExpRiscofatRisco.objects.using( slug ).filter(excluido=False).all()
         self.fields['s2240_altexprisco_fatrisco'].widget.attrs['required'] = True        
         self.fields['dscepc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2240_altexprisco_epc, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2240altExpRiscoepc
@@ -100,6 +139,25 @@ class form_s2240_altexprisco_epi(forms.ModelForm):
         self.fields['przvalid'].widget.attrs['required'] = True        
         self.fields['periodictroca'].widget.attrs['required'] = True        
         self.fields['higienizacao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2240_altexprisco_epi, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2240altExpRiscoepi
@@ -123,6 +181,25 @@ class form_s2240_altexprisco_fatrisco(forms.ModelForm):
         self.fields['codfatris'].widget.attrs['required'] = True        
         self.fields['utilizepc'].widget.attrs['required'] = True        
         self.fields['utilizepi'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2240_altexprisco_fatrisco, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2240altExpRiscofatRisco
@@ -145,6 +222,25 @@ class form_s2240_altexprisco_infoamb(forms.ModelForm):
         self.fields['s2240_altexprisco'].widget.attrs['required'] = True        
         self.fields['codamb'].widget.attrs['required'] = True        
         self.fields['dscativdes'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2240_altexprisco_infoamb, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2240altExpRiscoinfoAmb
@@ -165,6 +261,25 @@ class form_s2240_fimexprisco(forms.ModelForm):
         
         self.fields['s2240_evtexprisco'].widget.attrs['required'] = True        
         self.fields['dtfimcondicao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2240_fimexprisco, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2240fimExpRisco
@@ -186,6 +301,25 @@ class form_s2240_fimexprisco_infoamb(forms.ModelForm):
         self.fields['s2240_fimexprisco'].queryset = s2240fimExpRisco.objects.using( slug ).filter(excluido=False).all()
         self.fields['s2240_fimexprisco'].widget.attrs['required'] = True        
         self.fields['codamb'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2240_fimexprisco_infoamb, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2240fimExpRiscoinfoAmb
@@ -209,6 +343,25 @@ class form_s2240_fimexprisco_respreg(forms.ModelForm):
         self.fields['dtini'].widget.attrs['required'] = True        
         self.fields['nisresp'].widget.attrs['required'] = True        
         self.fields['nroc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2240_fimexprisco_respreg, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2240fimExpRiscorespReg
@@ -230,6 +383,25 @@ class form_s2240_iniexprisco_ativpericinsal(forms.ModelForm):
         self.fields['s2240_evtexprisco'].queryset = s2240evtExpRisco.objects.using( slug ).filter(excluido=False).all()
         self.fields['s2240_evtexprisco'].widget.attrs['required'] = True        
         self.fields['codativ'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2240_iniexprisco_ativpericinsal, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2240iniExpRiscoativPericInsal
@@ -252,6 +424,25 @@ class form_s2240_iniexprisco_epc(forms.ModelForm):
         self.fields['s2240_iniexprisco_fatrisco'].widget.attrs['required'] = True        
         self.fields['codep'].widget.attrs['required'] = True        
         self.fields['dscepc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2240_iniexprisco_epc, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2240iniExpRiscoepc
@@ -279,6 +470,25 @@ class form_s2240_iniexprisco_epi(forms.ModelForm):
         self.fields['przvalid'].widget.attrs['required'] = True        
         self.fields['periodictroca'].widget.attrs['required'] = True        
         self.fields['higienizacao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2240_iniexprisco_epi, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2240iniExpRiscoepi
@@ -305,6 +515,25 @@ class form_s2240_iniexprisco_fatrisco(forms.ModelForm):
         self.fields['tpaval'].widget.attrs['required'] = True        
         self.fields['utilizepc'].widget.attrs['required'] = True        
         self.fields['utilizepi'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2240_iniexprisco_fatrisco, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2240iniExpRiscofatRisco
@@ -326,6 +555,25 @@ class form_s2240_iniexprisco_infoamb(forms.ModelForm):
         self.fields['s2240_evtexprisco'].queryset = s2240evtExpRisco.objects.using( slug ).filter(excluido=False).all()
         self.fields['s2240_evtexprisco'].widget.attrs['required'] = True        
         self.fields['codamb'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2240_iniexprisco_infoamb, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2240iniExpRiscoinfoAmb
@@ -345,6 +593,25 @@ class form_s2240_iniexprisco_obs(forms.ModelForm):
         super(form_s2240_iniexprisco_obs, self).__init__(*args,**kwargs)
         
         self.fields['s2240_evtexprisco'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2240_iniexprisco_obs, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2240iniExpRiscoobs
@@ -371,6 +638,25 @@ class form_s2240_iniexprisco_respreg(forms.ModelForm):
         self.fields['ideoc'].widget.attrs['required'] = True        
         self.fields['nroc'].widget.attrs['required'] = True        
         self.fields['ufoc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2240_iniexprisco_respreg, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2240iniExpRiscorespReg

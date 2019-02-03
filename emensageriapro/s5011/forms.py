@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s5011.models import * 
 from emensageriapro.tabelas.models import eSocialTrabalhadoresCategorias 
 from emensageriapro.esocial.models import s5011evtCS 
@@ -74,6 +75,25 @@ class form_s5011_basesaquis(forms.ModelForm):
         self.fields['vrratcalcpr'].widget.attrs['required'] = True        
         self.fields['vrsenardesc'].widget.attrs['required'] = True        
         self.fields['vrsenarcalc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5011_basesaquis, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5011basesAquis
@@ -107,6 +127,25 @@ class form_s5011_basesavnport(forms.ModelForm):
         self.fields['vrbccp13'].widget.attrs['required'] = True        
         self.fields['vrbcfgts'].widget.attrs['required'] = True        
         self.fields['vrdesccp'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5011_basesavnport, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5011basesAvNPort
@@ -133,6 +172,25 @@ class form_s5011_basescomerc(forms.ModelForm):
         self.fields['s5011_ideestab'].widget.attrs['required'] = True        
         self.fields['indcomerc'].widget.attrs['required'] = True        
         self.fields['vrbccompr'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5011_basescomerc, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5011basesComerc
@@ -183,6 +241,25 @@ class form_s5011_basesremun(forms.ModelForm):
         self.fields['vrcalcsenat'].widget.attrs['required'] = True        
         self.fields['vrsalfam'].widget.attrs['required'] = True        
         self.fields['vrsalmat'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5011_basesremun, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5011basesRemun
@@ -208,6 +285,25 @@ class form_s5011_dadosopport(forms.ModelForm):
         self.fields['aliqrat'].widget.attrs['required'] = True        
         self.fields['fap'].widget.attrs['required'] = True        
         self.fields['aliqratajust'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5011_dadosopport, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5011dadosOpPort
@@ -230,6 +326,25 @@ class form_s5011_ideestab(forms.ModelForm):
         self.fields['s5011_evtcs'].widget.attrs['required'] = True        
         self.fields['tpinsc'].widget.attrs['required'] = True        
         self.fields['nrinsc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5011_ideestab, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5011ideEstab
@@ -253,6 +368,25 @@ class form_s5011_idelotacao(forms.ModelForm):
         self.fields['codlotacao'].widget.attrs['required'] = True        
         self.fields['fpas'].widget.attrs['required'] = True        
         self.fields['codtercs'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5011_idelotacao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5011ideLotacao
@@ -276,6 +410,25 @@ class form_s5011_infoatconc(forms.ModelForm):
         self.fields['s5011_infopj'].widget.attrs['required'] = True        
         self.fields['fatormes'].widget.attrs['required'] = True        
         self.fields['fator13'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5011_infoatconc, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5011infoAtConc
@@ -299,6 +452,25 @@ class form_s5011_infocpseg(forms.ModelForm):
         self.fields['s5011_evtcs'].widget.attrs['required'] = True        
         self.fields['vrdesccp'].widget.attrs['required'] = True        
         self.fields['vrcpseg'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5011_infocpseg, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5011infoCPSeg
@@ -323,6 +495,25 @@ class form_s5011_infocrcontrib(forms.ModelForm):
         self.fields['s5011_evtcs'].widget.attrs['required'] = True        
         self.fields['tpcr'].widget.attrs['required'] = True        
         self.fields['vrcr'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5011_infocrcontrib, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5011infoCRContrib
@@ -347,6 +538,25 @@ class form_s5011_infocrestab(forms.ModelForm):
         self.fields['s5011_ideestab'].widget.attrs['required'] = True        
         self.fields['tpcr'].widget.attrs['required'] = True        
         self.fields['vrcr'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5011_infocrestab, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5011infoCREstab
@@ -367,6 +577,25 @@ class form_s5011_infocomplobra(forms.ModelForm):
         
         self.fields['s5011_infoestab'].widget.attrs['required'] = True        
         self.fields['indsubstpatrobra'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5011_infocomplobra, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5011infoComplObra
@@ -390,6 +619,25 @@ class form_s5011_infoemprparcial(forms.ModelForm):
         self.fields['nrinsccontrat'].widget.attrs['required'] = True        
         self.fields['tpinscprop'].widget.attrs['required'] = True        
         self.fields['nrinscprop'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5011_infoemprparcial, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5011infoEmprParcial
@@ -415,6 +663,25 @@ class form_s5011_infoestab(forms.ModelForm):
         self.fields['aliqrat'].widget.attrs['required'] = True        
         self.fields['fap'].widget.attrs['required'] = True        
         self.fields['aliqratajust'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5011_infoestab, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5011infoEstab
@@ -436,6 +703,25 @@ class form_s5011_infopj(forms.ModelForm):
         
         self.fields['s5011_evtcs'].widget.attrs['required'] = True        
         self.fields['indconstr'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5011_infopj, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5011infoPJ
@@ -457,6 +743,25 @@ class form_s5011_infosubstpatropport(forms.ModelForm):
         self.fields['s5011_idelotacao'].queryset = s5011ideLotacao.objects.using( slug ).filter(excluido=False).all()
         self.fields['s5011_idelotacao'].widget.attrs['required'] = True        
         self.fields['cnpjopportuario'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5011_infosubstpatropport, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5011infoSubstPatrOpPort
@@ -478,6 +783,25 @@ class form_s5011_infotercsusp(forms.ModelForm):
         self.fields['s5011_idelotacao'].queryset = s5011ideLotacao.objects.using( slug ).filter(excluido=False).all()
         self.fields['s5011_idelotacao'].widget.attrs['required'] = True        
         self.fields['codterc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5011_infotercsusp, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5011infoTercSusp

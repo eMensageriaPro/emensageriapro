@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -116,7 +119,7 @@ CHOICES_S5003_TPVALORE = (
     (91, u'91 - Incidência suspensa em decorrência de decisão judicial'),
 )
 
-class s5003basePerAntE(models.Model):
+class s5003basePerAntE(SoftDeletionModel):
     s5003_infobaseperante = models.ForeignKey('s5003infoBasePerAntE',
         related_name='%(class)s_s5003_infobaseperante')
     def evento(self): return self.s5003_infobaseperante.evento()
@@ -128,7 +131,7 @@ class s5003basePerAntE(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_infobaseperante) + ' - ' + unicode(self.tpvalore) + ' - ' + unicode(self.remfgtse)
     #s5003_baseperante_custom#
@@ -142,10 +145,17 @@ class s5003basePerAntE(models.Model):
 class s5003basePerAntESerializer(ModelSerializer):
     class Meta:
         model = s5003basePerAntE
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5003basePerApur(models.Model):
+class s5003basePerApur(SoftDeletionModel):
     s5003_infotrabfgts = models.ForeignKey('s5003infoTrabFGTS',
         related_name='%(class)s_s5003_infotrabfgts')
     def evento(self): return self.s5003_infotrabfgts.evento()
@@ -157,7 +167,7 @@ class s5003basePerApur(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_infotrabfgts) + ' - ' + unicode(self.tpvalor) + ' - ' + unicode(self.remfgts)
     #s5003_baseperapur_custom#
@@ -171,10 +181,17 @@ class s5003basePerApur(models.Model):
 class s5003basePerApurSerializer(ModelSerializer):
     class Meta:
         model = s5003basePerApur
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5003dpsPerAntE(models.Model):
+class s5003dpsPerAntE(SoftDeletionModel):
     s5003_infodpsperante = models.ForeignKey('s5003infoDpsPerAntE',
         related_name='%(class)s_s5003_infodpsperante')
     def evento(self): return self.s5003_infodpsperante.evento()
@@ -186,7 +203,7 @@ class s5003dpsPerAntE(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_infodpsperante) + ' - ' + unicode(self.tpdpse) + ' - ' + unicode(self.dpsfgtse)
     #s5003_dpsperante_custom#
@@ -200,10 +217,17 @@ class s5003dpsPerAntE(models.Model):
 class s5003dpsPerAntESerializer(ModelSerializer):
     class Meta:
         model = s5003dpsPerAntE
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5003dpsPerApur(models.Model):
+class s5003dpsPerApur(SoftDeletionModel):
     s5003_infotrabdps = models.ForeignKey('s5003infoTrabDps',
         related_name='%(class)s_s5003_infotrabdps')
     def evento(self): return self.s5003_infotrabdps.evento()
@@ -215,7 +239,7 @@ class s5003dpsPerApur(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_infotrabdps) + ' - ' + unicode(self.tpdps) + ' - ' + unicode(self.dpsfgts)
     #s5003_dpsperapur_custom#
@@ -229,10 +253,17 @@ class s5003dpsPerApur(models.Model):
 class s5003dpsPerApurSerializer(ModelSerializer):
     class Meta:
         model = s5003dpsPerApur
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5003ideEstabLot(models.Model):
+class s5003ideEstabLot(SoftDeletionModel):
     s5003_infofgts = models.ForeignKey('s5003infoFGTS',
         related_name='%(class)s_s5003_infofgts')
     def evento(self): return self.s5003_infofgts.evento()
@@ -245,7 +276,7 @@ class s5003ideEstabLot(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_infofgts) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao)
     #s5003_ideestablot_custom#
@@ -259,10 +290,17 @@ class s5003ideEstabLot(models.Model):
 class s5003ideEstabLotSerializer(ModelSerializer):
     class Meta:
         model = s5003ideEstabLot
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5003infoBasePerAntE(models.Model):
+class s5003infoBasePerAntE(SoftDeletionModel):
     s5003_infotrabfgts = models.ForeignKey('s5003infoTrabFGTS',
         related_name='%(class)s_s5003_infotrabfgts')
     def evento(self): return self.s5003_infotrabfgts.evento()
@@ -273,7 +311,7 @@ class s5003infoBasePerAntE(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_infotrabfgts) + ' - ' + unicode(self.perref)
     #s5003_infobaseperante_custom#
@@ -287,10 +325,17 @@ class s5003infoBasePerAntE(models.Model):
 class s5003infoBasePerAntESerializer(ModelSerializer):
     class Meta:
         model = s5003infoBasePerAntE
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5003infoDpsPerAntE(models.Model):
+class s5003infoDpsPerAntE(SoftDeletionModel):
     s5003_infotrabdps = models.ForeignKey('s5003infoTrabDps',
         related_name='%(class)s_s5003_infotrabdps')
     def evento(self): return self.s5003_infotrabdps.evento()
@@ -301,7 +346,7 @@ class s5003infoDpsPerAntE(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_infotrabdps) + ' - ' + unicode(self.perref)
     #s5003_infodpsperante_custom#
@@ -315,10 +360,17 @@ class s5003infoDpsPerAntE(models.Model):
 class s5003infoDpsPerAntESerializer(ModelSerializer):
     class Meta:
         model = s5003infoDpsPerAntE
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5003infoFGTS(models.Model):
+class s5003infoFGTS(SoftDeletionModel):
     s5003_evtbasesfgts = models.OneToOneField('esocial.s5003evtBasesFGTS',
         related_name='%(class)s_s5003_evtbasesfgts')
     def evento(self): return self.s5003_evtbasesfgts.evento()
@@ -329,7 +381,7 @@ class s5003infoFGTS(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_evtbasesfgts)
     #s5003_infofgts_custom#
@@ -343,10 +395,17 @@ class s5003infoFGTS(models.Model):
 class s5003infoFGTSSerializer(ModelSerializer):
     class Meta:
         model = s5003infoFGTS
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5003infoTrabDps(models.Model):
+class s5003infoTrabDps(SoftDeletionModel):
     s5003_infofgts = models.ForeignKey('s5003infoFGTS',
         related_name='%(class)s_s5003_infofgts')
     def evento(self): return self.s5003_infofgts.evento()
@@ -358,7 +417,7 @@ class s5003infoTrabDps(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_infofgts) + ' - ' + unicode(self.codcateg)
     #s5003_infotrabdps_custom#
@@ -372,10 +431,17 @@ class s5003infoTrabDps(models.Model):
 class s5003infoTrabDpsSerializer(ModelSerializer):
     class Meta:
         model = s5003infoTrabDps
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5003infoTrabFGTS(models.Model):
+class s5003infoTrabFGTS(SoftDeletionModel):
     s5003_ideestablot = models.ForeignKey('s5003ideEstabLot',
         related_name='%(class)s_s5003_ideestablot')
     def evento(self): return self.s5003_ideestablot.evento()
@@ -393,7 +459,7 @@ class s5003infoTrabFGTS(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5003_ideestablot) + ' - ' + unicode(self.codcateg)
     #s5003_infotrabfgts_custom#
@@ -407,7 +473,14 @@ class s5003infoTrabFGTS(models.Model):
 class s5003infoTrabFGTSSerializer(ModelSerializer):
     class Meta:
         model = s5003infoTrabFGTS
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

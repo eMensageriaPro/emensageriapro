@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.r2010.models import * 
 from emensageriapro.efdreinf.models import r2010evtServTom 
 
@@ -56,6 +57,25 @@ class form_r2010_infoprocretad(forms.ModelForm):
         self.fields['tpprocretadic'].widget.attrs['required'] = True        
         self.fields['nrprocretadic'].widget.attrs['required'] = True        
         self.fields['valoradic'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2010_infoprocretad, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2010infoProcRetAd
@@ -80,6 +100,25 @@ class form_r2010_infoprocretpr(forms.ModelForm):
         self.fields['tpprocretprinc'].widget.attrs['required'] = True        
         self.fields['nrprocretprinc'].widget.attrs['required'] = True        
         self.fields['valorprinc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2010_infoprocretpr, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2010infoProcRetPr
@@ -112,6 +151,25 @@ class form_r2010_infotpserv(forms.ModelForm):
         self.fields['tpservico'].widget.attrs['required'] = True        
         self.fields['vlrbaseret'].widget.attrs['required'] = True        
         self.fields['vlrretencao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2010_infotpserv, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2010infoTpServ
@@ -137,6 +195,25 @@ class form_r2010_nfs(forms.ModelForm):
         self.fields['numdocto'].widget.attrs['required'] = True        
         self.fields['dtemissaonf'].widget.attrs['required'] = True        
         self.fields['vlrbruto'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2010_nfs, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2010nfs

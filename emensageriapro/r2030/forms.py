@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.r2030.models import * 
 from emensageriapro.efdreinf.models import r2030evtAssocDespRec 
 
@@ -56,6 +57,25 @@ class form_r2030_infoproc(forms.ModelForm):
         self.fields['tpproc'].widget.attrs['required'] = True        
         self.fields['nrproc'].widget.attrs['required'] = True        
         self.fields['vlrnret'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2030_infoproc, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2030infoProc
@@ -82,6 +102,25 @@ class form_r2030_inforecurso(forms.ModelForm):
         self.fields['descrecurso'].widget.attrs['required'] = True        
         self.fields['vlrbruto'].widget.attrs['required'] = True        
         self.fields['vlrretapur'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2030_inforecurso, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2030infoRecurso
@@ -108,6 +147,25 @@ class form_r2030_recursosrec(forms.ModelForm):
         self.fields['cnpjorigrecurso'].widget.attrs['required'] = True        
         self.fields['vlrtotalrec'].widget.attrs['required'] = True        
         self.fields['vlrtotalret'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2030_recursosrec, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2030recursosRec

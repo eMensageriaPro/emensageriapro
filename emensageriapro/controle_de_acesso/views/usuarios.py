@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -78,7 +79,8 @@ def apagar(request, hash):
 
     usuarios = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuarios_id)
     if request.method == 'POST':
-        Usuarios.objects.using( db_slug ).filter(id = usuarios_id).update(excluido = True)
+        obj = Usuarios.objects.using( db_slug ).get(id = usuarios_id)
+        obj.delete(request=request)
         #usuarios_apagar_custom
         #usuarios_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -298,18 +300,16 @@ def salvar(request, hash):
             users_form = form_users(request.POST or None, slug=db_slug, initial={'password': 'asdkl1231'})
         if request.method == 'POST':
             if usuarios_form.is_valid() and users_form.is_valid():
+                #usuarios_campos_multiple_passo1
                 dados = usuarios_form.cleaned_data
                 users_dados = users_form.cleaned_data
                 if usuarios_id:
                     User.objects.using(db_slug).filter(id=usuarios.user_id).update(**users_dados)
                     dados['modificado_por_id'] = usuario_id
                     dados['modificado_em'] = datetime.datetime.now()
-                    #usuarios_campos_multiple_passo1
+ 
                     Usuarios.objects.using(db_slug).filter(id=usuarios_id).update(**dados)
                     obj = Usuarios.objects.using(db_slug).get(id=usuarios_id)
-                    #usuarios_editar_custom
-                    #usuarios_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
                 else:
                     users_dados['password'] = 'asdkl1231'
                     users_dados['is_staff'] = True
@@ -317,21 +317,21 @@ def salvar(request, hash):
                     user_obj = User(**users_dados)
                     user_obj.save(using = db_slug)
                     dados['user_id'] = user_obj.pk
-
                     dados['criado_por_id'] = usuario_id
                     dados['criado_em'] = datetime.datetime.now()
                     dados['excluido'] = False
-                    #usuarios_cadastrar_campos_multiple_passo1
                     obj = Usuarios(**dados)
                     obj.save(using = db_slug)
-                    #usuarios_cadastrar_custom
+ 
                     from emensageriapro.controle_de_acesso.views.login_recuperar_senha import recuperar_senha_funcao
                     try:
                         recuperar_senha_funcao(users_dados['email'])
                         messages.success(request, 'A senha foi enviada para o e-mail %(email)s!' % users_dados)
                     except:
                         messages.error(request, 'Erro ao enviar o email com a senha!')
-                    messages.success(request, 'Cadastrado com sucesso!')
+                messages.success(request, 'Salvo com sucesso!')
+                #usuarios_campos_multiple_passo2
+
                 if request.session['retorno_pagina'] not in ('usuarios_apagar', 'usuarios_salvar', 'usuarios'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if usuarios_id != obj.id:

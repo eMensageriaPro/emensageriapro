@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     transmissores = get_object_or_404(TransmissorLote.objects.using( db_slug ), excluido = False, id = transmissores_id)
     if request.method == 'POST':
-        TransmissorLote.objects.using( db_slug ).filter(id = transmissores_id).update(excluido = True)
+        obj = TransmissorLote.objects.using( db_slug ).get(id = transmissores_id)
+        obj.delete(request=request)
         #transmissores_apagar_custom
         #transmissores_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -371,27 +373,11 @@ def salvar(request, hash):
                                 filename = fs.save(myfile.name, myfile)
                                 dados[f] = filename
                                 messages.success(request, 'Arquivo %s salvo com sucesso!' % filename)
-                dados = transmissores_form.cleaned_data
-                if transmissores_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #transmissores_campos_multiple_passo1
-                    TransmissorLote.objects.using(db_slug).filter(id=transmissores_id).update(**dados)
-                    obj = TransmissorLote.objects.using(db_slug).get(id=transmissores_id)
-                    #transmissores_editar_custom
-                    #transmissores_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
-                else:
+                #transmissores_campos_multiple_passo1
+                obj = transmissores_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+                #transmissores_campos_multiple_passo2
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #transmissores_cadastrar_campos_multiple_passo1
-                    obj = TransmissorLote(**dados)
-                    obj.save(using = db_slug)
-                    #transmissores_cadastrar_custom
-                    #transmissores_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
                 if request.session['retorno_pagina'] not in ('transmissores_apagar', 'transmissores_salvar', 'transmissores'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if transmissores_id != obj.id:

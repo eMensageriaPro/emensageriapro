@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -93,7 +96,7 @@ PERIODOS = (
     ('2019-12', u'Dezembro/2019'),
 )
 
-class s1080alteracao(models.Model):
+class s1080alteracao(SoftDeletionModel):
     s1080_evttaboperport = models.OneToOneField('esocial.s1080evtTabOperPort',
         related_name='%(class)s_s1080_evttaboperport')
     def evento(self): return self.s1080_evttaboperport.evento()
@@ -109,7 +112,7 @@ class s1080alteracao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1080_evttaboperport) + ' - ' + unicode(self.cnpjopportuario) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.fap) + ' - ' + unicode(self.aliqratajust)
     #s1080_alteracao_custom#
@@ -123,10 +126,17 @@ class s1080alteracao(models.Model):
 class s1080alteracaoSerializer(ModelSerializer):
     class Meta:
         model = s1080alteracao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1080alteracaonovaValidade(models.Model):
+class s1080alteracaonovaValidade(SoftDeletionModel):
     s1080_alteracao = models.OneToOneField('s1080alteracao',
         related_name='%(class)s_s1080_alteracao')
     def evento(self): return self.s1080_alteracao.evento()
@@ -138,7 +148,7 @@ class s1080alteracaonovaValidade(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1080_alteracao) + ' - ' + unicode(self.inivalid)
     #s1080_alteracao_novavalidade_custom#
@@ -152,10 +162,17 @@ class s1080alteracaonovaValidade(models.Model):
 class s1080alteracaonovaValidadeSerializer(ModelSerializer):
     class Meta:
         model = s1080alteracaonovaValidade
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1080exclusao(models.Model):
+class s1080exclusao(SoftDeletionModel):
     s1080_evttaboperport = models.OneToOneField('esocial.s1080evtTabOperPort',
         related_name='%(class)s_s1080_evttaboperport')
     def evento(self): return self.s1080_evttaboperport.evento()
@@ -168,7 +185,7 @@ class s1080exclusao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1080_evttaboperport) + ' - ' + unicode(self.cnpjopportuario) + ' - ' + unicode(self.inivalid)
     #s1080_exclusao_custom#
@@ -182,10 +199,17 @@ class s1080exclusao(models.Model):
 class s1080exclusaoSerializer(ModelSerializer):
     class Meta:
         model = s1080exclusao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1080inclusao(models.Model):
+class s1080inclusao(SoftDeletionModel):
     s1080_evttaboperport = models.OneToOneField('esocial.s1080evtTabOperPort',
         related_name='%(class)s_s1080_evttaboperport')
     def evento(self): return self.s1080_evttaboperport.evento()
@@ -201,7 +225,7 @@ class s1080inclusao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1080_evttaboperport) + ' - ' + unicode(self.cnpjopportuario) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.fap) + ' - ' + unicode(self.aliqratajust)
     #s1080_inclusao_custom#
@@ -215,7 +239,14 @@ class s1080inclusao(models.Model):
 class s1080inclusaoSerializer(ModelSerializer):
     class Meta:
         model = s1080inclusao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

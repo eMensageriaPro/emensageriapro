@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -146,7 +149,7 @@ ESTADOS = (
     ('TO', u'Tocantins'),
 )
 
-class s2230emitente(models.Model):
+class s2230emitente(SoftDeletionModel):
     s2230_infoatestado = models.OneToOneField('s2230infoAtestado',
         related_name='%(class)s_s2230_infoatestado')
     def evento(self): return self.s2230_infoatestado.evento()
@@ -160,7 +163,7 @@ class s2230emitente(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2230_infoatestado) + ' - ' + unicode(self.nmemit) + ' - ' + unicode(self.ideoc) + ' - ' + unicode(self.nroc)
     #s2230_emitente_custom#
@@ -174,10 +177,17 @@ class s2230emitente(models.Model):
 class s2230emitenteSerializer(ModelSerializer):
     class Meta:
         model = s2230emitente
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2230fimAfastamento(models.Model):
+class s2230fimAfastamento(SoftDeletionModel):
     s2230_evtafasttemp = models.OneToOneField('esocial.s2230evtAfastTemp',
         related_name='%(class)s_s2230_evtafasttemp')
     def evento(self): return self.s2230_evtafasttemp.evento()
@@ -188,7 +198,7 @@ class s2230fimAfastamento(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2230_evtafasttemp) + ' - ' + unicode(self.dttermafast)
     #s2230_fimafastamento_custom#
@@ -202,10 +212,17 @@ class s2230fimAfastamento(models.Model):
 class s2230fimAfastamentoSerializer(ModelSerializer):
     class Meta:
         model = s2230fimAfastamento
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2230infoAtestado(models.Model):
+class s2230infoAtestado(SoftDeletionModel):
     s2230_iniafastamento = models.ForeignKey('s2230iniAfastamento',
         related_name='%(class)s_s2230_iniafastamento')
     def evento(self): return self.s2230_iniafastamento.evento()
@@ -217,7 +234,7 @@ class s2230infoAtestado(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2230_iniafastamento) + ' - ' + unicode(self.qtddiasafast)
     #s2230_infoatestado_custom#
@@ -231,10 +248,17 @@ class s2230infoAtestado(models.Model):
 class s2230infoAtestadoSerializer(ModelSerializer):
     class Meta:
         model = s2230infoAtestado
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2230infoCessao(models.Model):
+class s2230infoCessao(SoftDeletionModel):
     s2230_iniafastamento = models.OneToOneField('s2230iniAfastamento',
         related_name='%(class)s_s2230_iniafastamento')
     def evento(self): return self.s2230_iniafastamento.evento()
@@ -246,7 +270,7 @@ class s2230infoCessao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2230_iniafastamento) + ' - ' + unicode(self.cnpjcess) + ' - ' + unicode(self.infonus)
     #s2230_infocessao_custom#
@@ -260,10 +284,17 @@ class s2230infoCessao(models.Model):
 class s2230infoCessaoSerializer(ModelSerializer):
     class Meta:
         model = s2230infoCessao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2230infoMandSind(models.Model):
+class s2230infoMandSind(SoftDeletionModel):
     s2230_iniafastamento = models.OneToOneField('s2230iniAfastamento',
         related_name='%(class)s_s2230_iniafastamento')
     def evento(self): return self.s2230_iniafastamento.evento()
@@ -275,7 +306,7 @@ class s2230infoMandSind(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2230_iniafastamento) + ' - ' + unicode(self.cnpjsind) + ' - ' + unicode(self.infonusremun)
     #s2230_infomandsind_custom#
@@ -289,10 +320,17 @@ class s2230infoMandSind(models.Model):
 class s2230infoMandSindSerializer(ModelSerializer):
     class Meta:
         model = s2230infoMandSind
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2230infoRetif(models.Model):
+class s2230infoRetif(SoftDeletionModel):
     s2230_evtafasttemp = models.OneToOneField('esocial.s2230evtAfastTemp',
         related_name='%(class)s_s2230_evtafasttemp')
     def evento(self): return self.s2230_evtafasttemp.evento()
@@ -305,7 +343,7 @@ class s2230infoRetif(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2230_evtafasttemp) + ' - ' + unicode(self.origretif)
     #s2230_inforetif_custom#
@@ -319,10 +357,17 @@ class s2230infoRetif(models.Model):
 class s2230infoRetifSerializer(ModelSerializer):
     class Meta:
         model = s2230infoRetif
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2230iniAfastamento(models.Model):
+class s2230iniAfastamento(SoftDeletionModel):
     s2230_evtafasttemp = models.OneToOneField('esocial.s2230evtAfastTemp',
         related_name='%(class)s_s2230_evtafasttemp')
     def evento(self): return self.s2230_evtafasttemp.evento()
@@ -337,7 +382,7 @@ class s2230iniAfastamento(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2230_evtafasttemp) + ' - ' + unicode(self.dtiniafast) + ' - ' + unicode(self.codmotafast)
     #s2230_iniafastamento_custom#
@@ -351,7 +396,14 @@ class s2230iniAfastamento(models.Model):
 class s2230iniAfastamentoSerializer(ModelSerializer):
     class Meta:
         model = s2230iniAfastamento
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

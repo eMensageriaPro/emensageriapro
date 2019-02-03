@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -114,7 +117,7 @@ CHOICES_S5011_TPINSCPROP = (
     (4, u'4 - CNO (Cadastro Nacional de Obra)'),
 )
 
-class s5011basesAquis(models.Model):
+class s5011basesAquis(SoftDeletionModel):
     s5011_ideestab = models.ForeignKey('s5011ideEstab',
         related_name='%(class)s_s5011_ideestab')
     def evento(self): return self.s5011_ideestab.evento()
@@ -135,7 +138,7 @@ class s5011basesAquis(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_ideestab) + ' - ' + unicode(self.indaquis) + ' - ' + unicode(self.vlraquis) + ' - ' + unicode(self.vrcpdescpr) + ' - ' + unicode(self.vrcpnret) + ' - ' + unicode(self.vrratnret) + ' - ' + unicode(self.vrsenarnret) + ' - ' + unicode(self.vrcpcalcpr) + ' - ' + unicode(self.vrratdescpr) + ' - ' + unicode(self.vrratcalcpr) + ' - ' + unicode(self.vrsenardesc) + ' - ' + unicode(self.vrsenarcalc)
     #s5011_basesaquis_custom#
@@ -149,10 +152,17 @@ class s5011basesAquis(models.Model):
 class s5011basesAquisSerializer(ModelSerializer):
     class Meta:
         model = s5011basesAquis
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5011basesAvNPort(models.Model):
+class s5011basesAvNPort(SoftDeletionModel):
     s5011_idelotacao = models.OneToOneField('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
     def evento(self): return self.s5011_idelotacao.evento()
@@ -169,7 +179,7 @@ class s5011basesAvNPort(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_idelotacao) + ' - ' + unicode(self.vrbccp00) + ' - ' + unicode(self.vrbccp15) + ' - ' + unicode(self.vrbccp20) + ' - ' + unicode(self.vrbccp25) + ' - ' + unicode(self.vrbccp13) + ' - ' + unicode(self.vrbcfgts) + ' - ' + unicode(self.vrdesccp)
     #s5011_basesavnport_custom#
@@ -183,10 +193,17 @@ class s5011basesAvNPort(models.Model):
 class s5011basesAvNPortSerializer(ModelSerializer):
     class Meta:
         model = s5011basesAvNPort
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5011basesComerc(models.Model):
+class s5011basesComerc(SoftDeletionModel):
     s5011_ideestab = models.ForeignKey('s5011ideEstab',
         related_name='%(class)s_s5011_ideestab')
     def evento(self): return self.s5011_ideestab.evento()
@@ -201,7 +218,7 @@ class s5011basesComerc(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_ideestab) + ' - ' + unicode(self.indcomerc) + ' - ' + unicode(self.vrbccompr)
     #s5011_basescomerc_custom#
@@ -215,10 +232,17 @@ class s5011basesComerc(models.Model):
 class s5011basesComercSerializer(ModelSerializer):
     class Meta:
         model = s5011basesComerc
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5011basesRemun(models.Model):
+class s5011basesRemun(SoftDeletionModel):
     s5011_idelotacao = models.ForeignKey('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
     def evento(self): return self.s5011_idelotacao.evento()
@@ -244,7 +268,7 @@ class s5011basesRemun(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_idelotacao) + ' - ' + unicode(self.indincid) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.vrbccp00) + ' - ' + unicode(self.vrbccp15) + ' - ' + unicode(self.vrbccp20) + ' - ' + unicode(self.vrbccp25) + ' - ' + unicode(self.vrsuspbccp00) + ' - ' + unicode(self.vrsuspbccp15) + ' - ' + unicode(self.vrsuspbccp20) + ' - ' + unicode(self.vrsuspbccp25) + ' - ' + unicode(self.vrdescsest) + ' - ' + unicode(self.vrcalcsest) + ' - ' + unicode(self.vrdescsenat) + ' - ' + unicode(self.vrcalcsenat) + ' - ' + unicode(self.vrsalfam) + ' - ' + unicode(self.vrsalmat)
     #s5011_basesremun_custom#
@@ -258,10 +282,17 @@ class s5011basesRemun(models.Model):
 class s5011basesRemunSerializer(ModelSerializer):
     class Meta:
         model = s5011basesRemun
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5011dadosOpPort(models.Model):
+class s5011dadosOpPort(SoftDeletionModel):
     s5011_idelotacao = models.OneToOneField('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
     def evento(self): return self.s5011_idelotacao.evento()
@@ -275,7 +306,7 @@ class s5011dadosOpPort(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_idelotacao) + ' - ' + unicode(self.cnpjopportuario) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.fap) + ' - ' + unicode(self.aliqratajust)
     #s5011_dadosopport_custom#
@@ -289,10 +320,17 @@ class s5011dadosOpPort(models.Model):
 class s5011dadosOpPortSerializer(ModelSerializer):
     class Meta:
         model = s5011dadosOpPort
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5011ideEstab(models.Model):
+class s5011ideEstab(SoftDeletionModel):
     s5011_evtcs = models.ForeignKey('esocial.s5011evtCS',
         related_name='%(class)s_s5011_evtcs')
     def evento(self): return self.s5011_evtcs.evento()
@@ -304,7 +342,7 @@ class s5011ideEstab(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_evtcs) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s5011_ideestab_custom#
@@ -318,10 +356,17 @@ class s5011ideEstab(models.Model):
 class s5011ideEstabSerializer(ModelSerializer):
     class Meta:
         model = s5011ideEstab
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5011ideLotacao(models.Model):
+class s5011ideLotacao(SoftDeletionModel):
     s5011_ideestab = models.ForeignKey('s5011ideEstab',
         related_name='%(class)s_s5011_ideestab')
     def evento(self): return self.s5011_ideestab.evento()
@@ -335,7 +380,7 @@ class s5011ideLotacao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_ideestab) + ' - ' + unicode(self.codlotacao) + ' - ' + unicode(self.fpas) + ' - ' + unicode(self.codtercs)
     #s5011_idelotacao_custom#
@@ -349,10 +394,17 @@ class s5011ideLotacao(models.Model):
 class s5011ideLotacaoSerializer(ModelSerializer):
     class Meta:
         model = s5011ideLotacao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5011infoAtConc(models.Model):
+class s5011infoAtConc(SoftDeletionModel):
     s5011_infopj = models.OneToOneField('s5011infoPJ',
         related_name='%(class)s_s5011_infopj')
     def evento(self): return self.s5011_infopj.evento()
@@ -364,7 +416,7 @@ class s5011infoAtConc(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_infopj) + ' - ' + unicode(self.fatormes) + ' - ' + unicode(self.fator13)
     #s5011_infoatconc_custom#
@@ -378,10 +430,17 @@ class s5011infoAtConc(models.Model):
 class s5011infoAtConcSerializer(ModelSerializer):
     class Meta:
         model = s5011infoAtConc
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5011infoCPSeg(models.Model):
+class s5011infoCPSeg(SoftDeletionModel):
     s5011_evtcs = models.OneToOneField('esocial.s5011evtCS',
         related_name='%(class)s_s5011_evtcs')
     def evento(self): return self.s5011_evtcs.evento()
@@ -393,7 +452,7 @@ class s5011infoCPSeg(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_evtcs) + ' - ' + unicode(self.vrdesccp) + ' - ' + unicode(self.vrcpseg)
     #s5011_infocpseg_custom#
@@ -407,10 +466,17 @@ class s5011infoCPSeg(models.Model):
 class s5011infoCPSegSerializer(ModelSerializer):
     class Meta:
         model = s5011infoCPSeg
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5011infoCRContrib(models.Model):
+class s5011infoCRContrib(SoftDeletionModel):
     s5011_evtcs = models.ForeignKey('esocial.s5011evtCS',
         related_name='%(class)s_s5011_evtcs')
     def evento(self): return self.s5011_evtcs.evento()
@@ -423,7 +489,7 @@ class s5011infoCRContrib(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_evtcs) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrcr)
     #s5011_infocrcontrib_custom#
@@ -437,10 +503,17 @@ class s5011infoCRContrib(models.Model):
 class s5011infoCRContribSerializer(ModelSerializer):
     class Meta:
         model = s5011infoCRContrib
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5011infoCREstab(models.Model):
+class s5011infoCREstab(SoftDeletionModel):
     s5011_ideestab = models.ForeignKey('s5011ideEstab',
         related_name='%(class)s_s5011_ideestab')
     def evento(self): return self.s5011_ideestab.evento()
@@ -453,7 +526,7 @@ class s5011infoCREstab(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_ideestab) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrcr)
     #s5011_infocrestab_custom#
@@ -467,10 +540,17 @@ class s5011infoCREstab(models.Model):
 class s5011infoCREstabSerializer(ModelSerializer):
     class Meta:
         model = s5011infoCREstab
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5011infoComplObra(models.Model):
+class s5011infoComplObra(SoftDeletionModel):
     s5011_infoestab = models.OneToOneField('s5011infoEstab',
         related_name='%(class)s_s5011_infoestab')
     def evento(self): return self.s5011_infoestab.evento()
@@ -481,7 +561,7 @@ class s5011infoComplObra(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_infoestab) + ' - ' + unicode(self.indsubstpatrobra)
     #s5011_infocomplobra_custom#
@@ -495,10 +575,17 @@ class s5011infoComplObra(models.Model):
 class s5011infoComplObraSerializer(ModelSerializer):
     class Meta:
         model = s5011infoComplObra
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5011infoEmprParcial(models.Model):
+class s5011infoEmprParcial(SoftDeletionModel):
     s5011_idelotacao = models.OneToOneField('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
     def evento(self): return self.s5011_idelotacao.evento()
@@ -512,7 +599,7 @@ class s5011infoEmprParcial(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_idelotacao) + ' - ' + unicode(self.tpinsccontrat) + ' - ' + unicode(self.nrinsccontrat) + ' - ' + unicode(self.tpinscprop) + ' - ' + unicode(self.nrinscprop)
     #s5011_infoemprparcial_custom#
@@ -526,10 +613,17 @@ class s5011infoEmprParcial(models.Model):
 class s5011infoEmprParcialSerializer(ModelSerializer):
     class Meta:
         model = s5011infoEmprParcial
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5011infoEstab(models.Model):
+class s5011infoEstab(SoftDeletionModel):
     s5011_ideestab = models.OneToOneField('s5011ideEstab',
         related_name='%(class)s_s5011_ideestab')
     def evento(self): return self.s5011_ideestab.evento()
@@ -543,7 +637,7 @@ class s5011infoEstab(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_ideestab) + ' - ' + unicode(self.cnaeprep) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.fap) + ' - ' + unicode(self.aliqratajust)
     #s5011_infoestab_custom#
@@ -557,10 +651,17 @@ class s5011infoEstab(models.Model):
 class s5011infoEstabSerializer(ModelSerializer):
     class Meta:
         model = s5011infoEstab
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5011infoPJ(models.Model):
+class s5011infoPJ(SoftDeletionModel):
     s5011_evtcs = models.OneToOneField('esocial.s5011evtCS',
         related_name='%(class)s_s5011_evtcs')
     def evento(self): return self.s5011_evtcs.evento()
@@ -574,7 +675,7 @@ class s5011infoPJ(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_evtcs) + ' - ' + unicode(self.indconstr)
     #s5011_infopj_custom#
@@ -588,10 +689,17 @@ class s5011infoPJ(models.Model):
 class s5011infoPJSerializer(ModelSerializer):
     class Meta:
         model = s5011infoPJ
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5011infoSubstPatrOpPort(models.Model):
+class s5011infoSubstPatrOpPort(SoftDeletionModel):
     s5011_idelotacao = models.ForeignKey('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
     def evento(self): return self.s5011_idelotacao.evento()
@@ -602,7 +710,7 @@ class s5011infoSubstPatrOpPort(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_idelotacao) + ' - ' + unicode(self.cnpjopportuario)
     #s5011_infosubstpatropport_custom#
@@ -616,10 +724,17 @@ class s5011infoSubstPatrOpPort(models.Model):
 class s5011infoSubstPatrOpPortSerializer(ModelSerializer):
     class Meta:
         model = s5011infoSubstPatrOpPort
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5011infoTercSusp(models.Model):
+class s5011infoTercSusp(SoftDeletionModel):
     s5011_idelotacao = models.ForeignKey('s5011ideLotacao',
         related_name='%(class)s_s5011_idelotacao')
     def evento(self): return self.s5011_idelotacao.evento()
@@ -630,7 +745,7 @@ class s5011infoTercSusp(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5011_idelotacao) + ' - ' + unicode(self.codterc)
     #s5011_infotercsusp_custom#
@@ -644,7 +759,14 @@ class s5011infoTercSusp(models.Model):
 class s5011infoTercSuspSerializer(ModelSerializer):
     class Meta:
         model = s5011infoTercSusp
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

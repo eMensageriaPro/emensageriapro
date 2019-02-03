@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     esocial_beneficios_previdenciarios_tipos = get_object_or_404(eSocialBeneficiosPrevidenciariosTipos.objects.using( db_slug ), excluido = False, id = esocial_beneficios_previdenciarios_tipos_id)
     if request.method == 'POST':
-        eSocialBeneficiosPrevidenciariosTipos.objects.using( db_slug ).filter(id = esocial_beneficios_previdenciarios_tipos_id).update(excluido = True)
+        obj = eSocialBeneficiosPrevidenciariosTipos.objects.using( db_slug ).get(id = esocial_beneficios_previdenciarios_tipos_id)
+        obj.delete(request=request)
         #esocial_beneficios_previdenciarios_tipos_apagar_custom
         #esocial_beneficios_previdenciarios_tipos_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -315,27 +317,21 @@ def salvar(request, hash):
             esocial_beneficios_previdenciarios_tipos_form = form_esocial_beneficios_previdenciarios_tipos(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if esocial_beneficios_previdenciarios_tipos_form.is_valid():
+
                 dados = esocial_beneficios_previdenciarios_tipos_form.cleaned_data
-                if esocial_beneficios_previdenciarios_tipos_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #esocial_beneficios_previdenciarios_tipos_campos_multiple_passo1
-                    eSocialBeneficiosPrevidenciariosTipos.objects.using(db_slug).filter(id=esocial_beneficios_previdenciarios_tipos_id).update(**dados)
-                    obj = eSocialBeneficiosPrevidenciariosTipos.objects.using(db_slug).get(id=esocial_beneficios_previdenciarios_tipos_id)
-                    #esocial_beneficios_previdenciarios_tipos_editar_custom
-                    #esocial_beneficios_previdenciarios_tipos_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
+                obj = esocial_beneficios_previdenciarios_tipos_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not esocial_beneficios_previdenciarios_tipos_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'esocial_beneficios_previdenciarios_tipos', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #esocial_beneficios_previdenciarios_tipos_cadastrar_campos_multiple_passo1
-                    obj = eSocialBeneficiosPrevidenciariosTipos(**dados)
-                    obj.save(using = db_slug)
-                    #esocial_beneficios_previdenciarios_tipos_cadastrar_custom
-                    #esocial_beneficios_previdenciarios_tipos_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
+                    gravar_auditoria(json.dumps(model_to_dict(esocial_beneficios_previdenciarios_tipos), indent=4, sort_keys=True, default=str),
+                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                     'esocial_beneficios_previdenciarios_tipos', esocial_beneficios_previdenciarios_tipos_id, usuario_id, 2)
+                  
                 if request.session['retorno_pagina'] not in ('esocial_beneficios_previdenciarios_tipos_apagar', 'esocial_beneficios_previdenciarios_tipos_salvar', 'esocial_beneficios_previdenciarios_tipos'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if esocial_beneficios_previdenciarios_tipos_id != obj.id:

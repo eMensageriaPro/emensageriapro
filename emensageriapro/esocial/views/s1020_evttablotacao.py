@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -90,7 +91,8 @@ def apagar(request, hash):
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(s1020_evttablotacao), indent=4, sort_keys=True, default=str)
-            s1020evtTabLotacao.objects.using( db_slug ).filter(id = s1020_evttablotacao_id).delete()
+            obj = s1020evtTabLotacao.objects.using( db_slug ).get(id = s1020_evttablotacao_id)
+            obj.delete(request=request)
             #s1020_evttablotacao_apagar_custom
             #s1020_evttablotacao_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
@@ -305,49 +307,6 @@ def listar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
-# #view_identidade_evento#
-# def identidade_evento(s1020_evttablotacao_id, db_slug):
-#     from emensageriapro.mensageiro.models import TransmissorEventosEsocial
-#     dados_evento = s1020evtTabLotacao.objects.using( db_slug ).get(id=s1020_evttablotacao_id)
-#     identidade = 'ID'
-#     identidade += str(dados_evento.tpinsc)
-#     nr_insc = dados_evento.nrinsc
-#     while len(nr_insc) != 14:
-#         nr_insc = nr_insc+'0'
-#     identidade += nr_insc
-#     identidade += str(dados_evento.criado_em.year)
-#     mes = str(dados_evento.criado_em.month)
-#     if len(mes) == 1: mes = '0'+mes
-#     identidade += mes
-#     dia = str(dados_evento.criado_em.day)
-#     if len(dia) == 1: dia = '0'+dia
-#     identidade += dia
-#     hora = str(dados_evento.criado_em.hour)
-#     if len(hora) == 1: hora = '0'+hora
-#     identidade += hora
-#     minuto = str(dados_evento.criado_em.minute)
-#     if len(minuto) == 1: minuto = '0'+minuto
-#     identidade += minuto
-#     segundo = str(dados_evento.criado_em.second)
-#     if len(segundo) == 1: segundo = '0'+segundo
-#     identidade += segundo
-#     existe = True
-#     n = 0
-#     while existe:
-#         n+=1
-#         sequencial = str(n)
-#         while len(sequencial) != 5:
-#             sequencial = '0'+sequencial
-#         identidade_temp = identidade + sequencial
-#         lista_eventos = TransmissorEventosEsocial.objects.using(db_slug).filter(criado_em=dados_evento.criado_em,
-#                                                                          excluido=False, identidade = identidade_temp).all()
-#         if not lista_eventos:
-#             s1020evtTabLotacao.objects.using(db_slug).filter(id=s1020_evttablotacao_id).update(identidade=identidade_temp)
-#             existe = False
-#     return identidade_temp
-# #view_identidade_evento#
-
-
 def gerar_identidade(request, chave, evento_id):
     from emensageriapro.functions import identidade_evento
     from emensageriapro.settings import PASS_SCRIPT
@@ -397,46 +356,24 @@ def salvar(request, hash):
             s1020_evttablotacao_form = form_s1020_evttablotacao(request.POST or None, slug = db_slug, initial={'versao': VERSAO_LAYOUT_ESOCIAL, 'status': 0, 'processamento_codigo_resposta': 0, 'tpamb': TP_AMB, 'procemi': 1, 'verproc': VERSAO_EMENSAGERIA})
         if request.method == 'POST':
             if s1020_evttablotacao_form.is_valid():
+
                 dados = s1020_evttablotacao_form.cleaned_data
+                obj = s1020_evttablotacao_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
 
-                if s1020_evttablotacao_id:
-                    if s1020_evttablotacao.status == 0:
-                        dados['modificado_por_id'] = usuario_id
-                        dados['modificado_em'] = datetime.datetime.now()
-                        #s1020_evttablotacao_campos_multiple_passo1
-                        s1020evtTabLotacao.objects.using(db_slug).filter(id=s1020_evttablotacao_id).update(**dados)
-                        obj = s1020evtTabLotacao.objects.using(db_slug).get(id=s1020_evttablotacao_id)
-                        #s1020_evttablotacao_editar_custom
-                        #s1020_evttablotacao_campos_multiple_passo2
-                        messages.success(request, 'Alterado com sucesso!')
-                        gravar_auditoria(json.dumps(model_to_dict(s1020_evttablotacao), indent=4, sort_keys=True, default=str),
-                                         json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                         's1020_evttablotacao', s1020_evttablotacao_id, usuario_id, 2)
-                    else:
-                        obj = s1020evtTabLotacao.objects.using(db_slug).get(id=s1020_evttablotacao_id)
-                        messages.error(request, 'Não é possível salvar o evento, pois o mesmo não está com o status "Cadastrado"!')
-
-                else:
-                    dados['processamento_codigo_resposta'] = '- -'
-                    dados['processamento_descricao_resposta'] = '- -'
-
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #s1020_evttablotacao_cadastrar_campos_multiple_passo1
-                    obj = s1020evtTabLotacao(**dados)
-                    obj.save(using = db_slug)
-                    #s1020_evttablotacao_cadastrar_custom
-                    #s1020_evttablotacao_cadastrar_campos_multiple_passo2
-                    #identidade_evento(obj.id, db_slug)
+                if not s1020_evttablotacao_id:
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
- 
-                    messages.success(request, 'Cadastrado com sucesso!')
-                    s1020_evttablotacao_form = form_s1020_evttablotacao(request.POST or None, instance = obj, slug = db_slug)
+
                     gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 's1020_evttablotacao', obj.id, usuario_id, 1)
+                else:
+
+                    gravar_auditoria(json.dumps(model_to_dict(s1020_evttablotacao), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                     's1020_evttablotacao', obj.id, usuario_id, 1)
+                                     's1020_evttablotacao', s1020_evttablotacao_id, usuario_id, 2)
+              
                 if request.session['retorno_pagina'] not in ('s1020_evttablotacao_apagar', 's1020_evttablotacao_salvar', 's1020_evttablotacao'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if s1020_evttablotacao_id != obj.id:

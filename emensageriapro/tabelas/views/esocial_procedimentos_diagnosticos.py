@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     esocial_procedimentos_diagnosticos = get_object_or_404(eSocialProcedimentosDiagnosticos.objects.using( db_slug ), excluido = False, id = esocial_procedimentos_diagnosticos_id)
     if request.method == 'POST':
-        eSocialProcedimentosDiagnosticos.objects.using( db_slug ).filter(id = esocial_procedimentos_diagnosticos_id).update(excluido = True)
+        obj = eSocialProcedimentosDiagnosticos.objects.using( db_slug ).get(id = esocial_procedimentos_diagnosticos_id)
+        obj.delete(request=request)
         #esocial_procedimentos_diagnosticos_apagar_custom
         #esocial_procedimentos_diagnosticos_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -312,27 +314,21 @@ def salvar(request, hash):
             esocial_procedimentos_diagnosticos_form = form_esocial_procedimentos_diagnosticos(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if esocial_procedimentos_diagnosticos_form.is_valid():
+
                 dados = esocial_procedimentos_diagnosticos_form.cleaned_data
-                if esocial_procedimentos_diagnosticos_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #esocial_procedimentos_diagnosticos_campos_multiple_passo1
-                    eSocialProcedimentosDiagnosticos.objects.using(db_slug).filter(id=esocial_procedimentos_diagnosticos_id).update(**dados)
-                    obj = eSocialProcedimentosDiagnosticos.objects.using(db_slug).get(id=esocial_procedimentos_diagnosticos_id)
-                    #esocial_procedimentos_diagnosticos_editar_custom
-                    #esocial_procedimentos_diagnosticos_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
+                obj = esocial_procedimentos_diagnosticos_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not esocial_procedimentos_diagnosticos_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'esocial_procedimentos_diagnosticos', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #esocial_procedimentos_diagnosticos_cadastrar_campos_multiple_passo1
-                    obj = eSocialProcedimentosDiagnosticos(**dados)
-                    obj.save(using = db_slug)
-                    #esocial_procedimentos_diagnosticos_cadastrar_custom
-                    #esocial_procedimentos_diagnosticos_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
+                    gravar_auditoria(json.dumps(model_to_dict(esocial_procedimentos_diagnosticos), indent=4, sort_keys=True, default=str),
+                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                     'esocial_procedimentos_diagnosticos', esocial_procedimentos_diagnosticos_id, usuario_id, 2)
+                  
                 if request.session['retorno_pagina'] not in ('esocial_procedimentos_diagnosticos_apagar', 'esocial_procedimentos_diagnosticos_salvar', 'esocial_procedimentos_diagnosticos'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if esocial_procedimentos_diagnosticos_id != obj.id:

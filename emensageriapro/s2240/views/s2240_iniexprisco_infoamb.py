@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -86,7 +87,8 @@ def apagar(request, hash):
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(s2240_iniexprisco_infoamb), indent=4, sort_keys=True, default=str)
-            s2240iniExpRiscoinfoAmb.objects.using( db_slug ).filter(id = s2240_iniexprisco_infoamb_id).delete()
+            obj = s2240iniExpRiscoinfoAmb.objects.using( db_slug ).get(id = s2240_iniexprisco_infoamb_id)
+            obj.delete(request=request)
             #s2240_iniexprisco_infoamb_apagar_custom
             #s2240_iniexprisco_infoamb_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
@@ -307,43 +309,26 @@ def salvar(request, hash):
             s2240_iniexprisco_infoamb_form = form_s2240_iniexprisco_infoamb(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if s2240_iniexprisco_infoamb_form.is_valid():
+
                 dados = s2240_iniexprisco_infoamb_form.cleaned_data
-                import json
-                from django.forms.models import model_to_dict
-                if s2240_iniexprisco_infoamb_id:
-                    if dados_evento['status'] == 0:
-                        dados['modificado_por_id'] = usuario_id
-                        dados['modificado_em'] = datetime.datetime.now()
-                        #s2240_iniexprisco_infoamb_campos_multiple_passo1
-                        s2240iniExpRiscoinfoAmb.objects.using(db_slug).filter(id=s2240_iniexprisco_infoamb_id).update(**dados)
-                        obj = s2240iniExpRiscoinfoAmb.objects.using(db_slug).get(id=s2240_iniexprisco_infoamb_id)
-                        #s2240_iniexprisco_infoamb_editar_custom
-                        #s2240_iniexprisco_infoamb_campos_multiple_passo2
-                        messages.success(request, 'Alterado com sucesso!')
-                        gravar_auditoria(json.dumps(model_to_dict(s2240_iniexprisco_infoamb), indent=4, sort_keys=True, default=str),
-                                         json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                         's2240_iniexprisco_infoamb', s2240_iniexprisco_infoamb_id, usuario_id, 2)
-                    else:
-                        messages.error(request, 'Somente é possível alterar eventos com status "Cadastrado"!')
+                obj = s2240_iniexprisco_infoamb_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not s2240_iniexprisco_infoamb_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 's2240_iniexprisco_infoamb', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #s2240_iniexprisco_infoamb_cadastrar_campos_multiple_passo1
-                    obj = s2240iniExpRiscoinfoAmb(**dados)
-                    obj.save(using = db_slug)
-                    #s2240_iniexprisco_infoamb_cadastrar_custom
-                    #s2240_iniexprisco_infoamb_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
-                    gravar_auditoria('{}',
+                    gravar_auditoria(json.dumps(model_to_dict(s2240_iniexprisco_infoamb), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                     's2240_iniexprisco_infoamb', obj.id, usuario_id, 1)
-                    if request.session['retorno_pagina'] not in ('s2240_iniexprisco_infoamb_apagar', 's2240_iniexprisco_infoamb_salvar', 's2240_iniexprisco_infoamb'):
-                        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-                    if s2240_iniexprisco_infoamb_id != obj.id:
-                        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                        return redirect('s2240_iniexprisco_infoamb_salvar', hash=url_hash)
+                                     's2240_iniexprisco_infoamb', s2240_iniexprisco_infoamb_id, usuario_id, 2)
+                  
+                if request.session['retorno_pagina'] not in ('s2240_iniexprisco_infoamb_apagar', 's2240_iniexprisco_infoamb_salvar', 's2240_iniexprisco_infoamb'):
+                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if s2240_iniexprisco_infoamb_id != obj.id:
+                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
+                    return redirect('s2240_iniexprisco_infoamb_salvar', hash=url_hash)
             else:
                 messages.error(request, 'Erro ao salvar!')
         s2240_iniexprisco_infoamb_form = disabled_form_fields(s2240_iniexprisco_infoamb_form, permissao.permite_editar)

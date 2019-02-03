@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -66,7 +69,7 @@ CHOICES_S2245_TPTREICAP = (
     (5, u'5 - Outros'),
 )
 
-class s2245ideProfResp(models.Model):
+class s2245ideProfResp(SoftDeletionModel):
     s2245_infocomplem = models.ForeignKey('s2245infoComplem',
         related_name='%(class)s_s2245_infocomplem')
     def evento(self): return self.s2245_infocomplem.evento()
@@ -82,7 +85,7 @@ class s2245ideProfResp(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2245_infocomplem) + ' - ' + unicode(self.nmprof) + ' - ' + unicode(self.tpprof) + ' - ' + unicode(self.formprof) + ' - ' + unicode(self.codcbo) + ' - ' + unicode(self.nacprof)
     #s2245_ideprofresp_custom#
@@ -96,10 +99,17 @@ class s2245ideProfResp(models.Model):
 class s2245ideProfRespSerializer(ModelSerializer):
     class Meta:
         model = s2245ideProfResp
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2245infoComplem(models.Model):
+class s2245infoComplem(SoftDeletionModel):
     s2245_evttreicap = models.OneToOneField('esocial.s2245evtTreiCap',
         related_name='%(class)s_s2245_evttreicap')
     def evento(self): return self.s2245_evttreicap.evento()
@@ -113,7 +123,7 @@ class s2245infoComplem(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2245_evttreicap) + ' - ' + unicode(self.dttreicap) + ' - ' + unicode(self.durtreicap) + ' - ' + unicode(self.modtreicap) + ' - ' + unicode(self.tptreicap)
     #s2245_infocomplem_custom#
@@ -127,7 +137,14 @@ class s2245infoComplem(models.Model):
 class s2245infoComplemSerializer(ModelSerializer):
     class Meta:
         model = s2245infoComplem
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

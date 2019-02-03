@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     arquivos = get_object_or_404(Arquivos.objects.using( db_slug ), excluido = False, id = arquivos_id)
     if request.method == 'POST':
-        Arquivos.objects.using( db_slug ).filter(id = arquivos_id).update(excluido = True)
+        obj = Arquivos.objects.using( db_slug ).get(id = arquivos_id)
+        obj.delete(request=request)
         #arquivos_apagar_custom
         #arquivos_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -273,27 +275,11 @@ def salvar(request, hash):
             arquivos_form = form_arquivos(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if arquivos_form.is_valid():
-                dados = arquivos_form.cleaned_data
-                if arquivos_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #arquivos_campos_multiple_passo1
-                    Arquivos.objects.using(db_slug).filter(id=arquivos_id).update(**dados)
-                    obj = Arquivos.objects.using(db_slug).get(id=arquivos_id)
-                    #arquivos_editar_custom
-                    #arquivos_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
-                else:
+                #arquivos_campos_multiple_passo1
+                obj = arquivos_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+                #arquivos_campos_multiple_passo2
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #arquivos_cadastrar_campos_multiple_passo1
-                    obj = Arquivos(**dados)
-                    obj.save(using = db_slug)
-                    #arquivos_cadastrar_custom
-                    #arquivos_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
                 if request.session['retorno_pagina'] not in ('arquivos_apagar', 'arquivos_salvar', 'arquivos'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if arquivos_id != obj.id:

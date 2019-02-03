@@ -43,7 +43,6 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
-from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -57,6 +56,7 @@ from emensageriapro.s2230.models import *
 from emensageriapro.s2230.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
 from wkhtmltopdf.views import PDFTemplateResponse
+from datetime import datetime
 import base64
 import os
 
@@ -188,7 +188,7 @@ def gerar_xml_s2230(s2230_evtafasttemp_id, db_slug, versao=None):
             excluido = False,
             id = s2230_evtafasttemp_id)
 
-        if not versao:
+        if not versao or versao == '|':
 
             versao = s2230_evtafasttemp.versao
 

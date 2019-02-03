@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -433,7 +436,7 @@ ESTADOS = (
     ('TO', u'Tocantins'),
 )
 
-class s2210agenteCausador(models.Model):
+class s2210agenteCausador(SoftDeletionModel):
     s2210_evtcat = models.ForeignKey('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat')
     def evento(self): return self.s2210_evtcat.evento()
@@ -444,7 +447,7 @@ class s2210agenteCausador(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2210_evtcat) + ' - ' + unicode(self.codagntcausador)
     #s2210_agentecausador_custom#
@@ -458,10 +461,17 @@ class s2210agenteCausador(models.Model):
 class s2210agenteCausadorSerializer(ModelSerializer):
     class Meta:
         model = s2210agenteCausador
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2210atestado(models.Model):
+class s2210atestado(SoftDeletionModel):
     s2210_evtcat = models.OneToOneField('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat')
     def evento(self): return self.s2210_evtcat.evento()
@@ -486,7 +496,7 @@ class s2210atestado(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2210_evtcat) + ' - ' + unicode(self.dtatendimento) + ' - ' + unicode(self.hratendimento) + ' - ' + unicode(self.indinternacao) + ' - ' + unicode(self.durtrat) + ' - ' + unicode(self.indafast) + ' - ' + unicode(self.dsclesao) + ' - ' + unicode(self.codcid) + ' - ' + unicode(self.nmemit) + ' - ' + unicode(self.ideoc) + ' - ' + unicode(self.nroc)
     #s2210_atestado_custom#
@@ -500,10 +510,17 @@ class s2210atestado(models.Model):
 class s2210atestadoSerializer(ModelSerializer):
     class Meta:
         model = s2210atestado
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2210catOrigem(models.Model):
+class s2210catOrigem(SoftDeletionModel):
     s2210_evtcat = models.OneToOneField('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat')
     def evento(self): return self.s2210_evtcat.evento()
@@ -515,7 +532,7 @@ class s2210catOrigem(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2210_evtcat) + ' - ' + unicode(self.dtcatorig) + ' - ' + unicode(self.nrreccatorig)
     #s2210_catorigem_custom#
@@ -529,10 +546,17 @@ class s2210catOrigem(models.Model):
 class s2210catOrigemSerializer(ModelSerializer):
     class Meta:
         model = s2210catOrigem
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2210ideLocalAcid(models.Model):
+class s2210ideLocalAcid(SoftDeletionModel):
     s2210_evtcat = models.OneToOneField('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat')
     def evento(self): return self.s2210_evtcat.evento()
@@ -544,7 +568,7 @@ class s2210ideLocalAcid(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2210_evtcat) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s2210_idelocalacid_custom#
@@ -558,10 +582,17 @@ class s2210ideLocalAcid(models.Model):
 class s2210ideLocalAcidSerializer(ModelSerializer):
     class Meta:
         model = s2210ideLocalAcid
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2210parteAtingida(models.Model):
+class s2210parteAtingida(SoftDeletionModel):
     s2210_evtcat = models.ForeignKey('esocial.s2210evtCAT',
         related_name='%(class)s_s2210_evtcat')
     def evento(self): return self.s2210_evtcat.evento()
@@ -573,7 +604,7 @@ class s2210parteAtingida(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2210_evtcat) + ' - ' + unicode(self.codparteating) + ' - ' + unicode(self.lateralidade)
     #s2210_parteatingida_custom#
@@ -587,7 +618,14 @@ class s2210parteAtingida(models.Model):
 class s2210parteAtingidaSerializer(ModelSerializer):
     class Meta:
         model = s2210parteAtingida
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

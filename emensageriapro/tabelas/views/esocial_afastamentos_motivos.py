@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     esocial_afastamentos_motivos = get_object_or_404(eSocialAfastamentosMotivos.objects.using( db_slug ), excluido = False, id = esocial_afastamentos_motivos_id)
     if request.method == 'POST':
-        eSocialAfastamentosMotivos.objects.using( db_slug ).filter(id = esocial_afastamentos_motivos_id).update(excluido = True)
+        obj = eSocialAfastamentosMotivos.objects.using( db_slug ).get(id = esocial_afastamentos_motivos_id)
+        obj.delete(request=request)
         #esocial_afastamentos_motivos_apagar_custom
         #esocial_afastamentos_motivos_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -318,27 +320,21 @@ def salvar(request, hash):
             esocial_afastamentos_motivos_form = form_esocial_afastamentos_motivos(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if esocial_afastamentos_motivos_form.is_valid():
+
                 dados = esocial_afastamentos_motivos_form.cleaned_data
-                if esocial_afastamentos_motivos_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #esocial_afastamentos_motivos_campos_multiple_passo1
-                    eSocialAfastamentosMotivos.objects.using(db_slug).filter(id=esocial_afastamentos_motivos_id).update(**dados)
-                    obj = eSocialAfastamentosMotivos.objects.using(db_slug).get(id=esocial_afastamentos_motivos_id)
-                    #esocial_afastamentos_motivos_editar_custom
-                    #esocial_afastamentos_motivos_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
+                obj = esocial_afastamentos_motivos_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not esocial_afastamentos_motivos_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'esocial_afastamentos_motivos', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #esocial_afastamentos_motivos_cadastrar_campos_multiple_passo1
-                    obj = eSocialAfastamentosMotivos(**dados)
-                    obj.save(using = db_slug)
-                    #esocial_afastamentos_motivos_cadastrar_custom
-                    #esocial_afastamentos_motivos_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
+                    gravar_auditoria(json.dumps(model_to_dict(esocial_afastamentos_motivos), indent=4, sort_keys=True, default=str),
+                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                     'esocial_afastamentos_motivos', esocial_afastamentos_motivos_id, usuario_id, 2)
+                  
                 if request.session['retorno_pagina'] not in ('esocial_afastamentos_motivos_apagar', 'esocial_afastamentos_motivos_salvar', 'esocial_afastamentos_motivos'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if esocial_afastamentos_motivos_id != obj.id:

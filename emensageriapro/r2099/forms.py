@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.r2099.models import * 
 from emensageriapro.efdreinf.models import r2099evtFechaEvPer 
 
@@ -53,6 +54,25 @@ class form_r2099_iderespinf(forms.ModelForm):
         self.fields['r2099_evtfechaevper'].widget.attrs['required'] = True        
         self.fields['nmresp'].widget.attrs['required'] = True        
         self.fields['cpfresp'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2099_iderespinf, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2099ideRespInf

@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -56,7 +59,7 @@ CHOICES_S2250_TPAVPREVIO = (
     (5, u'5 - Aviso prévio trabalhado dado pelo empregador rural ao empregado, com redução de um dia por semana ( art. 15 da Lei nº 5889/73)'),
 )
 
-class s2250cancAvPrevio(models.Model):
+class s2250cancAvPrevio(SoftDeletionModel):
     s2250_evtavprevio = models.OneToOneField('esocial.s2250evtAvPrevio',
         related_name='%(class)s_s2250_evtavprevio')
     def evento(self): return self.s2250_evtavprevio.evento()
@@ -69,7 +72,7 @@ class s2250cancAvPrevio(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2250_evtavprevio) + ' - ' + unicode(self.dtcancavprv) + ' - ' + unicode(self.mtvcancavprevio)
     #s2250_cancavprevio_custom#
@@ -83,10 +86,17 @@ class s2250cancAvPrevio(models.Model):
 class s2250cancAvPrevioSerializer(ModelSerializer):
     class Meta:
         model = s2250cancAvPrevio
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2250detAvPrevio(models.Model):
+class s2250detAvPrevio(SoftDeletionModel):
     s2250_evtavprevio = models.OneToOneField('esocial.s2250evtAvPrevio',
         related_name='%(class)s_s2250_evtavprevio')
     def evento(self): return self.s2250_evtavprevio.evento()
@@ -100,7 +110,7 @@ class s2250detAvPrevio(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2250_evtavprevio) + ' - ' + unicode(self.dtavprv) + ' - ' + unicode(self.dtprevdeslig) + ' - ' + unicode(self.tpavprevio)
     #s2250_detavprevio_custom#
@@ -114,7 +124,14 @@ class s2250detAvPrevio(models.Model):
 class s2250detAvPrevioSerializer(ModelSerializer):
     class Meta:
         model = s2250detAvPrevio
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

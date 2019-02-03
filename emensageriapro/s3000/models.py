@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -47,7 +50,7 @@ CHOICES_S3000_INDAPURACAO = (
     (2, u'2 - Anual (13° salário)'),
 )
 
-class s3000ideFolhaPagto(models.Model):
+class s3000ideFolhaPagto(SoftDeletionModel):
     s3000_evtexclusao = models.OneToOneField('esocial.s3000evtExclusao',
         related_name='%(class)s_s3000_evtexclusao')
     def evento(self): return self.s3000_evtexclusao.evento()
@@ -59,7 +62,7 @@ class s3000ideFolhaPagto(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s3000_evtexclusao) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur)
     #s3000_idefolhapagto_custom#
@@ -73,10 +76,17 @@ class s3000ideFolhaPagto(models.Model):
 class s3000ideFolhaPagtoSerializer(ModelSerializer):
     class Meta:
         model = s3000ideFolhaPagto
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s3000ideTrabalhador(models.Model):
+class s3000ideTrabalhador(SoftDeletionModel):
     s3000_evtexclusao = models.OneToOneField('esocial.s3000evtExclusao',
         related_name='%(class)s_s3000_evtexclusao')
     def evento(self): return self.s3000_evtexclusao.evento()
@@ -88,7 +98,7 @@ class s3000ideTrabalhador(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s3000_evtexclusao) + ' - ' + unicode(self.cpftrab)
     #s3000_idetrabalhador_custom#
@@ -102,7 +112,14 @@ class s3000ideTrabalhador(models.Model):
 class s3000ideTrabalhadorSerializer(ModelSerializer):
     class Meta:
         model = s3000ideTrabalhador
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

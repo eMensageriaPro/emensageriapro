@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -84,7 +87,7 @@ CHOICES_S1202_TPTRIB = (
     (4, u'4 - Contribuição sindical'),
 )
 
-class s1202dmDev(models.Model):
+class s1202dmDev(SoftDeletionModel):
     s1202_evtrmnrpps = models.ForeignKey('esocial.s1202evtRmnRPPS',
         related_name='%(class)s_s1202_evtrmnrpps')
     def evento(self): return self.s1202_evtrmnrpps.evento()
@@ -96,7 +99,7 @@ class s1202dmDev(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1202_evtrmnrpps) + ' - ' + unicode(self.idedmdev) + ' - ' + unicode(self.codcateg)
     #s1202_dmdev_custom#
@@ -110,10 +113,17 @@ class s1202dmDev(models.Model):
 class s1202dmDevSerializer(ModelSerializer):
     class Meta:
         model = s1202dmDev
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1202infoPerAntideADC(models.Model):
+class s1202infoPerAntideADC(SoftDeletionModel):
     s1202_dmdev = models.ForeignKey('s1202dmDev',
         related_name='%(class)s_s1202_dmdev')
     def evento(self): return self.s1202_dmdev.evento()
@@ -131,7 +141,7 @@ class s1202infoPerAntideADC(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1202_dmdev) + ' - ' + unicode(self.dtlei) + ' - ' + unicode(self.nrlei) + ' - ' + unicode(self.tpacconv) + ' - ' + unicode(self.dsc)
     #s1202_infoperant_ideadc_custom#
@@ -145,10 +155,17 @@ class s1202infoPerAntideADC(models.Model):
 class s1202infoPerAntideADCSerializer(ModelSerializer):
     class Meta:
         model = s1202infoPerAntideADC
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1202infoPerAntideEstab(models.Model):
+class s1202infoPerAntideEstab(SoftDeletionModel):
     s1202_infoperant_ideperiodo = models.ForeignKey('s1202infoPerAntidePeriodo',
         related_name='%(class)s_s1202_infoperant_ideperiodo')
     def evento(self): return self.s1202_infoperant_ideperiodo.evento()
@@ -160,7 +177,7 @@ class s1202infoPerAntideEstab(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1202_infoperant_ideperiodo) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1202_infoperant_ideestab_custom#
@@ -174,10 +191,17 @@ class s1202infoPerAntideEstab(models.Model):
 class s1202infoPerAntideEstabSerializer(ModelSerializer):
     class Meta:
         model = s1202infoPerAntideEstab
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1202infoPerAntidePeriodo(models.Model):
+class s1202infoPerAntidePeriodo(SoftDeletionModel):
     s1202_infoperant_ideadc = models.ForeignKey('s1202infoPerAntideADC',
         related_name='%(class)s_s1202_infoperant_ideadc')
     def evento(self): return self.s1202_infoperant_ideadc.evento()
@@ -188,7 +212,7 @@ class s1202infoPerAntidePeriodo(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1202_infoperant_ideadc) + ' - ' + unicode(self.perref)
     #s1202_infoperant_ideperiodo_custom#
@@ -202,10 +226,17 @@ class s1202infoPerAntidePeriodo(models.Model):
 class s1202infoPerAntidePeriodoSerializer(ModelSerializer):
     class Meta:
         model = s1202infoPerAntidePeriodo
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1202infoPerAntitensRemun(models.Model):
+class s1202infoPerAntitensRemun(SoftDeletionModel):
     s1202_infoperant_remunperant = models.ForeignKey('s1202infoPerAntremunPerAnt',
         related_name='%(class)s_s1202_infoperant_remunperant')
     def evento(self): return self.s1202_infoperant_remunperant.evento()
@@ -221,7 +252,7 @@ class s1202infoPerAntitensRemun(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1202_infoperant_remunperant) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1202_infoperant_itensremun_custom#
@@ -235,10 +266,17 @@ class s1202infoPerAntitensRemun(models.Model):
 class s1202infoPerAntitensRemunSerializer(ModelSerializer):
     class Meta:
         model = s1202infoPerAntitensRemun
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1202infoPerAntremunPerAnt(models.Model):
+class s1202infoPerAntremunPerAnt(SoftDeletionModel):
     s1202_infoperant_ideestab = models.ForeignKey('s1202infoPerAntideEstab',
         related_name='%(class)s_s1202_infoperant_ideestab')
     def evento(self): return self.s1202_infoperant_ideestab.evento()
@@ -250,7 +288,7 @@ class s1202infoPerAntremunPerAnt(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1202_infoperant_ideestab) + ' - ' + unicode(self.codcateg)
     #s1202_infoperant_remunperant_custom#
@@ -264,10 +302,17 @@ class s1202infoPerAntremunPerAnt(models.Model):
 class s1202infoPerAntremunPerAntSerializer(ModelSerializer):
     class Meta:
         model = s1202infoPerAntremunPerAnt
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1202infoPerApurdetOper(models.Model):
+class s1202infoPerApurdetOper(SoftDeletionModel):
     s1202_infoperapur_remunperapur = models.ForeignKey('s1202infoPerApurremunPerApur',
         related_name='%(class)s_s1202_infoperapur_remunperapur')
     def evento(self): return self.s1202_infoperapur_remunperapur.evento()
@@ -280,7 +325,7 @@ class s1202infoPerApurdetOper(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1202_infoperapur_remunperapur) + ' - ' + unicode(self.cnpjoper) + ' - ' + unicode(self.regans) + ' - ' + unicode(self.vrpgtit)
     #s1202_infoperapur_detoper_custom#
@@ -294,10 +339,17 @@ class s1202infoPerApurdetOper(models.Model):
 class s1202infoPerApurdetOperSerializer(ModelSerializer):
     class Meta:
         model = s1202infoPerApurdetOper
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1202infoPerApurdetPlano(models.Model):
+class s1202infoPerApurdetPlano(SoftDeletionModel):
     s1202_infoperapur_detoper = models.ForeignKey('s1202infoPerApurdetOper',
         related_name='%(class)s_s1202_infoperapur_detoper')
     def evento(self): return self.s1202_infoperapur_detoper.evento()
@@ -312,7 +364,7 @@ class s1202infoPerApurdetPlano(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1202_infoperapur_detoper) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.vlrpgdep)
     #s1202_infoperapur_detplano_custom#
@@ -326,10 +378,17 @@ class s1202infoPerApurdetPlano(models.Model):
 class s1202infoPerApurdetPlanoSerializer(ModelSerializer):
     class Meta:
         model = s1202infoPerApurdetPlano
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1202infoPerApurideEstab(models.Model):
+class s1202infoPerApurideEstab(SoftDeletionModel):
     s1202_dmdev = models.ForeignKey('s1202dmDev',
         related_name='%(class)s_s1202_dmdev')
     def evento(self): return self.s1202_dmdev.evento()
@@ -341,7 +400,7 @@ class s1202infoPerApurideEstab(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1202_dmdev) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1202_infoperapur_ideestab_custom#
@@ -355,10 +414,17 @@ class s1202infoPerApurideEstab(models.Model):
 class s1202infoPerApurideEstabSerializer(ModelSerializer):
     class Meta:
         model = s1202infoPerApurideEstab
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1202infoPerApuritensRemun(models.Model):
+class s1202infoPerApuritensRemun(SoftDeletionModel):
     s1202_infoperapur_remunperapur = models.ForeignKey('s1202infoPerApurremunPerApur',
         related_name='%(class)s_s1202_infoperapur_remunperapur')
     def evento(self): return self.s1202_infoperapur_remunperapur.evento()
@@ -374,7 +440,7 @@ class s1202infoPerApuritensRemun(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1202_infoperapur_remunperapur) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1202_infoperapur_itensremun_custom#
@@ -388,10 +454,17 @@ class s1202infoPerApuritensRemun(models.Model):
 class s1202infoPerApuritensRemunSerializer(ModelSerializer):
     class Meta:
         model = s1202infoPerApuritensRemun
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1202infoPerApurremunPerApur(models.Model):
+class s1202infoPerApurremunPerApur(SoftDeletionModel):
     s1202_infoperapur_ideestab = models.ForeignKey('s1202infoPerApurideEstab',
         related_name='%(class)s_s1202_infoperapur_ideestab')
     def evento(self): return self.s1202_infoperapur_ideestab.evento()
@@ -403,7 +476,7 @@ class s1202infoPerApurremunPerApur(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1202_infoperapur_ideestab) + ' - ' + unicode(self.codcateg)
     #s1202_infoperapur_remunperapur_custom#
@@ -417,10 +490,17 @@ class s1202infoPerApurremunPerApur(models.Model):
 class s1202infoPerApurremunPerApurSerializer(ModelSerializer):
     class Meta:
         model = s1202infoPerApurremunPerApur
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1202procJudTrab(models.Model):
+class s1202procJudTrab(SoftDeletionModel):
     s1202_evtrmnrpps = models.ForeignKey('esocial.s1202evtRmnRPPS',
         related_name='%(class)s_s1202_evtrmnrpps')
     def evento(self): return self.s1202_evtrmnrpps.evento()
@@ -433,7 +513,7 @@ class s1202procJudTrab(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1202_evtrmnrpps) + ' - ' + unicode(self.tptrib) + ' - ' + unicode(self.nrprocjud)
     #s1202_procjudtrab_custom#
@@ -447,7 +527,14 @@ class s1202procJudTrab(models.Model):
 class s1202procJudTrabSerializer(ModelSerializer):
     class Meta:
         model = s1202procJudTrab
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

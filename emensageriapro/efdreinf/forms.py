@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.efdreinf.models import * 
 from emensageriapro.mensageiro.models import TransmissorLoteEfdreinf 
 
@@ -66,6 +67,25 @@ class form_r1000_evtinfocontri(forms.ModelForm):
         self.fields['verproc'].widget.attrs['disabled'] = True        
         self.fields['tpinsc'].widget.attrs['required'] = True        
         self.fields['nrinsc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r1000_evtinfocontri, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r1000evtInfoContri
@@ -110,6 +130,25 @@ class form_r1070_evttabprocesso(forms.ModelForm):
         self.fields['verproc'].widget.attrs['disabled'] = True        
         self.fields['tpinsc'].widget.attrs['required'] = True        
         self.fields['nrinsc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r1070_evttabprocesso, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r1070evtTabProcesso
@@ -169,6 +208,25 @@ class form_r2010_evtservtom(forms.ModelForm):
         self.fields['vlrtotalbaseret'].widget.attrs['required'] = True        
         self.fields['vlrtotalretprinc'].widget.attrs['required'] = True        
         self.fields['indcprb'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2010_evtservtom, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2010evtServTom
@@ -228,6 +286,25 @@ class form_r2020_evtservprest(forms.ModelForm):
         self.fields['vlrtotalbruto'].widget.attrs['required'] = True        
         self.fields['vlrtotalbaseret'].widget.attrs['required'] = True        
         self.fields['vlrtotalretprinc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2020_evtservprest, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2020evtServPrest
@@ -275,6 +352,25 @@ class form_r2030_evtassocdesprec(forms.ModelForm):
         self.fields['nrinsc'].widget.attrs['required'] = True        
         self.fields['tpinscestab'].widget.attrs['required'] = True        
         self.fields['nrinscestab'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2030_evtassocdesprec, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2030evtAssocDespRec
@@ -322,6 +418,25 @@ class form_r2040_evtassocdesprep(forms.ModelForm):
         self.fields['nrinsc'].widget.attrs['required'] = True        
         self.fields['tpinscestab'].widget.attrs['required'] = True        
         self.fields['nrinscestab'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2040_evtassocdesprep, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2040evtAssocDespRep
@@ -380,6 +495,25 @@ class form_r2050_evtcomprod(forms.ModelForm):
         self.fields['vlrcpapur'].widget.attrs['required'] = True        
         self.fields['vlrratapur'].widget.attrs['required'] = True        
         self.fields['vlrsenarapur'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2050_evtcomprod, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2050evtComProd
@@ -432,6 +566,25 @@ class form_r2060_evtcprb(forms.ModelForm):
         self.fields['nrinscestab'].widget.attrs['required'] = True        
         self.fields['vlrrecbrutatotal'].widget.attrs['required'] = True        
         self.fields['vlrcpapurtotal'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2060_evtcprb, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2060evtCPRB
@@ -479,6 +632,25 @@ class form_r2070_evtpgtosdivs(forms.ModelForm):
         self.fields['nrinsc'].widget.attrs['required'] = True        
         self.fields['codpgto'].widget.attrs['required'] = True        
         self.fields['nmrazaobenef'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_evtpgtosdivs, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070evtPgtosDivs
@@ -523,6 +695,25 @@ class form_r2098_evtreabreevper(forms.ModelForm):
         self.fields['verproc'].widget.attrs['disabled'] = True        
         self.fields['tpinsc'].widget.attrs['required'] = True        
         self.fields['nrinsc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2098_evtreabreevper, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2098evtReabreEvPer
@@ -573,6 +764,25 @@ class form_r2099_evtfechaevper(forms.ModelForm):
         self.fields['evtassdesprep'].widget.attrs['required'] = True        
         self.fields['evtcomprod'].widget.attrs['required'] = True        
         self.fields['evtcprb'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2099_evtfechaevper, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2099evtFechaEvPer
@@ -629,6 +839,25 @@ class form_r3010_evtespdesportivo(forms.ModelForm):
         self.fields['vlrcp'].widget.attrs['required'] = True        
         self.fields['vlrreceitaclubes'].widget.attrs['required'] = True        
         self.fields['vlrretparc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r3010_evtespdesportivo, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r3010evtEspDesportivo
@@ -673,6 +902,25 @@ class form_r5001_evttotal(forms.ModelForm):
         self.fields['tpev'].widget.attrs['required'] = True        
         self.fields['idev'].widget.attrs['required'] = True        
         self.fields['hash'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r5001_evttotal, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r5001evtTotal
@@ -715,6 +963,25 @@ class form_r5011_evttotalcontrib(forms.ModelForm):
         self.fields['tpev'].widget.attrs['required'] = True        
         self.fields['idev'].widget.attrs['required'] = True        
         self.fields['hash'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r5011_evttotalcontrib, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r5011evtTotalContrib
@@ -758,6 +1025,25 @@ class form_r9000_evtexclusao(forms.ModelForm):
         self.fields['tpevento'].widget.attrs['required'] = True        
         self.fields['nrrecevt'].widget.attrs['required'] = True        
         self.fields['perapur'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r9000_evtexclusao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r9000evtExclusao

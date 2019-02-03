@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -60,7 +63,7 @@ CHOICES_S2220_ORDEXAME = (
     (2, u'2 - Sequencial'),
 )
 
-class s2220exame(models.Model):
+class s2220exame(SoftDeletionModel):
     s2220_evtmonit = models.ForeignKey('esocial.s2220evtMonit',
         related_name='%(class)s_s2220_evtmonit')
     def evento(self): return self.s2220_evtmonit.evento()
@@ -78,7 +81,7 @@ class s2220exame(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2220_evtmonit) + ' - ' + unicode(self.dtexm) + ' - ' + unicode(self.procrealizado) + ' - ' + unicode(self.interprexm) + ' - ' + unicode(self.ordexame) + ' - ' + unicode(self.dtinimonit)
     #s2220_exame_custom#
@@ -92,7 +95,14 @@ class s2220exame(models.Model):
 class s2220exameSerializer(ModelSerializer):
     class Meta:
         model = s2220exame
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

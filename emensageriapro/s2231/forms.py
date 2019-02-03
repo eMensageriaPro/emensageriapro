@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s2231.models import * 
 from emensageriapro.esocial.models import s2231evtCessao 
 
@@ -52,6 +53,25 @@ class form_s2231_fimcessao(forms.ModelForm):
         
         self.fields['s2231_evtcessao'].widget.attrs['required'] = True        
         self.fields['dttermcessao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2231_fimcessao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2231fimCessao
@@ -75,6 +95,25 @@ class form_s2231_inicessao(forms.ModelForm):
         self.fields['cnpjcess'].widget.attrs['required'] = True        
         self.fields['infonus'].widget.attrs['required'] = True        
         self.fields['indcessao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2231_inicessao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2231iniCessao

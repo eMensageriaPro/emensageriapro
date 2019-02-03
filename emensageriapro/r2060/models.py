@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -66,7 +69,7 @@ CHOICES_R2060_TPPROC = (
     (2, u'2 - Judicial'),
 )
 
-class r2060infoProc(models.Model):
+class r2060infoProc(SoftDeletionModel):
     r2060_tipocod = models.ForeignKey('r2060tipoCod',
         related_name='%(class)s_r2060_tipocod')
     def evento(self): return self.r2060_tipocod.evento()
@@ -80,7 +83,7 @@ class r2060infoProc(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2060_tipocod) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.vlrcprbsusp)
     #r2060_infoproc_custom#
@@ -94,10 +97,17 @@ class r2060infoProc(models.Model):
 class r2060infoProcSerializer(ModelSerializer):
     class Meta:
         model = r2060infoProc
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2060tipoAjuste(models.Model):
+class r2060tipoAjuste(SoftDeletionModel):
     r2060_tipocod = models.ForeignKey('r2060tipoCod',
         related_name='%(class)s_r2060_tipocod')
     def evento(self): return self.r2060_tipocod.evento()
@@ -112,7 +122,7 @@ class r2060tipoAjuste(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2060_tipocod) + ' - ' + unicode(self.tpajuste) + ' - ' + unicode(self.codajuste) + ' - ' + unicode(self.vlrajuste) + ' - ' + unicode(self.descajuste) + ' - ' + unicode(self.dtajuste)
     #r2060_tipoajuste_custom#
@@ -126,10 +136,17 @@ class r2060tipoAjuste(models.Model):
 class r2060tipoAjusteSerializer(ModelSerializer):
     class Meta:
         model = r2060tipoAjuste
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2060tipoCod(models.Model):
+class r2060tipoCod(SoftDeletionModel):
     r2060_evtcprb = models.ForeignKey('efdreinf.r2060evtCPRB',
         related_name='%(class)s_r2060_evtcprb')
     def evento(self): return self.r2060_evtcprb.evento()
@@ -145,7 +162,7 @@ class r2060tipoCod(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2060_evtcprb) + ' - ' + unicode(self.codativecon) + ' - ' + unicode(self.vlrrecbrutaativ) + ' - ' + unicode(self.vlrexcrecbruta) + ' - ' + unicode(self.vlradicrecbruta) + ' - ' + unicode(self.vlrbccprb)
     #r2060_tipocod_custom#
@@ -159,7 +176,14 @@ class r2060tipoCod(models.Model):
 class r2060tipoCodSerializer(ModelSerializer):
     class Meta:
         model = r2060tipoCod
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

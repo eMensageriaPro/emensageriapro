@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -92,7 +95,7 @@ ESTADOS = (
     ('TO', u'Tocantins'),
 )
 
-class s2405brasil(models.Model):
+class s2405brasil(SoftDeletionModel):
     s2405_evtcdbenefalt = models.OneToOneField('esocial.s2405evtCdBenefAlt',
         related_name='%(class)s_s2405_evtcdbenefalt')
     def evento(self): return self.s2405_evtcdbenefalt.evento()
@@ -110,7 +113,7 @@ class s2405brasil(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2405_evtcdbenefalt) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
     #s2405_brasil_custom#
@@ -124,10 +127,17 @@ class s2405brasil(models.Model):
 class s2405brasilSerializer(ModelSerializer):
     class Meta:
         model = s2405brasil
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2405dependente(models.Model):
+class s2405dependente(SoftDeletionModel):
     s2405_evtcdbenefalt = models.ForeignKey('esocial.s2405evtCdBenefAlt',
         related_name='%(class)s_s2405_evtcdbenefalt')
     def evento(self): return self.s2405_evtcdbenefalt.evento()
@@ -145,7 +155,7 @@ class s2405dependente(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2405_evtcdbenefalt) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.sexodep) + ' - ' + unicode(self.depirrf) + ' - ' + unicode(self.incfismen) + ' - ' + unicode(self.depfinsprev)
     #s2405_dependente_custom#
@@ -159,10 +169,17 @@ class s2405dependente(models.Model):
 class s2405dependenteSerializer(ModelSerializer):
     class Meta:
         model = s2405dependente
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2405exterior(models.Model):
+class s2405exterior(SoftDeletionModel):
     s2405_evtcdbenefalt = models.OneToOneField('esocial.s2405evtCdBenefAlt',
         related_name='%(class)s_s2405_evtcdbenefalt')
     def evento(self): return self.s2405_evtcdbenefalt.evento()
@@ -179,7 +196,7 @@ class s2405exterior(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2405_evtcdbenefalt) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.nmcid)
     #s2405_exterior_custom#
@@ -193,7 +210,14 @@ class s2405exterior(models.Model):
 class s2405exteriorSerializer(ModelSerializer):
     class Meta:
         model = s2405exterior
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

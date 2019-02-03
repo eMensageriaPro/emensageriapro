@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -93,7 +96,7 @@ PERIODOS = (
     ('2019-12', u'Dezembro/2019'),
 )
 
-class s1035alteracao(models.Model):
+class s1035alteracao(SoftDeletionModel):
     s1035_evttabcarreira = models.OneToOneField('esocial.s1035evtTabCarreira',
         related_name='%(class)s_s1035_evttabcarreira')
     def evento(self): return self.s1035_evttabcarreira.evento()
@@ -110,7 +113,7 @@ class s1035alteracao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1035_evttabcarreira) + ' - ' + unicode(self.codcarreira) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.dsccarreira) + ' - ' + unicode(self.dtleicarr) + ' - ' + unicode(self.sitcarr)
     #s1035_alteracao_custom#
@@ -124,10 +127,17 @@ class s1035alteracao(models.Model):
 class s1035alteracaoSerializer(ModelSerializer):
     class Meta:
         model = s1035alteracao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1035alteracaonovaValidade(models.Model):
+class s1035alteracaonovaValidade(SoftDeletionModel):
     s1035_alteracao = models.OneToOneField('s1035alteracao',
         related_name='%(class)s_s1035_alteracao')
     def evento(self): return self.s1035_alteracao.evento()
@@ -139,7 +149,7 @@ class s1035alteracaonovaValidade(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1035_alteracao) + ' - ' + unicode(self.inivalid)
     #s1035_alteracao_novavalidade_custom#
@@ -153,10 +163,17 @@ class s1035alteracaonovaValidade(models.Model):
 class s1035alteracaonovaValidadeSerializer(ModelSerializer):
     class Meta:
         model = s1035alteracaonovaValidade
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1035exclusao(models.Model):
+class s1035exclusao(SoftDeletionModel):
     s1035_evttabcarreira = models.OneToOneField('esocial.s1035evtTabCarreira',
         related_name='%(class)s_s1035_evttabcarreira')
     def evento(self): return self.s1035_evttabcarreira.evento()
@@ -169,7 +186,7 @@ class s1035exclusao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1035_evttabcarreira) + ' - ' + unicode(self.codcarreira) + ' - ' + unicode(self.inivalid)
     #s1035_exclusao_custom#
@@ -183,10 +200,17 @@ class s1035exclusao(models.Model):
 class s1035exclusaoSerializer(ModelSerializer):
     class Meta:
         model = s1035exclusao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1035inclusao(models.Model):
+class s1035inclusao(SoftDeletionModel):
     s1035_evttabcarreira = models.OneToOneField('esocial.s1035evtTabCarreira',
         related_name='%(class)s_s1035_evttabcarreira')
     def evento(self): return self.s1035_evttabcarreira.evento()
@@ -203,7 +227,7 @@ class s1035inclusao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1035_evttabcarreira) + ' - ' + unicode(self.codcarreira) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.dsccarreira) + ' - ' + unicode(self.dtleicarr) + ' - ' + unicode(self.sitcarr)
     #s1035_inclusao_custom#
@@ -217,7 +241,14 @@ class s1035inclusao(models.Model):
 class s1035inclusaoSerializer(ModelSerializer):
     class Meta:
         model = s1035inclusao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

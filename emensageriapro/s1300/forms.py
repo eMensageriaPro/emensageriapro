@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s1300.models import * 
 from emensageriapro.esocial.models import s1300evtContrSindPatr 
 
@@ -56,6 +57,25 @@ class form_s1300_contribsind(forms.ModelForm):
         self.fields['cnpjsindic'].widget.attrs['required'] = True        
         self.fields['tpcontribsind'].widget.attrs['required'] = True        
         self.fields['vlrcontribsind'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1300_contribsind, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1300contribSind

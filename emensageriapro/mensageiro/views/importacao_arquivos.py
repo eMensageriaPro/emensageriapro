@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     importacao_arquivos = get_object_or_404(ImportacaoArquivos.objects.using( db_slug ), excluido = False, id = importacao_arquivos_id)
     if request.method == 'POST':
-        ImportacaoArquivos.objects.using( db_slug ).filter(id = importacao_arquivos_id).update(excluido = True)
+        obj = ImportacaoArquivos.objects.using( db_slug ).get(id = importacao_arquivos_id)
+        obj.delete(request=request)
         #importacao_arquivos_apagar_custom
         #importacao_arquivos_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -353,27 +355,11 @@ def salvar(request, hash):
             importacao_arquivos_form = form_importacao_arquivos(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if importacao_arquivos_form.is_valid():
-                dados = importacao_arquivos_form.cleaned_data
-                if importacao_arquivos_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #importacao_arquivos_campos_multiple_passo1
-                    ImportacaoArquivos.objects.using(db_slug).filter(id=importacao_arquivos_id).update(**dados)
-                    obj = ImportacaoArquivos.objects.using(db_slug).get(id=importacao_arquivos_id)
-                    #importacao_arquivos_editar_custom
-                    #importacao_arquivos_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
-                else:
+                #importacao_arquivos_campos_multiple_passo1
+                obj = importacao_arquivos_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+                #importacao_arquivos_campos_multiple_passo2
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #importacao_arquivos_cadastrar_campos_multiple_passo1
-                    obj = ImportacaoArquivos(**dados)
-                    obj.save(using = db_slug)
-                    #importacao_arquivos_cadastrar_custom
-                    #importacao_arquivos_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
                 if request.session['retorno_pagina'] not in ('importacao_arquivos_apagar', 'importacao_arquivos_salvar', 'importacao_arquivos'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if importacao_arquivos_id != obj.id:

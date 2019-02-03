@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s1060.models import * 
 from emensageriapro.esocial.models import s1060evtTabAmbiente 
 
@@ -56,6 +57,25 @@ class form_s1060_alteracao(forms.ModelForm):
         self.fields['nmamb'].widget.attrs['required'] = True        
         self.fields['dscamb'].widget.attrs['required'] = True        
         self.fields['localamb'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1060_alteracao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1060alteracao
@@ -76,6 +96,25 @@ class form_s1060_alteracao_novavalidade(forms.ModelForm):
         
         self.fields['s1060_alteracao'].widget.attrs['required'] = True        
         self.fields['inivalid'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1060_alteracao_novavalidade, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1060alteracaonovaValidade
@@ -97,6 +136,25 @@ class form_s1060_exclusao(forms.ModelForm):
         self.fields['s1060_evttabambiente'].widget.attrs['required'] = True        
         self.fields['codamb'].widget.attrs['required'] = True        
         self.fields['inivalid'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1060_exclusao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1060exclusao
@@ -121,6 +179,25 @@ class form_s1060_inclusao(forms.ModelForm):
         self.fields['nmamb'].widget.attrs['required'] = True        
         self.fields['dscamb'].widget.attrs['required'] = True        
         self.fields['localamb'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1060_inclusao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1060inclusao

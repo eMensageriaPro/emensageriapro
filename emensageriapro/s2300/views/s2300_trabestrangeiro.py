@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -86,7 +87,8 @@ def apagar(request, hash):
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(s2300_trabestrangeiro), indent=4, sort_keys=True, default=str)
-            s2300trabEstrangeiro.objects.using( db_slug ).filter(id = s2300_trabestrangeiro_id).delete()
+            obj = s2300trabEstrangeiro.objects.using( db_slug ).get(id = s2300_trabestrangeiro_id)
+            obj.delete(request=request)
             #s2300_trabestrangeiro_apagar_custom
             #s2300_trabestrangeiro_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
@@ -316,43 +318,26 @@ def salvar(request, hash):
             s2300_trabestrangeiro_form = form_s2300_trabestrangeiro(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if s2300_trabestrangeiro_form.is_valid():
+
                 dados = s2300_trabestrangeiro_form.cleaned_data
-                import json
-                from django.forms.models import model_to_dict
-                if s2300_trabestrangeiro_id:
-                    if dados_evento['status'] == 0:
-                        dados['modificado_por_id'] = usuario_id
-                        dados['modificado_em'] = datetime.datetime.now()
-                        #s2300_trabestrangeiro_campos_multiple_passo1
-                        s2300trabEstrangeiro.objects.using(db_slug).filter(id=s2300_trabestrangeiro_id).update(**dados)
-                        obj = s2300trabEstrangeiro.objects.using(db_slug).get(id=s2300_trabestrangeiro_id)
-                        #s2300_trabestrangeiro_editar_custom
-                        #s2300_trabestrangeiro_campos_multiple_passo2
-                        messages.success(request, 'Alterado com sucesso!')
-                        gravar_auditoria(json.dumps(model_to_dict(s2300_trabestrangeiro), indent=4, sort_keys=True, default=str),
-                                         json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                         's2300_trabestrangeiro', s2300_trabestrangeiro_id, usuario_id, 2)
-                    else:
-                        messages.error(request, 'Somente é possível alterar eventos com status "Cadastrado"!')
+                obj = s2300_trabestrangeiro_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not s2300_trabestrangeiro_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 's2300_trabestrangeiro', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #s2300_trabestrangeiro_cadastrar_campos_multiple_passo1
-                    obj = s2300trabEstrangeiro(**dados)
-                    obj.save(using = db_slug)
-                    #s2300_trabestrangeiro_cadastrar_custom
-                    #s2300_trabestrangeiro_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
-                    gravar_auditoria('{}',
+                    gravar_auditoria(json.dumps(model_to_dict(s2300_trabestrangeiro), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                     's2300_trabestrangeiro', obj.id, usuario_id, 1)
-                    if request.session['retorno_pagina'] not in ('s2300_trabestrangeiro_apagar', 's2300_trabestrangeiro_salvar', 's2300_trabestrangeiro'):
-                        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-                    if s2300_trabestrangeiro_id != obj.id:
-                        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                        return redirect('s2300_trabestrangeiro_salvar', hash=url_hash)
+                                     's2300_trabestrangeiro', s2300_trabestrangeiro_id, usuario_id, 2)
+                  
+                if request.session['retorno_pagina'] not in ('s2300_trabestrangeiro_apagar', 's2300_trabestrangeiro_salvar', 's2300_trabestrangeiro'):
+                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if s2300_trabestrangeiro_id != obj.id:
+                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
+                    return redirect('s2300_trabestrangeiro_salvar', hash=url_hash)
             else:
                 messages.error(request, 'Erro ao salvar!')
         s2300_trabestrangeiro_form = disabled_form_fields(s2300_trabestrangeiro_form, permissao.permite_editar)

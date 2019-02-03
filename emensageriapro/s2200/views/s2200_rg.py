@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -86,7 +87,8 @@ def apagar(request, hash):
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(s2200_rg), indent=4, sort_keys=True, default=str)
-            s2200RG.objects.using( db_slug ).filter(id = s2200_rg_id).delete()
+            obj = s2200RG.objects.using( db_slug ).get(id = s2200_rg_id)
+            obj.delete(request=request)
             #s2200_rg_apagar_custom
             #s2200_rg_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
@@ -313,43 +315,26 @@ def salvar(request, hash):
             s2200_rg_form = form_s2200_rg(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if s2200_rg_form.is_valid():
+
                 dados = s2200_rg_form.cleaned_data
-                import json
-                from django.forms.models import model_to_dict
-                if s2200_rg_id:
-                    if dados_evento['status'] == 0:
-                        dados['modificado_por_id'] = usuario_id
-                        dados['modificado_em'] = datetime.datetime.now()
-                        #s2200_rg_campos_multiple_passo1
-                        s2200RG.objects.using(db_slug).filter(id=s2200_rg_id).update(**dados)
-                        obj = s2200RG.objects.using(db_slug).get(id=s2200_rg_id)
-                        #s2200_rg_editar_custom
-                        #s2200_rg_campos_multiple_passo2
-                        messages.success(request, 'Alterado com sucesso!')
-                        gravar_auditoria(json.dumps(model_to_dict(s2200_rg), indent=4, sort_keys=True, default=str),
-                                         json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                         's2200_rg', s2200_rg_id, usuario_id, 2)
-                    else:
-                        messages.error(request, 'Somente é possível alterar eventos com status "Cadastrado"!')
+                obj = s2200_rg_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not s2200_rg_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 's2200_rg', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #s2200_rg_cadastrar_campos_multiple_passo1
-                    obj = s2200RG(**dados)
-                    obj.save(using = db_slug)
-                    #s2200_rg_cadastrar_custom
-                    #s2200_rg_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
-                    gravar_auditoria('{}',
+                    gravar_auditoria(json.dumps(model_to_dict(s2200_rg), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                     's2200_rg', obj.id, usuario_id, 1)
-                    if request.session['retorno_pagina'] not in ('s2200_rg_apagar', 's2200_rg_salvar', 's2200_rg'):
-                        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-                    if s2200_rg_id != obj.id:
-                        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                        return redirect('s2200_rg_salvar', hash=url_hash)
+                                     's2200_rg', s2200_rg_id, usuario_id, 2)
+                  
+                if request.session['retorno_pagina'] not in ('s2200_rg_apagar', 's2200_rg_salvar', 's2200_rg'):
+                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if s2200_rg_id != obj.id:
+                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
+                    return redirect('s2200_rg_salvar', hash=url_hash)
             else:
                 messages.error(request, 'Erro ao salvar!')
         s2200_rg_form = disabled_form_fields(s2200_rg_form, permissao.permite_editar)

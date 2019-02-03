@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s2260.models import * 
 from emensageriapro.tabelas.models import Municipios 
 from emensageriapro.tabelas.models import eSocialLogradourosTipos 
@@ -59,6 +60,25 @@ class form_s2260_localtrabinterm(forms.ModelForm):
         self.fields['cep'].widget.attrs['required'] = True        
         self.fields['codmunic'].widget.attrs['required'] = True        
         self.fields['uf'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2260_localtrabinterm, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2260localTrabInterm

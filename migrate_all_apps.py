@@ -130,7 +130,7 @@ def migrates():
         if 'emensageriapro' in a:
             a = a.replace('emensageriapro.', '')
 
-            for c in ['makemigrations','migrate']:
+            for c in ['migrate']:
                 print ''
                 comando = 'python manage.py %s %s' % (c, a)
                 print "Executando: "+comando

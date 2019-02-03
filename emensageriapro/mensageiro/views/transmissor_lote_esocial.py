@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -182,7 +183,8 @@ def apagar(request, hash):
 
     transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial.objects.using( db_slug ), excluido = False, id = transmissor_lote_esocial_id)
     if request.method == 'POST':
-        TransmissorLoteEsocial.objects.using( db_slug ).filter(id = transmissor_lote_esocial_id).update(excluido = True)
+        obj = TransmissorLoteEsocial.objects.using( db_slug ).get(id = transmissor_lote_esocial_id)
+        obj.delete(request=request)
         #transmissor_lote_esocial_apagar_custom
         #transmissor_lote_esocial_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -409,27 +411,11 @@ def salvar(request, hash):
             transmissor_lote_esocial_form = form_transmissor_lote_esocial(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if transmissor_lote_esocial_form.is_valid():
-                dados = transmissor_lote_esocial_form.cleaned_data
-                if transmissor_lote_esocial_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #transmissor_lote_esocial_campos_multiple_passo1
-                    TransmissorLoteEsocial.objects.using(db_slug).filter(id=transmissor_lote_esocial_id).update(**dados)
-                    obj = TransmissorLoteEsocial.objects.using(db_slug).get(id=transmissor_lote_esocial_id)
-                    #transmissor_lote_esocial_editar_custom
-                    #transmissor_lote_esocial_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
-                else:
+                #transmissor_lote_esocial_campos_multiple_passo1
+                obj = transmissor_lote_esocial_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+                #transmissor_lote_esocial_campos_multiple_passo2
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #transmissor_lote_esocial_cadastrar_campos_multiple_passo1
-                    obj = TransmissorLoteEsocial(**dados)
-                    obj.save(using = db_slug)
-                    #transmissor_lote_esocial_cadastrar_custom
-                    #transmissor_lote_esocial_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
                 if request.session['retorno_pagina'] not in ('transmissor_lote_esocial_apagar', 'transmissor_lote_esocial_salvar', 'transmissor_lote_esocial'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if transmissor_lote_esocial_id != obj.id:

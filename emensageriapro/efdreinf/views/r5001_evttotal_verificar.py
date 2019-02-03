@@ -43,7 +43,6 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
-from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -57,6 +56,7 @@ from emensageriapro.r5001.models import *
 from emensageriapro.r5001.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
 from wkhtmltopdf.views import PDFTemplateResponse
+from datetime import datetime
 import base64
 import os
 
@@ -192,7 +192,7 @@ def gerar_xml_r5001(r5001_evttotal_id, db_slug, versao=None):
             excluido = False,
             id = r5001_evttotal_id)
 
-        if not versao:
+        if not versao or versao == '|':
 
             versao = r5001_evttotal.versao
 

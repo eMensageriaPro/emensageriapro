@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s1280.models import * 
 from emensageriapro.esocial.models import s1280evtInfoComplPer 
 
@@ -55,6 +56,25 @@ class form_s1280_infoativconcom(forms.ModelForm):
         self.fields['s1280_evtinfocomplper'].widget.attrs['required'] = True        
         self.fields['fatormes'].widget.attrs['required'] = True        
         self.fields['fator13'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1280_infoativconcom, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1280infoAtivConcom
@@ -77,6 +97,25 @@ class form_s1280_infosubstpatr(forms.ModelForm):
         self.fields['s1280_evtinfocomplper'].widget.attrs['required'] = True        
         self.fields['indsubstpatr'].widget.attrs['required'] = True        
         self.fields['percredcontrib'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1280_infosubstpatr, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1280infoSubstPatr
@@ -98,6 +137,25 @@ class form_s1280_infosubstpatropport(forms.ModelForm):
         self.fields['s1280_evtinfocomplper'].queryset = s1280evtInfoComplPer.objects.using( slug ).filter(excluido=False).all()
         self.fields['s1280_evtinfocomplper'].widget.attrs['required'] = True        
         self.fields['cnpjopportuario'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1280_infosubstpatropport, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1280infoSubstPatrOpPort

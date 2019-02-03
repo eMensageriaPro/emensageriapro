@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     relatorios = get_object_or_404(Relatorios.objects.using( db_slug ), excluido = False, id = relatorios_id)
     if request.method == 'POST':
-        Relatorios.objects.using( db_slug ).filter(id = relatorios_id).update(excluido = True)
+        obj = Relatorios.objects.using( db_slug ).get(id = relatorios_id)
+        obj.delete(request=request)
         #relatorios_apagar_custom
         #relatorios_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -273,27 +275,11 @@ def salvar(request, hash):
             relatorios_form = form_relatorios(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if relatorios_form.is_valid():
-                dados = relatorios_form.cleaned_data
-                if relatorios_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #relatorios_campos_multiple_passo1
-                    Relatorios.objects.using(db_slug).filter(id=relatorios_id).update(**dados)
-                    obj = Relatorios.objects.using(db_slug).get(id=relatorios_id)
-                    #relatorios_editar_custom
-                    #relatorios_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
-                else:
+                #relatorios_campos_multiple_passo1
+                obj = relatorios_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+                #relatorios_campos_multiple_passo2
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #relatorios_cadastrar_campos_multiple_passo1
-                    obj = Relatorios(**dados)
-                    obj.save(using = db_slug)
-                    #relatorios_cadastrar_custom
-                    #relatorios_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
                 if request.session['retorno_pagina'] not in ('relatorios_apagar', 'relatorios_salvar', 'relatorios'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if relatorios_id != obj.id:

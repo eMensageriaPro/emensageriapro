@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -86,7 +87,8 @@ def apagar(request, hash):
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(r2050_tipocom), indent=4, sort_keys=True, default=str)
-            r2050tipoCom.objects.using( db_slug ).filter(id = r2050_tipocom_id).delete()
+            obj = r2050tipoCom.objects.using( db_slug ).get(id = r2050_tipocom_id)
+            obj.delete(request=request)
             #r2050_tipocom_apagar_custom
             #r2050_tipocom_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
@@ -310,43 +312,26 @@ def salvar(request, hash):
             r2050_tipocom_form = form_r2050_tipocom(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if r2050_tipocom_form.is_valid():
+
                 dados = r2050_tipocom_form.cleaned_data
-                import json
-                from django.forms.models import model_to_dict
-                if r2050_tipocom_id:
-                    if dados_evento['status'] == 0:
-                        dados['modificado_por_id'] = usuario_id
-                        dados['modificado_em'] = datetime.datetime.now()
-                        #r2050_tipocom_campos_multiple_passo1
-                        r2050tipoCom.objects.using(db_slug).filter(id=r2050_tipocom_id).update(**dados)
-                        obj = r2050tipoCom.objects.using(db_slug).get(id=r2050_tipocom_id)
-                        #r2050_tipocom_editar_custom
-                        #r2050_tipocom_campos_multiple_passo2
-                        messages.success(request, 'Alterado com sucesso!')
-                        gravar_auditoria(json.dumps(model_to_dict(r2050_tipocom), indent=4, sort_keys=True, default=str),
-                                         json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                         'r2050_tipocom', r2050_tipocom_id, usuario_id, 2)
-                    else:
-                        messages.error(request, 'Somente é possível alterar eventos com status "Cadastrado"!')
+                obj = r2050_tipocom_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not r2050_tipocom_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'r2050_tipocom', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #r2050_tipocom_cadastrar_campos_multiple_passo1
-                    obj = r2050tipoCom(**dados)
-                    obj.save(using = db_slug)
-                    #r2050_tipocom_cadastrar_custom
-                    #r2050_tipocom_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
-                    gravar_auditoria('{}',
+                    gravar_auditoria(json.dumps(model_to_dict(r2050_tipocom), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                     'r2050_tipocom', obj.id, usuario_id, 1)
-                    if request.session['retorno_pagina'] not in ('r2050_tipocom_apagar', 'r2050_tipocom_salvar', 'r2050_tipocom'):
-                        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-                    if r2050_tipocom_id != obj.id:
-                        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                        return redirect('r2050_tipocom_salvar', hash=url_hash)
+                                     'r2050_tipocom', r2050_tipocom_id, usuario_id, 2)
+                  
+                if request.session['retorno_pagina'] not in ('r2050_tipocom_apagar', 'r2050_tipocom_salvar', 'r2050_tipocom'):
+                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if r2050_tipocom_id != obj.id:
+                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
+                    return redirect('r2050_tipocom_salvar', hash=url_hash)
             else:
                 messages.error(request, 'Erro ao salvar!')
         r2050_tipocom_form = disabled_form_fields(r2050_tipocom_form, permissao.permite_editar)

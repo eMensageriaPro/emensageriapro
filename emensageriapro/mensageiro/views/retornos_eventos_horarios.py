@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     retornos_eventos_horarios = get_object_or_404(RetornosEventosHorarios.objects.using( db_slug ), excluido = False, id = retornos_eventos_horarios_id)
     if request.method == 'POST':
-        RetornosEventosHorarios.objects.using( db_slug ).filter(id = retornos_eventos_horarios_id).update(excluido = True)
+        obj = RetornosEventosHorarios.objects.using( db_slug ).get(id = retornos_eventos_horarios_id)
+        obj.delete(request=request)
         #retornos_eventos_horarios_apagar_custom
         #retornos_eventos_horarios_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -287,27 +289,11 @@ def salvar(request, hash):
             retornos_eventos_horarios_form = form_retornos_eventos_horarios(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if retornos_eventos_horarios_form.is_valid():
-                dados = retornos_eventos_horarios_form.cleaned_data
-                if retornos_eventos_horarios_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #retornos_eventos_horarios_campos_multiple_passo1
-                    RetornosEventosHorarios.objects.using(db_slug).filter(id=retornos_eventos_horarios_id).update(**dados)
-                    obj = RetornosEventosHorarios.objects.using(db_slug).get(id=retornos_eventos_horarios_id)
-                    #retornos_eventos_horarios_editar_custom
-                    #retornos_eventos_horarios_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
-                else:
+                #retornos_eventos_horarios_campos_multiple_passo1
+                obj = retornos_eventos_horarios_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+                #retornos_eventos_horarios_campos_multiple_passo2
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #retornos_eventos_horarios_cadastrar_campos_multiple_passo1
-                    obj = RetornosEventosHorarios(**dados)
-                    obj.save(using = db_slug)
-                    #retornos_eventos_horarios_cadastrar_custom
-                    #retornos_eventos_horarios_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
                 if request.session['retorno_pagina'] not in ('retornos_eventos_horarios_apagar', 'retornos_eventos_horarios_salvar', 'retornos_eventos_horarios'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if retornos_eventos_horarios_id != obj.id:

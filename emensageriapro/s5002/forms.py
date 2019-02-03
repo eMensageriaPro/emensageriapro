@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s5002.models import * 
 from emensageriapro.tabelas.models import eSocialTrabalhadoresCategorias 
 from emensageriapro.esocial.models import s5002evtIrrfBenef 
@@ -56,6 +57,25 @@ class form_s5002_basesirrf(forms.ModelForm):
         self.fields['s5002_infoirrf'].widget.attrs['required'] = True        
         self.fields['tpvalor'].widget.attrs['required'] = True        
         self.fields['valor'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5002_basesirrf, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5002basesIrrf
@@ -79,6 +99,25 @@ class form_s5002_idepgtoext(forms.ModelForm):
         self.fields['indnif'].widget.attrs['required'] = True        
         self.fields['dsclograd'].widget.attrs['required'] = True        
         self.fields['nmcid'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5002_idepgtoext, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5002idePgtoExt
@@ -100,6 +139,25 @@ class form_s5002_infodep(forms.ModelForm):
         
         self.fields['s5002_evtirrfbenef'].widget.attrs['required'] = True        
         self.fields['vrdeddep'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5002_infodep, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5002infoDep
@@ -121,6 +179,25 @@ class form_s5002_infoirrf(forms.ModelForm):
         self.fields['s5002_evtirrfbenef'].queryset = s5002evtIrrfBenef.objects.using( slug ).filter(excluido=False).all()
         self.fields['s5002_evtirrfbenef'].widget.attrs['required'] = True        
         self.fields['indresbr'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5002_infoirrf, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5002infoIrrf
@@ -144,6 +221,25 @@ class form_s5002_irrf(forms.ModelForm):
         self.fields['s5002_infoirrf'].widget.attrs['required'] = True        
         self.fields['tpcr'].widget.attrs['required'] = True        
         self.fields['vrirrfdesc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5002_irrf, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5002irrf

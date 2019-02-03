@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -106,7 +107,8 @@ def apagar(request, hash):
 
     transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf.objects.using( db_slug ), excluido = False, id = transmissor_lote_efdreinf_id)
     if request.method == 'POST':
-        TransmissorLoteEfdreinf.objects.using( db_slug ).filter(id = transmissor_lote_efdreinf_id).update(excluido = True)
+        obj = TransmissorLoteEfdreinf.objects.using( db_slug ).get(id = transmissor_lote_efdreinf_id)
+        obj.delete(request=request)
         #transmissor_lote_efdreinf_apagar_custom
         #transmissor_lote_efdreinf_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -339,27 +341,11 @@ def salvar(request, hash):
             transmissor_lote_efdreinf_form = form_transmissor_lote_efdreinf(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if transmissor_lote_efdreinf_form.is_valid():
-                dados = transmissor_lote_efdreinf_form.cleaned_data
-                if transmissor_lote_efdreinf_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #transmissor_lote_efdreinf_campos_multiple_passo1
-                    TransmissorLoteEfdreinf.objects.using(db_slug).filter(id=transmissor_lote_efdreinf_id).update(**dados)
-                    obj = TransmissorLoteEfdreinf.objects.using(db_slug).get(id=transmissor_lote_efdreinf_id)
-                    #transmissor_lote_efdreinf_editar_custom
-                    #transmissor_lote_efdreinf_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
-                else:
+                #transmissor_lote_efdreinf_campos_multiple_passo1
+                obj = transmissor_lote_efdreinf_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+                #transmissor_lote_efdreinf_campos_multiple_passo2
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #transmissor_lote_efdreinf_cadastrar_campos_multiple_passo1
-                    obj = TransmissorLoteEfdreinf(**dados)
-                    obj.save(using = db_slug)
-                    #transmissor_lote_efdreinf_cadastrar_custom
-                    #transmissor_lote_efdreinf_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
                 if request.session['retorno_pagina'] not in ('transmissor_lote_efdreinf_apagar', 'transmissor_lote_efdreinf_salvar', 'transmissor_lote_efdreinf'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if transmissor_lote_efdreinf_id != obj.id:

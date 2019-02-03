@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -86,7 +87,8 @@ def apagar(request, hash):
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(r2010_infotpserv), indent=4, sort_keys=True, default=str)
-            r2010infoTpServ.objects.using( db_slug ).filter(id = r2010_infotpserv_id).delete()
+            obj = r2010infoTpServ.objects.using( db_slug ).get(id = r2010_infotpserv_id)
+            obj.delete(request=request)
             #r2010_infotpserv_apagar_custom
             #r2010_infotpserv_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
@@ -334,43 +336,26 @@ def salvar(request, hash):
             r2010_infotpserv_form = form_r2010_infotpserv(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if r2010_infotpserv_form.is_valid():
+
                 dados = r2010_infotpserv_form.cleaned_data
-                import json
-                from django.forms.models import model_to_dict
-                if r2010_infotpserv_id:
-                    if dados_evento['status'] == 0:
-                        dados['modificado_por_id'] = usuario_id
-                        dados['modificado_em'] = datetime.datetime.now()
-                        #r2010_infotpserv_campos_multiple_passo1
-                        r2010infoTpServ.objects.using(db_slug).filter(id=r2010_infotpserv_id).update(**dados)
-                        obj = r2010infoTpServ.objects.using(db_slug).get(id=r2010_infotpserv_id)
-                        #r2010_infotpserv_editar_custom
-                        #r2010_infotpserv_campos_multiple_passo2
-                        messages.success(request, 'Alterado com sucesso!')
-                        gravar_auditoria(json.dumps(model_to_dict(r2010_infotpserv), indent=4, sort_keys=True, default=str),
-                                         json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                         'r2010_infotpserv', r2010_infotpserv_id, usuario_id, 2)
-                    else:
-                        messages.error(request, 'Somente é possível alterar eventos com status "Cadastrado"!')
+                obj = r2010_infotpserv_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not r2010_infotpserv_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'r2010_infotpserv', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #r2010_infotpserv_cadastrar_campos_multiple_passo1
-                    obj = r2010infoTpServ(**dados)
-                    obj.save(using = db_slug)
-                    #r2010_infotpserv_cadastrar_custom
-                    #r2010_infotpserv_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
-                    gravar_auditoria('{}',
+                    gravar_auditoria(json.dumps(model_to_dict(r2010_infotpserv), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                     'r2010_infotpserv', obj.id, usuario_id, 1)
-                    if request.session['retorno_pagina'] not in ('r2010_infotpserv_apagar', 'r2010_infotpserv_salvar', 'r2010_infotpserv'):
-                        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-                    if r2010_infotpserv_id != obj.id:
-                        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                        return redirect('r2010_infotpserv_salvar', hash=url_hash)
+                                     'r2010_infotpserv', r2010_infotpserv_id, usuario_id, 2)
+                  
+                if request.session['retorno_pagina'] not in ('r2010_infotpserv_apagar', 'r2010_infotpserv_salvar', 'r2010_infotpserv'):
+                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if r2010_infotpserv_id != obj.id:
+                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
+                    return redirect('r2010_infotpserv_salvar', hash=url_hash)
             else:
                 messages.error(request, 'Erro ao salvar!')
         r2010_infotpserv_form = disabled_form_fields(r2010_infotpserv_form, permissao.permite_editar)

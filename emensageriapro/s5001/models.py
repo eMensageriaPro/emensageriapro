@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -96,7 +99,7 @@ CHOICES_S5001_TPVALOR = (
     (94, u'94 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 25 anos de trabalho'),
 )
 
-class s5001calcTerc(models.Model):
+class s5001calcTerc(SoftDeletionModel):
     s5001_infocategincid = models.ForeignKey('s5001infoCategIncid',
         related_name='%(class)s_s5001_infocategincid')
     def evento(self): return self.s5001_infocategincid.evento()
@@ -109,7 +112,7 @@ class s5001calcTerc(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5001_infocategincid) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrcssegterc) + ' - ' + unicode(self.vrdescterc)
     #s5001_calcterc_custom#
@@ -123,10 +126,17 @@ class s5001calcTerc(models.Model):
 class s5001calcTercSerializer(ModelSerializer):
     class Meta:
         model = s5001calcTerc
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5001ideEstabLot(models.Model):
+class s5001ideEstabLot(SoftDeletionModel):
     s5001_evtbasestrab = models.ForeignKey('esocial.s5001evtBasesTrab',
         related_name='%(class)s_s5001_evtbasestrab')
     def evento(self): return self.s5001_evtbasestrab.evento()
@@ -139,7 +149,7 @@ class s5001ideEstabLot(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5001_evtbasestrab) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao)
     #s5001_ideestablot_custom#
@@ -153,10 +163,17 @@ class s5001ideEstabLot(models.Model):
 class s5001ideEstabLotSerializer(ModelSerializer):
     class Meta:
         model = s5001ideEstabLot
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5001infoBaseCS(models.Model):
+class s5001infoBaseCS(SoftDeletionModel):
     s5001_infocategincid = models.ForeignKey('s5001infoCategIncid',
         related_name='%(class)s_s5001_infocategincid')
     def evento(self): return self.s5001_infocategincid.evento()
@@ -169,7 +186,7 @@ class s5001infoBaseCS(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5001_infocategincid) + ' - ' + unicode(self.ind13) + ' - ' + unicode(self.tpvalor) + ' - ' + unicode(self.valor)
     #s5001_infobasecs_custom#
@@ -183,10 +200,17 @@ class s5001infoBaseCS(models.Model):
 class s5001infoBaseCSSerializer(ModelSerializer):
     class Meta:
         model = s5001infoBaseCS
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5001infoCategIncid(models.Model):
+class s5001infoCategIncid(SoftDeletionModel):
     s5001_ideestablot = models.ForeignKey('s5001ideEstabLot',
         related_name='%(class)s_s5001_ideestablot')
     def evento(self): return self.s5001_ideestablot.evento()
@@ -199,7 +223,7 @@ class s5001infoCategIncid(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5001_ideestablot) + ' - ' + unicode(self.codcateg)
     #s5001_infocategincid_custom#
@@ -213,10 +237,17 @@ class s5001infoCategIncid(models.Model):
 class s5001infoCategIncidSerializer(ModelSerializer):
     class Meta:
         model = s5001infoCategIncid
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5001infoCpCalc(models.Model):
+class s5001infoCpCalc(SoftDeletionModel):
     s5001_evtbasestrab = models.ForeignKey('esocial.s5001evtBasesTrab',
         related_name='%(class)s_s5001_evtbasestrab')
     def evento(self): return self.s5001_evtbasestrab.evento()
@@ -229,7 +260,7 @@ class s5001infoCpCalc(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5001_evtbasestrab) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrcpseg) + ' - ' + unicode(self.vrdescseg)
     #s5001_infocpcalc_custom#
@@ -243,10 +274,17 @@ class s5001infoCpCalc(models.Model):
 class s5001infoCpCalcSerializer(ModelSerializer):
     class Meta:
         model = s5001infoCpCalc
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5001procJudTrab(models.Model):
+class s5001procJudTrab(SoftDeletionModel):
     s5001_evtbasestrab = models.ForeignKey('esocial.s5001evtBasesTrab',
         related_name='%(class)s_s5001_evtbasestrab')
     def evento(self): return self.s5001_evtbasestrab.evento()
@@ -258,7 +296,7 @@ class s5001procJudTrab(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5001_evtbasestrab) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.codsusp)
     #s5001_procjudtrab_custom#
@@ -272,7 +310,14 @@ class s5001procJudTrab(models.Model):
 class s5001procJudTrabSerializer(ModelSerializer):
     class Meta:
         model = s5001procJudTrab
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

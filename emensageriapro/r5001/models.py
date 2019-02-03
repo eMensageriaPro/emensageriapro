@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -58,7 +61,7 @@ CHOICES_R5001_TPOCORR = (
     (2, u'2 - Erro'),
 )
 
-class r5001RCPRB(models.Model):
+class r5001RCPRB(SoftDeletionModel):
     r5001_infototal = models.ForeignKey('r5001infoTotal',
         related_name='%(class)s_r5001_infototal')
     def evento(self): return self.r5001_infototal.evento()
@@ -71,7 +74,7 @@ class r5001RCPRB(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r5001_infototal) + ' - ' + unicode(self.crcprb) + ' - ' + unicode(self.vlrcrcprb)
     #r5001_rcprb_custom#
@@ -85,10 +88,17 @@ class r5001RCPRB(models.Model):
 class r5001RCPRBSerializer(ModelSerializer):
     class Meta:
         model = r5001RCPRB
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r5001RComl(models.Model):
+class r5001RComl(SoftDeletionModel):
     r5001_infototal = models.ForeignKey('r5001infoTotal',
         related_name='%(class)s_r5001_infototal')
     def evento(self): return self.r5001_infototal.evento()
@@ -101,7 +111,7 @@ class r5001RComl(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r5001_infototal) + ' - ' + unicode(self.crcoml) + ' - ' + unicode(self.vlrcrcoml)
     #r5001_rcoml_custom#
@@ -115,10 +125,17 @@ class r5001RComl(models.Model):
 class r5001RComlSerializer(ModelSerializer):
     class Meta:
         model = r5001RComl
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r5001RPrest(models.Model):
+class r5001RPrest(SoftDeletionModel):
     r5001_infototal = models.OneToOneField('r5001infoTotal',
         related_name='%(class)s_r5001_infototal')
     def evento(self): return self.r5001_infototal.evento()
@@ -135,7 +152,7 @@ class r5001RPrest(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r5001_infototal) + ' - ' + unicode(self.tpinsctomador) + ' - ' + unicode(self.nrinsctomador) + ' - ' + unicode(self.vlrtotalbaseret) + ' - ' + unicode(self.vlrtotalretprinc)
     #r5001_rprest_custom#
@@ -149,10 +166,17 @@ class r5001RPrest(models.Model):
 class r5001RPrestSerializer(ModelSerializer):
     class Meta:
         model = r5001RPrest
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r5001RRecEspetDesp(models.Model):
+class r5001RRecEspetDesp(SoftDeletionModel):
     r5001_infototal = models.OneToOneField('r5001infoTotal',
         related_name='%(class)s_r5001_infototal')
     def evento(self): return self.r5001_infototal.evento()
@@ -166,7 +190,7 @@ class r5001RRecEspetDesp(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r5001_infototal) + ' - ' + unicode(self.crrecespetdesp) + ' - ' + unicode(self.vlrreceitatotal) + ' - ' + unicode(self.vlrcrrecespetdesp)
     #r5001_rrecespetdesp_custom#
@@ -180,10 +204,17 @@ class r5001RRecEspetDesp(models.Model):
 class r5001RRecEspetDespSerializer(ModelSerializer):
     class Meta:
         model = r5001RRecEspetDesp
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r5001RRecRepAD(models.Model):
+class r5001RRecRepAD(SoftDeletionModel):
     r5001_infototal = models.ForeignKey('r5001infoTotal',
         related_name='%(class)s_r5001_infototal')
     def evento(self): return self.r5001_infototal.evento()
@@ -198,7 +229,7 @@ class r5001RRecRepAD(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r5001_infototal) + ' - ' + unicode(self.cnpjassocdesp) + ' - ' + unicode(self.vlrtotalrep) + ' - ' + unicode(self.crrecrepad) + ' - ' + unicode(self.vlrcrrecrepad)
     #r5001_rrecrepad_custom#
@@ -212,10 +243,17 @@ class r5001RRecRepAD(models.Model):
 class r5001RRecRepADSerializer(ModelSerializer):
     class Meta:
         model = r5001RRecRepAD
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r5001RTom(models.Model):
+class r5001RTom(SoftDeletionModel):
     r5001_infototal = models.OneToOneField('r5001infoTotal',
         related_name='%(class)s_r5001_infototal')
     def evento(self): return self.r5001_infototal.evento()
@@ -228,7 +266,7 @@ class r5001RTom(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r5001_infototal) + ' - ' + unicode(self.cnpjprestador) + ' - ' + unicode(self.vlrtotalbaseret)
     #r5001_rtom_custom#
@@ -242,10 +280,17 @@ class r5001RTom(models.Model):
 class r5001RTomSerializer(ModelSerializer):
     class Meta:
         model = r5001RTom
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r5001infoCRTom(models.Model):
+class r5001infoCRTom(SoftDeletionModel):
     r5001_rtom = models.ForeignKey('r5001RTom',
         related_name='%(class)s_r5001_rtom')
     def evento(self): return self.r5001_rtom.evento()
@@ -258,7 +303,7 @@ class r5001infoCRTom(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r5001_rtom) + ' - ' + unicode(self.crtom)
     #r5001_infocrtom_custom#
@@ -272,10 +317,17 @@ class r5001infoCRTom(models.Model):
 class r5001infoCRTomSerializer(ModelSerializer):
     class Meta:
         model = r5001infoCRTom
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r5001infoTotal(models.Model):
+class r5001infoTotal(SoftDeletionModel):
     r5001_evttotal = models.OneToOneField('efdreinf.r5001evtTotal',
         related_name='%(class)s_r5001_evttotal')
     def evento(self): return self.r5001_evttotal.evento()
@@ -288,7 +340,7 @@ class r5001infoTotal(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r5001_evttotal) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #r5001_infototal_custom#
@@ -302,10 +354,17 @@ class r5001infoTotal(models.Model):
 class r5001infoTotalSerializer(ModelSerializer):
     class Meta:
         model = r5001infoTotal
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r5001regOcorrs(models.Model):
+class r5001regOcorrs(SoftDeletionModel):
     r5001_evttotal = models.ForeignKey('efdreinf.r5001evtTotal',
         related_name='%(class)s_r5001_evttotal')
     def evento(self): return self.r5001_evttotal.evento()
@@ -319,7 +378,7 @@ class r5001regOcorrs(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r5001_evttotal) + ' - ' + unicode(self.tpocorr) + ' - ' + unicode(self.localerroaviso) + ' - ' + unicode(self.codresp) + ' - ' + unicode(self.dscresp)
     #r5001_regocorrs_custom#
@@ -333,7 +392,14 @@ class r5001regOcorrs(models.Model):
 class r5001regOcorrsSerializer(ModelSerializer):
     class Meta:
         model = r5001regOcorrs
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

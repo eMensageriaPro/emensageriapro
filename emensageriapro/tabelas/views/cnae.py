@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     cnae = get_object_or_404(CNAE.objects.using( db_slug ), excluido = False, id = cnae_id)
     if request.method == 'POST':
-        CNAE.objects.using( db_slug ).filter(id = cnae_id).update(excluido = True)
+        obj = CNAE.objects.using( db_slug ).get(id = cnae_id)
+        obj.delete(request=request)
         #cnae_apagar_custom
         #cnae_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -321,27 +323,21 @@ def salvar(request, hash):
             cnae_form = form_cnae(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if cnae_form.is_valid():
+
                 dados = cnae_form.cleaned_data
-                if cnae_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #cnae_campos_multiple_passo1
-                    CNAE.objects.using(db_slug).filter(id=cnae_id).update(**dados)
-                    obj = CNAE.objects.using(db_slug).get(id=cnae_id)
-                    #cnae_editar_custom
-                    #cnae_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
+                obj = cnae_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not cnae_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'cnae', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #cnae_cadastrar_campos_multiple_passo1
-                    obj = CNAE(**dados)
-                    obj.save(using = db_slug)
-                    #cnae_cadastrar_custom
-                    #cnae_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
+                    gravar_auditoria(json.dumps(model_to_dict(cnae), indent=4, sort_keys=True, default=str),
+                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                     'cnae', cnae_id, usuario_id, 2)
+                  
                 if request.session['retorno_pagina'] not in ('cnae_apagar', 'cnae_salvar', 'cnae'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if cnae_id != obj.id:

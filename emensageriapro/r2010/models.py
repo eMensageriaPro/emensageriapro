@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -52,7 +55,7 @@ CHOICES_R2010_TPPROCRETPRINC = (
     (2, u'2 - Judicial'),
 )
 
-class r2010infoProcRetAd(models.Model):
+class r2010infoProcRetAd(SoftDeletionModel):
     r2010_evtservtom = models.ForeignKey('efdreinf.r2010evtServTom',
         related_name='%(class)s_r2010_evtservtom')
     def evento(self): return self.r2010_evtservtom.evento()
@@ -66,7 +69,7 @@ class r2010infoProcRetAd(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2010_evtservtom) + ' - ' + unicode(self.tpprocretadic) + ' - ' + unicode(self.nrprocretadic) + ' - ' + unicode(self.valoradic)
     #r2010_infoprocretad_custom#
@@ -80,10 +83,17 @@ class r2010infoProcRetAd(models.Model):
 class r2010infoProcRetAdSerializer(ModelSerializer):
     class Meta:
         model = r2010infoProcRetAd
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2010infoProcRetPr(models.Model):
+class r2010infoProcRetPr(SoftDeletionModel):
     r2010_evtservtom = models.ForeignKey('efdreinf.r2010evtServTom',
         related_name='%(class)s_r2010_evtservtom')
     def evento(self): return self.r2010_evtservtom.evento()
@@ -97,7 +107,7 @@ class r2010infoProcRetPr(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2010_evtservtom) + ' - ' + unicode(self.tpprocretprinc) + ' - ' + unicode(self.nrprocretprinc) + ' - ' + unicode(self.valorprinc)
     #r2010_infoprocretpr_custom#
@@ -111,10 +121,17 @@ class r2010infoProcRetPr(models.Model):
 class r2010infoProcRetPrSerializer(ModelSerializer):
     class Meta:
         model = r2010infoProcRetPr
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2010infoTpServ(models.Model):
+class r2010infoTpServ(SoftDeletionModel):
     r2010_nfs = models.ForeignKey('r2010nfs',
         related_name='%(class)s_r2010_nfs')
     def evento(self): return self.r2010_nfs.evento()
@@ -134,7 +151,7 @@ class r2010infoTpServ(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2010_nfs) + ' - ' + unicode(self.tpservico) + ' - ' + unicode(self.vlrbaseret) + ' - ' + unicode(self.vlrretencao)
     #r2010_infotpserv_custom#
@@ -148,10 +165,17 @@ class r2010infoTpServ(models.Model):
 class r2010infoTpServSerializer(ModelSerializer):
     class Meta:
         model = r2010infoTpServ
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2010nfs(models.Model):
+class r2010nfs(SoftDeletionModel):
     r2010_evtservtom = models.ForeignKey('efdreinf.r2010evtServTom',
         related_name='%(class)s_r2010_evtservtom')
     def evento(self): return self.r2010_evtservtom.evento()
@@ -166,7 +190,7 @@ class r2010nfs(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2010_evtservtom) + ' - ' + unicode(self.serie) + ' - ' + unicode(self.numdocto) + ' - ' + unicode(self.dtemissaonf) + ' - ' + unicode(self.vlrbruto)
     #r2010_nfs_custom#
@@ -180,7 +204,14 @@ class r2010nfs(models.Model):
 class r2010nfsSerializer(ModelSerializer):
     class Meta:
         model = r2010nfs
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

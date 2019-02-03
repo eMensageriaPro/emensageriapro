@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -116,7 +119,7 @@ CHOICES_S5013_TPVALORE = (
     (91, u'91 - Incidência suspensa em decorrência de decisão judicial'),
 )
 
-class s5013basePerAntE(models.Model):
+class s5013basePerAntE(SoftDeletionModel):
     s5013_infobaseperante = models.ForeignKey('s5013infoBasePerAntE',
         related_name='%(class)s_s5013_infobaseperante')
     def evento(self): return self.s5013_infobaseperante.evento()
@@ -128,7 +131,7 @@ class s5013basePerAntE(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5013_infobaseperante) + ' - ' + unicode(self.tpvalore) + ' - ' + unicode(self.basefgtse)
     #s5013_baseperante_custom#
@@ -142,10 +145,17 @@ class s5013basePerAntE(models.Model):
 class s5013basePerAntESerializer(ModelSerializer):
     class Meta:
         model = s5013basePerAntE
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5013basePerApur(models.Model):
+class s5013basePerApur(SoftDeletionModel):
     s5013_evtfgts = models.ForeignKey('esocial.s5013evtFGTS',
         related_name='%(class)s_s5013_evtfgts')
     def evento(self): return self.s5013_evtfgts.evento()
@@ -157,7 +167,7 @@ class s5013basePerApur(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5013_evtfgts) + ' - ' + unicode(self.tpvalor) + ' - ' + unicode(self.basefgts)
     #s5013_baseperapur_custom#
@@ -171,10 +181,17 @@ class s5013basePerApur(models.Model):
 class s5013basePerApurSerializer(ModelSerializer):
     class Meta:
         model = s5013basePerApur
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5013dpsPerAntE(models.Model):
+class s5013dpsPerAntE(SoftDeletionModel):
     s5013_infodpsperante = models.ForeignKey('s5013infoDpsPerAntE',
         related_name='%(class)s_s5013_infodpsperante')
     def evento(self): return self.s5013_infodpsperante.evento()
@@ -186,7 +203,7 @@ class s5013dpsPerAntE(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5013_infodpsperante) + ' - ' + unicode(self.tpdpse) + ' - ' + unicode(self.vrfgtse)
     #s5013_dpsperante_custom#
@@ -200,10 +217,17 @@ class s5013dpsPerAntE(models.Model):
 class s5013dpsPerAntESerializer(ModelSerializer):
     class Meta:
         model = s5013dpsPerAntE
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5013dpsPerApur(models.Model):
+class s5013dpsPerApur(SoftDeletionModel):
     s5013_evtfgts = models.ForeignKey('esocial.s5013evtFGTS',
         related_name='%(class)s_s5013_evtfgts')
     def evento(self): return self.s5013_evtfgts.evento()
@@ -215,7 +239,7 @@ class s5013dpsPerApur(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5013_evtfgts) + ' - ' + unicode(self.tpdps) + ' - ' + unicode(self.vrfgts)
     #s5013_dpsperapur_custom#
@@ -229,10 +253,17 @@ class s5013dpsPerApur(models.Model):
 class s5013dpsPerApurSerializer(ModelSerializer):
     class Meta:
         model = s5013dpsPerApur
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5013infoBasePerAntE(models.Model):
+class s5013infoBasePerAntE(SoftDeletionModel):
     s5013_evtfgts = models.ForeignKey('esocial.s5013evtFGTS',
         related_name='%(class)s_s5013_evtfgts')
     def evento(self): return self.s5013_evtfgts.evento()
@@ -243,7 +274,7 @@ class s5013infoBasePerAntE(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5013_evtfgts) + ' - ' + unicode(self.perref)
     #s5013_infobaseperante_custom#
@@ -257,10 +288,17 @@ class s5013infoBasePerAntE(models.Model):
 class s5013infoBasePerAntESerializer(ModelSerializer):
     class Meta:
         model = s5013infoBasePerAntE
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5013infoDpsPerAntE(models.Model):
+class s5013infoDpsPerAntE(SoftDeletionModel):
     s5013_evtfgts = models.ForeignKey('esocial.s5013evtFGTS',
         related_name='%(class)s_s5013_evtfgts')
     def evento(self): return self.s5013_evtfgts.evento()
@@ -271,7 +309,7 @@ class s5013infoDpsPerAntE(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5013_evtfgts) + ' - ' + unicode(self.perref)
     #s5013_infodpsperante_custom#
@@ -285,7 +323,14 @@ class s5013infoDpsPerAntE(models.Model):
 class s5013infoDpsPerAntESerializer(ModelSerializer):
     class Meta:
         model = s5013infoDpsPerAntE
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

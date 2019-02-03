@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     esocial_agentes_causadores_acidentes_trabalho = get_object_or_404(eSocialAgentesCausadoresAcidentesTrabalho.objects.using( db_slug ), excluido = False, id = esocial_agentes_causadores_acidentes_trabalho_id)
     if request.method == 'POST':
-        eSocialAgentesCausadoresAcidentesTrabalho.objects.using( db_slug ).filter(id = esocial_agentes_causadores_acidentes_trabalho_id).update(excluido = True)
+        obj = eSocialAgentesCausadoresAcidentesTrabalho.objects.using( db_slug ).get(id = esocial_agentes_causadores_acidentes_trabalho_id)
+        obj.delete(request=request)
         #esocial_agentes_causadores_acidentes_trabalho_apagar_custom
         #esocial_agentes_causadores_acidentes_trabalho_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -312,27 +314,21 @@ def salvar(request, hash):
             esocial_agentes_causadores_acidentes_trabalho_form = form_esocial_agentes_causadores_acidentes_trabalho(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if esocial_agentes_causadores_acidentes_trabalho_form.is_valid():
+
                 dados = esocial_agentes_causadores_acidentes_trabalho_form.cleaned_data
-                if esocial_agentes_causadores_acidentes_trabalho_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #esocial_agentes_causadores_acidentes_trabalho_campos_multiple_passo1
-                    eSocialAgentesCausadoresAcidentesTrabalho.objects.using(db_slug).filter(id=esocial_agentes_causadores_acidentes_trabalho_id).update(**dados)
-                    obj = eSocialAgentesCausadoresAcidentesTrabalho.objects.using(db_slug).get(id=esocial_agentes_causadores_acidentes_trabalho_id)
-                    #esocial_agentes_causadores_acidentes_trabalho_editar_custom
-                    #esocial_agentes_causadores_acidentes_trabalho_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
+                obj = esocial_agentes_causadores_acidentes_trabalho_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not esocial_agentes_causadores_acidentes_trabalho_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'esocial_agentes_causadores_acidentes_trabalho', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #esocial_agentes_causadores_acidentes_trabalho_cadastrar_campos_multiple_passo1
-                    obj = eSocialAgentesCausadoresAcidentesTrabalho(**dados)
-                    obj.save(using = db_slug)
-                    #esocial_agentes_causadores_acidentes_trabalho_cadastrar_custom
-                    #esocial_agentes_causadores_acidentes_trabalho_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
+                    gravar_auditoria(json.dumps(model_to_dict(esocial_agentes_causadores_acidentes_trabalho), indent=4, sort_keys=True, default=str),
+                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                     'esocial_agentes_causadores_acidentes_trabalho', esocial_agentes_causadores_acidentes_trabalho_id, usuario_id, 2)
+                  
                 if request.session['retorno_pagina'] not in ('esocial_agentes_causadores_acidentes_trabalho_apagar', 'esocial_agentes_causadores_acidentes_trabalho_salvar', 'esocial_agentes_causadores_acidentes_trabalho'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if esocial_agentes_causadores_acidentes_trabalho_id != obj.id:

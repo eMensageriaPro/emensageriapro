@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     config_perfis = get_object_or_404(ConfigPerfis.objects.using( db_slug ), excluido = False, id = config_perfis_id)
     if request.method == 'POST':
-        ConfigPerfis.objects.using( db_slug ).filter(id = config_perfis_id).update(excluido = True)
+        obj = ConfigPerfis.objects.using( db_slug ).get(id = config_perfis_id)
+        obj.delete(request=request)
         #config_perfis_apagar_custom
         #config_perfis_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -270,29 +272,12 @@ def salvar(request, hash):
             config_perfis_form = form_config_perfis(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if config_perfis_form.is_valid():
-                dados = config_perfis_form.cleaned_data
-                if config_perfis_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #config_perfis_campos_multiple_passo1
-                    ConfigPerfis.objects.using(db_slug).filter(id=config_perfis_id).update(**dados)
-                    obj = ConfigPerfis.objects.using(db_slug).get(id=config_perfis_id)
-                    #config_perfis_editar_custom
-                    #config_perfis_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
-                else:
+                #config_perfis_campos_multiple_passo1
+                obj = config_perfis_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+                from emensageriapro.controle_de_acesso.views.login import criar_permissoes
+                criar_permissoes(db_slug)
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #config_perfis_cadastrar_campos_multiple_passo1
-                    obj = ConfigPerfis(**dados)
-                    obj.save(using = db_slug)
-                    #config_perfis_cadastrar_custom
-                    #config_perfis_cadastrar_campos_multiple_passo2
-                    from emensageriapro.controle_de_acesso.views.login import criar_permissoes
-                    criar_permissoes(db_slug)
-                    messages.success(request, 'Cadastrado com sucesso!')
                 if request.session['retorno_pagina'] not in ('config_perfis_apagar', 'config_perfis_salvar', 'config_perfis'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if config_perfis_id != obj.id:

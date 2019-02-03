@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s3000.models import * 
 from emensageriapro.esocial.models import s3000evtExclusao 
 
@@ -53,6 +54,25 @@ class form_s3000_idefolhapagto(forms.ModelForm):
         self.fields['s3000_evtexclusao'].widget.attrs['required'] = True        
         self.fields['indapuracao'].widget.attrs['required'] = True        
         self.fields['perapur'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s3000_idefolhapagto, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s3000ideFolhaPagto
@@ -73,6 +93,25 @@ class form_s3000_idetrabalhador(forms.ModelForm):
         
         self.fields['s3000_evtexclusao'].widget.attrs['required'] = True        
         self.fields['cpftrab'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s3000_idetrabalhador, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s3000ideTrabalhador

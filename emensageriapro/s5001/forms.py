@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s5001.models import * 
 from emensageriapro.tabelas.models import eSocialTrabalhadoresCategorias 
 from emensageriapro.esocial.models import s5001evtBasesTrab 
@@ -58,6 +59,25 @@ class form_s5001_calcterc(forms.ModelForm):
         self.fields['tpcr'].widget.attrs['required'] = True        
         self.fields['vrcssegterc'].widget.attrs['required'] = True        
         self.fields['vrdescterc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5001_calcterc, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5001calcTerc
@@ -81,6 +101,25 @@ class form_s5001_ideestablot(forms.ModelForm):
         self.fields['tpinsc'].widget.attrs['required'] = True        
         self.fields['nrinsc'].widget.attrs['required'] = True        
         self.fields['codlotacao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5001_ideestablot, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5001ideEstabLot
@@ -105,6 +144,25 @@ class form_s5001_infobasecs(forms.ModelForm):
         self.fields['ind13'].widget.attrs['required'] = True        
         self.fields['tpvalor'].widget.attrs['required'] = True        
         self.fields['valor'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5001_infobasecs, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5001infoBaseCS
@@ -126,6 +184,25 @@ class form_s5001_infocategincid(forms.ModelForm):
         self.fields['s5001_ideestablot'].queryset = s5001ideEstabLot.objects.using( slug ).filter(excluido=False).all()
         self.fields['s5001_ideestablot'].widget.attrs['required'] = True        
         self.fields['codcateg'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5001_infocategincid, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5001infoCategIncid
@@ -151,6 +228,25 @@ class form_s5001_infocpcalc(forms.ModelForm):
         self.fields['tpcr'].widget.attrs['required'] = True        
         self.fields['vrcpseg'].widget.attrs['required'] = True        
         self.fields['vrdescseg'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5001_infocpcalc, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5001infoCpCalc
@@ -173,6 +269,25 @@ class form_s5001_procjudtrab(forms.ModelForm):
         self.fields['s5001_evtbasestrab'].widget.attrs['required'] = True        
         self.fields['nrprocjud'].widget.attrs['required'] = True        
         self.fields['codsusp'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5001_procjudtrab, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5001procJudTrab

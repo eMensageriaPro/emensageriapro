@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -57,7 +60,7 @@ CHOICES_S5012_TPCR = (
     (61001, u'061001 - IRRF sobre Rendimentos relativos a prestação de serviços de transporte rodoviário internacional de carga, pagos a transportador autônomo PF residente no Paraguai'),
 )
 
-class s5012infoCRContrib(models.Model):
+class s5012infoCRContrib(SoftDeletionModel):
     s5012_evtirrf = models.ForeignKey('esocial.s5012evtIrrf',
         related_name='%(class)s_s5012_evtirrf')
     def evento(self): return self.s5012_evtirrf.evento()
@@ -69,7 +72,7 @@ class s5012infoCRContrib(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5012_evtirrf) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrcr)
     #s5012_infocrcontrib_custom#
@@ -83,7 +86,14 @@ class s5012infoCRContrib(models.Model):
 class s5012infoCRContribSerializer(ModelSerializer):
     class Meta:
         model = s5012infoCRContrib
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s1050.models import * 
 from emensageriapro.esocial.models import s1050evtTabHorTur 
 
@@ -57,6 +58,25 @@ class form_s1050_alteracao(forms.ModelForm):
         self.fields['hrsaida'].widget.attrs['required'] = True        
         self.fields['durjornada'].widget.attrs['required'] = True        
         self.fields['perhorflexivel'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1050_alteracao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1050alteracao
@@ -79,6 +99,25 @@ class form_s1050_alteracao_horariointervalo(forms.ModelForm):
         self.fields['s1050_alteracao'].widget.attrs['required'] = True        
         self.fields['tpinterv'].widget.attrs['required'] = True        
         self.fields['durinterv'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1050_alteracao_horariointervalo, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1050alteracaohorarioIntervalo
@@ -99,6 +138,25 @@ class form_s1050_alteracao_novavalidade(forms.ModelForm):
         
         self.fields['s1050_alteracao'].widget.attrs['required'] = True        
         self.fields['inivalid'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1050_alteracao_novavalidade, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1050alteracaonovaValidade
@@ -120,6 +178,25 @@ class form_s1050_exclusao(forms.ModelForm):
         self.fields['s1050_evttabhortur'].widget.attrs['required'] = True        
         self.fields['codhorcontrat'].widget.attrs['required'] = True        
         self.fields['inivalid'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1050_exclusao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1050exclusao
@@ -145,6 +222,25 @@ class form_s1050_inclusao(forms.ModelForm):
         self.fields['hrsaida'].widget.attrs['required'] = True        
         self.fields['durjornada'].widget.attrs['required'] = True        
         self.fields['perhorflexivel'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1050_inclusao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1050inclusao
@@ -167,6 +263,25 @@ class form_s1050_inclusao_horariointervalo(forms.ModelForm):
         self.fields['s1050_inclusao'].widget.attrs['required'] = True        
         self.fields['tpinterv'].widget.attrs['required'] = True        
         self.fields['durinterv'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1050_inclusao_horariointervalo, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1050inclusaohorarioIntervalo

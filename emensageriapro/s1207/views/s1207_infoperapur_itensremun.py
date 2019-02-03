@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -86,7 +87,8 @@ def apagar(request, hash):
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(s1207_infoperapur_itensremun), indent=4, sort_keys=True, default=str)
-            s1207infoPerApuritensRemun.objects.using( db_slug ).filter(id = s1207_infoperapur_itensremun_id).delete()
+            obj = s1207infoPerApuritensRemun.objects.using( db_slug ).get(id = s1207_infoperapur_itensremun_id)
+            obj.delete(request=request)
             #s1207_infoperapur_itensremun_apagar_custom
             #s1207_infoperapur_itensremun_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
@@ -322,43 +324,26 @@ def salvar(request, hash):
             s1207_infoperapur_itensremun_form = form_s1207_infoperapur_itensremun(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if s1207_infoperapur_itensremun_form.is_valid():
+
                 dados = s1207_infoperapur_itensremun_form.cleaned_data
-                import json
-                from django.forms.models import model_to_dict
-                if s1207_infoperapur_itensremun_id:
-                    if dados_evento['status'] == 0:
-                        dados['modificado_por_id'] = usuario_id
-                        dados['modificado_em'] = datetime.datetime.now()
-                        #s1207_infoperapur_itensremun_campos_multiple_passo1
-                        s1207infoPerApuritensRemun.objects.using(db_slug).filter(id=s1207_infoperapur_itensremun_id).update(**dados)
-                        obj = s1207infoPerApuritensRemun.objects.using(db_slug).get(id=s1207_infoperapur_itensremun_id)
-                        #s1207_infoperapur_itensremun_editar_custom
-                        #s1207_infoperapur_itensremun_campos_multiple_passo2
-                        messages.success(request, 'Alterado com sucesso!')
-                        gravar_auditoria(json.dumps(model_to_dict(s1207_infoperapur_itensremun), indent=4, sort_keys=True, default=str),
-                                         json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                         's1207_infoperapur_itensremun', s1207_infoperapur_itensremun_id, usuario_id, 2)
-                    else:
-                        messages.error(request, 'Somente é possível alterar eventos com status "Cadastrado"!')
+                obj = s1207_infoperapur_itensremun_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not s1207_infoperapur_itensremun_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 's1207_infoperapur_itensremun', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #s1207_infoperapur_itensremun_cadastrar_campos_multiple_passo1
-                    obj = s1207infoPerApuritensRemun(**dados)
-                    obj.save(using = db_slug)
-                    #s1207_infoperapur_itensremun_cadastrar_custom
-                    #s1207_infoperapur_itensremun_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
-                    gravar_auditoria('{}',
+                    gravar_auditoria(json.dumps(model_to_dict(s1207_infoperapur_itensremun), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                     's1207_infoperapur_itensremun', obj.id, usuario_id, 1)
-                    if request.session['retorno_pagina'] not in ('s1207_infoperapur_itensremun_apagar', 's1207_infoperapur_itensremun_salvar', 's1207_infoperapur_itensremun'):
-                        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-                    if s1207_infoperapur_itensremun_id != obj.id:
-                        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                        return redirect('s1207_infoperapur_itensremun_salvar', hash=url_hash)
+                                     's1207_infoperapur_itensremun', s1207_infoperapur_itensremun_id, usuario_id, 2)
+                  
+                if request.session['retorno_pagina'] not in ('s1207_infoperapur_itensremun_apagar', 's1207_infoperapur_itensremun_salvar', 's1207_infoperapur_itensremun'):
+                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if s1207_infoperapur_itensremun_id != obj.id:
+                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
+                    return redirect('s1207_infoperapur_itensremun_salvar', hash=url_hash)
             else:
                 messages.error(request, 'Erro ao salvar!')
         s1207_infoperapur_itensremun_form = disabled_form_fields(s1207_infoperapur_itensremun_form, permissao.permite_editar)

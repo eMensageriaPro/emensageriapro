@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     config_permissoes = get_object_or_404(ConfigPermissoes.objects.using( db_slug ), excluido = False, id = config_permissoes_id)
     if request.method == 'POST':
-        ConfigPermissoes.objects.using( db_slug ).filter(id = config_permissoes_id).update(excluido = True)
+        obj = ConfigPermissoes.objects.using( db_slug ).get(id = config_permissoes_id)
+        obj.delete(request=request)
         #config_permissoes_apagar_custom
         #config_permissoes_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -289,27 +291,11 @@ def salvar(request, hash):
             config_permissoes_form = form_config_permissoes(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if config_permissoes_form.is_valid():
-                dados = config_permissoes_form.cleaned_data
-                if config_permissoes_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #config_permissoes_campos_multiple_passo1
-                    ConfigPermissoes.objects.using(db_slug).filter(id=config_permissoes_id).update(**dados)
-                    obj = ConfigPermissoes.objects.using(db_slug).get(id=config_permissoes_id)
-                    #config_permissoes_editar_custom
-                    #config_permissoes_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
-                else:
+                #config_permissoes_campos_multiple_passo1
+                obj = config_permissoes_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+                #config_permissoes_campos_multiple_passo2
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #config_permissoes_cadastrar_campos_multiple_passo1
-                    obj = ConfigPermissoes(**dados)
-                    obj.save(using = db_slug)
-                    #config_permissoes_cadastrar_custom
-                    #config_permissoes_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
                 if request.session['retorno_pagina'] not in ('config_permissoes_apagar', 'config_permissoes_salvar', 'config_permissoes'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if config_permissoes_id != obj.id:

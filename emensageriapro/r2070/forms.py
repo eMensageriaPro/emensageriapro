@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.r2070.models import * 
 from emensageriapro.tabelas.models import EFDReinfPaises 
 from emensageriapro.efdreinf.models import r2070evtPgtosDivs 
@@ -54,6 +55,25 @@ class form_r2070_compjud(forms.ModelForm):
         super(form_r2070_compjud, self).__init__(*args,**kwargs)
         
         self.fields['r2070_pgtopf'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_compjud, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070compJud
@@ -74,6 +94,25 @@ class form_r2070_depjudicial(forms.ModelForm):
         super(form_r2070_depjudicial, self).__init__(*args,**kwargs)
         
         self.fields['r2070_pgtopf'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_depjudicial, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070depJudicial
@@ -98,6 +137,25 @@ class form_r2070_detcompet(forms.ModelForm):
         self.fields['indperreferencia'].widget.attrs['required'] = True        
         self.fields['perrefpagto'].widget.attrs['required'] = True        
         self.fields['vlrrendtributavel'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_detcompet, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070detCompet
@@ -121,6 +179,25 @@ class form_r2070_detdeducao(forms.ModelForm):
         self.fields['r2070_pgtopf'].widget.attrs['required'] = True        
         self.fields['indtpdeducao'].widget.attrs['required'] = True        
         self.fields['vlrdeducao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_detdeducao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070detDeducao
@@ -143,6 +220,25 @@ class form_r2070_ideestab(forms.ModelForm):
         self.fields['r2070_evtpgtosdivs'].widget.attrs['required'] = True        
         self.fields['tpinsc'].widget.attrs['required'] = True        
         self.fields['nrinsc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_ideestab, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070ideEstab
@@ -163,6 +259,25 @@ class form_r2070_infomolestia(forms.ModelForm):
         
         self.fields['r2070_evtpgtosdivs'].widget.attrs['required'] = True        
         self.fields['dtlaudo'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_infomolestia, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070infoMolestia
@@ -185,6 +300,25 @@ class form_r2070_infoprocjud(forms.ModelForm):
         self.fields['r2070_pgtopf'].widget.attrs['required'] = True        
         self.fields['nrprocjud'].widget.attrs['required'] = True        
         self.fields['indorigemrecursos'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_infoprocjud, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070infoProcJud
@@ -208,6 +342,25 @@ class form_r2070_infoprocjud_despprocjud(forms.ModelForm):
         self.fields['r2070_infoprocjud'].widget.attrs['required'] = True        
         self.fields['vlrdespcustas'].widget.attrs['required'] = True        
         self.fields['vlrdespadvogados'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_infoprocjud_despprocjud, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070infoProcJuddespProcJud
@@ -232,6 +385,25 @@ class form_r2070_infoprocjud_ideadvogado(forms.ModelForm):
         self.fields['tpinscadvogado'].widget.attrs['required'] = True        
         self.fields['nrinscadvogado'].widget.attrs['required'] = True        
         self.fields['vlradvogado'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_infoprocjud_ideadvogado, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070infoProcJudideAdvogado
@@ -252,6 +424,25 @@ class form_r2070_infoprocjud_origemrecursos(forms.ModelForm):
         
         self.fields['r2070_infoprocjud'].widget.attrs['required'] = True        
         self.fields['cnpjorigemrecursos'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_infoprocjud_origemrecursos, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070infoProcJudorigemRecursos
@@ -272,6 +463,25 @@ class form_r2070_inforra(forms.ModelForm):
         
         self.fields['r2070_pgtopf'].queryset = r2070pgtoPF.objects.using( slug ).filter(excluido=False).all()
         self.fields['r2070_pgtopf'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_inforra, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070infoRRA
@@ -295,6 +505,25 @@ class form_r2070_inforra_despprocjud(forms.ModelForm):
         self.fields['r2070_inforra'].widget.attrs['required'] = True        
         self.fields['vlrdespcustas'].widget.attrs['required'] = True        
         self.fields['vlrdespadvogados'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_inforra_despprocjud, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070infoRRAdespProcJud
@@ -319,6 +548,25 @@ class form_r2070_inforra_ideadvogado(forms.ModelForm):
         self.fields['tpinscadvogado'].widget.attrs['required'] = True        
         self.fields['nrinscadvogado'].widget.attrs['required'] = True        
         self.fields['vlradvogado'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_inforra_ideadvogado, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070infoRRAideAdvogado
@@ -341,6 +589,25 @@ class form_r2070_inforesidext(forms.ModelForm):
         self.fields['paisresid'].widget.attrs['required'] = True        
         self.fields['dsclograd'].widget.attrs['required'] = True        
         self.fields['indnif'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_inforesidext, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070infoResidExt
@@ -368,6 +635,25 @@ class form_r2070_pgtopf(forms.ModelForm):
         self.fields['inddecterceiro'].widget.attrs['required'] = True        
         self.fields['vlrrendtributavel'].widget.attrs['required'] = True        
         self.fields['vlrirrf'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_pgtopf, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070pgtoPF
@@ -393,6 +679,25 @@ class form_r2070_pgtopj(forms.ModelForm):
         self.fields['dtpagto'].widget.attrs['required'] = True        
         self.fields['vlrrendtributavel'].widget.attrs['required'] = True        
         self.fields['vlrret'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_pgtopj, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070pgtoPJ
@@ -416,6 +721,25 @@ class form_r2070_pgtopj_despprocjud(forms.ModelForm):
         self.fields['r2070_pgtopj_infoprocjud'].widget.attrs['required'] = True        
         self.fields['vlrdespcustas'].widget.attrs['required'] = True        
         self.fields['vlrdespadvogados'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_pgtopj_despprocjud, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070pgtoPJdespProcJud
@@ -440,6 +764,25 @@ class form_r2070_pgtopj_ideadvogado(forms.ModelForm):
         self.fields['tpinscadvogado'].widget.attrs['required'] = True        
         self.fields['nrinscadvogado'].widget.attrs['required'] = True        
         self.fields['vlradvogado'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_pgtopj_ideadvogado, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070pgtoPJideAdvogado
@@ -462,6 +805,25 @@ class form_r2070_pgtopj_infoprocjud(forms.ModelForm):
         self.fields['r2070_pgtopj'].widget.attrs['required'] = True        
         self.fields['nrprocjud'].widget.attrs['required'] = True        
         self.fields['indorigemrecursos'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_pgtopj_infoprocjud, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070pgtoPJinfoProcJud
@@ -482,6 +844,25 @@ class form_r2070_pgtopj_origemrecursos(forms.ModelForm):
         
         self.fields['r2070_pgtopj_infoprocjud'].widget.attrs['required'] = True        
         self.fields['cnpjorigemrecursos'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_pgtopj_origemrecursos, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070pgtoPJorigemRecursos
@@ -508,6 +889,25 @@ class form_r2070_pgtoresidext(forms.ModelForm):
         self.fields['formatributacao'].widget.attrs['required'] = True        
         self.fields['vlrpgto'].widget.attrs['required'] = True        
         self.fields['vlrret'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_pgtoresidext, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070pgtoResidExt
@@ -531,6 +931,25 @@ class form_r2070_rendisento(forms.ModelForm):
         self.fields['r2070_pgtopf'].widget.attrs['required'] = True        
         self.fields['tpisencao'].widget.attrs['required'] = True        
         self.fields['vlrisento'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r2070_rendisento, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r2070rendIsento

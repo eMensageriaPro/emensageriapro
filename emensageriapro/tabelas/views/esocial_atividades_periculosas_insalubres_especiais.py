@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     esocial_atividades_periculosas_insalubres_especiais = get_object_or_404(eSocialAtividadesPericulosasInsalubresEspeciais.objects.using( db_slug ), excluido = False, id = esocial_atividades_periculosas_insalubres_especiais_id)
     if request.method == 'POST':
-        eSocialAtividadesPericulosasInsalubresEspeciais.objects.using( db_slug ).filter(id = esocial_atividades_periculosas_insalubres_especiais_id).update(excluido = True)
+        obj = eSocialAtividadesPericulosasInsalubresEspeciais.objects.using( db_slug ).get(id = esocial_atividades_periculosas_insalubres_especiais_id)
+        obj.delete(request=request)
         #esocial_atividades_periculosas_insalubres_especiais_apagar_custom
         #esocial_atividades_periculosas_insalubres_especiais_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -315,27 +317,21 @@ def salvar(request, hash):
             esocial_atividades_periculosas_insalubres_especiais_form = form_esocial_atividades_periculosas_insalubres_especiais(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if esocial_atividades_periculosas_insalubres_especiais_form.is_valid():
+
                 dados = esocial_atividades_periculosas_insalubres_especiais_form.cleaned_data
-                if esocial_atividades_periculosas_insalubres_especiais_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #esocial_atividades_periculosas_insalubres_especiais_campos_multiple_passo1
-                    eSocialAtividadesPericulosasInsalubresEspeciais.objects.using(db_slug).filter(id=esocial_atividades_periculosas_insalubres_especiais_id).update(**dados)
-                    obj = eSocialAtividadesPericulosasInsalubresEspeciais.objects.using(db_slug).get(id=esocial_atividades_periculosas_insalubres_especiais_id)
-                    #esocial_atividades_periculosas_insalubres_especiais_editar_custom
-                    #esocial_atividades_periculosas_insalubres_especiais_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
+                obj = esocial_atividades_periculosas_insalubres_especiais_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not esocial_atividades_periculosas_insalubres_especiais_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'esocial_atividades_periculosas_insalubres_especiais', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #esocial_atividades_periculosas_insalubres_especiais_cadastrar_campos_multiple_passo1
-                    obj = eSocialAtividadesPericulosasInsalubresEspeciais(**dados)
-                    obj.save(using = db_slug)
-                    #esocial_atividades_periculosas_insalubres_especiais_cadastrar_custom
-                    #esocial_atividades_periculosas_insalubres_especiais_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
+                    gravar_auditoria(json.dumps(model_to_dict(esocial_atividades_periculosas_insalubres_especiais), indent=4, sort_keys=True, default=str),
+                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                     'esocial_atividades_periculosas_insalubres_especiais', esocial_atividades_periculosas_insalubres_especiais_id, usuario_id, 2)
+                  
                 if request.session['retorno_pagina'] not in ('esocial_atividades_periculosas_insalubres_especiais_apagar', 'esocial_atividades_periculosas_insalubres_especiais_salvar', 'esocial_atividades_periculosas_insalubres_especiais'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if esocial_atividades_periculosas_insalubres_especiais_id != obj.id:

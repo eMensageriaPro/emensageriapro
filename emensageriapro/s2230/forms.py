@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s2230.models import * 
 from emensageriapro.esocial.models import s2230evtAfastTemp 
 
@@ -54,6 +55,25 @@ class form_s2230_emitente(forms.ModelForm):
         self.fields['nmemit'].widget.attrs['required'] = True        
         self.fields['ideoc'].widget.attrs['required'] = True        
         self.fields['nroc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2230_emitente, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2230emitente
@@ -74,6 +94,25 @@ class form_s2230_fimafastamento(forms.ModelForm):
         
         self.fields['s2230_evtafasttemp'].widget.attrs['required'] = True        
         self.fields['dttermafast'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2230_fimafastamento, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2230fimAfastamento
@@ -95,6 +134,25 @@ class form_s2230_infoatestado(forms.ModelForm):
         self.fields['s2230_iniafastamento'].queryset = s2230iniAfastamento.objects.using( slug ).filter(excluido=False).all()
         self.fields['s2230_iniafastamento'].widget.attrs['required'] = True        
         self.fields['qtddiasafast'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2230_infoatestado, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2230infoAtestado
@@ -116,6 +174,25 @@ class form_s2230_infocessao(forms.ModelForm):
         self.fields['s2230_iniafastamento'].widget.attrs['required'] = True        
         self.fields['cnpjcess'].widget.attrs['required'] = True        
         self.fields['infonus'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2230_infocessao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2230infoCessao
@@ -137,6 +214,25 @@ class form_s2230_infomandsind(forms.ModelForm):
         self.fields['s2230_iniafastamento'].widget.attrs['required'] = True        
         self.fields['cnpjsind'].widget.attrs['required'] = True        
         self.fields['infonusremun'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2230_infomandsind, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2230infoMandSind
@@ -157,6 +253,25 @@ class form_s2230_inforetif(forms.ModelForm):
         
         self.fields['s2230_evtafasttemp'].widget.attrs['required'] = True        
         self.fields['origretif'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2230_inforetif, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2230infoRetif
@@ -178,6 +293,25 @@ class form_s2230_iniafastamento(forms.ModelForm):
         self.fields['s2230_evtafasttemp'].widget.attrs['required'] = True        
         self.fields['dtiniafast'].widget.attrs['required'] = True        
         self.fields['codmotafast'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2230_iniafastamento, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2230iniAfastamento

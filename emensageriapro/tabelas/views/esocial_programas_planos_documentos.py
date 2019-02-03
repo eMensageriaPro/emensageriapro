@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     esocial_programas_planos_documentos = get_object_or_404(eSocialProgramasPlanosDocumentos.objects.using( db_slug ), excluido = False, id = esocial_programas_planos_documentos_id)
     if request.method == 'POST':
-        eSocialProgramasPlanosDocumentos.objects.using( db_slug ).filter(id = esocial_programas_planos_documentos_id).update(excluido = True)
+        obj = eSocialProgramasPlanosDocumentos.objects.using( db_slug ).get(id = esocial_programas_planos_documentos_id)
+        obj.delete(request=request)
         #esocial_programas_planos_documentos_apagar_custom
         #esocial_programas_planos_documentos_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -312,27 +314,21 @@ def salvar(request, hash):
             esocial_programas_planos_documentos_form = form_esocial_programas_planos_documentos(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if esocial_programas_planos_documentos_form.is_valid():
+
                 dados = esocial_programas_planos_documentos_form.cleaned_data
-                if esocial_programas_planos_documentos_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #esocial_programas_planos_documentos_campos_multiple_passo1
-                    eSocialProgramasPlanosDocumentos.objects.using(db_slug).filter(id=esocial_programas_planos_documentos_id).update(**dados)
-                    obj = eSocialProgramasPlanosDocumentos.objects.using(db_slug).get(id=esocial_programas_planos_documentos_id)
-                    #esocial_programas_planos_documentos_editar_custom
-                    #esocial_programas_planos_documentos_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
+                obj = esocial_programas_planos_documentos_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not esocial_programas_planos_documentos_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'esocial_programas_planos_documentos', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #esocial_programas_planos_documentos_cadastrar_campos_multiple_passo1
-                    obj = eSocialProgramasPlanosDocumentos(**dados)
-                    obj.save(using = db_slug)
-                    #esocial_programas_planos_documentos_cadastrar_custom
-                    #esocial_programas_planos_documentos_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
+                    gravar_auditoria(json.dumps(model_to_dict(esocial_programas_planos_documentos), indent=4, sort_keys=True, default=str),
+                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                     'esocial_programas_planos_documentos', esocial_programas_planos_documentos_id, usuario_id, 2)
+                  
                 if request.session['retorno_pagina'] not in ('esocial_programas_planos_documentos_apagar', 'esocial_programas_planos_documentos_salvar', 'esocial_programas_planos_documentos'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if esocial_programas_planos_documentos_id != obj.id:

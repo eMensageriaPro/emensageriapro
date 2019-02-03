@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     regras_validacao = get_object_or_404(RegrasDeValidacao.objects.using( db_slug ), excluido = False, id = regras_validacao_id)
     if request.method == 'POST':
-        RegrasDeValidacao.objects.using( db_slug ).filter(id = regras_validacao_id).update(excluido = True)
+        obj = RegrasDeValidacao.objects.using( db_slug ).get(id = regras_validacao_id)
+        obj.delete(request=request)
         #regras_validacao_apagar_custom
         #regras_validacao_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -312,27 +314,11 @@ def salvar(request, hash):
             regras_validacao_form = form_regras_validacao(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if regras_validacao_form.is_valid():
-                dados = regras_validacao_form.cleaned_data
-                if regras_validacao_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #regras_validacao_campos_multiple_passo1
-                    RegrasDeValidacao.objects.using(db_slug).filter(id=regras_validacao_id).update(**dados)
-                    obj = RegrasDeValidacao.objects.using(db_slug).get(id=regras_validacao_id)
-                    #regras_validacao_editar_custom
-                    #regras_validacao_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
-                else:
+                #regras_validacao_campos_multiple_passo1
+                obj = regras_validacao_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+                #regras_validacao_campos_multiple_passo2
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #regras_validacao_cadastrar_campos_multiple_passo1
-                    obj = RegrasDeValidacao(**dados)
-                    obj.save(using = db_slug)
-                    #regras_validacao_cadastrar_custom
-                    #regras_validacao_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
                 if request.session['retorno_pagina'] not in ('regras_validacao_apagar', 'regras_validacao_salvar', 'regras_validacao'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if regras_validacao_id != obj.id:

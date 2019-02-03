@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -86,7 +87,8 @@ def apagar(request, hash):
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(r3010_receitaingressos), indent=4, sort_keys=True, default=str)
-            r3010receitaIngressos.objects.using( db_slug ).filter(id = r3010_receitaingressos_id).delete()
+            obj = r3010receitaIngressos.objects.using( db_slug ).get(id = r3010_receitaingressos_id)
+            obj.delete(request=request)
             #r3010_receitaingressos_apagar_custom
             #r3010_receitaingressos_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
@@ -325,43 +327,26 @@ def salvar(request, hash):
             r3010_receitaingressos_form = form_r3010_receitaingressos(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if r3010_receitaingressos_form.is_valid():
+
                 dados = r3010_receitaingressos_form.cleaned_data
-                import json
-                from django.forms.models import model_to_dict
-                if r3010_receitaingressos_id:
-                    if dados_evento['status'] == 0:
-                        dados['modificado_por_id'] = usuario_id
-                        dados['modificado_em'] = datetime.datetime.now()
-                        #r3010_receitaingressos_campos_multiple_passo1
-                        r3010receitaIngressos.objects.using(db_slug).filter(id=r3010_receitaingressos_id).update(**dados)
-                        obj = r3010receitaIngressos.objects.using(db_slug).get(id=r3010_receitaingressos_id)
-                        #r3010_receitaingressos_editar_custom
-                        #r3010_receitaingressos_campos_multiple_passo2
-                        messages.success(request, 'Alterado com sucesso!')
-                        gravar_auditoria(json.dumps(model_to_dict(r3010_receitaingressos), indent=4, sort_keys=True, default=str),
-                                         json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                         'r3010_receitaingressos', r3010_receitaingressos_id, usuario_id, 2)
-                    else:
-                        messages.error(request, 'Somente é possível alterar eventos com status "Cadastrado"!')
+                obj = r3010_receitaingressos_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not r3010_receitaingressos_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'r3010_receitaingressos', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #r3010_receitaingressos_cadastrar_campos_multiple_passo1
-                    obj = r3010receitaIngressos(**dados)
-                    obj.save(using = db_slug)
-                    #r3010_receitaingressos_cadastrar_custom
-                    #r3010_receitaingressos_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
-                    gravar_auditoria('{}',
+                    gravar_auditoria(json.dumps(model_to_dict(r3010_receitaingressos), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                     'r3010_receitaingressos', obj.id, usuario_id, 1)
-                    if request.session['retorno_pagina'] not in ('r3010_receitaingressos_apagar', 'r3010_receitaingressos_salvar', 'r3010_receitaingressos'):
-                        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-                    if r3010_receitaingressos_id != obj.id:
-                        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                        return redirect('r3010_receitaingressos_salvar', hash=url_hash)
+                                     'r3010_receitaingressos', r3010_receitaingressos_id, usuario_id, 2)
+                  
+                if request.session['retorno_pagina'] not in ('r3010_receitaingressos_apagar', 'r3010_receitaingressos_salvar', 'r3010_receitaingressos'):
+                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if r3010_receitaingressos_id != obj.id:
+                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
+                    return redirect('r3010_receitaingressos_salvar', hash=url_hash)
             else:
                 messages.error(request, 'Erro ao salvar!')
         r3010_receitaingressos_form = disabled_form_fields(r3010_receitaingressos_form, permissao.permite_editar)

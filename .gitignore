@@ -2,6 +2,7 @@
 *.pyc
 .env
 .env_localhost
+.env_web
 certificados/*.pfx
 certificados/*.pem
 arquivos/
@@ -18,3 +19,4 @@ clear_database.py
 .idea/
 emensageriapro.wsgi
 xsd/rename_xsds.py
+make_and_migrate_all_apps.py

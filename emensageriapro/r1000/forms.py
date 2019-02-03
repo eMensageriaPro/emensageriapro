@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.r1000.models import * 
 from emensageriapro.efdreinf.models import r1000evtInfoContri 
 
@@ -58,6 +59,25 @@ class form_r1000_alteracao(forms.ModelForm):
         self.fields['indacordoisenmulta'].widget.attrs['required'] = True        
         self.fields['nmctt'].widget.attrs['required'] = True        
         self.fields['cpfctt'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r1000_alteracao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r1000alteracao
@@ -78,6 +98,25 @@ class form_r1000_alteracao_infoefr(forms.ModelForm):
         
         self.fields['r1000_alteracao'].widget.attrs['required'] = True        
         self.fields['ideefr'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r1000_alteracao_infoefr, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r1000alteracaoinfoEFR
@@ -98,6 +137,25 @@ class form_r1000_alteracao_novavalidade(forms.ModelForm):
         
         self.fields['r1000_alteracao'].widget.attrs['required'] = True        
         self.fields['inivalid'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r1000_alteracao_novavalidade, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r1000alteracaonovaValidade
@@ -121,6 +179,25 @@ class form_r1000_alteracao_softhouse(forms.ModelForm):
         self.fields['cnpjsofthouse'].widget.attrs['required'] = True        
         self.fields['nmrazao'].widget.attrs['required'] = True        
         self.fields['nmcont'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r1000_alteracao_softhouse, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r1000alteracaosoftHouse
@@ -141,6 +218,25 @@ class form_r1000_exclusao(forms.ModelForm):
         
         self.fields['r1000_evtinfocontri'].widget.attrs['required'] = True        
         self.fields['inivalid'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r1000_exclusao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r1000exclusao
@@ -167,6 +263,25 @@ class form_r1000_inclusao(forms.ModelForm):
         self.fields['indacordoisenmulta'].widget.attrs['required'] = True        
         self.fields['nmctt'].widget.attrs['required'] = True        
         self.fields['cpfctt'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r1000_inclusao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r1000inclusao
@@ -187,6 +302,25 @@ class form_r1000_inclusao_infoefr(forms.ModelForm):
         
         self.fields['r1000_inclusao'].widget.attrs['required'] = True        
         self.fields['ideefr'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r1000_inclusao_infoefr, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r1000inclusaoinfoEFR
@@ -210,6 +344,25 @@ class form_r1000_inclusao_softhouse(forms.ModelForm):
         self.fields['cnpjsofthouse'].widget.attrs['required'] = True        
         self.fields['nmrazao'].widget.attrs['required'] = True        
         self.fields['nmcont'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r1000_inclusao_softhouse, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r1000inclusaosoftHouse

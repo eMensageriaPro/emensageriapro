@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     efdreinf_pagamentos_codigos = get_object_or_404(EFDReinfPagamentosCodigos.objects.using( db_slug ), excluido = False, id = efdreinf_pagamentos_codigos_id)
     if request.method == 'POST':
-        EFDReinfPagamentosCodigos.objects.using( db_slug ).filter(id = efdreinf_pagamentos_codigos_id).update(excluido = True)
+        obj = EFDReinfPagamentosCodigos.objects.using( db_slug ).get(id = efdreinf_pagamentos_codigos_id)
+        obj.delete(request=request)
         #efdreinf_pagamentos_codigos_apagar_custom
         #efdreinf_pagamentos_codigos_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -321,27 +323,21 @@ def salvar(request, hash):
             efdreinf_pagamentos_codigos_form = form_efdreinf_pagamentos_codigos(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if efdreinf_pagamentos_codigos_form.is_valid():
+
                 dados = efdreinf_pagamentos_codigos_form.cleaned_data
-                if efdreinf_pagamentos_codigos_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #efdreinf_pagamentos_codigos_campos_multiple_passo1
-                    EFDReinfPagamentosCodigos.objects.using(db_slug).filter(id=efdreinf_pagamentos_codigos_id).update(**dados)
-                    obj = EFDReinfPagamentosCodigos.objects.using(db_slug).get(id=efdreinf_pagamentos_codigos_id)
-                    #efdreinf_pagamentos_codigos_editar_custom
-                    #efdreinf_pagamentos_codigos_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
+                obj = efdreinf_pagamentos_codigos_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not efdreinf_pagamentos_codigos_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'efdreinf_pagamentos_codigos', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #efdreinf_pagamentos_codigos_cadastrar_campos_multiple_passo1
-                    obj = EFDReinfPagamentosCodigos(**dados)
-                    obj.save(using = db_slug)
-                    #efdreinf_pagamentos_codigos_cadastrar_custom
-                    #efdreinf_pagamentos_codigos_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
+                    gravar_auditoria(json.dumps(model_to_dict(efdreinf_pagamentos_codigos), indent=4, sort_keys=True, default=str),
+                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                     'efdreinf_pagamentos_codigos', efdreinf_pagamentos_codigos_id, usuario_id, 2)
+                  
                 if request.session['retorno_pagina'] not in ('efdreinf_pagamentos_codigos_apagar', 'efdreinf_pagamentos_codigos_salvar', 'efdreinf_pagamentos_codigos'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if efdreinf_pagamentos_codigos_id != obj.id:

@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -47,7 +50,7 @@ CHOICES_S1280_INDSUBSTPATR = (
     (2, u'2 - Parcialmente substituída'),
 )
 
-class s1280infoAtivConcom(models.Model):
+class s1280infoAtivConcom(SoftDeletionModel):
     s1280_evtinfocomplper = models.OneToOneField('esocial.s1280evtInfoComplPer',
         related_name='%(class)s_s1280_evtinfocomplper')
     def evento(self): return self.s1280_evtinfocomplper.evento()
@@ -59,7 +62,7 @@ class s1280infoAtivConcom(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1280_evtinfocomplper) + ' - ' + unicode(self.fatormes) + ' - ' + unicode(self.fator13)
     #s1280_infoativconcom_custom#
@@ -73,10 +76,17 @@ class s1280infoAtivConcom(models.Model):
 class s1280infoAtivConcomSerializer(ModelSerializer):
     class Meta:
         model = s1280infoAtivConcom
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1280infoSubstPatr(models.Model):
+class s1280infoSubstPatr(SoftDeletionModel):
     s1280_evtinfocomplper = models.OneToOneField('esocial.s1280evtInfoComplPer',
         related_name='%(class)s_s1280_evtinfocomplper')
     def evento(self): return self.s1280_evtinfocomplper.evento()
@@ -88,7 +98,7 @@ class s1280infoSubstPatr(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1280_evtinfocomplper) + ' - ' + unicode(self.indsubstpatr) + ' - ' + unicode(self.percredcontrib)
     #s1280_infosubstpatr_custom#
@@ -102,10 +112,17 @@ class s1280infoSubstPatr(models.Model):
 class s1280infoSubstPatrSerializer(ModelSerializer):
     class Meta:
         model = s1280infoSubstPatr
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1280infoSubstPatrOpPort(models.Model):
+class s1280infoSubstPatrOpPort(SoftDeletionModel):
     s1280_evtinfocomplper = models.ForeignKey('esocial.s1280evtInfoComplPer',
         related_name='%(class)s_s1280_evtinfocomplper')
     def evento(self): return self.s1280_evtinfocomplper.evento()
@@ -116,7 +133,7 @@ class s1280infoSubstPatrOpPort(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1280_evtinfocomplper) + ' - ' + unicode(self.cnpjopportuario)
     #s1280_infosubstpatropport_custom#
@@ -130,7 +147,14 @@ class s1280infoSubstPatrOpPort(models.Model):
 class s1280infoSubstPatrOpPortSerializer(ModelSerializer):
     class Meta:
         model = s1280infoSubstPatrOpPort
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

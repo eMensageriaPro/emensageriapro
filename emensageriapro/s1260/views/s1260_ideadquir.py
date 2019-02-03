@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -86,7 +87,8 @@ def apagar(request, hash):
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(s1260_ideadquir), indent=4, sort_keys=True, default=str)
-            s1260ideAdquir.objects.using( db_slug ).filter(id = s1260_ideadquir_id).delete()
+            obj = s1260ideAdquir.objects.using( db_slug ).get(id = s1260_ideadquir_id)
+            obj.delete(request=request)
             #s1260_ideadquir_apagar_custom
             #s1260_ideadquir_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
@@ -313,43 +315,26 @@ def salvar(request, hash):
             s1260_ideadquir_form = form_s1260_ideadquir(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if s1260_ideadquir_form.is_valid():
+
                 dados = s1260_ideadquir_form.cleaned_data
-                import json
-                from django.forms.models import model_to_dict
-                if s1260_ideadquir_id:
-                    if dados_evento['status'] == 0:
-                        dados['modificado_por_id'] = usuario_id
-                        dados['modificado_em'] = datetime.datetime.now()
-                        #s1260_ideadquir_campos_multiple_passo1
-                        s1260ideAdquir.objects.using(db_slug).filter(id=s1260_ideadquir_id).update(**dados)
-                        obj = s1260ideAdquir.objects.using(db_slug).get(id=s1260_ideadquir_id)
-                        #s1260_ideadquir_editar_custom
-                        #s1260_ideadquir_campos_multiple_passo2
-                        messages.success(request, 'Alterado com sucesso!')
-                        gravar_auditoria(json.dumps(model_to_dict(s1260_ideadquir), indent=4, sort_keys=True, default=str),
-                                         json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                         's1260_ideadquir', s1260_ideadquir_id, usuario_id, 2)
-                    else:
-                        messages.error(request, 'Somente é possível alterar eventos com status "Cadastrado"!')
+                obj = s1260_ideadquir_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not s1260_ideadquir_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 's1260_ideadquir', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #s1260_ideadquir_cadastrar_campos_multiple_passo1
-                    obj = s1260ideAdquir(**dados)
-                    obj.save(using = db_slug)
-                    #s1260_ideadquir_cadastrar_custom
-                    #s1260_ideadquir_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
-                    gravar_auditoria('{}',
+                    gravar_auditoria(json.dumps(model_to_dict(s1260_ideadquir), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                     's1260_ideadquir', obj.id, usuario_id, 1)
-                    if request.session['retorno_pagina'] not in ('s1260_ideadquir_apagar', 's1260_ideadquir_salvar', 's1260_ideadquir'):
-                        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-                    if s1260_ideadquir_id != obj.id:
-                        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                        return redirect('s1260_ideadquir_salvar', hash=url_hash)
+                                     's1260_ideadquir', s1260_ideadquir_id, usuario_id, 2)
+                  
+                if request.session['retorno_pagina'] not in ('s1260_ideadquir_apagar', 's1260_ideadquir_salvar', 's1260_ideadquir'):
+                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if s1260_ideadquir_id != obj.id:
+                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
+                    return redirect('s1260_ideadquir_salvar', hash=url_hash)
             else:
                 messages.error(request, 'Erro ao salvar!')
         s1260_ideadquir_form = disabled_form_fields(s1260_ideadquir_form, permissao.permite_editar)

@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -86,7 +87,8 @@ def apagar(request, hash):
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(s1270_remunavnp), indent=4, sort_keys=True, default=str)
-            s1270remunAvNP.objects.using( db_slug ).filter(id = s1270_remunavnp_id).delete()
+            obj = s1270remunAvNP.objects.using( db_slug ).get(id = s1270_remunavnp_id)
+            obj.delete(request=request)
             #s1270_remunavnp_apagar_custom
             #s1270_remunavnp_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
@@ -334,43 +336,26 @@ def salvar(request, hash):
             s1270_remunavnp_form = form_s1270_remunavnp(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if s1270_remunavnp_form.is_valid():
+
                 dados = s1270_remunavnp_form.cleaned_data
-                import json
-                from django.forms.models import model_to_dict
-                if s1270_remunavnp_id:
-                    if dados_evento['status'] == 0:
-                        dados['modificado_por_id'] = usuario_id
-                        dados['modificado_em'] = datetime.datetime.now()
-                        #s1270_remunavnp_campos_multiple_passo1
-                        s1270remunAvNP.objects.using(db_slug).filter(id=s1270_remunavnp_id).update(**dados)
-                        obj = s1270remunAvNP.objects.using(db_slug).get(id=s1270_remunavnp_id)
-                        #s1270_remunavnp_editar_custom
-                        #s1270_remunavnp_campos_multiple_passo2
-                        messages.success(request, 'Alterado com sucesso!')
-                        gravar_auditoria(json.dumps(model_to_dict(s1270_remunavnp), indent=4, sort_keys=True, default=str),
-                                         json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                         's1270_remunavnp', s1270_remunavnp_id, usuario_id, 2)
-                    else:
-                        messages.error(request, 'Somente é possível alterar eventos com status "Cadastrado"!')
+                obj = s1270_remunavnp_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not s1270_remunavnp_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 's1270_remunavnp', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #s1270_remunavnp_cadastrar_campos_multiple_passo1
-                    obj = s1270remunAvNP(**dados)
-                    obj.save(using = db_slug)
-                    #s1270_remunavnp_cadastrar_custom
-                    #s1270_remunavnp_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
-                    gravar_auditoria('{}',
+                    gravar_auditoria(json.dumps(model_to_dict(s1270_remunavnp), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                     's1270_remunavnp', obj.id, usuario_id, 1)
-                    if request.session['retorno_pagina'] not in ('s1270_remunavnp_apagar', 's1270_remunavnp_salvar', 's1270_remunavnp'):
-                        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-                    if s1270_remunavnp_id != obj.id:
-                        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                        return redirect('s1270_remunavnp_salvar', hash=url_hash)
+                                     's1270_remunavnp', s1270_remunavnp_id, usuario_id, 2)
+                  
+                if request.session['retorno_pagina'] not in ('s1270_remunavnp_apagar', 's1270_remunavnp_salvar', 's1270_remunavnp'):
+                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if s1270_remunavnp_id != obj.id:
+                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
+                    return redirect('s1270_remunavnp_salvar', hash=url_hash)
             else:
                 messages.error(request, 'Erro ao salvar!')
         s1270_remunavnp_form = disabled_form_fields(s1270_remunavnp_form, permissao.permite_editar)

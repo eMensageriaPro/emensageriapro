@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s2205.models import * 
 from emensageriapro.tabelas.models import Municipios 
 from emensageriapro.tabelas.models import eSocialPaises 
@@ -58,6 +59,25 @@ class form_s2205_cnh(forms.ModelForm):
         self.fields['ufcnh'].widget.attrs['required'] = True        
         self.fields['dtvalid'].widget.attrs['required'] = True        
         self.fields['categoriacnh'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2205_cnh, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2205CNH
@@ -80,6 +100,25 @@ class form_s2205_ctps(forms.ModelForm):
         self.fields['nrctps'].widget.attrs['required'] = True        
         self.fields['seriectps'].widget.attrs['required'] = True        
         self.fields['ufctps'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2205_ctps, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2205CTPS
@@ -101,6 +140,25 @@ class form_s2205_oc(forms.ModelForm):
         self.fields['s2205_evtaltcadastral'].widget.attrs['required'] = True        
         self.fields['nroc'].widget.attrs['required'] = True        
         self.fields['orgaoemissor'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2205_oc, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2205OC
@@ -122,6 +180,25 @@ class form_s2205_rg(forms.ModelForm):
         self.fields['s2205_evtaltcadastral'].widget.attrs['required'] = True        
         self.fields['nrrg'].widget.attrs['required'] = True        
         self.fields['orgaoemissor'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2205_rg, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2205RG
@@ -143,6 +220,25 @@ class form_s2205_ric(forms.ModelForm):
         self.fields['s2205_evtaltcadastral'].widget.attrs['required'] = True        
         self.fields['nrric'].widget.attrs['required'] = True        
         self.fields['orgaoemissor'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2205_ric, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2205RIC
@@ -164,6 +260,25 @@ class form_s2205_rne(forms.ModelForm):
         self.fields['s2205_evtaltcadastral'].widget.attrs['required'] = True        
         self.fields['nrrne'].widget.attrs['required'] = True        
         self.fields['orgaoemissor'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2205_rne, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2205RNE
@@ -184,6 +299,25 @@ class form_s2205_aposentadoria(forms.ModelForm):
         
         self.fields['s2205_evtaltcadastral'].widget.attrs['required'] = True        
         self.fields['trabaposent'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2205_aposentadoria, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2205aposentadoria
@@ -209,6 +343,25 @@ class form_s2205_brasil(forms.ModelForm):
         self.fields['cep'].widget.attrs['required'] = True        
         self.fields['codmunic'].widget.attrs['required'] = True        
         self.fields['uf'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2205_brasil, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2205brasil
@@ -228,6 +381,25 @@ class form_s2205_contato(forms.ModelForm):
         super(form_s2205_contato, self).__init__(*args,**kwargs)
         
         self.fields['s2205_evtaltcadastral'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2205_contato, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2205contato
@@ -254,6 +426,25 @@ class form_s2205_dependente(forms.ModelForm):
         self.fields['depirrf'].widget.attrs['required'] = True        
         self.fields['depsf'].widget.attrs['required'] = True        
         self.fields['inctrab'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2205_dependente, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2205dependente
@@ -277,6 +468,25 @@ class form_s2205_exterior(forms.ModelForm):
         self.fields['dsclograd'].widget.attrs['required'] = True        
         self.fields['nrlograd'].widget.attrs['required'] = True        
         self.fields['nmcid'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2205_exterior, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2205exterior
@@ -302,6 +512,25 @@ class form_s2205_infodeficiencia(forms.ModelForm):
         self.fields['defmental'].widget.attrs['required'] = True        
         self.fields['defintelectual'].widget.attrs['required'] = True        
         self.fields['reabreadap'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2205_infodeficiencia, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2205infoDeficiencia
@@ -324,6 +553,25 @@ class form_s2205_trabestrangeiro(forms.ModelForm):
         self.fields['classtrabestrang'].widget.attrs['required'] = True        
         self.fields['casadobr'].widget.attrs['required'] = True        
         self.fields['filhosbr'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2205_trabestrangeiro, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2205trabEstrangeiro

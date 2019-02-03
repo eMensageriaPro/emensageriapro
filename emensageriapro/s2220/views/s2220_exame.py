@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -86,7 +87,8 @@ def apagar(request, hash):
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(s2220_exame), indent=4, sort_keys=True, default=str)
-            s2220exame.objects.using( db_slug ).filter(id = s2220_exame_id).delete()
+            obj = s2220exame.objects.using( db_slug ).get(id = s2220_exame_id)
+            obj.delete(request=request)
             #s2220_exame_apagar_custom
             #s2220_exame_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
@@ -328,43 +330,26 @@ def salvar(request, hash):
             s2220_exame_form = form_s2220_exame(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if s2220_exame_form.is_valid():
+
                 dados = s2220_exame_form.cleaned_data
-                import json
-                from django.forms.models import model_to_dict
-                if s2220_exame_id:
-                    if dados_evento['status'] == 0:
-                        dados['modificado_por_id'] = usuario_id
-                        dados['modificado_em'] = datetime.datetime.now()
-                        #s2220_exame_campos_multiple_passo1
-                        s2220exame.objects.using(db_slug).filter(id=s2220_exame_id).update(**dados)
-                        obj = s2220exame.objects.using(db_slug).get(id=s2220_exame_id)
-                        #s2220_exame_editar_custom
-                        #s2220_exame_campos_multiple_passo2
-                        messages.success(request, 'Alterado com sucesso!')
-                        gravar_auditoria(json.dumps(model_to_dict(s2220_exame), indent=4, sort_keys=True, default=str),
-                                         json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                         's2220_exame', s2220_exame_id, usuario_id, 2)
-                    else:
-                        messages.error(request, 'Somente é possível alterar eventos com status "Cadastrado"!')
+                obj = s2220_exame_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not s2220_exame_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 's2220_exame', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #s2220_exame_cadastrar_campos_multiple_passo1
-                    obj = s2220exame(**dados)
-                    obj.save(using = db_slug)
-                    #s2220_exame_cadastrar_custom
-                    #s2220_exame_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
-                    gravar_auditoria('{}',
+                    gravar_auditoria(json.dumps(model_to_dict(s2220_exame), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                     's2220_exame', obj.id, usuario_id, 1)
-                    if request.session['retorno_pagina'] not in ('s2220_exame_apagar', 's2220_exame_salvar', 's2220_exame'):
-                        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-                    if s2220_exame_id != obj.id:
-                        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                        return redirect('s2220_exame_salvar', hash=url_hash)
+                                     's2220_exame', s2220_exame_id, usuario_id, 2)
+                  
+                if request.session['retorno_pagina'] not in ('s2220_exame_apagar', 's2220_exame_salvar', 's2220_exame'):
+                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if s2220_exame_id != obj.id:
+                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
+                    return redirect('s2220_exame_salvar', hash=url_hash)
             else:
                 messages.error(request, 'Erro ao salvar!')
         s2220_exame_form = disabled_form_fields(s2220_exame_form, permissao.permite_editar)

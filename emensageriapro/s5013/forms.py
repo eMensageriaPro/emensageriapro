@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s5013.models import * 
 from emensageriapro.esocial.models import s5013evtFGTS 
 
@@ -55,6 +56,25 @@ class form_s5013_baseperante(forms.ModelForm):
         self.fields['s5013_infobaseperante'].widget.attrs['required'] = True        
         self.fields['tpvalore'].widget.attrs['required'] = True        
         self.fields['basefgtse'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5013_baseperante, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5013basePerAntE
@@ -78,6 +98,25 @@ class form_s5013_baseperapur(forms.ModelForm):
         self.fields['s5013_evtfgts'].widget.attrs['required'] = True        
         self.fields['tpvalor'].widget.attrs['required'] = True        
         self.fields['basefgts'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5013_baseperapur, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5013basePerApur
@@ -101,6 +140,25 @@ class form_s5013_dpsperante(forms.ModelForm):
         self.fields['s5013_infodpsperante'].widget.attrs['required'] = True        
         self.fields['tpdpse'].widget.attrs['required'] = True        
         self.fields['vrfgtse'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5013_dpsperante, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5013dpsPerAntE
@@ -124,6 +182,25 @@ class form_s5013_dpsperapur(forms.ModelForm):
         self.fields['s5013_evtfgts'].widget.attrs['required'] = True        
         self.fields['tpdps'].widget.attrs['required'] = True        
         self.fields['vrfgts'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5013_dpsperapur, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5013dpsPerApur
@@ -145,6 +222,25 @@ class form_s5013_infobaseperante(forms.ModelForm):
         self.fields['s5013_evtfgts'].queryset = s5013evtFGTS.objects.using( slug ).filter(excluido=False).all()
         self.fields['s5013_evtfgts'].widget.attrs['required'] = True        
         self.fields['perref'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5013_infobaseperante, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5013infoBasePerAntE
@@ -166,6 +262,25 @@ class form_s5013_infodpsperante(forms.ModelForm):
         self.fields['s5013_evtfgts'].queryset = s5013evtFGTS.objects.using( slug ).filter(excluido=False).all()
         self.fields['s5013_evtfgts'].widget.attrs['required'] = True        
         self.fields['perref'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5013_infodpsperante, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s5013infoDpsPerAntE

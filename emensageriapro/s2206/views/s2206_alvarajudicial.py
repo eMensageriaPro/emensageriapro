@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -86,7 +87,8 @@ def apagar(request, hash):
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(s2206_alvarajudicial), indent=4, sort_keys=True, default=str)
-            s2206alvaraJudicial.objects.using( db_slug ).filter(id = s2206_alvarajudicial_id).delete()
+            obj = s2206alvaraJudicial.objects.using( db_slug ).get(id = s2206_alvarajudicial_id)
+            obj.delete(request=request)
             #s2206_alvarajudicial_apagar_custom
             #s2206_alvarajudicial_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
@@ -307,43 +309,26 @@ def salvar(request, hash):
             s2206_alvarajudicial_form = form_s2206_alvarajudicial(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if s2206_alvarajudicial_form.is_valid():
+
                 dados = s2206_alvarajudicial_form.cleaned_data
-                import json
-                from django.forms.models import model_to_dict
-                if s2206_alvarajudicial_id:
-                    if dados_evento['status'] == 0:
-                        dados['modificado_por_id'] = usuario_id
-                        dados['modificado_em'] = datetime.datetime.now()
-                        #s2206_alvarajudicial_campos_multiple_passo1
-                        s2206alvaraJudicial.objects.using(db_slug).filter(id=s2206_alvarajudicial_id).update(**dados)
-                        obj = s2206alvaraJudicial.objects.using(db_slug).get(id=s2206_alvarajudicial_id)
-                        #s2206_alvarajudicial_editar_custom
-                        #s2206_alvarajudicial_campos_multiple_passo2
-                        messages.success(request, 'Alterado com sucesso!')
-                        gravar_auditoria(json.dumps(model_to_dict(s2206_alvarajudicial), indent=4, sort_keys=True, default=str),
-                                         json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                         's2206_alvarajudicial', s2206_alvarajudicial_id, usuario_id, 2)
-                    else:
-                        messages.error(request, 'Somente é possível alterar eventos com status "Cadastrado"!')
+                obj = s2206_alvarajudicial_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not s2206_alvarajudicial_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 's2206_alvarajudicial', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #s2206_alvarajudicial_cadastrar_campos_multiple_passo1
-                    obj = s2206alvaraJudicial(**dados)
-                    obj.save(using = db_slug)
-                    #s2206_alvarajudicial_cadastrar_custom
-                    #s2206_alvarajudicial_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
-                    gravar_auditoria('{}',
+                    gravar_auditoria(json.dumps(model_to_dict(s2206_alvarajudicial), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                     's2206_alvarajudicial', obj.id, usuario_id, 1)
-                    if request.session['retorno_pagina'] not in ('s2206_alvarajudicial_apagar', 's2206_alvarajudicial_salvar', 's2206_alvarajudicial'):
-                        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-                    if s2206_alvarajudicial_id != obj.id:
-                        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                        return redirect('s2206_alvarajudicial_salvar', hash=url_hash)
+                                     's2206_alvarajudicial', s2206_alvarajudicial_id, usuario_id, 2)
+                  
+                if request.session['retorno_pagina'] not in ('s2206_alvarajudicial_apagar', 's2206_alvarajudicial_salvar', 's2206_alvarajudicial'):
+                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if s2206_alvarajudicial_id != obj.id:
+                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
+                    return redirect('s2206_alvarajudicial_salvar', hash=url_hash)
             else:
                 messages.error(request, 'Erro ao salvar!')
         s2206_alvarajudicial_form = disabled_form_fields(s2206_alvarajudicial_form, permissao.permite_editar)

@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -384,7 +387,7 @@ CHOICES_S1210_TPPGTO = (
     (9, u'9 - Pagamento relativo a competências anteriores ao início de obrigatoriedade dos eventos periódicos para o contribuinte'),
 )
 
-class s1210deps(models.Model):
+class s1210deps(SoftDeletionModel):
     s1210_evtpgtos = models.OneToOneField('esocial.s1210evtPgtos',
         related_name='%(class)s_s1210_evtpgtos')
     def evento(self): return self.s1210_evtpgtos.evento()
@@ -395,7 +398,7 @@ class s1210deps(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_evtpgtos) + ' - ' + unicode(self.vrdeddep)
     #s1210_deps_custom#
@@ -409,10 +412,17 @@ class s1210deps(models.Model):
 class s1210depsSerializer(ModelSerializer):
     class Meta:
         model = s1210deps
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1210detPgtoAnt(models.Model):
+class s1210detPgtoAnt(SoftDeletionModel):
     s1210_infopgto = models.ForeignKey('s1210infoPgto',
         related_name='%(class)s_s1210_infopgto')
     def evento(self): return self.s1210_infopgto.evento()
@@ -423,7 +433,7 @@ class s1210detPgtoAnt(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_infopgto) + ' - ' + unicode(self.codcateg)
     #s1210_detpgtoant_custom#
@@ -437,10 +447,17 @@ class s1210detPgtoAnt(models.Model):
 class s1210detPgtoAntSerializer(ModelSerializer):
     class Meta:
         model = s1210detPgtoAnt
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1210detPgtoAntinfoPgtoAnt(models.Model):
+class s1210detPgtoAntinfoPgtoAnt(SoftDeletionModel):
     s1210_detpgtoant = models.ForeignKey('s1210detPgtoAnt',
         related_name='%(class)s_s1210_detpgtoant')
     def evento(self): return self.s1210_detpgtoant.evento()
@@ -452,7 +469,7 @@ class s1210detPgtoAntinfoPgtoAnt(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_detpgtoant) + ' - ' + unicode(self.tpbcirrf) + ' - ' + unicode(self.vrbcirrf)
     #s1210_detpgtoant_infopgtoant_custom#
@@ -466,10 +483,17 @@ class s1210detPgtoAntinfoPgtoAnt(models.Model):
 class s1210detPgtoAntinfoPgtoAntSerializer(ModelSerializer):
     class Meta:
         model = s1210detPgtoAntinfoPgtoAnt
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1210detPgtoBenPr(models.Model):
+class s1210detPgtoBenPr(SoftDeletionModel):
     s1210_infopgto = models.OneToOneField('s1210infoPgto',
         related_name='%(class)s_s1210_infopgto')
     def evento(self): return self.s1210_infopgto.evento()
@@ -483,7 +507,7 @@ class s1210detPgtoBenPr(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_infopgto) + ' - ' + unicode(self.perref) + ' - ' + unicode(self.idedmdev) + ' - ' + unicode(self.indpgtott) + ' - ' + unicode(self.vrliq)
     #s1210_detpgtobenpr_custom#
@@ -497,10 +521,17 @@ class s1210detPgtoBenPr(models.Model):
 class s1210detPgtoBenPrSerializer(ModelSerializer):
     class Meta:
         model = s1210detPgtoBenPr
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1210detPgtoBenPrinfoPgtoParc(models.Model):
+class s1210detPgtoBenPrinfoPgtoParc(SoftDeletionModel):
     s1210_detpgtobenpr = models.ForeignKey('s1210detPgtoBenPr',
         related_name='%(class)s_s1210_detpgtobenpr')
     def evento(self): return self.s1210_detpgtobenpr.evento()
@@ -516,7 +547,7 @@ class s1210detPgtoBenPrinfoPgtoParc(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_detpgtobenpr) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1210_detpgtobenpr_infopgtoparc_custom#
@@ -530,10 +561,17 @@ class s1210detPgtoBenPrinfoPgtoParc(models.Model):
 class s1210detPgtoBenPrinfoPgtoParcSerializer(ModelSerializer):
     class Meta:
         model = s1210detPgtoBenPrinfoPgtoParc
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1210detPgtoBenPrretPgtoTot(models.Model):
+class s1210detPgtoBenPrretPgtoTot(SoftDeletionModel):
     s1210_detpgtobenpr = models.ForeignKey('s1210detPgtoBenPr',
         related_name='%(class)s_s1210_detpgtobenpr')
     def evento(self): return self.s1210_detpgtobenpr.evento()
@@ -549,7 +587,7 @@ class s1210detPgtoBenPrretPgtoTot(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_detpgtobenpr) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1210_detpgtobenpr_retpgtotot_custom#
@@ -563,10 +601,17 @@ class s1210detPgtoBenPrretPgtoTot(models.Model):
 class s1210detPgtoBenPrretPgtoTotSerializer(ModelSerializer):
     class Meta:
         model = s1210detPgtoBenPrretPgtoTot
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1210detPgtoFer(models.Model):
+class s1210detPgtoFer(SoftDeletionModel):
     s1210_infopgto = models.ForeignKey('s1210infoPgto',
         related_name='%(class)s_s1210_infopgto')
     def evento(self): return self.s1210_infopgto.evento()
@@ -581,7 +626,7 @@ class s1210detPgtoFer(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_infopgto) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtinigoz) + ' - ' + unicode(self.qtdias) + ' - ' + unicode(self.vrliq)
     #s1210_detpgtofer_custom#
@@ -595,10 +640,17 @@ class s1210detPgtoFer(models.Model):
 class s1210detPgtoFerSerializer(ModelSerializer):
     class Meta:
         model = s1210detPgtoFer
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1210detPgtoFerdetRubrFer(models.Model):
+class s1210detPgtoFerdetRubrFer(SoftDeletionModel):
     s1210_detpgtofer = models.ForeignKey('s1210detPgtoFer',
         related_name='%(class)s_s1210_detpgtofer')
     def evento(self): return self.s1210_detpgtofer.evento()
@@ -614,7 +666,7 @@ class s1210detPgtoFerdetRubrFer(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_detpgtofer) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1210_detpgtofer_detrubrfer_custom#
@@ -628,10 +680,17 @@ class s1210detPgtoFerdetRubrFer(models.Model):
 class s1210detPgtoFerdetRubrFerSerializer(ModelSerializer):
     class Meta:
         model = s1210detPgtoFerdetRubrFer
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1210detPgtoFerpenAlim(models.Model):
+class s1210detPgtoFerpenAlim(SoftDeletionModel):
     s1210_detpgtofer_detrubrfer = models.ForeignKey('s1210detPgtoFerdetRubrFer',
         related_name='%(class)s_s1210_detpgtofer_detrubrfer')
     def evento(self): return self.s1210_detpgtofer_detrubrfer.evento()
@@ -645,7 +704,7 @@ class s1210detPgtoFerpenAlim(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_detpgtofer_detrubrfer) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.vlrpensao)
     #s1210_detpgtofer_penalim_custom#
@@ -659,10 +718,17 @@ class s1210detPgtoFerpenAlim(models.Model):
 class s1210detPgtoFerpenAlimSerializer(ModelSerializer):
     class Meta:
         model = s1210detPgtoFerpenAlim
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1210detPgtoFl(models.Model):
+class s1210detPgtoFl(SoftDeletionModel):
     s1210_infopgto = models.ForeignKey('s1210infoPgto',
         related_name='%(class)s_s1210_infopgto')
     def evento(self): return self.s1210_infopgto.evento()
@@ -677,7 +743,7 @@ class s1210detPgtoFl(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_infopgto) + ' - ' + unicode(self.idedmdev) + ' - ' + unicode(self.indpgtott) + ' - ' + unicode(self.vrliq)
     #s1210_detpgtofl_custom#
@@ -691,10 +757,17 @@ class s1210detPgtoFl(models.Model):
 class s1210detPgtoFlSerializer(ModelSerializer):
     class Meta:
         model = s1210detPgtoFl
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1210detPgtoFlinfoPgtoParc(models.Model):
+class s1210detPgtoFlinfoPgtoParc(SoftDeletionModel):
     s1210_detpgtofl = models.ForeignKey('s1210detPgtoFl',
         related_name='%(class)s_s1210_detpgtofl')
     def evento(self): return self.s1210_detpgtofl.evento()
@@ -711,7 +784,7 @@ class s1210detPgtoFlinfoPgtoParc(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_detpgtofl) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1210_detpgtofl_infopgtoparc_custom#
@@ -725,10 +798,17 @@ class s1210detPgtoFlinfoPgtoParc(models.Model):
 class s1210detPgtoFlinfoPgtoParcSerializer(ModelSerializer):
     class Meta:
         model = s1210detPgtoFlinfoPgtoParc
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1210detPgtoFlpenAlim(models.Model):
+class s1210detPgtoFlpenAlim(SoftDeletionModel):
     s1210_detpgtofl_retpgtotot = models.ForeignKey('s1210detPgtoFlretPgtoTot',
         related_name='%(class)s_s1210_detpgtofl_retpgtotot')
     def evento(self): return self.s1210_detpgtofl_retpgtotot.evento()
@@ -742,7 +822,7 @@ class s1210detPgtoFlpenAlim(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_detpgtofl_retpgtotot) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.vlrpensao)
     #s1210_detpgtofl_penalim_custom#
@@ -756,10 +836,17 @@ class s1210detPgtoFlpenAlim(models.Model):
 class s1210detPgtoFlpenAlimSerializer(ModelSerializer):
     class Meta:
         model = s1210detPgtoFlpenAlim
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1210detPgtoFlretPgtoTot(models.Model):
+class s1210detPgtoFlretPgtoTot(SoftDeletionModel):
     s1210_detpgtofl = models.ForeignKey('s1210detPgtoFl',
         related_name='%(class)s_s1210_detpgtofl')
     def evento(self): return self.s1210_detpgtofl.evento()
@@ -775,7 +862,7 @@ class s1210detPgtoFlretPgtoTot(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_detpgtofl) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1210_detpgtofl_retpgtotot_custom#
@@ -789,10 +876,17 @@ class s1210detPgtoFlretPgtoTot(models.Model):
 class s1210detPgtoFlretPgtoTotSerializer(ModelSerializer):
     class Meta:
         model = s1210detPgtoFlretPgtoTot
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1210idePgtoExt(models.Model):
+class s1210idePgtoExt(SoftDeletionModel):
     s1210_infopgto = models.OneToOneField('s1210infoPgto',
         related_name='%(class)s_s1210_infopgto')
     def evento(self): return self.s1210_infopgto.evento()
@@ -811,7 +905,7 @@ class s1210idePgtoExt(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_infopgto) + ' - ' + unicode(self.codpais) + ' - ' + unicode(self.indnif) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nmcid)
     #s1210_idepgtoext_custom#
@@ -825,10 +919,17 @@ class s1210idePgtoExt(models.Model):
 class s1210idePgtoExtSerializer(ModelSerializer):
     class Meta:
         model = s1210idePgtoExt
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1210infoPgto(models.Model):
+class s1210infoPgto(SoftDeletionModel):
     s1210_evtpgtos = models.ForeignKey('esocial.s1210evtPgtos',
         related_name='%(class)s_s1210_evtpgtos')
     def evento(self): return self.s1210_evtpgtos.evento()
@@ -841,7 +942,7 @@ class s1210infoPgto(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1210_evtpgtos) + ' - ' + unicode(self.dtpgto) + ' - ' + unicode(self.tppgto) + ' - ' + unicode(self.indresbr)
     #s1210_infopgto_custom#
@@ -855,7 +956,14 @@ class s1210infoPgto(models.Model):
 class s1210infoPgtoSerializer(ModelSerializer):
     class Meta:
         model = s1210infoPgto
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

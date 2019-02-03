@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -144,7 +147,7 @@ ESTADOS = (
     ('TO', u'Tocantins'),
 )
 
-class s2206alvaraJudicial(models.Model):
+class s2206alvaraJudicial(SoftDeletionModel):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
     def evento(self): return self.s2206_evtaltcontratual.evento()
@@ -155,7 +158,7 @@ class s2206alvaraJudicial(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.nrprocjud)
     #s2206_alvarajudicial_custom#
@@ -169,10 +172,17 @@ class s2206alvaraJudicial(models.Model):
 class s2206alvaraJudicialSerializer(ModelSerializer):
     class Meta:
         model = s2206alvaraJudicial
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2206aprend(models.Model):
+class s2206aprend(SoftDeletionModel):
     s2206_infoceletista = models.OneToOneField('s2206infoCeletista',
         related_name='%(class)s_s2206_infoceletista')
     def evento(self): return self.s2206_infoceletista.evento()
@@ -184,7 +194,7 @@ class s2206aprend(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_infoceletista) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s2206_aprend_custom#
@@ -198,10 +208,17 @@ class s2206aprend(models.Model):
 class s2206aprendSerializer(ModelSerializer):
     class Meta:
         model = s2206aprend
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2206filiacaoSindical(models.Model):
+class s2206filiacaoSindical(SoftDeletionModel):
     s2206_evtaltcontratual = models.ForeignKey('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
     def evento(self): return self.s2206_evtaltcontratual.evento()
@@ -212,7 +229,7 @@ class s2206filiacaoSindical(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.cnpjsindtrab)
     #s2206_filiacaosindical_custom#
@@ -226,10 +243,17 @@ class s2206filiacaoSindical(models.Model):
 class s2206filiacaoSindicalSerializer(ModelSerializer):
     class Meta:
         model = s2206filiacaoSindical
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2206horContratual(models.Model):
+class s2206horContratual(SoftDeletionModel):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
     def evento(self): return self.s2206_evtaltcontratual.evento()
@@ -243,7 +267,7 @@ class s2206horContratual(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpjornada) + ' - ' + unicode(self.tmpparc)
     #s2206_horcontratual_custom#
@@ -257,10 +281,17 @@ class s2206horContratual(models.Model):
 class s2206horContratualSerializer(ModelSerializer):
     class Meta:
         model = s2206horContratual
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2206horario(models.Model):
+class s2206horario(SoftDeletionModel):
     s2206_horcontratual = models.ForeignKey('s2206horContratual',
         related_name='%(class)s_s2206_horcontratual')
     def evento(self): return self.s2206_horcontratual.evento()
@@ -272,7 +303,7 @@ class s2206horario(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_horcontratual) + ' - ' + unicode(self.dia) + ' - ' + unicode(self.codhorcontrat)
     #s2206_horario_custom#
@@ -286,10 +317,17 @@ class s2206horario(models.Model):
 class s2206horarioSerializer(ModelSerializer):
     class Meta:
         model = s2206horario
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2206infoCeletista(models.Model):
+class s2206infoCeletista(SoftDeletionModel):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
     def evento(self): return self.s2206_evtaltcontratual.evento()
@@ -303,7 +341,7 @@ class s2206infoCeletista(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpregjor) + ' - ' + unicode(self.natatividade) + ' - ' + unicode(self.cnpjsindcategprof)
     #s2206_infoceletista_custom#
@@ -317,10 +355,17 @@ class s2206infoCeletista(models.Model):
 class s2206infoCeletistaSerializer(ModelSerializer):
     class Meta:
         model = s2206infoCeletista
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2206infoEstatutario(models.Model):
+class s2206infoEstatutario(SoftDeletionModel):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
     def evento(self): return self.s2206_evtaltcontratual.evento()
@@ -334,7 +379,7 @@ class s2206infoEstatutario(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpplanrp)
     #s2206_infoestatutario_custom#
@@ -348,10 +393,17 @@ class s2206infoEstatutario(models.Model):
 class s2206infoEstatutarioSerializer(ModelSerializer):
     class Meta:
         model = s2206infoEstatutario
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2206localTrabDom(models.Model):
+class s2206localTrabDom(SoftDeletionModel):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
     def evento(self): return self.s2206_evtaltcontratual.evento()
@@ -369,7 +421,7 @@ class s2206localTrabDom(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
     #s2206_localtrabdom_custom#
@@ -383,10 +435,17 @@ class s2206localTrabDom(models.Model):
 class s2206localTrabDomSerializer(ModelSerializer):
     class Meta:
         model = s2206localTrabDom
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2206localTrabGeral(models.Model):
+class s2206localTrabGeral(SoftDeletionModel):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
     def evento(self): return self.s2206_evtaltcontratual.evento()
@@ -399,7 +458,7 @@ class s2206localTrabGeral(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s2206_localtrabgeral_custom#
@@ -413,10 +472,17 @@ class s2206localTrabGeral(models.Model):
 class s2206localTrabGeralSerializer(ModelSerializer):
     class Meta:
         model = s2206localTrabGeral
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2206observacoes(models.Model):
+class s2206observacoes(SoftDeletionModel):
     s2206_evtaltcontratual = models.ForeignKey('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
     def evento(self): return self.s2206_evtaltcontratual.evento()
@@ -427,7 +493,7 @@ class s2206observacoes(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.observacao)
     #s2206_observacoes_custom#
@@ -441,10 +507,17 @@ class s2206observacoes(models.Model):
 class s2206observacoesSerializer(ModelSerializer):
     class Meta:
         model = s2206observacoes
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2206servPubl(models.Model):
+class s2206servPubl(SoftDeletionModel):
     s2206_evtaltcontratual = models.OneToOneField('esocial.s2206evtAltContratual',
         related_name='%(class)s_s2206_evtaltcontratual')
     def evento(self): return self.s2206_evtaltcontratual.evento()
@@ -455,7 +528,7 @@ class s2206servPubl(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_evtaltcontratual) + ' - ' + unicode(self.mtvalter)
     #s2206_servpubl_custom#
@@ -469,10 +542,17 @@ class s2206servPubl(models.Model):
 class s2206servPublSerializer(ModelSerializer):
     class Meta:
         model = s2206servPubl
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2206trabTemp(models.Model):
+class s2206trabTemp(SoftDeletionModel):
     s2206_infoceletista = models.OneToOneField('s2206infoCeletista',
         related_name='%(class)s_s2206_infoceletista')
     def evento(self): return self.s2206_infoceletista.evento()
@@ -483,7 +563,7 @@ class s2206trabTemp(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2206_infoceletista) + ' - ' + unicode(self.justprorr)
     #s2206_trabtemp_custom#
@@ -497,7 +577,14 @@ class s2206trabTemp(models.Model):
 class s2206trabTempSerializer(ModelSerializer):
     class Meta:
         model = s2206trabTemp
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

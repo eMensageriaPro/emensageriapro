@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -86,7 +87,8 @@ def apagar(request, hash):
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(s2241_iniinsalperic_fatrisco), indent=4, sort_keys=True, default=str)
-            s2241iniInsalPericfatRisco.objects.using( db_slug ).filter(id = s2241_iniinsalperic_fatrisco_id).delete()
+            obj = s2241iniInsalPericfatRisco.objects.using( db_slug ).get(id = s2241_iniinsalperic_fatrisco_id)
+            obj.delete(request=request)
             #s2241_iniinsalperic_fatrisco_apagar_custom
             #s2241_iniinsalperic_fatrisco_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
@@ -307,43 +309,26 @@ def salvar(request, hash):
             s2241_iniinsalperic_fatrisco_form = form_s2241_iniinsalperic_fatrisco(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if s2241_iniinsalperic_fatrisco_form.is_valid():
+
                 dados = s2241_iniinsalperic_fatrisco_form.cleaned_data
-                import json
-                from django.forms.models import model_to_dict
-                if s2241_iniinsalperic_fatrisco_id:
-                    if dados_evento['status'] == 0:
-                        dados['modificado_por_id'] = usuario_id
-                        dados['modificado_em'] = datetime.datetime.now()
-                        #s2241_iniinsalperic_fatrisco_campos_multiple_passo1
-                        s2241iniInsalPericfatRisco.objects.using(db_slug).filter(id=s2241_iniinsalperic_fatrisco_id).update(**dados)
-                        obj = s2241iniInsalPericfatRisco.objects.using(db_slug).get(id=s2241_iniinsalperic_fatrisco_id)
-                        #s2241_iniinsalperic_fatrisco_editar_custom
-                        #s2241_iniinsalperic_fatrisco_campos_multiple_passo2
-                        messages.success(request, 'Alterado com sucesso!')
-                        gravar_auditoria(json.dumps(model_to_dict(s2241_iniinsalperic_fatrisco), indent=4, sort_keys=True, default=str),
-                                         json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                         's2241_iniinsalperic_fatrisco', s2241_iniinsalperic_fatrisco_id, usuario_id, 2)
-                    else:
-                        messages.error(request, 'Somente é possível alterar eventos com status "Cadastrado"!')
+                obj = s2241_iniinsalperic_fatrisco_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not s2241_iniinsalperic_fatrisco_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 's2241_iniinsalperic_fatrisco', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #s2241_iniinsalperic_fatrisco_cadastrar_campos_multiple_passo1
-                    obj = s2241iniInsalPericfatRisco(**dados)
-                    obj.save(using = db_slug)
-                    #s2241_iniinsalperic_fatrisco_cadastrar_custom
-                    #s2241_iniinsalperic_fatrisco_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
-                    gravar_auditoria('{}',
+                    gravar_auditoria(json.dumps(model_to_dict(s2241_iniinsalperic_fatrisco), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                     's2241_iniinsalperic_fatrisco', obj.id, usuario_id, 1)
-                    if request.session['retorno_pagina'] not in ('s2241_iniinsalperic_fatrisco_apagar', 's2241_iniinsalperic_fatrisco_salvar', 's2241_iniinsalperic_fatrisco'):
-                        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-                    if s2241_iniinsalperic_fatrisco_id != obj.id:
-                        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                        return redirect('s2241_iniinsalperic_fatrisco_salvar', hash=url_hash)
+                                     's2241_iniinsalperic_fatrisco', s2241_iniinsalperic_fatrisco_id, usuario_id, 2)
+                  
+                if request.session['retorno_pagina'] not in ('s2241_iniinsalperic_fatrisco_apagar', 's2241_iniinsalperic_fatrisco_salvar', 's2241_iniinsalperic_fatrisco'):
+                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if s2241_iniinsalperic_fatrisco_id != obj.id:
+                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
+                    return redirect('s2241_iniinsalperic_fatrisco_salvar', hash=url_hash)
             else:
                 messages.error(request, 'Erro ao salvar!')
         s2241_iniinsalperic_fatrisco_form = disabled_form_fields(s2241_iniinsalperic_fatrisco_form, permissao.permite_editar)

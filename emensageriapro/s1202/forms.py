@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s1202.models import * 
 from emensageriapro.tabelas.models import eSocialTrabalhadoresCategorias 
 from emensageriapro.esocial.models import s1202evtRmnRPPS 
@@ -55,6 +56,25 @@ class form_s1202_dmdev(forms.ModelForm):
         self.fields['s1202_evtrmnrpps'].widget.attrs['required'] = True        
         self.fields['idedmdev'].widget.attrs['required'] = True        
         self.fields['codcateg'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1202_dmdev, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1202dmDev
@@ -79,6 +99,25 @@ class form_s1202_infoperant_ideadc(forms.ModelForm):
         self.fields['nrlei'].widget.attrs['required'] = True        
         self.fields['tpacconv'].widget.attrs['required'] = True        
         self.fields['dsc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1202_infoperant_ideadc, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1202infoPerAntideADC
@@ -101,6 +140,25 @@ class form_s1202_infoperant_ideestab(forms.ModelForm):
         self.fields['s1202_infoperant_ideperiodo'].widget.attrs['required'] = True        
         self.fields['tpinsc'].widget.attrs['required'] = True        
         self.fields['nrinsc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1202_infoperant_ideestab, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1202infoPerAntideEstab
@@ -122,6 +180,25 @@ class form_s1202_infoperant_ideperiodo(forms.ModelForm):
         self.fields['s1202_infoperant_ideadc'].queryset = s1202infoPerAntideADC.objects.using( slug ).filter(excluido=False).all()
         self.fields['s1202_infoperant_ideadc'].widget.attrs['required'] = True        
         self.fields['perref'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1202_infoperant_ideperiodo, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1202infoPerAntidePeriodo
@@ -149,6 +226,25 @@ class form_s1202_infoperant_itensremun(forms.ModelForm):
         self.fields['codrubr'].widget.attrs['required'] = True        
         self.fields['idetabrubr'].widget.attrs['required'] = True        
         self.fields['vrrubr'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1202_infoperant_itensremun, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1202infoPerAntitensRemun
@@ -170,6 +266,25 @@ class form_s1202_infoperant_remunperant(forms.ModelForm):
         self.fields['s1202_infoperant_ideestab'].queryset = s1202infoPerAntideEstab.objects.using( slug ).filter(excluido=False).all()
         self.fields['s1202_infoperant_ideestab'].widget.attrs['required'] = True        
         self.fields['codcateg'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1202_infoperant_remunperant, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1202infoPerAntremunPerAnt
@@ -194,6 +309,25 @@ class form_s1202_infoperapur_detoper(forms.ModelForm):
         self.fields['cnpjoper'].widget.attrs['required'] = True        
         self.fields['regans'].widget.attrs['required'] = True        
         self.fields['vrpgtit'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1202_infoperapur_detoper, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1202infoPerApurdetOper
@@ -219,6 +353,25 @@ class form_s1202_infoperapur_detplano(forms.ModelForm):
         self.fields['nmdep'].widget.attrs['required'] = True        
         self.fields['dtnascto'].widget.attrs['required'] = True        
         self.fields['vlrpgdep'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1202_infoperapur_detplano, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1202infoPerApurdetPlano
@@ -241,6 +394,25 @@ class form_s1202_infoperapur_ideestab(forms.ModelForm):
         self.fields['s1202_dmdev'].widget.attrs['required'] = True        
         self.fields['tpinsc'].widget.attrs['required'] = True        
         self.fields['nrinsc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1202_infoperapur_ideestab, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1202infoPerApurideEstab
@@ -268,6 +440,25 @@ class form_s1202_infoperapur_itensremun(forms.ModelForm):
         self.fields['codrubr'].widget.attrs['required'] = True        
         self.fields['idetabrubr'].widget.attrs['required'] = True        
         self.fields['vrrubr'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1202_infoperapur_itensremun, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1202infoPerApuritensRemun
@@ -289,6 +480,25 @@ class form_s1202_infoperapur_remunperapur(forms.ModelForm):
         self.fields['s1202_infoperapur_ideestab'].queryset = s1202infoPerApurideEstab.objects.using( slug ).filter(excluido=False).all()
         self.fields['s1202_infoperapur_ideestab'].widget.attrs['required'] = True        
         self.fields['codcateg'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1202_infoperapur_remunperapur, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1202infoPerApurremunPerApur
@@ -311,6 +521,25 @@ class form_s1202_procjudtrab(forms.ModelForm):
         self.fields['s1202_evtrmnrpps'].widget.attrs['required'] = True        
         self.fields['tptrib'].widget.attrs['required'] = True        
         self.fields['nrprocjud'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1202_procjudtrab, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1202procJudTrab

@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s2306.models import * 
 from emensageriapro.tabelas.models import Municipios 
 from emensageriapro.esocial.models import s2306evtTSVAltContr 
@@ -58,6 +59,25 @@ class form_s2306_ageintegracao(forms.ModelForm):
         self.fields['nrlograd'].widget.attrs['required'] = True        
         self.fields['cep'].widget.attrs['required'] = True        
         self.fields['uf'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2306_ageintegracao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2306ageIntegracao
@@ -78,6 +98,25 @@ class form_s2306_cargofuncao(forms.ModelForm):
         
         self.fields['s2306_evttsvaltcontr'].widget.attrs['required'] = True        
         self.fields['codcargo'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2306_cargofuncao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2306cargoFuncao
@@ -102,6 +141,25 @@ class form_s2306_infoestagiario(forms.ModelForm):
         self.fields['nivestagio'].widget.attrs['required'] = True        
         self.fields['dtprevterm'].widget.attrs['required'] = True        
         self.fields['nmrazao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2306_infoestagiario, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2306infoEstagiario
@@ -122,6 +180,25 @@ class form_s2306_infotrabcedido(forms.ModelForm):
         
         self.fields['s2306_evttsvaltcontr'].widget.attrs['required'] = True        
         self.fields['indremuncargo'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2306_infotrabcedido, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2306infoTrabCedido
@@ -144,6 +221,25 @@ class form_s2306_remuneracao(forms.ModelForm):
         self.fields['s2306_evttsvaltcontr'].widget.attrs['required'] = True        
         self.fields['vrsalfx'].widget.attrs['required'] = True        
         self.fields['undsalfixo'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2306_remuneracao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2306remuneracao
@@ -165,6 +261,25 @@ class form_s2306_supervisorestagio(forms.ModelForm):
         self.fields['s2306_infoestagiario'].widget.attrs['required'] = True        
         self.fields['cpfsupervisor'].widget.attrs['required'] = True        
         self.fields['nmsuperv'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2306_supervisorestagio, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2306supervisorEstagio

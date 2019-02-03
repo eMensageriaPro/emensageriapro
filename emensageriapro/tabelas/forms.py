@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.tabelas.models import * 
 
 
@@ -51,6 +52,25 @@ class form_municipios(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['titulo'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_municipios, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = Municipios
@@ -72,6 +92,25 @@ class form_cbo(forms.ModelForm):
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True        
         self.fields['data_inicio'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_cbo, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = CBO
@@ -94,6 +133,25 @@ class form_cid(forms.ModelForm):
         self.fields['descricao'].widget.attrs['required'] = True        
         self.fields['data_inicio'].widget.attrs['required'] = True        
         self.fields['descricao_resumida'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_cid, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = CID
@@ -117,6 +175,25 @@ class form_cnae(forms.ModelForm):
         self.fields['descricao'].widget.attrs['required'] = True        
         self.fields['data_inicio'].widget.attrs['required'] = True        
         self.fields['aliquota'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_cnae, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = CNAE
@@ -138,6 +215,25 @@ class form_esocial_trabalhadores_categorias(forms.ModelForm):
         self.fields['grupo'].widget.attrs['required'] = True        
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_trabalhadores_categorias, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialTrabalhadoresCategorias
@@ -158,6 +254,25 @@ class form_esocial_financiamentos_aposentadorias_especiais(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_financiamentos_aposentadorias_especiais, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialFinanciamentosAposentadoriasEspeciais
@@ -180,6 +295,25 @@ class form_esocial_naturezas_rubricas(forms.ModelForm):
         self.fields['titulo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True        
         self.fields['data_inicio'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_naturezas_rubricas, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialNaturezasRubricas
@@ -207,6 +341,25 @@ class form_esocial_codigo_aliquotas_fpas_terceiros(forms.ModelForm):
         self.fields['codigo_terceiro'].widget.attrs['required'] = True        
         self.fields['aliquota'].widget.attrs['required'] = True        
         self.fields['ind_total'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_codigo_aliquotas_fpas_terceiros, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialCodigoAliquotasFPASTerceiros
@@ -227,6 +380,25 @@ class form_esocial_inscricoes_tipos(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_inscricoes_tipos, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialInscricoesTipos
@@ -247,6 +419,25 @@ class form_esocial_paises(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['nome'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_paises, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialPaises
@@ -267,6 +458,25 @@ class form_esocial_dependentes_tipos(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_dependentes_tipos, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialDependentesTipos
@@ -287,6 +497,25 @@ class form_esocial_classificacoes_tributarias(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_classificacoes_tributarias, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialClassificacoesTributarias
@@ -307,6 +536,25 @@ class form_esocial_arquivos_esocial_tipos(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_arquivos_esocial_tipos, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialArquivosEsocialTipos
@@ -328,6 +576,25 @@ class form_esocial_lotacoes_tributarias_tipos(forms.ModelForm):
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True        
         self.fields['preenchimento_campo_nr_insc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_lotacoes_tributarias_tipos, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialLotacoesTributariasTipos
@@ -362,6 +629,25 @@ class form_esocial_compatibilidades_categorias_classificacoes_lotacoes(forms.Mod
         self.fields['tipo_lotacao_tributaria_24'].widget.attrs['required'] = True        
         self.fields['tipo_lotacao_tributaria_90'].widget.attrs['required'] = True        
         self.fields['tipo_lotacao_tributaria_91'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_compatibilidades_categorias_classificacoes_lotacoes, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialCompatibilidadesCategoriasClassificacoesLotacoes
@@ -400,6 +686,25 @@ class form_esocial_compatibilidades_lotacoes_classificacoes(forms.ModelForm):
         self.fields['tipo_classificacao_tributaria_80'].widget.attrs['required'] = True        
         self.fields['tipo_classificacao_tributaria_85'].widget.attrs['required'] = True        
         self.fields['tipo_classificacao_tributaria_99'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_compatibilidades_lotacoes_classificacoes, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialCompatibilidadesLotacoesClassificacoes
@@ -420,6 +725,25 @@ class form_esocial_partes_corpo_atingidas(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_partes_corpo_atingidas, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialPartesCorpoAtingidas
@@ -440,6 +764,25 @@ class form_esocial_agentes_causadores_acidentes_trabalho(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_agentes_causadores_acidentes_trabalho, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialAgentesCausadoresAcidentesTrabalho
@@ -460,6 +803,25 @@ class form_esocial_agentes_causadores_doencas_profissionais(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_agentes_causadores_doencas_profissionais, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialAgentesCausadoresDoencasProfissionais
@@ -480,6 +842,25 @@ class form_esocial_acidentes_situacoes_geradoras(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_acidentes_situacoes_geradoras, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialAcidentesSituacoesGeradoras
@@ -500,6 +881,25 @@ class form_esocial_naturezas_lesoes(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_naturezas_lesoes, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialNaturezasLesoes
@@ -521,6 +921,25 @@ class form_esocial_afastamentos_motivos(forms.ModelForm):
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True        
         self.fields['data_inicio'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_afastamentos_motivos, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialAfastamentosMotivos
@@ -542,6 +961,25 @@ class form_esocial_desligamentos_motivos(forms.ModelForm):
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True        
         self.fields['data_inicio'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_desligamentos_motivos, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialDesligamentosMotivos
@@ -562,6 +1000,25 @@ class form_esocial_logradouros_tipos(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_logradouros_tipos, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialLogradourosTipos
@@ -583,6 +1040,25 @@ class form_esocial_naturezas_juridicas(forms.ModelForm):
         self.fields['grupo'].widget.attrs['required'] = True        
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_naturezas_juridicas, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialNaturezasJuridicas
@@ -621,6 +1097,25 @@ class form_esocial_compatibilidades_fpas_classificacoes_tributarias(forms.ModelF
         self.fields['classificacao_tributaria_80'].widget.attrs['required'] = True        
         self.fields['classificacao_tributaria_85'].widget.attrs['required'] = True        
         self.fields['classificacao_tributaria_99'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_compatibilidades_fpas_classificacoes_tributarias, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialCompatibilidadesFPASClassificacoesTributarias
@@ -642,6 +1137,25 @@ class form_esocial_fatores_risco(forms.ModelForm):
         self.fields['grupo'].widget.attrs['required'] = True        
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_fatores_risco, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialFatoresRisco
@@ -662,6 +1176,25 @@ class form_esocial_codificacoes_acidente_trabalho(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_codificacoes_acidente_trabalho, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialCodificacoesAcidenteTrabalho
@@ -683,6 +1216,25 @@ class form_esocial_beneficios_previdenciarios_tipos(forms.ModelForm):
         self.fields['grupo'].widget.attrs['required'] = True        
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_beneficios_previdenciarios_tipos, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialBeneficiosPrevidenciariosTipos
@@ -703,6 +1255,25 @@ class form_esocial_beneficios_previdenciarios_cessacao_motivos(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_beneficios_previdenciarios_cessacao_motivos, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialBeneficiosPrevidenciariosCessacaoMotivos
@@ -723,6 +1294,25 @@ class form_esocial_procedimentos_diagnosticos(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_procedimentos_diagnosticos, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialProcedimentosDiagnosticos
@@ -744,6 +1334,25 @@ class form_esocial_atividades_periculosas_insalubres_especiais(forms.ModelForm):
         self.fields['grupo'].widget.attrs['required'] = True        
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_atividades_periculosas_insalubres_especiais, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialAtividadesPericulosasInsalubresEspeciais
@@ -764,6 +1373,25 @@ class form_esocial_treinamentos_capacitacoes_exercicios_simulados(forms.ModelFor
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_treinamentos_capacitacoes_exercicios_simulados, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialTreinamentosCapacitacoesExerciciosSimulados
@@ -784,6 +1412,25 @@ class form_esocial_programas_planos_documentos(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_esocial_programas_planos_documentos, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = eSocialProgramasPlanosDocumentos
@@ -807,6 +1454,25 @@ class form_efdreinf_pagamentos_codigos(forms.ModelForm):
         self.fields['beneficiario_pj'].widget.attrs['required'] = True        
         self.fields['beneficiario_pf'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_efdreinf_pagamentos_codigos, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = EFDReinfPagamentosCodigos
@@ -827,6 +1493,25 @@ class form_efdreinf_regras_pagamentos_codigos(forms.ModelForm):
         
         self.fields['classificacao'].widget.attrs['required'] = True        
         self.fields['codigo'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_efdreinf_regras_pagamentos_codigos, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = EFDReinfRegrasPagamentosCodigos
@@ -848,6 +1533,25 @@ class form_efdreinf_rendimentos_beneficiarios_exterior(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_efdreinf_rendimentos_beneficiarios_exterior, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = EFDReinfRendimentosBeneficiariosExterior
@@ -868,6 +1572,25 @@ class form_efdreinf_rendimentos_beneficiarios_exterior_tributacao(forms.ModelFor
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_efdreinf_rendimentos_beneficiarios_exterior_tributacao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = EFDReinfRendimentosBeneficiariosExteriorTributacao
@@ -888,6 +1611,25 @@ class form_efdreinf_informacoes_beneficiarios_exterior(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_efdreinf_informacoes_beneficiarios_exterior, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = EFDReinfInformacoesBeneficiariosExterior
@@ -908,6 +1650,25 @@ class form_efdreinf_classificacao_servicos_prestados(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_efdreinf_classificacao_servicos_prestados, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = EFDReinfClassificacaoServicosPrestados
@@ -928,6 +1689,25 @@ class form_efdreinf_paises(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_efdreinf_paises, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = EFDReinfPaises
@@ -948,6 +1728,25 @@ class form_efdreinf_classificacao_tributaria(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_efdreinf_classificacao_tributaria, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = EFDReinfClassificacaoTributaria
@@ -970,6 +1769,25 @@ class form_efdreinf_codigos_atividades_produtos_servicos_cprb(forms.ModelForm):
         self.fields['grupo'].widget.attrs['required'] = True        
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_efdreinf_codigos_atividades_produtos_servicos_cprb, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = EFDReinfCodigosAtividadesProdutosServicosCPRB
@@ -990,6 +1808,25 @@ class form_efdreinf_eventos(forms.ModelForm):
         
         self.fields['codigo'].widget.attrs['required'] = True        
         self.fields['descricao'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_efdreinf_eventos, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = EFDReinfEventos

@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -126,7 +127,8 @@ def apagar(request, hash):
 
     esocial_trabalhadores_categorias = get_object_or_404(eSocialTrabalhadoresCategorias.objects.using( db_slug ), excluido = False, id = esocial_trabalhadores_categorias_id)
     if request.method == 'POST':
-        eSocialTrabalhadoresCategorias.objects.using( db_slug ).filter(id = esocial_trabalhadores_categorias_id).update(excluido = True)
+        obj = eSocialTrabalhadoresCategorias.objects.using( db_slug ).get(id = esocial_trabalhadores_categorias_id)
+        obj.delete(request=request)
         #esocial_trabalhadores_categorias_apagar_custom
         #esocial_trabalhadores_categorias_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -365,27 +367,21 @@ def salvar(request, hash):
             esocial_trabalhadores_categorias_form = form_esocial_trabalhadores_categorias(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if esocial_trabalhadores_categorias_form.is_valid():
+
                 dados = esocial_trabalhadores_categorias_form.cleaned_data
-                if esocial_trabalhadores_categorias_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #esocial_trabalhadores_categorias_campos_multiple_passo1
-                    eSocialTrabalhadoresCategorias.objects.using(db_slug).filter(id=esocial_trabalhadores_categorias_id).update(**dados)
-                    obj = eSocialTrabalhadoresCategorias.objects.using(db_slug).get(id=esocial_trabalhadores_categorias_id)
-                    #esocial_trabalhadores_categorias_editar_custom
-                    #esocial_trabalhadores_categorias_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
+                obj = esocial_trabalhadores_categorias_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not esocial_trabalhadores_categorias_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'esocial_trabalhadores_categorias', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #esocial_trabalhadores_categorias_cadastrar_campos_multiple_passo1
-                    obj = eSocialTrabalhadoresCategorias(**dados)
-                    obj.save(using = db_slug)
-                    #esocial_trabalhadores_categorias_cadastrar_custom
-                    #esocial_trabalhadores_categorias_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
+                    gravar_auditoria(json.dumps(model_to_dict(esocial_trabalhadores_categorias), indent=4, sort_keys=True, default=str),
+                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                     'esocial_trabalhadores_categorias', esocial_trabalhadores_categorias_id, usuario_id, 2)
+                  
                 if request.session['retorno_pagina'] not in ('esocial_trabalhadores_categorias_apagar', 'esocial_trabalhadores_categorias_salvar', 'esocial_trabalhadores_categorias'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if esocial_trabalhadores_categorias_id != obj.id:

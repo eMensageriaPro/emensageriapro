@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -88,7 +89,8 @@ def apagar(request, hash):
 
     esocial_fatores_risco = get_object_or_404(eSocialFatoresRisco.objects.using( db_slug ), excluido = False, id = esocial_fatores_risco_id)
     if request.method == 'POST':
-        eSocialFatoresRisco.objects.using( db_slug ).filter(id = esocial_fatores_risco_id).update(excluido = True)
+        obj = eSocialFatoresRisco.objects.using( db_slug ).get(id = esocial_fatores_risco_id)
+        obj.delete(request=request)
         #esocial_fatores_risco_apagar_custom
         #esocial_fatores_risco_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -327,27 +329,21 @@ def salvar(request, hash):
             esocial_fatores_risco_form = form_esocial_fatores_risco(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if esocial_fatores_risco_form.is_valid():
+
                 dados = esocial_fatores_risco_form.cleaned_data
-                if esocial_fatores_risco_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #esocial_fatores_risco_campos_multiple_passo1
-                    eSocialFatoresRisco.objects.using(db_slug).filter(id=esocial_fatores_risco_id).update(**dados)
-                    obj = eSocialFatoresRisco.objects.using(db_slug).get(id=esocial_fatores_risco_id)
-                    #esocial_fatores_risco_editar_custom
-                    #esocial_fatores_risco_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
+                obj = esocial_fatores_risco_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not esocial_fatores_risco_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'esocial_fatores_risco', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #esocial_fatores_risco_cadastrar_campos_multiple_passo1
-                    obj = eSocialFatoresRisco(**dados)
-                    obj.save(using = db_slug)
-                    #esocial_fatores_risco_cadastrar_custom
-                    #esocial_fatores_risco_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
+                    gravar_auditoria(json.dumps(model_to_dict(esocial_fatores_risco), indent=4, sort_keys=True, default=str),
+                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                     'esocial_fatores_risco', esocial_fatores_risco_id, usuario_id, 2)
+                  
                 if request.session['retorno_pagina'] not in ('esocial_fatores_risco_apagar', 'esocial_fatores_risco_salvar', 'esocial_fatores_risco'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if esocial_fatores_risco_id != obj.id:

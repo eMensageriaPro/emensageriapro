@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -1957,7 +1960,7 @@ TIPO_AMBIENTE = (
     (2, u'2 - Produção restrita'),
 )
 
-class s1000evtInfoEmpregador(models.Model):
+class s1000evtInfoEmpregador(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -1976,7 +1979,7 @@ class s1000evtInfoEmpregador(models.Model):
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1000_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1000_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1000_TPINSC)
     nrinsc = models.CharField(max_length=15)
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
@@ -1992,7 +1995,7 @@ class s1000evtInfoEmpregador(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1000_evtinfoempregador_custom#
@@ -2007,10 +2010,17 @@ class s1000evtInfoEmpregador(models.Model):
 class s1000evtInfoEmpregadorSerializer(ModelSerializer):
     class Meta:
         model = s1000evtInfoEmpregador
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1005evtTabEstab(models.Model):
+class s1005evtTabEstab(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2029,7 +2039,7 @@ class s1005evtTabEstab(models.Model):
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1005_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1005_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1005_TPINSC)
     nrinsc = models.CharField(max_length=15)
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
@@ -2045,7 +2055,7 @@ class s1005evtTabEstab(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1005_evttabestab_custom#
@@ -2060,10 +2070,17 @@ class s1005evtTabEstab(models.Model):
 class s1005evtTabEstabSerializer(ModelSerializer):
     class Meta:
         model = s1005evtTabEstab
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1010evtTabRubrica(models.Model):
+class s1010evtTabRubrica(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2082,7 +2099,7 @@ class s1010evtTabRubrica(models.Model):
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1010_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1010_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1010_TPINSC)
     nrinsc = models.CharField(max_length=15)
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
@@ -2098,7 +2115,7 @@ class s1010evtTabRubrica(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1010_evttabrubrica_custom#
@@ -2113,10 +2130,17 @@ class s1010evtTabRubrica(models.Model):
 class s1010evtTabRubricaSerializer(ModelSerializer):
     class Meta:
         model = s1010evtTabRubrica
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1020evtTabLotacao(models.Model):
+class s1020evtTabLotacao(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2135,7 +2159,7 @@ class s1020evtTabLotacao(models.Model):
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1020_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1020_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1020_TPINSC)
     nrinsc = models.CharField(max_length=15)
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
@@ -2151,7 +2175,7 @@ class s1020evtTabLotacao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1020_evttablotacao_custom#
@@ -2166,10 +2190,17 @@ class s1020evtTabLotacao(models.Model):
 class s1020evtTabLotacaoSerializer(ModelSerializer):
     class Meta:
         model = s1020evtTabLotacao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1030evtTabCargo(models.Model):
+class s1030evtTabCargo(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2188,7 +2219,7 @@ class s1030evtTabCargo(models.Model):
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1030_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1030_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1030_TPINSC)
     nrinsc = models.CharField(max_length=15)
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
@@ -2204,7 +2235,7 @@ class s1030evtTabCargo(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1030_evttabcargo_custom#
@@ -2219,10 +2250,17 @@ class s1030evtTabCargo(models.Model):
 class s1030evtTabCargoSerializer(ModelSerializer):
     class Meta:
         model = s1030evtTabCargo
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1035evtTabCarreira(models.Model):
+class s1035evtTabCarreira(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2241,7 +2279,7 @@ class s1035evtTabCarreira(models.Model):
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1035_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1035_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1035_TPINSC)
     nrinsc = models.CharField(max_length=15)
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
@@ -2257,7 +2295,7 @@ class s1035evtTabCarreira(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1035_evttabcarreira_custom#
@@ -2272,10 +2310,17 @@ class s1035evtTabCarreira(models.Model):
 class s1035evtTabCarreiraSerializer(ModelSerializer):
     class Meta:
         model = s1035evtTabCarreira
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1040evtTabFuncao(models.Model):
+class s1040evtTabFuncao(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2294,7 +2339,7 @@ class s1040evtTabFuncao(models.Model):
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1040_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1040_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1040_TPINSC)
     nrinsc = models.CharField(max_length=15)
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
@@ -2310,7 +2355,7 @@ class s1040evtTabFuncao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1040_evttabfuncao_custom#
@@ -2325,10 +2370,17 @@ class s1040evtTabFuncao(models.Model):
 class s1040evtTabFuncaoSerializer(ModelSerializer):
     class Meta:
         model = s1040evtTabFuncao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1050evtTabHorTur(models.Model):
+class s1050evtTabHorTur(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2347,7 +2399,7 @@ class s1050evtTabHorTur(models.Model):
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1050_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1050_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1050_TPINSC)
     nrinsc = models.CharField(max_length=15)
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
@@ -2363,7 +2415,7 @@ class s1050evtTabHorTur(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1050_evttabhortur_custom#
@@ -2378,10 +2430,17 @@ class s1050evtTabHorTur(models.Model):
 class s1050evtTabHorTurSerializer(ModelSerializer):
     class Meta:
         model = s1050evtTabHorTur
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1060evtTabAmbiente(models.Model):
+class s1060evtTabAmbiente(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2400,7 +2459,7 @@ class s1060evtTabAmbiente(models.Model):
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1060_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1060_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1060_TPINSC)
     nrinsc = models.CharField(max_length=15)
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
@@ -2416,7 +2475,7 @@ class s1060evtTabAmbiente(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1060_evttabambiente_custom#
@@ -2431,10 +2490,17 @@ class s1060evtTabAmbiente(models.Model):
 class s1060evtTabAmbienteSerializer(ModelSerializer):
     class Meta:
         model = s1060evtTabAmbiente
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1070evtTabProcesso(models.Model):
+class s1070evtTabProcesso(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2453,7 +2519,7 @@ class s1070evtTabProcesso(models.Model):
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1070_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1070_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1070_TPINSC)
     nrinsc = models.CharField(max_length=15)
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
@@ -2469,7 +2535,7 @@ class s1070evtTabProcesso(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1070_evttabprocesso_custom#
@@ -2484,10 +2550,17 @@ class s1070evtTabProcesso(models.Model):
 class s1070evtTabProcessoSerializer(ModelSerializer):
     class Meta:
         model = s1070evtTabProcesso
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1080evtTabOperPort(models.Model):
+class s1080evtTabOperPort(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2506,7 +2579,7 @@ class s1080evtTabOperPort(models.Model):
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S1080_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1080_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1080_TPINSC)
     nrinsc = models.CharField(max_length=15)
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
@@ -2522,7 +2595,7 @@ class s1080evtTabOperPort(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1080_evttaboperport_custom#
@@ -2537,10 +2610,17 @@ class s1080evtTabOperPort(models.Model):
 class s1080evtTabOperPortSerializer(ModelSerializer):
     class Meta:
         model = s1080evtTabOperPort
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1200evtRemun(models.Model):
+class s1200evtRemun(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2563,7 +2643,7 @@ class s1200evtRemun(models.Model):
     perapur = models.CharField(max_length=7)
     tpamb = models.IntegerField(choices=CHOICES_S1200_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1200_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1200_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -2580,7 +2660,7 @@ class s1200evtRemun(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s1200_evtremun_custom#
@@ -2595,10 +2675,17 @@ class s1200evtRemun(models.Model):
 class s1200evtRemunSerializer(ModelSerializer):
     class Meta:
         model = s1200evtRemun
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1202evtRmnRPPS(models.Model):
+class s1202evtRmnRPPS(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2621,7 +2708,7 @@ class s1202evtRmnRPPS(models.Model):
     perapur = models.CharField(max_length=7)
     tpamb = models.IntegerField(choices=CHOICES_S1202_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1202_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1202_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -2639,7 +2726,7 @@ class s1202evtRmnRPPS(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s1202_evtrmnrpps_custom#
@@ -2654,10 +2741,17 @@ class s1202evtRmnRPPS(models.Model):
 class s1202evtRmnRPPSSerializer(ModelSerializer):
     class Meta:
         model = s1202evtRmnRPPS
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1207evtBenPrRP(models.Model):
+class s1207evtBenPrRP(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2680,7 +2774,7 @@ class s1207evtBenPrRP(models.Model):
     perapur = models.CharField(max_length=7)
     tpamb = models.IntegerField(choices=CHOICES_S1207_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1207_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1207_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpfbenef = models.CharField(max_length=11)
@@ -2696,7 +2790,7 @@ class s1207evtBenPrRP(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef)
     #s1207_evtbenprrp_custom#
@@ -2711,10 +2805,17 @@ class s1207evtBenPrRP(models.Model):
 class s1207evtBenPrRPSerializer(ModelSerializer):
     class Meta:
         model = s1207evtBenPrRP
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1210evtPgtos(models.Model):
+class s1210evtPgtos(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2737,7 +2838,7 @@ class s1210evtPgtos(models.Model):
     perapur = models.CharField(max_length=7)
     tpamb = models.IntegerField(choices=CHOICES_S1210_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1210_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1210_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpfbenef = models.CharField(max_length=11)
@@ -2753,7 +2854,7 @@ class s1210evtPgtos(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef)
     #s1210_evtpgtos_custom#
@@ -2768,10 +2869,17 @@ class s1210evtPgtos(models.Model):
 class s1210evtPgtosSerializer(ModelSerializer):
     class Meta:
         model = s1210evtPgtos
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1250evtAqProd(models.Model):
+class s1250evtAqProd(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2794,7 +2902,7 @@ class s1250evtAqProd(models.Model):
     perapur = models.CharField(max_length=7)
     tpamb = models.IntegerField(choices=CHOICES_S1250_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1250_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1250_TPINSC)
     nrinsc = models.CharField(max_length=15)
     tpinscadq = models.IntegerField(choices=CHOICES_S1250_TPINSCADQ)
@@ -2811,7 +2919,7 @@ class s1250evtAqProd(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscadq) + ' - ' + unicode(self.nrinscadq)
     #s1250_evtaqprod_custom#
@@ -2826,10 +2934,17 @@ class s1250evtAqProd(models.Model):
 class s1250evtAqProdSerializer(ModelSerializer):
     class Meta:
         model = s1250evtAqProd
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1260evtComProd(models.Model):
+class s1260evtComProd(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2852,7 +2967,7 @@ class s1260evtComProd(models.Model):
     perapur = models.CharField(max_length=7)
     tpamb = models.IntegerField(choices=CHOICES_S1260_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1260_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1260_TPINSC)
     nrinsc = models.CharField(max_length=15)
     nrinscestabrural = models.CharField(max_length=15)
@@ -2868,7 +2983,7 @@ class s1260evtComProd(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.nrinscestabrural)
     #s1260_evtcomprod_custom#
@@ -2883,10 +2998,17 @@ class s1260evtComProd(models.Model):
 class s1260evtComProdSerializer(ModelSerializer):
     class Meta:
         model = s1260evtComProd
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1270evtContratAvNP(models.Model):
+class s1270evtContratAvNP(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2909,7 +3031,7 @@ class s1270evtContratAvNP(models.Model):
     perapur = models.CharField(max_length=7)
     tpamb = models.IntegerField(choices=CHOICES_S1270_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1270_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1270_TPINSC)
     nrinsc = models.CharField(max_length=15)
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
@@ -2924,7 +3046,7 @@ class s1270evtContratAvNP(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1270_evtcontratavnp_custom#
@@ -2939,10 +3061,17 @@ class s1270evtContratAvNP(models.Model):
 class s1270evtContratAvNPSerializer(ModelSerializer):
     class Meta:
         model = s1270evtContratAvNP
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1280evtInfoComplPer(models.Model):
+class s1280evtInfoComplPer(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -2965,7 +3094,7 @@ class s1280evtInfoComplPer(models.Model):
     perapur = models.CharField(max_length=7)
     tpamb = models.IntegerField(choices=CHOICES_S1280_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1280_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1280_TPINSC)
     nrinsc = models.CharField(max_length=15)
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
@@ -2980,7 +3109,7 @@ class s1280evtInfoComplPer(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1280_evtinfocomplper_custom#
@@ -2995,10 +3124,17 @@ class s1280evtInfoComplPer(models.Model):
 class s1280evtInfoComplPerSerializer(ModelSerializer):
     class Meta:
         model = s1280evtInfoComplPer
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1295evtTotConting(models.Model):
+class s1295evtTotConting(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3019,7 +3155,7 @@ class s1295evtTotConting(models.Model):
     perapur = models.CharField(max_length=7)
     tpamb = models.IntegerField(choices=CHOICES_S1295_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1295_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1295_TPINSC)
     nrinsc = models.CharField(max_length=15)
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
@@ -3034,7 +3170,7 @@ class s1295evtTotConting(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1295_evttotconting_custom#
@@ -3049,10 +3185,17 @@ class s1295evtTotConting(models.Model):
 class s1295evtTotContingSerializer(ModelSerializer):
     class Meta:
         model = s1295evtTotConting
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1298evtReabreEvPer(models.Model):
+class s1298evtReabreEvPer(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3073,7 +3216,7 @@ class s1298evtReabreEvPer(models.Model):
     perapur = models.CharField(max_length=7)
     tpamb = models.IntegerField(choices=CHOICES_S1298_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1298_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1298_TPINSC)
     nrinsc = models.CharField(max_length=15)
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
@@ -3088,7 +3231,7 @@ class s1298evtReabreEvPer(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1298_evtreabreevper_custom#
@@ -3103,10 +3246,17 @@ class s1298evtReabreEvPer(models.Model):
 class s1298evtReabreEvPerSerializer(ModelSerializer):
     class Meta:
         model = s1298evtReabreEvPer
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1299evtFechaEvPer(models.Model):
+class s1299evtFechaEvPer(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3127,7 +3277,7 @@ class s1299evtFechaEvPer(models.Model):
     perapur = models.CharField(max_length=7)
     tpamb = models.IntegerField(choices=CHOICES_S1299_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1299_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1299_TPINSC)
     nrinsc = models.CharField(max_length=15)
     evtremun = models.CharField(choices=CHOICES_S1299_EVTREMUN, max_length=1)
@@ -3149,7 +3299,7 @@ class s1299evtFechaEvPer(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.evtremun) + ' - ' + unicode(self.evtpgtos) + ' - ' + unicode(self.evtaqprod) + ' - ' + unicode(self.evtcomprod) + ' - ' + unicode(self.evtcontratavnp) + ' - ' + unicode(self.evtinfocomplper)
     #s1299_evtfechaevper_custom#
@@ -3164,10 +3314,17 @@ class s1299evtFechaEvPer(models.Model):
 class s1299evtFechaEvPerSerializer(ModelSerializer):
     class Meta:
         model = s1299evtFechaEvPer
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s1300evtContrSindPatr(models.Model):
+class s1300evtContrSindPatr(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3190,7 +3347,7 @@ class s1300evtContrSindPatr(models.Model):
     perapur = models.CharField(max_length=7)
     tpamb = models.IntegerField(choices=CHOICES_S1300_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S1300_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S1300_TPINSC)
     nrinsc = models.CharField(max_length=15)
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
@@ -3205,7 +3362,7 @@ class s1300evtContrSindPatr(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1300_evtcontrsindpatr_custom#
@@ -3220,10 +3377,17 @@ class s1300evtContrSindPatr(models.Model):
 class s1300evtContrSindPatrSerializer(ModelSerializer):
     class Meta:
         model = s1300evtContrSindPatr
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2190evtAdmPrelim(models.Model):
+class s2190evtAdmPrelim(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3242,7 +3406,7 @@ class s2190evtAdmPrelim(models.Model):
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2190_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2190_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2190_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -3260,7 +3424,7 @@ class s2190evtAdmPrelim(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.dtadm)
     #s2190_evtadmprelim_custom#
@@ -3275,10 +3439,17 @@ class s2190evtAdmPrelim(models.Model):
 class s2190evtAdmPrelimSerializer(ModelSerializer):
     class Meta:
         model = s2190evtAdmPrelim
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200evtAdmissao(models.Model):
+class s2200evtAdmissao(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3299,7 +3470,7 @@ class s2200evtAdmissao(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2200_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2200_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2200_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -3348,7 +3519,7 @@ class s2200evtAdmissao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.nmtrab) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.grauinstr) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.paisnascto) + ' - ' + unicode(self.paisnac) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.tpregtrab) + ' - ' + unicode(self.tpregprev) + ' - ' + unicode(self.cadini) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.vrsalfx) + ' - ' + unicode(self.undsalfixo) + ' - ' + unicode(self.tpcontr)
     #s2200_evtadmissao_custom#
@@ -3363,10 +3534,17 @@ class s2200evtAdmissao(models.Model):
 class s2200evtAdmissaoSerializer(ModelSerializer):
     class Meta:
         model = s2200evtAdmissao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2205evtAltCadastral(models.Model):
+class s2205evtAltCadastral(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3387,7 +3565,7 @@ class s2205evtAltCadastral(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2205_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2205_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2205_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -3418,7 +3596,7 @@ class s2205evtAltCadastral(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.dtalteracao) + ' - ' + unicode(self.nmtrab) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.grauinstr) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.paisnascto) + ' - ' + unicode(self.paisnac)
     #s2205_evtaltcadastral_custom#
@@ -3433,10 +3611,17 @@ class s2205evtAltCadastral(models.Model):
 class s2205evtAltCadastralSerializer(ModelSerializer):
     class Meta:
         model = s2205evtAltCadastral
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2206evtAltContratual(models.Model):
+class s2206evtAltContratual(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3457,7 +3642,7 @@ class s2206evtAltContratual(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2206_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2206_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2206_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -3490,7 +3675,7 @@ class s2206evtAltContratual(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.dtalteracao) + ' - ' + unicode(self.tpregprev) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.vrsalfx) + ' - ' + unicode(self.undsalfixo) + ' - ' + unicode(self.tpcontr)
     #s2206_evtaltcontratual_custom#
@@ -3505,10 +3690,17 @@ class s2206evtAltContratual(models.Model):
 class s2206evtAltContratualSerializer(ModelSerializer):
     class Meta:
         model = s2206evtAltContratual
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2210evtCAT(models.Model):
+class s2210evtCAT(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3529,7 +3721,7 @@ class s2210evtCAT(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2210_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2210_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2210_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -3573,7 +3765,7 @@ class s2210evtCAT(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.dtacid) + ' - ' + unicode(self.tpacid) + ' - ' + unicode(self.hrstrabantesacid) + ' - ' + unicode(self.tpcat) + ' - ' + unicode(self.indcatobito) + ' - ' + unicode(self.indcomunpolicia) + ' - ' + unicode(self.codsitgeradora) + ' - ' + unicode(self.iniciatcat) + ' - ' + unicode(self.tplocal) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd)
     #s2210_evtcat_custom#
@@ -3588,10 +3780,17 @@ class s2210evtCAT(models.Model):
 class s2210evtCATSerializer(ModelSerializer):
     class Meta:
         model = s2210evtCAT
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2220evtMonit(models.Model):
+class s2220evtMonit(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3612,7 +3811,7 @@ class s2220evtMonit(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2220_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2220_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2220_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -3647,7 +3846,7 @@ class s2220evtMonit(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.tpexameocup) + ' - ' + unicode(self.dtaso) + ' - ' + unicode(self.tpaso) + ' - ' + unicode(self.resaso) + ' - ' + unicode(self.nmmed) + ' - ' + unicode(self.nrcrm) + ' - ' + unicode(self.ufcrm) + ' - ' + unicode(self.nisresp) + ' - ' + unicode(self.nrconsclasse) + ' - ' + unicode(self.nmresp) + ' - ' + unicode(self.nrcrm) + ' - ' + unicode(self.ufcrm)
     #s2220_evtmonit_custom#
@@ -3662,10 +3861,17 @@ class s2220evtMonit(models.Model):
 class s2220evtMonitSerializer(ModelSerializer):
     class Meta:
         model = s2220evtMonit
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2221evtToxic(models.Model):
+class s2221evtToxic(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3686,7 +3892,7 @@ class s2221evtToxic(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2221_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2221_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2221_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -3712,7 +3918,7 @@ class s2221evtToxic(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.dtexame) + ' - ' + unicode(self.indrecusa)
     #s2221_evttoxic_custom#
@@ -3727,10 +3933,17 @@ class s2221evtToxic(models.Model):
 class s2221evtToxicSerializer(ModelSerializer):
     class Meta:
         model = s2221evtToxic
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2230evtAfastTemp(models.Model):
+class s2230evtAfastTemp(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3751,7 +3964,7 @@ class s2230evtAfastTemp(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2230_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2230_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2230_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -3770,7 +3983,7 @@ class s2230evtAfastTemp(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s2230_evtafasttemp_custom#
@@ -3785,16 +3998,23 @@ class s2230evtAfastTemp(models.Model):
 class s2230evtAfastTempSerializer(ModelSerializer):
     class Meta:
         model = s2230evtAfastTemp
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2231evtCessao(models.Model):
+class s2231evtCessao(SoftDeletionModel):
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2231_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2231_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2231_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField()
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -3806,7 +4026,7 @@ class s2231evtCessao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula)
     #s2231_evtcessao_custom#
@@ -3821,10 +4041,17 @@ class s2231evtCessao(models.Model):
 class s2231evtCessaoSerializer(ModelSerializer):
     class Meta:
         model = s2231evtCessao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2240evtExpRisco(models.Model):
+class s2240evtExpRisco(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3845,7 +4072,7 @@ class s2240evtExpRisco(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2240_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2240_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2240_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -3867,7 +4094,7 @@ class s2240evtExpRisco(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.dtinicondicao) + ' - ' + unicode(self.dscativdes)
     #s2240_evtexprisco_custom#
@@ -3882,10 +4109,17 @@ class s2240evtExpRisco(models.Model):
 class s2240evtExpRiscoSerializer(ModelSerializer):
     class Meta:
         model = s2240evtExpRisco
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2241evtInsApo(models.Model):
+class s2241evtInsApo(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3906,7 +4140,7 @@ class s2241evtInsApo(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2241_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2241_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2241_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -3925,7 +4159,7 @@ class s2241evtInsApo(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s2241_evtinsapo_custom#
@@ -3940,10 +4174,17 @@ class s2241evtInsApo(models.Model):
 class s2241evtInsApoSerializer(ModelSerializer):
     class Meta:
         model = s2241evtInsApo
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2245evtTreiCap(models.Model):
+class s2245evtTreiCap(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -3964,7 +4205,7 @@ class s2245evtTreiCap(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2245_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2245_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2245_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -3987,7 +4228,7 @@ class s2245evtTreiCap(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.codtreicap)
     #s2245_evttreicap_custom#
@@ -4002,10 +4243,17 @@ class s2245evtTreiCap(models.Model):
 class s2245evtTreiCapSerializer(ModelSerializer):
     class Meta:
         model = s2245evtTreiCap
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2250evtAvPrevio(models.Model):
+class s2250evtAvPrevio(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4026,7 +4274,7 @@ class s2250evtAvPrevio(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2250_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2250_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2250_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -4044,7 +4292,7 @@ class s2250evtAvPrevio(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula)
     #s2250_evtavprevio_custom#
@@ -4059,10 +4307,17 @@ class s2250evtAvPrevio(models.Model):
 class s2250evtAvPrevioSerializer(ModelSerializer):
     class Meta:
         model = s2250evtAvPrevio
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2260evtConvInterm(models.Model):
+class s2260evtConvInterm(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4083,7 +4338,7 @@ class s2260evtConvInterm(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2260_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2260_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2260_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -4108,7 +4363,7 @@ class s2260evtConvInterm(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codconv) + ' - ' + unicode(self.dtinicio) + ' - ' + unicode(self.dtfim) + ' - ' + unicode(self.dtprevpgto) + ' - ' + unicode(self.indlocal)
     #s2260_evtconvinterm_custom#
@@ -4123,10 +4378,17 @@ class s2260evtConvInterm(models.Model):
 class s2260evtConvIntermSerializer(ModelSerializer):
     class Meta:
         model = s2260evtConvInterm
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2298evtReintegr(models.Model):
+class s2298evtReintegr(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4147,7 +4409,7 @@ class s2298evtReintegr(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2298_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2298_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2298_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -4171,7 +4433,7 @@ class s2298evtReintegr(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.tpreint) + ' - ' + unicode(self.dtefetretorno) + ' - ' + unicode(self.dtefeito) + ' - ' + unicode(self.indpagtojuizo)
     #s2298_evtreintegr_custom#
@@ -4186,10 +4448,17 @@ class s2298evtReintegr(models.Model):
 class s2298evtReintegrSerializer(ModelSerializer):
     class Meta:
         model = s2298evtReintegr
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2299evtDeslig(models.Model):
+class s2299evtDeslig(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4210,7 +4479,7 @@ class s2299evtDeslig(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2299_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2299_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2299_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -4239,7 +4508,7 @@ class s2299evtDeslig(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.mtvdeslig) + ' - ' + unicode(self.dtdeslig) + ' - ' + unicode(self.indpagtoapi) + ' - ' + unicode(self.pensalim) + ' - ' + unicode(self.indcumprparc)
     #s2299_evtdeslig_custom#
@@ -4254,10 +4523,17 @@ class s2299evtDeslig(models.Model):
 class s2299evtDesligSerializer(ModelSerializer):
     class Meta:
         model = s2299evtDeslig
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2300evtTSVInicio(models.Model):
+class s2300evtTSVInicio(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4278,7 +4554,7 @@ class s2300evtTSVInicio(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2300_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2300_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2300_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -4312,7 +4588,7 @@ class s2300evtTSVInicio(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nmtrab) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.grauinstr) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.paisnascto) + ' - ' + unicode(self.paisnac) + ' - ' + unicode(self.cadini) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtinicio)
     #s2300_evttsvinicio_custom#
@@ -4327,10 +4603,17 @@ class s2300evtTSVInicio(models.Model):
 class s2300evtTSVInicioSerializer(ModelSerializer):
     class Meta:
         model = s2300evtTSVInicio
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2306evtTSVAltContr(models.Model):
+class s2306evtTSVAltContr(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4351,7 +4634,7 @@ class s2306evtTSVAltContr(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2306_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2306_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2306_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -4371,7 +4654,7 @@ class s2306evtTSVAltContr(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtalteracao)
     #s2306_evttsvaltcontr_custom#
@@ -4386,10 +4669,17 @@ class s2306evtTSVAltContr(models.Model):
 class s2306evtTSVAltContrSerializer(ModelSerializer):
     class Meta:
         model = s2306evtTSVAltContr
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2399evtTSVTermino(models.Model):
+class s2399evtTSVTermino(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4410,7 +4700,7 @@ class s2399evtTSVTermino(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2399_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2399_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2399_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpftrab = models.CharField(max_length=11)
@@ -4433,7 +4723,7 @@ class s2399evtTSVTermino(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtterm)
     #s2399_evttsvtermino_custom#
@@ -4448,10 +4738,17 @@ class s2399evtTSVTermino(models.Model):
 class s2399evtTSVTerminoSerializer(ModelSerializer):
     class Meta:
         model = s2399evtTSVTermino
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2400evtCdBenefIn(models.Model):
+class s2400evtCdBenefIn(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4472,7 +4769,7 @@ class s2400evtCdBenefIn(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2400_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2400_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2400_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpfbenef = models.CharField(max_length=11)
@@ -4503,7 +4800,7 @@ class s2400evtCdBenefIn(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.dtinicio) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.incfismen) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.paisnac)
     #s2400_evtcdbenefin_custom#
@@ -4518,10 +4815,17 @@ class s2400evtCdBenefIn(models.Model):
 class s2400evtCdBenefInSerializer(ModelSerializer):
     class Meta:
         model = s2400evtCdBenefIn
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2405evtCdBenefAlt(models.Model):
+class s2405evtCdBenefAlt(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4542,7 +4846,7 @@ class s2405evtCdBenefAlt(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2405_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2405_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2405_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpfbenef = models.CharField(max_length=11)
@@ -4569,7 +4873,7 @@ class s2405evtCdBenefAlt(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.dtalteracao) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.incfismen) + ' - ' + unicode(self.paisnac)
     #s2405_evtcdbenefalt_custom#
@@ -4584,10 +4888,17 @@ class s2405evtCdBenefAlt(models.Model):
 class s2405evtCdBenefAltSerializer(ModelSerializer):
     class Meta:
         model = s2405evtCdBenefAlt
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2410evtCdBenIn(models.Model):
+class s2410evtCdBenIn(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4608,7 +4919,7 @@ class s2410evtCdBenIn(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2410_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2410_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2410_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpfbenef = models.CharField(max_length=11)
@@ -4635,7 +4946,7 @@ class s2410evtCdBenIn(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.cadini) + ' - ' + unicode(self.nrbeneficio) + ' - ' + unicode(self.dtinibeneficio) + ' - ' + unicode(self.tpbeneficio) + ' - ' + unicode(self.vrbeneficio) + ' - ' + unicode(self.tpplanrp) + ' - ' + unicode(self.inddecjud) + ' - ' + unicode(self.indhomologtc)
     #s2410_evtcdbenin_custom#
@@ -4650,10 +4961,17 @@ class s2410evtCdBenIn(models.Model):
 class s2410evtCdBenInSerializer(ModelSerializer):
     class Meta:
         model = s2410evtCdBenIn
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2416evtCdBenAlt(models.Model):
+class s2416evtCdBenAlt(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4674,7 +4992,7 @@ class s2416evtCdBenAlt(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2416_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2416_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2416_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpfbenef = models.CharField(max_length=11)
@@ -4699,7 +5017,7 @@ class s2416evtCdBenAlt(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nrbeneficio) + ' - ' + unicode(self.dtaltbeneficio) + ' - ' + unicode(self.tpbeneficio) + ' - ' + unicode(self.tpplanrp) + ' - ' + unicode(self.inddecjud) + ' - ' + unicode(self.indhomologtc) + ' - ' + unicode(self.indsuspensao)
     #s2416_evtcdbenalt_custom#
@@ -4714,10 +5032,17 @@ class s2416evtCdBenAlt(models.Model):
 class s2416evtCdBenAltSerializer(ModelSerializer):
     class Meta:
         model = s2416evtCdBenAlt
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2420evtCdBenTerm(models.Model):
+class s2420evtCdBenTerm(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4738,7 +5063,7 @@ class s2420evtCdBenTerm(models.Model):
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S2420_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S2420_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S2420_TPINSC)
     nrinsc = models.CharField(max_length=15)
     cpfbenef = models.CharField(max_length=11)
@@ -4758,7 +5083,7 @@ class s2420evtCdBenTerm(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nrbeneficio) + ' - ' + unicode(self.dttermbeneficio) + ' - ' + unicode(self.mtvtermino)
     #s2420_evtcdbenterm_custom#
@@ -4773,10 +5098,17 @@ class s2420evtCdBenTerm(models.Model):
 class s2420evtCdBenTermSerializer(ModelSerializer):
     class Meta:
         model = s2420evtCdBenTerm
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s3000evtExclusao(models.Model):
+class s3000evtExclusao(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4795,7 +5127,7 @@ class s3000evtExclusao(models.Model):
     identidade = models.CharField(max_length=36, blank=True, null=True)
     tpamb = models.IntegerField(choices=CHOICES_S3000_TPAMB, blank=True)
     procemi = models.IntegerField(choices=CHOICES_S3000_PROCEMI, blank=True)
-    verproc = models.CharField(max_length=20, blank=True)
+    verproc = models.CharField(max_length=20, blank=True, default='1.2')
     tpinsc = models.IntegerField(choices=CHOICES_S3000_TPINSC)
     nrinsc = models.CharField(max_length=15)
     tpevento = models.CharField(choices=CHOICES_S3000_TPEVENTO, max_length=6)
@@ -4812,7 +5144,7 @@ class s3000evtExclusao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpevento) + ' - ' + unicode(self.nrrecevt)
     #s3000_evtexclusao_custom#
@@ -4827,10 +5159,17 @@ class s3000evtExclusao(models.Model):
 class s3000evtExclusaoSerializer(ModelSerializer):
     class Meta:
         model = s3000evtExclusao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5001evtBasesTrab(models.Model):
+class s5001evtBasesTrab(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4865,7 +5204,7 @@ class s5001evtBasesTrab(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s5001_evtbasestrab_custom#
@@ -4880,10 +5219,17 @@ class s5001evtBasesTrab(models.Model):
 class s5001evtBasesTrabSerializer(ModelSerializer):
     class Meta:
         model = s5001evtBasesTrab
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5002evtIrrfBenef(models.Model):
+class s5002evtIrrfBenef(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4917,7 +5263,7 @@ class s5002evtIrrfBenef(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s5002_evtirrfbenef_custom#
@@ -4932,10 +5278,17 @@ class s5002evtIrrfBenef(models.Model):
 class s5002evtIrrfBenefSerializer(ModelSerializer):
     class Meta:
         model = s5002evtIrrfBenef
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5003evtBasesFGTS(models.Model):
+class s5003evtBasesFGTS(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -4970,7 +5323,7 @@ class s5003evtBasesFGTS(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s5003_evtbasesfgts_custom#
@@ -4985,10 +5338,17 @@ class s5003evtBasesFGTS(models.Model):
 class s5003evtBasesFGTSSerializer(ModelSerializer):
     class Meta:
         model = s5003evtBasesFGTS
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5011evtCS(models.Model):
+class s5011evtCS(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -5024,7 +5384,7 @@ class s5011evtCS(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.indexistinfo) + ' - ' + unicode(self.classtrib)
     #s5011_evtcs_custom#
@@ -5039,10 +5399,17 @@ class s5011evtCS(models.Model):
 class s5011evtCSSerializer(ModelSerializer):
     class Meta:
         model = s5011evtCS
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5012evtIrrf(models.Model):
+class s5012evtIrrf(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -5076,7 +5443,7 @@ class s5012evtIrrf(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.indexistinfo)
     #s5012_evtirrf_custom#
@@ -5091,10 +5458,17 @@ class s5012evtIrrf(models.Model):
 class s5012evtIrrfSerializer(ModelSerializer):
     class Meta:
         model = s5012evtIrrf
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s5013evtFGTS(models.Model):
+class s5013evtFGTS(SoftDeletionModel):
     retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
         related_name='%(class)s_retornos_eventos', blank=True, null=True)
     ocorrencias = models.TextField(blank=True, null=True)
@@ -5128,7 +5502,7 @@ class s5013evtFGTS(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.indexistinfo)
     #s5013_evtfgts_custom#
@@ -5143,7 +5517,14 @@ class s5013evtFGTS(models.Model):
 class s5013evtFGTSSerializer(ModelSerializer):
     class Meta:
         model = s5013evtFGTS
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

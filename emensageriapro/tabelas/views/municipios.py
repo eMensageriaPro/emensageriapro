@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -124,7 +125,8 @@ def apagar(request, hash):
 
     municipios = get_object_or_404(Municipios.objects.using( db_slug ), excluido = False, id = municipios_id)
     if request.method == 'POST':
-        Municipios.objects.using( db_slug ).filter(id = municipios_id).update(excluido = True)
+        obj = Municipios.objects.using( db_slug ).get(id = municipios_id)
+        obj.delete(request=request)
         #municipios_apagar_custom
         #municipios_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -360,27 +362,21 @@ def salvar(request, hash):
             municipios_form = form_municipios(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if municipios_form.is_valid():
+
                 dados = municipios_form.cleaned_data
-                if municipios_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #municipios_campos_multiple_passo1
-                    Municipios.objects.using(db_slug).filter(id=municipios_id).update(**dados)
-                    obj = Municipios.objects.using(db_slug).get(id=municipios_id)
-                    #municipios_editar_custom
-                    #municipios_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
+                obj = municipios_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not municipios_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'municipios', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #municipios_cadastrar_campos_multiple_passo1
-                    obj = Municipios(**dados)
-                    obj.save(using = db_slug)
-                    #municipios_cadastrar_custom
-                    #municipios_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
+                    gravar_auditoria(json.dumps(model_to_dict(municipios), indent=4, sort_keys=True, default=str),
+                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                     'municipios', municipios_id, usuario_id, 2)
+                  
                 if request.session['retorno_pagina'] not in ('municipios_apagar', 'municipios_salvar', 'municipios'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if municipios_id != obj.id:

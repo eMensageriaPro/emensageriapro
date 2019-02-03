@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.r5011.models import * 
 from emensageriapro.efdreinf.models import r5011evtTotalContrib 
 
@@ -56,6 +57,25 @@ class form_r5011_rcprb(forms.ModelForm):
         self.fields['r5011_infototalcontrib'].widget.attrs['required'] = True        
         self.fields['crcprb'].widget.attrs['required'] = True        
         self.fields['vlrcrcprb'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r5011_rcprb, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r5011RCPRB
@@ -80,6 +100,25 @@ class form_r5011_rcoml(forms.ModelForm):
         self.fields['r5011_infototalcontrib'].widget.attrs['required'] = True        
         self.fields['crcoml'].widget.attrs['required'] = True        
         self.fields['vlrcrcoml'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r5011_rcoml, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r5011RComl
@@ -109,6 +148,25 @@ class form_r5011_rprest(forms.ModelForm):
         self.fields['nrinsctomador'].widget.attrs['required'] = True        
         self.fields['vlrtotalbaseret'].widget.attrs['required'] = True        
         self.fields['vlrtotalretprinc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r5011_rprest, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r5011RPrest
@@ -135,6 +193,25 @@ class form_r5011_rrecrepad(forms.ModelForm):
         self.fields['vlrtotalrep'].widget.attrs['required'] = True        
         self.fields['crrecrepad'].widget.attrs['required'] = True        
         self.fields['vlrcrrecrepad'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r5011_rrecrepad, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r5011RRecRepAD
@@ -158,6 +235,25 @@ class form_r5011_rtom(forms.ModelForm):
         self.fields['r5011_infototalcontrib'].widget.attrs['required'] = True        
         self.fields['cnpjprestador'].widget.attrs['required'] = True        
         self.fields['vlrtotalbaseret'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r5011_rtom, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r5011RTom
@@ -181,6 +277,25 @@ class form_r5011_infocrtom(forms.ModelForm):
         self.fields['r5011_rtom'].queryset = r5011RTom.objects.using( slug ).filter(excluido=False).all()
         self.fields['r5011_rtom'].widget.attrs['required'] = True        
         self.fields['crtom'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r5011_infocrtom, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r5011infoCRTom
@@ -201,6 +316,25 @@ class form_r5011_infototalcontrib(forms.ModelForm):
         
         self.fields['r5011_evttotalcontrib'].widget.attrs['required'] = True        
         self.fields['indexistinfo'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r5011_infototalcontrib, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r5011infoTotalContrib
@@ -225,6 +359,25 @@ class form_r5011_regocorrs(forms.ModelForm):
         self.fields['localerroaviso'].widget.attrs['required'] = True        
         self.fields['codresp'].widget.attrs['required'] = True        
         self.fields['dscresp'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_r5011_regocorrs, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = r5011regOcorrs

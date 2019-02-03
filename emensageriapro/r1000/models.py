@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -137,7 +140,7 @@ PERIODOS = (
     ('2019-12', u'Dezembro/2019'),
 )
 
-class r1000alteracao(models.Model):
+class r1000alteracao(SoftDeletionModel):
     r1000_evtinfocontri = models.OneToOneField('efdreinf.r1000evtInfoContri',
         related_name='%(class)s_r1000_evtinfocontri')
     def evento(self): return self.r1000_evtinfocontri.evento()
@@ -159,7 +162,7 @@ class r1000alteracao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r1000_evtinfocontri) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.classtrib) + ' - ' + unicode(self.indescrituracao) + ' - ' + unicode(self.inddesoneracao) + ' - ' + unicode(self.indacordoisenmulta) + ' - ' + unicode(self.nmctt) + ' - ' + unicode(self.cpfctt)
     #r1000_alteracao_custom#
@@ -173,10 +176,17 @@ class r1000alteracao(models.Model):
 class r1000alteracaoSerializer(ModelSerializer):
     class Meta:
         model = r1000alteracao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r1000alteracaoinfoEFR(models.Model):
+class r1000alteracaoinfoEFR(SoftDeletionModel):
     r1000_alteracao = models.OneToOneField('r1000alteracao',
         related_name='%(class)s_r1000_alteracao')
     def evento(self): return self.r1000_alteracao.evento()
@@ -188,7 +198,7 @@ class r1000alteracaoinfoEFR(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r1000_alteracao) + ' - ' + unicode(self.ideefr)
     #r1000_alteracao_infoefr_custom#
@@ -202,10 +212,17 @@ class r1000alteracaoinfoEFR(models.Model):
 class r1000alteracaoinfoEFRSerializer(ModelSerializer):
     class Meta:
         model = r1000alteracaoinfoEFR
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r1000alteracaonovaValidade(models.Model):
+class r1000alteracaonovaValidade(SoftDeletionModel):
     r1000_alteracao = models.OneToOneField('r1000alteracao',
         related_name='%(class)s_r1000_alteracao')
     def evento(self): return self.r1000_alteracao.evento()
@@ -217,7 +234,7 @@ class r1000alteracaonovaValidade(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r1000_alteracao) + ' - ' + unicode(self.inivalid)
     #r1000_alteracao_novavalidade_custom#
@@ -231,10 +248,17 @@ class r1000alteracaonovaValidade(models.Model):
 class r1000alteracaonovaValidadeSerializer(ModelSerializer):
     class Meta:
         model = r1000alteracaonovaValidade
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r1000alteracaosoftHouse(models.Model):
+class r1000alteracaosoftHouse(SoftDeletionModel):
     r1000_alteracao = models.ForeignKey('r1000alteracao',
         related_name='%(class)s_r1000_alteracao')
     def evento(self): return self.r1000_alteracao.evento()
@@ -249,7 +273,7 @@ class r1000alteracaosoftHouse(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r1000_alteracao) + ' - ' + unicode(self.cnpjsofthouse) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.nmcont)
     #r1000_alteracao_softhouse_custom#
@@ -263,10 +287,17 @@ class r1000alteracaosoftHouse(models.Model):
 class r1000alteracaosoftHouseSerializer(ModelSerializer):
     class Meta:
         model = r1000alteracaosoftHouse
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r1000exclusao(models.Model):
+class r1000exclusao(SoftDeletionModel):
     r1000_evtinfocontri = models.OneToOneField('efdreinf.r1000evtInfoContri',
         related_name='%(class)s_r1000_evtinfocontri')
     def evento(self): return self.r1000_evtinfocontri.evento()
@@ -278,7 +309,7 @@ class r1000exclusao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r1000_evtinfocontri) + ' - ' + unicode(self.inivalid)
     #r1000_exclusao_custom#
@@ -292,10 +323,17 @@ class r1000exclusao(models.Model):
 class r1000exclusaoSerializer(ModelSerializer):
     class Meta:
         model = r1000exclusao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r1000inclusao(models.Model):
+class r1000inclusao(SoftDeletionModel):
     r1000_evtinfocontri = models.OneToOneField('efdreinf.r1000evtInfoContri',
         related_name='%(class)s_r1000_evtinfocontri')
     def evento(self): return self.r1000_evtinfocontri.evento()
@@ -317,7 +355,7 @@ class r1000inclusao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r1000_evtinfocontri) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.classtrib) + ' - ' + unicode(self.indescrituracao) + ' - ' + unicode(self.inddesoneracao) + ' - ' + unicode(self.indacordoisenmulta) + ' - ' + unicode(self.nmctt) + ' - ' + unicode(self.cpfctt)
     #r1000_inclusao_custom#
@@ -331,10 +369,17 @@ class r1000inclusao(models.Model):
 class r1000inclusaoSerializer(ModelSerializer):
     class Meta:
         model = r1000inclusao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r1000inclusaoinfoEFR(models.Model):
+class r1000inclusaoinfoEFR(SoftDeletionModel):
     r1000_inclusao = models.OneToOneField('r1000inclusao',
         related_name='%(class)s_r1000_inclusao')
     def evento(self): return self.r1000_inclusao.evento()
@@ -346,7 +391,7 @@ class r1000inclusaoinfoEFR(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r1000_inclusao) + ' - ' + unicode(self.ideefr)
     #r1000_inclusao_infoefr_custom#
@@ -360,10 +405,17 @@ class r1000inclusaoinfoEFR(models.Model):
 class r1000inclusaoinfoEFRSerializer(ModelSerializer):
     class Meta:
         model = r1000inclusaoinfoEFR
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r1000inclusaosoftHouse(models.Model):
+class r1000inclusaosoftHouse(SoftDeletionModel):
     r1000_inclusao = models.ForeignKey('r1000inclusao',
         related_name='%(class)s_r1000_inclusao')
     def evento(self): return self.r1000_inclusao.evento()
@@ -378,7 +430,7 @@ class r1000inclusaosoftHouse(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r1000_inclusao) + ' - ' + unicode(self.cnpjsofthouse) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.nmcont)
     #r1000_inclusao_softhouse_custom#
@@ -392,7 +444,14 @@ class r1000inclusaosoftHouse(models.Model):
 class r1000inclusaosoftHouseSerializer(ModelSerializer):
     class Meta:
         model = r1000inclusaosoftHouse
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

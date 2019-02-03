@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s1020.models import * 
 from emensageriapro.esocial.models import s1020evtTabLotacao 
 
@@ -56,6 +57,25 @@ class form_s1020_alteracao(forms.ModelForm):
         self.fields['tplotacao'].widget.attrs['required'] = True        
         self.fields['fpas'].widget.attrs['required'] = True        
         self.fields['codtercs'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1020_alteracao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1020alteracao
@@ -79,6 +99,25 @@ class form_s1020_alteracao_infoemprparcial(forms.ModelForm):
         self.fields['nrinsccontrat'].widget.attrs['required'] = True        
         self.fields['tpinscprop'].widget.attrs['required'] = True        
         self.fields['nrinscprop'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1020_alteracao_infoemprparcial, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1020alteracaoinfoEmprParcial
@@ -99,6 +138,25 @@ class form_s1020_alteracao_novavalidade(forms.ModelForm):
         
         self.fields['s1020_alteracao'].widget.attrs['required'] = True        
         self.fields['inivalid'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1020_alteracao_novavalidade, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1020alteracaonovaValidade
@@ -122,6 +180,25 @@ class form_s1020_alteracao_procjudterceiro(forms.ModelForm):
         self.fields['codterc'].widget.attrs['required'] = True        
         self.fields['nrprocjud'].widget.attrs['required'] = True        
         self.fields['codsusp'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1020_alteracao_procjudterceiro, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1020alteracaoprocJudTerceiro
@@ -143,6 +220,25 @@ class form_s1020_exclusao(forms.ModelForm):
         self.fields['s1020_evttablotacao'].widget.attrs['required'] = True        
         self.fields['codlotacao'].widget.attrs['required'] = True        
         self.fields['inivalid'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1020_exclusao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1020exclusao
@@ -167,6 +263,25 @@ class form_s1020_inclusao(forms.ModelForm):
         self.fields['tplotacao'].widget.attrs['required'] = True        
         self.fields['fpas'].widget.attrs['required'] = True        
         self.fields['codtercs'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1020_inclusao, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1020inclusao
@@ -190,6 +305,25 @@ class form_s1020_inclusao_infoemprparcial(forms.ModelForm):
         self.fields['nrinsccontrat'].widget.attrs['required'] = True        
         self.fields['tpinscprop'].widget.attrs['required'] = True        
         self.fields['nrinscprop'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1020_inclusao_infoemprparcial, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1020inclusaoinfoEmprParcial
@@ -213,6 +347,25 @@ class form_s1020_inclusao_procjudterceiro(forms.ModelForm):
         self.fields['codterc'].widget.attrs['required'] = True        
         self.fields['nrprocjud'].widget.attrs['required'] = True        
         self.fields['codsusp'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1020_inclusao_procjudterceiro, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1020inclusaoprocJudTerceiro

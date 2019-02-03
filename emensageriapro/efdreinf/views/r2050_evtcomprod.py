@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -86,7 +87,8 @@ def apagar(request, hash):
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(r2050_evtcomprod), indent=4, sort_keys=True, default=str)
-            r2050evtComProd.objects.using( db_slug ).filter(id = r2050_evtcomprod_id).delete()
+            obj = r2050evtComProd.objects.using( db_slug ).get(id = r2050_evtcomprod_id)
+            obj.delete(request=request)
             #r2050_evtcomprod_apagar_custom
             #r2050_evtcomprod_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
@@ -334,49 +336,6 @@ def listar(request, hash):
         }
         return render(request, 'permissao_negada.html', context)
 
-# #view_identidade_evento#
-# def identidade_evento(r2050_evtcomprod_id, db_slug):
-#     from emensageriapro.mensageiro.models import TransmissorEventosEfdreinf
-#     dados_evento = r2050evtComProd.objects.using( db_slug ).get(id=r2050_evtcomprod_id)
-#     identidade = 'ID'
-#     identidade += str(dados_evento.tpinsc)
-#     nr_insc = dados_evento.nrinsc
-#     while len(nr_insc) != 14:
-#         nr_insc = nr_insc+'0'
-#     identidade += nr_insc
-#     identidade += str(dados_evento.criado_em.year)
-#     mes = str(dados_evento.criado_em.month)
-#     if len(mes) == 1: mes = '0'+mes
-#     identidade += mes
-#     dia = str(dados_evento.criado_em.day)
-#     if len(dia) == 1: dia = '0'+dia
-#     identidade += dia
-#     hora = str(dados_evento.criado_em.hour)
-#     if len(hora) == 1: hora = '0'+hora
-#     identidade += hora
-#     minuto = str(dados_evento.criado_em.minute)
-#     if len(minuto) == 1: minuto = '0'+minuto
-#     identidade += minuto
-#     segundo = str(dados_evento.criado_em.second)
-#     if len(segundo) == 1: segundo = '0'+segundo
-#     identidade += segundo
-#     existe = True
-#     n = 0
-#     while existe:
-#         n+=1
-#         sequencial = str(n)
-#         while len(sequencial) != 5:
-#             sequencial = '0'+sequencial
-#         identidade_temp = identidade + sequencial
-#         lista_eventos = TransmissorEventosEfdreinf.objects.using(db_slug).filter(criado_em=dados_evento.criado_em,
-#                                                                          excluido=False, identidade = identidade_temp).all()
-#         if not lista_eventos:
-#             r2050evtComProd.objects.using(db_slug).filter(id=r2050_evtcomprod_id).update(identidade=identidade_temp)
-#             existe = False
-#     return identidade_temp
-# #view_identidade_evento#
-
-
 def gerar_identidade(request, chave, evento_id):
     from emensageriapro.functions import identidade_evento
     from emensageriapro.settings import PASS_SCRIPT
@@ -426,44 +385,24 @@ def salvar(request, hash):
             r2050_evtcomprod_form = form_r2050_evtcomprod(request.POST or None, slug = db_slug, initial={'versao': VERSAO_LAYOUT_EFDREINF, 'status': 0, 'processamento_codigo_resposta': 0, 'tpamb': TP_AMB, 'procemi': 1, 'verproc': VERSAO_EMENSAGERIA})
         if request.method == 'POST':
             if r2050_evtcomprod_form.is_valid():
+
                 dados = r2050_evtcomprod_form.cleaned_data
+                obj = r2050_evtcomprod_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
 
-                if r2050_evtcomprod_id:
-                    if r2050_evtcomprod.status == 0:
-                        dados['modificado_por_id'] = usuario_id
-                        dados['modificado_em'] = datetime.datetime.now()
-                        #r2050_evtcomprod_campos_multiple_passo1
-                        r2050evtComProd.objects.using(db_slug).filter(id=r2050_evtcomprod_id).update(**dados)
-                        obj = r2050evtComProd.objects.using(db_slug).get(id=r2050_evtcomprod_id)
-                        #r2050_evtcomprod_editar_custom
-                        #r2050_evtcomprod_campos_multiple_passo2
-                        messages.success(request, 'Alterado com sucesso!')
-                        gravar_auditoria(json.dumps(model_to_dict(r2050_evtcomprod), indent=4, sort_keys=True, default=str),
-                                         json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                         'r2050_evtcomprod', r2050_evtcomprod_id, usuario_id, 2)
-                    else:
-                        obj = r2050evtComProd.objects.using(db_slug).get(id=r2050_evtcomprod_id)
-                        messages.error(request, 'Não é possível salvar o evento, pois o mesmo não está com o status "Cadastrado"!')
-
-                else:
-
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #r2050_evtcomprod_cadastrar_campos_multiple_passo1
-                    obj = r2050evtComProd(**dados)
-                    obj.save(using = db_slug)
-                    #r2050_evtcomprod_cadastrar_custom
-                    #r2050_evtcomprod_cadastrar_campos_multiple_passo2
-                    #identidade_evento(obj.id, db_slug)
+                if not r2050_evtcomprod_id:
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
- 
-                    messages.success(request, 'Cadastrado com sucesso!')
-                    r2050_evtcomprod_form = form_r2050_evtcomprod(request.POST or None, instance = obj, slug = db_slug)
+
                     gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'r2050_evtcomprod', obj.id, usuario_id, 1)
+                else:
+
+                    gravar_auditoria(json.dumps(model_to_dict(r2050_evtcomprod), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                     'r2050_evtcomprod', obj.id, usuario_id, 1)
+                                     'r2050_evtcomprod', r2050_evtcomprod_id, usuario_id, 2)
+              
                 if request.session['retorno_pagina'] not in ('r2050_evtcomprod_apagar', 'r2050_evtcomprod_salvar', 'r2050_evtcomprod'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if r2050_evtcomprod_id != obj.id:

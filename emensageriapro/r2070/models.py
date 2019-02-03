@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -121,7 +124,7 @@ CHOICES_R2070_TPISENCAO = (
     (9, u'9 - Benefícios indiretos e/ou reembolso de despesas recebidas por voluntário da copa do mundo ou da copa das confederações'),
 )
 
-class r2070compJud(models.Model):
+class r2070compJud(SoftDeletionModel):
     r2070_pgtopf = models.OneToOneField('r2070pgtoPF',
         related_name='%(class)s_r2070_pgtopf')
     def evento(self): return self.r2070_pgtopf.evento()
@@ -133,7 +136,7 @@ class r2070compJud(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_pgtopf)
     #r2070_compjud_custom#
@@ -147,10 +150,17 @@ class r2070compJud(models.Model):
 class r2070compJudSerializer(ModelSerializer):
     class Meta:
         model = r2070compJud
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070depJudicial(models.Model):
+class r2070depJudicial(SoftDeletionModel):
     r2070_pgtopf = models.OneToOneField('r2070pgtoPF',
         related_name='%(class)s_r2070_pgtopf')
     def evento(self): return self.r2070_pgtopf.evento()
@@ -161,7 +171,7 @@ class r2070depJudicial(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_pgtopf)
     #r2070_depjudicial_custom#
@@ -175,10 +185,17 @@ class r2070depJudicial(models.Model):
 class r2070depJudicialSerializer(ModelSerializer):
     class Meta:
         model = r2070depJudicial
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070detCompet(models.Model):
+class r2070detCompet(SoftDeletionModel):
     r2070_pgtopf = models.ForeignKey('r2070pgtoPF',
         related_name='%(class)s_r2070_pgtopf')
     def evento(self): return self.r2070_pgtopf.evento()
@@ -191,7 +208,7 @@ class r2070detCompet(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_pgtopf) + ' - ' + unicode(self.indperreferencia) + ' - ' + unicode(self.perrefpagto) + ' - ' + unicode(self.vlrrendtributavel)
     #r2070_detcompet_custom#
@@ -205,10 +222,17 @@ class r2070detCompet(models.Model):
 class r2070detCompetSerializer(ModelSerializer):
     class Meta:
         model = r2070detCompet
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070detDeducao(models.Model):
+class r2070detDeducao(SoftDeletionModel):
     r2070_pgtopf = models.ForeignKey('r2070pgtoPF',
         related_name='%(class)s_r2070_pgtopf')
     def evento(self): return self.r2070_pgtopf.evento()
@@ -220,7 +244,7 @@ class r2070detDeducao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_pgtopf) + ' - ' + unicode(self.indtpdeducao) + ' - ' + unicode(self.vlrdeducao)
     #r2070_detdeducao_custom#
@@ -234,10 +258,17 @@ class r2070detDeducao(models.Model):
 class r2070detDeducaoSerializer(ModelSerializer):
     class Meta:
         model = r2070detDeducao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070ideEstab(models.Model):
+class r2070ideEstab(SoftDeletionModel):
     r2070_evtpgtosdivs = models.ForeignKey('efdreinf.r2070evtPgtosDivs',
         related_name='%(class)s_r2070_evtpgtosdivs')
     def evento(self): return self.r2070_evtpgtosdivs.evento()
@@ -249,7 +280,7 @@ class r2070ideEstab(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_evtpgtosdivs) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #r2070_ideestab_custom#
@@ -263,10 +294,17 @@ class r2070ideEstab(models.Model):
 class r2070ideEstabSerializer(ModelSerializer):
     class Meta:
         model = r2070ideEstab
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070infoMolestia(models.Model):
+class r2070infoMolestia(SoftDeletionModel):
     r2070_evtpgtosdivs = models.OneToOneField('efdreinf.r2070evtPgtosDivs',
         related_name='%(class)s_r2070_evtpgtosdivs')
     def evento(self): return self.r2070_evtpgtosdivs.evento()
@@ -277,7 +315,7 @@ class r2070infoMolestia(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_evtpgtosdivs) + ' - ' + unicode(self.dtlaudo)
     #r2070_infomolestia_custom#
@@ -291,10 +329,17 @@ class r2070infoMolestia(models.Model):
 class r2070infoMolestiaSerializer(ModelSerializer):
     class Meta:
         model = r2070infoMolestia
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070infoProcJud(models.Model):
+class r2070infoProcJud(SoftDeletionModel):
     r2070_pgtopf = models.ForeignKey('r2070pgtoPF',
         related_name='%(class)s_r2070_pgtopf')
     def evento(self): return self.r2070_pgtopf.evento()
@@ -307,7 +352,7 @@ class r2070infoProcJud(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_pgtopf) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.indorigemrecursos)
     #r2070_infoprocjud_custom#
@@ -321,10 +366,17 @@ class r2070infoProcJud(models.Model):
 class r2070infoProcJudSerializer(ModelSerializer):
     class Meta:
         model = r2070infoProcJud
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070infoProcJuddespProcJud(models.Model):
+class r2070infoProcJuddespProcJud(SoftDeletionModel):
     r2070_infoprocjud = models.OneToOneField('r2070infoProcJud',
         related_name='%(class)s_r2070_infoprocjud')
     def evento(self): return self.r2070_infoprocjud.evento()
@@ -336,7 +388,7 @@ class r2070infoProcJuddespProcJud(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_infoprocjud) + ' - ' + unicode(self.vlrdespcustas) + ' - ' + unicode(self.vlrdespadvogados)
     #r2070_infoprocjud_despprocjud_custom#
@@ -350,10 +402,17 @@ class r2070infoProcJuddespProcJud(models.Model):
 class r2070infoProcJuddespProcJudSerializer(ModelSerializer):
     class Meta:
         model = r2070infoProcJuddespProcJud
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070infoProcJudideAdvogado(models.Model):
+class r2070infoProcJudideAdvogado(SoftDeletionModel):
     r2070_infoprocjud_despprocjud = models.ForeignKey('r2070infoProcJuddespProcJud',
         related_name='%(class)s_r2070_infoprocjud_despprocjud')
     def evento(self): return self.r2070_infoprocjud_despprocjud.evento()
@@ -366,7 +425,7 @@ class r2070infoProcJudideAdvogado(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_infoprocjud_despprocjud) + ' - ' + unicode(self.tpinscadvogado) + ' - ' + unicode(self.nrinscadvogado) + ' - ' + unicode(self.vlradvogado)
     #r2070_infoprocjud_ideadvogado_custom#
@@ -380,10 +439,17 @@ class r2070infoProcJudideAdvogado(models.Model):
 class r2070infoProcJudideAdvogadoSerializer(ModelSerializer):
     class Meta:
         model = r2070infoProcJudideAdvogado
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070infoProcJudorigemRecursos(models.Model):
+class r2070infoProcJudorigemRecursos(SoftDeletionModel):
     r2070_infoprocjud = models.OneToOneField('r2070infoProcJud',
         related_name='%(class)s_r2070_infoprocjud')
     def evento(self): return self.r2070_infoprocjud.evento()
@@ -394,7 +460,7 @@ class r2070infoProcJudorigemRecursos(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_infoprocjud) + ' - ' + unicode(self.cnpjorigemrecursos)
     #r2070_infoprocjud_origemrecursos_custom#
@@ -408,10 +474,17 @@ class r2070infoProcJudorigemRecursos(models.Model):
 class r2070infoProcJudorigemRecursosSerializer(ModelSerializer):
     class Meta:
         model = r2070infoProcJudorigemRecursos
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070infoRRA(models.Model):
+class r2070infoRRA(SoftDeletionModel):
     r2070_pgtopf = models.ForeignKey('r2070pgtoPF',
         related_name='%(class)s_r2070_pgtopf')
     def evento(self): return self.r2070_pgtopf.evento()
@@ -426,7 +499,7 @@ class r2070infoRRA(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_pgtopf)
     #r2070_inforra_custom#
@@ -440,10 +513,17 @@ class r2070infoRRA(models.Model):
 class r2070infoRRASerializer(ModelSerializer):
     class Meta:
         model = r2070infoRRA
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070infoRRAdespProcJud(models.Model):
+class r2070infoRRAdespProcJud(SoftDeletionModel):
     r2070_inforra = models.OneToOneField('r2070infoRRA',
         related_name='%(class)s_r2070_inforra')
     def evento(self): return self.r2070_inforra.evento()
@@ -455,7 +535,7 @@ class r2070infoRRAdespProcJud(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_inforra) + ' - ' + unicode(self.vlrdespcustas) + ' - ' + unicode(self.vlrdespadvogados)
     #r2070_inforra_despprocjud_custom#
@@ -469,10 +549,17 @@ class r2070infoRRAdespProcJud(models.Model):
 class r2070infoRRAdespProcJudSerializer(ModelSerializer):
     class Meta:
         model = r2070infoRRAdespProcJud
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070infoRRAideAdvogado(models.Model):
+class r2070infoRRAideAdvogado(SoftDeletionModel):
     r2070_inforra_despprocjud = models.ForeignKey('r2070infoRRAdespProcJud',
         related_name='%(class)s_r2070_inforra_despprocjud')
     def evento(self): return self.r2070_inforra_despprocjud.evento()
@@ -485,7 +572,7 @@ class r2070infoRRAideAdvogado(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_inforra_despprocjud) + ' - ' + unicode(self.tpinscadvogado) + ' - ' + unicode(self.nrinscadvogado) + ' - ' + unicode(self.vlradvogado)
     #r2070_inforra_ideadvogado_custom#
@@ -499,10 +586,17 @@ class r2070infoRRAideAdvogado(models.Model):
 class r2070infoRRAideAdvogadoSerializer(ModelSerializer):
     class Meta:
         model = r2070infoRRAideAdvogado
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070infoResidExt(models.Model):
+class r2070infoResidExt(SoftDeletionModel):
     r2070_evtpgtosdivs = models.OneToOneField('efdreinf.r2070evtPgtosDivs',
         related_name='%(class)s_r2070_evtpgtosdivs')
     def evento(self): return self.r2070_evtpgtosdivs.evento()
@@ -522,7 +616,7 @@ class r2070infoResidExt(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_evtpgtosdivs) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.indnif)
     #r2070_inforesidext_custom#
@@ -536,10 +630,17 @@ class r2070infoResidExt(models.Model):
 class r2070infoResidExtSerializer(ModelSerializer):
     class Meta:
         model = r2070infoResidExt
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070pgtoPF(models.Model):
+class r2070pgtoPF(SoftDeletionModel):
     r2070_ideestab = models.ForeignKey('r2070ideEstab',
         related_name='%(class)s_r2070_ideestab')
     def evento(self): return self.r2070_ideestab.evento()
@@ -554,7 +655,7 @@ class r2070pgtoPF(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_ideestab) + ' - ' + unicode(self.dtpgto) + ' - ' + unicode(self.indsuspexig) + ' - ' + unicode(self.inddecterceiro) + ' - ' + unicode(self.vlrrendtributavel) + ' - ' + unicode(self.vlrirrf)
     #r2070_pgtopf_custom#
@@ -568,10 +669,17 @@ class r2070pgtoPF(models.Model):
 class r2070pgtoPFSerializer(ModelSerializer):
     class Meta:
         model = r2070pgtoPF
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070pgtoPJ(models.Model):
+class r2070pgtoPJ(SoftDeletionModel):
     r2070_ideestab = models.ForeignKey('r2070ideEstab',
         related_name='%(class)s_r2070_ideestab')
     def evento(self): return self.r2070_ideestab.evento()
@@ -584,7 +692,7 @@ class r2070pgtoPJ(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_ideestab) + ' - ' + unicode(self.dtpagto) + ' - ' + unicode(self.vlrrendtributavel) + ' - ' + unicode(self.vlrret)
     #r2070_pgtopj_custom#
@@ -598,10 +706,17 @@ class r2070pgtoPJ(models.Model):
 class r2070pgtoPJSerializer(ModelSerializer):
     class Meta:
         model = r2070pgtoPJ
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070pgtoPJdespProcJud(models.Model):
+class r2070pgtoPJdespProcJud(SoftDeletionModel):
     r2070_pgtopj_infoprocjud = models.OneToOneField('r2070pgtoPJinfoProcJud',
         related_name='%(class)s_r2070_pgtopj_infoprocjud')
     def evento(self): return self.r2070_pgtopj_infoprocjud.evento()
@@ -613,7 +728,7 @@ class r2070pgtoPJdespProcJud(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_pgtopj_infoprocjud) + ' - ' + unicode(self.vlrdespcustas) + ' - ' + unicode(self.vlrdespadvogados)
     #r2070_pgtopj_despprocjud_custom#
@@ -627,10 +742,17 @@ class r2070pgtoPJdespProcJud(models.Model):
 class r2070pgtoPJdespProcJudSerializer(ModelSerializer):
     class Meta:
         model = r2070pgtoPJdespProcJud
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070pgtoPJideAdvogado(models.Model):
+class r2070pgtoPJideAdvogado(SoftDeletionModel):
     r2070_pgtopj_despprocjud = models.ForeignKey('r2070pgtoPJdespProcJud',
         related_name='%(class)s_r2070_pgtopj_despprocjud')
     def evento(self): return self.r2070_pgtopj_despprocjud.evento()
@@ -643,7 +765,7 @@ class r2070pgtoPJideAdvogado(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_pgtopj_despprocjud) + ' - ' + unicode(self.tpinscadvogado) + ' - ' + unicode(self.nrinscadvogado) + ' - ' + unicode(self.vlradvogado)
     #r2070_pgtopj_ideadvogado_custom#
@@ -657,10 +779,17 @@ class r2070pgtoPJideAdvogado(models.Model):
 class r2070pgtoPJideAdvogadoSerializer(ModelSerializer):
     class Meta:
         model = r2070pgtoPJideAdvogado
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070pgtoPJinfoProcJud(models.Model):
+class r2070pgtoPJinfoProcJud(SoftDeletionModel):
     r2070_pgtopj = models.ForeignKey('r2070pgtoPJ',
         related_name='%(class)s_r2070_pgtopj')
     def evento(self): return self.r2070_pgtopj.evento()
@@ -673,7 +802,7 @@ class r2070pgtoPJinfoProcJud(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_pgtopj) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.indorigemrecursos)
     #r2070_pgtopj_infoprocjud_custom#
@@ -687,10 +816,17 @@ class r2070pgtoPJinfoProcJud(models.Model):
 class r2070pgtoPJinfoProcJudSerializer(ModelSerializer):
     class Meta:
         model = r2070pgtoPJinfoProcJud
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070pgtoPJorigemRecursos(models.Model):
+class r2070pgtoPJorigemRecursos(SoftDeletionModel):
     r2070_pgtopj_infoprocjud = models.OneToOneField('r2070pgtoPJinfoProcJud',
         related_name='%(class)s_r2070_pgtopj_infoprocjud')
     def evento(self): return self.r2070_pgtopj_infoprocjud.evento()
@@ -701,7 +837,7 @@ class r2070pgtoPJorigemRecursos(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_pgtopj_infoprocjud) + ' - ' + unicode(self.cnpjorigemrecursos)
     #r2070_pgtopj_origemrecursos_custom#
@@ -715,10 +851,17 @@ class r2070pgtoPJorigemRecursos(models.Model):
 class r2070pgtoPJorigemRecursosSerializer(ModelSerializer):
     class Meta:
         model = r2070pgtoPJorigemRecursos
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070pgtoResidExt(models.Model):
+class r2070pgtoResidExt(SoftDeletionModel):
     r2070_ideestab = models.OneToOneField('r2070ideEstab',
         related_name='%(class)s_r2070_ideestab')
     def evento(self): return self.r2070_ideestab.evento()
@@ -733,7 +876,7 @@ class r2070pgtoResidExt(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_ideestab) + ' - ' + unicode(self.dtpagto) + ' - ' + unicode(self.tprendimento) + ' - ' + unicode(self.formatributacao) + ' - ' + unicode(self.vlrpgto) + ' - ' + unicode(self.vlrret)
     #r2070_pgtoresidext_custom#
@@ -747,10 +890,17 @@ class r2070pgtoResidExt(models.Model):
 class r2070pgtoResidExtSerializer(ModelSerializer):
     class Meta:
         model = r2070pgtoResidExt
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class r2070rendIsento(models.Model):
+class r2070rendIsento(SoftDeletionModel):
     r2070_pgtopf = models.ForeignKey('r2070pgtoPF',
         related_name='%(class)s_r2070_pgtopf')
     def evento(self): return self.r2070_pgtopf.evento()
@@ -763,7 +913,7 @@ class r2070rendIsento(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2070_pgtopf) + ' - ' + unicode(self.tpisencao) + ' - ' + unicode(self.vlrisento)
     #r2070_rendisento_custom#
@@ -777,7 +927,14 @@ class r2070rendIsento(models.Model):
 class r2070rendIsentoSerializer(ModelSerializer):
     class Meta:
         model = r2070rendIsento
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

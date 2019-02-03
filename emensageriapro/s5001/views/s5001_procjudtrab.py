@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -86,7 +87,8 @@ def apagar(request, hash):
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(s5001_procjudtrab), indent=4, sort_keys=True, default=str)
-            s5001procJudTrab.objects.using( db_slug ).filter(id = s5001_procjudtrab_id).delete()
+            obj = s5001procJudTrab.objects.using( db_slug ).get(id = s5001_procjudtrab_id)
+            obj.delete(request=request)
             #s5001_procjudtrab_apagar_custom
             #s5001_procjudtrab_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
@@ -310,43 +312,26 @@ def salvar(request, hash):
             s5001_procjudtrab_form = form_s5001_procjudtrab(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if s5001_procjudtrab_form.is_valid():
+
                 dados = s5001_procjudtrab_form.cleaned_data
-                import json
-                from django.forms.models import model_to_dict
-                if s5001_procjudtrab_id:
-                    if dados_evento['status'] == 0:
-                        dados['modificado_por_id'] = usuario_id
-                        dados['modificado_em'] = datetime.datetime.now()
-                        #s5001_procjudtrab_campos_multiple_passo1
-                        s5001procJudTrab.objects.using(db_slug).filter(id=s5001_procjudtrab_id).update(**dados)
-                        obj = s5001procJudTrab.objects.using(db_slug).get(id=s5001_procjudtrab_id)
-                        #s5001_procjudtrab_editar_custom
-                        #s5001_procjudtrab_campos_multiple_passo2
-                        messages.success(request, 'Alterado com sucesso!')
-                        gravar_auditoria(json.dumps(model_to_dict(s5001_procjudtrab), indent=4, sort_keys=True, default=str),
-                                         json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                         's5001_procjudtrab', s5001_procjudtrab_id, usuario_id, 2)
-                    else:
-                        messages.error(request, 'Somente é possível alterar eventos com status "Cadastrado"!')
+                obj = s5001_procjudtrab_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not s5001_procjudtrab_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 's5001_procjudtrab', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #s5001_procjudtrab_cadastrar_campos_multiple_passo1
-                    obj = s5001procJudTrab(**dados)
-                    obj.save(using = db_slug)
-                    #s5001_procjudtrab_cadastrar_custom
-                    #s5001_procjudtrab_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
-                    gravar_auditoria('{}',
+                    gravar_auditoria(json.dumps(model_to_dict(s5001_procjudtrab), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
-                                     's5001_procjudtrab', obj.id, usuario_id, 1)
-                    if request.session['retorno_pagina'] not in ('s5001_procjudtrab_apagar', 's5001_procjudtrab_salvar', 's5001_procjudtrab'):
-                        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-                    if s5001_procjudtrab_id != obj.id:
-                        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                        return redirect('s5001_procjudtrab_salvar', hash=url_hash)
+                                     's5001_procjudtrab', s5001_procjudtrab_id, usuario_id, 2)
+                  
+                if request.session['retorno_pagina'] not in ('s5001_procjudtrab_apagar', 's5001_procjudtrab_salvar', 's5001_procjudtrab'):
+                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if s5001_procjudtrab_id != obj.id:
+                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
+                    return redirect('s5001_procjudtrab_salvar', hash=url_hash)
             else:
                 messages.error(request, 'Erro ao salvar!')
         s5001_procjudtrab_form = disabled_form_fields(s5001_procjudtrab_form, permissao.permite_editar)

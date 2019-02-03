@@ -36,8 +36,11 @@
 from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
 from django.apps import apps
+from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
 
@@ -330,7 +333,7 @@ ESTADOS = (
     ('TO', u'Tocantins'),
 )
 
-class s2200CNH(models.Model):
+class s2200CNH(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -346,7 +349,7 @@ class s2200CNH(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nrregcnh) + ' - ' + unicode(self.ufcnh) + ' - ' + unicode(self.dtvalid) + ' - ' + unicode(self.categoriacnh)
     #s2200_cnh_custom#
@@ -360,10 +363,17 @@ class s2200CNH(models.Model):
 class s2200CNHSerializer(ModelSerializer):
     class Meta:
         model = s2200CNH
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200CTPS(models.Model):
+class s2200CTPS(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -376,7 +386,7 @@ class s2200CTPS(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nrctps) + ' - ' + unicode(self.seriectps) + ' - ' + unicode(self.ufctps)
     #s2200_ctps_custom#
@@ -390,10 +400,17 @@ class s2200CTPS(models.Model):
 class s2200CTPSSerializer(ModelSerializer):
     class Meta:
         model = s2200CTPS
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200OC(models.Model):
+class s2200OC(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -407,7 +424,7 @@ class s2200OC(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nroc) + ' - ' + unicode(self.orgaoemissor)
     #s2200_oc_custom#
@@ -421,10 +438,17 @@ class s2200OC(models.Model):
 class s2200OCSerializer(ModelSerializer):
     class Meta:
         model = s2200OC
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200RG(models.Model):
+class s2200RG(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -437,7 +461,7 @@ class s2200RG(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nrrg) + ' - ' + unicode(self.orgaoemissor)
     #s2200_rg_custom#
@@ -451,10 +475,17 @@ class s2200RG(models.Model):
 class s2200RGSerializer(ModelSerializer):
     class Meta:
         model = s2200RG
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200RIC(models.Model):
+class s2200RIC(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -467,7 +498,7 @@ class s2200RIC(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nrric) + ' - ' + unicode(self.orgaoemissor)
     #s2200_ric_custom#
@@ -481,10 +512,17 @@ class s2200RIC(models.Model):
 class s2200RICSerializer(ModelSerializer):
     class Meta:
         model = s2200RIC
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200RNE(models.Model):
+class s2200RNE(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -497,7 +535,7 @@ class s2200RNE(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nrrne) + ' - ' + unicode(self.orgaoemissor)
     #s2200_rne_custom#
@@ -511,10 +549,17 @@ class s2200RNE(models.Model):
 class s2200RNESerializer(ModelSerializer):
     class Meta:
         model = s2200RNE
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200afastamento(models.Model):
+class s2200afastamento(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -526,7 +571,7 @@ class s2200afastamento(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.dtiniafast) + ' - ' + unicode(self.codmotafast)
     #s2200_afastamento_custom#
@@ -540,10 +585,17 @@ class s2200afastamento(models.Model):
 class s2200afastamentoSerializer(ModelSerializer):
     class Meta:
         model = s2200afastamento
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200alvaraJudicial(models.Model):
+class s2200alvaraJudicial(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -554,7 +606,7 @@ class s2200alvaraJudicial(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.nrprocjud)
     #s2200_alvarajudicial_custom#
@@ -568,10 +620,17 @@ class s2200alvaraJudicial(models.Model):
 class s2200alvaraJudicialSerializer(ModelSerializer):
     class Meta:
         model = s2200alvaraJudicial
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200aposentadoria(models.Model):
+class s2200aposentadoria(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -582,7 +641,7 @@ class s2200aposentadoria(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.trabaposent)
     #s2200_aposentadoria_custom#
@@ -596,10 +655,17 @@ class s2200aposentadoria(models.Model):
 class s2200aposentadoriaSerializer(ModelSerializer):
     class Meta:
         model = s2200aposentadoria
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200aprend(models.Model):
+class s2200aprend(SoftDeletionModel):
     s2200_infoceletista = models.OneToOneField('s2200infoCeletista',
         related_name='%(class)s_s2200_infoceletista')
     def evento(self): return self.s2200_infoceletista.evento()
@@ -611,7 +677,7 @@ class s2200aprend(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_infoceletista) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s2200_aprend_custom#
@@ -625,10 +691,17 @@ class s2200aprend(models.Model):
 class s2200aprendSerializer(ModelSerializer):
     class Meta:
         model = s2200aprend
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200brasil(models.Model):
+class s2200brasil(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -646,7 +719,7 @@ class s2200brasil(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
     #s2200_brasil_custom#
@@ -660,10 +733,17 @@ class s2200brasil(models.Model):
 class s2200brasilSerializer(ModelSerializer):
     class Meta:
         model = s2200brasil
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200cessao(models.Model):
+class s2200cessao(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -674,7 +754,7 @@ class s2200cessao(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.dtinicessao)
     #s2200_cessao_custom#
@@ -688,10 +768,17 @@ class s2200cessao(models.Model):
 class s2200cessaoSerializer(ModelSerializer):
     class Meta:
         model = s2200cessao
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200contato(models.Model):
+class s2200contato(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -705,7 +792,7 @@ class s2200contato(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao)
     #s2200_contato_custom#
@@ -719,10 +806,17 @@ class s2200contato(models.Model):
 class s2200contatoSerializer(ModelSerializer):
     class Meta:
         model = s2200contato
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200dependente(models.Model):
+class s2200dependente(SoftDeletionModel):
     s2200_evtadmissao = models.ForeignKey('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -741,7 +835,7 @@ class s2200dependente(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.depirrf) + ' - ' + unicode(self.depsf) + ' - ' + unicode(self.inctrab)
     #s2200_dependente_custom#
@@ -755,10 +849,17 @@ class s2200dependente(models.Model):
 class s2200dependenteSerializer(ModelSerializer):
     class Meta:
         model = s2200dependente
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200desligamento(models.Model):
+class s2200desligamento(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -769,7 +870,7 @@ class s2200desligamento(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.dtdeslig)
     #s2200_desligamento_custom#
@@ -783,10 +884,17 @@ class s2200desligamento(models.Model):
 class s2200desligamentoSerializer(ModelSerializer):
     class Meta:
         model = s2200desligamento
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200exterior(models.Model):
+class s2200exterior(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -803,7 +911,7 @@ class s2200exterior(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.nmcid)
     #s2200_exterior_custom#
@@ -817,10 +925,17 @@ class s2200exterior(models.Model):
 class s2200exteriorSerializer(ModelSerializer):
     class Meta:
         model = s2200exterior
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200filiacaoSindical(models.Model):
+class s2200filiacaoSindical(SoftDeletionModel):
     s2200_evtadmissao = models.ForeignKey('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -831,7 +946,7 @@ class s2200filiacaoSindical(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.cnpjsindtrab)
     #s2200_filiacaosindical_custom#
@@ -845,10 +960,17 @@ class s2200filiacaoSindical(models.Model):
 class s2200filiacaoSindicalSerializer(ModelSerializer):
     class Meta:
         model = s2200filiacaoSindical
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200horContratual(models.Model):
+class s2200horContratual(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -862,7 +984,7 @@ class s2200horContratual(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tpjornada) + ' - ' + unicode(self.tmpparc)
     #s2200_horcontratual_custom#
@@ -876,10 +998,17 @@ class s2200horContratual(models.Model):
 class s2200horContratualSerializer(ModelSerializer):
     class Meta:
         model = s2200horContratual
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200horario(models.Model):
+class s2200horario(SoftDeletionModel):
     s2200_horcontratual = models.ForeignKey('s2200horContratual',
         related_name='%(class)s_s2200_horcontratual')
     def evento(self): return self.s2200_horcontratual.evento()
@@ -891,7 +1020,7 @@ class s2200horario(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_horcontratual) + ' - ' + unicode(self.dia) + ' - ' + unicode(self.codhorcontrat)
     #s2200_horario_custom#
@@ -905,10 +1034,17 @@ class s2200horario(models.Model):
 class s2200horarioSerializer(ModelSerializer):
     class Meta:
         model = s2200horario
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200ideEstabVinc(models.Model):
+class s2200ideEstabVinc(SoftDeletionModel):
     s2200_trabtemporario = models.OneToOneField('s2200trabTemporario',
         related_name='%(class)s_s2200_trabtemporario')
     def evento(self): return self.s2200_trabtemporario.evento()
@@ -920,7 +1056,7 @@ class s2200ideEstabVinc(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_trabtemporario) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s2200_ideestabvinc_custom#
@@ -934,10 +1070,17 @@ class s2200ideEstabVinc(models.Model):
 class s2200ideEstabVincSerializer(ModelSerializer):
     class Meta:
         model = s2200ideEstabVinc
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200ideTrabSubstituido(models.Model):
+class s2200ideTrabSubstituido(SoftDeletionModel):
     s2200_trabtemporario = models.ForeignKey('s2200trabTemporario',
         related_name='%(class)s_s2200_trabtemporario')
     def evento(self): return self.s2200_trabtemporario.evento()
@@ -948,7 +1091,7 @@ class s2200ideTrabSubstituido(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_trabtemporario) + ' - ' + unicode(self.cpftrabsubst)
     #s2200_idetrabsubstituido_custom#
@@ -962,10 +1105,17 @@ class s2200ideTrabSubstituido(models.Model):
 class s2200ideTrabSubstituidoSerializer(ModelSerializer):
     class Meta:
         model = s2200ideTrabSubstituido
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200infoCeletista(models.Model):
+class s2200infoCeletista(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -984,7 +1134,7 @@ class s2200infoCeletista(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.dtadm) + ' - ' + unicode(self.tpadmissao) + ' - ' + unicode(self.indadmissao) + ' - ' + unicode(self.tpregjor) + ' - ' + unicode(self.natatividade) + ' - ' + unicode(self.cnpjsindcategprof) + ' - ' + unicode(self.opcfgts)
     #s2200_infoceletista_custom#
@@ -998,10 +1148,17 @@ class s2200infoCeletista(models.Model):
 class s2200infoCeletistaSerializer(ModelSerializer):
     class Meta:
         model = s2200infoCeletista
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200infoDecJud(models.Model):
+class s2200infoDecJud(SoftDeletionModel):
     s2200_infoestatutario = models.OneToOneField('s2200infoEstatutario',
         related_name='%(class)s_s2200_infoestatutario')
     def evento(self): return self.s2200_infoestatutario.evento()
@@ -1012,7 +1169,7 @@ class s2200infoDecJud(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_infoestatutario) + ' - ' + unicode(self.nrprocjud)
     #s2200_infodecjud_custom#
@@ -1026,10 +1183,17 @@ class s2200infoDecJud(models.Model):
 class s2200infoDecJudSerializer(ModelSerializer):
     class Meta:
         model = s2200infoDecJud
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200infoDeficiencia(models.Model):
+class s2200infoDeficiencia(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -1047,7 +1211,7 @@ class s2200infoDeficiencia(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.deffisica) + ' - ' + unicode(self.defvisual) + ' - ' + unicode(self.defauditiva) + ' - ' + unicode(self.defmental) + ' - ' + unicode(self.defintelectual) + ' - ' + unicode(self.reabreadap) + ' - ' + unicode(self.infocota)
     #s2200_infodeficiencia_custom#
@@ -1061,10 +1225,17 @@ class s2200infoDeficiencia(models.Model):
 class s2200infoDeficienciaSerializer(ModelSerializer):
     class Meta:
         model = s2200infoDeficiencia
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200infoEstatutario(models.Model):
+class s2200infoEstatutario(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -1086,7 +1257,7 @@ class s2200infoEstatutario(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.indprovim) + ' - ' + unicode(self.tpprov) + ' - ' + unicode(self.dtnomeacao) + ' - ' + unicode(self.dtposse) + ' - ' + unicode(self.dtexercicio) + ' - ' + unicode(self.dtingsvpub)
     #s2200_infoestatutario_custom#
@@ -1100,10 +1271,17 @@ class s2200infoEstatutario(models.Model):
 class s2200infoEstatutarioSerializer(ModelSerializer):
     class Meta:
         model = s2200infoEstatutario
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200localTrabDom(models.Model):
+class s2200localTrabDom(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -1121,7 +1299,7 @@ class s2200localTrabDom(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
     #s2200_localtrabdom_custom#
@@ -1135,10 +1313,17 @@ class s2200localTrabDom(models.Model):
 class s2200localTrabDomSerializer(ModelSerializer):
     class Meta:
         model = s2200localTrabDom
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200localTrabGeral(models.Model):
+class s2200localTrabGeral(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -1151,7 +1336,7 @@ class s2200localTrabGeral(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s2200_localtrabgeral_custom#
@@ -1165,10 +1350,17 @@ class s2200localTrabGeral(models.Model):
 class s2200localTrabGeralSerializer(ModelSerializer):
     class Meta:
         model = s2200localTrabGeral
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200mudancaCPF(models.Model):
+class s2200mudancaCPF(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -1182,7 +1374,7 @@ class s2200mudancaCPF(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.cpfant) + ' - ' + unicode(self.matricant) + ' - ' + unicode(self.dtaltcpf)
     #s2200_mudancacpf_custom#
@@ -1196,10 +1388,17 @@ class s2200mudancaCPF(models.Model):
 class s2200mudancaCPFSerializer(ModelSerializer):
     class Meta:
         model = s2200mudancaCPF
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200observacoes(models.Model):
+class s2200observacoes(SoftDeletionModel):
     s2200_evtadmissao = models.ForeignKey('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -1210,7 +1409,7 @@ class s2200observacoes(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.observacao)
     #s2200_observacoes_custom#
@@ -1224,10 +1423,17 @@ class s2200observacoes(models.Model):
 class s2200observacoesSerializer(ModelSerializer):
     class Meta:
         model = s2200observacoes
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200sucessaoVinc(models.Model):
+class s2200sucessaoVinc(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -1242,7 +1448,7 @@ class s2200sucessaoVinc(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.tpinscant) + ' - ' + unicode(self.cnpjempregant) + ' - ' + unicode(self.dttransf)
     #s2200_sucessaovinc_custom#
@@ -1256,10 +1462,17 @@ class s2200sucessaoVinc(models.Model):
 class s2200sucessaoVincSerializer(ModelSerializer):
     class Meta:
         model = s2200sucessaoVinc
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200trabEstrangeiro(models.Model):
+class s2200trabEstrangeiro(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -1273,7 +1486,7 @@ class s2200trabEstrangeiro(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.classtrabestrang) + ' - ' + unicode(self.casadobr) + ' - ' + unicode(self.filhosbr)
     #s2200_trabestrangeiro_custom#
@@ -1287,10 +1500,17 @@ class s2200trabEstrangeiro(models.Model):
 class s2200trabEstrangeiroSerializer(ModelSerializer):
     class Meta:
         model = s2200trabEstrangeiro
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200trabTemporario(models.Model):
+class s2200trabTemporario(SoftDeletionModel):
     s2200_infoceletista = models.OneToOneField('s2200infoCeletista',
         related_name='%(class)s_s2200_infoceletista')
     def evento(self): return self.s2200_infoceletista.evento()
@@ -1305,7 +1525,7 @@ class s2200trabTemporario(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_infoceletista) + ' - ' + unicode(self.hipleg) + ' - ' + unicode(self.justcontr) + ' - ' + unicode(self.tpinclcontr) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s2200_trabtemporario_custom#
@@ -1319,10 +1539,17 @@ class s2200trabTemporario(models.Model):
 class s2200trabTemporarioSerializer(ModelSerializer):
     class Meta:
         model = s2200trabTemporario
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
-class s2200transfDom(models.Model):
+class s2200transfDom(SoftDeletionModel):
     s2200_evtadmissao = models.OneToOneField('esocial.s2200evtAdmissao',
         related_name='%(class)s_s2200_evtadmissao')
     def evento(self): return self.s2200_evtadmissao.evento()
@@ -1335,7 +1562,7 @@ class s2200transfDom(models.Model):
     modificado_em = models.DateTimeField(auto_now=True, null=True)
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2200_evtadmissao) + ' - ' + unicode(self.cpfsubstituido) + ' - ' + unicode(self.dttransf)
     #s2200_transfdom_custom#
@@ -1349,7 +1576,14 @@ class s2200transfDom(models.Model):
 class s2200transfDomSerializer(ModelSerializer):
     class Meta:
         model = s2200transfDom
-        fields = '__all__'
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+        if not criado_por:
+            criado_por = CurrentUserDefault()
+            criado_em = timezone.now()
+        modificado_por = CurrentUserDefault()
+        modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

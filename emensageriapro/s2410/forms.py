@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s2410.models import * 
 from emensageriapro.esocial.models import s2410evtCdBenIn 
 
@@ -53,6 +54,25 @@ class form_s2410_homologtc(forms.ModelForm):
         self.fields['s2410_evtcdbenin'].widget.attrs['required'] = True        
         self.fields['dthomol'].widget.attrs['required'] = True        
         self.fields['nratolegal'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2410_homologtc, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2410homologTC
@@ -73,6 +93,25 @@ class form_s2410_infopenmorte(forms.ModelForm):
         
         self.fields['s2410_evtcdbenin'].widget.attrs['required'] = True        
         self.fields['tppenmorte'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2410_infopenmorte, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2410infoPenMorte
@@ -95,6 +134,25 @@ class form_s2410_instpenmorte(forms.ModelForm):
         self.fields['cpfinst'].widget.attrs['required'] = True        
         self.fields['dtinst'].widget.attrs['required'] = True        
         self.fields['intaposentado'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2410_instpenmorte, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2410instPenMorte

@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     efdreinf_classificacao_tributaria = get_object_or_404(EFDReinfClassificacaoTributaria.objects.using( db_slug ), excluido = False, id = efdreinf_classificacao_tributaria_id)
     if request.method == 'POST':
-        EFDReinfClassificacaoTributaria.objects.using( db_slug ).filter(id = efdreinf_classificacao_tributaria_id).update(excluido = True)
+        obj = EFDReinfClassificacaoTributaria.objects.using( db_slug ).get(id = efdreinf_classificacao_tributaria_id)
+        obj.delete(request=request)
         #efdreinf_classificacao_tributaria_apagar_custom
         #efdreinf_classificacao_tributaria_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -312,27 +314,21 @@ def salvar(request, hash):
             efdreinf_classificacao_tributaria_form = form_efdreinf_classificacao_tributaria(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if efdreinf_classificacao_tributaria_form.is_valid():
+
                 dados = efdreinf_classificacao_tributaria_form.cleaned_data
-                if efdreinf_classificacao_tributaria_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #efdreinf_classificacao_tributaria_campos_multiple_passo1
-                    EFDReinfClassificacaoTributaria.objects.using(db_slug).filter(id=efdreinf_classificacao_tributaria_id).update(**dados)
-                    obj = EFDReinfClassificacaoTributaria.objects.using(db_slug).get(id=efdreinf_classificacao_tributaria_id)
-                    #efdreinf_classificacao_tributaria_editar_custom
-                    #efdreinf_classificacao_tributaria_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
+                obj = efdreinf_classificacao_tributaria_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not efdreinf_classificacao_tributaria_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'efdreinf_classificacao_tributaria', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #efdreinf_classificacao_tributaria_cadastrar_campos_multiple_passo1
-                    obj = EFDReinfClassificacaoTributaria(**dados)
-                    obj.save(using = db_slug)
-                    #efdreinf_classificacao_tributaria_cadastrar_custom
-                    #efdreinf_classificacao_tributaria_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
+                    gravar_auditoria(json.dumps(model_to_dict(efdreinf_classificacao_tributaria), indent=4, sort_keys=True, default=str),
+                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                     'efdreinf_classificacao_tributaria', efdreinf_classificacao_tributaria_id, usuario_id, 2)
+                  
                 if request.session['retorno_pagina'] not in ('efdreinf_classificacao_tributaria_apagar', 'efdreinf_classificacao_tributaria_salvar', 'efdreinf_classificacao_tributaria'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if efdreinf_classificacao_tributaria_id != obj.id:

@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s1250.models import * 
 from emensageriapro.esocial.models import s1250evtAqProd 
 
@@ -63,6 +64,25 @@ class form_s1250_ideprodutor(forms.ModelForm):
         self.fields['vrratdescpr'].widget.attrs['required'] = True        
         self.fields['vrsenardesc'].widget.attrs['required'] = True        
         self.fields['indopccp'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1250_ideprodutor, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1250ideProdutor
@@ -91,6 +111,25 @@ class form_s1250_infoprocj(forms.ModelForm):
         self.fields['vrcpnret'].widget.attrs['required'] = True        
         self.fields['vrratnret'].widget.attrs['required'] = True        
         self.fields['vrsenarnret'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1250_infoprocj, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1250infoProcJ
@@ -119,6 +158,25 @@ class form_s1250_infoprocjud(forms.ModelForm):
         self.fields['vrcpnret'].widget.attrs['required'] = True        
         self.fields['vrratnret'].widget.attrs['required'] = True        
         self.fields['vrsenarnret'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1250_infoprocjud, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1250infoProcJud
@@ -149,6 +207,25 @@ class form_s1250_nfs(forms.ModelForm):
         self.fields['vrcpdescpr'].widget.attrs['required'] = True        
         self.fields['vrratdescpr'].widget.attrs['required'] = True        
         self.fields['vrsenardesc'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1250_nfs, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1250nfs
@@ -172,6 +249,25 @@ class form_s1250_tpaquis(forms.ModelForm):
         self.fields['s1250_evtaqprod'].widget.attrs['required'] = True        
         self.fields['indaquis'].widget.attrs['required'] = True        
         self.fields['vlrtotaquis'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1250_tpaquis, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s1250tpAquis

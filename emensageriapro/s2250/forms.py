@@ -1,5 +1,6 @@
 # coding: utf-8
 from django import forms
+from django.utils import timezone
 from emensageriapro.s2250.models import * 
 from emensageriapro.esocial.models import s2250evtAvPrevio 
 
@@ -53,6 +54,25 @@ class form_s2250_cancavprevio(forms.ModelForm):
         self.fields['s2250_evtavprevio'].widget.attrs['required'] = True        
         self.fields['dtcancavprv'].widget.attrs['required'] = True        
         self.fields['mtvcancavprevio'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2250_cancavprevio, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2250cancAvPrevio
@@ -75,6 +95,25 @@ class form_s2250_detavprevio(forms.ModelForm):
         self.fields['dtavprv'].widget.attrs['required'] = True        
         self.fields['dtprevdeslig'].widget.attrs['required'] = True        
         self.fields['tpavprevio'].widget.attrs['required'] = True
+
+    def save(self, commit=True, *args, **kwargs):
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2250_detavprevio, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
         
     class Meta:
         model = s2250detAvPrevio

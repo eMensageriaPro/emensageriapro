@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     config_paginas = get_object_or_404(ConfigPaginas.objects.using( db_slug ), excluido = False, id = config_paginas_id)
     if request.method == 'POST':
-        ConfigPaginas.objects.using( db_slug ).filter(id = config_paginas_id).update(excluido = True)
+        obj = ConfigPaginas.objects.using( db_slug ).get(id = config_paginas_id)
+        obj.delete(request=request)
         #config_paginas_apagar_custom
         #config_paginas_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -284,27 +286,11 @@ def salvar(request, hash):
             config_paginas_form = form_config_paginas(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if config_paginas_form.is_valid():
-                dados = config_paginas_form.cleaned_data
-                if config_paginas_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #config_paginas_campos_multiple_passo1
-                    ConfigPaginas.objects.using(db_slug).filter(id=config_paginas_id).update(**dados)
-                    obj = ConfigPaginas.objects.using(db_slug).get(id=config_paginas_id)
-                    #config_paginas_editar_custom
-                    #config_paginas_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
-                else:
+                #config_paginas_campos_multiple_passo1
+                obj = config_paginas_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+                #config_paginas_campos_multiple_passo2
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #config_paginas_cadastrar_campos_multiple_passo1
-                    obj = ConfigPaginas(**dados)
-                    obj.save(using = db_slug)
-                    #config_paginas_cadastrar_custom
-                    #config_paginas_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
                 if request.session['retorno_pagina'] not in ('config_paginas_apagar', 'config_paginas_salvar', 'config_paginas'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if config_paginas_id != obj.id:

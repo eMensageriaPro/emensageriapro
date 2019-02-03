@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -76,7 +77,8 @@ def apagar(request, hash):
 
     cbo = get_object_or_404(CBO.objects.using( db_slug ), excluido = False, id = cbo_id)
     if request.method == 'POST':
-        CBO.objects.using( db_slug ).filter(id = cbo_id).update(excluido = True)
+        obj = CBO.objects.using( db_slug ).get(id = cbo_id)
+        obj.delete(request=request)
         #cbo_apagar_custom
         #cbo_apagar_custom
         messages.success(request, 'Apagado com sucesso!')
@@ -318,27 +320,21 @@ def salvar(request, hash):
             cbo_form = form_cbo(request.POST or None, slug = db_slug, initial={})
         if request.method == 'POST':
             if cbo_form.is_valid():
+
                 dados = cbo_form.cleaned_data
-                if cbo_id:
-                    dados['modificado_por_id'] = usuario_id
-                    dados['modificado_em'] = datetime.datetime.now()
-                    #cbo_campos_multiple_passo1
-                    CBO.objects.using(db_slug).filter(id=cbo_id).update(**dados)
-                    obj = CBO.objects.using(db_slug).get(id=cbo_id)
-                    #cbo_editar_custom
-                    #cbo_campos_multiple_passo2
-                    messages.success(request, 'Alterado com sucesso!')
+                obj = cbo_form.save(request=request)
+                messages.success(request, 'Salvo com sucesso!')
+
+                if not cbo_id:
+                    gravar_auditoria('{}',
+                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                 'cbo', obj.id, usuario_id, 1)
                 else:
 
-                    dados['criado_por_id'] = usuario_id
-                    dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
-                    #cbo_cadastrar_campos_multiple_passo1
-                    obj = CBO(**dados)
-                    obj.save(using = db_slug)
-                    #cbo_cadastrar_custom
-                    #cbo_cadastrar_campos_multiple_passo2
-                    messages.success(request, 'Cadastrado com sucesso!')
+                    gravar_auditoria(json.dumps(model_to_dict(cbo), indent=4, sort_keys=True, default=str),
+                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
+                                     'cbo', cbo_id, usuario_id, 2)
+                  
                 if request.session['retorno_pagina'] not in ('cbo_apagar', 'cbo_salvar', 'cbo'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if cbo_id != obj.id:
