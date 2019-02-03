@@ -47,7 +47,7 @@ from django.db.models import Count
 from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
 from rest_framework import generics
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.mensageiro.forms import *
 from emensageriapro.mensageiro.models import *
@@ -108,14 +108,14 @@ class ImportacaoArquivosEventosList(generics.ListCreateAPIView):
     db_slug = 'default'
     queryset = ImportacaoArquivosEventos.objects.using(db_slug).all()
     serializer_class = ImportacaoArquivosEventosSerializer
-    permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAdminUser,)
 
 
 class ImportacaoArquivosEventosDetail(generics.RetrieveUpdateDestroyAPIView):
     db_slug = 'default'
     queryset = ImportacaoArquivosEventos.objects.using(db_slug).all()
     serializer_class = ImportacaoArquivosEventosSerializer
-    permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAdminUser,)
 
 
 @login_required

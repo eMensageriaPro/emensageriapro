@@ -47,7 +47,7 @@ from django.db.models import Count
 from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
 from rest_framework import generics
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.s5003.forms import *
 from emensageriapro.s5003.models import *
@@ -124,14 +124,14 @@ class s5003ideEstabLotList(generics.ListCreateAPIView):
     db_slug = 'default'
     queryset = s5003ideEstabLot.objects.using(db_slug).all()
     serializer_class = s5003ideEstabLotSerializer
-    permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAdminUser,)
 
 
 class s5003ideEstabLotDetail(generics.RetrieveUpdateDestroyAPIView):
     db_slug = 'default'
     queryset = s5003ideEstabLot.objects.using(db_slug).all()
     serializer_class = s5003ideEstabLotSerializer
-    permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAdminUser,)
 
 
 def render_to_pdf(template_src, context_dict={}):

@@ -47,7 +47,7 @@ from django.db.models import Count
 from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
 from rest_framework import generics
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.mensageiro.forms import *
 from emensageriapro.mensageiro.models import *
@@ -214,14 +214,14 @@ class TransmissorLoteEsocialList(generics.ListCreateAPIView):
     db_slug = 'default'
     queryset = TransmissorLoteEsocial.objects.using(db_slug).all()
     serializer_class = TransmissorLoteEsocialSerializer
-    permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAdminUser,)
 
 
 class TransmissorLoteEsocialDetail(generics.RetrieveUpdateDestroyAPIView):
     db_slug = 'default'
     queryset = TransmissorLoteEsocial.objects.using(db_slug).all()
     serializer_class = TransmissorLoteEsocialSerializer
-    permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAdminUser,)
 
 
 @login_required

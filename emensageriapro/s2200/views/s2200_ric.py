@@ -47,7 +47,7 @@ from django.db.models import Count
 from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
 from rest_framework import generics
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.s2200.forms import *
 from emensageriapro.s2200.models import *
@@ -124,14 +124,14 @@ class s2200RICList(generics.ListCreateAPIView):
     db_slug = 'default'
     queryset = s2200RIC.objects.using(db_slug).all()
     serializer_class = s2200RICSerializer
-    permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAdminUser,)
 
 
 class s2200RICDetail(generics.RetrieveUpdateDestroyAPIView):
     db_slug = 'default'
     queryset = s2200RIC.objects.using(db_slug).all()
     serializer_class = s2200RICSerializer
-    permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAdminUser,)
 
 
 def render_to_pdf(template_src, context_dict={}):

@@ -47,7 +47,7 @@ from django.db.models import Count
 from django.forms.models import model_to_dict
 from wkhtmltopdf.views import PDFTemplateResponse
 from rest_framework import generics
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
@@ -120,14 +120,14 @@ class s1260evtComProdList(generics.ListCreateAPIView):
     db_slug = 'default'
     queryset = s1260evtComProd.objects.using(db_slug).all()
     serializer_class = s1260evtComProdSerializer
-    permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAdminUser,)
 
 
 class s1260evtComProdDetail(generics.RetrieveUpdateDestroyAPIView):
     db_slug = 'default'
     queryset = s1260evtComProd.objects.using(db_slug).all()
     serializer_class = s1260evtComProdSerializer
-    permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAdminUser,)
 
 
 @login_required
