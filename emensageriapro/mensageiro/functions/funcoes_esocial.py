@@ -169,9 +169,9 @@ def assinar_esocial(xml):
 
     signed_root = XMLSigner(
         method=methods.enveloped,
-        signature_algorithm=u'rsa-sha256',
-        digest_algorithm=u'sha256',
-        c14n_algorithm=u'http://www.w3.org/TR/2001/REC-xml-c14n-20010315').\
+        signature_algorithm='rsa-sha256',
+        digest_algorithm='sha256',
+        c14n_algorithm='http://www.w3.org/TR/2001/REC-xml-c14n-20010315').\
             sign(root, key=key_str, cert=cert_str)
 
     return etree.tostring(signed_root)
