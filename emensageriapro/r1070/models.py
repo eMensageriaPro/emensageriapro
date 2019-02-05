@@ -37,9 +37,10 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
 from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.fields import CurrentUserDefault
-from django.apps import apps
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
@@ -190,19 +191,24 @@ class r1070alteracao(SoftDeletionModel):
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
     indautoria = models.IntegerField(choices=CHOICES_R1070_ALTERACAO_INDAUTORIA)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.indautoria)
     #r1070_alteracao_custom#
+
     class Meta:
-        db_table = r'r1070_alteracao'
+        db_table = r'r1070_alteracao'       
         managed = True # r1070_alteracao #
+        permissions = (
+            ("can_view_r1070_alteracao", "Can view r1070_alteracao"),
+            #custom_permissions_r1070_alteracao
+        )
         ordering = ['r1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid', 'indautoria']
 
 
@@ -213,11 +219,11 @@ class r1070alteracaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r1070alteracaodadosProcJud(SoftDeletionModel):
@@ -227,19 +233,24 @@ class r1070alteracaodadosProcJud(SoftDeletionModel):
     ufvara = models.CharField(choices=ESTADOS, max_length=2)
     codmunic = models.TextField(max_length=7)
     idvara = models.CharField(max_length=4)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r1070_alteracao) + ' - ' + unicode(self.ufvara) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.idvara)
     #r1070_alteracao_dadosprocjud_custom#
+
     class Meta:
-        db_table = r'r1070_alteracao_dadosprocjud'
+        db_table = r'r1070_alteracao_dadosprocjud'       
         managed = True # r1070_alteracao_dadosprocjud #
+        permissions = (
+            ("can_view_r1070_alteracao_dadosprocjud", "Can view r1070_alteracao_dadosprocjud"),
+            #custom_permissions_r1070_alteracao_dadosprocjud
+        )
         ordering = ['r1070_alteracao', 'ufvara', 'codmunic', 'idvara']
 
 
@@ -250,11 +261,11 @@ class r1070alteracaodadosProcJudSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r1070alteracaoinfoSusp(SoftDeletionModel):
@@ -265,19 +276,24 @@ class r1070alteracaoinfoSusp(SoftDeletionModel):
     indsusp = models.CharField(choices=CHOICES_R1070_ALTERACAO_INDSUSP, max_length=2)
     dtdecisao = models.DateField()
     inddeposito = models.CharField(choices=CHOICES_R1070_ALTERACAO_INDDEPOSITO, max_length=1)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r1070_alteracao) + ' - ' + unicode(self.indsusp) + ' - ' + unicode(self.dtdecisao) + ' - ' + unicode(self.inddeposito)
     #r1070_alteracao_infosusp_custom#
+
     class Meta:
-        db_table = r'r1070_alteracao_infosusp'
+        db_table = r'r1070_alteracao_infosusp'       
         managed = True # r1070_alteracao_infosusp #
+        permissions = (
+            ("can_view_r1070_alteracao_infosusp", "Can view r1070_alteracao_infosusp"),
+            #custom_permissions_r1070_alteracao_infosusp
+        )
         ordering = ['r1070_alteracao', 'indsusp', 'dtdecisao', 'inddeposito']
 
 
@@ -288,11 +304,11 @@ class r1070alteracaoinfoSuspSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r1070alteracaonovaValidade(SoftDeletionModel):
@@ -301,19 +317,24 @@ class r1070alteracaonovaValidade(SoftDeletionModel):
     def evento(self): return self.r1070_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r1070_alteracao) + ' - ' + unicode(self.inivalid)
     #r1070_alteracao_novavalidade_custom#
+
     class Meta:
-        db_table = r'r1070_alteracao_novavalidade'
+        db_table = r'r1070_alteracao_novavalidade'       
         managed = True # r1070_alteracao_novavalidade #
+        permissions = (
+            ("can_view_r1070_alteracao_novavalidade", "Can view r1070_alteracao_novavalidade"),
+            #custom_permissions_r1070_alteracao_novavalidade
+        )
         ordering = ['r1070_alteracao', 'inivalid']
 
 
@@ -324,11 +345,11 @@ class r1070alteracaonovaValidadeSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r1070exclusao(SoftDeletionModel):
@@ -339,19 +360,24 @@ class r1070exclusao(SoftDeletionModel):
     nrproc = models.CharField(max_length=21)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid)
     #r1070_exclusao_custom#
+
     class Meta:
-        db_table = r'r1070_exclusao'
+        db_table = r'r1070_exclusao'       
         managed = True # r1070_exclusao #
+        permissions = (
+            ("can_view_r1070_exclusao", "Can view r1070_exclusao"),
+            #custom_permissions_r1070_exclusao
+        )
         ordering = ['r1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid']
 
 
@@ -362,11 +388,11 @@ class r1070exclusaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r1070inclusao(SoftDeletionModel):
@@ -378,19 +404,24 @@ class r1070inclusao(SoftDeletionModel):
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
     indautoria = models.IntegerField(choices=CHOICES_R1070_INCLUSAO_INDAUTORIA)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.indautoria)
     #r1070_inclusao_custom#
+
     class Meta:
-        db_table = r'r1070_inclusao'
+        db_table = r'r1070_inclusao'       
         managed = True # r1070_inclusao #
+        permissions = (
+            ("can_view_r1070_inclusao", "Can view r1070_inclusao"),
+            #custom_permissions_r1070_inclusao
+        )
         ordering = ['r1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid', 'indautoria']
 
 
@@ -401,11 +432,11 @@ class r1070inclusaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r1070inclusaodadosProcJud(SoftDeletionModel):
@@ -415,19 +446,24 @@ class r1070inclusaodadosProcJud(SoftDeletionModel):
     ufvara = models.CharField(choices=ESTADOS, max_length=2)
     codmunic = models.TextField(max_length=7)
     idvara = models.CharField(max_length=4)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r1070_inclusao) + ' - ' + unicode(self.ufvara) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.idvara)
     #r1070_inclusao_dadosprocjud_custom#
+
     class Meta:
-        db_table = r'r1070_inclusao_dadosprocjud'
+        db_table = r'r1070_inclusao_dadosprocjud'       
         managed = True # r1070_inclusao_dadosprocjud #
+        permissions = (
+            ("can_view_r1070_inclusao_dadosprocjud", "Can view r1070_inclusao_dadosprocjud"),
+            #custom_permissions_r1070_inclusao_dadosprocjud
+        )
         ordering = ['r1070_inclusao', 'ufvara', 'codmunic', 'idvara']
 
 
@@ -438,11 +474,11 @@ class r1070inclusaodadosProcJudSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r1070inclusaoinfoSusp(SoftDeletionModel):
@@ -453,19 +489,24 @@ class r1070inclusaoinfoSusp(SoftDeletionModel):
     indsusp = models.CharField(choices=CHOICES_R1070_INCLUSAO_INDSUSP, max_length=2)
     dtdecisao = models.DateField()
     inddeposito = models.CharField(choices=CHOICES_R1070_INCLUSAO_INDDEPOSITO, max_length=1)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r1070_inclusao) + ' - ' + unicode(self.indsusp) + ' - ' + unicode(self.dtdecisao) + ' - ' + unicode(self.inddeposito)
     #r1070_inclusao_infosusp_custom#
+
     class Meta:
-        db_table = r'r1070_inclusao_infosusp'
+        db_table = r'r1070_inclusao_infosusp'       
         managed = True # r1070_inclusao_infosusp #
+        permissions = (
+            ("can_view_r1070_inclusao_infosusp", "Can view r1070_inclusao_infosusp"),
+            #custom_permissions_r1070_inclusao_infosusp
+        )
         ordering = ['r1070_inclusao', 'indsusp', 'dtdecisao', 'inddeposito']
 
 
@@ -476,11 +517,11 @@ class r1070inclusaoinfoSuspSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

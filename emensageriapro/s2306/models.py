@@ -37,9 +37,10 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
 from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.fields import CurrentUserDefault
-from django.apps import apps
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
@@ -116,19 +117,24 @@ class s2306ageIntegracao(SoftDeletionModel):
     cep = models.CharField(max_length=8)
     codmunic = models.TextField(max_length=7, blank=True, null=True)
     uf = models.CharField(choices=ESTADOS, max_length=2)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2306_infoestagiario) + ' - ' + unicode(self.cnpjagntinteg) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.uf)
     #s2306_ageintegracao_custom#
+
     class Meta:
-        db_table = r's2306_ageintegracao'
+        db_table = r's2306_ageintegracao'       
         managed = True # s2306_ageintegracao #
+        permissions = (
+            ("can_view_s2306_ageintegracao", "Can view s2306_ageintegracao"),
+            #custom_permissions_s2306_ageintegracao
+        )
         ordering = ['s2306_infoestagiario', 'cnpjagntinteg', 'nmrazao', 'dsclograd', 'nrlograd', 'cep', 'uf']
 
 
@@ -139,11 +145,11 @@ class s2306ageIntegracaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2306cargoFuncao(SoftDeletionModel):
@@ -152,19 +158,24 @@ class s2306cargoFuncao(SoftDeletionModel):
     def evento(self): return self.s2306_evttsvaltcontr.evento()
     codcargo = models.CharField(max_length=30)
     codfuncao = models.CharField(max_length=30, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2306_evttsvaltcontr) + ' - ' + unicode(self.codcargo)
     #s2306_cargofuncao_custom#
+
     class Meta:
-        db_table = r's2306_cargofuncao'
+        db_table = r's2306_cargofuncao'       
         managed = True # s2306_cargofuncao #
+        permissions = (
+            ("can_view_s2306_cargofuncao", "Can view s2306_cargofuncao"),
+            #custom_permissions_s2306_cargofuncao
+        )
         ordering = ['s2306_evttsvaltcontr', 'codcargo']
 
 
@@ -175,11 +186,11 @@ class s2306cargoFuncaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2306infoEstagiario(SoftDeletionModel):
@@ -200,19 +211,24 @@ class s2306infoEstagiario(SoftDeletionModel):
     cep = models.CharField(max_length=8, blank=True, null=True)
     codmunic = models.TextField(max_length=7, blank=True, null=True)
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2306_evttsvaltcontr) + ' - ' + unicode(self.natestagio) + ' - ' + unicode(self.nivestagio) + ' - ' + unicode(self.dtprevterm) + ' - ' + unicode(self.nmrazao)
     #s2306_infoestagiario_custom#
+
     class Meta:
-        db_table = r's2306_infoestagiario'
+        db_table = r's2306_infoestagiario'       
         managed = True # s2306_infoestagiario #
+        permissions = (
+            ("can_view_s2306_infoestagiario", "Can view s2306_infoestagiario"),
+            #custom_permissions_s2306_infoestagiario
+        )
         ordering = ['s2306_evttsvaltcontr', 'natestagio', 'nivestagio', 'dtprevterm', 'nmrazao']
 
 
@@ -223,11 +239,11 @@ class s2306infoEstagiarioSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2306infoTrabCedido(SoftDeletionModel):
@@ -235,19 +251,24 @@ class s2306infoTrabCedido(SoftDeletionModel):
         related_name='%(class)s_s2306_evttsvaltcontr')
     def evento(self): return self.s2306_evttsvaltcontr.evento()
     indremuncargo = models.CharField(choices=CHOICES_S2306_INDREMUNCARGO, max_length=1)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2306_evttsvaltcontr) + ' - ' + unicode(self.indremuncargo)
     #s2306_infotrabcedido_custom#
+
     class Meta:
-        db_table = r's2306_infotrabcedido'
+        db_table = r's2306_infotrabcedido'       
         managed = True # s2306_infotrabcedido #
+        permissions = (
+            ("can_view_s2306_infotrabcedido", "Can view s2306_infotrabcedido"),
+            #custom_permissions_s2306_infotrabcedido
+        )
         ordering = ['s2306_evttsvaltcontr', 'indremuncargo']
 
 
@@ -258,11 +279,11 @@ class s2306infoTrabCedidoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2306remuneracao(SoftDeletionModel):
@@ -272,19 +293,24 @@ class s2306remuneracao(SoftDeletionModel):
     vrsalfx = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     undsalfixo = models.IntegerField(choices=CHOICES_S2306_UNDSALFIXO)
     dscsalvar = models.CharField(max_length=255, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2306_evttsvaltcontr) + ' - ' + unicode(self.vrsalfx) + ' - ' + unicode(self.undsalfixo)
     #s2306_remuneracao_custom#
+
     class Meta:
-        db_table = r's2306_remuneracao'
+        db_table = r's2306_remuneracao'       
         managed = True # s2306_remuneracao #
+        permissions = (
+            ("can_view_s2306_remuneracao", "Can view s2306_remuneracao"),
+            #custom_permissions_s2306_remuneracao
+        )
         ordering = ['s2306_evttsvaltcontr', 'vrsalfx', 'undsalfixo']
 
 
@@ -295,11 +321,11 @@ class s2306remuneracaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2306supervisorEstagio(SoftDeletionModel):
@@ -308,19 +334,24 @@ class s2306supervisorEstagio(SoftDeletionModel):
     def evento(self): return self.s2306_infoestagiario.evento()
     cpfsupervisor = models.CharField(max_length=11)
     nmsuperv = models.CharField(max_length=70)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2306_infoestagiario) + ' - ' + unicode(self.cpfsupervisor) + ' - ' + unicode(self.nmsuperv)
     #s2306_supervisorestagio_custom#
+
     class Meta:
-        db_table = r's2306_supervisorestagio'
+        db_table = r's2306_supervisorestagio'       
         managed = True # s2306_supervisorestagio #
+        permissions = (
+            ("can_view_s2306_supervisorestagio", "Can view s2306_supervisorestagio"),
+            #custom_permissions_s2306_supervisorestagio
+        )
         ordering = ['s2306_infoestagiario', 'cpfsupervisor', 'nmsuperv']
 
 
@@ -331,11 +362,11 @@ class s2306supervisorEstagioSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

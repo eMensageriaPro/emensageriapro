@@ -43,7 +43,7 @@ class SoftDeletionQuerySet(QuerySet):
 
 
 class SoftDeletionModel(models.Model):
-    excluido = models.BooleanField(blank=True, default=False)
+    excluido = models.NullBooleanField(blank=True, default=False)
 
     objects = SoftDeletionManager()
     all_objects = SoftDeletionManager(alive_only=False)

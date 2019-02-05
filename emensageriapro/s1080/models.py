@@ -37,9 +37,10 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
 from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.fields import CurrentUserDefault
-from django.apps import apps
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
@@ -106,19 +107,24 @@ class s1080alteracao(SoftDeletionModel):
     aliqrat = models.IntegerField(choices=CHOICES_S1080_ALTERACAO_ALIQRAT)
     fap = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
     aliqratajust = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1080_evttaboperport) + ' - ' + unicode(self.cnpjopportuario) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.fap) + ' - ' + unicode(self.aliqratajust)
     #s1080_alteracao_custom#
+
     class Meta:
-        db_table = r's1080_alteracao'
+        db_table = r's1080_alteracao'       
         managed = True # s1080_alteracao #
+        permissions = (
+            ("can_view_s1080_alteracao", "Can view s1080_alteracao"),
+            #custom_permissions_s1080_alteracao
+        )
         ordering = ['s1080_evttaboperport', 'cnpjopportuario', 'inivalid', 'aliqrat', 'fap', 'aliqratajust']
 
 
@@ -129,11 +135,11 @@ class s1080alteracaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1080alteracaonovaValidade(SoftDeletionModel):
@@ -142,19 +148,24 @@ class s1080alteracaonovaValidade(SoftDeletionModel):
     def evento(self): return self.s1080_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1080_alteracao) + ' - ' + unicode(self.inivalid)
     #s1080_alteracao_novavalidade_custom#
+
     class Meta:
-        db_table = r's1080_alteracao_novavalidade'
+        db_table = r's1080_alteracao_novavalidade'       
         managed = True # s1080_alteracao_novavalidade #
+        permissions = (
+            ("can_view_s1080_alteracao_novavalidade", "Can view s1080_alteracao_novavalidade"),
+            #custom_permissions_s1080_alteracao_novavalidade
+        )
         ordering = ['s1080_alteracao', 'inivalid']
 
 
@@ -165,11 +176,11 @@ class s1080alteracaonovaValidadeSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1080exclusao(SoftDeletionModel):
@@ -179,19 +190,24 @@ class s1080exclusao(SoftDeletionModel):
     cnpjopportuario = models.CharField(max_length=14)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1080_evttaboperport) + ' - ' + unicode(self.cnpjopportuario) + ' - ' + unicode(self.inivalid)
     #s1080_exclusao_custom#
+
     class Meta:
-        db_table = r's1080_exclusao'
+        db_table = r's1080_exclusao'       
         managed = True # s1080_exclusao #
+        permissions = (
+            ("can_view_s1080_exclusao", "Can view s1080_exclusao"),
+            #custom_permissions_s1080_exclusao
+        )
         ordering = ['s1080_evttaboperport', 'cnpjopportuario', 'inivalid']
 
 
@@ -202,11 +218,11 @@ class s1080exclusaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1080inclusao(SoftDeletionModel):
@@ -219,19 +235,24 @@ class s1080inclusao(SoftDeletionModel):
     aliqrat = models.IntegerField(choices=CHOICES_S1080_INCLUSAO_ALIQRAT)
     fap = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
     aliqratajust = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1080_evttaboperport) + ' - ' + unicode(self.cnpjopportuario) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.fap) + ' - ' + unicode(self.aliqratajust)
     #s1080_inclusao_custom#
+
     class Meta:
-        db_table = r's1080_inclusao'
+        db_table = r's1080_inclusao'       
         managed = True # s1080_inclusao #
+        permissions = (
+            ("can_view_s1080_inclusao", "Can view s1080_inclusao"),
+            #custom_permissions_s1080_inclusao
+        )
         ordering = ['s1080_evttaboperport', 'cnpjopportuario', 'inivalid', 'aliqrat', 'fap', 'aliqratajust']
 
 
@@ -242,11 +263,11 @@ class s1080inclusaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

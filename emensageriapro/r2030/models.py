@@ -37,9 +37,10 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
 from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.fields import CurrentUserDefault
-from django.apps import apps
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
@@ -66,19 +67,24 @@ class r2030infoProc(SoftDeletionModel):
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField(blank=True, null=True)
     vlrnret = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2030_recursosrec) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.vlrnret)
     #r2030_infoproc_custom#
+
     class Meta:
-        db_table = r'r2030_infoproc'
+        db_table = r'r2030_infoproc'       
         managed = True # r2030_infoproc #
+        permissions = (
+            ("can_view_r2030_infoproc", "Can view r2030_infoproc"),
+            #custom_permissions_r2030_infoproc
+        )
         ordering = ['r2030_recursosrec', 'tpproc', 'nrproc', 'vlrnret']
 
 
@@ -89,11 +95,11 @@ class r2030infoProcSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r2030infoRecurso(SoftDeletionModel):
@@ -104,19 +110,24 @@ class r2030infoRecurso(SoftDeletionModel):
     descrecurso = models.CharField(max_length=20)
     vlrbruto = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrretapur = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2030_recursosrec) + ' - ' + unicode(self.tprepasse) + ' - ' + unicode(self.descrecurso) + ' - ' + unicode(self.vlrbruto) + ' - ' + unicode(self.vlrretapur)
     #r2030_inforecurso_custom#
+
     class Meta:
-        db_table = r'r2030_inforecurso'
+        db_table = r'r2030_inforecurso'       
         managed = True # r2030_inforecurso #
+        permissions = (
+            ("can_view_r2030_inforecurso", "Can view r2030_inforecurso"),
+            #custom_permissions_r2030_inforecurso
+        )
         ordering = ['r2030_recursosrec', 'tprepasse', 'descrecurso', 'vlrbruto', 'vlrretapur']
 
 
@@ -127,11 +138,11 @@ class r2030infoRecursoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r2030recursosRec(SoftDeletionModel):
@@ -142,19 +153,24 @@ class r2030recursosRec(SoftDeletionModel):
     vlrtotalrec = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrtotalret = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrtotalnret = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r2030_evtassocdesprec) + ' - ' + unicode(self.cnpjorigrecurso) + ' - ' + unicode(self.vlrtotalrec) + ' - ' + unicode(self.vlrtotalret)
     #r2030_recursosrec_custom#
+
     class Meta:
-        db_table = r'r2030_recursosrec'
+        db_table = r'r2030_recursosrec'       
         managed = True # r2030_recursosrec #
+        permissions = (
+            ("can_view_r2030_recursosrec", "Can view r2030_recursosrec"),
+            #custom_permissions_r2030_recursosrec
+        )
         ordering = ['r2030_evtassocdesprec', 'cnpjorigrecurso', 'vlrtotalrec', 'vlrtotalret']
 
 
@@ -165,11 +181,11 @@ class r2030recursosRecSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

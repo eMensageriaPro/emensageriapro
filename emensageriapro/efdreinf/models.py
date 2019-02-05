@@ -37,9 +37,10 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
 from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.fields import CurrentUserDefault
-from django.apps import apps
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
@@ -439,20 +440,25 @@ class r1000evtInfoContri(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #r1000_evtinfocontri_custom#
     def evento(self): return self.__dict__
+
     class Meta:
-        db_table = r'r1000_evtinfocontri'
+        db_table = r'r1000_evtinfocontri'       
         managed = True # r1000_evtinfocontri #
+        permissions = (
+            ("can_view_r1000_evtinfocontri", "Can view r1000_evtinfocontri"),
+            #custom_permissions_r1000_evtinfocontri
+        )
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
 
@@ -463,11 +469,11 @@ class r1000evtInfoContriSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r1070evtTabProcesso(SoftDeletionModel):
@@ -494,20 +500,25 @@ class r1070evtTabProcesso(SoftDeletionModel):
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
     operacao = models.IntegerField(choices=OPERACOES)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #r1070_evttabprocesso_custom#
     def evento(self): return self.__dict__
+
     class Meta:
-        db_table = r'r1070_evttabprocesso'
+        db_table = r'r1070_evttabprocesso'       
         managed = True # r1070_evttabprocesso #
+        permissions = (
+            ("can_view_r1070_evttabprocesso", "Can view r1070_evttabprocesso"),
+            #custom_permissions_r1070_evttabprocesso
+        )
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
 
@@ -518,11 +529,11 @@ class r1070evtTabProcessoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r2010evtServTom(SoftDeletionModel):
@@ -562,20 +573,25 @@ class r2010evtServTom(SoftDeletionModel):
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab) + ' - ' + unicode(self.indobra) + ' - ' + unicode(self.cnpjprestador) + ' - ' + unicode(self.vlrtotalbruto) + ' - ' + unicode(self.vlrtotalbaseret) + ' - ' + unicode(self.vlrtotalretprinc) + ' - ' + unicode(self.indcprb)
     #r2010_evtservtom_custom#
     def evento(self): return self.__dict__
+
     class Meta:
-        db_table = r'r2010_evtservtom'
+        db_table = r'r2010_evtservtom'       
         managed = True # r2010_evtservtom #
+        permissions = (
+            ("can_view_r2010_evtservtom", "Can view r2010_evtservtom"),
+            #custom_permissions_r2010_evtservtom
+        )
         ordering = ['identidade', 'indretif', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab', 'indobra', 'cnpjprestador', 'vlrtotalbruto', 'vlrtotalbaseret', 'vlrtotalretprinc', 'indcprb']
 
 
@@ -586,11 +602,11 @@ class r2010evtServTomSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r2020evtServPrest(SoftDeletionModel):
@@ -630,20 +646,25 @@ class r2020evtServPrest(SoftDeletionModel):
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestabprest) + ' - ' + unicode(self.nrinscestabprest) + ' - ' + unicode(self.tpinsctomador) + ' - ' + unicode(self.nrinsctomador) + ' - ' + unicode(self.indobra) + ' - ' + unicode(self.vlrtotalbruto) + ' - ' + unicode(self.vlrtotalbaseret) + ' - ' + unicode(self.vlrtotalretprinc)
     #r2020_evtservprest_custom#
     def evento(self): return self.__dict__
+
     class Meta:
-        db_table = r'r2020_evtservprest'
+        db_table = r'r2020_evtservprest'       
         managed = True # r2020_evtservprest #
+        permissions = (
+            ("can_view_r2020_evtservprest", "Can view r2020_evtservprest"),
+            #custom_permissions_r2020_evtservprest
+        )
         ordering = ['identidade', 'indretif', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestabprest', 'nrinscestabprest', 'tpinsctomador', 'nrinsctomador', 'indobra', 'vlrtotalbruto', 'vlrtotalbaseret', 'vlrtotalretprinc']
 
 
@@ -654,11 +675,11 @@ class r2020evtServPrestSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r2030evtAssocDespRec(SoftDeletionModel):
@@ -689,20 +710,25 @@ class r2030evtAssocDespRec(SoftDeletionModel):
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab)
     #r2030_evtassocdesprec_custom#
     def evento(self): return self.__dict__
+
     class Meta:
-        db_table = r'r2030_evtassocdesprec'
+        db_table = r'r2030_evtassocdesprec'       
         managed = True # r2030_evtassocdesprec #
+        permissions = (
+            ("can_view_r2030_evtassocdesprec", "Can view r2030_evtassocdesprec"),
+            #custom_permissions_r2030_evtassocdesprec
+        )
         ordering = ['identidade', 'indretif', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab']
 
 
@@ -713,11 +739,11 @@ class r2030evtAssocDespRecSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r2040evtAssocDespRep(SoftDeletionModel):
@@ -748,20 +774,25 @@ class r2040evtAssocDespRep(SoftDeletionModel):
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab)
     #r2040_evtassocdesprep_custom#
     def evento(self): return self.__dict__
+
     class Meta:
-        db_table = r'r2040_evtassocdesprep'
+        db_table = r'r2040_evtassocdesprep'       
         managed = True # r2040_evtassocdesprep #
+        permissions = (
+            ("can_view_r2040_evtassocdesprep", "Can view r2040_evtassocdesprep"),
+            #custom_permissions_r2040_evtassocdesprep
+        )
         ordering = ['identidade', 'indretif', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab']
 
 
@@ -772,11 +803,11 @@ class r2040evtAssocDespRepSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r2050evtComProd(SoftDeletionModel):
@@ -814,20 +845,25 @@ class r2050evtComProd(SoftDeletionModel):
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab) + ' - ' + unicode(self.vlrrecbrutatotal) + ' - ' + unicode(self.vlrcpapur) + ' - ' + unicode(self.vlrratapur) + ' - ' + unicode(self.vlrsenarapur)
     #r2050_evtcomprod_custom#
     def evento(self): return self.__dict__
+
     class Meta:
-        db_table = r'r2050_evtcomprod'
+        db_table = r'r2050_evtcomprod'       
         managed = True # r2050_evtcomprod #
+        permissions = (
+            ("can_view_r2050_evtcomprod", "Can view r2050_evtcomprod"),
+            #custom_permissions_r2050_evtcomprod
+        )
         ordering = ['identidade', 'indretif', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab', 'vlrrecbrutatotal', 'vlrcpapur', 'vlrratapur', 'vlrsenarapur']
 
 
@@ -838,11 +874,11 @@ class r2050evtComProdSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r2060evtCPRB(SoftDeletionModel):
@@ -876,20 +912,25 @@ class r2060evtCPRB(SoftDeletionModel):
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab) + ' - ' + unicode(self.vlrrecbrutatotal) + ' - ' + unicode(self.vlrcpapurtotal)
     #r2060_evtcprb_custom#
     def evento(self): return self.__dict__
+
     class Meta:
-        db_table = r'r2060_evtcprb'
+        db_table = r'r2060_evtcprb'       
         managed = True # r2060_evtcprb #
+        permissions = (
+            ("can_view_r2060_evtcprb", "Can view r2060_evtcprb"),
+            #custom_permissions_r2060_evtcprb
+        )
         ordering = ['identidade', 'indretif', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab', 'vlrrecbrutatotal', 'vlrcpapurtotal']
 
 
@@ -900,11 +941,11 @@ class r2060evtCPRBSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r2070evtPgtosDivs(SoftDeletionModel):
@@ -937,20 +978,25 @@ class r2070evtPgtosDivs(SoftDeletionModel):
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codpgto) + ' - ' + unicode(self.nmrazaobenef)
     #r2070_evtpgtosdivs_custom#
     def evento(self): return self.__dict__
+
     class Meta:
-        db_table = r'r2070_evtpgtosdivs'
+        db_table = r'r2070_evtpgtosdivs'       
         managed = True # r2070_evtpgtosdivs #
+        permissions = (
+            ("can_view_r2070_evtpgtosdivs", "Can view r2070_evtpgtosdivs"),
+            #custom_permissions_r2070_evtpgtosdivs
+        )
         ordering = ['identidade', 'indretif', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'codpgto', 'nmrazaobenef']
 
 
@@ -961,11 +1007,11 @@ class r2070evtPgtosDivsSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r2098evtReabreEvPer(SoftDeletionModel):
@@ -992,20 +1038,25 @@ class r2098evtReabreEvPer(SoftDeletionModel):
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #r2098_evtreabreevper_custom#
     def evento(self): return self.__dict__
+
     class Meta:
-        db_table = r'r2098_evtreabreevper'
+        db_table = r'r2098_evtreabreevper'       
         managed = True # r2098_evtreabreevper #
+        permissions = (
+            ("can_view_r2098_evtreabreevper", "Can view r2098_evtreabreevper"),
+            #custom_permissions_r2098_evtreabreevper
+        )
         ordering = ['identidade', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc']
 
 
@@ -1016,11 +1067,11 @@ class r2098evtReabreEvPerSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r2099evtFechaEvPer(SoftDeletionModel):
@@ -1055,20 +1106,25 @@ class r2099evtFechaEvPer(SoftDeletionModel):
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.evtservtm) + ' - ' + unicode(self.evtservpr) + ' - ' + unicode(self.evtassdesprec) + ' - ' + unicode(self.evtassdesprep) + ' - ' + unicode(self.evtcomprod) + ' - ' + unicode(self.evtcprb)
     #r2099_evtfechaevper_custom#
     def evento(self): return self.__dict__
+
     class Meta:
-        db_table = r'r2099_evtfechaevper'
+        db_table = r'r2099_evtfechaevper'       
         managed = True # r2099_evtfechaevper #
+        permissions = (
+            ("can_view_r2099_evtfechaevper", "Can view r2099_evtfechaevper"),
+            #custom_permissions_r2099_evtfechaevper
+        )
         ordering = ['identidade', 'perapur', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'evtservtm', 'evtservpr', 'evtassdesprec', 'evtassdesprep', 'evtcomprod', 'evtcprb']
 
 
@@ -1079,11 +1135,11 @@ class r2099evtFechaEvPerSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r3010evtEspDesportivo(SoftDeletionModel):
@@ -1119,20 +1175,25 @@ class r3010evtEspDesportivo(SoftDeletionModel):
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.dtapuracao) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab) + ' - ' + unicode(self.vlrreceitatotal) + ' - ' + unicode(self.vlrcp) + ' - ' + unicode(self.vlrreceitaclubes) + ' - ' + unicode(self.vlrretparc)
     #r3010_evtespdesportivo_custom#
     def evento(self): return self.__dict__
+
     class Meta:
-        db_table = r'r3010_evtespdesportivo'
+        db_table = r'r3010_evtespdesportivo'       
         managed = True # r3010_evtespdesportivo #
+        permissions = (
+            ("can_view_r3010_evtespdesportivo", "Can view r3010_evtespdesportivo"),
+            #custom_permissions_r3010_evtespdesportivo
+        )
         ordering = ['identidade', 'indretif', 'dtapuracao', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpinscestab', 'nrinscestab', 'vlrreceitatotal', 'vlrcp', 'vlrreceitaclubes', 'vlrretparc']
 
 
@@ -1143,11 +1204,11 @@ class r3010evtEspDesportivoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r5001evtTotal(SoftDeletionModel):
@@ -1175,20 +1236,25 @@ class r5001evtTotal(SoftDeletionModel):
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cdretorno) + ' - ' + unicode(self.descretorno) + ' - ' + unicode(self.dhprocess) + ' - ' + unicode(self.tpev) + ' - ' + unicode(self.idev) + ' - ' + unicode(self.hash)
     #r5001_evttotal_custom#
     def evento(self): return self.__dict__
+
     class Meta:
-        db_table = r'r5001_evttotal'
+        db_table = r'r5001_evttotal'       
         managed = True # r5001_evttotal #
+        permissions = (
+            ("can_view_r5001_evttotal", "Can view r5001_evttotal"),
+            #custom_permissions_r5001_evttotal
+        )
         ordering = ['identidade', 'perapur', 'tpinsc', 'nrinsc', 'cdretorno', 'descretorno', 'dhprocess', 'tpev', 'idev', 'hash']
 
 
@@ -1199,11 +1265,11 @@ class r5001evtTotalSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r5011evtTotalContrib(SoftDeletionModel):
@@ -1231,20 +1297,25 @@ class r5011evtTotalContrib(SoftDeletionModel):
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cdretorno) + ' - ' + unicode(self.descretorno) + ' - ' + unicode(self.nrprotentr) + ' - ' + unicode(self.dhprocess) + ' - ' + unicode(self.tpev) + ' - ' + unicode(self.idev) + ' - ' + unicode(self.hash)
     #r5011_evttotalcontrib_custom#
     def evento(self): return self.__dict__
+
     class Meta:
-        db_table = r'r5011_evttotalcontrib'
+        db_table = r'r5011_evttotalcontrib'       
         managed = True # r5011_evttotalcontrib #
+        permissions = (
+            ("can_view_r5011_evttotalcontrib", "Can view r5011_evttotalcontrib"),
+            #custom_permissions_r5011_evttotalcontrib
+        )
         ordering = ['identidade', 'perapur', 'tpinsc', 'nrinsc', 'cdretorno', 'descretorno', 'nrprotentr', 'dhprocess', 'tpev', 'idev', 'hash']
 
 
@@ -1255,11 +1326,11 @@ class r5011evtTotalContribSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r9000evtExclusao(SoftDeletionModel):
@@ -1288,20 +1359,25 @@ class r9000evtExclusao(SoftDeletionModel):
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     cdretorno = models.CharField(max_length=6, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpevento) + ' - ' + unicode(self.nrrecevt) + ' - ' + unicode(self.perapur)
     #r9000_evtexclusao_custom#
     def evento(self): return self.__dict__
+
     class Meta:
-        db_table = r'r9000_evtexclusao'
+        db_table = r'r9000_evtexclusao'       
         managed = True # r9000_evtexclusao #
+        permissions = (
+            ("can_view_r9000_evtexclusao", "Can view r9000_evtexclusao"),
+            #custom_permissions_r9000_evtexclusao
+        )
         ordering = ['identidade', 'tpamb', 'procemi', 'verproc', 'tpinsc', 'nrinsc', 'tpevento', 'nrrecevt', 'perapur']
 
 
@@ -1312,11 +1388,11 @@ class r9000evtExclusaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

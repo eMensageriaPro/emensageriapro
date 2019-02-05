@@ -1,7 +1,6 @@
 #coding:utf-8
 #from django.conf.urls import patterns, include, url
 from django.conf.urls import include, url
-# from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from emensageriapro.s2200.views import s2200_cnh as s2200_cnh_views

@@ -37,9 +37,10 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
 from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.fields import CurrentUserDefault
-from django.apps import apps
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
@@ -56,19 +57,24 @@ class s3000ideFolhaPagto(SoftDeletionModel):
     def evento(self): return self.s3000_evtexclusao.evento()
     indapuracao = models.IntegerField(choices=CHOICES_S3000_INDAPURACAO)
     perapur = models.CharField(max_length=7)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s3000_evtexclusao) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur)
     #s3000_idefolhapagto_custom#
+
     class Meta:
-        db_table = r's3000_idefolhapagto'
+        db_table = r's3000_idefolhapagto'       
         managed = True # s3000_idefolhapagto #
+        permissions = (
+            ("can_view_s3000_idefolhapagto", "Can view s3000_idefolhapagto"),
+            #custom_permissions_s3000_idefolhapagto
+        )
         ordering = ['s3000_evtexclusao', 'indapuracao', 'perapur']
 
 
@@ -79,11 +85,11 @@ class s3000ideFolhaPagtoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s3000ideTrabalhador(SoftDeletionModel):
@@ -92,19 +98,24 @@ class s3000ideTrabalhador(SoftDeletionModel):
     def evento(self): return self.s3000_evtexclusao.evento()
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s3000_evtexclusao) + ' - ' + unicode(self.cpftrab)
     #s3000_idetrabalhador_custom#
+
     class Meta:
-        db_table = r's3000_idetrabalhador'
+        db_table = r's3000_idetrabalhador'       
         managed = True # s3000_idetrabalhador #
+        permissions = (
+            ("can_view_s3000_idetrabalhador", "Can view s3000_idetrabalhador"),
+            #custom_permissions_s3000_idetrabalhador
+        )
         ordering = ['s3000_evtexclusao', 'cpftrab']
 
 
@@ -115,11 +126,11 @@ class s3000ideTrabalhadorSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

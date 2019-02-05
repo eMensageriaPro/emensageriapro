@@ -37,9 +37,10 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
 from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.fields import CurrentUserDefault
-from django.apps import apps
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
@@ -107,19 +108,24 @@ class s1035alteracao(SoftDeletionModel):
     leicarr = models.CharField(max_length=12, blank=True, null=True)
     dtleicarr = models.DateField()
     sitcarr = models.IntegerField(choices=CHOICES_S1035_ALTERACAO_SITCARR)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1035_evttabcarreira) + ' - ' + unicode(self.codcarreira) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.dsccarreira) + ' - ' + unicode(self.dtleicarr) + ' - ' + unicode(self.sitcarr)
     #s1035_alteracao_custom#
+
     class Meta:
-        db_table = r's1035_alteracao'
+        db_table = r's1035_alteracao'       
         managed = True # s1035_alteracao #
+        permissions = (
+            ("can_view_s1035_alteracao", "Can view s1035_alteracao"),
+            #custom_permissions_s1035_alteracao
+        )
         ordering = ['s1035_evttabcarreira', 'codcarreira', 'inivalid', 'dsccarreira', 'dtleicarr', 'sitcarr']
 
 
@@ -130,11 +136,11 @@ class s1035alteracaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1035alteracaonovaValidade(SoftDeletionModel):
@@ -143,19 +149,24 @@ class s1035alteracaonovaValidade(SoftDeletionModel):
     def evento(self): return self.s1035_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1035_alteracao) + ' - ' + unicode(self.inivalid)
     #s1035_alteracao_novavalidade_custom#
+
     class Meta:
-        db_table = r's1035_alteracao_novavalidade'
+        db_table = r's1035_alteracao_novavalidade'       
         managed = True # s1035_alteracao_novavalidade #
+        permissions = (
+            ("can_view_s1035_alteracao_novavalidade", "Can view s1035_alteracao_novavalidade"),
+            #custom_permissions_s1035_alteracao_novavalidade
+        )
         ordering = ['s1035_alteracao', 'inivalid']
 
 
@@ -166,11 +177,11 @@ class s1035alteracaonovaValidadeSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1035exclusao(SoftDeletionModel):
@@ -180,19 +191,24 @@ class s1035exclusao(SoftDeletionModel):
     codcarreira = models.CharField(max_length=30)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1035_evttabcarreira) + ' - ' + unicode(self.codcarreira) + ' - ' + unicode(self.inivalid)
     #s1035_exclusao_custom#
+
     class Meta:
-        db_table = r's1035_exclusao'
+        db_table = r's1035_exclusao'       
         managed = True # s1035_exclusao #
+        permissions = (
+            ("can_view_s1035_exclusao", "Can view s1035_exclusao"),
+            #custom_permissions_s1035_exclusao
+        )
         ordering = ['s1035_evttabcarreira', 'codcarreira', 'inivalid']
 
 
@@ -203,11 +219,11 @@ class s1035exclusaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1035inclusao(SoftDeletionModel):
@@ -221,19 +237,24 @@ class s1035inclusao(SoftDeletionModel):
     leicarr = models.CharField(max_length=12, blank=True, null=True)
     dtleicarr = models.DateField()
     sitcarr = models.IntegerField(choices=CHOICES_S1035_INCLUSAO_SITCARR)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1035_evttabcarreira) + ' - ' + unicode(self.codcarreira) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.dsccarreira) + ' - ' + unicode(self.dtleicarr) + ' - ' + unicode(self.sitcarr)
     #s1035_inclusao_custom#
+
     class Meta:
-        db_table = r's1035_inclusao'
+        db_table = r's1035_inclusao'       
         managed = True # s1035_inclusao #
+        permissions = (
+            ("can_view_s1035_inclusao", "Can view s1035_inclusao"),
+            #custom_permissions_s1035_inclusao
+        )
         ordering = ['s1035_evttabcarreira', 'codcarreira', 'inivalid', 'dsccarreira', 'dtleicarr', 'sitcarr']
 
 
@@ -244,11 +265,11 @@ class s1035inclusaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

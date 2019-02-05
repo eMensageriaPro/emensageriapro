@@ -37,9 +37,10 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
 from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.fields import CurrentUserDefault
-from django.apps import apps
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
@@ -135,19 +136,24 @@ class CBO(SoftDeletionModel):
     descricao = models.TextField()
     data_inicio = models.DateField()
     data_termino = models.DateField(blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #cbo_custom#
+
     class Meta:
-        db_table = r'cbo'
+        db_table = r'cbo'       
         managed = True # cbo #
+        permissions = (
+            ("can_view_cbo", "Can view cbo"),
+            #custom_permissions_cbo
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -158,11 +164,11 @@ class CBOSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class CID(SoftDeletionModel):
@@ -171,19 +177,24 @@ class CID(SoftDeletionModel):
     data_inicio = models.DateField()
     data_termino = models.DateField(blank=True, null=True)
     descricao_resumida = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #cid_custom#
+
     class Meta:
-        db_table = r'cid'
+        db_table = r'cid'       
         managed = True # cid #
+        permissions = (
+            ("can_view_cid", "Can view cid"),
+            #custom_permissions_cid
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -194,11 +205,11 @@ class CIDSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class CNAE(SoftDeletionModel):
@@ -207,19 +218,24 @@ class CNAE(SoftDeletionModel):
     data_inicio = models.DateField()
     data_termino = models.DateField(blank=True, null=True)
     aliquota = models.DecimalField(max_digits=15, decimal_places=2)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #cnae_custom#
+
     class Meta:
-        db_table = r'cnae'
+        db_table = r'cnae'       
         managed = True # cnae #
+        permissions = (
+            ("can_view_cnae", "Can view cnae"),
+            #custom_permissions_cnae
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -230,29 +246,34 @@ class CNAESerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class EFDReinfClassificacaoServicosPrestados(SoftDeletionModel):
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #efdreinf_classificacao_servicos_prestados_custom#
+
     class Meta:
-        db_table = r'efdreinf_classificacao_servicos_prestados'
+        db_table = r'efdreinf_classificacao_servicos_prestados'       
         managed = True # efdreinf_classificacao_servicos_prestados #
+        permissions = (
+            ("can_view_efdreinf_classificacao_servicos_prestados", "Can view efdreinf_classificacao_servicos_prestados"),
+            #custom_permissions_efdreinf_classificacao_servicos_prestados
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -263,29 +284,34 @@ class EFDReinfClassificacaoServicosPrestadosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class EFDReinfClassificacaoTributaria(SoftDeletionModel):
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #efdreinf_classificacao_tributaria_custom#
+
     class Meta:
-        db_table = r'efdreinf_classificacao_tributaria'
+        db_table = r'efdreinf_classificacao_tributaria'       
         managed = True # efdreinf_classificacao_tributaria #
+        permissions = (
+            ("can_view_efdreinf_classificacao_tributaria", "Can view efdreinf_classificacao_tributaria"),
+            #custom_permissions_efdreinf_classificacao_tributaria
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -296,11 +322,11 @@ class EFDReinfClassificacaoTributariaSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class EFDReinfCodigosAtividadesProdutosServicosCPRB(SoftDeletionModel):
@@ -312,19 +338,24 @@ class EFDReinfCodigosAtividadesProdutosServicosCPRB(SoftDeletionModel):
     ncm = models.CharField(max_length=12, blank=True, null=True)
     aliquota = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True)
     inicio_escrituracao = models.DateField(blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.grupo) + ' - ' + unicode(self.codigo) + ' - ' + unicode(self.descricao) + ' - ' + unicode(self.incidencia) + ' - ' + unicode(self.cr) + ' - ' + unicode(self.ncm) + ' - ' + unicode(self.aliquota) + ' - ' + unicode(self.inicio_escrituracao)
     #efdreinf_codigos_atividades_produtos_servicos_cprb_custom#
+
     class Meta:
-        db_table = r'efdreinf_codigos_atividades_produtos_servicos_cprb'
+        db_table = r'efdreinf_codigos_atividades_produtos_servicos_cprb'       
         managed = True # efdreinf_codigos_atividades_produtos_servicos_cprb #
+        permissions = (
+            ("can_view_efdreinf_codigos_atividades_produtos_servicos_cprb", "Can view efdreinf_codigos_atividades_produtos_servicos_cprb"),
+            #custom_permissions_efdreinf_codigos_atividades_produtos_servicos_cprb
+        )
         ordering = ['grupo', 'codigo', 'descricao', 'incidencia', 'cr', 'ncm', 'aliquota', 'inicio_escrituracao']
 
 
@@ -335,29 +366,34 @@ class EFDReinfCodigosAtividadesProdutosServicosCPRBSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class EFDReinfEventos(SoftDeletionModel):
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #efdreinf_eventos_custom#
+
     class Meta:
-        db_table = r'efdreinf_eventos'
+        db_table = r'efdreinf_eventos'       
         managed = True # efdreinf_eventos #
+        permissions = (
+            ("can_view_efdreinf_eventos", "Can view efdreinf_eventos"),
+            #custom_permissions_efdreinf_eventos
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -368,29 +404,34 @@ class EFDReinfEventosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class EFDReinfInformacoesBeneficiariosExterior(SoftDeletionModel):
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #efdreinf_informacoes_beneficiarios_exterior_custom#
+
     class Meta:
-        db_table = r'efdreinf_informacoes_beneficiarios_exterior'
+        db_table = r'efdreinf_informacoes_beneficiarios_exterior'       
         managed = True # efdreinf_informacoes_beneficiarios_exterior #
+        permissions = (
+            ("can_view_efdreinf_informacoes_beneficiarios_exterior", "Can view efdreinf_informacoes_beneficiarios_exterior"),
+            #custom_permissions_efdreinf_informacoes_beneficiarios_exterior
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -401,11 +442,11 @@ class EFDReinfInformacoesBeneficiariosExteriorSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class EFDReinfPagamentosCodigos(SoftDeletionModel):
@@ -414,19 +455,24 @@ class EFDReinfPagamentosCodigos(SoftDeletionModel):
     beneficiario_pj = models.CharField(choices=SIM_NAO_TXT, max_length=1)
     beneficiario_pf = models.CharField(choices=SIM_NAO_TXT, max_length=1)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.grupo) + ' - ' + unicode(self.codigo) + ' - ' + unicode(self.beneficiario_pj) + ' - ' + unicode(self.beneficiario_pf) + ' - ' + unicode(self.descricao)
     #efdreinf_pagamentos_codigos_custom#
+
     class Meta:
-        db_table = r'efdreinf_pagamentos_codigos'
+        db_table = r'efdreinf_pagamentos_codigos'       
         managed = True # efdreinf_pagamentos_codigos #
+        permissions = (
+            ("can_view_efdreinf_pagamentos_codigos", "Can view efdreinf_pagamentos_codigos"),
+            #custom_permissions_efdreinf_pagamentos_codigos
+        )
         ordering = ['grupo', 'codigo', 'beneficiario_pj', 'beneficiario_pf', 'descricao']
 
 
@@ -437,29 +483,34 @@ class EFDReinfPagamentosCodigosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class EFDReinfPaises(SoftDeletionModel):
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #efdreinf_paises_custom#
+
     class Meta:
-        db_table = r'efdreinf_paises'
+        db_table = r'efdreinf_paises'       
         managed = True # efdreinf_paises #
+        permissions = (
+            ("can_view_efdreinf_paises", "Can view efdreinf_paises"),
+            #custom_permissions_efdreinf_paises
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -470,11 +521,11 @@ class EFDReinfPaisesSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class EFDReinfRegrasPagamentosCodigos(SoftDeletionModel):
@@ -486,19 +537,24 @@ class EFDReinfRegrasPagamentosCodigos(SoftDeletionModel):
     compensacao_imposto_por_decisao_judicial = models.CharField(choices=SIM_NAO_TXT, max_length=1, blank=True, null=True)
     tributacao_com_exigibilidade_suspensa = models.CharField(choices=SIM_NAO_TXT, max_length=1, blank=True, null=True)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.classificacao) + ' - ' + unicode(self.codigo) + ' - ' + unicode(self.decimo_terceiro) + ' - ' + unicode(self.deducoes) + ' - ' + unicode(self.rendimentos_isentos) + ' - ' + unicode(self.compensacao_imposto_por_decisao_judicial) + ' - ' + unicode(self.tributacao_com_exigibilidade_suspensa) + ' - ' + unicode(self.descricao)
     #efdreinf_regras_pagamentos_codigos_custom#
+
     class Meta:
-        db_table = r'efdreinf_regras_pagamentos_codigos'
+        db_table = r'efdreinf_regras_pagamentos_codigos'       
         managed = True # efdreinf_regras_pagamentos_codigos #
+        permissions = (
+            ("can_view_efdreinf_regras_pagamentos_codigos", "Can view efdreinf_regras_pagamentos_codigos"),
+            #custom_permissions_efdreinf_regras_pagamentos_codigos
+        )
         ordering = ['classificacao', 'codigo', 'decimo_terceiro', 'deducoes', 'rendimentos_isentos', 'compensacao_imposto_por_decisao_judicial', 'tributacao_com_exigibilidade_suspensa', 'descricao']
 
 
@@ -509,29 +565,34 @@ class EFDReinfRegrasPagamentosCodigosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class EFDReinfRendimentosBeneficiariosExterior(SoftDeletionModel):
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #efdreinf_rendimentos_beneficiarios_exterior_custom#
+
     class Meta:
-        db_table = r'efdreinf_rendimentos_beneficiarios_exterior'
+        db_table = r'efdreinf_rendimentos_beneficiarios_exterior'       
         managed = True # efdreinf_rendimentos_beneficiarios_exterior #
+        permissions = (
+            ("can_view_efdreinf_rendimentos_beneficiarios_exterior", "Can view efdreinf_rendimentos_beneficiarios_exterior"),
+            #custom_permissions_efdreinf_rendimentos_beneficiarios_exterior
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -542,29 +603,34 @@ class EFDReinfRendimentosBeneficiariosExteriorSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class EFDReinfRendimentosBeneficiariosExteriorTributacao(SoftDeletionModel):
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #efdreinf_rendimentos_beneficiarios_exterior_tributacao_custom#
+
     class Meta:
-        db_table = r'efdreinf_rendimentos_beneficiarios_exterior_tributacao'
+        db_table = r'efdreinf_rendimentos_beneficiarios_exterior_tributacao'       
         managed = True # efdreinf_rendimentos_beneficiarios_exterior_tributacao #
+        permissions = (
+            ("can_view_efdreinf_rendimentos_beneficiarios_exterior_tributacao", "Can view efdreinf_rendimentos_beneficiarios_exterior_tributacao"),
+            #custom_permissions_efdreinf_rendimentos_beneficiarios_exterior_tributacao
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -575,29 +641,34 @@ class EFDReinfRendimentosBeneficiariosExteriorTributacaoSerializer(ModelSerializ
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class Municipios(SoftDeletionModel):
     codigo = models.CharField(max_length=7)
     titulo = models.CharField(max_length=300)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.titulo)
     #municipios_custom#
+
     class Meta:
-        db_table = r'municipios'
+        db_table = r'municipios'       
         managed = True # municipios #
+        permissions = (
+            ("can_view_municipios", "Can view municipios"),
+            #custom_permissions_municipios
+        )
         ordering = ['titulo']
 
 
@@ -608,29 +679,34 @@ class MunicipiosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialAcidentesSituacoesGeradoras(SoftDeletionModel):
     codigo = models.CharField(max_length=9)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_acidentes_situacoes_geradoras_custom#
+
     class Meta:
-        db_table = r'esocial_acidentes_situacoes_geradoras'
+        db_table = r'esocial_acidentes_situacoes_geradoras'       
         managed = True # esocial_acidentes_situacoes_geradoras #
+        permissions = (
+            ("can_view_esocial_acidentes_situacoes_geradoras", "Can view esocial_acidentes_situacoes_geradoras"),
+            #custom_permissions_esocial_acidentes_situacoes_geradoras
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -641,11 +717,11 @@ class eSocialAcidentesSituacoesGeradorasSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialAfastamentosMotivos(SoftDeletionModel):
@@ -653,19 +729,24 @@ class eSocialAfastamentosMotivos(SoftDeletionModel):
     descricao = models.TextField()
     data_inicio = models.DateField()
     data_termino = models.DateField(blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao) + ' - ' + unicode(self.data_inicio) + ' - ' + unicode(self.data_termino)
     #esocial_afastamentos_motivos_custom#
+
     class Meta:
-        db_table = r'esocial_afastamentos_motivos'
+        db_table = r'esocial_afastamentos_motivos'       
         managed = True # esocial_afastamentos_motivos #
+        permissions = (
+            ("can_view_esocial_afastamentos_motivos", "Can view esocial_afastamentos_motivos"),
+            #custom_permissions_esocial_afastamentos_motivos
+        )
         ordering = ['codigo', 'descricao', 'data_inicio', 'data_termino']
 
 
@@ -676,29 +757,34 @@ class eSocialAfastamentosMotivosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialAgentesCausadoresAcidentesTrabalho(SoftDeletionModel):
     codigo = models.CharField(max_length=9)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_agentes_causadores_acidentes_trabalho_custom#
+
     class Meta:
-        db_table = r'esocial_agentes_causadores_acidentes_trabalho'
+        db_table = r'esocial_agentes_causadores_acidentes_trabalho'       
         managed = True # esocial_agentes_causadores_acidentes_trabalho #
+        permissions = (
+            ("can_view_esocial_agentes_causadores_acidentes_trabalho", "Can view esocial_agentes_causadores_acidentes_trabalho"),
+            #custom_permissions_esocial_agentes_causadores_acidentes_trabalho
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -709,29 +795,34 @@ class eSocialAgentesCausadoresAcidentesTrabalhoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialAgentesCausadoresDoencasProfissionais(SoftDeletionModel):
     codigo = models.CharField(max_length=9)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_agentes_causadores_doencas_profissionais_custom#
+
     class Meta:
-        db_table = r'esocial_agentes_causadores_doencas_profissionais'
+        db_table = r'esocial_agentes_causadores_doencas_profissionais'       
         managed = True # esocial_agentes_causadores_doencas_profissionais #
+        permissions = (
+            ("can_view_esocial_agentes_causadores_doencas_profissionais", "Can view esocial_agentes_causadores_doencas_profissionais"),
+            #custom_permissions_esocial_agentes_causadores_doencas_profissionais
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -742,29 +833,34 @@ class eSocialAgentesCausadoresDoencasProfissionaisSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialArquivosEsocialTipos(SoftDeletionModel):
     codigo = models.CharField(max_length=6)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_arquivos_esocial_tipos_custom#
+
     class Meta:
-        db_table = r'esocial_arquivos_esocial_tipos'
+        db_table = r'esocial_arquivos_esocial_tipos'       
         managed = True # esocial_arquivos_esocial_tipos #
+        permissions = (
+            ("can_view_esocial_arquivos_esocial_tipos", "Can view esocial_arquivos_esocial_tipos"),
+            #custom_permissions_esocial_arquivos_esocial_tipos
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -775,30 +871,35 @@ class eSocialArquivosEsocialTiposSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialAtividadesPericulosasInsalubresEspeciais(SoftDeletionModel):
     grupo = models.IntegerField(choices=GRUPO_ATIVIDADES_PERICULOSAS)
     codigo = models.CharField(max_length=6)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.grupo) + ' - ' + unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_atividades_periculosas_insalubres_especiais_custom#
+
     class Meta:
-        db_table = r'esocial_atividades_periculosas_insalubres_especiais'
+        db_table = r'esocial_atividades_periculosas_insalubres_especiais'       
         managed = True # esocial_atividades_periculosas_insalubres_especiais #
+        permissions = (
+            ("can_view_esocial_atividades_periculosas_insalubres_especiais", "Can view esocial_atividades_periculosas_insalubres_especiais"),
+            #custom_permissions_esocial_atividades_periculosas_insalubres_especiais
+        )
         ordering = ['grupo', 'codigo', 'descricao']
 
 
@@ -809,29 +910,34 @@ class eSocialAtividadesPericulosasInsalubresEspeciaisSerializer(ModelSerializer)
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialBeneficiosPrevidenciariosCessacaoMotivos(SoftDeletionModel):
     codigo = models.CharField(max_length=2)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_beneficios_previdenciarios_cessacao_motivos_custom#
+
     class Meta:
-        db_table = r'esocial_beneficios_previdenciarios_cessacao_motivos'
+        db_table = r'esocial_beneficios_previdenciarios_cessacao_motivos'       
         managed = True # esocial_beneficios_previdenciarios_cessacao_motivos #
+        permissions = (
+            ("can_view_esocial_beneficios_previdenciarios_cessacao_motivos", "Can view esocial_beneficios_previdenciarios_cessacao_motivos"),
+            #custom_permissions_esocial_beneficios_previdenciarios_cessacao_motivos
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -842,30 +948,35 @@ class eSocialBeneficiosPrevidenciariosCessacaoMotivosSerializer(ModelSerializer)
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialBeneficiosPrevidenciariosTipos(SoftDeletionModel):
     grupo = models.IntegerField(choices=ESOCIAL_BENEFICIOS_PREVIDENCIARIOS_TIPOS_GRUPOS)
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.grupo) + ' - ' + unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_beneficios_previdenciarios_tipos_custom#
+
     class Meta:
-        db_table = r'esocial_beneficios_previdenciarios_tipos'
+        db_table = r'esocial_beneficios_previdenciarios_tipos'       
         managed = True # esocial_beneficios_previdenciarios_tipos #
+        permissions = (
+            ("can_view_esocial_beneficios_previdenciarios_tipos", "Can view esocial_beneficios_previdenciarios_tipos"),
+            #custom_permissions_esocial_beneficios_previdenciarios_tipos
+        )
         ordering = ['grupo', 'codigo', 'descricao']
 
 
@@ -876,29 +987,34 @@ class eSocialBeneficiosPrevidenciariosTiposSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialClassificacoesTributarias(SoftDeletionModel):
     codigo = models.CharField(max_length=2)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_classificacoes_tributarias_custom#
+
     class Meta:
-        db_table = r'esocial_classificacoes_tributarias'
+        db_table = r'esocial_classificacoes_tributarias'       
         managed = True # esocial_classificacoes_tributarias #
+        permissions = (
+            ("can_view_esocial_classificacoes_tributarias", "Can view esocial_classificacoes_tributarias"),
+            #custom_permissions_esocial_classificacoes_tributarias
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -909,29 +1025,34 @@ class eSocialClassificacoesTributariasSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialCodificacoesAcidenteTrabalho(SoftDeletionModel):
     codigo = models.CharField(max_length=6)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_codificacoes_acidente_trabalho_custom#
+
     class Meta:
-        db_table = r'esocial_codificacoes_acidente_trabalho'
+        db_table = r'esocial_codificacoes_acidente_trabalho'       
         managed = True # esocial_codificacoes_acidente_trabalho #
+        permissions = (
+            ("can_view_esocial_codificacoes_acidente_trabalho", "Can view esocial_codificacoes_acidente_trabalho"),
+            #custom_permissions_esocial_codificacoes_acidente_trabalho
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -942,11 +1063,11 @@ class eSocialCodificacoesAcidenteTrabalhoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialCodigoAliquotasFPASTerceiros(SoftDeletionModel):
@@ -958,19 +1079,24 @@ class eSocialCodigoAliquotasFPASTerceiros(SoftDeletionModel):
     codigo_terceiro = models.CharField(max_length=4)
     aliquota = models.DecimalField(max_digits=15, decimal_places=2)
     ind_total = models.IntegerField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_codigo_aliquotas_fpas_terceiros_custom#
+
     class Meta:
-        db_table = r'esocial_codigo_aliquotas_fpas_terceiros'
+        db_table = r'esocial_codigo_aliquotas_fpas_terceiros'       
         managed = True # esocial_codigo_aliquotas_fpas_terceiros #
+        permissions = (
+            ("can_view_esocial_codigo_aliquotas_fpas_terceiros", "Can view esocial_codigo_aliquotas_fpas_terceiros"),
+            #custom_permissions_esocial_codigo_aliquotas_fpas_terceiros
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -981,11 +1107,11 @@ class eSocialCodigoAliquotasFPASTerceirosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialCompatibilidadesCategoriasClassificacoesLotacoes(SoftDeletionModel):
@@ -1005,19 +1131,24 @@ class eSocialCompatibilidadesCategoriasClassificacoesLotacoes(SoftDeletionModel)
     tipo_lotacao_tributaria_24 = models.CharField(choices=SIM_NAO_TXT, max_length=1)
     tipo_lotacao_tributaria_90 = models.CharField(choices=SIM_NAO_TXT, max_length=1)
     tipo_lotacao_tributaria_91 = models.CharField(choices=SIM_NAO_TXT, max_length=1)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.classificacao_tributaria)
     #esocial_compatibilidades_categorias_classificacoes_lotacoes_custom#
+
     class Meta:
-        db_table = r'esocial_compatibilidades_categorias_classificacoes_lotacoes'
+        db_table = r'esocial_compatibilidades_categorias_classificacoes_lotacoes'       
         managed = True # esocial_compatibilidades_categorias_classificacoes_lotacoes #
+        permissions = (
+            ("can_view_esocial_compatibilidades_categorias_classificacoes_lotacoes", "Can view esocial_compatibilidades_categorias_classificacoes_lotacoes"),
+            #custom_permissions_esocial_compatibilidades_categorias_classificacoes_lotacoes
+        )
         ordering = ['codigo', 'classificacao_tributaria']
 
 
@@ -1028,11 +1159,11 @@ class eSocialCompatibilidadesCategoriasClassificacoesLotacoesSerializer(ModelSer
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialCompatibilidadesFPASClassificacoesTributarias(SoftDeletionModel):
@@ -1056,19 +1187,24 @@ class eSocialCompatibilidadesFPASClassificacoesTributarias(SoftDeletionModel):
     classificacao_tributaria_80 = models.CharField(choices=SIM_NAO_TXT, max_length=1)
     classificacao_tributaria_85 = models.CharField(choices=SIM_NAO_TXT, max_length=1)
     classificacao_tributaria_99 = models.CharField(choices=SIM_NAO_TXT, max_length=1)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo)
     #esocial_compatibilidades_fpas_classificacoes_tributarias_custom#
+
     class Meta:
-        db_table = r'esocial_compatibilidades_fpas_classificacoes_tributarias'
+        db_table = r'esocial_compatibilidades_fpas_classificacoes_tributarias'       
         managed = True # esocial_compatibilidades_fpas_classificacoes_tributarias #
+        permissions = (
+            ("can_view_esocial_compatibilidades_fpas_classificacoes_tributarias", "Can view esocial_compatibilidades_fpas_classificacoes_tributarias"),
+            #custom_permissions_esocial_compatibilidades_fpas_classificacoes_tributarias
+        )
         ordering = ['codigo']
 
 
@@ -1079,11 +1215,11 @@ class eSocialCompatibilidadesFPASClassificacoesTributariasSerializer(ModelSerial
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialCompatibilidadesLotacoesClassificacoes(SoftDeletionModel):
@@ -1107,19 +1243,24 @@ class eSocialCompatibilidadesLotacoesClassificacoes(SoftDeletionModel):
     tipo_classificacao_tributaria_80 = models.CharField(choices=SIM_NAO_TXT, max_length=1)
     tipo_classificacao_tributaria_85 = models.CharField(choices=SIM_NAO_TXT, max_length=1)
     tipo_classificacao_tributaria_99 = models.CharField(choices=SIM_NAO_TXT, max_length=1)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo)
     #esocial_compatibilidades_lotacoes_classificacoes_custom#
+
     class Meta:
-        db_table = r'esocial_compatibilidades_lotacoes_classificacoes'
+        db_table = r'esocial_compatibilidades_lotacoes_classificacoes'       
         managed = True # esocial_compatibilidades_lotacoes_classificacoes #
+        permissions = (
+            ("can_view_esocial_compatibilidades_lotacoes_classificacoes", "Can view esocial_compatibilidades_lotacoes_classificacoes"),
+            #custom_permissions_esocial_compatibilidades_lotacoes_classificacoes
+        )
         ordering = ['codigo']
 
 
@@ -1130,29 +1271,34 @@ class eSocialCompatibilidadesLotacoesClassificacoesSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialDependentesTipos(SoftDeletionModel):
     codigo = models.CharField(max_length=2)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_dependentes_tipos_custom#
+
     class Meta:
-        db_table = r'esocial_dependentes_tipos'
+        db_table = r'esocial_dependentes_tipos'       
         managed = True # esocial_dependentes_tipos #
+        permissions = (
+            ("can_view_esocial_dependentes_tipos", "Can view esocial_dependentes_tipos"),
+            #custom_permissions_esocial_dependentes_tipos
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -1163,11 +1309,11 @@ class eSocialDependentesTiposSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialDesligamentosMotivos(SoftDeletionModel):
@@ -1175,19 +1321,24 @@ class eSocialDesligamentosMotivos(SoftDeletionModel):
     descricao = models.TextField()
     data_inicio = models.DateField()
     data_termino = models.DateField(blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao) + ' - ' + unicode(self.data_inicio) + ' - ' + unicode(self.data_termino)
     #esocial_desligamentos_motivos_custom#
+
     class Meta:
-        db_table = r'esocial_desligamentos_motivos'
+        db_table = r'esocial_desligamentos_motivos'       
         managed = True # esocial_desligamentos_motivos #
+        permissions = (
+            ("can_view_esocial_desligamentos_motivos", "Can view esocial_desligamentos_motivos"),
+            #custom_permissions_esocial_desligamentos_motivos
+        )
         ordering = ['codigo', 'descricao', 'data_inicio', 'data_termino']
 
 
@@ -1198,30 +1349,35 @@ class eSocialDesligamentosMotivosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialFatoresRisco(SoftDeletionModel):
     grupo = models.IntegerField(choices=GRUPOS_FATORES_RISCOS)
     codigo = models.CharField(max_length=9)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.grupo) + ' - ' + unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_fatores_risco_custom#
+
     class Meta:
-        db_table = r'esocial_fatores_risco'
+        db_table = r'esocial_fatores_risco'       
         managed = True # esocial_fatores_risco #
+        permissions = (
+            ("can_view_esocial_fatores_risco", "Can view esocial_fatores_risco"),
+            #custom_permissions_esocial_fatores_risco
+        )
         ordering = ['grupo', 'codigo', 'descricao']
 
 
@@ -1232,29 +1388,34 @@ class eSocialFatoresRiscoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialFinanciamentosAposentadoriasEspeciais(SoftDeletionModel):
     codigo = models.CharField(max_length=14)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_financiamentos_aposentadorias_especiais_custom#
+
     class Meta:
-        db_table = r'esocial_financiamentos_aposentadorias_especiais'
+        db_table = r'esocial_financiamentos_aposentadorias_especiais'       
         managed = True # esocial_financiamentos_aposentadorias_especiais #
+        permissions = (
+            ("can_view_esocial_financiamentos_aposentadorias_especiais", "Can view esocial_financiamentos_aposentadorias_especiais"),
+            #custom_permissions_esocial_financiamentos_aposentadorias_especiais
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -1265,29 +1426,34 @@ class eSocialFinanciamentosAposentadoriasEspeciaisSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialInscricoesTipos(SoftDeletionModel):
     codigo = models.CharField(max_length=14)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_inscricoes_tipos_custom#
+
     class Meta:
-        db_table = r'esocial_inscricoes_tipos'
+        db_table = r'esocial_inscricoes_tipos'       
         managed = True # esocial_inscricoes_tipos #
+        permissions = (
+            ("can_view_esocial_inscricoes_tipos", "Can view esocial_inscricoes_tipos"),
+            #custom_permissions_esocial_inscricoes_tipos
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -1298,29 +1464,34 @@ class eSocialInscricoesTiposSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialLogradourosTipos(SoftDeletionModel):
     codigo = models.CharField(max_length=5)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_logradouros_tipos_custom#
+
     class Meta:
-        db_table = r'esocial_logradouros_tipos'
+        db_table = r'esocial_logradouros_tipos'       
         managed = True # esocial_logradouros_tipos #
+        permissions = (
+            ("can_view_esocial_logradouros_tipos", "Can view esocial_logradouros_tipos"),
+            #custom_permissions_esocial_logradouros_tipos
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -1331,30 +1502,35 @@ class eSocialLogradourosTiposSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialLotacoesTributariasTipos(SoftDeletionModel):
     codigo = models.CharField(max_length=2)
     descricao = models.TextField()
     preenchimento_campo_nr_insc = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_lotacoes_tributarias_tipos_custom#
+
     class Meta:
-        db_table = r'esocial_lotacoes_tributarias_tipos'
+        db_table = r'esocial_lotacoes_tributarias_tipos'       
         managed = True # esocial_lotacoes_tributarias_tipos #
+        permissions = (
+            ("can_view_esocial_lotacoes_tributarias_tipos", "Can view esocial_lotacoes_tributarias_tipos"),
+            #custom_permissions_esocial_lotacoes_tributarias_tipos
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -1365,30 +1541,35 @@ class eSocialLotacoesTributariasTiposSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialNaturezasJuridicas(SoftDeletionModel):
     grupo = models.IntegerField(choices=GRUPO_NATUREZAS_JURIDICAS)
     codigo = models.CharField(max_length=20)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_naturezas_juridicas_custom#
+
     class Meta:
-        db_table = r'esocial_naturezas_juridicas'
+        db_table = r'esocial_naturezas_juridicas'       
         managed = True # esocial_naturezas_juridicas #
+        permissions = (
+            ("can_view_esocial_naturezas_juridicas", "Can view esocial_naturezas_juridicas"),
+            #custom_permissions_esocial_naturezas_juridicas
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -1399,29 +1580,34 @@ class eSocialNaturezasJuridicasSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialNaturezasLesoes(SoftDeletionModel):
     codigo = models.CharField(max_length=9)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_naturezas_lesoes_custom#
+
     class Meta:
-        db_table = r'esocial_naturezas_lesoes'
+        db_table = r'esocial_naturezas_lesoes'       
         managed = True # esocial_naturezas_lesoes #
+        permissions = (
+            ("can_view_esocial_naturezas_lesoes", "Can view esocial_naturezas_lesoes"),
+            #custom_permissions_esocial_naturezas_lesoes
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -1432,11 +1618,11 @@ class eSocialNaturezasLesoesSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialNaturezasRubricas(SoftDeletionModel):
@@ -1445,19 +1631,24 @@ class eSocialNaturezasRubricas(SoftDeletionModel):
     descricao = models.TextField()
     data_inicio = models.DateField()
     data_termino = models.DateField(blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.titulo)
     #esocial_naturezas_rubricas_custom#
+
     class Meta:
-        db_table = r'esocial_naturezas_rubricas'
+        db_table = r'esocial_naturezas_rubricas'       
         managed = True # esocial_naturezas_rubricas #
+        permissions = (
+            ("can_view_esocial_naturezas_rubricas", "Can view esocial_naturezas_rubricas"),
+            #custom_permissions_esocial_naturezas_rubricas
+        )
         ordering = ['codigo', 'titulo']
 
 
@@ -1468,11 +1659,11 @@ class eSocialNaturezasRubricasSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialPaises(SoftDeletionModel):
@@ -1480,19 +1671,24 @@ class eSocialPaises(SoftDeletionModel):
     nome = models.CharField(max_length=200)
     data_criacao = models.DateField(blank=True, null=True)
     data_extincao = models.DateField(blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.nome)
     #esocial_paises_custom#
+
     class Meta:
-        db_table = r'esocial_paises'
+        db_table = r'esocial_paises'       
         managed = True # esocial_paises #
+        permissions = (
+            ("can_view_esocial_paises", "Can view esocial_paises"),
+            #custom_permissions_esocial_paises
+        )
         ordering = ['codigo', 'nome']
 
 
@@ -1503,29 +1699,34 @@ class eSocialPaisesSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialPartesCorpoAtingidas(SoftDeletionModel):
     codigo = models.CharField(max_length=9)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_partes_corpo_atingidas_custom#
+
     class Meta:
-        db_table = r'esocial_partes_corpo_atingidas'
+        db_table = r'esocial_partes_corpo_atingidas'       
         managed = True # esocial_partes_corpo_atingidas #
+        permissions = (
+            ("can_view_esocial_partes_corpo_atingidas", "Can view esocial_partes_corpo_atingidas"),
+            #custom_permissions_esocial_partes_corpo_atingidas
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -1536,29 +1737,34 @@ class eSocialPartesCorpoAtingidasSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialProcedimentosDiagnosticos(SoftDeletionModel):
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_procedimentos_diagnosticos_custom#
+
     class Meta:
-        db_table = r'esocial_procedimentos_diagnosticos'
+        db_table = r'esocial_procedimentos_diagnosticos'       
         managed = True # esocial_procedimentos_diagnosticos #
+        permissions = (
+            ("can_view_esocial_procedimentos_diagnosticos", "Can view esocial_procedimentos_diagnosticos"),
+            #custom_permissions_esocial_procedimentos_diagnosticos
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -1569,29 +1775,34 @@ class eSocialProcedimentosDiagnosticosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialProgramasPlanosDocumentos(SoftDeletionModel):
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_programas_planos_documentos_custom#
+
     class Meta:
-        db_table = r'esocial_programas_planos_documentos'
+        db_table = r'esocial_programas_planos_documentos'       
         managed = True # esocial_programas_planos_documentos #
+        permissions = (
+            ("can_view_esocial_programas_planos_documentos", "Can view esocial_programas_planos_documentos"),
+            #custom_permissions_esocial_programas_planos_documentos
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -1602,30 +1813,35 @@ class eSocialProgramasPlanosDocumentosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialTrabalhadoresCategorias(SoftDeletionModel):
     grupo = models.IntegerField(choices=TRABALHADORES_CATEGORIAS_GRUPO)
     codigo = models.CharField(max_length=14)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.grupo) + ' - ' + unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_trabalhadores_categorias_custom#
+
     class Meta:
-        db_table = r'esocial_trabalhadores_categorias'
+        db_table = r'esocial_trabalhadores_categorias'       
         managed = True # esocial_trabalhadores_categorias #
+        permissions = (
+            ("can_view_esocial_trabalhadores_categorias", "Can view esocial_trabalhadores_categorias"),
+            #custom_permissions_esocial_trabalhadores_categorias
+        )
         ordering = ['grupo', 'codigo', 'descricao']
 
 
@@ -1636,29 +1852,34 @@ class eSocialTrabalhadoresCategoriasSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class eSocialTreinamentosCapacitacoesExerciciosSimulados(SoftDeletionModel):
     codigo = models.CharField(max_length=4)
     descricao = models.TextField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.codigo) + ' - ' + unicode(self.descricao)
     #esocial_treinamentos_capacitacoes_exercicios_simulados_custom#
+
     class Meta:
-        db_table = r'esocial_treinamentos_capacitacoes_exercicios_simulados'
+        db_table = r'esocial_treinamentos_capacitacoes_exercicios_simulados'       
         managed = True # esocial_treinamentos_capacitacoes_exercicios_simulados #
+        permissions = (
+            ("can_view_esocial_treinamentos_capacitacoes_exercicios_simulados", "Can view esocial_treinamentos_capacitacoes_exercicios_simulados"),
+            #custom_permissions_esocial_treinamentos_capacitacoes_exercicios_simulados
+        )
         ordering = ['codigo', 'descricao']
 
 
@@ -1669,11 +1890,11 @@ class eSocialTreinamentosCapacitacoesExerciciosSimuladosSerializer(ModelSerializ
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

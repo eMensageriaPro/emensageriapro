@@ -37,9 +37,10 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
 from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.fields import CurrentUserDefault
-from django.apps import apps
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
@@ -143,19 +144,24 @@ class s1200dmDev(SoftDeletionModel):
     def evento(self): return self.s1200_evtremun.evento()
     idedmdev = models.CharField(max_length=30)
     codcateg = models.TextField(max_length=3)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_evtremun) + ' - ' + unicode(self.idedmdev) + ' - ' + unicode(self.codcateg)
     #s1200_dmdev_custom#
+
     class Meta:
-        db_table = r's1200_dmdev'
+        db_table = r's1200_dmdev'       
         managed = True # s1200_dmdev #
+        permissions = (
+            ("can_view_s1200_dmdev", "Can view s1200_dmdev"),
+            #custom_permissions_s1200_dmdev
+        )
         ordering = ['s1200_evtremun', 'idedmdev', 'codcateg']
 
 
@@ -166,11 +172,11 @@ class s1200dmDevSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200infoComplem(SoftDeletionModel):
@@ -179,19 +185,24 @@ class s1200infoComplem(SoftDeletionModel):
     def evento(self): return self.s1200_evtremun.evento()
     nmtrab = models.CharField(max_length=70)
     dtnascto = models.DateField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_evtremun) + ' - ' + unicode(self.nmtrab) + ' - ' + unicode(self.dtnascto)
     #s1200_infocomplem_custom#
+
     class Meta:
-        db_table = r's1200_infocomplem'
+        db_table = r's1200_infocomplem'       
         managed = True # s1200_infocomplem #
+        permissions = (
+            ("can_view_s1200_infocomplem", "Can view s1200_infocomplem"),
+            #custom_permissions_s1200_infocomplem
+        )
         ordering = ['s1200_evtremun', 'nmtrab', 'dtnascto']
 
 
@@ -202,11 +213,11 @@ class s1200infoComplemSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200infoInterm(SoftDeletionModel):
@@ -214,19 +225,24 @@ class s1200infoInterm(SoftDeletionModel):
         related_name='%(class)s_s1200_evtremun')
     def evento(self): return self.s1200_evtremun.evento()
     qtddiasinterm = models.IntegerField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_evtremun) + ' - ' + unicode(self.qtddiasinterm)
     #s1200_infointerm_custom#
+
     class Meta:
-        db_table = r's1200_infointerm'
+        db_table = r's1200_infointerm'       
         managed = True # s1200_infointerm #
+        permissions = (
+            ("can_view_s1200_infointerm", "Can view s1200_infointerm"),
+            #custom_permissions_s1200_infointerm
+        )
         ordering = ['s1200_evtremun', 'qtddiasinterm']
 
 
@@ -237,11 +253,11 @@ class s1200infoIntermSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200infoMV(SoftDeletionModel):
@@ -249,19 +265,24 @@ class s1200infoMV(SoftDeletionModel):
         related_name='%(class)s_s1200_evtremun')
     def evento(self): return self.s1200_evtremun.evento()
     indmv = models.IntegerField(choices=CHOICES_S1200_INDMV)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_evtremun) + ' - ' + unicode(self.indmv)
     #s1200_infomv_custom#
+
     class Meta:
-        db_table = r's1200_infomv'
+        db_table = r's1200_infomv'       
         managed = True # s1200_infomv #
+        permissions = (
+            ("can_view_s1200_infomv", "Can view s1200_infomv"),
+            #custom_permissions_s1200_infomv
+        )
         ordering = ['s1200_evtremun', 'indmv']
 
 
@@ -272,11 +293,11 @@ class s1200infoMVSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200infoPerAntideADC(SoftDeletionModel):
@@ -289,19 +310,24 @@ class s1200infoPerAntideADC(SoftDeletionModel):
     dtefacconv = models.DateField(blank=True, null=True)
     dsc = models.CharField(max_length=255)
     remunsuc = models.CharField(choices=CHOICES_S1200_INFOPERANT_REMUNSUC, max_length=1)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_dmdev) + ' - ' + unicode(self.tpacconv) + ' - ' + unicode(self.dsc) + ' - ' + unicode(self.remunsuc)
     #s1200_infoperant_ideadc_custom#
+
     class Meta:
-        db_table = r's1200_infoperant_ideadc'
+        db_table = r's1200_infoperant_ideadc'       
         managed = True # s1200_infoperant_ideadc #
+        permissions = (
+            ("can_view_s1200_infoperant_ideadc", "Can view s1200_infoperant_ideadc"),
+            #custom_permissions_s1200_infoperant_ideadc
+        )
         ordering = ['s1200_dmdev', 'tpacconv', 'dsc', 'remunsuc']
 
 
@@ -312,11 +338,11 @@ class s1200infoPerAntideADCSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200infoPerAntideEstabLot(SoftDeletionModel):
@@ -326,19 +352,24 @@ class s1200infoPerAntideEstabLot(SoftDeletionModel):
     tpinsc = models.IntegerField(choices=CHOICES_S1200_INFOPERANT_TPINSC)
     nrinsc = models.CharField(max_length=15)
     codlotacao = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_infoperant_ideperiodo) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao)
     #s1200_infoperant_ideestablot_custom#
+
     class Meta:
-        db_table = r's1200_infoperant_ideestablot'
+        db_table = r's1200_infoperant_ideestablot'       
         managed = True # s1200_infoperant_ideestablot #
+        permissions = (
+            ("can_view_s1200_infoperant_ideestablot", "Can view s1200_infoperant_ideestablot"),
+            #custom_permissions_s1200_infoperant_ideestablot
+        )
         ordering = ['s1200_infoperant_ideperiodo', 'tpinsc', 'nrinsc', 'codlotacao']
 
 
@@ -349,11 +380,11 @@ class s1200infoPerAntideEstabLotSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200infoPerAntidePeriodo(SoftDeletionModel):
@@ -361,19 +392,24 @@ class s1200infoPerAntidePeriodo(SoftDeletionModel):
         related_name='%(class)s_s1200_infoperant_ideadc')
     def evento(self): return self.s1200_infoperant_ideadc.evento()
     perref = models.CharField(max_length=7)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_infoperant_ideadc) + ' - ' + unicode(self.perref)
     #s1200_infoperant_ideperiodo_custom#
+
     class Meta:
-        db_table = r's1200_infoperant_ideperiodo'
+        db_table = r's1200_infoperant_ideperiodo'       
         managed = True # s1200_infoperant_ideperiodo #
+        permissions = (
+            ("can_view_s1200_infoperant_ideperiodo", "Can view s1200_infoperant_ideperiodo"),
+            #custom_permissions_s1200_infoperant_ideperiodo
+        )
         ordering = ['s1200_infoperant_ideadc', 'perref']
 
 
@@ -384,11 +420,11 @@ class s1200infoPerAntidePeriodoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200infoPerAntinfoAgNocivo(SoftDeletionModel):
@@ -396,19 +432,24 @@ class s1200infoPerAntinfoAgNocivo(SoftDeletionModel):
         related_name='%(class)s_s1200_infoperant_remunperant')
     def evento(self): return self.s1200_infoperant_remunperant.evento()
     grauexp = models.IntegerField(choices=CHOICES_S1200_INFOPERANT_GRAUEXP)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_infoperant_remunperant) + ' - ' + unicode(self.grauexp)
     #s1200_infoperant_infoagnocivo_custom#
+
     class Meta:
-        db_table = r's1200_infoperant_infoagnocivo'
+        db_table = r's1200_infoperant_infoagnocivo'       
         managed = True # s1200_infoperant_infoagnocivo #
+        permissions = (
+            ("can_view_s1200_infoperant_infoagnocivo", "Can view s1200_infoperant_infoagnocivo"),
+            #custom_permissions_s1200_infoperant_infoagnocivo
+        )
         ordering = ['s1200_infoperant_remunperant', 'grauexp']
 
 
@@ -419,11 +460,11 @@ class s1200infoPerAntinfoAgNocivoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200infoPerAntinfoComplCont(SoftDeletionModel):
@@ -433,19 +474,24 @@ class s1200infoPerAntinfoComplCont(SoftDeletionModel):
     codcbo = models.CharField(max_length=6)
     natatividade = models.IntegerField(blank=True, null=True)
     qtddiastrab = models.IntegerField(blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_dmdev) + ' - ' + unicode(self.codcbo)
     #s1200_infoperant_infocomplcont_custom#
+
     class Meta:
-        db_table = r's1200_infoperant_infocomplcont'
+        db_table = r's1200_infoperant_infocomplcont'       
         managed = True # s1200_infoperant_infocomplcont #
+        permissions = (
+            ("can_view_s1200_infoperant_infocomplcont", "Can view s1200_infoperant_infocomplcont"),
+            #custom_permissions_s1200_infoperant_infocomplcont
+        )
         ordering = ['s1200_dmdev', 'codcbo']
 
 
@@ -456,11 +502,11 @@ class s1200infoPerAntinfoComplContSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200infoPerAntinfoTrabInterm(SoftDeletionModel):
@@ -468,19 +514,24 @@ class s1200infoPerAntinfoTrabInterm(SoftDeletionModel):
         related_name='%(class)s_s1200_infoperant_remunperant')
     def evento(self): return self.s1200_infoperant_remunperant.evento()
     codconv = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_infoperant_remunperant) + ' - ' + unicode(self.codconv)
     #s1200_infoperant_infotrabinterm_custom#
+
     class Meta:
-        db_table = r's1200_infoperant_infotrabinterm'
+        db_table = r's1200_infoperant_infotrabinterm'       
         managed = True # s1200_infoperant_infotrabinterm #
+        permissions = (
+            ("can_view_s1200_infoperant_infotrabinterm", "Can view s1200_infoperant_infotrabinterm"),
+            #custom_permissions_s1200_infoperant_infotrabinterm
+        )
         ordering = ['s1200_infoperant_remunperant', 'codconv']
 
 
@@ -491,11 +542,11 @@ class s1200infoPerAntinfoTrabIntermSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200infoPerAntitensRemun(SoftDeletionModel):
@@ -508,19 +559,24 @@ class s1200infoPerAntitensRemun(SoftDeletionModel):
     fatorrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=5, blank=True, null=True)
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_infoperant_remunperant) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1200_infoperant_itensremun_custom#
+
     class Meta:
-        db_table = r's1200_infoperant_itensremun'
+        db_table = r's1200_infoperant_itensremun'       
         managed = True # s1200_infoperant_itensremun #
+        permissions = (
+            ("can_view_s1200_infoperant_itensremun", "Can view s1200_infoperant_itensremun"),
+            #custom_permissions_s1200_infoperant_itensremun
+        )
         ordering = ['s1200_infoperant_remunperant', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
@@ -531,11 +587,11 @@ class s1200infoPerAntitensRemunSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200infoPerAntremunPerAnt(SoftDeletionModel):
@@ -544,19 +600,24 @@ class s1200infoPerAntremunPerAnt(SoftDeletionModel):
     def evento(self): return self.s1200_infoperant_ideestablot.evento()
     matricula = models.CharField(max_length=30, blank=True, null=True)
     indsimples = models.IntegerField(choices=CHOICES_S1200_INFOPERANT_INDSIMPLES, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_infoperant_ideestablot)
     #s1200_infoperant_remunperant_custom#
+
     class Meta:
-        db_table = r's1200_infoperant_remunperant'
+        db_table = r's1200_infoperant_remunperant'       
         managed = True # s1200_infoperant_remunperant #
+        permissions = (
+            ("can_view_s1200_infoperant_remunperant", "Can view s1200_infoperant_remunperant"),
+            #custom_permissions_s1200_infoperant_remunperant
+        )
         ordering = ['s1200_infoperant_ideestablot']
 
 
@@ -567,11 +628,11 @@ class s1200infoPerAntremunPerAntSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200infoPerApurdetOper(SoftDeletionModel):
@@ -581,19 +642,24 @@ class s1200infoPerApurdetOper(SoftDeletionModel):
     cnpjoper = models.CharField(max_length=14)
     regans = models.CharField(max_length=6)
     vrpgtit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_infoperapur_remunperapur) + ' - ' + unicode(self.cnpjoper) + ' - ' + unicode(self.regans) + ' - ' + unicode(self.vrpgtit)
     #s1200_infoperapur_detoper_custom#
+
     class Meta:
-        db_table = r's1200_infoperapur_detoper'
+        db_table = r's1200_infoperapur_detoper'       
         managed = True # s1200_infoperapur_detoper #
+        permissions = (
+            ("can_view_s1200_infoperapur_detoper", "Can view s1200_infoperapur_detoper"),
+            #custom_permissions_s1200_infoperapur_detoper
+        )
         ordering = ['s1200_infoperapur_remunperapur', 'cnpjoper', 'regans', 'vrpgtit']
 
 
@@ -604,11 +670,11 @@ class s1200infoPerApurdetOperSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200infoPerApurdetPlano(SoftDeletionModel):
@@ -620,19 +686,24 @@ class s1200infoPerApurdetPlano(SoftDeletionModel):
     nmdep = models.CharField(max_length=70)
     dtnascto = models.DateField()
     vlrpgdep = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_infoperapur_detoper) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.vlrpgdep)
     #s1200_infoperapur_detplano_custom#
+
     class Meta:
-        db_table = r's1200_infoperapur_detplano'
+        db_table = r's1200_infoperapur_detplano'       
         managed = True # s1200_infoperapur_detplano #
+        permissions = (
+            ("can_view_s1200_infoperapur_detplano", "Can view s1200_infoperapur_detplano"),
+            #custom_permissions_s1200_infoperapur_detplano
+        )
         ordering = ['s1200_infoperapur_detoper', 'tpdep', 'nmdep', 'dtnascto', 'vlrpgdep']
 
 
@@ -643,11 +714,11 @@ class s1200infoPerApurdetPlanoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200infoPerApurideEstabLot(SoftDeletionModel):
@@ -658,19 +729,24 @@ class s1200infoPerApurideEstabLot(SoftDeletionModel):
     nrinsc = models.CharField(max_length=15)
     codlotacao = models.CharField(max_length=30)
     qtddiasav = models.IntegerField(blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_dmdev) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao)
     #s1200_infoperapur_ideestablot_custom#
+
     class Meta:
-        db_table = r's1200_infoperapur_ideestablot'
+        db_table = r's1200_infoperapur_ideestablot'       
         managed = True # s1200_infoperapur_ideestablot #
+        permissions = (
+            ("can_view_s1200_infoperapur_ideestablot", "Can view s1200_infoperapur_ideestablot"),
+            #custom_permissions_s1200_infoperapur_ideestablot
+        )
         ordering = ['s1200_dmdev', 'tpinsc', 'nrinsc', 'codlotacao']
 
 
@@ -681,11 +757,11 @@ class s1200infoPerApurideEstabLotSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200infoPerApurinfoAgNocivo(SoftDeletionModel):
@@ -693,19 +769,24 @@ class s1200infoPerApurinfoAgNocivo(SoftDeletionModel):
         related_name='%(class)s_s1200_infoperapur_remunperapur')
     def evento(self): return self.s1200_infoperapur_remunperapur.evento()
     grauexp = models.IntegerField(choices=CHOICES_S1200_INFOPERAPUR_GRAUEXP)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_infoperapur_remunperapur) + ' - ' + unicode(self.grauexp)
     #s1200_infoperapur_infoagnocivo_custom#
+
     class Meta:
-        db_table = r's1200_infoperapur_infoagnocivo'
+        db_table = r's1200_infoperapur_infoagnocivo'       
         managed = True # s1200_infoperapur_infoagnocivo #
+        permissions = (
+            ("can_view_s1200_infoperapur_infoagnocivo", "Can view s1200_infoperapur_infoagnocivo"),
+            #custom_permissions_s1200_infoperapur_infoagnocivo
+        )
         ordering = ['s1200_infoperapur_remunperapur', 'grauexp']
 
 
@@ -716,11 +797,11 @@ class s1200infoPerApurinfoAgNocivoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200infoPerApurinfoTrabInterm(SoftDeletionModel):
@@ -728,19 +809,24 @@ class s1200infoPerApurinfoTrabInterm(SoftDeletionModel):
         related_name='%(class)s_s1200_infoperapur_remunperapur')
     def evento(self): return self.s1200_infoperapur_remunperapur.evento()
     codconv = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_infoperapur_remunperapur) + ' - ' + unicode(self.codconv)
     #s1200_infoperapur_infotrabinterm_custom#
+
     class Meta:
-        db_table = r's1200_infoperapur_infotrabinterm'
+        db_table = r's1200_infoperapur_infotrabinterm'       
         managed = True # s1200_infoperapur_infotrabinterm #
+        permissions = (
+            ("can_view_s1200_infoperapur_infotrabinterm", "Can view s1200_infoperapur_infotrabinterm"),
+            #custom_permissions_s1200_infoperapur_infotrabinterm
+        )
         ordering = ['s1200_infoperapur_remunperapur', 'codconv']
 
 
@@ -751,11 +837,11 @@ class s1200infoPerApurinfoTrabIntermSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200infoPerApuritensRemun(SoftDeletionModel):
@@ -768,19 +854,24 @@ class s1200infoPerApuritensRemun(SoftDeletionModel):
     fatorrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=5, blank=True, null=True)
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_infoperapur_remunperapur) + ' - ' + unicode(self.codrubr) + ' - ' + unicode(self.idetabrubr) + ' - ' + unicode(self.vrrubr)
     #s1200_infoperapur_itensremun_custom#
+
     class Meta:
-        db_table = r's1200_infoperapur_itensremun'
+        db_table = r's1200_infoperapur_itensremun'       
         managed = True # s1200_infoperapur_itensremun #
+        permissions = (
+            ("can_view_s1200_infoperapur_itensremun", "Can view s1200_infoperapur_itensremun"),
+            #custom_permissions_s1200_infoperapur_itensremun
+        )
         ordering = ['s1200_infoperapur_remunperapur', 'codrubr', 'idetabrubr', 'vrrubr']
 
 
@@ -791,11 +882,11 @@ class s1200infoPerApuritensRemunSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200infoPerApurremunPerApur(SoftDeletionModel):
@@ -804,19 +895,24 @@ class s1200infoPerApurremunPerApur(SoftDeletionModel):
     def evento(self): return self.s1200_infoperapur_ideestablot.evento()
     matricula = models.CharField(max_length=30, blank=True, null=True)
     indsimples = models.IntegerField(choices=CHOICES_S1200_INFOPERAPUR_INDSIMPLES, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_infoperapur_ideestablot)
     #s1200_infoperapur_remunperapur_custom#
+
     class Meta:
-        db_table = r's1200_infoperapur_remunperapur'
+        db_table = r's1200_infoperapur_remunperapur'       
         managed = True # s1200_infoperapur_remunperapur #
+        permissions = (
+            ("can_view_s1200_infoperapur_remunperapur", "Can view s1200_infoperapur_remunperapur"),
+            #custom_permissions_s1200_infoperapur_remunperapur
+        )
         ordering = ['s1200_infoperapur_ideestablot']
 
 
@@ -827,11 +923,11 @@ class s1200infoPerApurremunPerApurSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200procJudTrab(SoftDeletionModel):
@@ -841,19 +937,24 @@ class s1200procJudTrab(SoftDeletionModel):
     tptrib = models.IntegerField(choices=CHOICES_S1200_TPTRIB)
     nrprocjud = models.CharField(max_length=20)
     codsusp = models.IntegerField(blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_evtremun) + ' - ' + unicode(self.tptrib) + ' - ' + unicode(self.nrprocjud)
     #s1200_procjudtrab_custom#
+
     class Meta:
-        db_table = r's1200_procjudtrab'
+        db_table = r's1200_procjudtrab'       
         managed = True # s1200_procjudtrab #
+        permissions = (
+            ("can_view_s1200_procjudtrab", "Can view s1200_procjudtrab"),
+            #custom_permissions_s1200_procjudtrab
+        )
         ordering = ['s1200_evtremun', 'tptrib', 'nrprocjud']
 
 
@@ -864,11 +965,11 @@ class s1200procJudTrabSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200remunOutrEmpr(SoftDeletionModel):
@@ -879,19 +980,24 @@ class s1200remunOutrEmpr(SoftDeletionModel):
     nrinsc = models.CharField(max_length=15)
     codcateg = models.TextField(max_length=3)
     vlrremunoe = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_infomv) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.vlrremunoe)
     #s1200_remunoutrempr_custom#
+
     class Meta:
-        db_table = r's1200_remunoutrempr'
+        db_table = r's1200_remunoutrempr'       
         managed = True # s1200_remunoutrempr #
+        permissions = (
+            ("can_view_s1200_remunoutrempr", "Can view s1200_remunoutrempr"),
+            #custom_permissions_s1200_remunoutrempr
+        )
         ordering = ['s1200_infomv', 'tpinsc', 'nrinsc', 'codcateg', 'vlrremunoe']
 
 
@@ -902,11 +1008,11 @@ class s1200remunOutrEmprSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1200sucessaoVinc(SoftDeletionModel):
@@ -918,19 +1024,24 @@ class s1200sucessaoVinc(SoftDeletionModel):
     matricant = models.CharField(max_length=30, blank=True, null=True)
     dtadm = models.DateField()
     observacao = models.CharField(max_length=255, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1200_infocomplem) + ' - ' + unicode(self.tpinscant) + ' - ' + unicode(self.cnpjempregant) + ' - ' + unicode(self.dtadm)
     #s1200_sucessaovinc_custom#
+
     class Meta:
-        db_table = r's1200_sucessaovinc'
+        db_table = r's1200_sucessaovinc'       
         managed = True # s1200_sucessaovinc #
+        permissions = (
+            ("can_view_s1200_sucessaovinc", "Can view s1200_sucessaovinc"),
+            #custom_permissions_s1200_sucessaovinc
+        )
         ordering = ['s1200_infocomplem', 'tpinscant', 'cnpjempregant', 'dtadm']
 
 
@@ -941,11 +1052,11 @@ class s1200sucessaoVincSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

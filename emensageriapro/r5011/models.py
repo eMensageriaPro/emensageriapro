@@ -37,9 +37,10 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
 from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.fields import CurrentUserDefault
-from django.apps import apps
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
@@ -68,19 +69,24 @@ class r5011RCPRB(SoftDeletionModel):
     crcprb = models.IntegerField()
     vlrcrcprb = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrcrcprbsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r5011_infototalcontrib) + ' - ' + unicode(self.crcprb) + ' - ' + unicode(self.vlrcrcprb)
     #r5011_rcprb_custom#
+
     class Meta:
-        db_table = r'r5011_rcprb'
+        db_table = r'r5011_rcprb'       
         managed = True # r5011_rcprb #
+        permissions = (
+            ("can_view_r5011_rcprb", "Can view r5011_rcprb"),
+            #custom_permissions_r5011_rcprb
+        )
         ordering = ['r5011_infototalcontrib', 'crcprb', 'vlrcrcprb']
 
 
@@ -91,11 +97,11 @@ class r5011RCPRBSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r5011RComl(SoftDeletionModel):
@@ -105,19 +111,24 @@ class r5011RComl(SoftDeletionModel):
     crcoml = models.IntegerField()
     vlrcrcoml = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrcrcomlsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r5011_infototalcontrib) + ' - ' + unicode(self.crcoml) + ' - ' + unicode(self.vlrcrcoml)
     #r5011_rcoml_custom#
+
     class Meta:
-        db_table = r'r5011_rcoml'
+        db_table = r'r5011_rcoml'       
         managed = True # r5011_rcoml #
+        permissions = (
+            ("can_view_r5011_rcoml", "Can view r5011_rcoml"),
+            #custom_permissions_r5011_rcoml
+        )
         ordering = ['r5011_infototalcontrib', 'crcoml', 'vlrcrcoml']
 
 
@@ -128,11 +139,11 @@ class r5011RComlSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r5011RPrest(SoftDeletionModel):
@@ -146,19 +157,24 @@ class r5011RPrest(SoftDeletionModel):
     vlrtotalretadic = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vlrtotalnretprinc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vlrtotalnretadic = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r5011_infototalcontrib) + ' - ' + unicode(self.tpinsctomador) + ' - ' + unicode(self.nrinsctomador) + ' - ' + unicode(self.vlrtotalbaseret) + ' - ' + unicode(self.vlrtotalretprinc)
     #r5011_rprest_custom#
+
     class Meta:
-        db_table = r'r5011_rprest'
+        db_table = r'r5011_rprest'       
         managed = True # r5011_rprest #
+        permissions = (
+            ("can_view_r5011_rprest", "Can view r5011_rprest"),
+            #custom_permissions_r5011_rprest
+        )
         ordering = ['r5011_infototalcontrib', 'tpinsctomador', 'nrinsctomador', 'vlrtotalbaseret', 'vlrtotalretprinc']
 
 
@@ -169,11 +185,11 @@ class r5011RPrestSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r5011RRecRepAD(SoftDeletionModel):
@@ -185,19 +201,24 @@ class r5011RRecRepAD(SoftDeletionModel):
     crrecrepad = models.IntegerField()
     vlrcrrecrepad = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrcrrecrepadsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r5011_infototalcontrib) + ' - ' + unicode(self.cnpjassocdesp) + ' - ' + unicode(self.vlrtotalrep) + ' - ' + unicode(self.crrecrepad) + ' - ' + unicode(self.vlrcrrecrepad)
     #r5011_rrecrepad_custom#
+
     class Meta:
-        db_table = r'r5011_rrecrepad'
+        db_table = r'r5011_rrecrepad'       
         managed = True # r5011_rrecrepad #
+        permissions = (
+            ("can_view_r5011_rrecrepad", "Can view r5011_rrecrepad"),
+            #custom_permissions_r5011_rrecrepad
+        )
         ordering = ['r5011_infototalcontrib', 'cnpjassocdesp', 'vlrtotalrep', 'crrecrepad', 'vlrcrrecrepad']
 
 
@@ -208,11 +229,11 @@ class r5011RRecRepADSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r5011RTom(SoftDeletionModel):
@@ -222,19 +243,24 @@ class r5011RTom(SoftDeletionModel):
     cnpjprestador = models.CharField(max_length=14)
     cno = models.CharField(max_length=12, blank=True, null=True)
     vlrtotalbaseret = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r5011_infototalcontrib) + ' - ' + unicode(self.cnpjprestador) + ' - ' + unicode(self.vlrtotalbaseret)
     #r5011_rtom_custom#
+
     class Meta:
-        db_table = r'r5011_rtom'
+        db_table = r'r5011_rtom'       
         managed = True # r5011_rtom #
+        permissions = (
+            ("can_view_r5011_rtom", "Can view r5011_rtom"),
+            #custom_permissions_r5011_rtom
+        )
         ordering = ['r5011_infototalcontrib', 'cnpjprestador', 'vlrtotalbaseret']
 
 
@@ -245,11 +271,11 @@ class r5011RTomSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r5011infoCRTom(SoftDeletionModel):
@@ -259,19 +285,24 @@ class r5011infoCRTom(SoftDeletionModel):
     crtom = models.IntegerField()
     vlrcrtom = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
     vlrcrtomsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r5011_rtom) + ' - ' + unicode(self.crtom)
     #r5011_infocrtom_custom#
+
     class Meta:
-        db_table = r'r5011_infocrtom'
+        db_table = r'r5011_infocrtom'       
         managed = True # r5011_infocrtom #
+        permissions = (
+            ("can_view_r5011_infocrtom", "Can view r5011_infocrtom"),
+            #custom_permissions_r5011_infocrtom
+        )
         ordering = ['r5011_rtom', 'crtom']
 
 
@@ -282,11 +313,11 @@ class r5011infoCRTomSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r5011infoTotalContrib(SoftDeletionModel):
@@ -295,19 +326,24 @@ class r5011infoTotalContrib(SoftDeletionModel):
     def evento(self): return self.r5011_evttotalcontrib.evento()
     nrrecarqbase = models.CharField(max_length=52, blank=True, null=True)
     indexistinfo = models.IntegerField(choices=CHOICES_R5011_INDEXISTINFO)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r5011_evttotalcontrib) + ' - ' + unicode(self.indexistinfo)
     #r5011_infototalcontrib_custom#
+
     class Meta:
-        db_table = r'r5011_infototalcontrib'
+        db_table = r'r5011_infototalcontrib'       
         managed = True # r5011_infototalcontrib #
+        permissions = (
+            ("can_view_r5011_infototalcontrib", "Can view r5011_infototalcontrib"),
+            #custom_permissions_r5011_infototalcontrib
+        )
         ordering = ['r5011_evttotalcontrib', 'indexistinfo']
 
 
@@ -318,11 +354,11 @@ class r5011infoTotalContribSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r5011regOcorrs(SoftDeletionModel):
@@ -333,19 +369,24 @@ class r5011regOcorrs(SoftDeletionModel):
     localerroaviso = models.CharField(max_length=200)
     codresp = models.CharField(max_length=6)
     dscresp = models.CharField(max_length=999)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r5011_evttotalcontrib) + ' - ' + unicode(self.tpocorr) + ' - ' + unicode(self.localerroaviso) + ' - ' + unicode(self.codresp) + ' - ' + unicode(self.dscresp)
     #r5011_regocorrs_custom#
+
     class Meta:
-        db_table = r'r5011_regocorrs'
+        db_table = r'r5011_regocorrs'       
         managed = True # r5011_regocorrs #
+        permissions = (
+            ("can_view_r5011_regocorrs", "Can view r5011_regocorrs"),
+            #custom_permissions_r5011_regocorrs
+        )
         ordering = ['r5011_evttotalcontrib', 'tpocorr', 'localerroaviso', 'codresp', 'dscresp']
 
 
@@ -356,11 +397,11 @@ class r5011regOcorrsSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

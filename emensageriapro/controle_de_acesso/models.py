@@ -37,9 +37,10 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
 from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.fields import CurrentUserDefault
-from django.apps import apps
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
@@ -70,19 +71,24 @@ class Auditoria(SoftDeletionModel):
         related_name='%(class)s_operador', blank=True)
     data_hora = models.DateTimeField(blank=True)
     tipo = models.IntegerField(choices=AUDITORIA_TIPO, blank=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.tabela) + ' - ' + unicode(self.identidade) + ' - ' + unicode(self.data_hora) + ' - ' + unicode(self.tipo)
     #auditoria_custom#
+
     class Meta:
-        db_table = r'auditoria'
+        db_table = r'auditoria'       
         managed = True # auditoria #
+        permissions = (
+            ("can_view_auditoria", "Can view auditoria"),
+            #custom_permissions_auditoria
+        )
         ordering = ['identidade']
 
 
@@ -93,11 +99,11 @@ class AuditoriaSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class ConfigModulos(SoftDeletionModel):
@@ -106,19 +112,24 @@ class ConfigModulos(SoftDeletionModel):
     modulo_pai = models.ForeignKey('ConfigModulos',
         related_name='%(class)s_modulo_pai', blank=True, null=True)
     ordem = models.IntegerField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.titulo)
     #config_modulos_custom#
+
     class Meta:
-        db_table = r'config_modulos'
+        db_table = r'config_modulos'       
         managed = True # config_modulos #
+        permissions = (
+            ("can_view_config_modulos", "Can view config_modulos"),
+            #custom_permissions_config_modulos
+        )
         ordering = ['titulo']
 
 
@@ -129,11 +140,11 @@ class ConfigModulosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class ConfigPaginas(SoftDeletionModel):
@@ -144,19 +155,24 @@ class ConfigPaginas(SoftDeletionModel):
     exibe_menu = models.IntegerField(choices=SIM_NAO)
     tipo = models.IntegerField(choices=TIPOS_CONFIG_PAGINAS)
     ordem = models.IntegerField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.titulo)
     #config_paginas_custom#
+
     class Meta:
-        db_table = r'config_paginas'
+        db_table = r'config_paginas'       
         managed = True # config_paginas #
+        permissions = (
+            ("can_view_config_paginas", "Can view config_paginas"),
+            #custom_permissions_config_paginas
+        )
         ordering = ['titulo']
 
 
@@ -167,11 +183,11 @@ class ConfigPaginasSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class ConfigPerfis(SoftDeletionModel):
@@ -179,19 +195,24 @@ class ConfigPerfis(SoftDeletionModel):
     permissoes = models.TextField(blank=True, null=True)
     modulos_permitidos = models.TextField(blank=True, null=True)
     paginas_permitidas = models.TextField(blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.titulo)
     #config_perfis_custom#
+
     class Meta:
-        db_table = r'config_perfis'
+        db_table = r'config_perfis'       
         managed = True # config_perfis #
+        permissions = (
+            ("can_view_config_perfis", "Can view config_perfis"),
+            #custom_permissions_config_perfis
+        )
         ordering = ['titulo']
 
 
@@ -202,11 +223,11 @@ class ConfigPerfisSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class ConfigPermissoes(SoftDeletionModel):
@@ -219,19 +240,24 @@ class ConfigPermissoes(SoftDeletionModel):
     permite_editar = models.IntegerField(choices=SIM_NAO)
     permite_visualizar = models.IntegerField(choices=SIM_NAO)
     permite_apagar = models.IntegerField(choices=SIM_NAO)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.config_perfis) + ' - ' + unicode(self.config_paginas)
     #config_permissoes_custom#
+
     class Meta:
-        db_table = r'config_permissoes'
+        db_table = r'config_permissoes'       
         managed = True # config_permissoes #
+        permissions = (
+            ("can_view_config_permissoes", "Can view config_permissoes"),
+            #custom_permissions_config_permissoes
+        )
         ordering = ['config_perfis', 'config_paginas']
 
 
@@ -242,11 +268,11 @@ class ConfigPermissoesSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class Usuarios(SoftDeletionModel):
@@ -267,11 +293,11 @@ class Usuarios(SoftDeletionModel):
     """
     config_perfis = models.ForeignKey('ConfigPerfis',
         related_name='%(class)s_config_perfis')
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
@@ -289,9 +315,14 @@ class Usuarios(SoftDeletionModel):
     def email(self):
         return self.user.email
     #usuarios_custom#
+
     class Meta:
-        db_table = r'usuarios'
+        db_table = r'usuarios'       
         managed = True # usuarios #
+        permissions = (
+            ("can_view_usuarios", "Can view usuarios"),
+            #custom_permissions_usuarios
+        )
         #ordering = ['first_name', 'last_name']
 
 
@@ -302,11 +333,11 @@ class UsuariosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

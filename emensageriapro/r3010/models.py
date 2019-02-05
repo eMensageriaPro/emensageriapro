@@ -37,9 +37,10 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
 from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.fields import CurrentUserDefault
-from django.apps import apps
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
@@ -124,19 +125,24 @@ class r3010boletim(SoftDeletionModel):
     uf = models.CharField(choices=ESTADOS, max_length=2)
     qtdepagantes = models.IntegerField()
     qtdenaopagantes = models.IntegerField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r3010_evtespdesportivo) + ' - ' + unicode(self.nrboletim) + ' - ' + unicode(self.tpcompeticao) + ' - ' + unicode(self.categevento) + ' - ' + unicode(self.moddesportiva) + ' - ' + unicode(self.nomecompeticao) + ' - ' + unicode(self.cnpjmandante) + ' - ' + unicode(self.pracadesportiva) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.qtdepagantes) + ' - ' + unicode(self.qtdenaopagantes)
     #r3010_boletim_custom#
+
     class Meta:
-        db_table = r'r3010_boletim'
+        db_table = r'r3010_boletim'       
         managed = True # r3010_boletim #
+        permissions = (
+            ("can_view_r3010_boletim", "Can view r3010_boletim"),
+            #custom_permissions_r3010_boletim
+        )
         ordering = ['r3010_evtespdesportivo', 'nrboletim', 'tpcompeticao', 'categevento', 'moddesportiva', 'nomecompeticao', 'cnpjmandante', 'pracadesportiva', 'uf', 'qtdepagantes', 'qtdenaopagantes']
 
 
@@ -147,11 +153,11 @@ class r3010boletimSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r3010infoProc(SoftDeletionModel):
@@ -162,19 +168,24 @@ class r3010infoProc(SoftDeletionModel):
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField(blank=True, null=True)
     vlrcpsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r3010_evtespdesportivo) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.vlrcpsusp)
     #r3010_infoproc_custom#
+
     class Meta:
-        db_table = r'r3010_infoproc'
+        db_table = r'r3010_infoproc'       
         managed = True # r3010_infoproc #
+        permissions = (
+            ("can_view_r3010_infoproc", "Can view r3010_infoproc"),
+            #custom_permissions_r3010_infoproc
+        )
         ordering = ['r3010_evtespdesportivo', 'tpproc', 'nrproc', 'vlrcpsusp']
 
 
@@ -185,11 +196,11 @@ class r3010infoProcSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r3010outrasReceitas(SoftDeletionModel):
@@ -199,19 +210,24 @@ class r3010outrasReceitas(SoftDeletionModel):
     tpreceita = models.IntegerField(choices=CHOICES_R3010_TPRECEITA)
     vlrreceita = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     descreceita = models.CharField(max_length=20)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r3010_boletim) + ' - ' + unicode(self.tpreceita) + ' - ' + unicode(self.vlrreceita) + ' - ' + unicode(self.descreceita)
     #r3010_outrasreceitas_custom#
+
     class Meta:
-        db_table = r'r3010_outrasreceitas'
+        db_table = r'r3010_outrasreceitas'       
         managed = True # r3010_outrasreceitas #
+        permissions = (
+            ("can_view_r3010_outrasreceitas", "Can view r3010_outrasreceitas"),
+            #custom_permissions_r3010_outrasreceitas
+        )
         ordering = ['r3010_boletim', 'tpreceita', 'vlrreceita', 'descreceita']
 
 
@@ -222,11 +238,11 @@ class r3010outrasReceitasSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class r3010receitaIngressos(SoftDeletionModel):
@@ -240,19 +256,24 @@ class r3010receitaIngressos(SoftDeletionModel):
     qtdeingrdev = models.IntegerField()
     precoindiv = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
     vlrtotal = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.r3010_boletim) + ' - ' + unicode(self.tpingresso) + ' - ' + unicode(self.descingr) + ' - ' + unicode(self.qtdeingrvenda) + ' - ' + unicode(self.qtdeingrvendidos) + ' - ' + unicode(self.qtdeingrdev) + ' - ' + unicode(self.precoindiv) + ' - ' + unicode(self.vlrtotal)
     #r3010_receitaingressos_custom#
+
     class Meta:
-        db_table = r'r3010_receitaingressos'
+        db_table = r'r3010_receitaingressos'       
         managed = True # r3010_receitaingressos #
+        permissions = (
+            ("can_view_r3010_receitaingressos", "Can view r3010_receitaingressos"),
+            #custom_permissions_r3010_receitaingressos
+        )
         ordering = ['r3010_boletim', 'tpingresso', 'descingr', 'qtdeingrvenda', 'qtdeingrvendidos', 'qtdeingrdev', 'precoindiv', 'vlrtotal']
 
 
@@ -263,11 +284,11 @@ class r3010receitaIngressosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

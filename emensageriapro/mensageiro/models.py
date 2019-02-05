@@ -37,9 +37,10 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
 from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.fields import CurrentUserDefault
-from django.apps import apps
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
@@ -200,17 +201,22 @@ class Arquivos(SoftDeletionModel):
     arquivo = models.CharField(max_length=300)
     data_criacao = models.DateField()
     permite_recuperacao = models.IntegerField(choices=SIM_NAO)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     #arquivos_custom#
+
     class Meta:
-        db_table = r'arquivos'
+        db_table = r'arquivos'       
         managed = True # arquivos #
+        permissions = (
+            ("can_view_arquivos", "Can view arquivos"),
+            #custom_permissions_arquivos
+        )
 
 
 
@@ -220,11 +226,11 @@ class ArquivosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class ImportacaoArquivos(SoftDeletionModel):
@@ -238,19 +244,24 @@ class ImportacaoArquivos(SoftDeletionModel):
     quant_processado = models.IntegerField(blank=True, null=True)
     quant_importado = models.IntegerField(blank=True, null=True)
     quant_erros = models.IntegerField(blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.arquivo)
     #importacao_arquivos_custom#
+
     class Meta:
-        db_table = r'importacao_arquivos'
+        db_table = r'importacao_arquivos'       
         managed = True # importacao_arquivos #
+        permissions = (
+            ("can_view_importacao_arquivos", "Can view importacao_arquivos"),
+            #custom_permissions_importacao_arquivos
+        )
         ordering = ['arquivo']
 
 
@@ -261,11 +272,11 @@ class ImportacaoArquivosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class ImportacaoArquivosEventos(SoftDeletionModel):
@@ -279,19 +290,24 @@ class ImportacaoArquivosEventos(SoftDeletionModel):
     status = models.IntegerField(choices=IMPORTACAO_STATUS, blank=True, null=True)
     data_hora = models.DateTimeField(blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.importacao_arquivos) + ' - ' + unicode(self.arquivo) + ' - ' + unicode(self.evento) + ' - ' + unicode(self.versao) + ' - ' + unicode(self.identidade_evento) + ' - ' + unicode(self.identidade)
     #importacao_arquivos_eventos_custom#
+
     class Meta:
-        db_table = r'importacao_arquivos_eventos'
+        db_table = r'importacao_arquivos_eventos'       
         managed = True # importacao_arquivos_eventos #
+        permissions = (
+            ("can_view_importacao_arquivos_eventos", "Can view importacao_arquivos_eventos"),
+            #custom_permissions_importacao_arquivos_eventos
+        )
         ordering = ['importacao_arquivos', 'arquivo', 'evento', 'versao', 'identidade_evento', 'identidade']
 
 
@@ -302,11 +318,11 @@ class ImportacaoArquivosEventosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class RegrasDeValidacao(SoftDeletionModel):
@@ -326,19 +342,24 @@ class RegrasDeValidacao(SoftDeletionModel):
     valores_validos = models.TextField(blank=True, null=True)
     validacoes_precedencia = models.TextField(blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.evento) + ' - ' + unicode(self.versao) + ' - ' + unicode(self.numero) + ' - ' + unicode(self.registro_campo) + ' - ' + unicode(self.registro_pai)
     #regras_validacao_custom#
+
     class Meta:
-        db_table = r'regras_validacao'
+        db_table = r'regras_validacao'       
         managed = True # regras_validacao #
+        permissions = (
+            ("can_view_regras_validacao", "Can view regras_validacao"),
+            #custom_permissions_regras_validacao
+        )
 
 
 
@@ -348,28 +369,33 @@ class RegrasDeValidacaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class Relatorios(SoftDeletionModel):
     titulo = models.CharField(max_length=500)
     campos = models.CharField(max_length=500)
     sql = models.TextField(blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     #relatorios_custom#
+
     class Meta:
-        db_table = r'relatorios'
+        db_table = r'relatorios'       
         managed = True # relatorios #
+        permissions = (
+            ("can_view_relatorios", "Can view relatorios"),
+            #custom_permissions_relatorios
+        )
 
 
 
@@ -379,11 +405,11 @@ class RelatoriosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class RetornosEventos(SoftDeletionModel):
@@ -435,19 +461,24 @@ class RetornosEventos(SoftDeletionModel):
     tpjornada = models.IntegerField(choices=CHOICES_S2200_TPJORNADA, blank=True, null=True)
     dsctpjorn = models.CharField(max_length=100, blank=True, null=True)
     tmpparc = models.IntegerField(choices=CHOICES_S2200_TMPPARC, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.transmissor_lote_esocial) + ' - ' + unicode(self.identidade)
     #retornos_eventos_custom#
+
     class Meta:
-        db_table = r'retornos_eventos'
+        db_table = r'retornos_eventos'       
         managed = True # retornos_eventos #
+        permissions = (
+            ("can_view_retornos_eventos", "Can view retornos_eventos"),
+            #custom_permissions_retornos_eventos
+        )
         ordering = ['transmissor_lote_esocial', 'identidade']
 
 
@@ -458,11 +489,11 @@ class RetornosEventosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class RetornosEventosHorarios(SoftDeletionModel):
@@ -474,17 +505,22 @@ class RetornosEventosHorarios(SoftDeletionModel):
     hrsaida = models.CharField(max_length=50, blank=True, null=True)
     durjornada = models.IntegerField(blank=True, null=True)
     perhorflexivel = models.CharField(choices=CHOICES_S1050_INCLUSAO_PERHORFLEXIVEL, max_length=50, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     #retornos_eventos_horarios_custom#
+
     class Meta:
-        db_table = r'retornos_eventos_horarios'
+        db_table = r'retornos_eventos_horarios'       
         managed = True # retornos_eventos_horarios #
+        permissions = (
+            ("can_view_retornos_eventos_horarios", "Can view retornos_eventos_horarios"),
+            #custom_permissions_retornos_eventos_horarios
+        )
 
 
 
@@ -494,11 +530,11 @@ class RetornosEventosHorariosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class RetornosEventosIntervalos(SoftDeletionModel):
@@ -508,17 +544,22 @@ class RetornosEventosIntervalos(SoftDeletionModel):
     durinterv = models.IntegerField(blank=True, null=True)
     iniinterv = models.CharField(max_length=50, blank=True, null=True)
     terminterv = models.CharField(max_length=50, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     #retornos_eventos_intervalos_custom#
+
     class Meta:
-        db_table = r'retornos_eventos_intervalos'
+        db_table = r'retornos_eventos_intervalos'       
         managed = True # retornos_eventos_intervalos #
+        permissions = (
+            ("can_view_retornos_eventos_intervalos", "Can view retornos_eventos_intervalos"),
+            #custom_permissions_retornos_eventos_intervalos
+        )
 
 
 
@@ -528,11 +569,11 @@ class RetornosEventosIntervalosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class RetornosEventosOcorrencias(SoftDeletionModel):
@@ -542,17 +583,22 @@ class RetornosEventosOcorrencias(SoftDeletionModel):
     codigo = models.IntegerField(blank=True)
     descricao = models.TextField(blank=True)
     localizacao = models.TextField(max_length=30, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     #retornos_eventos_ocorrencias_custom#
+
     class Meta:
-        db_table = r'retornos_eventos_ocorrencias'
+        db_table = r'retornos_eventos_ocorrencias'       
         managed = True # retornos_eventos_ocorrencias #
+        permissions = (
+            ("can_view_retornos_eventos_ocorrencias", "Can view retornos_eventos_ocorrencias"),
+            #custom_permissions_retornos_eventos_ocorrencias
+        )
 
 
 
@@ -562,11 +608,11 @@ class RetornosEventosOcorrenciasSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class TransmissorLote(SoftDeletionModel):
@@ -599,19 +645,24 @@ class TransmissorLote(SoftDeletionModel):
     efdreinf_certificado = models.FileField(upload_to="efdreinf_certificado", blank=True, null=True)
     efdreinf_senha = models.CharField(max_length=20, blank=True, null=True)
     efdreinf_pasta = models.CharField(max_length=200, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.transmissor_nrinsc) + ' - ' + unicode(self.nome_empresa) + ' - ' + unicode(self.empregador_tpinsc) + ' - ' + unicode(self.contribuinte_tpinsc)
     #transmissores_custom#
+
     class Meta:
-        db_table = r'transmissores'
+        db_table = r'transmissores'       
         managed = True # transmissores #
+        permissions = (
+            ("can_view_transmissores", "Can view transmissores"),
+            #custom_permissions_transmissores
+        )
 
 
 
@@ -621,11 +672,11 @@ class TransmissorLoteSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class TransmissorLoteEfdreinf(SoftDeletionModel):
@@ -647,19 +698,24 @@ class TransmissorLoteEfdreinf(SoftDeletionModel):
     arquivo_header = models.CharField(max_length=200, blank=True, null=True)
     arquivo_request = models.CharField(max_length=200, blank=True, null=True)
     arquivo_response = models.CharField(max_length=200, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.transmissor) + ' - ' + unicode(self.contribuinte_tpinsc) + ' - ' + unicode(self.contribuinte_nrinsc) + ' - ' + unicode(self.identidade_transmissor) + ' - ' + unicode(self.codigo_status) + ' - ' + unicode(self.retorno_descricao)
     #transmissor_lote_efdreinf_custom#
+
     class Meta:
-        db_table = r'transmissor_lote_efdreinf'
+        db_table = r'transmissor_lote_efdreinf'       
         managed = True # transmissor_lote_efdreinf #
+        permissions = (
+            ("can_view_transmissor_lote_efdreinf", "Can view transmissor_lote_efdreinf"),
+            #custom_permissions_transmissor_lote_efdreinf
+        )
 
 
 
@@ -669,11 +725,11 @@ class TransmissorLoteEfdreinfSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class TransmissorLoteEfdreinfOcorrencias(SoftDeletionModel):
@@ -683,17 +739,22 @@ class TransmissorLoteEfdreinfOcorrencias(SoftDeletionModel):
     descricao = models.TextField(blank=True)
     tipo = models.IntegerField(choices=EVENTOS_OCORRENCIAS_TIPO_EFDREINF, blank=True)
     localizacao = models.CharField(max_length=50, blank=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     #transmissor_lote_efdreinf_ocorrencias_custom#
+
     class Meta:
-        db_table = r'transmissor_lote_efdreinf_ocorrencias'
+        db_table = r'transmissor_lote_efdreinf_ocorrencias'       
         managed = True # transmissor_lote_efdreinf_ocorrencias #
+        permissions = (
+            ("can_view_transmissor_lote_efdreinf_ocorrencias", "Can view transmissor_lote_efdreinf_ocorrencias"),
+            #custom_permissions_transmissor_lote_efdreinf_ocorrencias
+        )
 
 
 
@@ -703,11 +764,11 @@ class TransmissorLoteEfdreinfOcorrenciasSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class TransmissorLoteEsocial(SoftDeletionModel):
@@ -727,19 +788,24 @@ class TransmissorLoteEsocial(SoftDeletionModel):
     arquivo_header = models.CharField(max_length=200, blank=True, null=True)
     arquivo_request = models.CharField(max_length=200, blank=True, null=True)
     arquivo_response = models.CharField(max_length=200, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.transmissor) + ' - ' + unicode(self.empregador_tpinsc) + ' - ' + unicode(self.empregador_nrinsc) + ' - ' + unicode(self.resposta_codigo) + ' - ' + unicode(self.resposta_descricao)
     #transmissor_lote_esocial_custom#
+
     class Meta:
-        db_table = r'transmissor_lote_esocial'
+        db_table = r'transmissor_lote_esocial'       
         managed = True # transmissor_lote_esocial #
+        permissions = (
+            ("can_view_transmissor_lote_esocial", "Can view transmissor_lote_esocial"),
+            #custom_permissions_transmissor_lote_esocial
+        )
 
 
 
@@ -749,11 +815,11 @@ class TransmissorLoteEsocialSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class TransmissorLoteEsocialOcorrencias(SoftDeletionModel):
@@ -763,17 +829,22 @@ class TransmissorLoteEsocialOcorrencias(SoftDeletionModel):
     descricao = models.TextField(blank=True)
     tipo = models.IntegerField(choices=EVENTOS_OCORRENCIAS_TIPO, blank=True)
     localizacao = models.CharField(max_length=50, blank=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     #transmissor_lote_esocial_ocorrencias_custom#
+
     class Meta:
-        db_table = r'transmissor_lote_esocial_ocorrencias'
+        db_table = r'transmissor_lote_esocial_ocorrencias'       
         managed = True # transmissor_lote_esocial_ocorrencias #
+        permissions = (
+            ("can_view_transmissor_lote_esocial_ocorrencias", "Can view transmissor_lote_esocial_ocorrencias"),
+            #custom_permissions_transmissor_lote_esocial_ocorrencias
+        )
 
 
 
@@ -783,11 +854,11 @@ class TransmissorLoteEsocialOcorrenciasSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 TPINSC_TRANSMISSOR_EVENTOS = (

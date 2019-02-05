@@ -37,9 +37,10 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
 from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.fields import CurrentUserDefault
-from django.apps import apps
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
@@ -226,19 +227,24 @@ class s2240altExpRisco(SoftDeletionModel):
         related_name='%(class)s_s2240_evtexprisco')
     def evento(self): return self.s2240_evtexprisco.evento()
     dtaltcondicao = models.DateField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.dtaltcondicao)
     #s2240_altexprisco_custom#
+
     class Meta:
-        db_table = r's2240_altexprisco'
+        db_table = r's2240_altexprisco'       
         managed = True # s2240_altexprisco #
+        permissions = (
+            ("can_view_s2240_altexprisco", "Can view s2240_altexprisco"),
+            #custom_permissions_s2240_altexprisco
+        )
         ordering = ['s2240_evtexprisco', 'dtaltcondicao']
 
 
@@ -249,11 +255,11 @@ class s2240altExpRiscoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2240altExpRiscoepc(SoftDeletionModel):
@@ -262,19 +268,24 @@ class s2240altExpRiscoepc(SoftDeletionModel):
     def evento(self): return self.s2240_altexprisco_fatrisco.evento()
     dscepc = models.CharField(max_length=70)
     eficepc = models.CharField(choices=CHOICES_S2240_ALTEXPRISCO_EFICEPC, max_length=1, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_altexprisco_fatrisco) + ' - ' + unicode(self.dscepc)
     #s2240_altexprisco_epc_custom#
+
     class Meta:
-        db_table = r's2240_altexprisco_epc'
+        db_table = r's2240_altexprisco_epc'       
         managed = True # s2240_altexprisco_epc #
+        permissions = (
+            ("can_view_s2240_altexprisco_epc", "Can view s2240_altexprisco_epc"),
+            #custom_permissions_s2240_altexprisco_epc
+        )
         ordering = ['s2240_altexprisco_fatrisco', 'dscepc']
 
 
@@ -285,11 +296,11 @@ class s2240altExpRiscoepcSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2240altExpRiscoepi(SoftDeletionModel):
@@ -303,19 +314,24 @@ class s2240altExpRiscoepi(SoftDeletionModel):
     przvalid = models.CharField(choices=CHOICES_S2240_ALTEXPRISCO_PRZVALID, max_length=1)
     periodictroca = models.CharField(choices=CHOICES_S2240_ALTEXPRISCO_PERIODICTROCA, max_length=1)
     higienizacao = models.CharField(choices=CHOICES_S2240_ALTEXPRISCO_HIGIENIZACAO, max_length=1)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_altexprisco_fatrisco) + ' - ' + unicode(self.eficepi) + ' - ' + unicode(self.medprotecao) + ' - ' + unicode(self.condfuncto) + ' - ' + unicode(self.przvalid) + ' - ' + unicode(self.periodictroca) + ' - ' + unicode(self.higienizacao)
     #s2240_altexprisco_epi_custom#
+
     class Meta:
-        db_table = r's2240_altexprisco_epi'
+        db_table = r's2240_altexprisco_epi'       
         managed = True # s2240_altexprisco_epi #
+        permissions = (
+            ("can_view_s2240_altexprisco_epi", "Can view s2240_altexprisco_epi"),
+            #custom_permissions_s2240_altexprisco_epi
+        )
         ordering = ['s2240_altexprisco_fatrisco', 'eficepi', 'medprotecao', 'condfuncto', 'przvalid', 'periodictroca', 'higienizacao']
 
 
@@ -326,11 +342,11 @@ class s2240altExpRiscoepiSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2240altExpRiscofatRisco(SoftDeletionModel):
@@ -342,19 +358,24 @@ class s2240altExpRiscofatRisco(SoftDeletionModel):
     tecmedicao = models.CharField(max_length=40, blank=True, null=True)
     utilizepc = models.IntegerField(choices=CHOICES_S2240_ALTEXPRISCO_UTILIZEPC)
     utilizepi = models.IntegerField(choices=CHOICES_S2240_ALTEXPRISCO_UTILIZEPI)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_altexprisco_infoamb) + ' - ' + unicode(self.codfatris) + ' - ' + unicode(self.utilizepc) + ' - ' + unicode(self.utilizepi)
     #s2240_altexprisco_fatrisco_custom#
+
     class Meta:
-        db_table = r's2240_altexprisco_fatrisco'
+        db_table = r's2240_altexprisco_fatrisco'       
         managed = True # s2240_altexprisco_fatrisco #
+        permissions = (
+            ("can_view_s2240_altexprisco_fatrisco", "Can view s2240_altexprisco_fatrisco"),
+            #custom_permissions_s2240_altexprisco_fatrisco
+        )
         ordering = ['s2240_altexprisco_infoamb', 'codfatris', 'utilizepc', 'utilizepi']
 
 
@@ -365,11 +386,11 @@ class s2240altExpRiscofatRiscoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2240altExpRiscoinfoAmb(SoftDeletionModel):
@@ -378,19 +399,24 @@ class s2240altExpRiscoinfoAmb(SoftDeletionModel):
     def evento(self): return self.s2240_altexprisco.evento()
     codamb = models.CharField(max_length=30)
     dscativdes = models.CharField(max_length=999)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_altexprisco) + ' - ' + unicode(self.codamb) + ' - ' + unicode(self.dscativdes)
     #s2240_altexprisco_infoamb_custom#
+
     class Meta:
-        db_table = r's2240_altexprisco_infoamb'
+        db_table = r's2240_altexprisco_infoamb'       
         managed = True # s2240_altexprisco_infoamb #
+        permissions = (
+            ("can_view_s2240_altexprisco_infoamb", "Can view s2240_altexprisco_infoamb"),
+            #custom_permissions_s2240_altexprisco_infoamb
+        )
         ordering = ['s2240_altexprisco', 'codamb', 'dscativdes']
 
 
@@ -401,11 +427,11 @@ class s2240altExpRiscoinfoAmbSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2240fimExpRisco(SoftDeletionModel):
@@ -413,19 +439,24 @@ class s2240fimExpRisco(SoftDeletionModel):
         related_name='%(class)s_s2240_evtexprisco')
     def evento(self): return self.s2240_evtexprisco.evento()
     dtfimcondicao = models.DateField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.dtfimcondicao)
     #s2240_fimexprisco_custom#
+
     class Meta:
-        db_table = r's2240_fimexprisco'
+        db_table = r's2240_fimexprisco'       
         managed = True # s2240_fimexprisco #
+        permissions = (
+            ("can_view_s2240_fimexprisco", "Can view s2240_fimexprisco"),
+            #custom_permissions_s2240_fimexprisco
+        )
         ordering = ['s2240_evtexprisco', 'dtfimcondicao']
 
 
@@ -436,11 +467,11 @@ class s2240fimExpRiscoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2240fimExpRiscoinfoAmb(SoftDeletionModel):
@@ -448,19 +479,24 @@ class s2240fimExpRiscoinfoAmb(SoftDeletionModel):
         related_name='%(class)s_s2240_fimexprisco')
     def evento(self): return self.s2240_fimexprisco.evento()
     codamb = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_fimexprisco) + ' - ' + unicode(self.codamb)
     #s2240_fimexprisco_infoamb_custom#
+
     class Meta:
-        db_table = r's2240_fimexprisco_infoamb'
+        db_table = r's2240_fimexprisco_infoamb'       
         managed = True # s2240_fimexprisco_infoamb #
+        permissions = (
+            ("can_view_s2240_fimexprisco_infoamb", "Can view s2240_fimexprisco_infoamb"),
+            #custom_permissions_s2240_fimexprisco_infoamb
+        )
         ordering = ['s2240_fimexprisco', 'codamb']
 
 
@@ -471,11 +507,11 @@ class s2240fimExpRiscoinfoAmbSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2240fimExpRiscorespReg(SoftDeletionModel):
@@ -487,19 +523,24 @@ class s2240fimExpRiscorespReg(SoftDeletionModel):
     nisresp = models.CharField(max_length=11)
     nroc = models.CharField(max_length=14)
     ufoc = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.dtini) + ' - ' + unicode(self.nisresp) + ' - ' + unicode(self.nroc)
     #s2240_fimexprisco_respreg_custom#
+
     class Meta:
-        db_table = r's2240_fimexprisco_respreg'
+        db_table = r's2240_fimexprisco_respreg'       
         managed = True # s2240_fimexprisco_respreg #
+        permissions = (
+            ("can_view_s2240_fimexprisco_respreg", "Can view s2240_fimexprisco_respreg"),
+            #custom_permissions_s2240_fimexprisco_respreg
+        )
         ordering = ['s2240_evtexprisco', 'dtini', 'nisresp', 'nroc']
 
 
@@ -510,11 +551,11 @@ class s2240fimExpRiscorespRegSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2240iniExpRiscoativPericInsal(SoftDeletionModel):
@@ -522,19 +563,24 @@ class s2240iniExpRiscoativPericInsal(SoftDeletionModel):
         related_name='%(class)s_s2240_evtexprisco')
     def evento(self): return self.s2240_evtexprisco.evento()
     codativ = models.CharField(max_length=6)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.codativ)
     #s2240_iniexprisco_ativpericinsal_custom#
+
     class Meta:
-        db_table = r's2240_iniexprisco_ativpericinsal'
+        db_table = r's2240_iniexprisco_ativpericinsal'       
         managed = True # s2240_iniexprisco_ativpericinsal #
+        permissions = (
+            ("can_view_s2240_iniexprisco_ativpericinsal", "Can view s2240_iniexprisco_ativpericinsal"),
+            #custom_permissions_s2240_iniexprisco_ativpericinsal
+        )
         ordering = ['s2240_evtexprisco', 'codativ']
 
 
@@ -545,11 +591,11 @@ class s2240iniExpRiscoativPericInsalSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2240iniExpRiscoepc(SoftDeletionModel):
@@ -559,19 +605,24 @@ class s2240iniExpRiscoepc(SoftDeletionModel):
     codep = models.CharField(max_length=30)
     dscepc = models.CharField(max_length=70)
     eficepc = models.CharField(choices=CHOICES_S2240_INIEXPRISCO_EFICEPC, max_length=1, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_iniexprisco_fatrisco) + ' - ' + unicode(self.codep) + ' - ' + unicode(self.dscepc)
     #s2240_iniexprisco_epc_custom#
+
     class Meta:
-        db_table = r's2240_iniexprisco_epc'
+        db_table = r's2240_iniexprisco_epc'       
         managed = True # s2240_iniexprisco_epc #
+        permissions = (
+            ("can_view_s2240_iniexprisco_epc", "Can view s2240_iniexprisco_epc"),
+            #custom_permissions_s2240_iniexprisco_epc
+        )
         ordering = ['s2240_iniexprisco_fatrisco', 'codep', 'dscepc']
 
 
@@ -582,11 +633,11 @@ class s2240iniExpRiscoepcSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2240iniExpRiscoepi(SoftDeletionModel):
@@ -602,19 +653,24 @@ class s2240iniExpRiscoepi(SoftDeletionModel):
     przvalid = models.CharField(choices=CHOICES_S2240_INIEXPRISCO_PRZVALID, max_length=1)
     periodictroca = models.CharField(choices=CHOICES_S2240_INIEXPRISCO_PERIODICTROCA, max_length=1)
     higienizacao = models.CharField(choices=CHOICES_S2240_INIEXPRISCO_HIGIENIZACAO, max_length=1)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_iniexprisco_fatrisco) + ' - ' + unicode(self.eficepi) + ' - ' + unicode(self.medprotecao) + ' - ' + unicode(self.condfuncto) + ' - ' + unicode(self.usoinint) + ' - ' + unicode(self.przvalid) + ' - ' + unicode(self.periodictroca) + ' - ' + unicode(self.higienizacao)
     #s2240_iniexprisco_epi_custom#
+
     class Meta:
-        db_table = r's2240_iniexprisco_epi'
+        db_table = r's2240_iniexprisco_epi'       
         managed = True # s2240_iniexprisco_epi #
+        permissions = (
+            ("can_view_s2240_iniexprisco_epi", "Can view s2240_iniexprisco_epi"),
+            #custom_permissions_s2240_iniexprisco_epi
+        )
         ordering = ['s2240_iniexprisco_fatrisco', 'eficepi', 'medprotecao', 'condfuncto', 'usoinint', 'przvalid', 'periodictroca', 'higienizacao']
 
 
@@ -625,11 +681,11 @@ class s2240iniExpRiscoepiSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2240iniExpRiscofatRisco(SoftDeletionModel):
@@ -648,19 +704,24 @@ class s2240iniExpRiscofatRisco(SoftDeletionModel):
     utilizepc = models.IntegerField(choices=CHOICES_S2240_INIEXPRISCO_UTILIZEPC)
     eficepc = models.CharField(choices=CHOICES_S2240_INIEXPRISCO_EFICEPC, max_length=1, blank=True, null=True)
     utilizepi = models.IntegerField(choices=CHOICES_S2240_INIEXPRISCO_UTILIZEPI)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.codfatris) + ' - ' + unicode(self.tpaval) + ' - ' + unicode(self.utilizepc) + ' - ' + unicode(self.utilizepi)
     #s2240_iniexprisco_fatrisco_custom#
+
     class Meta:
-        db_table = r's2240_iniexprisco_fatrisco'
+        db_table = r's2240_iniexprisco_fatrisco'       
         managed = True # s2240_iniexprisco_fatrisco #
+        permissions = (
+            ("can_view_s2240_iniexprisco_fatrisco", "Can view s2240_iniexprisco_fatrisco"),
+            #custom_permissions_s2240_iniexprisco_fatrisco
+        )
         ordering = ['s2240_evtexprisco', 'codfatris', 'tpaval', 'utilizepc', 'utilizepi']
 
 
@@ -671,11 +732,11 @@ class s2240iniExpRiscofatRiscoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2240iniExpRiscoinfoAmb(SoftDeletionModel):
@@ -683,19 +744,24 @@ class s2240iniExpRiscoinfoAmb(SoftDeletionModel):
         related_name='%(class)s_s2240_evtexprisco')
     def evento(self): return self.s2240_evtexprisco.evento()
     codamb = models.CharField(max_length=30)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.codamb)
     #s2240_iniexprisco_infoamb_custom#
+
     class Meta:
-        db_table = r's2240_iniexprisco_infoamb'
+        db_table = r's2240_iniexprisco_infoamb'       
         managed = True # s2240_iniexprisco_infoamb #
+        permissions = (
+            ("can_view_s2240_iniexprisco_infoamb", "Can view s2240_iniexprisco_infoamb"),
+            #custom_permissions_s2240_iniexprisco_infoamb
+        )
         ordering = ['s2240_evtexprisco', 'codamb']
 
 
@@ -706,11 +772,11 @@ class s2240iniExpRiscoinfoAmbSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2240iniExpRiscoobs(SoftDeletionModel):
@@ -720,19 +786,24 @@ class s2240iniExpRiscoobs(SoftDeletionModel):
     meterg = models.CharField(max_length=999, blank=True, null=True)
     obscompl = models.CharField(max_length=999, blank=True, null=True)
     observacao = models.CharField(max_length=999, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_evtexprisco)
     #s2240_iniexprisco_obs_custom#
+
     class Meta:
-        db_table = r's2240_iniexprisco_obs'
+        db_table = r's2240_iniexprisco_obs'       
         managed = True # s2240_iniexprisco_obs #
+        permissions = (
+            ("can_view_s2240_iniexprisco_obs", "Can view s2240_iniexprisco_obs"),
+            #custom_permissions_s2240_iniexprisco_obs
+        )
         ordering = ['s2240_evtexprisco']
 
 
@@ -743,11 +814,11 @@ class s2240iniExpRiscoobsSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2240iniExpRiscorespReg(SoftDeletionModel):
@@ -761,19 +832,24 @@ class s2240iniExpRiscorespReg(SoftDeletionModel):
     dscoc = models.CharField(max_length=20, blank=True, null=True)
     nroc = models.CharField(max_length=14)
     ufoc = models.CharField(choices=ESTADOS, max_length=2)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2240_evtexprisco) + ' - ' + unicode(self.cpfresp) + ' - ' + unicode(self.nisresp) + ' - ' + unicode(self.nmresp) + ' - ' + unicode(self.ideoc) + ' - ' + unicode(self.nroc) + ' - ' + unicode(self.ufoc)
     #s2240_iniexprisco_respreg_custom#
+
     class Meta:
-        db_table = r's2240_iniexprisco_respreg'
+        db_table = r's2240_iniexprisco_respreg'       
         managed = True # s2240_iniexprisco_respreg #
+        permissions = (
+            ("can_view_s2240_iniexprisco_respreg", "Can view s2240_iniexprisco_respreg"),
+            #custom_permissions_s2240_iniexprisco_respreg
+        )
         ordering = ['s2240_evtexprisco', 'cpfresp', 'nisresp', 'nmresp', 'ideoc', 'nroc', 'ufoc']
 
 
@@ -784,11 +860,11 @@ class s2240iniExpRiscorespRegSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

@@ -37,9 +37,10 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
 from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.fields import CurrentUserDefault
-from django.apps import apps
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
@@ -220,19 +221,24 @@ class s1005alteracao(SoftDeletionModel):
     contapr = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_CONTAPR)
     nrprocjud = models.CharField(max_length=20, blank=True, null=True)
     contented = models.CharField(choices=CHOICES_S1005_ALTERACAO_CONTENTED, max_length=1, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_evttabestab) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.cnaeprep) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.regpt) + ' - ' + unicode(self.contapr)
     #s1005_alteracao_custom#
+
     class Meta:
-        db_table = r's1005_alteracao'
+        db_table = r's1005_alteracao'       
         managed = True # s1005_alteracao #
+        permissions = (
+            ("can_view_s1005_alteracao", "Can view s1005_alteracao"),
+            #custom_permissions_s1005_alteracao
+        )
         ordering = ['s1005_evttabestab', 'tpinsc', 'nrinsc', 'inivalid', 'cnaeprep', 'aliqrat', 'regpt', 'contapr']
 
 
@@ -243,11 +249,11 @@ class s1005alteracaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1005alteracaoinfoCaepf(SoftDeletionModel):
@@ -255,19 +261,24 @@ class s1005alteracaoinfoCaepf(SoftDeletionModel):
         related_name='%(class)s_s1005_alteracao')
     def evento(self): return self.s1005_alteracao.evento()
     tpcaepf = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_TPCAEPF)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_alteracao) + ' - ' + unicode(self.tpcaepf)
     #s1005_alteracao_infocaepf_custom#
+
     class Meta:
-        db_table = r's1005_alteracao_infocaepf'
+        db_table = r's1005_alteracao_infocaepf'       
         managed = True # s1005_alteracao_infocaepf #
+        permissions = (
+            ("can_view_s1005_alteracao_infocaepf", "Can view s1005_alteracao_infocaepf"),
+            #custom_permissions_s1005_alteracao_infocaepf
+        )
         ordering = ['s1005_alteracao', 'tpcaepf']
 
 
@@ -278,11 +289,11 @@ class s1005alteracaoinfoCaepfSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1005alteracaoinfoEntEduc(SoftDeletionModel):
@@ -290,19 +301,24 @@ class s1005alteracaoinfoEntEduc(SoftDeletionModel):
         related_name='%(class)s_s1005_alteracao')
     def evento(self): return self.s1005_alteracao.evento()
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_alteracao) + ' - ' + unicode(self.nrinsc)
     #s1005_alteracao_infoenteduc_custom#
+
     class Meta:
-        db_table = r's1005_alteracao_infoenteduc'
+        db_table = r's1005_alteracao_infoenteduc'       
         managed = True # s1005_alteracao_infoenteduc #
+        permissions = (
+            ("can_view_s1005_alteracao_infoenteduc", "Can view s1005_alteracao_infoenteduc"),
+            #custom_permissions_s1005_alteracao_infoenteduc
+        )
         ordering = ['s1005_alteracao', 'nrinsc']
 
 
@@ -313,11 +329,11 @@ class s1005alteracaoinfoEntEducSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1005alteracaoinfoObra(SoftDeletionModel):
@@ -325,19 +341,24 @@ class s1005alteracaoinfoObra(SoftDeletionModel):
         related_name='%(class)s_s1005_alteracao')
     def evento(self): return self.s1005_alteracao.evento()
     indsubstpatrobra = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_INDSUBSTPATROBRA)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_alteracao) + ' - ' + unicode(self.indsubstpatrobra)
     #s1005_alteracao_infoobra_custom#
+
     class Meta:
-        db_table = r's1005_alteracao_infoobra'
+        db_table = r's1005_alteracao_infoobra'       
         managed = True # s1005_alteracao_infoobra #
+        permissions = (
+            ("can_view_s1005_alteracao_infoobra", "Can view s1005_alteracao_infoobra"),
+            #custom_permissions_s1005_alteracao_infoobra
+        )
         ordering = ['s1005_alteracao', 'indsubstpatrobra']
 
 
@@ -348,11 +369,11 @@ class s1005alteracaoinfoObraSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1005alteracaoinfoPCD(SoftDeletionModel):
@@ -361,19 +382,24 @@ class s1005alteracaoinfoPCD(SoftDeletionModel):
     def evento(self): return self.s1005_alteracao.evento()
     contpcd = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_CONTPCD)
     nrprocjud = models.CharField(max_length=20, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_alteracao) + ' - ' + unicode(self.contpcd)
     #s1005_alteracao_infopcd_custom#
+
     class Meta:
-        db_table = r's1005_alteracao_infopcd'
+        db_table = r's1005_alteracao_infopcd'       
         managed = True # s1005_alteracao_infopcd #
+        permissions = (
+            ("can_view_s1005_alteracao_infopcd", "Can view s1005_alteracao_infopcd"),
+            #custom_permissions_s1005_alteracao_infopcd
+        )
         ordering = ['s1005_alteracao', 'contpcd']
 
 
@@ -384,11 +410,11 @@ class s1005alteracaoinfoPCDSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1005alteracaonovaValidade(SoftDeletionModel):
@@ -397,19 +423,24 @@ class s1005alteracaonovaValidade(SoftDeletionModel):
     def evento(self): return self.s1005_alteracao.evento()
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_alteracao) + ' - ' + unicode(self.inivalid)
     #s1005_alteracao_novavalidade_custom#
+
     class Meta:
-        db_table = r's1005_alteracao_novavalidade'
+        db_table = r's1005_alteracao_novavalidade'       
         managed = True # s1005_alteracao_novavalidade #
+        permissions = (
+            ("can_view_s1005_alteracao_novavalidade", "Can view s1005_alteracao_novavalidade"),
+            #custom_permissions_s1005_alteracao_novavalidade
+        )
         ordering = ['s1005_alteracao', 'inivalid']
 
 
@@ -420,11 +451,11 @@ class s1005alteracaonovaValidadeSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1005alteracaoprocAdmJudFap(SoftDeletionModel):
@@ -434,19 +465,24 @@ class s1005alteracaoprocAdmJudFap(SoftDeletionModel):
     tpproc = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_alteracao) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.codsusp)
     #s1005_alteracao_procadmjudfap_custom#
+
     class Meta:
-        db_table = r's1005_alteracao_procadmjudfap'
+        db_table = r's1005_alteracao_procadmjudfap'       
         managed = True # s1005_alteracao_procadmjudfap #
+        permissions = (
+            ("can_view_s1005_alteracao_procadmjudfap", "Can view s1005_alteracao_procadmjudfap"),
+            #custom_permissions_s1005_alteracao_procadmjudfap
+        )
         ordering = ['s1005_alteracao', 'tpproc', 'nrproc', 'codsusp']
 
 
@@ -457,11 +493,11 @@ class s1005alteracaoprocAdmJudFapSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1005alteracaoprocAdmJudRat(SoftDeletionModel):
@@ -471,19 +507,24 @@ class s1005alteracaoprocAdmJudRat(SoftDeletionModel):
     tpproc = models.IntegerField(choices=CHOICES_S1005_ALTERACAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_alteracao) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.codsusp)
     #s1005_alteracao_procadmjudrat_custom#
+
     class Meta:
-        db_table = r's1005_alteracao_procadmjudrat'
+        db_table = r's1005_alteracao_procadmjudrat'       
         managed = True # s1005_alteracao_procadmjudrat #
+        permissions = (
+            ("can_view_s1005_alteracao_procadmjudrat", "Can view s1005_alteracao_procadmjudrat"),
+            #custom_permissions_s1005_alteracao_procadmjudrat
+        )
         ordering = ['s1005_alteracao', 'tpproc', 'nrproc', 'codsusp']
 
 
@@ -494,11 +535,11 @@ class s1005alteracaoprocAdmJudRatSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1005exclusao(SoftDeletionModel):
@@ -509,19 +550,24 @@ class s1005exclusao(SoftDeletionModel):
     nrinsc = models.CharField(max_length=15)
     inivalid = models.CharField(choices=PERIODOS, max_length=7)
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_evttabestab) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.inivalid)
     #s1005_exclusao_custom#
+
     class Meta:
-        db_table = r's1005_exclusao'
+        db_table = r's1005_exclusao'       
         managed = True # s1005_exclusao #
+        permissions = (
+            ("can_view_s1005_exclusao", "Can view s1005_exclusao"),
+            #custom_permissions_s1005_exclusao
+        )
         ordering = ['s1005_evttabestab', 'tpinsc', 'nrinsc', 'inivalid']
 
 
@@ -532,11 +578,11 @@ class s1005exclusaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1005inclusao(SoftDeletionModel):
@@ -555,19 +601,24 @@ class s1005inclusao(SoftDeletionModel):
     contapr = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_CONTAPR)
     nrprocjud = models.CharField(max_length=20, blank=True, null=True)
     contented = models.CharField(choices=CHOICES_S1005_INCLUSAO_CONTENTED, max_length=1, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_evttabestab) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.cnaeprep) + ' - ' + unicode(self.aliqrat) + ' - ' + unicode(self.regpt) + ' - ' + unicode(self.contapr)
     #s1005_inclusao_custom#
+
     class Meta:
-        db_table = r's1005_inclusao'
+        db_table = r's1005_inclusao'       
         managed = True # s1005_inclusao #
+        permissions = (
+            ("can_view_s1005_inclusao", "Can view s1005_inclusao"),
+            #custom_permissions_s1005_inclusao
+        )
         ordering = ['s1005_evttabestab', 'tpinsc', 'nrinsc', 'inivalid', 'cnaeprep', 'aliqrat', 'regpt', 'contapr']
 
 
@@ -578,11 +629,11 @@ class s1005inclusaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1005inclusaoinfoCaepf(SoftDeletionModel):
@@ -590,19 +641,24 @@ class s1005inclusaoinfoCaepf(SoftDeletionModel):
         related_name='%(class)s_s1005_inclusao')
     def evento(self): return self.s1005_inclusao.evento()
     tpcaepf = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_TPCAEPF)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_inclusao) + ' - ' + unicode(self.tpcaepf)
     #s1005_inclusao_infocaepf_custom#
+
     class Meta:
-        db_table = r's1005_inclusao_infocaepf'
+        db_table = r's1005_inclusao_infocaepf'       
         managed = True # s1005_inclusao_infocaepf #
+        permissions = (
+            ("can_view_s1005_inclusao_infocaepf", "Can view s1005_inclusao_infocaepf"),
+            #custom_permissions_s1005_inclusao_infocaepf
+        )
         ordering = ['s1005_inclusao', 'tpcaepf']
 
 
@@ -613,11 +669,11 @@ class s1005inclusaoinfoCaepfSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1005inclusaoinfoEntEduc(SoftDeletionModel):
@@ -625,19 +681,24 @@ class s1005inclusaoinfoEntEduc(SoftDeletionModel):
         related_name='%(class)s_s1005_inclusao')
     def evento(self): return self.s1005_inclusao.evento()
     nrinsc = models.CharField(max_length=15)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_inclusao) + ' - ' + unicode(self.nrinsc)
     #s1005_inclusao_infoenteduc_custom#
+
     class Meta:
-        db_table = r's1005_inclusao_infoenteduc'
+        db_table = r's1005_inclusao_infoenteduc'       
         managed = True # s1005_inclusao_infoenteduc #
+        permissions = (
+            ("can_view_s1005_inclusao_infoenteduc", "Can view s1005_inclusao_infoenteduc"),
+            #custom_permissions_s1005_inclusao_infoenteduc
+        )
         ordering = ['s1005_inclusao', 'nrinsc']
 
 
@@ -648,11 +709,11 @@ class s1005inclusaoinfoEntEducSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1005inclusaoinfoObra(SoftDeletionModel):
@@ -660,19 +721,24 @@ class s1005inclusaoinfoObra(SoftDeletionModel):
         related_name='%(class)s_s1005_inclusao')
     def evento(self): return self.s1005_inclusao.evento()
     indsubstpatrobra = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_INDSUBSTPATROBRA)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_inclusao) + ' - ' + unicode(self.indsubstpatrobra)
     #s1005_inclusao_infoobra_custom#
+
     class Meta:
-        db_table = r's1005_inclusao_infoobra'
+        db_table = r's1005_inclusao_infoobra'       
         managed = True # s1005_inclusao_infoobra #
+        permissions = (
+            ("can_view_s1005_inclusao_infoobra", "Can view s1005_inclusao_infoobra"),
+            #custom_permissions_s1005_inclusao_infoobra
+        )
         ordering = ['s1005_inclusao', 'indsubstpatrobra']
 
 
@@ -683,11 +749,11 @@ class s1005inclusaoinfoObraSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1005inclusaoinfoPCD(SoftDeletionModel):
@@ -696,19 +762,24 @@ class s1005inclusaoinfoPCD(SoftDeletionModel):
     def evento(self): return self.s1005_inclusao.evento()
     contpcd = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_CONTPCD)
     nrprocjud = models.CharField(max_length=20, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_inclusao) + ' - ' + unicode(self.contpcd)
     #s1005_inclusao_infopcd_custom#
+
     class Meta:
-        db_table = r's1005_inclusao_infopcd'
+        db_table = r's1005_inclusao_infopcd'       
         managed = True # s1005_inclusao_infopcd #
+        permissions = (
+            ("can_view_s1005_inclusao_infopcd", "Can view s1005_inclusao_infopcd"),
+            #custom_permissions_s1005_inclusao_infopcd
+        )
         ordering = ['s1005_inclusao', 'contpcd']
 
 
@@ -719,11 +790,11 @@ class s1005inclusaoinfoPCDSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1005inclusaoprocAdmJudFap(SoftDeletionModel):
@@ -733,19 +804,24 @@ class s1005inclusaoprocAdmJudFap(SoftDeletionModel):
     tpproc = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_inclusao) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.codsusp)
     #s1005_inclusao_procadmjudfap_custom#
+
     class Meta:
-        db_table = r's1005_inclusao_procadmjudfap'
+        db_table = r's1005_inclusao_procadmjudfap'       
         managed = True # s1005_inclusao_procadmjudfap #
+        permissions = (
+            ("can_view_s1005_inclusao_procadmjudfap", "Can view s1005_inclusao_procadmjudfap"),
+            #custom_permissions_s1005_inclusao_procadmjudfap
+        )
         ordering = ['s1005_inclusao', 'tpproc', 'nrproc', 'codsusp']
 
 
@@ -756,11 +832,11 @@ class s1005inclusaoprocAdmJudFapSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1005inclusaoprocAdmJudRat(SoftDeletionModel):
@@ -770,19 +846,24 @@ class s1005inclusaoprocAdmJudRat(SoftDeletionModel):
     tpproc = models.IntegerField(choices=CHOICES_S1005_INCLUSAO_TPPROC)
     nrproc = models.CharField(max_length=21)
     codsusp = models.IntegerField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1005_inclusao) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.codsusp)
     #s1005_inclusao_procadmjudrat_custom#
+
     class Meta:
-        db_table = r's1005_inclusao_procadmjudrat'
+        db_table = r's1005_inclusao_procadmjudrat'       
         managed = True # s1005_inclusao_procadmjudrat #
+        permissions = (
+            ("can_view_s1005_inclusao_procadmjudrat", "Can view s1005_inclusao_procadmjudrat"),
+            #custom_permissions_s1005_inclusao_procadmjudrat
+        )
         ordering = ['s1005_inclusao', 'tpproc', 'nrproc', 'codsusp']
 
 
@@ -793,11 +874,11 @@ class s1005inclusaoprocAdmJudRatSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

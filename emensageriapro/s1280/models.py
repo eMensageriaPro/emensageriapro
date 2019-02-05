@@ -37,9 +37,10 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
 from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.fields import CurrentUserDefault
-from django.apps import apps
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
@@ -56,19 +57,24 @@ class s1280infoAtivConcom(SoftDeletionModel):
     def evento(self): return self.s1280_evtinfocomplper.evento()
     fatormes = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
     fator13 = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1280_evtinfocomplper) + ' - ' + unicode(self.fatormes) + ' - ' + unicode(self.fator13)
     #s1280_infoativconcom_custom#
+
     class Meta:
-        db_table = r's1280_infoativconcom'
+        db_table = r's1280_infoativconcom'       
         managed = True # s1280_infoativconcom #
+        permissions = (
+            ("can_view_s1280_infoativconcom", "Can view s1280_infoativconcom"),
+            #custom_permissions_s1280_infoativconcom
+        )
         ordering = ['s1280_evtinfocomplper', 'fatormes', 'fator13']
 
 
@@ -79,11 +85,11 @@ class s1280infoAtivConcomSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1280infoSubstPatr(SoftDeletionModel):
@@ -92,19 +98,24 @@ class s1280infoSubstPatr(SoftDeletionModel):
     def evento(self): return self.s1280_evtinfocomplper.evento()
     indsubstpatr = models.IntegerField(choices=CHOICES_S1280_INDSUBSTPATR)
     percredcontrib = models.DecimalField(max_digits=15, decimal_places=2, max_length=5)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1280_evtinfocomplper) + ' - ' + unicode(self.indsubstpatr) + ' - ' + unicode(self.percredcontrib)
     #s1280_infosubstpatr_custom#
+
     class Meta:
-        db_table = r's1280_infosubstpatr'
+        db_table = r's1280_infosubstpatr'       
         managed = True # s1280_infosubstpatr #
+        permissions = (
+            ("can_view_s1280_infosubstpatr", "Can view s1280_infosubstpatr"),
+            #custom_permissions_s1280_infosubstpatr
+        )
         ordering = ['s1280_evtinfocomplper', 'indsubstpatr', 'percredcontrib']
 
 
@@ -115,11 +126,11 @@ class s1280infoSubstPatrSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s1280infoSubstPatrOpPort(SoftDeletionModel):
@@ -127,19 +138,24 @@ class s1280infoSubstPatrOpPort(SoftDeletionModel):
         related_name='%(class)s_s1280_evtinfocomplper')
     def evento(self): return self.s1280_evtinfocomplper.evento()
     cnpjopportuario = models.CharField(max_length=14)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s1280_evtinfocomplper) + ' - ' + unicode(self.cnpjopportuario)
     #s1280_infosubstpatropport_custom#
+
     class Meta:
-        db_table = r's1280_infosubstpatropport'
+        db_table = r's1280_infosubstpatropport'       
         managed = True # s1280_infosubstpatropport #
+        permissions = (
+            ("can_view_s1280_infosubstpatropport", "Can view s1280_infosubstpatropport"),
+            #custom_permissions_s1280_infosubstpatropport
+        )
         ordering = ['s1280_evtinfocomplper', 'cnpjopportuario']
 
 
@@ -150,11 +166,11 @@ class s1280infoSubstPatrOpPortSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

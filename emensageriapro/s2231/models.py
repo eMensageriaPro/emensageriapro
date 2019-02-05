@@ -37,9 +37,10 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
 from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.fields import CurrentUserDefault
-from django.apps import apps
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
@@ -63,19 +64,24 @@ class s2231fimCessao(SoftDeletionModel):
         related_name='%(class)s_s2231_evtcessao')
     def evento(self): return self.s2231_evtcessao.evento()
     dttermcessao = models.DateField()
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2231_evtcessao) + ' - ' + unicode(self.dttermcessao)
     #s2231_fimcessao_custom#
+
     class Meta:
-        db_table = r's2231_fimcessao'
+        db_table = r's2231_fimcessao'       
         managed = True # s2231_fimcessao #
+        permissions = (
+            ("can_view_s2231_fimcessao", "Can view s2231_fimcessao"),
+            #custom_permissions_s2231_fimcessao
+        )
         ordering = ['s2231_evtcessao', 'dttermcessao']
 
 
@@ -86,11 +92,11 @@ class s2231fimCessaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s2231iniCessao(SoftDeletionModel):
@@ -102,19 +108,24 @@ class s2231iniCessao(SoftDeletionModel):
     infonus = models.IntegerField(choices=CHOICES_S2231_INFONUS)
     indcessao = models.IntegerField(choices=CHOICES_S2231_INDCESSAO)
     dscsituacao = models.CharField(max_length=255, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s2231_evtcessao) + ' - ' + unicode(self.dtinicessao) + ' - ' + unicode(self.cnpjcess) + ' - ' + unicode(self.infonus) + ' - ' + unicode(self.indcessao)
     #s2231_inicessao_custom#
+
     class Meta:
-        db_table = r's2231_inicessao'
+        db_table = r's2231_inicessao'       
         managed = True # s2231_inicessao #
+        permissions = (
+            ("can_view_s2231_inicessao", "Can view s2231_inicessao"),
+            #custom_permissions_s2231_inicessao
+        )
         ordering = ['s2231_evtcessao', 'dtinicessao', 'cnpjcess', 'infonus', 'indcessao']
 
 
@@ -125,11 +136,11 @@ class s2231iniCessaoSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

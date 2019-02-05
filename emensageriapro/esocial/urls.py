@@ -1,7 +1,6 @@
 #coding:utf-8
 #from django.conf.urls import patterns, include, url
 from django.conf.urls import include, url
-# from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from emensageriapro.esocial.views import s1000_evtinfoempregador as s1000_evtinfoempregador_views

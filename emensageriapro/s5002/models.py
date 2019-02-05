@@ -37,9 +37,10 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models import Count
 from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.fields import CurrentUserDefault
-from django.apps import apps
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
@@ -343,19 +344,24 @@ class s5002basesIrrf(SoftDeletionModel):
     def evento(self): return self.s5002_infoirrf.evento()
     tpvalor = models.IntegerField()
     valor = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5002_infoirrf) + ' - ' + unicode(self.tpvalor) + ' - ' + unicode(self.valor)
     #s5002_basesirrf_custom#
+
     class Meta:
-        db_table = r's5002_basesirrf'
+        db_table = r's5002_basesirrf'       
         managed = True # s5002_basesirrf #
+        permissions = (
+            ("can_view_s5002_basesirrf", "Can view s5002_basesirrf"),
+            #custom_permissions_s5002_basesirrf
+        )
         ordering = ['s5002_infoirrf', 'tpvalor', 'valor']
 
 
@@ -366,11 +372,11 @@ class s5002basesIrrfSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s5002idePgtoExt(SoftDeletionModel):
@@ -386,19 +392,24 @@ class s5002idePgtoExt(SoftDeletionModel):
     bairro = models.CharField(max_length=90, blank=True, null=True)
     nmcid = models.CharField(max_length=50)
     codpostal = models.CharField(max_length=12, blank=True, null=True)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5002_infoirrf) + ' - ' + unicode(self.codpais) + ' - ' + unicode(self.indnif) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nmcid)
     #s5002_idepgtoext_custom#
+
     class Meta:
-        db_table = r's5002_idepgtoext'
+        db_table = r's5002_idepgtoext'       
         managed = True # s5002_idepgtoext #
+        permissions = (
+            ("can_view_s5002_idepgtoext", "Can view s5002_idepgtoext"),
+            #custom_permissions_s5002_idepgtoext
+        )
         ordering = ['s5002_infoirrf', 'codpais', 'indnif', 'dsclograd', 'nmcid']
 
 
@@ -409,11 +420,11 @@ class s5002idePgtoExtSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s5002infoDep(SoftDeletionModel):
@@ -421,19 +432,24 @@ class s5002infoDep(SoftDeletionModel):
         related_name='%(class)s_s5002_evtirrfbenef')
     def evento(self): return self.s5002_evtirrfbenef.evento()
     vrdeddep = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5002_evtirrfbenef) + ' - ' + unicode(self.vrdeddep)
     #s5002_infodep_custom#
+
     class Meta:
-        db_table = r's5002_infodep'
+        db_table = r's5002_infodep'       
         managed = True # s5002_infodep #
+        permissions = (
+            ("can_view_s5002_infodep", "Can view s5002_infodep"),
+            #custom_permissions_s5002_infodep
+        )
         ordering = ['s5002_evtirrfbenef', 'vrdeddep']
 
 
@@ -444,11 +460,11 @@ class s5002infoDepSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s5002infoIrrf(SoftDeletionModel):
@@ -457,19 +473,24 @@ class s5002infoIrrf(SoftDeletionModel):
     def evento(self): return self.s5002_evtirrfbenef.evento()
     codcateg = models.TextField(max_length=3, blank=True, null=True)
     indresbr = models.CharField(choices=CHOICES_S5002_INDRESBR, max_length=1)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5002_evtirrfbenef) + ' - ' + unicode(self.indresbr)
     #s5002_infoirrf_custom#
+
     class Meta:
-        db_table = r's5002_infoirrf'
+        db_table = r's5002_infoirrf'       
         managed = True # s5002_infoirrf #
+        permissions = (
+            ("can_view_s5002_infoirrf", "Can view s5002_infoirrf"),
+            #custom_permissions_s5002_infoirrf
+        )
         ordering = ['s5002_evtirrfbenef', 'indresbr']
 
 
@@ -480,11 +501,11 @@ class s5002infoIrrfSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 class s5002irrf(SoftDeletionModel):
@@ -493,19 +514,24 @@ class s5002irrf(SoftDeletionModel):
     def evento(self): return self.s5002_infoirrf.evento()
     tpcr = models.IntegerField(choices=CHOICES_S5002_TPCR)
     vrirrfdesc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    criado_em = models.DateTimeField(auto_now_add=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(auto_now=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
         return unicode(self.s5002_infoirrf) + ' - ' + unicode(self.tpcr) + ' - ' + unicode(self.vrirrfdesc)
     #s5002_irrf_custom#
+
     class Meta:
-        db_table = r's5002_irrf'
+        db_table = r's5002_irrf'       
         managed = True # s5002_irrf #
+        permissions = (
+            ("can_view_s5002_irrf", "Can view s5002_irrf"),
+            #custom_permissions_s5002_irrf
+        )
         ordering = ['s5002_infoirrf', 'tpcr', 'vrirrfdesc']
 
 
@@ -516,11 +542,11 @@ class s5002irrfSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
-        if not criado_por:
-            criado_por = CurrentUserDefault()
-            criado_em = timezone.now()
-        modificado_por = CurrentUserDefault()
-        modificado_em = timezone.now()
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
             
 
 #VIEWS_MODELS

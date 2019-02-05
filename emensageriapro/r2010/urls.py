@@ -1,7 +1,6 @@
 #coding:utf-8
 #from django.conf.urls import patterns, include, url
 from django.conf.urls import include, url
-# from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from emensageriapro.r2010.views import r2010_infoprocretad as r2010_infoprocretad_views
