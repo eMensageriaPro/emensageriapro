@@ -153,21 +153,21 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_cpftrab': 1,
+            'show_cpftrab': 0,
             'show_evtcessao': 0,
             'show_ideempregador': 0,
             'show_ideevento': 0,
             'show_identidade': 1,
             'show_idevinculo': 0,
-            'show_indretif': 1,
-            'show_matricula': 1,
-            'show_nistrab': 1,
-            'show_nrinsc': 1,
+            'show_indretif': 0,
+            'show_matricula': 0,
+            'show_nistrab': 0,
+            'show_nrinsc': 0,
             'show_nrrecibo': 0,
-            'show_procemi': 1,
-            'show_tpamb': 1,
-            'show_tpinsc': 1,
-            'show_verproc': 1, }
+            'show_procemi': 0,
+            'show_tpamb': 0,
+            'show_tpinsc': 0,
+            'show_verproc': 0, }
         post = False
         if request.method == 'POST':
             post = True
