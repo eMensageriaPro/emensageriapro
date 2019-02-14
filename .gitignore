@@ -6,6 +6,7 @@
 certificados/*.pfx
 certificados/*.pem
 arquivos/
+arquivos_old/
 static/
 arquivos_backup/
 media/
