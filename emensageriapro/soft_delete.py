@@ -30,7 +30,7 @@ class SoftDeletionQuerySet(QuerySet):
             self.modificado_por_id = request.user.id
             self.modificado_em = timezone.now()
             self.excluido = None
-        return super(SoftDeletionQuerySet, self).save()
+        return super(SoftDeletionQuerySet, self).update()
 
     def hard_delete(self):
         return super(SoftDeletionQuerySet, self).delete()

@@ -14,7 +14,7 @@ from emensageriapro.s5013.views import s5013_infodpsperante as s5013_infodpspera
 
 """
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
     Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
     This program is free software: you can redistribute it and/or modify

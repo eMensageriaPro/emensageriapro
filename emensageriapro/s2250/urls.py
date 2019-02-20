@@ -10,7 +10,7 @@ from emensageriapro.s2250.views import s2250_detavprevio as s2250_detavprevio_vi
 
 """
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
     Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
     This program is free software: you can redistribute it and/or modify

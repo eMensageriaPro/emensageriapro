@@ -38,7 +38,7 @@ import datetime
 import os
 from django.contrib import messages
 from emensageriapro.settings import BASE_DIR
-from emensageriapro.mensageiro.functions.funcoes_status import atualizar_status_esocial
+#from emensageriapro.mensageiro.functions.funcoes_status import atualizar_status_esocial
 from emensageriapro.mensageiro.models import *
 
 REQUEST_ENVIA_LOTE = u"""
@@ -255,7 +255,10 @@ def send_xml(request, transmissor_id, service):
     data_atual = str(datetime.now()).replace(':','-').replace(' ','-').replace('.','-')
 
     import os
-    from emensageriapro.settings import FORCE_PRODUCAO_RESTRITA, TP_AMB, CA_CERT_PEM_FILE, CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE
+    from emensageriapro.settings import FORCE_PRODUCAO_RESTRITA, \
+        TP_AMB, CA_CERT_PEM_FILE, CERT_HOST, CERT_PASS, \
+        CERT_PEM_FILE, KEY_PEM_FILE
+
     CERT_HOST = BASE_DIR + '/' + CERT_HOST
 
     if TP_AMB == '1': # Produção
@@ -273,23 +276,13 @@ def send_xml(request, transmissor_id, service):
         elif service == 'WsConsultarLoteEventos':
             URL_WS = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_1_0/ServicoConsultarLoteEventos/ConsultarLoteEventos"
-    dados = {}
+
     name = get_transmissor_name(transmissor_id)
-    transmissor_dados = {}
 
     tle = TransmissorLoteEsocial.objects.using('default').\
                 get(id=transmissor_id)
 
-    # tra = executar_sql("""
-    #     SELECT te.empregador_tpinsc, te.empregador_nrinsc,
-    #                t.transmissor_tpinsc, t.transmissor_nrinsc,
-    #                t.esocial_lote_min, t.esocial_lote_max,
-    #                t.esocial_timeout, t.esocial_certificado, t.esocial_senha
-    #           FROM public.transmissor_lote_esocial te
-    #           JOIN public.transmissores t ON t.id = te.transmissor_id
-    #          WHERE te.id=%s;
-    # """ % transmissor_id, True)
-
+    transmissor_dados = {}
     transmissor_dados['empregador_tpinsc'] = tle.empregador_tpinsc
     transmissor_dados['empregador_nrinsc'] = tle.empregador_nrinsc
     transmissor_dados['transmissor_tpinsc'] = tle.transmissor.transmissor_tpinsc
@@ -297,8 +290,6 @@ def send_xml(request, transmissor_id, service):
     transmissor_dados['esocial_lote_min'] = tle.transmissor.esocial_lote_min
     transmissor_dados['esocial_lote_max'] = tle.transmissor.esocial_lote_max
     transmissor_dados['esocial_timeout'] = int(tle.transmissor.esocial_timeout)
-    # transmissor_dados['esocial_certificado'] = BASE_DIR + 'uploads/' + tle.transmissor.esocial_certificado
-    # transmissor_dados['esocial_senha'] = tle.transmissor.esocial_senha
 
     cert_pem_file = BASE_DIR + '/' + CERT_PEM_FILE
     key_pem_file = BASE_DIR + '/' + KEY_PEM_FILE
@@ -306,6 +297,7 @@ def send_xml(request, transmissor_id, service):
     if not os.path.isfile(cert_pem_file):
         create_pem_files(CERT_HOST, CERT_PASS, cert_pem_file, key_pem_file)
 
+    dados = {}
     dados['transmissor_id'] = transmissor_id
     dados['header'] = 'arquivos/Comunicacao/%s/header/%s_%s.xml' % (service, name, data_atual)
     dados['request'] = 'arquivos/Comunicacao/%s/request/%s_%s.xml' % (service, name, data_atual)
@@ -325,21 +317,11 @@ def send_xml(request, transmissor_id, service):
                                     filter(transmissor_lote_esocial_id=transmissor_id,
                                            status=4).count()
 
-    # qt_ev_validados = executar_sql("""
-    # SELECT count(*) FROM transmissor_eventos_esocial
-    #  WHERE transmissor_lote_esocial_id=%s AND status=4""" % transmissor_id, True)
-    # quant_eventos_validados = qt_ev_validados[0][0]
-
     if quant_eventos_validados or service == 'WsConsultarLoteEventos':
 
         quant_eventos = TransmissorEventosEsocial.objects.using('default'). \
                     filter(transmissor_lote_esocial_id=transmissor_id,
                            status=4).count()
-
-        # qt_ev = executar_sql("""
-        # SELECT count(*) FROM transmissor_eventos_esocial
-        #  WHERE transmissor_lote_esocial_id=%s""" % transmissor_id, True)
-        # quant_eventos = qt_ev[0][0]
 
         if (quant_eventos >= transmissor_dados['esocial_lote_min'] and \
                 quant_eventos <= transmissor_dados['esocial_lote_max'] and \
@@ -347,7 +329,7 @@ def send_xml(request, transmissor_id, service):
 
             create_request(dados, transmissor_dados)
 
-            command = '''curl --connect-timeout %(timeout)s
+            command = '''curl --connect-timeout %(timeout)s --insecure
                               --cert %(cert)s
                               --key %(key)s
                               --cacert %(cacert)s
@@ -365,20 +347,28 @@ def send_xml(request, transmissor_id, service):
             os.system(command)
 
             if not os.path.isfile(BASE_DIR + '/' + dados['response']):
+
                 messages.error(request, '''O servidor demorou mais que o esperado 
                                             para efetuar a conexão! Caso necessário solicite ao 
                                             administrador do sistema para que aumente o tempo do 
                                             Timeout. Timeout atual %(timeout)s''' % dados)
+
+                TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=2)
+
                 return None
 
             if service == 'WsEnviarLoteEventos':
+
                 from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_envioLoteEventos
                 read_envioLoteEventos(dados['response'], transmissor_id)
+                TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=1)
                 messages.success(request, 'Lote enviado com sucesso!')
 
             elif service == 'WsConsultarLoteEventos':
+
                 from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_consultaLoteEventos
                 messages.success(request, 'Lote consultado com sucesso!')
+                TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=3)
                 read_consultaLoteEventos(dados['response'], transmissor_id)
 
             gravar_nome_arquivo(dados['header'], 0)
@@ -388,41 +378,28 @@ def send_xml(request, transmissor_id, service):
             if 'HTTP/1.1 200 OK' not in ler_arquivo(dados['header']):
                 messages.warning(request, 'Retorno do servidor: ' + ler_arquivo(dados['header']) )
 
-            if service == 'WsEnviarLoteEventos':
-                TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=7)
-                # alterar_status_transmissor(transmissor_id, 7)
-
-            elif service == 'WsConsultarLoteEventos':
-                TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=9)
-                # alterar_status_transmissor(transmissor_id, 9)
 
         elif (quant_eventos < transmissor_dados['esocial_lote_min'] and \
                     service == 'WsEnviarLoteEventos'):
             messages.error(request, 'Lote com quantidade inferior a mínima permitida!')
-            TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=0)
-            #alterar_status_transmissor(transmissor_id, 0)
 
         elif (quant_eventos > transmissor_dados['esocial_lote_max'] and \
                   service == 'WsEnviarLoteEventos'):
             messages.error(request, 'Lote com quantidade de eventos superior a máxima permitida!')
-            TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=0)
-            #alterar_status_transmissor(transmissor_id, 0)
 
         else:
-            messages.error(request, 'Erro ao enviar o lote!')
 
             if service == 'WsEnviarLoteEventos':
-                TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=5)
-                # alterar_status_transmissor(transmissor_id, 5)
+                TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=2)
+                messages.error(request, 'Erro ao enviar o lote!')
 
             elif service == 'WsConsultarLoteEventos':
-                TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=8)
-                # alterar_status_transmissor(transmissor_id, 8)
+                TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).update(status=3)
+                messages.error(request, 'Erro ao consultar o lote!')
 
     else:
         messages.error(request, 'Não possuem eventos validados para envio neste lote!')
 
-    atualizar_status_esocial()
 
 
 

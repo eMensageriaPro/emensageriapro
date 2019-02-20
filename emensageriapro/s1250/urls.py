@@ -13,7 +13,7 @@ from emensageriapro.s1250.views import s1250_tpaquis as s1250_tpaquis_views
 
 """
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
     Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
     This program is free software: you can redistribute it and/or modify

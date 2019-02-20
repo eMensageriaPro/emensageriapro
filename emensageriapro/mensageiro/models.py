@@ -2,7 +2,7 @@
 
 """
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
     Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
     This program is free software: you can redistribute it and/or modify
@@ -191,10 +191,10 @@ TIPO_OCORRENCIA = (
 
 TRANSMISSOR_STATUS = (
     (0, u'Cadastrado'),
-    (5, u'Erro no envio'),
-    (7, u'Enviado'),
-    (8, u'Erro na consulta'),
-    (9, u'Consultado'),
+    (1, u'Enviado'),
+    (2, u'Erro no envio'),
+    (3, u'Consultado'),
+    (4, u'Erro na consulta'),
 )
 
 class Arquivos(SoftDeletionModel):

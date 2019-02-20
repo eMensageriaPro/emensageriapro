@@ -44,20 +44,24 @@ from emensageriapro.padrao import ler_arquivo, executar_sql
 
 
 def read_envioLoteEventos(arquivo, transmissor_lote_esocial_id):
+
+    from emensageriapro.mensageiro.models import TransmissorLoteEsocialOcorrencias, TransmissorLoteEsocial
     import untangle
+
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
     child = doc.Envelope.Body.EnviarLoteEventosResponse.EnviarLoteEventosResult.eSocial.retornoEnvioLoteEventos
+
     lote = {}
-    lote['transmissor_lote_esocial_id'] = transmissor_lote_esocial_id
-    lote['cdResposta'] = child.status.cdResposta.cdata
-    lote['descResposta'] = child.status.descResposta.cdata
-    print lote
-    executar_sql("""
-      DELETE FROM public.transmissor_lote_esocial_ocorrencias 
-            WHERE transmissor_lote_esocial_id=%s;""" % transmissor_lote_esocial_id, False)
+    lote['status'] = 1
+    lote['resposta_codigo'] = child.status.cdResposta.cdata
+    lote['resposta_descricao'] = child.status.descResposta.cdata
+
+    TransmissorLoteEsocialOcorrencias.objects.using('default').\
+        filter(transmissor_lote_esocial_id=transmissor_lote_esocial_id).delete()
+
     if '<ocorrencias>' in xml:
-        INSERT_OCORRENCIAS = ''
+
         for a in child.status.ocorrencias.ocorrencia:
             ocorrencias = {}
             ocorrencias['transmissor_lote_esocial_id'] = transmissor_lote_esocial_id
@@ -69,111 +73,195 @@ def read_envioLoteEventos(arquivo, transmissor_lote_esocial_id):
                 ocorrencias['localizacao'] = a.localizacao.cdata
             except:
                 ocorrencias['localizacao'] = ''
-            INSERT_OCORRENCIAS += """
-            INSERT INTO public.transmissor_lote_esocial_ocorrencias (
-                        resposta_codigo, descricao, tipo, localizacao, criado_em, 
-                        modificado_em, excluido, criado_por_id, modificado_por_id, transmissor_lote_esocial_id)
-                VALUES ('%(codigo)s', '%(descricao)s', '%(tipo)s', '%(localizacao)s', now(), 
-                        Null, False, 1, Null, %(transmissor_lote_esocial_id)s);
-            """ % ocorrencias
-        executar_sql(INSERT_OCORRENCIAS, False)
+
+            obj = TransmissorLoteEsocialOcorrencias(**ocorrencias)
+            obj.save(using='default')
+
     if '<dadosRecepcaoLote>' in xml:
-        lote['dhRecepcao'] = child.dadosRecepcaoLote.dhRecepcao.cdata
-        lote['versaoAplicativoRecepcao'] = child.dadosRecepcaoLote.versaoAplicativoRecepcao.cdata
-        lote['protocoloEnvio'] = child.dadosRecepcaoLote.protocoloEnvio.cdata
-        UPDATE = """
-            UPDATE public.transmissor_lote_esocial
-               SET resposta_codigo='%(cdResposta)s', 
-                   resposta_descricao='%(descResposta)s', 
-                   recepcao_data_hora='%(dhRecepcao)s', 
-                   recepcao_versao_aplicativo='%(versaoAplicativoRecepcao)s', 
-                   protocolo='%(protocoloEnvio)s', modificado_em=now(), modificado_por_id=1
-             WHERE id=%(transmissor_lote_esocial_id)s;
-        """ % lote
-    else:
-        UPDATE = """
-                UPDATE public.transmissor_lote_esocial
-                   SET resposta_codigo='%(cdResposta)s', 
-                       resposta_descricao='%(descResposta)s',
-                       modificado_em=now(), modificado_por_id=1
-                 WHERE id=%(transmissor_lote_esocial_id)s;
-                """ % lote
-        print UPDATE
-    executar_sql(UPDATE, False)
+        lote['recepcao_data_hora'] = child.dadosRecepcaoLote.dhRecepcao.cdata
+        lote['recepcao_versao_aplicativo'] = child.dadosRecepcaoLote.versaoAplicativoRecepcao.cdata
+        lote['protocolo'] = child.dadosRecepcaoLote.protocoloEnvio.cdata
+
+    TransmissorLoteEsocial.objects.using('default'). \
+        filter(id=transmissor_lote_esocial_id).update(**lote)
+
 
 
 def read_retornoEvento(doc, transmissor_lote_id):
+    from emensageriapro.mensageiro.models import TransmissorLoteEsocialOcorrencias, TransmissorLoteEsocial
+    
     import untangle
     retorno_evento_dados = {}
     retorno_evento_dados['transmissor_lote_esocial_id'] = transmissor_lote_id
     retorno_evento_dados['identidade'] = doc.eSocial.retornoEvento['Id']
     retornoEvento = doc.eSocial.retornoEvento
 
-    #retorno_evento_dados['perapur'] = retornoEvento.ideEvento.perApur.cdata or ''
     if 'tpInsc' in dir(retornoEvento.ideEmpregador):
         retorno_evento_dados['tpinsc'] = retornoEvento.ideEmpregador.tpInsc.cdata
+
     if 'nrInsc' in dir(retornoEvento.ideEmpregador):
         retorno_evento_dados['nrinsc'] = retornoEvento.ideEmpregador.nrInsc.cdata
+
     if 'recepcao' in dir(retornoEvento):
-        if 'tpAmb' in dir(retornoEvento.recepcao): retorno_evento_dados['recepcao_tp_amb'] = retornoEvento.recepcao.tpAmb.cdata
-        if 'dhRecepcao' in dir(retornoEvento.recepcao): retorno_evento_dados['recepcao_data_hora'] = retornoEvento.recepcao.dhRecepcao.cdata
-        if 'versaoAppRecepcao' in dir(retornoEvento.recepcao): retorno_evento_dados['recepcao_versao_app'] = retornoEvento.recepcao.versaoAppRecepcao.cdata
-        if 'protocoloEnvioLote' in dir(retornoEvento.recepcao): retorno_evento_dados['recepcao_protocolo_envio_lote'] = retornoEvento.recepcao.protocoloEnvioLote.cdata
+
+        if 'tpAmb' in dir(retornoEvento.recepcao):
+            retorno_evento_dados['recepcao_tp_amb'] = retornoEvento.recepcao.tpAmb.cdata
+
+        if 'dhRecepcao' in dir(retornoEvento.recepcao):
+            retorno_evento_dados['recepcao_data_hora'] = retornoEvento.recepcao.dhRecepcao.cdata
+
+        if 'versaoAppRecepcao' in dir(retornoEvento.recepcao):
+            retorno_evento_dados['recepcao_versao_app'] = retornoEvento.recepcao.versaoAppRecepcao.cdata
+
+        if 'protocoloEnvioLote' in dir(retornoEvento.recepcao):
+            retorno_evento_dados['recepcao_protocolo_envio_lote'] = retornoEvento.recepcao.protocoloEnvioLote.cdata
+
     if 'processamento' in dir(retornoEvento):
-        if 'cdResposta' in dir(retornoEvento.processamento): retorno_evento_dados['processamento_codigo_resposta'] = retornoEvento.processamento.cdResposta.cdata
-        if 'descResposta' in dir(retornoEvento.processamento): retorno_evento_dados['processamento_descricao_resposta'] = retornoEvento.processamento.descResposta.cdata
-        if 'versaoAppProcessamento' in dir(retornoEvento.processamento): retorno_evento_dados['processamento_versao_app_processamento'] = retornoEvento.processamento.versaoAppProcessamento.cdata
-        if 'dhProcessamento' in dir(retornoEvento.processamento): retorno_evento_dados['processamento_data_hora'] = retornoEvento.processamento.dhProcessamento.cdata
+
+        if 'cdResposta' in dir(retornoEvento.processamento):
+            retorno_evento_dados['processamento_codigo_resposta'] = retornoEvento.processamento.cdResposta.cdata
+
+        if 'descResposta' in dir(retornoEvento.processamento):
+            retorno_evento_dados['processamento_descricao_resposta'] = retornoEvento.processamento.descResposta.cdata
+
+        if 'versaoAppProcessamento' in dir(retornoEvento.processamento):
+            retorno_evento_dados['processamento_versao_app_processamento'] = retornoEvento.processamento.versaoAppProcessamento.cdata
+
+        if 'dhProcessamento' in dir(retornoEvento.processamento):
+            retorno_evento_dados['processamento_data_hora'] = retornoEvento.processamento.dhProcessamento.cdata
+
     if 'recibo' in dir(retornoEvento):
+
         if 'nrRecibo' in dir(retornoEvento.recibo): retorno_evento_dados['recibo_numero'] = retornoEvento.recibo.nrRecibo.cdata
+
         if 'hash' in dir(retornoEvento.recibo): retorno_evento_dados['recibo_hash'] = retornoEvento.recibo.hash.cdata
+
         if 'contrato' in dir(retornoEvento.recibo):
+
             if 'ideEmpregador' in dir(retornoEvento.recibo.contrato):
-                if 'tpInsc' in dir(retornoEvento.recibo.contrato.ideEmpregador): retorno_evento_dados['empregador_tpinsc'] = retornoEvento.recibo.contrato.ideEmpregador.tpInsc.cdata
-                if 'nrInsc' in dir(retornoEvento.recibo.contrato.ideEmpregador): retorno_evento_dados['empregador_nrinsc'] = retornoEvento.recibo.contrato.ideEmpregador.nrInsc.cdata
+
+                if 'tpInsc' in dir(retornoEvento.recibo.contrato.ideEmpregador):
+                    retorno_evento_dados['empregador_tpinsc'] = retornoEvento.recibo.contrato.ideEmpregador.tpInsc.cdata
+
+                if 'nrInsc' in dir(retornoEvento.recibo.contrato.ideEmpregador):
+                    retorno_evento_dados['empregador_nrinsc'] = retornoEvento.recibo.contrato.ideEmpregador.nrInsc.cdata
+
             if 'trabalhador' in dir(retornoEvento.recibo.contrato):
-                if 'cpfTrab' in dir(retornoEvento.recibo.contrato.trabalhador): retorno_evento_dados['cpftrab'] = retornoEvento.recibo.contrato.trabalhador.cpfTrab.cdata
-                if 'nisTrab' in dir(retornoEvento.recibo.contrato.trabalhador): retorno_evento_dados['nistrab'] = retornoEvento.recibo.contrato.trabalhador.nisTrab.cdata
-                if 'nmTrab' in dir(retornoEvento.recibo.contrato.trabalhador): retorno_evento_dados['nmtrab'] = retornoEvento.recibo.contrato.trabalhador.nmTrab.cdata
+
+                if 'cpfTrab' in dir(retornoEvento.recibo.contrato.trabalhador):
+                    retorno_evento_dados['cpftrab'] = retornoEvento.recibo.contrato.trabalhador.cpfTrab.cdata
+
+                if 'nisTrab' in dir(retornoEvento.recibo.contrato.trabalhador):
+                    retorno_evento_dados['nistrab'] = retornoEvento.recibo.contrato.trabalhador.nisTrab.cdata
+
+                if 'nmTrab' in dir(retornoEvento.recibo.contrato.trabalhador):
+                    retorno_evento_dados['nmtrab'] = retornoEvento.recibo.contrato.trabalhador.nmTrab.cdata
+
             if 'infoDeficiencia' in dir(retornoEvento.recibo.contrato):
-                if 'infoCota' in dir(retornoEvento.recibo.contrato.infoDeficiencia): retorno_evento_dados['infocota'] = retornoEvento.recibo.contrato.infoDeficiencia.infoCota.cdata
+
+                if 'infoCota' in dir(retornoEvento.recibo.contrato.infoDeficiencia):
+                    retorno_evento_dados['infocota'] = retornoEvento.recibo.contrato.infoDeficiencia.infoCota.cdata
+
             if 'vinculo' in dir(retornoEvento.recibo.contrato):
-                if 'matricula' in dir(retornoEvento.recibo.contrato.vinculo): retorno_evento_dados['matricula'] = retornoEvento.recibo.contrato.vinculo.matricula.cdata
+
+                if 'matricula' in dir(retornoEvento.recibo.contrato.vinculo):
+                    retorno_evento_dados['matricula'] = retornoEvento.recibo.contrato.vinculo.matricula.cdata
+
             if 'infoCeletista' in dir(retornoEvento.recibo.contrato):
-                if 'dtAdm' in dir(retornoEvento.recibo.contrato.infoCeletista): retorno_evento_dados['dtadm'] = retornoEvento.recibo.contrato.infoCeletista.dtAdm.cdata
-                if 'tpRegJor' in dir(retornoEvento.recibo.contrato.infoCeletista): retorno_evento_dados['tpregjor'] = retornoEvento.recibo.contrato.infoCeletista.tpRegJor.cdata
-                if 'dtBase' in dir(retornoEvento.recibo.contrato.infoCeletista): retorno_evento_dados['dtbase'] = retornoEvento.recibo.contrato.infoCeletista.dtBase.cdata
-                if 'cnpjSindCategProf' in dir(retornoEvento.recibo.contrato.infoCeletista): retorno_evento_dados['cnpjsindcategprof'] = retornoEvento.recibo.contrato.infoCeletista.cnpjSindCategProf.cdata
+
+                if 'dtAdm' in dir(retornoEvento.recibo.contrato.infoCeletista):
+                    retorno_evento_dados['dtadm'] = retornoEvento.recibo.contrato.infoCeletista.dtAdm.cdata
+
+                if 'tpRegJor' in dir(retornoEvento.recibo.contrato.infoCeletista):
+                    retorno_evento_dados['tpregjor'] = retornoEvento.recibo.contrato.infoCeletista.tpRegJor.cdata
+
+                if 'dtBase' in dir(retornoEvento.recibo.contrato.infoCeletista):
+                    retorno_evento_dados['dtbase'] = retornoEvento.recibo.contrato.infoCeletista.dtBase.cdata
+
+                if 'cnpjSindCategProf' in dir(retornoEvento.recibo.contrato.infoCeletista):
+                    retorno_evento_dados['cnpjsindcategprof'] = retornoEvento.recibo.contrato.infoCeletista.cnpjSindCategProf.cdata
+
             if 'infoEstatutario' in dir(retornoEvento.recibo.contrato):
-                if 'dtPosse' in dir(retornoEvento.recibo.contrato.infoEstatutario): retorno_evento_dados['dtposse'] = retornoEvento.recibo.contrato.infoEstatutario.dtPosse.cdata
-                if 'dtExercicio' in dir(retornoEvento.recibo.contrato.infoEstatutario): retorno_evento_dados['dtexercicio'] = retornoEvento.recibo.contrato.infoEstatutario.dtExercicio.cdata
+
+                if 'dtPosse' in dir(retornoEvento.recibo.contrato.infoEstatutario):
+                    retorno_evento_dados['dtposse'] = retornoEvento.recibo.contrato.infoEstatutario.dtPosse.cdata
+
+                if 'dtExercicio' in dir(retornoEvento.recibo.contrato.infoEstatutario):
+                    retorno_evento_dados['dtexercicio'] = retornoEvento.recibo.contrato.infoEstatutario.dtExercicio.cdata
+
             if 'infoContrato' in dir(retornoEvento.recibo.contrato):
+
                 if 'cargo' in dir(retornoEvento.recibo.contrato.infoContrato):
-                    if 'codCargo' in dir(retornoEvento.recibo.contrato.infoContrato.cargo): retorno_evento_dados['codcargo'] = retornoEvento.recibo.contrato.infoContrato.cargo.codCargo.cdata
-                    if 'nmCargo' in dir(retornoEvento.recibo.contrato.infoContrato.cargo): retorno_evento_dados['nmcargo'] = retornoEvento.recibo.contrato.infoContrato.cargo.nmCargo.cdata
-                    if 'codCBO' in dir(retornoEvento.recibo.contrato.infoContrato.cargo): retorno_evento_dados['codcbocargo'] = retornoEvento.recibo.contrato.infoContrato.cargo.codCBO.cdata
+
+                    if 'codCargo' in dir(retornoEvento.recibo.contrato.infoContrato.cargo):
+                        retorno_evento_dados['codcargo'] = retornoEvento.recibo.contrato.infoContrato.cargo.codCargo.cdata
+
+                    if 'nmCargo' in dir(retornoEvento.recibo.contrato.infoContrato.cargo):
+                        retorno_evento_dados['nmcargo'] = retornoEvento.recibo.contrato.infoContrato.cargo.nmCargo.cdata
+
+                    if 'codCBO' in dir(retornoEvento.recibo.contrato.infoContrato.cargo):
+                        retorno_evento_dados['codcbocargo'] = retornoEvento.recibo.contrato.infoContrato.cargo.codCBO.cdata
+
                 if 'funcao' in dir(retornoEvento.recibo.contrato.infoContrato):
-                    if 'codFuncao' in dir(retornoEvento.recibo.contrato.infoContrato.funcao): retorno_evento_dados['codfuncao'] = retornoEvento.recibo.contrato.infoContrato.funcao.codFuncao.cdata
-                    if 'nmFuncao' in dir(retornoEvento.recibo.contrato.infoContrato.funcao): retorno_evento_dados['nmfuncao'] = retornoEvento.recibo.contrato.infoContrato.funcao.nmFuncao.cdata
-                    if 'codCBO' in dir(retornoEvento.recibo.contrato.infoContrato.funcao): retorno_evento_dados['codcbofuncao'] = retornoEvento.recibo.contrato.infoContrato.funcao.codCBO.cdata
-                if 'codCateg' in dir(retornoEvento.recibo.contrato.infoContrato): retorno_evento_dados['codcateg'] = retornoEvento.recibo.contrato.infoContrato.codCateg.cdata
+
+                    if 'codFuncao' in dir(retornoEvento.recibo.contrato.infoContrato.funcao):
+                        retorno_evento_dados['codfuncao'] = retornoEvento.recibo.contrato.infoContrato.funcao.codFuncao.cdata
+
+                    if 'nmFuncao' in dir(retornoEvento.recibo.contrato.infoContrato.funcao):
+                        retorno_evento_dados['nmfuncao'] = retornoEvento.recibo.contrato.infoContrato.funcao.nmFuncao.cdata
+
+                    if 'codCBO' in dir(retornoEvento.recibo.contrato.infoContrato.funcao):
+                        retorno_evento_dados['codcbofuncao'] = retornoEvento.recibo.contrato.infoContrato.funcao.codCBO.cdata
+
+                if 'codCateg' in dir(retornoEvento.recibo.contrato.infoContrato):
+                    retorno_evento_dados['codcateg'] = retornoEvento.recibo.contrato.infoContrato.codCateg.cdata
+
             if 'remuneracao' in dir(retornoEvento.recibo.contrato):
-                if 'vrSalFx' in dir(retornoEvento.recibo.contrato.remuneracao): retorno_evento_dados['vrsalfx'] = retornoEvento.recibo.contrato.remuneracao.vrSalFx.cdata
-                if 'undSalFixo' in dir(retornoEvento.recibo.contrato.remuneracao): retorno_evento_dados['undsalfixo'] = retornoEvento.recibo.contrato.remuneracao.undSalFixo.cdata
-                if 'dscSalVar' in dir(retornoEvento.recibo.contrato.remuneracao): retorno_evento_dados['dscsalvar'] = retornoEvento.recibo.contrato.remuneracao.dscSalVar.cdata
+
+                if 'vrSalFx' in dir(retornoEvento.recibo.contrato.remuneracao):
+                    retorno_evento_dados['vrsalfx'] = retornoEvento.recibo.contrato.remuneracao.vrSalFx.cdata
+
+                if 'undSalFixo' in dir(retornoEvento.recibo.contrato.remuneracao):
+                    retorno_evento_dados['undsalfixo'] = retornoEvento.recibo.contrato.remuneracao.undSalFixo.cdata
+
+                if 'dscSalVar' in dir(retornoEvento.recibo.contrato.remuneracao):
+                    retorno_evento_dados['dscsalvar'] = retornoEvento.recibo.contrato.remuneracao.dscSalVar.cdata
+
             if 'duracao' in dir(retornoEvento.recibo.contrato):
-                if 'tpContr' in dir(retornoEvento.recibo.contrato.duracao): retorno_evento_dados['tpcontr'] = retornoEvento.recibo.contrato.duracao.tpContr.cdata
-                if 'dtTerm' in dir(retornoEvento.recibo.contrato.duracao): retorno_evento_dados['dtterm'] = retornoEvento.recibo.contrato.duracao.dtTerm.cdata
-                if 'clauAsseg' in dir(retornoEvento.recibo.contrato.duracao): retorno_evento_dados['clauasseg'] = retornoEvento.recibo.contrato.duracao.clauAsseg.cdata
+
+                if 'tpContr' in dir(retornoEvento.recibo.contrato.duracao):
+                    retorno_evento_dados['tpcontr'] = retornoEvento.recibo.contrato.duracao.tpContr.cdata
+
+                if 'dtTerm' in dir(retornoEvento.recibo.contrato.duracao):
+                    retorno_evento_dados['dtterm'] = retornoEvento.recibo.contrato.duracao.dtTerm.cdata
+
+                if 'clauAsseg' in dir(retornoEvento.recibo.contrato.duracao):
+                    retorno_evento_dados['clauasseg'] = retornoEvento.recibo.contrato.duracao.clauAsseg.cdata
+
             if 'localTrabGeral' in dir(retornoEvento.recibo.contrato):
-                if 'tpInsc' in dir(retornoEvento.recibo.contrato.localTrabGeral): retorno_evento_dados['local_tpinsc'] = retornoEvento.recibo.contrato.localTrabGeral.tpInsc.cdata
-                if 'nrInsc' in dir(retornoEvento.recibo.contrato.localTrabGeral): retorno_evento_dados['local_nrinsc'] = retornoEvento.recibo.contrato.localTrabGeral.nrInsc.cdata
-                if 'cnae' in dir(retornoEvento.recibo.contrato.localTrabGeral): retorno_evento_dados['local_cnae'] = retornoEvento.recibo.contrato.localTrabGeral.cnae.cdata
+
+                if 'tpInsc' in dir(retornoEvento.recibo.contrato.localTrabGeral):
+                    retorno_evento_dados['local_tpinsc'] = retornoEvento.recibo.contrato.localTrabGeral.tpInsc.cdata
+
+                if 'nrInsc' in dir(retornoEvento.recibo.contrato.localTrabGeral):
+                    retorno_evento_dados['local_nrinsc'] = retornoEvento.recibo.contrato.localTrabGeral.nrInsc.cdata
+
+                if 'cnae' in dir(retornoEvento.recibo.contrato.localTrabGeral):
+                    retorno_evento_dados['local_cnae'] = retornoEvento.recibo.contrato.localTrabGeral.cnae.cdata
+
             if 'horContratual' in dir(retornoEvento.recibo.contrato):
-                if 'qtdHrsSem' in dir(retornoEvento.recibo.contrato.localTrabGeral): retorno_evento_dados['qtdhrssem'] = retornoEvento.recibo.contrato.horContratual.qtdHrsSem.cdata
-                if 'tpJornada' in dir(retornoEvento.recibo.contrato.localTrabGeral): retorno_evento_dados['tpjornada'] = retornoEvento.recibo.contrato.horContratual.tpJornada.cdata
-                if 'dscTpJorn' in dir(retornoEvento.recibo.contrato.localTrabGeral): retorno_evento_dados['dsctpjorn'] = retornoEvento.recibo.contrato.horContratual.dscTpJorn.cdata
-                if 'tmpParc' in dir(retornoEvento.recibo.contrato.localTrabGeral): retorno_evento_dados['tmpparc'] = retornoEvento.recibo.contrato.horContratual.tmpParc.cdata
+
+                if 'qtdHrsSem' in dir(retornoEvento.recibo.contrato.localTrabGeral):
+                    retorno_evento_dados['qtdhrssem'] = retornoEvento.recibo.contrato.horContratual.qtdHrsSem.cdata
+
+                if 'tpJornada' in dir(retornoEvento.recibo.contrato.localTrabGeral):
+                    retorno_evento_dados['tpjornada'] = retornoEvento.recibo.contrato.horContratual.tpJornada.cdata
+
+                if 'dscTpJorn' in dir(retornoEvento.recibo.contrato.localTrabGeral):
+                    retorno_evento_dados['dsctpjorn'] = retornoEvento.recibo.contrato.horContratual.dscTpJorn.cdata
+
+                if 'tmpParc' in dir(retornoEvento.recibo.contrato.localTrabGeral):
+                    retorno_evento_dados['tmpparc'] = retornoEvento.recibo.contrato.horContratual.tmpParc.cdata
 
     insert = create_insert('retornos_eventos', retorno_evento_dados)
     for y in range(5): insert = insert.replace('\n', '').replace('  ', ' ')
@@ -181,9 +269,9 @@ def read_retornoEvento(doc, transmissor_lote_id):
     retorno_evento_id = resp[0][0]
     retorno_evento_dados['id'] = retorno_evento_id
 
-
     if 'processamento' in dir(retornoEvento):
         if 'ocorrencias' in dir(retornoEvento.processamento):
+
             for ocorrencia in (retornoEvento.processamento.ocorrencias.ocorrencia):
                 ocorrencias_dados = {}
                 ocorrencias_dados['retornos_eventos_id'] = retorno_evento_id
@@ -234,80 +322,81 @@ def read_retornoEvento(doc, transmissor_lote_id):
 
 
 def read_consultaLoteEventos(arquivo, transmissor_lote_esocial_id):
+    from emensageriapro.mensageiro.models import TransmissorLoteEsocial
+
     import untangle
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
     child = doc.Envelope.Body.ConsultarLoteEventosResponse.ConsultarLoteEventosResult.eSocial.retornoProcessamentoLoteEventos
+
     lote = {}
-    lote['transmissor_lote_esocial_id'] = transmissor_lote_esocial_id
-    lote['status'] = 9
     lote['resposta_codigo'] = child.status.cdResposta.cdata
     lote['resposta_descricao'] = child.status.descResposta.cdata
+
     if '<tempoEstimadoConclusao>' in xml:
+
         lote['tempo_estimado_conclusao'] = child.status.tempoEstimadoConclusao.cdata
+
     else:
-        lote['tempo_estimado_conclusao'] = '-'
+
+        lote['tempo_estimado_conclusao'] = None
 
     if '<dadosRecepcaoLote>' in xml:
+
         lote['recepcao_data_hora'] = child.dadosRecepcaoLote.dhRecepcao.cdata
         lote['recepcao_versao_aplicativo'] = child.dadosRecepcaoLote.versaoAplicativoRecepcao.cdata
         lote['protocolo'] = child.dadosRecepcaoLote.protocoloEnvio.cdata
+        lote['status'] = 3
+
     else:
-        lote['recepcao_data_hora'] = '-'
-        lote['recepcao_versao_aplicativo'] = '-'
-        lote['protocolo'] = '-'
+
+        lote['recepcao_data_hora'] = None
+        lote['recepcao_versao_aplicativo'] = None
+        lote['protocolo'] = None
 
     if '<versaoAplicativoProcessamentoLote>' in xml:
         lote['processamento_versao_aplicativo'] = child.dadosProcessamentoLote.versaoAplicativoProcessamentoLote.cdata
     else:
-        lote['processamento_versao_aplicativo'] = '-'
+        lote['processamento_versao_aplicativo'] = None
 
-    UPDATE = """
-        UPDATE public.transmissor_lote_esocial
-           SET status=%(status)s, 
-               resposta_codigo='%(resposta_codigo)s', resposta_descricao='%(resposta_descricao)s', 
-               recepcao_data_hora='%(recepcao_data_hora)s', 
-               recepcao_versao_aplicativo='%(recepcao_versao_aplicativo)s', protocolo='%(protocolo)s', 
-               processamento_versao_aplicativo='%(processamento_versao_aplicativo)s', 
-               tempo_estimado_conclusao='%(tempo_estimado_conclusao)s', modificado_em=now(), 
-               modificado_por_id=1
-         WHERE id=%(transmissor_lote_esocial_id)s;
-            """ % lote
-    executar_sql(UPDATE.replace("'-'", "Null"), False)
+    TransmissorLoteEsocial.objects.using('default').\
+        filter(id=transmissor_lote_esocial_id).update(**lote)
+
     if '<retornoEventos>' in xml:
 
         for evento in child.retornoEventos.evento:
 
             if 'retornoEvento' in dir(evento):
                 dados = read_retornoEvento(evento.retornoEvento, transmissor_lote_esocial_id)
+
                 a = executar_sql("""
                 SELECT tabela, id
                       FROM public.transmissor_eventos_esocial 
                       WHERE identidade='%(identidade)s';
                 """ % dados, True)
+
                 dados['tabela'] = a[0][0]
                 dados['tabela_id'] = a[0][1]
-                dados['status'] = lote['status']
+
                 executar_sql(""" 
-                     UPDATE public.%(tabela)s SET retornos_eventos_id=%(id)s, status=%(status)s
+                     UPDATE public.%(tabela)s SET retornos_eventos_id=%(id)s
                       WHERE id=%(tabela_id)s;""" % dados, False)
 
-
             if 'evtBasesTrab' in dir(evento):
-                from emensageriapro.esocial.xml_imports.v02_04_02.s5001_evtbasestrab import read_s5001_evtbasestrab_obj
-                dados = read_s5001_evtbasestrab_obj(evento.eSocial, 12)
+                from emensageriapro.esocial.views.s5001_evtbasestrab_importar import read_s5001_evtbasestrab_obj
+                read_s5001_evtbasestrab_obj(evento.eSocial, 12)
 
             if 'evtIrrfBenef' in dir(evento):
-                from emensageriapro.esocial.xml_imports.v02_04_02.s5002_evtirrfbenef import read_s5002_evtirrfbenef_obj
-                dados = read_s5002_evtirrfbenef_obj(evento.eSocial, 12)
+                from emensageriapro.esocial.views.s5002_evtirrfbenef_importar import read_s5002_evtirrfbenef_obj
+                read_s5002_evtirrfbenef_obj(evento.eSocial, 12)
 
             if 'evtCS' in dir(evento):
-                from emensageriapro.esocial.xml_imports.v02_04_02.s5011_evtcs import read_s5011_evtcs_obj
-                dados = read_s5011_evtcs_obj(evento.eSocial, 12)
+                from emensageriapro.esocial.views.s5011_evtcs_importar import read_s5011_evtcs_obj
+                read_s5011_evtcs_obj(evento.eSocial, 12)
 
             if 'evtIrrf' in dir(evento):
-                from emensageriapro.esocial.xml_imports.v02_04_02.s5012_evtirrf import read_s5012_evtirrf_obj
-                dados = read_s5012_evtirrf_obj(evento.eSocial, 12)
+                from emensageriapro.esocial.views.s5012_evtirrf_importar import read_s5012_evtirrf_obj
+                read_s5012_evtirrf_obj(evento.eSocial, 12)
 
 
 
