@@ -44,7 +44,8 @@ from emensageriapro.padrao import executar_sql
 #              recepcao_protocolo_envio_lote=b.recepcao_protocolo_envio_lote, processamento_codigo_resposta=b.processamento_codigo_resposta,
 #              processamento_descricao_resposta=b.processamento_descricao_resposta, processamento_versao_app_processamento=b.processamento_versao_app_processamento,
 #              processamento_data_hora=b.processamento_data_hora, recibo_numero=b.recibo_numero, recibo_hash=b.recibo_hash
-#         FROM public.retornos_eventos AS b WHERE a.retornos_eventos_id = b.id;UPDATE public.s1000_evtinfoempregador SET status=5 WHERE processamento_codigo_resposta IN (301,401,402,403,404,405,501,502,503,504,505);
+#         FROM public.retornos_eventos AS b WHERE a.retornos_eventos_id = b.id;
+#         UPDATE public.s1000_evtinfoempregador SET status=5 WHERE processamento_codigo_resposta IN (301,401,402,403,404,405,501,502,503,504,505);
 #       UPDATE public.s1000_evtinfoempregador SET status=14 WHERE processamento_codigo_resposta IN (201,202);
 #       UPDATE public.s1000_evtinfoempregador SET ocorrencias=Null WHERE retornos_eventos_id NOT IN (SELECT retornos_eventos_id FROM retornos_eventos_ocorrencias);
 #

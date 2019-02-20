@@ -77,6 +77,7 @@ def read_envioLoteEventos(arquivo, transmissor_lote_esocial_id):
             obj = TransmissorLoteEsocialOcorrencias(**ocorrencias)
             obj.save(using='default')
 
+
     if '<dadosRecepcaoLote>' in xml:
         lote['recepcao_data_hora'] = child.dadosRecepcaoLote.dhRecepcao.cdata
         lote['recepcao_versao_aplicativo'] = child.dadosRecepcaoLote.versaoAplicativoRecepcao.cdata
@@ -84,6 +85,7 @@ def read_envioLoteEventos(arquivo, transmissor_lote_esocial_id):
 
     TransmissorLoteEsocial.objects.using('default'). \
         filter(id=transmissor_lote_esocial_id).update(**lote)
+
 
 
 
@@ -315,8 +317,32 @@ def read_retornoEvento(doc, transmissor_lote_id):
                                 insert = create_insert('retornos_eventos_intervalos', intervalo_dados)
                                 for y in range(5): insert = insert.replace('\n', '').replace('  ', ' ')
                                 resp = executar_sql(insert, True)
-    return retorno_evento_dados
 
+
+    from django.apps import apps
+
+    app = apps.get_app_config('esocial')
+    
+    for model in app.models:
+        
+        if 'processamento_codigo_resposta' in retorno_evento_dados.keys():
+            
+            if retorno_evento_dados['processamento_codigo_resposta'] in ('301','401','402','403','404','405','501','502','503','504','505'):
+                model.filter(identidade=retorno_evento_dados['identidade']).\
+                    update(status=5, ocorrencias=None, retornos_eventos_id=retorno_evento_id)
+            
+            elif retorno_evento_dados['processamento_codigo_resposta'] in ('201', '202'):
+                model.filter(identidade=retorno_evento_dados['identidade']).\
+                    update(status=14, ocorrencias=None, retornos_eventos_id=retorno_evento_id)
+
+
+
+    # new_object = model()  # Create an instance of that model
+    # model.objects.filter(...)  # Query the objects of that model
+    # model._meta.db_table  # Get the name of the model in the database
+    # model._meta.verbose_name  # Get a verbose name of the model
+
+    return retorno_evento_dados
 
 
 

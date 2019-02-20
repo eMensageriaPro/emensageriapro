@@ -266,10 +266,6 @@ EMAIL_RECUPERACAO_SENHA = env('EMAIL_RECUPERACAO_SENHA')
 TP_AMB = env('TP_AMB')
 FORCE_PRODUCAO_RESTRITA = env('FORCE_PRODUCAO_RESTRITA')
 
-# Chave para ter acesso a função de enviar e consultar eventos pela URL
-
-PASS_SCRIPT = env('PASS_SCRIPT')
-
 # Endereços login e logout
 
 LOGIN_REDIRECT_URL = LINK_WEBSITE + 'mensageiro/mapa-processamento/eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ==/'

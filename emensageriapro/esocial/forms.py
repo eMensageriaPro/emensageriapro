@@ -104,16 +104,6 @@ class form_s1000_evtinfoempregador(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -173,16 +163,6 @@ class form_s1005_evttabestab(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -242,16 +222,6 @@ class form_s1010_evttabrubrica(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -311,16 +281,6 @@ class form_s1020_evttablotacao(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -380,16 +340,6 @@ class form_s1030_evttabcargo(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -449,16 +399,6 @@ class form_s1035_evttabcarreira(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -518,16 +458,6 @@ class form_s1040_evttabfuncao(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -587,16 +517,6 @@ class form_s1050_evttabhortur(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -656,16 +576,6 @@ class form_s1060_evttabambiente(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -725,16 +635,6 @@ class form_s1070_evttabprocesso(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -794,16 +694,6 @@ class form_s1080_evttaboperport(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -866,16 +756,6 @@ class form_s1200_evtremun(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -938,16 +818,6 @@ class form_s1202_evtrmnrpps(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -1010,16 +880,6 @@ class form_s1207_evtbenprrp(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -1082,16 +942,6 @@ class form_s1210_evtpgtos(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -1155,16 +1005,6 @@ class form_s1250_evtaqprod(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -1227,16 +1067,6 @@ class form_s1260_evtcomprod(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -1298,16 +1128,6 @@ class form_s1270_evtcontratavnp(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -1369,16 +1189,6 @@ class form_s1280_evtinfocomplper(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -1439,16 +1249,6 @@ class form_s1295_evttotconting(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -1509,16 +1309,6 @@ class form_s1298_evtreabreevper(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -1585,16 +1375,6 @@ class form_s1299_evtfechaevper(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -1656,16 +1436,6 @@ class form_s1300_evtcontrsindpatr(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -1727,16 +1497,6 @@ class form_s2190_evtadmprelim(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -1814,16 +1574,6 @@ class form_s2200_evtadmissao(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -1892,16 +1642,6 @@ class form_s2205_evtaltcadastral(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -1971,16 +1711,6 @@ class form_s2206_evtaltcontratual(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -2053,16 +1783,6 @@ class form_s2210_evtcat(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -2135,16 +1855,6 @@ class form_s2220_evtmonit(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -2207,16 +1917,6 @@ class form_s2221_evttoxic(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -2277,16 +1977,6 @@ class form_s2230_evtafasttemp(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -2401,16 +2091,6 @@ class form_s2240_evtexprisco(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -2472,16 +2152,6 @@ class form_s2241_evtinsapo(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -2544,16 +2214,6 @@ class form_s2245_evttreicap(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -2616,16 +2276,6 @@ class form_s2250_evtavprevio(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -2693,16 +2343,6 @@ class form_s2260_evtconvinterm(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -2769,16 +2409,6 @@ class form_s2298_evtreintegr(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -2848,16 +2478,6 @@ class form_s2299_evtdeslig(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -2928,16 +2548,6 @@ class form_s2300_evttsvinicio(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -3000,16 +2610,6 @@ class form_s2306_evttsvaltcontr(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -3074,16 +2674,6 @@ class form_s2399_evttsvtermino(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -3151,16 +2741,6 @@ class form_s2400_evtcdbenefin(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -3227,16 +2807,6 @@ class form_s2405_evtcdbenefalt(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -3306,16 +2876,6 @@ class form_s2410_evtcdbenin(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -3384,16 +2944,6 @@ class form_s2416_evtcdbenalt(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -3458,16 +3008,6 @@ class form_s2420_evtcdbenterm(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -3528,16 +3068,6 @@ class form_s3000_evtexclusao(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -3594,16 +3124,6 @@ class form_s5001_evtbasestrab(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -3659,16 +3179,6 @@ class form_s5002_evtirrfbenef(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -3724,16 +3234,6 @@ class form_s5003_evtbasesfgts(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -3791,16 +3291,6 @@ class form_s5011_evtcs(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -3856,16 +3346,6 @@ class form_s5012_evtirrf(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
@@ -3921,16 +3401,6 @@ class form_s5013_evtfgts(forms.ModelForm):
             'validacoes',
             'arquivo_original',
             'arquivo',
-            'recepcao_tp_amb',
-            'recepcao_data_hora',
-            'recepcao_versao_app',
-            'recepcao_protocolo_envio_lote',
-            'processamento_codigo_resposta',
-            'processamento_descricao_resposta',
-            'processamento_versao_app_processamento',
-            'processamento_data_hora',
-            'recibo_numero',
-            'recibo_hash',
  
         ]
 
