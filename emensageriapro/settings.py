@@ -224,7 +224,7 @@ VERSOES_EFDREINF = ["v1_03_02", "v01_04_00"]
 
 # Configurações Gerais do Sistema
 
-VERIFICAR_PREDECESSAO_ANTES_ENVIO = int( env('VERIFICAR_PREDECESSAO_ANTES_ENVIO') )
+VERIFICAR_PREDECESSAO_ANTES_ENVIO = env('VERIFICAR_PREDECESSAO_ANTES_ENVIO')
 
 
 # Hosts permitidos em Produção (obrigatório caso o DEBUG = False)
