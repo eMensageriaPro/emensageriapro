@@ -222,6 +222,11 @@ VERSAO_LAYOUT_EFDREINF = "v1_04_00"
 VERSOES_ESOCIAL = ["v02_04_02", "v02_05_00"]
 VERSOES_EFDREINF = ["v1_03_02", "v01_04_00"]
 
+# Configurações Gerais do Sistema
+
+VERIFICAR_PREDECESSAO_ANTES_ENVIO = int( env('VERIFICAR_PREDECESSAO_ANTES_ENVIO') )
+
+
 # Hosts permitidos em Produção (obrigatório caso o DEBUG = False)
 ALLOWED_HOSTS = [
     'localhost',
