@@ -3849,6 +3849,13 @@ class s2230evtAfastTempSerializer(ModelSerializer):
             
 
 class s2231evtCessao(SoftDeletionModel):
+    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
+        related_name='%(class)s_retornos_eventos', blank=True, null=True)
+    ocorrencias = models.TextField(blank=True, null=True)
+    validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
+    validacoes = models.TextField(blank=True, null=True)
+    arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0)
+    arquivo = models.CharField(max_length=200, blank=True, null=True)
     identidade = models.CharField(max_length=36, blank=True, null=True)
     indretif = models.IntegerField(choices=CHOICES_S2231_INDRETIF)
     nrrecibo = models.CharField(max_length=40, blank=True, null=True)
@@ -3860,6 +3867,10 @@ class s2231evtCessao(SoftDeletionModel):
     cpftrab = models.CharField(max_length=11)
     nistrab = models.CharField(max_length=11)
     matricula = models.CharField(max_length=30)
+    versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00')
+    transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
+        related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True)
+    status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0)
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)

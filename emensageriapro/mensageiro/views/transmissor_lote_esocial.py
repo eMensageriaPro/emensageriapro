@@ -85,6 +85,7 @@ from emensageriapro.esocial.models import s2210evtCAT
 from emensageriapro.esocial.models import s2220evtMonit
 from emensageriapro.esocial.models import s2221evtToxic
 from emensageriapro.esocial.models import s2230evtAfastTemp
+from emensageriapro.esocial.models import s2231evtCessao
 from emensageriapro.esocial.models import s2240evtExpRisco
 from emensageriapro.esocial.models import s2241evtInsApo
 from emensageriapro.esocial.models import s2245evtTreiCap
@@ -138,6 +139,7 @@ from emensageriapro.esocial.forms import form_s2210_evtcat
 from emensageriapro.esocial.forms import form_s2220_evtmonit
 from emensageriapro.esocial.forms import form_s2221_evttoxic
 from emensageriapro.esocial.forms import form_s2230_evtafasttemp
+from emensageriapro.esocial.forms import form_s2231_evtcessao
 from emensageriapro.esocial.forms import form_s2240_evtexprisco
 from emensageriapro.esocial.forms import form_s2241_evtinsapo
 from emensageriapro.esocial.forms import form_s2245_evttreicap

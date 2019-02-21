@@ -43,6 +43,24 @@ from emensageriapro.settings import BASE_DIR
 from emensageriapro.padrao import ler_arquivo, executar_sql
 
 
+
+
+def get_ocorrencias(retornos_eventos_id):
+    import json
+    from django.forms.models import model_to_dict
+    from emensageriapro.mensageiro.models import RetornosEventosOcorrencias
+
+    ocorrencias = RetornosEventosOcorrencias.objects.using( 'default' ).filter(excluido = False, retornos_eventos_id=retornos_eventos_id).all()
+    lista_ocor = []
+    for o in ocorrencias:
+        lista_ocor.append(json.dumps(model_to_dict(o), indent=4, sort_keys=True, default=str))
+    txt_str = '|'.join(lista_ocor)
+    txt_str = txt_str.replace("'", "''")
+
+    return str(txt_str).replace("'", "''")
+
+
+
 def read_envioLoteEventos(arquivo, transmissor_lote_esocial_id):
 
     from emensageriapro.mensageiro.models import TransmissorLoteEsocialOcorrencias, TransmissorLoteEsocial
@@ -321,26 +339,29 @@ def read_retornoEvento(doc, transmissor_lote_id):
 
     from django.apps import apps
 
-    app = apps.get_app_config('esocial')
+    app_models = apps.get_app_config('esocial').get_models()
     
-    for model in app.models:
+    for model in app_models:
+
+        print model
         
         if 'processamento_codigo_resposta' in retorno_evento_dados.keys():
+
+            codigo_resposta = int(retorno_evento_dados['processamento_codigo_resposta'])
             
-            if retorno_evento_dados['processamento_codigo_resposta'] in ('301','401','402','403','404','405','501','502','503','504','505'):
-                model.filter(identidade=retorno_evento_dados['identidade']).\
-                    update(status=5, ocorrencias=None, retornos_eventos_id=retorno_evento_id)
+            if codigo_resposta >= 300:
+
+                model.objects.using('default').filter(identidade=retorno_evento_dados['identidade']).\
+                    update(status=5,
+                           ocorrencias=get_ocorrencias(retorno_evento_id),
+                           retornos_eventos_id=retorno_evento_id)
             
-            elif retorno_evento_dados['processamento_codigo_resposta'] in ('201', '202'):
-                model.filter(identidade=retorno_evento_dados['identidade']).\
-                    update(status=14, ocorrencias=None, retornos_eventos_id=retorno_evento_id)
+            elif codigo_resposta >= 201 and codigo_resposta < 300:
 
-
-
-    # new_object = model()  # Create an instance of that model
-    # model.objects.filter(...)  # Query the objects of that model
-    # model._meta.db_table  # Get the name of the model in the database
-    # model._meta.verbose_name  # Get a verbose name of the model
+                model.objects.using('default').filter(identidade=retorno_evento_dados['identidade']).\
+                    update(status=14,
+                           ocorrencias=get_ocorrencias(retorno_evento_id),
+                           retornos_eventos_id=retorno_evento_id)
 
     return retorno_evento_dados
 

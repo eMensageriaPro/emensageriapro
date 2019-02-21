@@ -110,9 +110,16 @@ def recibo(request, hash):
     paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
-    transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial.objects.using(db_slug), excluido=False, id=transmissor_lote_esocial_id)
-    ocorrencias_lista = TransmissorLoteEsocialOcorrencias.objects.using( db_slug ).filter(excluido = False, transmissor_lote_esocial_id=transmissor_lote_esocial.id).all()
-    eventos_lista = TransmissorEventosEsocial.objects.using( db_slug ).filter(excluido = False, transmissor_lote_esocial_id=transmissor_lote_esocial.id).all()
+    transmissor_lote_esocial = get_object_or_404(
+        TransmissorLoteEsocial.objects.using(db_slug),
+        excluido=False,
+        id=transmissor_lote_esocial_id)
+
+    ocorrencias_lista = TransmissorLoteEsocialOcorrencias.objects.using( db_slug ).\
+        filter(excluido = False, transmissor_lote_esocial_id=transmissor_lote_esocial.id).all()
+
+    eventos_lista = TransmissorEventosEsocial.objects.using( db_slug ).\
+        filter(excluido = False, transmissor_lote_esocial_id=transmissor_lote_esocial.id).all()
 
     context = {
         'eventos_lista': eventos_lista,

@@ -153,6 +153,8 @@ def listar(request, hash):
         filtrar = False
         dict_fields = {}
         show_fields = {
+            'show_arquivo': 0,
+            'show_arquivo_original': 0,
             'show_cpftrab': 0,
             'show_evtcessao': 0,
             'show_ideempregador': 0,
@@ -164,10 +166,17 @@ def listar(request, hash):
             'show_nistrab': 0,
             'show_nrinsc': 0,
             'show_nrrecibo': 0,
+            'show_ocorrencias': 0,
             'show_procemi': 0,
+            'show_retornos_eventos': 0,
+            'show_status': 1,
             'show_tpamb': 0,
             'show_tpinsc': 0,
-            'show_verproc': 0, }
+            'show_transmissor_lote_esocial': 0,
+            'show_validacao_precedencia': 0,
+            'show_validacoes': 0,
+            'show_verproc': 0,
+            'show_versao': 0, }
         post = False
         if request.method == 'POST':
             post = True
@@ -184,9 +193,12 @@ def listar(request, hash):
                 'nrinsc__icontains': 'nrinsc__icontains',
                 'nrrecibo__icontains': 'nrrecibo__icontains',
                 'procemi': 'procemi',
+                'status': 'status',
                 'tpamb': 'tpamb',
                 'tpinsc': 'tpinsc',
-                'verproc__icontains': 'verproc__icontains',}
+                'transmissor_lote_esocial': 'transmissor_lote_esocial',
+                'verproc__icontains': 'verproc__icontains',
+                'versao__icontains': 'versao__icontains',}
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
             for a in show_fields:
@@ -205,9 +217,12 @@ def listar(request, hash):
                 'nrinsc__icontains': 'nrinsc__icontains',
                 'nrrecibo__icontains': 'nrrecibo__icontains',
                 'procemi': 'procemi',
+                'status': 'status',
                 'tpamb': 'tpamb',
                 'tpinsc': 'tpinsc',
-                'verproc__icontains': 'verproc__icontains',}
+                'transmissor_lote_esocial': 'transmissor_lote_esocial',
+                'verproc__icontains': 'verproc__icontains',
+                'versao__icontains': 'versao__icontains',}
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)
@@ -217,6 +232,7 @@ def listar(request, hash):
             s2231_evtcessao_lista = None
             messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
+        transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s2231_evtcessao_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2231_evtcessao'
@@ -237,6 +253,7 @@ def listar(request, hash):
             'hash': hash,
             'filtrar': filtrar,
 
+            'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
         }
 
         if for_print in (0,1):

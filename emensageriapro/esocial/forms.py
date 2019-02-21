@@ -1988,6 +1988,11 @@ class form_s2231_evtcessao(forms.ModelForm):
         slug = kwargs.pop('slug')
         super(form_s2231_evtcessao, self).__init__(*args,**kwargs)
         
+        self.fields['transmissor_lote_esocial'].queryset = TransmissorLoteEsocial.objects.using( slug ).filter(excluido=False).all()
+        self.fields['transmissor_lote_esocial'].widget.attrs['readonly'] = True
+        self.fields['transmissor_lote_esocial'].widget.attrs['disabled'] = True        
+        self.fields['status'].widget.attrs['readonly'] = True
+        self.fields['status'].widget.attrs['disabled'] = True        
         self.fields['identidade'].widget.attrs['readonly'] = True
         self.fields['identidade'].widget.attrs['disabled'] = True        
         self.fields['indretif'].widget.attrs['required'] = True        
@@ -2028,6 +2033,12 @@ class form_s2231_evtcessao(forms.ModelForm):
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
             'excluido',
+            'retornos_eventos',
+            'ocorrencias',
+            'validacao_precedencia',
+            'validacoes',
+            'arquivo_original',
+            'arquivo',
  
         ]
 
