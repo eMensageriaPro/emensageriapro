@@ -342,8 +342,6 @@ def read_retornoEvento(doc, transmissor_lote_id):
     app_models = apps.get_app_config('esocial').get_models()
     
     for model in app_models:
-
-        print model
         
         if 'processamento_codigo_resposta' in retorno_evento_dados.keys():
 
