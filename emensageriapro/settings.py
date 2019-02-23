@@ -156,6 +156,7 @@ INSTALLED_APPS = (
     'emensageriapro.efdreinf',
     'emensageriapro.esocial',
     'emensageriapro.mensageiro',
+    'emensageriapro.mapa_processamento',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -273,7 +274,7 @@ FORCE_PRODUCAO_RESTRITA = env('FORCE_PRODUCAO_RESTRITA')
 
 # Endereços login e logout
 
-LOGIN_REDIRECT_URL = LINK_WEBSITE + 'mensageiro/mapa-processamento/eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ==/'
+LOGIN_REDIRECT_URL = LINK_WEBSITE + 'mapa-processamento/esocial/eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ==/'
 LOGOUT_REDIRECT_URL = LINK_WEBSITE
 
 # Static files

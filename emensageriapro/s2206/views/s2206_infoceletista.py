@@ -58,6 +58,7 @@ import base64
 #IMPORTACOES
 @login_required
 def apagar(request, hash):
+    from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     db_slug = 'default'
     try:
         usuario_id = request.user.id
@@ -79,11 +80,11 @@ def apagar(request, hash):
     dados_evento = {}
     if s2206_infoceletista_id:
         dados_evento = s2206_infoceletista.evento()
-        if dados_evento['status'] != 0:
+        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
             dict_permissoes['s2206_infoceletista_apagar'] = 0
             dict_permissoes['s2206_infoceletista_editar'] = 0
     if request.method == 'POST':
-        if dados_evento['status'] == 0:
+        if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(s2206_infoceletista), indent=4, sort_keys=True, default=str)
@@ -283,6 +284,7 @@ def listar(request, hash):
 
 @login_required
 def salvar(request, hash):
+    from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     db_slug = 'default'
     try:
         usuario_id = request.user.id
@@ -303,10 +305,10 @@ def salvar(request, hash):
     paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
     dados_evento = {}
-    dados_evento['status'] = 0
+    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
     if s2206_infoceletista_id:
         dados_evento = s2206_infoceletista.evento()
-        if dados_evento['status'] != 0:
+        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
             dict_permissoes['s2206_infoceletista_apagar'] = 0
             dict_permissoes['s2206_infoceletista_editar'] = 0
 

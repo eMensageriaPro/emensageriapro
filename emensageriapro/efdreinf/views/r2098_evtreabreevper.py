@@ -58,6 +58,7 @@ import base64
 #IMPORTACOES
 @login_required
 def apagar(request, hash):
+    from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     db_slug = 'default'
     try:
         usuario_id = request.user.id
@@ -76,12 +77,12 @@ def apagar(request, hash):
     r2098_evtreabreevper = get_object_or_404(r2098evtReabreEvPer.objects.using( db_slug ), excluido = False, id = r2098_evtreabreevper_id)
 
     if r2098_evtreabreevper_id:
-        if r2098_evtreabreevper.status != 0:
+        if r2098_evtreabreevper.status != STATUS_EVENTO_CADASTRADO:
             dict_permissoes['r2098_evtreabreevper_apagar'] = 0
             dict_permissoes['r2098_evtreabreevper_editar'] = 0
 
     if request.method == 'POST':
-        if r2098_evtreabreevper.status == 0:
+        if r2098_evtreabreevper.status == STATUS_EVENTO_CADASTRADO:
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(r2098_evtreabreevper), indent=4, sort_keys=True, default=str)
@@ -310,6 +311,7 @@ def gerar_identidade(request, chave, evento_id):
 
 @login_required
 def salvar(request, hash):
+    from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_EFDREINF, TP_AMB
     db_slug = 'default'
     try:
@@ -332,7 +334,7 @@ def salvar(request, hash):
     if r2098_evtreabreevper_id:
         r2098_evtreabreevper = get_object_or_404(r2098evtReabreEvPer.objects.using( db_slug ), excluido = False, id = r2098_evtreabreevper_id)
 
-        if r2098_evtreabreevper.status != 0:
+        if r2098_evtreabreevper.status != STATUS_EVENTO_CADASTRADO:
             dict_permissoes['r2098_evtreabreevper_apagar'] = 0
             dict_permissoes['r2098_evtreabreevper_editar'] = 0
 
@@ -341,7 +343,13 @@ def salvar(request, hash):
         if r2098_evtreabreevper_id:
             r2098_evtreabreevper_form = form_r2098_evtreabreevper(request.POST or None, instance = r2098_evtreabreevper, slug = db_slug)
         else:
-            r2098_evtreabreevper_form = form_r2098_evtreabreevper(request.POST or None, slug = db_slug, initial={'versao': VERSAO_LAYOUT_EFDREINF, 'status': 0, 'processamento_codigo_resposta': 0, 'tpamb': TP_AMB, 'procemi': 1, 'verproc': VERSAO_EMENSAGERIA})
+            r2098_evtreabreevper_form = form_r2098_evtreabreevper(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'versao': VERSAO_LAYOUT_EFDREINF,
+                                                  'status': STATUS_EVENTO_CADASTRADO,
+                                                  'tpamb': TP_AMB,
+                                                  'procemi': 1,
+                                                  'verproc': VERSAO_EMENSAGERIA})
         if request.method == 'POST':
             if r2098_evtreabreevper_form.is_valid():
 
@@ -423,7 +431,7 @@ def salvar(request, hash):
             #r2098_evtreabreevper_salvar_custom_variaveis_context#
         }
 
-        if for_print in (0,1 ):
+        if for_print in (0, 1):
             return render(request, 'r2098_evtreabreevper_salvar.html', context)
 
         elif for_print == 2:

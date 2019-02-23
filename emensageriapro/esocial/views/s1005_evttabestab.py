@@ -64,6 +64,7 @@ from emensageriapro.s1005.forms import form_s1005_exclusao
 #IMPORTACOES
 @login_required
 def apagar(request, hash):
+    from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     db_slug = 'default'
     try:
         usuario_id = request.user.id
@@ -82,12 +83,12 @@ def apagar(request, hash):
     s1005_evttabestab = get_object_or_404(s1005evtTabEstab.objects.using( db_slug ), excluido = False, id = s1005_evttabestab_id)
 
     if s1005_evttabestab_id:
-        if s1005_evttabestab.status != 0:
+        if s1005_evttabestab.status != STATUS_EVENTO_CADASTRADO:
             dict_permissoes['s1005_evttabestab_apagar'] = 0
             dict_permissoes['s1005_evttabestab_editar'] = 0
 
     if request.method == 'POST':
-        if s1005_evttabestab.status == 0:
+        if s1005_evttabestab.status == STATUS_EVENTO_CADASTRADO:
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(s1005_evttabestab), indent=4, sort_keys=True, default=str)
@@ -312,6 +313,7 @@ def gerar_identidade(request, chave, evento_id):
 
 @login_required
 def salvar(request, hash):
+    from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL, TP_AMB
     db_slug = 'default'
     try:
@@ -334,7 +336,7 @@ def salvar(request, hash):
     if s1005_evttabestab_id:
         s1005_evttabestab = get_object_or_404(s1005evtTabEstab.objects.using( db_slug ), excluido = False, id = s1005_evttabestab_id)
 
-        if s1005_evttabestab.status != 0:
+        if s1005_evttabestab.status != STATUS_EVENTO_CADASTRADO:
             dict_permissoes['s1005_evttabestab_apagar'] = 0
             dict_permissoes['s1005_evttabestab_editar'] = 0
 
@@ -343,7 +345,13 @@ def salvar(request, hash):
         if s1005_evttabestab_id:
             s1005_evttabestab_form = form_s1005_evttabestab(request.POST or None, instance = s1005_evttabestab, slug = db_slug)
         else:
-            s1005_evttabestab_form = form_s1005_evttabestab(request.POST or None, slug = db_slug, initial={'versao': VERSAO_LAYOUT_ESOCIAL, 'status': 0, 'processamento_codigo_resposta': 0, 'tpamb': TP_AMB, 'procemi': 1, 'verproc': VERSAO_EMENSAGERIA})
+            s1005_evttabestab_form = form_s1005_evttabestab(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL,
+                                                  'status': STATUS_EVENTO_CADASTRADO,
+                                                  'tpamb': TP_AMB,
+                                                  'procemi': 1,
+                                                  'verproc': VERSAO_EMENSAGERIA})
         if request.method == 'POST':
             if s1005_evttabestab_form.is_valid():
 
@@ -446,7 +454,7 @@ def salvar(request, hash):
             #s1005_evttabestab_salvar_custom_variaveis_context#
         }
 
-        if for_print in (0,1 ):
+        if for_print in (0, 1):
             return render(request, 's1005_evttabestab_salvar.html', context)
 
         elif for_print == 2:

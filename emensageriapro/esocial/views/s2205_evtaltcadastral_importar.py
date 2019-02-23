@@ -38,13 +38,23 @@ import psycopg2
 from emensageriapro.padrao import ler_arquivo, create_insert, executar_sql
 
 
+from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
+    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
+    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
+    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
+    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
+    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
+    STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
+
+
+
 def read_s2205_evtaltcadastral_string(dados, xml, validar=False):
     import untangle
     doc = untangle.parse(xml)
     if validar:
-        status = 1
+        status = STATUS_EVENTO_IMPORTADO
     else:
-        status = 0
+        status = STATUS_EVENTO_CADASTRADO
     dados = read_s2205_evtaltcadastral_obj(doc, status, validar)
     return dados
 
@@ -53,9 +63,9 @@ def read_s2205_evtaltcadastral(dados, arquivo, validar=False):
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
     if validar:
-        status = 1
+        status = STATUS_EVENTO_IMPORTADO
     else:
-        status = 0
+        status = STATUS_EVENTO_CADASTRADO
     dados = read_s2205_evtaltcadastral_obj(doc, status, validar)
     return dados
 
@@ -104,7 +114,7 @@ def read_s2205_evtaltcadastral_obj(doc, status, validar=False):
     dados['evento'] = 's2205'
     dados['id'] = s2205_evtaltcadastral_id
     dados['identidade_evento'] = doc.eSocial.evtAltCadastral['Id']
-    dados['status'] = 1
+    dados['status'] = STATUS_EVENTO_IMPORTADO
 
     if 'CTPS' in dir(evtAltCadastral.alteracao.dadosTrabalhador.documentos):
         for CTPS in evtAltCadastral.alteracao.dadosTrabalhador.documentos.CTPS:

@@ -61,6 +61,14 @@ import base64
 import os
 
 
+from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
+    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
+    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
+    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
+    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
+    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
+    STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
+
 
 @login_required
 def verificar(request, hash):
@@ -344,10 +352,13 @@ def gerar_xml_assinado(s2210_evtcat_id, db_slug):
 
         xml_assinado = assinar_esocial(xml)
 
-    if s2210_evtcat.status in (0,1,2,11):
+    if s2210_evtcat.status in (STATUS_EVENTO_CADASTRADO,
+                           STATUS_EVENTO_IMPORTADO,
+                           STATUS_EVENTO_DUPLICADO,
+                           STATUS_EVENTO_GERADO):
 
         s2210evtCAT.objects.using(db_slug).\
-            filter(id=s2210_evtcat_id,excluido=False).update(status=10)
+            filter(id=s2210_evtcat_id,excluido=False).update(status=STATUS_EVENTO_ASSINADO)
 
     arquivo = 'arquivos/Eventos/s2210_evtcat/%s.xml' % (s2210_evtcat.identidade)
 
@@ -403,7 +414,9 @@ def duplicar(request, hash):
         nova_identidade = identidade_evento(s2210_evtcat)
 
         s2210evtCAT.objects.using(db_slug).filter(id=dados['id']).\
-            update(status=0, arquivo_original=0, arquivo='')
+            update(status=STATUS_EVENTO_CADASTRADO,
+                   arquivo_original=0,
+                   arquivo='')
 
         gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s2210_evtcat.identidade),
             's2210_evtcat', dados['id'], request.user.id, 1)
@@ -441,7 +454,9 @@ def criar_alteracao(request, hash):
         nova_identidade = identidade_evento(s2210_evtcat)
 
         s2210evtCAT.objects.using(db_slug).filter(id=dados['id']).\
-            update(status=0, arquivo_original=0, arquivo='')
+            update(status=STATUS_EVENTO_CADASTRADO,
+                   arquivo_original=0,
+                   arquivo='')
 
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s2210_evtcat.identidade),
@@ -481,7 +496,9 @@ def criar_exclusao(request, hash):
         nova_identidade = identidade_evento(s2210_evtcat)
 
         s2210evtCAT.objects.using(db_slug).filter(id=dados['id']).\
-            update(status=0, arquivo_original=0, arquivo='')
+            update(status=STATUS_EVENTO_CADASTRADO,
+                   arquivo_original=0,
+                   arquivo='')
 
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s2210_evtcat.identidade),
@@ -512,7 +529,7 @@ def alterar_identidade(request, hash):
             excluido=False,
             id=s2210_evtcat_id)
 
-        if s2210_evtcat.status == 0:
+        if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO:
 
             nova_identidade = identidade_evento(s2210_evtcat)
             messages.success(request, 'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
@@ -545,8 +562,24 @@ def abrir_evento_para_edicao(request, hash):
     if s2210_evtcat_id:
         s2210_evtcat = get_object_or_404(s2210evtCAT.objects.using(db_slug), excluido=False, id=s2210_evtcat_id)
 
-        if s2210_evtcat.status in (0, 1, 2, 3, 4, 10, 11) or s2210_evtcat.processamento_codigo_resposta in (401,402):
-            s2210evtCAT.objects.using(db_slug).filter(id=s2210_evtcat_id).update(status=0, arquivo_original=0)
+        status_list = [
+            STATUS_EVENTO_CADASTRADO,
+            STATUS_EVENTO_IMPORTADO,
+            STATUS_EVENTO_DUPLICADO,
+            STATUS_EVENTO_GERADO,
+            STATUS_EVENTO_GERADO_ERRO,
+            STATUS_EVENTO_ASSINADO,
+            STATUS_EVENTO_ASSINADO_ERRO,
+            STATUS_EVENTO_VALIDADO,
+            STATUS_EVENTO_VALIDADO_ERRO,
+            STATUS_EVENTO_AGUARD_PRECEDENCIA,
+            STATUS_EVENTO_AGUARD_ENVIO,
+            STATUS_EVENTO_ENVIADO_ERRO
+        ]
+
+        if s2210_evtcat.status in  or s2210_evtcat.processamento_codigo_resposta in (401,402):
+            s2210evtCAT.objects.using(db_slug).filter(id=s2210_evtcat_id).update(status=STATUS_EVENTO_CADASTRADO,
+                                                                          arquivo_original=0)
             arquivo = 'arquivos/Eventos/s2210_evtcat/%s.xml' % (s2210_evtcat.identidade)
 
             if os.path.exists(BASE_DIR + '/' + arquivo):
@@ -606,7 +639,6 @@ def validar_evento_funcao(s2210_evtcat_id, db_slug):
         filter(id=s2210_evtcat_id, excluido = False).\
         update(validacao_precedencia=precedencia)
 
-    #executar_sql("UPDATE public.s2210_evtcat SET validacao_precedencia=%s WHERE id=%s;" % (precedencia, s2210_evtcat_id), False)
     #
     # Validações internas
     #
@@ -641,17 +673,15 @@ def validar_evento_funcao(s2210_evtcat_id, db_slug):
 
         s2210evtCAT.objects.using( db_slug ).\
             filter(id=s2210_evtcat_id, excluido = False).\
-            update(validacoes=validacoes, status=3)
-
-        #executar_sql("UPDATE public.s2210_evtcat SET validacoes='%s', status=3 WHERE id=%s;" % ('<br>'.join(lista_validacoes).replace("'","''"), s2210_evtcat_id), False)
+            update(validacoes=validacoes,
+                   status=STATUS_EVENTO_VALIDADO_ERRO)
 
     else:
 
         s2210evtCAT.objects.using( db_slug ).\
             filter(id=s2210_evtcat_id, excluido = False).\
-            update(validacoes='', status=4)
-
-        #executar_sql("UPDATE public.s2210_evtcat SET validacoes='', status=4 WHERE id=%s;" % (s2210_evtcat_id), False)
+            update(validacoes='',
+                   status=STATUS_EVENTO_VALIDADO)
 
     return lista_validacoes
 

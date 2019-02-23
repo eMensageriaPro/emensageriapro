@@ -18,6 +18,7 @@ urlpatterns = [
 
     url(r'^', include('emensageriapro.controle_de_acesso.urls')),
     url(r'^efdreinf/', include('emensageriapro.efdreinf.urls')),
+    url(r'^mapa-processamento/', include('emensageriapro.mapa_processamento.urls')),
     url(r'^mensageiro/', include('emensageriapro.mensageiro.urls')),
     url(r'^r1000/', include('emensageriapro.r1000.urls')),
     url(r'^r1070/', include('emensageriapro.r1070.urls')),

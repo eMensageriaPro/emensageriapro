@@ -6,7 +6,6 @@ from django.conf.urls.static import static
 from emensageriapro.mensageiro.views import transmissor_lote_esocial_comunicacao as transmissor_lote_esocial_comunicacao_views
 from emensageriapro.mensageiro.views import transmissor_esocial as transmissor_esocial_views
 from emensageriapro.mensageiro.views import arquivos_recuperacao as arquivos_recuperacao_views
-from emensageriapro.mensageiro.views import mapa_processamento as mapa_processamento_views
 from emensageriapro.mensageiro.views import transmissor_efdreinf as transmissor_efdreinf_views
 from emensageriapro.mensageiro.views import transmissor_lote_efdreinf_comunicacao as transmissor_lote_efdreinf_comunicacao_views
 from emensageriapro.mensageiro.views import processar_arquivos as processar_arquivos_views
@@ -106,10 +105,6 @@ url(r'^visualizacao-de-arquivos/(?P<hash>.*)/$',
         arquivos_recuperacao_views.arquivos_visualizacao,
         name='arquivos_visualizacao'),
 
-url(r'^mapa-processamento/(?P<hash>.*)/$',
-        mapa_processamento_views.listar,
-        name='mapa_processamento'),
-
 url(r'^transmissor-eventos-efdreinf/vincular/(?P<hash>.+)/$',
         transmissor_efdreinf_views.vincular_eventos_efdreinf,
         name='vincular_eventos_efdreinf'),
@@ -167,8 +162,6 @@ url(r'^relatorios/imprimir/(?P<hash>.*)/$',
 url(r'^importacoes/listar/(?P<hash>.*)/$', 
         importacoes_views.listar, 
         name='importacoes'),
-
-
 
 
 

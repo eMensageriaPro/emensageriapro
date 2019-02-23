@@ -156,15 +156,15 @@ EVENTOS_OCORRENCIAS_TIPO_EFDREINF = (
 )
 
 IMPORTACAO_STATUS = (
-    (0, u'Aguardando!'),
-    (1, u'Sucesso!'),
-    (2, u'Erro!'),
-    (3, u'Arquivo inválido!'),
-    (5, u'Identidade do evento já está cadastrada em nossa base'),
-    (6, u'Processado'),
-    (7, u'Processando'),
-    (8, u'Processado com erros'),
-    (9, u'Versão incompatível'),
+    (0, u'Aguardando'),
+    (1, u'Processando'),
+    (2, u'Processado com sucesso'),
+    (3, u'Erro - Processamento'),
+    (4, u'Erro - Outros'),
+    (5, u'Erro - Arquivo Inválido'),
+    (6, u'Erro - Identidade já existente'),
+    (7, u'Erro - Versão de leiaute incompatível'),
+    (8, u'Erro - Validação de Leiaute'),
 )
 
 SIM_NAO = (

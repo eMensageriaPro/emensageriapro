@@ -61,6 +61,14 @@ import base64
 import os
 
 
+from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
+    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
+    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
+    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
+    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
+    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
+    STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
+
 
 @login_required
 def verificar(request, hash):
@@ -336,10 +344,13 @@ def gerar_xml_assinado(r2060_evtcprb_id, db_slug):
 
         xml_assinado = assinar_efdreinf(xml)
 
-    if r2060_evtcprb.status in (0,1,2,11):
+    if r2060_evtcprb.status in (STATUS_EVENTO_CADASTRADO,
+                           STATUS_EVENTO_IMPORTADO,
+                           STATUS_EVENTO_DUPLICADO,
+                           STATUS_EVENTO_GERADO):
 
         r2060evtCPRB.objects.using(db_slug).\
-            filter(id=r2060_evtcprb_id,excluido=False).update(status=10)
+            filter(id=r2060_evtcprb_id,excluido=False).update(status=STATUS_EVENTO_ASSINADO)
 
     arquivo = 'arquivos/Eventos/r2060_evtcprb/%s.xml' % (r2060_evtcprb.identidade)
 
@@ -395,7 +406,9 @@ def duplicar(request, hash):
         nova_identidade = identidade_evento(r2060_evtcprb)
 
         r2060evtCPRB.objects.using(db_slug).filter(id=dados['id']).\
-            update(status=0, arquivo_original=0, arquivo='')
+            update(status=STATUS_EVENTO_CADASTRADO,
+                   arquivo_original=0,
+                   arquivo='')
 
         gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r2060_evtcprb.identidade),
             'r2060_evtcprb', dados['id'], request.user.id, 1)
@@ -433,7 +446,9 @@ def criar_alteracao(request, hash):
         nova_identidade = identidade_evento(r2060_evtcprb)
 
         r2060evtCPRB.objects.using(db_slug).filter(id=dados['id']).\
-            update(status=0, arquivo_original=0, arquivo='')
+            update(status=STATUS_EVENTO_CADASTRADO,
+                   arquivo_original=0,
+                   arquivo='')
 
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r2060_evtcprb.identidade),
@@ -473,7 +488,9 @@ def criar_exclusao(request, hash):
         nova_identidade = identidade_evento(r2060_evtcprb)
 
         r2060evtCPRB.objects.using(db_slug).filter(id=dados['id']).\
-            update(status=0, arquivo_original=0, arquivo='')
+            update(status=STATUS_EVENTO_CADASTRADO,
+                   arquivo_original=0,
+                   arquivo='')
 
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r2060_evtcprb.identidade),
@@ -504,7 +521,7 @@ def alterar_identidade(request, hash):
             excluido=False,
             id=r2060_evtcprb_id)
 
-        if r2060_evtcprb.status == 0:
+        if r2060_evtcprb.status == STATUS_EVENTO_CADASTRADO:
 
             nova_identidade = identidade_evento(r2060_evtcprb)
             messages.success(request, 'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
@@ -537,8 +554,24 @@ def abrir_evento_para_edicao(request, hash):
     if r2060_evtcprb_id:
         r2060_evtcprb = get_object_or_404(r2060evtCPRB.objects.using(db_slug), excluido=False, id=r2060_evtcprb_id)
 
-        if r2060_evtcprb.status in (0, 1, 2, 3, 4, 10, 11) or r2060_evtcprb.processamento_codigo_resposta in (401,402):
-            r2060evtCPRB.objects.using(db_slug).filter(id=r2060_evtcprb_id).update(status=0, arquivo_original=0)
+        status_list = [
+            STATUS_EVENTO_CADASTRADO,
+            STATUS_EVENTO_IMPORTADO,
+            STATUS_EVENTO_DUPLICADO,
+            STATUS_EVENTO_GERADO,
+            STATUS_EVENTO_GERADO_ERRO,
+            STATUS_EVENTO_ASSINADO,
+            STATUS_EVENTO_ASSINADO_ERRO,
+            STATUS_EVENTO_VALIDADO,
+            STATUS_EVENTO_VALIDADO_ERRO,
+            STATUS_EVENTO_AGUARD_PRECEDENCIA,
+            STATUS_EVENTO_AGUARD_ENVIO,
+            STATUS_EVENTO_ENVIADO_ERRO
+        ]
+
+        if r2060_evtcprb.status in  or r2060_evtcprb.processamento_codigo_resposta in (401,402):
+            r2060evtCPRB.objects.using(db_slug).filter(id=r2060_evtcprb_id).update(status=STATUS_EVENTO_CADASTRADO,
+                                                                          arquivo_original=0)
             arquivo = 'arquivos/Eventos/r2060_evtcprb/%s.xml' % (r2060_evtcprb.identidade)
 
             if os.path.exists(BASE_DIR + '/' + arquivo):
@@ -598,7 +631,6 @@ def validar_evento_funcao(r2060_evtcprb_id, db_slug):
         filter(id=r2060_evtcprb_id, excluido = False).\
         update(validacao_precedencia=precedencia)
 
-    #executar_sql("UPDATE public.r2060_evtcprb SET validacao_precedencia=%s WHERE id=%s;" % (precedencia, r2060_evtcprb_id), False)
     #
     # Validações internas
     #
@@ -633,17 +665,15 @@ def validar_evento_funcao(r2060_evtcprb_id, db_slug):
 
         r2060evtCPRB.objects.using( db_slug ).\
             filter(id=r2060_evtcprb_id, excluido = False).\
-            update(validacoes=validacoes, status=3)
-
-        #executar_sql("UPDATE public.r2060_evtcprb SET validacoes='%s', status=3 WHERE id=%s;" % ('<br>'.join(lista_validacoes).replace("'","''"), r2060_evtcprb_id), False)
+            update(validacoes=validacoes,
+                   status=STATUS_EVENTO_VALIDADO_ERRO)
 
     else:
 
         r2060evtCPRB.objects.using( db_slug ).\
             filter(id=r2060_evtcprb_id, excluido = False).\
-            update(validacoes='', status=4)
-
-        #executar_sql("UPDATE public.r2060_evtcprb SET validacoes='', status=4 WHERE id=%s;" % (r2060_evtcprb_id), False)
+            update(validacoes='',
+                   status=STATUS_EVENTO_VALIDADO)
 
     return lista_validacoes
 

@@ -21,8 +21,18 @@ import base64
 #IMPORTACOES
 
 
+
+
+
 @login_required
 def listar(request, hash):
+    from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
+        STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
+        STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
+        STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
+        STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
+        STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
+        STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
     for_print = 0
     db_slug = 'default'
     from emensageriapro.controle_de_acesso.views.login import criar_permissoes, salvar_modulos_paginas_permitidas
@@ -102,34 +112,64 @@ def listar(request, hash):
         importacao_arquivos_eventos_erros_lista = ImportacaoArquivosEventos.objects.using( db_slug ).filter(**dict_qs).filter(excluido = False, status=2).exclude(id=0).all()
 
         esocial_enviados = TransmissorEventosEsocial.objects.using( db_slug ).\
-            filter(excluido = False, status__in=[7,9,14]).exclude(id=0).all()
+            filter(excluido = False,
+                   status=STATUS_EVENTO_ENVIADO).exclude(id=0).all()
+
         esocial_validados_aguardando_envio = TransmissorEventosEsocial.objects.using( db_slug ).\
-            filter(excluido = False, status=4, validacao_precedencia=1).exclude(id=0).all()
+            filter(excluido = False,
+                   status=STATUS_EVENTO_AGUARD_ENVIO,
+                   validacao_precedencia=1).exclude(id=0).all()
+
         esocial_validados_aguardando_precedencia = TransmissorEventosEsocial.objects.using( db_slug ).\
-            filter(excluido = False, status=4, validacao_precedencia=0).exclude(id=0).all()
+            filter(excluido = False,
+                   status=STATUS_EVENTO_AGUARD_PRECEDENCIA,
+                   validacao_precedencia=0).exclude(id=0).all()
+
         esocial_erros_validacao = TransmissorEventosEsocial.objects.using( db_slug ).\
-            filter(excluido = False, status=3).exclude(id=0).all()
+            filter(excluido = False,
+                   status=STATUS_EVENTO_VALIDADO_ERRO).exclude(id=0).all()
+
         esocial_assinados = TransmissorEventosEsocial.objects.using( db_slug ).\
-            filter(excluido = False, status__in=[10]).exclude(id=0).all()
+            filter(excluido = False,
+                   status=STATUS_EVENTO_ASSINADO).exclude(id=0).all()
+
         esocial_cadastrados = TransmissorEventosEsocial.objects.using( db_slug ).\
-            filter(excluido = False, status__in=[0,1,10,11]).exclude(id=0).all()
+            filter(excluido = False,
+                   status__in=[STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_IMPORTADO, STATUS_EVENTO_GERADO]).exclude(id=0).all()
+
         esocial_erros_envio = TransmissorEventosEsocial.objects.using( db_slug ).\
-            filter(excluido = False, status__in=[5,8]).exclude(id=0).all()
+            filter(excluido = False,
+                   status=STATUS_EVENTO_ENVIADO_ERRO).exclude(id=0).all()
 
         efdreinf_enviados = TransmissorEventosEfdreinf.objects.using( db_slug ).\
-            filter(excluido = False, status__in=[7,9,14]).exclude(id=0).all()
+            filter(excluido = False,
+                   status=STATUS_EVENTO_ENVIADO).exclude(id=0).all()
+
         efdreinf_validados_aguardando_envio = TransmissorEventosEfdreinf.objects.using( db_slug ).\
-            filter(excluido = False, status=4, validacao_precedencia=1).exclude(id=0).all()
+            filter(excluido = False,
+                   status=STATUS_EVENTO_AGUARD_ENVIO,
+                   validacao_precedencia=1).exclude(id=0).all()
+
         efdreinf_validados_aguardando_precedencia = TransmissorEventosEfdreinf.objects.using( db_slug ).\
-            filter(excluido = False, status=4, validacao_precedencia=0).exclude(id=0).all()
+            filter(excluido = False,
+                   status=STATUS_EVENTO_AGUARD_PRECEDENCIA,
+                   validacao_precedencia=0).exclude(id=0).all()
+
         efdreinf_erros_validacao = TransmissorEventosEfdreinf.objects.using( db_slug ).\
-            filter(excluido = False, status=3).exclude(id=0).all()
+            filter(excluido = False,
+                   status=STATUS_EVENTO_VALIDADO_ERRO).exclude(id=0).all()
+
         efdreinf_assinados = TransmissorEventosEfdreinf.objects.using( db_slug ).\
-            filter(excluido = False, status__in=[10]).exclude(id=0).all()
+            filter(excluido = False,
+                   status=STATUS_EVENTO_ASSINADO).exclude(id=0).all()
+
         efdreinf_cadastrados = TransmissorEventosEfdreinf.objects.using( db_slug ).\
-            filter(excluido = False, status__in=[0,1,10,11]).exclude(id=0).all()
+            filter(excluido = False,
+                   status__in=[STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_IMPORTADO, STATUS_EVENTO_GERADO]).exclude(id=0).all()
+
         efdreinf_erros_envio = TransmissorEventosEfdreinf.objects.using( db_slug ).\
-            filter(excluido = False, status__in=[5,8]).exclude(id=0).all()
+            filter(excluido = False,
+                   status=STATUS_EVENTO_ENVIADO_ERRO).exclude(id=0).all()
 
 
         importacao_arquivos_lista = ImportacaoArquivos.objects.using( db_slug ).filter(excluido = False, status=0).all()

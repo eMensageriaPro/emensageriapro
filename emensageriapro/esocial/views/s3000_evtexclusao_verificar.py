@@ -61,6 +61,14 @@ import base64
 import os
 
 
+from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
+    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
+    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
+    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
+    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
+    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
+    STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
+
 
 @login_required
 def verificar(request, hash):
@@ -332,10 +340,13 @@ def gerar_xml_assinado(s3000_evtexclusao_id, db_slug):
 
         xml_assinado = assinar_esocial(xml)
 
-    if s3000_evtexclusao.status in (0,1,2,11):
+    if s3000_evtexclusao.status in (STATUS_EVENTO_CADASTRADO,
+                           STATUS_EVENTO_IMPORTADO,
+                           STATUS_EVENTO_DUPLICADO,
+                           STATUS_EVENTO_GERADO):
 
         s3000evtExclusao.objects.using(db_slug).\
-            filter(id=s3000_evtexclusao_id,excluido=False).update(status=10)
+            filter(id=s3000_evtexclusao_id,excluido=False).update(status=STATUS_EVENTO_ASSINADO)
 
     arquivo = 'arquivos/Eventos/s3000_evtexclusao/%s.xml' % (s3000_evtexclusao.identidade)
 
@@ -391,7 +402,9 @@ def duplicar(request, hash):
         nova_identidade = identidade_evento(s3000_evtexclusao)
 
         s3000evtExclusao.objects.using(db_slug).filter(id=dados['id']).\
-            update(status=0, arquivo_original=0, arquivo='')
+            update(status=STATUS_EVENTO_CADASTRADO,
+                   arquivo_original=0,
+                   arquivo='')
 
         gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s3000_evtexclusao.identidade),
             's3000_evtexclusao', dados['id'], request.user.id, 1)
@@ -429,7 +442,9 @@ def criar_alteracao(request, hash):
         nova_identidade = identidade_evento(s3000_evtexclusao)
 
         s3000evtExclusao.objects.using(db_slug).filter(id=dados['id']).\
-            update(status=0, arquivo_original=0, arquivo='')
+            update(status=STATUS_EVENTO_CADASTRADO,
+                   arquivo_original=0,
+                   arquivo='')
 
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s3000_evtexclusao.identidade),
@@ -469,7 +484,9 @@ def criar_exclusao(request, hash):
         nova_identidade = identidade_evento(s3000_evtexclusao)
 
         s3000evtExclusao.objects.using(db_slug).filter(id=dados['id']).\
-            update(status=0, arquivo_original=0, arquivo='')
+            update(status=STATUS_EVENTO_CADASTRADO,
+                   arquivo_original=0,
+                   arquivo='')
 
         gravar_auditoria(u'{}',
             u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s3000_evtexclusao.identidade),
@@ -500,7 +517,7 @@ def alterar_identidade(request, hash):
             excluido=False,
             id=s3000_evtexclusao_id)
 
-        if s3000_evtexclusao.status == 0:
+        if s3000_evtexclusao.status == STATUS_EVENTO_CADASTRADO:
 
             nova_identidade = identidade_evento(s3000_evtexclusao)
             messages.success(request, 'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
@@ -533,8 +550,24 @@ def abrir_evento_para_edicao(request, hash):
     if s3000_evtexclusao_id:
         s3000_evtexclusao = get_object_or_404(s3000evtExclusao.objects.using(db_slug), excluido=False, id=s3000_evtexclusao_id)
 
-        if s3000_evtexclusao.status in (0, 1, 2, 3, 4, 10, 11) or s3000_evtexclusao.processamento_codigo_resposta in (401,402):
-            s3000evtExclusao.objects.using(db_slug).filter(id=s3000_evtexclusao_id).update(status=0, arquivo_original=0)
+        status_list = [
+            STATUS_EVENTO_CADASTRADO,
+            STATUS_EVENTO_IMPORTADO,
+            STATUS_EVENTO_DUPLICADO,
+            STATUS_EVENTO_GERADO,
+            STATUS_EVENTO_GERADO_ERRO,
+            STATUS_EVENTO_ASSINADO,
+            STATUS_EVENTO_ASSINADO_ERRO,
+            STATUS_EVENTO_VALIDADO,
+            STATUS_EVENTO_VALIDADO_ERRO,
+            STATUS_EVENTO_AGUARD_PRECEDENCIA,
+            STATUS_EVENTO_AGUARD_ENVIO,
+            STATUS_EVENTO_ENVIADO_ERRO
+        ]
+
+        if s3000_evtexclusao.status in  or s3000_evtexclusao.processamento_codigo_resposta in (401,402):
+            s3000evtExclusao.objects.using(db_slug).filter(id=s3000_evtexclusao_id).update(status=STATUS_EVENTO_CADASTRADO,
+                                                                          arquivo_original=0)
             arquivo = 'arquivos/Eventos/s3000_evtexclusao/%s.xml' % (s3000_evtexclusao.identidade)
 
             if os.path.exists(BASE_DIR + '/' + arquivo):
@@ -594,7 +627,6 @@ def validar_evento_funcao(s3000_evtexclusao_id, db_slug):
         filter(id=s3000_evtexclusao_id, excluido = False).\
         update(validacao_precedencia=precedencia)
 
-    #executar_sql("UPDATE public.s3000_evtexclusao SET validacao_precedencia=%s WHERE id=%s;" % (precedencia, s3000_evtexclusao_id), False)
     #
     # Validações internas
     #
@@ -629,17 +661,15 @@ def validar_evento_funcao(s3000_evtexclusao_id, db_slug):
 
         s3000evtExclusao.objects.using( db_slug ).\
             filter(id=s3000_evtexclusao_id, excluido = False).\
-            update(validacoes=validacoes, status=3)
-
-        #executar_sql("UPDATE public.s3000_evtexclusao SET validacoes='%s', status=3 WHERE id=%s;" % ('<br>'.join(lista_validacoes).replace("'","''"), s3000_evtexclusao_id), False)
+            update(validacoes=validacoes,
+                   status=STATUS_EVENTO_VALIDADO_ERRO)
 
     else:
 
         s3000evtExclusao.objects.using( db_slug ).\
             filter(id=s3000_evtexclusao_id, excluido = False).\
-            update(validacoes='', status=4)
-
-        #executar_sql("UPDATE public.s3000_evtexclusao SET validacoes='', status=4 WHERE id=%s;" % (s3000_evtexclusao_id), False)
+            update(validacoes='',
+                   status=STATUS_EVENTO_VALIDADO)
 
     return lista_validacoes
 

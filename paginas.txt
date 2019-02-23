@@ -8,7 +8,9 @@ Controle de Acesso|controle_de_acesso|Perfis|config_perfis
 Controle de Acesso|controle_de_acesso|Permissões|config_permissoes
 Controle de Acesso|controle_de_acesso|Usuários|usuarios
 Controle de Acesso|controle_de_acesso|Auditoria|auditoria
-Mensageiro|mensageiro|Mapa de Processamento|mapa_processamento
+Mapa de Processamento|mapa_processamento|Importações|mapa_importacoes
+Mapa de Processamento|mapa_processamento|eSocial|mapa_esocial
+Mapa de Processamento|mapa_processamento|EFDReinf|mapa_efdreinf
 Mensageiro|mensageiro|Importações|importacoes
 Mensageiro|mensageiro|RelatoriosImprimir|relatorios_imprimir
 Mensageiro|mensageiro|Relatórios|relatorios

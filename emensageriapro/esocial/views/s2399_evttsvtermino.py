@@ -68,6 +68,7 @@ from emensageriapro.s2399.forms import form_s2399_quarentena
 #IMPORTACOES
 @login_required
 def apagar(request, hash):
+    from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     db_slug = 'default'
     try:
         usuario_id = request.user.id
@@ -86,12 +87,12 @@ def apagar(request, hash):
     s2399_evttsvtermino = get_object_or_404(s2399evtTSVTermino.objects.using( db_slug ), excluido = False, id = s2399_evttsvtermino_id)
 
     if s2399_evttsvtermino_id:
-        if s2399_evttsvtermino.status != 0:
+        if s2399_evttsvtermino.status != STATUS_EVENTO_CADASTRADO:
             dict_permissoes['s2399_evttsvtermino_apagar'] = 0
             dict_permissoes['s2399_evttsvtermino_editar'] = 0
 
     if request.method == 'POST':
-        if s2399_evttsvtermino.status == 0:
+        if s2399_evttsvtermino.status == STATUS_EVENTO_CADASTRADO:
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(s2399_evttsvtermino), indent=4, sort_keys=True, default=str)
@@ -349,6 +350,7 @@ def gerar_identidade(request, chave, evento_id):
 
 @login_required
 def salvar(request, hash):
+    from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL, TP_AMB
     db_slug = 'default'
     try:
@@ -371,7 +373,7 @@ def salvar(request, hash):
     if s2399_evttsvtermino_id:
         s2399_evttsvtermino = get_object_or_404(s2399evtTSVTermino.objects.using( db_slug ), excluido = False, id = s2399_evttsvtermino_id)
 
-        if s2399_evttsvtermino.status != 0:
+        if s2399_evttsvtermino.status != STATUS_EVENTO_CADASTRADO:
             dict_permissoes['s2399_evttsvtermino_apagar'] = 0
             dict_permissoes['s2399_evttsvtermino_editar'] = 0
 
@@ -380,7 +382,13 @@ def salvar(request, hash):
         if s2399_evttsvtermino_id:
             s2399_evttsvtermino_form = form_s2399_evttsvtermino(request.POST or None, instance = s2399_evttsvtermino, slug = db_slug)
         else:
-            s2399_evttsvtermino_form = form_s2399_evttsvtermino(request.POST or None, slug = db_slug, initial={'versao': VERSAO_LAYOUT_ESOCIAL, 'status': 0, 'processamento_codigo_resposta': 0, 'tpamb': TP_AMB, 'procemi': 1, 'verproc': VERSAO_EMENSAGERIA})
+            s2399_evttsvtermino_form = form_s2399_evttsvtermino(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL,
+                                                  'status': STATUS_EVENTO_CADASTRADO,
+                                                  'tpamb': TP_AMB,
+                                                  'procemi': 1,
+                                                  'verproc': VERSAO_EMENSAGERIA})
         if request.method == 'POST':
             if s2399_evttsvtermino_form.is_valid():
 
@@ -497,7 +505,7 @@ def salvar(request, hash):
             #s2399_evttsvtermino_salvar_custom_variaveis_context#
         }
 
-        if for_print in (0,1 ):
+        if for_print in (0, 1):
             return render(request, 's2399_evttsvtermino_salvar.html', context)
 
         elif for_print == 2:

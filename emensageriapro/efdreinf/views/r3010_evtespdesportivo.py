@@ -62,6 +62,7 @@ from emensageriapro.r3010.forms import form_r3010_infoproc
 #IMPORTACOES
 @login_required
 def apagar(request, hash):
+    from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     db_slug = 'default'
     try:
         usuario_id = request.user.id
@@ -80,12 +81,12 @@ def apagar(request, hash):
     r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo.objects.using( db_slug ), excluido = False, id = r3010_evtespdesportivo_id)
 
     if r3010_evtespdesportivo_id:
-        if r3010_evtespdesportivo.status != 0:
+        if r3010_evtespdesportivo.status != STATUS_EVENTO_CADASTRADO:
             dict_permissoes['r3010_evtespdesportivo_apagar'] = 0
             dict_permissoes['r3010_evtespdesportivo_editar'] = 0
 
     if request.method == 'POST':
-        if r3010_evtespdesportivo.status == 0:
+        if r3010_evtespdesportivo.status == STATUS_EVENTO_CADASTRADO:
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(r3010_evtespdesportivo), indent=4, sort_keys=True, default=str)
@@ -347,6 +348,7 @@ def gerar_identidade(request, chave, evento_id):
 
 @login_required
 def salvar(request, hash):
+    from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_EFDREINF, TP_AMB
     db_slug = 'default'
     try:
@@ -369,7 +371,7 @@ def salvar(request, hash):
     if r3010_evtespdesportivo_id:
         r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo.objects.using( db_slug ), excluido = False, id = r3010_evtespdesportivo_id)
 
-        if r3010_evtespdesportivo.status != 0:
+        if r3010_evtespdesportivo.status != STATUS_EVENTO_CADASTRADO:
             dict_permissoes['r3010_evtespdesportivo_apagar'] = 0
             dict_permissoes['r3010_evtespdesportivo_editar'] = 0
 
@@ -378,7 +380,13 @@ def salvar(request, hash):
         if r3010_evtespdesportivo_id:
             r3010_evtespdesportivo_form = form_r3010_evtespdesportivo(request.POST or None, instance = r3010_evtespdesportivo, slug = db_slug)
         else:
-            r3010_evtespdesportivo_form = form_r3010_evtespdesportivo(request.POST or None, slug = db_slug, initial={'versao': VERSAO_LAYOUT_EFDREINF, 'status': 0, 'processamento_codigo_resposta': 0, 'tpamb': TP_AMB, 'procemi': 1, 'verproc': VERSAO_EMENSAGERIA})
+            r3010_evtespdesportivo_form = form_r3010_evtespdesportivo(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'versao': VERSAO_LAYOUT_EFDREINF,
+                                                  'status': STATUS_EVENTO_CADASTRADO,
+                                                  'tpamb': TP_AMB,
+                                                  'procemi': 1,
+                                                  'verproc': VERSAO_EMENSAGERIA})
         if request.method == 'POST':
             if r3010_evtespdesportivo_form.is_valid():
 
@@ -474,7 +482,7 @@ def salvar(request, hash):
             #r3010_evtespdesportivo_salvar_custom_variaveis_context#
         }
 
-        if for_print in (0,1 ):
+        if for_print in (0, 1):
             return render(request, 'r3010_evtespdesportivo_salvar.html', context)
 
         elif for_print == 2:

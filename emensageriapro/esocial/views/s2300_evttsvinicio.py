@@ -100,6 +100,7 @@ from emensageriapro.s2300.forms import form_s2300_termino
 #IMPORTACOES
 @login_required
 def apagar(request, hash):
+    from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     db_slug = 'default'
     try:
         usuario_id = request.user.id
@@ -118,12 +119,12 @@ def apagar(request, hash):
     s2300_evttsvinicio = get_object_or_404(s2300evtTSVInicio.objects.using( db_slug ), excluido = False, id = s2300_evttsvinicio_id)
 
     if s2300_evttsvinicio_id:
-        if s2300_evttsvinicio.status != 0:
+        if s2300_evttsvinicio.status != STATUS_EVENTO_CADASTRADO:
             dict_permissoes['s2300_evttsvinicio_apagar'] = 0
             dict_permissoes['s2300_evttsvinicio_editar'] = 0
 
     if request.method == 'POST':
-        if s2300_evttsvinicio.status == 0:
+        if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO:
             import json
             from django.forms.models import model_to_dict
             situacao_anterior = json.dumps(model_to_dict(s2300_evttsvinicio), indent=4, sort_keys=True, default=str)
@@ -420,6 +421,7 @@ def gerar_identidade(request, chave, evento_id):
 
 @login_required
 def salvar(request, hash):
+    from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL, TP_AMB
     db_slug = 'default'
     try:
@@ -442,7 +444,7 @@ def salvar(request, hash):
     if s2300_evttsvinicio_id:
         s2300_evttsvinicio = get_object_or_404(s2300evtTSVInicio.objects.using( db_slug ), excluido = False, id = s2300_evttsvinicio_id)
 
-        if s2300_evttsvinicio.status != 0:
+        if s2300_evttsvinicio.status != STATUS_EVENTO_CADASTRADO:
             dict_permissoes['s2300_evttsvinicio_apagar'] = 0
             dict_permissoes['s2300_evttsvinicio_editar'] = 0
 
@@ -451,7 +453,13 @@ def salvar(request, hash):
         if s2300_evttsvinicio_id:
             s2300_evttsvinicio_form = form_s2300_evttsvinicio(request.POST or None, instance = s2300_evttsvinicio, slug = db_slug)
         else:
-            s2300_evttsvinicio_form = form_s2300_evttsvinicio(request.POST or None, slug = db_slug, initial={'versao': VERSAO_LAYOUT_ESOCIAL, 'status': 0, 'processamento_codigo_resposta': 0, 'tpamb': TP_AMB, 'procemi': 1, 'verproc': VERSAO_EMENSAGERIA})
+            s2300_evttsvinicio_form = form_s2300_evttsvinicio(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'versao': VERSAO_LAYOUT_ESOCIAL,
+                                                  'status': STATUS_EVENTO_CADASTRADO,
+                                                  'tpamb': TP_AMB,
+                                                  'procemi': 1,
+                                                  'verproc': VERSAO_EMENSAGERIA})
         if request.method == 'POST':
             if s2300_evttsvinicio_form.is_valid():
 
@@ -680,7 +688,7 @@ def salvar(request, hash):
             #s2300_evttsvinicio_salvar_custom_variaveis_context#
         }
 
-        if for_print in (0,1 ):
+        if for_print in (0, 1):
             return render(request, 's2300_evttsvinicio_salvar.html', context)
 
         elif for_print == 2:

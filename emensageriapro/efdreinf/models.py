@@ -44,6 +44,14 @@ from rest_framework.fields import CurrentUserDefault
 from emensageriapro.soft_delete import SoftDeletionModel
 get_model = apps.get_model
 
+from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
+    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
+    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
+    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
+    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
+    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
+    STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
+
 
 
 CHOICES_R1000_PROCEMI = (
@@ -392,16 +400,18 @@ EFDREINF_VERSOES = (
 EVENTO_STATUS = (
     (0, u'Cadastrado'),
     (1, u'Importado'),
-    (10, u'XML Assinado'),
-    (11, u'XML Gerado'),
-    (12, u'Retorno'),
-    (14, u'Processado'),
-    (15, u'Aguardando consulta'),
+    (10, u'Aguardando envio'),
+    (11, u'Enviado'),
+    (12, u'Erro no Envio/Consulta'),
+    (13, u'Processado'),
     (2, u'Duplicado'),
-    (3, u'Erro na validação'),
-    (4, u'Validado'),
-    (5, u'Erro no envio'),
-    (6, u'Aguardando envio'),
+    (3, u'Gerado'),
+    (4, u'Erro na Geração'),
+    (5, u'Assinado'),
+    (6, u'Erro na Assinatura'),
+    (7, u'Validado'),
+    (8, u'Erro na validação'),
+    (9, u'Aguardando envio de precedência'),
 )
 
 OPERACOES = (
