@@ -589,7 +589,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if r5011_evttotalcontrib.status in  or r5011_evttotalcontrib.processamento_codigo_resposta in (401,402):
+        if r5011_evttotalcontrib.status in status_list or r5011_evttotalcontrib.processamento_codigo_resposta in (401,402):
             r5011evtTotalContrib.objects.using(db_slug).filter(id=r5011_evttotalcontrib_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/r5011_evttotalcontrib/%s.xml' % (r5011_evttotalcontrib.identidade)

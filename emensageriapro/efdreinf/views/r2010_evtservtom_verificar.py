@@ -573,7 +573,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if r2010_evtservtom.status in  or r2010_evtservtom.processamento_codigo_resposta in (401,402):
+        if r2010_evtservtom.status in status_list or r2010_evtservtom.processamento_codigo_resposta in (401,402):
             r2010evtServTom.objects.using(db_slug).filter(id=r2010_evtservtom_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/r2010_evtservtom/%s.xml' % (r2010_evtservtom.identidade)

@@ -621,7 +621,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s1005_evttabestab.status in  or s1005_evttabestab.processamento_codigo_resposta in (401,402):
+        if s1005_evttabestab.status in status_list or s1005_evttabestab.processamento_codigo_resposta in (401,402):
             s1005evtTabEstab.objects.using(db_slug).filter(id=s1005_evttabestab_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s1005_evttabestab/%s.xml' % (s1005_evttabestab.identidade)

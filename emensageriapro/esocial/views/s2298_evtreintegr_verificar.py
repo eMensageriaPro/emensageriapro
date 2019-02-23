@@ -557,7 +557,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s2298_evtreintegr.status in  or s2298_evtreintegr.processamento_codigo_resposta in (401,402):
+        if s2298_evtreintegr.status in status_list or s2298_evtreintegr.processamento_codigo_resposta in (401,402):
             s2298evtReintegr.objects.using(db_slug).filter(id=s2298_evtreintegr_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s2298_evtreintegr/%s.xml' % (s2298_evtreintegr.identidade)

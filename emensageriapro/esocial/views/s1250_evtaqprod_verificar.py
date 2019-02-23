@@ -577,7 +577,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s1250_evtaqprod.status in  or s1250_evtaqprod.processamento_codigo_resposta in (401,402):
+        if s1250_evtaqprod.status in status_list or s1250_evtaqprod.processamento_codigo_resposta in (401,402):
             s1250evtAqProd.objects.using(db_slug).filter(id=s1250_evtaqprod_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s1250_evtaqprod/%s.xml' % (s1250_evtaqprod.identidade)

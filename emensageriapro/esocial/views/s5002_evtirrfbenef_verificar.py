@@ -577,7 +577,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s5002_evtirrfbenef.status in  or s5002_evtirrfbenef.processamento_codigo_resposta in (401,402):
+        if s5002_evtirrfbenef.status in status_list or s5002_evtirrfbenef.processamento_codigo_resposta in (401,402):
             s5002evtIrrfBenef.objects.using(db_slug).filter(id=s5002_evtirrfbenef_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s5002_evtirrfbenef/%s.xml' % (s5002_evtirrfbenef.identidade)

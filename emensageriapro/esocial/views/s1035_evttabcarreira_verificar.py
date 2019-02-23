@@ -573,7 +573,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s1035_evttabcarreira.status in  or s1035_evttabcarreira.processamento_codigo_resposta in (401,402):
+        if s1035_evttabcarreira.status in status_list or s1035_evttabcarreira.processamento_codigo_resposta in (401,402):
             s1035evtTabCarreira.objects.using(db_slug).filter(id=s1035_evttabcarreira_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s1035_evttabcarreira/%s.xml' % (s1035_evttabcarreira.identidade)

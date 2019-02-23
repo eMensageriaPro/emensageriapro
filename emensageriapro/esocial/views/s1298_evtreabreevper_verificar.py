@@ -557,7 +557,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s1298_evtreabreevper.status in  or s1298_evtreabreevper.processamento_codigo_resposta in (401,402):
+        if s1298_evtreabreevper.status in status_list or s1298_evtreabreevper.processamento_codigo_resposta in (401,402):
             s1298evtReabreEvPer.objects.using(db_slug).filter(id=s1298_evtreabreevper_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s1298_evtreabreevper/%s.xml' % (s1298_evtreabreevper.identidade)

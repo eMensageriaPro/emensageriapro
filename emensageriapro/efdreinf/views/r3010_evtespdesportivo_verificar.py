@@ -573,7 +573,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if r3010_evtespdesportivo.status in  or r3010_evtespdesportivo.processamento_codigo_resposta in (401,402):
+        if r3010_evtespdesportivo.status in status_list or r3010_evtespdesportivo.processamento_codigo_resposta in (401,402):
             r3010evtEspDesportivo.objects.using(db_slug).filter(id=r3010_evtespdesportivo_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/r3010_evtespdesportivo/%s.xml' % (r3010_evtespdesportivo.identidade)

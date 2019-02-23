@@ -561,7 +561,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if r2099_evtfechaevper.status in  or r2099_evtfechaevper.processamento_codigo_resposta in (401,402):
+        if r2099_evtfechaevper.status in status_list or r2099_evtfechaevper.processamento_codigo_resposta in (401,402):
             r2099evtFechaEvPer.objects.using(db_slug).filter(id=r2099_evtfechaevper_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/r2099_evtfechaevper/%s.xml' % (r2099_evtfechaevper.identidade)

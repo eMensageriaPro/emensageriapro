@@ -569,7 +569,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s1280_evtinfocomplper.status in  or s1280_evtinfocomplper.processamento_codigo_resposta in (401,402):
+        if s1280_evtinfocomplper.status in status_list or s1280_evtinfocomplper.processamento_codigo_resposta in (401,402):
             s1280evtInfoComplPer.objects.using(db_slug).filter(id=s1280_evtinfocomplper_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s1280_evtinfocomplper/%s.xml' % (s1280_evtinfocomplper.identidade)

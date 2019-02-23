@@ -573,7 +573,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s1080_evttaboperport.status in  or s1080_evttaboperport.processamento_codigo_resposta in (401,402):
+        if s1080_evttaboperport.status in status_list or s1080_evttaboperport.processamento_codigo_resposta in (401,402):
             s1080evtTabOperPort.objects.using(db_slug).filter(id=s1080_evttaboperport_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s1080_evttaboperport/%s.xml' % (s1080_evttaboperport.identidade)

@@ -609,7 +609,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s2205_evtaltcadastral.status in  or s2205_evtaltcadastral.processamento_codigo_resposta in (401,402):
+        if s2205_evtaltcadastral.status in status_list or s2205_evtaltcadastral.processamento_codigo_resposta in (401,402):
             s2205evtAltCadastral.objects.using(db_slug).filter(id=s2205_evtaltcadastral_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s2205_evtaltcadastral/%s.xml' % (s2205_evtaltcadastral.identidade)

@@ -557,7 +557,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if r9000_evtexclusao.status in  or r9000_evtexclusao.processamento_codigo_resposta in (401,402):
+        if r9000_evtexclusao.status in status_list or r9000_evtexclusao.processamento_codigo_resposta in (401,402):
             r9000evtExclusao.objects.using(db_slug).filter(id=r9000_evtexclusao_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/r9000_evtexclusao/%s.xml' % (r9000_evtexclusao.identidade)

@@ -569,7 +569,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if r2030_evtassocdesprec.status in  or r2030_evtassocdesprec.processamento_codigo_resposta in (401,402):
+        if r2030_evtassocdesprec.status in status_list or r2030_evtassocdesprec.processamento_codigo_resposta in (401,402):
             r2030evtAssocDespRec.objects.using(db_slug).filter(id=r2030_evtassocdesprec_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/r2030_evtassocdesprec/%s.xml' % (r2030_evtassocdesprec.identidade)

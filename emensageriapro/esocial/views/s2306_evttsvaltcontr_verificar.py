@@ -581,7 +581,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s2306_evttsvaltcontr.status in  or s2306_evttsvaltcontr.processamento_codigo_resposta in (401,402):
+        if s2306_evttsvaltcontr.status in status_list or s2306_evttsvaltcontr.processamento_codigo_resposta in (401,402):
             s2306evtTSVAltContr.objects.using(db_slug).filter(id=s2306_evttsvaltcontr_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s2306_evttsvaltcontr/%s.xml' % (s2306_evttsvaltcontr.identidade)

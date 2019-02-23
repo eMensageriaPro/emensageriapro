@@ -569,7 +569,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s2400_evtcdbenefin.status in  or s2400_evtcdbenefin.processamento_codigo_resposta in (401,402):
+        if s2400_evtcdbenefin.status in status_list or s2400_evtcdbenefin.processamento_codigo_resposta in (401,402):
             s2400evtCdBenefIn.objects.using(db_slug).filter(id=s2400_evtcdbenefin_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s2400_evtcdbenefin/%s.xml' % (s2400_evtcdbenefin.identidade)

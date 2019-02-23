@@ -557,7 +557,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s2190_evtadmprelim.status in  or s2190_evtadmprelim.processamento_codigo_resposta in (401,402):
+        if s2190_evtadmprelim.status in status_list or s2190_evtadmprelim.processamento_codigo_resposta in (401,402):
             s2190evtAdmPrelim.objects.using(db_slug).filter(id=s2190_evtadmprelim_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s2190_evtadmprelim/%s.xml' % (s2190_evtadmprelim.identidade)

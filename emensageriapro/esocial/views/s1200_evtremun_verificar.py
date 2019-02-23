@@ -645,7 +645,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s1200_evtremun.status in  or s1200_evtremun.processamento_codigo_resposta in (401,402):
+        if s1200_evtremun.status in status_list or s1200_evtremun.processamento_codigo_resposta in (401,402):
             s1200evtRemun.objects.using(db_slug).filter(id=s1200_evtremun_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s1200_evtremun/%s.xml' % (s1200_evtremun.identidade)

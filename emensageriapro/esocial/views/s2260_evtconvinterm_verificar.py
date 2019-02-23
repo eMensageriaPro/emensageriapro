@@ -561,7 +561,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s2260_evtconvinterm.status in  or s2260_evtconvinterm.processamento_codigo_resposta in (401,402):
+        if s2260_evtconvinterm.status in status_list or s2260_evtconvinterm.processamento_codigo_resposta in (401,402):
             s2260evtConvInterm.objects.using(db_slug).filter(id=s2260_evtconvinterm_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s2260_evtconvinterm/%s.xml' % (s2260_evtconvinterm.identidade)

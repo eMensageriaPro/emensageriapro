@@ -597,7 +597,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s5003_evtbasesfgts.status in  or s5003_evtbasesfgts.processamento_codigo_resposta in (401,402):
+        if s5003_evtbasesfgts.status in status_list or s5003_evtbasesfgts.processamento_codigo_resposta in (401,402):
             s5003evtBasesFGTS.objects.using(db_slug).filter(id=s5003_evtbasesfgts_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s5003_evtbasesfgts/%s.xml' % (s5003_evtbasesfgts.identidade)

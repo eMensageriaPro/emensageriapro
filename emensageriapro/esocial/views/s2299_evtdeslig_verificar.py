@@ -653,7 +653,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s2299_evtdeslig.status in  or s2299_evtdeslig.processamento_codigo_resposta in (401,402):
+        if s2299_evtdeslig.status in status_list or s2299_evtdeslig.processamento_codigo_resposta in (401,402):
             s2299evtDeslig.objects.using(db_slug).filter(id=s2299_evtdeslig_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s2299_evtdeslig/%s.xml' % (s2299_evtdeslig.identidade)

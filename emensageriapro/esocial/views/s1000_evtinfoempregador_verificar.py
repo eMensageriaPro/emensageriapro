@@ -637,7 +637,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s1000_evtinfoempregador.status in  or s1000_evtinfoempregador.processamento_codigo_resposta in (401,402):
+        if s1000_evtinfoempregador.status in status_list or s1000_evtinfoempregador.processamento_codigo_resposta in (401,402):
             s1000evtInfoEmpregador.objects.using(db_slug).filter(id=s1000_evtinfoempregador_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s1000_evtinfoempregador/%s.xml' % (s1000_evtinfoempregador.identidade)

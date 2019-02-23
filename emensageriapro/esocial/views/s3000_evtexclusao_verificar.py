@@ -565,7 +565,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s3000_evtexclusao.status in  or s3000_evtexclusao.processamento_codigo_resposta in (401,402):
+        if s3000_evtexclusao.status in status_list or s3000_evtexclusao.processamento_codigo_resposta in (401,402):
             s3000evtExclusao.objects.using(db_slug).filter(id=s3000_evtexclusao_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s3000_evtexclusao/%s.xml' % (s3000_evtexclusao.identidade)

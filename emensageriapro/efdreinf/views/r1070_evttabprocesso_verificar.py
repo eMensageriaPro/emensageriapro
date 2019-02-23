@@ -589,7 +589,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if r1070_evttabprocesso.status in  or r1070_evttabprocesso.processamento_codigo_resposta in (401,402):
+        if r1070_evttabprocesso.status in status_list or r1070_evttabprocesso.processamento_codigo_resposta in (401,402):
             r1070evtTabProcesso.objects.using(db_slug).filter(id=r1070_evttabprocesso_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/r1070_evttabprocesso/%s.xml' % (r1070_evttabprocesso.identidade)

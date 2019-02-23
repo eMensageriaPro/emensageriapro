@@ -108,39 +108,6 @@ def listar(request, hash):
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)
 
-        importacao_arquivos_eventos_lista = ImportacaoArquivosEventos.objects.using( db_slug ).filter(**dict_qs).filter(excluido = False, status=0).exclude(id=0).all()
-        importacao_arquivos_eventos_erros_lista = ImportacaoArquivosEventos.objects.using( db_slug ).filter(**dict_qs).filter(excluido = False, status=2).exclude(id=0).all()
-
-        esocial_enviados = TransmissorEventosEsocial.objects.using( db_slug ).\
-            filter(excluido = False,
-                   status=STATUS_EVENTO_ENVIADO).exclude(id=0).all()
-
-        esocial_validados_aguardando_envio = TransmissorEventosEsocial.objects.using( db_slug ).\
-            filter(excluido = False,
-                   status=STATUS_EVENTO_AGUARD_ENVIO,
-                   validacao_precedencia=1).exclude(id=0).all()
-
-        esocial_validados_aguardando_precedencia = TransmissorEventosEsocial.objects.using( db_slug ).\
-            filter(excluido = False,
-                   status=STATUS_EVENTO_AGUARD_PRECEDENCIA,
-                   validacao_precedencia=0).exclude(id=0).all()
-
-        esocial_erros_validacao = TransmissorEventosEsocial.objects.using( db_slug ).\
-            filter(excluido = False,
-                   status=STATUS_EVENTO_VALIDADO_ERRO).exclude(id=0).all()
-
-        esocial_assinados = TransmissorEventosEsocial.objects.using( db_slug ).\
-            filter(excluido = False,
-                   status=STATUS_EVENTO_ASSINADO).exclude(id=0).all()
-
-        esocial_cadastrados = TransmissorEventosEsocial.objects.using( db_slug ).\
-            filter(excluido = False,
-                   status__in=[STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_IMPORTADO, STATUS_EVENTO_GERADO]).exclude(id=0).all()
-
-        esocial_erros_envio = TransmissorEventosEsocial.objects.using( db_slug ).\
-            filter(excluido = False,
-                   status=STATUS_EVENTO_ENVIADO_ERRO).exclude(id=0).all()
-
         efdreinf_enviados = TransmissorEventosEfdreinf.objects.using( db_slug ).\
             filter(excluido = False,
                    status=STATUS_EVENTO_ENVIADO).exclude(id=0).all()
@@ -153,6 +120,11 @@ def listar(request, hash):
         efdreinf_validados_aguardando_precedencia = TransmissorEventosEfdreinf.objects.using( db_slug ).\
             filter(excluido = False,
                    status=STATUS_EVENTO_AGUARD_PRECEDENCIA,
+                   validacao_precedencia=0).exclude(id=0).all()
+
+        efdreinf_validados = TransmissorEventosEfdreinf.objects.using( db_slug ).\
+            filter(excluido = False,
+                   status=STATUS_EVENTO_VALIDADO,
                    validacao_precedencia=0).exclude(id=0).all()
 
         efdreinf_erros_validacao = TransmissorEventosEfdreinf.objects.using( db_slug ).\
@@ -171,33 +143,26 @@ def listar(request, hash):
             filter(excluido = False,
                    status=STATUS_EVENTO_ENVIADO_ERRO).exclude(id=0).all()
 
+        efdreinf_processados = TransmissorEventosEfdreinf.objects.using( db_slug ).\
+            filter(excluido = False,
+                   status=STATUS_EVENTO_PROCESSADO).exclude(id=0).all()
 
-        importacao_arquivos_lista = ImportacaoArquivos.objects.using( db_slug ).filter(excluido = False, status=0).all()
-        #importacao_arquivos_eventos_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'mapa_processamento'
 
         context = {
 
             'tab': dict_hash['tab'],
-            'importacao_arquivos_eventos_lista': importacao_arquivos_eventos_lista,
-            'importacao_arquivos_eventos_erros_lista': importacao_arquivos_eventos_erros_lista,
-
-            'esocial_enviados': esocial_enviados,
-            'esocial_validados_aguardando_envio': esocial_validados_aguardando_envio,
-            'esocial_validados_aguardando_precedencia': esocial_validados_aguardando_precedencia,
-            'esocial_erros_validacao': esocial_erros_validacao,
-            'esocial_assinados': esocial_assinados,
-            'esocial_cadastrados': esocial_cadastrados,
-            'esocial_erros_envio': esocial_erros_envio,
 
             'efdreinf_enviados': efdreinf_enviados,
             'efdreinf_validados_aguardando_envio': efdreinf_validados_aguardando_envio,
             'efdreinf_validados_aguardando_precedencia': efdreinf_validados_aguardando_precedencia,
+            'efdreinf_validados': efdreinf_validados,
             'efdreinf_erros_validacao': efdreinf_erros_validacao,
             'efdreinf_assinados': efdreinf_assinados,
             'efdreinf_cadastrados': efdreinf_cadastrados,
             'efdreinf_erros_envio': efdreinf_erros_envio,
+            'efdreinf_processados': efdreinf_processados,
 
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
@@ -213,7 +178,6 @@ def listar(request, hash):
             'hash': hash,
             'filtrar': filtrar,
 
-            'importacao_arquivos_lista': importacao_arquivos_lista,
         }
         return render(request, 'mapa_efdreinf.html', context)
     else:

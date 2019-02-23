@@ -557,7 +557,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s2221_evttoxic.status in  or s2221_evttoxic.processamento_codigo_resposta in (401,402):
+        if s2221_evttoxic.status in status_list or s2221_evttoxic.processamento_codigo_resposta in (401,402):
             s2221evtToxic.objects.using(db_slug).filter(id=s2221_evttoxic_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s2221_evttoxic/%s.xml' % (s2221_evttoxic.identidade)

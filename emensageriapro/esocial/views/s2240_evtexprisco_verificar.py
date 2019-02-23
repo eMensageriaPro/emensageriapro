@@ -617,7 +617,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s2240_evtexprisco.status in  or s2240_evtexprisco.processamento_codigo_resposta in (401,402):
+        if s2240_evtexprisco.status in status_list or s2240_evtexprisco.processamento_codigo_resposta in (401,402):
             s2240evtExpRisco.objects.using(db_slug).filter(id=s2240_evtexprisco_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s2240_evtexprisco/%s.xml' % (s2240_evtexprisco.identidade)

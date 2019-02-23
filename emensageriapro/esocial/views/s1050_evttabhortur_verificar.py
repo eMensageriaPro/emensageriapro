@@ -581,7 +581,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s1050_evttabhortur.status in  or s1050_evttabhortur.processamento_codigo_resposta in (401,402):
+        if s1050_evttabhortur.status in status_list or s1050_evttabhortur.processamento_codigo_resposta in (401,402):
             s1050evtTabHorTur.objects.using(db_slug).filter(id=s1050_evttabhortur_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s1050_evttabhortur/%s.xml' % (s1050_evttabhortur.identidade)
