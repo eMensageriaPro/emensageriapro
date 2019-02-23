@@ -43,6 +43,14 @@ from emensageriapro.settings import BASE_DIR
 from emensageriapro.padrao import ler_arquivo, executar_sql
 
 
+from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
+    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
+    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
+    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
+    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
+    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
+    STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
+
 
 
 def get_ocorrencias(retornos_eventos_id):
@@ -350,14 +358,14 @@ def read_retornoEvento(doc, transmissor_lote_id):
             if codigo_resposta >= 300:
 
                 model.objects.using('default').filter(identidade=retorno_evento_dados['identidade']).\
-                    update(status=5,
+                    update(status=STATUS_EVENTO_ENVIADO_ERRO,
                            ocorrencias=get_ocorrencias(retorno_evento_id),
                            retornos_eventos_id=retorno_evento_id)
             
             elif codigo_resposta >= 201 and codigo_resposta < 300:
 
                 model.objects.using('default').filter(identidade=retorno_evento_dados['identidade']).\
-                    update(status=14,
+                    update(status=STATUS_EVENTO_PROCESSADO,
                            ocorrencias=get_ocorrencias(retorno_evento_id),
                            retornos_eventos_id=retorno_evento_id)
 

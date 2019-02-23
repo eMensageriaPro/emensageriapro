@@ -42,6 +42,14 @@ from emensageriapro.padrao import executar_sql
 from emensageriapro.mensageiro.models import *
 
 
+from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
+    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
+    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
+    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
+    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
+    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
+    STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
+
 
 def validacao_automatica_eventos():
     """ Validar Automaticamente os eventos com status 1 - Importado"""

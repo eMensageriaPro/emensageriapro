@@ -124,8 +124,7 @@ def listar(request, hash):
 
         efdreinf_validados = TransmissorEventosEfdreinf.objects.using( db_slug ).\
             filter(excluido = False,
-                   status=STATUS_EVENTO_VALIDADO,
-                   validacao_precedencia=0).exclude(id=0).all()
+                   status=STATUS_EVENTO_VALIDADO).exclude(id=0).all()
 
         efdreinf_erros_validacao = TransmissorEventosEfdreinf.objects.using( db_slug ).\
             filter(excluido = False,
