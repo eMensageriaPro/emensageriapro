@@ -154,17 +154,23 @@ def assinar_efdreinf(xml):
     key_str = ler_arquivo(key_pem_file)
     root = etree.fromstring(xml)
 
-    signed_root = XMLSigner(
-        method=methods.enveloped,
-        signature_algorithm=u'rsa-sha256',
-        digest_algorithm=u'sha256',
-        c14n_algorithm=u'http://www.w3.org/TR/2001/REC-xml-c14n-20010315'
-        ).sign(root,
-               reference_uri='#' + identidade,
-               key=key_str,
-               cert=cert_str)
+    if CERT_HOST:
 
-    return etree.tostring(signed_root)
+        signed_root = XMLSigner(
+            method=methods.enveloped,
+            signature_algorithm=u'rsa-sha256',
+            digest_algorithm=u'sha256',
+            c14n_algorithm=u'http://www.w3.org/TR/2001/REC-xml-c14n-20010315'
+            ).sign(root,
+                   reference_uri='#' + identidade,
+                   key=key_str,
+                   cert=cert_str)
+
+        return etree.tostring(signed_root)
+
+    else:
+
+        return xml
 
 
 
