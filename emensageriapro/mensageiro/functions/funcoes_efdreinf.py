@@ -288,7 +288,7 @@ def send_xml(request, transmissor_id, service):
     cert_pem_file = BASE_DIR+'/'+ CERT_PEM_FILE
     key_pem_file = BASE_DIR+'/'+ KEY_PEM_FILE
 
-    if not os.path.isfile(cert_pem_file):
+    if not os.path.isfile(cert_pem_file) and CERT_HOST:
         create_pem_files(CERT_HOST, CERT_PASS,
                          cert_pem_file, key_pem_file)
 
@@ -316,7 +316,7 @@ def send_xml(request, transmissor_id, service):
         filter(transmissor_lote_efdreinf_id=transmissor_id,
                status=4).count()
 
-    if quant_eventos_validados or service == 'ConsultasReinf':
+    if CERT_HOST and ( quant_eventos_validados or service == 'ConsultasReinf' ):
 
         quant_eventos = TransmissorEventosEfdreinf.objects.using('default'). \
             filter(transmissor_lote_efdreinf_id=transmissor_id).count()
@@ -404,7 +404,8 @@ def send_xml(request, transmissor_id, service):
                 #alterar_status_transmissor(transmissor_id, 8)
 
     else:
-        messages.error(request, 'Não possuem eventos validados para envio neste lote!')
+
+        messages.error(request, 'O certificado não está configurado ou não possuem eventos validados para envio neste lote!')
 
     atualizar_status_efdreinf()
 
