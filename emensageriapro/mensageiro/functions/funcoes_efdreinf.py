@@ -148,13 +148,13 @@ def assinar_efdreinf(xml):
 
     identidade = get_identidade_evento(xml)
 
-    create_pem_files(cert_host, CERT_PASS, cert_pem_file, key_pem_file)
-
-    cert_str = ler_arquivo(cert_pem_file)
-    key_str = ler_arquivo(key_pem_file)
-    root = etree.fromstring(xml)
-
     if CERT_HOST:
+
+        create_pem_files(cert_host, CERT_PASS, cert_pem_file, key_pem_file)
+
+        cert_str = ler_arquivo(cert_pem_file)
+        key_str = ler_arquivo(key_pem_file)
+        root = etree.fromstring(xml)
 
         signed_root = XMLSigner(
             method=methods.enveloped,
