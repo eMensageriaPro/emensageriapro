@@ -12,10 +12,10 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunSQL('DROP VIEW public.transmissor_eventos_efdreinf;'),
-        migrations.RunSQL('DROP VIEW public.transmissor_eventos_efdreinf_totalizacoes;'),
-        migrations.RunSQL('DROP VIEW public.transmissor_eventos_esocial;'),
-        migrations.RunSQL('DROP VIEW public.transmissor_eventos_esocial_totalizacoes;'),
+        migrations.RunSQL('DROP VIEW IF EXISTS public.transmissor_eventos_efdreinf;'),
+        migrations.RunSQL('DROP VIEW IF EXISTS public.transmissor_eventos_efdreinf_totalizacoes;'),
+        migrations.RunSQL('DROP VIEW IF EXISTS public.transmissor_eventos_esocial;'),
+        migrations.RunSQL('DROP VIEW IF EXISTS public.transmissor_eventos_esocial_totalizacoes;'),
         migrations.AlterField(
             model_name='s1000evtinfoempregador',
             name='processamento_codigo_resposta',
