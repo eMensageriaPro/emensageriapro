@@ -77,7 +77,6 @@ def read_s3000_evtexclusao_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s3000_evtexclusao_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s3000_evtexclusao_dados['identidade'] = doc.eSocial.evtExclusao['Id']
-    s3000_evtexclusao_dados['processamento_codigo_resposta'] = 1
     evtExclusao = doc.eSocial.evtExclusao
 
     if 'tpAmb' in dir(evtExclusao.ideEvento): s3000_evtexclusao_dados['tpamb'] = evtExclusao.ideEvento.tpAmb.cdata

@@ -77,7 +77,6 @@ def read_s1005_evttabestab_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s1005_evttabestab_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1005_evttabestab_dados['identidade'] = doc.eSocial.evtTabEstab['Id']
-    s1005_evttabestab_dados['processamento_codigo_resposta'] = 1
     evtTabEstab = doc.eSocial.evtTabEstab
 
     if 'tpAmb' in dir(evtTabEstab.ideEvento): s1005_evttabestab_dados['tpamb'] = evtTabEstab.ideEvento.tpAmb.cdata

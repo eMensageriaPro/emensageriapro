@@ -51,6 +51,28 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
+from emensageriapro.mensageiro.functions.funcoes_esocial import TRANSMISSOR_STATUS_CADASTRADO, TRANSMISSOR_STATUS_ENVIADO,\
+    TRANSMISSOR_STATUS_ENVIADO_ERRO, TRANSMISSOR_STATUS_CONSULTADO, TRANSMISSOR_STATUS_CONSULTADO_ERRO
+
+
+
+def definir_status_evento(transmissor_lote_esocial_id):
+    from django.apps import apps
+
+    app_models = apps.get_app_config('esocial').get_models()
+
+    for model in app_models:
+
+        lista = model.objects.using('default').filter(transmissor_lote_esocial_id=transmissor_lote_esocial_id).all()
+
+        for a in lista:
+
+            if a.transmissor_lote_esocial.status == TRANSMISSOR_STATUS_ENVIADO:
+                model.objects.using('default').filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO, ocorrencias=None)
+
+            elif a.transmissor_lote_esocial.status == TRANSMISSOR_STATUS_ENVIADO_ERRO:
+                model.objects.using('default').filter(id=a.id).update(transmissor_lote_esocial=None)
+
 
 
 def get_ocorrencias(retornos_eventos_id):
@@ -79,7 +101,7 @@ def read_envioLoteEventos(arquivo, transmissor_lote_esocial_id):
     child = doc.Envelope.Body.EnviarLoteEventosResponse.EnviarLoteEventosResult.eSocial.retornoEnvioLoteEventos
 
     lote = {}
-    lote['status'] = 1
+    lote['status'] = TRANSMISSOR_STATUS_ENVIADO
     lote['resposta_codigo'] = child.status.cdResposta.cdata
     lote['resposta_descricao'] = child.status.descResposta.cdata
 
@@ -91,7 +113,7 @@ def read_envioLoteEventos(arquivo, transmissor_lote_esocial_id):
         for a in child.status.ocorrencias.ocorrencia:
             ocorrencias = {}
             ocorrencias['transmissor_lote_esocial_id'] = transmissor_lote_esocial_id
-            ocorrencias['codigo'] = a.codigo.cdata
+            ocorrencias['resposta_codigo'] = a.codigo.cdata
             ocorrencias['descricao'] = a.descricao.cdata
             ocorrencias['descricao'] = ocorrencias['descricao'].replace("'", "''")
             ocorrencias['tipo'] = a.tipo.cdata
@@ -111,8 +133,6 @@ def read_envioLoteEventos(arquivo, transmissor_lote_esocial_id):
 
     TransmissorLoteEsocial.objects.using('default'). \
         filter(id=transmissor_lote_esocial_id).update(**lote)
-
-
 
 
 def read_retornoEvento(doc, transmissor_lote_id):
@@ -360,7 +380,8 @@ def read_retornoEvento(doc, transmissor_lote_id):
                 model.objects.using('default').filter(identidade=retorno_evento_dados['identidade']).\
                     update(status=STATUS_EVENTO_ENVIADO_ERRO,
                            ocorrencias=get_ocorrencias(retorno_evento_id),
-                           retornos_eventos_id=retorno_evento_id)
+                           retornos_eventos_id=retorno_evento_id,
+                           transmissor_lote_esocial_id=None)
             
             elif codigo_resposta >= 201 and codigo_resposta < 300:
 
@@ -383,6 +404,7 @@ def read_consultaLoteEventos(arquivo, transmissor_lote_esocial_id):
     child = doc.Envelope.Body.ConsultarLoteEventosResponse.ConsultarLoteEventosResult.eSocial.retornoProcessamentoLoteEventos
 
     lote = {}
+    lote['status'] = TRANSMISSOR_STATUS_CONSULTADO
     lote['resposta_codigo'] = child.status.cdResposta.cdata
     lote['resposta_descricao'] = child.status.descResposta.cdata
 

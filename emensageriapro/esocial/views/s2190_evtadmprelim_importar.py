@@ -77,7 +77,6 @@ def read_s2190_evtadmprelim_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2190_evtadmprelim_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2190_evtadmprelim_dados['identidade'] = doc.eSocial.evtAdmPrelim['Id']
-    s2190_evtadmprelim_dados['processamento_codigo_resposta'] = 1
     evtAdmPrelim = doc.eSocial.evtAdmPrelim
 
     if 'tpAmb' in dir(evtAdmPrelim.ideEvento): s2190_evtadmprelim_dados['tpamb'] = evtAdmPrelim.ideEvento.tpAmb.cdata

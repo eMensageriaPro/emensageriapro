@@ -114,13 +114,11 @@ def listar(request, hash):
 
         esocial_validados_aguardando_envio = TransmissorEventosEsocial.objects.using( db_slug ).\
             filter(excluido = False,
-                   status=STATUS_EVENTO_AGUARD_ENVIO,
-                   validacao_precedencia=1).exclude(id=0).all()
+                   status=STATUS_EVENTO_AGUARD_ENVIO).exclude(id=0).all()
 
         esocial_validados_aguardando_precedencia = TransmissorEventosEsocial.objects.using( db_slug ).\
             filter(excluido = False,
-                   status=STATUS_EVENTO_AGUARD_PRECEDENCIA,
-                   validacao_precedencia=0).exclude(id=0).all()
+                   status=STATUS_EVENTO_AGUARD_PRECEDENCIA).exclude(id=0).all()
 
         esocial_validados = TransmissorEventosEsocial.objects.using( db_slug ).\
             filter(excluido = False,
@@ -136,7 +134,10 @@ def listar(request, hash):
 
         esocial_cadastrados = TransmissorEventosEsocial.objects.using( db_slug ).\
             filter(excluido = False,
-                   status__in=[STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_IMPORTADO, STATUS_EVENTO_GERADO]).exclude(id=0).all()
+                   status__in=[STATUS_EVENTO_CADASTRADO,
+                               STATUS_EVENTO_DUPLICADO,
+                               STATUS_EVENTO_IMPORTADO,
+                               STATUS_EVENTO_GERADO]).exclude(id=0).all()
 
         esocial_erros_envio = TransmissorEventosEsocial.objects.using( db_slug ).\
             filter(excluido = False,
@@ -144,13 +145,12 @@ def listar(request, hash):
 
         esocial_processados = TransmissorEventosEsocial.objects.using( db_slug ).\
             filter(excluido = False,
-                   status=STATUS_EVENTO_PROCESSADO,
-                   validacao_precedencia=0).exclude(id=0).all()
+                   status=STATUS_EVENTO_PROCESSADO).exclude(id=0).all()
 
 
         #importacao_arquivos_eventos_listar_custom
         request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'mapa_processamento'
+        request.session["retorno_pagina"] = 'mapa_esocial'
 
         context = {
 

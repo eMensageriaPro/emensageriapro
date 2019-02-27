@@ -77,7 +77,6 @@ def read_s2300_evttsvinicio_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2300_evttsvinicio_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2300_evttsvinicio_dados['identidade'] = doc.eSocial.evtTSVInicio['Id']
-    s2300_evttsvinicio_dados['processamento_codigo_resposta'] = 1
     evtTSVInicio = doc.eSocial.evtTSVInicio
 
     if 'indRetif' in dir(evtTSVInicio.ideEvento): s2300_evttsvinicio_dados['indretif'] = evtTSVInicio.ideEvento.indRetif.cdata

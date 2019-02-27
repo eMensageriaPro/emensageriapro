@@ -77,7 +77,6 @@ def read_s1280_evtinfocomplper_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s1280_evtinfocomplper_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1280_evtinfocomplper_dados['identidade'] = doc.eSocial.evtInfoComplPer['Id']
-    s1280_evtinfocomplper_dados['processamento_codigo_resposta'] = 1
     evtInfoComplPer = doc.eSocial.evtInfoComplPer
 
     if 'indRetif' in dir(evtInfoComplPer.ideEvento): s1280_evtinfocomplper_dados['indretif'] = evtInfoComplPer.ideEvento.indRetif.cdata

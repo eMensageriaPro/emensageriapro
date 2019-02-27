@@ -77,7 +77,6 @@ def read_s2231_evtcessao_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2231_evtcessao_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2231_evtcessao_dados['identidade'] = doc.eSocial.evtCessao['Id']
-    s2231_evtcessao_dados['processamento_codigo_resposta'] = 1
     evtCessao = doc.eSocial.evtCessao
 
     if 'indRetif' in dir(evtCessao.ideEvento): s2231_evtcessao_dados['indretif'] = evtCessao.ideEvento.indRetif.cdata

@@ -77,7 +77,6 @@ def read_s2221_evttoxic_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2221_evttoxic_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2221_evttoxic_dados['identidade'] = doc.eSocial.evtToxic['Id']
-    s2221_evttoxic_dados['processamento_codigo_resposta'] = 1
     evtToxic = doc.eSocial.evtToxic
 
     if 'indRetif' in dir(evtToxic.ideEvento): s2221_evttoxic_dados['indretif'] = evtToxic.ideEvento.indRetif.cdata

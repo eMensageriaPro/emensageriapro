@@ -77,7 +77,6 @@ def read_s1035_evttabcarreira_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s1035_evttabcarreira_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1035_evttabcarreira_dados['identidade'] = doc.eSocial.evtTabCarreira['Id']
-    s1035_evttabcarreira_dados['processamento_codigo_resposta'] = 1
     evtTabCarreira = doc.eSocial.evtTabCarreira
 
     if 'tpAmb' in dir(evtTabCarreira.ideEvento): s1035_evttabcarreira_dados['tpamb'] = evtTabCarreira.ideEvento.tpAmb.cdata

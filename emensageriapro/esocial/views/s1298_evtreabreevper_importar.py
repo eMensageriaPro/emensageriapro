@@ -77,7 +77,6 @@ def read_s1298_evtreabreevper_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s1298_evtreabreevper_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1298_evtreabreevper_dados['identidade'] = doc.eSocial.evtReabreEvPer['Id']
-    s1298_evtreabreevper_dados['processamento_codigo_resposta'] = 1
     evtReabreEvPer = doc.eSocial.evtReabreEvPer
 
     if 'indApuracao' in dir(evtReabreEvPer.ideEvento): s1298_evtreabreevper_dados['indapuracao'] = evtReabreEvPer.ideEvento.indApuracao.cdata

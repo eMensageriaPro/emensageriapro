@@ -77,7 +77,6 @@ def read_s2210_evtcat_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2210_evtcat_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2210_evtcat_dados['identidade'] = doc.eSocial.evtCAT['Id']
-    s2210_evtcat_dados['processamento_codigo_resposta'] = 1
     evtCAT = doc.eSocial.evtCAT
 
     if 'indRetif' in dir(evtCAT.ideEvento): s2210_evtcat_dados['indretif'] = evtCAT.ideEvento.indRetif.cdata

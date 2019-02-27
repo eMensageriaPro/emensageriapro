@@ -77,7 +77,6 @@ def read_s2240_evtexprisco_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2240_evtexprisco_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2240_evtexprisco_dados['identidade'] = doc.eSocial.evtExpRisco['Id']
-    s2240_evtexprisco_dados['processamento_codigo_resposta'] = 1
     evtExpRisco = doc.eSocial.evtExpRisco
 
     if 'indRetif' in dir(evtExpRisco.ideEvento): s2240_evtexprisco_dados['indretif'] = evtExpRisco.ideEvento.indRetif.cdata

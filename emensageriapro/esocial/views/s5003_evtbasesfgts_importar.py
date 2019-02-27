@@ -77,7 +77,6 @@ def read_s5003_evtbasesfgts_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s5003_evtbasesfgts_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s5003_evtbasesfgts_dados['identidade'] = doc.eSocial.evtBasesFGTS['Id']
-    s5003_evtbasesfgts_dados['processamento_codigo_resposta'] = 1
     evtBasesFGTS = doc.eSocial.evtBasesFGTS
 
     if 'nrRecArqBase' in dir(evtBasesFGTS.ideEvento): s5003_evtbasesfgts_dados['nrrecarqbase'] = evtBasesFGTS.ideEvento.nrRecArqBase.cdata

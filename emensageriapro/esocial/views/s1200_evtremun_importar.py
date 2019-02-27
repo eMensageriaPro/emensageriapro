@@ -77,7 +77,6 @@ def read_s1200_evtremun_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s1200_evtremun_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1200_evtremun_dados['identidade'] = doc.eSocial.evtRemun['Id']
-    s1200_evtremun_dados['processamento_codigo_resposta'] = 1
     evtRemun = doc.eSocial.evtRemun
 
     if 'indRetif' in dir(evtRemun.ideEvento): s1200_evtremun_dados['indretif'] = evtRemun.ideEvento.indRetif.cdata

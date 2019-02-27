@@ -90,7 +90,7 @@ class form_s2245_ideprofresp(forms.ModelForm):
 
 
 class form_s2245_infocomplem(forms.ModelForm):
-    durtreicap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    durtreicap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')

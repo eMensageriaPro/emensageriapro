@@ -502,8 +502,8 @@ class form_s2240_iniexprisco_epi(forms.ModelForm):
 
 
 class form_s2240_iniexprisco_fatrisco(forms.ModelForm):
-    intconc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    limtol = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    intconc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
+    limtol = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')

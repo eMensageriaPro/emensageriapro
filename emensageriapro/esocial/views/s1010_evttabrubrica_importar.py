@@ -77,7 +77,6 @@ def read_s1010_evttabrubrica_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s1010_evttabrubrica_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1010_evttabrubrica_dados['identidade'] = doc.eSocial.evtTabRubrica['Id']
-    s1010_evttabrubrica_dados['processamento_codigo_resposta'] = 1
     evtTabRubrica = doc.eSocial.evtTabRubrica
 
     if 'tpAmb' in dir(evtTabRubrica.ideEvento): s1010_evttabrubrica_dados['tpamb'] = evtTabRubrica.ideEvento.tpAmb.cdata

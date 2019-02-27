@@ -77,7 +77,6 @@ def read_r9000_evtexclusao_obj(doc, status, validar=False):
     xmlns_lista = doc.Reinf['xmlns'].split('/')
     r9000_evtexclusao_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     r9000_evtexclusao_dados['identidade'] = doc.Reinf.evtExclusao['id']
-    r9000_evtexclusao_dados['processamento_codigo_resposta'] = 1
     evtExclusao = doc.Reinf.evtExclusao
 
     if 'tpAmb' in dir(evtExclusao.ideEvento): r9000_evtexclusao_dados['tpamb'] = evtExclusao.ideEvento.tpAmb.cdata

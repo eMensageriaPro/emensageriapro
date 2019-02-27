@@ -51,7 +51,7 @@ def r1000_enviados():
     lista = r1000evtInfoContri.objects.using(db_slug).filter(excluido=False).all()
     codigos_lista = [ ]
     for a in lista:
-        if a.status == 14:
+        if a.status == STATUS_EVENTO_PROCESSADO:
             codigos_lista.append(a.nrinsc)
     return codigos_lista
 
@@ -64,7 +64,7 @@ def r1070_enviados():
     lista = r1070inclusao.objects.using(db_slug).filter(excluido=False).all()
     codigos_lista = [ None ]
     for a in lista:
-        if a.r1070_evttabprocesso.status == 14:
+        if a.r1070_evttabprocesso.status == STATUS_EVENTO_PROCESSADO:
             codigos_lista.append(a.nrproc)
     return codigos_lista
 
@@ -76,7 +76,7 @@ def s1000_enviados():
     lista = s1000evtInfoEmpregador.objects.using(db_slug).filter(excluido=False).all()
     codigos_lista = []
     for a in lista:
-        if a.status == 14:
+        if a.status == STATUS_EVENTO_PROCESSADO:
             codigos_lista.append(a.nrinsc)
     return codigos_lista
 
@@ -89,7 +89,7 @@ def s1005_estabelecimentos_enviados():
     lista = s1005inclusao.objects.using(db_slug).filter(excluido=False).all()
     codigos_lista = [ None ]
     for a in lista:
-        if a.s1005_evttabestab.status == 14:
+        if a.s1005_evttabestab.status == STATUS_EVENTO_PROCESSADO:
             codigos_lista.append(a.nrinsc)
     return codigos_lista
 
@@ -101,7 +101,7 @@ def s1010_rubricas_enviados():
     lista = s1010inclusao.objects.using(db_slug).filter(excluido=False).all()
     codigos_lista = [ None ]
     for a in lista:
-        if a.s1010_evttabrubrica.status == 14:
+        if a.s1010_evttabrubrica.status == STATUS_EVENTO_PROCESSADO:
             codigos_lista.append(a.codrubr)
     return codigos_lista
 
@@ -114,7 +114,7 @@ def s1020_lotacoes_enviados():
     lista = s1020inclusao.objects.using(db_slug).filter(excluido=False).all()
     codigos_lista = [ None ]
     for a in lista:
-        if a.s1020_evttablotacao.status == 14:
+        if a.s1020_evttablotacao.status == STATUS_EVENTO_PROCESSADO:
             codigos_lista.append(a.codlotacao)
     return codigos_lista
 
@@ -126,7 +126,7 @@ def s1030_cargos_enviados():
     lista = s1030inclusao.objects.using(db_slug).filter(excluido=False).all()
     codigos_lista = [ None ]
     for a in lista:
-        if a.s1030_evttabcargo.status == 14:
+        if a.s1030_evttabcargo.status == STATUS_EVENTO_PROCESSADO:
             codigos_lista.append(a.codcargo)
     return codigos_lista
 
@@ -137,7 +137,7 @@ def s1035_carreiras_enviados():
     lista = s1035inclusao.objects.using(db_slug).filter(excluido=False).all()
     codigos_lista = [ None ]
     for a in lista:
-        if a.s1035_evttabcarreira.status == 14:
+        if a.s1035_evttabcarreira.status == STATUS_EVENTO_PROCESSADO:
             codigos_lista.append(a.codcarreira)
     return codigos_lista
 
@@ -150,7 +150,7 @@ def s1040_funcoes_enviados():
     lista = s1040inclusao.objects.using(db_slug).filter(excluido=False).all()
     codigos_lista = [ None ]
     for a in lista:
-        if a.s1040_evttabfuncao.status == 14:
+        if a.s1040_evttabfuncao.status == STATUS_EVENTO_PROCESSADO:
             codigos_lista.append(a.codfuncao)
     return codigos_lista
 
@@ -163,7 +163,7 @@ def s1050_horarios_enviados():
     lista = s1050inclusao.objects.using(db_slug).filter(excluido=False).all()
     codigos_lista = [ None ]
     for a in lista:
-        if a.s1050_evttabhortur.status == 14:
+        if a.s1050_evttabhortur.status == STATUS_EVENTO_PROCESSADO:
             codigos_lista.append(a.codhorcontrat)
     return codigos_lista
 
@@ -176,7 +176,7 @@ def s1060_ambientes_enviados():
     lista = s1060inclusao.objects.using(db_slug).filter(excluido=False).all()
     codigos_lista = [ None ]
     for a in lista:
-        if a.s1060_evttabambiente.status == 14:
+        if a.s1060_evttabambiente.status == STATUS_EVENTO_PROCESSADO:
             codigos_lista.append(a.codamb)
     return codigos_lista
 
@@ -189,7 +189,7 @@ def s1070_processos_enviados():
     lista = s1070inclusao.objects.using(db_slug).filter(excluido=False).all()
     codigos_lista = [ None ]
     for a in lista:
-        if a.s1070_evttabprocesso.status == 14:
+        if a.s1070_evttabprocesso.status == STATUS_EVENTO_PROCESSADO:
             codigos_lista.append(a.nrproc)
     return codigos_lista
 
@@ -202,7 +202,7 @@ def s1080_operadores_enviados():
     lista = s1080inclusao.objects.using(db_slug).filter(excluido=False).all()
     codigos_lista = [ None ]
     for a in lista:
-        if a.r1000_evtinfocontri.status == 14:
+        if a.r1000_evtinfocontri.status == STATUS_EVENTO_PROCESSADO:
             codigos_lista.append(a.cnpjopportuario)
     return codigos_lista
 
@@ -214,7 +214,7 @@ def s2200_enviados():
     lista = s2200evtAdmissao.objects.using(db_slug).filter(excluido=False).all()
     codigos_lista = [ None ]
     for a in lista:
-        if a.status == 14:
+        if a.status == STATUS_EVENTO_PROCESSADO:
             codigos_lista.append(a.cpftrab)
     return codigos_lista
 
@@ -524,7 +524,7 @@ def validar_precedencia(tipo, tabela, tabela_id):
     elif (tabela == 's2300_evttsvinicio'):
 
         a = s2300evtTSVInicio.objects.using(db_slug).filter(id=tabela_id).all()
-        b = s1000evtInfoEmpregador.objects.using(db_slug).filter(nrinsc=a.nrinsc, status__in=[14])
+        b = s1000evtInfoEmpregador.objects.using(db_slug).filter(nrinsc=a.nrinsc, status__in=[STATUS_EVENTO_PROCESSADO])
         c = len(b)
         if not c:
             quant = 0 * quant
@@ -532,7 +532,7 @@ def validar_precedencia(tipo, tabela, tabela_id):
     elif (tabela == 's2306_evttsvaltcontr'):
 
         a = s2306evtTSVAltContr.objects.using(db_slug).filter(id=tabela_id).all()
-        b = s2300evtTSVInicio.objects.using(db_slug).filter(cpftrab=a.cpftrab, status__in=[14])
+        b = s2300evtTSVInicio.objects.using(db_slug).filter(cpftrab=a.cpftrab, status__in=[STATUS_EVENTO_PROCESSADO])
         c = len(b)
         if not c:
             quant = 0 * quant
@@ -544,7 +544,7 @@ def validar_precedencia(tipo, tabela, tabela_id):
 
 
         a = s2399evtTSVTermino.objects.using(db_slug).filter(id=tabela_id).all()
-        b = s2300evtTSVInicio.objects.using(db_slug).filter(cpftrab=a.cpftrab, status__in=[14])
+        b = s2300evtTSVInicio.objects.using(db_slug).filter(cpftrab=a.cpftrab, status__in=[STATUS_EVENTO_PROCESSADO])
         c = len(b)
         if not c:
             quant = 0 * quant
@@ -553,7 +553,7 @@ def validar_precedencia(tipo, tabela, tabela_id):
     elif (tabela == 's2400_evtcdbenefin'):
 
         a = s2400evtCdBenefIn.objects.using(db_slug).filter(id=tabela_id).all()
-        b = s1000evtInfoEmpregador.objects.using(db_slug).filter(nrinsc=a.nrinsc, status__in=[14])
+        b = s1000evtInfoEmpregador.objects.using(db_slug).filter(nrinsc=a.nrinsc, status__in=[STATUS_EVENTO_PROCESSADO])
         c = len(b)
         if not c:
             quant = 0 * quant

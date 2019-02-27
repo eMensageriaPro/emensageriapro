@@ -165,7 +165,7 @@ class form_cid(forms.ModelForm):
 
 
 class form_cnae(forms.ModelForm):
-    aliquota = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    aliquota = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
@@ -327,7 +327,7 @@ class form_esocial_naturezas_rubricas(forms.ModelForm):
 
 
 class form_esocial_codigo_aliquotas_fpas_terceiros(forms.ModelForm):
-    aliquota = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    aliquota = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
@@ -1760,7 +1760,7 @@ class form_efdreinf_classificacao_tributaria(forms.ModelForm):
 
 
 class form_efdreinf_codigos_atividades_produtos_servicos_cprb(forms.ModelForm):
-    aliquota = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    aliquota = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')

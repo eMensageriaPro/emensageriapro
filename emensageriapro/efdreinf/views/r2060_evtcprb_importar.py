@@ -77,7 +77,6 @@ def read_r2060_evtcprb_obj(doc, status, validar=False):
     xmlns_lista = doc.Reinf['xmlns'].split('/')
     r2060_evtcprb_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     r2060_evtcprb_dados['identidade'] = doc.Reinf.evtCPRB['id']
-    r2060_evtcprb_dados['processamento_codigo_resposta'] = 1
     evtCPRB = doc.Reinf.evtCPRB
 
     if 'indRetif' in dir(evtCPRB.ideEvento): r2060_evtcprb_dados['indretif'] = evtCPRB.ideEvento.indRetif.cdata

@@ -77,7 +77,6 @@ def read_s2230_evtafasttemp_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2230_evtafasttemp_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2230_evtafasttemp_dados['identidade'] = doc.eSocial.evtAfastTemp['Id']
-    s2230_evtafasttemp_dados['processamento_codigo_resposta'] = 1
     evtAfastTemp = doc.eSocial.evtAfastTemp
 
     if 'indRetif' in dir(evtAfastTemp.ideEvento): s2230_evtafasttemp_dados['indretif'] = evtAfastTemp.ideEvento.indRetif.cdata

@@ -77,7 +77,6 @@ def read_s2245_evttreicap_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2245_evttreicap_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2245_evttreicap_dados['identidade'] = doc.eSocial.evtTreiCap['Id']
-    s2245_evttreicap_dados['processamento_codigo_resposta'] = 1
     evtTreiCap = doc.eSocial.evtTreiCap
 
     if 'indRetif' in dir(evtTreiCap.ideEvento): s2245_evttreicap_dados['indretif'] = evtTreiCap.ideEvento.indRetif.cdata

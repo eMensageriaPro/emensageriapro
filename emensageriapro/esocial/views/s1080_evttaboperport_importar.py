@@ -77,7 +77,6 @@ def read_s1080_evttaboperport_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s1080_evttaboperport_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1080_evttaboperport_dados['identidade'] = doc.eSocial.evtTabOperPort['Id']
-    s1080_evttaboperport_dados['processamento_codigo_resposta'] = 1
     evtTabOperPort = doc.eSocial.evtTabOperPort
 
     if 'tpAmb' in dir(evtTabOperPort.ideEvento): s1080_evttaboperport_dados['tpamb'] = evtTabOperPort.ideEvento.tpAmb.cdata

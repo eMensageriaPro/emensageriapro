@@ -77,7 +77,6 @@ def read_r1070_evttabprocesso_obj(doc, status, validar=False):
     xmlns_lista = doc.Reinf['xmlns'].split('/')
     r1070_evttabprocesso_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     r1070_evttabprocesso_dados['identidade'] = doc.Reinf.evtTabProcesso['id']
-    r1070_evttabprocesso_dados['processamento_codigo_resposta'] = 1
     evtTabProcesso = doc.Reinf.evtTabProcesso
 
     if 'tpAmb' in dir(evtTabProcesso.ideEvento): r1070_evttabprocesso_dados['tpamb'] = evtTabProcesso.ideEvento.tpAmb.cdata

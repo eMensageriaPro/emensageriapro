@@ -77,7 +77,6 @@ def read_s2298_evtreintegr_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2298_evtreintegr_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2298_evtreintegr_dados['identidade'] = doc.eSocial.evtReintegr['Id']
-    s2298_evtreintegr_dados['processamento_codigo_resposta'] = 1
     evtReintegr = doc.eSocial.evtReintegr
 
     if 'indRetif' in dir(evtReintegr.ideEvento): s2298_evtreintegr_dados['indretif'] = evtReintegr.ideEvento.indRetif.cdata

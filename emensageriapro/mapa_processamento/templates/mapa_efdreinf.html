@@ -1,1 +1,288 @@
-<!-- eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% extends 'base.html' %}{% load templatetags %}{% block content %}{% if not for_print %}<meta http-equiv="refresh" content="5"><section class="content-header"><h1>EFD-Reinf<small>Mapa de Processamento</small></h1><ol class="breadcrumb"><li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li><li><a href="#">Mapa de Processamento</a></li><li class="active">EFD-Reinf</li></ol></section><section class="content">{% if messages %}<div class="row"><div class="pad margin no-print">{% for message in messages %}<div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">{{ message }}</div>{% endfor %}</div></div>{% endif %}<div class="row"><div class="col-xs-12"><div class="nav-tabs-custom"><ul class="nav nav-tabs"><li {% if not tab %}class="active"{% endif %}><a href="{% url 'mapa_efdreinf' hash='{}'|json_return_page:'mapa_efdreinf'|json_return_hash:'eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ=='|json_tab:''|json_id:0|json_print:0|base64_encode_me %}">Visão Geral</a></li><li {% if tab == 'transmissao_esocial' %}class="active"{% endif %}><a href="{% url 'mapa_efdreinf' hash='{}'|json_return_page:'mapa_efdreinf'|json_return_hash:'eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ=='|json_tab:'processados'|json_id:0|json_print:0|base64_encode_me %}">Processados</a></li></ul></div></div></div>{% if not tab %}<div class="row"><div class="col-md-12"><div class="box box-success"><div class="box-header with-border"><h3 class="box-title">Enviados</h3></div><div class="box-body"><table class="table table-bordered table-striped"><thead><tr><th width="300px">Evento</th><th>Identidade</th></tr></thead><tbody>{% for a in efdreinf_enviados %}<tr><td>{{ a.evento }}</td><td>{{ a.identidade }}</td></tr>{% endfor %}</tbody></table></div></div></div><div class="col-md-12"><div class="box box-success"><div class="box-header with-border"><h3 class="box-title">Aguardando envio</h3></div><div class="box-body"><table class="table table-bordered table-striped"><thead><tr><th width="300px">Evento</th><th>Identidade</th></tr></thead><tbody>{% for a in efdreinf_validados_aguardando_envio %}<tr><td>{{ a.evento }}</td><td>{{ a.identidade }}</td></tr>{% endfor %}</tbody></table></div></div></div><div class="col-md-12"><div class="box box-success"><div class="box-header with-border"><h3 class="box-title">Aguardando Precedência</h3></div><div class="box-body"><table class="table table-bordered table-striped"><thead><tr><th width="300px">Evento</th><th>Identidade</th></tr></thead><tbody>{% for a in efdreinf_validados_aguardando_precedencia %}<tr><td>{{ a.evento }}</td><td>{{ a.identidade }}</td></tr>{% endfor %}</tbody></table></div></div></div><div class="col-md-12"><div class="box box-success"><div class="box-header with-border"><h3 class="box-title">Validados</h3></div><div class="box-body"><table class="table table-bordered table-striped"><thead><tr><th width="300px">Evento</th><th>Identidade</th></tr></thead><tbody>{% for a in efdreinf_validados %}<tr><td>{{ a.evento }}</td><td>{{ a.identidade }}</td></tr>{% endfor %}</tbody></table></div></div></div><div class="col-md-12"><div class="box box-primary"><div class="box-header with-border"><h3 class="box-title">Assinados</h3></div><div class="box-body"><table class="table table-bordered table-striped"><thead><tr><th width="300px">Evento</th><th>Identidade</th>{% if not for_print %}<th width="80px">Ações</th>{% endif %}</tr></tr></thead><tbody>{% for a in efdreinf_assinados %}<tr><td>{{ a.evento }}</td><td>{{ a.identidade }}</td><td><div><a href="/esocial/{{ a.tabela|underline_to_hyphen }}/validar-evento/{{ '{}'|json_return_page:'mapa_efdreinf'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me }}/"><button class="btn btn-success"><i class="fa fa-fw fa-thumbs-o-up"></i>Validar</button></a></div></td></tr>{% endfor %}</tbody></table></div></div></div><div class="col-md-12"><div class="box box-primary"><div class="box-header with-border"><h3 class="box-title">Cadastrados</h3></div><div class="box-body"><table class="table table-bordered table-striped"><thead><tr><th width="300px">Evento</th><th>Identidade</th>{% if not for_print %}<th width="80px">Ações</th>{% endif %}</tr></tr></thead><tbody>{% for a in efdreinf_cadastrados %}<tr><td>{{ a.evento }}</td><td>{{ a.identidade }}</td><td><div><a href="/esocial/{{ a.tabela|underline_to_hyphen }}/validar-evento/{{ '{}'|json_return_page:'mapa_efdreinf'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me }}/"><button class="btn btn-success"><i class="fa fa-fw fa-thumbs-o-up"></i>Validar</button></a></div></td></tr>{% endfor %}</tbody></table></div></div></div><div class="col-md-12"><div class="box box-warning"><div class="box-header with-border"><h3 class="box-title">Erros de validação</h3></div><div class="box-body"><table class="table table-bordered table-striped"><thead><tr><th width="300px">Evento</th><th>Identidade</th>{% if not for_print %}<th width="80px">Ações</th>{% endif %}</tr></tr></thead><tbody>{% for a in efdreinf_erros_validacao %}<tr><td>{{ a.evento }}</td><td>{{ a.identidade }}</td><td><div><a href="{% url a.tabela_salvar hash='{}'|json_return_page:'mapa_efdreinf'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me %}"><button class="btn btn-warning"><i class="fa fa-fw fa-edit"></i>Corrigir</button></a></div></td></tr>{% endfor %}</tbody></table></div></div></div><div class="col-md-12"><div class="box box-danger"><div class="box-header with-border"><h3 class="box-title">Enviados com erro</h3></div><div class="box-body"><table class="table table-bordered table-striped"><thead><tr><th width="300px">Evento</th><th>Identidade</th>{% if not for_print %}<th width="80px">Ações</th>{% endif %}</tr></tr></thead><tbody>{% for a in efdreinf_erros_envio %}<tr><td>{{ a.evento }}</td><td>{{ a.identidade }}</td><td><div><a href="{% url a.tabela_salvar hash='{}'|json_return_page:'mapa_efdreinf'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me %}"><button class="btn btn-danger"><i class="fa fa-fw fa-check"></i>Corrigir</button></a></div></td></tr>{% endfor %}</tbody></table></div></div></div></div>{% endif %}{% if tab == 'processados' %}<!-- erros_validacao --><div class="row"><div class="col-md-12"><div class="box box-success"><div class="box-header with-border"><h3 class="box-title">Processados</h3></div><div class="box-body"><table class="table table-bordered table-striped"><thead><tr><th width="300px">Evento</th><th>Identidade</th></tr></thead><tbody>{% for a in efdreinf_processados %}<tr><td>{{ a.evento }}</td><td>{{ a.identidade }}</td></tr>{% endfor %}</tbody></table></div></div></div></div>{% endif %}</section><script>$(document).ready(function () { $('#btnVisualizar').click(function () { var formAction = '{% url 'mapa_efdreinf' hash='{}'|json_return_page:'mapa_efdreinf'|json_id:0|json_print:0|base64_encode_me %}'; $('#FormRelatorio').attr('action', formAction); $('#FormRelatorio').attr('target', '_self'); $('#FormRelatorio').submit(); }); $('#btnImprimir').click(function () { var formAction = '{% url 'mapa_efdreinf' hash='{}'|json_return_page:'mapa_efdreinf'|json_id:0|json_print:1|base64_encode_me %}'; $('#FormRelatorio').attr('action', formAction); $('#FormRelatorio').attr('target', '_blank'); $('#FormRelatorio').submit(); }); });</script>{% else %}<section class="invoice"><div class="row"><div class="col-xs-12"><h2 class="page-header">Mapa de Processamento<small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}</small></h2></div></div><div class="row"><div class="col-xs-12 table-responsive">{% include 'tables/mapa_processamento.html' %}</div></div></section>{% endif %} {% endblock content %}
+<!-- eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->
+{% extends 'base.html' %}{% load templatetags %}{% block content %}{% if not for_print %}
+    <meta http-equiv="refresh" content="5">
+    <section class="content-header">
+        <h1>EFD-Reinf
+            <small>Mapa de Processamento</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+            <li><a href="#">Mapa de Processamento</a></li>
+            <li class="active">EFD-Reinf</li>
+        </ol>
+    </section>
+    <section class="content">{% if messages %}
+        <div class="row">
+            <div class="pad margin no-print">{% for message in messages %}
+                <div class="alert alert-{{ message.tags }}"
+                     style="margin-bottom: 0!important;">{{ message }}</div>{% endfor %}</div>
+        </div>{% endif %}
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li {% if not tab %}class="active"{% endif %}><a
+                                href="{% url 'mapa_efdreinf' hash='{}'|json_return_page:'mapa_efdreinf'|json_return_hash:'eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ=='|json_tab:''|json_id:0|json_print:0|base64_encode_me %}">Visão
+                            Geral</a></li>
+                        <li {% if tab == 'transmissao_esocial' %}class="active"{% endif %}><a
+                                href="{% url 'mapa_efdreinf' hash='{}'|json_return_page:'mapa_efdreinf'|json_return_hash:'eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ=='|json_tab:'processados'|json_id:0|json_print:0|base64_encode_me %}">Processados</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% if not tab %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border"><h3 class="box-title">Enviados</h3></div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="300px">Evento</th>
+                                <th>Identidade</th>
+                            </tr>
+                            </thead>
+                            <tbody>{% for a in efdreinf_enviados %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border"><h3 class="box-title">Aguardando envio</h3></div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="300px">Evento</th>
+                                <th>Identidade</th>
+                            </tr>
+                            </thead>
+                            <tbody>{% for a in efdreinf_validados_aguardando_envio %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border"><h3 class="box-title">Aguardando Precedência</h3></div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="300px">Evento</th>
+                                <th>Identidade</th>
+                            </tr>
+                            </thead>
+                            <tbody>{% for a in efdreinf_validados_aguardando_precedencia %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border"><h3 class="box-title">Validados</h3></div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="300px">Evento</th>
+                                <th>Identidade</th>
+                            </tr>
+                            </thead>
+                            <tbody>{% for a in efdreinf_validados %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border"><h3 class="box-title">Assinados</h3></div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="300px">Evento</th>
+                                <th>Identidade</th>{% if not for_print %}
+                                <th width="80px">Ações</th>{% endif %}</tr>
+                            </tr></thead>
+                            <tbody>{% for a in efdreinf_assinados %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>
+                                        <div>
+                                            <a href="/esocial/{{ a.tabela|underline_to_hyphen }}/validar-evento/{{ '{}'|json_return_page:'mapa_efdreinf'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me }}/">
+                                                <button class="btn btn-success"><i class="fa fa-fw fa-thumbs-o-up"></i>Validar
+                                                </button>
+                                            </a></div>
+                                    </td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border"><h3 class="box-title">Cadastrados</h3></div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="300px">Evento</th>
+                                <th>Identidade</th>{% if not for_print %}
+                                <th width="80px">Ações</th>{% endif %}</tr>
+                            </tr></thead>
+                            <tbody>{% for a in efdreinf_cadastrados %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>
+                                        <div>
+                                            <a href="/efdreinf/{{ a.tabela|underline_to_hyphen }}/validar-evento/{{ '{}'|json_return_page:'mapa_efdreinf'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me }}/">
+                                                <button class="btn btn-success"><i class="fa fa-fw fa-thumbs-o-up"></i>Validar
+                                                </button>
+                                            </a></div>
+                                    </td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="box box-warning">
+                    <div class="box-header with-border"><h3 class="box-title">Erros de validação</h3></div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="300px">Evento</th>
+                                <th>Identidade</th>{% if not for_print %}
+                                <th width="80px">Ações</th>{% endif %}</tr>
+                            </tr></thead>
+                            <tbody>{% for a in efdreinf_erros_validacao %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>
+                                        <div>
+                                            <a href="{% url a.tabela_salvar hash='{}'|json_return_page:'mapa_efdreinf'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me %}">
+                                                <button class="btn btn-warning"><i class="fa fa-fw fa-edit"></i>Corrigir
+                                                </button>
+                                            </a></div>
+                                    </td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="box box-danger">
+                    <div class="box-header with-border"><h3 class="box-title">Enviados com erro</h3></div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="300px">Evento</th>
+                                <th>Identidade</th>{% if not for_print %}
+                                <th width="80px">Ações</th>{% endif %}</tr>
+                            </tr></thead>
+                            <tbody>{% for a in efdreinf_erros_envio %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>
+                                        <div>
+                                            <a href="{% url a.tabela_salvar hash='{}'|json_return_page:'mapa_efdreinf'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me %}">
+                                                <button class="btn btn-danger"><i class="fa fa-fw fa-check"></i>Corrigir
+                                                </button>
+                                            </a></div>
+                                    </td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>{% endif %}{% if tab == 'processados' %}<!-- erros_validacao -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border"><h3 class="box-title">Processados</h3></div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="300px">Evento</th>
+                                <th>Identidade</th>
+                                <th width="300px">Recibo</th>
+                            </tr>
+                            </thead>
+                            <tbody>{% for a in efdreinf_processados %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>
+                                        <div>
+
+
+                                            <a href="/efdreinf/{{ a.tabela|underline_to_hyphen }}/recibo/{{ '{}'|json_return_page:'mapa_efdreinf'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me }}/PDF/">
+                                            <span class="btn btn-primary" title="Imprimir Recibo">
+                                            <i class="fa fa-fw fa-print"></i>
+                                            </span>
+                                            </a>
+
+                                        </div>
+
+
+                                    </td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}</section>
+    <script>$(document).ready(function () {
+        $('#btnVisualizar').click(function () {
+            var formAction = '{% url 'mapa_efdreinf' hash='{}'|json_return_page:'mapa_efdreinf'|json_id:0|json_print:0|base64_encode_me %}';
+            $('#FormRelatorio').attr('action', formAction);
+            $('#FormRelatorio').attr('target', '_self');
+            $('#FormRelatorio').submit();
+        });
+        $('#btnImprimir').click(function () {
+            var formAction = '{% url 'mapa_efdreinf' hash='{}'|json_return_page:'mapa_efdreinf'|json_id:0|json_print:1|base64_encode_me %}';
+            $('#FormRelatorio').attr('action', formAction);
+            $('#FormRelatorio').attr('target', '_blank');
+            $('#FormRelatorio').submit();
+        });
+    });</script>{% else %}
+    <section class="invoice">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="page-header">Mapa de Processamento
+                    <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}</small>
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 table-responsive">{% include 'tables/mapa_processamento.html' %}</div>
+        </div>
+    </section>{% endif %} {% endblock content %}

@@ -77,7 +77,6 @@ def read_r1000_evtinfocontri_obj(doc, status, validar=False):
     xmlns_lista = doc.Reinf['xmlns'].split('/')
     r1000_evtinfocontri_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     r1000_evtinfocontri_dados['identidade'] = doc.Reinf.evtInfoContri['id']
-    r1000_evtinfocontri_dados['processamento_codigo_resposta'] = 1
     evtInfoContri = doc.Reinf.evtInfoContri
 
     if 'tpAmb' in dir(evtInfoContri.ideEvento): r1000_evtinfocontri_dados['tpamb'] = evtInfoContri.ideEvento.tpAmb.cdata

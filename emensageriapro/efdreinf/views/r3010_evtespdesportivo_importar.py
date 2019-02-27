@@ -77,7 +77,6 @@ def read_r3010_evtespdesportivo_obj(doc, status, validar=False):
     xmlns_lista = doc.Reinf['xmlns'].split('/')
     r3010_evtespdesportivo_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     r3010_evtespdesportivo_dados['identidade'] = doc.Reinf.evtEspDesportivo['id']
-    r3010_evtespdesportivo_dados['processamento_codigo_resposta'] = 1
     evtEspDesportivo = doc.Reinf.evtEspDesportivo
 
     if 'indRetif' in dir(evtEspDesportivo.ideEvento): r3010_evtespdesportivo_dados['indretif'] = evtEspDesportivo.ideEvento.indRetif.cdata

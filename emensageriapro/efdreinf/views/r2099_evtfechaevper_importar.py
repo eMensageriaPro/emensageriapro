@@ -77,7 +77,6 @@ def read_r2099_evtfechaevper_obj(doc, status, validar=False):
     xmlns_lista = doc.Reinf['xmlns'].split('/')
     r2099_evtfechaevper_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     r2099_evtfechaevper_dados['identidade'] = doc.Reinf.evtFechaEvPer['id']
-    r2099_evtfechaevper_dados['processamento_codigo_resposta'] = 1
     evtFechaEvPer = doc.Reinf.evtFechaEvPer
 
     if 'perApur' in dir(evtFechaEvPer.ideEvento): r2099_evtfechaevper_dados['perapur'] = evtFechaEvPer.ideEvento.perApur.cdata

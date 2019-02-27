@@ -77,7 +77,6 @@ def read_s5013_evtfgts_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s5013_evtfgts_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s5013_evtfgts_dados['identidade'] = doc.eSocial.evtFGTS['Id']
-    s5013_evtfgts_dados['processamento_codigo_resposta'] = 1
     evtFGTS = doc.eSocial.evtFGTS
 
     if 'perApur' in dir(evtFGTS.ideEvento): s5013_evtfgts_dados['perapur'] = evtFGTS.ideEvento.perApur.cdata

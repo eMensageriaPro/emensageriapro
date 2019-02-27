@@ -114,7 +114,7 @@ def listar(request, hash):
         importacao_arquivos_lista = ImportacaoArquivos.objects.using( db_slug ).filter(excluido = False, status=0).all()
         #importacao_arquivos_eventos_listar_custom
         request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'mapa_processamento'
+        request.session["retorno_pagina"] = 'mapa_importacoes'
 
         context = {
 

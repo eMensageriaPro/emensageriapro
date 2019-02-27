@@ -448,8 +448,8 @@ class form_s1200_infoperant_infotrabinterm(forms.ModelForm):
 
 
 class form_s1200_infoperant_itensremun(forms.ModelForm):
-    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
+    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
     vrunit = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
@@ -741,8 +741,8 @@ class form_s1200_infoperapur_infotrabinterm(forms.ModelForm):
 
 
 class form_s1200_infoperapur_itensremun(forms.ModelForm):
-    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
+    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
     vrunit = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 

@@ -589,7 +589,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if r1000_evtinfocontri.status in status_list or r1000_evtinfocontri.processamento_codigo_resposta in (401,402):
+        if r1000_evtinfocontri.status in status_list:
             r1000evtInfoContri.objects.using(db_slug).filter(id=r1000_evtinfocontri_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/r1000_evtinfocontri/%s.xml' % (r1000_evtinfocontri.identidade)
@@ -626,34 +626,14 @@ def validar_evento_funcao(r1000_evtinfocontri_id, db_slug):
     from emensageriapro.mensageiro.functions.funcoes_importacao import get_versao_evento
     from emensageriapro.mensageiro.functions.funcoes_validacoes_precedencia import validar_precedencia
     from emensageriapro.mensageiro.functions.funcoes_validacoes import get_schema_name, validar_schema
-    from emensageriapro.settings import BASE_DIR
+    from emensageriapro.settings import BASE_DIR, VERIFICAR_PREDECESSAO_ANTES_ENVIO
     lista_validacoes = []
     r1000_evtinfocontri = get_object_or_404(r1000evtInfoContri.objects.using(db_slug), excluido=False, id=r1000_evtinfocontri_id)
-    if r1000_evtinfocontri.transmissor_lote_efdreinf:
-        if r1000_evtinfocontri.transmissor_lote_efdreinf.transmissor:
-            if r1000_evtinfocontri.transmissor_lote_efdreinf.transmissor.verificar_predecessao:
-                quant = validar_precedencia('efdreinf', 'r1000_evtinfocontri', r1000_evtinfocontri_id)
-                if quant <= 0:
-                    lista_validacoes.append(u'Precedência não foi enviada!')
-                    precedencia = 0
-                else:
-                    precedencia = 1
-            else:
-                precedencia = 1
-        else:
-            lista_validacoes.append(u'Precedência não pode ser verificada. Vincule um transmissor para que este evento possa ser validado!')
-            precedencia = 0
-    else:
-        lista_validacoes.append(u'Precedência não pode ser verificada. Cadastre um transmissor para este evento para que possa ser validado!')
-        precedencia = 0
-
-    r1000evtInfoContri.objects.using( db_slug ).\
-        filter(id=r1000_evtinfocontri_id, excluido = False).\
-        update(validacao_precedencia=precedencia)
 
     #
     # Validações internas
     #
+
     arquivo = 'arquivos/Eventos/r1000_evtinfocontri/%s.xml' % (r1000_evtinfocontri.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/r1000_evtinfocontri/' % BASE_DIR)
     lista = []
@@ -690,10 +670,30 @@ def validar_evento_funcao(r1000_evtinfocontri_id, db_slug):
 
     else:
 
-        r1000evtInfoContri.objects.using( db_slug ).\
-            filter(id=r1000_evtinfocontri_id, excluido = False).\
-            update(validacoes='',
-                   status=STATUS_EVENTO_VALIDADO)
+        if VERIFICAR_PREDECESSAO_ANTES_ENVIO:
+
+            quant = validar_precedencia('esocial', 'r1000_evtinfocontri', r1000_evtinfocontri_id)
+
+            if quant <= 0:
+
+                r1000evtInfoContri.objects.using( db_slug ).\
+                    filter(id=r1000_evtinfocontri_id, excluido = False).\
+                    update(validacoes=None,
+                           status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
+
+            else:
+
+                r1000evtInfoContri.objects.using( db_slug ).\
+                    filter(id=r1000_evtinfocontri_id, excluido = False).\
+                    update(validacoes=None,
+                           status=STATUS_EVENTO_AGUARD_ENVIO)
+
+        else:
+
+            r1000evtInfoContri.objects.using(db_slug). \
+                filter(id=r1000_evtinfocontri_id, excluido=False).\
+                update(validacoes=None,
+                       status=STATUS_EVENTO_AGUARD_ENVIO)
 
     return lista_validacoes
 
@@ -702,8 +702,9 @@ def validar_evento_funcao(r1000_evtinfocontri_id, db_slug):
 @login_required
 def validar_evento(request, hash):
 
-    from emensageriapro.settings import VERSOES_EFDREINF
-    from emensageriapro.mensageiro.functions.funcoes_validacoes import VERSAO_ATUAL
+    from emensageriapro.settings import VERSOES_EFDREINF, VERIFICAR_PREDECESSAO_ANTES_ENVIO
+    # from emensageriapro.mensageiro.functions.funcoes_validacoes import VERSAO_ATUAL
+
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
     r1000_evtinfocontri_id = int(dict_hash['id'])
@@ -718,6 +719,15 @@ def validar_evento(request, hash):
         if r1000_evtinfocontri.versao in VERSOES_EFDREINF:
 
             validar_evento_funcao(r1000_evtinfocontri_id, db_slug)
+
+            if r1000_evtinfocontri.transmissor_lote_esocial and not VERIFICAR_PREDECESSAO_ANTES_ENVIO:
+                r1000evtInfoContri.objects.using(db_slug).\
+                    filter(excluido=False, id=r1000_evtinfocontri_id).update(status=STATUS_EVENTO_AGUARD_ENVIO)
+
+            elif r1000_evtinfocontri.transmissor_lote_esocial and VERIFICAR_PREDECESSAO_ANTES_ENVIO:
+                r1000evtInfoContri.objects.using(db_slug).\
+                    filter(excluido=False, id=r1000_evtinfocontri_id).update(status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
+
             messages.success(request, u'Validações processadas com sucesso!')
 
         else:

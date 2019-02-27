@@ -77,7 +77,6 @@ def read_r2050_evtcomprod_obj(doc, status, validar=False):
     xmlns_lista = doc.Reinf['xmlns'].split('/')
     r2050_evtcomprod_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     r2050_evtcomprod_dados['identidade'] = doc.Reinf.evtComProd['id']
-    r2050_evtcomprod_dados['processamento_codigo_resposta'] = 1
     evtComProd = doc.Reinf.evtComProd
 
     if 'indRetif' in dir(evtComProd.ideEvento): r2050_evtcomprod_dados['indretif'] = evtComProd.ideEvento.indRetif.cdata

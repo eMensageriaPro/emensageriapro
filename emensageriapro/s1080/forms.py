@@ -46,8 +46,8 @@ __author__ = 'marcelovasconcellos'
 
 
 class form_s1080_alteracao(forms.ModelForm):
-    fap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    aliqratajust = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    fap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
+    aliqratajust = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
@@ -170,8 +170,8 @@ class form_s1080_exclusao(forms.ModelForm):
 
 
 class form_s1080_inclusao(forms.ModelForm):
-    fap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    aliqratajust = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    fap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
+    aliqratajust = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')

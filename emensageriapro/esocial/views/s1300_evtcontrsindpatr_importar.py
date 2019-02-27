@@ -77,7 +77,6 @@ def read_s1300_evtcontrsindpatr_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s1300_evtcontrsindpatr_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1300_evtcontrsindpatr_dados['identidade'] = doc.eSocial.evtContrSindPatr['Id']
-    s1300_evtcontrsindpatr_dados['processamento_codigo_resposta'] = 1
     evtContrSindPatr = doc.eSocial.evtContrSindPatr
 
     if 'indRetif' in dir(evtContrSindPatr.ideEvento): s1300_evtcontrsindpatr_dados['indretif'] = evtContrSindPatr.ideEvento.indRetif.cdata

@@ -77,7 +77,6 @@ def read_r2020_evtservprest_obj(doc, status, validar=False):
     xmlns_lista = doc.Reinf['xmlns'].split('/')
     r2020_evtservprest_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     r2020_evtservprest_dados['identidade'] = doc.Reinf.evtServPrest['id']
-    r2020_evtservprest_dados['processamento_codigo_resposta'] = 1
     evtServPrest = doc.Reinf.evtServPrest
 
     if 'indRetif' in dir(evtServPrest.ideEvento): r2020_evtservprest_dados['indretif'] = evtServPrest.ideEvento.indRetif.cdata

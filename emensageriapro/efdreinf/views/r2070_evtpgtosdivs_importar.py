@@ -77,7 +77,6 @@ def read_r2070_evtpgtosdivs_obj(doc, status, validar=False):
     xmlns_lista = doc.Reinf['xmlns'].split('/')
     r2070_evtpgtosdivs_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     r2070_evtpgtosdivs_dados['identidade'] = doc.Reinf.evtPgtosDivs['id']
-    r2070_evtpgtosdivs_dados['processamento_codigo_resposta'] = 1
     evtPgtosDivs = doc.Reinf.evtPgtosDivs
 
     if 'indRetif' in dir(evtPgtosDivs.ideEvento): r2070_evtpgtosdivs_dados['indretif'] = evtPgtosDivs.ideEvento.indRetif.cdata

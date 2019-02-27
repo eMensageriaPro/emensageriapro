@@ -85,8 +85,8 @@ class form_relatorios(forms.ModelForm):
 
 
 class form_transmissores(forms.ModelForm):
-    esocial_timeout = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    efdreinf_timeout = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    esocial_timeout = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
+    efdreinf_timeout = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
@@ -582,7 +582,7 @@ class form_arquivos(forms.ModelForm):
 
 class form_retornos_eventos(forms.ModelForm):
     vrsalfx = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    qtdhrssem = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    qtdhrssem = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')

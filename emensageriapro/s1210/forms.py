@@ -212,8 +212,8 @@ class form_s1210_detpgtobenpr(forms.ModelForm):
 
 
 class form_s1210_detpgtobenpr_infopgtoparc(forms.ModelForm):
-    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
+    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
     vrunit = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
@@ -258,8 +258,8 @@ class form_s1210_detpgtobenpr_infopgtoparc(forms.ModelForm):
 
 
 class form_s1210_detpgtobenpr_retpgtotot(forms.ModelForm):
-    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
+    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
     vrunit = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
@@ -348,8 +348,8 @@ class form_s1210_detpgtofer(forms.ModelForm):
 
 
 class form_s1210_detpgtofer_detrubrfer(forms.ModelForm):
-    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
+    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
     vrunit = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
@@ -480,8 +480,8 @@ class form_s1210_detpgtofl(forms.ModelForm):
 
 
 class form_s1210_detpgtofl_infopgtoparc(forms.ModelForm):
-    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
+    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
     vrunit = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
@@ -569,8 +569,8 @@ class form_s1210_detpgtofl_penalim(forms.ModelForm):
 
 
 class form_s1210_detpgtofl_retpgtotot(forms.ModelForm):
-    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
+    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
     vrunit = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 

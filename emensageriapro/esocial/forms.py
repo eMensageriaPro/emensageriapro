@@ -2426,7 +2426,7 @@ class form_s2298_evtreintegr(forms.ModelForm):
 
 
 class form_s2299_evtdeslig(forms.ModelForm):
-    percaliment = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    percaliment = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
     vralim = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):
@@ -2627,7 +2627,7 @@ class form_s2306_evttsvaltcontr(forms.ModelForm):
 
 
 class form_s2399_evttsvtermino(forms.ModelForm):
-    percaliment = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    percaliment = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
     vralim = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
     def __init__(self,*args,**kwargs):

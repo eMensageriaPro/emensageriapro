@@ -77,7 +77,6 @@ def read_s2250_evtavprevio_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2250_evtavprevio_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2250_evtavprevio_dados['identidade'] = doc.eSocial.evtAvPrevio['Id']
-    s2250_evtavprevio_dados['processamento_codigo_resposta'] = 1
     evtAvPrevio = doc.eSocial.evtAvPrevio
 
     if 'indRetif' in dir(evtAvPrevio.ideEvento): s2250_evtavprevio_dados['indretif'] = evtAvPrevio.ideEvento.indRetif.cdata

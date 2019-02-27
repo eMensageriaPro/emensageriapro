@@ -77,7 +77,6 @@ def read_s2299_evtdeslig_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2299_evtdeslig_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2299_evtdeslig_dados['identidade'] = doc.eSocial.evtDeslig['Id']
-    s2299_evtdeslig_dados['processamento_codigo_resposta'] = 1
     evtDeslig = doc.eSocial.evtDeslig
 
     if 'indRetif' in dir(evtDeslig.ideEvento): s2299_evtdeslig_dados['indretif'] = evtDeslig.ideEvento.indRetif.cdata

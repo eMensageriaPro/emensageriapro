@@ -77,7 +77,6 @@ def read_s1050_evttabhortur_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s1050_evttabhortur_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1050_evttabhortur_dados['identidade'] = doc.eSocial.evtTabHorTur['Id']
-    s1050_evttabhortur_dados['processamento_codigo_resposta'] = 1
     evtTabHorTur = doc.eSocial.evtTabHorTur
 
     if 'tpAmb' in dir(evtTabHorTur.ideEvento): s1050_evttabhortur_dados['tpamb'] = evtTabHorTur.ideEvento.tpAmb.cdata

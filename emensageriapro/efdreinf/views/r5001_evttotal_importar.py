@@ -77,7 +77,6 @@ def read_r5001_evttotal_obj(doc, status, validar=False):
     xmlns_lista = doc.Reinf['xmlns'].split('/')
     r5001_evttotal_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     r5001_evttotal_dados['identidade'] = doc.Reinf.evtTotal['id']
-    r5001_evttotal_dados['processamento_codigo_resposta'] = 1
     evtTotal = doc.Reinf.evtTotal
 
     if 'perApur' in dir(evtTotal.ideEvento): r5001_evttotal_dados['perapur'] = evtTotal.ideEvento.perApur.cdata

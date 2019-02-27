@@ -77,7 +77,6 @@ def read_s5001_evtbasestrab_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s5001_evtbasestrab_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s5001_evtbasestrab_dados['identidade'] = doc.eSocial.evtBasesTrab['Id']
-    s5001_evtbasestrab_dados['processamento_codigo_resposta'] = 1
     evtBasesTrab = doc.eSocial.evtBasesTrab
 
     if 'nrRecArqBase' in dir(evtBasesTrab.ideEvento): s5001_evtbasestrab_dados['nrrecarqbase'] = evtBasesTrab.ideEvento.nrRecArqBase.cdata

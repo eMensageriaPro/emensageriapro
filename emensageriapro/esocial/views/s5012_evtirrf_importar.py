@@ -77,7 +77,6 @@ def read_s5012_evtirrf_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s5012_evtirrf_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s5012_evtirrf_dados['identidade'] = doc.eSocial.evtIrrf['Id']
-    s5012_evtirrf_dados['processamento_codigo_resposta'] = 1
     evtIrrf = doc.eSocial.evtIrrf
 
     if 'perApur' in dir(evtIrrf.ideEvento): s5012_evtirrf_dados['perapur'] = evtIrrf.ideEvento.perApur.cdata

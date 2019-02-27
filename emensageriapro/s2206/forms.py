@@ -167,7 +167,7 @@ class form_s2206_filiacaosindical(forms.ModelForm):
 
 
 class form_s2206_horcontratual(forms.ModelForm):
-    qtdhrssem = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    qtdhrssem = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')

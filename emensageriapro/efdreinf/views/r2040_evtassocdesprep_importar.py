@@ -77,7 +77,6 @@ def read_r2040_evtassocdesprep_obj(doc, status, validar=False):
     xmlns_lista = doc.Reinf['xmlns'].split('/')
     r2040_evtassocdesprep_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     r2040_evtassocdesprep_dados['identidade'] = doc.Reinf.evtAssocDespRep['id']
-    r2040_evtassocdesprep_dados['processamento_codigo_resposta'] = 1
     evtAssocDespRep = doc.Reinf.evtAssocDespRep
 
     if 'indRetif' in dir(evtAssocDespRep.ideEvento): r2040_evtassocdesprep_dados['indretif'] = evtAssocDespRep.ideEvento.indRetif.cdata

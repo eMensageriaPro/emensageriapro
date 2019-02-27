@@ -77,7 +77,6 @@ def read_s2399_evttsvtermino_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2399_evttsvtermino_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2399_evttsvtermino_dados['identidade'] = doc.eSocial.evtTSVTermino['Id']
-    s2399_evttsvtermino_dados['processamento_codigo_resposta'] = 1
     evtTSVTermino = doc.eSocial.evtTSVTermino
 
     if 'indRetif' in dir(evtTSVTermino.ideEvento): s2399_evttsvtermino_dados['indretif'] = evtTSVTermino.ideEvento.indRetif.cdata

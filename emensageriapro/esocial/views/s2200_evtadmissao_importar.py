@@ -77,7 +77,6 @@ def read_s2200_evtadmissao_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2200_evtadmissao_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2200_evtadmissao_dados['identidade'] = doc.eSocial.evtAdmissao['Id']
-    s2200_evtadmissao_dados['processamento_codigo_resposta'] = 1
     evtAdmissao = doc.eSocial.evtAdmissao
 
     if 'indRetif' in dir(evtAdmissao.ideEvento): s2200_evtadmissao_dados['indretif'] = evtAdmissao.ideEvento.indRetif.cdata

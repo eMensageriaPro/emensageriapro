@@ -77,7 +77,6 @@ def read_s1000_evtinfoempregador_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s1000_evtinfoempregador_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1000_evtinfoempregador_dados['identidade'] = doc.eSocial.evtInfoEmpregador['Id']
-    s1000_evtinfoempregador_dados['processamento_codigo_resposta'] = 1
     evtInfoEmpregador = doc.eSocial.evtInfoEmpregador
 
     if 'tpAmb' in dir(evtInfoEmpregador.ideEvento): s1000_evtinfoempregador_dados['tpamb'] = evtInfoEmpregador.ideEvento.tpAmb.cdata

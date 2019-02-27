@@ -77,7 +77,6 @@ def read_s1270_evtcontratavnp_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s1270_evtcontratavnp_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1270_evtcontratavnp_dados['identidade'] = doc.eSocial.evtContratAvNP['Id']
-    s1270_evtcontratavnp_dados['processamento_codigo_resposta'] = 1
     evtContratAvNP = doc.eSocial.evtContratAvNP
 
     if 'indRetif' in dir(evtContratAvNP.ideEvento): s1270_evtcontratavnp_dados['indretif'] = evtContratAvNP.ideEvento.indRetif.cdata

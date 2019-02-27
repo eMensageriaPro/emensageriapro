@@ -77,7 +77,6 @@ def read_r2098_evtreabreevper_obj(doc, status, validar=False):
     xmlns_lista = doc.Reinf['xmlns'].split('/')
     r2098_evtreabreevper_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     r2098_evtreabreevper_dados['identidade'] = doc.Reinf.evtReabreEvPer['id']
-    r2098_evtreabreevper_dados['processamento_codigo_resposta'] = 1
     evtReabreEvPer = doc.Reinf.evtReabreEvPer
 
     if 'perApur' in dir(evtReabreEvPer.ideEvento): r2098_evtreabreevper_dados['perapur'] = evtReabreEvPer.ideEvento.perApur.cdata

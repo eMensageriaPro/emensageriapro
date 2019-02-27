@@ -46,8 +46,8 @@ __author__ = 'marcelovasconcellos'
 
 
 class form_s1280_infoativconcom(forms.ModelForm):
-    fatormes = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    fator13 = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    fatormes = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
+    fator13 = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
@@ -88,7 +88,7 @@ class form_s1280_infoativconcom(forms.ModelForm):
 
 
 class form_s1280_infosubstpatr(forms.ModelForm):
-    percredcontrib = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    percredcontrib = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')

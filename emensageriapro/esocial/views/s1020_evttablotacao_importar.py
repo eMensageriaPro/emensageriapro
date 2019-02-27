@@ -77,7 +77,6 @@ def read_s1020_evttablotacao_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s1020_evttablotacao_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1020_evttablotacao_dados['identidade'] = doc.eSocial.evtTabLotacao['Id']
-    s1020_evttablotacao_dados['processamento_codigo_resposta'] = 1
     evtTabLotacao = doc.eSocial.evtTabLotacao
 
     if 'tpAmb' in dir(evtTabLotacao.ideEvento): s1020_evttablotacao_dados['tpamb'] = evtTabLotacao.ideEvento.tpAmb.cdata

@@ -77,7 +77,6 @@ def read_s2205_evtaltcadastral_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2205_evtaltcadastral_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2205_evtaltcadastral_dados['identidade'] = doc.eSocial.evtAltCadastral['Id']
-    s2205_evtaltcadastral_dados['processamento_codigo_resposta'] = 1
     evtAltCadastral = doc.eSocial.evtAltCadastral
 
     if 'indRetif' in dir(evtAltCadastral.ideEvento): s2205_evtaltcadastral_dados['indretif'] = evtAltCadastral.ideEvento.indRetif.cdata

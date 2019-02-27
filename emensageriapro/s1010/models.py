@@ -182,10 +182,10 @@ CHOICES_S1010_ALTERACAO_CODINCSIND = (
 )
 
 CHOICES_S1010_ALTERACAO_EXTDECISAO = (
-    (1, u'1 - Contribuição Previdenciária Patronal'),
     (1, u'1 - Contribuição Previdenciária do Ente Público'),
-    (2, u'2 - Contribuição Previdenciária Patronal + Descontada dos Segurados'),
+    (1, u'1 - Contribuição Previdenciária Patronal'),
     (2, u'2 - Contribuição Previdenciária do Ente Público + Descontada dos Segurados'),
+    (2, u'2 - Contribuição Previdenciária Patronal + Descontada dos Segurados'),
     (3, u'3 - Contribuição Previdenciária Descontada dos Segurados'),
 )
 
@@ -342,10 +342,10 @@ CHOICES_S1010_INCLUSAO_CODINCSIND = (
 )
 
 CHOICES_S1010_INCLUSAO_EXTDECISAO = (
-    (1, u'1 - Contribuição Previdenciária Patronal'),
     (1, u'1 - Contribuição Previdenciária do Ente Público'),
-    (2, u'2 - Contribuição Previdenciária Patronal + Descontada dos Segurados'),
+    (1, u'1 - Contribuição Previdenciária Patronal'),
     (2, u'2 - Contribuição Previdenciária do Ente Público + Descontada dos Segurados'),
+    (2, u'2 - Contribuição Previdenciária Patronal + Descontada dos Segurados'),
     (3, u'3 - Contribuição Previdenciária Descontada dos Segurados'),
 )
 

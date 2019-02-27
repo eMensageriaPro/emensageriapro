@@ -77,7 +77,6 @@ def read_s2220_evtmonit_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2220_evtmonit_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2220_evtmonit_dados['identidade'] = doc.eSocial.evtMonit['Id']
-    s2220_evtmonit_dados['processamento_codigo_resposta'] = 1
     evtMonit = doc.eSocial.evtMonit
 
     if 'indRetif' in dir(evtMonit.ideEvento): s2220_evtmonit_dados['indretif'] = evtMonit.ideEvento.indRetif.cdata

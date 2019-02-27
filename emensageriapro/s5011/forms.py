@@ -273,8 +273,8 @@ class form_s5011_basesremun(forms.ModelForm):
 
 
 class form_s5011_dadosopport(forms.ModelForm):
-    fap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    aliqratajust = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    fap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
+    aliqratajust = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
@@ -400,8 +400,8 @@ class form_s5011_idelotacao(forms.ModelForm):
 
 
 class form_s5011_infoatconc(forms.ModelForm):
-    fatormes = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    fator13 = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    fatormes = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
+    fator13 = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
@@ -651,8 +651,8 @@ class form_s5011_infoemprparcial(forms.ModelForm):
 
 
 class form_s5011_infoestab(forms.ModelForm):
-    fap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    aliqratajust = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    fap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
+    aliqratajust = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')
@@ -695,7 +695,7 @@ class form_s5011_infoestab(forms.ModelForm):
 
 
 class form_s5011_infopj(forms.ModelForm):
-    percredcontrib = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    percredcontrib = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
 
     def __init__(self,*args,**kwargs):
         slug = kwargs.pop('slug')

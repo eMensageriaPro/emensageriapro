@@ -77,7 +77,6 @@ def read_s1060_evttabambiente_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s1060_evttabambiente_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1060_evttabambiente_dados['identidade'] = doc.eSocial.evtTabAmbiente['Id']
-    s1060_evttabambiente_dados['processamento_codigo_resposta'] = 1
     evtTabAmbiente = doc.eSocial.evtTabAmbiente
 
     if 'tpAmb' in dir(evtTabAmbiente.ideEvento): s1060_evttabambiente_dados['tpamb'] = evtTabAmbiente.ideEvento.tpAmb.cdata

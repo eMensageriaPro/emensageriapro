@@ -114,13 +114,11 @@ def listar(request, hash):
 
         efdreinf_validados_aguardando_envio = TransmissorEventosEfdreinf.objects.using( db_slug ).\
             filter(excluido = False,
-                   status=STATUS_EVENTO_AGUARD_ENVIO,
-                   validacao_precedencia=1).exclude(id=0).all()
+                   status=STATUS_EVENTO_AGUARD_ENVIO).exclude(id=0).all()
 
         efdreinf_validados_aguardando_precedencia = TransmissorEventosEfdreinf.objects.using( db_slug ).\
             filter(excluido = False,
-                   status=STATUS_EVENTO_AGUARD_PRECEDENCIA,
-                   validacao_precedencia=0).exclude(id=0).all()
+                   status=STATUS_EVENTO_AGUARD_PRECEDENCIA).exclude(id=0).all()
 
         efdreinf_validados = TransmissorEventosEfdreinf.objects.using( db_slug ).\
             filter(excluido = False,
@@ -136,7 +134,10 @@ def listar(request, hash):
 
         efdreinf_cadastrados = TransmissorEventosEfdreinf.objects.using( db_slug ).\
             filter(excluido = False,
-                   status__in=[STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_IMPORTADO, STATUS_EVENTO_GERADO]).exclude(id=0).all()
+                   status__in=[STATUS_EVENTO_CADASTRADO,
+                               STATUS_EVENTO_DUPLICADO,
+                               STATUS_EVENTO_IMPORTADO,
+                               STATUS_EVENTO_GERADO]).exclude(id=0).all()
 
         efdreinf_erros_envio = TransmissorEventosEfdreinf.objects.using( db_slug ).\
             filter(excluido = False,
@@ -147,7 +148,7 @@ def listar(request, hash):
                    status=STATUS_EVENTO_PROCESSADO).exclude(id=0).all()
 
         request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'mapa_processamento'
+        request.session["retorno_pagina"] = 'mapa_efdreinf'
 
         context = {
 

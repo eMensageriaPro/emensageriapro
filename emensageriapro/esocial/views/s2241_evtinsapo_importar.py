@@ -77,7 +77,6 @@ def read_s2241_evtinsapo_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2241_evtinsapo_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2241_evtinsapo_dados['identidade'] = doc.eSocial.evtInsApo['Id']
-    s2241_evtinsapo_dados['processamento_codigo_resposta'] = 1
     evtInsApo = doc.eSocial.evtInsApo
 
     if 'indRetif' in dir(evtInsApo.ideEvento): s2241_evtinsapo_dados['indretif'] = evtInsApo.ideEvento.indRetif.cdata

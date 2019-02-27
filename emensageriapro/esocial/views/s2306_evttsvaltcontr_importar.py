@@ -77,7 +77,6 @@ def read_s2306_evttsvaltcontr_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2306_evttsvaltcontr_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2306_evttsvaltcontr_dados['identidade'] = doc.eSocial.evtTSVAltContr['Id']
-    s2306_evttsvaltcontr_dados['processamento_codigo_resposta'] = 1
     evtTSVAltContr = doc.eSocial.evtTSVAltContr
 
     if 'indRetif' in dir(evtTSVAltContr.ideEvento): s2306_evttsvaltcontr_dados['indretif'] = evtTSVAltContr.ideEvento.indRetif.cdata

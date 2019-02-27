@@ -77,7 +77,6 @@ def read_s1260_evtcomprod_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s1260_evtcomprod_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1260_evtcomprod_dados['identidade'] = doc.eSocial.evtComProd['Id']
-    s1260_evtcomprod_dados['processamento_codigo_resposta'] = 1
     evtComProd = doc.eSocial.evtComProd
 
     if 'indRetif' in dir(evtComProd.ideEvento): s1260_evtcomprod_dados['indretif'] = evtComProd.ideEvento.indRetif.cdata

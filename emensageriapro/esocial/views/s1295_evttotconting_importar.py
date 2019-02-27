@@ -77,7 +77,6 @@ def read_s1295_evttotconting_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s1295_evttotconting_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1295_evttotconting_dados['identidade'] = doc.eSocial.evtTotConting['Id']
-    s1295_evttotconting_dados['processamento_codigo_resposta'] = 1
     evtTotConting = doc.eSocial.evtTotConting
 
     if 'indApuracao' in dir(evtTotConting.ideEvento): s1295_evttotconting_dados['indapuracao'] = evtTotConting.ideEvento.indApuracao.cdata

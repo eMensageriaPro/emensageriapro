@@ -565,7 +565,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if r2050_evtcomprod.status in status_list or r2050_evtcomprod.processamento_codigo_resposta in (401,402):
+        if r2050_evtcomprod.status in status_list:
             r2050evtComProd.objects.using(db_slug).filter(id=r2050_evtcomprod_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/r2050_evtcomprod/%s.xml' % (r2050_evtcomprod.identidade)
@@ -602,34 +602,14 @@ def validar_evento_funcao(r2050_evtcomprod_id, db_slug):
     from emensageriapro.mensageiro.functions.funcoes_importacao import get_versao_evento
     from emensageriapro.mensageiro.functions.funcoes_validacoes_precedencia import validar_precedencia
     from emensageriapro.mensageiro.functions.funcoes_validacoes import get_schema_name, validar_schema
-    from emensageriapro.settings import BASE_DIR
+    from emensageriapro.settings import BASE_DIR, VERIFICAR_PREDECESSAO_ANTES_ENVIO
     lista_validacoes = []
     r2050_evtcomprod = get_object_or_404(r2050evtComProd.objects.using(db_slug), excluido=False, id=r2050_evtcomprod_id)
-    if r2050_evtcomprod.transmissor_lote_efdreinf:
-        if r2050_evtcomprod.transmissor_lote_efdreinf.transmissor:
-            if r2050_evtcomprod.transmissor_lote_efdreinf.transmissor.verificar_predecessao:
-                quant = validar_precedencia('efdreinf', 'r2050_evtcomprod', r2050_evtcomprod_id)
-                if quant <= 0:
-                    lista_validacoes.append(u'Precedência não foi enviada!')
-                    precedencia = 0
-                else:
-                    precedencia = 1
-            else:
-                precedencia = 1
-        else:
-            lista_validacoes.append(u'Precedência não pode ser verificada. Vincule um transmissor para que este evento possa ser validado!')
-            precedencia = 0
-    else:
-        lista_validacoes.append(u'Precedência não pode ser verificada. Cadastre um transmissor para este evento para que possa ser validado!')
-        precedencia = 0
-
-    r2050evtComProd.objects.using( db_slug ).\
-        filter(id=r2050_evtcomprod_id, excluido = False).\
-        update(validacao_precedencia=precedencia)
 
     #
     # Validações internas
     #
+
     arquivo = 'arquivos/Eventos/r2050_evtcomprod/%s.xml' % (r2050_evtcomprod.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/r2050_evtcomprod/' % BASE_DIR)
     lista = []
@@ -666,10 +646,30 @@ def validar_evento_funcao(r2050_evtcomprod_id, db_slug):
 
     else:
 
-        r2050evtComProd.objects.using( db_slug ).\
-            filter(id=r2050_evtcomprod_id, excluido = False).\
-            update(validacoes='',
-                   status=STATUS_EVENTO_VALIDADO)
+        if VERIFICAR_PREDECESSAO_ANTES_ENVIO:
+
+            quant = validar_precedencia('esocial', 'r2050_evtcomprod', r2050_evtcomprod_id)
+
+            if quant <= 0:
+
+                r2050evtComProd.objects.using( db_slug ).\
+                    filter(id=r2050_evtcomprod_id, excluido = False).\
+                    update(validacoes=None,
+                           status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
+
+            else:
+
+                r2050evtComProd.objects.using( db_slug ).\
+                    filter(id=r2050_evtcomprod_id, excluido = False).\
+                    update(validacoes=None,
+                           status=STATUS_EVENTO_AGUARD_ENVIO)
+
+        else:
+
+            r2050evtComProd.objects.using(db_slug). \
+                filter(id=r2050_evtcomprod_id, excluido=False).\
+                update(validacoes=None,
+                       status=STATUS_EVENTO_AGUARD_ENVIO)
 
     return lista_validacoes
 
@@ -678,8 +678,9 @@ def validar_evento_funcao(r2050_evtcomprod_id, db_slug):
 @login_required
 def validar_evento(request, hash):
 
-    from emensageriapro.settings import VERSOES_EFDREINF
-    from emensageriapro.mensageiro.functions.funcoes_validacoes import VERSAO_ATUAL
+    from emensageriapro.settings import VERSOES_EFDREINF, VERIFICAR_PREDECESSAO_ANTES_ENVIO
+    # from emensageriapro.mensageiro.functions.funcoes_validacoes import VERSAO_ATUAL
+
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
     r2050_evtcomprod_id = int(dict_hash['id'])
@@ -694,6 +695,15 @@ def validar_evento(request, hash):
         if r2050_evtcomprod.versao in VERSOES_EFDREINF:
 
             validar_evento_funcao(r2050_evtcomprod_id, db_slug)
+
+            if r2050_evtcomprod.transmissor_lote_esocial and not VERIFICAR_PREDECESSAO_ANTES_ENVIO:
+                r2050evtComProd.objects.using(db_slug).\
+                    filter(excluido=False, id=r2050_evtcomprod_id).update(status=STATUS_EVENTO_AGUARD_ENVIO)
+
+            elif r2050_evtcomprod.transmissor_lote_esocial and VERIFICAR_PREDECESSAO_ANTES_ENVIO:
+                r2050evtComProd.objects.using(db_slug).\
+                    filter(excluido=False, id=r2050_evtcomprod_id).update(status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
+
             messages.success(request, u'Validações processadas com sucesso!')
 
         else:

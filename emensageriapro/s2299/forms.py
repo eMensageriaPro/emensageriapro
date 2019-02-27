@@ -87,8 +87,8 @@ class form_s2299_dmdev(forms.ModelForm):
 
 
 class form_s2299_infoperant_detverbas(forms.ModelForm):
-    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
+    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
     vrunit = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
@@ -423,8 +423,8 @@ class form_s2299_infoperapur_detplano(forms.ModelForm):
 
 
 class form_s2299_infoperapur_detverbas(forms.ModelForm):
-    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
-    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
+    qtdrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
+    fatorrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
     vrunit = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrrubr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 

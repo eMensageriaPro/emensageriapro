@@ -77,7 +77,6 @@ def read_r2010_evtservtom_obj(doc, status, validar=False):
     xmlns_lista = doc.Reinf['xmlns'].split('/')
     r2010_evtservtom_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     r2010_evtservtom_dados['identidade'] = doc.Reinf.evtServTom['id']
-    r2010_evtservtom_dados['processamento_codigo_resposta'] = 1
     evtServTom = doc.Reinf.evtServTom
 
     if 'indRetif' in dir(evtServTom.ideEvento): r2010_evtservtom_dados['indretif'] = evtServTom.ideEvento.indRetif.cdata

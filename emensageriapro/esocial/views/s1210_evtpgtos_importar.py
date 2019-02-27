@@ -77,7 +77,6 @@ def read_s1210_evtpgtos_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s1210_evtpgtos_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1210_evtpgtos_dados['identidade'] = doc.eSocial.evtPgtos['Id']
-    s1210_evtpgtos_dados['processamento_codigo_resposta'] = 1
     evtPgtos = doc.eSocial.evtPgtos
 
     if 'indRetif' in dir(evtPgtos.ideEvento): s1210_evtpgtos_dados['indretif'] = evtPgtos.ideEvento.indRetif.cdata

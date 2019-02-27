@@ -77,7 +77,6 @@ def read_s2420_evtcdbenterm_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2420_evtcdbenterm_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2420_evtcdbenterm_dados['identidade'] = doc.eSocial.evtCdBenTerm['Id']
-    s2420_evtcdbenterm_dados['processamento_codigo_resposta'] = 1
     evtCdBenTerm = doc.eSocial.evtCdBenTerm
 
     if 'indRetif' in dir(evtCdBenTerm.ideEvento): s2420_evtcdbenterm_dados['indretif'] = evtCdBenTerm.ideEvento.indRetif.cdata

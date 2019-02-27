@@ -77,7 +77,6 @@ def read_s2206_evtaltcontratual_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2206_evtaltcontratual_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2206_evtaltcontratual_dados['identidade'] = doc.eSocial.evtAltContratual['Id']
-    s2206_evtaltcontratual_dados['processamento_codigo_resposta'] = 1
     evtAltContratual = doc.eSocial.evtAltContratual
 
     if 'indRetif' in dir(evtAltContratual.ideEvento): s2206_evtaltcontratual_dados['indretif'] = evtAltContratual.ideEvento.indRetif.cdata

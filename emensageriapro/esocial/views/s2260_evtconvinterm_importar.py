@@ -77,7 +77,6 @@ def read_s2260_evtconvinterm_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2260_evtconvinterm_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2260_evtconvinterm_dados['identidade'] = doc.eSocial.evtConvInterm['Id']
-    s2260_evtconvinterm_dados['processamento_codigo_resposta'] = 1
     evtConvInterm = doc.eSocial.evtConvInterm
 
     if 'indRetif' in dir(evtConvInterm.ideEvento): s2260_evtconvinterm_dados['indretif'] = evtConvInterm.ideEvento.indRetif.cdata

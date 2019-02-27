@@ -225,7 +225,10 @@ VERSOES_EFDREINF = ["v1_03_02", "v01_04_00"]
 
 # Configurações Gerais do Sistema
 
-VERIFICAR_PREDECESSAO_ANTES_ENVIO = env('VERIFICAR_PREDECESSAO_ANTES_ENVIO')
+def str2bool(v):
+    return v.lower() in ("yes", "true", "t", "1")
+
+VERIFICAR_PREDECESSAO_ANTES_ENVIO = str2bool( env('VERIFICAR_PREDECESSAO_ANTES_ENVIO') )
 
 
 # Hosts permitidos em Produção (obrigatório caso o DEBUG = False)

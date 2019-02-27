@@ -77,7 +77,6 @@ def read_s1070_evttabprocesso_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s1070_evttabprocesso_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1070_evttabprocesso_dados['identidade'] = doc.eSocial.evtTabProcesso['Id']
-    s1070_evttabprocesso_dados['processamento_codigo_resposta'] = 1
     evtTabProcesso = doc.eSocial.evtTabProcesso
 
     if 'tpAmb' in dir(evtTabProcesso.ideEvento): s1070_evttabprocesso_dados['tpamb'] = evtTabProcesso.ideEvento.tpAmb.cdata

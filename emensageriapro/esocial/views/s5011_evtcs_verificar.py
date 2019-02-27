@@ -625,7 +625,7 @@ def abrir_evento_para_edicao(request, hash):
             STATUS_EVENTO_ENVIADO_ERRO
         ]
 
-        if s5011_evtcs.status in status_list or s5011_evtcs.processamento_codigo_resposta in (401,402):
+        if s5011_evtcs.status in status_list:
             s5011evtCS.objects.using(db_slug).filter(id=s5011_evtcs_id).update(status=STATUS_EVENTO_CADASTRADO,
                                                                           arquivo_original=0)
             arquivo = 'arquivos/Eventos/s5011_evtcs/%s.xml' % (s5011_evtcs.identidade)
@@ -662,34 +662,14 @@ def validar_evento_funcao(s5011_evtcs_id, db_slug):
     from emensageriapro.mensageiro.functions.funcoes_importacao import get_versao_evento
     from emensageriapro.mensageiro.functions.funcoes_validacoes_precedencia import validar_precedencia
     from emensageriapro.mensageiro.functions.funcoes_validacoes import get_schema_name, validar_schema
-    from emensageriapro.settings import BASE_DIR
+    from emensageriapro.settings import BASE_DIR, VERIFICAR_PREDECESSAO_ANTES_ENVIO
     lista_validacoes = []
     s5011_evtcs = get_object_or_404(s5011evtCS.objects.using(db_slug), excluido=False, id=s5011_evtcs_id)
-    if s5011_evtcs.transmissor_lote_esocial:
-        if s5011_evtcs.transmissor_lote_esocial.transmissor:
-            if s5011_evtcs.transmissor_lote_esocial.transmissor.verificar_predecessao:
-                quant = validar_precedencia('esocial', 's5011_evtcs', s5011_evtcs_id)
-                if quant <= 0:
-                    lista_validacoes.append(u'Precedência não foi enviada!')
-                    precedencia = 0
-                else:
-                    precedencia = 1
-            else:
-                precedencia = 1
-        else:
-            lista_validacoes.append(u'Precedência não pode ser verificada. Vincule um transmissor para que este evento possa ser validado!')
-            precedencia = 0
-    else:
-        lista_validacoes.append(u'Precedência não pode ser verificada. Cadastre um transmissor para este evento para que possa ser validado!')
-        precedencia = 0
-
-    s5011evtCS.objects.using( db_slug ).\
-        filter(id=s5011_evtcs_id, excluido = False).\
-        update(validacao_precedencia=precedencia)
 
     #
     # Validações internas
     #
+
     arquivo = 'arquivos/Eventos/s5011_evtcs/%s.xml' % (s5011_evtcs.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s5011_evtcs/' % BASE_DIR)
     lista = []
@@ -726,10 +706,30 @@ def validar_evento_funcao(s5011_evtcs_id, db_slug):
 
     else:
 
-        s5011evtCS.objects.using( db_slug ).\
-            filter(id=s5011_evtcs_id, excluido = False).\
-            update(validacoes='',
-                   status=STATUS_EVENTO_VALIDADO)
+        if VERIFICAR_PREDECESSAO_ANTES_ENVIO:
+
+            quant = validar_precedencia('esocial', 's5011_evtcs', s5011_evtcs_id)
+
+            if quant <= 0:
+
+                s5011evtCS.objects.using( db_slug ).\
+                    filter(id=s5011_evtcs_id, excluido = False).\
+                    update(validacoes=None,
+                           status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
+
+            else:
+
+                s5011evtCS.objects.using( db_slug ).\
+                    filter(id=s5011_evtcs_id, excluido = False).\
+                    update(validacoes=None,
+                           status=STATUS_EVENTO_AGUARD_ENVIO)
+
+        else:
+
+            s5011evtCS.objects.using(db_slug). \
+                filter(id=s5011_evtcs_id, excluido=False).\
+                update(validacoes=None,
+                       status=STATUS_EVENTO_AGUARD_ENVIO)
 
     return lista_validacoes
 
@@ -738,8 +738,9 @@ def validar_evento_funcao(s5011_evtcs_id, db_slug):
 @login_required
 def validar_evento(request, hash):
 
-    from emensageriapro.settings import VERSOES_ESOCIAL
-    from emensageriapro.mensageiro.functions.funcoes_validacoes import VERSAO_ATUAL
+    from emensageriapro.settings import VERSOES_ESOCIAL, VERIFICAR_PREDECESSAO_ANTES_ENVIO
+    # from emensageriapro.mensageiro.functions.funcoes_validacoes import VERSAO_ATUAL
+
     db_slug = 'default'
     dict_hash = get_hash_url(hash)
     s5011_evtcs_id = int(dict_hash['id'])
@@ -754,6 +755,15 @@ def validar_evento(request, hash):
         if s5011_evtcs.versao in VERSOES_ESOCIAL:
 
             validar_evento_funcao(s5011_evtcs_id, db_slug)
+
+            if s5011_evtcs.transmissor_lote_esocial and not VERIFICAR_PREDECESSAO_ANTES_ENVIO:
+                s5011evtCS.objects.using(db_slug).\
+                    filter(excluido=False, id=s5011_evtcs_id).update(status=STATUS_EVENTO_AGUARD_ENVIO)
+
+            elif s5011_evtcs.transmissor_lote_esocial and VERIFICAR_PREDECESSAO_ANTES_ENVIO:
+                s5011evtCS.objects.using(db_slug).\
+                    filter(excluido=False, id=s5011_evtcs_id).update(status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
+
             messages.success(request, u'Validações processadas com sucesso!')
 
         else:

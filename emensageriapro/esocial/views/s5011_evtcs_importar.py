@@ -77,7 +77,6 @@ def read_s5011_evtcs_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s5011_evtcs_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s5011_evtcs_dados['identidade'] = doc.eSocial.evtCS['Id']
-    s5011_evtcs_dados['processamento_codigo_resposta'] = 1
     evtCS = doc.eSocial.evtCS
 
     if 'indApuracao' in dir(evtCS.ideEvento): s5011_evtcs_dados['indapuracao'] = evtCS.ideEvento.indApuracao.cdata

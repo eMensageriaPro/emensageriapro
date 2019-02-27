@@ -77,7 +77,6 @@ def read_s5002_evtirrfbenef_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s5002_evtirrfbenef_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s5002_evtirrfbenef_dados['identidade'] = doc.eSocial.evtIrrfBenef['Id']
-    s5002_evtirrfbenef_dados['processamento_codigo_resposta'] = 1
     evtIrrfBenef = doc.eSocial.evtIrrfBenef
 
     if 'nrRecArqBase' in dir(evtIrrfBenef.ideEvento): s5002_evtirrfbenef_dados['nrrecarqbase'] = evtIrrfBenef.ideEvento.nrRecArqBase.cdata

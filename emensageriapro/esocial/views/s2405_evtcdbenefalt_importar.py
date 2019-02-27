@@ -77,7 +77,6 @@ def read_s2405_evtcdbenefalt_obj(doc, status, validar=False):
     xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2405_evtcdbenefalt_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2405_evtcdbenefalt_dados['identidade'] = doc.eSocial.evtCdBenefAlt['Id']
-    s2405_evtcdbenefalt_dados['processamento_codigo_resposta'] = 1
     evtCdBenefAlt = doc.eSocial.evtCdBenefAlt
 
     if 'indRetif' in dir(evtCdBenefAlt.ideEvento): s2405_evtcdbenefalt_dados['indretif'] = evtCdBenefAlt.ideEvento.indRetif.cdata

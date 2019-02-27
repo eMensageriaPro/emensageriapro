@@ -232,12 +232,27 @@
                             <tr>
                                 <th width="300px">Evento</th>
                                 <th>Identidade</th>
+                                <th width="300px">Recibo</th>
                             </tr>
                             </thead>
                             <tbody>{% for a in esocial_processados %}
                                 <tr>
                                     <td>{{ a.evento }}</td>
                                     <td>{{ a.identidade }}</td>
+                                    <td>
+                                        <div>
+
+
+                                            <a href="/esocial/{{ a.tabela|underline_to_hyphen }}/recibo/{{ '{}'|json_return_page:'mapa_esocial'|json_return_hash:hash|json_id:a.id|json_print:0|base64_encode_me }}/PDF/">
+                                            <span class="btn btn-primary" title="Imprimir Recibo">
+                                            <i class="fa fa-fw fa-print"></i>
+                                            </span>
+                                            </a>
+
+                                        </div>
+
+
+                                    </td>
                                 </tr>{% endfor %}</tbody>
                         </table>
                     </div>
