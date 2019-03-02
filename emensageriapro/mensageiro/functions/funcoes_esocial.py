@@ -126,26 +126,36 @@ def salvar_arquivo_esocial(arquivo, texto, permite_recuperacao):
     from emensageriapro.settings import BASE_DIR
     arquivo1 = BASE_DIR+'/'+arquivo
     arquivo1 = arquivo1.replace('//', '/').replace('//', '/')
-    try:
-        file = open(arquivo1, "w")
-        file.write( texto )
-        file.close()
-    except:
-        import codecs
-        file = codecs.open(arquivo1, "w", "utf-8")
-        file.write(texto)
-        file.close()
+    # try:
+    #     file = open(arquivo1, "w")
+    #     file.write( texto )
+    #     file.close()
+    # except:
+    import codecs
+    file = codecs.open(arquivo1, "w", "utf-8")
+    file.write(texto)
+    file.close()
     gravar_nome_arquivo(arquivo, permite_recuperacao)
 
+
+
+# def ler_arquivo(arquivo):
+#     from emensageriapro.settings import BASE_DIR
+#     arquivo = BASE_DIR+'/'+arquivo
+#     file = open(arquivo, 'r')
+#     texto = file.read()
+#     file.close()
+#     return texto
 
 
 def ler_arquivo(arquivo):
     from emensageriapro.settings import BASE_DIR
     arquivo = BASE_DIR+'/'+arquivo
-    file = open(arquivo, 'r')
+    import codecs
+    file = codecs.open(arquivo, "r", "utf-8")
     texto = file.read()
     file.close()
-    return texto
+    return texto.encode('utf-8')
 
 
 def create_pem_files(CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE):

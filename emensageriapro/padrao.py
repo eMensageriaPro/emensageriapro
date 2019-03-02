@@ -52,8 +52,12 @@ def testar_importacao_xml(dicionario, chave, valor):
 def salvar_arquivo(arquivo, texto):
     from emensageriapro.settings import BASE_DIR
     arquivo1 = BASE_DIR+'/'+arquivo
-    file = open(arquivo1, "w")
-    file.write( texto )
+    # file = open(arquivo1, "w")
+    # file.write( texto )
+    # file.close()
+    import codecs
+    file = codecs.open(arquivo1, "w", "utf-8")
+    file.write(texto)
     file.close()
     #print arquivo
 
@@ -61,10 +65,14 @@ def salvar_arquivo(arquivo, texto):
 def ler_arquivo(arquivo):
     from emensageriapro.settings import BASE_DIR
     arquivo = BASE_DIR+'/'+arquivo
-    file = open(arquivo, 'r')
+    # file = open(arquivo, 'r')
+    # texto = file.read()
+    # file.close()
+    import codecs
+    file = codecs.open(arquivo, "r", "utf-8")
     texto = file.read()
     file.close()
-    return texto
+    return texto.encode('utf-8')
 
 
 def range_ano_mes():
@@ -172,6 +180,7 @@ def clear_dict_fields(dict):
 
 
 def executar_sql(select, array):
+    from django.utils.encoding import smart_str, smart_unicode
     import psycopg2
     from emensageriapro.settings import DATABASES
     database = DATABASES['default']
@@ -182,6 +191,7 @@ def executar_sql(select, array):
         print "I am unable to connect to the database"
     if select:
         cur = conn.cursor()
+        select = smart_str(select)
         select = select.replace("'Null'", 'Null')
         cur.execute(select)
         if array: lista = cur.fetchall()
