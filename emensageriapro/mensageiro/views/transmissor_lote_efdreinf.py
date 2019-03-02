@@ -111,7 +111,7 @@ def apagar(request, hash):
         obj.delete(request=request)
         #transmissor_lote_efdreinf_apagar_custom
         #transmissor_lote_efdreinf_apagar_custom
-        messages.success(request, 'Apagado com sucesso!')
+        messages.success(request, u'Apagado com sucesso!')
         if request.session['retorno_pagina']== 'transmissor_lote_efdreinf_salvar':
             return redirect('transmissor_lote_efdreinf', hash=request.session['retorno_hash'])
         else:
@@ -234,7 +234,7 @@ def listar(request, hash):
         if not post and len(transmissor_lote_efdreinf_lista) > 100:
             filtrar = True
             transmissor_lote_efdreinf_lista = None
-            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         transmissor_lista = TransmissorLote.objects.using( db_slug ).filter(excluido = False).all()
         #transmissor_lote_efdreinf_listar_custom
@@ -262,7 +262,6 @@ def listar(request, hash):
         if for_print in (0,1):
             return render(request, 'transmissor_lote_efdreinf_listar.html', context)
         elif for_print == 2:
-            #return render_to_pdf('tables/s1000_evtinfoempregador_pdf_xls.html', context)
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,

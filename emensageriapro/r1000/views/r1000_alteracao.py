@@ -92,12 +92,12 @@ def apagar(request, hash):
             obj.delete(request=request)
             #r1000_alteracao_apagar_custom
             #r1000_alteracao_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
+            messages.success(request, u'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
                              '',
                              'r1000_alteracao', r1000_alteracao_id, usuario_id, 3)
         else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+            messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
 
         if request.session['retorno_pagina']== 'r1000_alteracao_salvar':
             return redirect('r1000_alteracao', hash=request.session['retorno_hash'])
@@ -240,7 +240,7 @@ def listar(request, hash):
         if not post and len(r1000_alteracao_lista) > 100:
             filtrar = True
             r1000_alteracao_lista = None
-            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         #r1000_alteracao_listar_custom
         request.session["retorno_hash"] = hash
@@ -356,7 +356,7 @@ def salvar(request, hash):
 
                 dados = r1000_alteracao_form.cleaned_data
                 obj = r1000_alteracao_form.save(request=request)
-                messages.success(request, 'Salvo com sucesso!')
+                messages.success(request, u'Salvo com sucesso!')
 
                 if not r1000_alteracao_id:
                     gravar_auditoria('{}',
@@ -374,7 +374,7 @@ def salvar(request, hash):
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('r1000_alteracao_salvar', hash=url_hash)
             else:
-                messages.error(request, 'Erro ao salvar!')
+                messages.error(request, u'Erro ao salvar!')
         r1000_alteracao_form = disabled_form_fields(r1000_alteracao_form, permissao.permite_editar)
         if r1000_alteracao_id:
             if dados_evento['status'] != 0:

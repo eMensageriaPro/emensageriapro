@@ -81,7 +81,7 @@ def apagar(request, hash):
         obj.delete(request=request)
         #efdreinf_classificacao_tributaria_apagar_custom
         #efdreinf_classificacao_tributaria_apagar_custom
-        messages.success(request, 'Apagado com sucesso!')
+        messages.success(request, u'Apagado com sucesso!')
         if request.session['retorno_pagina']== 'efdreinf_classificacao_tributaria_salvar':
             return redirect('efdreinf_classificacao_tributaria', hash=request.session['retorno_hash'])
         else:
@@ -209,7 +209,7 @@ def listar(request, hash):
         if not post and len(efdreinf_classificacao_tributaria_lista) > 100:
             filtrar = True
             efdreinf_classificacao_tributaria_lista = None
-            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         #efdreinf_classificacao_tributaria_listar_custom
         request.session["retorno_hash"] = hash
@@ -317,7 +317,7 @@ def salvar(request, hash):
 
                 dados = efdreinf_classificacao_tributaria_form.cleaned_data
                 obj = efdreinf_classificacao_tributaria_form.save(request=request)
-                messages.success(request, 'Salvo com sucesso!')
+                messages.success(request, u'Salvo com sucesso!')
 
                 if not efdreinf_classificacao_tributaria_id:
                     gravar_auditoria('{}',
@@ -335,7 +335,7 @@ def salvar(request, hash):
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('efdreinf_classificacao_tributaria_salvar', hash=url_hash)
             else:
-                messages.error(request, 'Erro ao salvar!')
+                messages.error(request, u'Erro ao salvar!')
         efdreinf_classificacao_tributaria_form = disabled_form_fields(efdreinf_classificacao_tributaria_form, permissao.permite_editar)
         #efdreinf_classificacao_tributaria_campos_multiple_passo3
 

@@ -113,7 +113,7 @@ def apagar(request, hash):
                              '',
                              's2206_evtaltcontratual', s2206_evtaltcontratual_id, usuario_id, 3)
         else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+            messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
 
         if request.session['retorno_pagina']== 's2206_evtaltcontratual_salvar':
             return redirect('s2206_evtaltcontratual', hash=request.session['retorno_hash'])
@@ -308,7 +308,7 @@ def listar(request, hash):
         if not post and len(s2206_evtaltcontratual_lista) > 100:
             filtrar = True
             s2206_evtaltcontratual_lista = None
-            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s2206_evtaltcontratual_listar_custom
@@ -447,7 +447,7 @@ def salvar(request, hash):
 
                 dados = s2206_evtaltcontratual_form.cleaned_data
                 obj = s2206_evtaltcontratual_form.save(request=request)
-                messages.success(request, 'Salvo com sucesso!')
+                messages.success(request, u'Salvo com sucesso!')
 
                 if not s2206_evtaltcontratual_id:
                     from emensageriapro.functions import identidade_evento
@@ -469,7 +469,7 @@ def salvar(request, hash):
                     return redirect('s2206_evtaltcontratual_salvar', hash=url_hash)
 
             else:
-                messages.error(request, 'Erro ao salvar!')
+                messages.error(request, u'Erro ao salvar!')
         s2206_evtaltcontratual_form = disabled_form_fields(s2206_evtaltcontratual_form, permissao.permite_editar)
 
         if s2206_evtaltcontratual_id:

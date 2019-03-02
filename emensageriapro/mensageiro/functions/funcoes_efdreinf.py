@@ -49,7 +49,7 @@ REQUEST_RECEBER_LOTE_EVENTOS_EFDREINF = u"""
       <sped:ReceberLoteEventos>
          <!--Optional:-->
          <sped:loteEventos>
-         <Reinf xmlns="http://www.reinf.esocial.gov.br/schemas/envioLoteEventos/v1_03_02">
+            <Reinf xmlns="http://www.reinf.esocial.gov.br/schemas/envioLoteEventos/v1_04_00">
               <loteEventos>
                   <!--You may enter ANY elements at this point-->
               </loteEventos>
@@ -62,13 +62,33 @@ REQUEST_RECEBER_LOTE_EVENTOS_EFDREINF = u"""
 
 CABECALHO_EVENTO = u"""<evento id="%(identidade_evento)s"><!--evento--></evento>"""
 
-REQUEST_CONSULTA_INFORMACOES_CONSOLIDADES_EFDREINF = u"""<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sped="http://sped.fazenda.gov.br/"><soapenv:Header/><soapenv:Body><sped:ConsultaInformacoesConsolidadas><sped:tipoInscricaoContribuinte>%(contribuinte_tpinsc)s</sped:tipoInscricaoContribuinte><!--Optional:--><sped:numeroInscricaoContribuinte>%(contribuinte_nrinsc)s</sped:numeroInscricaoContribuinte><!--Optional:--><sped:numeroProtocoloFechamento>%(numero_protocolo_fechamento)s</sped:numeroProtocoloFechamento></sped:ConsultaInformacoesConsolidadas></soapenv:Body></soapenv:Envelope>"""
+REQUEST_CONSULTA_INFORMACOES_CONSOLIDADES_EFDREINF = u"""
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sped="http://sped.fazenda.gov.br/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sped:ConsultaInformacoesConsolidadas>
+         <sped:tipoInscricaoContribuinte>%(contribuinte_tpinsc)s</sped:tipoInscricaoContribuinte>
+         <sped:numeroInscricaoContribuinte>%(contribuinte_nrinsc)s</sped:numeroInscricaoContribuinte>
+         <sped:numeroProtocoloFechamento>%(numero_protocolo_fechamento)s</sped:numeroProtocoloFechamento>
+      </sped:ConsultaInformacoesConsolidadas>
+   </soapenv:Body>
+</soapenv:Envelope>"""
 
 
 #https://preprodefdreinf.receita.fazenda.gov.br/WsREINF/RecepcaoLoteReinf.svc?singleWSDL
 
 #https://preprodefdreinf.receita.fazenda.gov.br/WsREINF/ConsultasReinf.svc?singleWSDL
 
+from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
+    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
+    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
+    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
+    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
+    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
+    STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
+
+from emensageriapro.mensageiro.functions.funcoes_esocial import TRANSMISSOR_STATUS_CADASTRADO, TRANSMISSOR_STATUS_ENVIADO,\
+    TRANSMISSOR_STATUS_ENVIADO_ERRO, TRANSMISSOR_STATUS_CONSULTADO, TRANSMISSOR_STATUS_CONSULTADO_ERRO
 
 
 def gravar_nome_arquivo(arquivo, permite_recuperacao):
@@ -194,21 +214,14 @@ def create_request(dados):
 
         eventos = TransmissorEventosEfdreinf.objects.using('default'). \
             filter(transmissor_lote_efdreinf_id=dados['transmissor_id'],
-                   status=4, validacao_precedencia=1).all()
-
-        # eventos = executar_sql("""
-        #   SELECT evento, id, identidade, tabela
-        #     FROM public.transmissor_eventos_efdreinf
-        #    WHERE transmissor_lote_efdreinf_id = %(transmissor_id)s
-        #      AND status=4 AND validacao_precedencia=1
-        #    ORDER BY identidade;""" % dados, True)
+                   status=STATUS_EVENTO_AGUARD_ENVIO).all()
 
         for e in eventos:
 
-            dados =  e.__dict__
+            dados_evento =  e.__dict__
 
-            xml_temp += '<evento id="%(identidade)s">' % dados
-            xml_temp += ler_arquivo('/arquivos/Eventos/%(tabela)s/%(identidade)s.xml' % dados)
+            xml_temp += '<evento id="%(identidade)s">' % dados_evento
+            xml_temp += ler_arquivo('/arquivos/Eventos/%(tabela)s/%(identidade)s.xml' % dados_evento)
             xml_temp += '</evento>'
 
         text = REQUEST_RECEBER_LOTE_EVENTOS_EFDREINF.replace('<!--You may enter ANY elements at this point-->', xml_temp)
@@ -217,14 +230,6 @@ def create_request(dados):
 
         a = TransmissorLoteEfdreinf.objects.using('default'). \
             get(id=dados['transmissor_id'])
-
-        # a = executar_sql("""
-        #   SELECT contribuinte_tpinsc, contribuinte_nrinsc, numero_protocolo_fechamento
-        #     FROM public.transmissor_lote_efdreinf
-        #    WHERE id= %(transmissor_id)s;""" % dados, True)
-        # dados['contribuinte_tpinsc'] = a.[0][0]
-        # dados['contribuinte_nrinsc'] = a[0][1]
-        # dados['numero_protocolo_fechamento'] = a[0][2]
 
         text = REQUEST_CONSULTA_INFORMACOES_CONSOLIDADES_EFDREINF % a.__dict__
 
@@ -263,8 +268,8 @@ def send_xml(request, transmissor_id, service):
     dados = {}
     name = get_transmissor_name(transmissor_id)
 
-    tra = TransmissorLoteEfdreinf.objects.using('default'). \
-            get(id=transmissor_id).all()
+    tra = TransmissorLoteEfdreinf.objects.using('default').\
+            get(id=transmissor_id)
 
     # tra = executar_sql("""
     #     SELECT te.contribuinte_tpinsc, te.contribuinte_nrinsc,
@@ -312,19 +317,12 @@ def send_xml(request, transmissor_id, service):
     #      WHERE transmissor_lote_efdreinf_id=%s AND status=4""" % transmissor_id, True)
     # quant_eventos_validados = qt_ev_validados[0][0]
 
-    quant_eventos_validados = TransmissorEventosEfdreinf.objects.using('default'). \
+    quant_eventos = TransmissorEventosEfdreinf.objects.using('default'). \
         filter(transmissor_lote_efdreinf_id=transmissor_id,
-               status=4).count()
+               status=STATUS_EVENTO_AGUARD_ENVIO).count()
 
-    if CERT_HOST and ( quant_eventos_validados or service == 'ConsultasReinf' ):
+    if CERT_HOST and ( quant_eventos or service == 'ConsultasReinf' ):
 
-        quant_eventos = TransmissorEventosEfdreinf.objects.using('default'). \
-            filter(transmissor_lote_efdreinf_id=transmissor_id).count()
-
-        # qt_ev = executar_sql("""
-        # SELECT count(*) FROM transmissor_eventos_efdreinf
-        #  WHERE transmissor_lote_efdreinf_id=%s""" % transmissor_id, True)
-        # quant_eventos = qt_ev[0][0]
 
         if (quant_eventos >= dados['efdreinf_lote_min'] and \
                 quant_eventos <= dados['efdreinf_lote_max'] and \
@@ -332,7 +330,7 @@ def send_xml(request, transmissor_id, service):
 
             create_request(dados)
 
-            command = '''curl --connect-timeout %(timeout)s
+            command = '''curl --connect-timeout %(timeout)s --insecure
                               --cert %(cert)s
                               --key %(key)s
                               --cacert %(cacert)s
@@ -374,33 +372,39 @@ def send_xml(request, transmissor_id, service):
                 messages.warning(request, 'Retorno do servidor: ' + ler_arquivo(dados['header']) )
 
             if service == 'RecepcaoLoteReinf':
-                TransmissorEventosEfdreinf.objects.using('default').filter(id=transmissor_id).update(status=7)
+                TransmissorLoteEfdreinf.objects.using('default').filter(id=transmissor_id).\
+                    update(status=TRANSMISSOR_STATUS_ENVIADO)
                 #alterar_status_transmissor(transmissor_id, 7)
 
             elif service == 'ConsultasReinf':
-                TransmissorEventosEfdreinf.objects.using('default').filter(id=transmissor_id).update(status=9)
+                TransmissorLoteEfdreinf.objects.using('default').filter(id=transmissor_id).\
+                    update(status=TRANSMISSOR_STATUS_CONSULTADO)
                 #alterar_status_transmissor(transmissor_id, 9)
 
         elif (quant_eventos < dados['efdreinf_lote_min'] and \
                     service == 'RecepcaoLoteReinf'):
             messages.error(request, 'Lote com quantidade inferior a mínima permitida!')
-            TransmissorEventosEfdreinf.objects.using('default').filter(id=transmissor_id).update(status=0)
+            TransmissorLoteEfdreinf.objects.using('default').\
+                filter(id=transmissor_id).update(status=TRANSMISSOR_STATUS_CADASTRADO)
             #alterar_status_transmissor(transmissor_id, 0)
 
         elif (quant_eventos > dados['efdreinf_lote_max'] and \
                   service == 'RecepcaoLoteReinf'):
             messages.error(request, 'Lote com quantidade de eventos superior a máxima permitida!')
-            TransmissorEventosEfdreinf.objects.using('default').filter(id=transmissor_id).update(status=0)
+            TransmissorLoteEfdreinf.objects.using('default').\
+                filter(id=transmissor_id).update(status=TRANSMISSOR_STATUS_CADASTRADO)
             #alterar_status_transmissor(transmissor_id, 0)
 
         else:
             messages.error(request, 'Erro ao enviar o lote!')
             if service == 'RecepcaoLoteReinf':
-                TransmissorEventosEfdreinf.objects.using('default').filter(id=transmissor_id).update(status=5)
+                TransmissorLoteEfdreinf.objects.using('default').\
+                    filter(id=transmissor_id).update(status=TRANSMISSOR_STATUS_ENVIADO_ERRO)
                 #alterar_status_transmissor(transmissor_id, 5)
 
             elif service == 'ConsultasReinf':
-                TransmissorEventosEfdreinf.objects.using('default').filter(id=transmissor_id).update(status=8)
+                TransmissorLoteEfdreinf.objects.using('default').\
+                    filter(id=transmissor_id).update(status=TRANSMISSOR_STATUS_CONSULTADO_ERRO)
                 #alterar_status_transmissor(transmissor_id, 8)
 
     else:

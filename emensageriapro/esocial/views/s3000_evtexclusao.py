@@ -99,7 +99,7 @@ def apagar(request, hash):
                              '',
                              's3000_evtexclusao', s3000_evtexclusao_id, usuario_id, 3)
         else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+            messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
 
         if request.session['retorno_pagina']== 's3000_evtexclusao_salvar':
             return redirect('s3000_evtexclusao', hash=request.session['retorno_hash'])
@@ -222,7 +222,7 @@ def listar(request, hash):
         if not post and len(s3000_evtexclusao_lista) > 100:
             filtrar = True
             s3000_evtexclusao_lista = None
-            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s3000_evtexclusao_listar_custom
@@ -361,7 +361,7 @@ def salvar(request, hash):
 
                 dados = s3000_evtexclusao_form.cleaned_data
                 obj = s3000_evtexclusao_form.save(request=request)
-                messages.success(request, 'Salvo com sucesso!')
+                messages.success(request, u'Salvo com sucesso!')
 
                 if not s3000_evtexclusao_id:
                     from emensageriapro.functions import identidade_evento
@@ -383,7 +383,7 @@ def salvar(request, hash):
                     return redirect('s3000_evtexclusao_salvar', hash=url_hash)
 
             else:
-                messages.error(request, 'Erro ao salvar!')
+                messages.error(request, u'Erro ao salvar!')
         s3000_evtexclusao_form = disabled_form_fields(s3000_evtexclusao_form, permissao.permite_editar)
 
         if s3000_evtexclusao_id:

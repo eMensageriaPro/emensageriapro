@@ -81,7 +81,7 @@ def apagar(request, hash):
         obj.delete(request=request)
         #esocial_atividades_periculosas_insalubres_especiais_apagar_custom
         #esocial_atividades_periculosas_insalubres_especiais_apagar_custom
-        messages.success(request, 'Apagado com sucesso!')
+        messages.success(request, u'Apagado com sucesso!')
         if request.session['retorno_pagina']== 'esocial_atividades_periculosas_insalubres_especiais_salvar':
             return redirect('esocial_atividades_periculosas_insalubres_especiais', hash=request.session['retorno_hash'])
         else:
@@ -212,7 +212,7 @@ def listar(request, hash):
         if not post and len(esocial_atividades_periculosas_insalubres_especiais_lista) > 100:
             filtrar = True
             esocial_atividades_periculosas_insalubres_especiais_lista = None
-            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         #esocial_atividades_periculosas_insalubres_especiais_listar_custom
         request.session["retorno_hash"] = hash
@@ -320,7 +320,7 @@ def salvar(request, hash):
 
                 dados = esocial_atividades_periculosas_insalubres_especiais_form.cleaned_data
                 obj = esocial_atividades_periculosas_insalubres_especiais_form.save(request=request)
-                messages.success(request, 'Salvo com sucesso!')
+                messages.success(request, u'Salvo com sucesso!')
 
                 if not esocial_atividades_periculosas_insalubres_especiais_id:
                     gravar_auditoria('{}',
@@ -338,7 +338,7 @@ def salvar(request, hash):
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('esocial_atividades_periculosas_insalubres_especiais_salvar', hash=url_hash)
             else:
-                messages.error(request, 'Erro ao salvar!')
+                messages.error(request, u'Erro ao salvar!')
         esocial_atividades_periculosas_insalubres_especiais_form = disabled_form_fields(esocial_atividades_periculosas_insalubres_especiais_form, permissao.permite_editar)
         #esocial_atividades_periculosas_insalubres_especiais_campos_multiple_passo3
 

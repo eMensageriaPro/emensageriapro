@@ -81,7 +81,7 @@ def apagar(request, hash):
         obj.delete(request=request)
         #esocial_codigo_aliquotas_fpas_terceiros_apagar_custom
         #esocial_codigo_aliquotas_fpas_terceiros_apagar_custom
-        messages.success(request, 'Apagado com sucesso!')
+        messages.success(request, u'Apagado com sucesso!')
         if request.session['retorno_pagina']== 'esocial_codigo_aliquotas_fpas_terceiros_salvar':
             return redirect('esocial_codigo_aliquotas_fpas_terceiros', hash=request.session['retorno_hash'])
         else:
@@ -227,7 +227,7 @@ def listar(request, hash):
         if not post and len(esocial_codigo_aliquotas_fpas_terceiros_lista) > 100:
             filtrar = True
             esocial_codigo_aliquotas_fpas_terceiros_lista = None
-            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         #esocial_codigo_aliquotas_fpas_terceiros_listar_custom
         request.session["retorno_hash"] = hash
@@ -335,7 +335,7 @@ def salvar(request, hash):
 
                 dados = esocial_codigo_aliquotas_fpas_terceiros_form.cleaned_data
                 obj = esocial_codigo_aliquotas_fpas_terceiros_form.save(request=request)
-                messages.success(request, 'Salvo com sucesso!')
+                messages.success(request, u'Salvo com sucesso!')
 
                 if not esocial_codigo_aliquotas_fpas_terceiros_id:
                     gravar_auditoria('{}',
@@ -353,7 +353,7 @@ def salvar(request, hash):
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('esocial_codigo_aliquotas_fpas_terceiros_salvar', hash=url_hash)
             else:
-                messages.error(request, 'Erro ao salvar!')
+                messages.error(request, u'Erro ao salvar!')
         esocial_codigo_aliquotas_fpas_terceiros_form = disabled_form_fields(esocial_codigo_aliquotas_fpas_terceiros_form, permissao.permite_editar)
         #esocial_codigo_aliquotas_fpas_terceiros_campos_multiple_passo3
 

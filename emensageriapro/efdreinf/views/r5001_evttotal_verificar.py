@@ -437,7 +437,7 @@ def duplicar(request, hash):
         gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r5001_evttotal.identidade),
             'r5001_evttotal', dados['id'], request.user.id, 1)
 
-        messages.success(request, 'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
+        messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
         url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('r5001_evttotal_salvar', hash=url_hash)
 
@@ -478,7 +478,7 @@ def criar_alteracao(request, hash):
             u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r5001_evttotal.identidade),
             'r5001_evttotal', dados['id'], request.user.id, 1)
 
-        messages.success(request, 'Evento de alteração criado com sucesso!')
+        messages.success(request, u'Evento de alteração criado com sucesso!')
         url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('r5001_evttotal_salvar', hash=url_hash)
 
@@ -520,7 +520,7 @@ def criar_exclusao(request, hash):
             u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r5001_evttotal.identidade),
             'r5001_evttotal', dados['id'], request.user.id, 1)
 
-        messages.success(request, 'Evento de exclusão criado com sucesso!')
+        messages.success(request, u'Evento de exclusão criado com sucesso!')
         url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('r5001_evttotal_salvar', hash=url_hash)
 
@@ -548,7 +548,7 @@ def alterar_identidade(request, hash):
         if r5001_evttotal.status == STATUS_EVENTO_CADASTRADO:
 
             nova_identidade = identidade_evento(r5001_evttotal)
-            messages.success(request, 'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
+            messages.success(request, u'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % r5001_evttotal_id )
 
             gravar_auditoria(u'{}',
@@ -559,10 +559,10 @@ def alterar_identidade(request, hash):
 
         else:
 
-            messages.error(request, 'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
+            messages.error(request, u'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
-    messages.error(request, 'Erro ao alterar identidade do evento!')
+    messages.error(request, u'Erro ao alterar identidade do evento!')
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
 
@@ -608,7 +608,7 @@ def abrir_evento_para_edicao(request, hash):
             messages.success(request, 'Evento aberto para edição!')
             usuario_id = request.user.id
             gravar_auditoria(u'{}', u'{"funcao": "Evento aberto para edição"}',
-            'r5001_evttotal', r5001_evttotal_id, usuario_id, 1)
+                'r5001_evttotal', r5001_evttotal_id, usuario_id, 1)
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % r5001_evttotal_id )
             return redirect('r5001_evttotal_salvar', hash=url_hash)
         else:
@@ -676,7 +676,7 @@ def validar_evento_funcao(r5001_evttotal_id, db_slug):
 
         if VERIFICAR_PREDECESSAO_ANTES_ENVIO:
 
-            quant = validar_precedencia('esocial', 'r5001_evttotal', r5001_evttotal_id)
+            quant = validar_precedencia('efdreinf', 'r5001_evttotal', r5001_evttotal_id)
 
             if quant <= 0:
 
@@ -724,11 +724,11 @@ def validar_evento(request, hash):
 
             validar_evento_funcao(r5001_evttotal_id, db_slug)
 
-            if r5001_evttotal.transmissor_lote_esocial and not VERIFICAR_PREDECESSAO_ANTES_ENVIO:
+            if r5001_evttotal.transmissor_lote_efdreinf and not VERIFICAR_PREDECESSAO_ANTES_ENVIO:
                 r5001evtTotal.objects.using(db_slug).\
                     filter(excluido=False, id=r5001_evttotal_id).update(status=STATUS_EVENTO_AGUARD_ENVIO)
 
-            elif r5001_evttotal.transmissor_lote_esocial and VERIFICAR_PREDECESSAO_ANTES_ENVIO:
+            elif r5001_evttotal.transmissor_lote_efdreinf and VERIFICAR_PREDECESSAO_ANTES_ENVIO:
                 r5001evtTotal.objects.using(db_slug).\
                     filter(excluido=False, id=r5001_evttotal_id).update(status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
 

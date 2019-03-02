@@ -81,7 +81,7 @@ def apagar(request, hash):
         obj.delete(request=request)
         #relatorios_apagar_custom
         #relatorios_apagar_custom
-        messages.success(request, 'Apagado com sucesso!')
+        messages.success(request, u'Apagado com sucesso!')
         if request.session['retorno_pagina']== 'relatorios_salvar':
             return redirect('relatorios', hash=request.session['retorno_hash'])
         else:
@@ -170,7 +170,7 @@ def listar(request, hash):
         if not post and len(relatorios_lista) > 100:
             filtrar = True
             relatorios_lista = None
-            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         #relatorios_listar_custom
         request.session["retorno_hash"] = hash
@@ -196,7 +196,6 @@ def listar(request, hash):
         if for_print in (0,1):
             return render(request, 'relatorios_listar.html', context)
         elif for_print == 2:
-            #return render_to_pdf('tables/s1000_evtinfoempregador_pdf_xls.html', context)
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,

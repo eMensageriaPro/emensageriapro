@@ -92,12 +92,12 @@ def apagar(request, hash):
             obj.delete(request=request)
             #s2205_trabestrangeiro_apagar_custom
             #s2205_trabestrangeiro_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
+            messages.success(request, u'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
                              '',
                              's2205_trabestrangeiro', s2205_trabestrangeiro_id, usuario_id, 3)
         else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+            messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
 
         if request.session['retorno_pagina']== 's2205_trabestrangeiro_salvar':
             return redirect('s2205_trabestrangeiro', hash=request.session['retorno_hash'])
@@ -207,7 +207,7 @@ def listar(request, hash):
         if not post and len(s2205_trabestrangeiro_lista) > 100:
             filtrar = True
             s2205_trabestrangeiro_lista = None
-            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         #s2205_trabestrangeiro_listar_custom
         request.session["retorno_hash"] = hash
@@ -323,7 +323,7 @@ def salvar(request, hash):
 
                 dados = s2205_trabestrangeiro_form.cleaned_data
                 obj = s2205_trabestrangeiro_form.save(request=request)
-                messages.success(request, 'Salvo com sucesso!')
+                messages.success(request, u'Salvo com sucesso!')
 
                 if not s2205_trabestrangeiro_id:
                     gravar_auditoria('{}',
@@ -341,7 +341,7 @@ def salvar(request, hash):
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('s2205_trabestrangeiro_salvar', hash=url_hash)
             else:
-                messages.error(request, 'Erro ao salvar!')
+                messages.error(request, u'Erro ao salvar!')
         s2205_trabestrangeiro_form = disabled_form_fields(s2205_trabestrangeiro_form, permissao.permite_editar)
         if s2205_trabestrangeiro_id:
             if dados_evento['status'] != 0:

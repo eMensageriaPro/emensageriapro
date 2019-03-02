@@ -81,7 +81,7 @@ def apagar(request, hash):
         obj.delete(request=request)
         #importacao_arquivos_eventos_apagar_custom
         #importacao_arquivos_eventos_apagar_custom
-        messages.success(request, 'Apagado com sucesso!')
+        messages.success(request, u'Apagado com sucesso!')
         if request.session['retorno_pagina']== 'importacao_arquivos_eventos_salvar':
             return redirect('importacao_arquivos_eventos', hash=request.session['retorno_hash'])
         else:
@@ -188,7 +188,7 @@ def listar(request, hash):
         if not post and len(importacao_arquivos_eventos_lista) > 100:
             filtrar = True
             importacao_arquivos_eventos_lista = None
-            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         importacao_arquivos_lista = ImportacaoArquivos.objects.using( db_slug ).filter(excluido = False).all()
         #importacao_arquivos_eventos_listar_custom
@@ -216,7 +216,6 @@ def listar(request, hash):
         if for_print in (0,1):
             return render(request, 'importacao_arquivos_eventos_listar.html', context)
         elif for_print == 2:
-            #return render_to_pdf('tables/s1000_evtinfoempregador_pdf_xls.html', context)
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,

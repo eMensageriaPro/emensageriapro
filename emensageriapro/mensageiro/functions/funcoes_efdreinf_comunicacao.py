@@ -48,6 +48,30 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
+
+from emensageriapro.mensageiro.functions.funcoes_esocial import TRANSMISSOR_STATUS_CADASTRADO, TRANSMISSOR_STATUS_ENVIADO,\
+    TRANSMISSOR_STATUS_ENVIADO_ERRO, TRANSMISSOR_STATUS_CONSULTADO, TRANSMISSOR_STATUS_CONSULTADO_ERRO
+
+
+def definir_status_evento(transmissor_lote_esocial_id):
+    from django.apps import apps
+
+    app_models = apps.get_app_config('esocial').get_models()
+
+    for model in app_models:
+
+        lista = model.objects.using('default').filter(transmissor_lote_esocial_id=transmissor_lote_esocial_id).all()
+
+        for a in lista:
+
+            if a.transmissor_lote_esocial.status == TRANSMISSOR_STATUS_ENVIADO:
+                model.objects.using('default').filter(id=a.id).update(status=STATUS_EVENTO_ENVIADO, ocorrencias=None)
+
+            elif a.transmissor_lote_esocial.status == TRANSMISSOR_STATUS_ENVIADO_ERRO:
+                model.objects.using('default').filter(id=a.id).update(transmissor_lote_esocial=None)
+
+
+
 def read_envioLoteEventos(arquivo, transmissor_lote_id):
     from emensageriapro.mensageiro.functions.funcoes_efdreinf import ler_arquivo
     import untangle
@@ -77,10 +101,15 @@ def read_envioLoteEventos(arquivo, transmissor_lote_id):
     if 'dadosRegistroOcorrenciaLote' in dir(child.status):
         for ocorrencia in child.status.dadosRegistroOcorrenciaLote.ocorrencias:
             lote_ocorrencias = {}
-            if 'tipo' in dir(ocorrencia): lote_ocorrencias['tipo'] = ocorrencia.tipo.cdata
-            if 'localizacaoErroAviso' in dir(ocorrencia): lote_ocorrencias['localizacao'] = ocorrencia.localizacaoErroAviso.cdata
-            if 'codigo' in dir(ocorrencia): lote_ocorrencias['resposta_codigo'] = ocorrencia.codigo.cdata
-            if 'descricao' in dir(ocorrencia): lote_ocorrencias['descricao'] = ocorrencia.descricao.cdata
+            lote_ocorrencias['localizacao'] = '-'
+            if 'tipo' in dir(ocorrencia):
+                lote_ocorrencias['tipo'] = ocorrencia.tipo.cdata
+            if 'localizacaoErroAviso' in dir(ocorrencia):
+                lote_ocorrencias['localizacao'] = ocorrencia.localizacaoErroAviso.cdata
+            if 'codigo' in dir(ocorrencia):
+                lote_ocorrencias['resposta_codigo'] = ocorrencia.codigo.cdata
+            if 'descricao' in dir(ocorrencia):
+                lote_ocorrencias['descricao'] = ocorrencia.descricao.cdata
             lote_ocorrencias['transmissor_lote_efdreinf_id'] = transmissor_lote_efdreinf_id
 
             insert = create_insert('transmissor_lote_efdreinf_ocorrencias', lote_ocorrencias)

@@ -69,10 +69,6 @@ def enviar(request, hash):
     pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='transmissor_lote_efdreinf')
     transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf.objects.using(db_slug), excluido=False, id=transmissor_lote_efdreinf_id)
     a = send_xml(request, transmissor_lote_efdreinf_id, 'RecepcaoLoteReinf')
-    if 'HTTP/1.1 200 OK' in a:
-        messages.success(request, 'Lote enviado com sucesso!')
-    else:
-        messages.error(request, 'Erro no envio do Lote de Eventos! %s' % a)
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
 
@@ -91,10 +87,6 @@ def consultar(request, hash):
     pagina = ConfigPaginas.objects.using(db_slug).get(excluido=False, endereco='transmissor_lote_efdreinf')
     transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf.objects.using(db_slug), excluido=False, id=transmissor_lote_efdreinf_id)
     a = send_xml(request, transmissor_lote_efdreinf_id, 'ConsultasReinf')
-    if 'HTTP/1.1 200 OK' in a:
-        messages.success(request, 'Lote consultado com sucesso!')
-    else:
-        messages.error(request, 'Erro na consulta do Lote de Eventos! %s' % a)
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
 

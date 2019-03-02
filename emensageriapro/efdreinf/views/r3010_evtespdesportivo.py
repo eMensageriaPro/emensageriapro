@@ -99,7 +99,7 @@ def apagar(request, hash):
                              '',
                              'r3010_evtespdesportivo', r3010_evtespdesportivo_id, usuario_id, 3)
         else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+            messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
 
         if request.session['retorno_pagina']== 'r3010_evtespdesportivo_salvar':
             return redirect('r3010_evtespdesportivo', hash=request.session['retorno_hash'])
@@ -253,7 +253,7 @@ def listar(request, hash):
         if not post and len(r3010_evtespdesportivo_lista) > 100:
             filtrar = True
             r3010_evtespdesportivo_lista = None
-            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         transmissor_lote_efdreinf_lista = TransmissorLoteEfdreinf.objects.using( db_slug ).filter(excluido = False).all()
         #r3010_evtespdesportivo_listar_custom
@@ -392,7 +392,7 @@ def salvar(request, hash):
 
                 dados = r3010_evtespdesportivo_form.cleaned_data
                 obj = r3010_evtespdesportivo_form.save(request=request)
-                messages.success(request, 'Salvo com sucesso!')
+                messages.success(request, u'Salvo com sucesso!')
 
                 if not r3010_evtespdesportivo_id:
                     from emensageriapro.functions import identidade_evento
@@ -414,7 +414,7 @@ def salvar(request, hash):
                     return redirect('r3010_evtespdesportivo_salvar', hash=url_hash)
 
             else:
-                messages.error(request, 'Erro ao salvar!')
+                messages.error(request, u'Erro ao salvar!')
         r3010_evtespdesportivo_form = disabled_form_fields(r3010_evtespdesportivo_form, permissao.permite_editar)
 
         if r3010_evtespdesportivo_id:

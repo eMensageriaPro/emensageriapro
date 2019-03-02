@@ -81,7 +81,7 @@ def apagar(request, hash):
         obj.delete(request=request)
         #esocial_afastamentos_motivos_apagar_custom
         #esocial_afastamentos_motivos_apagar_custom
-        messages.success(request, 'Apagado com sucesso!')
+        messages.success(request, u'Apagado com sucesso!')
         if request.session['retorno_pagina']== 'esocial_afastamentos_motivos_salvar':
             return redirect('esocial_afastamentos_motivos', hash=request.session['retorno_hash'])
         else:
@@ -215,7 +215,7 @@ def listar(request, hash):
         if not post and len(esocial_afastamentos_motivos_lista) > 100:
             filtrar = True
             esocial_afastamentos_motivos_lista = None
-            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         #esocial_afastamentos_motivos_listar_custom
         request.session["retorno_hash"] = hash
@@ -323,7 +323,7 @@ def salvar(request, hash):
 
                 dados = esocial_afastamentos_motivos_form.cleaned_data
                 obj = esocial_afastamentos_motivos_form.save(request=request)
-                messages.success(request, 'Salvo com sucesso!')
+                messages.success(request, u'Salvo com sucesso!')
 
                 if not esocial_afastamentos_motivos_id:
                     gravar_auditoria('{}',
@@ -341,7 +341,7 @@ def salvar(request, hash):
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('esocial_afastamentos_motivos_salvar', hash=url_hash)
             else:
-                messages.error(request, 'Erro ao salvar!')
+                messages.error(request, u'Erro ao salvar!')
         esocial_afastamentos_motivos_form = disabled_form_fields(esocial_afastamentos_motivos_form, permissao.permite_editar)
         #esocial_afastamentos_motivos_campos_multiple_passo3
 

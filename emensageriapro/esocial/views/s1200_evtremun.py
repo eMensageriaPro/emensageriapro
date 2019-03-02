@@ -105,7 +105,7 @@ def apagar(request, hash):
                              '',
                              's1200_evtremun', s1200_evtremun_id, usuario_id, 3)
         else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+            messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
 
         if request.session['retorno_pagina']== 's1200_evtremun_salvar':
             return redirect('s1200_evtremun', hash=request.session['retorno_hash'])
@@ -240,7 +240,7 @@ def listar(request, hash):
         if not post and len(s1200_evtremun_lista) > 100:
             filtrar = True
             s1200_evtremun_lista = None
-            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s1200_evtremun_listar_custom
@@ -379,7 +379,7 @@ def salvar(request, hash):
 
                 dados = s1200_evtremun_form.cleaned_data
                 obj = s1200_evtremun_form.save(request=request)
-                messages.success(request, 'Salvo com sucesso!')
+                messages.success(request, u'Salvo com sucesso!')
 
                 if not s1200_evtremun_id:
                     from emensageriapro.functions import identidade_evento
@@ -401,7 +401,7 @@ def salvar(request, hash):
                     return redirect('s1200_evtremun_salvar', hash=url_hash)
 
             else:
-                messages.error(request, 'Erro ao salvar!')
+                messages.error(request, u'Erro ao salvar!')
         s1200_evtremun_form = disabled_form_fields(s1200_evtremun_form, permissao.permite_editar)
 
         if s1200_evtremun_id:

@@ -92,12 +92,12 @@ def apagar(request, hash):
             obj.delete(request=request)
             #s1000_inclusao_dadosisencao_apagar_custom
             #s1000_inclusao_dadosisencao_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
+            messages.success(request, u'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
                              '',
                              's1000_inclusao_dadosisencao', s1000_inclusao_dadosisencao_id, usuario_id, 3)
         else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+            messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
 
         if request.session['retorno_pagina']== 's1000_inclusao_dadosisencao_salvar':
             return redirect('s1000_inclusao_dadosisencao', hash=request.session['retorno_hash'])
@@ -219,7 +219,7 @@ def listar(request, hash):
         if not post and len(s1000_inclusao_dadosisencao_lista) > 100:
             filtrar = True
             s1000_inclusao_dadosisencao_lista = None
-            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         #s1000_inclusao_dadosisencao_listar_custom
         request.session["retorno_hash"] = hash
@@ -335,7 +335,7 @@ def salvar(request, hash):
 
                 dados = s1000_inclusao_dadosisencao_form.cleaned_data
                 obj = s1000_inclusao_dadosisencao_form.save(request=request)
-                messages.success(request, 'Salvo com sucesso!')
+                messages.success(request, u'Salvo com sucesso!')
 
                 if not s1000_inclusao_dadosisencao_id:
                     gravar_auditoria('{}',
@@ -353,7 +353,7 @@ def salvar(request, hash):
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('s1000_inclusao_dadosisencao_salvar', hash=url_hash)
             else:
-                messages.error(request, 'Erro ao salvar!')
+                messages.error(request, u'Erro ao salvar!')
         s1000_inclusao_dadosisencao_form = disabled_form_fields(s1000_inclusao_dadosisencao_form, permissao.permite_editar)
         if s1000_inclusao_dadosisencao_id:
             if dados_evento['status'] != 0:

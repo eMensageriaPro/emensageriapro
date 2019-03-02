@@ -166,16 +166,14 @@ def login(request):
                 messages.error(request, 'Senha incorreta!')
         elif not usuario:
             messages.error(request, 'Usuário inexistente!')
-    try:
-        versao_atual = json_to_dict( urllib.urlopen('http://www.emensageria.com.br/versao.php').read() )
-    except:
-        versao_atual = {}
-        versao_atual['versao'] = ''
+    # try:
+    #     versao_atual = json_to_dict( urllib.urlopen('http://www.emensageria.com.br/versao.php').read() )
+    # except:
+    #     versao_atual = {}
+    #     versao_atual['versao'] = ''
     context = {
-        'versao_atual': versao_atual['versao'],
+        # 'versao_atual': versao_atual['versao'],
         'versao_emensageria': VERSAO_EMENSAGERIA,
-
-
     }
     return render(request, 'login.html', context)
 

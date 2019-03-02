@@ -92,12 +92,12 @@ def apagar(request, hash):
             obj.delete(request=request)
             #s1202_infoperant_ideestab_apagar_custom
             #s1202_infoperant_ideestab_apagar_custom
-            messages.success(request, 'Apagado com sucesso!')
+            messages.success(request, u'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
                              '',
                              's1202_infoperant_ideestab', s1202_infoperant_ideestab_id, usuario_id, 3)
         else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+            messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
 
         if request.session['retorno_pagina']== 's1202_infoperant_ideestab_salvar':
             return redirect('s1202_infoperant_ideestab', hash=request.session['retorno_hash'])
@@ -201,7 +201,7 @@ def listar(request, hash):
         if not post and len(s1202_infoperant_ideestab_lista) > 100:
             filtrar = True
             s1202_infoperant_ideestab_lista = None
-            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         #s1202_infoperant_ideestab_listar_custom
         request.session["retorno_hash"] = hash
@@ -317,7 +317,7 @@ def salvar(request, hash):
 
                 dados = s1202_infoperant_ideestab_form.cleaned_data
                 obj = s1202_infoperant_ideestab_form.save(request=request)
-                messages.success(request, 'Salvo com sucesso!')
+                messages.success(request, u'Salvo com sucesso!')
 
                 if not s1202_infoperant_ideestab_id:
                     gravar_auditoria('{}',
@@ -335,7 +335,7 @@ def salvar(request, hash):
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('s1202_infoperant_ideestab_salvar', hash=url_hash)
             else:
-                messages.error(request, 'Erro ao salvar!')
+                messages.error(request, u'Erro ao salvar!')
         s1202_infoperant_ideestab_form = disabled_form_fields(s1202_infoperant_ideestab_form, permissao.permite_editar)
         if s1202_infoperant_ideestab_id:
             if dados_evento['status'] != 0:

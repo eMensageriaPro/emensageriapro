@@ -481,7 +481,7 @@ def duplicar(request, hash):
         gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1000_evtinfoempregador.identidade),
             's1000_evtinfoempregador', dados['id'], request.user.id, 1)
 
-        messages.success(request, 'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
+        messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
         url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('s1000_evtinfoempregador_salvar', hash=url_hash)
 
@@ -522,7 +522,7 @@ def criar_alteracao(request, hash):
             u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1000_evtinfoempregador.identidade),
             's1000_evtinfoempregador', dados['id'], request.user.id, 1)
 
-        messages.success(request, 'Evento de alteração criado com sucesso!')
+        messages.success(request, u'Evento de alteração criado com sucesso!')
         url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('s1000_evtinfoempregador_salvar', hash=url_hash)
 
@@ -564,7 +564,7 @@ def criar_exclusao(request, hash):
             u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1000_evtinfoempregador.identidade),
             's1000_evtinfoempregador', dados['id'], request.user.id, 1)
 
-        messages.success(request, 'Evento de exclusão criado com sucesso!')
+        messages.success(request, u'Evento de exclusão criado com sucesso!')
         url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
         return redirect('s1000_evtinfoempregador_salvar', hash=url_hash)
 
@@ -592,7 +592,7 @@ def alterar_identidade(request, hash):
         if s1000_evtinfoempregador.status == STATUS_EVENTO_CADASTRADO:
 
             nova_identidade = identidade_evento(s1000_evtinfoempregador)
-            messages.success(request, 'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
+            messages.success(request, u'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s1000_evtinfoempregador_id )
 
             gravar_auditoria(u'{}',
@@ -603,10 +603,10 @@ def alterar_identidade(request, hash):
 
         else:
 
-            messages.error(request, 'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
+            messages.error(request, u'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
             return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
-    messages.error(request, 'Erro ao alterar identidade do evento!')
+    messages.error(request, u'Erro ao alterar identidade do evento!')
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
 
@@ -652,7 +652,7 @@ def abrir_evento_para_edicao(request, hash):
             messages.success(request, 'Evento aberto para edição!')
             usuario_id = request.user.id
             gravar_auditoria(u'{}', u'{"funcao": "Evento aberto para edição"}',
-            's1000_evtinfoempregador', s1000_evtinfoempregador_id, usuario_id, 1)
+                's1000_evtinfoempregador', s1000_evtinfoempregador_id, usuario_id, 1)
             url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s1000_evtinfoempregador_id )
             return redirect('s1000_evtinfoempregador_salvar', hash=url_hash)
         else:

@@ -103,7 +103,7 @@ def apagar(request, hash):
                              '',
                              's5013_evtfgts', s5013_evtfgts_id, usuario_id, 3)
         else:
-            messages.error(request, 'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
+            messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
 
         if request.session['retorno_pagina']== 's5013_evtfgts_salvar':
             return redirect('s5013_evtfgts', hash=request.session['retorno_hash'])
@@ -220,7 +220,7 @@ def listar(request, hash):
         if not post and len(s5013_evtfgts_lista) > 100:
             filtrar = True
             s5013_evtfgts_lista = None
-            messages.warning(request, 'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
 
         transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.using( db_slug ).filter(excluido = False).all()
         #s5013_evtfgts_listar_custom
@@ -359,7 +359,7 @@ def salvar(request, hash):
 
                 dados = s5013_evtfgts_form.cleaned_data
                 obj = s5013_evtfgts_form.save(request=request)
-                messages.success(request, 'Salvo com sucesso!')
+                messages.success(request, u'Salvo com sucesso!')
 
                 if not s5013_evtfgts_id:
                     from emensageriapro.functions import identidade_evento
@@ -381,7 +381,7 @@ def salvar(request, hash):
                     return redirect('s5013_evtfgts_salvar', hash=url_hash)
 
             else:
-                messages.error(request, 'Erro ao salvar!')
+                messages.error(request, u'Erro ao salvar!')
         s5013_evtfgts_form = disabled_form_fields(s5013_evtfgts_form, permissao.permite_editar)
 
         if s5013_evtfgts_id:

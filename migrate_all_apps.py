@@ -56,7 +56,7 @@ def cadastro_controle_acesso():
                                     titulo, slug, ordem, criado_em, modificado_em, excluido, 
                                     criado_por_id, modificado_por_id, modulo_pai_id)
                             VALUES ('%(modulo)s', '%(modulo_slug)s', 0, now(), now(), False, 
-                                    1, 2, Null) RETURNING id;
+                                    1, 1, Null) RETURNING id;
 
                         """ % dados, True)
             dados['modulo_id'] = verif_modulo[0][0]
