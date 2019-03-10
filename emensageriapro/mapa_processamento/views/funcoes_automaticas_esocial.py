@@ -91,9 +91,9 @@ def validar(request, hash=None):
 
     texto = 'Validações processadas com sucesso!'
 
-    if hash:
+    db_slug = 'default'
 
-        db_slug = 'default'
+    if hash:
 
         try:
             usuario_id = request.user.id
@@ -116,24 +116,26 @@ def validar(request, hash=None):
         paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
         modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
-        from django.apps import apps
+    from django.apps import apps
 
-        app_models = apps.get_app_config('esocial').get_models()
+    app_models = apps.get_app_config('esocial').get_models()
 
-        for model in app_models:
+    for model in app_models:
 
-            STATUS = [
-                STATUS_EVENTO_IMPORTADO,
-            ]
+        STATUS = [
+            STATUS_EVENTO_IMPORTADO,
+        ]
 
-            lista = model.objects.using('default').filter(status__in=STATUS).all()
+        lista = model.objects.using('default').filter(status__in=STATUS).all()
 
-            for a in lista:
+        for a in lista:
 
-                a.validar()
+            a.validar()
+
+    if hash:
 
         messages.success(request, texto)
-        return redirect('mapa_esocial', hash=request.session['retorno_hash'])
+        return redirect(request.session["retorno_pagina"], hash=request.session['retorno_hash'])
 
     else:
         data = {'response': texto}
@@ -154,25 +156,27 @@ def enviar(request, hash=None):
 
     db_slug = 'default'
 
-    try:
-        usuario_id = request.user.id
+    if hash:
 
-    except:
-        return redirect('login')
+        try:
+            usuario_id = request.user.id
 
-    usuario = get_object_or_404(Usuarios.objects.using(db_slug),
-                                excluido=False,
-                                id=usuario_id)
-    pagina = ConfigPaginas.objects.using(db_slug).get(excluido=False,
-                                                      endereco='mapa_esocial')
+        except:
+            return redirect('login')
 
-    permissao = ConfigPermissoes.objects.using(db_slug).get(excluido=False,
-                                                            config_paginas=pagina,
-                                                            config_perfis=usuario.config_perfis)
+        usuario = get_object_or_404(Usuarios.objects.using(db_slug),
+                                    excluido=False,
+                                    id=usuario_id)
+        pagina = ConfigPaginas.objects.using(db_slug).get(excluido=False,
+                                                          endereco='mapa_esocial')
 
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+        permissao = ConfigPermissoes.objects.using(db_slug).get(excluido=False,
+                                                                config_paginas=pagina,
+                                                                config_perfis=usuario.config_perfis)
+
+        dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
+        paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
+        modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
     from django.apps import apps
     from emensageriapro.mensageiro.models import TransmissorLote, TransmissorLoteEsocial, TransmissorEventosEsocial
@@ -281,7 +285,7 @@ def enviar(request, hash=None):
     if hash:
 
         messages.success(request, texto)
-        return redirect('mapa_esocial', hash=request.session['retorno_hash'])
+        return redirect(request.session["retorno_pagina"], hash=request.session['retorno_hash'])
 
     else:
         data = {'response': texto}
@@ -298,9 +302,9 @@ def consultar(request, hash=None):
 
     texto = 'Eventos consultados com sucesso!'
 
-    if hash:
+    db_slug = 'default'
 
-        db_slug = 'default'
+    if hash:
 
         try:
             usuario_id = request.user.id
@@ -323,13 +327,15 @@ def consultar(request, hash=None):
         paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
         modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
-        lista_transmissores = TransmissorLoteEsocial.objects.using(db_slug).filter(status=1).all()
+    lista_transmissores = TransmissorLoteEsocial.objects.using(db_slug).filter(status=1).all()
 
-        for a in lista_transmissores:
-            send_xml(request, a.id, 'WsConsultarLoteEventos')
+    for a in lista_transmissores:
+        send_xml(request, a.id, 'WsConsultarLoteEventos')
+
+    if hash:
 
         messages.success(request, texto)
-        return redirect('mapa_esocial', hash=request.session['retorno_hash'])
+        return redirect(request.session["retorno_pagina"], hash=request.session['retorno_hash'])
 
     else:
         data = {'response': texto}
